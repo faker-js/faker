@@ -137,94 +137,84 @@ describe('BROKEN_LOCALE_METHODS test', () => {
     expect(obsoleteModules, 'No obsolete configuration').toEqual([]);
   });
 
-  Object.keys(modules).forEach((module) => {
-    describe(`${module}`, () => {
-      it('should not contain obsolete configuration (methods)', () => {
-        const existingMethods = modules[module];
-        const configuredMethods = Object.keys(
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-          BROKEN_LOCALE_METHODS[module] ?? {}
-        );
-        const obsoleteMethods = configuredMethods.filter(
-          (method) => !existingMethods.includes(method)
-        );
+  describe.each(Object.keys(modules))('%s', (module) => {
+    it('should not contain obsolete configuration (methods)', () => {
+      const existingMethods = modules[module];
+      const configuredMethods = Object.keys(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        BROKEN_LOCALE_METHODS[module] ?? {}
+      );
+      const obsoleteMethods = configuredMethods.filter(
+        (method) => !existingMethods.includes(method)
+      );
 
-        expect(obsoleteMethods, 'No obsolete configuration').toEqual([]);
-      });
+      expect(obsoleteMethods, 'No obsolete configuration').toEqual([]);
     });
   });
 });
 
 describe('functional tests', () => {
-  for (const [locale, faker] of Object.entries(allFakers)) {
-    describe(`${locale}`, () => {
-      if (locale === 'base') {
-        it.skip('base locale is checked by other tests');
-        return;
-      }
+  describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
+    if (locale === 'base') {
+      it.skip('base locale is checked by other tests');
+      return;
+    }
 
-      Object.keys(modules).forEach((module) => {
-        describe(`${module}`, () => {
-          modules[module].forEach((meth) => {
-            const testAssertion = () => {
-              // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
-              faker.seed(1);
-              const result = faker[module][meth]();
+    describe.each(Object.entries(modules))('%s', (module, methods) => {
+      methods.forEach((meth) => {
+        const testAssertion = () => {
+          // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
+          faker.seed(1);
+          const result = faker[module][meth]();
 
-              if (meth === 'boolean') {
-                expect(result).toBeTypeOf('boolean');
-              } else {
-                expect(result).toBeTruthy();
-                expect(result).not.toEqual([]);
-              }
-            };
+          if (meth === 'boolean') {
+            expect(result).toBeTypeOf('boolean');
+          } else {
+            expect(result).toBeTruthy();
+            expect(result).not.toEqual([]);
+          }
+        };
 
-            if (isWorkingLocaleForMethod(module, meth, locale)) {
-              it(`${meth}()`, testAssertion);
-            } else {
-              // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
-              // We expect a failure here to ensure we remove the exclusions when fixed
-              it.fails(`${meth}()`, testAssertion);
-            }
-          });
-        });
+        if (isWorkingLocaleForMethod(module, meth, locale)) {
+          it(`${meth}()`, testAssertion);
+        } else {
+          // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
+          // We expect a failure here to ensure we remove the exclusions when fixed
+          it.fails(`${meth}()`, testAssertion);
+        }
       });
     });
-  }
+  });
 });
 
 describe('faker.helpers.fake functional tests', () => {
-  for (const [locale, faker] of Object.entries(allFakers)) {
-    describe(`${locale}`, () => {
-      if (locale === 'base') {
-        it.skip('base locale is checked by other tests');
-        return;
-      }
+  describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
+    if (locale === 'base') {
+      it.skip('base locale is checked by other tests');
+      return;
+    }
 
-      Object.keys(modules).forEach((module) => {
-        describe(`${module}`, () => {
-          modules[module].forEach((meth) => {
-            const testAssertion = () => {
-              // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
-              faker.seed(1);
-              const result = faker.helpers.fake(`{{${module}.${meth}}}`);
+    describe.each(Object.entries(modules))('%s', (module, methods) => {
+      methods.forEach((meth) => {
+        const testAssertion = () => {
+          // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
+          faker.seed(1);
+          const result = faker.helpers.fake(`{{${module}.${meth}}}`);
 
-              expect(result).toBeTypeOf('string');
-              expect(result).not.toBe('');
-              expect(result).not.toBe('null');
-              expect(result).not.toBe('undefined');
-            };
+          expect(result).toBeTypeOf('string');
+          expect(result).not.toBe('');
+          expect(result).not.toBe('null');
+          expect(result).not.toBe('undefined');
+        };
 
-            if (isWorkingLocaleForMethod(module, meth, locale)) {
-              it(`${meth}()`, testAssertion);
-            } else {
-              // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
-              // We expect a failure here to ensure we remove the exclusions when fixed
-              it.fails(`${meth}()`, testAssertion);
-            }
-          });
-        });
+        if (isWorkingLocaleForMethod(module, meth, locale)) {
+          it(`${meth}()`, testAssertion);
+        } else {
+          // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
+          // We expect a failure here to ensure we remove the exclusions when fixed
+          it.fails(`${meth}()`, testAssertion);
+        }
       });
     });
-  }
+  });
 });

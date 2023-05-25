@@ -2,6 +2,7 @@ import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import ibanLib from '../src/modules/finance/iban';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -16,8 +17,9 @@ describe('finance_iban', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('specific IBAN country checks', () => {
         it('IBAN for Georgia is correct', () => {
           // Georgia
@@ -355,5 +357,5 @@ describe('finance_iban', () => {
         });
       });
     }
-  });
+  );
 });

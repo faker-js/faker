@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -9,8 +10,9 @@ describe('music', () => {
     t.itEach('genre', 'songName');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('genre()', () => {
         it('should return a genre', () => {
           const genre = faker.music.genre();
@@ -31,5 +33,5 @@ describe('music', () => {
         });
       });
     }
-  });
+  );
 });

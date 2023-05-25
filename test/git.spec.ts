@@ -2,6 +2,7 @@ import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -31,8 +32,9 @@ describe('git', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('branch()', () => {
         it('should return a random branch', () => {
           const branch = faker.git.branch();
@@ -164,5 +166,5 @@ describe('git', () => {
         );
       });
     }
-  });
+  );
 });
