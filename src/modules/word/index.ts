@@ -643,28 +643,23 @@ export class WordModule {
       options = { count: options, capitalize: 'none' };
     }
 
-    const { count = { min: 1, max: 3 } } = options;
+    const { count = { min: 1, max: 3 }, capitalize } = options;
 
-    let sentence = this.faker.helpers
-      .multiple(() => this.sample(), { count })
+    return this.faker.helpers
+      .multiple(
+        () => {
+          let word = this.sample();
+          if (
+            capitalize === 'all' ||
+            (capitalize === 'random' && this.faker.datatype.boolean)
+          ) {
+            word = word.charAt(0).toUpperCase() + word.slice(1);
+          }
+
+          return word;
+        },
+        { count }
+      )
       .join(' ');
-
-    if (options.capitalize === 'all') {
-      sentence = sentence
-        .split(' ')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-    } else if (options.capitalize === 'random') {
-      sentence = sentence
-        .split(' ')
-        .map((word) =>
-          this.faker.datatype.boolean()
-            ? word.charAt(0).toUpperCase() + word.slice(1)
-            : word
-        )
-        .join(' ');
-    }
-
-    return sentence;
   }
 }
