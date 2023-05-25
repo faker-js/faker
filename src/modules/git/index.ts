@@ -181,6 +181,7 @@ export class GitModule {
     } = {}
   ): string {
     const { refDate = this.faker.defaultRefDate() } = options;
+    // We check if Intl support is missing rather than if GIT_DATE_FORMAT_BASE/GIT_TIMEZONE_FORMAT is null. This allows us to test the error case in environments that do have Intl support by temporarily removing Intl at runtime.
     if (!Intl || !Intl.DateTimeFormat || !Intl.NumberFormat) {
       throw new FakerError(
         'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
