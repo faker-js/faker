@@ -34,7 +34,13 @@ describe('word', () => {
         .it('with count = 10', 10)
         .it('with count = 20', 20)
         .it('with options.count', { count: 10 })
-        .it('with options.count range', { count: { min: 18, max: 20 } });
+        .it('with options.count range', { count: { min: 18, max: 20 } })
+        .it('with capitalize = random', { capitalize: 'random' })
+        .it('with capitalize = all', { capitalize: 'all' })
+        .it('with options.count range and capitalize = random', {
+          count: { min: 18, max: 20 },
+          capitalize: 'random',
+        });
     });
   });
 

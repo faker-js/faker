@@ -596,7 +596,7 @@ export class WordModule {
    *
    * @param options The optional options object or the number of words to return.
    * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
-   * @param options.capitalize Whether the words are capatalized. Defaults to `none`
+   * @param options.capitalize Capitalize the first letter of each word. Defaults to `none`
    *
    * @example
    * faker.word.words() // 'almost'
@@ -628,15 +628,19 @@ export class WordModule {
                 max: number;
               };
           /**
-           * Whether words are capatalized.
+           * Capitalize the first letter of each word.
+           *
+           * The option 'all' will result in every word to have its first letter capitalized,
+           *
+           * while 'random' will arbitrarily choose words to have their first letters capitalized
            *
            * @default none
            */
-          capatilize?: 'random' | 'all' | 'none';
+          capitalize?: 'random' | 'all' | 'none';
         } = {}
   ): string {
     if (typeof options === 'number') {
-      options = { count: options, capatilize: 'none' };
+      options = { count: options, capitalize: 'none' };
     }
 
     const { count = { min: 1, max: 3 } } = options;
@@ -645,12 +649,12 @@ export class WordModule {
       .multiple(() => this.sample(), { count })
       .join(' ');
 
-    if (options.capatilize === 'all') {
+    if (options.capitalize === 'all') {
       sentence = sentence
         .split(' ')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
-    } else if (options.capatilize === 'random') {
+    } else if (options.capitalize === 'random') {
       sentence = sentence
         .split(' ')
         .map((word) =>
