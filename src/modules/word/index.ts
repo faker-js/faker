@@ -596,13 +596,15 @@ export class WordModule {
    *
    * @param options The optional options object or the number of words to return.
    * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
-   * @param options.capitalize Capitalize the first letter of each word. Defaults to `none`
+   * @param options.capitalize Capitalize the first letter of each word. Accepts `'all'` and `'random'` but defaults to `'none'`
    *
    * @example
    * faker.word.words() // 'almost'
    * faker.word.words(5) // 'before hourly patiently dribble equal'
    * faker.word.words({ count: 5 }) // 'whoever edible um kissingly faraway'
    * faker.word.words({ count: { min: 5, max: 10 } }) // 'vice buoyant through apropos poised total wary boohoo'
+   * faker.word.words({ count: 5, capitalize: 'all' }) // 'Whoever Edible Um Kissingly Faraway'
+   * faker.word.words({ count: 5, capitalize: 'random' }) // 'whoever Edible um kissingly Faraway'
    *
    * @since 8.0.0
    */
@@ -630,9 +632,9 @@ export class WordModule {
           /**
            * Capitalize the first letter of each word.
            *
-           * The option 'all' will result in every word to have its first letter capitalized,
+           * The option `'all'` will result in every word to have its first letter capitalized,
            *
-           * while 'random' will arbitrarily choose words to have their first letters capitalized
+           * while `'random'` will arbitrarily choose words to have their first letters capitalized
            *
            * @default none
            */
@@ -640,10 +642,10 @@ export class WordModule {
         } = {}
   ): string {
     if (typeof options === 'number') {
-      options = { count: options, capitalize: 'none' };
+      options = { count: options };
     }
 
-    const { count = { min: 1, max: 3 }, capitalize } = options;
+    const { count = { min: 1, max: 3 }, capitalize = 'none' } = options;
 
     return this.faker.helpers
       .multiple(
