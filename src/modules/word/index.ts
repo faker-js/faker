@@ -596,7 +596,13 @@ export class WordModule {
    *
    * @param options The optional options object or the number of words to return.
    * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
-   * @param options.capitalize Capitalize the first letter of each word. Accepts `'all'` and `'random'` but defaults to `'none'`
+   * @param options.capitalize Capitalize the first letter of each word. Defaults to `'none'`.
+   *
+   * `'all'` will result in every word to have its first letter capitalized.
+   *
+   * `'random'` will arbitrarily choose words to have their first letters capitalized.
+   *
+   * `'none'` will have no effect on the casing of the letters.
    *
    * @example
    * faker.word.words() // 'almost'
@@ -632,9 +638,11 @@ export class WordModule {
           /**
            * Capitalize the first letter of each word.
            *
-           * The option `'all'` will result in every word to have its first letter capitalized,
+           * `'all'` will result in every word to have its first letter capitalized.
            *
-           * while `'random'` will arbitrarily choose words to have their first letters capitalized
+           * `'random'` will arbitrarily choose words to have their first letters capitalized.
+           *
+           * `'none'` will have no effect on the casing of the letters.
            *
            * @default none
            */
