@@ -100,7 +100,7 @@ exports[`word > 42 > words > noArgs 1`] = `"nondisclosure stud"`;
 
 exports[`word > 42 > words > with capitalize = all 1`] = `"Nondisclosure Stud"`;
 
-exports[`word > 42 > words > with capitalize = random 1`] = `"Nondisclosure Stud"`;
+exports[`word > 42 > words > with capitalize = random 1`] = `"Nondisclosure falter"`;
 
 exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind"`;
 
@@ -110,7 +110,7 @@ exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnorma
 
 exports[`word > 42 > words > with options.count range 1`] = `"nondisclosure stud across dreamily accurate circumvent boo news loftily through devoice about when boohoo graze busily to grouchy beneath"`;
 
-exports[`word > 42 > words > with options.count range and capitalize = random 1`] = `"Nondisclosure Stud Across Dreamily Accurate Circumvent Boo News Loftily Through Devoice About When Boohoo Graze Busily To Grouchy Beneath"`;
+exports[`word > 42 > words > with options.count range and capitalize = random 1`] = `"Nondisclosure falter until Of into Geez without Loftily Girdle Pouch Despite distorted immortal Generous To Waistband Even Ecology than"`;
 
 exports[`word > 1211 > adjective > noArgs 1`] = `"vicious"`;
 
@@ -212,7 +212,7 @@ exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
 
 exports[`word > 1211 > words > with capitalize = all 1`] = `"Although Instantly Though"`;
 
-exports[`word > 1211 > words > with capitalize = random 1`] = `"Although Instantly Though"`;
+exports[`word > 1211 > words > with capitalize = random 1`] = `"although even replenish"`;
 
 exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument"`;
 
@@ -222,7 +222,7 @@ exports[`word > 1211 > words > with options.count 1`] = `"youthfully woot speedi
 
 exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie salesman except pumpernickel friendly contest arena kindheartedly nifty combination out pencil interpenetrate minus upchange excitedly"`;
 
-exports[`word > 1211 > words > with options.count range and capitalize = random 1`] = `"Although Instantly Though Which Zowie Salesman Except Pumpernickel Friendly Contest Arena Kindheartedly Nifty Combination Out Pencil Interpenetrate Minus Upchange Excitedly"`;
+exports[`word > 1211 > words > with options.count range and capitalize = random 1`] = `"although even replenish Wrathful questionably after contort Friendly blather Whether supposing onto chateau consequently Interpenetrate bop shameless gadzooks smoothly Hmph"`;
 
 exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
@@ -334,4 +334,4 @@ exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst
 
 exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply lovingly elegantly imply maid underneath advanced nor abrogate oof within gosh against egg rush"`;
 
-exports[`word > 1337 > words > with options.count range and capitalize = random 1`] = `"Although Within Along Limply Lovingly Elegantly Imply Maid Underneath Advanced Nor Abrogate Oof Within Gosh Against Egg Rush"`;
+exports[`word > 1337 > words > with options.count range and capitalize = random 1`] = `"Although fast Form series master Idolized team Underneath truthfully Likewise Unaccountably Or famous Emotion Egg synthesize Queasy Tired"`;

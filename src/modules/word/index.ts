@@ -653,9 +653,13 @@ export class WordModule {
           let word = this.sample();
           if (
             capitalize === 'all' ||
-            (capitalize === 'random' && this.faker.datatype.boolean)
+            (capitalize === 'random' && this.faker.datatype.boolean())
           ) {
-            word = word.charAt(0).toUpperCase() + word.slice(1);
+            word =
+              word
+                .charAt(0)
+                .toLocaleUpperCase(this.faker.definitions.metadata.code) +
+              word.slice(1);
           }
 
           return word;
