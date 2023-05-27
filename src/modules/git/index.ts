@@ -70,6 +70,8 @@ export class GitModule {
    * 'CRLF' = '\r\n'
    * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
    *
+   * @throws When the environment does not support `Intl.NumberFormat` and `Intl.DateTimeFormat`.
+   *
    * @example
    * faker.git.commitEntry()
    * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2
@@ -163,6 +165,8 @@ export class GitModule {
    *
    * @param options The optional options object.
    * @param options.refDate The date to use as reference point for the commit. Defaults to `faker.defaultRefDate()`.
+   *
+   * @throws When the environment does not support `Intl.NumberFormat` and `Intl.DateTimeFormat`.
    *
    * @example
    * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
