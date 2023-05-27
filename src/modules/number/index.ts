@@ -43,9 +43,9 @@ export class NumberModule {
    * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
    *
    * @example
-   * faker.number.int() // 55422
+   * faker.number.int() // 2900970162509863
    * faker.number.int(100) // 52
-   * faker.number.int({ min: 1000000 }) // 1031433
+   * faker.number.int({ min: 1000000 }) // 2900970162509863
    * faker.number.int({ max: 100 }) // 42
    * faker.number.int({ min: 10, max: 100 }) // 57
    *
@@ -64,7 +64,7 @@ export class NumberModule {
           /**
            * Upper bound for generated number.
            *
-           * @default min + 99999
+           * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
         } = {}
