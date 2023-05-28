@@ -151,7 +151,7 @@ export class Faker {
   readonly word: WordModule = new WordModule(this);
 
   // Aliases
-  /** @deprecated Use {@link location} instead */
+  /** @deprecated Use {@link Faker#location} instead */
   get address(): AddressModule {
     deprecated({
       deprecated: 'faker.address',
@@ -162,7 +162,7 @@ export class Faker {
     return this.location;
   }
 
-  /** @deprecated Use {@link person} instead */
+  /** @deprecated Use {@link Faker#person} instead */
   get name(): NameModule {
     deprecated({
       deprecated: 'faker.name',
