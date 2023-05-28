@@ -1,8 +1,23 @@
+import { execSync } from 'node:child_process';
 import * as semver from 'semver';
 import { describe, expect, it } from 'vitest';
 import { oldVersions } from '../../docs/.vitepress/versions';
 
-describe('docs versions', () => {
+function isFakerOrigin(): boolean {
+  try {
+    const originUrl = execSync('git remote get-url origin')
+      .toString('utf8')
+      .trim();
+    return (
+      originUrl === 'git@github.com:faker-js/faker.git' ||
+      originUrl === 'https://github.com/faker-js/faker.git'
+    );
+  } catch {
+    return false;
+  }
+}
+
+describe.runIf(isFakerOrigin())('docs versions', () => {
   describe('oldVersions', () => {
     it('should have a complete set of oldVersions', () => {
       expect(oldVersions.length).toBeGreaterThanOrEqual(2);
