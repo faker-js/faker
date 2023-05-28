@@ -8,6 +8,7 @@ function isFakerOrigin(): boolean {
     const originUrl = execSync('git remote get-url origin')
       .toString('utf8')
       .trim();
+    console.error(originUrl);
     return (
       originUrl === 'git@github.com:faker-js/faker.git' ||
       originUrl === 'https://github.com/faker-js/faker.git'
