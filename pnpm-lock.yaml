@@ -71,8 +71,8 @@ devDependencies:
     specifier: ~1.4.1
     version: 1.4.1(eslint@8.41.0)(typescript@4.9.5)
   eslint-plugin-jsdoc:
-    specifier: ~44.2.7
-    version: 44.2.7(eslint@8.41.0)
+    specifier: ~45.0.0
+    version: 45.0.0(eslint@8.41.0)
   eslint-plugin-prettier:
     specifier: ~4.2.1
     version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.41.0)(prettier@2.8.8)
@@ -2457,8 +2457,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jsdoc@44.2.7(eslint@8.41.0):
-    resolution: {integrity: sha512-PcAJO7Wh4xIHPT+StBRpEbWgwCpIrYk75zL31RMbduVVHpgiy3Y8aXQ6pdbRJOq0fxHuepWSEAve8ZrPWTSKRg==}
+  /eslint-plugin-jsdoc@45.0.0(eslint@8.41.0):
+    resolution: {integrity: sha512-l2+Jcs/Ps7oFA+SWY+0sweU/e5LgricnEl6EsDlyRTF5y0+NWL1y9Qwz9PHwHAxtdJq6lxPjEQWmYLMkvhzD4g==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0

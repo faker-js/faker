@@ -115,7 +115,7 @@
     "eslint-define-config": "~1.20.0",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-deprecation": "~1.4.1",
-    "eslint-plugin-jsdoc": "~44.2.7",
+    "eslint-plugin-jsdoc": "~45.0.0",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-vitest": "~0.2.5",
     "glob": "~10.2.6",
