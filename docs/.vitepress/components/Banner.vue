@@ -80,7 +80,7 @@ html {
   top: 0;
   right: 0;
   left: 0;
-  z-index: var(--vp-z-index-layout-top);
+  z-index: 30;
 
   padding: 8px;
   text-align: center;
