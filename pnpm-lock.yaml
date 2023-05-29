@@ -44,8 +44,8 @@ devDependencies:
     specifier: ~10.1.2
     version: 10.1.2(vue@3.3.4)
   c8:
-    specifier: ~7.13.0
-    version: 7.13.0
+    specifier: ~7.14.0
+    version: 7.14.0
   conventional-changelog-cli:
     specifier: ~2.2.2
     version: 2.2.2
@@ -71,8 +71,8 @@ devDependencies:
     specifier: ~1.4.1
     version: 1.4.1(eslint@8.41.0)(typescript@4.9.5)
   eslint-plugin-jsdoc:
-    specifier: ~44.2.7
-    version: 44.2.7(eslint@8.41.0)
+    specifier: ~45.0.0
+    version: 45.0.0(eslint@8.41.0)
   eslint-plugin-prettier:
     specifier: ~4.2.1
     version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.41.0)(prettier@2.8.8)
@@ -1114,7 +1114,7 @@ packages:
       vitest: '>=0.30.0 <1'
     dependencies:
       '@ampproject/remapping': 2.2.1
-      c8: 7.13.0
+      c8: 7.14.0
       magic-string: 0.30.0
       picocolors: 1.0.0
       std-env: 3.3.3
@@ -1613,8 +1613,8 @@ packages:
       ieee754: 1.2.1
     dev: true
 
-  /c8@7.13.0:
-    resolution: {integrity: sha512-/NL4hQTv1gBL6J6ei80zu3IiTrmePDKXKXOTLpHvcIWZTVYQlDhVWjjWvkhICylE8EwwnMVzDZugCvdx0/DIIA==}
+  /c8@7.14.0:
+    resolution: {integrity: sha512-i04rtkkcNcCf7zsQcSv/T9EbUn4RXQ6mropeMcjFOsQXQ0iGLAr/xT6TImQg4+U9hmNpN9XdvPkjUL1IzbgxJw==}
     engines: {node: '>=10.12.0'}
     hasBin: true
     dependencies:
@@ -2457,8 +2457,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jsdoc@44.2.7(eslint@8.41.0):
-    resolution: {integrity: sha512-PcAJO7Wh4xIHPT+StBRpEbWgwCpIrYk75zL31RMbduVVHpgiy3Y8aXQ6pdbRJOq0fxHuepWSEAve8ZrPWTSKRg==}
+  /eslint-plugin-jsdoc@45.0.0(eslint@8.41.0):
+    resolution: {integrity: sha512-l2+Jcs/Ps7oFA+SWY+0sweU/e5LgricnEl6EsDlyRTF5y0+NWL1y9Qwz9PHwHAxtdJq6lxPjEQWmYLMkvhzD4g==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
