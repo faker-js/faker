@@ -163,6 +163,22 @@ describe('number', () => {
           new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
+
+      it('should return a random number between min max, with a step size of 10', () => {
+        const results = Array.from(
+          new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.int({
+                min: 0,
+                max: 50,
+                step: 10,
+              })
+            )
+          )
+        ).sort();
+
+        expect(results).toEqual([0, 10, 20, 30, 40, 50]);
+      });
     });
 
     describe('float', () => {

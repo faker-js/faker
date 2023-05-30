@@ -67,13 +67,19 @@ export class NumberModule {
            * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
+          /**
+           * Increment value for generated number.
+           *
+           * @default 1
+           */
+          step?: number;
         } = {}
   ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
 
-    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER, step = 1 } = options;
     const effectiveMin = Math.ceil(min);
     const effectiveMax = Math.floor(max);
 
@@ -91,11 +97,17 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    if (step <= 0) {
+      throw new FakerError(`Step should be a positive number.`);
+    }
+
     const mersenne: Mersenne =
       // @ts-expect-error: access private member field
       this.faker._mersenne;
     const real = mersenne.next();
-    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
+    const range = (effectiveMax - effectiveMin) / step;
+    const rand = Math.floor(real * (range + 1));
+    return effectiveMin + rand * step;
   }
 
   /**
