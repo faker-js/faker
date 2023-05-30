@@ -163,6 +163,10 @@ describe('number', () => {
           new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
+
+      it('should round an int to precision', () => {
+        expect(faker.number.int({ min: 10, max: 100, precision: 10 })).toBe(50);
+      });
     });
 
     describe('float', () => {

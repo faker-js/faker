@@ -67,15 +67,20 @@ export class NumberModule {
            * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
+          /**
+           * Precision of the generated number.
+           *
+           */
+          precision?: number;
         } = {}
   ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
 
-    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
-    const effectiveMin = Math.ceil(min);
-    const effectiveMax = Math.floor(max);
+    const { min = 0, max = Number.MAX_SAFE_INTEGER, precision } = options;
+    let effectiveMin = Math.ceil(min);
+    let effectiveMax = Math.floor(max);
 
     if (effectiveMin === effectiveMax) {
       return effectiveMin;
@@ -91,11 +96,25 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    let factor = 1;
+    if (precision !== undefined) {
+      if (precision <= 0) {
+        throw new FakerError(`Precision should be greater than 0.`);
+      }
+
+      factor = 1 / precision;
+      effectiveMin *= factor;
+      effectiveMax *= factor;
+    }
+
     const mersenne: Mersenne =
       // @ts-expect-error: access private member field
       this.faker._mersenne;
     const real = mersenne.next();
-    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
+    return (
+      Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin) /
+      factor
+    );
   }
 
   /**
