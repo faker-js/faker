@@ -207,9 +207,11 @@ export class LocationModule {
    * @since 8.0.0
    */
   street(): string {
-    return this.faker.helpers.fake(
+    const format = this.faker.helpers.fake(
       this.faker.definitions.location.street_pattern
     );
+
+    return this.faker.helpers.replaceSymbols(format);
   }
 
   /**
@@ -267,11 +269,12 @@ export class LocationModule {
     }
 
     const { useFullAddress } = options;
-
     const formats = this.faker.definitions.location.street_address;
-    const format = formats[useFullAddress ? 'full' : 'normal'];
+    let format = formats[useFullAddress ? 'full' : 'normal'];
 
-    return this.faker.helpers.fake(format);
+    format = this.faker.helpers.fake(format);
+
+    return this.faker.helpers.replaceSymbols(format);
   }
 
   /**
