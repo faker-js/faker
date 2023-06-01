@@ -20,9 +20,9 @@ const location: LocationDefinition = {
   city_suffix,
   country,
   postcode,
+  secondary_address,
   state,
   state_abbr,
-  secondary_address,
   street_address,
   street_pattern,
 };
