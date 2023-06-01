@@ -7,11 +7,11 @@ import { deprecated } from '../../internal/deprecated';
  *
  * ### Overview
  *
- * For a typical street address for a locale, use [`streetAddress()`](https://next.fakerjs.dev/api/location.html#streetaddress), [`city()`](https://next.fakerjs.dev/api/location.html#city), [`state()`](https://next.fakerjs.dev/api/location.html#state) (or [`stateAbbr()`](https://next.fakerjs.dev/api/location.html#stateabbr)), and [`zipCode()`](https://next.fakerjs.dev/api/location.html#zipcode). Most locales provide localized versions for a specific country.
+ * For a typical street address for a locale, use [`streetAddress()`](https://fakerjs.dev/api/location.html#streetaddress), [`city()`](https://fakerjs.dev/api/location.html#city), [`state()`](https://fakerjs.dev/api/location.html#state) (or [`stateAbbr()`](https://fakerjs.dev/api/location.html#stateabbr)), and [`zipCode()`](https://fakerjs.dev/api/location.html#zipcode). Most locales provide localized versions for a specific country.
  *
- * If you need latitude and longitude coordinates, use [`latitude()`](https://next.fakerjs.dev/api/location.html#latitude) and [`longitude()`](https://next.fakerjs.dev/api/location.html#longitude), or [`nearbyGPSCoordinate()`](https://next.fakerjs.dev/api/location.html#nearbygpscoordinate) for a latitude/longitude near a given location.
+ * If you need latitude and longitude coordinates, use [`latitude()`](https://fakerjs.dev/api/location.html#latitude) and [`longitude()`](https://fakerjs.dev/api/location.html#longitude), or [`nearbyGPSCoordinate()`](https://fakerjs.dev/api/location.html#nearbygpscoordinate) for a latitude/longitude near a given location.
  *
- * For a random country, you can use [`country()`](https://next.fakerjs.dev/api/location.html#country) or [`countryCode()`](https://next.fakerjs.dev/api/location.html#countrycode).
+ * For a random country, you can use [`country()`](https://fakerjs.dev/api/location.html#country) or [`countryCode()`](https://fakerjs.dev/api/location.html#countrycode).
  */
 export class LocationModule {
   constructor(private readonly faker: Faker) {

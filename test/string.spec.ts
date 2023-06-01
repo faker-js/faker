@@ -126,8 +126,9 @@ describe('string', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('fromCharacters', () => {
         it('should return single character when no length provided', () => {
           const actual = faker.string.fromCharacters('foobar');
@@ -812,5 +813,5 @@ describe('string', () => {
         });
       });
     }
-  });
+  );
 });
