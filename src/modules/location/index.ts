@@ -284,7 +284,7 @@ export class LocationModule {
    * @since 8.0.0
    */
   secondaryAddress(): string {
-    return this.faker.helpers
+    const format = this.faker.helpers
       .arrayElement(this.faker.definitions.location.secondary_address)
       .replace(/#+/g, (m) =>
         this.faker.string.numeric({
@@ -292,6 +292,8 @@ export class LocationModule {
           allowLeadingZeros: false,
         })
       );
+
+    return this.faker.helpers.fake(format);
   }
 
   /**
