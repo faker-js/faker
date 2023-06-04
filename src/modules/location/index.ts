@@ -284,16 +284,14 @@ export class LocationModule {
    * @since 8.0.0
    */
   secondaryAddress(): string {
-    const format = this.faker.helpers
-      .arrayElement(this.faker.definitions.location.secondary_address)
+    return this.faker.helpers
+      .fake(this.faker.definitions.location.secondary_address)
       .replace(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
         })
       );
-
-    return this.faker.helpers.fake(format);
   }
 
   /**
