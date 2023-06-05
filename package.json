@@ -96,7 +96,7 @@
     "@algolia/client-search": "~4.17.1",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~20.2.5",
-    "@types/prettier": "~2.7.2",
+    "@types/prettier": "~2.7.3",
     "@types/react": "~18.2.7",
     "@types/sanitize-html": "~2.9.0",
     "@types/semver": "~7.5.0",
