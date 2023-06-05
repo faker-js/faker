@@ -110,7 +110,7 @@
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~12.13.0",
     "esbuild": "~0.17.19",
-    "eslint": "~8.41.0",
+    "eslint": "~8.42.0",
     "eslint-config-prettier": "~8.8.0",
     "eslint-define-config": "~1.20.0",
     "eslint-gitignore": "~0.1.0",
