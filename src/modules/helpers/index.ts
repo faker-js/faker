@@ -76,11 +76,11 @@ function getRepetitionsBasedOnQuantifierParameters(
  *
  * ### Overview
  *
- * A particularly helpful method is [`arrayElement()`](https://next.fakerjs.dev/api/helpers.html#arrayelement) which returns a random element from an array. This is useful when adding custom data that Faker doesn't contain.
+ * A particularly helpful method is [`arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) which returns a random element from an array. This is useful when adding custom data that Faker doesn't contain.
  *
- * There are alternatives of this method for objects ([`objectKey()`](https://next.fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://next.fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://next.fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://next.fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://next.fakerjs.dev/api/helpers.html#weightedarrayelement)).
+ * There are alternatives of this method for objects ([`objectKey()`](https://fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://fakerjs.dev/api/helpers.html#weightedarrayelement)).
  *
- * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://next.fakerjs.dev/api/helpers.html#fromregexp).
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule {
   /**

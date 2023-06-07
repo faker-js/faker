@@ -6,11 +6,11 @@ import { deprecated } from '../../internal/deprecated';
  *
  * ### Overview
  *
- * For a long product name like `'Incredible Soft Gloves'`, use [`productName()`](https://next.fakerjs.dev/api/commerce.html#productname). The product names are generated from a list of adjectives, materials, and products, which can each be accessed separately using [`productAdjective()`](https://next.fakerjs.dev/api/commerce.html#productadjective), [`productMaterial()`](https://next.fakerjs.dev/api/commerce.html#productmaterial), and [`product()`](https://next.fakerjs.dev/api/commerce.html#product). You can also create a description using [`productDescription()`](https://next.fakerjs.dev/api/commerce.html#productdescription).
+ * For a long product name like `'Incredible Soft Gloves'`, use [`productName()`](https://fakerjs.dev/api/commerce.html#productname). The product names are generated from a list of adjectives, materials, and products, which can each be accessed separately using [`productAdjective()`](https://fakerjs.dev/api/commerce.html#productadjective), [`productMaterial()`](https://fakerjs.dev/api/commerce.html#productmaterial), and [`product()`](https://fakerjs.dev/api/commerce.html#product). You can also create a description using [`productDescription()`](https://fakerjs.dev/api/commerce.html#productdescription).
  *
- * For a department in a shop or product category, use [`department()`](https://next.fakerjs.dev/api/commerce.html#department).
+ * For a department in a shop or product category, use [`department()`](https://fakerjs.dev/api/commerce.html#department).
  *
- * You can also create a price using [`price()`](https://next.fakerjs.dev/api/commerce.html#price).
+ * You can also create a price using [`price()`](https://fakerjs.dev/api/commerce.html#price).
  */
 export class CommerceModule {
   constructor(private readonly faker: Faker) {
