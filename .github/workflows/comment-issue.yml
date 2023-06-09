@@ -5,6 +5,9 @@ on:
     types:
       - labeled
 
+permissions:
+  contents: read
+
 jobs:
   add-comment-for-user-interest:
     if: "github.event.label.name == 's: waiting for user interest'"
@@ -12,8 +15,13 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: Add Comment For User Interest
-        uses: actions/github-script@v6
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
         with:
           script: |
             github.rest.issues.createComment({
@@ -49,7 +57,7 @@ jobs:
             })
 
       - name: React to Issue
-        uses: actions/github-script@v6
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
         with:
           script: |
             github.rest.reactions.createForIssue({
