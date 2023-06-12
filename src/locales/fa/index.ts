@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import music from '../en/music';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -14,6 +13,7 @@ import internet from './internet';
 import location from './location';
 import lorem from './lorem';
 import metadata from './metadata';
+import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import vehicle from './vehicle';
