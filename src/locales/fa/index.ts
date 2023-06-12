@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import music from '../en/music';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -16,6 +17,7 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import vehicle from './vehicle';
+import word from './word';
 
 const fa: LocaleDefinition = {
   cell_phone,
@@ -28,9 +30,11 @@ const fa: LocaleDefinition = {
   location,
   lorem,
   metadata,
+  music,
   person,
   phone_number,
   vehicle,
+  word,
 };
 
 export default fa;
