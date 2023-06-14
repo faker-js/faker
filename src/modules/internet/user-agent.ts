@@ -333,10 +333,6 @@ export function generate(faker: Faker, osParam: OS = 'lin', browserParam: Browse
     },
   };
 
-  const [browserP, archP, browser, arch] = randomBrowserAndOS();
-  if (browserP !== 'chrome' && archP !== 'lin') {
-    return browserMap[browser](arch);
-  } else {
-    return browserMap[browserP](archP);
-  }
+  const [browserP, archP] = randomBrowserAndOS();
+  return browserMap[browserP](archP);
 }
