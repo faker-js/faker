@@ -44,16 +44,16 @@
 
 import type { Faker } from '../..';
 
-type OS = 'lin' | 'mac' | 'win';
+export type OS = 'lin' | 'mac' | 'win';
 
-type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
+export type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
 
 /**
  * Generates a random user-agent.
  *
  * @param faker An existing faker instance.
  */
-export function generate(faker: Faker): string {
+export function generate(faker: Faker, osParam: OS = 'lin', browserParam: Browser = 'chrome'): string {
   const randomLang = (): string =>
     faker.helpers.arrayElement([
       'AB',
@@ -154,7 +154,7 @@ export function generate(faker: Faker): string {
       'ZH',
     ]);
 
-  const randomBrowserAndOS = (): [Browser, OS] => {
+  const randomBrowserAndOS = (): [Browser, OS, Browser, OS] => {
     const browserToOsMap = {
       chrome: ['win', 'mac', 'lin'],
       firefox: ['win', 'mac', 'lin'],
@@ -163,9 +163,11 @@ export function generate(faker: Faker): string {
       iexplorer: ['win'],
     } satisfies Record<Browser, OS[]>;
     const browser: Browser = faker.helpers.objectKey(browserToOsMap);
+    const satisfiedBrowser: Browser = browserParam as Browser;
     const os: OS = faker.helpers.arrayElement(browserToOsMap[browser]);
+    const satisfiedOs: OS = osParam as OS;
 
-    return [browser, os];
+    return [satisfiedBrowser, satisfiedOs, browser, os];
   };
 
   const randomProc = (arch: OS): string =>
@@ -246,17 +248,17 @@ export function generate(faker: Faker): string {
     firefox(arch: OS): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
       const firefox_ver = `${faker.number.int({
-          min: 5,
-          max: 15,
-        })}${randomRevision(2)}`,
+        min: 5,
+        max: 15,
+      })}${randomRevision(2)}`,
         gecko_ver = `Gecko/20100101 Firefox/${firefox_ver}`,
         proc = randomProc(arch),
         os_ver =
           arch === 'win'
             ? `(Windows NT ${version_string.nt()}${proc ? `; ${proc}` : ''}`
             : arch === 'mac'
-            ? `(Macintosh; ${proc} Mac OS X ${version_string.osx()}`
-            : `(X11; Linux ${proc}`;
+              ? `(Macintosh; ${proc} Mac OS X ${version_string.osx()}`
+              : `(X11; Linux ${proc}`;
 
       return `Mozilla/5.0 ${os_ver}; rv:${firefox_ver.slice(
         0,
@@ -272,15 +274,13 @@ export function generate(faker: Faker): string {
         return `Mozilla/5.0 (Windows NT 6.${faker.number.int({
           min: 1,
           max: 3,
-        })}; Trident/7.0; ${
-          faker.datatype.boolean() ? 'Touch; ' : ''
-        }rv:11.0) like Gecko`;
+        })}; Trident/7.0; ${faker.datatype.boolean() ? 'Touch; ' : ''
+          }rv:11.0) like Gecko`;
       }
 
       //http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx
-      return `Mozilla/5.0 (compatible; MSIE ${ver}.0; Windows NT ${version_string.nt()}; Trident/${version_string.trident()}${
-        faker.datatype.boolean() ? `; .NET CLR ${version_string.net()}` : ''
-      })`;
+      return `Mozilla/5.0 (compatible; MSIE ${ver}.0; Windows NT ${version_string.nt()}; Trident/${version_string.trident()}${faker.datatype.boolean() ? `; .NET CLR ${version_string.net()}` : ''
+        })`;
     },
 
     opera(arch: OS): string {
@@ -290,8 +290,8 @@ export function generate(faker: Faker): string {
           arch === 'win'
             ? `(Windows NT ${version_string.nt()}; U; ${randomLang()}${presto_ver}`
             : arch === 'lin'
-            ? `(X11; Linux ${randomProc(arch)}; U; ${randomLang()}${presto_ver}`
-            : `(Macintosh; Intel Mac OS X ${version_string.osx()} U; ${randomLang()} Presto/${version_string.presto()} Version/${version_string.presto2()})`;
+              ? `(X11; Linux ${randomProc(arch)}; U; ${randomLang()}${presto_ver}`
+              : `(Macintosh; Intel Mac OS X ${version_string.osx()} U; ${randomLang()} Presto/${version_string.presto()} Version/${version_string.presto2()})`;
 
       return `Opera/${faker.number.int({
         min: 9,
@@ -308,11 +308,11 @@ export function generate(faker: Faker): string {
         os_ver =
           arch === 'mac'
             ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
-                '_'
-              )} rv:${faker.number.int({
-                min: 2,
-                max: 6,
-              })}.0; ${randomLang()}) `
+              '_'
+            )} rv:${faker.number.int({
+              min: 2,
+              max: 6,
+            })}.0; ${randomLang()}) `
             : `(Windows; U; Windows NT ${version_string.nt()})`;
 
       return `Mozilla/5.0 ${os_ver}AppleWebKit/${safari} (KHTML, like Gecko) Version/${ver} Safari/${safari}`;
@@ -323,16 +323,20 @@ export function generate(faker: Faker): string {
         os_ver =
           arch === 'mac'
             ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
-                '_'
-              )}) `
+              '_'
+            )}) `
             : arch === 'win'
-            ? `(Windows; U; Windows NT ${version_string.nt()})`
-            : `(X11; Linux ${randomProc(arch)}`;
+              ? `(Windows; U; Windows NT ${version_string.nt()})`
+              : `(X11; Linux ${randomProc(arch)}`;
 
       return `Mozilla/5.0 ${os_ver} AppleWebKit/${safari} (KHTML, like Gecko) Chrome/${version_string.chrome()} Safari/${safari}`;
     },
   };
 
-  const [browser, arch] = randomBrowserAndOS();
-  return browserMap[browser](arch);
+  const [browserP, archP, browser, arch] = randomBrowserAndOS();
+  if (browserP !== 'chrome' && archP !== 'lin') {
+    return browserMap[browser](arch);
+  } else {
+    return browserMap[browserP](archP);
+  }
 }

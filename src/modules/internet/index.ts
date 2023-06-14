@@ -168,29 +168,29 @@ export class InternetModule {
     options?:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-           */
-          provider?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        },
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+        /**
+         * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+         */
+        provider?: string;
+        /**
+         * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+         *
+         * @default false
+         */
+        allowSpecialCharacters?: boolean;
+      },
     legacyLastName?: string,
     legacyProvider?: string,
     legacyOptions?: {
@@ -206,29 +206,29 @@ export class InternetModule {
     options:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-           */
-          provider?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        } = {},
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+        /**
+         * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+         */
+        provider?: string;
+        /**
+         * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+         *
+         * @default false
+         */
+        allowSpecialCharacters?: boolean;
+      } = {},
     legacyLastName?: string,
     legacyProvider?: string,
     legacyOptions?: {
@@ -264,9 +264,9 @@ export class InternetModule {
       firstName = this.faker.person.firstName(),
       lastName = legacyLastName ?? this.faker.person.lastName(),
       provider = legacyProvider ??
-        this.faker.helpers.arrayElement(
-          this.faker.definitions.internet.free_email
-        ),
+      this.faker.helpers.arrayElement(
+        this.faker.definitions.internet.free_email
+      ),
       allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
 
@@ -387,25 +387,25 @@ export class InternetModule {
     options?:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        },
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+        /**
+         * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+         *
+         * @default false
+         */
+        allowSpecialCharacters?: boolean;
+      },
     legacyLastName?: string,
     legacyOptions?: {
       /**
@@ -420,25 +420,25 @@ export class InternetModule {
     options:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        } = {},
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+        /**
+         * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+         *
+         * @default false
+         */
+        allowSpecialCharacters?: boolean;
+      } = {},
     legacyLastName?: string,
     legacyOptions?: {
       /**
@@ -571,38 +571,38 @@ export class InternetModule {
     options?:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        },
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+      },
     legacyLastName?: string
   ): string;
   userName(
     options:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        } = {},
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+      } = {},
     legacyLastName?: string
   ): string {
     if (typeof options === 'string' || legacyLastName != null) {
@@ -756,38 +756,38 @@ export class InternetModule {
     options?:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        },
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+      },
     legacyLastName?: string
   ): string;
   displayName(
     options:
       | string
       | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        } = {},
+        /**
+         * The optional first name to use.
+         *
+         * @default faker.person.firstName()
+         */
+        firstName?: string;
+        /**
+         * The optional last name to use.
+         *
+         * @default faker.person.lastName()
+         */
+        lastName?: string;
+      } = {},
     legacyLastName?: string
   ): string {
     if (typeof options === 'string' || legacyLastName != null) {
@@ -1047,8 +1047,8 @@ export class InternetModule {
    *
    * @since 2.0.1
    */
-  userAgent(): string {
-    return random_ua.generate(this.faker);
+  userAgent(os: random_ua.OS, browser: random_ua.Browser): string {
+    return random_ua.generate(this.faker, os, browser);
   }
 
   /**
@@ -1130,25 +1130,25 @@ export class InternetModule {
     options?:
       | number
       | {
-          /**
-           * The optional base red in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          redBase?: number;
-          /**
-           * The optional base green in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          greenBase?: number;
-          /**
-           * The optional base blue in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          blueBase?: number;
-        },
+        /**
+         * The optional base red in range between `0` and `255`.
+         *
+         * @default 0
+         */
+        redBase?: number;
+        /**
+         * The optional base green in range between `0` and `255`.
+         *
+         * @default 0
+         */
+        greenBase?: number;
+        /**
+         * The optional base blue in range between `0` and `255`.
+         *
+         * @default 0
+         */
+        blueBase?: number;
+      },
     legacyGreenBase?: number,
     legacyBlueBase?: number
   ): string;
@@ -1156,25 +1156,25 @@ export class InternetModule {
     options:
       | number
       | {
-          /**
-           * The optional base red in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          redBase?: number;
-          /**
-           * The optional base green in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          greenBase?: number;
-          /**
-           * The optional base blue in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          blueBase?: number;
-        } = {},
+        /**
+         * The optional base red in range between `0` and `255`.
+         *
+         * @default 0
+         */
+        redBase?: number;
+        /**
+         * The optional base green in range between `0` and `255`.
+         *
+         * @default 0
+         */
+        greenBase?: number;
+        /**
+         * The optional base blue in range between `0` and `255`.
+         *
+         * @default 0
+         */
+        blueBase?: number;
+      } = {},
     legacyGreenBase?: number,
     legacyBlueBase?: number
   ): string {
@@ -1258,25 +1258,25 @@ export class InternetModule {
     options?:
       | string
       | {
-          /**
-           * The optional separator to use. Can be either `':'`, `'-'` or `''`.
-           *
-           * @default ':'
-           */
-          separator?: string;
-        }
+        /**
+         * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+         *
+         * @default ':'
+         */
+        separator?: string;
+      }
   ): string;
   mac(
     options:
       | string
       | {
-          /**
-           * The optional separator to use. Can be either `':'`, `'-'` or `''`.
-           *
-           * @default ':'
-           */
-          separator?: string;
-        } = {}
+        /**
+         * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+         *
+         * @default ':'
+         */
+        separator?: string;
+      } = {}
   ): string {
     if (typeof options === 'string') {
       options = { separator: options };
@@ -1402,32 +1402,32 @@ export class InternetModule {
     options?:
       | number
       | {
-          /**
-           * The length of the password to generate.
-           *
-           * @default 15
-           */
-          length?: number;
-          /**
-           * Whether the generated password should be memorable.
-           *
-           * @default false
-           */
-          memorable?: boolean;
-          /**
-           * The pattern that all chars should match should match.
-           * This option will be ignored, if `memorable` is `true`.
-           *
-           * @default /\w/
-           */
-          pattern?: RegExp;
-          /**
-           * The prefix to use.
-           *
-           * @default ''
-           */
-          prefix?: string;
-        },
+        /**
+         * The length of the password to generate.
+         *
+         * @default 15
+         */
+        length?: number;
+        /**
+         * Whether the generated password should be memorable.
+         *
+         * @default false
+         */
+        memorable?: boolean;
+        /**
+         * The pattern that all chars should match should match.
+         * This option will be ignored, if `memorable` is `true`.
+         *
+         * @default /\w/
+         */
+        pattern?: RegExp;
+        /**
+         * The prefix to use.
+         *
+         * @default ''
+         */
+        prefix?: string;
+      },
     legacyMemorable?: boolean,
     legacyPattern?: RegExp,
     legacyPrefix?: string
@@ -1436,32 +1436,32 @@ export class InternetModule {
     options:
       | number
       | {
-          /**
-           * The length of the password to generate.
-           *
-           * @default 15
-           */
-          length?: number;
-          /**
-           * Whether the generated password should be memorable.
-           *
-           * @default false
-           */
-          memorable?: boolean;
-          /**
-           * The pattern that all chars should match should match.
-           * This option will be ignored, if `memorable` is `true`.
-           *
-           * @default /\w/
-           */
-          pattern?: RegExp;
-          /**
-           * The prefix to use.
-           *
-           * @default ''
-           */
-          prefix?: string;
-        } = {},
+        /**
+         * The length of the password to generate.
+         *
+         * @default 15
+         */
+        length?: number;
+        /**
+         * Whether the generated password should be memorable.
+         *
+         * @default false
+         */
+        memorable?: boolean;
+        /**
+         * The pattern that all chars should match should match.
+         * This option will be ignored, if `memorable` is `true`.
+         *
+         * @default /\w/
+         */
+        pattern?: RegExp;
+        /**
+         * The prefix to use.
+         *
+         * @default ''
+         */
+        prefix?: string;
+      } = {},
     legacyMemorable?: boolean,
     legacyPattern?: RegExp,
     legacyPrefix?: string
