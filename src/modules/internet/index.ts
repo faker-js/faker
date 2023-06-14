@@ -1047,7 +1047,7 @@ export class InternetModule {
    *
    * @since 2.0.1
    */
-  userAgent(os: random_ua.OS, browser: random_ua.Browser): string {
+  userAgent(os?: random_ua.OS, browser?: random_ua.Browser): string {
     return random_ua.generate(this.faker, os, browser);
   }
 

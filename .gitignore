@@ -74,7 +74,6 @@ node_modules/
 versions.json
 
 # Dist
-/dist
 /docs/.vitepress/cache
 /docs/.vitepress/dist
 /docs/api/typedoc.json
