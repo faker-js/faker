@@ -64,7 +64,7 @@ const { faker } = require('@faker-js/faker');
 
 export function createRandomUser(): User {
   return {
-    userId: faker.datatype.uuid(),
+    userId: faker.string.uuid(),
     username: faker.internet.userName(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
