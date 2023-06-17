@@ -284,12 +284,14 @@ By default, `faker.number.float` no longer defaults to a precision of 0.01
 
 ```js
 // OLD
+faker.datatype.number(); // 88999 (NOTE: The default max was 99999)
 faker.datatype.number({ max: 100 }); // 35
 faker.datatype.number({ max: 100, precision: 0.01 }); // 35.21
 faker.datatype.float({ max: 100 }); // 35.21
 faker.datatype.float({ max: 100, precision: 0.001 }); // 35.211
 
 // NEW
+faker.number.int({ max: 99999 }); // 88999 (NOTE: the default max is now Number.MAX_SAFE_INTEGER)
 faker.number.int({ max: 100 }); // 35
 faker.number.float({ max: 100 }); // 35.21092065742612
 faker.number.float({ max: 100, precision: 0.01 }); // 35.21

@@ -34,8 +34,9 @@ describe('lorem', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('word()', () => {
         it('should return random value from word array', () => {
           const actual = faker.lorem.word();
@@ -358,5 +359,5 @@ describe('lorem', () => {
         });
       });
     }
-  });
+  );
 });
