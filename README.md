@@ -24,11 +24,11 @@ Please proceed to the [Getting Started Guide](https://fakerjs.dev/guide/) for th
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
-|   Version   | Website                   |
-| :---------: | :------------------------ |
-|  v8 (next)  | https://next.fakerjs.dev/ |
-| v7 (stable) | https://fakerjs.dev/      |
-|  v6 (old)   | https://v6.fakerjs.dev/   |
+|   Version    | Website                   |
+| :----------: | :------------------------ |
+| v8.\* (next) | https://next.fakerjs.dev/ |
+| v8 (stable)  | https://fakerjs.dev/      |
+|   v7 (old)   | https://v7.fakerjs.dev/   |
 
 ---
 
@@ -64,7 +64,7 @@ const { faker } = require('@faker-js/faker');
 
 export function createRandomUser(): User {
   return {
-    userId: faker.datatype.uuid(),
+    userId: faker.string.uuid(),
     username: faker.internet.userName(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
@@ -87,7 +87,7 @@ Thus, limiting the import to a single locale can speed up startup times.
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v7 (stable)](https://fakerjs.dev/api/) and [v8 (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v8 (stable)](https://fakerjs.dev/api/) and [v8.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
