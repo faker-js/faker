@@ -67,15 +67,15 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  *
  * Several methods in this module return objects rather than strings. For example, you can use `faker.airline.airport().iataCode` to pick out the specific property you need.
  *
- * For a random airport, use [`airport()`](https://next.fakerjs.dev/api/airline.html#airport).
+ * For a random airport, use [`airport()`](https://fakerjs.dev/api/airline.html#airport).
  *
- * For a random airline, use [`airline()`](https://next.fakerjs.dev/api/airline.html#airline).
+ * For a random airline, use [`airline()`](https://fakerjs.dev/api/airline.html#airline).
  *
- * For a dummy booking, a passenger will generally book a flight on a specific [`flightNumber()`](https://next.fakerjs.dev/api/airline.html#flightnumber), [`airplane()`](https://next.fakerjs.dev/api/airline.html#airplane), be allocated a [`seat()`](https://next.fakerjs.dev/api/airline.html#seat), and [`recordLocator()`](https://next.fakerjs.dev/api/airline.html#recordlocator).
+ * For a dummy booking, a passenger will generally book a flight on a specific [`flightNumber()`](https://fakerjs.dev/api/airline.html#flightnumber), [`airplane()`](https://fakerjs.dev/api/airline.html#airplane), be allocated a [`seat()`](https://fakerjs.dev/api/airline.html#seat), and [`recordLocator()`](https://fakerjs.dev/api/airline.html#recordlocator).
  *
  * ### Related Modules
  *
- * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://next.fakerjs.dev/api/person.html) module.
+ * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://fakerjs.dev/api/person.html) module.
  */
 export class AirlineModule {
   constructor(private readonly faker: Faker) {

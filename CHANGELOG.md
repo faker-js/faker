@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.2](https://github.com/faker-js/faker/compare/v8.0.1...v8.0.2) (2023-05-27)
+
+
+### Bug Fixes
+
+* **git:** limit need for Intl to specific method ([#2172](https://github.com/faker-js/faker/issues/2172)) ([a5e73f8](https://github.com/faker-js/faker/commit/a5e73f8a11baeefcf03f344cb5e4dde096a0b364))
+* **locale:** en_HK last_name_patterns should be last_name_pattern ([#2154](https://github.com/faker-js/faker/issues/2154)) ([03cc391](https://github.com/faker-js/faker/commit/03cc39154886a0708e13ee2db239c001ce20aa6e))
+* **locale:** ro_MD city should be city_pattern ([#2155](https://github.com/faker-js/faker/issues/2155)) ([c173150](https://github.com/faker-js/faker/commit/c173150a96a95818b0c4fd6cb2d41daea7e9ad0a))
+
+## [8.0.1](https://github.com/faker-js/faker/compare/v8.0.0...v8.0.1) (2023-05-15)
+
+
+* **docs:** switch doc links to stable ([#2152](https://github.com/faker-js/faker/pull/2152)) ([8f741bd](https://github.com/faker-js/faker/commit/8f741bd4bda455517fd048b83d76bd8e6d89d78e))
+
+## [8.0.0](https://github.com/faker-js/faker/compare/v8.0.0-beta.1...v8.0.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* **docs:** fix faker v7 code example for locale migration ([#2125](https://github.com/faker-js/faker/issues/2125)) ([b570461](https://github.com/faker-js/faker/commit/b57046190754b651842dba14170730f3f7ebd8b5))
+* **locales:** add real cities for zu_ZA and af_ZA, update en_ZA city list ([#2141](https://github.com/faker-js/faker/issues/2141)) ([ee8c97c](https://github.com/faker-js/faker/commit/ee8c97cf6e80025707d5cf458981a14be06406ed))
+
+## [8.0.0-beta.1](https://github.com/faker-js/faker/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2023-05-06)
+
+
+### Features
+
+* **helpers:** new method `objectEntry` ([#2123](https://github.com/faker-js/faker/issues/2123)) ([c092aa1](https://github.com/faker-js/faker/commit/c092aa1276a5c249de1ada47e807f12dd6de36f7))
+
+
+### Bug Fixes
+
+* **locale:** el county should be city_name ([#2106](https://github.com/faker-js/faker/issues/2106)) ([1cadfb9](https://github.com/faker-js/faker/commit/1cadfb97856da17047fcb5dcb504c3418eeed145))
+* **locale:** remove incorrect and unused city_prefix/suffix for sk ([#2117](https://github.com/faker-js/faker/issues/2117)) ([e094a5a](https://github.com/faker-js/faker/commit/e094a5a7b00bed7da3610bdbb949cc00320d5094))
+* **locale:** remove unrealistic fictional patterns in ne, ro, tr ([#2120](https://github.com/faker-js/faker/issues/2120)) ([d9ec87e](https://github.com/faker-js/faker/commit/d9ec87e6697ac3c814932c7e3ff6fa2e21d62f3a))
+* **locale:** rename city_prefix to city_name for en_NG, en_ZA, en_AU_ocker ([#2111](https://github.com/faker-js/faker/issues/2111)) ([a0fb69d](https://github.com/faker-js/faker/commit/a0fb69d666c85c40b1f8620dbfa0516e9872397f))
+* **location:** no leading zero on building number or secondary address ([#2032](https://github.com/faker-js/faker/issues/2032)) ([a8dc7e0](https://github.com/faker-js/faker/commit/a8dc7e07f6d5ee2ae38724ba5d503d7b88bd7147))
+* **test:** fix failing latitude test ([#2116](https://github.com/faker-js/faker/issues/2116)) ([7f9e9df](https://github.com/faker-js/faker/commit/7f9e9df4221d27b0b41a8ca04ea2cf69e7065613))
+
+
+### Changed Locales
+
+* **locale:** add city_name to city_patterns ([#2104](https://github.com/faker-js/faker/issues/2104)) ([b72d52e](https://github.com/faker-js/faker/commit/b72d52e5d5501579f6b98629d020292ceaa78c60))
+
+
+### New Locales
+
+* **locale:** add ro_MD locale ([#2084](https://github.com/faker-js/faker/issues/2084)) ([08cf1d8](https://github.com/faker-js/faker/commit/08cf1d85c8ba29991e47dc4b764172abb2cc0705))
+
 ## [8.0.0-beta.0](https://github.com/faker-js/faker/compare/v8.0.0-alpha.2...v8.0.0-beta.0) (2023-04-29)
 
 

@@ -30,6 +30,14 @@ describe('faker', () => {
     }
   });
 
+  describe('getMetadata()', () => {
+    it('should return metadata for the locale', () => {
+      expect(faker.getMetadata()).toBeDefined();
+      expect(faker.getMetadata().title).toBeTypeOf('string');
+      // Not all properties are tested here, see locale-imports.spec.ts for full tests
+    });
+  });
+
   describe('rawDefinitions', () => {
     it('locale rawDefinition accessibility', () => {
       // Metadata

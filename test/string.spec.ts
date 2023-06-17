@@ -126,8 +126,9 @@ describe('string', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('fromCharacters', () => {
         it('should return single character when no length provided', () => {
           const actual = faker.string.fromCharacters('foobar');
@@ -170,7 +171,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string)', () => {
-          expect(() => faker.string.fromCharacters('')).toThrowError(
+          expect(() => faker.string.fromCharacters('')).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -178,7 +179,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string[])', () => {
-          expect(() => faker.string.fromCharacters([])).toThrowError(
+          expect(() => faker.string.fromCharacters([])).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -274,7 +275,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -289,7 +290,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -428,7 +429,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -443,7 +444,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -667,7 +668,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789'.split(''),
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -681,7 +682,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789',
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -812,5 +813,5 @@ describe('string', () => {
         });
       });
     }
-  });
+  );
 });

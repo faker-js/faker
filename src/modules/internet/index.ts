@@ -29,13 +29,13 @@ export type HTTPProtocolType = 'http' | 'https';
  *
  * ### Overview
  *
- * For user accounts, you may need an [`email()`](https://next.fakerjs.dev/api/internet.html#email) and a [`password()`](https://next.fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://next.fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://next.fakerjs.dev/api/internet.html#displayname), and an image [`avatar()`](https://next.fakerjs.dev/api/internet.html#avatar). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://next.fakerjs.dev/api/internet.html#exampleemail) instead.
+ * For user accounts, you may need an [`email()`](https://fakerjs.dev/api/internet.html#email) and a [`password()`](https://fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://fakerjs.dev/api/internet.html#displayname), and an image [`avatar()`](https://fakerjs.dev/api/internet.html#avatar). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://fakerjs.dev/api/internet.html#exampleemail) instead.
  *
- * For websites, you can generate a [`domainName()`](https://next.fakerjs.dev/api/internet.html#domainname) or a full [`url()`](https://next.fakerjs.dev/api/internet.html#url).
+ * For websites, you can generate a [`domainName()`](https://fakerjs.dev/api/internet.html#domainname) or a full [`url()`](https://fakerjs.dev/api/internet.html#url).
  *
- * To make your data more 🔥, you can use [`emoji()`](https://next.fakerjs.dev/api/internet.html#emoji).
+ * To make your data more 🔥, you can use [`emoji()`](https://fakerjs.dev/api/internet.html#emoji).
  *
- * You also have access to a number of the more technical elements of web requests, such as [`httpMethod`](https://next.fakerjs.dev/api/internet.html#httpmethod), [`httpStatusCode`](https://next.fakerjs.dev/api/internet.html#httpstatuscode), [`ip`](https://next.fakerjs.dev/api/internet.html#ip), [`mac`](https://next.fakerjs.dev/api/internet.html#mac), [`userAgent`](https://next.fakerjs.dev/api/internet.html#useragent), and [`port`](https://next.fakerjs.dev/api/internet.html#port).
+ * You also have access to a number of the more technical elements of web requests, such as [`httpMethod`](https://fakerjs.dev/api/internet.html#httpmethod), [`httpStatusCode`](https://fakerjs.dev/api/internet.html#httpstatuscode), [`ip`](https://fakerjs.dev/api/internet.html#ip), [`mac`](https://fakerjs.dev/api/internet.html#mac), [`userAgent`](https://fakerjs.dev/api/internet.html#useragent), and [`port`](https://fakerjs.dev/api/internet.html#port).
  */
 export class InternetModule {
   constructor(private readonly faker: Faker) {

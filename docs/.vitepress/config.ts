@@ -44,6 +44,10 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
           text: 'Team',
           link: '/about/team',
         },
+        {
+          text: 'Contributing',
+          link: '/about/contributing',
+        },
       ],
     },
   ];
@@ -155,6 +159,10 @@ const config = defineConfig({
             text: 'Team',
             link: '/about/team',
           },
+          {
+            text: 'Contributing',
+            link: '/about/contributing',
+          },
         ],
       },
       {
@@ -229,6 +237,10 @@ const config = defineConfig({
           {
             text: 'Team',
             link: '/about/team',
+          },
+          {
+            text: 'Contributing',
+            link: '/about/contributing',
           },
         ],
       }),

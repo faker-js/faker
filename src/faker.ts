@@ -1,4 +1,4 @@
-import type { LocaleDefinition } from './definitions';
+import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
@@ -79,7 +79,7 @@ export class Faker {
    * The function must return a new valid `Date` instance for every call.
    * Defaults to `() => new Date()`.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.seed() for reproducible results.
    *
    * @example
@@ -151,7 +151,7 @@ export class Faker {
   readonly word: WordModule = new WordModule(this);
 
   // Aliases
-  /** @deprecated Use {@link location} instead */
+  /** @deprecated Use {@link Faker#location} instead */
   get address(): AddressModule {
     deprecated({
       deprecated: 'faker.address',
@@ -162,7 +162,7 @@ export class Faker {
     return this.location;
   }
 
-  /** @deprecated Use {@link person} instead */
+  /** @deprecated Use {@link Faker#person} instead */
   get name(): NameModule {
     deprecated({
       deprecated: 'faker.name',
@@ -180,7 +180,7 @@ export class Faker {
    *
    * You only need to use the constructor if you need custom fallback logic or a custom locale.
    *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locale The locale data to use.
@@ -213,7 +213,7 @@ export class Faker {
    *
    * You only need to use the constructor if you need custom fallback logic or a custom locale.
    *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locales The locale data to use.
@@ -235,7 +235,7 @@ export class Faker {
    *
    * You only need to use the constructor if you need custom fallback logic or a custom locale.
    *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locale The locale data to use or the name of the main locale.
@@ -353,7 +353,7 @@ export class Faker {
    *
    * @returns The seed that was set.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.setDefaultRefDate() when generating relative dates.
    *
    * @example
@@ -388,7 +388,7 @@ export class Faker {
    *
    * @returns The seed array that was set.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.setDefaultRefDate() when generating relative dates.
    *
    * @example
@@ -423,7 +423,7 @@ export class Faker {
    *
    * @returns The seed that was set.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.setDefaultRefDate() when generating relative dates.
    *
    * @example
@@ -456,6 +456,19 @@ export class Faker {
     this._mersenne.seed(seed);
 
     return seed;
+  }
+
+  /**
+   * Returns an object with metadata about the current locale.
+   *
+   * @example
+   * import { faker, fakerES_MX } from '@faker-js/faker';
+   * // const { faker, fakerES_MX } = require("@faker-js/faker")
+   * faker.getMetadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
+   * fakerES_MX.getMetadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
+   */
+  getMetadata(): MetadataDefinition {
+    return this.rawDefinitions.metadata ?? {};
   }
 
   // Pure JS backwards compatibility
