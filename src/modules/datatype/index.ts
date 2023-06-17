@@ -6,9 +6,9 @@ import { deprecated } from '../../internal/deprecated';
  *
  * ### Overview
  *
- * Most of the methods in this module are deprecated and have been moved to other modules like [`faker.number`](https://next.fakerjs.dev/api/number.html) and [`faker.string`](https://next.fakerjs.dev/api/string.html), see individual entries for replacements.
+ * Most of the methods in this module are deprecated and have been moved to other modules like [`faker.number`](https://fakerjs.dev/api/number.html) and [`faker.string`](https://fakerjs.dev/api/string.html), see individual entries for replacements.
  *
- * For a simple random true or false value, use [`boolean()`](https://next.fakerjs.dev/api/datatype.html#boolean).
+ * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
 export class DatatypeModule {
   constructor(private readonly faker: Faker) {

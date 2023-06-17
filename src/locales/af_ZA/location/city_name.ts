@@ -1,0 +1,16 @@
+export default [
+  'Polokwane',
+  'Johannesburg',
+  'Pretoria',
+  'Tshwane',
+  'Durban',
+  'Pietermaritzburg',
+  'Nelspruit',
+  'Kaapstad',
+  'Stellenbosch',
+  'Port Elizabeth',
+  'Oos-Londen',
+  'Kimberley',
+  'Rustenburg',
+  'Bloemfontein',
+];

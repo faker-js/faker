@@ -5,9 +5,9 @@ import type { Faker } from '../..';
  *
  * ### Overview
  *
- * Traditional relational database tables have data organized in columns with specific types - [`column()`](https://next.fakerjs.dev/api/database.html#column), [`type()`](https://next.fakerjs.dev/api/database.html#type). The database usually has an [`engine()`](https://next.fakerjs.dev/api/database.html#engine) and a default [`collation()`](https://next.fakerjs.dev/api/database.html#collation) for sorting.
+ * Traditional relational database tables have data organized in columns with specific types - [`column()`](https://fakerjs.dev/api/database.html#column), [`type()`](https://fakerjs.dev/api/database.html#type). The database usually has an [`engine()`](https://fakerjs.dev/api/database.html#engine) and a default [`collation()`](https://fakerjs.dev/api/database.html#collation) for sorting.
  *
- * For the NoSQL database MongoDB, [`mongodbObjectId()`](https://next.fakerjs.dev/api/database.html#mongodbobjectid) provides a random ID.
+ * For the NoSQL database MongoDB, [`mongodbObjectId()`](https://fakerjs.dev/api/database.html#mongodbobjectid) provides a random ID.
  */
 export class DatabaseModule {
   constructor(private readonly faker: Faker) {

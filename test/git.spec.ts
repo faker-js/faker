@@ -1,7 +1,8 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -31,8 +32,9 @@ describe('git', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('branch()', () => {
         it('should return a random branch', () => {
           const branch = faker.git.branch();
@@ -112,6 +114,22 @@ describe('git', () => {
 
           expect(commitEntry).not.contains('\r\n');
         });
+
+        it('should throw if Intl is unavailable', () => {
+          const backup = globalThis.Intl.DateTimeFormat;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (globalThis as any).Intl.DateTimeFormat = undefined;
+
+          expect(() => {
+            faker.git.commitEntry();
+          }).toThrow(
+            new FakerError(
+              'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
+            )
+          );
+
+          globalThis.Intl.DateTimeFormat = backup;
+        });
       });
 
       describe('commitMessage', () => {
@@ -135,6 +153,22 @@ describe('git', () => {
 
           const parts = commitDate.split(' ');
           expect(parts.length).toBe(6);
+        });
+
+        it('should throw if Intl is unavailable', () => {
+          const backup = globalThis.Intl.DateTimeFormat;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (globalThis as any).Intl.DateTimeFormat = undefined;
+
+          expect(() => {
+            faker.git.commitDate();
+          }).toThrow(
+            new FakerError(
+              'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
+            )
+          );
+
+          globalThis.Intl.DateTimeFormat = backup;
         });
       });
 
@@ -164,5 +198,5 @@ describe('git', () => {
         );
       });
     }
-  });
+  );
 });

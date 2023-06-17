@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -19,8 +20,9 @@ describe('vehicle', () => {
     );
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('vehicle()', () => {
         it('should return a random vehicle', () => {
           const vehicle = faker.vehicle.vehicle();
@@ -39,15 +41,6 @@ describe('vehicle', () => {
           expect(manufacturer).toBeTypeOf('string');
           expect(faker.definitions.vehicle.manufacturer).toContain(
             manufacturer
-          );
-        });
-      });
-
-      describe('vin()', () => {
-        it('returns valid vin number', () => {
-          const vin = faker.vehicle.vin();
-          expect(vin).toMatch(
-            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
         });
       });
@@ -82,7 +75,24 @@ describe('vehicle', () => {
         });
       });
 
+      describe('color()', () => {
+        it('should return a random color', () => {
+          const color = faker.vehicle.color();
+
+          expect(color).toBeTruthy();
+          expect(color).toBeTypeOf('string');
+          expect(faker.definitions.color.human).toContain(color);
+        });
+      });
+
       describe('vin()', () => {
+        it('returns valid vin number', () => {
+          const vin = faker.vehicle.vin();
+          expect(vin).toMatch(
+            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
+          );
+        });
+
         it('should return valid vin number', () => {
           const vin = faker.vehicle.vin();
 
@@ -91,16 +101,6 @@ describe('vehicle', () => {
           expect(vin).toMatch(
             /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
-        });
-      });
-
-      describe('color()', () => {
-        it('should return a random color', () => {
-          const color = faker.vehicle.color();
-
-          expect(color).toBeTruthy();
-          expect(color).toBeTypeOf('string');
-          expect(faker.definitions.color.human).toContain(color);
         });
       });
 
@@ -124,5 +124,5 @@ describe('vehicle', () => {
         });
       });
     }
-  });
+  );
 });

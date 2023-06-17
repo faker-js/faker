@@ -1,30 +1,36 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 
-const GIT_DATE_FORMAT_BASE = new Intl.DateTimeFormat('en', {
-  weekday: 'short',
-  month: 'short',
-  day: 'numeric',
-  hour: '2-digit',
-  hourCycle: 'h24',
-  minute: '2-digit',
-  second: '2-digit',
-  year: 'numeric',
-  timeZone: 'UTC',
-});
-const GIT_TIMEZONE_FORMAT = new Intl.NumberFormat('en', {
-  minimumIntegerDigits: 4,
-  maximumFractionDigits: 0,
-  useGrouping: false,
-  signDisplay: 'always',
-});
+const GIT_DATE_FORMAT_BASE = Intl?.DateTimeFormat
+  ? new Intl.DateTimeFormat('en', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      hourCycle: 'h24',
+      minute: '2-digit',
+      second: '2-digit',
+      year: 'numeric',
+      timeZone: 'UTC',
+    })
+  : null;
+
+const GIT_TIMEZONE_FORMAT = Intl?.NumberFormat
+  ? new Intl.NumberFormat('en', {
+      minimumIntegerDigits: 4,
+      maximumFractionDigits: 0,
+      useGrouping: false,
+      signDisplay: 'always',
+    })
+  : null;
 
 /**
  * Module to generate git related entries.
  *
  * ### Overview
  *
- * [`commitEntry()`](https://next.fakerjs.dev/api/git.html#commitentry) generates a random commit entry as printed by `git log`. This includes a commit hash [`commitSha()`](https://next.fakerjs.dev/api/git.html#commitsha), author, date [`commitDate()`](https://next.fakerjs.dev/api/git.html#commitdate), and commit message [`commitMessage()`](https://next.fakerjs.dev/api/git.html#commitmessage). You can also generate a random branch name with [`branch()`](https://next.fakerjs.dev/api/git.html#branch).
+ * [`commitEntry()`](https://fakerjs.dev/api/git.html#commitentry) generates a random commit entry as printed by `git log`. This includes a commit hash [`commitSha()`](https://fakerjs.dev/api/git.html#commitsha), author, date [`commitDate()`](https://fakerjs.dev/api/git.html#commitdate), and commit message [`commitMessage()`](https://fakerjs.dev/api/git.html#commitmessage). You can also generate a random branch name with [`branch()`](https://fakerjs.dev/api/git.html#branch).
  */
 export class GitModule {
   constructor(private readonly faker: Faker) {
@@ -63,6 +69,8 @@ export class GitModule {
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
+   *
+   * @throws When the environment does not support `Intl.NumberFormat` and `Intl.DateTimeFormat`.
    *
    * @example
    * faker.git.commitEntry()
@@ -158,6 +166,8 @@ export class GitModule {
    * @param options The optional options object.
    * @param options.refDate The date to use as reference point for the commit. Defaults to `faker.defaultRefDate()`.
    *
+   * @throws When the environment does not support `Intl.NumberFormat` and `Intl.DateTimeFormat`.
+   *
    * @example
    * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
    * faker.git.commitDate({ refDate: '2020-01-01' }) // 'Tue Dec 31 05:40:59 2019 -0400'
@@ -175,6 +185,12 @@ export class GitModule {
     } = {}
   ): string {
     const { refDate = this.faker.defaultRefDate() } = options;
+    // We check if Intl support is missing rather than if GIT_DATE_FORMAT_BASE/GIT_TIMEZONE_FORMAT is null. This allows us to test the error case in environments that do have Intl support by temporarily removing Intl at runtime.
+    if (!Intl || !Intl.DateTimeFormat || !Intl.NumberFormat) {
+      throw new FakerError(
+        'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
+      );
+    }
 
     const dateParts = GIT_DATE_FORMAT_BASE.format(
       this.faker.date.recent({ days: 1, refDate })

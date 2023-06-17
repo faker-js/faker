@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -39,8 +40,9 @@ describe('commerce', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe(`department()`, () => {
         it('should return random value from department array', () => {
           const department = faker.commerce.department();
@@ -110,16 +112,14 @@ describe('commerce', () => {
           const price = faker.commerce.price(100, 100, 1);
 
           expect(price).toBeTruthy();
-          expect(price, 'the price should be equal 100.0').toStrictEqual(
-            '100.0'
-          );
+          expect(price, 'the price should be equal 100.0').toBe('100.0');
         });
 
         it('should handle argument dec = 0', () => {
           const price = faker.commerce.price(100, 100, 0);
 
           expect(price).toBeTruthy();
-          expect(price, 'the price should be equal 100').toStrictEqual('100');
+          expect(price, 'the price should be equal 100').toBe('100');
         });
       });
 
@@ -159,5 +159,5 @@ describe('commerce', () => {
         });
       });
     }
-  });
+  );
 });

@@ -238,16 +238,14 @@ describe('image', () => {
       'technology',
     ];
 
-    for (const category of categories) {
-      describe(`${category}()`, () => {
-        it(`should return a random ${category} image url`, () => {
-          const actual = faker.image.unsplash[category]();
-          expect(actual).toBe(
-            `https://source.unsplash.com/category/${category}/640x480`
-          );
-        });
+    describe.each(categories)(`%s()`, (category) => {
+      it(`should return a random ${category} image url`, () => {
+        const actual = faker.image.unsplash[category]();
+        expect(actual).toBe(
+          `https://source.unsplash.com/category/${category}/640x480`
+        );
       });
-    }
+    });
   });
 
   describe('placeholder', () => {

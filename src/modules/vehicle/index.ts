@@ -5,9 +5,9 @@ import type { Faker } from '../..';
  *
  * ### Overview
  *
- * Most methods are related to cars/automobiles: a [`vehicle()`](https://next.fakerjs.dev/api/vehicle.html#vehicle) name is comprised of a car [`manufacturer()`](https://next.fakerjs.dev/api/vehicle.html#manufacturer) and [`model()`](https://next.fakerjs.dev/api/vehicle.html#model). You can also generate [`fuel()`](https://next.fakerjs.dev/api/vehicle.html#fuel), [`type()`](https://next.fakerjs.dev/api/vehicle.html#type), and [`color()`](https://next.fakerjs.dev/api/vehicle.html#color), as well as typical car registration IDs [`vin()`](https://next.fakerjs.dev/api/vehicle.html#vin) and [`vrm()`](https://next.fakerjs.dev/api/vehicle.html#vrm).
+ * Most methods are related to cars/automobiles: a [`vehicle()`](https://fakerjs.dev/api/vehicle.html#vehicle) name is comprised of a car [`manufacturer()`](https://fakerjs.dev/api/vehicle.html#manufacturer) and [`model()`](https://fakerjs.dev/api/vehicle.html#model). You can also generate [`fuel()`](https://fakerjs.dev/api/vehicle.html#fuel), [`type()`](https://fakerjs.dev/api/vehicle.html#type), and [`color()`](https://fakerjs.dev/api/vehicle.html#color), as well as typical car registration IDs [`vin()`](https://fakerjs.dev/api/vehicle.html#vin) and [`vrm()`](https://fakerjs.dev/api/vehicle.html#vrm).
  *
- * If you prefer two wheels, you can generate a [`bicycle()`](https://next.fakerjs.dev/api/vehicle.html#bicycle) type instead.
+ * If you prefer two wheels, you can generate a [`bicycle()`](https://fakerjs.dev/api/vehicle.html#bicycle) type instead.
  */
 export class VehicleModule {
   constructor(private readonly faker: Faker) {
