@@ -15,16 +15,20 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [14, 16, 18]
+        node_version: [14, 16, 18, 20]
         include:
           - os: macos-latest
             node_version: 16
           - os: macos-latest
             node_version: 18
+          - os: macos-latest
+            node_version: 20
           - os: windows-latest
             node_version: 16
           - os: windows-latest
             node_version: 18
+          - os: windows-latest
+            node_version: 20
       fail-fast: false
     timeout-minutes: 10
 
@@ -248,7 +252,7 @@ jobs:
         run: pnpm vitest run --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.3
+        uses: codecov/codecov-action@v3.1.4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

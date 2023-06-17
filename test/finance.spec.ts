@@ -5,6 +5,7 @@ import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -114,8 +115,9 @@ describe('finance', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('account()', () => {
         it('should supply a default length', () => {
           const accountNumber = faker.finance.account();
@@ -265,9 +267,7 @@ describe('finance', () => {
           amount = faker.finance.amount(100, 100, 1);
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100.0').toStrictEqual(
-            '100.0'
-          );
+          expect(amount, 'the amount should be equal 100.0').toBe('100.0');
         });
 
         //TODO: add support for more currency and decimal options
@@ -280,7 +280,7 @@ describe('finance', () => {
           ).toMatch(/^[0-9\.]+$/);
         });
 
-        it('it should handle negative amounts', () => {
+        it('should handle negative amounts', () => {
           const amount = faker.finance.amount(-200, -1);
 
           expect(amount).toBeTruthy();
@@ -292,23 +292,21 @@ describe('finance', () => {
           ).toBeGreaterThan(-201);
         });
 
-        it('it should handle argument dec', () => {
+        it('should handle argument dec', () => {
           const amount = faker.finance.amount(100, 100, 1);
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100.0').toStrictEqual(
-            '100.0'
-          );
+          expect(amount, 'the amount should be equal 100.0').toBe('100.0');
         });
 
-        it('it should handle argument dec = 0', () => {
+        it('should handle argument dec = 0', () => {
           const amount = faker.finance.amount(100, 100, 0);
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100').toStrictEqual('100');
+          expect(amount, 'the amount should be equal 100').toBe('100');
         });
 
-        it('it should return a string', () => {
+        it('should return a string', () => {
           const amount = faker.finance.amount(100, 100, 0);
 
           expect(amount).toBeTruthy();
@@ -542,9 +540,7 @@ describe('finance', () => {
         });
 
         it('should throw an error when length is less than 1', () => {
-          expect(() => faker.finance.pin(-5)).toThrowError(
-            /^minimum length is 1$/
-          );
+          expect(() => faker.finance.pin(-5)).toThrow(/^minimum length is 1$/);
         });
       });
 
@@ -565,7 +561,7 @@ describe('finance', () => {
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
             'the result should be equal to 1'
-          ).toStrictEqual(1);
+          ).toBe(1);
         });
 
         it('should return a specific and formally correct IBAN number', () => {
@@ -577,7 +573,7 @@ describe('finance', () => {
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
             'the result should be equal to 1'
-          ).toStrictEqual(1);
+          ).toBe(1);
         });
 
         it.each(['AA', 'EU'])(
@@ -585,7 +581,7 @@ describe('finance', () => {
           (unsupportedCountryCode) =>
             expect(() =>
               faker.finance.iban(false, unsupportedCountryCode)
-            ).toThrowError(
+            ).toThrow(
               new FakerError(
                 `Country code ${unsupportedCountryCode} not supported.`
               )
@@ -619,5 +615,5 @@ describe('finance', () => {
         });
       });
     }
-  });
+  );
 });
