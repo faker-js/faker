@@ -61,8 +61,9 @@ describe('system', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('commonFileExt()', () => {
         it('should return common file types', () => {
           const fileExt = faker.system.commonFileExt();
@@ -414,7 +415,7 @@ describe('system', () => {
         });
       });
     }
-  });
+  );
 
   describe('extra tests', () => {
     describe('commonFileName()', () => {

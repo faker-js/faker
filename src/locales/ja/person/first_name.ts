@@ -1,23 +1,8 @@
-export default [
-  '大翔',
-  '蓮',
-  '颯太',
-  '樹',
-  '大和',
-  '陽翔',
-  '陸斗',
-  '太一',
-  '海翔',
-  '蒼空',
-  '翼',
-  '陽菜',
-  '結愛',
-  '結衣',
-  '杏',
-  '莉子',
-  '美羽',
-  '結菜',
-  '心愛',
-  '愛菜',
-  '美咲',
-];
+// We don't have a generic first name list for this locale
+// So simply concatenate male and female lists and remove any duplicates
+// This avoids falling back to fallback locale
+import { mergeArrays } from './../../../internal/merge';
+import female_first_name from './female_first_name';
+import male_first_name from './male_first_name';
+
+export default mergeArrays(female_first_name, male_first_name);

@@ -81,7 +81,7 @@ module.exports = defineConfig({
     {
       files: ['src/**/*.ts'],
       plugins: ['jsdoc'],
-      extends: ['plugin:jsdoc/recommended'],
+      extends: ['plugin:jsdoc/recommended-error'],
       rules: {
         'jsdoc/no-types': 'error',
         'jsdoc/require-param-type': 'off',
@@ -128,6 +128,7 @@ module.exports = defineConfig({
         ],
 
         'vitest/expect-expect': 'off',
+        'vitest/prefer-each': 'error',
         'vitest/valid-expect': ['error', { maxArgs: 2 }],
       },
     },

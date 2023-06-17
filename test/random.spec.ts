@@ -25,8 +25,9 @@ describe('random', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    describe.each(times(NON_SEEDED_BASED_RUN))('%s', () => {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('word', () => {
         const bannedChars = [
           '!',
@@ -454,6 +455,6 @@ describe('random', () => {
           expect(actual).toMatch(/^[0235679]{1000}$/);
         });
       });
-    });
-  });
+    }
+  );
 });
