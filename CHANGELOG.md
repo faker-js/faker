@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.2](https://github.com/faker-js/faker/compare/v8.0.1...v8.0.2) (2023-05-27)
+
+
+### Bug Fixes
+
+* **git:** limit need for Intl to specific method ([#2172](https://github.com/faker-js/faker/issues/2172)) ([a5e73f8](https://github.com/faker-js/faker/commit/a5e73f8a11baeefcf03f344cb5e4dde096a0b364))
+* **locale:** en_HK last_name_patterns should be last_name_pattern ([#2154](https://github.com/faker-js/faker/issues/2154)) ([03cc391](https://github.com/faker-js/faker/commit/03cc39154886a0708e13ee2db239c001ce20aa6e))
+* **locale:** ro_MD city should be city_pattern ([#2155](https://github.com/faker-js/faker/issues/2155)) ([c173150](https://github.com/faker-js/faker/commit/c173150a96a95818b0c4fd6cb2d41daea7e9ad0a))
+
+## [8.0.1](https://github.com/faker-js/faker/compare/v8.0.0...v8.0.1) (2023-05-15)
+
+
+* **docs:** switch doc links to stable ([#2152](https://github.com/faker-js/faker/pull/2152)) ([8f741bd](https://github.com/faker-js/faker/commit/8f741bd4bda455517fd048b83d76bd8e6d89d78e))
+
 ## [8.0.0](https://github.com/faker-js/faker/compare/v8.0.0-beta.1...v8.0.0) (2023-05-11)
 
 

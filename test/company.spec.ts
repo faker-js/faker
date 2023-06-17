@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -23,8 +24,9 @@ describe('company', () => {
     t.skip('bs').skip('bsAdjective').skip('bsBuzz').skip('bsNoun');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('suffixes()', () => {
         it('should return all suffixes', () => {
           const actual = faker.company.suffixes();
@@ -139,5 +141,5 @@ describe('company', () => {
         });
       });
     }
-  });
+  );
 });
