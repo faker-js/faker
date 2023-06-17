@@ -7,14 +7,14 @@ import type { Mersenne } from '../../internal/mersenne/mersenne';
  *
  * ### Overview
  *
- * For simple integers, use [`int()`](https://next.fakerjs.dev/api/number.html#int). For decimal/floating-point numbers, use [`float()`](https://next.fakerjs.dev/api/number.html#float).
+ * For simple integers, use [`int()`](https://fakerjs.dev/api/number.html#int). For decimal/floating-point numbers, use [`float()`](https://fakerjs.dev/api/number.html#float).
  *
- * For numbers not in base-10, you can use [`hex()`](https://next.fakerjs.dev/api/number.html#hex), [`octal()`](https://next.fakerjs.dev/api/number.html#octal) and [`binary()`](https://next.fakerjs.dev/api/number.html#binary)`.
+ * For numbers not in base-10, you can use [`hex()`](https://fakerjs.dev/api/number.html#hex), [`octal()`](https://fakerjs.dev/api/number.html#octal) and [`binary()`](https://fakerjs.dev/api/number.html#binary)`.
  *
  * ### Related modules
  *
- * - For numeric strings of a given length, use [`faker.string.numeric()`](https://next.fakerjs.dev/api/string.html#numeric).
- * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://next.fakerjs.dev/api/finance.html#creditcardnumber).
+ * - For numeric strings of a given length, use [`faker.string.numeric()`](https://fakerjs.dev/api/string.html#numeric).
+ * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
 export class NumberModule {
   constructor(private readonly faker: Faker) {
@@ -43,9 +43,9 @@ export class NumberModule {
    * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
    *
    * @example
-   * faker.number.int() // 55422
+   * faker.number.int() // 2900970162509863
    * faker.number.int(100) // 52
-   * faker.number.int({ min: 1000000 }) // 1031433
+   * faker.number.int({ min: 1000000 }) // 2900970162509863
    * faker.number.int({ max: 100 }) // 42
    * faker.number.int({ min: 10, max: 100 }) // 57
    *
@@ -64,7 +64,7 @@ export class NumberModule {
           /**
            * Upper bound for generated number.
            *
-           * @default min + 99999
+           * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
         } = {}

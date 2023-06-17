@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker, fakerAZ, fakerMK, fakerUK, Sex } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -40,8 +41,9 @@ describe('person', () => {
     t.it('zodiacSign');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('firstName()', () => {
         it('should return a random first name', () => {
           const first_name = faker.person.firstName();
@@ -310,5 +312,5 @@ describe('person', () => {
         });
       });
     }
-  });
+  );
 });
