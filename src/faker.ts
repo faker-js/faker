@@ -1,4 +1,4 @@
-import type { LocaleDefinition } from './definitions';
+import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
@@ -456,6 +456,19 @@ export class Faker {
     this._mersenne.seed(seed);
 
     return seed;
+  }
+
+  /**
+   * Returns an object with metadata about the current locale.
+   *
+   * @example
+   * import { faker, fakerES_MX } from '@faker-js/faker';
+   * // const { faker, fakerES_MX } = require("@faker-js/faker")
+   * faker.getMetadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
+   * fakerES_MX.getMetadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
+   */
+  getMetadata(): MetadataDefinition {
+    return this.rawDefinitions.metadata ?? {};
   }
 
   // Pure JS backwards compatibility
