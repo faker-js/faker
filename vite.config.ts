@@ -11,7 +11,7 @@ export default defineConfig({
     setupFiles: ['test/setup.ts'],
     coverage: {
       all: true,
-      provider: 'c8',
+      provider: 'v8',
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
