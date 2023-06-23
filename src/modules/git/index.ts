@@ -1,29 +1,5 @@
 import type { Faker } from '../..';
-import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-
-const GIT_DATE_FORMAT_BASE = Intl?.DateTimeFormat
-  ? new Intl.DateTimeFormat('en', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      hourCycle: 'h24',
-      minute: '2-digit',
-      second: '2-digit',
-      year: 'numeric',
-      timeZone: 'UTC',
-    })
-  : null;
-
-const GIT_TIMEZONE_FORMAT = Intl?.NumberFormat
-  ? new Intl.NumberFormat('en', {
-      minimumIntegerDigits: 4,
-      maximumFractionDigits: 0,
-      useGrouping: false,
-      signDisplay: 'always',
-    })
-  : null;
 
 /**
  * Module to generate git related entries.
@@ -69,8 +45,6 @@ export class GitModule {
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
-   *
-   * @throws When the environment does not support `Intl.NumberFormat` and `Intl.DateTimeFormat`.
    *
    * @example
    * faker.git.commitEntry()
@@ -166,8 +140,6 @@ export class GitModule {
    * @param options The optional options object.
    * @param options.refDate The date to use as reference point for the commit. Defaults to `faker.defaultRefDate()`.
    *
-   * @throws When the environment does not support `Intl.NumberFormat` and `Intl.DateTimeFormat`.
-   *
    * @example
    * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
    * faker.git.commitDate({ refDate: '2020-01-01' }) // 'Tue Dec 31 05:40:59 2019 -0400'
@@ -185,28 +157,35 @@ export class GitModule {
     } = {}
   ): string {
     const { refDate = this.faker.defaultRefDate() } = options;
-    // We check if Intl support is missing rather than if GIT_DATE_FORMAT_BASE/GIT_TIMEZONE_FORMAT is null. This allows us to test the error case in environments that do have Intl support by temporarily removing Intl at runtime.
-    if (!Intl || !Intl.DateTimeFormat || !Intl.NumberFormat) {
-      throw new FakerError(
-        'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
-      );
-    }
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
 
-    const dateParts = GIT_DATE_FORMAT_BASE.format(
-      this.faker.date.recent({ days: 1, refDate })
-    )
-      .replace(/,/g, '')
-      .split(' ');
-    [dateParts[3], dateParts[4]] = [dateParts[4], dateParts[3]];
-
-    // Timezone offset
-    dateParts.push(
-      GIT_TIMEZONE_FORMAT.format(
-        this.faker.number.int({ min: -11, max: 12 }) * 100
-      )
-    );
-
-    return dateParts.join(' ');
+    const date = this.faker.date.recent({ days: 1, refDate });
+    const day = days[date.getUTCDay()];
+    const month = months[date.getUTCMonth()];
+    const dayOfMonth = date.getUTCDate();
+    const hours = date.getUTCHours().toString().padStart(2, '0');
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+    const year = date.getUTCFullYear();
+    const timezone = this.faker.number.int({ min: -11, max: 12 });
+    const timezoneHours = Math.abs(timezone).toString().padStart(2, '0');
+    const timezoneMinutes = '00';
+    const timezoneSign = timezone >= 0 ? '+' : '-';
+    return `${day} ${month} ${dayOfMonth} ${hours}:${minutes}:${seconds} ${year} ${timezoneSign}${timezoneHours}${timezoneMinutes}`;
   }
 
   /**
