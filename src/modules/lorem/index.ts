@@ -318,6 +318,10 @@ export class LoremModule {
   /**
    * Generates a random text based on a random lorem method.
    *
+   * @param length The length (range) of text to generate.
+   * @param length.min The minimum length of text to generate.
+   * @param length.max The maximum length of text to generate.
+   *
    * @example
    * faker.lorem.text() // 'Doloribus autem non quis vero quia.'
    * faker.lorem.text()
@@ -326,10 +330,27 @@ export class LoremModule {
    * // Quis ut dolor dolores facilis possimus tempore voluptates.
    * // Iure nam officia optio cumque.
    * // Dolor tempora iusto.'
+   * faker.lorem.text(14) // 'Doloribus aut.' (14 characters)
+   * faker.lorem.text({min: 10, max: 15}) // 'autem non quis.' (15 characters)
+   * faker.lorem.text({min: 10, max: 12}) // 'autem non.' (10 characters)
+   * faker.lorem.text({min: 3, max: 10}) // 'autem.' (6 characters)
    *
    * @since 3.1.0
    */
-  text(): string {
+  text(
+    length?:
+      | number
+      | {
+          /**
+           * The minimum length of text to generate.
+           */
+          min: number;
+          /**
+           * The maximum length of text to generate.
+           */
+          max: number;
+        }
+  ): string {
     const methods: Array<keyof LoremModule> = [
       'sentence',
       'sentences',
@@ -339,8 +360,48 @@ export class LoremModule {
     ];
 
     const method = this.faker.helpers.arrayElement(methods);
+    const getTextWithCondition = (condition: (s: string) => boolean) => {
+      let text = '';
+      while (condition(text)) {
+        text = `${text} ${this[method]()}`;
+      }
 
-    return `${this[method]()}`;
+      return text;
+    };
+
+    if (typeof length === 'undefined') {
+      return `${this[method]()}`;
+    }
+
+    if (typeof length === 'number') {
+      if (length >= 0) {
+        const text = getTextWithCondition(
+          (s: string) => s?.length <= length - 1
+        );
+        return text ? `${text?.substring(0, length - 1)}.` : '';
+      }
+
+      return null;
+    }
+
+    if (length?.min != null && length?.max != null) {
+      if (length.min > length.max) {
+        return null;
+      }
+
+      if (length.max === 0) {
+        return '';
+      }
+
+      length.min = length.min < 0 ? 0 : length.min;
+
+      const text = getTextWithCondition(
+        (s: string) => s?.length <= length.min - 1
+      );
+      return text?.length >= length.max
+        ? `${text?.substring(0, length.max - 1)}.`
+        : text;
+    }
   }
 
   /**

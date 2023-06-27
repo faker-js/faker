@@ -97,9 +97,9 @@ exports[`lorem > 42 > slug > with length range 1`] = `"minus-a-qui-tempore-quo-p
 
 exports[`lorem > 42 > text > noArgs 1`] = `"Qui tempore quo perspiciatis perspiciatis quia in quia architecto ipsa. Pariatur veniam unde fugit facilis mollitia. Ipsa reiciendis nam. Earum dolorem alias qui asperiores qui natus aliquam iste. Consequatur eum sit dolore rem iste aliquid."`;
 
-exports[`lorem > 42 > text > with length 1`] = `"Qui tempore quo perspiciatis perspiciatis quia in quia architecto ipsa. Pariatur veniam unde fugit facilis mollitia. Ipsa reiciendis nam. Earum dolorem alias qui asperiores qui natus aliquam iste. Consequatur eum sit dolore rem iste aliquid."`;
+exports[`lorem > 42 > text > with length 1`] = `" Qui temp."`;
 
-exports[`lorem > 42 > text > with length range 1`] = `"Qui tempore quo perspiciatis perspiciatis quia in quia architecto ipsa. Pariatur veniam unde fugit facilis mollitia. Ipsa reiciendis nam. Earum dolorem alias qui asperiores qui natus aliquam iste. Consequatur eum sit dolore rem iste aliquid."`;
+exports[`lorem > 42 > text > with length range 1`] = `" Qui tempore quo pe."`;
 
 exports[`lorem > 42 > word > noArgs 1`] = `"voluptas"`;
 
@@ -233,17 +233,9 @@ Ullam consequuntur quidem nobis placeat aut.
 Est animi libero repellendus recusandae iure magnam pariatur doloribus."
 `;
 
-exports[`lorem > 1211 > text > with length 1`] = `
-"Quo amet explicabo repellat accusantium laborum quia fuga dolorem cumque.
-Ullam consequuntur quidem nobis placeat aut.
-Est animi libero repellendus recusandae iure magnam pariatur doloribus."
-`;
+exports[`lorem > 1211 > text > with length 1`] = `" Quo amet."`;
 
-exports[`lorem > 1211 > text > with length range 1`] = `
-"Quo amet explicabo repellat accusantium laborum quia fuga dolorem cumque.
-Ullam consequuntur quidem nobis placeat aut.
-Est animi libero repellendus recusandae iure magnam pariatur doloribus."
-`;
+exports[`lorem > 1211 > text > with length range 1`] = `" Quo amet explicabo."`;
 
 exports[`lorem > 1211 > word > noArgs 1`] = `"recusandae"`;
 
@@ -354,9 +346,9 @@ exports[`lorem > 1337 > slug > with length range 1`] = `"molestias-quia-dolorem-
 
 exports[`lorem > 1337 > text > noArgs 1`] = `"Dolorem incidunt atque esse. Ad consectetur totam. Eius veniam voluptatibus tempora tempore aliquam vitae. Laboriosam quasi similique nemo sunt cum doloribus consequuntur reprehenderit."`;
 
-exports[`lorem > 1337 > text > with length 1`] = `"Dolorem incidunt atque esse. Ad consectetur totam. Eius veniam voluptatibus tempora tempore aliquam vitae. Laboriosam quasi similique nemo sunt cum doloribus consequuntur reprehenderit."`;
+exports[`lorem > 1337 > text > with length 1`] = `" Dolorem ."`;
 
-exports[`lorem > 1337 > text > with length range 1`] = `"Dolorem incidunt atque esse. Ad consectetur totam. Eius veniam voluptatibus tempora tempore aliquam vitae. Laboriosam quasi similique nemo sunt cum doloribus consequuntur reprehenderit."`;
+exports[`lorem > 1337 > text > with length range 1`] = `" Dolorem incidunt a."`;
 
 exports[`lorem > 1337 > word > noArgs 1`] = `"eius"`;
 

@@ -325,6 +325,85 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
         });
+
+        it('should return text of length 15', () => {
+          const actual = faker.lorem.text(15);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(15);
+        });
+
+        it('should return text with a length in range [25, 40]', () => {
+          const actual = faker.lorem.text({ min: 25, max: 40 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual.length).toBeGreaterThanOrEqual(25);
+          expect(actual.length).toBeLessThanOrEqual(40);
+        });
+
+        it('should return null for a negative length', () => {
+          const actual = faker.lorem.text(-3);
+
+          expect(actual).toBeNull();
+        });
+
+        it('should return an empty string for length zero', () => {
+          const actual = faker.lorem.text(0);
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
+        it('should return a dot for length one', () => {
+          const actual = faker.lorem.text(1);
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('.');
+        });
+
+        it('should return an empty string for [-13, 0]', () => {
+          const actual = faker.lorem.text({ min: -13, max: 0 });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
+        it('should return an empty string for [0, 1]', () => {
+          const actual = faker.lorem.text({ min: 0, max: 1 });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
+        it('should return an empty string for [0, 32]', () => {
+          const actual = faker.lorem.text({ min: 0, max: 32 });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
+        it('should return a text with length between 0 and 13 for [-13, 13]', () => {
+          const actual = faker.lorem.text({ min: -13, max: 13 });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
+        it('should return a string of length 77 for [77, 77]', () => {
+          const actual = faker.lorem.text({ min: 77, max: 77 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(77);
+        });
+
+        it('should return null for [3, 1]', () => {
+          const actual = faker.lorem.text({ min: 3, max: 1 });
+
+          expect(actual).toBeNull();
+        });
       });
 
       describe('lines()', () => {
