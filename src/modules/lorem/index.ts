@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { filterWordListByLength } from '../word/filterWordListByLength';
 
 /**
@@ -318,9 +319,10 @@ export class LoremModule {
   /**
    * Generates a random text based on a random lorem method.
    *
-   * @param length The length (range) of text to generate.
-   * @param length.min The minimum length of text to generate.
-   * @param length.max The maximum length of text to generate.
+   * @param options The options for the text to generate.
+   * @param options.length The length of text to generate.
+   * @param options.min The minimum length of text to generate.
+   * @param options.max The maximum length of text to generate.
    *
    * @example
    * faker.lorem.text() // 'Doloribus autem non quis vero quia.'
@@ -337,20 +339,20 @@ export class LoremModule {
    *
    * @since 3.1.0
    */
-  text(
-    length?:
-      | number
-      | {
-          /**
-           * The minimum length of text to generate.
-           */
-          min: number;
-          /**
-           * The maximum length of text to generate.
-           */
-          max: number;
-        }
-  ): string {
+  text(options?: {
+    /**
+     * The length of text to generate.
+     */
+    length?: number;
+    /**
+     * The minimum length of text to generate.
+     */
+    min?: number;
+    /**
+     * The maximum length of text to generate.
+     */
+    max?: number;
+  }): string {
     const methods: Array<keyof LoremModule> = [
       'sentence',
       'sentences',
@@ -360,48 +362,51 @@ export class LoremModule {
     ];
 
     const method = this.faker.helpers.arrayElement(methods);
-    const getTextWithCondition = (condition: (s: string) => boolean) => {
-      let text = '';
-      while (condition(text)) {
-        text = `${text} ${this[method]()}`;
-      }
 
-      return text;
-    };
-
-    if (typeof length === 'undefined') {
+    if (typeof options === 'undefined') {
       return `${this[method]()}`;
     }
 
-    if (typeof length === 'number') {
-      if (length >= 0) {
-        const text = getTextWithCondition(
-          (s: string) => s?.length <= length - 1
-        );
-        return text ? `${text?.substring(0, length - 1)}.` : '';
+    if (typeof options?.length === 'number') {
+      if (options.length >= 0) {
+        let text = `${this[method]()}`;
+        while (text.length <= options?.length) {
+          text = `${text} ${this[method]()}`;
+        }
+
+        return options.length
+          ? `${text.substring(0, options.length - 1)}.`
+          : '';
       }
 
-      return null;
-    }
-
-    if (length?.min != null && length?.max != null) {
-      if (length.min > length.max) {
-        return null;
-      }
-
-      if (length.max === 0) {
-        return '';
-      }
-
-      length.min = length.min < 0 ? 0 : length.min;
-
-      const text = getTextWithCondition(
-        (s: string) => s?.length <= length.min - 1
+      throw new FakerError(
+        `Length ${options.length} should be a non-negative integer.`
       );
-      return text?.length >= length.max
-        ? `${text?.substring(0, length.max - 1)}.`
-        : text;
     }
+
+    if (options.max != null && options.max < 0) {
+      throw new FakerError(
+        `Max ${options.max} should be a non-negative integer.`
+      );
+    }
+
+    const min = typeof options.min !== 'undefined' ? options.min : 0;
+    const max = typeof options.max !== 'undefined' ? options.max : 2 * min;
+    if (min > max) {
+      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
+    }
+
+    if (max === 0) {
+      return '';
+    }
+
+    const effectiveMin = Math.max(min, 0);
+    const randomLength = this.faker.number.int({
+      min: effectiveMin,
+      max: max,
+    });
+
+    return this.faker.lorem.text({ length: randomLength });
   }
 
   /**
