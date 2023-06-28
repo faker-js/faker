@@ -392,11 +392,7 @@ export class LoremModule {
 
     const min = typeof options.min !== 'undefined' ? options.min : 0;
     const max = typeof options.max !== 'undefined' ? options.max : 2 * min;
-    if (min > max) {
-      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
-    }
-
-    if (max === 0) {
+    if (min > max || max === 0) {
       return '';
     }
 
