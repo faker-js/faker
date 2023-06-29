@@ -97,7 +97,7 @@ exports[`lorem > 42 > slug > with length range 1`] = `"minus-a-qui-tempore-quo-p
 
 exports[`lorem > 42 > text > noArgs 1`] = `"Qui tempore quo perspiciatis perspiciatis quia in quia architecto ipsa. Pariatur veniam unde fugit facilis mollitia. Ipsa reiciendis nam. Earum dolorem alias qui asperiores qui natus aliquam iste. Consequatur eum sit dolore rem iste aliquid."`;
 
-exports[`lorem > 42 > text > with length 1`] = `""`;
+exports[`lorem > 42 > text > with length 1`] = `"Qui tempo."`;
 
 exports[`lorem > 42 > text > with length range 1`] = `"Quo perspiciatis ."`;
 
@@ -233,7 +233,7 @@ Ullam consequuntur quidem nobis placeat aut.
 Est animi libero repellendus recusandae iure magnam pariatur doloribus."
 `;
 
-exports[`lorem > 1211 > text > with length 1`] = `""`;
+exports[`lorem > 1211 > text > with length 1`] = `"Quo amet ."`;
 
 exports[`lorem > 1211 > text > with length range 1`] = `"Explicabo repe."`;
 
@@ -346,7 +346,7 @@ exports[`lorem > 1337 > slug > with length range 1`] = `"molestias-quia-dolorem-
 
 exports[`lorem > 1337 > text > noArgs 1`] = `"Dolorem incidunt atque esse. Ad consectetur totam. Eius veniam voluptatibus tempora tempore aliquam vitae. Laboriosam quasi similique nemo sunt cum doloribus consequuntur reprehenderit."`;
 
-exports[`lorem > 1337 > text > with length 1`] = `""`;
+exports[`lorem > 1337 > text > with length 1`] = `"Dolorem i."`;
 
 exports[`lorem > 1337 > text > with length range 1`] = `"Incidunt atque ."`;
 

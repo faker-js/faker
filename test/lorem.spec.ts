@@ -326,8 +326,17 @@ describe('lorem', () => {
           expect(actual).toBeTypeOf('string');
         });
 
-        it('should return text of length 15', () => {
+        it('should return text of length 15 for the options object', () => {
           const actual = faker.lorem.text({ length: 15 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(15);
+          expect(actual.trim()).toHaveLength(15);
+        });
+
+        it('should return text of length 15 for the quick primitive argument', () => {
+          const actual = faker.lorem.text(15);
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
@@ -344,8 +353,14 @@ describe('lorem', () => {
           expect(actual.length).toBeLessThanOrEqual(40);
         });
 
-        it('should throw an error for a negative length', () => {
+        it('should throw an error for a negative length in the options object', () => {
           expect(() => faker.lorem.text({ length: -3 })).toThrowError(
+            /^Length -3 should be a non-negative integer.$/
+          );
+        });
+
+        it('should throw an error for a negative length in the quick primitive argument', () => {
+          expect(() => faker.lorem.text(-3)).toThrowError(
             /^Length -3 should be a non-negative integer.$/
           );
         });

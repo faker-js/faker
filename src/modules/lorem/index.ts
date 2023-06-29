@@ -319,7 +319,7 @@ export class LoremModule {
   /**
    * Generates a random text based on a random lorem method.
    *
-   * @param options The options for the text to generate.
+   * @param options The options for the text to generate or options.length as quick primitive argument.
    * @param options.length The length of text to generate.
    * @param options.min The minimum length of text to generate.
    * @param options.max The maximum length of text to generate.
@@ -332,6 +332,7 @@ export class LoremModule {
    * // Quis ut dolor dolores facilis possimus tempore voluptates.
    * // Iure nam officia optio cumque.
    * // Dolor tempora iusto.'
+   * faker.lorem.text(14) // 'Doloribus aut.' (14 characters)
    * faker.lorem.text({length: 14}) // 'Doloribus aut.' (14 characters)
    * faker.lorem.text({min: 10, max: 15}) // 'autem non quis.' (15 characters)
    * faker.lorem.text({min: 10, max: 12}) // 'autem non.' (10 characters)
@@ -339,20 +340,24 @@ export class LoremModule {
    *
    * @since 3.1.0
    */
-  text(options?: {
-    /**
-     * The length of text to generate.
-     */
-    length?: number;
-    /**
-     * The minimum length of text to generate.
-     */
-    min?: number;
-    /**
-     * The maximum length of text to generate.
-     */
-    max?: number;
-  }): string {
+  text(
+    options?:
+      | number
+      | {
+          /**
+           * The length of text to generate.
+           */
+          length?: number;
+          /**
+           * The minimum length of text to generate.
+           */
+          min?: number;
+          /**
+           * The maximum length of text to generate.
+           */
+          max?: number;
+        }
+  ): string {
     const methods: Array<keyof LoremModule> = [
       'sentence',
       'sentences',
@@ -365,6 +370,10 @@ export class LoremModule {
 
     if (typeof options === 'undefined') {
       return `${this[method]()}`;
+    }
+
+    if (typeof options === 'number') {
+      return this.faker.lorem.text({ length: options });
     }
 
     if (typeof options?.length === 'number') {
