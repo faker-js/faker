@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate phone-related data.
@@ -24,16 +25,47 @@ export class PhoneModule {
   /**
    * Generates a random phone number.
    *
-   * @param format Format of the phone number. Defaults to a random phone number format.
-   *
    * @example
    * faker.phone.number() // '961-770-7727'
+   *
+   * @since 7.3.0
+   */
+  number(): string;
+  /**
+   * Generates a random phone number.
+   *
+   * @param format Format of the phone number.
+   *
+   * @example
    * faker.phone.number('501-###-###') // '501-039-841'
    * faker.phone.number('+48 91 ### ## ##') // '+48 91 463 61 70'
    *
    * @since 7.3.0
+   *
+   * @deprecated Use `faker.phone.number()` without an argument instead.
    */
+  number(format: string): string;
+  /**
+   * Generates a random phone number.
+   *
+   * @param format Format of the phone number. Defaults to a random phone number format.
+   *
+   * @example
+   * faker.phone.number() // '961-770-7727'
+   *
+   * @since 7.3.0
+   */
+  number(format?: string): string;
   number(format?: string): string {
+    if(format != null) {
+      deprecated({
+        deprecated: 'faker.phone.number(format)',
+        proposed: 'faker.phone.number()',
+        since: '8.1',
+        until: '9.0',
+      });
+    }
+
     format =
       format ??
       this.faker.helpers.arrayElement(
