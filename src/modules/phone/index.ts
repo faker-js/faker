@@ -57,7 +57,7 @@ export class PhoneModule {
    */
   number(format?: string): string;
   number(format?: string): string {
-    if(format != null) {
+    if (format != null) {
       deprecated({
         deprecated: 'faker.phone.number(format)',
         proposed: 'faker.phone.number()',
