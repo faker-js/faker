@@ -402,19 +402,22 @@ export class LoremModule {
       );
     }
 
-    const min =
-      typeof options.length?.min !== 'undefined' ? options.length.min : 0;
-    const max =
-      typeof options.length?.max !== 'undefined' ? options.length.max : 2 * min;
-    if (min > max) {
+    if (options.length?.min != null && options.length?.min < 0) {
+      throw new FakerError(
+        `Min ${options.length.min} should be a non-negative integer.`
+      );
+    }
+
+    if (options.length?.min > options.length?.max) {
       throw new FakerError(
         `Max ${options.length.max} should be greater than min ${options.length.min}.`
       );
     }
 
-    const effectiveMin = Math.max(min, 0);
+    const min = options.length?.min ?? 0;
+    const max = options.length?.max ?? 2 * min;
     const randomLength = this.faker.number.int({
-      min: effectiveMin,
+      min: min,
       max: max,
     });
 
