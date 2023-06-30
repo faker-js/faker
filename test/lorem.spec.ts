@@ -419,10 +419,9 @@ describe('lorem', () => {
         });
 
         it('should return an empty string for [3, 1]', () => {
-          const actual = faker.lorem.text({ min: 3, max: 1 });
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual).toBe('');
+          expect(() => faker.lorem.text({ min: 3, max: 1 })).toThrowError(
+            /^Max 1 should be greater than min 3.$/
+          )
         });
 
         it('should an error for max = -11', () => {

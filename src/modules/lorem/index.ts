@@ -401,8 +401,10 @@ export class LoremModule {
 
     const min = typeof options.min !== 'undefined' ? options.min : 0;
     const max = typeof options.max !== 'undefined' ? options.max : 2 * min;
-    if (min > max || max === 0) {
-      return '';
+    if (min > max) {
+      throw new FakerError(
+        `Max ${options.max} should be greater than min ${options.min}.`
+      );
     }
 
     const effectiveMin = Math.max(min, 0);
