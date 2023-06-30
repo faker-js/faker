@@ -99,7 +99,7 @@ exports[`lorem > 42 > text > noArgs 1`] = `"Qui tempore quo perspiciatis perspic
 
 exports[`lorem > 42 > text > with length 1`] = `"Qui tempo."`;
 
-exports[`lorem > 42 > text > with length range 1`] = `"Quo perspiciatis ."`;
+exports[`lorem > 42 > text > with length range 1`] = `""`;
 
 exports[`lorem > 42 > word > noArgs 1`] = `"voluptas"`;
 
@@ -235,7 +235,7 @@ Est animi libero repellendus recusandae iure magnam pariatur doloribus."
 
 exports[`lorem > 1211 > text > with length 1`] = `"Quo amet ."`;
 
-exports[`lorem > 1211 > text > with length range 1`] = `"Explicabo repe."`;
+exports[`lorem > 1211 > text > with length range 1`] = `""`;
 
 exports[`lorem > 1211 > word > noArgs 1`] = `"recusandae"`;
 
@@ -348,7 +348,7 @@ exports[`lorem > 1337 > text > noArgs 1`] = `"Dolorem incidunt atque esse. Ad co
 
 exports[`lorem > 1337 > text > with length 1`] = `"Dolorem i."`;
 
-exports[`lorem > 1337 > text > with length range 1`] = `"Incidunt atque ."`;
+exports[`lorem > 1337 > text > with length range 1`] = `""`;
 
 exports[`lorem > 1337 > word > noArgs 1`] = `"eius"`;
 

@@ -345,7 +345,7 @@ describe('lorem', () => {
         });
 
         it('should return text with a length in range [25, 40]', () => {
-          const actual = faker.lorem.text({ min: 25, max: 40 });
+          const actual = faker.lorem.text({ length: { min: 25, max: 40 } });
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
@@ -380,14 +380,14 @@ describe('lorem', () => {
         });
 
         it('should return an empty string for [-13, 0]', () => {
-          const actual = faker.lorem.text({ min: -13, max: 0 });
+          const actual = faker.lorem.text({ length: { min: -13, max: 0 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toBe('');
         });
 
         it('should return an empty string for [0, 1]', () => {
-          const actual = faker.lorem.text({ min: 0, max: 1 });
+          const actual = faker.lorem.text({ length: { min: 0, max: 1 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(0);
@@ -395,7 +395,7 @@ describe('lorem', () => {
         });
 
         it('should return text with length between 0 and 32 for [0, 32]', () => {
-          const actual = faker.lorem.text({ min: 0, max: 32 });
+          const actual = faker.lorem.text({ length: { min: 0, max: 32 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(0);
@@ -403,7 +403,7 @@ describe('lorem', () => {
         });
 
         it('should return text with length between 0 and 13 for [-13, 13]', () => {
-          const actual = faker.lorem.text({ min: -13, max: 13 });
+          const actual = faker.lorem.text({ length: { min: -13, max: 13 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(0);
@@ -411,7 +411,7 @@ describe('lorem', () => {
         });
 
         it('should return a string of length 77 for [77, 77]', () => {
-          const actual = faker.lorem.text({ min: 77, max: 77 });
+          const actual = faker.lorem.text({ length: { min: 77, max: 77 } });
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
@@ -419,41 +419,30 @@ describe('lorem', () => {
         });
 
         it('should return an empty string for [3, 1]', () => {
-          expect(() => faker.lorem.text({ min: 3, max: 1 })).toThrowError(
-            /^Max 1 should be greater than min 3.$/
-          )
+          expect(() =>
+            faker.lorem.text({ length: { min: 3, max: 1 } })
+          ).toThrowError(/^Max 1 should be greater than min 3.$/);
         });
 
         it('should an error for max = -11', () => {
-          expect(() => faker.lorem.text({ max: -11 })).toThrowError(
+          expect(() => faker.lorem.text({ length: { max: -11 } })).toThrowError(
             /^Max -11 should be a non-negative integer.$/
           );
         });
 
         it('should return a string with length at least 33 for min = 33', () => {
-          const actual = faker.lorem.text({ min: 33 });
+          const actual = faker.lorem.text({ length: { min: 33 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(33);
         });
 
         it('should return a string with length between 0 and 51 for max = 51', () => {
-          const actual = faker.lorem.text({ max: 51 });
+          const actual = faker.lorem.text({ length: { max: 51 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(0);
           expect(actual.length).toBeLessThanOrEqual(51);
-        });
-
-        it('should return a string with length 111 for {length: 111, min: 13, max: 15}', () => {
-          const actual = faker.lorem.text({
-            length: 111,
-            min: 13,
-            max: 15,
-          });
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual).toHaveLength(111);
         });
       });
 

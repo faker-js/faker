@@ -320,9 +320,9 @@ export class LoremModule {
    * Generates a random text based on a random lorem method.
    *
    * @param options The options for the text to generate or options.length as quick primitive argument.
-   * @param options.length The length of text to generate.
-   * @param options.min The minimum length of text to generate.
-   * @param options.max The maximum length of text to generate.
+   * @param options.length The length (range) of text to generate.
+   * @param options.length.min The minimum length of text to generate.
+   * @param options.length.max The maximum length of text to generate.
    *
    * @example
    * faker.lorem.text() // 'Doloribus autem non quis vero quia.'
@@ -334,9 +334,9 @@ export class LoremModule {
    * // Dolor tempora iusto.'
    * faker.lorem.text(14) // 'Doloribus aut.' (14 characters)
    * faker.lorem.text({length: 14}) // 'Doloribus aut.' (14 characters)
-   * faker.lorem.text({min: 10, max: 15}) // 'autem non quis.' (15 characters)
-   * faker.lorem.text({min: 10, max: 12}) // 'autem non.' (10 characters)
-   * faker.lorem.text({min: 3, max: 10}) // 'autem.' (6 characters)
+   * faker.lorem.text({length: {min: 10, max: 15}}) // 'autem non quis.' (15 characters)
+   * faker.lorem.text({length: {min: 10, max: 12}}) // 'autem non.' (10 characters)
+   * faker.lorem.text({length: {min: 3, max: 10}}) // 'autem.' (6 characters)
    *
    * @since 3.1.0
    */
@@ -345,17 +345,20 @@ export class LoremModule {
       | number
       | {
           /**
-           * The length of text to generate.
+           * The length (range) of text to generate.
            */
-          length?: number;
-          /**
-           * The minimum length of text to generate.
-           */
-          min?: number;
-          /**
-           * The maximum length of text to generate.
-           */
-          max?: number;
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of text to generate.
+                 */
+                min?: number;
+                /**
+                 * The maximum length of text to generate.
+                 */
+                max?: number;
+              };
         }
   ): string {
     const methods: Array<keyof LoremModule> = [
@@ -393,17 +396,19 @@ export class LoremModule {
       );
     }
 
-    if (options.max != null && options.max < 0) {
+    if (options.length?.max != null && options.length?.max < 0) {
       throw new FakerError(
-        `Max ${options.max} should be a non-negative integer.`
+        `Max ${options.length.max} should be a non-negative integer.`
       );
     }
 
-    const min = typeof options.min !== 'undefined' ? options.min : 0;
-    const max = typeof options.max !== 'undefined' ? options.max : 2 * min;
+    const min =
+      typeof options.length?.min !== 'undefined' ? options.length.min : 0;
+    const max =
+      typeof options.length?.max !== 'undefined' ? options.length.max : 2 * min;
     if (min > max) {
       throw new FakerError(
-        `Max ${options.max} should be greater than min ${options.min}.`
+        `Max ${options.length.max} should be greater than min ${options.length.min}.`
       );
     }
 
