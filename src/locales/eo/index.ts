@@ -8,6 +8,7 @@ import database from './database';
 import date from './date';
 import metadata from './metadata';
 import person from './person';
+import science from './science';
 
 const eo: LocaleDefinition = {
   color,
@@ -15,6 +16,7 @@ const eo: LocaleDefinition = {
   date,
   metadata,
   person,
+  science,
 };
 
 export default eo;
