@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import color from './color';
+import commerce from './commerce';
 import database from './database';
 import date from './date';
 import metadata from './metadata';
@@ -13,6 +14,7 @@ import vehicle from './vehicle';
 
 const eo: LocaleDefinition = {
   color,
+  commerce,
   database,
   date,
   metadata,
