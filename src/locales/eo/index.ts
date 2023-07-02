@@ -8,6 +8,7 @@ import color from './color';
 import commerce from './commerce';
 import database from './database';
 import date from './date';
+import location from './location';
 import metadata from './metadata';
 import person from './person';
 import science from './science';
@@ -19,6 +20,7 @@ const eo: LocaleDefinition = {
   commerce,
   database,
   date,
+  location,
   metadata,
   person,
   science,
