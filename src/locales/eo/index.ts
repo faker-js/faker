@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import color from './color';
 import commerce from './commerce';
 import database from './database';
@@ -13,6 +14,7 @@ import science from './science';
 import vehicle from './vehicle';
 
 const eo: LocaleDefinition = {
+  animal,
   color,
   commerce,
   database,
