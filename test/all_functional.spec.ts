@@ -48,6 +48,7 @@ const BROKEN_LOCALE_METHODS = {
       'en_NG',
       'en_US',
       'en_ZA',
+      'eo',
       'es',
       'fa',
       'fi',
