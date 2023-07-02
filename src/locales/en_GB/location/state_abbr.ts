@@ -1,1 +1,1 @@
-export default ['ENG', 'SCT', 'WLS', 'NIR'];
+export default ['ENG', 'NIR', 'SCT', 'WLS'];
