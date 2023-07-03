@@ -84,7 +84,7 @@ export default {
     'trui',
     'vis',
     'vlag',
-    'worsten',
+    'worstjes',
     'zak',
     'zeep',
   ],
