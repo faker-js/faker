@@ -1,12 +1,12 @@
+// This list contains the same words as 'street_suffix.ts', but starting with uppercase letters.
+
 export default [
   'Aleo',
   'Arbaro',
   'Avenuo',
   'Bulvardo',
-  'Burgo',
   'Digo',
   'Ĝardeno',
-  'Haveno',
   'Insulo',
   'Kampo',
   'Klifo',
@@ -18,7 +18,6 @@ export default [
   'Rivero',
   'Strato',
   'Tunelo',
-  'Valo',
   'Viadukto',
   'Vojo',
 ];
