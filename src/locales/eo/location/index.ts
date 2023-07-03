@@ -14,6 +14,7 @@ import secondary_address from './secondary_address';
 import street_address from './street_address';
 import street_pattern from './street_pattern';
 import street_prefix from './street_prefix';
+import street_suffix from './street_suffix';
 
 const location: LocationDefinition = {
   city_pattern,
@@ -27,6 +28,7 @@ const location: LocationDefinition = {
   street_address,
   street_pattern,
   street_prefix,
+  street_suffix,
 };
 
 export default location;
