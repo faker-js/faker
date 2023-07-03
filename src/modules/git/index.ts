@@ -157,6 +157,9 @@ export class GitModule {
     } = {}
   ): string {
     const { refDate = this.faker.defaultRefDate() } = options;
+    // Git uses a non-standard date format for commits by default per https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-log.html
+    // --date=default is the default format, and is based on ctime(3) output. It shows a single line with three-letter day of the week, three-letter month, day-of-month, hour-minute-seconds in "HH:MM:SS" format, followed by 4-digit year, plus timezone information, unless the local time zone is used, e.g. Thu Jan 1 00:00:00 1970 +0000.
+    // To avoid relying on the Intl global which may not be available in all environments, we implement a custom date format using built-in Javascript date functions.
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const months = [
       'Jan',
