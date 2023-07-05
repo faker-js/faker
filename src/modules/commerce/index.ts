@@ -2,7 +2,9 @@ import type { Faker } from '../../faker';
 import { deprecated } from '../../internal/deprecated';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
-const ISBN_LENGTH_RULES: { [key: string]: Array<[number, number]> } = {
+const ISBN_LENGTH_RULES: {
+  [group: string]: Array<[rangeMaximum: number, length: number]>;
+} = {
   '0': [
     [1999999, 2],
     [2279999, 3],
@@ -388,7 +390,8 @@ export class CommerceModule {
     const element: string = this.faker.string.numeric(8);
 
     const registrantLength: number = ISBN_LENGTH_RULES[group].find(
-      ([key]): boolean => parseInt(element.slice(0, -1)) <= key
+      ([rangeMaximum]): boolean =>
+        parseInt(element.slice(0, -1)) <= rangeMaximum
     )[1];
 
     const registrant: string = element.slice(0, registrantLength);
