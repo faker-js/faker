@@ -38,6 +38,17 @@ describe('commerce', () => {
           symbol: '$',
         });
     });
+
+    t.describe('isbn', (t) => {
+      t.it('noArgs')
+        .it('with variant 10', 10)
+        .it('with variant 13', 13)
+        .it('with variant 10 and space separators', {
+          variant: 10,
+          separator: ' ',
+        })
+        .it('with space separators', { separator: ' ' });
+    });
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
