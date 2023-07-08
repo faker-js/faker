@@ -486,7 +486,7 @@ export class InternetModule {
 
   /**
    * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -522,7 +522,7 @@ export class InternetModule {
   }): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -546,7 +546,7 @@ export class InternetModule {
   userName(firstName?: string, lastName?: string): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -1309,7 +1309,7 @@ export class InternetModule {
    * @param options An options object. Defaults to `{}`.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match should match.
+   * @param options.pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param options.prefix The prefix to use. Defaults to `''`.
    *
@@ -1336,7 +1336,7 @@ export class InternetModule {
      */
     memorable?: boolean;
     /**
-     * The pattern that all chars should match should match.
+     * The pattern that all chars should match.
      * This option will be ignored, if `memorable` is `true`.
      *
      * @default /\w/
@@ -1354,7 +1354,7 @@ export class InternetModule {
    *
    * @param len The length of the password to generate. Defaults to `15`.
    * @param memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param pattern The pattern that all chars should match should match.
+   * @param pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param prefix The prefix to use. Defaults to `''`.
    *
@@ -1381,11 +1381,11 @@ export class InternetModule {
    * @param options The length of the password or an options object. Defaults to `{}`.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match should match.
+   * @param options.pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param options.prefix The prefix to use. Defaults to `''`.
    * @param legacyMemorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param legacyPattern The pattern that all chars should match should match.
+   * @param legacyPattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param legacyPrefix The prefix to use. Defaults to `''`.
    *
@@ -1415,7 +1415,7 @@ export class InternetModule {
            */
           memorable?: boolean;
           /**
-           * The pattern that all chars should match should match.
+           * The pattern that all chars should match.
            * This option will be ignored, if `memorable` is `true`.
            *
            * @default /\w/
@@ -1449,7 +1449,7 @@ export class InternetModule {
            */
           memorable?: boolean;
           /**
-           * The pattern that all chars should match should match.
+           * The pattern that all chars should match.
            * This option will be ignored, if `memorable` is `true`.
            *
            * @default /\w/
