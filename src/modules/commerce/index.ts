@@ -386,7 +386,9 @@ export class CommerceModule {
     const { variant = 13, separator = '-' } = options;
 
     const prefix = '978';
-    const group: string = this.faker.number.int({ min: 0, max: 1 }).toString();
+    const group: string = this.faker.helpers
+      .objectKey(ISBN_LENGTH_RULES)
+      .toString();
     const element: string = this.faker.string.numeric(8);
 
     const registrantLength: number = ISBN_LENGTH_RULES[group].find(
