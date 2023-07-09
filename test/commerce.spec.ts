@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
@@ -180,6 +181,7 @@ describe('commerce', () => {
             isbn,
             'The expected match should be ISBN-13 with hyphens'
           ).toMatch(/^978-[01]-[\d-]{9}-\d$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 13));
         });
 
         it('should return ISBN-10 with hyphen separators when passing variant 10 as argument', () => {
@@ -189,6 +191,7 @@ describe('commerce', () => {
             isbn,
             'The expected match should be ISBN-10 with hyphens'
           ).toMatch(/^[01]-[\d-]{9}-[\dX]$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 10));
         });
 
         it('should return ISBN-13 with hyphen separators when passing variant 13 as argument', () => {
@@ -198,6 +201,7 @@ describe('commerce', () => {
             isbn,
             'The expected match should be ISBN-13 with hyphens'
           ).toMatch(/^978-[01]-[\d-]{9}-\d$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 13));
         });
 
         it('should return ISBN-10 with space separators when passing variant 10 and space separators as argument', () => {
@@ -207,6 +211,7 @@ describe('commerce', () => {
             isbn,
             'The expected match should be ISBN-10 with space separators'
           ).toMatch(/^[01] [\d ]{9} [\dX]$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 10));
         });
 
         it('should return ISBN-13 with space separators when passing space separators as argument', () => {
@@ -216,6 +221,7 @@ describe('commerce', () => {
             isbn,
             'The expected match should be ISBN-13 with space separators'
           ).toMatch(/^978 [01] [\d ]{9} \d$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 13));
         });
       });
     }
