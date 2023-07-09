@@ -408,7 +408,7 @@ export class CommerceModule {
 
     let checksum = 0;
     for (let i = 0; i < variant - 1; i++) {
-      const weight: number = variant === 10 ? i + 1 : i % 2 ? 3 : 1;
+      const weight = variant === 10 ? i + 1 : i % 2 ? 3 : 1;
       checksum += weight * parseInt(isbn[i]);
     }
 
