@@ -740,7 +740,7 @@ export class FinanceModule {
   /**
    * Generates a random credit card number.
    *
-   * @param issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -754,7 +754,7 @@ export class FinanceModule {
    * Generates a random credit card number.
    *
    * @param options An options object. Defaults to `''`.
-   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -765,7 +765,7 @@ export class FinanceModule {
    */
   creditCardNumber(options?: {
     /**
-     * The name of the issuer (case insensitive) or the format used to generate one.
+     * The name of the issuer (case-insensitive) or the format used to generate one.
      *
      * @default ''
      */
@@ -775,7 +775,7 @@ export class FinanceModule {
    * Generates a random credit card number.
    *
    * @param options An options object, the issuer or a custom format. Defaults to `{}`.
-   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -790,7 +790,7 @@ export class FinanceModule {
       | string
       | {
           /**
-           * The name of the issuer (case insensitive) or the format used to generate one.
+           * The name of the issuer (case-insensitive) or the format used to generate one.
            *
            * @default ''
            */
@@ -801,7 +801,7 @@ export class FinanceModule {
    * Generates a random credit card number.
    *
    * @param options An options object, the issuer or a custom format. Defaults to `{}`.
-   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -816,7 +816,7 @@ export class FinanceModule {
       | string
       | {
           /**
-           * The name of the issuer (case insensitive) or the format used to generate one.
+           * The name of the issuer (case-insensitive) or the format used to generate one.
            *
            * @default ''
            */
