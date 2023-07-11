@@ -125,8 +125,8 @@ devDependencies:
     specifier: ~4.4.2
     version: 4.4.2(@types/node@20.4.1)
   vitepress:
-    specifier: 1.0.0-beta.4
-    version: 1.0.0-beta.4(@algolia/client-search@4.18.0)(@types/node@20.4.1)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.6.0)
+    specifier: 1.0.0-beta.5
+    version: 1.0.0-beta.5(@algolia/client-search@4.18.0)(@types/node@20.4.1)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.6.0)
   vitest:
     specifier: ~0.33.0
     version: 0.33.0(@vitest/ui@0.33.0)
@@ -5757,8 +5757,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-beta.4(@algolia/client-search@4.18.0)(@types/node@20.4.1)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.6.0):
-    resolution: {integrity: sha512-dpWnpdUFrKU9spTAHaxfkYauFAaIokQwr/1Kx2ipGvHDij47ebuHXF/O7gD+5xnpwV3eUb8Z2zPVZn1kbGu9lQ==}
+  /vitepress@1.0.0-beta.5(@algolia/client-search@4.18.0)(@types/node@20.4.1)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.6.0):
+    resolution: {integrity: sha512-/RjqqRsSEKkzF6HhK5e5Ij+bZ7ETb9jNCRRgIMm10gJ+ZLC3D1OqkE465lEqCeJUgt2HZ6jmWjDqIBfrJSpv7w==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.5.1
