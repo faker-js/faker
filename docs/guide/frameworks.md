@@ -64,7 +64,7 @@ describe('reverse array', () => {
 
 ## Cypress
 
-[Cypress](https://www.cypress.io/) integration is fairly straighforward as well:
+[Cypress](https://www.cypress.io/) integration is fairly straightforward as well:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';

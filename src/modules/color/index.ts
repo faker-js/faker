@@ -185,7 +185,7 @@ export class ColorModule {
   }
 
   /**
-   * Returns a random human readable color name.
+   * Returns a random human-readable color name.
    *
    * @example
    * faker.color.human() // 'red'
