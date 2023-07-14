@@ -1,4 +1,4 @@
-import type { LocaleDefinition } from './definitions';
+import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
@@ -151,7 +151,7 @@ export class Faker {
   readonly word: WordModule = new WordModule(this);
 
   // Aliases
-  /** @deprecated Use {@link location} instead */
+  /** @deprecated Use {@link Faker#location} instead */
   get address(): AddressModule {
     deprecated({
       deprecated: 'faker.address',
@@ -162,7 +162,7 @@ export class Faker {
     return this.location;
   }
 
-  /** @deprecated Use {@link person} instead */
+  /** @deprecated Use {@link Faker#person} instead */
   get name(): NameModule {
     deprecated({
       deprecated: 'faker.name',
@@ -342,7 +342,7 @@ export class Faker {
    * Please note that generated values are dependent on both the seed and the
    * number of calls that have been made since it was set.
    *
-   * This method is intended to allow for consistent values in a tests, so you
+   * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.
    *
    * In addition to that it can be used for creating truly random tests
@@ -456,6 +456,19 @@ export class Faker {
     this._mersenne.seed(seed);
 
     return seed;
+  }
+
+  /**
+   * Returns an object with metadata about the current locale.
+   *
+   * @example
+   * import { faker, fakerES_MX } from '@faker-js/faker';
+   * // const { faker, fakerES_MX } = require("@faker-js/faker")
+   * faker.getMetadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
+   * fakerES_MX.getMetadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
+   */
+  getMetadata(): MetadataDefinition {
+    return this.rawDefinitions.metadata ?? {};
   }
 
   // Pure JS backwards compatibility

@@ -166,7 +166,7 @@ interface User { ... }
 
 function createRandomUser(): User {
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email: faker.internet.email(),
@@ -198,7 +198,7 @@ function createRandomUser(): User {
   const email = faker.internet.email({ firstName, lastName });
 
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email,
@@ -238,7 +238,7 @@ function createRandomUser(): User {
   ]);
 
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email,

@@ -32,6 +32,7 @@ module.exports = defineConfig({
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
+    'no-restricted-globals': ['error', 'Intl'],
 
     'deprecation/deprecation': 'error',
 
@@ -81,7 +82,7 @@ module.exports = defineConfig({
     {
       files: ['src/**/*.ts'],
       plugins: ['jsdoc'],
-      extends: ['plugin:jsdoc/recommended'],
+      extends: ['plugin:jsdoc/recommended-error'],
       rules: {
         'jsdoc/no-types': 'error',
         'jsdoc/require-param-type': 'off',

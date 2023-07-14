@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
@@ -17,6 +18,7 @@ import word from './word';
 
 const hu: LocaleDefinition = {
   animal,
+  color,
   commerce,
   company,
   date,
