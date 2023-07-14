@@ -32,6 +32,7 @@ module.exports = defineConfig({
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
+    'no-restricted-globals': ['error', 'Intl'],
 
     'deprecation/deprecation': 'error',
 
