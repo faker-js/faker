@@ -257,7 +257,7 @@ export class HelpersModule {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @param string The template string to to parse.
+   * @param string The template string to parse.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
@@ -355,7 +355,7 @@ export class HelpersModule {
    * - `[x-y]+` => Repeat characters between `x` and `y` (inclusive) 1 or more times.
    * - `.` => returns a wildcard ASCII character that can be any number, character or symbol. Can be combined with quantifiers as well.
    *
-   * @param pattern The template string/RegExp to to generate a matching string for.
+   * @param pattern The template string/RegExp to generate a matching string for.
    *
    * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
    * @throws If invalid quantifier symbol is passed in.
@@ -1154,7 +1154,7 @@ export class HelpersModule {
    * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
    * faker.helpers.fake('This is static test.') // 'This is static test.'
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
-   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
    *
