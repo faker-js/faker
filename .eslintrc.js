@@ -21,7 +21,7 @@ module.exports = defineConfig({
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['./tsconfig.lint.json'],
+    project: ['./tsconfig.json'],
     sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
