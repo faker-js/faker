@@ -3,7 +3,7 @@
  *
  * @internal
  *
- * @param that The class instance of which the methods are to be bound to itself.
+ * @param instance The class instance of which the methods are to be bound to itself.
  *
  * @example
  * const someModule = new SomeModule(faker);
@@ -11,15 +11,14 @@
  * const someMethod = someModule.someMethod;
  * someMethod(); // Works
  */
-export function bindThisToMemberFunctions<
-  TClass extends { new (...args: any[]): any }
->(that: InstanceType<TClass>): void {
-  // Bind `this` so namespaced is working correctly
-  for (const name of Object.getOwnPropertyNames(Object.getPrototypeOf(that))) {
-    if (name === 'constructor' || typeof that[name] !== 'function') {
-      continue;
+export function bindThisToMemberFunctions<TClass extends { new (): TClass }>(
+  instance: InstanceType<TClass>
+): void {
+  for (const name of Object.getOwnPropertyNames(
+    Object.getPrototypeOf(instance)
+  )) {
+    if (typeof instance[name] === 'function' && name !== 'constructor') {
+      instance[name] = instance[name].bind(instance);
     }
-
-    that[name] = that[name].bind(that);
   }
 }
