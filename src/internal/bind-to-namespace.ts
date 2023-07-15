@@ -9,7 +9,7 @@ export function bindToNamespace<TClass extends { new (...args: any[]): any }>(
   that: InstanceType<TClass>
 ): void {
   // Bind `this` so namespaced is working correctly
-  for (const name of Object.getOwnPropertyNames(moduleClass.prototype) as Array<
+  for (const name of Object.getOwnPropertyNames(Object.getPrototypeOf(that)) as Array<
     keyof TClass | 'constructor'
   >) {
     if (name === 'constructor' || typeof that[name] !== 'function') {
