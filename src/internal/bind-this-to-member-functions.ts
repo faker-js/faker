@@ -11,7 +11,7 @@
  * const someMethod = someModule.someMethod;
  * someMethod(); // Works
  */
-export function bindThisToMemberFunctions<TClass extends { new (): TClass }>(
+export function bindThisToMemberFunctions<TClass extends { new (): any }>(
   instance: InstanceType<TClass>
 ): void {
   for (const name of Object.getOwnPropertyNames(
