@@ -4,7 +4,8 @@
     "config:base",
     "schedule:earlyMondays",
     "group:allNonMajor",
-    ":prHourlyLimitNone"
+    ":prHourlyLimitNone",
+    "helpers:pinGitHubActionDigests"
   ],
   "labels": ["c: dependencies"],
   "reviewersFromCodeOwners": true,

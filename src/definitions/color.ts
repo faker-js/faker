@@ -5,7 +5,7 @@ import type { LocaleEntry } from './definitions';
  */
 export type ColorDefinition = LocaleEntry<{
   /**
-   * Human readable color names.
+   * Human-readable color names.
    */
   human: string[];
 

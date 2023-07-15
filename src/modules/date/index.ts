@@ -5,7 +5,7 @@ import { deprecated } from '../../internal/deprecated';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parsable value is passed, then it will take the value from the given fallback.
+ * If nothing or a non-parsable value is passed, then it will take the value from the given fallback.
  *
  * @param date The date to convert.
  * @param fallback The fallback date to use if the passed date is not valid.
