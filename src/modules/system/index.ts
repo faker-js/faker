@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -38,7 +38,7 @@ const CRON_DAY_OF_WEEK = [
  */
 export class SystemModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(SystemModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

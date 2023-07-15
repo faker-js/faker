@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -16,7 +16,7 @@ import { deprecated } from '../../internal/deprecated';
  */
 export class LocationModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(LocationModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

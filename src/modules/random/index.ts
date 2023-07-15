@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
 import type {
@@ -17,8 +17,7 @@ import type {
  */
 export class RandomModule {
   constructor(private readonly faker: Faker) {
-    // eslint-disable-next-line deprecation/deprecation
-    bindToNamespace(RandomModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

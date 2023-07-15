@@ -1,7 +1,7 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -40,7 +40,7 @@ function toDate(
  */
 export class DateModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(DateModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

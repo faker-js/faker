@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 export enum Sex {
   Female = 'female',
@@ -76,7 +76,7 @@ function selectDefinition<T>(
  */
 export class PersonModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(PersonModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

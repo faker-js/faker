@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * The possible definitions related to elements.
@@ -39,7 +39,7 @@ export interface Unit {
  */
 export class ScienceModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(ScienceModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

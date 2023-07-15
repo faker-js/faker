@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -11,7 +11,7 @@ import { deprecated } from '../../internal/deprecated';
  */
 export class GitModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(GitModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

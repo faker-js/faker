@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -40,7 +40,7 @@ export type HTTPProtocolType = 'http' | 'https';
  */
 export class InternetModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(InternetModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

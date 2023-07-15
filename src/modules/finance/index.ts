@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import iban from './iban';
 
@@ -39,7 +39,7 @@ export interface Currency {
  */
 export class FinanceModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(FinanceModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

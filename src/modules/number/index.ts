@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { Mersenne } from '../../internal/mersenne/mersenne';
 
 /**
@@ -19,7 +19,7 @@ import type { Mersenne } from '../../internal/mersenne/mersenne';
  */
 export class NumberModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(NumberModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

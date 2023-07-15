@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { filterWordListByLength } from '../word/filterWordListByLength';
 
 /**
@@ -15,7 +15,7 @@ import { filterWordListByLength } from '../word/filterWordListByLength';
  */
 export class LoremModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(LoremModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

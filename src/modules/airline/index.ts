@@ -5,7 +5,7 @@
  * operations.
  */
 import type { Faker } from '../..';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -80,7 +80,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  */
 export class AirlineModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(AirlineModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

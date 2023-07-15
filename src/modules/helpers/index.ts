@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
@@ -93,7 +93,7 @@ export class HelpersModule {
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
   constructor(private readonly faker: Faker) {
-    bindToNamespace(HelpersModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

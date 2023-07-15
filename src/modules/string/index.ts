@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
@@ -104,7 +104,7 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  */
 export class StringModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(StringModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**

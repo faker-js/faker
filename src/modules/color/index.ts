@@ -1,5 +1,5 @@
 import type { Faker } from '../../faker';
-import { bindToNamespace } from '../../internal/bind-to-namespace';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * Color space names supported by CSS.
@@ -173,7 +173,7 @@ function toColorFormat(
  */
 export class ColorModule {
   constructor(private readonly faker: Faker) {
-    bindToNamespace(ColorModule, this);
+    bindThisToMemberFunctions(this);
   }
 
   /**
