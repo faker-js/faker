@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindToNamespace } from '../../internal/bind-to-namespace';
 import { deprecated } from '../../internal/deprecated';
 import iban from './iban';
 
@@ -38,16 +39,7 @@ export interface Currency {
  */
 export class FinanceModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      FinanceModule.prototype
-    ) as Array<keyof FinanceModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindToNamespace(FinanceModule, this);
   }
 
   /**

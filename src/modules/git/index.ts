@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindToNamespace } from '../../internal/bind-to-namespace';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -10,16 +11,7 @@ import { deprecated } from '../../internal/deprecated';
  */
 export class GitModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(GitModule.prototype) as Array<
-      keyof GitModule | 'constructor'
-    >) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindToNamespace(GitModule, this);
   }
 
   /**

@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindToNamespace } from '../../internal/bind-to-namespace';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
@@ -103,16 +104,7 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  */
 export class StringModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      StringModule.prototype
-    ) as Array<keyof StringModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindToNamespace(StringModule, this);
   }
 
   /**

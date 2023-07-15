@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindToNamespace } from '../../internal/bind-to-namespace';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -15,16 +16,7 @@ import { deprecated } from '../../internal/deprecated';
  */
 export class LocationModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      LocationModule.prototype
-    ) as Array<keyof LocationModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindToNamespace(LocationModule, this);
   }
 
   /**

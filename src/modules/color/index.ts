@@ -1,4 +1,5 @@
 import type { Faker } from '../../faker';
+import { bindToNamespace } from '../../internal/bind-to-namespace';
 
 /**
  * Color space names supported by CSS.
@@ -172,16 +173,7 @@ function toColorFormat(
  */
 export class ColorModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      ColorModule.prototype
-    ) as Array<keyof ColorModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindToNamespace(ColorModule, this);
   }
 
   /**

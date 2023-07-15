@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindToNamespace } from '../../internal/bind-to-namespace';
 import { deprecated } from '../../internal/deprecated';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -39,16 +40,7 @@ export type HTTPProtocolType = 'http' | 'https';
  */
 export class InternetModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      InternetModule.prototype
-    ) as Array<keyof InternetModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindToNamespace(InternetModule, this);
   }
 
   /**
