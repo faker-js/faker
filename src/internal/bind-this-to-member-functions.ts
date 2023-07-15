@@ -3,7 +3,13 @@
  *
  * @internal
  *
- * @param that The class instance to bind the methods to.
+ * @param that The class instance of which the methods are to be bound to itself.
+ *
+ * @example
+ * const someModule = new SomeModule(faker);
+ * bindThisToMemberFunctions(someModule); // Usually called inside the constructor passing `this`
+ * const someMethod = someModule.someMethod;
+ * someMethod(); // Works
  */
 export function bindThisToMemberFunctions<
   TClass extends { new (...args: any[]): any }
