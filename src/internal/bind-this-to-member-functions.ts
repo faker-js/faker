@@ -1,5 +1,7 @@
 /**
- * Bind all methods of a class to the class instance.
+ * Bind all functions of the given instance to itself so you can use them independently.
+ *
+ * @internal
  *
  * @param that The class instance to bind the methods to.
  */
