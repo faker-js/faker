@@ -3,6 +3,8 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PersonDefinition } from '../../..';
+import bio_part from './bio_part';
+import bio_pattern from './bio_pattern';
 import female_first_name from './female_first_name';
 import female_prefix from './female_prefix';
 import first_name from './first_name';
@@ -17,6 +19,8 @@ import sex from './sex';
 import western_zodiac_sign from './western_zodiac_sign';
 
 const person: PersonDefinition = {
+  bio_part,
+  bio_pattern,
   female_first_name,
   female_prefix,
   first_name,
