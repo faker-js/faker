@@ -257,7 +257,7 @@ export class HelpersModule {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @param string The template string to to parse.
+   * @param string The template string to parse.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
@@ -355,7 +355,7 @@ export class HelpersModule {
    * - `[x-y]+` => Repeat characters between `x` and `y` (inclusive) 1 or more times.
    * - `.` => returns a wildcard ASCII character that can be any number, character or symbol. Can be combined with quantifiers as well.
    *
-   * @param pattern The template string/RegExp to to generate a matching string for.
+   * @param pattern The template string/RegExp to generate a matching string for.
    *
    * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
    * @throws If invalid quantifier symbol is passed in.
