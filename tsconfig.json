@@ -18,5 +18,5 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "dist", "locale"]
+  "exclude": ["node_modules", "dist"]
 }

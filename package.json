@@ -53,11 +53,10 @@
   },
   "files": [
     "CHANGELOG.md",
-    "dist",
-    "locale"
+    "dist"
   ],
   "scripts": {
-    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
+    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist locale pnpm-lock.yaml node_modules",
     "build:clean": "rimraf dist",
     "build:code": "tsx ./scripts/bundle.ts",
     "build:types": "tsc --project tsconfig.build.json",
