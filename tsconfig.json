@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "moduleResolution": "Node",
-    "rootDir": "src",
-    "outDir": "dist",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "strict": true,
+    "noEmit": true,
     "declaration": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "alwaysStrict": true,
-    "strictFunctionTypes": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "useUnknownInCatchVariables": true,
     "stripInternal": true,
-    "baseUrl": "."
+
+    // We need to disable these for now, and need to tackle them in another PR
+    "strictNullChecks": false,
+    "strictBindCallApply": false,
+    "noImplicitAny": false,
+
+    // These are configs specifically for !build and have to be reverted in the tsconfig.build.json
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "locale"]
 }
