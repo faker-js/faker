@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 export enum Sex {
   Female = 'female',
@@ -75,16 +76,7 @@ function selectDefinition<T>(
  */
 export class PersonModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      PersonModule.prototype
-    ) as Array<keyof PersonModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
