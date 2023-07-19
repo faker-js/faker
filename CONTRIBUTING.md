@@ -9,7 +9,7 @@ This is a shorthand for running the following scripts in order:
 
 - `pnpm install` - installs npm packages defined in package.json
 - `pnpm run generate:locales` - generates locale files
-- `pnpm run generate:api-doc` - generates API documentation
+- `pnpm run generate:api-docs` - generates API documentation
 - `pnpm run format` - runs [prettify](https://github.com/prettier/prettier) to format code
 - `pnpm run lint` - runs [ESLint](https://github.com/eslint/eslint) to enforce project code standards
 - `pnpm run build:clean` - removes artifacts from previous builds
