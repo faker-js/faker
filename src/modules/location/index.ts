@@ -880,7 +880,7 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to`{}`.
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
    * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -1067,7 +1067,7 @@ export class LocationModule {
   /**
    * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
-   * @param options The options for generating a GPS coordinate.
+   * @param options The options for generating a GPS coordinate. Defaults to `{}`.
    * @param options.origin The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
    * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
@@ -1124,7 +1124,7 @@ export class LocationModule {
   /**
    * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
-   * @param options The options for generating a GPS coordinate.
+   * @param options The options for generating a GPS coordinate. Defaults to `{}`.
    * @param options.origin The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
    * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.

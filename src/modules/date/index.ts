@@ -54,7 +54,7 @@ export class DateModule {
   /**
    * Generates a random date that can be either in the past or in the future.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.between() For dates in a specific range.
@@ -89,7 +89,7 @@ export class DateModule {
   /**
    * Generates a random date in the past.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
@@ -137,7 +137,7 @@ export class DateModule {
   /**
    * Generates a random date in the past.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
@@ -211,7 +211,7 @@ export class DateModule {
   /**
    * Generates a random date in the future.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
@@ -259,7 +259,7 @@ export class DateModule {
   /**
    * Generates a random date in the future.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
@@ -603,7 +603,7 @@ export class DateModule {
   /**
    * Generates a random date in the recent past.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
@@ -651,7 +651,7 @@ export class DateModule {
   /**
    * Generates a random date in the recent past.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
@@ -720,7 +720,7 @@ export class DateModule {
   /**
    * Generates a random date in the near future.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
@@ -768,7 +768,7 @@ export class DateModule {
   /**
    * Generates a random date in the near future.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
@@ -837,7 +837,7 @@ export class DateModule {
   /**
    * Returns a random name of a month.
    *
-   * @param options The optional options to use.
+   * @param options The optional options to use. Defaults to `{}`.
    * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
    *
@@ -870,7 +870,7 @@ export class DateModule {
   /**
    * Returns a random name of a month.
    *
-   * @param options The optional options to use.
+   * @param options The optional options to use. Defaults to `{}`.
    * @param options.abbr Deprecated, use `abbreviated` instead.
    * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
    *
@@ -907,7 +907,7 @@ export class DateModule {
   /**
    * Returns a random name of a month.
    *
-   * @param options The optional options to use.
+   * @param options The optional options to use. Defaults to `{}`.
    * @param options.abbr Deprecated, use `abbreviated` instead.
    * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
@@ -1026,7 +1026,7 @@ export class DateModule {
   /**
    * Returns a random day of the week.
    *
-   * @param options The optional options to use.
+   * @param options The optional options to use. Defaults to `{}`.
    * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
    *
@@ -1097,7 +1097,7 @@ export class DateModule {
   /**
    * Returns a random day of the week.
    *
-   * @param options The optional options to use.
+   * @param options The optional options to use. Defaults to `{}`.
    * @param options.abbr Deprecated, use `abbreviated` instead.
    * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
@@ -1216,7 +1216,7 @@ export class DateModule {
   /**
    * Returns a random birthdate.
    *
-   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
+   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated. Defaults to `{}`.
    * @param options.min The minimum age or year to generate a birthdate.
    * @param options.max The maximum age or year to generate a birthdate.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `now`.

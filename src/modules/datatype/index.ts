@@ -93,7 +93,7 @@ export class DatatypeModule {
   /**
    * Returns a single random floating-point number for the given precision or range and precision.
    *
-   * @param options Precision or options object.
+   * @param options Precision or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
@@ -158,7 +158,7 @@ export class DatatypeModule {
    * Returns a Date object using a random number of milliseconds since
    * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time) (1 January 1970 UTC).
    *
-   * @param options Max number of milliseconds since unix epoch or options object.
+   * @param options Max number of milliseconds since unix epoch or options object. Defaults to `{}`.
    * @param options.min Lower bound for milliseconds since base date.
    *    When not provided or smaller than `-8640000000000000`, `1990-01-01` is considered
    *    as minimum generated date. Defaults to `631152000000`.
@@ -298,7 +298,7 @@ export class DatatypeModule {
    * If the probability is `>= 1.0`, it will always return `true`.
    * The probability is limited to two decimal places.
    *
-   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`.
+   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `{}`.
    * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
    *
    * @example
@@ -342,7 +342,7 @@ export class DatatypeModule {
   /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
-   * @param options The optional options object.
+   * @param options The optional options object. Defaults to `{}`.
    * @param options.length Length of the generated number. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    * @param options.case Case of the generated number. Defaults to `'mixed'`.

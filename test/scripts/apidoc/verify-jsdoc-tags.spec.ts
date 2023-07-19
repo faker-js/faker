@@ -236,7 +236,7 @@ describe('verify JSDoc tags', () => {
               if (
                 // both are present or the paramDefault is not a complex object
                 paramDefault &&
-                (commentDefault || !/{.*}/.test(paramDefault))
+                (commentDefault || !/{.+}/.test(paramDefault))
               ) {
                 expect(
                   commentDefault,
