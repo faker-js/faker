@@ -5,6 +5,7 @@
  * operations.
  */
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -79,16 +80,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  */
 export class AirlineModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      AirlineModule.prototype
-    ) as Array<keyof AirlineModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

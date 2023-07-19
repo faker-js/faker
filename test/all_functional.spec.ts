@@ -30,7 +30,7 @@ const BROKEN_LOCALE_METHODS = {
   },
   location: {
     state: ['az', 'nb_NO', 'ro_MD', 'sk'],
-    stateAbbr: ['ro_MD', 'sk'],
+    stateAbbr: ['cs_CZ', 'ro_MD', 'sk'],
     streetName: [
       'af_ZA',
       'ar',
