@@ -332,11 +332,9 @@ export class LoremModule {
    * // Quis ut dolor dolores facilis possimus tempore voluptates.
    * // Iure nam officia optio cumque.
    * // Dolor tempora iusto.'
-   * faker.lorem.text(14) // 'Doloribus aut.' (14 characters)
-   * faker.lorem.text({length: 14}) // 'Doloribus aut.' (14 characters)
-   * faker.lorem.text({length: {min: 10, max: 15}}) // 'autem non quis.' (15 characters)
-   * faker.lorem.text({length: {min: 10, max: 12}}) // 'autem non.' (10 characters)
-   * faker.lorem.text({length: {min: 3, max: 10}}) // 'autem.' (6 characters)
+   * faker.lorem.text(14) // 'Doloribus aut.'
+   * faker.lorem.text({length: 14}) // 'Doloribus aut.'
+   * faker.lorem.text({length: {min: 10, max: 15}}) // 'autem non quis.'
    *
    * @since 3.1.0
    */
