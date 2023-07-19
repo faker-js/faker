@@ -80,7 +80,6 @@ versions.json
 /docs/api/typedoc.json
 /docs/public/api-diff-index.json
 /lib
-/locale
 
 # Faker
 TAGS
