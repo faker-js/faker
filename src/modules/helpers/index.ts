@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
@@ -92,16 +93,7 @@ export class HelpersModule {
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      HelpersModule.prototype
-    ) as Array<keyof HelpersModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

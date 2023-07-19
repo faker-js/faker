@@ -10,7 +10,6 @@
 
     // We need to disable these for now, and need to tackle them in another PR
     "strictNullChecks": false,
-    "strictBindCallApply": false,
     "noImplicitAny": false,
 
     // These are configs specifically for !build and have to be reverted in the tsconfig.build.json
@@ -18,5 +17,5 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "dist", "locale"]
+  "exclude": ["node_modules", "dist"]
 }
