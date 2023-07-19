@@ -11,6 +11,7 @@
  * const someMethod = someModule.someMethod;
  * someMethod(); // Works
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function bindThisToMemberFunctions<TClass extends { new (): any }>(
   instance: InstanceType<TClass>
 ): void {
