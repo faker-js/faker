@@ -1,3 +1,4 @@
+.pnpm-store/
 coverage/
 dist/
 test/scripts/apidoc/temp/
