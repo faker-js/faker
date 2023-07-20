@@ -342,7 +342,7 @@ export class Faker {
    * Please note that generated values are dependent on both the seed and the
    * number of calls that have been made since it was set.
    *
-   * This method is intended to allow for consistent values in a tests, so you
+   * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.
    *
    * In addition to that it can be used for creating truly random tests

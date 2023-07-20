@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2019",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "rootDir": "src",
+    "outDir": "dist/types",
+
+    // This negates what is set in the extended tsconfig.json
+    "noImplicitAny": true,
+    "skipLibCheck": false,
+    "allowSyntheticDefaultImports": false,
+    "resolveJsonModule": false
+  },
+  "include": ["src"]
+}

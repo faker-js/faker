@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -15,28 +16,19 @@ import { deprecated } from '../../internal/deprecated';
  */
 export class LocationModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      LocationModule.prototype
-    ) as Array<keyof LocationModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
    * Generates random zip code from specified format. If format is not specified,
    * the locale's zip format is used.
    *
-   * @param options The format used to generate the the zip code or an options object. Defaults to `{}`.
+   * @param options The format used to generate the zip code or an options object. Defaults to `{}`.
    * @param options.state The state to generate the zip code for.
    * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
-   * @param options.format The optional format used to generate the the zip code.
+   * @param options.format The optional format used to generate the zip code.
    * By default, a random format is used from the locale zip formats.
-   * This wont be used if the state option is specified.
+   * This won't be used if the state option is specified.
    *
    * @see faker.helpers.replaceSymbols()
    *
@@ -53,13 +45,13 @@ export class LocationModule {
           /**
            * The state to generate the zip code for.
            *
-           * If the currrent locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
+           * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
            */
           state?: string;
           /**
-           * The optional format used to generate the the zip code.
+           * The optional format used to generate the zip code.
            *
-           * This wont be used if the state option is specified.
+           * This won't be used if the state option is specified.
            *
            * @default faker.definitions.location.postcode
            */
@@ -327,8 +319,8 @@ export class LocationModule {
    * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
    * @param options The code to return or an options object. Defaults to `{}`.
-   * @param options.variant The variant to return. Can be either `'alpha-2'` (two letter code)
-   * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
+   * @param options.variant The variant to return. Can be either `'alpha-2'` (two-letter code)
+   * or `'alpha-3'` (three-letter code). Defaults to `'alpha-2'`.
    *
    * @example
    * faker.location.countryCode() // 'SJ'
@@ -344,8 +336,8 @@ export class LocationModule {
       | {
           /**
            * The code to return.
-           * Can be either `'alpha-2'` (two letter code)
-           * or `'alpha-3'` (three letter code).
+           * Can be either `'alpha-2'` (two-letter code)
+           * or `'alpha-3'` (three-letter code).
            *
            * @default 'alpha-2'
            */
