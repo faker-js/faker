@@ -348,7 +348,7 @@ export class CommerceModule {
    * faker.commerce.isbn({ variant: 10, separator: ' ' }) // '0 940319 49 7'
    * faker.commerce.isbn({ variant: 13, separator: ' ' }) // '978 1 6618 9122 0'
    *
-   * @since 8.0.0
+   * @since 8.1.0
    */
   isbn(
     options:
