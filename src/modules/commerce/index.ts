@@ -386,25 +386,22 @@ export class CommerceModule {
     const { variant = 13, separator = '-' } = options;
 
     const prefix = '978';
-    const group: string = this.faker.helpers
-      .objectKey(ISBN_LENGTH_RULES)
-      .toString();
-    const element: string = this.faker.string.numeric(8);
+    const group = this.faker.helpers.objectKey(ISBN_LENGTH_RULES).toString();
+    const element = this.faker.string.numeric(8);
 
-    const registrantLength: number = ISBN_LENGTH_RULES[group].find(
-      ([rangeMaximum]): boolean =>
-        parseInt(element.slice(0, -1)) <= rangeMaximum
+    const registrantLength = ISBN_LENGTH_RULES[group].find(
+      ([rangeMaximum]) => parseInt(element.slice(0, -1)) <= rangeMaximum
     )[1];
 
-    const registrant: string = element.slice(0, registrantLength);
-    const publication: string = element.slice(registrantLength);
+    const registrant = element.slice(0, registrantLength);
+    const publication = element.slice(registrantLength);
 
-    const data: string[] = [prefix, group, registrant, publication];
+    const data = [prefix, group, registrant, publication];
     if (variant === 10) {
       data.shift();
     }
 
-    const isbn: string = data.join('');
+    const isbn = data.join('');
 
     let checksum = 0;
     for (let i = 0; i < variant - 1; i++) {
