@@ -1,1 +1,1 @@
-export default ['nl', 'com', 'net', 'org', 'eu'];
+export default ['nl', 'frl', 'amsterdam', 'com', 'net', 'org', 'eu'];
