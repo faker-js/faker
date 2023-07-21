@@ -1,11 +1,12 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parsable value is passed, then it will take the value from the given fallback.
+ * If nothing or a non-parsable value is passed, then it will take the value from the given fallback.
  *
  * @param date The date to convert.
  * @param fallback The fallback date to use if the passed date is not valid.
@@ -39,16 +40,7 @@ function toDate(
  */
 export class DateModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      DateModule.prototype
-    ) as Array<keyof DateModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

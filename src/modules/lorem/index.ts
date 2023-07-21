@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { filterWordListByLength } from '../word/filterWordListByLength';
 
 /**
@@ -14,16 +15,7 @@ import { filterWordListByLength } from '../word/filterWordListByLength';
  */
 export class LoremModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      LoremModule.prototype
-    ) as Array<keyof LoremModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
