@@ -469,7 +469,7 @@ describe('image', () => {
     });
   });
 
-  describe.only('dataUri', () => {
+  describe('dataUri', () => {
     it('should return a blank data', () => {
       const dataUri = faker.image.dataUri({ width: 200, height: 300 });
       expect(dataUri).toMatchSnapshot();
