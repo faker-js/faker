@@ -469,7 +469,7 @@ describe('image', () => {
     });
   });
 
-  describe('dataUri', () => {
+  describe.only('dataUri', () => {
     it('should return a blank data', () => {
       const dataUri = faker.image.dataUri({ width: 200, height: 300 });
       expect(dataUri).toMatchSnapshot();
@@ -480,6 +480,44 @@ describe('image', () => {
         width: 200,
         height: 300,
         color: 'red',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a blank svg data', () => {
+      const dataUri = faker.image.dataUri({
+        width: 456,
+        height: 789,
+        type: 'svg',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a background color svg data URI', () => {
+      const dataUri = faker.image.dataUri({
+        width: 1,
+        height: 1234,
+        color: 'yellow',
+        type: 'svg',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a blank base64 data', () => {
+      const dataUri = faker.image.dataUri({
+        width: 123,
+        height: 456,
+        type: 'base64',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a background color base64 data URI', () => {
+      const dataUri = faker.image.dataUri({
+        width: 444,
+        height: 30,
+        color: 'green',
+        type: 'base64',
       });
       expect(dataUri).toMatchSnapshot();
     });

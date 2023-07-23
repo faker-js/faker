@@ -348,15 +348,17 @@ export class ImageModule {
   }
 
   /**
-   * Generates a random data uri containing an svg image.
+   * Generates a random data uri containing an svg image or an base64 image.
    *
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
    * @param options.color The color of the image. Defaults to `grey`.
+   * @param options.type The type of the image. Defaults to `svg`.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
+   * faker.image.dataUri({ type: 'base64' }) // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3...'
    *
    * @since 4.0.0
    */
@@ -380,9 +382,15 @@ export class ImageModule {
        * @default 'grey'
        */
       color?: string;
+      /**
+       * The type of the image.
+       *
+       * @default 'svg'
+       */
+      type?: 'svg' | 'base64';
     } = {}
   ): string {
-    const { width = 640, height = 480, color = 'grey' } = options;
+    const { width = 640, height = 480, color = 'grey', type = 'svg' } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
       width / 2
@@ -390,8 +398,13 @@ export class ImageModule {
       height / 2
     }" font-size="20" alignment-baseline="middle" text-anchor="middle" fill="white">${width}x${height}</text></svg>`;
 
-    const rawPrefix = 'data:image/svg+xml;charset=UTF-8,';
-    return rawPrefix + encodeURIComponent(svgString);
+    const rawPrefix =
+      type === 'svg'
+        ? 'data:image/svg+xml;charset=UTF-8,'
+        : 'data:image/svg+xml;base64,';
+    return type === 'svg'
+      ? rawPrefix + encodeURIComponent(svgString)
+      : rawPrefix + btoa(svgString);
   }
 
   /**
