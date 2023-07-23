@@ -404,7 +404,7 @@ export class ImageModule {
         : 'data:image/svg+xml;base64,';
     return type === 'svg'
       ? rawPrefix + encodeURIComponent(svgString)
-      : rawPrefix + btoa(svgString);
+      : rawPrefix + Buffer.from(svgString).toString('base64');
   }
 
   /**
