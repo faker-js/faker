@@ -192,6 +192,11 @@ describe('location', () => {
           expect(zipCode1).toBeLessThanOrEqual(upper);
         });
 
+        it('should return a zip code with length 5 for ZIP codes that start with 0', () => {
+          const zipCode = fakerEN_US.location.zipCode({ state: 'NH' });
+          expect(zipCode.length).toBe(5);
+        });
+
         it('should throw when definitions.location.postcode_by_state not set', () => {
           expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
             new FakerError(

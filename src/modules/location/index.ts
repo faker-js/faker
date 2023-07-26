@@ -68,7 +68,12 @@ export class LocationModule {
       const zipRange = this.faker.definitions.location.postcode_by_state[state];
 
       if (zipRange) {
-        return String(this.faker.number.int(zipRange));
+        let zip = String(this.faker.number.int(zipRange));
+        if (zipRange.length) {
+          zip = zip.padStart(zipRange.length, '0');
+        }
+
+        return zip;
       }
 
       throw new FakerError(`No zip code definition found for state "${state}"`);

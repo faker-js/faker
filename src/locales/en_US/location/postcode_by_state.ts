@@ -26,6 +26,7 @@ export default {
   CT: {
     min: 6001,
     max: 6389,
+    length: 5,
   },
   DC: {
     min: 20001,
@@ -78,6 +79,7 @@ export default {
   MA: {
     min: 1001,
     max: 2791,
+    length: 5,
   },
   MD: {
     min: 20899,
@@ -86,6 +88,7 @@ export default {
   ME: {
     min: 3901,
     max: 4992,
+    length: 5,
   },
   MI: {
     min: 48001,
@@ -122,6 +125,7 @@ export default {
   NH: {
     min: 3031,
     max: 3897,
+    length: 5,
   },
   NJ: {
     min: 7001,
@@ -138,6 +142,7 @@ export default {
   NY: {
     min: 6390,
     max: 6390,
+    length: 5,
   },
   OH: {
     min: 43001,
@@ -158,6 +163,7 @@ export default {
   PR: {
     min: 0,
     max: 0,
+    length: 5,
   },
   RI: {
     min: 2801,
@@ -190,6 +196,7 @@ export default {
   VT: {
     min: 5001,
     max: 5495,
+    length: 5,
   },
   WA: {
     min: 98001,
