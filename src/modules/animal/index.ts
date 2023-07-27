@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * Module to generate animal related entries.
@@ -13,16 +14,7 @@ import type { Faker } from '../..';
  */
 export class AnimalModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      AnimalModule.prototype
-    ) as Array<keyof AnimalModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
