@@ -162,8 +162,8 @@ export default {
     max: 19640,
   },
   PR: {
-    min: 0,
-    max: 0,
+    min: 601,
+    max: 988,
     length: 5,
   },
   RI: {
