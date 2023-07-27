@@ -130,6 +130,7 @@ export default {
   NJ: {
     min: 7001,
     max: 8989,
+    length: 5,
   },
   NM: {
     min: 87001,
@@ -168,6 +169,7 @@ export default {
   RI: {
     min: 2801,
     max: 2940,
+    length: 5,
   },
   SC: {
     min: 29001,
