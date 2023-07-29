@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerAZ, fakerMK, fakerUK, Sex } from '../src';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
+import { faker, fakerAZ, fakerMK, fakerUK, Sex } from '../../src';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
