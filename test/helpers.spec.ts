@@ -806,6 +806,14 @@ describe('helpers', () => {
           expect(unique).toHaveLength(input.length);
         });
 
+        it('function with length longer than possible values returns', () => {
+          const fn = () => faker.helpers.arrayElement(['a', 'b']);
+          const length = 3;
+          const unique = faker.helpers.uniqueArray(fn, length);
+          expect(unique).not.toContainDuplicates();
+          expect(unique).toHaveLength(2);
+        });
+
         it('works as expected when seeded', () => {
           const input = ['a', 'a', 'a', 'a', 'a', 'f', 'g', 'h', 'i', 'j'];
           const length = 5;
