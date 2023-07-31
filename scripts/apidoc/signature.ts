@@ -152,10 +152,8 @@ async function analyzeParameterOptions(
 
     case 'union':
       return Promise.all(
-        parameterType.types.flatMap((type) =>
-          analyzeParameterOptions(name, type)
-        )
-      );
+        parameterType.types.map((type) => analyzeParameterOptions(name, type))
+      ).then((options) => options.flat());
 
     case 'reflection': {
       const properties = parameterType.declaration.children ?? [];
@@ -225,13 +223,13 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
         return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
-          typeToText(type.typeArguments[0], short),
-          typeToText(type.typeArguments[1], short),
+          await typeToText(type.typeArguments[0], short),
+          await typeToText(type.typeArguments[1], short),
         ].join(' | ');
       }
 
       return `${type.name}<${type.typeArguments
-        .map((t) => typeToText(t, short))
+        .map(async (t) => await typeToText(t, short))
         .join(', ')}>`;
 
     case 'reflection':
