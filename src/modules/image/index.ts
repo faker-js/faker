@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import type { MethodsOf } from '../../utils/types';
 import { LoremPicsum } from './providers/lorempicsum';
@@ -38,18 +39,7 @@ export class ImageModule {
   readonly placeholder: Placeholder;
 
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      ImageModule.prototype
-    ) as Array<keyof ImageModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] =
-        // @ts-expect-error: remove this expect-error when we remove the deprecated sub-modules
-        this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
 
     // eslint-disable-next-line deprecation/deprecation
     this.unsplash = new Unsplash(this.faker);

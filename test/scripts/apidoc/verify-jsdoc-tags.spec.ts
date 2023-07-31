@@ -117,7 +117,9 @@ describe('verify JSDoc tags', () => {
             mkdirSync(dir, { recursive: true });
 
             const path = resolvePathToMethodFile(moduleName, methodName);
-            const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+            const imports = [
+              ...new Set(examples.match(/(?<!\.)faker[^\.]*(?=\.)/g)),
+            ];
             writeFileSync(
               path,
               `import { ${imports.join(

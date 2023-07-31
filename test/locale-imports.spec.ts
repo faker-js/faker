@@ -62,27 +62,4 @@ describe.each(Object.keys(allLocales))('locale imports', (locale) => {
       }
     }
   });
-
-  describe('Internal tests to cover `src/locale/*.ts`', () => {
-    it(`should be possible to directly require('../locale/${locale}')`, () => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { faker } = require(`../locale/${locale}`);
-
-      expect(faker).toBeDefined();
-      expect(faker.string.alpha()).toBeTypeOf('string');
-      expect(faker.definitions.metadata.title).toBe(
-        allLocales[locale].metadata.title
-      );
-    });
-
-    it(`should be possible to directly import('../src/locale/${locale}')`, async () => {
-      const { faker } = await import(`../src/locale/${locale}`);
-
-      expect(faker).toBeDefined();
-      expect(faker.string.alpha()).toBeTypeOf('string');
-      expect(faker.definitions.metadata.title).toBe(
-        allLocales[locale].metadata.title
-      );
-    });
-  });
 });

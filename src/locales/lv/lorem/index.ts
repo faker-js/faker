@@ -3,11 +3,9 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LoremDefinition } from '../../..';
-import supplemental from './supplemental';
 import words from './words';
 
 const lorem: LoremDefinition = {
-  supplemental,
   words,
 };
 
