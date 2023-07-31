@@ -6,7 +6,7 @@ const IGNORED_MODULES = [
   'rawDefinitions',
   'definitions',
   'helpers',
-  '_mersenne',
+  '_prng',
   '_defaultRefDate',
 ];
 

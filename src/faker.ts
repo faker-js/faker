@@ -1,8 +1,7 @@
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
-import type { Mersenne } from './internal/mersenne/mersenne';
-import mersenne from './internal/mersenne/mersenne';
+import { newMersennePRNG } from './internal/mersenne';
 import type { LocaleProxy } from './locale-proxy';
 import { createLocaleProxy } from './locale-proxy';
 import { AirlineModule } from './modules/airline';
@@ -33,6 +32,7 @@ import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
+import type { PRNG } from './prng';
 import { mergeLocales } from './utils/merge-locales';
 
 /**
@@ -114,7 +114,7 @@ export class Faker {
   }
 
   /** @internal */
-  private readonly _mersenne: Mersenne = mersenne();
+  private readonly _prng: PRNG;
 
   /**
    * @deprecated Use the modules specific to the type of data you want to generate instead.
@@ -184,6 +184,8 @@ export class Faker {
    *
    * @param options The options to use.
    * @param options.locale The locale data to use.
+   * @param options.prng The PRNG to use. Defaults to faker's Mersenne Twister based PRNG.
+   * Only overwrite this if you want to reuse the same PRNG in different libraries to ensure reproducible results across all of them.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -205,6 +207,14 @@ export class Faker {
      * @see mergeLocales
      */
     locale: LocaleDefinition | LocaleDefinition[];
+
+    /**
+     * The PRNG to use. Defaults to faker's Mersenne Twister based PRNG.
+     * Only overwrite this if you want to reuse the same PRNG in different libraries to ensure reproducible results across all of them.
+     *
+     * @default newMersennePRNG()
+     */
+    prng?: PRNG;
   });
   /**
    * Creates a new instance of Faker.
@@ -241,6 +251,8 @@ export class Faker {
    * @param options.locale The locale data to use or the name of the main locale.
    * @param options.locales The locale data to use.
    * @param options.localeFallback The name of the fallback locale to use.
+   * @param options.prng The PRNG to use. Defaults to faker's Mersenne Twister based PRNG.
+   * Only overwrite this if you want to reuse the same PRNG in different libraries to ensure reproducible results across all of them.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -264,6 +276,14 @@ export class Faker {
            * @see mergeLocales
            */
           locale: LocaleDefinition | LocaleDefinition[];
+
+          /**
+           * The PRNG to use. Defaults to faker's Mersenne Twister based PRNG.
+           * Only overwrite this if you want to reuse the same PRNG in different libraries to ensure reproducible results across all of them.
+           *
+           * @default newMersennePRNG()
+           */
+          prng?: PRNG;
         }
       | {
           /**
@@ -292,11 +312,12 @@ export class Faker {
   );
   constructor(
     options:
-      | { locale: LocaleDefinition | LocaleDefinition[] }
+      | { locale: LocaleDefinition | LocaleDefinition[]; prng?: PRNG }
       | {
           locales: Record<string, LocaleDefinition>;
           locale?: string;
           localeFallback?: string;
+          prng?: PRNG;
         }
   ) {
     const { locales } = options as {
@@ -332,6 +353,7 @@ export class Faker {
       locale = mergeLocales(locale);
     }
 
+    this._prng = options.prng ?? newMersennePRNG();
     this.rawDefinitions = locale as LocaleDefinition;
     this.definitions = createLocaleProxy(this.rawDefinitions);
   }
@@ -453,7 +475,7 @@ export class Faker {
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
-    this._mersenne.seed(seed);
+    this._prng.seed(seed);
 
     return seed;
   }
