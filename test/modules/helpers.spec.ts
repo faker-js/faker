@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
-import { luhnCheck } from '../src/modules/helpers/luhn-check';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
-import './vitest-extensions';
+import { faker, FakerError } from '../../src';
+import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
+import './../vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
-import { filterWordListByLength } from '../src/modules/word/filterWordListByLength';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
+import { faker } from '../../src';
+import { filterWordListByLength } from '../../src/modules/word/filterWordListByLength';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
