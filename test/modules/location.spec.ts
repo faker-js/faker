@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../src';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
+import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../../src';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
 
 function degreesToRadians(degrees: number) {
   return degrees * (Math.PI / 180.0);
