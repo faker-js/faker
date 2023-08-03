@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { Faker, faker, FakerError, fakerZH_CN } from '../src';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
+import { Faker, faker, FakerError, fakerZH_CN } from '../../src';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
