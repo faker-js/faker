@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
-import { luhnCheck } from '../src/modules/helpers/luhn-check';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
-import './vitest-extensions';
+import { faker, FakerError } from '../../src';
+import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
+import './../vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -804,6 +804,14 @@ describe('helpers', () => {
           const unique = faker.helpers.uniqueArray(input, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(input.length);
+        });
+
+        it('function with length longer than possible values returns', () => {
+          const fn = () => faker.helpers.arrayElement(['a', 'b']);
+          const length = 3;
+          const unique = faker.helpers.uniqueArray(fn, length);
+          expect(unique).not.toContainDuplicates();
+          expect(unique).toHaveLength(2);
         });
 
         it('works as expected when seeded', () => {
