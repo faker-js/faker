@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker, fakerAZ, FakerError } from '../src';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
+import { faker, fakerAZ, FakerError } from '../../src';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
 
 const converterMap = [
   (d: Date) => d,
