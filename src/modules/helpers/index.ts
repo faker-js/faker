@@ -234,7 +234,7 @@ export class HelpersModule {
   ): string {
     // default values required for calling method without arguments
 
-    string = this.regexpStyleStringParse(string); // replace [4-9] with a random number in range etc...
+    string = this.fromRegExp(string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
@@ -251,6 +251,8 @@ export class HelpersModule {
    *
    * @param string The template string to parse.
    *
+   * @see faker.helpers.fromRegExp()
+   *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
    * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
@@ -259,8 +261,17 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
    *
    * @since 5.0.0
+   *
+   * @deprecated Use `faker.helpers.fromRegExp()` instead.
    */
   regexpStyleStringParse(string: string = ''): string {
+    deprecated({
+      deprecated: 'faker.helpers.regexpStyleStringParse',
+      proposed: 'faker.helpers.fromRegExp',
+      since: '8.1',
+      until: '9.0',
+    });
+
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
