@@ -61,6 +61,15 @@
         { "icon": "twitter", "link": "https://twitter.com/_JessicaSachs" }
       ],
       "sponsor": "https://github.com/sponsors/JessicaSachs"
+    },
+    {
+      "avatar": "https://github.com/xDivisionByZerox.png",
+      "name": "Leyla Jähnig",
+      "title": "Code Maintainer",
+      "desc": "Tell me about your favorite programming language and why is it TypeScript?",
+      "links": [
+        { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
+      ]
     }
   ],
   "contributors": [
@@ -79,15 +88,6 @@
         }
       ],
       "sponsor": "https://github.com/sponsors/import-brain"
-    },
-    {
-      "avatar": "https://github.com/xDivisionByZerox.png",
-      "name": "Leyla Jähnig",
-      "title": "Contributor",
-      "desc": "",
-      "links": [
-        { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
-      ]
     },
     {
       "avatar": "https://github.com/matthewmayer.png",
