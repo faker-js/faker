@@ -1,11 +1,11 @@
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
-import { FakerError } from '../src/errors/faker-error';
-import ibanLib from '../src/modules/finance/iban';
-import { luhnCheck } from '../src/modules/helpers/luhn-check';
-import { seededTests } from './support/seededRuns';
-import { times } from './support/times';
+import { faker } from '../../src';
+import { FakerError } from '../../src/errors/faker-error';
+import ibanLib from '../../src/modules/finance/iban';
+import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+import { seededTests } from './../support/seededRuns';
+import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
