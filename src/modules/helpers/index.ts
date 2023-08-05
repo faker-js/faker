@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
@@ -92,16 +93,7 @@ export class HelpersModule {
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      HelpersModule.prototype
-    ) as Array<keyof HelpersModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
@@ -257,7 +249,7 @@ export class HelpersModule {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @param string The template string to to parse.
+   * @param string The template string to parse.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
@@ -355,7 +347,7 @@ export class HelpersModule {
    * - `[x-y]+` => Repeat characters between `x` and `y` (inclusive) 1 or more times.
    * - `.` => returns a wildcard ASCII character that can be any number, character or symbol. Can be combined with quantifiers as well.
    *
-   * @param pattern The template string/RegExp to to generate a matching string for.
+   * @param pattern The template string/RegExp to generate a matching string for.
    *
    * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
    * @throws If invalid quantifier symbol is passed in.
@@ -657,6 +649,11 @@ export class HelpersModule {
    * and outputs a unique array of strings based on that source.
    * This method does not store the unique state between invocations.
    *
+   * If there are not enough unique values to satisfy the length, if
+   * the source is an array, it will only return as many items as are
+   * in the array. If the source is a function, it will return after
+   * a maximum number of attempts has been reached.
+   *
    * @template T The type of the elements.
    *
    * @param source The strings to choose from or a function that generates a string.
@@ -679,8 +676,11 @@ export class HelpersModule {
     const set = new Set<T>();
     try {
       if (typeof source === 'function') {
-        while (set.size < length) {
+        const maxAttempts = 1000 * length;
+        let attempts = 0;
+        while (set.size < length && attempts < maxAttempts) {
           set.add(source());
+          attempts++;
         }
       }
     } catch {
