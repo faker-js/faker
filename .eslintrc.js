@@ -114,7 +114,7 @@ module.exports = defineConfig({
       },
     },
     {
-      files: ['test/*.spec.ts'],
+      files: ['test/**/*.spec.ts'],
       extends: ['plugin:vitest/recommended'],
       rules: {
         'deprecation/deprecation': 'off',

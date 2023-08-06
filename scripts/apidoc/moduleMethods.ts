@@ -23,8 +23,10 @@ import { adjustUrls } from './utils';
  * @param project The project used to extract the modules.
  * @returns The generated pages.
  */
-export function processModules(project: ProjectReflection): ModuleSummary[] {
-  return selectApiModules(project).map(processModule);
+export async function processModules(
+  project: ProjectReflection
+): Promise<ModuleSummary[]> {
+  return Promise.all(selectApiModules(project).map(processModule));
 }
 
 /**
@@ -33,12 +35,17 @@ export function processModules(project: ProjectReflection): ModuleSummary[] {
  * @param module The module to process.
  * @returns The generated pages.
  */
-function processModule(module: DeclarationReflection): ModuleSummary {
+async function processModule(
+  module: DeclarationReflection
+): Promise<ModuleSummary> {
   const moduleName = extractModuleName(module);
   console.log(`Processing Module ${moduleName}`);
   const moduleFieldName = extractModuleFieldName(module);
   const { comment, deprecated } = analyzeModule(module);
-  const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
+  const methods = await processModuleMethods(
+    module,
+    `faker.${moduleFieldName}.`
+  );
 
   return writeApiDocsModule(
     moduleName,
@@ -72,10 +79,10 @@ export function analyzeModule(module: DeclarationReflection): {
  * @param accessor The code used to access the methods within the module.
  * @returns A list containing the documentation for the api methods in the given module.
  */
-export function processModuleMethods(
+export async function processModuleMethods(
   module: DeclarationReflection,
   accessor: string
-): Method[] {
+): Promise<Method[]> {
   return processMethods(selectApiMethodSignatures(module), accessor);
 }
 
@@ -86,15 +93,15 @@ export function processModuleMethods(
  * @param accessor The code used to access the methods.
  * @returns A list containing the documentation for the api methods.
  */
-export function processMethods(
+export async function processMethods(
   signatures: Record<string, SignatureReflection>,
   accessor: string = ''
-): Method[] {
+): Promise<Method[]> {
   const methods: Method[] = [];
 
   for (const [methodName, signature] of Object.entries(signatures)) {
     console.debug(`- ${methodName}`);
-    methods.push(analyzeSignature(signature, accessor, methodName));
+    methods.push(await analyzeSignature(signature, accessor, methodName));
   }
 
   return methods;
