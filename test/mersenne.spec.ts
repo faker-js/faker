@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { newMersennePRNG } from '../src/internal/mersenne';
+import { generateMersennePRNG } from '../src/internal/mersenne';
 import type { PRNG } from '../src/prng';
 import { seededRuns } from './support/seededRuns';
 import { times } from './support/times';
@@ -7,7 +7,7 @@ import { times } from './support/times';
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  const prng: PRNG = newMersennePRNG();
+  const prng: PRNG = generateMersennePRNG();
 
   describe.each(
     [...seededRuns, ...seededRuns.map((v) => [v, 1, 2])].map((v) => [v])

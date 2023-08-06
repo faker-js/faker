@@ -1,7 +1,7 @@
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
-import { newMersennePRNG } from './internal/mersenne';
+import { generateMersennePRNG } from './internal/mersenne';
 import type { LocaleProxy } from './locale-proxy';
 import { createLocaleProxy } from './locale-proxy';
 import { AirlineModule } from './modules/airline';
@@ -353,7 +353,7 @@ export class Faker {
       locale = mergeLocales(locale);
     }
 
-    this._prng = options.prng ?? newMersennePRNG();
+    this._prng = options.prng ?? generateMersennePRNG();
     this.rawDefinitions = locale as LocaleDefinition;
     this.definitions = createLocaleProxy(this.rawDefinitions);
   }
