@@ -104,7 +104,7 @@
     "cypress": "~12.17.3",
     "esbuild": "~0.18.18",
     "eslint": "~8.46.0",
-    "eslint-config-prettier": "~8.10.0",
+    "eslint-config-prettier": "~9.0.0",
     "eslint-define-config": "~1.23.0",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-deprecation": "~1.5.0",
