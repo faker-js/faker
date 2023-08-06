@@ -35,5 +35,5 @@ export type MethodOf<TObjectType, TSignature extends Callable = Callable> = {
  */
 export type MethodsOf<
   TObjectType,
-  TSignature extends Callable = Callable
+  TSignature extends Callable = Callable,
 > = ReadonlyArray<MethodOf<TObjectType, TSignature>>;

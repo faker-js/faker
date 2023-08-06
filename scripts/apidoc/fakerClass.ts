@@ -7,7 +7,9 @@ import { analyzeSignature } from './signature';
 import { selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
 
-export function processFakerClass(project: ProjectReflection): ModuleSummary {
+export async function processFakerClass(
+  project: ProjectReflection
+): Promise<ModuleSummary> {
   const fakerClass = project
     .getChildrenByKind(ReflectionKind.Class)
     .filter((clazz) => clazz.name === 'Faker')[0];
@@ -19,27 +21,31 @@ export function processFakerClass(project: ProjectReflection): ModuleSummary {
   return processClass(fakerClass);
 }
 
-function processClass(fakerClass: DeclarationReflection): ModuleSummary {
+async function processClass(
+  fakerClass: DeclarationReflection
+): Promise<ModuleSummary> {
   console.log(`Processing Faker class`);
   const { comment, deprecated } = analyzeModule(fakerClass);
   const methods: Method[] = [];
 
   console.debug(`- constructor`);
-  methods.push(processConstructor(fakerClass));
+  methods.push(await processConstructor(fakerClass));
 
-  methods.push(...processModuleMethods(fakerClass, 'faker.'));
+  methods.push(...(await processModuleMethods(fakerClass, 'faker.')));
 
   return writeApiDocsModule('Faker', 'faker', comment, deprecated, methods);
 }
 
-function processConstructor(fakerClass: DeclarationReflection): Method {
+async function processConstructor(
+  fakerClass: DeclarationReflection
+): Promise<Method> {
   const constructor = fakerClass.getChildrenByKind(
     ReflectionKind.Constructor
   )[0];
 
   const signature = selectApiSignature(constructor);
 
-  const method = analyzeSignature(signature, '', 'new Faker');
+  const method = await analyzeSignature(signature, '', 'new Faker');
 
   return {
     ...method,
