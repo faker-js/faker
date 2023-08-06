@@ -61,7 +61,7 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
  * @param categoryData The module to create the proxy for.
  */
 function createCategoryProxy<
-  TCategoryData extends Record<string | symbol, unknown>
+  TCategoryData extends Record<string | symbol, unknown>,
 >(
   categoryName: string,
   categoryData: TCategoryData = {} as TCategoryData
