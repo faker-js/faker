@@ -69,7 +69,7 @@ type NoArgsMethodOf<TObjectType> = MethodOf<TObjectType> &
  */
 export function seededTests<
   TFakerModule extends FakerModule,
-  TModule extends Record<string, Callable> = OnlyMethodsFaker[TFakerModule]
+  TModule extends Record<string, Callable> = OnlyMethodsFaker[TFakerModule],
 >(
   faker: Faker,
   module: TFakerModule,
@@ -91,7 +91,7 @@ export function seededTests<
  */
 class TestGenerator<
   TModuleName extends FakerModule,
-  TModule extends Record<string, Callable> = OnlyMethodsFaker[TModuleName]
+  TModule extends Record<string, Callable> = OnlyMethodsFaker[TModuleName],
 > {
   private readonly tested: Set<MethodOf<TModule>> = new Set();
   private readonly module: TModule;

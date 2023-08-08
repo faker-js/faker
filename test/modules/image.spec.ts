@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
-import { seededTests } from './support/seededRuns';
+import { faker } from '../../src';
+import { seededTests } from './../support/seededRuns';
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
