@@ -117,7 +117,9 @@ describe('verify JSDoc tags', () => {
             mkdirSync(dir, { recursive: true });
 
             const path = resolvePathToMethodFile(moduleName, methodName);
-            const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+            const imports = [
+              ...new Set(examples.match(/(?<!\.)faker[^\.]*(?=\.)/g)),
+            ];
             writeFileSync(
               path,
               `import { ${imports.join(
@@ -173,20 +175,20 @@ describe('verify JSDoc tags', () => {
             }
           });
 
-          it('verify @param tags', () => {
-            analyzeSignature(signature, '', methodName).parameters.forEach(
-              (param) => {
-                const { name, description } = param;
-                const plainDescription = description
-                  .replace(/<[^>]+>/g, '')
-                  .trim();
-                expect(
-                  plainDescription,
-                  `Expect param ${name} to have a description`
-                ).not.toBe(MISSING_DESCRIPTION);
-                assertDescription(description, true);
-              }
-            );
+          it('verify @param tags', async () => {
+            (
+              await analyzeSignature(signature, '', methodName)
+            ).parameters.forEach((param) => {
+              const { name, description } = param;
+              const plainDescription = description
+                .replace(/<[^>]+>/g, '')
+                .trim();
+              expect(
+                plainDescription,
+                `Expect param ${name} to have a description`
+              ).not.toBe(MISSING_DESCRIPTION);
+              assertDescription(description, true);
+            });
           });
 
           it('verify @see tags', () => {
