@@ -319,8 +319,8 @@ The `regexpStyleStringParse` method in `faker.helpers` has been deprecated. A po
 For example, `fromRegExp` cannot handle numeric ranges:
 
 ```js
-faker.helpers.regexpStyleStringParse("a[1-100]") // "a53", etc.
-faker.helpers.fromRegExp("a[1-100]") // "a1" or "a0"
+faker.helpers.regexpStyleStringParse('a[1-100]'); // "a53", etc.
+faker.helpers.fromRegExp('a[1-100]'); // "a1" or "a0"
 ```
 
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
