@@ -348,7 +348,7 @@ export class ImageModule {
   }
 
   /**
-   * Generates a random data uri containing an svg image or an base64 image.
+   * Generates a data uri containing an svg image or an base64 image.
    *
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
@@ -387,7 +387,7 @@ export class ImageModule {
        *
        * @default 'svg'
        */
-      type?: 'svg' | 'base64';
+      type?: 'svg' | 'svg-base64';
     } = {}
   ): string {
     const { width = 640, height = 480, color = 'grey', type = 'svg' } = options;
