@@ -503,21 +503,21 @@ describe('image', () => {
       expect(dataUri).toMatchSnapshot();
     });
 
-    it('should return a blank base64 data', () => {
+    it('should return a blank svg-base64 data', () => {
       const dataUri = faker.image.dataUri({
         width: 123,
         height: 456,
-        type: 'base64',
+        type: 'svg-base64',
       });
       expect(dataUri).toMatchSnapshot();
     });
 
-    it('should return a background color base64 data URI', () => {
+    it('should return a background color svg-base64 data URI', () => {
       const dataUri = faker.image.dataUri({
         width: 444,
         height: 30,
         color: 'green',
-        type: 'base64',
+        type: 'svg-base64',
       });
       expect(dataUri).toMatchSnapshot();
     });
