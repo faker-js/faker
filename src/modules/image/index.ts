@@ -375,9 +375,8 @@ export class ImageModule {
        */
       height?: number;
       /**
-       * The color of the image.
+       * The color of the image. Must be a color supported by svg. Defaults to a random color.
        *
-       * @default 'random color'
        */
       color?: string;
     } = {}
@@ -385,7 +384,7 @@ export class ImageModule {
     const {
       width = 640,
       height = 480,
-      color = this.faker.color.rgb({ prefix: '#' }),
+      color = this.faker.color.rgb(),
     } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
