@@ -7,7 +7,9 @@ export type LocationDefinition = LocaleEntry<{
   /**
    * Postcodes patterns by state
    */
-  postcode_by_state: { [state: string]: { min: number; max: number } };
+  postcode_by_state: {
+    [state: string]: string;
+  };
 
   /**
    * Postcodes patterns.

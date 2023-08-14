@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -15,16 +16,7 @@ import { deprecated } from '../../internal/deprecated';
  */
 export class LocationModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      LocationModule.prototype
-    ) as Array<keyof LocationModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
@@ -73,10 +65,11 @@ export class LocationModule {
     const { state } = options;
 
     if (state) {
-      const zipRange = this.faker.definitions.location.postcode_by_state[state];
+      const zipPattern: string =
+        this.faker.definitions.location.postcode_by_state[state];
 
-      if (zipRange) {
-        return String(this.faker.number.int(zipRange));
+      if (zipPattern) {
+        return this.faker.helpers.fake(zipPattern);
       }
 
       throw new FakerError(`No zip code definition found for state "${state}"`);

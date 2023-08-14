@@ -1,13 +1,13 @@
 import type { Options } from 'prettier';
 import { format } from 'prettier';
-import prettierConfig from '../../.prettierrc.cjs';
+import prettierConfig from '../../.prettierrc.js';
 
 /**
  * Formats markdown contents.
  *
  * @param text The text to format.
  */
-export function formatMarkdown(text: string): string {
+export async function formatMarkdown(text: string): Promise<string> {
   return format(text, prettierMarkdown);
 }
 
@@ -16,7 +16,7 @@ export function formatMarkdown(text: string): string {
  *
  * @param text The text to format.
  */
-export function formatTypescript(text: string): string {
+export async function formatTypescript(text: string): Promise<string> {
   return format(text, prettierTypescript);
 }
 
