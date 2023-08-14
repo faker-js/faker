@@ -471,8 +471,9 @@ describe('image', () => {
 
   describe('dataUri', () => {
     it('should return a blank data', () => {
+      const expectedPattern = /^data:image\/svg\+xml;charset=UTF-8,/;
       const dataUri = faker.image.dataUri({ width: 200, height: 300 });
-      expect(dataUri).toMatchSnapshot();
+      expect(dataUri).toMatch(expectedPattern);
     });
 
     it('should return a background color data URI', () => {

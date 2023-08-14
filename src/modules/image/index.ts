@@ -377,12 +377,18 @@ export class ImageModule {
       /**
        * The color of the image.
        *
-       * @default 'grey'
+       * @default 'random color'
        */
       color?: string;
     } = {}
   ): string {
-    const { width = 640, height = 480, color = 'grey' } = options;
+    const letters = '0123456789ABCDEF';
+    let defaultColor = '#';
+    for (let i = 0; i < 6; i++) {
+      defaultColor += letters[Math.floor(Math.random() * 16)];
+    }
+
+    const { width = 640, height = 480, color = defaultColor } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
       width / 2
