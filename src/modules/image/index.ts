@@ -348,7 +348,7 @@ export class ImageModule {
   }
 
   /**
-   * Generates a data uri containing an svg image or an base64 image.
+   * Generates a data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
