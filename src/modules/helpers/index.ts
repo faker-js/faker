@@ -649,6 +649,11 @@ export class HelpersModule {
    * and outputs a unique array of strings based on that source.
    * This method does not store the unique state between invocations.
    *
+   * If there are not enough unique values to satisfy the length, if
+   * the source is an array, it will only return as many items as are
+   * in the array. If the source is a function, it will return after
+   * a maximum number of attempts has been reached.
+   *
    * @template T The type of the elements.
    *
    * @param source The strings to choose from or a function that generates a string.
@@ -671,8 +676,11 @@ export class HelpersModule {
     const set = new Set<T>();
     try {
       if (typeof source === 'function') {
-        while (set.size < length) {
+        const maxAttempts = 1000 * length;
+        let attempts = 0;
+        while (set.size < length && attempts < maxAttempts) {
           set.add(source());
+          attempts++;
         }
       }
     } catch {
@@ -1300,7 +1308,7 @@ export class HelpersModule {
       // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...parameters: any[]
-    ) => RecordKey
+    ) => RecordKey,
   >(
     method: TMethod,
     args: Parameters<TMethod> = [] as Parameters<TMethod>,
