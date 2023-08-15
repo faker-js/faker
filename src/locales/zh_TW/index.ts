@@ -3,6 +3,8 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import color from './color';
+import date from './date';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
@@ -13,6 +15,8 @@ const zh_TW: LocaleDefinition = {
   metadata,
   person,
   phone_number,
+  color,
+  date,
 };
 
 export default zh_TW;
