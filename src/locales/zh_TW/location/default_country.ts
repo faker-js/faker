@@ -1,1 +1,1 @@
-export default ['Taiwan (R.O.C.)'];
+export default ['中國臺灣'];
