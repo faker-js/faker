@@ -353,7 +353,7 @@ export class ImageModule {
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
-   * @param options.color The color of the image. Defaults to a random color.
+   * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
