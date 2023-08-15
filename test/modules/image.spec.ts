@@ -484,6 +484,7 @@ describe('image', () => {
       });
       expect(dataUri).toMatch(/^data:image\/svg\+xml;charset=UTF-8,/);
       expect(dataUri).toMatch(/width%3D%22200%22%20height%3D%22300/);
+      expect(dataUri).toMatch(/fill%3D%22red/);
       expect(dataUri).toMatchSnapshot();
     });
   });
