@@ -375,7 +375,7 @@ export class ImageModule {
        */
       height?: number;
       /**
-       * The color of the image. Must be a color supported by svg. Defaults to a random color.
+       * The color of the image. Must be a color supported by svg.
        *
        * @default faker.color.rgb()
        */
