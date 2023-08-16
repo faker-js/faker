@@ -11,12 +11,12 @@ import person from './person';
 import phone_number from './phone_number';
 
 const zh_TW: LocaleDefinition = {
+  color,
+  date,
   location,
   metadata,
   person,
   phone_number,
-  color,
-  date,
 };
 
 export default zh_TW;
