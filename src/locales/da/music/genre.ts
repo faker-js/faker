@@ -1,0 +1,18 @@
+export default [
+  'Rock',
+  'Metal',
+  'Pop',
+  'Electronica',
+  'Folk',
+  'Verdensmusik',
+  'Country',
+  'Jazz',
+  'Funk',
+  'Soul',
+  'Hip Hop',
+  'Klasisk',
+  'Latinamerikansk',
+  'Reggae',
+  'Blues',
+  'Rap',
+];

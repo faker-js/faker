@@ -1,0 +1,15 @@
+export default [
+  'Amerikansk alligator',
+  'Sort kaiman',
+  'Brilleskævtand',
+  'Cubansk krokodille',
+  'Dværgkrokodille',
+  'Gavial',
+  'Kinesisk alligator',
+  'Cubakrokodille',
+  'Mississippi-alligator',
+  'Nilkrokodille',
+  'Saltvandskrokodille',
+  'Siamesisk krokodille',
+  'Sumpkrokodille',
+];

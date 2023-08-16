@@ -1,0 +1,15 @@
+export default [
+  'hund',
+  'kat',
+  'slange',
+  'bjørn',
+  'løve',
+  'hval',
+  'insekt',
+  'krokodille',
+  'ko',
+  'fugl',
+  'fisk',
+  'gnaver',
+  'hest',
+];

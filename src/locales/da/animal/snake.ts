@@ -1,0 +1,15 @@
+export default [
+  'Afrikansk klapperslange',
+  'Anakonda',
+  'Asiatisk kobraslange',
+  'Brilleslange',
+  'Grøn mamba',
+  'Huggorm',
+  'Kongeboa',
+  'Kongekobra',
+  'Kornsnog',
+  'Kvælerslange',
+  'Sort mamba',
+  'Spidssnudet kobra',
+  'Pyton',
+];

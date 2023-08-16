@@ -1,0 +1,16 @@
+export default [
+  'Gråspurv',
+  'Musvit',
+  'Blåmejse',
+  'Bogfinke',
+  'Fasan',
+  'Ringdue',
+  'Knopsvane',
+  'Gråand',
+  'Solsort',
+  'Stær',
+  'Råge',
+  'Skade',
+  'Ørn',
+  'Måge',
+];
