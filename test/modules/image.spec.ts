@@ -68,12 +68,24 @@ describe('image', () => {
         });
     });
 
+    t.describe('dataUri', (t) => {
+      t.it('noArgs')
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with color', { color: 'blue' })
+        .it('with all options', {
+          width: 128,
+          height: 128,
+          color: 'blue',
+        });
+    });
+
     t.skip('abstract');
     t.skip('animals');
     t.skip('business');
     t.skip('cats');
     t.skip('city');
-    t.skip('dataUri');
     t.skip('fashion');
     t.skip('food');
     t.skip('image');
