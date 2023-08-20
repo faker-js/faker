@@ -318,7 +318,7 @@ describe('lorem', () => {
         });
       });
 
-      describe.only('text()', () => {
+      describe('text()', () => {
         it('should return text', () => {
           const actual = faker.lorem.text();
 
