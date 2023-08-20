@@ -498,7 +498,7 @@ describe('image', () => {
       expect(dataUri).toMatchSnapshot();
     });
 
-    it('should return a blank svg data', () => {
+    it('should return a blank svg-uri data', () => {
       const dataUri = faker.image.dataUri({
         width: 456,
         height: 789,
@@ -507,7 +507,7 @@ describe('image', () => {
       expect(dataUri).toMatchSnapshot();
     });
 
-    it('should return a background color svg data URI', () => {
+    it('should return a background color svg-uri data URI', () => {
       const dataUri = faker.image.dataUri({
         width: 1,
         height: 1234,

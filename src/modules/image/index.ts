@@ -348,13 +348,13 @@ export class ImageModule {
   }
 
   /**
-   * Generates a data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
+   * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
    * @param options.color The color of the image. Defaults to `grey`.
-   * @param options.type The type of the image. Defaults to `svg`.
+   * @param options.type The type of the image. Defaults to `'svg-uri'`.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
@@ -404,13 +404,11 @@ export class ImageModule {
       height / 2
     }" font-size="20" alignment-baseline="middle" text-anchor="middle" fill="white">${width}x${height}</text></svg>`;
 
-    const rawPrefix =
-      type === 'svg-uri'
-        ? 'data:image/svg+xml;charset=UTF-8,'
-        : 'data:image/svg+xml;base64,';
     return type === 'svg-uri'
-      ? rawPrefix + encodeURIComponent(svgString)
-      : rawPrefix + Buffer.from(svgString).toString('base64');
+      ? `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgString)}`
+      : `data:image/svg+xml;base64,${Buffer.from(svgString).toString(
+          'base64'
+        )}`;
   }
 
   /**
