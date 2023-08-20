@@ -1,8 +1,6 @@
-// Celebrating the vibrant diversity of the Esperanto community,
-// a versatile fallback list is advised, transcending language barriers.
-// This list honors the legacies of impactful individuals connected to Esperanto,
-// recognized and appreciated by countless Esperanto speakers.
-// Comprising 100 family names from diverse languages, it truly unites.
+// Esperanto has a diverse community of speakers, so rather than using the English-only fallback list,
+// we chose to use the family names of deceased people who were important to Esperanto and its community.
+// The list contains 100 family names from several languages.
 
 export default [
   'Atanasov',
