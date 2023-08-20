@@ -331,7 +331,7 @@ export class LoremModule {
    * @since 3.1.0
    */
   text(
-    options?:
+    options:
       | number
       | {
           /**
@@ -343,13 +343,13 @@ export class LoremModule {
                 /**
                  * The minimum length of text to generate.
                  */
-                min?: number;
+                min: number;
                 /**
                  * The maximum length of text to generate.
                  */
-                max?: number;
+                max: number;
               };
-        }
+        } = {}
   ): string {
     const methods: Array<keyof LoremModule> = [
       'sentence',
@@ -361,57 +361,49 @@ export class LoremModule {
 
     const method = this.faker.helpers.arrayElement(methods);
 
-    if (typeof options === 'undefined') {
-      return `${this[method]()}`;
-    }
-
     if (typeof options === 'number') {
-      return this.faker.lorem.text({ length: options });
+      options = { length: options };
     }
 
-    if (typeof options?.length === 'number') {
-      if (options.length >= 0) {
-        let text = `${this[method]()}`;
-        while (text.length <= options?.length) {
-          text = `${text} ${this[method]()}`;
-        }
-
-        return options.length
-          ? `${text.substring(0, options.length - 1)}.`
-          : '';
-      }
-
+    if (typeof options?.length === 'number' && options.length < 0) {
       throw new FakerError(
         `Length ${options.length} should be a non-negative integer.`
       );
     }
 
-    if (options.length?.max != null && options.length?.max < 0) {
-      throw new FakerError(
-        `Max ${options.length.max} should be a non-negative integer.`
-      );
+    if (typeof options.length !== 'number') {
+      if (options.length?.min != null && options.length?.min < 0) {
+        throw new FakerError(
+          `Min ${options.length.min} should be a non-negative integer.`
+        );
+      }
+
+      if (options.length?.max != null && options.length?.max < 0) {
+        throw new FakerError(
+          `Max ${options.length.max} should be a non-negative integer.`
+        );
+      }
     }
 
-    if (options.length?.min != null && options.length?.min < 0) {
-      throw new FakerError(
-        `Min ${options.length.min} should be a non-negative integer.`
-      );
+    const length =
+      options.length == null
+        ? null
+        : this.faker.helpers.rangeToNumber(options.length);
+
+    if (length == null) {
+      return `${this[method]()}`;
     }
 
-    if (options.length?.min > options.length?.max) {
-      throw new FakerError(
-        `Max ${options.length.max} should be greater than min ${options.length.min}.`
-      );
+    if (length === 0) {
+      return '';
     }
 
-    const min = options.length?.min ?? 0;
-    const max = options.length?.max ?? 2 * min;
-    const randomLength = this.faker.number.int({
-      min: min,
-      max: max,
-    });
+    let text = `${this[method]()}`;
+    while (text.length <= length) {
+      text = `${text} ${this[method]()}`;
+    }
 
-    return this.faker.lorem.text({ length: randomLength });
+    return `${text.substring(0, length - 1)}.`;
   }
 
   /**

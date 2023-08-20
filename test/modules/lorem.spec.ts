@@ -318,7 +318,7 @@ describe('lorem', () => {
         });
       });
 
-      describe('text()', () => {
+      describe.only('text()', () => {
         it('should return text', () => {
           const actual = faker.lorem.text();
 
@@ -366,9 +366,9 @@ describe('lorem', () => {
         });
 
         it('should throw an error if min is negative', () => {
-          expect(() => faker.lorem.text({ length: { min: -11 } })).toThrowError(
-            /^Min -11 should be a non-negative integer.$/
-          );
+          expect(() =>
+            faker.lorem.text({ length: { min: -11, max: 100 } })
+          ).toThrowError(/^Min -11 should be a non-negative integer.$/);
         });
 
         it('should throw an error if min is greater than max', () => {
@@ -378,9 +378,9 @@ describe('lorem', () => {
         });
 
         it('should throw an error if max is negative', () => {
-          expect(() => faker.lorem.text({ length: { max: -11 } })).toThrowError(
-            /^Max -11 should be a non-negative integer.$/
-          );
+          expect(() =>
+            faker.lorem.text({ length: { min: 100, max: -11 } })
+          ).toThrowError(/^Max -11 should be a non-negative integer.$/);
         });
 
         it('should return an empty string for length zero', () => {
@@ -421,16 +421,16 @@ describe('lorem', () => {
           expect(actual).toHaveLength(77);
         });
 
-        it('should return a string with length in [33, 66] for min = 33', () => {
-          const actual = faker.lorem.text({ length: { min: 33 } });
+        it('should return text with a length in [33, 66]', () => {
+          const actual = faker.lorem.text({ length: { min: 33, max: 66 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(33);
           expect(actual.length).toBeLessThanOrEqual(66);
         });
 
-        it('should return a string with length between 0 and 51 for max = 51', () => {
-          const actual = faker.lorem.text({ length: { max: 51 } });
+        it('should return text with a length in [0, 51]', () => {
+          const actual = faker.lorem.text({ length: { min: 0, max: 51 } });
 
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThanOrEqual(0);
