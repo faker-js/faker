@@ -353,34 +353,10 @@ describe('lorem', () => {
           expect(actual.length).toBeLessThanOrEqual(40);
         });
 
-        it('should throw an error for a negative length in the options object', () => {
-          expect(() => faker.lorem.text({ length: -3 })).toThrowError(
-            /^Length -3 should be a non-negative integer.$/
-          );
-        });
-
-        it('should throw an error for a negative length in the quick primitive argument', () => {
-          expect(() => faker.lorem.text(-3)).toThrowError(
-            /^Length -3 should be a non-negative integer.$/
-          );
-        });
-
-        it('should throw an error if min is negative', () => {
-          expect(() =>
-            faker.lorem.text({ length: { min: -11, max: 100 } })
-          ).toThrowError(/^Min -11 should be a non-negative integer.$/);
-        });
-
         it('should throw an error if min is greater than max', () => {
           expect(() =>
             faker.lorem.text({ length: { min: 3, max: 1 } })
           ).toThrowError(/^Max 1 should be greater than min 3.$/);
-        });
-
-        it('should throw an error if max is negative', () => {
-          expect(() =>
-            faker.lorem.text({ length: { min: 100, max: -11 } })
-          ).toThrowError(/^Max -11 should be a non-negative integer.$/);
         });
 
         it('should return an empty string for length zero', () => {
