@@ -74,10 +74,12 @@ describe('image', () => {
         .it('with height', { height: 128 })
         .it('with width and height', { width: 128, height: 128 })
         .it('with color', { color: 'blue' })
+        .it('with type', { type: 'svg-base64' })
         .it('with all options', {
           width: 128,
           height: 128,
           color: 'blue',
+          type: 'svg-base64',
         });
     });
 
