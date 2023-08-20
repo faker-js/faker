@@ -312,9 +312,7 @@ export class LoremModule {
    * Generates a random text based on a random lorem method.
    *
    * @param options The options for the text to generate or options.length as quick primitive argument.
-   * @param options.length The length (range) of text to generate.
-   * @param options.length.min The minimum length of text to generate.
-   * @param options.length.max The maximum length of text to generate.
+   * @param options.length The length of text to generate as number or range.
    *
    * @example
    * faker.lorem.text() // 'Doloribus autem non quis vero quia.'
@@ -365,34 +363,31 @@ export class LoremModule {
       options = { length: options };
     }
 
-    if (typeof options?.length === 'number' && options.length < 0) {
+    if (options.length == null) {
+      return `${this[method]()}`;
+    }
+
+    if (typeof options.length === 'number' && options.length < 0) {
       throw new FakerError(
         `Length ${options.length} should be a non-negative integer.`
       );
     }
 
     if (typeof options.length !== 'number') {
-      if (options.length?.min != null && options.length?.min < 0) {
+      if (options.length.min != null && options.length.min < 0) {
         throw new FakerError(
           `Min ${options.length.min} should be a non-negative integer.`
         );
       }
 
-      if (options.length?.max != null && options.length?.max < 0) {
+      if (options.length.max != null && options.length.max < 0) {
         throw new FakerError(
           `Max ${options.length.max} should be a non-negative integer.`
         );
       }
     }
 
-    const length =
-      options.length == null
-        ? null
-        : this.faker.helpers.rangeToNumber(options.length);
-
-    if (length == null) {
-      return `${this[method]()}`;
-    }
+    const length = this.faker.helpers.rangeToNumber(options.length);
 
     if (length === 0) {
       return '';
