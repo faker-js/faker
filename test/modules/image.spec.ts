@@ -502,7 +502,7 @@ describe('image', () => {
       const dataUri = faker.image.dataUri({
         width: 456,
         height: 789,
-        type: 'svg',
+        type: 'svg-uri',
       });
       expect(dataUri).toMatchSnapshot();
     });
@@ -512,7 +512,7 @@ describe('image', () => {
         width: 1,
         height: 1234,
         color: 'yellow',
-        type: 'svg',
+        type: 'svg-uri',
       });
       expect(dataUri).toMatchSnapshot();
     });

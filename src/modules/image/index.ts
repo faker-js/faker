@@ -383,14 +383,20 @@ export class ImageModule {
        */
       color?: string;
       /**
-       * The type of the image.
+       * The type of the image to return. Consisting of
+       * the file extension and the used encoding.
        *
-       * @default 'svg'
+       * @default 'svg-uri'
        */
-      type?: 'svg' | 'svg-base64';
+      type?: 'svg-uri' | 'svg-base64';
     } = {}
   ): string {
-    const { width = 640, height = 480, color = 'grey', type = 'svg' } = options;
+    const {
+      width = 640,
+      height = 480,
+      color = 'grey',
+      type = 'svg-uri',
+    } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
       width / 2
@@ -399,10 +405,10 @@ export class ImageModule {
     }" font-size="20" alignment-baseline="middle" text-anchor="middle" fill="white">${width}x${height}</text></svg>`;
 
     const rawPrefix =
-      type === 'svg'
+      type === 'svg-uri'
         ? 'data:image/svg+xml;charset=UTF-8,'
         : 'data:image/svg+xml;base64,';
-    return type === 'svg'
+    return type === 'svg-uri'
       ? rawPrefix + encodeURIComponent(svgString)
       : rawPrefix + Buffer.from(svgString).toString('base64');
   }
