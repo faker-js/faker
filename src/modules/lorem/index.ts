@@ -372,12 +372,12 @@ export class LoremModule {
       return '';
     }
 
-    let text = `${this[method]()}`;
-    while (text.length <= length) {
-      text = `${text} ${this[method]()}`;
-    }
+    let text = '';
+    do {
+      text = `${text}${this[method]()} `;
+    } while (text.length <= length + 1);
 
-    return `${text.substring(0, length - 1)}.`;
+    return `${text.trim().substring(0, length - 1)}.`;
   }
 
   /**
