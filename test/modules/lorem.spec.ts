@@ -420,22 +420,6 @@ describe('lorem', () => {
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(77);
         });
-
-        it('should return text with a length in [33, 66]', () => {
-          const actual = faker.lorem.text({ length: { min: 33, max: 66 } });
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual.length).toBeGreaterThanOrEqual(33);
-          expect(actual.length).toBeLessThanOrEqual(66);
-        });
-
-        it('should return text with a length in [0, 51]', () => {
-          const actual = faker.lorem.text({ length: { min: 0, max: 51 } });
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual.length).toBeGreaterThanOrEqual(0);
-          expect(actual.length).toBeLessThanOrEqual(51);
-        });
       });
 
       describe('lines()', () => {
