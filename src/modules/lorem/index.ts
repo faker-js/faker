@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { filterWordListByLength } from '../word/filterWordListByLength';
 
@@ -367,29 +366,9 @@ export class LoremModule {
       return `${this[method]()}`;
     }
 
-    if (typeof options.length === 'number' && options.length < 0) {
-      throw new FakerError(
-        `Length ${options.length} should be a non-negative integer.`
-      );
-    }
-
-    if (typeof options.length !== 'number') {
-      if (options.length.min != null && options.length.min < 0) {
-        throw new FakerError(
-          `Min ${options.length.min} should be a non-negative integer.`
-        );
-      }
-
-      if (options.length.max != null && options.length.max < 0) {
-        throw new FakerError(
-          `Max ${options.length.max} should be a non-negative integer.`
-        );
-      }
-    }
-
     const length = this.faker.helpers.rangeToNumber(options.length);
 
-    if (length === 0) {
+    if (length <= 0) {
       return '';
     }
 
