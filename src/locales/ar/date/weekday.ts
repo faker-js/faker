@@ -1,6 +1,5 @@
-import type { DateEntryDefinition } from '../../../definitions';
-
 export default {
+  abbr: null,
   wide: [
     'الأحَد',
     'الإثنين',
@@ -10,4 +9,4 @@ export default {
     'الجمعة',
     'السبت',
   ],
-} as DateEntryDefinition;
+};

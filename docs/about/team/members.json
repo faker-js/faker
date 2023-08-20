@@ -61,26 +61,33 @@
         { "icon": "twitter", "link": "https://twitter.com/_JessicaSachs" }
       ],
       "sponsor": "https://github.com/sponsors/JessicaSachs"
+    },
+    {
+      "avatar": "https://github.com/xDivisionByZerox.png",
+      "name": "Leyla Jähnig",
+      "title": "Code Maintainer",
+      "desc": "Tell me about your favorite programming language and why is it TypeScript?",
+      "links": [
+        { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
+      ]
     }
   ],
   "contributors": [
     {
       "avatar": "https://github.com/import-brain.png",
       "name": "Eric Cheng",
-      "title": "Triage",
+      "title": "Contributor",
       "org": "",
       "orgLink": "",
       "desc": "",
-      "links": [{ "icon": "github", "link": "https://github.com/import-brain" }]
-    },
-    {
-      "avatar": "https://github.com/xDivisionByZerox.png",
-      "name": "Leyla Jähnig",
-      "title": "Contributor",
-      "desc": "",
       "links": [
-        { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
-      ]
+        { "icon": "github", "link": "https://github.com/import-brain" },
+        {
+          "icon": "linkedin",
+          "link": "https://www.linkedin.com/in/ericcheng-software/"
+        }
+      ],
+      "sponsor": "https://github.com/sponsors/import-brain"
     },
     {
       "avatar": "https://github.com/matthewmayer.png",
