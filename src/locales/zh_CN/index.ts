@@ -10,8 +10,10 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
+import music from './music';
 import person from './person';
 import phone_number from './phone_number';
+import word from './word';
 
 const zh_CN: LocaleDefinition = {
   animal,
@@ -21,8 +23,10 @@ const zh_CN: LocaleDefinition = {
   internet,
   location,
   metadata,
+  music,
   person,
   phone_number,
+  word,
 };
 
 export default zh_CN;
