@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import color from './color';
 import company from './company';
 import date from './date';
@@ -13,6 +14,7 @@ import person from './person';
 import phone_number from './phone_number';
 
 const zh_CN: LocaleDefinition = {
+  animal,
   color,
   company,
   date,
