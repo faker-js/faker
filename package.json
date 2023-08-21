@@ -31,6 +31,7 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "index.d.ts",
+  "type": "module",
   "typesVersions": {
     ">=4.0": {
       "*": [
