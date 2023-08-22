@@ -234,7 +234,7 @@ export class HelpersModule {
   ): string {
     // default values required for calling method without arguments
 
-    string = this.fromRegExp(string); // replace [4-9] with a random number in range etc...
+    string = this.regexpStyleStringParse_(string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
@@ -272,6 +272,29 @@ export class HelpersModule {
       until: '9.0',
     });
 
+    return this.regexpStyleStringParse_(string);
+  }
+
+  /**
+   * Replaces the regex like expressions in the given string with matching values.
+   *
+   * Supported patterns:
+   * - `.{times}` => Repeat the character exactly `times` times.
+   * - `.{min,max}` => Repeat the character `min` to `max` times.
+   * - `[min-max]` => Generate a number between min and max (inclusive).
+   *
+   * @param string The template string to parse.
+   *
+   * @example
+   * faker.helpers.regexpStyleStringParse() // ''
+   * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
+   * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
+   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
+   * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
+   *
+   * @since 5.0.0
+   */
+  protected regexpStyleStringParse_(string: string = ''): string {
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
