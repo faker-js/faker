@@ -283,6 +283,8 @@ export class HelpersModule {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
+   * @internal
+   *
    * @param string The template string to parse.
    *
    * @example
@@ -291,8 +293,6 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
    * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
-   *
-   * @internal
    *
    * @since 5.0.0
    */
