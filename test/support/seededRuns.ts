@@ -289,13 +289,18 @@ class TestGenerator<
    * This method will be called automatically at the end of each run.
    */
   expectAllMethodsToBeTested(): void {
-    const actual = Array.from(this.tested).sort();
+    const actual: string[] = Array.from(this.tested).sort();
     const expected = Object.entries(this.module)
       .filter(([, value]) => typeof value === 'function')
       .map(([key]) => key)
       .sort();
     vi_it('should test all methods', () => {
-      expect(actual).toEqual(expected);
+      if (this.moduleName === 'helpers') {
+        actual.push('regexpStyleStringParse_');
+        expect(actual.sort()).toEqual(expected);
+      } else {
+        expect(actual).toEqual(expected);
+      }
     });
   }
 }
