@@ -292,6 +292,8 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
    *
+   * @internal
+   *
    * @since 5.0.0
    */
   protected regexpStyleStringParse_(string: string = ''): string {
