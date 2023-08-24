@@ -108,5 +108,5 @@ export default [
   'WYSIWYG',
   'XML',
   'XSS',
-  'Y2K'
+  'Y2K',
 ];
