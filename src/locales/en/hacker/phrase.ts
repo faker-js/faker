@@ -7,4 +7,8 @@ export default [
   'The {{abbreviation}} {{noun}} is down, {{verb}} the {{adjective}} {{noun}} so we can {{verb}} the {{abbreviation}} {{noun}}!',
   "{{ingverb}} the {{noun}} won't do anything, we need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!",
   "I'll {{verb}} the {{adjective}} {{abbreviation}} {{noun}}, that should {{noun}} the {{abbreviation}} {{noun}}!",
+  "My {{noun}} is {{ingverb}}! I'll {{verb}} the {{adjective}} {{abbreviation}} {{noun}}, that should {{noun}} the {{abbreviation}} {{noun}}!",
+  'What is the {{adjective}} {{abbreviation}} {{noun}}? We need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!',
+  'Try to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}, maybe it will {{verb}} the {{adjective}} {{noun}}!',
+  'The {{verbed}} {{noun}} is down, {{verb}} the {{adjective}} {{abbreviation}} {{noun}} so we can {{verb}} the {{abbreviation}} {{noun}}!',
 ];

@@ -8,6 +8,7 @@ import ingverb from './ingverb';
 import noun from './noun';
 import phrase from './phrase';
 import verb from './verb';
+import verbed from './verbed';
 
 const hacker: HackerDefinition = {
   adjective,
@@ -15,6 +16,7 @@ const hacker: HackerDefinition = {
   noun,
   phrase,
   verb,
+  verbed,
 };
 
 export default hacker;

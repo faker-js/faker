@@ -56,6 +56,6 @@ exports[`random > 1337 > word 1`] = `"Bespoke"`;
 
 exports[`random > 1337 > words > noArgs 1`] = `"articulus"`;
 
-exports[`random > 1337 > words > with length 1`] = `"Bespoke connect French pixel Ball"`;
+exports[`random > 1337 > words > with length 1`] = `"Bespoke input French pixel Ball"`;
 
 exports[`random > 1337 > words > with length range 1`] = `"articulus Incredible"`;

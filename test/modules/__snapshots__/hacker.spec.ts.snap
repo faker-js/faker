@@ -2,36 +2,36 @@
 
 exports[`hacker > 42 > abbreviation 1`] = `"EBCDIC"`;
 
-exports[`hacker > 42 > adjective 1`] = `"cross-platform"`;
+exports[`hacker > 42 > adjective 1`] = `"quantum"`;
 
-exports[`hacker > 42 > ingverb 1`] = `"copying"`;
+exports[`hacker > 42 > ingverb 1`] = `"quantifying"`;
 
 exports[`hacker > 42 > noun 1`] = `"array"`;
 
-exports[`hacker > 42 > phrase 1`] = `"Try to transmit the SDD microchip, maybe it will quantify the mobile monitor!"`;
+exports[`hacker > 42 > phrase 1`] = `"Use the semantic SDD monitor, then you can parse the haptic application!"`;
 
-exports[`hacker > 42 > verb 1`] = `"navigate"`;
+exports[`hacker > 42 > verb 1`] = `"quantify"`;
 
 exports[`hacker > 1211 > abbreviation 1`] = `"VRAM"`;
 
-exports[`hacker > 1211 > adjective 1`] = `"solid state"`;
+exports[`hacker > 1211 > adjective 1`] = `"peer-to-peer"`;
 
-exports[`hacker > 1211 > ingverb 1`] = `"programming"`;
+exports[`hacker > 1211 > ingverb 1`] = `"uploading"`;
 
 exports[`hacker > 1211 > noun 1`] = `"capacitor"`;
 
-exports[`hacker > 1211 > phrase 1`] = `"I'll back up the neural FLOPS program, that should panel the UTF8 matrix!"`;
+exports[`hacker > 1211 > phrase 1`] = `"The {{verbed}} program is down, bypass the 16-bit FLOPS panel so we can analyze the UTF8 matrix!"`;
 
-exports[`hacker > 1211 > verb 1`] = `"reboot"`;
+exports[`hacker > 1211 > verb 1`] = `"train"`;
 
 exports[`hacker > 1337 > abbreviation 1`] = `"DAC"`;
 
-exports[`hacker > 1337 > adjective 1`] = `"open-source"`;
+exports[`hacker > 1337 > adjective 1`] = `"1080p"`;
 
-exports[`hacker > 1337 > ingverb 1`] = `"compressing"`;
+exports[`hacker > 1337 > ingverb 1`] = `"indexing"`;
 
 exports[`hacker > 1337 > noun 1`] = `"port"`;
 
-exports[`hacker > 1337 > phrase 1`] = `"Try to generate the IMAP program, maybe it will connect the back-end port!"`;
+exports[`hacker > 1337 > phrase 1`] = `"You can't input the port without copying the redundant IMAP hard drive!"`;
 
-exports[`hacker > 1337 > verb 1`] = `"compress"`;
+exports[`hacker > 1337 > verb 1`] = `"index"`;
