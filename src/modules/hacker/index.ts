@@ -82,7 +82,9 @@ export class HackerModule {
    * @since 8.0.2
    */
   verbed(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.verbed);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.hacker.verbed
+    );
   }
 
   /**

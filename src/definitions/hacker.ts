@@ -37,4 +37,9 @@ export type HackerDefinition = LocaleEntry<{
    * Some computer related verbs (e.g. `hack`).
    */
   verb: string[];
+
+  /**
+   * Some computer related past participle verbs (e.g. `hacked`).
+   */
+  verbed: string[];
 }>;
