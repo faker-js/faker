@@ -74,6 +74,18 @@ export class HackerModule {
   }
 
   /**
+   * Returns a random hacker/IT verb, past participle.
+   *
+   * @example
+   * faker.hacker.verbed() // 'copied'
+   *
+   * @since 8.0.2
+   */
+  verbed(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.verbed);
+  }
+
+  /**
    * Returns a random hacker/IT verb for continuous actions (en: ing suffix; e.g. hacking).
    *
    * @example
@@ -103,6 +115,7 @@ export class HackerModule {
       ingverb: this.ingverb,
       noun: this.noun,
       verb: this.verb,
+      verbed: this.verbed,
     };
 
     const phrase = this.faker.helpers.arrayElement(
