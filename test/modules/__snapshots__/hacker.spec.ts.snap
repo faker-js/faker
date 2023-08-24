@@ -12,6 +12,8 @@ exports[`hacker > 42 > phrase 1`] = `"Use the semantic SDD monitor, then you can
 
 exports[`hacker > 42 > verb 1`] = `"quantify"`;
 
+exports[`hacker > 42 > verbed 1`] = `"quantified"`;
+
 exports[`hacker > 1211 > abbreviation 1`] = `"VRAM"`;
 
 exports[`hacker > 1211 > adjective 1`] = `"peer-to-peer"`;
@@ -20,9 +22,11 @@ exports[`hacker > 1211 > ingverb 1`] = `"uploading"`;
 
 exports[`hacker > 1211 > noun 1`] = `"capacitor"`;
 
-exports[`hacker > 1211 > phrase 1`] = `"The {{verbed}} program is down, bypass the 16-bit FLOPS panel so we can analyze the UTF8 matrix!"`;
+exports[`hacker > 1211 > phrase 1`] = `"The compressed program is down, bypass the 16-bit FLOPS panel so we can analyze the UTF8 matrix!"`;
 
 exports[`hacker > 1211 > verb 1`] = `"train"`;
+
+exports[`hacker > 1211 > verbed 1`] = `"trained"`;
 
 exports[`hacker > 1337 > abbreviation 1`] = `"DAC"`;
 
@@ -35,3 +39,5 @@ exports[`hacker > 1337 > noun 1`] = `"port"`;
 exports[`hacker > 1337 > phrase 1`] = `"You can't input the port without copying the redundant IMAP hard drive!"`;
 
 exports[`hacker > 1337 > verb 1`] = `"index"`;
+
+exports[`hacker > 1337 > verbed 1`] = `"indexed"`;

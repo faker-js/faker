@@ -7,7 +7,15 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('hacker', () => {
   seededTests(faker, 'hacker', (t) => {
-    t.itEach('abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase');
+    t.itEach(
+      'abbreviation',
+      'adjective',
+      'noun',
+      'verb',
+      'verbed',
+      'ingverb',
+      'phrase'
+    );
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
@@ -50,6 +58,16 @@ describe('hacker', () => {
           expect(verb).toBeTypeOf('string');
           expect(verb.length).toBeGreaterThan(0);
           expect(faker.definitions.hacker.verb).toContain(verb);
+        });
+      });
+
+      describe('verbed', () => {
+        it('should return a random past participle verb from array', () => {
+          const verb = faker.hacker.verbed();
+
+          expect(verb).toBeTypeOf('string');
+          expect(verb.length).toBeGreaterThan(0);
+          expect(faker.definitions.hacker.verbed).toContain(verb);
         });
       });
 
