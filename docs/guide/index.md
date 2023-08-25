@@ -15,7 +15,7 @@ This documentation only covers the JavaScript implementation of Faker.
 
 ## Environments
 
-You can run Faker in the browser, or within Node.js
+You can run Faker in the browser, or in Node.js.
 
 ## Installation
 
