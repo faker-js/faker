@@ -4,11 +4,11 @@
 
 Did you know Faker supports many different locales?  
 When using our default instance `import { faker } from '@faker-js/faker'` you get English data.
-However, we also provide pre-built instances for more than 50 other locales.
+However, we also provide pre-built instances for [more than 60 available locales](#available-locales).
+
+For example, you can import the German locale:
 
 `import { fakerDE as faker } from '@faker-js/faker'`
-
-See below for a list of available locales.
 
 ::: tip Note
 You can also build your own Faker instances, with custom locales/overwrites.
