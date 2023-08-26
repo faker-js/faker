@@ -27,6 +27,7 @@ export { default as en_IN } from './en_IN';
 export { default as en_NG } from './en_NG';
 export { default as en_US } from './en_US';
 export { default as en_ZA } from './en_ZA';
+export { default as eo } from './eo';
 export { default as es } from './es';
 export { default as es_MX } from './es_MX';
 export { default as fa } from './fa';
