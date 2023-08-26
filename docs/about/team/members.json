@@ -94,7 +94,8 @@
       "name": "Matt Mayer",
       "title": "Contributor",
       "desc": "",
-      "links": [{ "icon": "github", "link": "https://github.com/matthewmayer" }]
+      "links": [{ "icon": "github", "link": "https://github.com/matthewmayer" }],
+      "sponsor": "https://github.com/sponsors/matthewmayer"
     },
     {
       "avatar": "https://github.com/pkuczynski.png",
