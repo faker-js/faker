@@ -5,10 +5,12 @@
 import type { LocaleDefinition } from '../..';
 import location from './location';
 import metadata from './metadata';
+import person from './person';
 
 const da: LocaleDefinition = {
   location,
   metadata,
+  person,
 };
 
 export default da;
