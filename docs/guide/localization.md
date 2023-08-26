@@ -98,6 +98,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
 | `en_US`       | English (United States)   | `fakerEN_US`       |
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
+| `eo`          | Esperanto                 | `fakerEO`          |
 | `es`          | Spanish                   | `fakerES`          |
 | `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
 | `fa`          | Farsi/Persian             | `fakerFA`          |
