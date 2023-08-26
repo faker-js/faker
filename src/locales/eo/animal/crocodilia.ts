@@ -1,0 +1,18 @@
+export default [
+  'amerika krokodilo',
+  'aŭstralia krokodilo',
+  'ĉina aligatoro',
+  'filipina krokodilo',
+  'gavialo',
+  'kuba krokodilo',
+  'mara krokodilo',
+  'marĉa krokodilo',
+  'meksika krokodilo',
+  'misisipa aligatoro',
+  'nana krokodilo',
+  'nigra kajmano',
+  'nila krokodilo',
+  'okcidentafrika krokodilo',
+  'orinoka krokodilo',
+  'siama krokodilo',
+];
