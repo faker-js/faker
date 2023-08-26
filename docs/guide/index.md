@@ -15,7 +15,7 @@ This documentation only covers the JavaScript implementation of Faker.
 
 ## Environments
 
-You can run Faker in the browser, or in Node.js.
+You can run Faker in the browser, or in Node.js. Faker v8.0 requires Node.js version 14 or above. Both ESM and CommonJS imports are available.
 
 ## Installation
 
