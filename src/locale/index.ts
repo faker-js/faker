@@ -8,6 +8,7 @@ import { faker as fakerAR } from './ar';
 import { faker as fakerAZ } from './az';
 import { faker as fakerBASE } from './base';
 import { faker as fakerCS_CZ } from './cs_CZ';
+import { faker as fakerDA } from './da';
 import { faker as fakerDE } from './de';
 import { faker as fakerDE_AT } from './de_AT';
 import { faker as fakerDE_CH } from './de_CH';
@@ -26,6 +27,7 @@ import { faker as fakerEN_IN } from './en_IN';
 import { faker as fakerEN_NG } from './en_NG';
 import { faker as fakerEN_US } from './en_US';
 import { faker as fakerEN_ZA } from './en_ZA';
+import { faker as fakerEO } from './eo';
 import { faker as fakerES } from './es';
 import { faker as fakerES_MX } from './es_MX';
 import { faker as fakerFA } from './fa';
@@ -74,6 +76,7 @@ export {
   fakerAZ,
   fakerBASE,
   fakerCS_CZ,
+  fakerDA,
   fakerDE,
   fakerDE_AT,
   fakerDE_CH,
@@ -92,6 +95,7 @@ export {
   fakerEN_NG,
   fakerEN_US,
   fakerEN_ZA,
+  fakerEO,
   fakerES,
   fakerES_MX,
   fakerFA,
@@ -141,6 +145,7 @@ export const allFakers = {
   az: fakerAZ,
   base: fakerBASE,
   cs_CZ: fakerCS_CZ,
+  da: fakerDA,
   de: fakerDE,
   de_AT: fakerDE_AT,
   de_CH: fakerDE_CH,
@@ -159,6 +164,7 @@ export const allFakers = {
   en_NG: fakerEN_NG,
   en_US: fakerEN_US,
   en_ZA: fakerEN_ZA,
+  eo: fakerEO,
   es: fakerES,
   es_MX: fakerES_MX,
   fa: fakerFA,
