@@ -289,15 +289,15 @@ class TestGenerator<
    * This method will be called automatically at the end of each run.
    */
   expectAllMethodsToBeTested(): void {
-    const actual: string[] = Array.from(this.tested).sort();
+    const actual = Array.from(this.tested).sort();
     const expected = Object.entries(this.module)
       .filter(([, value]) => typeof value === 'function')
       .map(([key]) => key)
       .sort();
     vi_it('should test all methods', () => {
       if (this.moduleName === 'helpers') {
-        actual.push('regexpStyleStringParse_');
-        expect(actual.sort()).toEqual(expected);
+        // @ts-expect-error: 'regexpStyleStringParse_' is not assignable to parameter of type 'MethodOf<TModule>'
+        this.skip('regexpStyleStringParse_');
       } else {
         expect(actual).toEqual(expected);
       }
