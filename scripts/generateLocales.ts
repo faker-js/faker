@@ -281,20 +281,23 @@ async function updateLocaleFileHook(
  */
 async function normalizeLocaleFile(filePath: string) {
   function normalizeDataRecursive<T>(localeData: T): T {
+    if (typeof localeData !== 'object' || localeData === null) {
+      // we can only traverse object-like structs
+      return localeData;
+    }
+
     if (Array.isArray(localeData)) {
-      localeData = [...new Set(localeData)].slice(0, 1000).sort() as T;
-    } else if (typeof localeData === 'object') {
-      for (const key of Object.keys(localeData)) {
-        localeData[key] = normalizeDataRecursive(localeData[key]);
-      }
-    } else if (localeData === null) {
-      // not applicable
-    } else if (typeof localeData === 'string') {
-      // these should be template strings, so they are fine
-    } else if (typeof localeData === 'number') {
-      // these should be numbers in a min/max range
-    } else {
-      console.log('Unhandled content type:', filePath);
+      return (
+        [...new Set(localeData)]
+          // limit entries to 1k
+          .slice(0, 1000)
+          // sort entries alphabetically
+          .sort() as T
+      );
+    }
+
+    for (const key of Object.keys(localeData).sort()) {
+      localeData[key] = normalizeDataRecursive(localeData[key]);
     }
 
     return localeData;
