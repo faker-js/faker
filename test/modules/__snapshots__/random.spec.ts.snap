@@ -14,11 +14,11 @@ exports[`random > 42 > numeric > with length 1`] = `"37917"`;
 
 exports[`random > 42 > word 1`] = `"project"`;
 
-exports[`random > 42 > words > noArgs 1`] = `"Hybrid Shoes"`;
+exports[`random > 42 > words > noArgs 1`] = `"Hybrid Music"`;
 
-exports[`random > 42 > words > with length 1`] = `"project comics Neptunium Multigender violet"`;
+exports[`random > 42 > words > with length 1`] = `"project analyst Neptunium Multigender maroon"`;
 
-exports[`random > 42 > words > with length range 1`] = `"Hybrid Shoes"`;
+exports[`random > 42 > words > with length range 1`] = `"Hybrid Music"`;
 
 exports[`random > 1211 > alpha > noArgs 1`] = `"W"`;
 
@@ -32,13 +32,13 @@ exports[`random > 1211 > numeric > noArgs 1`] = `"9"`;
 
 exports[`random > 1211 > numeric > with length 1`] = `"94872"`;
 
-exports[`random > 1211 > word 1`] = `"gah"`;
+exports[`random > 1211 > word 1`] = `"hm"`;
 
-exports[`random > 1211 > words > noArgs 1`] = `"USB teal Batz"`;
+exports[`random > 1211 > words > noArgs 1`] = `"USB green Batz"`;
 
-exports[`random > 1211 > words > with length 1`] = `"gah strictly Bronze assail Manager"`;
+exports[`random > 1211 > words > with length 1`] = `"hm strictly Concrete accommodate Associate"`;
 
-exports[`random > 1211 > words > with length range 1`] = `"USB teal Batz Manager male"`;
+exports[`random > 1211 > words > with length range 1`] = `"USB green Batz Associate male"`;
 
 exports[`random > 1337 > alpha > noArgs 1`] = `"n"`;
 
@@ -52,10 +52,10 @@ exports[`random > 1337 > numeric > noArgs 1`] = `"2"`;
 
 exports[`random > 1337 > numeric > with length 1`] = `"25122"`;
 
-exports[`random > 1337 > word 1`] = `"Bespoke"`;
+exports[`random > 1337 > word 1`] = `"Luxurious"`;
 
 exports[`random > 1337 > words > noArgs 1`] = `"articulus"`;
 
-exports[`random > 1337 > words > with length 1`] = `"Bespoke connect French pixel Ball"`;
+exports[`random > 1337 > words > with length 1`] = `"Luxurious index French microchip Chicken"`;
 
-exports[`random > 1337 > words > with length range 1`] = `"articulus Incredible"`;
+exports[`random > 1337 > words > with length range 1`] = `"articulus Generic"`;
