@@ -13,4 +13,6 @@ export default [
   'yahoo.cn',
   'yahoo.com.cn',
   'yeah.net',
+  'foxmail.com',
+  'outlook.com',
 ];
