@@ -1,0 +1,18 @@
+export default [
+  'burgo',
+  'damo',
+  'fildo',
+  'forto',
+  'fuorto',
+  'grado',
+  'haveno',
+  'porto',
+  'stado',
+  'ŝiro',
+  'urbo',
+  'valo',
+  'viko',
+  'vilao',
+  'vilaĝo',
+  'vilo',
+];

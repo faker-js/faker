@@ -1,0 +1,1 @@
+export default ['mand', 'kvinde'];
