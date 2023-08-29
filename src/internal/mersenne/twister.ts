@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2022-2023 Faker
  *
  * This is a version of the original source code migrated to TypeScript and
@@ -68,17 +68,24 @@
  * Any feedback is very welcome.
  *   http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html
  *   email: m-mat @ math.sci.hiroshima-u.ac.jp (remove space)
+ */
+
+const N = 624;
+const M = 397;
+const MATRIX_A = 0x9908b0df; // constant vector a
+const UPPER_MASK = 0x80000000; // most significant w-r bits
+const LOWER_MASK = 0x7fffffff; // least significant r bits
+// moved outside of genrandInt32() by jwatte 2010-11-17; generate less garbage
+const mag01 = [0x0, MATRIX_A];
+
+/**
+ * Mersenne Twister 19937 generator.
  *
  * @internal
  */
 export default class MersenneTwister19937 {
-  private readonly N = 624;
-  private readonly M = 397;
-  private readonly MATRIX_A = 0x9908b0df; // constant vector a
-  private readonly UPPER_MASK = 0x80000000; // most significant w-r bits
-  private readonly LOWER_MASK = 0x7fffffff; // least significant r bits
-  private mt: number[] = new Array(this.N); // the array for the state vector
-  private mti = this.N + 1; // mti==N+1 means mt[N] is not initialized
+  private mt: number[] = new Array(N); // the array for the state vector
+  private mti = N + 1; // mti==N+1 means mt[N] is not initialized
 
   /**
    * Returns a 32-bits unsigned integer from an operand to which applied a bit
@@ -87,7 +94,7 @@ export default class MersenneTwister19937 {
    * @param n1 number to unsign
    */
   private unsigned32(n1: number): number {
-    return n1 < 0 ? (n1 ^ this.UPPER_MASK) + this.UPPER_MASK : n1;
+    return n1 < 0 ? (n1 ^ UPPER_MASK) + UPPER_MASK : n1;
   }
 
   /**
@@ -140,7 +147,7 @@ export default class MersenneTwister19937 {
    */
   initGenrand(seed: number): void {
     this.mt[0] = this.unsigned32(seed & 0xffffffff);
-    for (this.mti = 1; this.mti < this.N; this.mti++) {
+    for (this.mti = 1; this.mti < N; this.mti++) {
       this.mt[this.mti] =
         //(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
         this.addition32(
@@ -171,7 +178,7 @@ export default class MersenneTwister19937 {
     this.initGenrand(19650218);
     let i = 1;
     let j = 0;
-    let k = this.N > keyLength ? this.N : keyLength;
+    let k = N > keyLength ? N : keyLength;
     for (; k; k--) {
       // mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525)) + init_key[j] + j;
       this.mt[i] = this.addition32(
@@ -191,8 +198,8 @@ export default class MersenneTwister19937 {
       this.mt[i] = this.unsigned32(this.mt[i] & 0xffffffff);
       i++;
       j++;
-      if (i >= this.N) {
-        this.mt[0] = this.mt[this.N - 1];
+      if (i >= N) {
+        this.mt[0] = this.mt[N - 1];
         i = 1;
       }
 
@@ -201,7 +208,7 @@ export default class MersenneTwister19937 {
       }
     }
 
-    for (k = this.N - 1; k; k--) {
+    for (k = N - 1; k; k--) {
       // mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1566083941)) - i
       this.mt[i] = this.subtraction32(
         this.unsigned32(
@@ -216,8 +223,8 @@ export default class MersenneTwister19937 {
       // mt[i] &= 0xffffffff; for WORDSIZE > 32 machines
       this.mt[i] = this.unsigned32(this.mt[i] & 0xffffffff);
       i++;
-      if (i >= this.N) {
-        this.mt[0] = this.mt[this.N - 1];
+      if (i >= N) {
+        this.mt[0] = this.mt[N - 1];
         i = 1;
       }
     }
@@ -225,50 +232,47 @@ export default class MersenneTwister19937 {
     this.mt[0] = 0x80000000; // MSB is 1; assuring non-zero initial array
   }
 
-  // moved outside of genrandInt32() by jwatte 2010-11-17; generate less garbage
-  private mag01 = [0x0, this.MATRIX_A];
-
   /**
-   * Generates a random number on [0,2^32]-interval
+   * Generates a random number on [0,2^32)-interval.
    */
   genrandInt32(): number {
     let y: number;
 
-    if (this.mti >= this.N) {
+    if (this.mti >= N) {
       // generate N words at one time
       let kk: number;
 
       // if initGenrand() has not been called a default initial seed is used
-      if (this.mti === this.N + 1) {
+      if (this.mti === N + 1) {
         this.initGenrand(5489);
       }
 
-      for (kk = 0; kk < this.N - this.M; kk++) {
+      for (kk = 0; kk < N - M; kk++) {
         y = this.unsigned32(
-          (this.mt[kk] & this.UPPER_MASK) | (this.mt[kk + 1] & this.LOWER_MASK)
+          (this.mt[kk] & UPPER_MASK) | (this.mt[kk + 1] & LOWER_MASK)
         );
 
         this.mt[kk] = this.unsigned32(
-          this.mt[kk + this.M] ^ (y >>> 1) ^ this.mag01[y & 0x1]
+          this.mt[kk + M] ^ (y >>> 1) ^ mag01[y & 0x1]
         );
       }
 
-      for (; kk < this.N - 1; kk++) {
+      for (; kk < N - 1; kk++) {
         y = this.unsigned32(
-          (this.mt[kk] & this.UPPER_MASK) | (this.mt[kk + 1] & this.LOWER_MASK)
+          (this.mt[kk] & UPPER_MASK) | (this.mt[kk + 1] & LOWER_MASK)
         );
 
         this.mt[kk] = this.unsigned32(
-          this.mt[kk + (this.M - this.N)] ^ (y >>> 1) ^ this.mag01[y & 0x1]
+          this.mt[kk + (M - N)] ^ (y >>> 1) ^ mag01[y & 0x1]
         );
       }
 
       y = this.unsigned32(
-        (this.mt[this.N - 1] & this.UPPER_MASK) | (this.mt[0] & this.LOWER_MASK)
+        (this.mt[N - 1] & UPPER_MASK) | (this.mt[0] & LOWER_MASK)
       );
 
-      this.mt[this.N - 1] = this.unsigned32(
-        this.mt[this.M - 1] ^ (y >>> 1) ^ this.mag01[y & 0x1]
+      this.mt[N - 1] = this.unsigned32(
+        this.mt[M - 1] ^ (y >>> 1) ^ mag01[y & 0x1]
       );
 
       this.mti = 0;
@@ -286,40 +290,29 @@ export default class MersenneTwister19937 {
   }
 
   /**
-   * Generates a random number on [0,2^32]-interval
+   * Generates a random number on [0,2^53)-interval.
    */
-  genrandInt31(): number {
-    return this.genrandInt32() >>> 1;
+  genrandInt53(): number {
+    const upper = this.genrandInt32() >>> 5; // 32 - 5 = 27 bits
+    const lower = this.genrandInt32() >>> 6; // 32 - 6 = 26 bits
+
+    // Shift upper by 26 bits to the left, but js bit operations are always 32bit
+    return upper * 2 ** 26 + lower; // 27 + 26 = 53 bits
+  }
+
+  // These real versions are implemented by FakerJs based on previous code from Isaku Wada, 2002/01/09
+
+  /**
+   * Generates a random number [0,1) with 53-bit resolution.
+   */
+  genrandRes53CO(): number {
+    return this.genrandInt53() * (1.0 / 9007199254740992.0); // divided by 2^53
   }
 
   /**
-   * Generates a random number on [0,1]-real-interval
+   * Generates a random number [0,1] with 53-bit resolution.
    */
-  genrandReal1(): number {
-    return this.genrandInt32() * (1.0 / 4294967295.0); // divided by 2^32-1
+  genrandRes53CC(): number {
+    return this.genrandInt53() * (1.0 / 9007199254740991.0); // divided by 2^53-1
   }
-
-  /**
-   * Generates a random number on [0,1)-real-interval
-   */
-  genrandReal2(): number {
-    return this.genrandInt32() * (1.0 / 4294967296.0); // divided by 2^32
-  }
-
-  /**
-   * Generates a random number on (0,1)-real-interval
-   */
-  genrandReal3(): number {
-    return (this.genrandInt32() + 0.5) * (1.0 / 4294967296.0); // divided by 2^32
-  }
-
-  /**
-   * Generates a random number on [0,1) with 53-bit resolution
-   */
-  genrandRes53(): number {
-    const a = this.genrandInt32() >>> 5,
-      b = this.genrandInt32() >>> 6;
-    return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
-  }
-  // These real versions are due to Isaku Wada, 2002/01/09
 }
