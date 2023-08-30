@@ -597,11 +597,3 @@ exports[`date > deprecated > 1337 > soon > with only number refDate 1`] = `2021-
 exports[`date > deprecated > 1337 > soon > with only string refDate 1`] = `2021-02-21T23:26:35.381Z`;
 
 exports[`date > deprecated > 1337 > soon > with value 1`] = `2021-02-24T08:02:25.768Z`;
-
-exports[`date > refDateSource > should use the refDateSource when refDate is not provided (with function) 1`] = `2019-02-25T21:52:41.819Z`;
-
-exports[`date > refDateSource > should use the refDateSource when refDate is not provided (with function) 2`] = `2019-02-25T21:52:41.819Z`;
-
-exports[`date > refDateSource > should use the refDateSource when refDate is not provided (with value) 1`] = `2019-02-25T21:52:41.819Z`;
-
-exports[`date > refDateSource > should use the refDateSource when refDate is not provided (with value) 2`] = `2019-02-25T21:52:41.819Z`;

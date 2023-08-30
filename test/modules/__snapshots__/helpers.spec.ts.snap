@@ -683,13 +683,3 @@ exports[`helpers > 1337 > uniqueArray > with array 1`] = `
 exports[`helpers > 1337 > weightedArrayElement > with array 1`] = `"sunny"`;
 
 exports[`helpers > 1337 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
-
-exports[`helpers > uniqueArray() > works as expected when seeded 1`] = `
-[
-  "j",
-  "a",
-  "g",
-  "i",
-  "f",
-]
-`;

@@ -1253,7 +1253,15 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
       const length = 5;
       faker.seed(100);
       const unique = faker.helpers.uniqueArray(input, length);
-      expect(unique).toMatchSnapshot();
+      expect(unique).toMatchInlineSnapshot(`
+        [
+          "j",
+          "a",
+          "g",
+          "i",
+          "f",
+        ]
+      `);
     });
   });
 
