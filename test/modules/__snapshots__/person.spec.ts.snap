@@ -1,18 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`person > 42 > bio 1`] = `"traveler, philosopher, model"`;
+exports[`person > 42 > bio 1`] = `"traveler, person, model 🤌🏼"`;
 
 exports[`person > 42 > firstName > noArgs 1`] = `"Garnet"`;
 
 exports[`person > 42 > firstName > with sex 1`] = `"Glen"`;
 
-exports[`person > 42 > fullName > noArgs 1`] = `"Lorene Miller"`;
+exports[`person > 42 > fullName > noArgs 1`] = `"Mandy Miller"`;
 
 exports[`person > 42 > fullName > with all (sex) 1`] = `"John Doe"`;
 
 exports[`person > 42 > fullName > with firstName 1`] = `"John Reynolds-Miller"`;
 
-exports[`person > 42 > fullName > with lastName 1`] = `"Lorene Doe"`;
+exports[`person > 42 > fullName > with lastName 1`] = `"Mandy Doe"`;
 
 exports[`person > 42 > fullName > with sex 1`] = `"Melanie Reynolds-Miller"`;
 
@@ -22,7 +22,7 @@ exports[`person > 42 > jobArea 1`] = `"Identity"`;
 
 exports[`person > 42 > jobDescriptor 1`] = `"National"`;
 
-exports[`person > 42 > jobTitle 1`] = `"National Usability Producer"`;
+exports[`person > 42 > jobTitle 1`] = `"National Factors Producer"`;
 
 exports[`person > 42 > jobType 1`] = `"Coordinator"`;
 
@@ -50,11 +50,11 @@ exports[`person > 42 > suffix > with sex 1`] = `"III"`;
 
 exports[`person > 42 > zodiacSign 1`] = `"Gemini"`;
 
-exports[`person > 1211 > bio 1`] = `"teletype devotee, writer 🎱"`;
+exports[`person > 1211 > bio 1`] = `"teletype devotee, writer"`;
 
-exports[`person > 1211 > firstName > noArgs 1`] = `"Tito"`;
+exports[`person > 1211 > firstName > noArgs 1`] = `"Tina"`;
 
-exports[`person > 1211 > firstName > with sex 1`] = `"Percy"`;
+exports[`person > 1211 > firstName > with sex 1`] = `"Clay"`;
 
 exports[`person > 1211 > fullName > noArgs 1`] = `"Darrel Zieme"`;
 
@@ -64,17 +64,17 @@ exports[`person > 1211 > fullName > with firstName 1`] = `"Dr. John Fahey MD"`;
 
 exports[`person > 1211 > fullName > with lastName 1`] = `"Darrel Doe"`;
 
-exports[`person > 1211 > fullName > with sex 1`] = `"Miss Patti Fahey MD"`;
+exports[`person > 1211 > fullName > with sex 1`] = `"Miss Kate Fahey MD"`;
 
 exports[`person > 1211 > gender 1`] = `"Trigender"`;
 
-exports[`person > 1211 > jobArea 1`] = `"Factors"`;
+exports[`person > 1211 > jobArea 1`] = `"Interactions"`;
 
 exports[`person > 1211 > jobDescriptor 1`] = `"Chief"`;
 
-exports[`person > 1211 > jobTitle 1`] = `"Chief Interactions Manager"`;
+exports[`person > 1211 > jobTitle 1`] = `"Chief Accountability Manager"`;
 
-exports[`person > 1211 > jobType 1`] = `"Representative"`;
+exports[`person > 1211 > jobType 1`] = `"Agent"`;
 
 exports[`person > 1211 > lastName > noArgs 1`] = `"Trantow"`;
 
@@ -94,11 +94,11 @@ exports[`person > 1211 > sex > with sex 1`] = `"male"`;
 
 exports[`person > 1211 > sexType 1`] = `"male"`;
 
-exports[`person > 1211 > suffix > noArgs 1`] = `"DVM"`;
+exports[`person > 1211 > suffix > noArgs 1`] = `"PhD"`;
 
-exports[`person > 1211 > suffix > with sex 1`] = `"DVM"`;
+exports[`person > 1211 > suffix > with sex 1`] = `"PhD"`;
 
-exports[`person > 1211 > zodiacSign 1`] = `"Capricorn"`;
+exports[`person > 1211 > zodiacSign 1`] = `"Sagittarius"`;
 
 exports[`person > 1337 > bio 1`] = `"creator, engineer, friend"`;
 
@@ -116,13 +116,13 @@ exports[`person > 1337 > fullName > with lastName 1`] = `"Marilyn Doe"`;
 
 exports[`person > 1337 > fullName > with sex 1`] = `"Esther Gottlieb"`;
 
-exports[`person > 1337 > gender 1`] = `"Demigender"`;
+exports[`person > 1337 > gender 1`] = `"F2M"`;
 
 exports[`person > 1337 > jobArea 1`] = `"Functionality"`;
 
 exports[`person > 1337 > jobDescriptor 1`] = `"Future"`;
 
-exports[`person > 1337 > jobTitle 1`] = `"Future Marketing Engineer"`;
+exports[`person > 1337 > jobTitle 1`] = `"Future Directives Specialist"`;
 
 exports[`person > 1337 > jobType 1`] = `"Engineer"`;
 
@@ -144,8 +144,8 @@ exports[`person > 1337 > sex > with sex 1`] = `"female"`;
 
 exports[`person > 1337 > sexType 1`] = `"female"`;
 
-exports[`person > 1337 > suffix > noArgs 1`] = `"I"`;
+exports[`person > 1337 > suffix > noArgs 1`] = `"II"`;
 
-exports[`person > 1337 > suffix > with sex 1`] = `"I"`;
+exports[`person > 1337 > suffix > with sex 1`] = `"II"`;
 
 exports[`person > 1337 > zodiacSign 1`] = `"Taurus"`;

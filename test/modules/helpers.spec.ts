@@ -478,14 +478,14 @@ describe('helpers', () => {
             const input = Array.from({ length }, (_, i) => i % 10);
             const occurrences = Array.from({ length: 10 }, () => 0);
 
-            for (let i = 0; i < 1000; i++) {
+            for (let i = 0; i < 10000; i++) {
               const [result] = faker.helpers.arrayElements(input, 1);
               occurrences[result]++;
             }
 
             for (const occurrence of occurrences) {
-              expect(occurrence).toBeGreaterThanOrEqual(50);
-              expect(occurrence).toBeLessThanOrEqual(150);
+              expect(occurrence).toBeGreaterThanOrEqual(500);
+              expect(occurrence).toBeLessThanOrEqual(1500);
             }
           }
         );

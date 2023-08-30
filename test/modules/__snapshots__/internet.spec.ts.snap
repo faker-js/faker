@@ -2,17 +2,17 @@
 
 exports[`internet > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
 
-exports[`internet > 42 > color > noArgs 1`] = `"#307a5e"`;
+exports[`internet > 42 > color > noArgs 1`] = `"#30795d"`;
 
-exports[`internet > 42 > color > with all options 1`] = `"#62ac90"`;
+exports[`internet > 42 > color > with all options 1`] = `"#62ab8f"`;
 
-exports[`internet > 42 > color > with blueBase option 1`] = `"#307a90"`;
+exports[`internet > 42 > color > with blueBase option 1`] = `"#30798f"`;
 
-exports[`internet > 42 > color > with greenBase option 1`] = `"#30ac5e"`;
+exports[`internet > 42 > color > with greenBase option 1`] = `"#30ab5d"`;
 
-exports[`internet > 42 > color > with legacy color base 1`] = `"#62ac90"`;
+exports[`internet > 42 > color > with legacy color base 1`] = `"#62ab8f"`;
 
-exports[`internet > 42 > color > with redBase option 1`] = `"#627a5e"`;
+exports[`internet > 42 > color > with redBase option 1`] = `"#62795d"`;
 
 exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet15"`;
 
@@ -26,7 +26,7 @@ exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müll
 
 exports[`internet > 42 > displayName > with all option 1`] = `"Jane_Doe"`;
 
-exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane_Wiegand15"`;
+exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane_Wiegand"`;
 
 exports[`internet > 42 > displayName > with lastName option 1`] = `"Garnet_Doe59"`;
 
@@ -38,15 +38,15 @@ exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
 exports[`internet > 42 > domainWord 1`] = `"hasty-vegetable"`;
 
-exports[`internet > 42 > email > noArgs 1`] = `"Garnet5@gmail.com"`;
+exports[`internet > 42 > email > noArgs 1`] = `"Garnet6@gmail.com"`;
 
-exports[`internet > 42 > email > with all options 1`] = `"Jane_Doe@fakerjs.dev"`;
+exports[`internet > 42 > email > with all options 1`] = `"Jane=Doe@fakerjs.dev"`;
 
-exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Garnet5@gmail.com"`;
+exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Garnet6@gmail.com"`;
 
-exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Wiegand@hotmail.com"`;
+exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Wiegand@yahoo.com"`;
 
-exports[`internet > 42 > email > with lastName option 1`] = `"Garnet_Doe15@hotmail.com"`;
+exports[`internet > 42 > email > with lastName option 1`] = `"Garnet_Doe@hotmail.com"`;
 
 exports[`internet > 42 > email > with legacy names 1`] = `"Jane_Doe59@yahoo.com"`;
 
@@ -56,19 +56,19 @@ exports[`internet > 42 > email > with legacy provider 1`] = `"Garnet15@fakerjs.d
 
 exports[`internet > 42 > email > with provider option 1`] = `"Garnet15@fakerjs.dev"`;
 
-exports[`internet > 42 > emoji > noArgs 1`] = `"🌾"`;
+exports[`internet > 42 > emoji > noArgs 1`] = `"🌵"`;
 
 exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
 
-exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Garnet5@example.org"`;
+exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Garnet6@example.org"`;
 
 exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane_Doe59@example.com"`;
 
-exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Garnet5@example.org"`;
+exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Garnet6@example.org"`;
 
-exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Wiegand@example.net"`;
+exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Wiegand@example.com"`;
 
-exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Garnet_Doe15@example.net"`;
+exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Garnet_Doe@example.net"`;
 
 exports[`internet > 42 > exampleEmail > with legacy names 1`] = `"Jane_Doe59@example.com"`;
 
@@ -80,49 +80,49 @@ exports[`internet > 42 > httpStatusCode > noArgs 1`] = `226`;
 
 exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
 
-exports[`internet > 42 > ip 1`] = `"243.187.153.39"`;
+exports[`internet > 42 > ip 1`] = `"242.187.153.40"`;
 
-exports[`internet > 42 > ipv4 1`] = `"95.243.187.153"`;
+exports[`internet > 42 > ipv4 1`] = `"96.242.187.153"`;
 
-exports[`internet > 42 > ipv6 1`] = `"8ead:331d:df0f:c444:6b96:d368:ab4b:d1d3"`;
+exports[`internet > 42 > ipv6 1`] = `"8efd:331c:df0e:b444:6b96:d368:aa4b:c1d4"`;
 
-exports[`internet > 42 > mac > noArgs 1`] = `"5f:b9:22:0d:9b:0f"`;
+exports[`internet > 42 > mac > noArgs 1`] = `"6e:b9:22:1d:9b:0f"`;
 
-exports[`internet > 42 > mac > with separator 1`] = `"5f:b9:22:0d:9b:0f"`;
+exports[`internet > 42 > mac > with separator 1`] = `"6e:b9:22:1d:9b:0f"`;
 
-exports[`internet > 42 > mac > with separator option 1`] = `"5f-b9-22-0d-9b-0f"`;
+exports[`internet > 42 > mac > with separator option 1`] = `"6e-b9-22-1d-9b-0f"`;
 
-exports[`internet > 42 > password > noArgs 1`] = `"DfYsZdp522RJCLk"`;
+exports[`internet > 42 > password > noArgs 1`] = `"DzfY00rZdo522RJ"`;
 
-exports[`internet > 42 > password > with legacy length 1`] = `"DfYsZdp522"`;
+exports[`internet > 42 > password > with legacy length 1`] = `"DzfY00rZdo"`;
 
-exports[`internet > 42 > password > with legacy length and memorable 1`] = `"DfYsZdp522"`;
+exports[`internet > 42 > password > with legacy length and memorable 1`] = `"DzfY00rZdo"`;
 
-exports[`internet > 42 > password > with legacy length, memorable and pattern 1`] = `"5223192338"`;
+exports[`internet > 42 > password > with legacy length, memorable and pattern 1`] = `"0052241923"`;
 
-exports[`internet > 42 > password > with legacy length, memorable, pattern and prefix 1`] = `"test522319"`;
+exports[`internet > 42 > password > with legacy length, memorable, pattern and prefix 1`] = `"test005224"`;
 
-exports[`internet > 42 > password > with length option 1`] = `"DfYsZdp522"`;
+exports[`internet > 42 > password > with length option 1`] = `"DzfY00rZdo"`;
 
-exports[`internet > 42 > password > with length, memorable, pattern and prefix option 1`] = `"test522319"`;
+exports[`internet > 42 > password > with length, memorable, pattern and prefix option 1`] = `"test005224"`;
 
-exports[`internet > 42 > password > with memorable option 1`] = `"DfYsZdp522RJCLk"`;
+exports[`internet > 42 > password > with memorable option 1`] = `"DzfY00rZdo522RJ"`;
 
-exports[`internet > 42 > password > with pattern option 1`] = `"522319233860266"`;
+exports[`internet > 42 > password > with pattern option 1`] = `"005224192348703"`;
 
-exports[`internet > 42 > password > with prefix option 1`] = `"testDfYsZdp522R"`;
+exports[`internet > 42 > password > with prefix option 1`] = `"testDzfY00rZdo5"`;
 
 exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url > noArgs 1`] = `"https://wee-refrigerator.name/"`;
+exports[`internet > 42 > url > noArgs 1`] = `"https://wee-refreshments.name/"`;
 
 exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-vegetable.net/"`;
 
 exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-vegetable.net"`;
 
-exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux i686; rv:13.5) Gecko/20100101 Firefox/13.5.1"`;
+exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux i686; rv:12.5) Gecko/20100101 Firefox/12.5.1"`;
 
 exports[`internet > 42 > userName > noArgs 1`] = `"Garnet15"`;
 
@@ -136,7 +136,7 @@ exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller"`;
 
 exports[`internet > 42 > userName > with all option 1`] = `"Jane_Doe"`;
 
-exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Wiegand15"`;
+exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Wiegand"`;
 
 exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe59"`;
 
@@ -144,19 +144,19 @@ exports[`internet > 42 > userName > with legacy names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
-exports[`internet > 1211 > color > noArgs 1`] = `"#77721c"`;
+exports[`internet > 1211 > color > noArgs 1`] = `"#77721d"`;
 
-exports[`internet > 1211 > color > with all options 1`] = `"#a9a44e"`;
+exports[`internet > 1211 > color > with all options 1`] = `"#a9a44f"`;
 
-exports[`internet > 1211 > color > with blueBase option 1`] = `"#77724e"`;
+exports[`internet > 1211 > color > with blueBase option 1`] = `"#77724f"`;
 
-exports[`internet > 1211 > color > with greenBase option 1`] = `"#77a41c"`;
+exports[`internet > 1211 > color > with greenBase option 1`] = `"#77a41d"`;
 
-exports[`internet > 1211 > color > with legacy color base 1`] = `"#a9a44e"`;
+exports[`internet > 1211 > color > with legacy color base 1`] = `"#a9a44f"`;
 
-exports[`internet > 1211 > color > with redBase option 1`] = `"#a9721c"`;
+exports[`internet > 1211 > color > with redBase option 1`] = `"#a9721d"`;
 
-exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Fahey68"`;
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Tina_Fahey68"`;
 
 exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽_陳22"`;
 
@@ -170,47 +170,47 @@ exports[`internet > 1211 > displayName > with all option 1`] = `"Jane_Doe22"`;
 
 exports[`internet > 1211 > displayName > with firstName option 1`] = `"Jane99"`;
 
-exports[`internet > 1211 > displayName > with lastName option 1`] = `"Tito.Doe99"`;
+exports[`internet > 1211 > displayName > with lastName option 1`] = `"Tina.Doe99"`;
 
 exports[`internet > 1211 > displayName > with legacy names 1`] = `"Jane_Doe22"`;
 
-exports[`internet > 1211 > domainName 1`] = `"vicious-teletype.biz"`;
+exports[`internet > 1211 > domainName 1`] = `"vibrant-teletype.biz"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
-exports[`internet > 1211 > domainWord 1`] = `"vicious-teletype"`;
+exports[`internet > 1211 > domainWord 1`] = `"vibrant-teletype"`;
 
-exports[`internet > 1211 > email > noArgs 1`] = `"Tito_Fahey76@hotmail.com"`;
+exports[`internet > 1211 > email > noArgs 1`] = `"Tina_Fahey@hotmail.com"`;
 
 exports[`internet > 1211 > email > with all options 1`] = `"Jane_Doe22@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Tito^Fahey76@hotmail.com"`;
+exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Tina_Fahey@hotmail.com"`;
 
 exports[`internet > 1211 > email > with firstName option 1`] = `"Jane_Trantow68@gmail.com"`;
 
-exports[`internet > 1211 > email > with lastName option 1`] = `"Tito99@hotmail.com"`;
+exports[`internet > 1211 > email > with lastName option 1`] = `"Tina99@hotmail.com"`;
 
 exports[`internet > 1211 > email > with legacy names 1`] = `"Jane.Doe99@hotmail.com"`;
 
 exports[`internet > 1211 > email > with legacy names and provider 1`] = `"Jane_Doe22@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with legacy provider 1`] = `"Tito_Fahey68@fakerjs.dev"`;
+exports[`internet > 1211 > email > with legacy provider 1`] = `"Tina_Fahey68@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with provider option 1`] = `"Tito_Fahey68@fakerjs.dev"`;
+exports[`internet > 1211 > email > with provider option 1`] = `"Tina_Fahey68@fakerjs.dev"`;
 
-exports[`internet > 1211 > emoji > noArgs 1`] = `"🇹🇳"`;
+exports[`internet > 1211 > emoji > noArgs 1`] = `"🟧"`;
 
 exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Tito_Fahey76@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Tina_Fahey@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane.Doe99@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Tito^Fahey76@example.net"`;
+exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Tina_Fahey@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane_Trantow68@example.org"`;
 
-exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Tito99@example.net"`;
+exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Tina99@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with legacy names 1`] = `"Jane.Doe99@example.net"`;
 
@@ -222,37 +222,37 @@ exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `510`;
 
 exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
-exports[`internet > 1211 > ip 1`] = `"d4fe:fa7f:baec:9dc4:c48f:a8eb:f46f:b7c8"`;
+exports[`internet > 1211 > ip 1`] = `"d5fe:ea7f:baeb:9cc5:c48f:a8eb:e56f:b7c8"`;
 
-exports[`internet > 1211 > ipv4 1`] = `"237.228.57.255"`;
+exports[`internet > 1211 > ipv4 1`] = `"237.228.58.254"`;
 
-exports[`internet > 1211 > ipv6 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
+exports[`internet > 1211 > ipv6 1`] = `"dd5f:eea7:fbae:b9cc:5c48:fa8e:be56:fb7c"`;
 
-exports[`internet > 1211 > mac > noArgs 1`] = `"ee:3f:aa:c5:bd:ca"`;
+exports[`internet > 1211 > mac > noArgs 1`] = `"ed:3f:aa:b5:ac:ca"`;
 
-exports[`internet > 1211 > mac > with separator 1`] = `"ee:3f:aa:c5:bd:ca"`;
+exports[`internet > 1211 > mac > with separator 1`] = `"ed:3f:aa:b5:ac:ca"`;
 
-exports[`internet > 1211 > mac > with separator option 1`] = `"ee-3f-aa-c5-bd-ca"`;
+exports[`internet > 1211 > mac > with separator option 1`] = `"ed-3f-aa-b5-ac-ca"`;
 
-exports[`internet > 1211 > password > noArgs 1`] = `"yu6biBbnj_oJsr5"`;
+exports[`internet > 1211 > password > noArgs 1`] = `"xu6aiBbmi_oJsr6"`;
 
-exports[`internet > 1211 > password > with legacy length 1`] = `"yu6biBbnj_"`;
+exports[`internet > 1211 > password > with legacy length 1`] = `"xu6aiBbmi_"`;
 
-exports[`internet > 1211 > password > with legacy length and memorable 1`] = `"yu6biBbnj_"`;
+exports[`internet > 1211 > password > with legacy length and memorable 1`] = `"xu6aiBbmi_"`;
 
-exports[`internet > 1211 > password > with legacy length, memorable and pattern 1`] = `"6536184255"`;
+exports[`internet > 1211 > password > with legacy length, memorable and pattern 1`] = `"6646185256"`;
 
-exports[`internet > 1211 > password > with legacy length, memorable, pattern and prefix 1`] = `"test653618"`;
+exports[`internet > 1211 > password > with legacy length, memorable, pattern and prefix 1`] = `"test664618"`;
 
-exports[`internet > 1211 > password > with length option 1`] = `"yu6biBbnj_"`;
+exports[`internet > 1211 > password > with length option 1`] = `"xu6aiBbmi_"`;
 
-exports[`internet > 1211 > password > with length, memorable, pattern and prefix option 1`] = `"test653618"`;
+exports[`internet > 1211 > password > with length, memorable, pattern and prefix option 1`] = `"test664618"`;
 
-exports[`internet > 1211 > password > with memorable option 1`] = `"yu6biBbnj_oJsr5"`;
+exports[`internet > 1211 > password > with memorable option 1`] = `"xu6aiBbmi_oJsr6"`;
 
-exports[`internet > 1211 > password > with pattern option 1`] = `"653618425553389"`;
+exports[`internet > 1211 > password > with pattern option 1`] = `"664618525653489"`;
 
-exports[`internet > 1211 > password > with prefix option 1`] = `"testyu6biBbnj_o"`;
+exports[`internet > 1211 > password > with prefix option 1`] = `"testxu6aiBbmi_o"`;
 
 exports[`internet > 1211 > port 1`] = `60851`;
 
@@ -260,13 +260,13 @@ exports[`internet > 1211 > protocol 1`] = `"https"`;
 
 exports[`internet > 1211 > url > noArgs 1`] = `"https://unknown-cruise.org"`;
 
-exports[`internet > 1211 > url > with slash appended 1`] = `"https://vicious-teletype.biz/"`;
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://vibrant-teletype.biz/"`;
 
-exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vicious-teletype.biz"`;
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vibrant-teletype.biz"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Fahey68"`;
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tina_Fahey68"`;
 
 exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d_tpv22"`;
 
@@ -280,7 +280,7 @@ exports[`internet > 1211 > userName > with all option 1`] = `"Jane_Doe22"`;
 
 exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane99"`;
 
-exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito.Doe99"`;
+exports[`internet > 1211 > userName > with lastName option 1`] = `"Tina.Doe99"`;
 
 exports[`internet > 1211 > userName > with legacy names 1`] = `"Jane_Doe22"`;
 
@@ -300,41 +300,41 @@ exports[`internet > 1337 > color > with redBase option 1`] = `"#531423"`;
 
 exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn.Gottlieb"`;
 
-exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽15"`;
+exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽.陳"`;
 
-exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор15"`;
+exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор.Достоевский"`;
 
-exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane15"`;
+exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane.Doe"`;
 
-exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene15"`;
+exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene.Müller"`;
 
-exports[`internet > 1337 > displayName > with all option 1`] = `"Jane15"`;
+exports[`internet > 1337 > displayName > with all option 1`] = `"Jane.Doe"`;
 
-exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane45"`;
+exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane.Cronin"`;
 
-exports[`internet > 1337 > displayName > with lastName option 1`] = `"Devyn27"`;
+exports[`internet > 1337 > displayName > with lastName option 1`] = `"Devyn28"`;
 
-exports[`internet > 1337 > displayName > with legacy names 1`] = `"Jane15"`;
+exports[`internet > 1337 > displayName > with legacy names 1`] = `"Jane.Doe"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fair-chow.biz"`;
+exports[`internet > 1337 > domainName 1`] = `"faithful-chowder.biz"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
-exports[`internet > 1337 > domainWord 1`] = `"fair-chow"`;
+exports[`internet > 1337 > domainWord 1`] = `"faithful-chowder"`;
 
-exports[`internet > 1337 > email > noArgs 1`] = `"Devyn51@yahoo.com"`;
+exports[`internet > 1337 > email > noArgs 1`] = `"Devyn_Gottlieb@yahoo.com"`;
 
-exports[`internet > 1337 > email > with all options 1`] = `"Jane15@fakerjs.dev"`;
+exports[`internet > 1337 > email > with all options 1`] = `"Jane.Doe@fakerjs.dev"`;
 
-exports[`internet > 1337 > email > with allowSpecialCharacters option 1`] = `"Devyn51@yahoo.com"`;
+exports[`internet > 1337 > email > with allowSpecialCharacters option 1`] = `"Devyn~Gottlieb@yahoo.com"`;
 
-exports[`internet > 1337 > email > with firstName option 1`] = `"Jane.Cronin@gmail.com"`;
+exports[`internet > 1337 > email > with firstName option 1`] = `"Jane.Cronin@yahoo.com"`;
 
-exports[`internet > 1337 > email > with lastName option 1`] = `"Devyn45@gmail.com"`;
+exports[`internet > 1337 > email > with lastName option 1`] = `"Devyn.Doe@gmail.com"`;
 
-exports[`internet > 1337 > email > with legacy names 1`] = `"Jane27@gmail.com"`;
+exports[`internet > 1337 > email > with legacy names 1`] = `"Jane28@yahoo.com"`;
 
-exports[`internet > 1337 > email > with legacy names and provider 1`] = `"Jane15@fakerjs.dev"`;
+exports[`internet > 1337 > email > with legacy names and provider 1`] = `"Jane.Doe@fakerjs.dev"`;
 
 exports[`internet > 1337 > email > with legacy provider 1`] = `"Devyn.Gottlieb@fakerjs.dev"`;
 
@@ -344,19 +344,19 @@ exports[`internet > 1337 > emoji > noArgs 1`] = `"🧏🏾‍♂️"`;
 
 exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Devyn51@example.com"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Devyn_Gottlieb@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane28@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Devyn51@example.com"`;
+exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Devyn~Gottlieb@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane.Cronin@example.org"`;
+exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane.Cronin@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Devyn45@example.org"`;
+exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Devyn.Doe@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with legacy names 1`] = `"Jane27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with legacy names 1`] = `"Jane28@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with legacy names and options 1`] = `"Jane27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with legacy names and options 1`] = `"Jane28@example.com"`;
 
 exports[`internet > 1337 > httpMethod 1`] = `"POST"`;
 
@@ -368,60 +368,60 @@ exports[`internet > 1337 > ip 1`] = `"40.71.117.82"`;
 
 exports[`internet > 1337 > ipv4 1`] = `"67.40.71.117"`;
 
-exports[`internet > 1337 > ipv6 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
+exports[`internet > 1337 > ipv6 1`] = `"636a:7b6e:f28d:3f9b:b89c:a46e:a494:bb4e"`;
 
-exports[`internet > 1337 > mac > noArgs 1`] = `"42:47:58:4f:b1:6a"`;
+exports[`internet > 1337 > mac > noArgs 1`] = `"42:47:58:4f:b2:69"`;
 
-exports[`internet > 1337 > mac > with separator 1`] = `"42:47:58:4f:b1:6a"`;
+exports[`internet > 1337 > mac > with separator 1`] = `"42:47:58:4f:b2:69"`;
 
-exports[`internet > 1337 > mac > with separator option 1`] = `"42-47-58-4f-b1-6a"`;
+exports[`internet > 1337 > mac > with separator option 1`] = `"42-47-58-4f-b2-69"`;
 
-exports[`internet > 1337 > password > noArgs 1`] = `"90LR9fEKllCHXi2"`;
+exports[`internet > 1337 > password > noArgs 1`] = `"0LRfEKklCHXh3P2"`;
 
-exports[`internet > 1337 > password > with legacy length 1`] = `"90LR9fEKll"`;
+exports[`internet > 1337 > password > with legacy length 1`] = `"0LRfEKklCH"`;
 
-exports[`internet > 1337 > password > with legacy length and memorable 1`] = `"90LR9fEKll"`;
+exports[`internet > 1337 > password > with legacy length and memorable 1`] = `"0LRfEKklCH"`;
 
-exports[`internet > 1337 > password > with legacy length, memorable and pattern 1`] = `"9092132093"`;
+exports[`internet > 1337 > password > with legacy length, memorable and pattern 1`] = `"0324209302"`;
 
-exports[`internet > 1337 > password > with legacy length, memorable, pattern and prefix 1`] = `"test909213"`;
+exports[`internet > 1337 > password > with legacy length, memorable, pattern and prefix 1`] = `"test032420"`;
 
-exports[`internet > 1337 > password > with length option 1`] = `"90LR9fEKll"`;
+exports[`internet > 1337 > password > with length option 1`] = `"0LRfEKklCH"`;
 
-exports[`internet > 1337 > password > with length, memorable, pattern and prefix option 1`] = `"test909213"`;
+exports[`internet > 1337 > password > with length, memorable, pattern and prefix option 1`] = `"test032420"`;
 
-exports[`internet > 1337 > password > with memorable option 1`] = `"90LR9fEKllCHXi2"`;
+exports[`internet > 1337 > password > with memorable option 1`] = `"0LRfEKklCHXh3P2"`;
 
-exports[`internet > 1337 > password > with pattern option 1`] = `"909213209301777"`;
+exports[`internet > 1337 > password > with pattern option 1`] = `"032420930277797"`;
 
-exports[`internet > 1337 > password > with prefix option 1`] = `"test90LR9fEKllC"`;
+exports[`internet > 1337 > password > with prefix option 1`] = `"test0LRfEKklCHX"`;
 
 exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url > noArgs 1`] = `"https://crushing-dough.info/"`;
+exports[`internet > 1337 > url > noArgs 1`] = `"https://cuddly-dough.info/"`;
 
-exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-chow.biz/"`;
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://faithful-chowder.biz/"`;
 
-exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-chow.biz"`;
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://faithful-chowder.biz"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows NT 5.3; WOW64; rv:8.4) Gecko/20100101 Firefox/8.4.3"`;
 
 exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn.Gottlieb"`;
 
-exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d15"`;
+exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d.tpv"`;
 
-exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor15"`;
+exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii"`;
 
-exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane15"`;
+exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane.Doe"`;
 
-exports[`internet > 1337 > userName > with accented names 1`] = `"Helene15"`;
+exports[`internet > 1337 > userName > with accented names 1`] = `"Helene.Muller"`;
 
-exports[`internet > 1337 > userName > with all option 1`] = `"Jane15"`;
+exports[`internet > 1337 > userName > with all option 1`] = `"Jane.Doe"`;
 
-exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane45"`;
+exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane.Cronin"`;
 
-exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn27"`;
+exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn28"`;
 
-exports[`internet > 1337 > userName > with legacy names 1`] = `"Jane15"`;
+exports[`internet > 1337 > userName > with legacy names 1`] = `"Jane.Doe"`;

@@ -83,11 +83,10 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const mersenne: Mersenne =
-      // @ts-expect-error: access private member field
-      this.faker._mersenne;
+    // @ts-expect-error: access private member field
+    const mersenne: Mersenne = this.faker._mersenne;
     const real = mersenne.next();
-    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
+    return Math.round(real * (effectiveMax - effectiveMin) + effectiveMin);
   }
 
   /**
