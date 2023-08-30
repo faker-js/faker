@@ -15,8 +15,8 @@ describe('Twister', () => {
       expect(actual).toBe(0);
     });
 
-    it.todo('should be able to return 2^32-1', () => {
-      const twister = newTwister(1337);
+    it('should be able to return 2^32-1', () => {
+      const twister = newTwister(1350757185267805.8);
       const actual = twister.genrandInt32();
       expect(actual).toBe(2 ** 32 - 1);
     });
