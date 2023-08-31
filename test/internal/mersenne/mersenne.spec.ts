@@ -3,13 +3,6 @@ import type { Mersenne } from '../../../src/internal/mersenne/mersenne';
 import mersenneFn from '../../../src/internal/mersenne/mersenne';
 import { seededRuns } from '../../support/seededRuns';
 import { times } from '../../support/times';
-import { TWISTER_CO_MAX_VALUE } from './twister.spec';
-
-// Re-exported because the value might change in the future
-/**
- * The maximum value that can be returned by `next()`.
- */
-export const MERSENNE_MAX_VALUE = TWISTER_CO_MAX_VALUE;
 
 const NON_SEEDED_BASED_RUN = 25;
 

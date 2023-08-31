@@ -1,10 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import Twister from '../../../src/internal/mersenne/twister';
-
-/**
- * The maximum value that can be returned by `genrandRes53CO`.
- */
-export const TWISTER_CO_MAX_VALUE = 0.9999999999999999;
+import { TWISTER_CO_MAX_VALUE } from './mersenne-test-utils';
 
 function newTwister(seed: number = Math.random() * Number.MAX_SAFE_INTEGER) {
   const twister = new Twister();

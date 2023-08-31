@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { Faker, faker, FakerError } from '../../src';
-import { MERSENNE_MAX_VALUE } from '../internal/mersenne/mersenne.spec';
+import { MERSENNE_MAX_VALUE } from '../internal/mersenne/mersenne-test-utils';
 import { seededTests } from './../support/seededRuns';
 
 describe('number', () => {
