@@ -2,25 +2,25 @@
 
 exports[`datatype > 42 > array > noArgs 1`] = `
 [
-  "xdX//&qXb#",
-  7497976733832183,
-  "22=QI<Y.<C",
-  "i3PX%Y1'xz",
+  "yeX//&qXb\\"",
+  7497976733832182,
+  "12=QI<Y-<C",
+  "j3PX%Y0'yz",
   2743716914682229,
-  "\`I,O$u9^>Q",
+  "\`I,O$u9^=Q",
   1665020914045079,
-  6981775788903513,
-  8059888243893776,
-  8303504922665141,
+  6981775788903512,
+  8059888243893775,
+  8303504922665140,
 ]
 `;
 
 exports[`datatype > 42 > array > with length 1`] = `
 [
-  "xdX//&qXb#",
-  7497976733832183,
-  "22=QI<Y.<C",
-  "i3PX%Y1'xz",
+  "yeX//&qXb\\"",
+  7497976733832182,
+  "12=QI<Y-<C",
+  "j3PX%Y0'yz",
 ]
 `;
 
@@ -28,12 +28,12 @@ exports[`datatype > 42 > array > with length range 1`] = `
 [
   6593215287158609,
   1405290981918817,
-  "&qXb#zn522",
-  "QI<Y.<CKi3",
+  "&qXb\\"{n412",
+  "QI<Y-<CKj3",
 ]
 `;
 
-exports[`datatype > 42 > bigInt > noArgs 1`] = `397511185609722n`;
+exports[`datatype > 42 > bigInt > noArgs 1`] = `397511086709821n`;
 
 exports[`datatype > 42 > bigInt > with value 1`] = `39n`;
 
@@ -59,7 +59,7 @@ exports[`datatype > 42 > datetime > with max 1`] = `1994-07-11T09:43:48.960Z`;
 
 exports[`datatype > 42 > datetime > with min 1`] = `1801-04-11T15:14:14.722Z`;
 
-exports[`datatype > 42 > datetime > with min and max 1`] = `1689-09-09T08:39:35.175Z`;
+exports[`datatype > 42 > datetime > with min and max 1`] = `1689-09-09T08:39:35.174Z`;
 
 exports[`datatype > 42 > float > noArgs 1`] = `37453.64`;
 
@@ -71,9 +71,9 @@ exports[`datatype > 42 > float > repeated 3`] = `73198.66`;
 
 exports[`datatype > 42 > float > repeated 4`] = `59865.25`;
 
-exports[`datatype > 42 > float > repeated 5`] = `15601.71`;
+exports[`datatype > 42 > float > repeated 5`] = `15601.7`;
 
-exports[`datatype > 42 > float > repeated 6`] = `15599.3`;
+exports[`datatype > 42 > float > repeated 6`] = `15599.29`;
 
 exports[`datatype > 42 > float > with max 1`] = `25.84`;
 
@@ -81,19 +81,19 @@ exports[`datatype > 42 > float > with min 1`] = `37411.64`;
 
 exports[`datatype > 42 > float > with min and max 1`] = `-0.43`;
 
-exports[`datatype > 42 > float > with min, max and precision 1`] = `-0.426`;
+exports[`datatype > 42 > float > with min, max and precision 1`] = `-0.4261`;
 
 exports[`datatype > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
 exports[`datatype > 42 > hexadecimal > with casing 1`] = `"0x8"`;
 
-exports[`datatype > 42 > hexadecimal > with length 1`] = `"0x8Efd331Cdf0EB4446b96d368aA4bc1d41EEB62e93a"`;
+exports[`datatype > 42 > hexadecimal > with length 1`] = `"0x8EAd331Ddf0FC4446b96d368aB4bd1d31EFB62f92a"`;
 
-exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0x8efd331cdf0eb4446b96"`;
+exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0x8ead331ddf0fc4446b96"`;
 
 exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
 
-exports[`datatype > 42 > json 1`] = `"{\\"foo\\":\\"xdX//&qXb#\\",\\"bar\\":7497976733832183,\\"bike\\":\\"22=QI<Y.<C\\",\\"a\\":\\"i3PX%Y1'xz\\",\\"b\\":2743716914682229,\\"name\\":\\"\`I,O$u9^>Q\\",\\"prop\\":1665020914045079}"`;
+exports[`datatype > 42 > json 1`] = `"{\\"foo\\":\\"yeX//&qXb\\\\\\"\\",\\"bar\\":7497976733832182,\\"bike\\":\\"12=QI<Y-<C\\",\\"a\\":\\"j3PX%Y0'yz\\",\\"b\\":2743716914682229,\\"name\\":\\"\`I,O$u9^=Q\\",\\"prop\\":1665020914045079}"`;
 
 exports[`datatype > 42 > number > noArgs 1`] = `37454`;
 
@@ -101,7 +101,7 @@ exports[`datatype > 42 > number > repeated 1`] = `2`;
 
 exports[`datatype > 42 > number > repeated 2`] = `6`;
 
-exports[`datatype > 42 > number > repeated 3`] = `4`;
+exports[`datatype > 42 > number > repeated 3`] = `5`;
 
 exports[`datatype > 42 > number > repeated 4`] = `4`;
 
@@ -111,47 +111,47 @@ exports[`datatype > 42 > number > with max 1`] = `26`;
 
 exports[`datatype > 42 > number > with min 1`] = `37412`;
 
-exports[`datatype > 42 > number > with min and max 1`] = `-0`;
+exports[`datatype > 42 > number > with min and max 1`] = `-1`;
 
 exports[`datatype > 42 > number > with min, max and precision 1`] = `-0.43`;
 
-exports[`datatype > 42 > string > noArgs 1`] = `"CxdX//&qXb"`;
+exports[`datatype > 42 > string > noArgs 1`] = `"CyeX//&qXb"`;
 
-exports[`datatype > 42 > string > with length option 1`] = `"CxdX//&qXb#zn522=QI<Y."`;
+exports[`datatype > 42 > string > with length option 1`] = `"CyeX//&qXb\\"{n412=QI<Y-"`;
 
-exports[`datatype > 42 > string > with number 1`] = `"CxdX//&qXb#zn522=QI<Y.<CKi3PX%Y1'xzk=*\`I,O"`;
+exports[`datatype > 42 > string > with number 1`] = `"CyeX//&qXb\\"{n412=QI<Y-<CKj3PX%Y0'yzl=*\`I,O"`;
 
-exports[`datatype > 42 > uuid 1`] = `"6eb9221d-9b0f-4c33-a358-6492457c3891"`;
+exports[`datatype > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
-exports[`datatype > 42 > uuid 2`] = `"31eec51a-7271-4e4a-9588-3fced9e13156"`;
+exports[`datatype > 42 > uuid 2`] = `"21ffc41a-7170-4e4a-9488-2fcfe9e13056"`;
 
-exports[`datatype > 42 > uuid 3`] = `"c5482c1f-c30c-4bbc-a152-d95155bad72b"`;
+exports[`datatype > 42 > uuid 3`] = `"d5482c1f-c30d-4bbc-b151-d95145bae71b"`;
 
-exports[`datatype > 42 > uuid 4`] = `"8c786020-a58e-446b-8314-2ecadc3d8cd5"`;
+exports[`datatype > 42 > uuid 4`] = `"8c786010-a58e-436c-8314-2ecadc2e8ce5"`;
 
-exports[`datatype > 42 > uuid 5`] = `"36cd0863-25e5-48b5-bfe4-75419814e427"`;
+exports[`datatype > 42 > uuid 5`] = `"36dd0863-15f5-48b5-bff4-74409804e327"`;
 
 exports[`datatype > 1211 > array > noArgs 1`] = `
 [
-  8047677172150963,
-  "}_\`gBalh]m",
-  "qp5W3C|hEw",
-  8759424414040534,
-  "=bQAoD9>1T",
+  8047677172150962,
+  "}_\`hAalh]n",
+  "qp5W3C|hEx",
+  8759424414040533,
+  "<bQApD9=1U",
   1261017231912127,
-  4437871369664383,
-  "G4oVM%a2b:",
+  4437871369664382,
+  "G4oVM$a1b:",
   4619420245361342,
-  "5Yq*oKDLVk",
+  "5Yr*pKCLVl",
 ]
 `;
 
 exports[`datatype > 1211 > array > with length 1`] = `
 [
-  8047677172150963,
-  "}_\`gBalh]m",
-  "qp5W3C|hEw",
-  8759424414040534,
+  8047677172150962,
+  "}_\`hAalh]n",
+  "qp5W3C|hEx",
+  8759424414040533,
 ]
 `;
 
@@ -159,15 +159,15 @@ exports[`datatype > 1211 > array > with length range 1`] = `
 [
   2031760796090808,
   6052754546149918,
-  6882283339307905,
-  "alh]mIqp5W",
-  "C|hEwRz6=b",
+  6882283339307904,
+  "alh]nIqp5W",
+  "C|hExR{5<b",
 ]
 `;
 
-exports[`datatype > 1211 > bigInt > noArgs 1`] = `882966736776748n`;
+exports[`datatype > 1211 > bigInt > noArgs 1`] = `982966736876848n`;
 
-exports[`datatype > 1211 > bigInt > with value 1`] = `2n`;
+exports[`datatype > 1211 > bigInt > with value 1`] = `12n`;
 
 exports[`datatype > 1211 > boolean > noArgs 1`] = `false`;
 
@@ -189,15 +189,15 @@ exports[`datatype > 1211 > datetime > with given number 1`] = `2000-06-14T02:54:
 
 exports[`datatype > 1211 > datetime > with max 1`] = `2001-03-20T11:14:25.312Z`;
 
-exports[`datatype > 1211 > datetime > with min 1`] = `2065-11-10T19:27:23.330Z`;
+exports[`datatype > 1211 > datetime > with min 1`] = `2065-11-10T19:27:23.331Z`;
 
-exports[`datatype > 1211 > datetime > with min and max 1`] = `1789-03-26T15:44:46.127Z`;
+exports[`datatype > 1211 > datetime > with min and max 1`] = `1789-03-26T15:44:46.128Z`;
 
 exports[`datatype > 1211 > float > noArgs 1`] = `92851.09`;
 
 exports[`datatype > 1211 > float > repeated 1`] = `92851.09`;
 
-exports[`datatype > 1211 > float > repeated 2`] = `89346.27`;
+exports[`datatype > 1211 > float > repeated 2`] = `89346.28`;
 
 exports[`datatype > 1211 > float > repeated 3`] = `22556.85`;
 
@@ -213,25 +213,25 @@ exports[`datatype > 1211 > float > with min 1`] = `92809.09`;
 
 exports[`datatype > 1211 > float > with min and max 1`] = `61.07`;
 
-exports[`datatype > 1211 > float > with min, max and precision 1`] = `61.0657`;
+exports[`datatype > 1211 > float > with min, max and precision 1`] = `61.0658`;
 
-exports[`datatype > 1211 > hexadecimal > noArgs 1`] = `"0xD"`;
+exports[`datatype > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
-exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"0xd"`;
+exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"0xe"`;
 
-exports[`datatype > 1211 > hexadecimal > with length 1`] = `"0xDD5FeeA7fBAeB9CC5c48FA8EbE56fb7C8674cf3fa5"`;
+exports[`datatype > 1211 > hexadecimal > with length 1`] = `"0xED4FefA7fBAeC9DC4c48FA8EbF46fb7C8563cf3fa5"`;
 
-exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `"0xdd5feea7fbaeb9cc5c48"`;
+exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `"0xed4fefa7fbaec9dc4c48"`;
 
-exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xD"`;
+exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
 
-exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":8047677172150963,\\"bar\\":\\"}_\`gBalh]m\\",\\"bike\\":\\"qp5W3C|hEw\\",\\"a\\":8759424414040534,\\"b\\":\\"=bQAoD9>1T\\",\\"name\\":1261017231912127,\\"prop\\":4437871369664383}"`;
+exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":8047677172150962,\\"bar\\":\\"}_\`hAalh]n\\",\\"bike\\":\\"qp5W3C|hEx\\",\\"a\\":8759424414040533,\\"b\\":\\"<bQApD9=1U\\",\\"name\\":1261017231912127,\\"prop\\":4437871369664382}"`;
 
-exports[`datatype > 1211 > number > noArgs 1`] = `92851`;
+exports[`datatype > 1211 > number > noArgs 1`] = `92852`;
 
 exports[`datatype > 1211 > number > repeated 1`] = `6`;
 
-exports[`datatype > 1211 > number > repeated 2`] = `5`;
+exports[`datatype > 1211 > number > repeated 2`] = `6`;
 
 exports[`datatype > 1211 > number > repeated 3`] = `1`;
 
@@ -241,62 +241,61 @@ exports[`datatype > 1211 > number > repeated 5`] = `4`;
 
 exports[`datatype > 1211 > number > with max 1`] = `64`;
 
-exports[`datatype > 1211 > number > with min 1`] = `92809`;
+exports[`datatype > 1211 > number > with min 1`] = `92810`;
 
 exports[`datatype > 1211 > number > with min and max 1`] = `61`;
 
 exports[`datatype > 1211 > number > with min, max and precision 1`] = `61.07`;
 
-exports[`datatype > 1211 > string > noArgs 1`] = `"vs6}_\`gBal"`;
+exports[`datatype > 1211 > string > noArgs 1`] = `"wt5}_\`hAal"`;
 
-exports[`datatype > 1211 > string > with length option 1`] = `"vs6}_\`gBalh]mIqp5W3C|h"`;
+exports[`datatype > 1211 > string > with length option 1`] = `"wt5}_\`hAalh]nIqp5W3C|h"`;
 
-exports[`datatype > 1211 > string > with number 1`] = `"vs6}_\`gBalh]mIqp5W3C|hEwRz6=bQAoD9>1Ta.aN7"`;
+exports[`datatype > 1211 > string > with number 1`] = `"wt5}_\`hAalh]nIqp5W3C|hExR{5<bQApD9=1Ua.bN7"`;
 
-exports[`datatype > 1211 > uuid 1`] = `"ed3faab5-acca-4c7d-9d39-36fb6e8f34b8"`;
+exports[`datatype > 1211 > uuid 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
 
-exports[`datatype > 1211 > uuid 2`] = `"d64538a2-a746-43d9-971a-3b4c8739d2d7"`;
+exports[`datatype > 1211 > uuid 2`] = `"d64428b2-b736-43d9-970b-2b4c8739d1d7"`;
 
-exports[`datatype > 1211 > uuid 3`] = `"79c8efcd-3bd5-4d08-ab71-4243ef639899"`;
+exports[`datatype > 1211 > uuid 3`] = `"79c8efdd-3bd5-4e08-bc71-4243ef639999"`;
 
-exports[`datatype > 1211 > uuid 4`] = `"9cbde858-75c3-4e14-91e6-e9ef59be28ab"`;
+exports[`datatype > 1211 > uuid 4`] = `"adcde858-75d3-4f13-90e6-e9ff59ce28bb"`;
 
-exports[`datatype > 1211 > uuid 5`] = `"de2b17a5-033e-49a8-8a9d-77c809771962"`;
+exports[`datatype > 1211 > uuid 5`] = `"de2b16a5-033e-49a8-8a9e-77d809771962"`;
 
 exports[`datatype > 1337 > array > noArgs 1`] = `
 [
-  "0;K?Q9{d,E",
+  "/:K>Q9{e+D",
   1126421660889465,
-  3992214706543073,
-  7152784244045958,
-  "GWg2<_O1G3",
-  7497328776342169,
-  "yHOP\\"d|0-C",
+  3992214706543072,
+  7152784244045957,
+  "GWg2;_O1G3",
+  7497328776342168,
+  "zHOP\\"e}0,C",
   26130156773585,
   "&jAbN{nYU}",
-  "\\")w{N@d\\"g_",
+  "\\")x{N@d\\"g_",
 ]
 `;
 
 exports[`datatype > 1337 > array > with length 1`] = `
 [
-  "0;K?Q9{d,E",
+  "/:K>Q9{e+D",
   1126421660889465,
-  3992214706543073,
-  7152784244045958,
+  3992214706543072,
+  7152784244045957,
 ]
 `;
 
 exports[`datatype > 1337 > array > with length range 1`] = `
 [
-  ";K?Q9{d,E[",
-  "{JjjBGWg2<",
-  4500431447462624,
-  "G3Rn2yHOP\\"",
+  ":K>Q9{e+D[",
+  "|JjjBGWg2;",
+  4500431447462623,
 ]
 `;
 
-exports[`datatype > 1337 > bigInt > noArgs 1`] = `213435297136194n`;
+exports[`datatype > 1337 > bigInt > noArgs 1`] = `212435297136194n`;
 
 exports[`datatype > 1337 > bigInt > with value 1`] = `21n`;
 
@@ -316,17 +315,17 @@ exports[`datatype > 1337 > boolean > with probability option 1`] = `false`;
 
 exports[`datatype > 1337 > datetime > noArgs 1`] = `2018-10-28T08:46:07.804Z`;
 
-exports[`datatype > 1337 > datetime > with given number 1`] = `1992-12-13T04:13:58.814Z`;
+exports[`datatype > 1337 > datetime > with given number 1`] = `1992-12-13T04:13:58.813Z`;
 
 exports[`datatype > 1337 > datetime > with max 1`] = `1993-03-02T00:10:03.886Z`;
 
 exports[`datatype > 1337 > datetime > with min 1`] = `1747-07-16T01:19:36.392Z`;
 
-exports[`datatype > 1337 > datetime > with min and max 1`] = `1669-06-22T01:21:14.552Z`;
+exports[`datatype > 1337 > datetime > with min and max 1`] = `1669-06-22T01:21:14.551Z`;
 
-exports[`datatype > 1337 > float > noArgs 1`] = `26202.21`;
+exports[`datatype > 1337 > float > noArgs 1`] = `26202.2`;
 
-exports[`datatype > 1337 > float > repeated 1`] = `26202.21`;
+exports[`datatype > 1337 > float > repeated 1`] = `26202.2`;
 
 exports[`datatype > 1337 > float > repeated 2`] = `15868.24`;
 
@@ -340,31 +339,31 @@ exports[`datatype > 1337 > float > repeated 6`] = `51838.76`;
 
 exports[`datatype > 1337 > float > with max 1`] = `18.08`;
 
-exports[`datatype > 1337 > float > with min 1`] = `26160.21`;
+exports[`datatype > 1337 > float > with min 1`] = `26160.2`;
 
 exports[`datatype > 1337 > float > with min and max 1`] = `-12.92`;
 
 exports[`datatype > 1337 > float > with min, max and precision 1`] = `-12.9153`;
 
-exports[`datatype > 1337 > hexadecimal > noArgs 1`] = `"0x6"`;
+exports[`datatype > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
-exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"0x6"`;
+exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"0x5"`;
 
-exports[`datatype > 1337 > hexadecimal > with length 1`] = `"0x636a7b6Ef28d3F9BB89cA46ea494bB4E9bb0fF338f"`;
+exports[`datatype > 1337 > hexadecimal > with length 1`] = `"0x536a7b5FA28d2F9BB79cA46ea394bC4F9bb0AF328f"`;
 
-exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `"0x636a7b6ef28d3f9bb89c"`;
+exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `"0x536a7b5fa28d2f9bb79c"`;
 
-exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x6"`;
+exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
 
-exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"0;K?Q9{d,E\\",\\"bar\\":1126421660889465,\\"bike\\":3992214706543073,\\"a\\":7152784244045958,\\"b\\":\\"GWg2<_O1G3\\",\\"name\\":7497328776342169,\\"prop\\":\\"yHOP\\\\\\"d|0-C\\"}"`;
+exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"/:K>Q9{e+D\\",\\"bar\\":1126421660889465,\\"bike\\":3992214706543072,\\"a\\":7152784244045957,\\"b\\":\\"GWg2;_O1G3\\",\\"name\\":7497328776342168,\\"prop\\":\\"zHOP\\\\\\"e}0,C\\"}"`;
 
 exports[`datatype > 1337 > number > noArgs 1`] = `26202`;
 
-exports[`datatype > 1337 > number > repeated 1`] = `2`;
+exports[`datatype > 1337 > number > repeated 1`] = `1`;
 
 exports[`datatype > 1337 > number > repeated 2`] = `1`;
 
-exports[`datatype > 1337 > number > repeated 3`] = `2`;
+exports[`datatype > 1337 > number > repeated 3`] = `1`;
 
 exports[`datatype > 1337 > number > repeated 4`] = `3`;
 
@@ -378,18 +377,18 @@ exports[`datatype > 1337 > number > with min and max 1`] = `-13`;
 
 exports[`datatype > 1337 > number > with min, max and precision 1`] = `-12.92`;
 
-exports[`datatype > 1337 > string > noArgs 1`] = `"90;K?Q9{d,"`;
+exports[`datatype > 1337 > string > noArgs 1`] = `"9/:K>Q9{e+"`;
 
-exports[`datatype > 1337 > string > with length option 1`] = `"90;K?Q9{d,E[-{JjjBGWg2"`;
+exports[`datatype > 1337 > string > with length option 1`] = `"9/:K>Q9{e+D[,|JjjBGWg2"`;
 
-exports[`datatype > 1337 > string > with number 1`] = `"90;K?Q9{d,E[-{JjjBGWg2<_O1G3Rn2yHOP\\"d|0-Ca"`;
+exports[`datatype > 1337 > string > with number 1`] = `"9/:K>Q9{e+D[,|JjjBGWg2;_O1G3Rn2zHOP\\"e}0,Ca"`;
 
-exports[`datatype > 1337 > uuid 1`] = `"4247584f-b269-42f7-9cc5-69b34a73638c"`;
+exports[`datatype > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 
-exports[`datatype > 1337 > uuid 2`] = `"e6880bf2-26a0-461c-a5b7-fd98f401ef75"`;
+exports[`datatype > 1337 > uuid 2`] = `"f6880bf2-25b0-450c-a5b7-fd99f401ff75"`;
 
-exports[`datatype > 1337 > uuid 3`] = `"0ba3ae2e-5b48-4377-b6c7-bc5ebd67ea84"`;
+exports[`datatype > 1337 > uuid 3`] = `"0ca3ae2e-5b48-4277-b6c7-bc5ebe67ea83"`;
 
-exports[`datatype > 1337 > uuid 4`] = `"8b46682a-04be-496d-8f46-a50571ebc114"`;
+exports[`datatype > 1337 > uuid 4`] = `"8c36682a-03be-496d-8f46-b50570ebc104"`;
 
-exports[`datatype > 1337 > uuid 5`] = `"4a7e9335-61a1-4ba0-9b5c-593d4b8e801e"`;
+exports[`datatype > 1337 > uuid 5`] = `"3a7e9225-61a0-4ba0-9c5c-592d4b9e801f"`;

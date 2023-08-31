@@ -10,21 +10,21 @@ exports[`string > 42 > alpha > with casing = upper 1`] = `"J"`;
 
 exports[`string > 42 > alpha > with exclude 1`] = `"A"`;
 
-exports[`string > 42 > alpha > with length 1`] = `"tWLFii"`;
+exports[`string > 42 > alpha > with length 1`] = `"tXMFii"`;
 
-exports[`string > 42 > alpha > with length parameter 1`] = `"tWLFi"`;
+exports[`string > 42 > alpha > with length parameter 1`] = `"tXMFi"`;
 
-exports[`string > 42 > alpha > with length parameter 2`] = `"idSFK"`;
+exports[`string > 42 > alpha > with length parameter 2`] = `"idTFK"`;
 
-exports[`string > 42 > alpha > with length parameter 3`] = `"bXQlj"`;
+exports[`string > 42 > alpha > with length parameter 3`] = `"bYRlj"`;
 
-exports[`string > 42 > alpha > with length parameter 4`] = `"jqBwp"`;
+exports[`string > 42 > alpha > with length parameter 4`] = `"jpBwp"`;
 
 exports[`string > 42 > alpha > with length parameter 5`] = `"Fhptx"`;
 
-exports[`string > 42 > alpha > with length range 1`] = `"WLFiidSFKbXQlj"`;
+exports[`string > 42 > alpha > with length range 1`] = `"XMFiidTFKbYRlj"`;
 
-exports[`string > 42 > alpha > with length, casing and exclude 1`] = `"gyvjccb"`;
+exports[`string > 42 > alpha > with length, casing and exclude 1`] = `"fzvjcca"`;
 
 exports[`string > 42 > alphanumeric > noArgs 1`] = `"n"`;
 
@@ -36,19 +36,19 @@ exports[`string > 42 > alphanumeric > with casing = upper 1`] = `"D"`;
 
 exports[`string > 42 > alphanumeric > with exclude 1`] = `"x"`;
 
-exports[`string > 42 > alphanumeric > with length 1`] = `"nWJBaa"`;
+exports[`string > 42 > alphanumeric > with length 1`] = `"nWJB99"`;
 
-exports[`string > 42 > alphanumeric > with length parameter 1`] = `"nWJBa"`;
+exports[`string > 42 > alphanumeric > with length parameter 1`] = `"nWJB9"`;
 
-exports[`string > 42 > alphanumeric > with length parameter 2`] = `"a4RBH"`;
+exports[`string > 42 > alphanumeric > with length parameter 2`] = `"93RBH"`;
 
-exports[`string > 42 > alphanumeric > with length parameter 3`] = `"1XPdb"`;
+exports[`string > 42 > alphanumeric > with length parameter 3`] = `"1YPdb"`;
 
-exports[`string > 42 > alphanumeric > with length parameter 4`] = `"bjwqi"`;
+exports[`string > 42 > alphanumeric > with length parameter 4`] = `"biwqi"`;
 
-exports[`string > 42 > alphanumeric > with length parameter 5`] = `"B9ims"`;
+exports[`string > 42 > alphanumeric > with length parameter 5`] = `"B8ims"`;
 
-exports[`string > 42 > alphanumeric > with length range 1`] = `"WJBaa4RBH1XPdb"`;
+exports[`string > 42 > alphanumeric > with length range 1`] = `"WJB993RBH1YPdb"`;
 
 exports[`string > 42 > alphanumeric > with length, casing and exclude 1`] = `"cykh442"`;
 
@@ -64,15 +64,15 @@ exports[`string > 42 > binary > with length range 1`] = `"0b11100011101100"`;
 
 exports[`string > 42 > fromCharacters > with string characters 1`] = `"o"`;
 
-exports[`string > 42 > fromCharacters > with string characters and length 1`] = `"orabo"`;
+exports[`string > 42 > fromCharacters > with string characters and length 1`] = `"orabf"`;
 
-exports[`string > 42 > fromCharacters > with string characters and length range 1`] = `"raboofabafraoo"`;
+exports[`string > 42 > fromCharacters > with string characters and length range 1`] = `"rabfffrbafraoo"`;
 
 exports[`string > 42 > fromCharacters > with string[] characters 1`] = `"o"`;
 
-exports[`string > 42 > fromCharacters > with string[] characters and length 1`] = `"orabo"`;
+exports[`string > 42 > fromCharacters > with string[] characters and length 1`] = `"orabf"`;
 
-exports[`string > 42 > fromCharacters > with string[] characters and length range 1`] = `"raboofabafraoo"`;
+exports[`string > 42 > fromCharacters > with string[] characters and length range 1`] = `"rabfffrbafraoo"`;
 
 exports[`string > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
@@ -84,25 +84,25 @@ exports[`string > 42 > hexadecimal > with casing = upper 1`] = `"0x8"`;
 
 exports[`string > 42 > hexadecimal > with custom prefix 1`] = `"hex_8"`;
 
-exports[`string > 42 > hexadecimal > with length 1`] = `"0x8Efd33"`;
+exports[`string > 42 > hexadecimal > with length 1`] = `"0x8EAd33"`;
 
-exports[`string > 42 > hexadecimal > with length range 1`] = `"0xEfd331Cdf0EB44"`;
+exports[`string > 42 > hexadecimal > with length range 1`] = `"0xEAd331Ddf0FC44"`;
 
-exports[`string > 42 > hexadecimal > with length, casing and empty prefix 1`] = `"8efd331"`;
+exports[`string > 42 > hexadecimal > with length, casing and empty prefix 1`] = `"8ead331"`;
 
-exports[`string > 42 > nanoid > noArgs 1`] = `"WBaRHXdbwi9mMv3aWN6ru"`;
+exports[`string > 42 > nanoid > noArgs 1`] = `"WB9RHYdbwi8mMv2aWO6ru"`;
 
-exports[`string > 42 > nanoid > noArgs 2`] = `"TEwb-TUckhmxNYcOI57C4"`;
+exports[`string > 42 > nanoid > noArgs 2`] = `"UFwb-TVckgmxNZcOJ47C3"`;
 
-exports[`string > 42 > nanoid > noArgs 3`] = `"kDtIyuq7DvfK5aNRbxT7q"`;
+exports[`string > 42 > nanoid > noArgs 3`] = `"kDtIyuq6DvfK49OSbxT6q"`;
 
-exports[`string > 42 > nanoid > noArgs 4`] = `"RvelkHXfi2vhfu_KIDxPb"`;
+exports[`string > 42 > nanoid > noArgs 4`] = `"RvdkkHYfi2vheu_LJDxPb"`;
 
-exports[`string > 42 > nanoid > noArgs 5`] = `"A1ebo87SEyfTDlTM5T1Ea"`;
+exports[`string > 42 > nanoid > noArgs 5`] = `"A1ean87SEyeTDlTM5T0F9"`;
 
-exports[`string > 42 > nanoid > with length parameter 1`] = `"WBaRHXdbwi9mMv3aWN6ruTEwb-TUck"`;
+exports[`string > 42 > nanoid > with length parameter 1`] = `"WB9RHYdbwi8mMv2aWO6ruUFwb-TVck"`;
 
-exports[`string > 42 > nanoid > with length range 1`] = `"Ja4B1-bjqBiscAB4XjG72g"`;
+exports[`string > 42 > nanoid > with length range 1`] = `"J93B1-biqBiscAB4XiG72g"`;
 
 exports[`string > 42 > numeric > noArgs 1`] = `"3"`;
 
@@ -114,117 +114,117 @@ exports[`string > 42 > numeric > with length 1`] = `"397511"`;
 
 exports[`string > 42 > numeric > with length parameter 1`] = `"39751"`;
 
-exports[`string > 42 > numeric > with length parameter 2`] = `"11856"`;
+exports[`string > 42 > numeric > with length parameter 2`] = `"10867"`;
 
-exports[`string > 42 > numeric > with length parameter 3`] = `"09722"`;
+exports[`string > 42 > numeric > with length parameter 3`] = `"09821"`;
 
-exports[`string > 42 > numeric > with length parameter 4`] = `"23543"`;
+exports[`string > 42 > numeric > with length parameter 4`] = `"13542"`;
 
-exports[`string > 42 > numeric > with length parameter 5`] = `"61334"`;
+exports[`string > 42 > numeric > with length parameter 5`] = `"61234"`;
 
-exports[`string > 42 > numeric > with length range 1`] = `"97511185609722"`;
+exports[`string > 42 > numeric > with length range 1`] = `"97511086709821"`;
 
-exports[`string > 42 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6987660"`;
+exports[`string > 42 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6987000"`;
 
-exports[`string > 42 > octal > noArgs 1`] = `"0o3"`;
+exports[`string > 42 > octal > noArgs 1`] = `"0o2"`;
 
-exports[`string > 42 > octal > with custom prefix 1`] = `"oct_3"`;
+exports[`string > 42 > octal > with custom prefix 1`] = `"oct_2"`;
 
-exports[`string > 42 > octal > with length 1`] = `"0o375411"`;
+exports[`string > 42 > octal > with length 1`] = `"0o275411"`;
 
-exports[`string > 42 > octal > with length and empty prefix 1`] = `"3754110"`;
+exports[`string > 42 > octal > with length and empty prefix 1`] = `"2754110"`;
 
 exports[`string > 42 > octal > with length range 1`] = `"0o75411064507611"`;
 
-exports[`string > 42 > sample > noArgs 1`] = `"CxdX//&qXb"`;
+exports[`string > 42 > sample > noArgs 1`] = `"CyeX//&qXb"`;
 
-exports[`string > 42 > sample > with length parameter 1`] = `"CxdX/"`;
+exports[`string > 42 > sample > with length parameter 1`] = `"CyeX/"`;
 
 exports[`string > 42 > sample > with length parameter 2`] = `"/&qXb"`;
 
-exports[`string > 42 > sample > with length parameter 3`] = `"#zn52"`;
+exports[`string > 42 > sample > with length parameter 3`] = `"\\"{n41"`;
 
 exports[`string > 42 > sample > with length parameter 4`] = `"2=QI<"`;
 
-exports[`string > 42 > sample > with length parameter 5`] = `"Y.<CK"`;
+exports[`string > 42 > sample > with length parameter 5`] = `"Y-<CK"`;
 
-exports[`string > 42 > sample > with length range 1`] = `"xdX//&qXb#zn52"`;
+exports[`string > 42 > sample > with length range 1`] = `"yeX//&qXb\\"{n41"`;
 
-exports[`string > 42 > symbol > noArgs 1`] = `"-"`;
+exports[`string > 42 > symbol > noArgs 1`] = `","`;
 
-exports[`string > 42 > symbol > with length parameter 1`] = `"-|\\\\>&"`;
+exports[`string > 42 > symbol > with length parameter 1`] = `",}\\\\>%"`;
 
-exports[`string > 42 > symbol > with length parameter 2`] = `"&#\`>["`;
+exports[`string > 42 > symbol > with length parameter 2`] = `"%\\"\`>["`;
 
-exports[`string > 42 > symbol > with length parameter 3`] = `"\\"}_('"`;
+exports[`string > 42 > symbol > with length parameter 3`] = `"!~_'&"`;
 
-exports[`string > 42 > symbol > with length parameter 4`] = `"'*;.*"`;
+exports[`string > 42 > symbol > with length parameter 4`] = `"&*;.*"`;
 
 exports[`string > 42 > symbol > with length parameter 5`] = `">%*,/"`;
 
-exports[`string > 42 > symbol > with length range 1`] = `"|\\\\>&&#\`>[\\"}_('"`;
+exports[`string > 42 > symbol > with length range 1`] = `"}\\\\>%%\\"\`>[!~_'&"`;
 
-exports[`string > 42 > uuid 1`] = `"6eb9221d-9b0f-4c33-a358-6492457c3891"`;
+exports[`string > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
-exports[`string > 42 > uuid 2`] = `"31eec51a-7271-4e4a-9588-3fced9e13156"`;
+exports[`string > 42 > uuid 2`] = `"21ffc41a-7170-4e4a-9488-2fcfe9e13056"`;
 
-exports[`string > 42 > uuid 3`] = `"c5482c1f-c30c-4bbc-a152-d95155bad72b"`;
+exports[`string > 42 > uuid 3`] = `"d5482c1f-c30d-4bbc-b151-d95145bae71b"`;
 
-exports[`string > 42 > uuid 4`] = `"8c786020-a58e-446b-8314-2ecadc3d8cd5"`;
+exports[`string > 42 > uuid 4`] = `"8c786010-a58e-436c-8314-2ecadc2e8ce5"`;
 
-exports[`string > 42 > uuid 5`] = `"36cd0863-25e5-48b5-bfe4-75419814e427"`;
+exports[`string > 42 > uuid 5`] = `"36dd0863-15f5-48b5-bff4-74409804e327"`;
 
-exports[`string > 1211 > alpha > noArgs 1`] = `"V"`;
+exports[`string > 1211 > alpha > noArgs 1`] = `"W"`;
 
-exports[`string > 1211 > alpha > with casing = lower 1`] = `"x"`;
+exports[`string > 1211 > alpha > with casing = lower 1`] = `"y"`;
 
-exports[`string > 1211 > alpha > with casing = mixed 1`] = `"V"`;
+exports[`string > 1211 > alpha > with casing = mixed 1`] = `"W"`;
 
-exports[`string > 1211 > alpha > with casing = upper 1`] = `"X"`;
+exports[`string > 1211 > alpha > with casing = upper 1`] = `"Y"`;
 
-exports[`string > 1211 > alpha > with exclude 1`] = `"W"`;
+exports[`string > 1211 > alpha > with exclude 1`] = `"X"`;
 
-exports[`string > 1211 > alpha > with length 1`] = `"VUmZIJ"`;
+exports[`string > 1211 > alpha > with length 1`] = `"WUlZIJ"`;
 
-exports[`string > 1211 > alpha > with length parameter 1`] = `"VUmZI"`;
+exports[`string > 1211 > alpha > with length parameter 1`] = `"WUlZI"`;
 
-exports[`string > 1211 > alpha > with length parameter 2`] = `"JNsJP"`;
+exports[`string > 1211 > alpha > with length parameter 2`] = `"JNsKQ"`;
 
-exports[`string > 1211 > alpha > with length parameter 3`] = `"NHQwS"`;
+exports[`string > 1211 > alpha > with length parameter 3`] = `"NIRwT"`;
 
 exports[`string > 1211 > alpha > with length parameter 4`] = `"SlEkt"`;
 
-exports[`string > 1211 > alpha > with length parameter 5`] = `"YNuWB"`;
+exports[`string > 1211 > alpha > with length parameter 5`] = `"ZNuWB"`;
 
-exports[`string > 1211 > alpha > with length range 1`] = `"UmZIJNsJPNHQwSSlEkt"`;
+exports[`string > 1211 > alpha > with length range 1`] = `"UlZIJNsKQNIRwTSlEktZ"`;
 
-exports[`string > 1211 > alpha > with length, casing and exclude 1`] = `"yxdzkkv"`;
+exports[`string > 1211 > alpha > with length, casing and exclude 1`] = `"yydzkkw"`;
 
 exports[`string > 1211 > alphanumeric > noArgs 1`] = `"V"`;
 
-exports[`string > 1211 > alphanumeric > with casing = lower 1`] = `"w"`;
+exports[`string > 1211 > alphanumeric > with casing = lower 1`] = `"x"`;
 
 exports[`string > 1211 > alphanumeric > with casing = mixed 1`] = `"V"`;
 
-exports[`string > 1211 > alphanumeric > with casing = upper 1`] = `"W"`;
+exports[`string > 1211 > alphanumeric > with casing = upper 1`] = `"X"`;
 
 exports[`string > 1211 > alphanumeric > with exclude 1`] = `"W"`;
 
-exports[`string > 1211 > alphanumeric > with length 1`] = `"VTeZFG"`;
+exports[`string > 1211 > alphanumeric > with length 1`] = `"VTdZFG"`;
 
-exports[`string > 1211 > alphanumeric > with length parameter 1`] = `"VTeZF"`;
+exports[`string > 1211 > alphanumeric > with length parameter 1`] = `"VTdZF"`;
 
-exports[`string > 1211 > alphanumeric > with length parameter 2`] = `"GLmGO"`;
+exports[`string > 1211 > alphanumeric > with length parameter 2`] = `"GLlHO"`;
 
-exports[`string > 1211 > alphanumeric > with length parameter 3`] = `"LEPrR"`;
+exports[`string > 1211 > alphanumeric > with length parameter 3`] = `"LEPqR"`;
 
-exports[`string > 1211 > alphanumeric > with length parameter 4`] = `"QdAcn"`;
+exports[`string > 1211 > alphanumeric > with length parameter 4`] = `"RdAcm"`;
 
-exports[`string > 1211 > alphanumeric > with length parameter 5`] = `"YLoVw"`;
+exports[`string > 1211 > alphanumeric > with length parameter 5`] = `"ZLoWx"`;
 
-exports[`string > 1211 > alphanumeric > with length range 1`] = `"TeZFGLmGOLEPrRQdAcn"`;
+exports[`string > 1211 > alphanumeric > with length range 1`] = `"TdZFGLlHOLEPqRRdAcmZ"`;
 
-exports[`string > 1211 > alphanumeric > with length, casing and exclude 1`] = `"yxazijk"`;
+exports[`string > 1211 > alphanumeric > with length, casing and exclude 1`] = `"yx5zjjv"`;
 
 exports[`string > 1211 > binary > noArgs 1`] = `"0b1"`;
 
@@ -234,127 +234,127 @@ exports[`string > 1211 > binary > with length 1`] = `"0b110111"`;
 
 exports[`string > 1211 > binary > with length and empty prefix 1`] = `"1101111"`;
 
-exports[`string > 1211 > binary > with length range 1`] = `"0b1011110111110110100"`;
+exports[`string > 1211 > binary > with length range 1`] = `"0b10111101111101101001"`;
 
 exports[`string > 1211 > fromCharacters > with string characters 1`] = `"r"`;
 
-exports[`string > 1211 > fromCharacters > with string characters and length 1`] = `"raorb"`;
+exports[`string > 1211 > fromCharacters > with string characters and length 1`] = `"rrora"`;
 
-exports[`string > 1211 > fromCharacters > with string characters and length range 1`] = `"aorbbaobaabaoaaoboo"`;
+exports[`string > 1211 > fromCharacters > with string characters and length range 1`] = `"roraaaoaaabaorroboor"`;
 
 exports[`string > 1211 > fromCharacters > with string[] characters 1`] = `"r"`;
 
-exports[`string > 1211 > fromCharacters > with string[] characters and length 1`] = `"raorb"`;
+exports[`string > 1211 > fromCharacters > with string[] characters and length 1`] = `"rrora"`;
 
-exports[`string > 1211 > fromCharacters > with string[] characters and length range 1`] = `"aorbbaobaabaoaaoboo"`;
+exports[`string > 1211 > fromCharacters > with string[] characters and length range 1`] = `"roraaaoaaabaorroboor"`;
 
-exports[`string > 1211 > hexadecimal > noArgs 1`] = `"0xD"`;
+exports[`string > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
-exports[`string > 1211 > hexadecimal > with casing = lower 1`] = `"0xd"`;
+exports[`string > 1211 > hexadecimal > with casing = lower 1`] = `"0xe"`;
 
-exports[`string > 1211 > hexadecimal > with casing = mixed 1`] = `"0xD"`;
+exports[`string > 1211 > hexadecimal > with casing = mixed 1`] = `"0xE"`;
 
-exports[`string > 1211 > hexadecimal > with casing = upper 1`] = `"0xD"`;
+exports[`string > 1211 > hexadecimal > with casing = upper 1`] = `"0xE"`;
 
-exports[`string > 1211 > hexadecimal > with custom prefix 1`] = `"hex_D"`;
+exports[`string > 1211 > hexadecimal > with custom prefix 1`] = `"hex_E"`;
 
-exports[`string > 1211 > hexadecimal > with length 1`] = `"0xDD5Fee"`;
+exports[`string > 1211 > hexadecimal > with length 1`] = `"0xED4Fef"`;
 
-exports[`string > 1211 > hexadecimal > with length range 1`] = `"0xD5FeeA7fBAeB9CC5c48"`;
+exports[`string > 1211 > hexadecimal > with length range 1`] = `"0xD4FefA7fBAeC9DC4c48F"`;
 
-exports[`string > 1211 > hexadecimal > with length, casing and empty prefix 1`] = `"dd5feea"`;
+exports[`string > 1211 > hexadecimal > with length, casing and empty prefix 1`] = `"ed4fefa"`;
 
-exports[`string > 1211 > nanoid > noArgs 1`] = `"TZGmOErQAn-VXiwQgbGHf"`;
+exports[`string > 1211 > nanoid > noArgs 1`] = `"TZGlOEqRAm-WYiwQgaHHf"`;
 
-exports[`string > 1211 > nanoid > noArgs 2`] = `"dz2bhvdRQnzxXRIl1K58d"`;
+exports[`string > 1211 > nanoid > noArgs 2`] = `"cz2bhvdSQnzxYSIl1L48d"`;
 
-exports[`string > 1211 > nanoid > noArgs 3`] = `"ZcyCDKTlrPWfVUW_K8GgV"`;
+exports[`string > 1211 > nanoid > noArgs 3`] = `"ZbyCDKUlrPWfVUX_K8GfV"`;
 
-exports[`string > 1211 > nanoid > noArgs 4`] = `"HrjeUEETtyzrC9vYMsSBO"`;
+exports[`string > 1211 > nanoid > noArgs 4`] = `"HqjeVEFTtyzrC9vZMsSBO"`;
 
-exports[`string > 1211 > nanoid > noArgs 5`] = `"pXVp8BmBfrfX-bE0-l08L"`;
+exports[`string > 1211 > nanoid > noArgs 5`] = `"pYVp7CmCfrfX-aE0-l08L"`;
 
-exports[`string > 1211 > nanoid > with length parameter 1`] = `"TZGmOErQAn-VXiwQgbGHfdz2bhvdRQ"`;
+exports[`string > 1211 > nanoid > with length parameter 1`] = `"TZGlOEqRAm-WYiwQgaHHfcz2bhvdSQ"`;
 
-exports[`string > 1211 > nanoid > with length range 1`] = `"e-LGLPRdcYow_Hlnjy9upQtGHLsB6stNV-d"`;
+exports[`string > 1211 > nanoid > with length range 1`] = `"d-LHLPRdcZox_Hlnjy8upQtHHMsB6stOV-dP"`;
 
-exports[`string > 1211 > numeric > noArgs 1`] = `"8"`;
+exports[`string > 1211 > numeric > noArgs 1`] = `"9"`;
 
-exports[`string > 1211 > numeric > with allowLeadingZeros 1`] = `"8"`;
+exports[`string > 1211 > numeric > with allowLeadingZeros 1`] = `"9"`;
 
 exports[`string > 1211 > numeric > with exclude 1`] = `"9"`;
 
-exports[`string > 1211 > numeric > with length 1`] = `"882966"`;
+exports[`string > 1211 > numeric > with length 1`] = `"982966"`;
 
-exports[`string > 1211 > numeric > with length parameter 1`] = `"88296"`;
+exports[`string > 1211 > numeric > with length parameter 1`] = `"98296"`;
 
-exports[`string > 1211 > numeric > with length parameter 2`] = `"67367"`;
+exports[`string > 1211 > numeric > with length parameter 2`] = `"67368"`;
 
-exports[`string > 1211 > numeric > with length parameter 3`] = `"76748"`;
+exports[`string > 1211 > numeric > with length parameter 3`] = `"76848"`;
 
-exports[`string > 1211 > numeric > with length parameter 4`] = `"82523"`;
+exports[`string > 1211 > numeric > with length parameter 4`] = `"82513"`;
 
-exports[`string > 1211 > numeric > with length parameter 5`] = `"97485"`;
+exports[`string > 1211 > numeric > with length parameter 5`] = `"97395"`;
 
-exports[`string > 1211 > numeric > with length range 1`] = `"8296673677674882523"`;
+exports[`string > 1211 > numeric > with length range 1`] = `"82966736876848825139"`;
 
 exports[`string > 1211 > numeric > with length, allowLeadingZeros and exclude 1`] = `"9969888"`;
 
-exports[`string > 1211 > octal > noArgs 1`] = `"0o6"`;
+exports[`string > 1211 > octal > noArgs 1`] = `"0o7"`;
 
-exports[`string > 1211 > octal > with custom prefix 1`] = `"oct_6"`;
+exports[`string > 1211 > octal > with custom prefix 1`] = `"oct_7"`;
 
-exports[`string > 1211 > octal > with length 1`] = `"0o662755"`;
+exports[`string > 1211 > octal > with length 1`] = `"0o771755"`;
 
-exports[`string > 1211 > octal > with length and empty prefix 1`] = `"6627555"`;
+exports[`string > 1211 > octal > with length and empty prefix 1`] = `"7717556"`;
 
-exports[`string > 1211 > octal > with length range 1`] = `"0o6275552565563662413"`;
+exports[`string > 1211 > octal > with length range 1`] = `"0o71755625665636614127"`;
 
-exports[`string > 1211 > sample > noArgs 1`] = `"vs6}_\`gBal"`;
+exports[`string > 1211 > sample > noArgs 1`] = `"wt5}_\`hAal"`;
 
-exports[`string > 1211 > sample > with length parameter 1`] = `"vs6}_"`;
+exports[`string > 1211 > sample > with length parameter 1`] = `"wt5}_"`;
 
-exports[`string > 1211 > sample > with length parameter 2`] = `"\`gBal"`;
+exports[`string > 1211 > sample > with length parameter 2`] = `"\`hAal"`;
 
-exports[`string > 1211 > sample > with length parameter 3`] = `"h]mIq"`;
+exports[`string > 1211 > sample > with length parameter 3`] = `"h]nIq"`;
 
 exports[`string > 1211 > sample > with length parameter 4`] = `"p5W3C"`;
 
-exports[`string > 1211 > sample > with length parameter 5`] = `"|hEwR"`;
+exports[`string > 1211 > sample > with length parameter 5`] = `"|hExR"`;
 
-exports[`string > 1211 > sample > with length range 1`] = `"s6}_\`gBalh]mIqp5W3C"`;
+exports[`string > 1211 > sample > with length range 1`] = `"t5}_\`hAalh]nIqp5W3C|"`;
 
 exports[`string > 1211 > symbol > noArgs 1`] = `"|"`;
 
 exports[`string > 1211 > symbol > with length parameter 1`] = `"|{(~@"`;
 
-exports[`string > 1211 > symbol > with length parameter 2`] = `"@],[^"`;
+exports[`string > 1211 > symbol > with length parameter 2`] = `"@],[_"`;
 
 exports[`string > 1211 > symbol > with length parameter 3`] = `"]?_.\`"`;
 
-exports[`string > 1211 > symbol > with length parameter 4`] = `"\`(=',"`;
+exports[`string > 1211 > symbol > with length parameter 4`] = `"\`'=',"`;
 
 exports[`string > 1211 > symbol > with length parameter 5`] = `"~]-|<"`;
 
-exports[`string > 1211 > symbol > with length range 1`] = `"{(~@@],[^]?_.\`\`(=',"`;
+exports[`string > 1211 > symbol > with length range 1`] = `"{(~@@],[_]?_.\`\`'=',~"`;
 
-exports[`string > 1211 > uuid 1`] = `"ed3faab5-acca-4c7d-9d39-36fb6e8f34b8"`;
+exports[`string > 1211 > uuid 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
 
-exports[`string > 1211 > uuid 2`] = `"d64538a2-a746-43d9-971a-3b4c8739d2d7"`;
+exports[`string > 1211 > uuid 2`] = `"d64428b2-b736-43d9-970b-2b4c8739d1d7"`;
 
-exports[`string > 1211 > uuid 3`] = `"79c8efcd-3bd5-4d08-ab71-4243ef639899"`;
+exports[`string > 1211 > uuid 3`] = `"79c8efdd-3bd5-4e08-bc71-4243ef639999"`;
 
-exports[`string > 1211 > uuid 4`] = `"9cbde858-75c3-4e14-91e6-e9ef59be28ab"`;
+exports[`string > 1211 > uuid 4`] = `"adcde858-75d3-4f13-90e6-e9ff59ce28bb"`;
 
-exports[`string > 1211 > uuid 5`] = `"de2b17a5-033e-49a8-8a9d-77c809771962"`;
+exports[`string > 1211 > uuid 5`] = `"de2b16a5-033e-49a8-8a9e-77d809771962"`;
 
 exports[`string > 1337 > alpha > noArgs 1`] = `"n"`;
 
-exports[`string > 1337 > alpha > with casing = lower 1`] = `"h"`;
+exports[`string > 1337 > alpha > with casing = lower 1`] = `"g"`;
 
 exports[`string > 1337 > alpha > with casing = mixed 1`] = `"n"`;
 
-exports[`string > 1337 > alpha > with casing = upper 1`] = `"H"`;
+exports[`string > 1337 > alpha > with casing = upper 1`] = `"G"`;
 
 exports[`string > 1337 > alpha > with exclude 1`] = `"v"`;
 
@@ -362,15 +362,15 @@ exports[`string > 1337 > alpha > with length 1`] = `"nioxqA"`;
 
 exports[`string > 1337 > alpha > with length parameter 1`] = `"nioxq"`;
 
-exports[`string > 1337 > alpha > with length parameter 2`] = `"AnYLg"`;
+exports[`string > 1337 > alpha > with length parameter 2`] = `"AnYMf"`;
 
-exports[`string > 1337 > alpha > with length parameter 3`] = `"uGgYx"`;
+exports[`string > 1337 > alpha > with length parameter 3`] = `"uGgZx"`;
 
-exports[`string > 1337 > alpha > with length parameter 4`] = `"OPsvE"`;
+exports[`string > 1337 > alpha > with length parameter 4`] = `"PPsvE"`;
 
-exports[`string > 1337 > alpha > with length parameter 5`] = `"NkpIz"`;
+exports[`string > 1337 > alpha > with length parameter 5`] = `"NjoIz"`;
 
-exports[`string > 1337 > alpha > with length range 1`] = `"ioxqAnYLguGgY"`;
+exports[`string > 1337 > alpha > with length range 1`] = `"ioxqAnYMfuGg"`;
 
 exports[`string > 1337 > alpha > with length, casing and exclude 1`] = `"ecehfie"`;
 
@@ -384,21 +384,21 @@ exports[`string > 1337 > alphanumeric > with casing = upper 1`] = `"9"`;
 
 exports[`string > 1337 > alphanumeric > with exclude 1`] = `"s"`;
 
-exports[`string > 1337 > alphanumeric > with length 1`] = `"gahskw"`;
+exports[`string > 1337 > alphanumeric > with length 1`] = `"g9hsjw"`;
 
-exports[`string > 1337 > alphanumeric > with length parameter 1`] = `"gahsk"`;
+exports[`string > 1337 > alphanumeric > with length parameter 1`] = `"g9hsj"`;
 
 exports[`string > 1337 > alphanumeric > with length parameter 2`] = `"wgYJ7"`;
 
-exports[`string > 1337 > alphanumeric > with length parameter 3`] = `"oC8Yr"`;
+exports[`string > 1337 > alphanumeric > with length parameter 3`] = `"nC7Yr"`;
 
-exports[`string > 1337 > alphanumeric > with length parameter 4`] = `"MMmpA"`;
+exports[`string > 1337 > alphanumeric > with length parameter 4`] = `"MNmpA"`;
 
-exports[`string > 1337 > alphanumeric > with length parameter 5`] = `"KbiFu"`;
+exports[`string > 1337 > alphanumeric > with length parameter 5`] = `"LbhFu"`;
 
-exports[`string > 1337 > alphanumeric > with length range 1`] = `"ahskwgYJ7oC8Y"`;
+exports[`string > 1337 > alphanumeric > with length range 1`] = `"9hsjwgYJ7nC7"`;
 
-exports[`string > 1337 > alphanumeric > with length, casing and exclude 1`] = `"a4bebfa"`;
+exports[`string > 1337 > alphanumeric > with length, casing and exclude 1`] = `"a4aebfa"`;
 
 exports[`string > 1337 > binary > noArgs 1`] = `"0b0"`;
 
@@ -408,49 +408,49 @@ exports[`string > 1337 > binary > with length 1`] = `"0b000001"`;
 
 exports[`string > 1337 > binary > with length and empty prefix 1`] = `"0000010"`;
 
-exports[`string > 1337 > binary > with length range 1`] = `"0b0000101100101"`;
+exports[`string > 1337 > binary > with length range 1`] = `"0b000010110010"`;
 
 exports[`string > 1337 > fromCharacters > with string characters 1`] = `"o"`;
 
-exports[`string > 1337 > fromCharacters > with string characters and length 1`] = `"ooooo"`;
+exports[`string > 1337 > fromCharacters > with string characters and length 1`] = `"ofooo"`;
 
-exports[`string > 1337 > fromCharacters > with string characters and length range 1`] = `"ooooboraoobor"`;
+exports[`string > 1337 > fromCharacters > with string characters and length range 1`] = `"foooborafobf"`;
 
 exports[`string > 1337 > fromCharacters > with string[] characters 1`] = `"o"`;
 
-exports[`string > 1337 > fromCharacters > with string[] characters and length 1`] = `"ooooo"`;
+exports[`string > 1337 > fromCharacters > with string[] characters and length 1`] = `"ofooo"`;
 
-exports[`string > 1337 > fromCharacters > with string[] characters and length range 1`] = `"ooooboraoobor"`;
+exports[`string > 1337 > fromCharacters > with string[] characters and length range 1`] = `"foooborafobf"`;
 
-exports[`string > 1337 > hexadecimal > noArgs 1`] = `"0x6"`;
+exports[`string > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
-exports[`string > 1337 > hexadecimal > with casing = lower 1`] = `"0x6"`;
+exports[`string > 1337 > hexadecimal > with casing = lower 1`] = `"0x5"`;
 
-exports[`string > 1337 > hexadecimal > with casing = mixed 1`] = `"0x6"`;
+exports[`string > 1337 > hexadecimal > with casing = mixed 1`] = `"0x5"`;
 
-exports[`string > 1337 > hexadecimal > with casing = upper 1`] = `"0x6"`;
+exports[`string > 1337 > hexadecimal > with casing = upper 1`] = `"0x5"`;
 
-exports[`string > 1337 > hexadecimal > with custom prefix 1`] = `"hex_6"`;
+exports[`string > 1337 > hexadecimal > with custom prefix 1`] = `"hex_5"`;
 
-exports[`string > 1337 > hexadecimal > with length 1`] = `"0x636a7b"`;
+exports[`string > 1337 > hexadecimal > with length 1`] = `"0x536a7b"`;
 
-exports[`string > 1337 > hexadecimal > with length range 1`] = `"0x36a7b6Ef28d3F"`;
+exports[`string > 1337 > hexadecimal > with length range 1`] = `"0x36a7b5FA28d2"`;
 
-exports[`string > 1337 > hexadecimal > with length, casing and empty prefix 1`] = `"636a7b6"`;
+exports[`string > 1337 > hexadecimal > with length, casing and empty prefix 1`] = `"536a7b5"`;
 
-exports[`string > 1337 > nanoid > noArgs 1`] = `"aswY7CYMmAbFbcPWv1Z8G"`;
+exports[`string > 1337 > nanoid > noArgs 1`] = `"9swY7CYMmAbFbcPXv0Z7G"`;
 
-exports[`string > 1337 > nanoid > noArgs 2`] = `"nMHXBZ1V_IKcUUHwtouMT"`;
+exports[`string > 1337 > nanoid > noArgs 2`] = `"mMHYBZ0W_ILbUUHwtouNU"`;
 
-exports[`string > 1337 > nanoid > noArgs 3`] = `"TtDeyeo82JBQ_H2uUL28G"`;
+exports[`string > 1337 > nanoid > noArgs 3`] = `"TsDeyeo71JCQ_H1uUL27G"`;
 
-exports[`string > 1337 > nanoid > noArgs 4`] = `"Vbl54ELLzQJT2W9CTgu4D"`;
+exports[`string > 1337 > nanoid > noArgs 4`] = `"Wbk43ELMzQKT1X9CUgu3D"`;
 
-exports[`string > 1337 > nanoid > noArgs 5`] = `"ruWyanzH3wHhpgMxqOJIV"`;
+exports[`string > 1337 > nanoid > noArgs 5`] = `"ruWy9nzH3wHgpgMxqPJIW"`;
 
-exports[`string > 1337 > nanoid > with length parameter 1`] = `"aswY7CYMmAbFbcPWv1Z8GnMHXBZ1V_"`;
+exports[`string > 1337 > nanoid > with length parameter 1`] = `"9swY7CYMmAbFbcPXv0Z7GmMHYBZ0W_"`;
 
-exports[`string > 1337 > nanoid > with length range 1`] = `"hkg-o8_MpKiupwbqvJ_"`;
+exports[`string > 1337 > nanoid > with length range 1`] = `"hjg-n7_NpLhupwbqvJ_"`;
 
 exports[`string > 1337 > numeric > noArgs 1`] = `"2"`;
 
@@ -458,9 +458,9 @@ exports[`string > 1337 > numeric > with allowLeadingZeros 1`] = `"3"`;
 
 exports[`string > 1337 > numeric > with exclude 1`] = `"6"`;
 
-exports[`string > 1337 > numeric > with length 1`] = `"213435"`;
+exports[`string > 1337 > numeric > with length 1`] = `"212435"`;
 
-exports[`string > 1337 > numeric > with length parameter 1`] = `"21343"`;
+exports[`string > 1337 > numeric > with length parameter 1`] = `"21243"`;
 
 exports[`string > 1337 > numeric > with length parameter 2`] = `"52971"`;
 
@@ -468,11 +468,11 @@ exports[`string > 1337 > numeric > with length parameter 3`] = `"36194"`;
 
 exports[`string > 1337 > numeric > with length parameter 4`] = `"77345"`;
 
-exports[`string > 1337 > numeric > with length parameter 5`] = `"72364"`;
+exports[`string > 1337 > numeric > with length parameter 5`] = `"71264"`;
 
-exports[`string > 1337 > numeric > with length range 1`] = `"1343529713619"`;
+exports[`string > 1337 > numeric > with length range 1`] = `"124352971361"`;
 
-exports[`string > 1337 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6667676"`;
+exports[`string > 1337 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6067676"`;
 
 exports[`string > 1337 > octal > noArgs 1`] = `"0o2"`;
 
@@ -482,42 +482,42 @@ exports[`string > 1337 > octal > with length 1`] = `"0o212324"`;
 
 exports[`string > 1337 > octal > with length and empty prefix 1`] = `"2123242"`;
 
-exports[`string > 1337 > octal > with length range 1`] = `"0o1232427513417"`;
+exports[`string > 1337 > octal > with length range 1`] = `"0o123242750351"`;
 
-exports[`string > 1337 > sample > noArgs 1`] = `"90;K?Q9{d,"`;
+exports[`string > 1337 > sample > noArgs 1`] = `"9/:K>Q9{e+"`;
 
-exports[`string > 1337 > sample > with length parameter 1`] = `"90;K?"`;
+exports[`string > 1337 > sample > with length parameter 1`] = `"9/:K>"`;
 
-exports[`string > 1337 > sample > with length parameter 2`] = `"Q9{d,"`;
+exports[`string > 1337 > sample > with length parameter 2`] = `"Q9{e+"`;
 
-exports[`string > 1337 > sample > with length parameter 3`] = `"E[-{J"`;
+exports[`string > 1337 > sample > with length parameter 3`] = `"D[,|J"`;
 
 exports[`string > 1337 > sample > with length parameter 4`] = `"jjBGW"`;
 
-exports[`string > 1337 > sample > with length parameter 5`] = `"g2<_O"`;
+exports[`string > 1337 > sample > with length parameter 5`] = `"g2;_O"`;
 
-exports[`string > 1337 > sample > with length range 1`] = `"0;K?Q9{d,E[-{"`;
+exports[`string > 1337 > sample > with length range 1`] = `"/:K>Q9{e+D[,"`;
 
 exports[`string > 1337 > symbol > noArgs 1`] = `")"`;
 
-exports[`string > 1337 > symbol > with length parameter 1`] = `")&*/+"`;
+exports[`string > 1337 > symbol > with length parameter 1`] = `")&)/+"`;
 
-exports[`string > 1337 > symbol > with length parameter 2`] = `";)}\\\\%"`;
+exports[`string > 1337 > symbol > with length parameter 2`] = `";)~\\\\$"`;
 
-exports[`string > 1337 > symbol > with length parameter 3`] = `"->%}/"`;
+exports[`string > 1337 > symbol > with length parameter 3`] = `"-?%~/"`;
 
-exports[`string > 1337 > symbol > with length parameter 4`] = `"]^,.="`;
+exports[`string > 1337 > symbol > with length parameter 4`] = `"^^,.="`;
 
 exports[`string > 1337 > symbol > with length parameter 5`] = `"]'*@:"`;
 
-exports[`string > 1337 > symbol > with length range 1`] = `"&*/+;)}\\\\%->%}"`;
+exports[`string > 1337 > symbol > with length range 1`] = `"&)/+;)~\\\\$-?%"`;
 
-exports[`string > 1337 > uuid 1`] = `"4247584f-b269-42f7-9cc5-69b34a73638c"`;
+exports[`string > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 
-exports[`string > 1337 > uuid 2`] = `"e6880bf2-26a0-461c-a5b7-fd98f401ef75"`;
+exports[`string > 1337 > uuid 2`] = `"f6880bf2-25b0-450c-a5b7-fd99f401ff75"`;
 
-exports[`string > 1337 > uuid 3`] = `"0ba3ae2e-5b48-4377-b6c7-bc5ebd67ea84"`;
+exports[`string > 1337 > uuid 3`] = `"0ca3ae2e-5b48-4277-b6c7-bc5ebe67ea83"`;
 
-exports[`string > 1337 > uuid 4`] = `"8b46682a-04be-496d-8f46-a50571ebc114"`;
+exports[`string > 1337 > uuid 4`] = `"8c36682a-03be-496d-8f46-b50570ebc104"`;
 
-exports[`string > 1337 > uuid 5`] = `"4a7e9335-61a1-4ba0-9b5c-593d4b8e801e"`;
+exports[`string > 1337 > uuid 5`] = `"3a7e9225-61a0-4ba0-9c5c-592d4b9e801f"`;

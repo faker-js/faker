@@ -32,9 +32,9 @@ exports[`science > 1211 > unit 1`] = `
 
 exports[`science > 1337 > chemicalElement 1`] = `
 {
-  "atomicNumber": 32,
-  "name": "Germanium",
-  "symbol": "Ge",
+  "atomicNumber": 31,
+  "name": "Gallium",
+  "symbol": "Ga",
 }
 `;
 

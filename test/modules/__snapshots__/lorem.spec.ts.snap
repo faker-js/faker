@@ -1,105 +1,105 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`lorem > 42 > lines > noArgs 1`] = `
-"Synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis.
-Benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud."
+"Synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis.
+Benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud."
 `;
 
 exports[`lorem > 42 > lines > with length 1`] = `
-"Virga synagoga patrocinor aro aro adsum.
-Paulatim suggero acer volubilis tristis benevolentia attonbitus auctus cogo.
-Custodia claro perspiciatis apud clarus cornu defleo.
-Aveho doloribus omnis adipiscor pectus assumenda aedificium vinum.
-Titulus cogo alter stella decerno annus deputo adeo verbera caute.
+"Virga synagoga patruus armarium armarium.
+Usitas paulatim suggero.
+Volubilis tristis benevolentia.
+Auctus cognomen esse custodia.
+Perspiciatis apud claro copiose defleo.
+Aveho doloribus omnis adipiscor pectus assumenda advoco vinum vociferor.
+Cogo alter stella decerno animus deputo adeo verbera caute.
 Color eius incidunt audacia volubilis terga vigor varius.
-Verus alienus auxilium adipisci comparo creta cernuus.
-Consuasor cicuta illo ara thorax aestas vos ter avarus.
-Tot suffoco suspendo.
-Aestas contego angelus unus qui comptus adversus colo."
+Verus alienus autus adipisci comparo creta cernuus.
+Consuasor cicuta illo aqua thorax aestas vos ter avarus."
 `;
 
 exports[`lorem > 42 > lines > with length range 1`] = `
-"Synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis.
-Benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud.
-Cornu defleo territo aveho doloribus.
-Adipiscor pectus assumenda aedificium vinum vociferor titulus.
-Alter stella decerno annus deputo.
+"Synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis.
+Benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud.
+Copiose defleo territo aveho doloribus.
+Adipiscor pectus assumenda advoco vinum vociferor titulus.
+Alter stella decerno animus deputo.
 Verbera caute somniculosus.
 Eius incidunt audacia volubilis terga.
-Varius patrocinor verus alienus auxilium adipisci comparo creta cernuus tribuo.
-Cicuta illo ara thorax aestas.
-Ter avarus absconditus tot suffoco suspendo tepidus aestas contego angelus.
-Qui comptus adversus colo comparo suspendo repellendus valde demens.
-Summisse temporibus laudantium tepesco.
-Eos cursus acies amitto addo repellat.
-Dolor venustas carus cunctatio temeritas."
+Varius patrocinor verus alienus autus adipisci comparo creta cernuus tribuo.
+Cicuta illo aqua thorax aestas.
+Ter avarus abscido tot suffragium suspendo tepidus aer contego ancilla.
+Qui comptus adversus colo communis suspendo repellendus valens demens.
+Summisse temptatio laudantium.
+Depulso eos cursus acies amita addo repellat comburo dolor.
+Carus cunae temeritas calco aestus clam arx vetus titulus recusandae."
 `;
 
-exports[`lorem > 42 > paragraph > noArgs 1`] = `"Virga synagoga patrocinor aro aro adsum. Paulatim suggero acer volubilis tristis benevolentia attonbitus auctus cogo. Custodia claro perspiciatis apud clarus cornu defleo."`;
+exports[`lorem > 42 > paragraph > noArgs 1`] = `"Virga synagoga patruus armarium armarium. Usitas paulatim suggero. Volubilis tristis benevolentia."`;
 
-exports[`lorem > 42 > paragraph > with length 1`] = `"Virga synagoga patrocinor aro aro adsum. Paulatim suggero acer volubilis tristis benevolentia attonbitus auctus cogo. Custodia claro perspiciatis apud clarus cornu defleo. Aveho doloribus omnis adipiscor pectus assumenda aedificium vinum. Titulus cogo alter stella decerno annus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius. Verus alienus auxilium adipisci comparo creta cernuus. Consuasor cicuta illo ara thorax aestas vos ter avarus. Tot suffoco suspendo. Aestas contego angelus unus qui comptus adversus colo."`;
+exports[`lorem > 42 > paragraph > with length 1`] = `"Virga synagoga patruus armarium armarium. Usitas paulatim suggero. Volubilis tristis benevolentia. Auctus cognomen esse custodia. Perspiciatis apud claro copiose defleo. Aveho doloribus omnis adipiscor pectus assumenda advoco vinum vociferor. Cogo alter stella decerno animus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius. Verus alienus autus adipisci comparo creta cernuus. Consuasor cicuta illo aqua thorax aestas vos ter avarus."`;
 
-exports[`lorem > 42 > paragraph > with length range 1`] = `"Synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis. Benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus. Adipiscor pectus assumenda aedificium vinum vociferor titulus. Alter stella decerno annus deputo. Verbera caute somniculosus. Eius incidunt audacia volubilis terga. Varius patrocinor verus alienus auxilium adipisci comparo creta cernuus tribuo. Cicuta illo ara thorax aestas. Ter avarus absconditus tot suffoco suspendo tepidus aestas contego angelus. Qui comptus adversus colo comparo suspendo repellendus valde demens. Summisse temporibus laudantium tepesco. Eos cursus acies amitto addo repellat. Dolor venustas carus cunctatio temeritas."`;
+exports[`lorem > 42 > paragraph > with length range 1`] = `"Synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis. Benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus. Adipiscor pectus assumenda advoco vinum vociferor titulus. Alter stella decerno animus deputo. Verbera caute somniculosus. Eius incidunt audacia volubilis terga. Varius patrocinor verus alienus autus adipisci comparo creta cernuus tribuo. Cicuta illo aqua thorax aestas. Ter avarus abscido tot suffragium suspendo tepidus aer contego ancilla. Qui comptus adversus colo communis suspendo repellendus valens demens. Summisse temptatio laudantium. Depulso eos cursus acies amita addo repellat comburo dolor. Carus cunae temeritas calco aestus clam arx vetus titulus recusandae."`;
 
 exports[`lorem > 42 > paragraphs > noArgs 1`] = `
-"Virga synagoga patrocinor aro aro adsum. Paulatim suggero acer volubilis tristis benevolentia attonbitus auctus cogo. Custodia claro perspiciatis apud clarus cornu defleo.
-Aveho doloribus omnis adipiscor pectus assumenda aedificium vinum. Titulus cogo alter stella decerno annus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius.
-Verus alienus auxilium adipisci comparo creta cernuus. Consuasor cicuta illo ara thorax aestas vos ter avarus. Tot suffoco suspendo."
+"Virga synagoga patruus armarium armarium. Usitas paulatim suggero. Volubilis tristis benevolentia.
+Auctus cognomen esse custodia. Perspiciatis apud claro copiose defleo. Aveho doloribus omnis adipiscor pectus assumenda advoco vinum vociferor.
+Cogo alter stella decerno animus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius. Verus alienus autus adipisci comparo creta cernuus."
 `;
 
 exports[`lorem > 42 > paragraphs > with length 1`] = `
-"Virga synagoga patrocinor aro aro adsum. Paulatim suggero acer volubilis tristis benevolentia attonbitus auctus cogo. Custodia claro perspiciatis apud clarus cornu defleo.
-Aveho doloribus omnis adipiscor pectus assumenda aedificium vinum. Titulus cogo alter stella decerno annus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius.
-Verus alienus auxilium adipisci comparo creta cernuus. Consuasor cicuta illo ara thorax aestas vos ter avarus. Tot suffoco suspendo.
-Aestas contego angelus unus qui comptus adversus colo. Suspendo repellendus valde demens animadverto. Temporibus laudantium tepesco depulso eos cursus acies amitto.
-Repellat comburo dolor. Carus cunctatio temeritas calco aetas clam arx vetus titulus. Ut thymbra audentia vapulus fugit timor vehemens.
-Amor calcar curso totidem undique. Dolorem cura cado. Confero vilitas commodo earum.
-Convoco volup vivo caste derideo coerceo cinis adfero. Desolo admoneo cibo venustas capto arbustum deporto. Carcer spectaculum temptatio capio suscipit corona ratione recusandae facilis alioqui.
-Commemoro audentia adhuc officiis spiculum accommodo doloremque calamitas similique. Studio crepusculum video apto. Amplitudo vesper utpote causa solutio.
-Itaque ex carbo aliquid vel velut recusandae confido consectetur. Vel valde tergum sapiente ago arx velociter pecto. Ambitus somnus abscido.
-Inflammatio stultus solio caelestis. Capio comparo tamen sodalitas ulciscor solum minus aliquid. Cena caries voluptas crudelis vallum quos."
+"Virga synagoga patruus armarium armarium. Usitas paulatim suggero. Volubilis tristis benevolentia.
+Auctus cognomen esse custodia. Perspiciatis apud claro copiose defleo. Aveho doloribus omnis adipiscor pectus assumenda advoco vinum vociferor.
+Cogo alter stella decerno animus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius. Verus alienus autus adipisci comparo creta cernuus.
+Consuasor cicuta illo aqua thorax aestas vos ter avarus. Tot suffragium suspendo. Aer contego ancilla urbanus qui comptus adversus colo communis.
+Repellendus valens demens animadverto summisse temptatio laudantium tepidus. Eos cursus acies amita addo repellat. Dolor venustas carus cunae temeritas.
+Aestus clam arx vetus. Recusandae ut thymbra audentia vapulus fugit timor vel cometes. Calcar curso toties.
+Absconditus dolorem cur brevis animadverto confero vilitas commodi earum. Convoco volup vivo caste derideo coerceo cinis adfectus. Desolo admoneo cibo ver capto arbor deporto.
+Carbo spectaculum temptatio capio suscipit corona ratione recusandae facilis alioqui. Commemoro audentia adhaero officiis spiculum acceptus doloremque calamitas similique. Studio crepusculum video apto.
+Amplitudo vesper utpote causa solutio. Itaque ex carbo aliquid velit velut recusandae confido conscendo. Velit valens termes sapiente ago arx velociter pecto.
+Ambitus somnus abscido. Inflammatio stultus solio caelestis. Capio comparo tamen sodalitas ulciscor solum minus aliquid."
 `;
 
 exports[`lorem > 42 > paragraphs > with length range 1`] = `
-"Synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis. Benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus.
-Adipiscor pectus assumenda aedificium vinum vociferor titulus. Alter stella decerno annus deputo. Verbera caute somniculosus.
-Eius incidunt audacia volubilis terga. Varius patrocinor verus alienus auxilium adipisci comparo creta cernuus tribuo. Cicuta illo ara thorax aestas.
-Ter avarus absconditus tot suffoco suspendo tepidus aestas contego angelus. Qui comptus adversus colo comparo suspendo repellendus valde demens. Summisse temporibus laudantium tepesco.
-Eos cursus acies amitto addo repellat. Dolor venustas carus cunctatio temeritas. Aetas clam arx vetus titulus.
-Ut thymbra audentia vapulus fugit timor vehemens. Amor calcar curso totidem undique. Dolorem cura cado.
-Confero vilitas commodo earum. Convoco volup vivo caste derideo coerceo cinis adfero. Desolo admoneo cibo venustas capto arbustum deporto.
-Carcer spectaculum temptatio capio suscipit corona ratione recusandae facilis alioqui. Commemoro audentia adhuc officiis spiculum accommodo doloremque calamitas similique. Studio crepusculum video apto.
-Amplitudo vesper utpote causa solutio. Itaque ex carbo aliquid vel velut recusandae confido consectetur. Vel valde tergum sapiente ago arx velociter pecto.
-Ambitus somnus abscido. Inflammatio stultus solio caelestis. Capio comparo tamen sodalitas ulciscor solum minus aliquid.
-Cena caries voluptas crudelis vallum quos. Desolo neque depromo autus suppono cicuta acidus similique atrocitas. Viriliter vergo corpus accendo vestigium cursus voco vix ulterius claustrum.
-Ullam comes assentator iusto videlicet subito. Alter possimus vox aqua eaque utpote taedium. Subvenio contigo claudeo tolero tolero usitas verecundia dolorem.
-Theologus sol subvenio theatrum valetudo confero coruscus. Nesciunt adfectus deleniti illo. Officiis adaugeo adfero traho contigo.
-Enim tenus bibo qui. Admoveo excepturi hic repellendus. Voluptates ducimus commodi theatrum cerno decens aeternus acies."
+"Synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis. Benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus.
+Adipiscor pectus assumenda advoco vinum vociferor titulus. Alter stella decerno animus deputo. Verbera caute somniculosus.
+Eius incidunt audacia volubilis terga. Varius patrocinor verus alienus autus adipisci comparo creta cernuus tribuo. Cicuta illo aqua thorax aestas.
+Ter avarus abscido tot suffragium suspendo tepidus aer contego ancilla. Qui comptus adversus colo communis suspendo repellendus valens demens. Summisse temptatio laudantium.
+Depulso eos cursus acies amita addo repellat comburo dolor. Carus cunae temeritas calco aestus clam arx vetus titulus recusandae. Thymbra audentia vapulus fugit timor vel cometes amo calcar.
+Toties undique absconditus dolorem cur brevis. Confero vilitas commodi. Succedo convoco volup vivo caste derideo coerceo.
+Adfectus peior desolo admoneo cibo. Capto arbor deporto voro carbo spectaculum temptatio capio suscipit corona. Recusandae facilis alioqui truculenter commemoro audentia adhaero officiis.
+Acceptus doloremque calamitas similique ater studio crepusculum video. Confugo amplitudo vesper utpote. Solutio totidem itaque ex carbo.
+Velit velut recusandae. Conscendo sursum velit valens termes. Ago arx velociter pecto absque ambitus somnus abscido.
+Inflammatio stultus solio caelestis. Capio comparo tamen sodalitas ulciscor solum minus aliquid. Celo careo voluptate crudelis vapulus.
+Theatrum desolo neque depromo autus suppono cicuta acidus. Atqui vilicus viriliter vergo corpus accendo vestrum cursus. Vix ultio claustrum creo ullus comes assentator iusto video subito.
+Alter possimus vulariter apud eaque utpote talio. Subvenio contigo claudeo tolero tollo usque vereor dolorem. Theologus sol subvenio theatrum validus confero coruscus.
+Nesciunt adeptio deleniti. Cito officiis adaugeo adfero traho contigo antepono. Tepesco bibo qui ait admoneo excepturi hic.
+Sursum voluptates ducimus commodi theatrum cerno decens aeternus. Vivo tubineus subito. Atavus aro carus inflammatio summopere solutio."
 `;
 
-exports[`lorem > 42 > sentence > noArgs 1`] = `"Virga synagoga patrocinor aro aro adsum."`;
+exports[`lorem > 42 > sentence > noArgs 1`] = `"Virga synagoga patruus armarium armarium."`;
 
-exports[`lorem > 42 > sentence > with length 1`] = `"Corrupti virga synagoga patrocinor aro aro adsum uredo paulatim suggero."`;
+exports[`lorem > 42 > sentence > with length 1`] = `"Corrupti virga synagoga patruus armarium armarium adsum usitas paulatim suggero."`;
 
-exports[`lorem > 42 > sentence > with length range 1`] = `"Virga synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis tristis benevolentia attonbitus."`;
+exports[`lorem > 42 > sentence > with length range 1`] = `"Virga synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis tristis benevolentia attonbitus."`;
 
-exports[`lorem > 42 > sentences > noArgs 1`] = `"Synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis. Benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus."`;
+exports[`lorem > 42 > sentences > noArgs 1`] = `"Synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis. Benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus."`;
 
-exports[`lorem > 42 > sentences > with length 1`] = `"Virga synagoga patrocinor aro aro adsum. Paulatim suggero acer volubilis tristis benevolentia attonbitus auctus cogo. Custodia claro perspiciatis apud clarus cornu defleo. Aveho doloribus omnis adipiscor pectus assumenda aedificium vinum. Titulus cogo alter stella decerno annus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius. Verus alienus auxilium adipisci comparo creta cernuus. Consuasor cicuta illo ara thorax aestas vos ter avarus. Tot suffoco suspendo. Aestas contego angelus unus qui comptus adversus colo."`;
+exports[`lorem > 42 > sentences > with length 1`] = `"Virga synagoga patruus armarium armarium. Usitas paulatim suggero. Volubilis tristis benevolentia. Auctus cognomen esse custodia. Perspiciatis apud claro copiose defleo. Aveho doloribus omnis adipiscor pectus assumenda advoco vinum vociferor. Cogo alter stella decerno animus deputo adeo verbera caute. Color eius incidunt audacia volubilis terga vigor varius. Verus alienus autus adipisci comparo creta cernuus. Consuasor cicuta illo aqua thorax aestas vos ter avarus."`;
 
-exports[`lorem > 42 > sentences > with length range 1`] = `"Synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis. Benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus. Adipiscor pectus assumenda aedificium vinum vociferor titulus. Alter stella decerno annus deputo. Verbera caute somniculosus. Eius incidunt audacia volubilis terga. Varius patrocinor verus alienus auxilium adipisci comparo creta cernuus tribuo. Cicuta illo ara thorax aestas. Ter avarus absconditus tot suffoco suspendo tepidus aestas contego angelus. Qui comptus adversus colo comparo suspendo repellendus valde demens. Summisse temporibus laudantium tepesco. Eos cursus acies amitto addo repellat. Dolor venustas carus cunctatio temeritas."`;
+exports[`lorem > 42 > sentences > with length range 1`] = `"Synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis. Benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus. Adipiscor pectus assumenda advoco vinum vociferor titulus. Alter stella decerno animus deputo. Verbera caute somniculosus. Eius incidunt audacia volubilis terga. Varius patrocinor verus alienus autus adipisci comparo creta cernuus tribuo. Cicuta illo aqua thorax aestas. Ter avarus abscido tot suffragium suspendo tepidus aer contego ancilla. Qui comptus adversus colo communis suspendo repellendus valens demens. Summisse temptatio laudantium. Depulso eos cursus acies amita addo repellat comburo dolor. Carus cunae temeritas calco aestus clam arx vetus titulus recusandae."`;
 
 exports[`lorem > 42 > slug > noArgs 1`] = `"corrupti-virga-synagoga"`;
 
-exports[`lorem > 42 > slug > with length 1`] = `"corrupti-virga-synagoga-patrocinor-aro-aro-adsum-uredo-paulatim-suggero"`;
+exports[`lorem > 42 > slug > with length 1`] = `"corrupti-virga-synagoga-patruus-armarium-armarium-adsum-usitas-paulatim-suggero"`;
 
-exports[`lorem > 42 > slug > with length range 1`] = `"virga-synagoga-patrocinor-aro-aro-adsum-uredo-paulatim-suggero-acer-volubilis-tristis-benevolentia-attonbitus"`;
+exports[`lorem > 42 > slug > with length range 1`] = `"virga-synagoga-patruus-armarium-armarium-adsum-usitas-paulatim-suggero-accusator-volubilis-tristis-benevolentia-attonbitus"`;
 
-exports[`lorem > 42 > text > noArgs 1`] = `"Patrocinor aro aro adsum uredo paulatim suggero acer. Tristis benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus. Adipiscor pectus assumenda aedificium vinum vociferor titulus. Alter stella decerno annus deputo. Verbera caute somniculosus."`;
+exports[`lorem > 42 > text > noArgs 1`] = `"Patruus armarium armarium adsum usitas paulatim suggero accusator. Tristis benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus. Adipiscor pectus assumenda advoco vinum vociferor titulus. Alter stella decerno animus deputo. Verbera caute somniculosus."`;
 
-exports[`lorem > 42 > text > with length 1`] = `"Patrocinor aro aro adsum uredo paulatim suggero acer. Tristis benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus. Adipiscor pectus assumenda aedificium vinum vociferor titulus. Alter stella decerno annus deputo. Verbera caute somniculosus."`;
+exports[`lorem > 42 > text > with length 1`] = `"Patruus armarium armarium adsum usitas paulatim suggero accusator. Tristis benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus. Adipiscor pectus assumenda advoco vinum vociferor titulus. Alter stella decerno animus deputo. Verbera caute somniculosus."`;
 
-exports[`lorem > 42 > text > with length range 1`] = `"Patrocinor aro aro adsum uredo paulatim suggero acer. Tristis benevolentia attonbitus auctus cogo esse custodia claro perspiciatis apud. Cornu defleo territo aveho doloribus. Adipiscor pectus assumenda aedificium vinum vociferor titulus. Alter stella decerno annus deputo. Verbera caute somniculosus."`;
+exports[`lorem > 42 > text > with length range 1`] = `"Patruus armarium armarium adsum usitas paulatim suggero accusator. Tristis benevolentia attonbitus auctus cognomen esse custodia clamo perspiciatis apud. Copiose defleo territo aveho doloribus. Adipiscor pectus assumenda advoco vinum vociferor titulus. Alter stella decerno animus deputo. Verbera caute somniculosus."`;
 
 exports[`lorem > 42 > word > noArgs 1`] = `"corrupti"`;
 
@@ -113,140 +113,142 @@ exports[`lorem > 42 > word > with options.strategy 1`] = `"a"`;
 
 exports[`lorem > 42 > words > noArgs 1`] = `"corrupti virga synagoga"`;
 
-exports[`lorem > 42 > words > with length 1`] = `"corrupti virga synagoga patrocinor aro aro adsum uredo paulatim suggero"`;
+exports[`lorem > 42 > words > with length 1`] = `"corrupti virga synagoga patruus armarium armarium adsum usitas paulatim suggero"`;
 
-exports[`lorem > 42 > words > with length range 1`] = `"virga synagoga patrocinor aro aro adsum uredo paulatim suggero acer volubilis tristis benevolentia attonbitus"`;
+exports[`lorem > 42 > words > with length range 1`] = `"virga synagoga patruus armarium armarium adsum usitas paulatim suggero accusator volubilis tristis benevolentia attonbitus"`;
 
 exports[`lorem > 1211 > lines > noArgs 1`] = `
-"Caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis.
-Triduana dapifer usque unde blanditiis officia aveho corpus.
-Tener crux video exercitationem voluptas caelestis coepi suffragium eligendi conscendo.
-Creator celer color atque laboriosam suasoria aqua subnecto depromo.
-Cunabula bellicus tutamen nemo dens."
+"Caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers.
+Dapifer usque unde blanditiis officia aveho corpus votum tener.
+Video expedita voluptas caelestis coepi suffragium.
+Conscendo ulciscor crastinus celer color atque laboriosam.
+Apud subseco depromo caries cunabula bellicus tutis nemo."
 `;
 
 exports[`lorem > 1211 > lines > with length 1`] = `
-"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor.
-Sollers triduana dapifer usque unde blanditiis officia aveho.
-Votum tener crux video exercitationem voluptas.
-Coepi suffragium eligendi conscendo ulciscor.
-Celer color atque laboriosam suasoria aqua.
-Depromo caries cunabula bellicus tutamen nemo dens adficio.
-Auctor suggero charisma terga dolores delectus blandior perspiciatis.
-Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus.
-Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio.
-Aggero censura approbo cibus beneficium verbera."
+"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis.
+Tripudio dapifer usque unde blanditiis officia aveho corpus.
+Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo.
+Crastinus celer color atque laboriosam suasoria apud subseco depromo.
+Cunabula bellicus tutis nemo.
+Adficio subito auctor suggero cetera tergeo.
+Delectus bis perspiciatis ut amaritudo ullus deinde.
+Delicate nam tolero impedit vicinus voluntarius.
+Uter blanditiis supellex trucido conforto validus accusator infit tempus.
+Aggero censura approbo cibo beneficium verbera."
 `;
 
 exports[`lorem > 1211 > lines > with length range 1`] = `
-"Caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis.
-Triduana dapifer usque unde blanditiis officia aveho corpus.
-Tener crux video exercitationem voluptas caelestis coepi suffragium eligendi conscendo.
-Creator celer color atque laboriosam suasoria aqua subnecto depromo.
-Cunabula bellicus tutamen nemo dens.
-Subito auctor suggero.
-Terga dolores delectus blandior perspiciatis.
-Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus.
-Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio.
-Aggero censura approbo cibus beneficium verbera.
-Cupio aureus perferendis magnam non possimus tonsor recusandae tricesimus tantum.
-Venustas facilis conicio facilis deduco conor triduana avaritia vinculum.
-Cariosus adficio vestigium curia.
-Pariatur vita vos conservo provident tandem ventito aperte esse.
-Tabella cauda triumphus vicinus armarium suffoco aestas dapifer.
-Comburo acquiro calamitas calculus vespillo patrocinor socius.
-Somnus pariatur velociter dedico delibero totus iste.
-Molestias delicate decerno.
-Quia cur argentum asperiores."
+"Caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers.
+Dapifer usque unde blanditiis officia aveho corpus votum tener.
+Video expedita voluptas caelestis coepi suffragium.
+Conscendo ulciscor crastinus celer color atque laboriosam.
+Apud subseco depromo caries cunabula bellicus tutis nemo.
+Adficio subito auctor suggero cetera tergeo.
+Delectus bis perspiciatis ut amaritudo ullus deinde.
+Delicate nam tolero impedit vicinus voluntarius.
+Uter blanditiis supellex trucido conforto validus accusator infit tempus.
+Aggero censura approbo cibo beneficium verbera.
+Cupio aureus perferendis magnam non praesentium tonsor recusandae tricesimus tantum.
+Ver facilis conicio fuga dedico conor triduana avaritia vindico.
+Cariosus adficio vestigium.
+Versus pariatur vitae vos conservo provident.
+Ventosus aperte esse sto tabella cattus trucido vicissitudo armarium.
+Aer dapifer reiciendis comburo acquiro calamitas calculus vespillo.
+Socius facere somnus pariatur velum dedico delibero.
+Iste acervus molestias delicate decerno allatus quia cur arcus.
+Desolo vesco votum thorax.
+Deludo degero virga utrum sapiente pectus verto tot aestas."
 `;
 
-exports[`lorem > 1211 > paragraph > noArgs 1`] = `"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor. Sollers triduana dapifer usque unde blanditiis officia aveho. Votum tener crux video exercitationem voluptas."`;
+exports[`lorem > 1211 > paragraph > noArgs 1`] = `"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis. Tripudio dapifer usque unde blanditiis officia aveho corpus. Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo."`;
 
-exports[`lorem > 1211 > paragraph > with length 1`] = `"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor. Sollers triduana dapifer usque unde blanditiis officia aveho. Votum tener crux video exercitationem voluptas. Coepi suffragium eligendi conscendo ulciscor. Celer color atque laboriosam suasoria aqua. Depromo caries cunabula bellicus tutamen nemo dens adficio. Auctor suggero charisma terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio. Aggero censura approbo cibus beneficium verbera."`;
+exports[`lorem > 1211 > paragraph > with length 1`] = `"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis. Tripudio dapifer usque unde blanditiis officia aveho corpus. Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo. Crastinus celer color atque laboriosam suasoria apud subseco depromo. Cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo. Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus. Aggero censura approbo cibo beneficium verbera."`;
 
-exports[`lorem > 1211 > paragraph > with length range 1`] = `"Caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis. Triduana dapifer usque unde blanditiis officia aveho corpus. Tener crux video exercitationem voluptas caelestis coepi suffragium eligendi conscendo. Creator celer color atque laboriosam suasoria aqua subnecto depromo. Cunabula bellicus tutamen nemo dens. Subito auctor suggero. Terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio. Aggero censura approbo cibus beneficium verbera. Cupio aureus perferendis magnam non possimus tonsor recusandae tricesimus tantum. Venustas facilis conicio facilis deduco conor triduana avaritia vinculum. Cariosus adficio vestigium curia. Pariatur vita vos conservo provident tandem ventito aperte esse. Tabella cauda triumphus vicinus armarium suffoco aestas dapifer. Comburo acquiro calamitas calculus vespillo patrocinor socius. Somnus pariatur velociter dedico delibero totus iste. Molestias delicate decerno. Quia cur argentum asperiores."`;
+exports[`lorem > 1211 > paragraph > with length range 1`] = `"Caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers. Dapifer usque unde blanditiis officia aveho corpus votum tener. Video expedita voluptas caelestis coepi suffragium. Conscendo ulciscor crastinus celer color atque laboriosam. Apud subseco depromo caries cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo. Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus. Aggero censura approbo cibo beneficium verbera. Cupio aureus perferendis magnam non praesentium tonsor recusandae tricesimus tantum. Ver facilis conicio fuga dedico conor triduana avaritia vindico. Cariosus adficio vestigium. Versus pariatur vitae vos conservo provident. Ventosus aperte esse sto tabella cattus trucido vicissitudo armarium. Aer dapifer reiciendis comburo acquiro calamitas calculus vespillo. Socius facere somnus pariatur velum dedico delibero. Iste acervus molestias delicate decerno allatus quia cur arcus. Desolo vesco votum thorax. Deludo degero virga utrum sapiente pectus verto tot aestas."`;
 
 exports[`lorem > 1211 > paragraphs > noArgs 1`] = `
-"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor. Sollers triduana dapifer usque unde blanditiis officia aveho. Votum tener crux video exercitationem voluptas.
-Coepi suffragium eligendi conscendo ulciscor. Celer color atque laboriosam suasoria aqua. Depromo caries cunabula bellicus tutamen nemo dens adficio.
-Auctor suggero charisma terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio."
+"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis. Tripudio dapifer usque unde blanditiis officia aveho corpus. Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo.
+Crastinus celer color atque laboriosam suasoria apud subseco depromo. Cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo.
+Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus."
 `;
 
 exports[`lorem > 1211 > paragraphs > with length 1`] = `
-"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor. Sollers triduana dapifer usque unde blanditiis officia aveho. Votum tener crux video exercitationem voluptas.
-Coepi suffragium eligendi conscendo ulciscor. Celer color atque laboriosam suasoria aqua. Depromo caries cunabula bellicus tutamen nemo dens adficio.
-Auctor suggero charisma terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio.
-Aggero censura approbo cibus beneficium verbera. Cupio aureus perferendis magnam non possimus tonsor recusandae tricesimus tantum. Venustas facilis conicio facilis deduco conor triduana avaritia vinculum.
-Cariosus adficio vestigium curia. Pariatur vita vos conservo provident tandem ventito aperte esse. Tabella cauda triumphus vicinus armarium suffoco aestas dapifer.
-Comburo acquiro calamitas calculus vespillo patrocinor socius. Somnus pariatur velociter dedico delibero totus iste. Molestias delicate decerno.
-Quia cur argentum asperiores. Verus votum thorax tero deludo degero vir. Sapiente pectus versus tot aestas cupio defero voluptatem tum.
-Artificiose cultura civis antiquus dedecor porro amitto conventus cogo placeat. Caste inventore decet agnosco catena totus vito. Vetus excepturi ater territo soluta peccatus abbas vomica vulticulus sulum.
-Quo abeo pectus apostolus anser. Volup acer cursim despecto toties somnus usus asperiores. Centum umerus aduro cura ciminatio trucido.
-Cohaero desidero adsidue decumbo commemoro quidem coma. Suscipio capitulus traho summopere deripio vetus demonstro non. Amissio cuppedia amplitudo ver degenero vis."
+"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis. Tripudio dapifer usque unde blanditiis officia aveho corpus. Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo.
+Crastinus celer color atque laboriosam suasoria apud subseco depromo. Cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo.
+Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus.
+Aggero censura approbo cibo beneficium verbera. Cupio aureus perferendis magnam non praesentium tonsor recusandae tricesimus tantum. Ver facilis conicio fuga dedico conor triduana avaritia vindico.
+Cariosus adficio vestigium. Versus pariatur vitae vos conservo provident. Ventosus aperte esse sto tabella cattus trucido vicissitudo armarium.
+Aer dapifer reiciendis comburo acquiro calamitas calculus vespillo. Socius facere somnus pariatur velum dedico delibero. Iste acervus molestias delicate decerno allatus quia cur arcus.
+Desolo vesco votum thorax. Deludo degero virga utrum sapiente pectus verto tot aestas. Defero voluptatem tum vetus artificiose cultura.
+Antiquus dedecor porro amitto conventus. Placeat quidem caste inventore decet. Catena totus vivo.
+Vetus excepturi atavus terror soluta peccatus ab vomito xiphias sulum. Quo abeo pectus aperte anser. Voluptas acer cursim despecto toties somnus ut asperiores dens.
+Umerus aduro cura cimentarius trucido. Cohaero desidero adopto decumbo comitatus quidem coma. Suscipit capitulus trans summopere deripio vetus demonstro non."
 `;
 
 exports[`lorem > 1211 > paragraphs > with length range 1`] = `
-"Caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis. Triduana dapifer usque unde blanditiis officia aveho corpus. Tener crux video exercitationem voluptas caelestis coepi suffragium eligendi conscendo.
-Creator celer color atque laboriosam suasoria aqua subnecto depromo. Cunabula bellicus tutamen nemo dens. Subito auctor suggero.
-Terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio.
-Aggero censura approbo cibus beneficium verbera. Cupio aureus perferendis magnam non possimus tonsor recusandae tricesimus tantum. Venustas facilis conicio facilis deduco conor triduana avaritia vinculum.
-Cariosus adficio vestigium curia. Pariatur vita vos conservo provident tandem ventito aperte esse. Tabella cauda triumphus vicinus armarium suffoco aestas dapifer.
-Comburo acquiro calamitas calculus vespillo patrocinor socius. Somnus pariatur velociter dedico delibero totus iste. Molestias delicate decerno.
-Quia cur argentum asperiores. Verus votum thorax tero deludo degero vir. Sapiente pectus versus tot aestas cupio defero voluptatem tum.
-Artificiose cultura civis antiquus dedecor porro amitto conventus cogo placeat. Caste inventore decet agnosco catena totus vito. Vetus excepturi ater territo soluta peccatus abbas vomica vulticulus sulum.
-Quo abeo pectus apostolus anser. Volup acer cursim despecto toties somnus usus asperiores. Centum umerus aduro cura ciminatio trucido.
-Cohaero desidero adsidue decumbo commemoro quidem coma. Suscipio capitulus traho summopere deripio vetus demonstro non. Amissio cuppedia amplitudo ver degenero vis.
-Rerum adeptio beneficium adhaero autem cariosus annus creber aperiam. Consectetur umquam texo copiose sui utpote sol clamo. Peccatus spiritus caput.
-Tempus validus surculus vulgaris vitae. Adeptio vae administratio vere utrum abundans suus aequitas antiquus. Thymbra balbus ademptio aliqua absens.
-Talis sordeo apud demulceo. Tyrannus ipsum accusantium uterque paens accusamus cito suppono summisse. Quo eum corroboro.
-Tego cura timor vulnus comedo. Theatrum corona creator vobis fuga cunabula. Aegrus appositus calcar voluntarius colo absum sumo aperiam adiuvo nam.
-Summisse magnam somniculosus laudantium territo blandior adhuc vilicus decretum voluptatum. Desparatus amplexus aestivus supra libero vis capio. Amo pectus vita.
-Sunt cibus cursim amita cumque a dignissimos. Complectus paulatim debitis explicabo. Deripio delectatio minima conduco contigo villa aperiam.
-Vitae bellum beatus. Conforto amplitudo terminatio ratione facere cilicium. Crur veritas tubineus amiculum vulgo utrimque fugit.
-Ratione audax praesentium uxor. Tener timor ars enim caelestis suggero combibo artificiose quod. Truculenter desolo illo amoveo compono.
-Umquam bos cedo paens. Tabesco amiculum aspernatur approbo peior. Ascisco congregatio vulgo territo pauci curtus synagoga."
+"Caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers. Dapifer usque unde blanditiis officia aveho corpus votum tener. Video expedita voluptas caelestis coepi suffragium.
+Conscendo ulciscor crastinus celer color atque laboriosam. Apud subseco depromo caries cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo.
+Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus.
+Aggero censura approbo cibo beneficium verbera. Cupio aureus perferendis magnam non praesentium tonsor recusandae tricesimus tantum. Ver facilis conicio fuga dedico conor triduana avaritia vindico.
+Cariosus adficio vestigium. Versus pariatur vitae vos conservo provident. Ventosus aperte esse sto tabella cattus trucido vicissitudo armarium.
+Aer dapifer reiciendis comburo acquiro calamitas calculus vespillo. Socius facere somnus pariatur velum dedico delibero. Iste acervus molestias delicate decerno allatus quia cur arcus.
+Desolo vesco votum thorax. Deludo degero virga utrum sapiente pectus verto tot aestas. Defero voluptatem tum vetus artificiose cultura.
+Antiquus dedecor porro amitto conventus. Placeat quidem caste inventore decet. Catena totus vivo.
+Vetus excepturi atavus terror soluta peccatus ab vomito xiphias sulum. Quo abeo pectus aperte anser. Voluptas acer cursim despecto toties somnus ut asperiores dens.
+Umerus aduro cura cimentarius trucido. Cohaero desidero adopto decumbo comitatus quidem coma. Suscipit capitulus trans summopere deripio vetus demonstro non.
+Amissio cuppedia amplitudo verbera degenero viscus. Rerum adeo bene adflicto autem cariosus annus creber antiquus. Consectetur umquam textilis copiose sui utpote sol clamo.
+Pecco spiritus caput. Tempus validus surculus vulgivagus vitiosus. Adeptio vae adiuvo vere uxor abundans suus aeneus antepono bonus.
+Balbus adduco aliqua absconditus apud talis sordeo apud demulceo. Tyrannus ipsum accusantium uterque paens accusamus cito supra summisse. Quo eum corroboro.
+Tego cura timor vulnus comedo. Theca corona creator vociferor fuga cumque. Aegrus appositus calamitas volup colo abstergo sumo aperiam adipiscor natus.
+Summopere magnam somniculosus laudantium terror blandior adhaero vilis decretum voluptatum. Desparatus amplexus aestivus supra libero viscus capio. Amo pectus vita.
+Sunt cibo currus amita cumque a dignissimos. Complectus paulatim debitis explicabo. Deripio delectatio minima conduco contigo vinco aperiam.
+Vitae bellum beatus. Confido amplitudo tero ratione facere cilicium. Crur veritas tui amicitia vulgus utrimque fugit.
+Ratione audax praesentium uxor. Tener timor ars enim caecus suggero coma articulus quod. Truculenter desolo illo amoveo compono.
+Umquam bos cedo. Brevis tabesco amicitia aspernatur approbo pel est. Congregatio vulgus territo pauci.
+Synagoga vel iusto demergo aduro tergeo. Defetiscor vomer amoveo vicissitudo. Nisi ducimus decens thesis strues defleo verto ubi."
 `;
 
-exports[`lorem > 1211 > sentence > noArgs 1`] = `"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor."`;
+exports[`lorem > 1211 > sentence > noArgs 1`] = `"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis."`;
 
-exports[`lorem > 1211 > sentence > with length 1`] = `"Vestrum varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor."`;
+exports[`lorem > 1211 > sentence > with length 1`] = `"Vestrum varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor."`;
 
-exports[`lorem > 1211 > sentence > with length range 1`] = `"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis sollers triduana dapifer usque unde blanditiis officia aveho corpus."`;
+exports[`lorem > 1211 > sentence > with length range 1`] = `"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers tripudio dapifer usque unde blanditiis officia aveho corpus votum."`;
 
-exports[`lorem > 1211 > sentences > noArgs 1`] = `"Caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis. Triduana dapifer usque unde blanditiis officia aveho corpus. Tener crux video exercitationem voluptas caelestis coepi suffragium eligendi conscendo. Creator celer color atque laboriosam suasoria aqua subnecto depromo. Cunabula bellicus tutamen nemo dens. Subito auctor suggero."`;
+exports[`lorem > 1211 > sentences > noArgs 1`] = `"Caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers. Dapifer usque unde blanditiis officia aveho corpus votum tener. Video expedita voluptas caelestis coepi suffragium. Conscendo ulciscor crastinus celer color atque laboriosam. Apud subseco depromo caries cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo."`;
 
-exports[`lorem > 1211 > sentences > with length 1`] = `"Varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor. Sollers triduana dapifer usque unde blanditiis officia aveho. Votum tener crux video exercitationem voluptas. Coepi suffragium eligendi conscendo ulciscor. Celer color atque laboriosam suasoria aqua. Depromo caries cunabula bellicus tutamen nemo dens adficio. Auctor suggero charisma terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio. Aggero censura approbo cibus beneficium verbera."`;
+exports[`lorem > 1211 > sentences > with length 1`] = `"Varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis. Tripudio dapifer usque unde blanditiis officia aveho corpus. Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo. Crastinus celer color atque laboriosam suasoria apud subseco depromo. Cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo. Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus. Aggero censura approbo cibo beneficium verbera."`;
 
-exports[`lorem > 1211 > sentences > with length range 1`] = `"Caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis. Triduana dapifer usque unde blanditiis officia aveho corpus. Tener crux video exercitationem voluptas caelestis coepi suffragium eligendi conscendo. Creator celer color atque laboriosam suasoria aqua subnecto depromo. Cunabula bellicus tutamen nemo dens. Subito auctor suggero. Terga dolores delectus blandior perspiciatis. Ambitus ullam deinde corrupti delinquo nam tolero impedit vicinus. Tonsor uter bonus supellex trucido confugo validus accusator incidunt temptatio. Aggero censura approbo cibus beneficium verbera. Cupio aureus perferendis magnam non possimus tonsor recusandae tricesimus tantum. Venustas facilis conicio facilis deduco conor triduana avaritia vinculum. Cariosus adficio vestigium curia. Pariatur vita vos conservo provident tandem ventito aperte esse. Tabella cauda triumphus vicinus armarium suffoco aestas dapifer. Comburo acquiro calamitas calculus vespillo patrocinor socius. Somnus pariatur velociter dedico delibero totus iste. Molestias delicate decerno. Quia cur argentum asperiores."`;
+exports[`lorem > 1211 > sentences > with length range 1`] = `"Caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers. Dapifer usque unde blanditiis officia aveho corpus votum tener. Video expedita voluptas caelestis coepi suffragium. Conscendo ulciscor crastinus celer color atque laboriosam. Apud subseco depromo caries cunabula bellicus tutis nemo. Adficio subito auctor suggero cetera tergeo. Delectus bis perspiciatis ut amaritudo ullus deinde. Delicate nam tolero impedit vicinus voluntarius. Uter blanditiis supellex trucido conforto validus accusator infit tempus. Aggero censura approbo cibo beneficium verbera. Cupio aureus perferendis magnam non praesentium tonsor recusandae tricesimus tantum. Ver facilis conicio fuga dedico conor triduana avaritia vindico. Cariosus adficio vestigium. Versus pariatur vitae vos conservo provident. Ventosus aperte esse sto tabella cattus trucido vicissitudo armarium. Aer dapifer reiciendis comburo acquiro calamitas calculus vespillo. Socius facere somnus pariatur velum dedico delibero. Iste acervus molestias delicate decerno allatus quia cur arcus. Desolo vesco votum thorax. Deludo degero virga utrum sapiente pectus verto tot aestas."`;
 
 exports[`lorem > 1211 > slug > noArgs 1`] = `"vestrum-varietas-caelum"`;
 
-exports[`lorem > 1211 > slug > with length 1`] = `"vestrum-varietas-caelum-vulnus-spectaculum-stella-tendo-considero-suasoria-tonsor"`;
+exports[`lorem > 1211 > slug > with length 1`] = `"vestrum-varietas-caelum-vulpes-spectaculum-stillicidium-tendo-considero-suasoria-tonsor"`;
 
-exports[`lorem > 1211 > slug > with length range 1`] = `"varietas-caelum-vulnus-spectaculum-stella-tendo-considero-suasoria-tonsor-tenuis-sollers-triduana-dapifer-usque-unde-blanditiis-officia-aveho-corpus"`;
+exports[`lorem > 1211 > slug > with length range 1`] = `"varietas-caelum-vulpes-spectaculum-stillicidium-tendo-considero-suasoria-tonsor-tenuis-sollers-tripudio-dapifer-usque-unde-blanditiis-officia-aveho-corpus-votum"`;
 
 exports[`lorem > 1211 > text > noArgs 1`] = `
-"Vulnus spectaculum stella tendo considero.
-Tonsor tenuis sollers triduana dapifer usque unde blanditiis.
-Aveho corpus votum tener crux video exercitationem.
-Caelestis coepi suffragium eligendi conscendo ulciscor creator celer color atque.
-Suasoria aqua subnecto depromo caries cunabula bellicus."
+"Vulpes spectaculum stillicidium tendo.
+Suasoria tonsor tenuis sollers tripudio.
+Usque unde blanditiis officia aveho corpus.
+Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo.
+Crastinus celer color atque laboriosam suasoria apud subseco depromo."
 `;
 
 exports[`lorem > 1211 > text > with length 1`] = `
-"Vulnus spectaculum stella tendo considero.
-Tonsor tenuis sollers triduana dapifer usque unde blanditiis.
-Aveho corpus votum tener crux video exercitationem.
-Caelestis coepi suffragium eligendi conscendo ulciscor creator celer color atque.
-Suasoria aqua subnecto depromo caries cunabula bellicus."
+"Vulpes spectaculum stillicidium tendo.
+Suasoria tonsor tenuis sollers tripudio.
+Usque unde blanditiis officia aveho corpus.
+Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo.
+Crastinus celer color atque laboriosam suasoria apud subseco depromo."
 `;
 
 exports[`lorem > 1211 > text > with length range 1`] = `
-"Vulnus spectaculum stella tendo considero.
-Tonsor tenuis sollers triduana dapifer usque unde blanditiis.
-Aveho corpus votum tener crux video exercitationem.
-Caelestis coepi suffragium eligendi conscendo ulciscor creator celer color atque.
-Suasoria aqua subnecto depromo caries cunabula bellicus."
+"Vulpes spectaculum stillicidium tendo.
+Suasoria tonsor tenuis sollers tripudio.
+Usque unde blanditiis officia aveho corpus.
+Tener crux video expedita voluptas caelestis coepi suffragium eligendi conscendo.
+Crastinus celer color atque laboriosam suasoria apud subseco depromo."
 `;
 
 exports[`lorem > 1211 > word > noArgs 1`] = `"vestrum"`;
@@ -261,110 +263,108 @@ exports[`lorem > 1211 > word > with options.strategy 1`] = `"a"`;
 
 exports[`lorem > 1211 > words > noArgs 1`] = `"vestrum varietas caelum"`;
 
-exports[`lorem > 1211 > words > with length 1`] = `"vestrum varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor"`;
+exports[`lorem > 1211 > words > with length 1`] = `"vestrum varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor"`;
 
-exports[`lorem > 1211 > words > with length range 1`] = `"varietas caelum vulnus spectaculum stella tendo considero suasoria tonsor tenuis sollers triduana dapifer usque unde blanditiis officia aveho corpus"`;
+exports[`lorem > 1211 > words > with length range 1`] = `"varietas caelum vulpes spectaculum stillicidium tendo considero suasoria tonsor tenuis sollers tripudio dapifer usque unde blanditiis officia aveho corpus votum"`;
 
 exports[`lorem > 1337 > lines > noArgs 1`] = `
-"Cibo degenero commemoro eaque.
-Voluptates synagoga ancilla crepusculum quisquam."
+"Chirographum degenero commemoro eaque.
+Voluptatibus tabella ancilla creptio quisquam."
 `;
 
 exports[`lorem > 1337 > lines > with length 1`] = `
-"Articulus cibo degenero commemoro eaque.
-Voluptates synagoga ancilla crepusculum quisquam.
+"Articulus chirographum degenero commemoro eaque.
+Voluptatibus tabella ancilla creptio quisquam.
 Vorago decipio testimonium thalassinus.
-Cupressus nulla temporibus audeo civitas spargo.
-Atrox cupiditate aveho exercitationem tristis audax.
-Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo.
-Corporis adulatio testimonium.
-Subvenio deprecator voluptas truculenter pel.
-Vulnus caterva accedo alii vigilo voluptate deprecator.
-Suppono absum tempore speciosus aufero."
+Cupressus nulla temporibus audeo civis.
+Desidero atrox cupiditate avarus exercitationem tristis audax vita.
+Desparatus dolore accendo suus vulgo ascisco.
+Corrupti suadeo abbas corporis.
+Testimonium consectetur subvenio.
+Voluptas tubineus pel magni vulpes caterva.
+Alienus vigor voluptate."
 `;
 
 exports[`lorem > 1337 > lines > with length range 1`] = `
-"Cibo degenero commemoro eaque.
-Voluptates synagoga ancilla crepusculum quisquam.
+"Chirographum degenero commemoro eaque.
+Voluptatibus tabella ancilla creptio quisquam.
 Vorago decipio testimonium thalassinus.
-Cupressus nulla temporibus audeo civitas spargo.
-Atrox cupiditate aveho exercitationem tristis audax.
-Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo.
-Corporis adulatio testimonium.
-Subvenio deprecator voluptas truculenter pel.
-Vulnus caterva accedo alii vigilo voluptate deprecator.
-Suppono absum tempore speciosus aufero.
-Verbum ascisco verbum communis subseco cena earum atrocitas.
-Deduco crustulum textilis depromo surculus textor.
-Verbera summa vel curia delibero."
+Cupressus nulla temporibus audeo civis.
+Desidero atrox cupiditate avarus exercitationem tristis audax vita.
+Desparatus dolore accendo suus vulgo ascisco.
+Corrupti suadeo abbas corporis.
+Testimonium consectetur subvenio.
+Voluptas tubineus pel magni vulpes caterva.
+Alienus vigor voluptate.
+Confugo supra abstergo temporibus speciosus aufero.
+Vere arx verbum communis subseco cena earum atrocitas."
 `;
 
-exports[`lorem > 1337 > paragraph > noArgs 1`] = `"Articulus cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus."`;
+exports[`lorem > 1337 > paragraph > noArgs 1`] = `"Articulus chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus."`;
 
-exports[`lorem > 1337 > paragraph > with length 1`] = `"Articulus cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo. Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator. Suppono absum tempore speciosus aufero."`;
+exports[`lorem > 1337 > paragraph > with length 1`] = `"Articulus chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco. Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva. Alienus vigor voluptate."`;
 
-exports[`lorem > 1337 > paragraph > with length range 1`] = `"Cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo. Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator. Suppono absum tempore speciosus aufero. Verbum ascisco verbum communis subseco cena earum atrocitas. Deduco crustulum textilis depromo surculus textor. Verbera summa vel curia delibero."`;
+exports[`lorem > 1337 > paragraph > with length range 1`] = `"Chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco. Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva. Alienus vigor voluptate. Confugo supra abstergo temporibus speciosus aufero. Vere arx verbum communis subseco cena earum atrocitas."`;
 
 exports[`lorem > 1337 > paragraphs > noArgs 1`] = `
-"Articulus cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus.
-Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo.
-Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator."
+"Articulus chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus.
+Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco.
+Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva."
 `;
 
 exports[`lorem > 1337 > paragraphs > with length 1`] = `
-"Articulus cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus.
-Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo.
-Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator.
-Suppono absum tempore speciosus aufero. Verbum ascisco verbum communis subseco cena earum atrocitas. Deduco crustulum textilis depromo surculus textor.
-Verbera summa vel curia delibero. Recusandae expedita capio vindico laboriosam templum capillus curtus cruentus. Antea statua ad canis tabgo victoria placeat.
-Ultio vulgivagus clementia cribro subnecto consuasor. Conscendo deorsum administratio. Surgo ter alo adfero caveo antea capitulus statim denique.
-Nobis audentia audeo confido damnatio aetas repellat adsum supra solutio. Tenax confido tergeo. Nisi at tyrannus cerno tam.
-Velum infit acies aggero vis defleo arceo. Qui inventore ventosus velociter celebrer super deorsum cicuta. Basium rerum circumvenio.
-Coniuratio desidero sollers vir ademptio iure. Articulus sursum cras doloremque nesciunt tutis substantia. Admoneo adipiscor eveniet tero succedo auxilium cernuus.
-Cunabula sollers cerno cicuta terminatio. Incidunt surculus damnatio tracto tredecim accommodo tabella sunt super. Video solus audeo sto vox vergo urbs adiuvo absorbeo."
+"Articulus chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus.
+Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco.
+Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva.
+Alienus vigor voluptate. Confugo supra abstergo temporibus speciosus aufero. Vere arx verbum communis subseco cena earum atrocitas.
+Deduco crustulum textor depromo surculus textus. Verbera summisse velit curia delibero. Recusandae expedita capio vindico laboriosam templum canto curtus cruentus dolorem.
+Statua acsi canis tabgo. Placeat cumque ultra vulgivagus clementia cribro subnecto consuasor addo conscendo. Administratio veritas surgo ter alo adfero.
+Antea capio statim denique video. Audax audentia confido damnatio aestus repellat adsum. Solutio absorbeo tenax confido tergeo condico nisi astrum.
+Cerno tam magnam velut infit acies aggero vis defleo. Spero quia inventore ventosus. Celebrer super deorsum cicuta adsum bardus rerum circumvenio decipio coniuratio.
+Sollers vir ademptio iure saepe articulus. Cras doloremque nesciunt tutis subvenio quo admoneo adipisci. Terra succedo auxilium cernuus bibo cumque sollers.
+Cicuta terminatio ulterius incidunt surculus. Tracto tredecim acceptus tabella sunt super. Viduo solus audeo sto vulariter vergo uredo adipiscor absens."
 `;
 
 exports[`lorem > 1337 > paragraphs > with length range 1`] = `
-"Cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus.
-Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo.
-Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator.
-Suppono absum tempore speciosus aufero. Verbum ascisco verbum communis subseco cena earum atrocitas. Deduco crustulum textilis depromo surculus textor.
-Verbera summa vel curia delibero. Recusandae expedita capio vindico laboriosam templum capillus curtus cruentus. Antea statua ad canis tabgo victoria placeat.
-Ultio vulgivagus clementia cribro subnecto consuasor. Conscendo deorsum administratio. Surgo ter alo adfero caveo antea capitulus statim denique.
-Nobis audentia audeo confido damnatio aetas repellat adsum supra solutio. Tenax confido tergeo. Nisi at tyrannus cerno tam.
-Velum infit acies aggero vis defleo arceo. Qui inventore ventosus velociter celebrer super deorsum cicuta. Basium rerum circumvenio.
-Coniuratio desidero sollers vir ademptio iure. Articulus sursum cras doloremque nesciunt tutis substantia. Admoneo adipiscor eveniet tero succedo auxilium cernuus.
-Cunabula sollers cerno cicuta terminatio. Incidunt surculus damnatio tracto tredecim accommodo tabella sunt super. Video solus audeo sto vox vergo urbs adiuvo absorbeo.
-Tabella suggero ars angustus arto trans culpo attero. Adficio alius amoveo strenuus provident natus tremo. Calamitas alienus desino combibo ceno dolor substantia ventus.
-Expedita titulus creta talis vorax bene. Suppellex appello tonsor tabula tam turpis tamquam. Sapiente repudiandae tres triumphus brevis somniculosus attero trado.
-Adeo accusantium similique. Ad acquiro tametsi tamisium campana terreo tutamen. Itaque studio ter taceo cum speciosus subiungo torrens consectetur."
+"Chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus.
+Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco.
+Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva.
+Alienus vigor voluptate. Confugo supra abstergo temporibus speciosus aufero. Vere arx verbum communis subseco cena earum atrocitas.
+Deduco crustulum textor depromo surculus textus. Verbera summisse velit curia delibero. Recusandae expedita capio vindico laboriosam templum canto curtus cruentus dolorem.
+Statua acsi canis tabgo. Placeat cumque ultra vulgivagus clementia cribro subnecto consuasor addo conscendo. Administratio veritas surgo ter alo adfero.
+Antea capio statim denique video. Audax audentia confido damnatio aestus repellat adsum. Solutio absorbeo tenax confido tergeo condico nisi astrum.
+Cerno tam magnam velut infit acies aggero vis defleo. Spero quia inventore ventosus. Celebrer super deorsum cicuta adsum bardus rerum circumvenio decipio coniuratio.
+Sollers vir ademptio iure saepe articulus. Cras doloremque nesciunt tutis subvenio quo admoneo adipisci. Terra succedo auxilium cernuus bibo cumque sollers.
+Cicuta terminatio ulterius incidunt surculus. Tracto tredecim acceptus tabella sunt super. Viduo solus audeo sto vulariter vergo uredo adipiscor absens.
+Tabella suggero aro angustus arto trans culpo atrox. Adficio alius amoveo strenuus provident natus trepide tamdiu. Alias desino combibo ceno.
+Substantia venustas defetiscor expedita tolero creta talus. Bene nesciunt suppellex appello torqueo tabula tam turpis tandem talio. Rerum tribuo trucido brevis somniculosus attero trado addo."
 `;
 
-exports[`lorem > 1337 > sentence > noArgs 1`] = `"Articulus cibo degenero commemoro eaque."`;
+exports[`lorem > 1337 > sentence > noArgs 1`] = `"Articulus chirographum degenero commemoro eaque."`;
 
-exports[`lorem > 1337 > sentence > with length 1`] = `"Celebrer articulus cibo degenero commemoro eaque cedo voluptates synagoga ancilla."`;
+exports[`lorem > 1337 > sentence > with length 1`] = `"Cedo articulus chirographum degenero commemoro eaque cedo voluptatibus tabella ancilla."`;
 
-exports[`lorem > 1337 > sentence > with length range 1`] = `"Articulus cibo degenero commemoro eaque cedo voluptates synagoga ancilla crepusculum quisquam antea vorago."`;
+exports[`lorem > 1337 > sentence > with length range 1`] = `"Articulus chirographum degenero commemoro eaque cedo voluptatibus tabella ancilla creptio quisquam ante."`;
 
-exports[`lorem > 1337 > sentences > noArgs 1`] = `"Cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus."`;
+exports[`lorem > 1337 > sentences > noArgs 1`] = `"Chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus."`;
 
-exports[`lorem > 1337 > sentences > with length 1`] = `"Articulus cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo. Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator. Suppono absum tempore speciosus aufero."`;
+exports[`lorem > 1337 > sentences > with length 1`] = `"Articulus chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco. Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva. Alienus vigor voluptate."`;
 
-exports[`lorem > 1337 > sentences > with length range 1`] = `"Cibo degenero commemoro eaque. Voluptates synagoga ancilla crepusculum quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo. Atrox cupiditate aveho exercitationem tristis audax. Cursim desparatus dolore acceptus suus vulgivagus ascit antepono corrupti suadeo. Corporis adulatio testimonium. Subvenio deprecator voluptas truculenter pel. Vulnus caterva accedo alii vigilo voluptate deprecator. Suppono absum tempore speciosus aufero. Verbum ascisco verbum communis subseco cena earum atrocitas. Deduco crustulum textilis depromo surculus textor. Verbera summa vel curia delibero."`;
+exports[`lorem > 1337 > sentences > with length range 1`] = `"Chirographum degenero commemoro eaque. Voluptatibus tabella ancilla creptio quisquam. Vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civis. Desidero atrox cupiditate avarus exercitationem tristis audax vita. Desparatus dolore accendo suus vulgo ascisco. Corrupti suadeo abbas corporis. Testimonium consectetur subvenio. Voluptas tubineus pel magni vulpes caterva. Alienus vigor voluptate. Confugo supra abstergo temporibus speciosus aufero. Vere arx verbum communis subseco cena earum atrocitas."`;
 
-exports[`lorem > 1337 > slug > noArgs 1`] = `"celebrer-articulus-cibo"`;
+exports[`lorem > 1337 > slug > noArgs 1`] = `"cedo-articulus-chirographum"`;
 
-exports[`lorem > 1337 > slug > with length 1`] = `"celebrer-articulus-cibo-degenero-commemoro-eaque-cedo-voluptates-synagoga-ancilla"`;
+exports[`lorem > 1337 > slug > with length 1`] = `"cedo-articulus-chirographum-degenero-commemoro-eaque-cedo-voluptatibus-tabella-ancilla"`;
 
-exports[`lorem > 1337 > slug > with length range 1`] = `"articulus-cibo-degenero-commemoro-eaque-cedo-voluptates-synagoga-ancilla-crepusculum-quisquam-antea-vorago"`;
+exports[`lorem > 1337 > slug > with length range 1`] = `"articulus-chirographum-degenero-commemoro-eaque-cedo-voluptatibus-tabella-ancilla-creptio-quisquam-ante"`;
 
-exports[`lorem > 1337 > text > noArgs 1`] = `"Degenero commemoro eaque cedo voluptates. Ancilla crepusculum quisquam antea vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo."`;
+exports[`lorem > 1337 > text > noArgs 1`] = `"Degenero commemoro eaque cedo voluptatibus. Ancilla creptio quisquam ante vorago decipio testimonium thalassinus."`;
 
-exports[`lorem > 1337 > text > with length 1`] = `"Degenero commemoro eaque cedo voluptates. Ancilla crepusculum quisquam antea vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo."`;
+exports[`lorem > 1337 > text > with length 1`] = `"Degenero commemoro eaque cedo voluptatibus. Ancilla creptio quisquam ante vorago decipio testimonium thalassinus."`;
 
-exports[`lorem > 1337 > text > with length range 1`] = `"Degenero commemoro eaque cedo voluptates. Ancilla crepusculum quisquam antea vorago decipio testimonium thalassinus. Cupressus nulla temporibus audeo civitas spargo."`;
+exports[`lorem > 1337 > text > with length range 1`] = `"Degenero commemoro eaque cedo voluptatibus. Ancilla creptio quisquam ante vorago decipio testimonium thalassinus."`;
 
-exports[`lorem > 1337 > word > noArgs 1`] = `"celebrer"`;
+exports[`lorem > 1337 > word > noArgs 1`] = `"cedo"`;
 
 exports[`lorem > 1337 > word > with length 1`] = `"coaegresco"`;
 
@@ -374,8 +374,8 @@ exports[`lorem > 1337 > word > with options.length and options.strategy 1`] = `"
 
 exports[`lorem > 1337 > word > with options.strategy 1`] = `"a"`;
 
-exports[`lorem > 1337 > words > noArgs 1`] = `"celebrer articulus cibo"`;
+exports[`lorem > 1337 > words > noArgs 1`] = `"cedo articulus chirographum"`;
 
-exports[`lorem > 1337 > words > with length 1`] = `"celebrer articulus cibo degenero commemoro eaque cedo voluptates synagoga ancilla"`;
+exports[`lorem > 1337 > words > with length 1`] = `"cedo articulus chirographum degenero commemoro eaque cedo voluptatibus tabella ancilla"`;
 
-exports[`lorem > 1337 > words > with length range 1`] = `"articulus cibo degenero commemoro eaque cedo voluptates synagoga ancilla crepusculum quisquam antea vorago"`;
+exports[`lorem > 1337 > words > with length range 1`] = `"articulus chirographum degenero commemoro eaque cedo voluptatibus tabella ancilla creptio quisquam ante"`;

@@ -289,6 +289,8 @@ export default class MersenneTwister19937 {
     return y;
   }
 
+  // The following methods are implemented by FakerJs and are based on code by Isaku Wada, 2002/01/09
+
   /**
    * Generates a random number on [0,2^53)-interval.
    */
@@ -299,8 +301,6 @@ export default class MersenneTwister19937 {
     // Shift upper by 26 bits to the left, but js bit operations are always 32bit
     return upper * 2 ** 26 + lower; // 27 + 26 = 53 bits
   }
-
-  // These real versions are implemented by FakerJs based on previous code from Isaku Wada, 2002/01/09
 
   /**
    * Generates a random number [0,1) with 53-bit resolution.

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`image > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1187.jpg"`;
+exports[`image > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1188.jpg"`;
 
 exports[`image > 42 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/37454012"`;
 
@@ -18,13 +18,13 @@ exports[`image > 42 > dataUri > with width 1`] = `"data:image/svg+xml;charset=UT
 
 exports[`image > 42 > dataUri > with width and height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
 
-exports[`image > 42 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=8563273192166997"`;
+exports[`image > 42 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=8563273192166996"`;
 
-exports[`image > 42 > url > with height 1`] = `"https://loremflickr.com/640/128?lock=8563273192166997"`;
+exports[`image > 42 > url > with height 1`] = `"https://loremflickr.com/640/128?lock=8563273192166996"`;
 
-exports[`image > 42 > url > with width 1`] = `"https://loremflickr.com/128/480?lock=8563273192166997"`;
+exports[`image > 42 > url > with width 1`] = `"https://loremflickr.com/128/480?lock=8563273192166996"`;
 
-exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8563273192166997"`;
+exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8563273192166996"`;
 
 exports[`image > 42 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=3373557479352566"`;
 
@@ -38,43 +38,43 @@ exports[`image > 42 > urlLoremFlickr > with width 1`] = `"https://loremflickr.co
 
 exports[`image > 42 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=3373557479352566"`;
 
-exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/WJBaa4R/640/480"`;
+exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/WJB993R/640/480"`;
 
-exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/WJBaa4R/128/128?grayscale&blur=4"`;
+exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/WJB993R/128/128?grayscale&blur=4"`;
 
-exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/WJBaa4R/640/480?blur=6"`;
+exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/WJB993R/640/480?blur=6"`;
 
-exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/WJBaa4R/640/480?grayscale&blur=3"`;
+exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/WJB993R/640/480?grayscale&blur=3"`;
 
-exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/WJBaa4R/640/128"`;
+exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/WJB993R/640/128"`;
 
-exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/WJBaa4R/128/480"`;
+exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/WJB993R/128/480"`;
 
-exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/WJBaa4R/128/128"`;
+exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/WJB993R/128/128"`;
 
-exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1498x3802/fd331c/df0eb4.jpeg?text=auctus%20cogo%20esse"`;
+exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1498x3802/ad331d/df0fc4.gif?text=auctus%20cognomen%20esse"`;
 
 exports[`image > 42 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
 
-exports[`image > 42 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1498x3802/FF0000/fd331c.jpg?text=suggero%20acer%20volubilis"`;
+exports[`image > 42 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1498x3802/FF0000/ad331d.png?text=suggero%20accusator%20volubilis"`;
 
 exports[`image > 42 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
 
-exports[`image > 42 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1498x3802/fd331c/df0eb4.webp?text=attonbitus%20auctus%20cogo"`;
+exports[`image > 42 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1498x3802/ad331d/df0fc4.webp?text=attonbitus%20auctus%20cognomen"`;
 
-exports[`image > 42 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1498x128/efd331/cdf0eb.jpeg?text=attonbitus%20auctus%20cogo"`;
+exports[`image > 42 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1498x128/ead331/ddf0fc.jpeg?text=attonbitus%20auctus%20cognomen"`;
 
-exports[`image > 42 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1498x3802/fd331c/df0eb4.jpeg?text=Hello"`;
+exports[`image > 42 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1498x3802/ad331d/df0fc4.gif?text=Hello"`;
 
-exports[`image > 42 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1498x3802/fd331c/0000FF.jpg?text=suggero%20acer%20volubilis"`;
+exports[`image > 42 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1498x3802/ad331d/0000FF.png?text=suggero%20accusator%20volubilis"`;
 
-exports[`image > 42 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1498/efd331/cdf0eb.jpeg?text=attonbitus%20auctus%20cogo"`;
+exports[`image > 42 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1498/ead331/ddf0fc.jpeg?text=attonbitus%20auctus%20cognomen"`;
 
-exports[`image > 42 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/8efd33/1cdf0e.png?text=benevolentia%20attonbitus%20auctus"`;
+exports[`image > 42 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/8ead33/1ddf0f.webp?text=benevolentia%20attonbitus%20auctus"`;
 
 exports[`image > 1211 > avatar 1`] = `"https://avatars.githubusercontent.com/u/89347165"`;
 
-exports[`image > 1211 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/92852015"`;
+exports[`image > 1211 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/92852016"`;
 
 exports[`image > 1211 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
@@ -90,63 +90,63 @@ exports[`image > 1211 > dataUri > with width 1`] = `"data:image/svg+xml;charset=
 
 exports[`image > 1211 > dataUri > with width and height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
 
-exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/eZFGLmGOL/640/480"`;
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/640/480"`;
 
-exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/seed/eZFGLmGOL/640/128"`;
+exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/640/128"`;
 
-exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/seed/eZFGLmGOL/128/480"`;
+exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/128/480"`;
 
-exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/eZFGLmGOL/128/128"`;
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/128/128"`;
 
-exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=8363366038243349"`;
+exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=8363366038243348"`;
 
-exports[`image > 1211 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=8363366038243349"`;
+exports[`image > 1211 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=8363366038243348"`;
 
-exports[`image > 1211 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=8363366038243349"`;
+exports[`image > 1211 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=8363366038243348"`;
 
-exports[`image > 1211 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=8363366038243349"`;
+exports[`image > 1211 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=8363366038243348"`;
 
-exports[`image > 1211 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=8363366038243349"`;
+exports[`image > 1211 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=8363366038243348"`;
 
-exports[`image > 1211 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8363366038243349"`;
+exports[`image > 1211 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8363366038243348"`;
 
-exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/640/480"`;
+exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/640/480"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/128/128?grayscale&blur=4"`;
+exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/128/128?grayscale&blur=4"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/640/480?blur=6"`;
+exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/640/480?blur=6"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/640/480?grayscale&blur=3"`;
+exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/640/480?grayscale&blur=3"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/640/128"`;
+exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/640/128"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/128/480"`;
+exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/128/480"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/TeZFGLmGOL/128/128"`;
+exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/128/128"`;
 
-exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3713x3573/5feea7/fbaeb9.png?text=unde%20blanditiis%20officia"`;
+exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3714x3573/4fefa7/fbaec9.webp?text=unde%20blanditiis%20officia"`;
 
 exports[`image > 1211 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
 
-exports[`image > 1211 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/3713x3573/FF0000/5feea7.png?text=tonsor%20tenuis%20sollers"`;
+exports[`image > 1211 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/3714x3573/FF0000/4fefa7.png?text=tonsor%20tenuis%20sollers"`;
 
 exports[`image > 1211 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
 
-exports[`image > 1211 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/3713x3573/5feea7/fbaeb9.webp?text=usque%20unde%20blanditiis"`;
+exports[`image > 1211 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/3714x3573/4fefa7/fbaec9.webp?text=usque%20unde%20blanditiis"`;
 
-exports[`image > 1211 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/3713x128/d5feea/7fbaeb.jpg?text=usque%20unde%20blanditiis"`;
+exports[`image > 1211 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/3714x128/d4fefa/7fbaec.jpg?text=usque%20unde%20blanditiis"`;
 
-exports[`image > 1211 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/3713x3573/5feea7/fbaeb9.png?text=Hello"`;
+exports[`image > 1211 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/3714x3573/4fefa7/fbaec9.webp?text=Hello"`;
 
-exports[`image > 1211 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/3713x3573/5feea7/0000FF.png?text=tonsor%20tenuis%20sollers"`;
+exports[`image > 1211 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/3714x3573/4fefa7/0000FF.png?text=tonsor%20tenuis%20sollers"`;
 
-exports[`image > 1211 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x3713/d5feea/7fbaeb.jpg?text=usque%20unde%20blanditiis"`;
+exports[`image > 1211 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x3714/d4fefa/7fbaec.jpg?text=usque%20unde%20blanditiis"`;
 
-exports[`image > 1211 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/dd5fee/a7fbae.png?text=dapifer%20usque%20unde"`;
+exports[`image > 1211 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/ed4fef/a7fbae.webp?text=dapifer%20usque%20unde"`;
 
 exports[`image > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/198.jpg"`;
 
-exports[`image > 1337 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/26202468"`;
+exports[`image > 1337 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/26202467"`;
 
 exports[`image > 1337 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
 
@@ -182,39 +182,39 @@ exports[`image > 1337 > urlLoremFlickr > with width 1`] = `"https://loremflickr.
 
 exports[`image > 1337 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=2360108457524098"`;
 
-exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/ahskwg/640/480"`;
+exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/9hsjwg/640/480"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/ahskwg/128/128?grayscale&blur=4"`;
+exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/9hsjwg/128/128?grayscale&blur=4"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/ahskwg/640/480?blur=6"`;
+exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/9hsjwg/640/480?blur=6"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/ahskwg/640/480?grayscale&blur=3"`;
+exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/9hsjwg/640/480?grayscale&blur=3"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/ahskwg/640/128"`;
+exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/9hsjwg/640/128"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/ahskwg/128/480"`;
+exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/9hsjwg/128/480"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/ahskwg/128/128"`;
+exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/9hsjwg/128/128"`;
 
-exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1049x635/6a7b6e/f28d3f.jpg?text=testimonium%20thalassinus%20conturbo"`;
+exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1048x635/6a7b5f/a28d2f.jpg?text=testimonium%20thalassinus%20contra"`;
 
 exports[`image > 1337 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
 
-exports[`image > 1337 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1049x635/FF0000/6a7b6e.png?text=ancilla%20crepusculum%20quisquam"`;
+exports[`image > 1337 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1048x635/FF0000/6a7b5f.png?text=ancilla%20creptio%20quisquam"`;
 
 exports[`image > 1337 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
 
-exports[`image > 1337 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1049x635/6a7b6e/f28d3f.webp?text=decipio%20testimonium%20thalassinus"`;
+exports[`image > 1337 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1048x635/6a7b5f/a28d2f.webp?text=decipio%20testimonium%20thalassinus"`;
 
-exports[`image > 1337 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1049x128/36a7b6/ef28d3.webp?text=decipio%20testimonium%20thalassinus"`;
+exports[`image > 1337 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1048x128/36a7b5/fa28d2.webp?text=decipio%20testimonium%20thalassinus"`;
 
-exports[`image > 1337 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1049x635/6a7b6e/f28d3f.jpg?text=Hello"`;
+exports[`image > 1337 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1048x635/6a7b5f/a28d2f.jpg?text=Hello"`;
 
-exports[`image > 1337 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1049x635/6a7b6e/0000FF.png?text=ancilla%20crepusculum%20quisquam"`;
+exports[`image > 1337 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1048x635/6a7b5f/0000FF.png?text=ancilla%20creptio%20quisquam"`;
 
-exports[`image > 1337 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1049/36a7b6/ef28d3.webp?text=decipio%20testimonium%20thalassinus"`;
+exports[`image > 1337 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1048/36a7b5/fa28d2.webp?text=decipio%20testimonium%20thalassinus"`;
 
-exports[`image > 1337 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/636a7b/6ef28d.jpeg?text=vorago%20decipio%20testimonium"`;
+exports[`image > 1337 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/536a7b/5fa28d.gif?text=vorago%20decipio%20testimonium"`;
 
 exports[`image > dataUri > should return a background color data URI 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22red%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;
 

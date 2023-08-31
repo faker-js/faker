@@ -35,11 +35,11 @@ exports[`airline > 42 > flightNumber > flightNumber length 3 and addLeadingZeros
 
 exports[`airline > 42 > flightNumber > noArgs 1`] = `"97"`;
 
-exports[`airline > 42 > recordLocator > allowNumerics 1`] = `"DYRM77"`;
+exports[`airline > 42 > recordLocator > allowNumerics 1`] = `"DYRM66"`;
 
-exports[`airline > 42 > recordLocator > allowVisuallySimilarCharacters 1`] = `"JYSPEE"`;
+exports[`airline > 42 > recordLocator > allowVisuallySimilarCharacters 1`] = `"JYTPEE"`;
 
-exports[`airline > 42 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"DXQL55"`;
+exports[`airline > 42 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"DYQL55"`;
 
 exports[`airline > 42 > recordLocator > noArgs 1`] = `"JYTQDD"`;
 
@@ -55,8 +55,8 @@ exports[`airline > 1211 > aircraftType 1`] = `"widebody"`;
 
 exports[`airline > 1211 > airline 1`] = `
 {
-  "iataCode": "VJ",
-  "name": "VietJet Air",
+  "iataCode": "VN",
+  "name": "Vietnam Airlines",
 }
 `;
 
@@ -74,35 +74,35 @@ exports[`airline > 1211 > airport 1`] = `
 }
 `;
 
-exports[`airline > 1211 > flightNumber > flightNumber addLeadingZeros 1`] = `"8296"`;
+exports[`airline > 1211 > flightNumber > flightNumber addLeadingZeros 1`] = `"9296"`;
 
-exports[`airline > 1211 > flightNumber > flightNumber length 2 to 4 1`] = `"8296"`;
+exports[`airline > 1211 > flightNumber > flightNumber length 2 to 4 1`] = `"9296"`;
 
-exports[`airline > 1211 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"8296"`;
+exports[`airline > 1211 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"9296"`;
 
-exports[`airline > 1211 > flightNumber > flightNumber length 3 1`] = `"882"`;
+exports[`airline > 1211 > flightNumber > flightNumber length 3 1`] = `"982"`;
 
-exports[`airline > 1211 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0882"`;
+exports[`airline > 1211 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0982"`;
 
-exports[`airline > 1211 > flightNumber > noArgs 1`] = `"8296"`;
+exports[`airline > 1211 > flightNumber > noArgs 1`] = `"9296"`;
 
-exports[`airline > 1211 > recordLocator > allowNumerics 1`] = `"XW9ZPQ"`;
+exports[`airline > 1211 > recordLocator > allowNumerics 1`] = `"XW8ZPQ"`;
 
-exports[`airline > 1211 > recordLocator > allowVisuallySimilarCharacters 1`] = `"XWGZRR"`;
+exports[`airline > 1211 > recordLocator > allowVisuallySimilarCharacters 1`] = `"YXFZRR"`;
 
-exports[`airline > 1211 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"WV8ZOO"`;
+exports[`airline > 1211 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"XW8ZOO"`;
 
-exports[`airline > 1211 > recordLocator > noArgs 1`] = `"XXFZSS"`;
+exports[`airline > 1211 > recordLocator > noArgs 1`] = `"YXFZSS"`;
 
-exports[`airline > 1211 > seat > aircraftType narrowbody 1`] = `"33E"`;
+exports[`airline > 1211 > seat > aircraftType narrowbody 1`] = `"33F"`;
 
 exports[`airline > 1211 > seat > aircraftType regional 1`] = `"19D"`;
 
 exports[`airline > 1211 > seat > aircraftType widebody 1`] = `"56J"`;
 
-exports[`airline > 1211 > seat > noArgs 1`] = `"33E"`;
+exports[`airline > 1211 > seat > noArgs 1`] = `"33F"`;
 
-exports[`airline > 1337 > aircraftType 1`] = `"regional"`;
+exports[`airline > 1337 > aircraftType 1`] = `"narrowbody"`;
 
 exports[`airline > 1337 > airline 1`] = `
 {
@@ -120,35 +120,35 @@ exports[`airline > 1337 > airplane 1`] = `
 
 exports[`airline > 1337 > airport 1`] = `
 {
-  "iataCode": "DMK",
-  "name": "Don Mueang International Airport",
+  "iataCode": "DEN",
+  "name": "Denver International Airport",
 }
 `;
 
-exports[`airline > 1337 > flightNumber > flightNumber addLeadingZeros 1`] = `"0023"`;
+exports[`airline > 1337 > flightNumber > flightNumber addLeadingZeros 1`] = `"0022"`;
 
-exports[`airline > 1337 > flightNumber > flightNumber length 2 to 4 1`] = `"234"`;
+exports[`airline > 1337 > flightNumber > flightNumber length 2 to 4 1`] = `"22"`;
 
-exports[`airline > 1337 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"0234"`;
+exports[`airline > 1337 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"0022"`;
 
-exports[`airline > 1337 > flightNumber > flightNumber length 3 1`] = `"313"`;
+exports[`airline > 1337 > flightNumber > flightNumber length 3 1`] = `"312"`;
 
-exports[`airline > 1337 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0313"`;
+exports[`airline > 1337 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0312"`;
 
-exports[`airline > 1337 > flightNumber > noArgs 1`] = `"23"`;
+exports[`airline > 1337 > flightNumber > noArgs 1`] = `"22"`;
 
-exports[`airline > 1337 > recordLocator > allowNumerics 1`] = `"A7AGCJ"`;
+exports[`airline > 1337 > recordLocator > allowNumerics 1`] = `"A6AGBJ"`;
 
-exports[`airline > 1337 > recordLocator > allowVisuallySimilarCharacters 1`] = `"HEHLIN"`;
+exports[`airline > 1337 > recordLocator > allowVisuallySimilarCharacters 1`] = `"GEHLIN"`;
 
-exports[`airline > 1337 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"96AGBI"`;
+exports[`airline > 1337 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"95AGBI"`;
 
 exports[`airline > 1337 > recordLocator > noArgs 1`] = `"GDGMHN"`;
 
-exports[`airline > 1337 > seat > aircraftType narrowbody 1`] = `"10B"`;
+exports[`airline > 1337 > seat > aircraftType narrowbody 1`] = `"10A"`;
 
 exports[`airline > 1337 > seat > aircraftType regional 1`] = `"6A"`;
 
 exports[`airline > 1337 > seat > aircraftType widebody 1`] = `"16B"`;
 
-exports[`airline > 1337 > seat > noArgs 1`] = `"10B"`;
+exports[`airline > 1337 > seat > noArgs 1`] = `"10A"`;

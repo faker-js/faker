@@ -3,7 +3,7 @@
 exports[`color > 42 > cmyk 1`] = `
 [
   0.37,
-  0.95,
+  0.96,
   0.73,
   0.6,
 ]
@@ -12,7 +12,7 @@ exports[`color > 42 > cmyk 1`] = `
 exports[`color > 42 > colorByCSSColorSpace 1`] = `
 [
   0.3745,
-  0.9507,
+  0.9508,
   0.732,
 ]
 `;
@@ -24,7 +24,7 @@ exports[`color > 42 > cssSupportedSpace 1`] = `"display-p3"`;
 exports[`color > 42 > hsl 1`] = `
 [
   135,
-  0.95,
+  0.96,
   0.73,
 ]
 `;
@@ -34,7 +34,7 @@ exports[`color > 42 > human 1`] = `"grey"`;
 exports[`color > 42 > hwb 1`] = `
 [
   135,
-  0.95,
+  0.96,
   0.73,
 ]
 `;
@@ -55,36 +55,36 @@ exports[`color > 42 > lch 1`] = `
 ]
 `;
 
-exports[`color > 42 > rgb 1`] = `"#8efd33"`;
+exports[`color > 42 > rgb 1`] = `"#8ead33"`;
 
 exports[`color > 42 > space 1`] = `"Rec. 709"`;
 
 exports[`color > 1211 > cmyk 1`] = `
 [
   0.93,
-  0.89,
-  0.23,
+  0.9,
+  0.22,
   1,
 ]
 `;
 
 exports[`color > 1211 > colorByCSSColorSpace 1`] = `
 [
-  0.9285,
+  0.9286,
   0.8935,
-  0.2256,
+  0.2255,
 ]
 `;
 
-exports[`color > 1211 > cssSupportedFunction 1`] = `"lch"`;
+exports[`color > 1211 > cssSupportedFunction 1`] = `"color"`;
 
 exports[`color > 1211 > cssSupportedSpace 1`] = `"prophoto-rgb"`;
 
 exports[`color > 1211 > hsl 1`] = `
 [
-  334,
-  0.89,
-  0.23,
+  335,
+  0.9,
+  0.22,
 ]
 `;
 
@@ -92,31 +92,31 @@ exports[`color > 1211 > human 1`] = `"azure"`;
 
 exports[`color > 1211 > hwb 1`] = `
 [
-  334,
-  0.89,
-  0.23,
+  335,
+  0.9,
+  0.22,
 ]
 `;
 
 exports[`color > 1211 > lab 1`] = `
 [
-  0.92852,
-  78.6943,
-  -54.8858,
+  0.928521,
+  78.6944,
+  -54.8859,
 ]
 `;
 
 exports[`color > 1211 > lch 1`] = `
 [
-  0.92852,
+  0.928521,
   205.5,
   51.9,
 ]
 `;
 
-exports[`color > 1211 > rgb 1`] = `"#dd5fee"`;
+exports[`color > 1211 > rgb 1`] = `"#ed4fef"`;
 
-exports[`color > 1211 > space 1`] = `"HKS"`;
+exports[`color > 1211 > space 1`] = `"LMS"`;
 
 exports[`color > 1337 > cmyk 1`] = `
 [
@@ -130,7 +130,7 @@ exports[`color > 1337 > cmyk 1`] = `
 exports[`color > 1337 > colorByCSSColorSpace 1`] = `
 [
   0.262,
-  0.1587,
+  0.1586,
   0.2781,
 ]
 `;
@@ -159,7 +159,7 @@ exports[`color > 1337 > hwb 1`] = `
 
 exports[`color > 1337 > lab 1`] = `
 [
-  0.262025,
+  0.262024,
   -68.2632,
   -44.3747,
 ]
@@ -167,12 +167,12 @@ exports[`color > 1337 > lab 1`] = `
 
 exports[`color > 1337 > lch 1`] = `
 [
-  0.262025,
+  0.262024,
   36.5,
-  64,
+  63.9,
 ]
 `;
 
-exports[`color > 1337 > rgb 1`] = `"#636a7b"`;
+exports[`color > 1337 > rgb 1`] = `"#536a7b"`;
 
 exports[`color > 1337 > space 1`] = `"ProPhoto RGB Color Space"`;
