@@ -3,6 +3,7 @@ import type { Mersenne } from '../../../src/internal/mersenne/mersenne';
 import mersenneFn from '../../../src/internal/mersenne/mersenne';
 import { seededRuns } from '../../support/seededRuns';
 import { times } from '../../support/times';
+import { MERSENNE_MAX_VALUE } from './mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -39,11 +40,11 @@ describe('mersenne twister', () => {
     });
 
     describe('next', () => {
-      it('should return random number from interval [0, 1]', () => {
+      it('should return random number from interval [0, 1)', () => {
         const actual = mersenne.next();
 
         expect(actual).toBeGreaterThanOrEqual(0);
-        expect(actual).toBeLessThanOrEqual(1);
+        expect(actual).toBeLessThanOrEqual(MERSENNE_MAX_VALUE);
       });
     });
   });
