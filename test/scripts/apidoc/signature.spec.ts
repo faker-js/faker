@@ -18,8 +18,8 @@ describe('signature', () => {
       expect(Object.keys(methods)).toMatchSnapshot();
     });
 
-    it.each(Object.entries(methods))('%s', (name, signature) => {
-      const actual = analyzeSignature(signature, '', name);
+    it.each(Object.entries(methods))('%s', async (name, signature) => {
+      const actual = await analyzeSignature(signature, '', name);
 
       expect(actual).toMatchSnapshot();
     });

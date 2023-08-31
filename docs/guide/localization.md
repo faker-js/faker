@@ -4,11 +4,11 @@
 
 Did you know Faker supports many different locales?  
 When using our default instance `import { faker } from '@faker-js/faker'` you get English data.
-However, we also provide pre-built instances for more than 50 other locales.
+However, we also provide pre-built instances for [more than 60 available locales](#available-locales).
+
+For example, you can import the German locale:
 
 `import { fakerDE as faker } from '@faker-js/faker'`
-
-See below for a list of available locales.
 
 ::: tip Note
 You can also build your own Faker instances, with custom locales/overwrites.
@@ -79,6 +79,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
 | `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
+| `da`          | Danish                    | `fakerDA`          |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
@@ -97,6 +98,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
 | `en_US`       | English (United States)   | `fakerEN_US`       |
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
+| `eo`          | Esperanto                 | `fakerEO`          |
 | `es`          | Spanish                   | `fakerES`          |
 | `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
 | `fa`          | Farsi/Persian             | `fakerFA`          |
