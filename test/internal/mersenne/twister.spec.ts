@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import Twister from '../../../src/internal/mersenne/twister';
 
+/**
+ * The maximum value that can be returned by `genrandRes53CO`.
+ */
+export const TWISTER_CO_MAX_VALUE = 0.9999999999999999;
+
 function newTwister(seed: number = Math.random() * Number.MAX_SAFE_INTEGER) {
   const twister = new Twister();
   twister.initGenrand(seed);
@@ -66,8 +71,7 @@ describe('Twister', () => {
       const twister = newTwister();
       twister.genrandInt53 = () => 2 ** 53 - 1;
       const actual = twister.genrandRes53CO();
-      expect(actual).not.toBe(1);
-      expect(actual).toBeGreaterThan(0.9999999999);
+      expect(actual).toBe(TWISTER_CO_MAX_VALUE);
     });
   });
 });

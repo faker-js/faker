@@ -1,6 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { Faker, faker, FakerError } from '../../src';
+import { MERSENNE_MAX_VALUE } from '../internal/mersenne/mersenne.spec';
 import { seededTests } from './../support/seededRuns';
 
 describe('number', () => {
@@ -520,7 +521,7 @@ describe('number', () => {
       });
 
       it('should be able to return 1', () => {
-        mersenne.next = () => 0.9999999999999999;
+        mersenne.next = () => MERSENNE_MAX_VALUE;
         const actual = customFaker.number.int();
         expect(actual).toBe(Number.MAX_SAFE_INTEGER);
       });
@@ -534,7 +535,7 @@ describe('number', () => {
       });
 
       it.todo('should be able to return 1', () => {
-        mersenne.next = () => 0.9999999999999999;
+        mersenne.next = () => MERSENNE_MAX_VALUE;
         const actual = customFaker.number.float();
         expect(actual).toBe(1);
       });
