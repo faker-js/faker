@@ -12,11 +12,11 @@ import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
 import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
-import { DateModule } from './modules/date';
+import { BaseDateModule, DateModule } from './modules/date';
 import { FinanceModule } from './modules/finance';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
-import { HelpersModule } from './modules/helpers';
+import { BaseHelpersModule, HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
 import type { LocationModule as AddressModule } from './modules/location';
@@ -90,8 +90,8 @@ export class BaseFaker {
   private readonly _mersenne: Mersenne = mersenne();
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
-  readonly date: DateModule = new DateModule(this);
-  readonly helpers: HelpersModule = new HelpersModule(this);
+  readonly date: BaseDateModule = new BaseDateModule(this);
+  readonly helpers: BaseHelpersModule = new BaseHelpersModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly string: StringModule = new StringModule(this);
 
@@ -259,9 +259,11 @@ export class Faker extends BaseFaker {
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);
   readonly database: DatabaseModule = new DatabaseModule(this);
+  readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);
   readonly git: GitModule = new GitModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
+  readonly helpers: HelpersModule = new HelpersModule(this);
   readonly image: ImageModule = new ImageModule(this);
   readonly internet: InternetModule = new InternetModule(this);
   readonly location: LocationModule = new LocationModule(this);
