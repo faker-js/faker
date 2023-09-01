@@ -1,0 +1,15 @@
+export default [
+  'birdo',
+  'bovo',
+  'cetaco',
+  'ĉevalo',
+  'fiŝo',
+  'hundo',
+  'insekto',
+  'kato',
+  'krokodilulo',
+  'kuniklo',
+  'leono',
+  'serpento',
+  'urso',
+];
