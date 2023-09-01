@@ -35,35 +35,8 @@ import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
 import { mergeLocales } from './utils/merge-locales';
 
-/**
- * This is Faker's main class containing all modules that can be used to generate data.
- *
- * Please have a look at the individual modules and methods for more information and examples.
- *
- * @example
- * import { faker } from '@faker-js/faker';
- * // const { faker } = require('@faker-js/faker');
- *
- * // faker.seed(1234);
- *
- * faker.person.firstName(); // 'John'
- * faker.person.lastName(); // 'Doe'
- * @example
- * import { Faker, es } from '@faker-js/faker';
- * // const { Faker, es } = require('@faker-js/faker');
- *
- * // create a Faker instance with only es data and no en fallback (=> smaller bundle size)
- * const customFaker = new Faker({ locale: [es] });
- *
- * customFaker.person.firstName(); // 'Javier'
- * customFaker.person.lastName(); // 'Ocampo Corrales'
- *
- * customFaker.music.genre(); // throws Error as this data is not available in `es`
- */
-export class Faker {
-  readonly rawDefinitions: LocaleDefinition;
-  readonly definitions: LocaleProxy;
-  private _defaultRefDate: () => Date = () => new Date();
+export class BaseFaker {
+  protected _defaultRefDate: () => Date = () => new Date();
 
   /**
    * Gets a new reference date used to generate relative dates.
@@ -116,15 +89,169 @@ export class Faker {
   /** @internal */
   private readonly _mersenne: Mersenne = mersenne();
 
+  readonly datatype: DatatypeModule = new DatatypeModule(this);
+  readonly date: DateModule = new DateModule(this);
+  readonly helpers: HelpersModule = new HelpersModule(this);
+  readonly number: NumberModule = new NumberModule(this);
+  readonly string: StringModule = new StringModule(this);
+
+  /**
+   * Sets the seed or generates a new one.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seed The seed to use. Defaults to a random number.
+   *
+   * @returns The seed that was set.
+   *
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see faker.setDefaultRefDate() when generating relative dates.
+   *
+   * @example
+   * // Consistent values for tests:
+   * faker.seed(42)
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * faker.seed(42)
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seed?: number): number;
+  /**
+   * Sets the seed array.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seedArray The seed array to use.
+   *
+   * @returns The seed array that was set.
+   *
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see faker.setDefaultRefDate() when generating relative dates.
+   *
+   * @example
+   * // Consistent values for tests:
+   * faker.seed([42, 13, 17])
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * faker.seed([42, 13, 17])
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seedArray: number[]): number[];
+  /**
+   * Sets the seed or generates a new one.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seed The seed or seed array to use.
+   *
+   * @returns The seed that was set.
+   *
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see faker.setDefaultRefDate() when generating relative dates.
+   *
+   * @example
+   * // Consistent values for tests (using a number):
+   * faker.seed(42)
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * faker.seed(42)
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * // Consistent values for tests (using an array):
+   * faker.seed([42, 13, 17])
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * faker.seed([42, 13, 17])
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seed?: number | number[]): number | number[];
+  seed(
+    seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
+  ): number | number[] {
+    this._mersenne.seed(seed);
+
+    return seed;
+  }
+}
+
+/**
+ * This is Faker's main class containing all modules that can be used to generate data.
+ *
+ * Please have a look at the individual modules and methods for more information and examples.
+ *
+ * @example
+ * import { faker } from '@faker-js/faker';
+ * // const { faker } = require('@faker-js/faker');
+ *
+ * // faker.seed(1234);
+ *
+ * faker.person.firstName(); // 'John'
+ * faker.person.lastName(); // 'Doe'
+ * @example
+ * import { Faker, es } from '@faker-js/faker';
+ * // const { Faker, es } = require('@faker-js/faker');
+ *
+ * // create a Faker instance with only es data and no en fallback (=> smaller bundle size)
+ * const customFaker = new Faker({ locale: [es] });
+ *
+ * customFaker.person.firstName(); // 'Javier'
+ * customFaker.person.lastName(); // 'Ocampo Corrales'
+ *
+ * customFaker.music.genre(); // throws Error as this data is not available in `es`
+ */
+export class Faker extends BaseFaker {
+  readonly rawDefinitions: LocaleDefinition;
+  readonly definitions: LocaleProxy;
+
   /**
    * @deprecated Use the modules specific to the type of data you want to generate instead.
    */
   // eslint-disable-next-line deprecation/deprecation
   readonly random: RandomModule = new RandomModule(this);
-
-  readonly helpers: HelpersModule = new HelpersModule(this);
-
-  readonly datatype: DatatypeModule = new DatatypeModule(this);
 
   readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
@@ -132,7 +259,6 @@ export class Faker {
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);
   readonly database: DatabaseModule = new DatabaseModule(this);
-  readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);
   readonly git: GitModule = new GitModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
@@ -142,10 +268,8 @@ export class Faker {
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
-  readonly number: NumberModule = new NumberModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
-  readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
@@ -299,9 +423,12 @@ export class Faker {
           localeFallback?: string;
         }
   ) {
+    super();
+
     const { locales } = options as {
       locales: Record<string, LocaleDefinition>;
     };
+
     if (locales != null) {
       deprecated({
         deprecated:
@@ -334,128 +461,6 @@ export class Faker {
 
     this.rawDefinitions = locale as LocaleDefinition;
     this.definitions = createLocaleProxy(this.rawDefinitions);
-  }
-
-  /**
-   * Sets the seed or generates a new one.
-   *
-   * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
-   *
-   * This method is intended to allow for consistent values in tests, so you
-   * might want to use hardcoded values as the seed.
-   *
-   * In addition to that it can be used for creating truly random tests
-   * (by passing no arguments), that still can be reproduced if needed,
-   * by logging the result and explicitly setting it if needed.
-   *
-   * @param seed The seed to use. Defaults to a random number.
-   *
-   * @returns The seed that was set.
-   *
-   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.setDefaultRefDate() when generating relative dates.
-   *
-   * @example
-   * // Consistent values for tests:
-   * faker.seed(42)
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * faker.seed(42)
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * // Random but reproducible tests:
-   * // Simply log the seed, and if you need to reproduce it, insert the seed here
-   * console.log('Running test with seed:', faker.seed());
-   */
-  seed(seed?: number): number;
-  /**
-   * Sets the seed array.
-   *
-   * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
-   *
-   * This method is intended to allow for consistent values in a tests, so you
-   * might want to use hardcoded values as the seed.
-   *
-   * In addition to that it can be used for creating truly random tests
-   * (by passing no arguments), that still can be reproduced if needed,
-   * by logging the result and explicitly setting it if needed.
-   *
-   * @param seedArray The seed array to use.
-   *
-   * @returns The seed array that was set.
-   *
-   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.setDefaultRefDate() when generating relative dates.
-   *
-   * @example
-   * // Consistent values for tests:
-   * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * // Random but reproducible tests:
-   * // Simply log the seed, and if you need to reproduce it, insert the seed here
-   * console.log('Running test with seed:', faker.seed());
-   */
-  seed(seedArray: number[]): number[];
-  /**
-   * Sets the seed or generates a new one.
-   *
-   * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
-   *
-   * This method is intended to allow for consistent values in a tests, so you
-   * might want to use hardcoded values as the seed.
-   *
-   * In addition to that it can be used for creating truly random tests
-   * (by passing no arguments), that still can be reproduced if needed,
-   * by logging the result and explicitly setting it if needed.
-   *
-   * @param seed The seed or seed array to use.
-   *
-   * @returns The seed that was set.
-   *
-   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.setDefaultRefDate() when generating relative dates.
-   *
-   * @example
-   * // Consistent values for tests (using a number):
-   * faker.seed(42)
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * faker.seed(42)
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * // Consistent values for tests (using an array):
-   * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * // Random but reproducible tests:
-   * // Simply log the seed, and if you need to reproduce it, insert the seed here
-   * console.log('Running test with seed:', faker.seed());
-   */
-  seed(seed?: number | number[]): number | number[];
-  seed(
-    seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
-  ): number | number[] {
-    this._mersenne.seed(seed);
-
-    return seed;
   }
 
   /**

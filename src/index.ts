@@ -71,7 +71,7 @@ export type {
   WordDefinition as WordDefinitions,
 } from './definitions';
 export { FakerError } from './errors/faker-error';
-export { Faker } from './faker';
+export { BaseFaker, Faker } from './faker';
 export type { FakerOptions } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';

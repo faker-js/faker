@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { BaseFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
@@ -24,7 +24,7 @@ import * as uniqueExec from './unique';
  * @since 8.0.0
  */
 function getRepetitionsBasedOnQuantifierParameters(
-  faker: Faker,
+  faker: BaseFaker,
   quantifierSymbol: string,
   quantifierMin: string,
   quantifierMax: string
@@ -175,7 +175,7 @@ export class HelpersModule {
    */
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
-  constructor(private readonly faker: Faker) {
+  constructor(private readonly faker: BaseFaker) {
     bindThisToMemberFunctions(this);
   }
 
