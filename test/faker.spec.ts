@@ -97,14 +97,14 @@ describe('faker', () => {
       faker.seed(1);
 
       const actual = faker.animal.cat();
-      expect(actual).toMatchInlineSnapshot('"Korat"');
+      expect(actual).toBe('Korat');
     });
 
     it('seed(number[])', () => {
       faker.seed([1, 2, 3]);
 
       const actual = faker.animal.cat();
-      expect(actual).toMatchInlineSnapshot('"Oriental"');
+      expect(actual).toBe('Oriental');
     });
   });
 

@@ -1,7 +1,6 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { Faker, faker, FakerError } from '../../src';
-import { MERSENNE_MAX_VALUE } from '../internal/mersenne/mersenne-test-utils';
+import { faker, FakerError } from '../../src';
 import { seededTests } from './../support/seededRuns';
 
 describe('number', () => {
@@ -505,39 +504,6 @@ describe('number', () => {
         }).toThrow(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
-      });
-    });
-  });
-
-  describe('value range tests', () => {
-    const customFaker = new Faker({ locale: {} });
-    // @ts-expect-error: access private member field
-    const mersenne = customFaker._mersenne;
-    describe('int', () => {
-      it('should be able to return 0', () => {
-        mersenne.next = () => 0;
-        const actual = customFaker.number.int();
-        expect(actual).toBe(0);
-      });
-
-      it('should be able to return 1', () => {
-        mersenne.next = () => MERSENNE_MAX_VALUE;
-        const actual = customFaker.number.int();
-        expect(actual).toBe(Number.MAX_SAFE_INTEGER);
-      });
-    });
-
-    describe('float', () => {
-      it('should be able to return 0', () => {
-        mersenne.next = () => 0;
-        const actual = customFaker.number.float();
-        expect(actual).toBe(0);
-      });
-
-      it.todo('should be able to return 1', () => {
-        mersenne.next = () => MERSENNE_MAX_VALUE;
-        const actual = customFaker.number.float();
-        expect(actual).toBe(1);
       });
     });
   });

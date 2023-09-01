@@ -1,9 +1,8 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import type { Mersenne } from '../../../src/internal/mersenne/mersenne';
-import mersenneFn from '../../../src/internal/mersenne/mersenne';
-import { seededRuns } from '../../support/seededRuns';
-import { times } from '../../support/times';
-import { MERSENNE_MAX_VALUE } from './mersenne-test-utils';
+import type { Mersenne } from '../src/internal/mersenne/mersenne';
+import mersenneFn from '../src/internal/mersenne/mersenne';
+import { seededRuns } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -44,7 +43,7 @@ describe('mersenne twister', () => {
         const actual = mersenne.next();
 
         expect(actual).toBeGreaterThanOrEqual(0);
-        expect(actual).toBeLessThanOrEqual(MERSENNE_MAX_VALUE);
+        expect(actual).toBeLessThan(1);
       });
     });
   });

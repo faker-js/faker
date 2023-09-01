@@ -28,11 +28,11 @@ export interface Mersenne {
 export default function mersenne(): Mersenne {
   const twister = new Twister();
 
-  twister.initGenrand(Math.random() * Number.MAX_SAFE_INTEGER);
+  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
 
   return {
     next(): number {
-      return twister.genrandRes53CO();
+      return twister.genrandRes53();
     },
     seed(seed: number | number[]): void {
       if (typeof seed === 'number') {

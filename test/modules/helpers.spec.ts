@@ -1247,7 +1247,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     }
   );
 
-  describe('uniqueArray()', () => {
+  describe('uniqueArray', () => {
     it('works as expected when seeded', () => {
       const input = ['a', 'a', 'a', 'a', 'a', 'f', 'g', 'h', 'i', 'j'];
       const length = 5;
