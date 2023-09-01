@@ -17,7 +17,6 @@ export default [
   'Damola',
   'Darasimi',
   'Ebunoluwa',
-  'Erioluwa',
   'FolaFoluwa',
   'Ibukunoluwa',
   'Idowu',
