@@ -218,6 +218,8 @@ export class BaseFaker {
   }
 }
 
+export const baseFaker = new BaseFaker();
+
 /**
  * This is Faker's main class containing all modules that can be used to generate data.
  *
