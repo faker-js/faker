@@ -66,7 +66,7 @@ export { default as tr } from './tr';
 export { default as uk } from './uk';
 export { default as ur } from './ur';
 export { default as vi } from './vi';
-export { default as yo } from './yo';
+export { default as yo_NG } from './yo_NG';
 export { default as zh_CN } from './zh_CN';
 export { default as zh_TW } from './zh_TW';
 export { default as zu_ZA } from './zu_ZA';

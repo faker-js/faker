@@ -7,10 +7,10 @@ import location from './location';
 import metadata from './metadata';
 import person from './person';
 
-const yo: LocaleDefinition = {
+const yo_NG: LocaleDefinition = {
   location,
   metadata,
   person,
 };
 
-export default yo;
+export default yo_NG;
