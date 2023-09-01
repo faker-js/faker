@@ -801,6 +801,7 @@ describe('date', () => {
       faker.setDefaultRefDate(() => new Date(Date.UTC(2020, 0, 1)));
       faker.seed(20200101);
       const date = faker.date.past();
+      expect(date).toBeInstanceOf(Date);
       expect(date).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
 
       faker.seed(20200101);
