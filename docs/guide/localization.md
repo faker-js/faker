@@ -137,7 +137,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
 | `vi`          | Vietnamese                | `fakerVI`          |
-| `yo_NG`       | Yoruba                    | `fakerYO_NG`       |
+| `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
 | `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
 | `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
 | `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
