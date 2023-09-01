@@ -1,11 +1,11 @@
 import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/metadata';
 
 const metadata: PreBuiltMetadataDefinitionForCountry = {
-  title: 'Yoruba',
+  title: 'Yoruba( Nigeria)',
   code: 'yo_NG',
   country: 'NG',
   language: 'yo',
-  endonym: 'Yoruba',
+  endonym: 'Yoruba (Nigeria)',
   dir: 'ltr',
   script: 'Latn',
 };
