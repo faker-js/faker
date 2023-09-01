@@ -3,12 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import location from './location';
 import metadata from './metadata';
 import person from './person';
 
 const yo_NG: LocaleDefinition = {
-  location,
   metadata,
   person,
 };

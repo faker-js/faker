@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitionForCountry = {
   code: 'yo_NG',
   country: 'NG',
   language: 'yo',
-  endonym: 'Yoruba (Nigeria)',
+  endonym: 'Yorùbá (Nàìjíríà)',
   dir: 'ltr',
   script: 'Latn',
 };
