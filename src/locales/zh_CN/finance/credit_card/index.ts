@@ -4,12 +4,10 @@
  */
 import type { FinanceDefinition } from '../../../..';
 import mastercard from './mastercard';
-import unionpay from './unionpay';
 import visa from './visa';
 
 const credit_card: FinanceDefinition['credit_card'] = {
   mastercard,
-  unionpay,
   visa,
 };
 
