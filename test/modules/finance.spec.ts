@@ -1,6 +1,7 @@
+import validator from 'validator';
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
@@ -482,6 +483,14 @@ describe('finance', () => {
           expect(laser).toSatisfy(luhnCheck);
           const instapayment = faker.finance.creditCardNumber('instapayment');
           expect(instapayment).toSatisfy(luhnCheck);
+        });
+
+        it('should generate a valid union pay credit card', () => {
+          const actual = fakerZH_CN.finance.creditCardNumber('unionpay');
+          expect(actual).toSatisfy(luhnCheck);
+          expect(actual).toSatisfy((value) =>
+            validator.isCreditCard(value as string, { provider: 'unionpay' })
+          );
         });
 
         it('should return custom formatted strings', () => {
