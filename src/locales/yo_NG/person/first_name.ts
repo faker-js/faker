@@ -1,6 +1,5 @@
 export default [
   'Abimbola',
-  'Abiodun',
   'Abiola',
   'Ade',
   'Adebankole',
