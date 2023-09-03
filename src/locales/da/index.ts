@@ -6,11 +6,13 @@ import type { LocaleDefinition } from '../..';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
+import word from './word';
 
 const da: LocaleDefinition = {
   location,
   metadata,
   person,
+  word,
 };
 
 export default da;
