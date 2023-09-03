@@ -70,6 +70,7 @@ const BROKEN_LOCALE_METHODS = {
       'pt_PT',
       'ur',
       'vi',
+      'yo_NG',
       'zh_CN',
       'zh_TW',
       'zu_ZA',
