@@ -66,6 +66,7 @@ import { faker as fakerTR } from './tr';
 import { faker as fakerUK } from './uk';
 import { faker as fakerUR } from './ur';
 import { faker as fakerVI } from './vi';
+import { faker as fakerYO_NG } from './yo_NG';
 import { faker as fakerZH_CN } from './zh_CN';
 import { faker as fakerZH_TW } from './zh_TW';
 import { faker as fakerZU_ZA } from './zu_ZA';
@@ -134,6 +135,7 @@ export {
   fakerUK,
   fakerUR,
   fakerVI,
+  fakerYO_NG,
   fakerZH_CN,
   fakerZH_TW,
   fakerZU_ZA,
@@ -203,6 +205,7 @@ export const allFakers = {
   uk: fakerUK,
   ur: fakerUR,
   vi: fakerVI,
+  yo_NG: fakerYO_NG,
   zh_CN: fakerZH_CN,
   zh_TW: fakerZH_TW,
   zu_ZA: fakerZU_ZA,
