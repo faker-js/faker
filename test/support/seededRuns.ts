@@ -295,8 +295,6 @@ class TestGenerator<
       .map(([key]) => key)
       .sort();
     vi_it('should test all methods', () => {
-      // @ts-expect-error: Argument of type 'string' is not assignable to parameter of type 'MethodOf<TModule>'.
-      this.skip('regexpStyleStringParse_');
       expect(actual).toEqual(expected);
     });
   }

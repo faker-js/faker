@@ -192,6 +192,9 @@ describe('helpers', () => {
           count: { min: 1, max: 10 },
         });
     });
+
+    // @ts-expect-error: This method is protected and thus invisible in this scope.
+    t.skip('regexpStyleStringParse_');
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
