@@ -18,8 +18,8 @@ import { faker } from '@faker-js/faker/locale/en';
 
 describe('reverse array', () => {
   it('should reverse the array', () => {
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
+    const title = faker.person.jobTitle();
+    const name = faker.person.fullName();
     const animal = faker.animal.bear();
 
     const array = [title, name, animal];
@@ -36,7 +36,7 @@ These are especially useful in tests that are meant to be deterministic, such as
 - [Snapshots in Jest](https://jestjs.io/docs/snapshot-testing)
 
 ```ts
-import { describe, it, expect } from 'vitest';
+import { afterEach, describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
 
 // We might want other tests to *not* be seeded. This will re-seed our faker instance after each test.
@@ -48,8 +48,8 @@ describe('reverse array', () => {
   it('should reverse the array', () => {
     // Seed our faker instance with some static number.
     faker.seed(1234);
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
+    const title = faker.person.jobTitle();
+    const name = faker.person.fullName();
     const animal = faker.animal.bear();
 
     const array = [title, name, animal];
