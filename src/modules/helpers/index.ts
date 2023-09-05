@@ -234,7 +234,7 @@ export class HelpersModule {
   ): string {
     // default values required for calling method without arguments
 
-    string = this.regexpStyleStringParse_(string); // replace [4-9] with a random number in range etc...
+    string = this.legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
@@ -272,11 +272,11 @@ export class HelpersModule {
       until: '9.0',
     });
 
-    return this.regexpStyleStringParse_(string);
+    return this.legacyRegexpStringParse(this.faker, string);
   }
 
   /**
-   * Replaces the regex like expressions in the given string with matching values.
+   * Replaces the regex like expressions in the given string with matching values. Note: This method will be removed in v9.
    *
    * Supported patterns:
    * - `.{times}` => Repeat the character exactly `times` times.
@@ -285,18 +285,19 @@ export class HelpersModule {
    *
    * @internal
    *
+   * @param faker A Faker instance.
    * @param string The template string to parse.
    *
    * @example
-   * faker.helpers.regexpStyleStringParse() // ''
-   * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
-   * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
-   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
-   * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
+   * faker.helpers.legacyRegexpStringParse() // ''
+   * faker.helpers.legacyRegexpStringParse('#{5}') // '#####'
+   * faker.helpers.legacyRegexpStringParse('#{2,9}') // '#######'
+   * faker.helpers.legacyRegexpStringParse('[500-15000]') // '8375'
+   * faker.helpers.legacyRegexpStringParse('#{3}test[1-5]') // '###test3'
    *
    * @since 5.0.0
    */
-  protected regexpStyleStringParse_(string: string = ''): string {
+  legacyRegexpStringParse(faker: Faker, string: string = ''): string {
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
@@ -316,7 +317,7 @@ export class HelpersModule {
         min = tmp;
       }
 
-      repetitions = this.faker.number.int({ min, max });
+      repetitions = faker.number.int({ min, max });
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -350,7 +351,7 @@ export class HelpersModule {
 
       string =
         string.slice(0, token.index) +
-        this.faker.number.int({ min, max }).toString() +
+        faker.number.int({ min, max }).toString() +
         string.slice(token.index + token[0].length);
       token = RANGE_REG.exec(string);
     }

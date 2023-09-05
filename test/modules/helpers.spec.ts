@@ -44,6 +44,10 @@ describe('helpers', () => {
         .it('some string', 'Hello !#{3}test[1-5]');
     });
 
+    t.describe('legacyRegexpStringParse', (t) => {
+      t.it('faker instance and some string', faker, 'Hello !#{3}test[1-5]');
+    });
+
     t.describe('fromRegExp', (t) => {
       t.it('with static string', 'Hello World!')
         .it('with static RegExp', /Hello World!/)
@@ -192,9 +196,6 @@ describe('helpers', () => {
           count: { min: 1, max: 10 },
         });
     });
-
-    // @ts-expect-error: This method is protected and thus invisible in this scope.
-    t.skip('regexpStyleStringParse_');
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
