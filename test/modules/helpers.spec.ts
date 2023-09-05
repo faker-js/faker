@@ -44,10 +44,6 @@ describe('helpers', () => {
         .it('some string', 'Hello !#{3}test[1-5]');
     });
 
-    t.describe('legacyRegexpStringParse', (t) => {
-      t.it('faker instance and some string', faker, 'Hello !#{3}test[1-5]');
-    });
-
     t.describe('fromRegExp', (t) => {
       t.it('with static string', 'Hello World!')
         .it('with static RegExp', /Hello World!/)
