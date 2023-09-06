@@ -300,7 +300,7 @@ export class HelpersModule {
   /**
    * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
    *
-   * This method supports both regex patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
+   * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
    * `L` will be replaced with the appropriate Luhn checksum.
    *
    * @param string The credit card format pattern. Defaults to `6453-####-####-####-###L`.
