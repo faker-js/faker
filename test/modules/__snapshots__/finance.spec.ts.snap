@@ -40,9 +40,9 @@ exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1bZbB"`
 
 exports[`finance > 42 > creditCardCVV 1`] = `"379"`;
 
-exports[`finance > 42 > creditCardIssuer 1`] = `"jcb"`;
+exports[`finance > 42 > creditCardIssuer 1`] = `"discover"`;
 
-exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"3581-7755-1410-0484"`;
+exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6591-6277-5514-1004-8364"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4791775514102"`;
 
@@ -256,9 +256,9 @@ exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZarS"`
 
 exports[`finance > 1337 > creditCardCVV 1`] = `"251"`;
 
-exports[`finance > 1337 > creditCardIssuer 1`] = `"discover"`;
+exports[`finance > 1337 > creditCardIssuer 1`] = `"diners_club"`;
 
-exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"6011-6212-2540-3255-2398"`;
+exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"3612-254032-5529"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4512254032550"`;
 
