@@ -6,6 +6,20 @@ import { BaseHelpersModule } from './modules/helpers';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 
+/**
+ * This is Faker's base class containing only modules that can be used to generate basic data.
+ *
+ * Please have a look at the individual modules and methods for more information and examples.
+ *
+ * @example
+ * import { baseFaker } from '@faker-js/faker';
+ * // const { baseFaker } = require('@faker-js/faker');
+ *
+ * // baseFaker.seed(1234);
+ *
+ * baseFaker.number.int(10); // 4
+ * baseFaker.string.uuid(); // 'c50e1f5c-86e8-4aa9-888e-168e0a182519'
+ */
 export class BaseFaker {
   protected _defaultRefDate: () => Date = () => new Date();
 
@@ -15,6 +29,13 @@ export class BaseFaker {
   get defaultRefDate(): () => Date {
     return this._defaultRefDate;
   }
+
+  /**
+   * Creates a new instance of BaseFaker.
+   *
+   * In nearly any case you should use the prebuilt `baseFaker` instances instead of the constructor.
+   */
+  constructor() {}
 
   /**
    * Sets the `refDate` source to use if no `refDate` date is passed to the date methods.
