@@ -5,6 +5,7 @@ import {
   writeApiSearchIndex,
   writeSourceBaseUrl,
 } from './apiDocsWriter';
+import { processBaseFakerClass } from './baseFakerClass';
 import { processFakerClass } from './fakerClass';
 import { processFakerUtilities } from './fakerUtilities';
 import { processModules } from './moduleMethods';
@@ -23,6 +24,7 @@ export async function generate(): Promise<void> {
   await app.generateJson(project, pathOutputJson);
 
   const pages = await Promise.all([
+    processBaseFakerClass(project),
     processFakerClass(project),
     ...(await processModules(project)).sort((a, b) =>
       a.text.localeCompare(b.text)
