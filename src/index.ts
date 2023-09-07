@@ -99,11 +99,11 @@ export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
-export type { DateModule } from './modules/date';
+export type { BaseDateModule, DateModule } from './modules/date';
 export type { Currency, FinanceModule } from './modules/finance';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
-export type { HelpersModule } from './modules/helpers';
+export type { BaseHelpersModule, HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type {
