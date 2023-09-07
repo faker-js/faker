@@ -10,7 +10,6 @@
     // This negates what is set in the extended tsconfig.json
     "noImplicitAny": true,
     "skipLibCheck": false,
-    "allowSyntheticDefaultImports": false,
     "resolveJsonModule": false
   },
   "include": ["src"]

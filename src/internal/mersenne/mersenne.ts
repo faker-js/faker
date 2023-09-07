@@ -1,4 +1,4 @@
-import Twister from './twister';
+import Twister from 'mersenne-twister';
 
 /**
  * Generate seed based random numbers.
@@ -28,17 +28,17 @@ export interface Mersenne {
 export default function mersenne(): Mersenne {
   const twister = new Twister();
 
-  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
+  twister.init_seed(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
 
   return {
     next(): number {
-      return twister.genrandReal2();
+      return twister.random();
     },
     seed(seed: number | number[]): void {
       if (typeof seed === 'number') {
-        twister.initGenrand(seed);
+        twister.init_seed(seed);
       } else if (Array.isArray(seed)) {
-        twister.initByArray(seed, seed.length);
+        twister.init_by_array(seed, seed.length);
       }
     },
   };

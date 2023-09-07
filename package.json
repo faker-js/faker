@@ -86,10 +86,14 @@
     "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
     "preflight": "pnpm install && run-s generate format lint build test:update-snapshots ts-check"
   },
+  "dependencies": {
+    "mersenne-twister": "~1.1.0"
+  },
   "devDependencies": {
     "@actions/github": "~5.1.1",
     "@algolia/client-search": "~4.19.1",
     "@types/markdown-it": "~13.0.1",
+    "@types/mersenne-twister": "~1.1.4",
     "@types/node": "~20.6.2",
     "@types/sanitize-html": "~2.9.0",
     "@types/semver": "~7.5.2",
