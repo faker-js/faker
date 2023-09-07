@@ -16,7 +16,7 @@ exports[`random > 42 > word 1`] = `"throughput"`;
 
 exports[`random > 42 > words > noArgs 1`] = `"refrigerator Cisgender"`;
 
-exports[`random > 42 > words > with length 1`] = `"throughput Lutetium purple Cambridgeshire Vietnam"`;
+exports[`random > 42 > words > with length 1`] = `"throughput Lutetium purple Glamorgan female"`;
 
 exports[`random > 42 > words > with length range 1`] = `"refrigerator Cisgender"`;
 
