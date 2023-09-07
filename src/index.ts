@@ -1,3 +1,4 @@
+export { BaseFaker, baseFaker } from './base-faker';
 export type {
   AirlineDefinition,
   /** @deprecated Use AirlineDefinition instead */
@@ -71,7 +72,7 @@ export type {
   WordDefinition as WordDefinitions,
 } from './definitions';
 export { FakerError } from './errors/faker-error';
-export { BaseFaker, baseFaker, Faker } from './faker';
+export { Faker } from './faker';
 export type { FakerOptions } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';
