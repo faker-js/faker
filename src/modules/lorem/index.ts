@@ -375,9 +375,9 @@ export class LoremModule {
     let text = '';
     do {
       text = `${text}${this[method]()} `;
-    } while (text.trim().length < length);
+    } while (text.length < length);
 
-    return `${text.trim().substring(0, length).replace(/.$/, '.')}`;
+    return `${text.substring(0, length).replace(/.$/, '.')}`;
   }
 
   /**
