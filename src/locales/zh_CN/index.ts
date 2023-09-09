@@ -7,6 +7,7 @@ import animal from './animal';
 import color from './color';
 import company from './company';
 import date from './date';
+import hacker from './hacker';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -20,6 +21,7 @@ const zh_CN: LocaleDefinition = {
   color,
   company,
   date,
+  hacker,
   internet,
   location,
   metadata,
