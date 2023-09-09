@@ -42,6 +42,11 @@ If adding new data definitions to Faker, you'll often need to find source data. 
 - But if you are compiling a list of, for example, popular personal names or cities, don't copy directly from a single source (Wikipedia, 'most popular' articles, government data sites etc). A compilation of facts [can be copyrighted](https://en.wikipedia.org/wiki/Copyright_in_compilation).
 - It's best to refer to multiple sources and use your own judgement/knowledge to make a sample list of data.
 
+## Adding new locale or updating existing one
+
+After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
+If you change more than 20 locale files, please consider splitting your PR into one per category (e.g. person, location).
+
 ## Building Faker
 
 The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
@@ -162,10 +167,6 @@ describe('someModule', () => {
   });
 });
 ```
-
-## Adding new locale or updating existing one
-
-After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
 
 ## Deprecation workflow
 
