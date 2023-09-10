@@ -58,7 +58,7 @@ const b = customFaker.internet.emoji();
 **New**
 
 ```ts
-import { Faker, de_CH, de, en, base } from '@faker-js/faker';
+import { base, de, de_CH, en, Faker } from '@faker-js/faker';
 
 // same as fakerDE_CH
 export const customFaker = new Faker({
@@ -110,7 +110,7 @@ This will also give you detailed information which data are missing.
 If you want to check for data you can either use `entry in faker.definitions.category` or use `faker.rawDefinitions.category?.entry` instead.
 
 ```ts
-import { Faker, fakerES, es } from '@faker-js/faker';
+import { es, Faker, fakerES } from '@faker-js/faker';
 
 const fakerES_noFallbacks = new Faker({
   locale: [es],
@@ -125,7 +125,7 @@ fakerES_noFallbacks.music.songName(); // throws a FakerError
 This also has an impact on data that aren't applicable to a locale, for example Hong Kong (`en_HK`) doesn't use ZIP codes/postcodes.
 
 ```ts
-import { fakerEN_US, fakerEN_HK } from '@faker-js/faker';
+import { fakerEN_HK, fakerEN_US } from '@faker-js/faker';
 fakerEN_US.location.zipCode(); // 90210
 fakerEN_HK.location.zipCode(); // throws a FakerError
 ```
