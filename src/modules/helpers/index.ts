@@ -133,7 +133,6 @@ function legacyRegexpStringParse(faker: Faker, string: string = ''): string {
     token = REP_REG.exec(string);
   }
   // Deal with range `[min-max]` (only works with numbers for now)
-  //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
   token = RANGE_REG.exec(string);
   while (token != null) {
