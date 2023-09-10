@@ -17,5 +17,11 @@ module.exports = {
         trailingComma: 'none',
       },
     },
+    {
+      files: '*.md',
+      options: {
+        organizeImportsSkipDestructiveCodeActions: true,
+      },
+    },
   ],
 };

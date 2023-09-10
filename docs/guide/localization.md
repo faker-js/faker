@@ -44,7 +44,7 @@ If our built-in faker instances don't satisfy your needs, you can build your own
 
 ```ts
 import type { LocaleDefinition } from '@faker-js/faker';
-import { Faker, de_CH, de, en, base } from '@faker-js/faker';
+import { base, de, de_CH, en, Faker } from '@faker-js/faker';
 
 const customLocale: LocaleDefinition = {
   title: 'My custom locale',
