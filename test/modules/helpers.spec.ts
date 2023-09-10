@@ -1150,6 +1150,29 @@ describe('helpers', () => {
         it('should not trim whitespace', () => {
           expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
         });
+
+        it('should be able to handle methods that return a complex object', () => {
+          expect(
+            faker.definitions.airline.airport.map((airport) => airport.iataCode)
+          ).toContain(faker.helpers.fake('{{airline.airport.iataCode}}'));
+        });
+
+        it('should return undefined if a method returns a complex object but the property is undefined', () => {
+          expect(faker.helpers.fake('{{airline.airport.code}}')).toBe(
+            'undefined'
+          );
+        });
+
+        it('should be able to pass multiple dynamic templates with complex objects', () => {
+          expect(
+            faker.definitions.airline.airplane.map((airplane) => airplane.name)
+          ).toContain(
+            faker.helpers.fake([
+              '{{airline.airplane.name}}',
+              '{{airline.airplane.name}}',
+            ])
+          );
+        });
       });
 
       describe('rangeToNumber()', () => {

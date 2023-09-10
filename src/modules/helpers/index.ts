@@ -1190,6 +1190,7 @@ export class HelpersModule {
 
     // split the method into module and function
     const parts = method.split('.');
+    const property = parts.length === 3 ? parts.pop() : undefined;
 
     let currentModuleOrMethod: unknown = this.faker;
     let currentDefinitions: unknown = this.faker.rawDefinitions;
@@ -1231,7 +1232,11 @@ export class HelpersModule {
       params = [parameters];
     }
 
-    const result = String(fn(...params));
+    const fnResult = fn(...params);
+    const result =
+      typeof fnResult === 'object' && property
+        ? String(fnResult[property as keyof typeof fnResult])
+        : String(fnResult);
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
