@@ -35,7 +35,9 @@ export class BaseFaker {
    *
    * In nearly any case you should use the prebuilt `baseFaker` instances instead of the constructor.
    */
-  constructor() {}
+  constructor() {
+    // This empty constructor just exists for VitePress docs
+  }
 
   /**
    * Sets the `refDate` source to use if no `refDate` date is passed to the date methods.
