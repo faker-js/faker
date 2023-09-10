@@ -312,6 +312,22 @@ If you need an array of useful values, you are better off creating your own one 
 
 The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` or `faker.date.anytime` instead.
 
+### `faker.helpers.regexpStyleStringParse` deprecated in favor of `faker.helpers.fromRegExp`
+
+The `regexpStyleStringParse` method in `faker.helpers` has been deprecated in Faker 8.1. A likely replacement is the more powerful `faker.helpers.fromRegExp`.
+
+```js
+faker.helpers.regexpStyleStringParse('a{3,6}'); // aaaaa
+faker.helpers.fromRegExp('a{3,6}'); // aaaaa
+```
+
+However, please note that `faker.helpers.fromRegExp` is not an exact replacement for `faker.helpers.regexpStyleStringParse` as `fromRegExp` cannot handle numeric ranges. This will now need to be handled separately.
+
+```js
+faker.helpers.regexpStyleStringParse('a{3,6}[1-100]'); // "aaaa53", etc.
+faker.helpers.fromRegExp('a{3,6}') + faker.number.int({ min: 1, max: 100 });
+```
+
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 
 The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
