@@ -3,16 +3,12 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import location from './location';
 import metadata from './metadata';
 import person from './person';
-import word from './word';
 
-const da: LocaleDefinition = {
-  location,
+const yo_NG: LocaleDefinition = {
   metadata,
   person,
-  word,
 };
 
-export default da;
+export default yo_NG;

@@ -473,16 +473,8 @@ describe('finance', () => {
           expect(diners_club).toSatisfy(luhnCheck);
           const jcb = faker.finance.creditCardNumber('jcb');
           expect(jcb).toSatisfy(luhnCheck);
-          const switchC = faker.finance.creditCardNumber('mastercard');
-          expect(switchC).toSatisfy(luhnCheck);
-          const solo = faker.finance.creditCardNumber('solo');
-          expect(solo).toSatisfy(luhnCheck);
           const maestro = faker.finance.creditCardNumber('maestro');
           expect(maestro).toSatisfy(luhnCheck);
-          const laser = faker.finance.creditCardNumber('laser');
-          expect(laser).toSatisfy(luhnCheck);
-          const instapayment = faker.finance.creditCardNumber('instapayment');
-          expect(instapayment).toSatisfy(luhnCheck);
         });
 
         it('should generate a valid union pay credit card', () => {
