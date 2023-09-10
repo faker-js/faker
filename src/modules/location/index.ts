@@ -356,12 +356,10 @@ export class LocationModule {
     }
 
     const { variant = 'alpha-2' } = options;
-    const key =
-      variant === 'alpha-3'
-        ? 'alpha3'
-        : variant === 'numeric'
-        ? 'numeric'
-        : 'alpha2';
+    const key = {
+      'alpha-3': 'alpha3',
+      'numeric': 'numeric',
+    }[variant] ?? 'alpha2';
 
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.country_code
