@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { seededTests } from './../support/seededRuns';
@@ -37,6 +38,17 @@ describe('commerce', () => {
           dec: 4,
           symbol: '$',
         });
+    });
+
+    t.describe('isbn', (t) => {
+      t.it('noArgs')
+        .it('with variant 10', 10)
+        .it('with variant 13', 13)
+        .it('with variant 10 and space separators', {
+          variant: 10,
+          separator: ' ',
+        })
+        .it('with space separators', { separator: ' ' });
     });
   });
 
@@ -156,6 +168,60 @@ describe('commerce', () => {
           expect(faker.definitions.commerce.product_description).toContain(
             actual
           );
+        });
+      });
+
+      describe(`isbn()`, () => {
+        it('should return ISBN-13 with hyphen separators when not passing arguments', () => {
+          const isbn = faker.commerce.isbn();
+
+          expect(isbn).toBeTruthy();
+          expect(isbn).toBeTypeOf('string');
+          expect(
+            isbn,
+            'The expected match should be ISBN-13 with hyphens'
+          ).toMatch(/^978-[01]-[\d-]{9}-\d$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 13));
+        });
+
+        it('should return ISBN-10 with hyphen separators when passing variant 10 as argument', () => {
+          const isbn = faker.commerce.isbn(10);
+
+          expect(
+            isbn,
+            'The expected match should be ISBN-10 with hyphens'
+          ).toMatch(/^[01]-[\d-]{9}-[\dX]$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 10));
+        });
+
+        it('should return ISBN-13 with hyphen separators when passing variant 13 as argument', () => {
+          const isbn = faker.commerce.isbn(13);
+
+          expect(
+            isbn,
+            'The expected match should be ISBN-13 with hyphens'
+          ).toMatch(/^978-[01]-[\d-]{9}-\d$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 13));
+        });
+
+        it('should return ISBN-10 with space separators when passing variant 10 and space separators as argument', () => {
+          const isbn = faker.commerce.isbn({ variant: 10, separator: ' ' });
+
+          expect(
+            isbn,
+            'The expected match should be ISBN-10 with space separators'
+          ).toMatch(/^[01] [\d ]{9} [\dX]$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 10));
+        });
+
+        it('should return ISBN-13 with space separators when passing space separators as argument', () => {
+          const isbn = faker.commerce.isbn({ separator: ' ' });
+
+          expect(
+            isbn,
+            'The expected match should be ISBN-13 with space separators'
+          ).toMatch(/^978 [01] [\d ]{9} \d$/);
+          expect(isbn).toSatisfy((isbn: string) => validator.isISBN(isbn, 13));
         });
       });
     }
