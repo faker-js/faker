@@ -320,8 +320,11 @@ export class LocationModule {
    * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
    * @param options The code to return or an options object. Defaults to `{}`.
-   * @param options.variant The variant to return. Can be either `'alpha-2'` (two-letter code),
-   * `'alpha-3'` (three-letter code) or `'numeric'` (numeric code). Defaults to `'alpha-2'`.
+   * @param options.variant The variant to return. Can be one of:
+   * - `'alpha-2'` (two-letter code)
+   * - `'alpha-3'` (three-letter code)
+   * - `'numeric'` (numeric code)
+   * Defaults to `'alpha-2'`.
    *
    * @example
    * faker.location.countryCode() // 'SJ'
