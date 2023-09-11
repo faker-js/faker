@@ -6,7 +6,7 @@ import { keys } from '../src/internal/keys';
 describe.each(keys(allLocales))('locale imports', (locale) => {
   it(`should be possible to directly require('@faker-js/faker/locale/${locale}')`, () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
-    const { faker } = require(`../dist/cjs/locale/${locale}`) as {
+    const { faker } = require(`../dist/locale/${locale}`) as {
       faker: Faker;
     };
 
@@ -18,7 +18,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
   });
 
   it(`should be possible to directly import('@faker-js/faker/locale/${locale}')`, async () => {
-    const { faker } = (await import(`../dist/esm/locale/${locale}`)) as {
+    const { faker } = (await import(`../dist/locale/${locale}`)) as {
       faker: Faker;
     };
 
