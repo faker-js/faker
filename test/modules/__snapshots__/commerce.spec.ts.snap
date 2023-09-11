@@ -2,6 +2,16 @@
 
 exports[`commerce > 42 > department 1`] = `"Tools"`;
 
+exports[`commerce > 42 > isbn > noArgs 1`] = `"978-0-7917-7551-6"`;
+
+exports[`commerce > 42 > isbn > with space separators 1`] = `"978 0 7917 7551 6"`;
+
+exports[`commerce > 42 > isbn > with variant 10 1`] = `"0-7917-7551-8"`;
+
+exports[`commerce > 42 > isbn > with variant 10 and space separators 1`] = `"0 7917 7551 8"`;
+
+exports[`commerce > 42 > isbn > with variant 13 1`] = `"978-0-7917-7551-6"`;
+
 exports[`commerce > 42 > price > noArgs 1`] = `"375.00"`;
 
 exports[`commerce > 42 > price > with max 1`] = `"375.00"`;
@@ -36,6 +46,16 @@ exports[`commerce > 42 > productName 1`] = `"Fantastic Frozen Fish"`;
 
 exports[`commerce > 1211 > department 1`] = `"Automotive"`;
 
+exports[`commerce > 1211 > isbn > noArgs 1`] = `"978-1-4872-1906-2"`;
+
+exports[`commerce > 1211 > isbn > with space separators 1`] = `"978 1 4872 1906 2"`;
+
+exports[`commerce > 1211 > isbn > with variant 10 1`] = `"1-4872-1906-7"`;
+
+exports[`commerce > 1211 > isbn > with variant 10 and space separators 1`] = `"1 4872 1906 7"`;
+
+exports[`commerce > 1211 > isbn > with variant 13 1`] = `"978-1-4872-1906-2"`;
+
 exports[`commerce > 1211 > price > noArgs 1`] = `"929.00"`;
 
 exports[`commerce > 1211 > price > with max 1`] = `"929.00"`;
@@ -69,6 +89,16 @@ exports[`commerce > 1211 > productMaterial 1`] = `"Frozen"`;
 exports[`commerce > 1211 > productName 1`] = `"Unbranded Fresh Bike"`;
 
 exports[`commerce > 1337 > department 1`] = `"Computers"`;
+
+exports[`commerce > 1337 > isbn > noArgs 1`] = `"978-0-512-25403-0"`;
+
+exports[`commerce > 1337 > isbn > with space separators 1`] = `"978 0 512 25403 0"`;
+
+exports[`commerce > 1337 > isbn > with variant 10 1`] = `"0-512-25403-6"`;
+
+exports[`commerce > 1337 > isbn > with variant 10 and space separators 1`] = `"0 512 25403 6"`;
+
+exports[`commerce > 1337 > isbn > with variant 13 1`] = `"978-0-512-25403-0"`;
 
 exports[`commerce > 1337 > price > noArgs 1`] = `"263.00"`;
 
