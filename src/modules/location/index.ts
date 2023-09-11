@@ -321,9 +321,11 @@ export class LocationModule {
    *
    * @param options The code to return or an options object. Defaults to `{}`.
    * @param options.variant The variant to return. Can be one of:
+   *
    * - `'alpha-2'` (two-letter code)
    * - `'alpha-3'` (three-letter code)
    * - `'numeric'` (numeric code)
+   *
    * Defaults to `'alpha-2'`.
    *
    * @example
