@@ -7,7 +7,7 @@ import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 
 /**
- * This is Faker's base class containing only modules that can be used to generate basic data.
+ * This is Faker class that doesn't need any localized data to generate it's output. It should be used if only values are needed that can be generated on the spot.
  *
  * Please have a look at the individual modules and methods for more information and examples.
  *
@@ -28,15 +28,6 @@ export class BaseFaker {
    */
   get defaultRefDate(): () => Date {
     return this._defaultRefDate;
-  }
-
-  /**
-   * Creates a new instance of BaseFaker.
-   *
-   * In nearly any case you should use the prebuilt `baseFaker` instances instead of the constructor.
-   */
-  constructor() {
-    // This empty constructor just exists for VitePress docs
   }
 
   /**
@@ -88,6 +79,15 @@ export class BaseFaker {
   readonly helpers: BaseHelpersModule = new BaseHelpersModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly string: StringModule = new StringModule(this);
+
+  /**
+   * Creates a new instance of BaseFaker.
+   *
+   * In nearly any case you should use the prebuilt `baseFaker` instances instead of the constructor.
+   */
+  constructor() {
+    // This empty constructor just exists for VitePress docs
+  }
 
   /**
    * Sets the seed or generates a new one.

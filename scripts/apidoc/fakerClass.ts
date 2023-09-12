@@ -7,7 +7,7 @@ import { analyzeSignature } from './signature';
 import { extractModuleFieldName, selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
 
-export async function processFakerClass(
+export async function processFakerClasses(
   project: ProjectReflection
 ): Promise<ModuleSummary[]> {
   const fakerClasses = project
