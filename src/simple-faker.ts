@@ -7,9 +7,9 @@ import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 
 /**
- * This is Faker class that doesn't need any localized data to generate it's output. It should be used if only values are needed that can be generated on the spot.
+ * This is a simplified Faker class that doesn't need any localized data to generate its output.
  *
- * Please have a look at the individual modules and methods for more information and examples.
+ * It only includes methods from the `datatype`, `date`, `helpers` and `string` modules.
  *
  * @example
  * import { simpleFaker } from '@faker-js/faker';
