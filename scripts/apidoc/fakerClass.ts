@@ -12,7 +12,7 @@ export async function processFakerClasses(
 ): Promise<ModuleSummary[]> {
   const fakerClasses = project
     .getChildrenByKind(ReflectionKind.Class)
-    .filter((clazz) => clazz.name === 'Faker' || clazz.name === 'BaseFaker');
+    .filter((clazz) => clazz.name === 'Faker' || clazz.name === 'SimpleFaker');
 
   if (fakerClasses.length !== 2) {
     throw new Error('Faker classes not found');

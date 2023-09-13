@@ -1,4 +1,3 @@
-export { BaseFaker, baseFaker } from './base-faker';
 export type {
   AirlineDefinition,
   /** @deprecated Use AirlineDefinition instead */
@@ -99,11 +98,11 @@ export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
-export type { BaseDateModule, DateModule } from './modules/date';
+export type { DateModule, SimpleDateModule } from './modules/date';
 export type { Currency, FinanceModule } from './modules/finance';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
-export type { BaseHelpersModule, HelpersModule } from './modules/helpers';
+export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type {
@@ -129,4 +128,5 @@ export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
+export { SimpleFaker, simpleFaker } from './simple-faker';
 export { mergeLocales } from './utils/merge-locales';

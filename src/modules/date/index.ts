@@ -1,4 +1,4 @@
-import type { BaseFaker, Faker } from '../..';
+import type { Faker, SimpleFaker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
@@ -23,7 +23,7 @@ function toDate(
   return date;
 }
 
-export class BaseDateModule<TFaker extends BaseFaker = BaseFaker> {
+export class SimpleDateModule<TFaker extends SimpleFaker = SimpleFaker> {
   constructor(protected readonly faker: TFaker) {
     bindThisToMemberFunctions(this);
   }
@@ -914,7 +914,7 @@ export class BaseDateModule<TFaker extends BaseFaker = BaseFaker> {
  *
  * These methods have additional concerns about reproducibility, see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
  */
-export class DateModule extends BaseDateModule<Faker> {
+export class DateModule extends SimpleDateModule<Faker> {
   constructor(faker: Faker) {
     super(faker);
   }

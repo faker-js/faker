@@ -1,4 +1,3 @@
-import { BaseFaker } from './base-faker';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
@@ -29,6 +28,7 @@ import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
+import { SimpleFaker } from './simple-faker';
 import { mergeLocales } from './utils/merge-locales';
 
 /**
@@ -56,7 +56,7 @@ import { mergeLocales } from './utils/merge-locales';
  *
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
-export class Faker extends BaseFaker {
+export class Faker extends SimpleFaker {
   readonly rawDefinitions: LocaleDefinition;
   readonly definitions: LocaleProxy;
 

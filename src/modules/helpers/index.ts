@@ -1,4 +1,4 @@
-import type { BaseFaker, Faker } from '../..';
+import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
@@ -24,7 +24,7 @@ import * as uniqueExec from './unique';
  * @since 8.0.0
  */
 function getRepetitionsBasedOnQuantifierParameters(
-  faker: BaseFaker,
+  faker: SimpleFaker,
   quantifierSymbol: string,
   quantifierMin: string,
   quantifierMax: string
@@ -95,7 +95,7 @@ function getRepetitionsBasedOnQuantifierParameters(
  * @since 5.0.0
  */
 function legacyRegexpStringParse(
-  faker: BaseFaker,
+  faker: SimpleFaker,
   string: string = ''
 ): string {
   // Deal with range repeat `{min,max}`
@@ -158,7 +158,7 @@ function legacyRegexpStringParse(
   return string;
 }
 
-export class BaseHelpersModule<TFaker extends BaseFaker = BaseFaker> {
+export class SimpleHelpersModule<TFaker extends SimpleFaker = SimpleFaker> {
   /**
    * Global store of unique values.
    * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
@@ -1246,7 +1246,7 @@ export class BaseHelpersModule<TFaker extends BaseFaker = BaseFaker> {
  *
  * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
  */
-export class HelpersModule extends BaseHelpersModule<Faker> {
+export class HelpersModule extends SimpleHelpersModule<Faker> {
   constructor(faker: Faker) {
     super(faker);
   }

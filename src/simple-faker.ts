@@ -1,8 +1,8 @@
 import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
 import { DatatypeModule } from './modules/datatype';
-import { BaseDateModule } from './modules/date';
-import { BaseHelpersModule } from './modules/helpers';
+import { SimpleDateModule } from './modules/date';
+import { SimpleHelpersModule } from './modules/helpers';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 
@@ -12,15 +12,15 @@ import { StringModule } from './modules/string';
  * Please have a look at the individual modules and methods for more information and examples.
  *
  * @example
- * import { baseFaker } from '@faker-js/faker';
- * // const { baseFaker } = require('@faker-js/faker');
+ * import { simpleFaker } from '@faker-js/faker';
+ * // const { simpleFaker } = require('@faker-js/faker');
  *
- * // baseFaker.seed(1234);
+ * // simpleFaker.seed(1234);
  *
- * baseFaker.number.int(10); // 4
- * baseFaker.string.uuid(); // 'c50e1f5c-86e8-4aa9-888e-168e0a182519'
+ * simpleFaker.number.int(10); // 4
+ * simpleFaker.string.uuid(); // 'c50e1f5c-86e8-4aa9-888e-168e0a182519'
  */
-export class BaseFaker {
+export class SimpleFaker {
   protected _defaultRefDate: () => Date = () => new Date();
 
   /**
@@ -75,15 +75,15 @@ export class BaseFaker {
   private readonly _mersenne: Mersenne = mersenne();
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
-  readonly date: BaseDateModule = new BaseDateModule(this);
-  readonly helpers: BaseHelpersModule = new BaseHelpersModule(this);
+  readonly date: SimpleDateModule = new SimpleDateModule(this);
+  readonly helpers: SimpleHelpersModule = new SimpleHelpersModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly string: StringModule = new StringModule(this);
 
   /**
-   * Creates a new instance of BaseFaker.
+   * Creates a new instance of SimpleFaker.
    *
-   * In nearly any case you should use the prebuilt `baseFaker` instances instead of the constructor.
+   * In nearly any case you should use the prebuilt `simpleFaker` instances instead of the constructor.
    */
   constructor() {
     // This empty constructor just exists for VitePress docs
@@ -212,4 +212,4 @@ export class BaseFaker {
   }
 }
 
-export const baseFaker = new BaseFaker();
+export const simpleFaker = new SimpleFaker();

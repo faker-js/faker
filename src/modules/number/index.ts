@@ -1,4 +1,4 @@
-import type { BaseFaker } from '../..';
+import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { Mersenne } from '../../internal/mersenne/mersenne';
@@ -18,7 +18,7 @@ import type { Mersenne } from '../../internal/mersenne/mersenne';
  * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
 export class NumberModule {
-  constructor(private readonly faker: BaseFaker) {
+  constructor(private readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
