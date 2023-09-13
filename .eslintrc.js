@@ -21,7 +21,7 @@ module.exports = defineConfig({
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['./tsconfig.lint.json'],
+    project: ['./tsconfig.json'],
     sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
@@ -114,7 +114,7 @@ module.exports = defineConfig({
       },
     },
     {
-      files: ['test/*.spec.ts'],
+      files: ['test/**/*.spec.ts'],
       extends: ['plugin:vitest/recommended'],
       rules: {
         'deprecation/deprecation': 'off',

@@ -37,7 +37,7 @@
     },
     {
       "groupName": "vitest",
-      "matchPackageNames": ["@vitest/coverage-c8", "@vitest/ui", "vitest"]
+      "matchPackageNames": ["@vitest/coverage-v8", "@vitest/ui", "vitest"]
     },
     {
       "groupName": "prettier",
@@ -51,9 +51,6 @@
       "groupName": "doc-dependencies",
       "matchPackageNames": [
         "@algolia/client-search",
-        "@types/react",
-        "react",
-        "react-dom",
         "typedoc",
         "typedoc-plugin-missing-exports",
         "vitepress"

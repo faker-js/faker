@@ -23,8 +23,6 @@ interface CustomMatchers {
 }
 
 declare module 'vitest' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface Assertion extends CustomMatchers {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface AsymmetricMatchersContaining extends CustomMatchers {}
 }

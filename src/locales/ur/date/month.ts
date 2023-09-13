@@ -1,6 +1,5 @@
-import type { DateEntryDefinition } from '../../../definitions';
-
 export default {
+  abbr: null,
   wide: [
     'جنوری',
     'فروری',
@@ -15,4 +14,4 @@ export default {
     'نومبر',
     'دسمبر',
   ],
-} as DateEntryDefinition;
+};
