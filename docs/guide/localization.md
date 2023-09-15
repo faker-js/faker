@@ -44,7 +44,7 @@ If our built-in faker instances don't satisfy your needs, you can build your own
 
 ```ts
 import type { LocaleDefinition } from '@faker-js/faker';
-import { Faker, de_CH, de, en, base } from '@faker-js/faker';
+import { base, de, de_CH, en, Faker } from '@faker-js/faker';
 
 const customLocale: LocaleDefinition = {
   title: 'My custom locale',
@@ -137,6 +137,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
 | `vi`          | Vietnamese                | `fakerVI`          |
+| `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
 | `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
 | `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
 | `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |

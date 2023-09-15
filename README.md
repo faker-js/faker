@@ -123,7 +123,7 @@ we fall back to English in such a case as this is the most complete and most com
 If you don't want that or prefer a different fallback, you can also build your own instances.
 
 ```ts
-import { Faker, de, de_CH } from '@faker-js/faker';
+import { de, de_CH, Faker } from '@faker-js/faker';
 
 export const faker = new Faker({
   locale: [de_CH, de],

@@ -13,8 +13,8 @@ Simply crop that line out for a Jest integration.
 These frameworks work about exactly as you would expect with Faker. Here's a minimal example:
 
 ```ts
-import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
+import { describe, expect, it } from 'vitest';
 
 describe('reverse array', () => {
   it('should reverse the array', () => {
@@ -36,8 +36,8 @@ These are especially useful in tests that are meant to be deterministic, such as
 - [Snapshots in Jest](https://jestjs.io/docs/snapshot-testing)
 
 ```ts
-import { afterEach, describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
+import { afterEach, describe, expect, it } from 'vitest';
 
 // We might want other tests to *not* be seeded. This will re-seed our faker instance after each test.
 afterEach(() => {
