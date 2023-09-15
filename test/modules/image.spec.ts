@@ -68,12 +68,26 @@ describe('image', () => {
         });
     });
 
+    t.describe('dataUri', (t) => {
+      t.it('noArgs')
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with color', { color: 'blue' })
+        .it('with type', { type: 'svg-base64' })
+        .it('with all options', {
+          width: 128,
+          height: 128,
+          color: 'blue',
+          type: 'svg-base64',
+        });
+    });
+
     t.skip('abstract');
     t.skip('animals');
     t.skip('business');
     t.skip('cats');
     t.skip('city');
-    t.skip('dataUri');
     t.skip('fashion');
     t.skip('food');
     t.skip('image');
@@ -480,6 +494,44 @@ describe('image', () => {
         width: 200,
         height: 300,
         color: 'red',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a blank svg-uri data', () => {
+      const dataUri = faker.image.dataUri({
+        width: 456,
+        height: 789,
+        type: 'svg-uri',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a background color svg-uri data URI', () => {
+      const dataUri = faker.image.dataUri({
+        width: 1,
+        height: 1234,
+        color: 'yellow',
+        type: 'svg-uri',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a blank svg-base64 data', () => {
+      const dataUri = faker.image.dataUri({
+        width: 123,
+        height: 456,
+        type: 'svg-base64',
+      });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a background color svg-base64 data URI', () => {
+      const dataUri = faker.image.dataUri({
+        width: 444,
+        height: 30,
+        color: 'green',
+        type: 'svg-base64',
       });
       expect(dataUri).toMatchSnapshot();
     });

@@ -125,8 +125,6 @@ export class NumberModule {
           max?: number;
           /**
            * Precision of the generated number.
-           *
-           * @default 0.01
            */
           precision?: number;
         } = {}

@@ -73,6 +73,89 @@ function getRepetitionsBasedOnQuantifierParameters(
 }
 
 /**
+ * Replaces the regex like expressions in the given string with matching values. Note: This method will be removed in v9.
+ *
+ * Supported patterns:
+ * - `.{times}` => Repeat the character exactly `times` times.
+ * - `.{min,max}` => Repeat the character `min` to `max` times.
+ * - `[min-max]` => Generate a number between min and max (inclusive).
+ *
+ * @internal
+ *
+ * @param faker A Faker instance.
+ * @param string The template string to parse.
+ *
+ * @example
+ * faker.helpers.legacyRegexpStringParse() // ''
+ * faker.helpers.legacyRegexpStringParse('#{5}') // '#####'
+ * faker.helpers.legacyRegexpStringParse('#{2,9}') // '#######'
+ * faker.helpers.legacyRegexpStringParse('[500-15000]') // '8375'
+ * faker.helpers.legacyRegexpStringParse('#{3}test[1-5]') // '###test3'
+ *
+ * @since 5.0.0
+ */
+function legacyRegexpStringParse(faker: Faker, string: string = ''): string {
+  // Deal with range repeat `{min,max}`
+  const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
+  const REP_REG = /(.)\{(\d+)\}/;
+  const RANGE_REG = /\[(\d+)\-(\d+)\]/;
+  let min: number;
+  let max: number;
+  let tmp: number;
+  let repetitions: number;
+  let token = RANGE_REP_REG.exec(string);
+  while (token != null) {
+    min = parseInt(token[2]);
+    max = parseInt(token[3]);
+    // switch min and max
+    if (min > max) {
+      tmp = max;
+      max = min;
+      min = tmp;
+    }
+
+    repetitions = faker.number.int({ min, max });
+    string =
+      string.slice(0, token.index) +
+      token[1].repeat(repetitions) +
+      string.slice(token.index + token[0].length);
+    token = RANGE_REP_REG.exec(string);
+  }
+
+  // Deal with repeat `{num}`
+  token = REP_REG.exec(string);
+  while (token != null) {
+    repetitions = parseInt(token[2]);
+    string =
+      string.slice(0, token.index) +
+      token[1].repeat(repetitions) +
+      string.slice(token.index + token[0].length);
+    token = REP_REG.exec(string);
+  }
+  // Deal with range `[min-max]` (only works with numbers for now)
+
+  token = RANGE_REG.exec(string);
+  while (token != null) {
+    min = parseInt(token[1]); // This time we are not capturing the char before `[]`
+    max = parseInt(token[2]);
+    // switch min and max
+    if (min > max) {
+      tmp = max;
+      max = min;
+      min = tmp;
+    }
+
+    string =
+      string.slice(0, token.index) +
+      faker.number.int({ min, max }).toString() +
+      string.slice(token.index + token[0].length);
+    token = RANGE_REG.exec(string);
+  }
+
+  return string;
+}
+
+/**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
  *
  * ### Overview
@@ -234,7 +317,7 @@ export class HelpersModule {
   ): string {
     // default values required for calling method without arguments
 
-    string = this.regexpStyleStringParse(string); // replace [4-9] with a random number in range etc...
+    string = legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
@@ -251,6 +334,8 @@ export class HelpersModule {
    *
    * @param string The template string to parse.
    *
+   * @see faker.helpers.fromRegExp()
+   *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
    * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
@@ -259,67 +344,18 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
    *
    * @since 5.0.0
+   *
+   * @deprecated Use `faker.helpers.fromRegExp()` instead.
    */
   regexpStyleStringParse(string: string = ''): string {
-    // Deal with range repeat `{min,max}`
-    const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
-    const REP_REG = /(.)\{(\d+)\}/;
-    const RANGE_REG = /\[(\d+)\-(\d+)\]/;
-    let min: number;
-    let max: number;
-    let tmp: number;
-    let repetitions: number;
-    let token = RANGE_REP_REG.exec(string);
-    while (token != null) {
-      min = parseInt(token[2]);
-      max = parseInt(token[3]);
-      // switch min and max
-      if (min > max) {
-        tmp = max;
-        max = min;
-        min = tmp;
-      }
+    deprecated({
+      deprecated: 'faker.helpers.regexpStyleStringParse',
+      proposed: 'faker.helpers.fromRegExp',
+      since: '8.1',
+      until: '9.0',
+    });
 
-      repetitions = this.faker.number.int({ min, max });
-      string =
-        string.slice(0, token.index) +
-        token[1].repeat(repetitions) +
-        string.slice(token.index + token[0].length);
-      token = RANGE_REP_REG.exec(string);
-    }
-
-    // Deal with repeat `{num}`
-    token = REP_REG.exec(string);
-    while (token != null) {
-      repetitions = parseInt(token[2]);
-      string =
-        string.slice(0, token.index) +
-        token[1].repeat(repetitions) +
-        string.slice(token.index + token[0].length);
-      token = REP_REG.exec(string);
-    }
-    // Deal with range `[min-max]` (only works with numbers for now)
-    //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
-
-    token = RANGE_REG.exec(string);
-    while (token != null) {
-      min = parseInt(token[1]); // This time we are not capturing the char before `[]`
-      max = parseInt(token[2]);
-      // switch min and max
-      if (min > max) {
-        tmp = max;
-        max = min;
-        min = tmp;
-      }
-
-      string =
-        string.slice(0, token.index) +
-        this.faker.number.int({ min, max }).toString() +
-        string.slice(token.index + token[0].length);
-      token = RANGE_REG.exec(string);
-    }
-
-    return string;
+    return legacyRegexpStringParse(this.faker, string);
   }
 
   /**

@@ -1,5 +1,4 @@
-import type { DateEntryDefinition } from '../../../definitions';
-
 export default {
+  abbr: null,
   wide: ['اتور', 'پیر', 'منگل', 'بدھ', 'جمعرات', 'جمعہ', 'ہفتہ'],
-} as DateEntryDefinition;
+};

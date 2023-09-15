@@ -162,6 +162,7 @@ async function generateLocalesIndexFile(
   depth: number
 ): Promise<void> {
   let modules = readdirSync(path);
+  modules = modules.filter((file) => !file.startsWith('.'));
   modules = removeIndexTs(modules);
   modules = removeTsSuffix(modules);
   modules.sort();
