@@ -1,0 +1,235 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`image > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/995.jpg"`;
+
+exports[`image > 42 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/37454011"`;
+
+exports[`image > 42 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
+
+exports[`image > 42 > dataUri > noArgs 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 42 > dataUri > with all options 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJibHVlIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
+
+exports[`image > 42 > dataUri > with color 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22blue%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 42 > dataUri > with height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 42 > dataUri > with type 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJncmV5Ii8+PHRleHQgeD0iMzIwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+NjQweDQ4MDwvdGV4dD48L3N2Zz4="`;
+
+exports[`image > 42 > dataUri > with width 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 42 > dataUri > with width and height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 42 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=7174621373661184"`;
+
+exports[`image > 42 > url > with height 1`] = `"https://loremflickr.com/640/128?lock=7174621373661184"`;
+
+exports[`image > 42 > url > with width 1`] = `"https://loremflickr.com/128/480?lock=7174621373661184"`;
+
+exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=7174621373661184"`;
+
+exports[`image > 42 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=3373557438480384"`;
+
+exports[`image > 42 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=3373557438480384"`;
+
+exports[`image > 42 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=3373557438480384"`;
+
+exports[`image > 42 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=3373557438480384"`;
+
+exports[`image > 42 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=3373557438480384"`;
+
+exports[`image > 42 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=3373557438480384"`;
+
+exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/NWbJMBB/640/480"`;
+
+exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/NWbJMBB/128/128?grayscale&blur=4"`;
+
+exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/NWbJMBB/640/480?blur=6"`;
+
+exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/NWbJMBB/640/480?grayscale&blur=3"`;
+
+exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/NWbJMBB/640/128"`;
+
+exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/NWbJMBB/128/480"`;
+
+exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/NWbJMBB/128/128"`;
+
+exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=concido%20paulatim%20aranea"`;
+
+exports[`image > 42 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
+
+exports[`image > 42 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1498x3186/FF0000/e4abdd.gif?text=decumbo%20armarium%20alveus"`;
+
+exports[`image > 42 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
+
+exports[`image > 42 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=usitas%20concido%20paulatim"`;
+
+exports[`image > 42 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1498x128/be4abd/d39321.jpg?text=usitas%20concido%20paulatim"`;
+
+exports[`image > 42 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=Hello"`;
+
+exports[`image > 42 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/0000FF.gif?text=decumbo%20armarium%20alveus"`;
+
+exports[`image > 42 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1498/be4abd/d39321.jpg?text=usitas%20concido%20paulatim"`;
+
+exports[`image > 42 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/8be4ab/dd3932.gif?text=degenero%20usitas%20concido"`;
+
+exports[`image > 1211 > avatar 1`] = `"https://avatars.githubusercontent.com/u/45901520"`;
+
+exports[`image > 1211 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/92852016"`;
+
+exports[`image > 1211 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
+
+exports[`image > 1211 > dataUri > noArgs 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1211 > dataUri > with all options 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJibHVlIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
+
+exports[`image > 1211 > dataUri > with color 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22blue%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1211 > dataUri > with height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1211 > dataUri > with type 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJncmV5Ii8+PHRleHQgeD0iMzIwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+NjQweDQ4MDwvdGV4dD48L3N2Zz4="`;
+
+exports[`image > 1211 > dataUri > with width 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1211 > dataUri > with width and height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/TMd8Z2F/640/480"`;
+
+exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/seed/TMd8Z2F/640/128"`;
+
+exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/seed/TMd8Z2F/128/480"`;
+
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/TMd8Z2F/128/128"`;
+
+exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=8363366036799488"`;
+
+exports[`image > 1211 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=8363366036799488"`;
+
+exports[`image > 1211 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=8363366036799488"`;
+
+exports[`image > 1211 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=8363366036799488"`;
+
+exports[`image > 1211 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=8363366036799488"`;
+
+exports[`image > 1211 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8363366036799488"`;
+
+exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/480"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/128?grayscale&blur=4"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/480?blur=6"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/480?grayscale&blur=3"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/128"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/480"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/128"`;
+
+exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.jpeg?text=ascit%20suasoria%20tamisium"`;
+
+exports[`image > 1211 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
+
+exports[`image > 1211 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/3714x1836/FF0000/db42f0.png?text=articulus%20stillicidium%20bene"`;
+
+exports[`image > 1211 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
+
+exports[`image > 1211 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.webp?text=considero%20ascit%20suasoria"`;
+
+exports[`image > 1211 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/3714x128/adb42f/0e3f4a.jpg?text=considero%20ascit%20suasoria"`;
+
+exports[`image > 1211 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.jpeg?text=Hello"`;
+
+exports[`image > 1211 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/3714x1836/db42f0/0000FF.png?text=articulus%20stillicidium%20bene"`;
+
+exports[`image > 1211 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x3714/adb42f/0e3f4a.jpg?text=considero%20ascit%20suasoria"`;
+
+exports[`image > 1211 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/eadb42/f0e3f4.png?text=curiositas%20considero%20ascit"`;
+
+exports[`image > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/700.jpg"`;
+
+exports[`image > 1337 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/26202467"`;
+
+exports[`image > 1337 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
+
+exports[`image > 1337 > dataUri > noArgs 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1337 > dataUri > with all options 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJibHVlIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
+
+exports[`image > 1337 > dataUri > with color 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22blue%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1337 > dataUri > with height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22640%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E640x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1337 > dataUri > with type 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJncmV5Ii8+PHRleHQgeD0iMzIwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+NjQweDQ4MDwvdGV4dD48L3N2Zz4="`;
+
+exports[`image > 1337 > dataUri > with width 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22480%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%22240%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x480%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1337 > dataUri > with width and height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > 1337 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=5048803172286464"`;
+
+exports[`image > 1337 > url > with height 1`] = `"https://loremflickr.com/640/128?lock=5048803172286464"`;
+
+exports[`image > 1337 > url > with width 1`] = `"https://loremflickr.com/128/480?lock=5048803172286464"`;
+
+exports[`image > 1337 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=5048803172286464"`;
+
+exports[`image > 1337 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=2360108468142080"`;
+
+exports[`image > 1337 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=2360108468142080"`;
+
+exports[`image > 1337 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=2360108468142080"`;
+
+exports[`image > 1337 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=2360108468142080"`;
+
+exports[`image > 1337 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=2360108468142080"`;
+
+exports[`image > 1337 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=2360108468142080"`;
+
+exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/y9dhxs/640/480"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/y9dhxs/128/128?grayscale&blur=4"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/y9dhxs/640/480?blur=6"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/y9dhxs/640/480?grayscale&blur=3"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/y9dhxs/640/128"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/y9dhxs/128/480"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/y9dhxs/128/128"`;
+
+exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=cerno%20tabella%20cohors"`;
+
+exports[`image > 1337 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
+
+exports[`image > 1337 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1048x2242/FF0000/346ba0.jpeg?text=canto%20eaque%20omnis"`;
+
+exports[`image > 1337 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
+
+exports[`image > 1337 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=voluptatibus%20cerno%20tabella"`;
+
+exports[`image > 1337 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1048x128/c346ba/075bd5.jpeg?text=voluptatibus%20cerno%20tabella"`;
+
+exports[`image > 1337 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=Hello"`;
+
+exports[`image > 1337 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1048x2242/346ba0/0000FF.jpeg?text=canto%20eaque%20omnis"`;
+
+exports[`image > 1337 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1048/c346ba/075bd5.jpeg?text=voluptatibus%20cerno%20tabella"`;
+
+exports[`image > 1337 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/5c346b/a075bd.jpeg?text=conculco%20voluptatibus%20cerno"`;
+
+exports[`image > dataUri > should return a background color data URI 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22red%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > dataUri > should return a background color svg-base64 data URI 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSI0NDQiIGhlaWdodD0iMzAiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9ImdyZWVuIi8+PHRleHQgeD0iMjIyIiB5PSIxNSIgZm9udC1zaXplPSIyMCIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj40NDR4MzA8L3RleHQ+PC9zdmc+"`;
+
+exports[`image > dataUri > should return a background color svg-uri data URI 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%221%22%20height%3D%221234%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22yellow%22%2F%3E%3Ctext%20x%3D%220.5%22%20y%3D%22617%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E1x1234%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > dataUri > should return a blank data 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > dataUri > should return a blank svg-base64 data 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjMiIGhlaWdodD0iNDU2Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJncmV5Ii8+PHRleHQgeD0iNjEuNSIgeT0iMjI4IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyM3g0NTY8L3RleHQ+PC9zdmc+"`;
+
+exports[`image > dataUri > should return a blank svg-uri data 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22456%22%20height%3D%22789%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22228%22%20y%3D%22394.5%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E456x789%3C%2Ftext%3E%3C%2Fsvg%3E"`;

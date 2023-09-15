@@ -35,6 +35,7 @@ export function loadProject(
     entryPoints: ['src/index.ts'],
     pretty: true,
     cleanOutputDir: true,
+    tsconfig: 'tsconfig.build.json',
   }
 ): [Application, ProjectReflection] {
   const app = newTypeDocApp();
