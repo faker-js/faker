@@ -132,7 +132,7 @@ faker.setDefaultRefDate('2023-01-01T00:00:00.000Z');
 Faker provides a `simpleFaker` that can be used to generate data that are not based on any locales like numbers and strings.  
 Also **helpers** like `arrayElement` or `multiple` are available.
 
-This is useful if you just want to generate e.g. `uuid`s for your production environment, but don't want to initiate/load a full Faker instance, which would include locale data.
+This is useful if you just want to generate e.g. `uuid`s for your test environment, but don't want/need to initiate/load a full Faker instance, which would include at least 500KB of locale data.
 
 ```ts
 import { simpleFaker } from '@faker-js/faker';
