@@ -140,6 +140,8 @@ import { simpleFaker } from '@faker-js/faker';
 const uuid = simpleFaker.string.uuid();
 ```
 
+See more about `SimpleFaker` in the [API docs](/api/simpleFaker).
+
 ## Create complex objects
 
 Faker mostly generates values for primitives.
