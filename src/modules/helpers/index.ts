@@ -158,7 +158,7 @@ function legacyRegexpStringParse(
   return string;
 }
 
-export class SimpleHelpersModule<TFaker extends SimpleFaker = SimpleFaker> {
+export class SimpleHelpersModule {
   /**
    * Global store of unique values.
    * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
@@ -167,7 +167,7 @@ export class SimpleHelpersModule<TFaker extends SimpleFaker = SimpleFaker> {
    */
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
-  constructor(protected readonly faker: TFaker) {
+  constructor(protected readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -1246,8 +1246,8 @@ export class SimpleHelpersModule<TFaker extends SimpleFaker = SimpleFaker> {
  *
  * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
  */
-export class HelpersModule extends SimpleHelpersModule<Faker> {
-  constructor(faker: Faker) {
+export class HelpersModule extends SimpleHelpersModule {
+  constructor(protected readonly faker: Faker) {
     super(faker);
   }
 

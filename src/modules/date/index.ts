@@ -23,8 +23,8 @@ function toDate(
   return date;
 }
 
-export class SimpleDateModule<TFaker extends SimpleFaker = SimpleFaker> {
-  constructor(protected readonly faker: TFaker) {
+export class SimpleDateModule {
+  constructor(protected readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -914,8 +914,8 @@ export class SimpleDateModule<TFaker extends SimpleFaker = SimpleFaker> {
  *
  * These methods have additional concerns about reproducibility, see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
  */
-export class DateModule extends SimpleDateModule<Faker> {
-  constructor(faker: Faker) {
+export class DateModule extends SimpleDateModule {
+  constructor(protected readonly faker: Faker) {
     super(faker);
   }
 
