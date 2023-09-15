@@ -9,7 +9,12 @@ import { StringModule } from './modules/string';
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.
  *
- * It only includes methods from the `datatype`, `date`, `helpers` and `string` modules.
+ * It only includes methods from:
+ * - `datatype`
+ * - `date` (without `month` and `weekday`)
+ * - `helpers` (without `fake`)
+ * - `number`
+ * - `string`
  *
  * @example
  * import { simpleFaker } from '@faker-js/faker';
