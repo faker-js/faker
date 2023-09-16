@@ -1,13 +1,1 @@
-export default [
-  'Cargo Van',
-  'Convertible',
-  'Coupe',
-  'Crew Cab Pickup',
-  'Extended Cab Pickup',
-  'Hatchback',
-  'Minivan',
-  'Passenger Van',
-  'SUV',
-  'Sedan',
-  'Wagon',
-];
+export default ['货车', '掀背车', '面包车', '客车', '越野车', '轿车', '旅行车'];
