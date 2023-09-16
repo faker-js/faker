@@ -1,5 +1,5 @@
-import isCreditCard from 'validator/lib/isCreditCard';
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
+import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
@@ -481,7 +481,7 @@ describe('finance', () => {
           const actual = fakerZH_CN.finance.creditCardNumber('unionpay');
           expect(actual).toSatisfy(luhnCheck);
           expect(actual).toSatisfy((value) =>
-            validator.isCreditCard(value as string, { provider: 'unionpay' })
+            isCreditCard(value as string, { provider: 'unionpay' })
           );
         });
 
