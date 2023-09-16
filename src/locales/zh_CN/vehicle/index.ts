@@ -6,14 +6,12 @@ import type { VehicleDefinition } from '../../..';
 import bicycle_type from './bicycle_type';
 import fuel from './fuel';
 import manufacturer from './manufacturer';
-import model from './model';
 import type_ from './type';
 
 const vehicle: VehicleDefinition = {
   bicycle_type,
   fuel,
   manufacturer,
-  model,
   type: type_,
 };
 
