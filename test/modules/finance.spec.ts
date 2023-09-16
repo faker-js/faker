@@ -1,4 +1,4 @@
-import validator from 'validator';
+import isCreditCard from 'validator/lib/isCreditCard';
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
