@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import airline from './airline';
 import animal from './animal';
 import color from './color';
+import commerce from './commerce';
 import company from './company';
 import database from './database';
 import date from './date';
@@ -24,6 +25,7 @@ const zh_CN: LocaleDefinition = {
   airline,
   animal,
   color,
+  commerce,
   company,
   database,
   date,
