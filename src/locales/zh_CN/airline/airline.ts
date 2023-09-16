@@ -70,7 +70,7 @@ export default [
   { name: '大韩航空公司', iataCode: 'KE' },
   { name: '酷路拉航空航空公司', iataCode: 'MN' },
   { name: '南美航空公司', iataCode: 'LA' },
-  { name: 'Lion Air', iataCode: 'JT' },
+  { name: '狮子航空公司', iataCode: 'JT' },
   { name: 'LOT Polish Airlines', iataCode: 'LO' },
   { name: 'Lufthansa', iataCode: 'LH' },
   { name: 'Libyan Airlines', iataCode: 'LN' },
