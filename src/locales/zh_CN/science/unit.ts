@@ -1,118 +1,118 @@
 export default Object.freeze([
   {
-    name: 'meter',
+    name: '米',
     symbol: 'm',
   },
   {
-    name: 'second',
+    name: '秒',
     symbol: 's',
   },
   {
-    name: 'mole',
+    name: '摩尔',
     symbol: 'mol',
   },
   {
-    name: 'ampere',
+    name: '安培',
     symbol: 'A',
   },
   {
-    name: 'kelvin',
+    name: '开尔文',
     symbol: 'K',
   },
   {
-    name: 'candela',
+    name: '坎德拉',
     symbol: 'cd',
   },
   {
-    name: 'kilogram',
+    name: '千克',
     symbol: 'kg',
   },
   {
-    name: 'radian',
+    name: '弧度',
     symbol: 'rad',
   },
   {
-    name: 'hertz',
+    name: '赫兹',
     symbol: 'Hz',
   },
   {
-    name: 'newton',
+    name: '牛顿',
     symbol: 'N',
   },
   {
-    name: 'pascal',
+    name: '帕斯卡',
     symbol: 'Pa',
   },
   {
-    name: 'joule',
+    name: '焦耳',
     symbol: 'J',
   },
   {
-    name: 'watt',
+    name: '瓦特',
     symbol: 'W',
   },
   {
-    name: 'coulomb',
+    name: '库伦',
     symbol: 'C',
   },
   {
-    name: 'volt',
+    name: '伏特',
     symbol: 'V',
   },
   {
-    name: 'ohm',
+    name: '欧姆',
     symbol: 'Ω',
   },
   {
-    name: 'tesla',
+    name: '特斯拉',
     symbol: 'T',
   },
   {
-    name: 'degree Celsius',
+    name: '摄氏度',
     symbol: '°C',
   },
   {
-    name: 'lumen',
+    name: '流明',
     symbol: 'lm',
   },
   {
-    name: 'becquerel',
+    name: '贝尔勒尔',
     symbol: 'Bq',
   },
   {
-    name: 'gray',
+    name: '戈瑞',
     symbol: 'Gy',
   },
   {
-    name: 'sievert',
+    name: '希沃特',
     symbol: 'Sv',
   },
   {
-    name: 'steradian',
+    name: '球面度',
     symbol: 'sr',
   },
   {
-    name: 'farad',
+    name: '法拉',
     symbol: 'F',
   },
   {
-    name: 'siemens',
+    name: '西门子',
     symbol: 'S',
   },
   {
-    name: 'weber',
+    name: '韦伯',
     symbol: 'Wb',
   },
   {
-    name: 'henry',
+    name: '亨利',
     symbol: 'H',
   },
   {
-    name: 'lux',
+    name: '勒克斯',
     symbol: 'lx',
   },
   {
-    name: 'katal',
+    name: '开特',
     symbol: 'kat',
   },
 ]);
