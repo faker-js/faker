@@ -1,4 +1,5 @@
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
+import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
@@ -458,7 +459,9 @@ describe('finance', () => {
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toSatisfy((value) =>
+            isCreditCard(value as string, { provider: 'mastercard' })
+          );
           expect(mastercard).toSatisfy(luhnCheck);
 
           const discover = faker.finance.creditCardNumber('discover');
