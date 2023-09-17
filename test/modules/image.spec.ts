@@ -1,3 +1,4 @@
+import isDataURI from 'validator/lib/isDataURI';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { seededTests } from './../support/seededRuns';
@@ -75,11 +76,17 @@ describe('image', () => {
         .it('with width and height', { width: 128, height: 128 })
         .it('with color', { color: 'blue' })
         .it('with type', { type: 'svg-base64' })
-        .it('with all options', {
-          width: 128,
-          height: 128,
-          color: 'blue',
+        .it('with all options+base64', {
+          width: 2,
+          height: 1337,
+          color: '#643218',
           type: 'svg-base64',
+        })
+        .it('with all options+uri', {
+          width: 42,
+          height: 314,
+          color: 'red',
+          type: 'svg-uri',
         });
     });
 
@@ -484,56 +491,43 @@ describe('image', () => {
   });
 
   describe('dataUri', () => {
-    it('should return a blank data', () => {
-      const dataUri = faker.image.dataUri({ width: 200, height: 300 });
-      expect(dataUri).toMatchSnapshot();
+    it('should return an image data uri', () => {
+      const dataUri = faker.image.dataUri();
+      expect(dataUri).toMatch(/^data:image\/svg\+xml;/);
+      expect(dataUri).toSatisfy(isDataURI);
     });
 
-    it('should return a background color data URI', () => {
+    it('should return an uri-encoded image data uri', () => {
+      const dataUri = faker.image.dataUri({ type: 'svg-uri' });
+      expect(dataUri).toMatch(/^data:image\/svg\+xml;charset=UTF-8,/);
+      expect(dataUri).toSatisfy(isDataURI);
+    });
+
+    it('should return a base64 image data uri', () => {
+      const dataUri = faker.image.dataUri({ type: 'svg-base64' });
+      expect(dataUri).toMatch(/^data:image\/svg\+xml;base64,/);
+      expect(dataUri).toSatisfy(isDataURI);
+    });
+
+    it('should return an image data uri with fixed size', () => {
       const dataUri = faker.image.dataUri({
         width: 200,
         height: 300,
+        type: 'svg-uri', // required for the regex check
+      });
+      expect(dataUri).toMatch(/^data:image\/svg\+xml;charset=UTF-8,/);
+      expect(dataUri).toMatch(/width%3D%22200%22%20height%3D%22300/);
+      expect(dataUri).toSatisfy(isDataURI);
+    });
+
+    it('should return an image data uri with a fixed background color', () => {
+      const dataUri = faker.image.dataUri({
         color: 'red',
+        type: 'svg-uri', // required for the regex check
       });
-      expect(dataUri).toMatchSnapshot();
-    });
-
-    it('should return a blank svg-uri data', () => {
-      const dataUri = faker.image.dataUri({
-        width: 456,
-        height: 789,
-        type: 'svg-uri',
-      });
-      expect(dataUri).toMatchSnapshot();
-    });
-
-    it('should return a background color svg-uri data URI', () => {
-      const dataUri = faker.image.dataUri({
-        width: 1,
-        height: 1234,
-        color: 'yellow',
-        type: 'svg-uri',
-      });
-      expect(dataUri).toMatchSnapshot();
-    });
-
-    it('should return a blank svg-base64 data', () => {
-      const dataUri = faker.image.dataUri({
-        width: 123,
-        height: 456,
-        type: 'svg-base64',
-      });
-      expect(dataUri).toMatchSnapshot();
-    });
-
-    it('should return a background color svg-base64 data URI', () => {
-      const dataUri = faker.image.dataUri({
-        width: 444,
-        height: 30,
-        color: 'green',
-        type: 'svg-base64',
-      });
-      expect(dataUri).toMatchSnapshot();
+      expect(dataUri).toMatch(/^data:image\/svg\+xml;charset=UTF-8,/);
+      expect(dataUri).toMatch(/fill%3D%22red/);
+      expect(dataUri).toSatisfy(isDataURI);
     });
   });
 });

@@ -16,9 +16,17 @@ exports[`location > 42 > country 1`] = `"Guinea"`;
 
 exports[`location > 42 > countryCode > noArgs 1`] = `"GY"`;
 
-exports[`location > 42 > countryCode > with alphaCode option 1`] = `"GUY"`;
+exports[`location > 42 > countryCode > with string alpha-2 1`] = `"GY"`;
 
-exports[`location > 42 > countryCode > with string 1`] = `"GY"`;
+exports[`location > 42 > countryCode > with string alpha-3 1`] = `"GUY"`;
+
+exports[`location > 42 > countryCode > with string numeric 1`] = `"328"`;
+
+exports[`location > 42 > countryCode > with variant option alpha-2 1`] = `"GY"`;
+
+exports[`location > 42 > countryCode > with variant option alpha-3 1`] = `"GUY"`;
+
+exports[`location > 42 > countryCode > with variant option numeric 1`] = `"328"`;
 
 exports[`location > 42 > county 1`] = `"Borders"`;
 
@@ -168,9 +176,17 @@ exports[`location > 1211 > country 1`] = `"Uganda"`;
 
 exports[`location > 1211 > countryCode > noArgs 1`] = `"UM"`;
 
-exports[`location > 1211 > countryCode > with alphaCode option 1`] = `"UMI"`;
+exports[`location > 1211 > countryCode > with string alpha-2 1`] = `"UM"`;
 
-exports[`location > 1211 > countryCode > with string 1`] = `"UM"`;
+exports[`location > 1211 > countryCode > with string alpha-3 1`] = `"UMI"`;
+
+exports[`location > 1211 > countryCode > with string numeric 1`] = `"581"`;
+
+exports[`location > 1211 > countryCode > with variant option alpha-2 1`] = `"UM"`;
+
+exports[`location > 1211 > countryCode > with variant option alpha-3 1`] = `"UMI"`;
+
+exports[`location > 1211 > countryCode > with variant option numeric 1`] = `"581"`;
 
 exports[`location > 1211 > county 1`] = `"Tyne and Wear"`;
 
@@ -320,9 +336,17 @@ exports[`location > 1337 > country 1`] = `"Egypt"`;
 
 exports[`location > 1337 > countryCode > noArgs 1`] = `"EH"`;
 
-exports[`location > 1337 > countryCode > with alphaCode option 1`] = `"ESH"`;
+exports[`location > 1337 > countryCode > with string alpha-2 1`] = `"EH"`;
 
-exports[`location > 1337 > countryCode > with string 1`] = `"EH"`;
+exports[`location > 1337 > countryCode > with string alpha-3 1`] = `"ESH"`;
+
+exports[`location > 1337 > countryCode > with string numeric 1`] = `"732"`;
+
+exports[`location > 1337 > countryCode > with variant option alpha-2 1`] = `"EH"`;
+
+exports[`location > 1337 > countryCode > with variant option alpha-3 1`] = `"ESH"`;
+
+exports[`location > 1337 > countryCode > with variant option numeric 1`] = `"732"`;
 
 exports[`location > 1337 > county 1`] = `"Morgan County"`;
 
