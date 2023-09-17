@@ -353,7 +353,7 @@ export class ImageModule {
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
-   * @param options.color The color of the image. Defaults to `grey`.
+   * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
    * @param options.type The type of the image. Defaults to `'svg-uri'`.
    *
    * @example
@@ -377,9 +377,9 @@ export class ImageModule {
        */
       height?: number;
       /**
-       * The color of the image.
+       * The color of the image. Must be a color supported by svg.
        *
-       * @default 'grey'
+       * @default faker.color.rgb()
        */
       color?: string;
       /**
@@ -394,7 +394,7 @@ export class ImageModule {
     const {
       width = 640,
       height = 480,
-      color = 'grey',
+      color = this.faker.color.rgb(),
       type = 'svg-uri',
     } = options;
 
