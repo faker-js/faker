@@ -133,9 +133,9 @@
     "vitest": "~0.34.6",
     "vue": "~3.4.15"
   },
-  "packageManager": "pnpm@8.5.1",
+  "packageManager": "pnpm@8.15.0",
   "engines": {
-    "node": "^16.13.0 || >=18.0.0",
-    "npm": ">=7.10.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
