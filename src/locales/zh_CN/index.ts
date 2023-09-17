@@ -10,6 +10,7 @@ import commerce from './commerce';
 import company from './company';
 import database from './database';
 import date from './date';
+import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
@@ -29,6 +30,7 @@ const zh_CN: LocaleDefinition = {
   company,
   database,
   date,
+  finance,
   hacker,
   internet,
   location,
