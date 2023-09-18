@@ -24,7 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fail if PR is labeled on hold
-        if: contains(github.event.pull_request.labels.*.name, 's: on hold')
+        if: |
+          ${{ contains(github.event.pull_request.labels.*.name, 's: on hold') }}
         run: |
           echo "This PR is labeled as on hold!"
           exit 1
