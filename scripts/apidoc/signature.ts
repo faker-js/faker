@@ -18,8 +18,8 @@ import { mdToHtml } from './markdown';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractRawDefault,
-  extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
@@ -74,9 +74,9 @@ export async function analyzeSignature(
 
   let examples = `${accessor}${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
 
-  const exampleTags = extractRawExamples(signature);
-  if (exampleTags.length > 0) {
-    examples += `${exampleTags.join('\n').trim()}\n`;
+  const exampleTags = extractJoinedRawExamples(signature);
+  if (exampleTags) {
+    examples += exampleTags;
   }
 
   const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>

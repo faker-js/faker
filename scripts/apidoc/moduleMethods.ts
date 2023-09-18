@@ -10,9 +10,9 @@ import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractModuleFieldName,
   extractModuleName,
-  extractRawExamples,
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
@@ -70,12 +70,11 @@ export function analyzeModule(module: DeclarationReflection): {
   deprecated: string | undefined;
   examples: string | undefined;
 } {
-  const exampleTags = extractRawExamples(module);
-  let examples;
-  if (exampleTags.length > 0) {
-    const code = '```';
-    examples = mdToHtml(`${code}ts\n${exampleTags.join('\n').trim()}${code}\n`);
-  }
+  const examplesRaw = extractJoinedRawExamples(module);
+  const code = '```';
+  const examples = examplesRaw
+    ? mdToHtml(`${code}ts\n${examplesRaw}${code}\n`)
+    : undefined;
 
   return {
     comment: adjustUrls(extractDescription(module)),

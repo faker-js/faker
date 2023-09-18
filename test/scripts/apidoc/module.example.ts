@@ -9,3 +9,11 @@ export class ModuleFakerJsLinkTest {}
  * and [api docs](https://next.fakerjs.dev/api/).
  */
 export class ModuleNextFakerJsLinkTest {}
+
+/**
+ * This is a description for a module with a code example
+ *
+ * @example
+ * new ModuleFakerJsExampleTest()
+ */
+export class ModuleFakerJsExampleTest {}

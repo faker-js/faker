@@ -249,6 +249,18 @@ export function extractRawExamples(reflection?: CommentHolder): string[] {
 }
 
 /**
+ * Extracts the examples from the jsdocs without the surrounding md code block, then joins them with newlines and trims.
+ *
+ * @param reflection The reflection to extract the examples from.
+ */
+export function extractJoinedRawExamples(
+  reflection?: CommentHolder
+): string | undefined {
+  const examples = extractRawExamples(reflection);
+  return examples.length === 0 ? undefined : examples.join('\n').trim();
+}
+
+/**
  * Extracts all the `@see` references from the jsdocs separately.
  *
  * @param reflection The reflection to extract the see also references from.
