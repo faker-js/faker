@@ -18,9 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fail if PR is labeled by a blocking label
-        if: contains(github.event.pull_request.labels.*.name, 'do NOT merge yet') || endsWith(github.event.pull_request.labels.*.name, 'on hold')
+        if: |
+          ${{ contains(toJson(github.event.pull_request.labels.*.name), 'do NOT merge yet') || contains(toJson(github.event.pull_request.labels.*.name), 's: on hold') }}
         run: |
-          x=${{ toJson(github.event.pull_request.labels.*.name) }}
-          echo $x
           echo "This PR is blocked by label 'do NOT merge yet' or 's: on hold'!"
           exit 1
