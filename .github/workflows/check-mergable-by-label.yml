@@ -11,20 +11,11 @@ on:
       - unlabeled
 
 jobs:
-  fail-by-do-not-merge-label:
+  fail-by-blocking-label:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail if PR is labeled do NOT merge yet
-        if: contains(github.event.pull_request.labels.*.name, 'do NOT merge yet')
+      - name: Fail if PR is labeled by a blocking label
+        if: contains(github.event.pull_request.labels.*.name, 'do NOT merge yet') || contains(github.event.pull_request.labels.*.name, 's:\ on hold')
         run: |
-          echo "This PR is labeled as do NOT merge yet!"
-          exit 1
-
-  fail-by-on-hold-label:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fail if PR is labeled on hold
-        if: contains(github.event.pull_request.labels.*.name, 's:\ on hold')
-        run: |
-          echo "This PR is labeled as on hold!"
+          echo "This PR is blocked by label 'do NOT merge yet' or 's: on hold'!"
           exit 1
