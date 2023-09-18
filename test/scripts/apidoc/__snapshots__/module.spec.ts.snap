@@ -5,6 +5,7 @@ exports[`module > analyzeModule() > ModuleFakerJsLinkTest 1`] = `
   "comment": "Description with a link to our [website](/)
 and [api docs](/api/).",
   "deprecated": undefined,
+  "example": undefined,
 }
 `;
 
@@ -13,6 +14,7 @@ exports[`module > analyzeModule() > ModuleNextFakerJsLinkTest 1`] = `
   "comment": "Description with a link to our [website](/)
 and [api docs](/api/).",
   "deprecated": undefined,
+  "example": undefined,
 }
 `;
 
