@@ -43,7 +43,7 @@ async function processModule(
   const moduleName = extractModuleName(module);
   console.log(`Processing Module ${moduleName}`);
   const moduleFieldName = extractModuleFieldName(module);
-  const { comment, deprecated, example } = analyzeModule(module);
+  const { comment, deprecated, examples } = analyzeModule(module);
   const methods = await processModuleMethods(
     module,
     `faker.${moduleFieldName}.`
@@ -68,19 +68,19 @@ async function processModule(
 export function analyzeModule(module: DeclarationReflection): {
   comment: string;
   deprecated: string | undefined;
-  example: string | undefined;
+  examples: string | undefined;
 } {
   const exampleTags = extractRawExamples(module);
-  let example;
+  let examples;
   if (exampleTags.length > 0) {
     const code = '```';
-    example = mdToHtml(`${code}ts\n${exampleTags.join('\n').trim()}${code}\n`);
+    examples = mdToHtml(`${code}ts\n${exampleTags.join('\n').trim()}${code}\n`);
   }
 
   return {
     comment: adjustUrls(extractDescription(module)),
     deprecated: extractDeprecated(module),
-    example,
+    examples,
   };
 }
 

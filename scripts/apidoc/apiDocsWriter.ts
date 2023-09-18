@@ -38,14 +38,14 @@ editLink: false
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
  * @param deprecated The deprecation message.
- * @param example The example code.
+ * @param examples The example code.
  * @param methods The methods of the module.
  */
 export async function writeApiDocsModule(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
-  example: string | undefined,
+  examples: string | undefined,
   deprecated: string | undefined,
   methods: Method[]
 ): Promise<ModuleSummary> {
@@ -53,7 +53,7 @@ export async function writeApiDocsModule(
     moduleName,
     lowerModuleName,
     comment,
-    example,
+    examples,
     deprecated,
     methods
   );
@@ -86,7 +86,7 @@ export async function writeApiDocsModule(
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
- * @param example The example code.
+ * @param examples The example code.
  * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
@@ -94,7 +94,7 @@ async function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
-  example: string | undefined,
+  examples: string | undefined,
   deprecated: string | undefined,
   methods: Method[]
 ): Promise<void> {
@@ -124,7 +124,7 @@ async function writeApiDocsModulePage(
 
   ${comment}
 
-  ${example == null ? '' : `<div class="examples">${example}</div>`}
+  ${examples == null ? '' : `<div class="examples">${examples}</div>`}
 
   :::
 
