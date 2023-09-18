@@ -53,7 +53,7 @@ async function processModule(
     moduleName,
     moduleFieldName,
     comment,
-    example,
+    examples,
     deprecated,
     methods
   );
