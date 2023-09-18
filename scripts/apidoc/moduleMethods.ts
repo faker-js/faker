@@ -5,12 +5,14 @@ import type {
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
+import { mdToHtml } from './markdown';
 import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
   extractDescription,
   extractModuleFieldName,
   extractModuleName,
+  extractRawExamples,
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
@@ -41,7 +43,7 @@ async function processModule(
   const moduleName = extractModuleName(module);
   console.log(`Processing Module ${moduleName}`);
   const moduleFieldName = extractModuleFieldName(module);
-  const { comment, deprecated } = analyzeModule(module);
+  const { comment, deprecated, example } = analyzeModule(module);
   const methods = await processModuleMethods(
     module,
     `faker.${moduleFieldName}.`
@@ -51,6 +53,7 @@ async function processModule(
     moduleName,
     moduleFieldName,
     comment,
+    example,
     deprecated,
     methods
   );
@@ -65,10 +68,19 @@ async function processModule(
 export function analyzeModule(module: DeclarationReflection): {
   comment: string;
   deprecated: string | undefined;
+  example: string | undefined;
 } {
+  const exampleTags = extractRawExamples(module);
+  let example;
+  if (exampleTags.length > 0) {
+    const code = '```';
+    example = mdToHtml(`${code}ts\n${exampleTags.join('\n').trim()}${code}\n`);
+  }
+
   return {
     comment: adjustUrls(extractDescription(module)),
     deprecated: extractDeprecated(module),
+    example,
   };
 }
 
