@@ -1,4 +1,4 @@
-name: Check mergable by label
+name: PR Labels
 
 on:
   pull_request:
@@ -10,14 +10,13 @@ on:
       - labeled
       - unlabeled
 
-permissions:
-  pull-requests: read
+permissions: {}
 
 jobs:
   fail-by-blocking-label:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail if PR is labeled by a blocking label
+      - name: Check for blocking labels
         run: |
           BLOCKING_LABELS=("do NOT merge yet" "s: on hold")
           PR_LABELS=$(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
@@ -30,5 +29,3 @@ jobs:
           done
 
           echo "No blocking labels found"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
