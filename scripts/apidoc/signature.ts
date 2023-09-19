@@ -14,7 +14,7 @@ import type {
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
 import { formatTypescript } from './format';
-import { mdToHtml } from './markdown';
+import { codeToHtml, mdToHtml } from './markdown';
 import {
   extractDeprecated,
   extractDescription,
@@ -27,8 +27,6 @@ import {
   joinTagParts,
   toBlock,
 } from './typedoc';
-
-const code = '```';
 
 export async function analyzeSignature(
   signature: SignatureReflection,
@@ -97,7 +95,7 @@ export async function analyzeSignature(
     sourcePath: extractSourcePath(signature),
     throws,
     returns: await typeToText(signature.type),
-    examples: mdToHtml(`${code}ts\n${examples}${code}`),
+    examples: codeToHtml(examples),
     deprecated,
     seeAlsos,
   };

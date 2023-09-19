@@ -5,7 +5,6 @@ import type {
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
-import { mdToHtml } from './markdown';
 import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
@@ -71,10 +70,7 @@ export function analyzeModule(module: DeclarationReflection): {
   examples: string | undefined;
 } {
   const examplesRaw = extractJoinedRawExamples(module);
-  const code = '```';
-  const examples = examplesRaw
-    ? mdToHtml(`${code}ts\n${examplesRaw}${code}\n`)
-    : undefined;
+  const examples = examplesRaw ? codeToHtml(examplesRaw) : undefined;
 
   return {
     comment: adjustUrls(extractDescription(module)),

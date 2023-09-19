@@ -37,8 +37,8 @@ editLink: false
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
- * @param deprecated The deprecation message.
  * @param examples The example code.
+ * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
 export async function writeApiDocsModule(

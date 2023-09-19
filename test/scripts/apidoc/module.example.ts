@@ -14,6 +14,6 @@ export class ModuleNextFakerJsLinkTest {}
  * This is a description for a module with a code example
  *
  * @example
- * new ModuleFakerJsExampleTest()
+ * new ModuleExampleTest()
  */
-export class ModuleFakerJsExampleTest {}
+export class ModuleExampleTest {}

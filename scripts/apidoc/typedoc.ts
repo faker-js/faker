@@ -244,7 +244,7 @@ export function extractRawDefault(reflection?: CommentHolder): string {
  *
  * @param reflection The reflection to extract the examples from.
  */
-export function extractRawExamples(reflection?: CommentHolder): string[] {
+function extractRawExamples(reflection?: CommentHolder): string[] {
   return extractRawCode('@example', reflection);
 }
 
