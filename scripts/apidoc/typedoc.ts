@@ -244,8 +244,20 @@ export function extractRawDefault(reflection?: CommentHolder): string {
  *
  * @param reflection The reflection to extract the examples from.
  */
-export function extractRawExamples(reflection?: CommentHolder): string[] {
+function extractRawExamples(reflection?: CommentHolder): string[] {
   return extractRawCode('@example', reflection);
+}
+
+/**
+ * Extracts the examples from the jsdocs without the surrounding md code block, then joins them with newlines and trims.
+ *
+ * @param reflection The reflection to extract the examples from.
+ */
+export function extractJoinedRawExamples(
+  reflection?: CommentHolder
+): string | undefined {
+  const examples = extractRawExamples(reflection);
+  return examples.length === 0 ? undefined : examples.join('\n').trim();
 }
 
 /**

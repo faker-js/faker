@@ -2,6 +2,76 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/faker-js/faker/compare/v8.0.2...v8.1.0) (2023-09-19)
+
+
+### Features
+
+* **color:** migrate hu human colors ([#2157](https://github.com/faker-js/faker/issues/2157)) ([19635a7](https://github.com/faker-js/faker/commit/19635a7ef3381a475185a2857b59f943dee9be54))
+* **commerce:** add method for generating ISBN-10 and ISBN-13 ([#2240](https://github.com/faker-js/faker/issues/2240)) ([cb4ef28](https://github.com/faker-js/faker/commit/cb4ef2846ad8d09cdc4ca5366b6057f9f6e38783))
+* **image:** add image dataUri with base64 ([#2273](https://github.com/faker-js/faker/issues/2273)) ([869b9b4](https://github.com/faker-js/faker/commit/869b9b49e77848f2ad9677e54b4ab6db6cf5c58b))
+* **location:** add en_IE postcodes ([#2149](https://github.com/faker-js/faker/issues/2149)) ([e92c313](https://github.com/faker-js/faker/commit/e92c313970a9830f3328b20504313fc9ba2e61a5))
+* **location:** add ne postcodes ([#2148](https://github.com/faker-js/faker/issues/2148)) ([36d1d3a](https://github.com/faker-js/faker/commit/36d1d3a6260067708474d057281d71bf3f95daf1))
+* **location:** add states for mk ([#2271](https://github.com/faker-js/faker/issues/2271)) ([1b3e5eb](https://github.com/faker-js/faker/commit/1b3e5ebd8a6a6d70b50c1acae11d4b86c2858a2b))
+* **location:** add states for pt_PT ([#2269](https://github.com/faker-js/faker/issues/2269)) ([a4631db](https://github.com/faker-js/faker/commit/a4631dbb82e157bf5b9e63b26de47df396b91f50))
+* **location:** add states for sr_RS_latin ([#2270](https://github.com/faker-js/faker/issues/2270)) ([1de471f](https://github.com/faker-js/faker/commit/1de471f83a52b2533bb95ea462c44289cb9ea497))
+* **location:** es province should be county ([#2156](https://github.com/faker-js/faker/issues/2156)) ([bbda1d7](https://github.com/faker-js/faker/commit/bbda1d7e2ce0b0bd33a3cc78458a73cd79e3eca0))
+* **location:** fi addresses ([#2146](https://github.com/faker-js/faker/issues/2146)) ([1da6785](https://github.com/faker-js/faker/commit/1da6785af373566ce6399e93ea0aca465e19e898))
+* **location:** Support ISO 3166-1 numeric country codes ([#2325](https://github.com/faker-js/faker/issues/2325)) ([82b779d](https://github.com/faker-js/faker/commit/82b779da5e87fddd7b5a5564b7228ac54b44d349))
+* **location:** update en county list ([#2238](https://github.com/faker-js/faker/issues/2238)) ([6bb4775](https://github.com/faker-js/faker/commit/6bb4775747288130c1bbca5fe02eccc549465682))
+* **lorem:** seed AR lorem ([#2147](https://github.com/faker-js/faker/issues/2147)) ([6137801](https://github.com/faker-js/faker/commit/6137801ebfe2ff51ca82d52fcb2a63085bd17bcd))
+* **metadata:** add method to access metadata ([#2143](https://github.com/faker-js/faker/issues/2143)) ([fd8cfe5](https://github.com/faker-js/faker/commit/fd8cfe53fd59b89f91a07327711faafdd821999e))
+* split SimpleFaker class from Faker ([#2369](https://github.com/faker-js/faker/issues/2369)) ([d6a4f8c](https://github.com/faker-js/faker/commit/d6a4f8c2ddf9e957e875bc3fab77e496104d1320))
+
+
+### Bug Fixes
+
+* **helpers:** prevent uniqueArray from hanging ([#2239](https://github.com/faker-js/faker/issues/2239)) ([3dece09](https://github.com/faker-js/faker/commit/3dece0904933f9632afabdacd0f2b5b32d8bde2a))
+* **image:** dataUri is not random ([#2316](https://github.com/faker-js/faker/issues/2316)) ([a7d25fa](https://github.com/faker-js/faker/commit/a7d25fa6224c686bca8b21cb7961910362008ffb))
+* **locale:** invalid date definitions ([#2293](https://github.com/faker-js/faker/issues/2293)) ([3cecae9](https://github.com/faker-js/faker/commit/3cecae9cd6787899a61bc91812e94478acb3adb9))
+* **locale:** limited ja first names without passing sex ([#2190](https://github.com/faker-js/faker/issues/2190)) ([5de8874](https://github.com/faker-js/faker/commit/5de8874a8a3cdf2d1529a7d42b1f39ab6e45efe5))
+* **locale:** remove continent from ja countries ([#2194](https://github.com/faker-js/faker/issues/2194)) ([cdd162a](https://github.com/faker-js/faker/commit/cdd162a6fed3588a0fd34dca8db46c078d4c7b22))
+* **locale:** remove duplicated countries in `ja` locale ([#2189](https://github.com/faker-js/faker/issues/2189)) ([785a38a](https://github.com/faker-js/faker/commit/785a38acc5fdc0414cc54a10e8cd9b8bee669852))
+* **location:** avoid hyphenated surnames in city patterns ([#2119](https://github.com/faker-js/faker/issues/2119)) ([7a4bb43](https://github.com/faker-js/faker/commit/7a4bb43f56c22578e63d02954586a001384d9af2))
+* **location:** Czech postcode format ([#2268](https://github.com/faker-js/faker/issues/2268)) ([37898ca](https://github.com/faker-js/faker/commit/37898ca78bae0a516a03c4ecd053bfab523df2ed))
+* **location:** Dutch postal codes can never start with '0' ([#2326](https://github.com/faker-js/faker/issues/2326)) ([f195e06](https://github.com/faker-js/faker/commit/f195e06905a8384965990e686440c3714976445c))
+* **location:** Pad en_US ZIP codes left to 5 characters if needed ([#2278](https://github.com/faker-js/faker/issues/2278)) ([0ca1e44](https://github.com/faker-js/faker/commit/0ca1e442d6a882677fc73012fc481d48ca1905a5))
+* remove unrelated from de_CH country codes ([#2304](https://github.com/faker-js/faker/issues/2304)) ([aa1bb13](https://github.com/faker-js/faker/commit/aa1bb131d874591e4d46671b1e82b23fc2a7ad74))
+* **test:** fix imports for jsdocs example verification ([#2281](https://github.com/faker-js/faker/issues/2281)) ([2fe1308](https://github.com/faker-js/faker/commit/2fe13089c96f6a2826e60c45fa1acf20dde06d41))
+* **test:** typedoc signature test issues ([#2280](https://github.com/faker-js/faker/issues/2280)) ([02fc7ca](https://github.com/faker-js/faker/commit/02fc7caf1cf757ae5901b8d37cd5d8d7ed123724))
+
+
+### Changed Locales
+
+* **locale:** cs_CZ state_abbr not applicable ([#2140](https://github.com/faker-js/faker/issues/2140)) ([e86f3b6](https://github.com/faker-js/faker/commit/e86f3b6b2619cc7fdf28213de0e6ff676a3e2d7e))
+
+
+### New Locales
+
+* **locale:** add bio, animal, word, music for zh_CN ([#2332](https://github.com/faker-js/faker/issues/2332)) ([8e4ea67](https://github.com/faker-js/faker/commit/8e4ea6790df4b987d1a8c6d32d1eee6db924bed3))
+* **locale:** add company name to zh_CN ([#2203](https://github.com/faker-js/faker/issues/2203)) ([c3b540f](https://github.com/faker-js/faker/commit/c3b540fa501ba4729350562f38872df35f23818c))
+* **locale:** add da person category ([#2331](https://github.com/faker-js/faker/issues/2331)) ([466b804](https://github.com/faker-js/faker/commit/466b8043577a14c54545a942c05ade343a9ca260))
+* **locale:** add database for German (de) ([#2226](https://github.com/faker-js/faker/issues/2226)) ([ee12c32](https://github.com/faker-js/faker/commit/ee12c32fced6cdf6fef2c5993af84825fd88606f))
+* **locale:** add direction to ja ([#2191](https://github.com/faker-js/faker/issues/2191)) ([2fa60de](https://github.com/faker-js/faker/commit/2fa60dec77551c055571ce3439f00c8898399d60))
+* **locale:** add Dutch province abbreviations ([#2232](https://github.com/faker-js/faker/issues/2232)) ([4a15bd0](https://github.com/faker-js/faker/commit/4a15bd0d4eea5e5f6a7d1e6be0c2bf9e59feb069))
+* **locale:** add Esperanto ([#2230](https://github.com/faker-js/faker/issues/2230)) ([d91057d](https://github.com/faker-js/faker/commit/d91057ddfd36b15af783ab6bcb1d679cf5202347))
+* **locale:** add finance module for zh_CN ([#2370](https://github.com/faker-js/faker/issues/2370)) ([aea4c9b](https://github.com/faker-js/faker/commit/aea4c9bda8e75e928045bfca9e11e216a581ce05))
+* **locale:** add GB subdivision codes ([#2233](https://github.com/faker-js/faker/issues/2233)) ([5eec65f](https://github.com/faker-js/faker/commit/5eec65f7179b7db68efe7740695b37958b360212))
+* **locale:** add hacker for zh_CN ([#2337](https://github.com/faker-js/faker/issues/2337)) ([9176fcb](https://github.com/faker-js/faker/commit/9176fcbaa74cf0a341374bb44340e410255e0917))
+* **locale:** add minimal da locale, start with location ([#2324](https://github.com/faker-js/faker/issues/2324)) ([c158b38](https://github.com/faker-js/faker/commit/c158b38b025b333c97cf174d516776b61015179f))
+* **locale:** add person data for yo locale ([#2363](https://github.com/faker-js/faker/issues/2363)) ([76886ad](https://github.com/faker-js/faker/commit/76886ad96d694268856de83747d7c754b6504050))
+* **locale:** add states for Croatia (hr) ([#2142](https://github.com/faker-js/faker/issues/2142)) ([8a6ce49](https://github.com/faker-js/faker/commit/8a6ce4978fada63f6364237e968f427e0a198135))
+* **locale:** add states for Turkey (tr) ([#2231](https://github.com/faker-js/faker/issues/2231)) ([2afa23f](https://github.com/faker-js/faker/commit/2afa23f32f4bb52aeecb6189282b37c6c48f7c84))
+* **locale:** add states to vi locale and fix city name ([#2128](https://github.com/faker-js/faker/issues/2128)) ([bc2aaab](https://github.com/faker-js/faker/commit/bc2aaab7637ea7a3e6e62e790cd4681ccaaccea0))
+* **locale:** add word category for da ([#2359](https://github.com/faker-js/faker/issues/2359)) ([8e5bc22](https://github.com/faker-js/faker/commit/8e5bc222c67cad38fd406823f5aade91a409e12a))
+* **locale:** added commerce and company data for da ([#2378](https://github.com/faker-js/faker/issues/2378)) ([604d52d](https://github.com/faker-js/faker/commit/604d52d9874db1763c185483ed182199f7a00f4f))
+* **locale:** added word and music to Farsi ([#2210](https://github.com/faker-js/faker/issues/2210)) ([7687511](https://github.com/faker-js/faker/commit/7687511bddf9c7b9721bb2203f86d64dfbd1a9c4))
+* **locale:** fix wide month and add music for zh_CN ([#2380](https://github.com/faker-js/faker/issues/2380)) ([501602b](https://github.com/faker-js/faker/commit/501602b6b3ddcb100eea7e2441e7f20093b9e183))
+* **locale:** improve persons and locations for zh_CN ([#2318](https://github.com/faker-js/faker/issues/2318)) ([87d3423](https://github.com/faker-js/faker/commit/87d3423960d326494d1710946f29fb3930d1a300))
+* **locale:** improve zh_TW ([#2320](https://github.com/faker-js/faker/issues/2320)) ([c5dfe27](https://github.com/faker-js/faker/commit/c5dfe27acd13003962a5cd93f9632392fda41399))
+* **locale:** support color and date for zh_CN ([#2223](https://github.com/faker-js/faker/issues/2223)) ([6736cbf](https://github.com/faker-js/faker/commit/6736cbf9aeeb02a3eb080f0f85c37f141f6924fd))
+* **locale:** update Dutch locale (nl) ([#2237](https://github.com/faker-js/faker/issues/2237)) ([12a511c](https://github.com/faker-js/faker/commit/12a511c9e4781929620dc2906f87661c5f58a480))
+
 ### [8.0.2](https://github.com/faker-js/faker/compare/v8.0.1...v8.0.2) (2023-05-27)
 
 
