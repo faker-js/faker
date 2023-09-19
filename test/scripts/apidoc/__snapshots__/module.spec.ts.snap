@@ -4,7 +4,7 @@ exports[`module > analyzeModule() > ModuleExampleTest 1`] = `
 {
   "comment": "This is a description for a module with a code example",
   "deprecated": undefined,
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#89DDFF\\">new</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#82AAFF\\">ModuleExampleTest</span><span style=\\"color:#BABED8\\">()</span><span style=\\"color:#89DDFF\\">\`\`\`</span></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#89DDFF\\">new</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#82AAFF\\">ModuleExampleTest</span><span style=\\"color:#BABED8\\">()</span></span></code></pre>
 </div>",
 }
 `;

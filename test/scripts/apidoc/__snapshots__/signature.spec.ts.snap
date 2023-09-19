@@ -261,7 +261,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "description": "<p>Test with example marker.</p>
 ",
   "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">(): number</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">test</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#BABED8\\">apidoc</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">() </span><span style=\\"color:#676E95;font-style:italic\\">// 0\`\`\`</span></span></code></pre>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">test</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#BABED8\\">apidoc</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">() </span><span style=\\"color:#676E95;font-style:italic\\">// 0</span></span></code></pre>
 </div>",
   "name": "methodWithExample",
   "parameters": [],
