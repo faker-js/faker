@@ -1,7 +1,6 @@
 import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-import type { Randomizer } from '../../randomizer';
 
 /**
  * Module to generate numbers of any kind.
@@ -84,7 +83,7 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const { randomizer }: Randomizer = this.faker;
+    const randomizer = this.faker.randomizer;
     const real = randomizer.next();
     return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
@@ -159,7 +158,7 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const { randomizer }: Randomizer = this.faker;
+    const randomizer = this.faker.randomizer;
     const real = randomizer.next();
     return real * (max - min) + min;
   }
