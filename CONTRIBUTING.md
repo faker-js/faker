@@ -45,7 +45,7 @@ If adding new data definitions to Faker, you'll often need to find source data. 
 ## Adding new locale or updating existing one
 
 After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
-If you change more than 20 locale files, please consider splitting your PR into one per category (e.g. person, location).
+Please only change files related to one module (e.g. person, location) whenever possible. This can simplify/speed up the review process. Additionally, it allows the maintainers to track PRs in a meaningful way by adding related labels.
 
 ## Building Faker
 

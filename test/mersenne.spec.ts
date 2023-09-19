@@ -1,23 +1,23 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { generateMersennePRNG } from '../src/internal/mersenne';
-import type { PRNG } from '../src/prng';
+import { generateMersenneRandomizer } from '../src/internal/mersenne';
+import type { Randomizer } from '../src/randomizer';
 import { seededRuns } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  const prng: PRNG = generateMersennePRNG();
+  const randomizer: Randomizer = generateMersenneRandomizer();
 
   describe.each(
     [...seededRuns, ...seededRuns.map((v) => [v, 1, 2])].map((v) => [v])
   )('seed: %j', (seed) => {
     beforeEach(() => {
-      prng.seed(seed);
+      randomizer.seed(seed);
     });
 
     it('should return deterministic value for next()', () => {
-      const actual = prng.next();
+      const actual = randomizer.next();
 
       expect(actual).toMatchSnapshot();
     });
@@ -35,12 +35,12 @@ describe('mersenne twister', () => {
     ])
   )('random seeded tests %j', (seed) => {
     beforeAll(() => {
-      prng.seed(seed);
+      randomizer.seed(seed);
     });
 
     describe('next', () => {
       it('should return random number from interval [0, 1)', () => {
-        const actual = prng.next();
+        const actual = randomizer.next();
 
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThan(1);

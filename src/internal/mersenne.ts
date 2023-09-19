@@ -1,4 +1,4 @@
-import type { PRNG } from '../prng';
+import type { Randomizer } from '../randomizer';
 
 /**
  * Copyright (c) 2022-2023 Faker
@@ -327,11 +327,11 @@ class MersenneTwister19937 {
 }
 
 /**
- * Generate seed based random numbers.
+ * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
  *
  * @internal
  */
-export function generateMersennePRNG(): PRNG {
+export function generateMersenneRandomizer(): Randomizer {
   const twister = new MersenneTwister19937();
 
   twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));

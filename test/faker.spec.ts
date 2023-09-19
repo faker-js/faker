@@ -68,11 +68,11 @@ describe('faker', () => {
     });
   });
 
-  describe('prng', () => {
-    it('should be possible to provide a custom prng', () => {
+  describe('randomizer', () => {
+    it('should be possible to provide a custom Randomizer', () => {
       const customFaker = new Faker({
         locale: {},
-        prng: {
+        randomizer: {
           next: () => 0,
           seed: () => void 0,
         },

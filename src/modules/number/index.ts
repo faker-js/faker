@@ -1,7 +1,7 @@
-import type { Faker } from '../..';
+import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-import type { PRNG } from '../../prng';
+import type { Randomizer } from '../../randomizer';
 
 /**
  * Module to generate numbers of any kind.
@@ -18,7 +18,7 @@ import type { PRNG } from '../../prng';
  * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
 export class NumberModule {
-  constructor(private readonly faker: Faker) {
+  constructor(private readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -84,8 +84,8 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const { _prng: prng }: PRNG = this.faker;
-    const real = prng.next();
+    const { randomizer }: Randomizer = this.faker;
+    const real = randomizer.next();
     return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
 
@@ -159,8 +159,8 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const { _prng: prng }: PRNG = this.faker;
-    const real = prng.next();
+    const { randomizer }: Randomizer = this.faker;
+    const real = randomizer.next();
     return real * (max - min) + min;
   }
 
