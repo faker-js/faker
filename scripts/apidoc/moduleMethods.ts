@@ -5,6 +5,7 @@ import type {
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
+import { codeToHtml } from './markdown';
 import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
