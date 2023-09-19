@@ -28,6 +28,7 @@ type CommentHolder = Pick<Reflection, 'comment'>;
  * Loads the project using TypeDoc.
  *
  * @param options The options to use for the project.
+ *
  * @returns The TypeDoc application and the project reflection.
  */
 export function loadProject(
@@ -75,6 +76,8 @@ function newTypeDocApp(): Application {
  * Selects the modules from the project that needs to be documented.
  *
  * @param project The project to extract the modules from.
+ * @param includeTestModules Whether to include test modules.
+ *
  * @returns The modules to document.
  */
 export function selectApiModules(
@@ -93,6 +96,7 @@ export function selectApiModules(
  * Selects the methods from the module that needs to be documented.
  *
  * @param module The module to extract the methods from.
+ *
  * @returns The methods to document.
  */
 export function selectApiMethods(
@@ -107,6 +111,7 @@ export function selectApiMethods(
  * Selects the signature from the method that needs to be documented.
  *
  * @param method The method to extract the signature from.
+ *
  * @returns The signature to document.
  */
 export function selectApiSignature(
@@ -124,7 +129,8 @@ export function selectApiSignature(
  * Selects the method signatures from the module that needs to be documented.
  * Method-Name -> Method-Signature
  *
- * @param method The module to extract the method signatures from.
+ * @param module The module to extract the method signatures from.
+ *
  * @returns The method signatures to document.
  */
 export function selectApiMethodSignatures(
@@ -206,6 +212,7 @@ export function extractSourcePath(
  *
  * @param tag The tag to extract the text from.
  * @param reflection The reflection to extract the text from.
+ * @param tagProcessor The function used to extract the text from the tag.
  */
 export function extractTagContent(
   tag: `@${string}`,
@@ -285,6 +292,8 @@ export function extractSeeAlsos(reflection?: CommentHolder): string[] {
 
 /**
  * Joins the parts of the given jsdocs tag.
+ *
+ * @param tag The tag to join the parts of.
  */
 export function joinTagContent(tag: CommentTag): string[] {
   return [joinTagParts(tag?.content)];
