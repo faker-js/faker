@@ -18,6 +18,7 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
+    'plugin:jsdoc/recommended-typescript-error',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -25,7 +26,7 @@ module.exports = defineConfig({
     sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'deprecation'],
+  plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
@@ -77,40 +78,39 @@ module.exports = defineConfig({
       { allowNumber: true, allowBoolean: true },
     ],
     '@typescript-eslint/unbound-method': 'off',
+
+    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/no-types': 'error',
+    'jsdoc/require-returns': 'off',
+    'jsdoc/tag-lines': 'off',
+    'jsdoc/sort-tags': [
+      'error',
+      {
+        tagSequence: [
+          { tags: ['template'] },
+          { tags: ['internal'] },
+          { tags: ['param'] },
+          { tags: ['returns'] },
+          { tags: ['throws'] },
+          { tags: ['see'] },
+          { tags: ['example'] },
+          { tags: ['since'] },
+          { tags: ['default'] },
+          { tags: ['deprecated'] },
+        ],
+      },
+    ],
+  },
+  settings: {
+    jsdoc: {
+      mode: 'typescript',
+    },
   },
   overrides: [
     {
       files: ['src/**/*.ts'],
-      plugins: ['jsdoc'],
-      extends: ['plugin:jsdoc/recommended-error'],
       rules: {
-        'jsdoc/no-types': 'error',
-        'jsdoc/require-param-type': 'off',
-        'jsdoc/require-returns-type': 'off',
-        'jsdoc/require-returns': 'off',
-        'jsdoc/tag-lines': 'off',
-        'jsdoc/sort-tags': [
-          'error',
-          {
-            tagSequence: [
-              { tags: ['template'] },
-              { tags: ['internal'] },
-              { tags: ['param'] },
-              { tags: ['returns'] },
-              { tags: ['throws'] },
-              { tags: ['see'] },
-              { tags: ['example'] },
-              { tags: ['since'] },
-              { tags: ['default'] },
-              { tags: ['deprecated'] },
-            ],
-          },
-        ],
-      },
-      settings: {
-        jsdoc: {
-          mode: 'typescript',
-        },
+        'jsdoc/require-jsdoc': 'error',
       },
     },
     {

@@ -23,6 +23,9 @@ function toDate(
   return date;
 }
 
+/**
+ * Module to generate dates (without methods requiring localized data).
+ */
 export class SimpleDateModule {
   constructor(protected readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
