@@ -29,7 +29,7 @@ async function processClass(
 
   console.log(`Processing ${name} class`);
 
-  const { comment, deprecated } = analyzeModule(fakerClass);
+  const { comment, deprecated, examples } = analyzeModule(fakerClass);
   const methods: Method[] = [];
 
   console.debug(`- constructor`);
@@ -43,6 +43,7 @@ async function processClass(
     name,
     moduleFieldName,
     comment,
+    examples,
     deprecated,
     methods
   );
