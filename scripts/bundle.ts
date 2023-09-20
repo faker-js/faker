@@ -6,7 +6,7 @@ import { allLocales } from '../src';
 
 console.log('Building dist for node (cjs)...');
 
-const target = ['ES2022', 'node16.13'];
+const target = ['ES2022', 'node18'];
 
 buildSync({
   entryPoints: globSync('./src/**/*.ts'),
