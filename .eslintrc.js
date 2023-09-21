@@ -79,10 +79,9 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/unbound-method': 'off',
 
-    'jsdoc/require-jsdoc': 'off',
     'jsdoc/no-types': 'error',
+    'jsdoc/require-jsdoc': 'off',
     'jsdoc/require-returns': 'off',
-    'jsdoc/tag-lines': 'off',
     'jsdoc/sort-tags': [
       'error',
       {
@@ -100,6 +99,7 @@ module.exports = defineConfig({
         ],
       },
     ],
+    'jsdoc/tag-lines': 'off',
   },
   settings: {
     jsdoc: {
