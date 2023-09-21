@@ -59,26 +59,20 @@ async function processClass(
   );
 }
 
-function hasConstructor(fakerClass: DeclarationReflection): boolean {
-  return fakerClass
+function hasConstructor(clazz: DeclarationReflection): boolean {
+  return clazz
     .getChildrenByKind(ReflectionKind.Constructor)
     .some((constructor) => constructor.signatures.length > 0);
 }
 
 async function processConstructor(
-  fakerClass: DeclarationReflection
+  clazz: DeclarationReflection
 ): Promise<Method> {
-  const constructor = fakerClass.getChildrenByKind(
-    ReflectionKind.Constructor
-  )[0];
+  const constructor = clazz.getChildrenByKind(ReflectionKind.Constructor)[0];
 
   const signature = selectApiSignature(constructor);
 
-  const method = await analyzeSignature(
-    signature,
-    '',
-    `new ${fakerClass.name}`
-  );
+  const method = await analyzeSignature(signature, '', `new ${clazz.name}`);
 
   return {
     ...method,
