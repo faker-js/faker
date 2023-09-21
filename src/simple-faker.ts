@@ -98,7 +98,7 @@ export class SimpleFaker {
       /**
        * The Randomizer to use.
        *
-       * @default generateMersenneRandomizer()
+       * @default generateMersenne32Randomizer()
        */
       randomizer?: Randomizer;
     } = {}
