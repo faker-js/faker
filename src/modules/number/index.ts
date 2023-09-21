@@ -83,7 +83,7 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const randomizer = this.faker.randomizer;
+    const randomizer = this.faker._randomizer;
     const real = randomizer.next();
     return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
@@ -158,7 +158,7 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const randomizer = this.faker.randomizer;
+    const randomizer = this.faker._randomizer;
     const real = randomizer.next();
     return real * (max - min) + min;
   }

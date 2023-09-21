@@ -331,7 +331,7 @@ class MersenneTwister19937 {
  *
  * @internal
  */
-export function generateMersenneRandomizer(): Randomizer {
+export function generateMersenne32Randomizer(): Randomizer {
   const twister = new MersenneTwister19937();
 
   twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));

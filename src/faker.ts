@@ -125,7 +125,6 @@ export class Faker extends SimpleFaker {
    * @param options The options to use.
    * @param options.locale The locale data to use.
    * @param options.randomizer The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
-   * Only overwrite this if you want to reuse the same Randomizer in different libraries to ensure reproducible results across all of them.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -149,8 +148,7 @@ export class Faker extends SimpleFaker {
     locale: LocaleDefinition | LocaleDefinition[];
 
     /**
-     * The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
-     * Only overwrite this if you want to reuse the same Randomizer in different libraries to ensure reproducible results across all of them.
+     * The Randomizer to use.
      *
      * @default generateMersenneRandomizer()
      */
@@ -192,7 +190,6 @@ export class Faker extends SimpleFaker {
    * @param options.locales The locale data to use.
    * @param options.localeFallback The name of the fallback locale to use.
    * @param options.randomizer The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
-   * Only overwrite this if you want to reuse the same Randomizer in different libraries to ensure reproducible results across all of them.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -218,8 +215,7 @@ export class Faker extends SimpleFaker {
           locale: LocaleDefinition | LocaleDefinition[];
 
           /**
-           * The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
-           * Only overwrite this if you want to reuse the same Randomizer in different libraries to ensure reproducible results across all of them.
+           * The Randomizer to use.
            *
            * @default generateMersenneRandomizer()
            */

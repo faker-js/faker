@@ -1,4 +1,4 @@
-import { generateMersenneRandomizer } from './internal/mersenne';
+import { generateMersenne32Randomizer } from './internal/mersenne';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
@@ -77,7 +77,7 @@ export class SimpleFaker {
   }
 
   /** @internal */
-  private readonly randomizer: Randomizer = generateMersenneRandomizer();
+  private readonly _randomizer: Randomizer = generateMersenne32Randomizer();
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
@@ -92,22 +92,20 @@ export class SimpleFaker {
    *
    * @param options The options to use.
    * @param options.randomizer The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
-   * Only overwrite this if you want to reuse the same Randomizer in different libraries to ensure reproducible results across all of them.
    */
   constructor(
     options: {
       /**
-       * The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
-       * Only overwrite this if you want to reuse the same Randomizer in different libraries to ensure reproducible results across all of them.
+       * The Randomizer to use.
        *
        * @default generateMersenneRandomizer()
        */
       randomizer?: Randomizer;
     } = {}
   ) {
-    const { randomizer = generateMersenneRandomizer() } = options;
+    const { randomizer = generateMersenne32Randomizer() } = options;
 
-    this.randomizer = randomizer;
+    this._randomizer = randomizer;
   }
 
   /**
@@ -227,7 +225,7 @@ export class SimpleFaker {
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
-    this.randomizer.seed(seed);
+    this._randomizer.seed(seed);
 
     return seed;
   }

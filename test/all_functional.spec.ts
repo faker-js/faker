@@ -6,7 +6,7 @@ const IGNORED_MODULES = [
   'rawDefinitions',
   'definitions',
   'helpers',
-  'randomizer',
+  '_randomizer',
   '_defaultRefDate',
 ];
 

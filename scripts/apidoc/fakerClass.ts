@@ -21,23 +21,33 @@ export async function processFakerClasses(
   return Promise.all(fakerClasses.map(processClass));
 }
 
-async function processClass(
-  fakerClass: DeclarationReflection
+export async function processFakerRandomizer(
+  project: ProjectReflection
 ): Promise<ModuleSummary> {
-  const { name } = fakerClass;
-  const moduleFieldName = extractModuleFieldName(fakerClass);
+  const randomizerClass = project
+    .getChildrenByKind(ReflectionKind.Interface)
+    .filter((clazz) => clazz.name === 'Randomizer')[0];
+
+  return processClass(randomizerClass);
+}
+
+async function processClass(
+  clazz: DeclarationReflection
+): Promise<ModuleSummary> {
+  const { name } = clazz;
+  const moduleFieldName = extractModuleFieldName(clazz);
 
   console.log(`Processing ${name} class`);
 
-  const { comment, deprecated, examples } = analyzeModule(fakerClass);
+  const { comment, deprecated, examples } = analyzeModule(clazz);
   const methods: Method[] = [];
 
-  console.debug(`- constructor`);
-  methods.push(await processConstructor(fakerClass));
+  if (hasConstructor(clazz)) {
+    console.debug(`- constructor`);
+    methods.push(await processConstructor(clazz));
+  }
 
-  methods.push(
-    ...(await processModuleMethods(fakerClass, `${moduleFieldName}.`))
-  );
+  methods.push(...(await processModuleMethods(clazz, `${moduleFieldName}.`)));
 
   return writeApiDocsModule(
     name,
@@ -47,6 +57,12 @@ async function processClass(
     deprecated,
     methods
   );
+}
+
+function hasConstructor(fakerClass: DeclarationReflection): boolean {
+  return fakerClass
+    .getChildrenByKind(ReflectionKind.Constructor)
+    .some((constructor) => constructor.signatures.length > 0);
 }
 
 async function processConstructor(

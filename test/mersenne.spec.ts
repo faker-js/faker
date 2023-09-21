@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { generateMersenneRandomizer } from '../src/internal/mersenne';
+import { generateMersenne32Randomizer } from '../src/internal/mersenne';
 import type { Randomizer } from '../src/randomizer';
 import { seededRuns } from './support/seededRuns';
 import { times } from './support/times';
@@ -7,7 +7,7 @@ import { times } from './support/times';
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  const randomizer: Randomizer = generateMersenneRandomizer();
+  const randomizer: Randomizer = generateMersenne32Randomizer();
 
   describe.each(
     [...seededRuns, ...seededRuns.map((v) => [v, 1, 2])].map((v) => [v])
