@@ -57,7 +57,7 @@ export interface Randomizer {
    * randomizer.seed(Date.now() ^ (Math.random() * 0x100000000));
    * // Fixed seeds (for reproducibility)
    * randomizer.seed(42);
-   * randomizer.seed([42, 1337]);
+   * randomizer.seed([42, 13.37]);
    */
   seed(seed: number | number[]): void;
 }
