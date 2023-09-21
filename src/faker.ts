@@ -150,7 +150,7 @@ export class Faker extends SimpleFaker {
     /**
      * The Randomizer to use.
      *
-     * @default generateMersenneRandomizer()
+     * @default generateMersenne32Randomizer()
      */
     randomizer?: Randomizer;
   });
@@ -217,7 +217,7 @@ export class Faker extends SimpleFaker {
           /**
            * The Randomizer to use.
            *
-           * @default generateMersenneRandomizer()
+           * @default generateMersenne32Randomizer()
            */
           randomizer?: Randomizer;
         }
