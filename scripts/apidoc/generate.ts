@@ -24,10 +24,10 @@ export async function generate(): Promise<void> {
 
   const pages = await Promise.all([
     ...(await processFakerClasses(project)),
-    await processFakerRandomizer(project),
     ...(await processModules(project)).sort((a, b) =>
       a.text.localeCompare(b.text)
     ),
+    await processFakerRandomizer(project),
     processFakerUtilities(project),
   ]);
   await writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
