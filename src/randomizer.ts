@@ -9,11 +9,11 @@
  *
  * @example
  * import { Randomizer, SimpleFaker } from '@faker-js/faker';
- * import { RandomGenerator, mersenne } from 'pure-rand';
+ * import { RandomGenerator, xoroshiro128plus } from 'pure-rand';
  *
  * function generatePureRandRandomizer(
  *   seed: number | number[] = Date.now() ^ (Math.random() * 0x100000000),
- *   factory: (seed: number) => RandomGenerator = mersenne
+ *   factory: (seed: number) => RandomGenerator = xoroshiro128plus
  * ): Randomizer {
  *   const self = {
  *     next: () => (self.generator.unsafeNext() >>> 0) / 0x100000000,
