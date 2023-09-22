@@ -4,36 +4,23 @@
  * **Note:** Normally there is no need to implement this interface directly,
  * unless you want to achieve a specific goal with it.
  *
- * This interface enables you to use random generators from third party libraries.
+ * This interface enables you to use random generators from third party libraries such as [pure-rand](https://github.com/dubzzz/pure-rand).
  * Created instances are expected to be seeded on creation.
  *
  * @example
- * import { FakerError, Randomizer } from '@faker-js/faker';
+ * import { Randomizer } from '@faker-js/faker';
+ * import { RandomGenerator, mersenne } from 'pure-rand';
  *
- * function generateMathRandomRandomizer(): Randomizer {
- *   return {
- *     next: () => Math.random(), // values aren't reproducible
- *     seed: () => {
- *       throw new FakerError('Math.random() Randomizer cannot be seeded');
- *     },
- *   };
- * }
- *
- * function generateSimpleRandomizer(
- *   seed: number | number[] = Date.now() ^ (Math.random() * 0x100000000)
+ * function generatePureRandRandomizer(
+ *   seed: number | number[] = Date.now() ^ (Math.random() * 0x100000000),
+ *   factory: (seed: number) => RandomGenerator = mersenne
  * ): Randomizer {
  *   const self = {
- *     next: () => {
- *       self.state += self.step;
- *       return (self.state %= 1);
+ *     next: () => (self.generator.unsafeNext() >>> 0) / 0x100000000,
+ *     seed: (seed: number | number[]) => {
+ *       self.generator = factory(typeof seed === 'number' ? seed : seed[0]);
  *     },
- *     seed: (seed) => {
- *       const value = typeof seed === 'number' ? seed : seed[0];
- *       const cleaned = value.toString().replace(/[^\d]+/g, '');
- *       self.step = +('1.' + cleaned) / 2 + 0.26183095653171535;
- *       self.state = 0.8683615301373573 * self.step + 0.24476001502354827;
- *     },
- *   } as Randomizer & { state: number; step: number };
+ *   } as Randomizer & { generator: RandomGenerator };
  *   self.seed(seed);
  *   return self;
  * }
