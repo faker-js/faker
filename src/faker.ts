@@ -124,7 +124,10 @@ export class Faker extends SimpleFaker {
    *
    * @param options The options to use.
    * @param options.locale The locale data to use.
-   * @param options.randomizer The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.randomizer The Randomizer to use.
+   * Specify this only if you want to use it to achieve a specific goal,
+   * such as sharing the same random generator with other instances/tools.
+   * Defaults to faker's Mersenne Twister based pseudo random number generator.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -149,6 +152,8 @@ export class Faker extends SimpleFaker {
 
     /**
      * The Randomizer to use.
+     * Specify this only if you want to use it to achieve a specific goal,
+     * such as sharing the same random generator with other instances/tools.
      *
      * @default generateMersenne32Randomizer()
      */
@@ -189,7 +194,10 @@ export class Faker extends SimpleFaker {
    * @param options.locale The locale data to use or the name of the main locale.
    * @param options.locales The locale data to use.
    * @param options.localeFallback The name of the fallback locale to use.
-   * @param options.randomizer The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.randomizer The Randomizer to use.
+   * Specify this only if you want to use it to achieve a specific goal,
+   * such as sharing the same random generator with other instances/tools.
+   * Defaults to faker's Mersenne Twister based pseudo random number generator.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -216,6 +224,8 @@ export class Faker extends SimpleFaker {
 
           /**
            * The Randomizer to use.
+           * Specify this only if you want to use it to achieve a specific goal,
+           * such as sharing the same random generator with other instances/tools.
            *
            * @default generateMersenne32Randomizer()
            */

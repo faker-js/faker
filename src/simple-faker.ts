@@ -91,12 +91,17 @@ export class SimpleFaker {
    * In nearly any case you should use the prebuilt `simpleFaker` instances instead of the constructor.
    *
    * @param options The options to use.
-   * @param options.randomizer The Randomizer to use. Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.randomizer The Randomizer to use.
+   * Specify this only if you want to use it to achieve a specific goal,
+   * such as sharing the same random generator with other instances/tools.
+   * Defaults to faker's Mersenne Twister based pseudo random number generator.
    */
   constructor(
     options: {
       /**
        * The Randomizer to use.
+       * Specify this only if you want to use it to achieve a specific goal,
+       * such as sharing the same random generator with other instances/tools.
        *
        * @default generateMersenne32Randomizer()
        */

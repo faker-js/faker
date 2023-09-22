@@ -1,8 +1,11 @@
 /**
- * Interface for a pseudo-random number generator.
- * This interface can be used to implement a custom randomizer using third party libraries.
+ * Interface for a random number generator.
  *
- * <p>Created instances are expected to be seeded on creation.</p>
+ * **Note:** Normally there is no need to implement this interface directly,
+ * unless you want to achieve a specific goal with it.
+ *
+ * This interface enables you to use random generators from third party libraries.
+ * Created instances are expected to be seeded on creation.
  *
  * @example
  * import { FakerError, Randomizer } from '@faker-js/faker';
