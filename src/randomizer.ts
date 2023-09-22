@@ -5,7 +5,9 @@
  * unless you want to achieve a specific goal with it.
  *
  * This interface enables you to use random generators from third party libraries such as [pure-rand](https://github.com/dubzzz/pure-rand).
- * Created instances are expected to be seeded on creation.
+ *
+ * Instances are expected to be ready for use before being passed to any Faker constructor,
+ * this includes being `seed()`ed with either a random or fixed value.
  *
  * @example
  * import { Randomizer, SimpleFaker } from '@faker-js/faker';
