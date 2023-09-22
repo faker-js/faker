@@ -8,7 +8,7 @@
  * Created instances are expected to be seeded on creation.
  *
  * @example
- * import { Randomizer } from '@faker-js/faker';
+ * import { Randomizer, SimpleFaker } from '@faker-js/faker';
  * import { RandomGenerator, mersenne } from 'pure-rand';
  *
  * function generatePureRandRandomizer(
