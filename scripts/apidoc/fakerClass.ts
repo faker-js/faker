@@ -26,7 +26,7 @@ export async function processFakerRandomizer(
 ): Promise<ModuleSummary> {
   const randomizerClass = project
     .getChildrenByKind(ReflectionKind.Interface)
-    .filter((clazz) => clazz.name === 'Randomizer')[0];
+    .find((clazz) => clazz.name === 'Randomizer');
 
   return processClass(randomizerClass);
 }
