@@ -27,7 +27,7 @@
  *     seed: (seed) => {
  *       const value = typeof seed === 'number' ? seed : seed[0];
  *       const cleaned = value.toString().replace(/[^\d]+/g, '');
- *       self.step = +('1.' + clean) / 2 + 0.26183095653171535;
+ *       self.step = +('1.' + cleaned) / 2 + 0.26183095653171535;
  *       self.state = 0.8683615301373573 * self.step + 0.24476001502354827;
  *     },
  *   } as Randomizer & { state: number; step: number };
