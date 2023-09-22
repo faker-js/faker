@@ -24,6 +24,8 @@
  *   self.seed(seed);
  *   return self;
  * }
+ *
+ * const simpleFaker = new SimpleFaker({ randomizer: generatePureRandRandomizer() });
  */
 export interface Randomizer {
   /**
