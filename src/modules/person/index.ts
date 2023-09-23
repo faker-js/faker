@@ -31,25 +31,27 @@ function selectDefinition<T>(
   let values: T[] | undefined;
 
   switch (sex) {
-    case Sex.Female:
+    case Sex.Female: {
       values = female;
       break;
+    }
 
-    case Sex.Male:
+    case Sex.Male: {
       values = male;
       break;
+    }
 
-    default:
+    default: {
       values = generic;
       break;
+    }
   }
 
   if (values == null) {
-    if (female != null && male != null) {
-      values = faker.helpers.arrayElement([female, male]);
-    } else {
-      values = generic;
-    }
+    values =
+      female != null && male != null
+        ? faker.helpers.arrayElement([female, male])
+        : generic;
   }
 
   return elementSelectorFn(values);

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker, fakerAZ, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const converterMap = [
@@ -358,11 +358,11 @@ describe('date', () => {
             expect(dates.length).lessThanOrEqual(5);
 
             expect(dates[0]).greaterThan(from);
-            for (let i = 1; i < dates.length; i++) {
-              expect(dates[i]).greaterThan(dates[i - 1]);
+            for (let index = 1; index < dates.length; index++) {
+              expect(dates[index]).greaterThan(dates[index - 1]);
             }
 
-            expect(dates[dates.length - 1]).lessThan(to);
+            expect(dates.at(-1)).lessThan(to);
           }
         );
       });
@@ -799,22 +799,22 @@ describe('date', () => {
 
     it('should use the refDateSource when refDate is not provided (with function)', () => {
       faker.setDefaultRefDate(() => new Date(Date.UTC(2020, 0, 1)));
-      faker.seed(20200101);
+      faker.seed(20_200_101);
       const date = faker.date.past();
       expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
 
-      faker.seed(20200101);
+      faker.seed(20_200_101);
       const date2 = faker.date.past();
       expect(date2).toEqual(new Date('2019-02-25T21:52:41.824Z'));
     });
 
     it('should use the refDateSource when refDate is not provided (with value)', () => {
       faker.setDefaultRefDate(Date.UTC(2020, 0, 1));
-      faker.seed(20200101);
+      faker.seed(20_200_101);
       const date = faker.date.past();
       expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
 
-      faker.seed(20200101);
+      faker.seed(20_200_101);
       const date2 = faker.date.past();
       expect(date2).toEqual(new Date('2019-02-25T21:52:41.824Z'));
     });

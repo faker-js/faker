@@ -59,12 +59,15 @@ function formatHexColor(
   }
 ): string {
   switch (options?.casing) {
-    case 'upper':
+    case 'upper': {
       hexColor = hexColor.toUpperCase();
       break;
-    case 'lower':
+    }
+
+    case 'lower': {
       hexColor = hexColor.toLowerCase();
       break;
+    }
   }
 
   if (options?.prefix) {
@@ -86,7 +89,9 @@ function toBinary(values: number[]): string {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
       const bytes = new Uint8Array(buffer);
-      return toBinary(Array.from(bytes)).split(' ').join('');
+      return toBinary([...bytes])
+        .split(' ')
+        .join('');
     }
 
     return (value >>> 0).toString(2).padStart(8, '0');
@@ -108,33 +113,50 @@ function toCSS(
 ): string {
   const percentage = (value: number) => Math.round(value * 100);
   switch (cssFunction) {
-    case 'rgba':
+    case 'rgba': {
       return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
-    case 'color':
+    }
+
+    case 'color': {
       return `color(${space} ${values[0]} ${values[1]} ${values[2]})`;
-    case 'cmyk':
+    }
+
+    case 'cmyk': {
       return `cmyk(${percentage(values[0])}%, ${percentage(
         values[1]
       )}%, ${percentage(values[2])}%, ${percentage(values[3])}%)`;
-    case 'hsl':
+    }
+
+    case 'hsl': {
       return `hsl(${values[0]}deg ${percentage(values[1])}% ${percentage(
         values[2]
       )}%)`;
-    case 'hsla':
+    }
+
+    case 'hsla': {
       return `hsl(${values[0]}deg ${percentage(values[1])}% ${percentage(
         values[2]
       )}% / ${percentage(values[3])})`;
-    case 'hwb':
+    }
+
+    case 'hwb': {
       return `hwb(${values[0]} ${percentage(values[1])}% ${percentage(
         values[2]
       )}%)`;
-    case 'lab':
+    }
+
+    case 'lab': {
       return `lab(${percentage(values[0])}% ${values[1]} ${values[2]})`;
-    case 'lch':
+    }
+
+    case 'lch': {
       return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
+    }
+
     case 'rgb':
-    default:
+    default: {
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
+    }
   }
 }
 
@@ -153,12 +175,17 @@ function toColorFormat(
   space: CssSpaceType = 'sRGB'
 ): string | number[] {
   switch (format) {
-    case 'css':
+    case 'css': {
       return toCSS(values, cssFunction, space);
-    case 'binary':
+    }
+
+    case 'binary': {
       return toBinary(values);
-    default:
+    }
+
+    default: {
       return values;
+    }
   }
 }
 
@@ -578,7 +605,7 @@ export class ColorModule {
     includeAlpha?: boolean;
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
-    for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
+    for (let index = 0; index < (options?.includeAlpha ? 3 : 2); index++) {
       hsl.push(this.faker.number.float({ precision: 0.01 }));
     }
 
@@ -684,7 +711,7 @@ export class ColorModule {
     format?: ColorFormat;
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
-    for (let i = 0; i < 2; i++) {
+    for (let index = 0; index < 2; index++) {
       hsl.push(this.faker.number.float({ precision: 0.01 }));
     }
 
@@ -764,8 +791,8 @@ export class ColorModule {
     format?: ColorFormat;
   }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
-    const lab = [this.faker.number.float({ precision: 0.000001 })];
-    for (let i = 0; i < 2; i++) {
+    const lab = [this.faker.number.float({ precision: 0.000_001 })];
+    for (let index = 0; index < 2; index++) {
       lab.push(
         this.faker.number.float({ min: -100, max: 100, precision: 0.0001 })
       );
@@ -859,8 +886,8 @@ export class ColorModule {
     format?: ColorFormat;
   }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
-    const lch = [this.faker.number.float({ precision: 0.000001 })];
-    for (let i = 0; i < 2; i++) {
+    const lch = [this.faker.number.float({ precision: 0.000_001 })];
+    for (let index = 0; index < 2; index++) {
       lch.push(this.faker.number.float({ max: 230, precision: 0.1 }));
     }
 

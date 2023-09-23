@@ -16,7 +16,7 @@ function toDate(
   fallback: () => Date
 ): Date {
   date = new Date(date);
-  if (isNaN(date.valueOf())) {
+  if (Number.isNaN(date.valueOf())) {
     date = fallback();
   }
 
@@ -117,7 +117,7 @@ export class SimpleDateModule {
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
-   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   * @param legacyReferenceDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.recent()
    *
@@ -145,7 +145,7 @@ export class SimpleDateModule {
            */
           refDate?: string | Date | number;
         },
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date;
   past(
     options:
@@ -154,7 +154,7 @@ export class SimpleDateModule {
           years?: number;
           refDate?: string | Date | number;
         } = {},
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date {
     if (typeof options === 'number') {
       deprecated({
@@ -166,7 +166,7 @@ export class SimpleDateModule {
       options = { years: options };
     }
 
-    const { years = 1, refDate = legacyRefDate } = options;
+    const { years = 1, refDate = legacyReferenceDate } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
@@ -239,7 +239,7 @@ export class SimpleDateModule {
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
-   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   * @param legacyReferenceDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.soon()
    *
@@ -267,7 +267,7 @@ export class SimpleDateModule {
            */
           refDate?: string | Date | number;
         },
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date;
   future(
     options:
@@ -276,7 +276,7 @@ export class SimpleDateModule {
           years?: number;
           refDate?: string | Date | number;
         } = {},
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date {
     if (typeof options === 'number') {
       deprecated({
@@ -288,7 +288,7 @@ export class SimpleDateModule {
       options = { years: options };
     }
 
-    const { years = 1, refDate = legacyRefDate } = options;
+    const { years = 1, refDate = legacyReferenceDate } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
@@ -631,7 +631,7 @@ export class SimpleDateModule {
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
-   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   * @param legacyReferenceDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.past()
    *
@@ -659,11 +659,11 @@ export class SimpleDateModule {
            */
           refDate?: string | Date | number;
         },
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date;
   recent(
     options: number | { days?: number; refDate?: string | Date | number } = {},
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date {
     if (typeof options === 'number') {
       deprecated({
@@ -675,7 +675,7 @@ export class SimpleDateModule {
       options = { days: options };
     }
 
-    const { days = 1, refDate = legacyRefDate } = options;
+    const { days = 1, refDate = legacyReferenceDate } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
@@ -728,7 +728,7 @@ export class SimpleDateModule {
    * Generates a random date in the near future.
    *
    * @param days The range of days the date may be in the future. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   * @param referenceDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.future()
    *
@@ -741,14 +741,14 @@ export class SimpleDateModule {
    *
    * @deprecated Use `faker.date.soon({ days, refDate })` instead.
    */
-  soon(days?: number, refDate?: string | Date | number): Date;
+  soon(days?: number, referenceDate?: string | Date | number): Date;
   /**
    * Generates a random date in the near future.
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
-   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   * @param legacyReferenceDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.future()
    *
@@ -776,11 +776,11 @@ export class SimpleDateModule {
            */
           refDate?: string | Date | number;
         },
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date;
   soon(
     options: number | { days?: number; refDate?: string | Date | number } = {},
-    legacyRefDate?: string | Date | number
+    legacyReferenceDate?: string | Date | number
   ): Date {
     if (typeof options === 'number') {
       deprecated({
@@ -792,7 +792,7 @@ export class SimpleDateModule {
       options = { days: options };
     }
 
-    const { days = 1, refDate = legacyRefDate } = options;
+    const { days = 1, refDate = legacyReferenceDate } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
@@ -872,8 +872,8 @@ export class SimpleDateModule {
     }
 
     const mode = options.mode === 'age' ? 'age' : 'year';
-    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
-    const refYear = refDate.getUTCFullYear();
+    const referenceDate = toDate(options.refDate, this.faker.defaultRefDate);
+    const referenceYear = referenceDate.getUTCFullYear();
 
     // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
     // So that people can still be considered as adults in most cases
@@ -882,16 +882,20 @@ export class SimpleDateModule {
     let min: number;
     let max: number;
     if (mode === 'age') {
-      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
-      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
+      min = new Date(referenceDate).setUTCFullYear(
+        referenceYear - (options.max ?? 80) - 1
+      );
+      max = new Date(referenceDate).setUTCFullYear(
+        referenceYear - (options.min ?? 18)
+      );
     } else {
       // Avoid generating dates the first and last date of the year
       // to avoid running into other years depending on the timezone.
       min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
-        options.min ?? refYear - 80
+        options.min ?? referenceYear - 80
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 18
+        options.max ?? referenceYear - 18
       );
     }
 
@@ -1094,11 +1098,8 @@ export class DateModule extends SimpleDateModule {
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
-      if (context && source['abbr_context'] != null) {
-        type = 'abbr_context';
-      } else {
-        type = 'abbr';
-      }
+      type =
+        context && source['abbr_context'] != null ? 'abbr_context' : 'abbr';
     } else if (context && source['wide_context'] != null) {
       type = 'wide_context';
     } else {
@@ -1284,11 +1285,8 @@ export class DateModule extends SimpleDateModule {
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
-      if (context && source['abbr_context'] != null) {
-        type = 'abbr_context';
-      } else {
-        type = 'abbr';
-      }
+      type =
+        context && source['abbr_context'] != null ? 'abbr_context' : 'abbr';
     } else if (context && source['wide_context'] != null) {
       type = 'wide_context';
     } else {

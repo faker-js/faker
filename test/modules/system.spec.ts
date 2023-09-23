@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerSK } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -66,8 +66,8 @@ describe('system', () => {
     () => {
       describe('commonFileExt()', () => {
         it('should return common file types', () => {
-          const fileExt = faker.system.commonFileExt();
-          const extList = [
+          const fileExtension = faker.system.commonFileExt();
+          const extensions = [
             'gif',
             'htm',
             'html',
@@ -96,11 +96,11 @@ describe('system', () => {
           ];
 
           expect(
-            extList,
-            `generated common file ext should be one of [${extList.join(
+            extensions,
+            `generated common file ext should be one of [${extensions.join(
               ', '
-            )}]. Got "${fileExt}".`
-          ).include(fileExt);
+            )}]. Got "${fileExtension}".`
+          ).include(fileExtension);
         });
       });
 
@@ -164,15 +164,15 @@ describe('system', () => {
 
       describe('fileExt()', () => {
         it('should return file ext', () => {
-          const fileExt = faker.system.fileExt();
+          const fileExtension = faker.system.fileExt();
 
-          expect(fileExt).toBeTypeOf('string');
-          expect(fileExt).not.toBe('');
+          expect(fileExtension).toBeTypeOf('string');
+          expect(fileExtension).not.toBe('');
         });
 
         it('should return file ext based on mimeType', () => {
-          const fileExt = faker.system.fileExt('text/plain');
-          const extList = [
+          const fileExtension = faker.system.fileExt('text/plain');
+          const extensions = [
             'txt',
             'text',
             'conf',
@@ -184,11 +184,11 @@ describe('system', () => {
           ];
 
           expect(
-            extList,
-            `generated common file ext should be one of [${extList.join(
+            extensions,
+            `generated common file ext should be one of [${extensions.join(
               ','
-            )}]. Got "${fileExt}".`
-          ).include(fileExt);
+            )}]. Got "${fileExtension}".`
+          ).include(fileExtension);
         });
       });
 
@@ -271,7 +271,7 @@ describe('system', () => {
             'generated filePath should start with /'
           ).toBeTruthy();
           expect(
-            parts[parts.length - 1],
+            parts.at(-1),
             'generated filePath should have a file extension'
           ).toMatch(/^\w+\.\w+$/);
         });
@@ -306,7 +306,7 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(
-            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[\da-f]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
           );
         });
 
@@ -319,7 +319,7 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(
-            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[\da-f]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
           );
         });
 
@@ -353,7 +353,7 @@ describe('system', () => {
           expect(
             networkInterface,
             `generated network interface should be valid network interface.`
-          ).toMatch(/^(?:en|wl|ww)x[a-f\d]{12}$/);
+          ).toMatch(/^(?:en|wl|ww)x[\da-f]{12}$/);
         });
 
         it('should return a network interface with a pci schema', () => {
@@ -376,13 +376,13 @@ describe('system', () => {
           expect(
             networkInterface,
             `generated network interface should be valid network interface.`
-          ).toMatch(/^enx[a-f\d]{12}$/);
+          ).toMatch(/^enx[\da-f]{12}$/);
         });
       });
 
       describe('cron()', () => {
         const regex =
-          /^([0-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
+          /^(\d|[1-5]\d|\*) (\d|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
 
         const regexElements = regex.toString().replace(/\//g, '').split(' ');
 
@@ -395,23 +395,20 @@ describe('system', () => {
           (options, count: number) => {
             const cron = faker.system.cron(options).split(' ');
             expect(cron).toHaveLength(count);
-            cron.forEach((cronElement, i) =>
+            for (const [index, cronElement] of cron.entries())
               expect(
                 cronElement,
-                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
-              ).toMatch(new RegExp(regexElements[i]))
-            );
+                `generated cron, ${cronElement} should match regex ${regexElements[index]}`
+              ).toMatch(new RegExp(regexElements[index]));
           }
         );
 
         it('should be able to return non-standard cron expressions', () => {
-          const validResults = [...'0123456789'.split(''), '*', '@'];
+          const validResults = new Set([...'0123456789', '*', '@']);
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
             'generated cron, string should contain standard or non-standard cron labels'
-          ).toSatisfy(
-            (value) => !!validResults.find((result) => value === result)
-          );
+          ).toSatisfy<string>((value) => validResults.has(value));
         });
       });
     }
@@ -420,7 +417,7 @@ describe('system', () => {
   describe('extra tests', () => {
     describe('commonFileName()', () => {
       it('#770', () => {
-        fakerSK.seed(5423027051750305);
+        fakerSK.seed(5_423_027_051_750_305);
         fakerSK.system.commonFileName('xml');
         fakerSK.system.commonFileName('xml');
       });

@@ -1,21 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 function degreesToRadians(degrees: number) {
-  return degrees * (Math.PI / 180.0);
+  return degrees * (Math.PI / 180);
 }
 
 function kilometersToMiles(miles: number) {
-  return miles * 0.621371;
+  return miles * 0.621_371;
 }
 
 /**
  * Returns the number of decimal places a number has
  */
-function precision(num: number): number {
-  const decimalPart = num.toString().split('.')[1];
+function precision(number: number): number {
+  const decimalPart = number.toString().split('.')[1];
   if (decimalPart === undefined) {
     return 0;
   }
@@ -198,9 +198,9 @@ describe('location', () => {
         });
 
         it.each([
-          ['IL', 60001, 62999],
-          ['GA', 30001, 31999],
-          ['WA', 98001, 99403],
+          ['IL', 60_001, 62_999],
+          ['GA', 30_001, 31_999],
+          ['WA', 98_001, 99_403],
         ])('returns zipCode valid for state %s', (state, lower, upper) => {
           const zipCode1 = +fakerEN_US.location.zipCode({ state });
           expect(zipCode1).toBeGreaterThanOrEqual(lower);
@@ -234,16 +234,16 @@ describe('location', () => {
           const states = ['IL', 'GA', 'WA'];
 
           const zipCode1 = +fakerEN_US.location.zipCodeByState(states[0]);
-          expect(zipCode1).toBeGreaterThanOrEqual(60001);
-          expect(zipCode1).toBeLessThanOrEqual(62999);
+          expect(zipCode1).toBeGreaterThanOrEqual(60_001);
+          expect(zipCode1).toBeLessThanOrEqual(62_999);
 
           const zipCode2 = +fakerEN_US.location.zipCodeByState(states[1]);
-          expect(zipCode2).toBeGreaterThanOrEqual(30001);
-          expect(zipCode2).toBeLessThanOrEqual(31999);
+          expect(zipCode2).toBeGreaterThanOrEqual(30_001);
+          expect(zipCode2).toBeLessThanOrEqual(31_999);
 
           const zipCode3 = +fakerEN_US.location.zipCodeByState(states[2]);
-          expect(zipCode3).toBeGreaterThanOrEqual(98001);
-          expect(zipCode3).toBeLessThanOrEqual(99403);
+          expect(zipCode3).toBeGreaterThanOrEqual(98_001);
+          expect(zipCode3).toBeLessThanOrEqual(99_403);
         });
       });
 
@@ -264,8 +264,8 @@ describe('location', () => {
         it('returns random latitude', () => {
           const latitude = faker.location.latitude();
 
-          expect(latitude).toBeGreaterThanOrEqual(-90.0);
-          expect(latitude).toBeLessThanOrEqual(90.0);
+          expect(latitude).toBeGreaterThanOrEqual(-90);
+          expect(latitude).toBeLessThanOrEqual(90);
         });
 
         it('returns latitude with min and max and default precision', () => {
@@ -406,12 +406,12 @@ describe('location', () => {
             expect(coordinate[1]).toBeTypeOf('number');
 
             const latitude2 = coordinate[0];
-            expect(latitude2).toBeGreaterThanOrEqual(-90.0);
-            expect(latitude2).toBeLessThanOrEqual(90.0);
+            expect(latitude2).toBeGreaterThanOrEqual(-90);
+            expect(latitude2).toBeLessThanOrEqual(90);
 
             const longitude2 = coordinate[1];
-            expect(longitude2).toBeGreaterThanOrEqual(-180.0);
-            expect(longitude2).toBeLessThanOrEqual(180.0);
+            expect(longitude2).toBeGreaterThanOrEqual(-180);
+            expect(longitude2).toBeLessThanOrEqual(180);
 
             const actualDistance = haversine(
               latitude1,

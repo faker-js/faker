@@ -1,34 +1,34 @@
 /**
  * Checks that the given string passes the luhn algorithm.
  *
- * @param str The string to validate.
+ * @param string The string to validate.
  */
-export function luhnCheck(str: string): boolean {
-  return luhnChecksum(str) === 0;
+export function luhnCheck(string: string): boolean {
+  return luhnChecksum(string) === 0;
 }
 
 /**
  * Calculates the luhn check value for the given string.
  *
- * @param str The string to calculate the check value for.
+ * @param string The string to calculate the check value for.
  * May contain the `L` placeholder at the end.
  */
-export function luhnCheckValue(str: string): number {
-  const checksum = luhnChecksum(str.replace(/L?$/, '0'));
+export function luhnCheckValue(string: string): number {
+  const checksum = luhnChecksum(string.replace(/L?$/, '0'));
   return checksum === 0 ? 0 : 10 - checksum;
 }
 
 /**
  * Calculates the luhn checksum value for the given value.
  *
- * @param str The string to generate the checksum for.
+ * @param string The string to generate the checksum for.
  */
-function luhnChecksum(str: string): number {
-  str = str.replace(/[\s-]/g, '');
+function luhnChecksum(string: string): number {
+  string = string.replace(/[\s-]/g, '');
   let sum = 0;
   let alternate = false;
-  for (let i = str.length - 1; i >= 0; i--) {
-    let n = parseInt(str.substring(i, i + 1));
+  for (let index = string.length - 1; index >= 0; index--) {
+    let n = Number.parseInt(string.substring(index, index + 1));
     if (alternate) {
       n *= 2;
       if (n > 9) {

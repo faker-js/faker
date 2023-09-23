@@ -78,7 +78,7 @@ export class ImageModule {
    */
   avatarGitHub(): string {
     return `https://avatars.githubusercontent.com/u/${this.faker.number.int(
-      100000000
+      100_000_000
     )}`;
   }
 
@@ -175,7 +175,7 @@ export class ImageModule {
     const { width = 640, height = 480, category } = options;
 
     return `https://loremflickr.com/${width}/${height}${
-      category != null ? `/${category}` : ''
+      category == null ? '' : `/${category}`
     }?lock=${this.faker.number.int()}`;
   }
 

@@ -7,10 +7,10 @@ interface Iban {
     total?: number;
   }>;
   iso3166: string[];
-  mod97: (digitStr: string) => number;
+  mod97: (digitString: string) => number;
   pattern10: string[];
   pattern100: string[];
-  toDigitString: (str: string) => string;
+  toDigitString: (string: string) => string;
 }
 
 const iban: Iban = {
@@ -1396,19 +1396,19 @@ const iban: Iban = {
     'ZM',
     'ZW',
   ],
-  mod97: (digitStr) => {
+  mod97: (digitString) => {
     let m = 0;
-    for (let i = 0; i < digitStr.length; i++) {
-      m = (m * 10 + +digitStr[i]) % 97;
+    for (const element of digitString) {
+      m = (m * 10 + +element) % 97;
     }
 
     return m;
   },
   pattern10: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
   pattern100: ['001', '002', '003', '004', '005', '006', '007', '008', '009'],
-  toDigitString: (str) =>
-    str.replace(/[A-Z]/gi, (match) =>
-      String(match.toUpperCase().charCodeAt(0) - 55)
+  toDigitString: (string) =>
+    string.replace(/[a-z]/gi, (match) =>
+      String(match.toUpperCase().codePointAt(0) - 55)
     ),
 };
 

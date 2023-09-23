@@ -79,8 +79,8 @@ export class Placeholder {
     }
 
     if (text != null) {
-      const urlParam = new URLSearchParams({ text });
-      url += `?${urlParam.toString()}`;
+      const urlParameter = new URLSearchParams({ text });
+      url += `?${urlParameter.toString()}`;
     }
 
     return url;

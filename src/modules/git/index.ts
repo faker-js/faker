@@ -97,13 +97,13 @@ export class GitModule {
     const email = this.faker.internet.email({ firstName, lastName });
 
     // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
-    user = user.replace(/^[\.,:;"\\']|[\<\>\n]|[\.,:;"\\']$/g, '');
+    user = user.replace(/^["',.:;\\]|[\n<>]|["',.:;\\]$/g, '');
 
     lines.push(
       `Author: ${user} <${email}>`,
       `Date: ${this.commitDate({ refDate })}`,
       '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      `\u00A0\u00A0\u00A0\u00A0${this.commitMessage()}`,
       // to end with a eol char
       ''
     );

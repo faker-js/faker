@@ -43,7 +43,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L357",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L365",
   "throws": undefined,
 }
 `;
@@ -68,7 +68,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L105",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L113",
   "throws": undefined,
 }
 `;
@@ -118,7 +118,7 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L125",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L133",
   "throws": undefined,
 }
 `;
@@ -178,7 +178,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "returns": "string",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L159",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L167",
   "throws": undefined,
 }
 `;
@@ -198,7 +198,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L277",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L285",
   "throws": undefined,
 }
 `;
@@ -250,7 +250,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L298",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L306",
   "throws": undefined,
 }
 `;
@@ -268,7 +268,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L266",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L274",
   "throws": undefined,
 }
 `;
@@ -288,7 +288,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L325",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L333",
   "throws": undefined,
 }
 `;
@@ -308,7 +308,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L335",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L343",
   "throws": undefined,
 }
 `;
@@ -325,7 +325,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L344",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L352",
   "throws": undefined,
 }
 `;
@@ -342,7 +342,7 @@ exports[`signature > analyzeSignature() > methodWithThrows 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L286",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L294",
   "throws": "a Faker error",
 }
 `;
@@ -381,7 +381,7 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L116",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L124",
   "throws": undefined,
 }
 `;
@@ -398,7 +398,7 @@ exports[`signature > analyzeSignature() > noParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L78",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L86",
   "throws": undefined,
 }
 `;
@@ -423,7 +423,7 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L96",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L104",
   "throws": undefined,
 }
 `;
@@ -491,7 +491,7 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L216",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L224",
   "throws": undefined,
 }
 `;
@@ -530,7 +530,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L252",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L260",
   "throws": undefined,
 }
 `;
@@ -596,7 +596,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L186",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L194",
   "throws": undefined,
 }
 `;
@@ -635,7 +635,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L234",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L242",
   "throws": undefined,
 }
 `;
@@ -660,7 +660,7 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L87",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L95",
   "throws": undefined,
 }
 `;
@@ -717,7 +717,7 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
   "returns": "string",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L138",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L146",
   "throws": undefined,
 }
 `;

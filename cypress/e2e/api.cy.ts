@@ -22,8 +22,8 @@ describe('API Test', () => {
     });
 
     it('should include at least 1 element in each module', () => {
-      cy.get('.api-group').each(($el) => {
-        cy.wrap($el).within(() => {
+      cy.get('.api-group').each(($element) => {
+        cy.wrap($element).within(() => {
           cy.get('li a[href]').should('have.length.above', 0);
         });
       });
@@ -31,8 +31,8 @@ describe('API Test', () => {
 
     it('should not have dead links', () => {
       const checked = new Set<string>();
-      cy.get('.api-group li').each(($el) => {
-        const anchor = $el.find('a');
+      cy.get('.api-group li').each(($element) => {
+        const anchor = $element.find('a');
         const text = anchor.text();
         const link = anchor.attr('href').split('#')[0];
         if (checked.has(link)) {

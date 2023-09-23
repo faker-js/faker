@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 import './../vitest-extensions';
 
@@ -45,6 +45,7 @@ describe('helpers', () => {
     });
 
     t.describe('fromRegExp', (t) => {
+      /* eslint-disable unicorn/better-regex */
       t.it('with static string', 'Hello World!')
         .it('with static RegExp', /Hello World!/)
         .it('with dynamic string', '[A-D0-9]-[A-D0-9]-A')
@@ -60,6 +61,7 @@ describe('helpers', () => {
         .it('with case insensitive flag', /[A-D0-9]{10}/i)
         .it('with negation and case insensitive flag', /[^a-t0-7]{10}/i)
         .it('with negation', /[^A-Za-y0-9]{10}/);
+      /* eslint-enable unicorn/better-regex */
     });
 
     t.describe('mustache', (t) => {
@@ -71,7 +73,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElement', (t) => {
-      t.it('with array', 'Hello World!'.split(''));
+      t.it('with array', [...'Hello World!']);
     });
 
     t.describe('enumValue', (t) => {
@@ -120,26 +122,26 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElements', (t) => {
-      t.it('with array', 'Hello World!'.split(''))
-        .it('with array and count', 'Hello World!'.split(''), 3)
-        .it('with array and count range', 'Hello World!'.split(''), {
+      t.it('with array', [...'Hello World!'])
+        .it('with array and count', [...'Hello World!'], 3)
+        .it('with array and count range', [...'Hello World!'], {
           min: 1,
           max: 5,
         });
     });
 
     t.describe('shuffle', (t) => {
-      t.it('with array', 'Hello World!'.split(''))
-        .it('with array and inplace true', 'Hello World!'.split(''), {
+      t.it('with array', [...'Hello World!'])
+        .it('with array and inplace true', [...'Hello World!'], {
           inplace: true,
         })
-        .it('with array and inplace false', 'Hello World!'.split(''), {
+        .it('with array and inplace false', [...'Hello World!'], {
           inplace: false,
         });
     });
 
     t.describe('uniqueArray', (t) => {
-      t.it('with array', 'Hello World!'.split(''), 3);
+      t.it('with array', [...'Hello World!'], 3);
     });
 
     t.describe('maybe', (t) => {
@@ -256,8 +258,8 @@ describe('helpers', () => {
         enum FooMixedEnum {
           Foo = 0,
           Bar = 1,
-          StrFoo = 'FOO',
-          StrBar = 'BAR',
+          StringFoo = 'FOO',
+          StringBar = 'BAR',
         }
 
         it('should return a value from a numeric enum', () => {
@@ -375,9 +377,9 @@ describe('helpers', () => {
           expect(subset.length).toBeLessThanOrEqual(testArray.length);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).not.toContainDuplicates();
@@ -391,9 +393,9 @@ describe('helpers', () => {
           expect(subset).toHaveLength(3);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).toHaveLength(new Set(subset).size);
@@ -411,9 +413,9 @@ describe('helpers', () => {
           expect(subset.length).toBeLessThanOrEqual(4);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).not.toContainDuplicates();
@@ -427,9 +429,9 @@ describe('helpers', () => {
           expect(subset.length).toBe(5);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
         });
 
         it('should return an empty array when array length > 0 and count = 0', () => {
@@ -458,10 +460,10 @@ describe('helpers', () => {
         });
 
         it('should return each element with a somewhat equal distribution with 2 elements', () => {
-          const input = Array.from({ length: 2 }, (_, i) => i);
+          const input = Array.from({ length: 2 }, (_, index) => index);
           const occurrences = Array.from({ length: 2 }, () => 0);
 
-          for (let i = 0; i < 1000; i++) {
+          for (let iteration = 0; iteration < 1000; iteration++) {
             const [result] = faker.helpers.arrayElements(input, 1);
             occurrences[result]++;
           }
@@ -475,10 +477,10 @@ describe('helpers', () => {
         it.each([10, 100, 1000])(
           'should return each element with a somewhat equal distribution with %s elements',
           (length) => {
-            const input = Array.from({ length }, (_, i) => i % 10);
+            const input = Array.from({ length }, (_, index) => index % 10);
             const occurrences = Array.from({ length: 10 }, () => 0);
 
-            for (let i = 0; i < 1000; i++) {
+            for (let index = 0; index < 1000; index++) {
               const [result] = faker.helpers.arrayElements(input, 1);
               occurrences[result]++;
             }
@@ -531,15 +533,15 @@ describe('helpers', () => {
       describe('replaceSymbolWithNumber()', () => {
         describe('when no symbol passed in', () => {
           it("uses '#' by default", () => {
-            const num = faker.helpers.replaceSymbolWithNumber('#AB');
-            expect(num).toMatch(/\dAB/);
+            const number = faker.helpers.replaceSymbolWithNumber('#AB');
+            expect(number).toMatch(/\dAB/);
           });
         });
 
         describe('when symbol passed in', () => {
           it('replaces that symbol with integers', () => {
-            const num = faker.helpers.replaceSymbolWithNumber('#AB', 'A');
-            expect(num).toMatch(/#\dB/);
+            const number = faker.helpers.replaceSymbolWithNumber('#AB', 'A');
+            expect(number).toMatch(/#\dB/);
           });
         });
       });
@@ -551,8 +553,8 @@ describe('helpers', () => {
 
         describe("when '*' passed", () => {
           it('replaces it with alphanumeric', () => {
-            const num = faker.helpers.replaceSymbols('*AB');
-            expect(num).toMatch(/\wAB/);
+            const number = faker.helpers.replaceSymbols('*AB');
+            expect(number).toMatch(/\wAB/);
           });
         });
       });
@@ -562,9 +564,7 @@ describe('helpers', () => {
           const number = faker.helpers.replaceCreditCardSymbols(
             '6453-####-####-####-###L'
           );
-          expect(number).toMatch(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^6453-(\d){4}-(\d){4}-(\d){4}-(\d){4}$/);
           expect(number).toSatisfy(luhnCheck);
         });
 
@@ -573,9 +573,7 @@ describe('helpers', () => {
             '6453-****-****-****-***L',
             '*'
           );
-          expect(number).toMatch(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^6453-(\d){4}-(\d){4}-(\d){4}-(\d){4}$/);
           expect(number).toSatisfy(luhnCheck);
         });
 
@@ -584,15 +582,13 @@ describe('helpers', () => {
             '6453-*{4}-*{4}-*{4}-*{3}L',
             '*'
           );
-          expect(number).toMatch(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^6453-(\d){4}-(\d){4}-(\d){4}-(\d){4}$/);
           expect(number).toSatisfy(luhnCheck);
           number = faker.helpers.replaceCreditCardSymbols(
             '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
           );
           expect(number).toMatch(
-            /^645[5-9]\-([0-9]){4,6}\-([0-9]){1,2}\-([0-9]){4,6}\-([0-9]){4}$/
+            /^645[5-9]-(\d){4,6}-(\d){1,2}-(\d){4,6}-(\d){4}$/
           );
           expect(number).toSatisfy(luhnCheck);
         });
@@ -607,14 +603,14 @@ describe('helpers', () => {
           const string = faker.helpers.regexpStyleStringParse('#{5,10}');
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
+          expect(string).toMatch(/^#{5,10}$/);
         });
 
         it('flips the range when min > max', () => {
           const string = faker.helpers.regexpStyleStringParse('#{10,5}');
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
+          expect(string).toMatch(/^#{5,10}$/);
         });
 
         it('repeats string {n} number of times', () => {
@@ -631,16 +627,14 @@ describe('helpers', () => {
 
         it('creates a numerical range', () => {
           const string = faker.helpers.regexpStyleStringParse('Hello[0-9]');
-          expect(string).toMatch(/^Hello[0-9]$/);
+          expect(string).toMatch(/^Hello\d$/);
         });
 
         it('deals with multiple tokens in one string', () => {
           const string = faker.helpers.regexpStyleStringParse(
             'Test#{5}%{2,5}Testing**[1-5]**{10}END'
           );
-          expect(string).toMatch(
-            /^Test\#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/
-          );
+          expect(string).toMatch(/^Test#{5}%{2,5}Testing\*\*[1-5]\*{11}END$/);
         });
       });
 
@@ -649,7 +643,7 @@ describe('helpers', () => {
           const string = faker.helpers.fromRegExp(/#{5,10}/);
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
+          expect(string).toMatch(/^#{5,10}$/);
         });
 
         it('repeats string {n} number of times', () => {
@@ -660,14 +654,14 @@ describe('helpers', () => {
 
         it('creates a numerical range', () => {
           const string = faker.helpers.fromRegExp('Hello[0-9]');
-          expect(string).toMatch(/^Hello[0-9]$/);
+          expect(string).toMatch(/^Hello\d$/);
         });
 
         it('deals with multiple tokens in one string', () => {
           const string = faker.helpers.fromRegExp(
             'Test#{5}%{2,5}Testing*[1-5]{10}END'
           );
-          expect(string).toMatch(/^Test\#{5}%{2,5}Testing*[1-5]{10}END$/);
+          expect(string).toMatch(/^Test#{5}%{2,5}Testing*[1-5]{10}END$/);
         });
 
         it('throws error when min > max outside set', () => {
@@ -679,18 +673,21 @@ describe('helpers', () => {
         });
 
         it('deals with RegExp object', () => {
+          // eslint-disable-next-line unicorn/better-regex
           const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/);
-          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/);
+          expect(string).toMatch(/^[\dA-D]{4}-[\dA-D]{4}$/);
         });
 
         it('doesnt include negated characters', () => {
+          // eslint-disable-next-line unicorn/better-regex
           const string = faker.helpers.fromRegExp(/[^a-t0-9]{4}/i);
-          expect(string).toMatch(/[^a-t0-9]{4}/);
+          expect(string).toMatch(/[^\da-t]{4}/);
         });
 
         it('handles case insensitive flags', () => {
+          // eslint-disable-next-line unicorn/better-regex
           const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
-          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
+          expect(string).toMatch(/^[\da-d]{4}-[\da-d]{4}$/i);
         });
       });
 
@@ -1000,11 +997,11 @@ describe('helpers', () => {
         });
 
         it('replaces a token with a random value for a method with an array parameter', () => {
-          const arr = ['one', 'two', 'three'];
+          const array = ['one', 'two', 'three'];
           const actual = faker.helpers.fake(
             '{{helpers.arrayElement(["one", "two", "three"])}}'
           );
-          expect(arr).toContain(actual);
+          expect(array).toContain(actual);
         });
 
         it('replaces a token with a random value for a method with an object parameter', () => {
@@ -1104,13 +1101,13 @@ describe('helpers', () => {
 
         it('should be able to handle random }} brackets', () => {
           expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
-            /^}}hello[a-zA-Z]$/
+            /^}}hello[A-Za-z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
           expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
-            /^{[a-zA-Z]}$/
+            /^{[A-Za-z]}$/
           );
         });
 
@@ -1176,7 +1173,7 @@ describe('helpers', () => {
             'lName',
             'domain',
           ]); // third argument is provider, or domain for email
-          expect(result).toMatch(/\@domain/);
+          expect(result).toMatch(/@domain/);
         });
 
         it('should be possible to limit unique call by maxTime in ms', () => {
@@ -1268,8 +1265,8 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     });
 
     it('no conflict', () => {
-      let i = 0;
-      const method = () => `no conflict: ${i++}`;
+      let index = 0;
+      const method = () => `no conflict: ${index++}`;
       expect(faker.helpers.unique(method)).toBe('no conflict: 0');
       expect(faker.helpers.unique(method)).toBe('no conflict: 1');
     });
@@ -1292,7 +1289,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     it('should not mutate most of the input option properties', () => {
       const method = () => 'options-mutate-test';
 
-      const startTime = new Date().getTime();
+      const startTime = Date.now();
       const maxTime = 49;
       const maxRetries = 49;
       const currentIterations = 0;

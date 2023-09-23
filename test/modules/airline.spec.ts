@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Aircraft, faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -68,13 +68,13 @@ describe('airline', () => {
       describe(`recordLocator()`, () => {
         it('should use the default values when not passing arguments', () => {
           const recordLocator = faker.airline.recordLocator();
-          expect(recordLocator).toMatch(/^[A-HJ-KM-NP-Z]{6}$/);
+          expect(recordLocator).toMatch(/^[A-HJKMNP-Z]{6}$/);
         });
         it('should allow numeric characters', () => {
           const recordLocator = faker.airline.recordLocator({
             allowNumerics: true,
           });
-          expect(recordLocator).toMatch(/^[2-9A-HJ-KM-NP-Z]{6}$/);
+          expect(recordLocator).toMatch(/^[2-9A-HJKMNP-Z]{6}$/);
         });
         it('should allow visually similar characters', () => {
           const recordLocator = faker.airline.recordLocator({
@@ -87,7 +87,7 @@ describe('airline', () => {
             allowNumerics: true,
             allowVisuallySimilarCharacters: true,
           });
-          expect(recordLocator).toMatch(/^[0-9A-Z]{6}$/);
+          expect(recordLocator).toMatch(/^[\dA-Z]{6}$/);
         });
       });
 
@@ -129,7 +129,7 @@ describe('airline', () => {
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 60);
-          expect(seatLetter).toMatch(/^[A-HJ-K]$/);
+          expect(seatLetter).toMatch(/^[A-HJK]$/);
         });
       });
 
@@ -143,37 +143,37 @@ describe('airline', () => {
       describe(`flightNumber()`, () => {
         it('should return a random flight number', () => {
           const flightNumber = faker.airline.flightNumber();
-          expect(flightNumber).toMatch(/^[1-9][0-9]{0,3}$/);
+          expect(flightNumber).toMatch(/^[1-9]\d{0,3}$/);
         });
         it('should return a random flight number with 3 digits', () => {
           const flightNumber = faker.airline.flightNumber({ length: 3 });
-          expect(flightNumber).toMatch(/^[1-9][0-9]{2}$/);
+          expect(flightNumber).toMatch(/^[1-9]\d{2}$/);
         });
         it('should return a random flight number with 2 to 4 digits', () => {
           const flightNumber = faker.airline.flightNumber({
             length: { min: 2, max: 4 },
           });
-          expect(flightNumber).toMatch(/^[1-9][0-9]{1,3}$/);
+          expect(flightNumber).toMatch(/^[1-9]\d{1,3}$/);
         });
         it('should return a random flight number with leading zeros', () => {
           const flightNumber = faker.airline.flightNumber({
             addLeadingZeros: true,
           });
-          expect(flightNumber).toMatch(/^[0-9]{4}$/);
+          expect(flightNumber).toMatch(/^\d{4}$/);
         });
         it('should return a random flight number with 3 digits and leading zeros', () => {
           const flightNumber = faker.airline.flightNumber({
             length: 3,
             addLeadingZeros: true,
           });
-          expect(flightNumber).toMatch(/^[0-9][1-9][0-9]{2}$/);
+          expect(flightNumber).toMatch(/^\d[1-9]\d{2}$/);
         });
         it('should return a random flight number with 2 to 4 digits and leading zeros', () => {
           const flightNumber = faker.airline.flightNumber({
             length: { min: 2, max: 4 },
             addLeadingZeros: true,
           });
-          expect(flightNumber).toMatch(/^[0-9]{1,4}$/);
+          expect(flightNumber).toMatch(/^\d{1,4}$/);
         });
       });
     }

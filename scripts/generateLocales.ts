@@ -294,11 +294,11 @@ async function main(): Promise<void> {
       }
 
       localeTitle = title;
-    } catch (e) {
+    } catch (error) {
       console.error(
         `Failed to load ${pathMetadata}. Please make sure the file exists and exports a MetadataDefinition.`
       );
-      console.error(e);
+      console.error(error);
     }
 
     const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
@@ -306,7 +306,7 @@ async function main(): Promise<void> {
     )}`;
 
     localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
-    localeIndexExportsIndividual += `  ${localizedFaker},\n`;
+    localeIndexExportsIndividual += `export { faker as ${localizedFaker} } from './${locale}';\n`;
     localeIndexExportsGrouped += `  ${locale}: ${localizedFaker},\n`;
     localesIndexExports += `export { default as ${locale} } from './${locale}';\n`;
     localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
@@ -330,9 +330,7 @@ async function main(): Promise<void> {
 
   ${localeIndexImports}
 
-  export {
   ${localeIndexExportsIndividual}
-  };
 
   export const allFakers = {
   ${localeIndexExportsGrouped}

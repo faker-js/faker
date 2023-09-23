@@ -18,6 +18,7 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:prettier/recommended',
+    'plugin:unicorn/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -25,7 +26,7 @@ module.exports = defineConfig({
     sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'deprecation'],
+  plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'unicorn'],
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
@@ -35,6 +36,40 @@ module.exports = defineConfig({
     'no-restricted-globals': ['error', 'Intl'],
 
     'deprecation/deprecation': 'error',
+
+    'unicorn/filename-case': [
+      'error',
+      {
+        cases: {
+          kebabCase: true,
+          snakeCase: true,
+        },
+        ignore: [
+          /^[a-z]{2}.ts$/,
+          /^[a-z]{2}_[A-Z]+.ts$/,
+          /^[a-z]{2}_[A-Z]+_[a-z]+.ts$/,
+        ],
+      },
+    ],
+    'unicorn/no-array-reduce': 'off',
+    'unicorn/no-nested-ternary': 'off',
+    'unicorn/no-null': 'off',
+    'unicorn/no-useless-switch-case': 'off',
+    'unicorn/number-literal-case': 'off',
+    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14
+    'unicorn/prefer-string-replace-all': 'off',
+    'unicorn/prevent-abbreviations': [
+      'error',
+      {
+        allowList: {
+          args: true,
+          fn: true,
+          obj: true,
+          opts: true,
+          refDate: true,
+        },
+      },
+    ],
 
     '@typescript-eslint/array-type': [
       'error',

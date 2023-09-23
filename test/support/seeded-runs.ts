@@ -30,10 +30,10 @@ type OnlyMethodsFaker = {
 /**
  * The type allowing only the names of methods that have exactly zero arguments.
  */
-type NoArgsMethodOf<TObjectType> = MethodOf<TObjectType> &
+type NoArgumentsMethodOf<TObjectType> = MethodOf<TObjectType> &
   {
     [Key in MethodOf<TObjectType, () => unknown>]: TObjectType[Key] extends (
-      arg0: string | number | boolean | Record<string, undefined>,
+      argument0: string | number | boolean | Record<string, undefined>,
       ...args: unknown[]
     ) => unknown
       ? Key
@@ -142,7 +142,7 @@ class TestGenerator<
     repetitions: number = 1
   ): void {
     this.setup();
-    for (let i = 0; i < repetitions; i++) {
+    for (let index = 0; index < repetitions; index++) {
       const callable = this.module[method];
       const value = callable(...args);
       expect(value).toMatchSnapshot();
@@ -178,7 +178,9 @@ class TestGenerator<
    *
    * @param method The name of the method.
    */
-  it<TMethodName extends NoArgsMethodOf<TModule>>(method: TMethodName): this {
+  it<TMethodName extends NoArgumentsMethodOf<TModule>>(
+    method: TMethodName
+  ): this {
     return this.itRepeated(method, 1);
   }
 
@@ -189,7 +191,7 @@ class TestGenerator<
    * @param method The name of the method.
    * @param repetitions The number of repetitions to run.
    */
-  itRepeated<TMethodName extends NoArgsMethodOf<TModule>>(
+  itRepeated<TMethodName extends NoArgumentsMethodOf<TModule>>(
     method: TMethodName,
     repetitions: number
   ): this {
@@ -209,7 +211,7 @@ class TestGenerator<
    *
    * @param methods The names of the methods.
    */
-  itEach<TMethodName extends NoArgsMethodOf<TModule>>(
+  itEach<TMethodName extends NoArgumentsMethodOf<TModule>>(
     ...methods: TMethodName[]
   ): this {
     for (const method of methods) {
@@ -289,7 +291,7 @@ class TestGenerator<
    * This method will be called automatically at the end of each run.
    */
   expectAllMethodsToBeTested(): void {
-    const actual = Array.from(this.tested).sort();
+    const actual = [...this.tested].sort();
     const expected = Object.entries(this.module)
       .filter(([, value]) => typeof value === 'function')
       .map(([key]) => key)

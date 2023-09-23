@@ -193,10 +193,10 @@ export class FinanceModule {
     // Modules 10 straight summation.
     let sum = 0;
 
-    for (let i = 0; i < routingNumber.length; i += 3) {
-      sum += Number(routingNumber[i]) * 3;
-      sum += Number(routingNumber[i + 1]) * 7;
-      sum += Number(routingNumber[i + 2]) || 0;
+    for (let index = 0; index < routingNumber.length; index += 3) {
+      sum += Number(routingNumber[index]) * 3;
+      sum += Number(routingNumber[index + 1]) * 7;
+      sum += Number(routingNumber[index + 2]) || 0;
     }
 
     return `${routingNumber}${Math.ceil(sum / 10) * 10 - sum}`;
@@ -356,7 +356,7 @@ export class FinanceModule {
     // create a template for length
     let template = '';
 
-    for (let i = 0; i < length; i++) {
+    for (let index = 0; index < length; index++) {
       template = `${template}#`;
     }
 
@@ -599,14 +599,11 @@ export class FinanceModule {
       precision: 10 ** -dec,
     });
 
-    let formattedString: string;
-    if (autoFormat) {
-      formattedString = randValue.toLocaleString(undefined, {
-        minimumFractionDigits: dec,
-      });
-    } else {
-      formattedString = randValue.toFixed(dec);
-    }
+    const formattedString = autoFormat
+      ? randValue.toLocaleString(undefined, {
+          minimumFractionDigits: dec,
+        })
+      : randValue.toFixed(dec);
 
     return symbol + formattedString;
   }
@@ -721,10 +718,10 @@ export class FinanceModule {
 
     let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
 
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
-      );
+    for (let index = 0; index < addressLength - 1; index++)
+      address += this.faker.helpers.arrayElement([
+        ...'123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+      ]);
 
     return address;
   }
@@ -1129,11 +1126,9 @@ export class FinanceModule {
         if (bban.type === 'a') {
           s += this.faker.helpers.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
-          if (this.faker.datatype.boolean(0.8)) {
-            s += this.faker.number.int(9);
-          } else {
-            s += this.faker.helpers.arrayElement(iban.alpha);
-          }
+          s += this.faker.datatype.boolean(0.8)
+            ? this.faker.number.int(9)
+            : this.faker.helpers.arrayElement(iban.alpha);
         } else {
           if (c >= 3 && this.faker.datatype.boolean(0.3)) {
             if (this.faker.datatype.boolean()) {
@@ -1151,7 +1146,7 @@ export class FinanceModule {
         c--;
       }
 
-      s = s.substring(0, count);
+      s = s.slice(0, Math.max(0, count));
     }
 
     let checksum: string | number =

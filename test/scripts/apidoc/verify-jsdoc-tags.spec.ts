@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
@@ -22,35 +23,37 @@ import { loadProjectModules } from './utils';
 
 beforeAll(initMarkdownRenderer);
 
-const tempDir = resolve(__dirname, 'temp');
+const temporaryDirectory = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  'temp'
+);
 
 afterAll(() => {
-  // Remove temp folder
-  if (existsSync(tempDir)) {
-    rmSync(tempDir, { recursive: true });
+  if (existsSync(temporaryDirectory)) {
+    rmSync(temporaryDirectory, { recursive: true });
   }
 });
+
+function resolveDirectoryToModule(moduleName: string): string {
+  return resolve(temporaryDirectory, moduleName);
+}
+
+function resolvePathToMethodFile(
+  moduleName: string,
+  methodName: string
+): string {
+  const directory = resolveDirectoryToModule(moduleName);
+  return resolve(directory, `${methodName}.ts`);
+}
 
 describe('verify JSDoc tags', () => {
   const modules = loadProjectModules();
 
-  function resolveDirToModule(moduleName: string): string {
-    return resolve(tempDir, moduleName);
-  }
-
-  function resolvePathToMethodFile(
-    moduleName: string,
-    methodName: string
-  ): string {
-    const dir = resolveDirToModule(moduleName);
-    return resolve(dir, `${methodName}.ts`);
-  }
-
   const allowedReferences = new Set(
-    Object.values(modules).reduce((acc, [module, methods]) => {
+    Object.values(modules).reduce((accumulator, [module, methods]) => {
       const moduleFieldName = extractModuleFieldName(module);
       return [
-        ...acc,
+        ...accumulator,
         ...Object.keys(methods).map(
           (methodName) => `faker.${moduleFieldName}.${methodName}`
         ),
@@ -58,10 +61,10 @@ describe('verify JSDoc tags', () => {
     }, [] as string[])
   );
   const allowedLinks = new Set(
-    Object.values(modules).reduce((acc, [module, methods]) => {
+    Object.values(modules).reduce((accumulator, [module, methods]) => {
       const moduleFieldName = extractModuleFieldName(module);
       return [
-        ...acc,
+        ...accumulator,
         `/api/${moduleFieldName}.html`,
         ...Object.keys(methods).map(
           (methodName) =>
@@ -72,9 +75,7 @@ describe('verify JSDoc tags', () => {
   );
 
   function assertDescription(description: string, isHtml: boolean): void {
-    const linkRegexp = isHtml
-      ? /(href)="([^"]+)"/g
-      : /\[([^\]]+)\]\(([^)]+)\)/g;
+    const linkRegexp = isHtml ? /(href)="([^"]+)"/g : /\[([^\]]+)]\(([^)]+)\)/g;
     const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
     for (const link of links) {
@@ -113,12 +114,12 @@ describe('verify JSDoc tags', () => {
             const examples = extractJoinedRawExamples(signature);
 
             // Save examples to a file to run them later in the specific tests
-            const dir = resolveDirToModule(moduleName);
-            mkdirSync(dir, { recursive: true });
+            const directory = resolveDirectoryToModule(moduleName);
+            mkdirSync(directory, { recursive: true });
 
             const path = resolvePathToMethodFile(moduleName, methodName);
             const imports = [
-              ...new Set(examples.match(/(?<!\.)faker[^\.]*(?=\.)/g)),
+              ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
             ];
             writeFileSync(
               path,
@@ -176,10 +177,9 @@ describe('verify JSDoc tags', () => {
           });
 
           it('verify @param tags', async () => {
-            (
-              await analyzeSignature(signature, '', methodName)
-            ).parameters.forEach((param) => {
-              const { name, description } = param;
+            const method = await analyzeSignature(signature, '', methodName);
+            for (const parameter of method.parameters) {
+              const { name, description } = parameter;
               const plainDescription = description
                 .replace(/<[^>]+>/g, '')
                 .trim();
@@ -188,11 +188,11 @@ describe('verify JSDoc tags', () => {
                 `Expect param ${name} to have a description`
               ).not.toBe(MISSING_DESCRIPTION);
               assertDescription(description, true);
-            });
+            }
           });
 
           it('verify @see tags', () => {
-            extractSeeAlsos(signature).forEach((link) => {
+            for (const link of extractSeeAlsos(signature)) {
               if (link.startsWith('faker.')) {
                 // Expected @see faker.xxx.yyy()
                 expect(link, 'Expect method reference to contain ()').toContain(
@@ -203,7 +203,7 @@ describe('verify JSDoc tags', () => {
                 );
                 expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
               }
-            });
+            }
           });
 
           it('verify @since tag', () => {

@@ -82,7 +82,9 @@ export function filterWordListByLength(options: {
         ? (word) => word.length === length
         : (word) => word.length >= length.min && word.length <= length.max;
 
-    const wordListWithLengthFilter = wordList.filter(filter);
+    const wordListWithLengthFilter = wordList.filter((element) =>
+      filter(element)
+    );
 
     if (wordListWithLengthFilter.length > 0) {
       return wordListWithLengthFilter;

@@ -79,21 +79,21 @@ export class SystemModule {
 
     const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
 
-    const extensionsStr = this.faker.helpers
+    const extensionsString = this.faker.helpers
       .multiple(() => this.fileExt(), { count: extensionCount })
       .join('.');
 
-    if (extensionsStr.length === 0) {
+    if (extensionsString.length === 0) {
       return baseName;
     }
 
-    return `${baseName}.${extensionsStr}`;
+    return `${baseName}.${extensionsString}`;
   }
 
   /**
    * Returns a random file name with a given extension or a commonly used extension.
    *
-   * @param ext Extension. Empty string is considered to be not set.
+   * @param extension Extension. Empty string is considered to be not set.
    *
    * @example
    * faker.system.commonFileName() // 'dollar.jpg'
@@ -101,10 +101,10 @@ export class SystemModule {
    *
    * @since 3.1.0
    */
-  commonFileName(ext?: string): string {
-    const str = this.fileName({ extensionCount: 0 });
+  commonFileName(extension?: string): string {
+    const fileName = this.fileName({ extensionCount: 0 });
 
-    return `${str}.${ext || this.commonFileExt()}`;
+    return `${fileName}.${extension || this.commonFileExt()}`;
   }
 
   /**
@@ -116,7 +116,7 @@ export class SystemModule {
    * @since 3.1.0
    */
   mimeType(): string {
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
+    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mime_types);
 
     return this.faker.helpers.arrayElement(mimeTypeKeys);
   }
@@ -155,15 +155,15 @@ export class SystemModule {
    */
   fileType(): string {
     const typeSet = new Set<string>();
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
+    const mimeTypes = this.faker.definitions.system.mime_types;
 
-    Object.keys(mimeTypes).forEach((m) => {
+    for (const m of Object.keys(mimeTypes)) {
       const type = m.split('/')[0];
 
       typeSet.add(type);
-    });
+    }
 
-    const types = Array.from(typeSet);
+    const types = [...typeSet];
     return this.faker.helpers.arrayElement(types);
   }
 
@@ -180,22 +180,22 @@ export class SystemModule {
    */
   fileExt(mimeType?: string): string {
     if (typeof mimeType === 'string') {
-      const mimes = this.faker.definitions.system.mimeTypes;
+      const mimes = this.faker.definitions.system.mime_types;
       return this.faker.helpers.arrayElement(mimes[mimeType].extensions);
     }
 
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
+    const mimeTypes = this.faker.definitions.system.mime_types;
     const extensionSet = new Set<string>();
 
-    Object.keys(mimeTypes).forEach((m) => {
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
+    for (const m of Object.keys(mimeTypes)) {
+      if (Array.isArray(mimeTypes[m].extensions)) {
+        for (const extension of mimeTypes[m].extensions) {
+          extensionSet.add(extension);
+        }
       }
-    });
+    }
 
-    const extensions = Array.from(extensionSet);
+    const extensions = [...extensionSet];
     return this.faker.helpers.arrayElement(extensions);
   }
 
@@ -208,7 +208,7 @@ export class SystemModule {
    * @since 3.1.0
    */
   directoryPath(): string {
-    const paths = this.faker.definitions.system.directoryPaths;
+    const paths = this.faker.definitions.system.directory_paths;
     return this.faker.helpers.arrayElement(paths);
   }
 
@@ -281,23 +281,30 @@ export class SystemModule {
     let prefix = '';
     const digit = () => this.faker.string.numeric({ allowLeadingZeros: true });
     switch (interfaceSchema) {
-      case 'index':
+      case 'index': {
         suffix = digit();
         break;
-      case 'slot':
+      }
+
+      case 'slot': {
         suffix = `${digit()}${
           this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
         }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
-      case 'mac':
+      }
+
+      case 'mac': {
         suffix = this.faker.internet.mac('');
         break;
-      case 'pci':
+      }
+
+      case 'pci': {
         prefix = this.faker.helpers.maybe(() => `P${digit()}`) ?? '';
         suffix = `${digit()}s${digit()}${
           this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
         }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
+      }
     }
 
     return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;

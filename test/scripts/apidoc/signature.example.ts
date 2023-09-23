@@ -1,10 +1,18 @@
+/* eslint-disable unicorn/no-object-as-default-parameter */
 import type { Casing, ColorFormat } from '../../../src';
 import { FakerError } from '../../../src/errors/faker-error';
 import type { AlphaNumericChar } from '../../../src/modules/string';
 import type { LiteralUnion } from '../../../src/utils/types';
+
 // explicitly export types so they show up in the docs as decomposed types
-export type { NumberColorFormat, StringColorFormat } from '../../../src';
-export { Casing, ColorFormat, AlphaNumericChar, LiteralUnion };
+export type {
+  Casing,
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from '../../../src';
+export type { AlphaNumericChar } from '../../../src/modules/string';
+export type { LiteralUnion } from '../../../src/utils/types';
 
 /**
  * Parameter options type with default from signature.

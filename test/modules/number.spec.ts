@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 
 describe('number', () => {
   seededTests(faker, 'number', (t) => {
@@ -36,8 +36,8 @@ describe('number', () => {
         .it('with bigint value', 123n)
         .it('with options', { min: -42, max: 69 })
         .it('with big options', {
-          min: 6135715171537515454317351n,
-          max: 32465761264574654845432354n,
+          min: 6_135_715_171_537_515_454_317_351n,
+          max: 32_465_761_264_574_654_845_432_354n,
         });
     });
   });
@@ -91,7 +91,7 @@ describe('number', () => {
       });
 
       it('should return a random number between a range', () => {
-        for (let i = 0; i < 100; i++) {
+        for (let iteration = 0; iteration < 100; iteration++) {
           const actual = faker.number.int({ min: 22, max: 33 });
 
           expect(actual).toBeTypeOf('number');
@@ -215,7 +215,7 @@ describe('number', () => {
       });
 
       it('should return a random number between a range', () => {
-        for (let i = 0; i < 5; i++) {
+        for (let iteration = 0; iteration < 5; iteration++) {
           const actual = faker.number.float({ min: 22, max: 33 });
 
           expect(actual).toBeTypeOf('number');
@@ -227,8 +227,8 @@ describe('number', () => {
       });
 
       it('provides numbers with a given precision of 0.5 steps', () => {
-        const results = Array.from(
-          new Set(
+        const results = [
+          ...new Set(
             Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
@@ -236,15 +236,15 @@ describe('number', () => {
                 precision: 0.5,
               })
             )
-          )
-        ).sort();
+          ),
+        ].sort();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
       it('provides numbers with a given precision of 0.4 steps', () => {
-        const results = Array.from(
-          new Set(
+        const results = [
+          ...new Set(
             Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
@@ -252,14 +252,14 @@ describe('number', () => {
                 precision: 0.4,
               })
             )
-          )
-        ).sort();
+          ),
+        ].sort();
 
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
 
       it('provides numbers with an exact precision', () => {
-        for (let i = 0; i < 100; i++) {
+        for (let iteration = 0; iteration < 100; iteration++) {
           const actual = faker.number.float({
             min: 0.5,
             max: 0.99,
@@ -300,8 +300,8 @@ describe('number', () => {
     });
 
     describe('binary', () => {
-      function isBinary(str: string) {
-        return [...str].every((char) => char === '0' || char === '1');
+      function isBinary(string: string) {
+        return [...string].every((char) => char === '0' || char === '1');
       }
 
       it('enerates single binary character when no additional argument was provided', () => {
@@ -319,8 +319,8 @@ describe('number', () => {
         expect(binary).toBeTypeOf('string');
         expect(binary).toSatisfy(isBinary);
 
-        const binaryNum = parseInt(binary, 2);
-        expect(binaryNum).toBeLessThanOrEqual(5);
+        const binaryNumber = Number.parseInt(binary, 2);
+        expect(binaryNumber).toBeLessThanOrEqual(5);
       });
 
       it('generates a random binary in a specific range', () => {
@@ -329,9 +329,9 @@ describe('number', () => {
         expect(binary).toBeTypeOf('string');
         expect(binary).toSatisfy(isBinary);
 
-        const binaryNum = parseInt(binary, 2);
-        expect(binaryNum).toBeLessThanOrEqual(255);
-        expect(binaryNum).greaterThanOrEqual(15);
+        const binaryNumber = Number.parseInt(binary, 2);
+        expect(binaryNumber).toBeLessThanOrEqual(255);
+        expect(binaryNumber).greaterThanOrEqual(15);
       });
 
       it('should throw when min > max', () => {
@@ -362,8 +362,8 @@ describe('number', () => {
         expect(octal).toBeTypeOf('string');
         expect(octal).toSatisfy(validator.isOctal);
 
-        const octalNum = parseInt(octal, 8);
-        expect(octalNum).toBeLessThanOrEqual(5);
+        const octalNumber = Number.parseInt(octal, 8);
+        expect(octalNumber).toBeLessThanOrEqual(5);
       });
 
       it('generates a random octal in a specific range', () => {
@@ -372,9 +372,9 @@ describe('number', () => {
         expect(octal).toBeTypeOf('string');
         expect(octal).toSatisfy(validator.isOctal);
 
-        const octalNum = parseInt(octal, 8);
-        expect(octalNum).toBeLessThanOrEqual(255);
-        expect(octalNum).greaterThanOrEqual(15);
+        const octalNumber = Number.parseInt(octal, 8);
+        expect(octalNumber).toBeLessThanOrEqual(255);
+        expect(octalNumber).greaterThanOrEqual(15);
       });
 
       it('should throw when min > max', () => {
@@ -412,9 +412,9 @@ describe('number', () => {
         expect(hex).toBeTypeOf('string');
         expect(hex).toSatisfy(validator.isHexadecimal);
 
-        const hexNum = parseInt(hex, 16);
-        expect(hexNum).toBeLessThanOrEqual(255);
-        expect(hexNum).greaterThanOrEqual(15);
+        const hexNumber = Number.parseInt(hex, 16);
+        expect(hexNumber).toBeLessThanOrEqual(255);
+        expect(hexNumber).greaterThanOrEqual(15);
       });
 
       it('should throw when min > max', () => {
@@ -437,12 +437,12 @@ describe('number', () => {
 
       it('should generate a big bigInt value with low delta', () => {
         const generateBigInt = faker.number.bigInt({
-          min: 999999999n,
-          max: 1000000000n,
+          min: 999_999_999n,
+          max: 1_000_000_000n,
         });
         expect(generateBigInt).toBeTypeOf('bigint');
-        expect(generateBigInt).toBeGreaterThanOrEqual(999999999n);
-        expect(generateBigInt).toBeLessThanOrEqual(1000000000n);
+        expect(generateBigInt).toBeGreaterThanOrEqual(999_999_999n);
+        expect(generateBigInt).toBeLessThanOrEqual(1_000_000_000n);
       });
 
       it('should return a random bigint given a maximum value as BigInt', () => {
@@ -476,10 +476,12 @@ describe('number', () => {
       it('should return a random bigint for a very large range', () => {
         const randomBigInt = faker.number.bigInt({
           min: 0n,
-          max: 10000000000000000000000n,
+          max: 10_000_000_000_000_000_000_000n,
         });
         expect(randomBigInt).toBeGreaterThanOrEqual(0n);
-        expect(randomBigInt).toBeLessThanOrEqual(10000000000000000000000n);
+        expect(randomBigInt).toBeLessThanOrEqual(
+          10_000_000_000_000_000_000_000n
+        );
       });
 
       it('should not mutate the input object', () => {
@@ -496,7 +498,7 @@ describe('number', () => {
       });
 
       it('should throw when min > max', () => {
-        const min = 10000n;
+        const min = 10_000n;
         const max = 999n;
 
         expect(() => {

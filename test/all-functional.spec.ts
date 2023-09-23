@@ -2,20 +2,20 @@ import { describe, expect, it } from 'vitest';
 import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
-const IGNORED_MODULES = [
+const IGNORED_MODULES = new Set([
   'rawDefinitions',
   'definitions',
   'helpers',
   '_mersenne',
   '_defaultRefDate',
-];
+]);
 
-function isTestableModule(mod: string) {
-  return IGNORED_MODULES.indexOf(mod) === -1;
+function isTestableModule(module: string) {
+  return !IGNORED_MODULES.has(module);
 }
 
-function isMethodOf(mod: string) {
-  return (meth: string) => typeof fakerEN[mod][meth] === 'function';
+function isMethodOf(module: string) {
+  return (meth: string) => typeof fakerEN[module][meth] === 'function';
 }
 
 type SkipConfig<TModule> = Partial<
@@ -93,15 +93,15 @@ const BROKEN_LOCALE_METHODS = {
     jobType: ['ur'],
   },
 } satisfies {
-  [module in keyof Faker]?: SkipConfig<Faker[module]>;
+  [TModule in keyof Faker]?: SkipConfig<Faker[TModule]>;
 };
 
 function isWorkingLocaleForMethod(
-  mod: string,
+  module: string,
   meth: string,
   locale: string
 ): boolean {
-  const broken = BROKEN_LOCALE_METHODS[mod]?.[meth] ?? [];
+  const broken = BROKEN_LOCALE_METHODS[module]?.[meth] ?? [];
   return broken !== '*' && !broken.includes(locale);
 }
 
@@ -110,14 +110,14 @@ function isWorkingLocaleForMethod(
 function modulesList(): { [module: string]: string[] } {
   const modules = Object.keys(fakerEN)
     .sort()
-    .filter(isTestableModule)
-    .reduce((result, mod) => {
+    .filter((element) => isTestableModule(element))
+    .reduce((result, module) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
-      if (methods.length) {
-        result[mod] = methods;
+      const methods = Object.keys(fakerEN[module]).filter(isMethodOf(module));
+      if (methods.length > 0) {
+        result[module] = methods;
       } else {
-        console.log(`Skipping ${mod} - No testable methods`);
+        console.log(`Skipping ${module} - No testable methods`);
       }
 
       return result;
@@ -163,7 +163,8 @@ describe('functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -184,7 +185,7 @@ describe('functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });
@@ -197,7 +198,8 @@ describe('faker.helpers.fake functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -216,7 +218,7 @@ describe('faker.helpers.fake functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });

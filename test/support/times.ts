@@ -5,5 +5,5 @@
  * @returns The sequence.
  */
 export function times(length: number): number[] {
-  return Array.from({ length }, (_, i) => i + 1);
+  return Array.from({ length }, (_, index) => index + 1);
 }

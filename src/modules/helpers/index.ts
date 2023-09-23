@@ -57,16 +57,17 @@ function getRepetitionsBasedOnQuantifierParameters(
         break;
       }
 
-      default:
+      default: {
         throw new FakerError('Unknown quantifier symbol provided.');
+      }
     }
   } else if (quantifierMin != null && quantifierMax != null) {
     repetitions = faker.number.int({
-      min: parseInt(quantifierMin),
-      max: parseInt(quantifierMax),
+      min: Number.parseInt(quantifierMin),
+      max: Number.parseInt(quantifierMax),
     });
   } else if (quantifierMin != null && quantifierMax == null) {
-    repetitions = parseInt(quantifierMin);
+    repetitions = Number.parseInt(quantifierMin);
   }
 
   return repetitions;
@@ -99,22 +100,22 @@ function legacyRegexpStringParse(
   string: string = ''
 ): string {
   // Deal with range repeat `{min,max}`
-  const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
-  const REP_REG = /(.)\{(\d+)\}/;
-  const RANGE_REG = /\[(\d+)\-(\d+)\]/;
+  const RANGE_REP_REG = /(.){(\d+),(\d+)}/;
+  const REP_REG = /(.){(\d+)}/;
+  const RANGE_REG = /\[(\d+)-(\d+)]/;
   let min: number;
   let max: number;
-  let tmp: number;
+  let temporary: number;
   let repetitions: number;
   let token = RANGE_REP_REG.exec(string);
   while (token != null) {
-    min = parseInt(token[2]);
-    max = parseInt(token[3]);
+    min = Number.parseInt(token[2]);
+    max = Number.parseInt(token[3]);
     // switch min and max
     if (min > max) {
-      tmp = max;
+      temporary = max;
       max = min;
-      min = tmp;
+      min = temporary;
     }
 
     repetitions = faker.number.int({ min, max });
@@ -128,7 +129,7 @@ function legacyRegexpStringParse(
   // Deal with repeat `{num}`
   token = REP_REG.exec(string);
   while (token != null) {
-    repetitions = parseInt(token[2]);
+    repetitions = Number.parseInt(token[2]);
     string =
       string.slice(0, token.index) +
       token[1].repeat(repetitions) +
@@ -139,13 +140,13 @@ function legacyRegexpStringParse(
 
   token = RANGE_REG.exec(string);
   while (token != null) {
-    min = parseInt(token[1]); // This time we are not capturing the char before `[]`
-    max = parseInt(token[2]);
+    min = Number.parseInt(token[1]); // This time we are not capturing the char before `[]`
+    max = Number.parseInt(token[2]);
     // switch min and max
     if (min > max) {
-      tmp = max;
+      temporary = max;
       max = min;
-      min = tmp;
+      min = temporary;
     }
 
     string =
@@ -187,9 +188,9 @@ export class SimpleHelpersModule {
   slugify(string: string = ''): string {
     return string
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036f]/g, '') // removes combining marks
+      .replace(/[\u0300-\u036F]/g, '') // removes combining marks
       .replace(/ /g, '-') // replaces spaces with hyphens
-      .replace(/[^\w\.\-]+/g, ''); // removes all non-word characters except for dots and hyphens
+      .replace(/[^\w.\-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
@@ -208,18 +209,18 @@ export class SimpleHelpersModule {
    * @since 2.0.1
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    let str = '';
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === symbol) {
-        str += this.faker.number.int(9);
-      } else if (string.charAt(i) === '!') {
-        str += this.faker.number.int({ min: 2, max: 9 });
+    let result = '';
+    for (let index = 0; index < string.length; index++) {
+      if (string.charAt(index) === symbol) {
+        result += this.faker.number.int(9);
+      } else if (string.charAt(index) === '!') {
+        result += this.faker.number.int({ min: 2, max: 9 });
       } else {
-        str += string.charAt(i);
+        result += string.charAt(index);
       }
     }
 
-    return str;
+    return result;
   }
 
   /**
@@ -269,23 +270,23 @@ export class SimpleHelpersModule {
       'Y',
       'Z',
     ];
-    let str = '';
+    let result = '';
 
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === '#') {
-        str += this.faker.number.int(9);
-      } else if (string.charAt(i) === '?') {
-        str += this.arrayElement(alpha);
-      } else if (string.charAt(i) === '*') {
-        str += this.faker.datatype.boolean()
+    for (let index = 0; index < string.length; index++) {
+      if (string.charAt(index) === '#') {
+        result += this.faker.number.int(9);
+      } else if (string.charAt(index) === '?') {
+        result += this.arrayElement(alpha);
+      } else if (string.charAt(index) === '*') {
+        result += this.faker.datatype.boolean()
           ? this.arrayElement(alpha)
           : this.faker.number.int(9);
       } else {
-        str += string.charAt(i);
+        result += string.charAt(index);
       }
     }
 
-    return str;
+    return result;
   }
 
   /**
@@ -312,8 +313,8 @@ export class SimpleHelpersModule {
     string = legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
-    const checkNum = luhnCheckValue(string);
-    return string.replace('L', String(checkNum));
+    const checkNumber = luhnCheckValue(string);
+    return string.replace('L', String(checkNumber));
   }
 
   /**
@@ -413,7 +414,7 @@ export class SimpleHelpersModule {
 
     // Deal with single wildcards
     const SINGLE_CHAR_REG =
-      /([.A-Za-z0-9])(?:\{(\d+)(?:\,(\d+)|)\}|(\?|\*|\+))(?![^[]*]|[^{]*})/;
+      /([\d.A-Za-z])(?:{(\d+)(?:,(\d+)|)}|([*+?]))(?![^[]*]|[^{]*})/;
     let token = pattern.match(SINGLE_CHAR_REG);
     while (token != null) {
       const quantifierMin: string = token[2];
@@ -434,9 +435,9 @@ export class SimpleHelpersModule {
       token = pattern.match(SINGLE_CHAR_REG);
     }
 
-    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[-!@#$&()`.+,/"])/;
+    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[!"#$&()+,./@`-])/;
     const RANGE_ALPHANUMEMRIC_REG =
-      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:\,(\d+)|)\}|(\?|\*|\+)|)/;
+      /\[(\^|)(-|)(.+?)](?:{(\d+)(?:,(\d+)|)}|([*+?])|)/;
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
     token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     while (token != null) {
@@ -457,17 +458,9 @@ export class SimpleHelpersModule {
       }
 
       while (range != null) {
-        if (range[0].indexOf('-') === -1) {
-          // handle non-ranges
-          if (isCaseInsensitive && isNaN(Number(range[0]))) {
-            rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
-            rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
-          } else {
-            rangeCodes.push(range[0].charCodeAt(0));
-          }
-        } else {
+        if (range[0].includes('-')) {
           // handle ranges
-          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
+          const rangeMinMax = range[0].split('-').map((x) => x.codePointAt(0));
           min = rangeMinMax[0];
           max = rangeMinMax[1];
           // throw error if min larger than max
@@ -475,18 +468,33 @@ export class SimpleHelpersModule {
             throw new FakerError('Character range provided is out of order.');
           }
 
-          for (let i = min; i <= max; i++) {
-            if (isCaseInsensitive && isNaN(Number(String.fromCharCode(i)))) {
-              const ch = String.fromCharCode(i);
-              rangeCodes.push(ch.toUpperCase().charCodeAt(0));
-              rangeCodes.push(ch.toLowerCase().charCodeAt(0));
+          for (let index = min; index <= max; index++) {
+            if (
+              isCaseInsensitive &&
+              Number.isNaN(Number(String.fromCodePoint(index)))
+            ) {
+              const ch = String.fromCodePoint(index);
+              rangeCodes.push(
+                ch.toUpperCase().codePointAt(0),
+                ch.toLowerCase().codePointAt(0)
+              );
             } else {
-              rangeCodes.push(i);
+              rangeCodes.push(index);
             }
+          }
+        } else {
+          // handle non-ranges
+          if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
+            rangeCodes.push(
+              range[0].toUpperCase().codePointAt(0),
+              range[0].toLowerCase().codePointAt(0)
+            );
+          } else {
+            rangeCodes.push(range[0].codePointAt(0));
           }
         }
 
-        ranges = ranges.substring(range[0].length);
+        ranges = ranges.slice(range[0].length);
         range = ranges.match(SINGLE_RANGE_REG);
       }
 
@@ -500,41 +508,41 @@ export class SimpleHelpersModule {
       if (isNegated) {
         let index = -1;
         // 0-9
-        for (let i = 48; i <= 57; i++) {
-          index = rangeCodes.indexOf(i);
+        for (let charCode = 48; charCode <= 57; charCode++) {
+          index = rangeCodes.indexOf(charCode);
           if (index > -1) {
             rangeCodes.splice(index, 1);
             continue;
           }
 
-          rangeCodes.push(i);
+          rangeCodes.push(charCode);
         }
 
         // A-Z
-        for (let i = 65; i <= 90; i++) {
-          index = rangeCodes.indexOf(i);
+        for (let charCode = 65; charCode <= 90; charCode++) {
+          index = rangeCodes.indexOf(charCode);
           if (index > -1) {
             rangeCodes.splice(index, 1);
             continue;
           }
 
-          rangeCodes.push(i);
+          rangeCodes.push(charCode);
         }
 
         // a-z
-        for (let i = 97; i <= 122; i++) {
-          index = rangeCodes.indexOf(i);
+        for (let charCode = 97; charCode <= 122; charCode++) {
+          index = rangeCodes.indexOf(charCode);
           if (index > -1) {
             rangeCodes.splice(index, 1);
             continue;
           }
 
-          rangeCodes.push(i);
+          rangeCodes.push(charCode);
         }
       }
 
       const generatedString = this.multiple(
-        () => String.fromCharCode(this.arrayElement(rangeCodes)),
+        () => String.fromCodePoint(this.arrayElement(rangeCodes)),
         { count: repetitions }
       ).join('');
 
@@ -545,12 +553,12 @@ export class SimpleHelpersModule {
       token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     }
 
-    const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
+    const RANGE_REP_REG = /(.){(\d+),(\d+)}/;
     // Deal with quantifier ranges `{min,max}`
     token = pattern.match(RANGE_REP_REG);
     while (token != null) {
-      min = parseInt(token[2]);
-      max = parseInt(token[3]);
+      min = Number.parseInt(token[2]);
+      max = Number.parseInt(token[3]);
       // throw error if min larger than max
       if (min > max) {
         throw new FakerError('Numbers out of order in {} quantifier.');
@@ -564,11 +572,11 @@ export class SimpleHelpersModule {
       token = pattern.match(RANGE_REP_REG);
     }
 
-    const REP_REG = /(.)\{(\d+)\}/;
+    const REP_REG = /(.){(\d+)}/;
     // Deal with repeat `{num}`
     token = pattern.match(REP_REG);
     while (token != null) {
-      repetitions = parseInt(token[2]);
+      repetitions = Number.parseInt(token[2]);
       pattern =
         pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -664,9 +672,12 @@ export class SimpleHelpersModule {
       list = [...list];
     }
 
-    for (let i = list.length - 1; i > 0; --i) {
-      const j = this.faker.number.int(i);
-      [list[i], list[j]] = [list[j], list[i]];
+    for (let firstIndex = list.length - 1; firstIndex > 0; --firstIndex) {
+      const secondIndex = this.faker.number.int(firstIndex);
+      [list[firstIndex], list[secondIndex]] = [
+        list[secondIndex],
+        list[firstIndex],
+      ];
     }
 
     return list;
@@ -697,7 +708,7 @@ export class SimpleHelpersModule {
   uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
-      const array = Array.from(set);
+      const array = [...set];
       return this.shuffle(array).splice(0, length);
     }
 
@@ -715,13 +726,13 @@ export class SimpleHelpersModule {
       // Ignore
     }
 
-    return Array.from(set);
+    return [...set];
   }
 
   /**
    * Replaces the `{{placeholder}}` patterns in the given string mustache style.
    *
-   * @param str The template string to parse.
+   * @param string The template string to parse.
    * @param data The data used to populate the placeholders.
    * This is a record where the key is the template placeholder,
    * whereas the value is either a string or a function suitable for `String.replace()`.
@@ -735,10 +746,10 @@ export class SimpleHelpersModule {
    * @since 2.0.1
    */
   mustache(
-    str: string | undefined,
+    string: string | undefined,
     data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
-    if (str == null) {
+    if (string == null) {
       return '';
     }
 
@@ -748,13 +759,13 @@ export class SimpleHelpersModule {
       if (typeof value === 'string') {
         // escape $, source: https://stackoverflow.com/a/6969486/6897682
         value = value.replace(/\$/g, '$$$$');
-        str = str.replace(re, value);
+        string = string.replace(re, value);
       } else {
-        str = str.replace(re, value);
+        string = string.replace(re, value);
       }
     }
 
-    return str;
+    return string;
   }
 
   /**
@@ -925,7 +936,10 @@ export class SimpleHelpersModule {
       );
     }
 
-    const total = array.reduce((acc, { weight }) => acc + weight, 0);
+    const total = array.reduce(
+      (accumulator, { weight }) => accumulator + weight,
+      0
+    );
     const random = this.faker.number.float({
       min: 0,
       max: total,
@@ -940,7 +954,7 @@ export class SimpleHelpersModule {
     }
 
     // In case of rounding errors, return the last element
-    return array[array.length - 1].value;
+    return array.at(-1).value;
   }
 
   /**
@@ -986,28 +1000,28 @@ export class SimpleHelpersModule {
       return [];
     }
 
-    const numElements = this.rangeToNumber(
+    const numberElements = this.rangeToNumber(
       count ?? { min: 1, max: array.length }
     );
 
-    if (numElements >= array.length) {
+    if (numberElements >= array.length) {
       return this.shuffle(array);
-    } else if (numElements <= 0) {
+    } else if (numberElements <= 0) {
       return [];
     }
 
-    const arrayCopy = array.slice(0);
+    const arrayCopy = [...array];
     let i = array.length;
-    const min = i - numElements;
-    let temp: T;
+    const min = i - numberElements;
+    let temporary: T;
     let index: number;
 
     // Shuffle the last `count` elements of the array
     while (i-- > min) {
       index = this.faker.number.int(i);
-      temp = arrayCopy[index];
+      temporary = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
-      arrayCopy[i] = temp;
+      arrayCopy[i] = temporary;
     }
 
     return arrayCopy.slice(min);
@@ -1039,7 +1053,7 @@ export class SimpleHelpersModule {
   ): T[keyof T] {
     // ignore numeric keys added by TypeScript
     const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
-      isNaN(Number(key))
+      Number.isNaN(Number(key))
     );
     const randomKey = this.arrayElement(keys);
     return enumObject[randomKey];
@@ -1178,7 +1192,7 @@ export class SimpleHelpersModule {
     } = options;
     return uniqueExec.exec(method, args, {
       ...options,
-      startTime: new Date().getTime(),
+      startTime: Date.now(),
       maxTime,
       maxRetries,
       currentIterations: 0,
@@ -1460,7 +1474,7 @@ export class HelpersModule extends SimpleHelpersModule {
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
       params = JSON.parse(`[${parameters}]`);
-    } catch (err) {
+    } catch {
       // since JSON.parse threw an error, assume parameters was actually a string
       params = [parameters];
     }
@@ -1470,7 +1484,9 @@ export class HelpersModule extends SimpleHelpersModule {
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
     const res =
-      pattern.substring(0, start) + result + pattern.substring(end + 2);
+      pattern.slice(0, Math.max(0, start)) +
+      result +
+      pattern.slice(Math.max(0, end + 2));
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);

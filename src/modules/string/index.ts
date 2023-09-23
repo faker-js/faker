@@ -5,13 +5,9 @@ import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
-const UPPER_CHARS: ReadonlyArray<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(
-  ''
-);
-const LOWER_CHARS: ReadonlyArray<string> = 'abcdefghijklmnopqrstuvwxyz'.split(
-  ''
-);
-const DIGIT_CHARS: ReadonlyArray<string> = '0123456789'.split('');
+const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
+const LOWER_CHARS: ReadonlyArray<string> = [...'abcdefghijklmnopqrstuvwxyz'];
+const DIGIT_CHARS: ReadonlyArray<string> = [...'0123456789'];
 
 export type LowerAlphaChar =
   | 'a'
@@ -145,7 +141,7 @@ export class StringModule {
     }
 
     if (typeof characters === 'string') {
-      characters = characters.split('');
+      characters = [...characters];
     }
 
     if (characters.length === 0) {
@@ -229,24 +225,29 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     let charsArray: string[];
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray = [...UPPER_CHARS];
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray = [...LOWER_CHARS];
         break;
+      }
+
       case 'mixed':
-      default:
+      default: {
         charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
         break;
+      }
     }
 
-    charsArray = charsArray.filter((elem) => !exclude.includes(elem));
+    charsArray = charsArray.filter((element) => !exclude.includes(element));
 
     return this.fromCharacters(charsArray, length);
   }
@@ -319,25 +320,30 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     let charsArray = [...DIGIT_CHARS];
 
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray.push(...UPPER_CHARS);
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray.push(...LOWER_CHARS);
         break;
+      }
+
       case 'mixed':
-      default:
+      default: {
         charsArray.push(...LOWER_CHARS, ...UPPER_CHARS);
         break;
+      }
     }
 
-    charsArray = charsArray.filter((elem) => !exclude.includes(elem));
+    charsArray = charsArray.filter((element) => !exclude.includes(element));
 
     return this.fromCharacters(charsArray, length);
   }
@@ -596,7 +602,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     const allowedDigits = DIGIT_CHARS.filter(
@@ -668,7 +674,7 @@ export class StringModule {
     let returnString = '';
 
     while (returnString.length < length) {
-      returnString += String.fromCharCode(
+      returnString += String.fromCodePoint(
         this.faker.number.int(charCodeOption)
       );
     }

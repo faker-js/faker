@@ -3,7 +3,7 @@
 /**
  * A deprecation should never be done in a patch.
  */
-type DeprecationSemVer = `${number}.${number}`;
+type DeprecationSemVersion = `${number}.${number}`;
 
 /** @internal */
 export interface DeprecatedOptions {
@@ -18,11 +18,11 @@ export interface DeprecatedOptions {
   /**
    * The semver since when this is deprecated.
    */
-  since?: DeprecationSemVer;
+  since?: DeprecationSemVersion;
   /**
    * The semver when this will be removed.
    */
-  until?: DeprecationSemVer;
+  until?: DeprecationSemVersion;
 }
 
 /**

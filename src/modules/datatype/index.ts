@@ -64,7 +64,7 @@ export class DatatypeModule {
            * @default 1
            */
           precision?: number;
-        } = 99999
+        } = 99_999
   ): number {
     deprecated({
       deprecated: 'faker.datatype.number()',
@@ -77,7 +77,7 @@ export class DatatypeModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 99999, precision = 1 } = options;
+    const { min = 0, max = min + 99_999, precision = 1 } = options;
 
     return this.faker.number.float({ min, max, precision });
   }
@@ -141,7 +141,7 @@ export class DatatypeModule {
       };
     }
 
-    const { min = 0, max = min + 99999, precision = 0.01 } = options;
+    const { min = 0, max = min + 99_999, precision = 0.01 } = options;
 
     return this.faker.number.float({ min, max, precision });
   }
@@ -199,7 +199,7 @@ export class DatatypeModule {
       until: '9.0',
     });
 
-    const minMax = 8640000000000000;
+    const minMax = 8_640_000_000_000_000;
 
     let min = typeof options === 'number' ? undefined : options.min;
     let max = typeof options === 'number' ? options : options.max;
@@ -407,11 +407,11 @@ export class DatatypeModule {
     const properties = ['foo', 'bar', 'bike', 'a', 'b', 'name', 'prop'];
     const returnObject: Record<string, string | number> = {};
 
-    properties.forEach((prop) => {
-      returnObject[prop] = this.boolean()
+    for (const property of properties) {
+      returnObject[property] = this.boolean()
         ? this.faker.string.sample()
         : this.faker.number.int();
-    });
+    }
 
     return JSON.stringify(returnObject);
   }

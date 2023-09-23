@@ -3,9 +3,9 @@ import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
-import ibanLib from '../../src/modules/finance/iban';
+import ibanLibrary from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -278,7 +278,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).toMatch(/^[0-9\.]+$/);
+          ).toMatch(/^[\d.]+$/);
         });
 
         it('should handle negative amounts', () => {
@@ -413,7 +413,7 @@ describe('finance', () => {
           const litecoinAddress = faker.finance.litecoinAddress();
 
           expect(litecoinAddress).toBeTypeOf('string');
-          expect(litecoinAddress).toMatch(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+          expect(litecoinAddress).toMatch(/^[3LM][1-9A-HJ-NP-Za-km-z]{25,32}$/);
         });
       });
 
@@ -455,11 +455,11 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4((\d){12}|(\d){3}(-(\d){4}){3})$/);
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(-\d{4}){3}$/);
           expect(mastercard).toSatisfy(luhnCheck);
 
           const discover = faker.finance.creditCardNumber('discover');
@@ -487,7 +487,7 @@ describe('finance', () => {
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toMatch(/^\d{3}-\d{3}-\d{3}$/);
           expect(number).toSatisfy(luhnCheck);
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
@@ -527,7 +527,7 @@ describe('finance', () => {
 
         it('should contain only digits', () => {
           const pin = faker.finance.pin();
-          expect(pin).toMatch(/^[0-9]+$/);
+          expect(pin).toMatch(/^\d+$/);
         });
 
         it('should default to a length of 4', () => {
@@ -550,29 +550,29 @@ describe('finance', () => {
           const ethereumAddress = faker.finance.ethereumAddress();
 
           expect(ethereumAddress).toBeTypeOf('string');
-          expect(ethereumAddress).toMatch(/^(0x)[0-9a-f]{40}$/);
+          expect(ethereumAddress).toMatch(/^(0x)[\da-f]{40}$/);
         });
       });
 
       describe('iban()', () => {
         it('should return a random yet formally correct IBAN number', () => {
           const iban = faker.finance.iban();
-          const bban = iban.substring(4) + iban.substring(0, 4);
+          const bban = iban.slice(4) + iban.slice(0, 4);
 
           expect(
-            ibanLib.mod97(ibanLib.toDigitString(bban)),
+            ibanLibrary.mod97(ibanLibrary.toDigitString(bban)),
             'the result should be equal to 1'
           ).toBe(1);
         });
 
         it('should return a specific and formally correct IBAN number', () => {
           const iban = faker.finance.iban(false, 'DE');
-          const bban = iban.substring(4) + iban.substring(0, 4);
-          const countryCode = iban.substring(0, 2);
+          const bban = iban.slice(4) + iban.slice(0, 4);
+          const countryCode = iban.slice(0, 2);
 
           expect(countryCode).toBe('DE');
           expect(
-            ibanLib.mod97(ibanLib.toDigitString(bban)),
+            ibanLibrary.mod97(ibanLibrary.toDigitString(bban)),
             'the result should be equal to 1'
           ).toBe(1);
         });
@@ -595,16 +595,16 @@ describe('finance', () => {
           const bic = faker.finance.bic();
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
-          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+          expect(bic).toMatch(/^[A-Z]{6}[\dA-Z]{2}([\dA-Z]{3})?$/);
+          expect(ibanLibrary.iso3166).toContain(bic.slice(4, 6));
         });
 
         it('should return a BIC number with branch code', () => {
           const bic = faker.finance.bic({ includeBranchCode: true });
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
-          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+          expect(bic).toMatch(/^[A-Z]{6}[\dA-Z]{5}$/);
+          expect(ibanLibrary.iso3166).toContain(bic.slice(4, 6));
         });
       });
 

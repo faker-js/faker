@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
@@ -131,7 +131,7 @@ describe('datatype', () => {
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
-          for (let i = 0; i < 100; i++) {
+          for (let iteration = 0; iteration < 100; iteration++) {
             const actual = faker.datatype.number(options);
             expect(actual).toBeGreaterThanOrEqual(options.min);
             expect(actual).toBeLessThanOrEqual(options.max);
@@ -164,8 +164,8 @@ describe('datatype', () => {
         });
 
         it('provides numbers with a given precision of 0.5 steps', () => {
-          const results = Array.from(
-            new Set(
+          const results = [
+            ...new Set(
               Array.from({ length: 50 }, () =>
                 faker.datatype.float({
                   min: 0,
@@ -173,16 +173,16 @@ describe('datatype', () => {
                   precision: 0.5,
                 })
               )
-            )
-          ).sort();
+            ),
+          ].sort();
 
           expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
 
         // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/1595
         it.todo('provides numbers with a given precision of 0.4 steps', () => {
-          const results = Array.from(
-            new Set(
+          const results = [
+            ...new Set(
               Array.from({ length: 50 }, () =>
                 faker.datatype.float({
                   min: 0,
@@ -190,15 +190,15 @@ describe('datatype', () => {
                   precision: 0.4,
                 })
               )
-            )
-          ).sort();
+            ),
+          ].sort();
 
           expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
         });
 
         it('provides numbers with a with exact precision', () => {
           const options = { min: 0.5, max: 0.99, precision: 0.01 };
-          for (let i = 0; i < 100; i++) {
+          for (let iteration = 0; iteration < 100; iteration++) {
             const actual = faker.datatype.number(options);
             expect(actual).toBe(Number(actual.toFixed(2)));
           }
@@ -270,7 +270,7 @@ describe('datatype', () => {
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
-          for (let i = 0; i < 5; i++) {
+          for (let iteration = 0; iteration < 5; iteration++) {
             const randomNumber = faker.datatype.float(options);
             expect(randomNumber).toBeGreaterThanOrEqual(options.min);
             expect(randomNumber).toBeLessThanOrEqual(options.max);
@@ -279,18 +279,18 @@ describe('datatype', () => {
 
         it('provides numbers with a given precision', () => {
           const options = { min: 0, max: 1.5, precision: 0.5 };
-          const results = Array.from(
-            new Set(
+          const results = [
+            ...new Set(
               Array.from({ length: 50 }, () => faker.datatype.float(options))
-            )
-          ).sort();
+            ),
+          ].sort();
 
           expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
 
         it('provides numbers with a with exact precision', () => {
           const options = { min: 0.5, max: 0.99, precision: 0.01 };
-          for (let i = 0; i < 100; i++) {
+          for (let iteration = 0; iteration < 100; iteration++) {
             const number = faker.datatype.float(options);
             expect(number).toBe(Number(number.toFixed(2)));
           }
@@ -299,12 +299,12 @@ describe('datatype', () => {
         it('should not modify the input object', () => {
           const min = 1;
           const max = 2;
-          const opts = { min, max };
+          const options = { min, max };
 
-          faker.datatype.float(opts);
+          faker.datatype.float(options);
 
-          expect(opts.min).toBe(min);
-          expect(opts.max).toBe(max);
+          expect(options.min).toBe(min);
+          expect(options.max).toBe(max);
         });
       });
 
@@ -400,7 +400,7 @@ describe('datatype', () => {
         it('generates a valid UUID', () => {
           const UUID = faker.datatype.uuid();
           const RFC4122 =
-            /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+            /^[\da-f]{8}-[\da-f]{4}-[1-5][\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
         });
       });
@@ -408,26 +408,26 @@ describe('datatype', () => {
       describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.datatype.hexadecimal();
-          expect(hex).toMatch(/^(0x)[0-9a-f]{1}$/i);
-          expect(hex.substring(2)).toHaveLength(1);
+          expect(hex).toMatch(/^(0x)[\da-f]$/i);
+          expect(hex.slice(2)).toHaveLength(1);
         });
 
         it('generates a hex string with a provided prefix', () => {
           const hex = faker.datatype.hexadecimal({ prefix: '0x' });
-          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
           expect(hex).toHaveLength(3);
         });
 
         it('generates a random hex string with a provided length', () => {
           const hex = faker.datatype.hexadecimal({ length: 5 });
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
-          expect(hex.substring(2)).toHaveLength(5);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
+          expect(hex.slice(2)).toHaveLength(5);
         });
 
         it('generates a hex string with a provided casing', () => {
           const hex = faker.datatype.hexadecimal({ case: 'lower' });
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
-          expect(hex.substring(2)).toHaveLength(1);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
+          expect(hex.slice(2)).toHaveLength(1);
         });
 
         it('generates a hex string with a provided prefix, length, and casing', () => {
@@ -436,8 +436,8 @@ describe('datatype', () => {
             length: 7,
             case: 'upper',
           });
-          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
-          expect(hex.substring(2)).toHaveLength(7);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
+          expect(hex.slice(2)).toHaveLength(7);
         });
       });
 
@@ -480,8 +480,8 @@ describe('datatype', () => {
         });
 
         it('should generate a big bigInt value with low delta', () => {
-          const min = 999999999n;
-          const max = 1000000000n;
+          const min = 999_999_999n;
+          const max = 1_000_000_000n;
           const generateBigInt = faker.datatype.bigInt({ min, max });
           expect(generateBigInt).toBeTypeOf('bigint');
           expect(generateBigInt).toBeGreaterThanOrEqual(min);
@@ -519,7 +519,7 @@ describe('datatype', () => {
 
         it('should return a random bigint between a range', () => {
           const options = { min: 22, max: 33 };
-          for (let i = 0; i < 100; i++) {
+          for (let iteration = 0; iteration < 100; iteration++) {
             const randomBigInt = faker.datatype.bigInt(options);
             expect(randomBigInt).toBeGreaterThanOrEqual(options.min);
             expect(randomBigInt).toBeLessThanOrEqual(options.max);
@@ -528,7 +528,7 @@ describe('datatype', () => {
 
         it('should succeed with success-rate', () => {
           const min = 0n;
-          const max = 1000000000000n;
+          const max = 1_000_000_000_000n;
           const randomBigInt = faker.datatype.bigInt({ min, max });
           expect(randomBigInt).toBeGreaterThanOrEqual(min);
           expect(randomBigInt).toBeLessThanOrEqual(max);

@@ -101,7 +101,7 @@ export class VehicleModule {
       length: 1,
       casing: 'upper',
       exclude,
-    })}${this.faker.number.int({ min: 10000, max: 99999 })}`; // return five digit #
+    })}${this.faker.number.int({ min: 10_000, max: 99_999 })}`; // return five digit #
   }
 
   /**

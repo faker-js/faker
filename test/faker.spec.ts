@@ -19,7 +19,7 @@ describe('faker', () => {
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
     require('..').faker;
 
     new Faker({ locale: { metadata: { title: '' } } });
@@ -81,16 +81,16 @@ describe('faker', () => {
     it('should reset the sequence when calling `seed`', () => {
       const seed = faker.seed();
 
-      const num1 = faker.number.int();
+      const number1 = faker.number.int();
 
       const newSeed = faker.seed(seed);
-      const num2 = faker.number.int();
+      const number2 = faker.number.int();
 
-      expect(num1).toBe(num2);
+      expect(number1).toBe(number2);
       expect(newSeed).toBe(seed);
 
-      const num3 = faker.number.int();
-      expect(num1).not.toBe(num3);
+      const number3 = faker.number.int();
+      expect(number1).not.toBe(number3);
     });
 
     it('seed(number)', () => {

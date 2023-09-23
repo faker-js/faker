@@ -360,13 +360,18 @@ export class LocationModule {
     const { variant = 'alpha-2' } = options;
     const key = (() => {
       switch (variant) {
-        case 'numeric':
+        case 'numeric': {
           return 'numeric';
-        case 'alpha-3':
+        }
+
+        case 'alpha-3': {
           return 'alpha3';
+        }
+
         case 'alpha-2':
-        default:
+        default: {
           return 'alpha2';
+        }
       }
     })();
 
@@ -1183,10 +1188,10 @@ export class LocationModule {
 
     const angleRadians = this.faker.number.float({
       max: 2 * Math.PI,
-      precision: 0.00001,
+      precision: 0.000_01,
     }); // in ° radians
 
-    const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
+    const radiusMetric = isMetric ? radius : radius * 1.609_34; // in km
     const errorCorrection = 0.995; // avoid float issues
     const distanceInKm =
       this.faker.number.float({

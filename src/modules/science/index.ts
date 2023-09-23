@@ -54,7 +54,7 @@ export class ScienceModule {
    */
   chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemicalElement
+      this.faker.definitions.science.chemical_element
     );
   }
 

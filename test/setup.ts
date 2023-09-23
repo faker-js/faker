@@ -1,3 +1,3 @@
 import { chai } from 'vitest';
 
-chai.config.truncateThreshold = 10000;
+chai.config.truncateThreshold = 10_000;

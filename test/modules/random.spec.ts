@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Faker, faker, FakerError, fakerZH_CN } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -142,7 +142,7 @@ describe('random', () => {
         it.each([
           ['upper', /^[A-Z]{250}$/],
           ['lower', /^[a-z]{250}$/],
-          ['mixed', /^[a-zA-Z]{250}$/],
+          ['mixed', /^[A-Za-z]{250}$/],
         ] as const)('should return %s-case', (casing, pattern) => {
           const actual = faker.random.alpha({ count: 250, casing });
           expect(actual).toMatch(pattern);
@@ -194,8 +194,9 @@ describe('random', () => {
         });
 
         it('should throw if all possible characters being banned', () => {
-          const bannedChars =
-            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+          const bannedChars = [
+            ...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+          ];
           expect(() =>
             faker.random.alpha({
               count: 5,
@@ -232,9 +233,9 @@ describe('random', () => {
         });
 
         it.each([
-          ['upper', /^[A-Z0-9]{250}$/],
-          ['lower', /^[a-z0-9]{250}$/],
-          ['mixed', /^[a-zA-Z0-9]{250}$/],
+          ['upper', /^[\dA-Z]{250}$/],
+          ['lower', /^[\da-z]{250}$/],
+          ['mixed', /^[\dA-Za-z]{250}$/],
         ] as const)('should return %s-case', (casing, pattern) => {
           const actual = faker.random.alphaNumeric(250, { casing });
           expect(actual).toMatch(pattern);
@@ -256,7 +257,7 @@ describe('random', () => {
         );
 
         it('should be able to ban all alphabetic characters', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          const bannedChars = [...'abcdefghijklmnopqrstuvwxyz'];
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
           });
@@ -280,7 +281,7 @@ describe('random', () => {
         });
 
         it('should be able to ban all numeric characters', () => {
-          const bannedChars = '0123456789'.split('');
+          const bannedChars = [...'0123456789'];
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
           });
@@ -310,11 +311,11 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(alphaText).toMatch(/^[0-9b-oq-z]{5}$/);
+          expect(alphaText).toMatch(/^[\db-oq-z]{5}$/);
         });
 
         it('should throw if all possible characters being banned', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+          const bannedChars = [...'abcdefghijklmnopqrstuvwxyz0123456789'];
           expect(() =>
             faker.random.alphaNumeric(5, {
               bannedChars,
@@ -354,7 +355,7 @@ describe('random', () => {
           const actual = faker.random.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[0-9]$/);
+          expect(actual).toMatch(/^\d$/);
         });
 
         it.each(times(100))(
@@ -363,7 +364,7 @@ describe('random', () => {
             const actual = faker.random.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[0-9]*$/);
+            expect(actual).toMatch(/^\d*$/);
           }
         );
 
@@ -384,19 +385,19 @@ describe('random', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[0-9]+$/);
+          expect(actual).toMatch(/^\d+$/);
         });
 
         it('should allow leading zeros via option', () => {
           const actual = faker.random.numeric(15, { allowLeadingZeros: true });
 
-          expect(actual).toMatch(/^[0-9]+$/);
+          expect(actual).toMatch(/^\d+$/);
         });
 
         it('should allow leading zeros via option and all other digits banned', () => {
           const actual = faker.random.numeric(4, {
             allowLeadingZeros: true,
-            bannedDigits: '123456789'.split(''),
+            bannedDigits: [...'123456789'],
           });
 
           expect(actual).toBe('0000');
@@ -415,7 +416,7 @@ describe('random', () => {
           expect(() =>
             faker.random.numeric(4, {
               allowLeadingZeros: false,
-              bannedDigits: '123456789'.split(''),
+              bannedDigits: [...'123456789'],
             })
           ).toThrow(
             new FakerError(
@@ -439,11 +440,11 @@ describe('random', () => {
 
         it('should ban all digits passed via bannedDigits', () => {
           const actual = faker.random.numeric(1000, {
-            bannedDigits: 'c84U1'.split(''),
+            bannedDigits: [...'c84U1'],
           });
 
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[0235679]{1000}$/);
+          expect(actual).toMatch(/^[0235-79]{1000}$/);
         });
 
         it('should ban all digits passed via bannedDigits via string', () => {
@@ -452,7 +453,7 @@ describe('random', () => {
           });
 
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[0235679]{1000}$/);
+          expect(actual).toMatch(/^[0235-79]{1000}$/);
         });
       });
     }

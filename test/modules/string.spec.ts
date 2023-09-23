@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -9,14 +9,14 @@ describe('string', () => {
   seededTests(faker, 'string', (t) => {
     t.describe('fromCharacters', (t) => {
       t.it('with string characters', 'foobar')
-        .it('with string[] characters', 'foobar'.split(''))
+        .it('with string[] characters', [...'foobar'])
         .it('with string characters and length', 'foobar', 5)
-        .it('with string[] characters and length', 'foobar'.split(''), 5)
+        .it('with string[] characters and length', [...'foobar'], 5)
         .it('with string characters and length range', 'foobar', {
           min: 10,
           max: 20,
         })
-        .it('with string[] characters and length range', 'foobar'.split(''), {
+        .it('with string[] characters and length range', [...'foobar'], {
           min: 10,
           max: 20,
         });
@@ -139,7 +139,7 @@ describe('string', () => {
         it('should only contain characters from provided string', () => {
           const actual = faker.string.fromCharacters('foobar');
 
-          expect(actual).toMatch(/^[foobar]$/);
+          expect(actual).toMatch(/^[abfor]$/);
         });
 
         it('should generate 5 random letters', () => {
@@ -197,13 +197,13 @@ describe('string', () => {
         it('should return any letters when no option is provided', () => {
           const actual = faker.string.alpha();
 
-          expect(actual).toMatch(/^[a-zA-Z]$/);
+          expect(actual).toMatch(/^[A-Za-z]$/);
         });
 
         it.each([
           ['upper', /^[A-Z]{250}$/],
           ['lower', /^[a-z]{250}$/],
-          ['mixed', /^[a-zA-Z]{250}$/],
+          ['mixed', /^[A-Za-z]{250}$/],
         ] as const)('should return %s-case', (casing, pattern) => {
           const actual = faker.string.alpha({ length: 250, casing });
           expect(actual).toMatch(pattern);
@@ -283,7 +283,7 @@ describe('string', () => {
         });
 
         it('should throw if all possible characters being excluded (string[])', () => {
-          const exclude = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          const exclude = [...'abcdefghijklmnopqrstuvwxyz'];
           expect(() =>
             faker.string.alpha({
               length: 5,
@@ -321,9 +321,9 @@ describe('string', () => {
         });
 
         it.each([
-          ['upper', /^[A-Z0-9]{250}$/],
-          ['lower', /^[a-z0-9]{250}$/],
-          ['mixed', /^[a-zA-Z0-9]{250}$/],
+          ['upper', /^[\dA-Z]{250}$/],
+          ['lower', /^[\da-z]{250}$/],
+          ['mixed', /^[\dA-Za-z]{250}$/],
         ] as const)('should return %s-case', (casing, pattern) => {
           const actual = faker.string.alphanumeric({ length: 250, casing });
           expect(actual).toMatch(pattern);
@@ -357,7 +357,7 @@ describe('string', () => {
         });
 
         it('should be able to ban all alphabetic characters', () => {
-          const exclude = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          const exclude = [...'abcdefghijklmnopqrstuvwxyz'];
           const alphaText = faker.string.alphanumeric({
             length: 5,
             casing: 'lower',
@@ -385,7 +385,7 @@ describe('string', () => {
         });
 
         it('should be able to ban all numeric characters', () => {
-          const exclude = '0123456789'.split('');
+          const exclude = [...'0123456789'];
           const alphaText = faker.string.alphanumeric({
             length: 5,
             exclude,
@@ -418,7 +418,7 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(alphaText).toMatch(/^[0-9b-oq-z]{5}$/);
+          expect(alphaText).toMatch(/^[\db-oq-z]{5}$/);
         });
 
         it('should throw if all possible characters being excluded (string)', () => {
@@ -437,7 +437,7 @@ describe('string', () => {
         });
 
         it('should throw if all possible characters being excluded (string[])', () => {
-          const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+          const exclude = [...'abcdefghijklmnopqrstuvwxyz0123456789'];
           expect(() =>
             faker.string.alphanumeric({
               length: 5,
@@ -546,7 +546,7 @@ describe('string', () => {
       describe(`hexadecimal`, () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.string.hexadecimal();
-          expect(hex).toMatch(/^0x[0-9a-f]*$/i);
+          expect(hex).toMatch(/^0x[\da-f]*$/i);
           expect(hex).toHaveLength(3);
         });
 
@@ -555,7 +555,7 @@ describe('string', () => {
             length: 5,
             prefix: '',
           });
-          expect(hex).toMatch(/^[0-9a-f]*$/i);
+          expect(hex).toMatch(/^[\da-f]*$/i);
           expect(hex).toHaveLength(5);
         });
 
@@ -587,7 +587,7 @@ describe('string', () => {
           const actual = faker.string.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[0-9]$/);
+          expect(actual).toMatch(/^\d$/);
         });
 
         it.each(times(100))(
@@ -596,7 +596,7 @@ describe('string', () => {
             const actual = faker.string.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[0-9]*$/);
+            expect(actual).toMatch(/^\d*$/);
           }
         );
 
@@ -629,7 +629,7 @@ describe('string', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[0-9]+$/);
+          expect(actual).toMatch(/^\d+$/);
         });
 
         it('should allow leading zeros via option', () => {
@@ -638,14 +638,14 @@ describe('string', () => {
             allowLeadingZeros: true,
           });
 
-          expect(actual).toMatch(/^[0-9]+$/);
+          expect(actual).toMatch(/^\d+$/);
         });
 
         it('should allow leading zeros via option and all other digits excluded', () => {
           const actual = faker.string.numeric({
             length: 4,
             allowLeadingZeros: true,
-            exclude: '123456789'.split(''),
+            exclude: [...'123456789'],
           });
 
           expect(actual).toBe('0000');
@@ -666,7 +666,7 @@ describe('string', () => {
             faker.string.numeric({
               length: 4,
               allowLeadingZeros: false,
-              exclude: '123456789'.split(''),
+              exclude: [...'123456789'],
             })
           ).toThrow(
             new FakerError(
@@ -692,11 +692,11 @@ describe('string', () => {
         it('should ban all digits passed via exclude', () => {
           const actual = faker.string.numeric({
             length: 1000,
-            exclude: 'c84U1'.split(''),
+            exclude: [...'c84U1'],
           });
 
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[0235679]{1000}$/);
+          expect(actual).toMatch(/^[0235-79]{1000}$/);
         });
 
         it('should ban all digits passed via exclude via string', () => {
@@ -706,7 +706,7 @@ describe('string', () => {
           });
 
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[0235679]{1000}$/);
+          expect(actual).toMatch(/^[0235-79]{1000}$/);
         });
       });
 
@@ -751,7 +751,7 @@ describe('string', () => {
         it('generates a valid UUID', () => {
           const UUID = faker.string.uuid();
           const RFC4122 =
-            /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+            /^[\da-f]{8}-[\da-f]{4}-[1-5][\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
         });
       });
@@ -759,7 +759,7 @@ describe('string', () => {
       describe(`nanoid`, () => {
         it('generates a valid Nano ID', () => {
           const id = faker.string.nanoid();
-          const regex = /^[0-9a-zA-Z_-]+$/;
+          const regex = /^[\w-]+$/;
           expect(id).toMatch(regex);
         });
 

@@ -265,14 +265,14 @@ export class InternetModule {
     let localPart: string = this.userName({ firstName, lastName });
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
-    localPart = localPart.replace(/[^A-Za-z0-9._+\-]+/g, '');
+    localPart = localPart.replace(/[^\w+.\-]+/g, '');
 
     // The local part of an email address is limited to 64 chars per RFC 3696
     // We limit to 50 chars to be more realistic
-    localPart = localPart.substring(0, 50);
+    localPart = localPart.slice(0, 50);
     if (allowSpecialCharacters) {
-      const usernameChars: string[] = '._-'.split('');
-      const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
+      const usernameChars: string[] = [...'._-'];
+      const specialChars: string[] = [...".!#$%&'*+-/=?^_`{|}~"];
       localPart = localPart.replace(
         this.faker.helpers.arrayElement(usernameChars),
         this.faker.helpers.arrayElement(specialChars)
@@ -617,42 +617,46 @@ export class InternetModule {
 
     let result: string;
     switch (this.faker.number.int(2)) {
-      case 0:
+      case 0: {
         result = `${firstName}${this.faker.number.int(99)}`;
         break;
-      case 1:
+      }
+
+      case 1: {
         result =
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
-      case 2:
+      }
+
+      case 2: {
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
         ])}${lastName}${this.faker.number.int(99)}`;
         break;
+      }
     }
 
     // There may still be non-ascii characters in the result.
     // First remove simple accents etc
     result = result
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
+      .replace(/[\u0300-\u036F]/g, ''); // removes combining marks
 
-    result = result
-      .split('')
+    result = [...result]
       .map((char) => {
         // If we have a mapping for this character, (for Cyrillic, Greek etc) use it
         if (charMapping[char]) {
           return charMapping[char];
         }
 
-        if (char.charCodeAt(0) < 0x80) {
+        if (char.codePointAt(0) < 0x80) {
           // Keep ASCII characters
           return char;
         }
 
         // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
-        return char.charCodeAt(0).toString(36);
+        return char.codePointAt(0).toString(36);
       })
       .join('');
     result = result.toString().replace(/'/g, '');
@@ -802,19 +806,24 @@ export class InternetModule {
 
     let result: string;
     switch (this.faker.number.int(2)) {
-      case 0:
+      case 0: {
         result = `${firstName}${this.faker.number.int(99)}`;
         break;
-      case 1:
+      }
+
+      case 1: {
         result =
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
-      case 2:
+      }
+
+      case 2: {
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
         ])}${lastName}${this.faker.number.int(99)}`;
         break;
+      }
     }
 
     result = result.toString().replace(/'/g, '');
@@ -1027,7 +1036,7 @@ export class InternetModule {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.number.int(65535);
+    return this.faker.number.int(65_535);
   }
 
   /**
@@ -1227,14 +1236,14 @@ export class InternetModule {
   /**
    * Generates a random mac address.
    *
-   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
    * faker.internet.mac() // '32:8e:2e:09:c6:05'
    *
    * @since 3.0.0
    */
-  mac(sep?: string): string;
+  mac(separator?: string): string;
   /**
    * Generates a random mac address.
    *
@@ -1276,7 +1285,7 @@ export class InternetModule {
 
     let { separator = ':' } = options;
 
-    let i: number;
+    let index: number;
     let mac = '';
 
     const acceptableSeparators = [':', '-', ''];
@@ -1284,9 +1293,9 @@ export class InternetModule {
       separator = ':';
     }
 
-    for (i = 0; i < 12; i++) {
+    for (index = 0; index < 12; index++) {
       mac += this.faker.number.hex(15);
-      if (i % 2 === 1 && i !== 11) {
+      if (index % 2 === 1 && index !== 11) {
         mac += separator;
       }
     }
@@ -1344,7 +1353,7 @@ export class InternetModule {
   /**
    * Generates a random password.
    *
-   * @param len The length of the password to generate. Defaults to `15`.
+   * @param length The length of the password to generate. Defaults to `15`.
    * @param memorable Whether the generated password should be memorable. Defaults to `false`.
    * @param pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
@@ -1362,7 +1371,7 @@ export class InternetModule {
    * @deprecated Use `faker.internet({ length, memorable, pattern, prefix })` instead.
    */
   password(
-    len?: number,
+    length?: number,
     memorable?: boolean,
     pattern?: RegExp,
     prefix?: string
@@ -1463,8 +1472,8 @@ export class InternetModule {
      * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
      * MIT Licensed
      */
-    const vowel = /[aeiouAEIOU]$/;
-    const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
+    const vowel = /[AEIOUaeiou]$/;
+    const consonant = /[B-DF-HJ-NP-TV-Zb-df-hj-np-tv-z]$/;
     const _password = (
       length: number,
       memorable: boolean,
@@ -1476,15 +1485,11 @@ export class InternetModule {
       }
 
       if (memorable) {
-        if (consonant.test(prefix)) {
-          pattern = vowel;
-        } else {
-          pattern = consonant;
-        }
+        pattern = consonant.test(prefix) ? vowel : consonant;
       }
 
       const n = this.faker.number.int(94) + 33;
-      let char = String.fromCharCode(n);
+      let char = String.fromCodePoint(n);
       if (memorable) {
         char = char.toLowerCase();
       }

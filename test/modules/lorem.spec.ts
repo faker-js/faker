@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -78,15 +78,15 @@ describe('lorem', () => {
 
         it.each(times(25))(
           'should return %i random values from words array',
-          (num) => {
-            const actual = faker.lorem.words(num);
+          (number) => {
+            const actual = faker.lorem.words(number);
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
 
             const words = actual.split(' ');
 
-            expect(words).toHaveLength(num);
+            expect(words).toHaveLength(number);
 
             for (const word of words) {
               expect(faker.definitions.lorem.words).toContain(word);
@@ -117,7 +117,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual[actual.length - 1]).toBe('.');
+          expect(actual.at(-1)).toBe('.');
         });
 
         it.each(times(25))(
@@ -127,7 +127,7 @@ describe('lorem', () => {
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
-            expect(actual[actual.length - 1]).toBe('.');
+            expect(actual.at(-1)).toBe('.');
 
             const words = actual.split(' ');
 
@@ -182,7 +182,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual[actual.length - 1]).toBe('.');
+          expect(actual.at(-1)).toBe('.');
         });
 
         it.each(times(10))('should return %i sentences', (sentenceCount) => {
@@ -190,7 +190,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual[actual.length - 1]).toBe('.');
+          expect(actual.at(-1)).toBe('.');
 
           const sentences = actual.split('. ');
 
@@ -205,14 +205,14 @@ describe('lorem', () => {
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
-            expect(actual[actual.length - 1]).toBe('.');
+            expect(actual.at(-1)).toBe('.');
 
             const sentences = actual.split(separator);
 
             expect(sentences).toHaveLength(sentenceCount);
 
             for (const sentence of sentences) {
-              expect(sentence[sentence.length - 1]).toBe('.');
+              expect(sentence.at(-1)).toBe('.');
             }
           }
         );
@@ -236,7 +236,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual[actual.length - 1]).toBe('.');
+          expect(actual.at(-1)).toBe('.');
         });
 
         it.each(times(10))(
@@ -246,7 +246,7 @@ describe('lorem', () => {
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
-            expect(actual[actual.length - 1]).toBe('.');
+            expect(actual.at(-1)).toBe('.');
 
             const sentences = actual.split('. ');
 
@@ -274,7 +274,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual[actual.length - 1]).toBe('.');
+          expect(actual.at(-1)).toBe('.');
         });
 
         it.each(times(5))('should return %i paragraphs', (paragraphCount) => {
@@ -282,7 +282,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual[actual.length - 1]).toBe('.');
+          expect(actual.at(-1)).toBe('.');
 
           const paragraphs = actual.split('\n');
 
@@ -297,7 +297,7 @@ describe('lorem', () => {
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
-            expect(actual[actual.length - 1]).toBe('.');
+            expect(actual.at(-1)).toBe('.');
 
             const paragraphs = actual.split(separator);
 

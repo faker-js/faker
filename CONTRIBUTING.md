@@ -102,7 +102,7 @@ Methods without arguments can be tested like this:
 
 ```ts
 import { faker } from '../src';
-import { seededTests } from './support/seededRuns';
+import { seededTests } from './support/seeded-runs';
 
 seededTests(faker, 'someModule', (t) => {
   t.it('someMethod');
@@ -115,7 +115,7 @@ Methods with arguments can be tested like this:
 
 ```ts
 import { faker } from '../src';
-import { seededTests } from './support/seededRuns';
+import { seededTests } from './support/seeded-runs';
 
 seededTests(faker, 'someModule', (t) => {
   t.describe('someMethod', (t) => {

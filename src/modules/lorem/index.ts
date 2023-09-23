@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-import { filterWordListByLength } from '../word/filterWordListByLength';
+import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
  * Module to generate random texts and words.
@@ -151,7 +151,7 @@ export class LoremModule {
         } = { min: 3, max: 10 }
   ): string {
     const sentence = this.words(wordCount);
-    return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
+    return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`;
   }
 
   /**

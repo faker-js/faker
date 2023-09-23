@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { allFakers, faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from './../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -96,7 +96,7 @@ describe('internet', () => {
           memorable: false,
         })
         .it('with pattern option', {
-          pattern: /[0-9]/,
+          pattern: /\d/,
         })
         .it('with prefix option', {
           prefix: 'test',
@@ -104,17 +104,17 @@ describe('internet', () => {
         .it('with length, memorable, pattern and prefix option', {
           length: 10,
           memorable: false,
-          pattern: /[0-9]/,
+          pattern: /\d/,
           prefix: 'test',
         })
         .it('with legacy length', 10)
         .it('with legacy length and memorable', 10, false)
-        .it('with legacy length, memorable and pattern', 10, false, /[0-9]/)
+        .it('with legacy length, memorable and pattern', 10, false, /\d/)
         .it(
           'with legacy length, memorable, pattern and prefix',
           10,
           false,
-          /[0-9]/,
+          /\d/,
           'test'
         );
     });
@@ -297,7 +297,7 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(prefix).toMatch(
-            /^Mike((\d{1,2})|([.!#$%&'*+-/=?^_`{|}~]Smith\d{1,2})|([.!#$%&'*+-/=?^_`{|}~]Smith))/
+            /^Mike((\d{1,2})|([!#$%&'*+-/=?^_`{|}~]Smith\d{1,2})|([!#$%&'*+-/=?^_`{|}~]Smith))/
           );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
@@ -365,7 +365,7 @@ describe('internet', () => {
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
+          expect(prefix).toMatch(/^Mike([!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
         });
       });
 
@@ -636,7 +636,7 @@ describe('internet', () => {
 
           expect(port).toBeTypeOf('number');
           expect(port).toBeGreaterThanOrEqual(0);
-          expect(port).toBeLessThanOrEqual(65535);
+          expect(port).toBeLessThanOrEqual(65_535);
           expect(String(port)).toSatisfy(validator.isPort);
         });
       });
@@ -649,7 +649,7 @@ describe('internet', () => {
           expect(ua).toBeTypeOf('string');
           expect(ua.length).toBeGreaterThanOrEqual(1);
           expect(ua).toMatch(
-            /^(([^\d]+\/[\dA-Za-z\.]+(\s\(.*\)))|([^\d]+\/[\dA-Za-z\.]+(\s\(.*\)*))(\s[^\d]+\/[\dA-Za-z\.]+(\s\(.*\)*))*)$/
+            /^((\D+\/[\d.A-Za-z]+(\s\(.*\)))|(\D+\/[\d.A-Za-z]+(\s\(.*\)*))(\s\D+\/[\d.A-Za-z]+(\s\(.*\)*))*)$/
           );
         });
       });
@@ -683,7 +683,7 @@ describe('internet', () => {
           expect(mac).toBeTruthy();
           expect(mac).toBeTypeOf('string');
           expect(mac).toHaveLength(17);
-          expect(mac).toMatch(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
+          expect(mac).toMatch(/^([\da-f]{2}:){5}[\da-f]{2}$/);
           expect(mac).toSatisfy(validator.isMACAddress);
         });
 
@@ -693,7 +693,7 @@ describe('internet', () => {
           expect(mac).toBeTruthy();
           expect(mac).toBeTypeOf('string');
           expect(mac).toHaveLength(17);
-          expect(mac).toMatch(/^([a-f0-9]{2}-){5}[a-f0-9]{2}$/);
+          expect(mac).toMatch(/^([\da-f]{2}-){5}[\da-f]{2}$/);
           expect(mac).toSatisfy(validator.isMACAddress);
         });
 
@@ -715,7 +715,7 @@ describe('internet', () => {
             expect(mac).toBeTruthy();
             expect(mac).toBeTypeOf('string');
             expect(mac).toHaveLength(17);
-            expect(mac).toMatch(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
+            expect(mac).toMatch(/^([\da-f]{2}:){5}[\da-f]{2}$/);
             expect(mac).toSatisfy(validator.isMACAddress);
           }
         );
@@ -773,7 +773,7 @@ describe('internet', () => {
           const password = faker.internet.password({
             length: 32,
             memorable: false,
-            pattern: /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/,
+            pattern: /(!|\?|&|\[|]|%|\$|[\dA-Za-z])/,
           });
 
           expect(password).toBeTruthy();
@@ -787,7 +787,7 @@ describe('internet', () => {
           const password = faker.internet.password({
             length: 32,
             memorable: false,
-            pattern: /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/,
+            pattern: /(!|\?|&|\[|]|%|\$|[\dA-Za-z])/,
             prefix: 'a!G6',
           });
 

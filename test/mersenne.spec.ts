@@ -1,10 +1,14 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import type { Mersenne } from '../src/internal/mersenne/mersenne';
 import mersenneFn from '../src/internal/mersenne/mersenne';
-import { seededRuns } from './support/seededRuns';
+import { seededRuns } from './support/seeded-runs';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
+
+function randomSeed(): number {
+  return Math.ceil(Math.random() * 1_000_000_000);
+}
 
 describe('mersenne twister', () => {
   const mersenne: Mersenne = mersenneFn();
@@ -22,10 +26,6 @@ describe('mersenne twister', () => {
       expect(actual).toMatchSnapshot();
     });
   });
-
-  function randomSeed(): number {
-    return Math.ceil(Math.random() * 1_000_000_000);
-  }
 
   // Create and log-back the seed for debug purposes
   describe.each(
