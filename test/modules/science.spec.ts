@@ -7,7 +7,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('science', () => {
   seededTests(faker, 'science', (t) => {
-    t.itEach('chemicalElement', 'unit', 'notations');
+    t.itEach('chemicalElement', 'unit', 'notation');
   });
 
   // Create and log-back the seed for debug purposes
