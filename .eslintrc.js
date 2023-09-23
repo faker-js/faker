@@ -16,7 +16,7 @@ module.exports = defineConfig({
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:prettier/recommended',
     'plugin:jsdoc/recommended-typescript-error',
   ],
@@ -41,7 +41,6 @@ module.exports = defineConfig({
       'error',
       { default: 'array-simple', readonly: 'generic' },
     ],
-    '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/naming-convention': [
