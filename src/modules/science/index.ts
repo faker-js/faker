@@ -82,7 +82,7 @@ export class ScienceModule {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
   }
 
-  symbol(): Notations {
+  notations(): Notations {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.science.notations
     );
