@@ -30,7 +30,7 @@ export interface Unit {
   symbol: string;
 }
 
-export interface Notations {
+export interface Notation {
   /**
    * The long version of the notations (e.g. `work`).
    */
@@ -82,9 +82,19 @@ export class ScienceModule {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
   }
 
-  notations(): Notations {
+  /**
+   * Retunrs a ransom scientific notation.
+   *
+   * @example
+   * faker.science.notation() // { name: 'work', symbol: 'w' }
+   * faker.science.notation() // { name: 'force', symbol: 'F' }
+   * faker.science.notation() // { name: 'work', symbol: 'W'}
+   *
+   * @since 8.2.0
+   */
+  notation(): Notation {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.notations
+      this.faker.definitions.science.notation
     );
   }
 }
