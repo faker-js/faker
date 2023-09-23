@@ -86,7 +86,9 @@ function toBinary(values: number[]): string {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
       const bytes = new Uint8Array(buffer);
-      return toBinary(Array.from(bytes)).split(' ').join('');
+      return toBinary([...bytes])
+        .split(' ')
+        .join('');
     }
 
     return (value >>> 0).toString(2).padStart(8, '0');

@@ -697,7 +697,7 @@ export class SimpleHelpersModule {
   uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
-      const array = Array.from(set);
+      const array = [...set];
       return this.shuffle(array).splice(0, length);
     }
 
@@ -715,7 +715,7 @@ export class SimpleHelpersModule {
       // Ignore
     }
 
-    return Array.from(set);
+    return [...set];
   }
 
   /**
@@ -996,7 +996,7 @@ export class SimpleHelpersModule {
       return [];
     }
 
-    const arrayCopy = array.slice(0);
+    const arrayCopy = [...array];
     let i = array.length;
     const min = i - numElements;
     let temp: T;

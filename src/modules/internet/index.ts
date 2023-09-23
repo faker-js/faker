@@ -271,8 +271,8 @@ export class InternetModule {
     // We limit to 50 chars to be more realistic
     localPart = localPart.substring(0, 50);
     if (allowSpecialCharacters) {
-      const usernameChars: string[] = '._-'.split('');
-      const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
+      const usernameChars: string[] = [...'._-'];
+      const specialChars: string[] = [...".!#$%&'*+-/=?^_`{|}~"];
       localPart = localPart.replace(
         this.faker.helpers.arrayElement(usernameChars),
         this.faker.helpers.arrayElement(specialChars)
@@ -638,8 +638,7 @@ export class InternetModule {
       .normalize('NFKD') //for example è decomposes to as e +  ̀
       .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
 
-    result = result
-      .split('')
+    result = [...result]
       .map((char) => {
         // If we have a mapping for this character, (for Cyrillic, Greek etc) use it
         if (charMapping[char]) {

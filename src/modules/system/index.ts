@@ -163,7 +163,7 @@ export class SystemModule {
       typeSet.add(type);
     });
 
-    const types = Array.from(typeSet);
+    const types = [...typeSet];
     return this.faker.helpers.arrayElement(types);
   }
 
@@ -195,7 +195,7 @@ export class SystemModule {
       }
     });
 
-    const extensions = Array.from(extensionSet);
+    const extensions = [...extensionSet];
     return this.faker.helpers.arrayElement(extensions);
   }
 
