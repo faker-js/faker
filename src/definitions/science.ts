@@ -16,7 +16,7 @@ export type ScienceDefinition = LocaleEntry<{
   chemicalElement: ReadonlyArray<ChemicalElement>;
 
   /**
-   * Some science symbols
+   * Some science notations
    */
   notations: ReadonlyArray<Notations>;
 }>;
