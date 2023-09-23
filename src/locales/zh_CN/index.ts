@@ -15,6 +15,7 @@ import metadata from './metadata';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
+import science from './science';
 import word from './word';
 
 const zh_CN: LocaleDefinition = {
@@ -30,6 +31,7 @@ const zh_CN: LocaleDefinition = {
   music,
   person,
   phone_number,
+  science,
   word,
 };
 
