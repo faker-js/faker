@@ -30,6 +30,16 @@ export interface Unit {
   symbol: string;
 }
 
+export interface Notations {
+  /**
+   * The long version of the notations (e.g. `work`).
+   */
+  name: string;
+  /**
+   * The short version/abbreviation of the notations (e.g. `w`)
+   */
+  symbol: string;
+}
 /**
  * Module to generate science related entries.
  *
@@ -70,5 +80,11 @@ export class ScienceModule {
    */
   unit(): Unit {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
+  }
+
+  symbol(): Notations {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.science.notations
+    );
   }
 }

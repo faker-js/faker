@@ -1,4 +1,4 @@
-import type { ChemicalElement, Unit } from '../modules/science';
+import type { ChemicalElement, Notations, Unit } from '../modules/science';
 import type { LocaleEntry } from './definitions';
 
 /**
@@ -14,4 +14,9 @@ export type ScienceDefinition = LocaleEntry<{
    * Some periodic table element information.
    */
   chemicalElement: ReadonlyArray<ChemicalElement>;
+
+  /**
+   * Some science symbols
+   */
+  notations: ReadonlyArray<Notations>;
 }>;
