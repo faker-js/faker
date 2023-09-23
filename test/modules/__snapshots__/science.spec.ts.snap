@@ -8,7 +8,7 @@ exports[`science > 42 > chemicalElement 1`] = `
 }
 `;
 
-exports[`science > 42 > notations 1`] = `
+exports[`science > 42 > notation 1`] = `
 {
   "name": "gravity",
   "symbol": "G",
@@ -30,7 +30,7 @@ exports[`science > 1211 > chemicalElement 1`] = `
 }
 `;
 
-exports[`science > 1211 > notations 1`] = `
+exports[`science > 1211 > notation 1`] = `
 {
   "name": "power",
   "symbol": "P",
@@ -52,7 +52,7 @@ exports[`science > 1337 > chemicalElement 1`] = `
 }
 `;
 
-exports[`science > 1337 > notations 1`] = `
+exports[`science > 1337 > notation 1`] = `
 {
   "name": "force",
   "symbol": "F",

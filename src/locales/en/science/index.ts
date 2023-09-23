@@ -4,12 +4,12 @@
  */
 import type { ScienceDefinition } from '../../..';
 import chemicalElement from './chemicalElement';
-import notations from './notations';
+import notation from './notation';
 import unit from './unit';
 
 const science: ScienceDefinition = {
   chemicalElement,
-  notations,
+  notation,
   unit,
 };
 
