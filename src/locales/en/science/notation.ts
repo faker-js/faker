@@ -31,4 +31,20 @@ export default Object.freeze([
     name: 'square',
     symbol: 'S',
   },
+  {
+    name: 'time',
+    symbol: 't',
+  },
+  {
+    name: 'velocity',
+    symbol: 'v',
+  },
+  {
+    name: 'volume',
+    symbol: 'V',
+  },
+  {
+    name: 'mass',
+    symbol: 'm',
+  },
 ]);
