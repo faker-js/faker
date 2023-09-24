@@ -23,4 +23,12 @@ export default Object.freeze([
     name: 'power',
     symbol: 'P',
   },
+  {
+    name: 'heat capacity',
+    symbol: 'c',
+  },
+  {
+    name: 'square',
+    symbol: 'S',
+  },
 ]);
