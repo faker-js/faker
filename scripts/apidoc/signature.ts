@@ -314,6 +314,7 @@ async function signatureTypeToText(
  * Extracts and removed the parameter default from the comments.
  *
  * @param comment The comment to extract the default from.
+ *
  * @returns The extracted default value.
  */
 function extractDefaultFromComment(comment?: Comment): string | undefined {

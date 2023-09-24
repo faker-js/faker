@@ -23,6 +23,7 @@ import { adjustUrls } from './utils';
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
  *
  * @param project The project used to extract the modules.
+ *
  * @returns The generated pages.
  */
 export async function processModules(
@@ -35,6 +36,7 @@ export async function processModules(
  * Analyzes and writes the documentation for a module and its methods such as `faker.animal.cat()`.
  *
  * @param module The module to process.
+ *
  * @returns The generated pages.
  */
 async function processModule(
@@ -63,6 +65,7 @@ async function processModule(
  * Analyzes the documentation for a class.
  *
  * @param module The class to process.
+ *
  * @returns The class information.
  */
 export function analyzeModule(module: DeclarationReflection): {
@@ -85,6 +88,7 @@ export function analyzeModule(module: DeclarationReflection): {
  *
  * @param module The module to process.
  * @param accessor The code used to access the methods within the module.
+ *
  * @returns A list containing the documentation for the api methods in the given module.
  */
 export async function processModuleMethods(
@@ -99,6 +103,7 @@ export async function processModuleMethods(
  *
  * @param signatures The signatures to process.
  * @param accessor The code used to access the methods.
+ *
  * @returns A list containing the documentation for the api methods.
  */
 export async function processMethods(
