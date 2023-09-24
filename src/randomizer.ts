@@ -31,8 +31,7 @@
  */
 export interface Randomizer {
   /**
-   * Generates a random float between `[0, 1)`.
-   * This method is called `next` so that it could be used as an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol).
+   * Generates a random float between 0 (inclusive) and 1 (exclusive).
    *
    * @example
    * randomizer.next() // 0.3404027920160495
