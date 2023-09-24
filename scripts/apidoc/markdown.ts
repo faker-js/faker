@@ -47,7 +47,9 @@ function comparableSanitizedHtml(html: string): string {
 
 /**
  * Converts a Typescript code block to an HTML string and sanitizes it.
+ *
  * @param code The code to convert.
+ *
  * @returns The converted HTML string.
  */
 export function codeToHtml(code: string): string {
@@ -57,8 +59,10 @@ export function codeToHtml(code: string): string {
 
 /**
  * Converts Markdown to an HTML string and sanitizes it.
+ *
  * @param md The markdown to convert.
  * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
+ *
  * @returns The converted HTML string.
  */
 export function mdToHtml(md: string, inline: boolean = false): string {

@@ -12,7 +12,9 @@ function kilometersToMiles(miles: number) {
 }
 
 /**
- * Returns the number of decimal places a number has
+ * Returns the number of decimal places a number has.
+ *
+ * @param num The number to check.
  */
 function precision(num: number): number {
   const decimalPart = num.toString().split('.')[1];

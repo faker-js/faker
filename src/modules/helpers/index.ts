@@ -158,6 +158,9 @@ function legacyRegexpStringParse(
   return string;
 }
 
+/**
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
+ */
 export class SimpleHelpersModule {
   /**
    * Global store of unique values.
