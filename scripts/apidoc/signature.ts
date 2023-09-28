@@ -14,12 +14,12 @@ import type {
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
 import { formatTypescript } from './format';
-import { mdToHtml } from './markdown';
+import { codeToHtml, mdToHtml } from './markdown';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractRawDefault,
-  extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
@@ -27,8 +27,6 @@ import {
   joinTagParts,
   toBlock,
 } from './typedoc';
-
-const code = '```';
 
 export async function analyzeSignature(
   signature: SignatureReflection,
@@ -74,9 +72,9 @@ export async function analyzeSignature(
 
   let examples = `${accessor}${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
 
-  const exampleTags = extractRawExamples(signature);
-  if (exampleTags.length > 0) {
-    examples += `${exampleTags.join('\n').trim()}\n`;
+  const exampleTags = extractJoinedRawExamples(signature);
+  if (exampleTags) {
+    examples += exampleTags;
   }
 
   const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
@@ -97,7 +95,7 @@ export async function analyzeSignature(
     sourcePath: extractSourcePath(signature),
     throws,
     returns: await typeToText(signature.type),
-    examples: mdToHtml(`${code}ts\n${examples}${code}`),
+    examples: codeToHtml(examples),
     deprecated,
     seeAlsos,
   };
@@ -316,6 +314,7 @@ async function signatureTypeToText(
  * Extracts and removed the parameter default from the comments.
  *
  * @param comment The comment to extract the default from.
+ *
  * @returns The extracted default value.
  */
 function extractDefaultFromComment(comment?: Comment): string | undefined {

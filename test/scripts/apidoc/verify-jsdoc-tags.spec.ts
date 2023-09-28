@@ -7,8 +7,8 @@ import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractModuleFieldName,
-  extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractTagContent,
@@ -110,7 +110,7 @@ describe('verify JSDoc tags', () => {
             // Write temp files to disk
 
             // Extract examples and make them runnable
-            const examples = extractRawExamples(signature).join('').trim();
+            const examples = extractJoinedRawExamples(signature);
 
             // Save examples to a file to run them later in the specific tests
             const dir = resolveDirToModule(moduleName);
@@ -135,7 +135,7 @@ describe('verify JSDoc tags', () => {
 
           it('verify @example tag', async () => {
             // Extract the examples
-            const examples = extractRawExamples(signature).join('').trim();
+            const examples = extractJoinedRawExamples(signature);
 
             expect(
               examples,
