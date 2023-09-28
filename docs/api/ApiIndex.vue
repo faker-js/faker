@@ -1,7 +1,7 @@
 <!-- This content is mostly copied over from https://github.com/vuejs/docs/blob/main/src/api/ApiIndex.vue -->
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { slugify } from '../.vitepress/shared/utils/slugify';
 import apiSearchIndex from './api-search-index.json';
 import { APIGroup } from './api-types';
@@ -43,37 +43,6 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[];
 });
-
-const apiFilter = ref<HTMLInputElement>();
-
-function apiSearchFocusHandler(event: KeyboardEvent): void {
-  if (event.key === 'Escape') {
-    if (apiFilter.value !== document.activeElement) {
-      query.value = '';
-    } else {
-      apiFilter.value!.blur();
-    }
-  } else if (event.key === 'Enter') {
-    if (apiFilter.value !== document.activeElement) return;
-    if (query.value === '') return;
-    const item = filtered.value[0].items[0];
-    if (!item) return;
-    const header = item.headers[0];
-    if (!header) return;
-    window.location.href = item.link + '#' + slugify(header.anchor);
-  } else if (
-    /^[a-z]$/.test(event.key) &&
-    !event.altKey &&
-    !event.ctrlKey &&
-    !event.shiftKey &&
-    !event.metaKey
-  ) {
-    apiFilter.value!.focus();
-  }
-}
-
-onMounted(() => window.addEventListener('keydown', apiSearchFocusHandler));
-onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
 </script>
 
 <template>
@@ -85,7 +54,6 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
         <input
           type="search"
           placeholder="Enter keyword"
-          ref="apiFilter"
           id="api-filter"
           v-model="query"
         />
