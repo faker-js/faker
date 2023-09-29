@@ -92,7 +92,8 @@ describe('finance', () => {
     t.describe('creditCardNumber', (t) => {
       t.it('noArgs')
         .it('with issuer', 'visa')
-        .it('with issuer option', { issuer: 'visa' });
+        .it('with issuer option visa', { issuer: 'visa' })
+        .it('with issuer option mastercard', { issuer: 'mastercard' });
     });
 
     t.describe('mask', (t) => {
@@ -459,7 +460,9 @@ describe('finance', () => {
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toSatisfy((value) =>
+            isCreditCard(value as string, { provider: 'mastercard' })
+          );
           expect(mastercard).toSatisfy(luhnCheck);
 
           const discover = faker.finance.creditCardNumber('discover');
