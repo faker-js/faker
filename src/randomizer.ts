@@ -9,8 +9,10 @@
  * Instances are expected to be ready for use before being passed to any Faker constructor,
  * this includes being `seed()`ed with either a random or fixed value.
  *
+ * For more information please refer to the [documentation](/api/randomizer).
+ *
  * @example
- * import { Randomizer, SimpleFaker } from '@faker-js/faker';
+ * import { Faker, Randomizer, SimpleFaker } from '@faker-js/faker';
  * import { RandomGenerator, xoroshiro128plus } from 'pure-rand';
  *
  * function generatePureRandRandomizer(
@@ -27,7 +29,14 @@
  *   return self;
  * }
  *
- * const simpleFaker = new SimpleFaker({ randomizer: generatePureRandRandomizer() });
+ * const simpleFaker = new SimpleFaker({
+ *   randomizer: generatePureRandRandomizer(),
+ * });
+ *
+ * const faker = new Faker({
+ *   locale: ...,
+ *   randomizer: generatePureRandRandomizer(),
+ * });
  */
 export interface Randomizer {
   /**
