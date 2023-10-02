@@ -29,13 +29,13 @@
  *   return self;
  * }
  *
- * const simpleFaker = new SimpleFaker({
- *   randomizer: generatePureRandRandomizer(),
- * });
+ * const randomizer = generatePureRandRandomizer();
+ *
+ * const simpleFaker = new SimpleFaker({ randomizer });
  *
  * const faker = new Faker({
  *   locale: ...,
- *   randomizer: generatePureRandRandomizer(),
+ *   randomizer,
  * });
  */
 export interface Randomizer {
