@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { Faker, SimpleFaker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
@@ -24,22 +24,10 @@ function toDate(
 }
 
 /**
- * Module to generate dates.
- *
- * ### Overview
- *
- * To quickly generate a date in the past, use [`recent()`](https://fakerjs.dev/api/date.html#recent) (last day) or [`past()`](https://fakerjs.dev/api/date.html#past) (last year).
- * To quickly generate a date in the future, use [`soon()`](https://fakerjs.dev/api/date.html#soon) (next day) or [`future()`](https://fakerjs.dev/api/date.html#future) (next year).
- * For a realistic birthdate for an adult, use [`birthdate()`](https://fakerjs.dev/api/date.html#birthdate).
- *
- * For more control, any of these methods can be customized with further options, or use [`between()`](https://fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://fakerjs.dev/api/date.html#betweens) for multiple dates.
- *
- * You can generate random localized month and weekday names using [`month()`](https://fakerjs.dev/api/date.html#month) and [`weekday()`](https://fakerjs.dev/api/date.html#weekday).
- *
- * These methods have additional concerns about reproducibility, see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
+ * Module to generate dates (without methods requiring localized data).
  */
-export class DateModule {
-  constructor(private readonly faker: Faker) {
+export class SimpleDateModule {
+  constructor(protected readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -827,6 +815,114 @@ export class DateModule {
   }
 
   /**
+   * Returns a random birthdate.
+   *
+   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
+   * @param options.min The minimum age or year to generate a birthdate.
+   * @param options.max The maximum age or year to generate a birthdate.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `now`.
+   * @param options.mode The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
+   *
+   * There are two modes available `'age'` and `'year'`:
+   * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
+   * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
+   *
+   * Defaults to `year`.
+   *
+   * @example
+   * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
+   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }) // 2003-11-02T20:03:20.116Z
+   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }) // 1940-08-20T08:53:07.538Z
+   *
+   * @since 7.0.0
+   */
+  birthdate(
+    options: {
+      /**
+       * The minimum age or year to generate a birthdate.
+       *
+       * @default 18
+       */
+      min?: number;
+      /**
+       * The maximum age or year to generate a birthdate.
+       *
+       * @default 80
+       */
+      max?: number;
+      /**
+       * The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
+       *
+       * There are two modes available `'age'` and `'year'`:
+       * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
+       * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
+       *
+       * @default 'year'
+       */
+      mode?: 'age' | 'year';
+      /**
+       * The date to use as reference point for the newly generated date.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): Date {
+    if (options.max < options.min) {
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
+      );
+    }
+
+    const mode = options.mode === 'age' ? 'age' : 'year';
+    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
+    const refYear = refDate.getUTCFullYear();
+
+    // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
+    // So that people can still be considered as adults in most cases
+
+    // Convert to epoch timestamps
+    let min: number;
+    let max: number;
+    if (mode === 'age') {
+      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
+      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
+    } else {
+      // Avoid generating dates the first and last date of the year
+      // to avoid running into other years depending on the timezone.
+      min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
+        options.min ?? refYear - 80
+      );
+      max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
+        options.max ?? refYear - 18
+      );
+    }
+
+    return new Date(this.faker.number.int({ min, max }));
+  }
+}
+
+/**
+ * Module to generate dates.
+ *
+ * ### Overview
+ *
+ * To quickly generate a date in the past, use [`recent()`](https://fakerjs.dev/api/date.html#recent) (last day) or [`past()`](https://fakerjs.dev/api/date.html#past) (last year).
+ * To quickly generate a date in the future, use [`soon()`](https://fakerjs.dev/api/date.html#soon) (next day) or [`future()`](https://fakerjs.dev/api/date.html#future) (next year).
+ * For a realistic birthdate for an adult, use [`birthdate()`](https://fakerjs.dev/api/date.html#birthdate).
+ *
+ * For more control, any of these methods can be customized with further options, or use [`between()`](https://fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://fakerjs.dev/api/date.html#betweens) for multiple dates.
+ *
+ * You can generate random localized month and weekday names using [`month()`](https://fakerjs.dev/api/date.html#month) and [`weekday()`](https://fakerjs.dev/api/date.html#weekday).
+ *
+ * These methods have additional concerns about reproducibility, see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
+ */
+export class DateModule extends SimpleDateModule {
+  constructor(protected readonly faker: Faker) {
+    super(faker);
+  }
+
+  /**
    * Returns a random name of a month.
    *
    * @param options The optional options to use.
@@ -1203,92 +1299,5 @@ export class DateModule {
     }
 
     return this.faker.helpers.arrayElement(source[type]);
-  }
-
-  /**
-   * Returns a random birthdate.
-   *
-   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
-   * @param options.min The minimum age or year to generate a birthdate.
-   * @param options.max The maximum age or year to generate a birthdate.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `now`.
-   * @param options.mode The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
-   *
-   * There are two modes available `'age'` and `'year'`:
-   * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
-   * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
-   *
-   * Defaults to `year`.
-   *
-   * @example
-   * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
-   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }) // 2003-11-02T20:03:20.116Z
-   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }) // 1940-08-20T08:53:07.538Z
-   *
-   * @since 7.0.0
-   */
-  birthdate(
-    options: {
-      /**
-       * The minimum age or year to generate a birthdate.
-       *
-       * @default 18
-       */
-      min?: number;
-      /**
-       * The maximum age or year to generate a birthdate.
-       *
-       * @default 80
-       */
-      max?: number;
-      /**
-       * The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
-       *
-       * There are two modes available `'age'` and `'year'`:
-       * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
-       * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
-       *
-       * @default 'year'
-       */
-      mode?: 'age' | 'year';
-      /**
-       * The date to use as reference point for the newly generated date.
-       *
-       * @default faker.defaultRefDate()
-       */
-      refDate?: string | Date | number;
-    } = {}
-  ): Date {
-    if (options.max < options.min) {
-      throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
-      );
-    }
-
-    const mode = options.mode === 'age' ? 'age' : 'year';
-    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
-    const refYear = refDate.getUTCFullYear();
-
-    // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
-    // So that people can still be considered as adults in most cases
-
-    // Convert to epoch timestamps
-    let min: number;
-    let max: number;
-    if (mode === 'age') {
-      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
-      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
-    } else {
-      // Avoid generating dates the first and last date of the year
-      // to avoid running into other years depending on the timezone.
-      min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
-        options.min ?? refYear - 80
-      );
-      max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 18
-      );
-    }
-
-    return new Date(this.faker.number.int({ min, max }));
   }
 }

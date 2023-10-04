@@ -15,11 +15,14 @@
 export function bindThisToMemberFunctions<TClass extends { new (): any }>(
   instance: InstanceType<TClass>
 ): void {
-  for (const name of Object.getOwnPropertyNames(
-    Object.getPrototypeOf(instance)
-  )) {
-    if (typeof instance[name] === 'function' && name !== 'constructor') {
-      instance[name] = instance[name].bind(instance);
+  let p = Object.getPrototypeOf(instance);
+  do {
+    for (const name of Object.getOwnPropertyNames(p)) {
+      if (typeof instance[name] === 'function' && name !== 'constructor') {
+        instance[name] = instance[name].bind(instance);
+      }
     }
-  }
+
+    p = Object.getPrototypeOf(p);
+  } while (p !== Object.prototype);
 }

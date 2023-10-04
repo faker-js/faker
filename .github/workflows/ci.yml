@@ -35,23 +35,23 @@ jobs:
     name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           # Required for docs/versions tests
           fetch-depth: 0
 
       - name: Install pnpm (node 14, pnpm 7)
         if: matrix.node_version == 14
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
         with:
           version: 7
 
       - name: Install pnpm
         if: matrix.node_version != 14
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
       - name: Set node version to ${{ matrix.node_version }}
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: ${{ matrix.node_version }}
           cache: 'pnpm'
@@ -72,7 +72,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [18]
+        node_version: [20]
       fail-fast: false
     env:
       LANG: zh_SG.UTF-8
@@ -90,16 +90,16 @@ jobs:
         run: date
 
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           # Required for docs/versions tests
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
       - name: Set node version to ${{ matrix.node_version }}
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: ${{ matrix.node_version }}
           cache: 'pnpm'
@@ -117,15 +117,17 @@ jobs:
 
   e2e-test:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome107
+    container:
+      image: cypress/browsers:node-20.6.1-chrome-116.0.5845.187-1-ff-117.0-edge-116.0.1938.76-1
+      options: --user 1001
     timeout-minutes: 10
-    name: 'E2E Doc Test: node-18, ubuntu-latest'
+    name: 'E2E Doc Test: node-20, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
       - name: Install deps
         run: pnpm install
@@ -140,20 +142,20 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    name: 'Lint: node-18, ubuntu-latest'
+    name: 'Lint: node-20, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
-      - name: Set node version to 18
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+      - name: Set node version to 20
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm'
 
       - name: Install deps
@@ -170,20 +172,20 @@ jobs:
   ts-check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    name: 'TS-Check: node-18, ubuntu-latest'
+    name: 'TS-Check: node-20, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
-      - name: Set node version to 18
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+      - name: Set node version to 20
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm'
 
       - name: Install deps
@@ -197,20 +199,20 @@ jobs:
   codecov:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    name: 'Codecov: node-18, ubuntu-latest'
+    name: 'Codecov: node-20, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
-      - name: Set node version to 18
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+      - name: Set node version to 20
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm'
 
       - name: Install deps

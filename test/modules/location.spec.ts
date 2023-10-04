@@ -12,7 +12,9 @@ function kilometersToMiles(miles: number) {
 }
 
 /**
- * Returns the number of decimal places a number has
+ * Returns the number of decimal places a number has.
+ *
+ * @param num The number to check.
  */
 function precision(num: number): number {
   const decimalPart = num.toString().split('.')[1];
@@ -74,8 +76,12 @@ describe('location', () => {
 
     t.describe('countryCode', (t) => {
       t.it('noArgs')
-        .it('with string', 'alpha-2')
-        .it('with alphaCode option', { variant: 'alpha-3' });
+        .it('with string alpha-2', 'alpha-2')
+        .it('with string alpha-3', 'alpha-3')
+        .it('with string numeric', 'numeric')
+        .it('with variant option alpha-2', { variant: 'alpha-2' })
+        .it('with variant option alpha-3', { variant: 'alpha-3' })
+        .it('with variant option numeric', { variant: 'numeric' });
     });
 
     t.describeEach(
@@ -152,14 +158,25 @@ describe('location', () => {
     'random seeded tests for seed %i',
     () => {
       describe('countryCode()', () => {
+        it('returns random alpha-2 countryCode', () => {
+          const countryCode = faker.location.countryCode('alpha-2');
+
+          expect(countryCode).toBeTruthy();
+          expect(countryCode).toMatch(/^[A-Z]{2}$/);
+        });
+
         it('returns random alpha-3 countryCode', () => {
           const countryCode = faker.location.countryCode('alpha-3');
 
           expect(countryCode).toBeTruthy();
-          expect(
-            countryCode.length,
-            'The countryCode should be 3 characters long'
-          ).toBe(3);
+          expect(countryCode).toMatch(/^[A-Z]{3}$/);
+        });
+
+        it('returns random numeric countryCode', () => {
+          const countryCode = faker.location.countryCode('numeric');
+
+          expect(countryCode).toBeTruthy();
+          expect(countryCode).toMatch(/^\d{3}$/);
         });
       });
 

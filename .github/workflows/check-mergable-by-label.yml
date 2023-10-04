@@ -1,0 +1,31 @@
+name: PR Labels
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+      - labeled
+      - unlabeled
+
+permissions: {}
+
+jobs:
+  fail-by-blocking-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for blocking labels
+        run: |
+          BLOCKING_LABELS=("do NOT merge yet" "s: on hold")
+          PR_LABELS=$(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
+
+          for LABEL in "${BLOCKING_LABELS[@]}"; do
+            if [[ "$PR_LABELS" == *"$LABEL"* ]]; then
+              echo "This PR has a blocking label: $LABEL"
+              exit 1
+            fi
+          done
+
+          echo "No blocking labels found"

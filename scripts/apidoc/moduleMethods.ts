@@ -5,10 +5,12 @@ import type {
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
+import { codeToHtml } from './markdown';
 import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractModuleFieldName,
   extractModuleName,
   selectApiMethodSignatures,
@@ -21,6 +23,7 @@ import { adjustUrls } from './utils';
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
  *
  * @param project The project used to extract the modules.
+ *
  * @returns The generated pages.
  */
 export async function processModules(
@@ -33,6 +36,7 @@ export async function processModules(
  * Analyzes and writes the documentation for a module and its methods such as `faker.animal.cat()`.
  *
  * @param module The module to process.
+ *
  * @returns The generated pages.
  */
 async function processModule(
@@ -41,7 +45,7 @@ async function processModule(
   const moduleName = extractModuleName(module);
   console.log(`Processing Module ${moduleName}`);
   const moduleFieldName = extractModuleFieldName(module);
-  const { comment, deprecated } = analyzeModule(module);
+  const { comment, deprecated, examples } = analyzeModule(module);
   const methods = await processModuleMethods(
     module,
     `faker.${moduleFieldName}.`
@@ -51,6 +55,7 @@ async function processModule(
     moduleName,
     moduleFieldName,
     comment,
+    examples,
     deprecated,
     methods
   );
@@ -60,15 +65,21 @@ async function processModule(
  * Analyzes the documentation for a class.
  *
  * @param module The class to process.
+ *
  * @returns The class information.
  */
 export function analyzeModule(module: DeclarationReflection): {
   comment: string;
   deprecated: string | undefined;
+  examples: string | undefined;
 } {
+  const examplesRaw = extractJoinedRawExamples(module);
+  const examples = examplesRaw ? codeToHtml(examplesRaw) : undefined;
+
   return {
     comment: adjustUrls(extractDescription(module)),
     deprecated: extractDeprecated(module),
+    examples,
   };
 }
 
@@ -77,6 +88,7 @@ export function analyzeModule(module: DeclarationReflection): {
  *
  * @param module The module to process.
  * @param accessor The code used to access the methods within the module.
+ *
  * @returns A list containing the documentation for the api methods in the given module.
  */
 export async function processModuleMethods(
@@ -91,6 +103,7 @@ export async function processModuleMethods(
  *
  * @param signatures The signatures to process.
  * @param accessor The code used to access the methods.
+ *
  * @returns A list containing the documentation for the api methods.
  */
 export async function processMethods(
