@@ -136,11 +136,11 @@ exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
 exports[`location > 42 > street 1`] = `"Schinner Villages"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Morrell Avenue"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Oxford Street"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Morrell Avenue"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Oxford Street"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Morrell Avenue Suite 241"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Oxford Street Suite 241"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
@@ -286,7 +286,7 @@ exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
-exports[`location > 1211 > street 1`] = `"John A. Creighton Boulevard"`;
+exports[`location > 1211 > street 1`] = `"Market Street"`;
 
 exports[`location > 1211 > streetAddress > noArgs 1`] = `"587 Breana Wells"`;
 
