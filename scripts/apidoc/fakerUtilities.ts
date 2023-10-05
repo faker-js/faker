@@ -28,5 +28,12 @@ async function processUtilities(
     )
   );
 
-  return writeApiDocsModule('Utilities', 'utils', comment, undefined, methods);
+  return writeApiDocsModule(
+    'Utilities',
+    'utils',
+    comment,
+    undefined,
+    undefined,
+    methods
+  );
 }

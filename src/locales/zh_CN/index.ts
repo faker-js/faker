@@ -3,10 +3,14 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import airline from './airline';
 import animal from './animal';
 import color from './color';
+import commerce from './commerce';
 import company from './company';
+import database from './database';
 import date from './date';
+import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
@@ -14,13 +18,19 @@ import metadata from './metadata';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
+import science from './science';
+import vehicle from './vehicle';
 import word from './word';
 
 const zh_CN: LocaleDefinition = {
+  airline,
   animal,
   color,
+  commerce,
   company,
+  database,
   date,
+  finance,
   hacker,
   internet,
   location,
@@ -28,6 +38,8 @@ const zh_CN: LocaleDefinition = {
   music,
   person,
   phone_number,
+  science,
+  vehicle,
   word,
 };
 

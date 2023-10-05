@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
@@ -24,7 +24,7 @@ import * as uniqueExec from './unique';
  * @since 8.0.0
  */
 function getRepetitionsBasedOnQuantifierParameters(
-  faker: Faker,
+  faker: SimpleFaker,
   quantifierSymbol: string,
   quantifierMin: string,
   quantifierMax: string
@@ -94,7 +94,10 @@ function getRepetitionsBasedOnQuantifierParameters(
  *
  * @since 5.0.0
  */
-function legacyRegexpStringParse(faker: Faker, string: string = ''): string {
+function legacyRegexpStringParse(
+  faker: SimpleFaker,
+  string: string = ''
+): string {
   // Deal with range repeat `{min,max}`
   const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
   const REP_REG = /(.)\{(\d+)\}/;
@@ -156,17 +159,9 @@ function legacyRegexpStringParse(faker: Faker, string: string = ''): string {
 }
 
 /**
- * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
- *
- * ### Overview
- *
- * A particularly helpful method is [`arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) which returns a random element from an array. This is useful when adding custom data that Faker doesn't contain.
- *
- * There are alternatives of this method for objects ([`objectKey()`](https://fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://fakerjs.dev/api/helpers.html#weightedarrayelement)).
- *
- * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
-export class HelpersModule {
+export class SimpleHelpersModule {
   /**
    * Global store of unique values.
    * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
@@ -175,7 +170,7 @@ export class HelpersModule {
    */
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
-  constructor(private readonly faker: Faker) {
+  constructor(protected readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -184,7 +179,7 @@ export class HelpersModule {
    * For that all spaces (` `) are replaced by hyphens (`-`)
    * and most non word characters except for dots and hyphens will be removed.
    *
-   * @param string The input to slugify. Defaults to `''`.
+   * @param string The input to slugify.
    *
    * @example
    * faker.helpers.slugify() // ''
@@ -204,7 +199,7 @@ export class HelpersModule {
    * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
    * `!` will be replaced by digits >=2 (`2` - `9`).
    *
-   * @param string The template string to parse. Defaults to `''`.
+   * @param string The template string to parse.
    * @param symbol The symbol to replace with digits. Defaults to `'#'`.
    *
    * @example
@@ -237,7 +232,7 @@ export class HelpersModule {
    * - `?` will be replaced with an upper letter ('A' - 'Z')
    * - and `*` will be replaced with either a digit or letter.
    *
-   * @param string The template string to parse. Defaults to `''`.
+   * @param string The template string to parse.
    *
    * @example
    * faker.helpers.replaceSymbols() // ''
@@ -302,8 +297,8 @@ export class HelpersModule {
    * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
    * `L` will be replaced with the appropriate Luhn checksum.
    *
-   * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.
-   * @param symbol The symbol to replace with a digit. Defaults to `'#'`.
+   * @param string The credit card format pattern. Defaults to `6453-####-####-####-###L`.
+   * @param symbol The symbol to replace with a digit.
    *
    * @example
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3771'
@@ -332,7 +327,7 @@ export class HelpersModule {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @param string The template string to to parse. Defaults to `''`.
+   * @param string The template string to parse.
    *
    * @see faker.helpers.fromRegExp()
    *
@@ -1054,6 +1049,212 @@ export class HelpersModule {
   }
 
   /**
+   * Helper method that converts the given number or range to a number.
+   *
+   * @param numberOrRange The number or range to convert.
+   * @param numberOrRange.min The minimum value for the range.
+   * @param numberOrRange.max The maximum value for the range.
+   *
+   * @example
+   * faker.helpers.rangeToNumber(1) // 1
+   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
+   *
+   * @since 8.0.0
+   */
+  rangeToNumber(
+    numberOrRange:
+      | number
+      | {
+          /**
+           * The minimum value for the range.
+           */
+          min: number;
+          /**
+           * The maximum value for the range.
+           */
+          max: number;
+        }
+  ): number {
+    if (typeof numberOrRange === 'number') {
+      return numberOrRange;
+    }
+
+    return this.faker.number.int(numberOrRange);
+  }
+
+  /**
+   * Generates a unique result using the results of the given method.
+   * Used unique entries will be stored internally and filtered from subsequent calls.
+   *
+   * @template TMethod The type of the method to execute.
+   *
+   * @param method The method used to generate the values.
+   * @param args The arguments used to call the method.
+   * @param options The optional options used to configure this method.
+   * @param options.startTime This parameter does nothing.
+   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
+   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
+   * @param options.currentIterations This parameter does nothing.
+   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
+   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
+   * @param options.store The store of unique entries. Defaults to a global store.
+   *
+   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
+   *
+   * @example
+   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
+   *
+   * @since 7.5.0
+   *
+   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
+   * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
+   */
+  unique<
+    TMethod extends (
+      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...parameters: any[]
+    ) => RecordKey,
+  >(
+    method: TMethod,
+    args: Parameters<TMethod> = [] as Parameters<TMethod>,
+    options: {
+      /**
+       * This parameter does nothing.
+       *
+       * @default new Date().getTime()
+       */
+      startTime?: number;
+      /**
+       * The time in milliseconds this method may take before throwing an error.
+       *
+       * @default 50
+       */
+      maxTime?: number;
+      /**
+       * The total number of attempts to try before throwing an error.
+       *
+       * @default 50
+       */
+      maxRetries?: number;
+      /**
+       * This parameter does nothing.
+       *
+       * @default 0
+       */
+      currentIterations?: number;
+      /**
+       * The value or values that should be excluded/skipped.
+       *
+       * @default []
+       */
+      exclude?: RecordKey | RecordKey[];
+      /**
+       * The function used to determine whether a value was already returned.
+       *
+       * Defaults to check the existence of the key.
+       *
+       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
+       */
+      compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+      /**
+       * The store of unique entries.
+       *
+       * Defaults to a global store.
+       */
+      store?: Record<RecordKey, RecordKey>;
+    } = {}
+  ): ReturnType<TMethod> {
+    deprecated({
+      deprecated: 'faker.helpers.unique',
+      proposed:
+        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    const {
+      maxTime = 50,
+      maxRetries = 50,
+      exclude = [],
+      store = this.uniqueStore,
+    } = options;
+    return uniqueExec.exec(method, args, {
+      ...options,
+      startTime: new Date().getTime(),
+      maxTime,
+      maxRetries,
+      currentIterations: 0,
+      exclude,
+      store,
+    });
+  }
+
+  /**
+   * Generates an array containing values returned by the given method.
+   *
+   * @template TResult The type of elements.
+   *
+   * @param method The method used to generate the values.
+   * @param options The optional options object.
+   * @param options.count The number or range of elements to generate. Defaults to `3`.
+   *
+   * @example
+   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   *
+   * @since 8.0.0
+   */
+  multiple<TResult>(
+    method: () => TResult,
+    options: {
+      /**
+       * The number or range of elements to generate.
+       *
+       * @default 3
+       */
+      count?:
+        | number
+        | {
+            /**
+             * The minimum value for the range.
+             */
+            min: number;
+            /**
+             * The maximum value for the range.
+             */
+            max: number;
+          };
+    } = {}
+  ): TResult[] {
+    const count = this.rangeToNumber(options.count ?? 3);
+    if (count <= 0) {
+      return [];
+    }
+
+    // TODO @ST-DDT 2022-11-21: Add support for unique option
+
+    return Array.from({ length: count }, method);
+  }
+}
+
+/**
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
+ *
+ * ### Overview
+ *
+ * A particularly helpful method is [`arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) which returns a random element from an array. This is useful when adding custom data that Faker doesn't contain.
+ *
+ * There are alternatives of this method for objects ([`objectKey()`](https://fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://fakerjs.dev/api/helpers.html#weightedarrayelement)).
+ *
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
+ */
+export class HelpersModule extends SimpleHelpersModule {
+  constructor(protected readonly faker: Faker) {
+    super(faker);
+  }
+
+  /**
    * Generator for combining faker methods based on a static string input.
    *
    * Note: We recommend using string template literals instead of `fake()`,
@@ -1276,194 +1477,5 @@ export class HelpersModule {
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
-  }
-
-  /**
-   * Helper method that converts the given number or range to a number.
-   *
-   * @param numberOrRange The number or range to convert.
-   * @param numberOrRange.min The minimum value for the range.
-   * @param numberOrRange.max The maximum value for the range.
-   *
-   * @example
-   * faker.helpers.rangeToNumber(1) // 1
-   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
-   *
-   * @since 8.0.0
-   */
-  rangeToNumber(
-    numberOrRange:
-      | number
-      | {
-          /**
-           * The minimum value for the range.
-           */
-          min: number;
-          /**
-           * The maximum value for the range.
-           */
-          max: number;
-        }
-  ): number {
-    if (typeof numberOrRange === 'number') {
-      return numberOrRange;
-    }
-
-    return this.faker.number.int(numberOrRange);
-  }
-
-  /**
-   * Generates a unique result using the results of the given method.
-   * Used unique entries will be stored internally and filtered from subsequent calls.
-   *
-   * @template TMethod The type of the method to execute.
-   *
-   * @param method The method used to generate the values.
-   * @param args The arguments used to call the method. Defaults to `[]`.
-   * @param options The optional options used to configure this method.
-   * @param options.startTime This parameter does nothing.
-   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
-   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
-   * @param options.currentIterations This parameter does nothing.
-   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
-   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
-   * @param options.store The store of unique entries. Defaults to a global store.
-   *
-   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
-   *
-   * @example
-   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
-   *
-   * @since 7.5.0
-   *
-   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
-   * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
-   */
-  unique<
-    TMethod extends (
-      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ...parameters: any[]
-    ) => RecordKey,
-  >(
-    method: TMethod,
-    args: Parameters<TMethod> = [] as Parameters<TMethod>,
-    options: {
-      /**
-       * This parameter does nothing.
-       *
-       * @default new Date().getTime()
-       */
-      startTime?: number;
-      /**
-       * The time in milliseconds this method may take before throwing an error.
-       *
-       * @default 50
-       */
-      maxTime?: number;
-      /**
-       * The total number of attempts to try before throwing an error.
-       *
-       * @default 50
-       */
-      maxRetries?: number;
-      /**
-       * This parameter does nothing.
-       *
-       * @default 0
-       */
-      currentIterations?: number;
-      /**
-       * The value or values that should be excluded/skipped.
-       *
-       * @default []
-       */
-      exclude?: RecordKey | RecordKey[];
-      /**
-       * The function used to determine whether a value was already returned.
-       *
-       * Defaults to check the existence of the key.
-       *
-       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
-       */
-      compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
-      /**
-       * The store of unique entries.
-       *
-       * Defaults to a global store.
-       */
-      store?: Record<RecordKey, RecordKey>;
-    } = {}
-  ): ReturnType<TMethod> {
-    deprecated({
-      deprecated: 'faker.helpers.unique',
-      proposed:
-        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
-      since: '8.0',
-      until: '9.0',
-    });
-
-    const {
-      maxTime = 50,
-      maxRetries = 50,
-      exclude = [],
-      store = this.uniqueStore,
-    } = options;
-    return uniqueExec.exec(method, args, {
-      ...options,
-      startTime: new Date().getTime(),
-      maxTime,
-      maxRetries,
-      currentIterations: 0,
-      exclude,
-      store,
-    });
-  }
-
-  /**
-   * Generates an array containing values returned by the given method.
-   *
-   * @template TResult The type of elements.
-   *
-   * @param method The method used to generate the values.
-   * @param options The optional options object.
-   * @param options.count The number or range of elements to generate. Defaults to `3`.
-   *
-   * @example
-   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
-   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
-   *
-   * @since 8.0.0
-   */
-  multiple<TResult>(
-    method: () => TResult,
-    options: {
-      /**
-       * The number or range of elements to generate.
-       *
-       * @default 3
-       */
-      count?:
-        | number
-        | {
-            /**
-             * The minimum value for the range.
-             */
-            min: number;
-            /**
-             * The maximum value for the range.
-             */
-            max: number;
-          };
-    } = {}
-  ): TResult[] {
-    const count = this.rangeToNumber(options.count ?? 3);
-    if (count <= 0) {
-      return [];
-    }
-
-    // TODO @ST-DDT 2022-11-21: Add support for unique option
-
-    return Array.from({ length: count }, method);
   }
 }

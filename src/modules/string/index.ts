@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { LiteralUnion } from '../../utils/types';
@@ -103,7 +103,7 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
 export class StringModule {
-  constructor(private readonly faker: Faker) {
+  constructor(private readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -362,11 +362,6 @@ export class StringModule {
    */
   binary(
     options: {
-      /**
-       * The number or range of characters to generate after the prefix.
-       *
-       * @default 1
-       */
       length?:
         | number
         | {
@@ -379,11 +374,6 @@ export class StringModule {
              */
             max: number;
           };
-      /**
-       * Prefix for the generated number.
-       *
-       * @default '0b'
-       */
       prefix?: string;
     } = {}
   ): string {
@@ -414,11 +404,6 @@ export class StringModule {
    */
   octal(
     options: {
-      /**
-       * The number or range of characters to generate after the prefix.
-       *
-       * @default 1
-       */
       length?:
         | number
         | {
@@ -431,11 +416,6 @@ export class StringModule {
              */
             max: number;
           };
-      /**
-       * Prefix for the generated number.
-       *
-       * @default '0o'
-       */
       prefix?: string;
     } = {}
   ): string {

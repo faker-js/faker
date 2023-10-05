@@ -320,13 +320,19 @@ export class LocationModule {
    * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
    * @param options The code to return or an options object. Defaults to `{}`.
-   * @param options.variant The variant to return. Can be either `'alpha-2'` (two-letter code)
-   * or `'alpha-3'` (three-letter code). Defaults to `'alpha-2'`.
+   * @param options.variant The variant to return. Can be one of:
+   *
+   * - `'alpha-2'` (two-letter code)
+   * - `'alpha-3'` (three-letter code)
+   * - `'numeric'` (numeric code)
+   *
+   * Defaults to `'alpha-2'`.
    *
    * @example
    * faker.location.countryCode() // 'SJ'
    * faker.location.countryCode('alpha-2') // 'GA'
    * faker.location.countryCode('alpha-3') // 'TJK'
+   * faker.location.countryCode('numeric') // '528'
    *
    * @since 8.0.0
    */
@@ -334,15 +340,17 @@ export class LocationModule {
     options:
       | 'alpha-2'
       | 'alpha-3'
+      | 'numeric'
       | {
           /**
            * The code to return.
-           * Can be either `'alpha-2'` (two-letter code)
-           * or `'alpha-3'` (three-letter code).
+           * Can be either `'alpha-2'` (two-letter code),
+           * `'alpha-3'` (three-letter code)
+           * or `'numeric'` (numeric code).
            *
            * @default 'alpha-2'
            */
-          variant?: 'alpha-2' | 'alpha-3';
+          variant?: 'alpha-2' | 'alpha-3' | 'numeric';
         } = {}
   ): string {
     if (typeof options === 'string') {
@@ -350,7 +358,17 @@ export class LocationModule {
     }
 
     const { variant = 'alpha-2' } = options;
-    const key = variant === 'alpha-3' ? 'alpha3' : 'alpha2';
+    const key = (() => {
+      switch (variant) {
+        case 'numeric':
+          return 'numeric';
+        case 'alpha-3':
+          return 'alpha3';
+        case 'alpha-2':
+        default:
+          return 'alpha2';
+      }
+    })();
 
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.country_code
@@ -873,7 +891,7 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object. Defaults to`{}`.
    * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -1060,7 +1078,7 @@ export class LocationModule {
   /**
    * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
-   * @param options The options for generating a GPS coordinate. Defaults to `{}`.
+   * @param options The options for generating a GPS coordinate.
    * @param options.origin The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
    * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
@@ -1074,22 +1092,8 @@ export class LocationModule {
    * @since 8.0.0
    */
   nearbyGPSCoordinate(options?: {
-    /**
-     * The original coordinate to get a new coordinate close to.
-     * If no coordinate is given, a random one will be chosen.
-     */
     origin?: [latitude: number, longitude: number];
-    /**
-     * The maximum distance from the given coordinate to the new coordinate.
-     *
-     * @default 10
-     */
     radius?: number;
-    /**
-     * If `true` assume the radius to be in kilometers. If `false` for miles.
-     *
-     * @default false
-     */
     isMetric?: boolean;
   }): [latitude: number, longitude: number];
   /**
@@ -1117,13 +1121,13 @@ export class LocationModule {
   /**
    * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
-   * @param options The options for generating a GPS coordinate. Defaults to `{}`.
+   * @param options The options for generating a GPS coordinate.
    * @param options.origin The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
    * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
    * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
-   * @param legacyRadius Deprecated, use `options.radius` instead. Defaults to `10`.
-   * @param legacyIsMetric Deprecated, use `options.isMetric` instead. Defaults to `false`.
+   * @param legacyRadius Deprecated, use `options.radius` instead.
+   * @param legacyIsMetric Deprecated, use `options.isMetric` instead.
    *
    * @example
    * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
@@ -1136,22 +1140,8 @@ export class LocationModule {
     options?:
       | [latitude: number, longitude: number]
       | {
-          /**
-           * The original coordinate to get a new coordinate close to.
-           * If no coordinate is given, a random one will be chosen.
-           */
           origin?: [latitude: number, longitude: number];
-          /**
-           * The maximum distance from the given coordinate to the new coordinate.
-           *
-           * @default 10
-           */
           radius?: number;
-          /**
-           * If `true` assume the radius to be in kilometers. If `false` for miles.
-           *
-           * @default false
-           */
           isMetric?: boolean;
         },
     legacyRadius?: number,
