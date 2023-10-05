@@ -47,7 +47,8 @@ module.exports = defineConfig({
     // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
     'unicorn/prefer-string-replace-all': 'off',
 
-    // TODO @Shinigami92 2023-09-23: Check which rules should be enabled, configured or stay disabled permanently.
+    // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/catch-error-name': 'off',
     'unicorn/consistent-destructuring': 'off',
