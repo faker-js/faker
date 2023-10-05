@@ -38,19 +38,16 @@ module.exports = defineConfig({
 
     'deprecation/deprecation': 'error',
 
-    'unicorn/no-array-reduce': 'off',
-    'unicorn/no-nested-ternary': 'off',
-    'unicorn/no-null': 'off',
-    'unicorn/no-useless-switch-case': 'off',
-    'unicorn/number-literal-case': 'off',
-    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14
+    'unicorn/no-nested-ternary': 'off', // incompatible with prettier
+    'unicorn/no-null': 'off', // incompatible with TypeScript
+    'unicorn/number-literal-case': 'off', // incompatible with prettier
+
+    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
     'unicorn/prefer-at': 'off',
-    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14
+    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
     'unicorn/prefer-string-replace-all': 'off',
 
-    // TODO @Shinigami92 2023-09-23: All following unicorn rules are turned on by default through the unicorn/recommended set
-    // they should be turned on individually, removed or potentially configured to our needs
-    // But read https://github.com/faker-js/faker/pull/2417 for more
+    // TODO @Shinigami92 2023-09-23: Check which rules should be enabled, configured or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/catch-error-name': 'off',
     'unicorn/consistent-destructuring': 'off',
@@ -62,6 +59,7 @@ module.exports = defineConfig({
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-array-for-each': 'off',
     'unicorn/no-array-push-push': 'off',
+    'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-console-spaces': 'off',
     'unicorn/no-for-loop': 'off',
@@ -71,6 +69,7 @@ module.exports = defineConfig({
     'unicorn/no-new-array': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-process-exit': 'off',
+    'unicorn/no-useless-switch-case': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-array-flat-map': 'off',
