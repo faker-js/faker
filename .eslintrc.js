@@ -28,8 +28,6 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
-    // We may want to use this in the future
-    'no-useless-escape': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
