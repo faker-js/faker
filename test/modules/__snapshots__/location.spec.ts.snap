@@ -142,13 +142,13 @@ exports[`location > 42 > state > with options 1`] = `"ME"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Peyton Villages"`;
+exports[`location > 42 > street 1`] = `"Schinner Villages"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Miller Park"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Oxford Street"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Miller Park"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Oxford Street"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Miller Park Apt. 510"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Oxford Street Suite 241"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
@@ -302,7 +302,7 @@ exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
-exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
+exports[`location > 1211 > street 1`] = `"Market Street"`;
 
 exports[`location > 1211 > streetAddress > noArgs 1`] = `"587 Breana Wells"`;
 
@@ -464,11 +464,11 @@ exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 
 exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"61225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"61225 Barton Gateway"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"61225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"61225 Barton Gateway"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"61225 Alexys Gateway Apt. 552"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"61225 Barton Gateway Apt. 552"`;
 
 exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 
