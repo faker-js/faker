@@ -235,15 +235,15 @@ describe('verify JSDoc tags', () => {
                 param.comment,
                 false
               );
-              if (
-                // both are present or the paramDefault is not a complex object
-                paramDefault &&
-                (commentDefault || !/{.+}/.test(paramDefault))
-              ) {
-                expect(
-                  commentDefault,
-                  `Expect js default and jsdoc summary default for ${param.name} to be the same`
-                ).toBe(paramDefault);
+              if (paramDefault) {
+                if (/^{.*}$/.test(paramDefault)) {
+                  expect(commentDefault).toBeUndefined();
+                } else {
+                  expect(
+                    commentDefault,
+                    `Expect js default and jsdoc summary default for ${param.name} to be the same.`
+                  ).toBe(paramDefault);
+                }
               }
 
               assertNestedParameterDefault(param.name, type);

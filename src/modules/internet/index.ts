@@ -61,7 +61,7 @@ export class InternetModule {
   /**
    * Generates an email address using the given person's name as base.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param options.provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
@@ -106,7 +106,7 @@ export class InternetModule {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options The options to use.
    * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
@@ -136,7 +136,7 @@ export class InternetModule {
   /**
    * Generates an email address using the given person's name as base.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param options.provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
@@ -144,7 +144,7 @@ export class InternetModule {
    * in the email address. Defaults to `false`.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyProvider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param legacyOptions The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param legacyOptions The options to use.
    * @param legacyOptions.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
@@ -292,7 +292,7 @@ export class InternetModule {
   /**
    * Generates an email address using an example mail provider using the given person's name as base.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
@@ -330,7 +330,7 @@ export class InternetModule {
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options The options to use.
    * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
@@ -358,13 +358,13 @@ export class InternetModule {
   /**
    * Generates an email address using an example mail provider using the given person's name as base.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param legacyOptions The options to use. Defaults to `{}`.
+   * @param legacyOptions The options to use.
    * @param legacyOptions.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
@@ -482,7 +482,7 @@ export class InternetModule {
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
@@ -542,7 +542,7 @@ export class InternetModule {
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
@@ -667,7 +667,7 @@ export class InternetModule {
    * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
    * It will not contain spaces.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
@@ -727,7 +727,7 @@ export class InternetModule {
    * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
    * It will not contain spaces.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
@@ -1049,7 +1049,7 @@ export class InternetModule {
    * Based on
    * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
    * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
    * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
@@ -1105,7 +1105,7 @@ export class InternetModule {
    * Based on
    * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
    * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
    * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
@@ -1208,7 +1208,7 @@ export class InternetModule {
   /**
    * Generates a random mac address.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
@@ -1238,7 +1238,7 @@ export class InternetModule {
   /**
    * Generates a random mac address.
    *
-   * @param options The optional separator or an options object. Defaults to `{}`.
+   * @param options The optional separator or an options object.
    * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
@@ -1298,7 +1298,7 @@ export class InternetModule {
    * Generates a random password-like string. Do not use this method for generating actual passwords for users.
    * Since the source of the randomness is not cryptographically secure, neither is this generator.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
    * @param options.pattern The pattern that all chars should match.
@@ -1370,7 +1370,7 @@ export class InternetModule {
   /**
    * Generates a random password.
    *
-   * @param options The length of the password or an options object. Defaults to `{}`.
+   * @param options The length of the password or an options object.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
    * @param options.pattern The pattern that all chars should match.

@@ -83,7 +83,7 @@ export class FinanceModule {
   /**
    * Generates a random account number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
@@ -103,7 +103,7 @@ export class FinanceModule {
   /**
    * Generates a random account number.
    *
-   * @param optionsOrLength An options object or the length of the account number. Defaults to `{}`.
+   * @param optionsOrLength An options object or the length of the account number.
    * @param optionsOrLength.length The length of the account number. Defaults to `8`.
    *
    * @example
@@ -128,7 +128,7 @@ export class FinanceModule {
   /**
    * Generates a random account number.
    *
-   * @param options An options object or the length of the account number. Defaults to `{}`.
+   * @param options An options object or the length of the account number.
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
@@ -246,7 +246,7 @@ export class FinanceModule {
   /**
    * Generates a random masked number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the unmasked number. Defaults to `4`.
    * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
@@ -267,7 +267,7 @@ export class FinanceModule {
   /**
    * Generates a random masked number.
    *
-   * @param optionsOrLength An options object or the length of the unmask number. Defaults to `{}`.
+   * @param optionsOrLength An options object or the length of the unmask number.
    * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
    * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
@@ -308,7 +308,7 @@ export class FinanceModule {
   /**
    * Generates a random masked number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the unmasked number. Defaults to `4`.
    * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
@@ -399,7 +399,7 @@ export class FinanceModule {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
@@ -450,7 +450,7 @@ export class FinanceModule {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
@@ -459,7 +459,7 @@ export class FinanceModule {
    * @param legacyMax The upper bound for the amount. Defaults to `1000`.
    * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
    * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -517,7 +517,7 @@ export class FinanceModule {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
@@ -526,7 +526,7 @@ export class FinanceModule {
    * @param legacyMax The upper bound for the amount. Defaults to `1000`.
    * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
    * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -766,7 +766,7 @@ export class FinanceModule {
   /**
    * Generates a random credit card number.
    *
-   * @param options An options object, the issuer or a custom format. Defaults to `{}`.
+   * @param options An options object, the issuer or a custom format.
    * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
@@ -792,7 +792,7 @@ export class FinanceModule {
   /**
    * Generates a random credit card number.
    *
-   * @param options An options object, the issuer or a custom format. Defaults to `{}`.
+   * @param options An options object, the issuer or a custom format.
    * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
@@ -883,7 +883,7 @@ export class FinanceModule {
   /**
    * Generates a random PIN number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
    * @throws Will throw an error if length is less than 1.
@@ -905,7 +905,7 @@ export class FinanceModule {
   /**
    * Generates a random PIN number.
    *
-   * @param options An options object or the length of the PIN. Defaults to `{}`.
+   * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
    * @throws Will throw an error if length is less than 1.
@@ -932,7 +932,7 @@ export class FinanceModule {
   /**
    * Generates a random PIN number.
    *
-   * @param options An options object or the length of the PIN. Defaults to `{}`.
+   * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
    * @throws Will throw an error if length is less than 1.
@@ -1006,7 +1006,7 @@ export class FinanceModule {
   /**
    * Generates a random iban.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    *
@@ -1035,7 +1035,7 @@ export class FinanceModule {
   /**
    * Generates a random iban.
    *
-   * @param options An options object or whether the return value should be formatted. Defaults to `{}`.
+   * @param options An options object or whether the return value should be formatted.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
@@ -1072,7 +1072,7 @@ export class FinanceModule {
   /**
    * Generates a random iban.
    *
-   * @param options An options object or whether the return value should be formatted. Defaults to `{}`.
+   * @param options An options object or whether the return value should be formatted.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.

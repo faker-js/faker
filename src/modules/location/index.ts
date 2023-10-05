@@ -23,7 +23,7 @@ export class LocationModule {
    * Generates random zip code from specified format. If format is not specified,
    * the locale's zip format is used.
    *
-   * @param options The format used to generate the zip code or an options object. Defaults to `{}`.
+   * @param options The format used to generate the zip code or an options object.
    * @param options.state The state to generate the zip code for.
    * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
    * @param options.format The optional format used to generate the zip code.
@@ -90,7 +90,7 @@ export class LocationModule {
    *
    * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
    *
-   * @param options A state abbreviation or an options object. Defaults to `{}`.
+   * @param options A state abbreviation or an options object.
    * @param options.state The abbreviation of the state to generate the zip code for.
    * If not specified, a random zip code is generated according to the locale's zip format.
    *
@@ -232,7 +232,7 @@ export class LocationModule {
   /**
    * Generates a random localized street address.
    *
-   * @param options Whether to use a full address or an options object. Defaults to `{}`.
+   * @param options Whether to use a full address or an options object.
    * @param options.useFullAddress When true this will generate a full address.
    * Otherwise it will just generate a street address.
    *
@@ -319,7 +319,7 @@ export class LocationModule {
   /**
    * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
-   * @param options The code to return or an options object. Defaults to `{}`.
+   * @param options The code to return or an options object.
    * @param options.variant The variant to return. Can be one of:
    *
    * - `'alpha-2'` (two-letter code)
@@ -378,7 +378,7 @@ export class LocationModule {
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.abbreviated If true this will return abbreviated first-level administrative entity names.
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -432,7 +432,7 @@ export class LocationModule {
   /**
    * Generates a random latitude.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.max The upper bound for the latitude to generate. Defaults to `90`.
    * @param options.min The lower bound for the latitude to generate. Defaults to `-90`.
    * @param options.precision The number of decimal points of precision for the latitude. Defaults to `4`.
@@ -484,7 +484,7 @@ export class LocationModule {
   /**
    * Generates a random latitude.
    *
-   * @param options The upper bound for the latitude or an options object. Defaults to `{}`.
+   * @param options The upper bound for the latitude or an options object.
    * @param options.max The upper bound for the latitude to generate. Defaults to `90`.
    * @param options.min The lower bound for the latitude to generate. Defaults to `-90`.
    * @param options.precision The number of decimal points of precision for the latitude. Defaults to `4`.
@@ -531,7 +531,7 @@ export class LocationModule {
   /**
    * Generates a random latitude.
    *
-   * @param options The upper bound for the latitude or an options object. Defaults to `{}`.
+   * @param options The upper bound for the latitude or an options object.
    * @param options.max The upper bound for the latitude to generate. Defaults to `90`.
    * @param options.min The lower bound for the latitude to generate. Defaults to `-90`.
    * @param options.precision The number of decimal points of precision for the latitude. Defaults to `4`.
@@ -587,7 +587,7 @@ export class LocationModule {
   /**
    * Generates a random longitude.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
    * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
    * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
@@ -623,7 +623,7 @@ export class LocationModule {
   /**
    * Generates a random longitude.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
    * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
    * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
@@ -640,7 +640,7 @@ export class LocationModule {
   /**
    * Generates a random longitude.
    *
-   * @param options The upper bound for the longitude or an options object. Defaults to `{}`.
+   * @param options The upper bound for the longitude or an options object.
    * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
    * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
    * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
@@ -684,7 +684,7 @@ export class LocationModule {
   /**
    * Generates a random longitude.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
    * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
    * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
@@ -740,7 +740,7 @@ export class LocationModule {
   /**
    * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -778,7 +778,7 @@ export class LocationModule {
   /**
    * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -804,7 +804,7 @@ export class LocationModule {
   /**
    * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -853,7 +853,7 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -917,7 +917,7 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -965,7 +965,7 @@ export class LocationModule {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -987,7 +987,7 @@ export class LocationModule {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -1004,7 +1004,7 @@ export class LocationModule {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -1030,7 +1030,7 @@ export class LocationModule {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options Whether to use abbreviated or an options object.
    * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -1092,8 +1092,21 @@ export class LocationModule {
    * @since 8.0.0
    */
   nearbyGPSCoordinate(options?: {
+    /**
+     * The original coordinate to get a new coordinate close to.
+     */
     origin?: [latitude: number, longitude: number];
+    /**
+     * The maximum distance from the given coordinate to the new coordinate.
+     *
+     * @default 10
+     */
     radius?: number;
+    /**
+     * If `true` assume the radius to be in kilometers. If `false` for miles.
+     *
+     * @default false
+     */
     isMetric?: boolean;
   }): [latitude: number, longitude: number];
   /**
@@ -1126,8 +1139,8 @@ export class LocationModule {
    * If no coordinate is given, a random one will be chosen.
    * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
    * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
-   * @param legacyRadius Deprecated, use `options.radius` instead.
-   * @param legacyIsMetric Deprecated, use `options.isMetric` instead.
+   * @param legacyRadius Deprecated, use `options.radius` instead. Defaults to `10`.
+   * @param legacyIsMetric Deprecated, use `options.isMetric` instead. Defaults to `false`.
    *
    * @example
    * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
@@ -1140,8 +1153,21 @@ export class LocationModule {
     options?:
       | [latitude: number, longitude: number]
       | {
+          /**
+           * The original coordinate to get a new coordinate close to.
+           */
           origin?: [latitude: number, longitude: number];
+          /**
+           * The maximum distance from the given coordinate to the new coordinate.
+           *
+           * @default 10
+           */
           radius?: number;
+          /**
+           * If `true` assume the radius to be in kilometers. If `false` for miles.
+           *
+           * @default false
+           */
           isMetric?: boolean;
         },
     legacyRadius?: number,
