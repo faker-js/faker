@@ -135,6 +135,7 @@ async function analyzeParameter(parameter: ParameterReflection): Promise<{
   };
 }
 
+// keep in sync with assertNestedParameterDefault
 async function analyzeParameterOptions(
   name: string,
   parameterType?: SomeType
