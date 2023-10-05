@@ -23,8 +23,9 @@ function readOtherLatestReleaseTagNames(): string[] {
       }
       return acc;
     }, {});
+
   return Object.entries(latestReleaseTagNames)
-    .map(([major, tags]) => semver.maxSatisfying(tags, `^${major}`))
+    .map(([major, tags]) => semver.maxSatisfying(tags, `^${major}`)!)
     .sort(semver.rcompare);
 }
 

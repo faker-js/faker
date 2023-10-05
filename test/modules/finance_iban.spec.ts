@@ -36,7 +36,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormatted = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormatted = iban.match(/.{1,4}/g)!.join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -96,7 +96,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = iban.match(/.{1,4}/g)!.join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -162,7 +162,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = iban.match(/.{1,4}/g)!.join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -232,7 +232,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = iban.match(/.{1,4}/g)!.join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -291,7 +291,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = iban.match(/.{1,4}/g)!.join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -336,7 +336,7 @@ describe('finance_iban', () => {
           // Bank account number    16 digit
 
           const iban = faker.finance.iban(false, 'AL');
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = iban.match(/.{1,4}/g)!.join(' ');
 
           expect(iban).toSatisfy(validator.isIBAN);
 

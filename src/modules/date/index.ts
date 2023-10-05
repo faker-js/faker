@@ -15,6 +15,10 @@ function toDate(
   date: string | Date | number | undefined,
   fallback: () => Date
 ): Date {
+  if (date == null) {
+    return fallback();
+  }
+
   date = new Date(date);
   if (isNaN(date.valueOf())) {
     date = fallback();
@@ -387,14 +391,15 @@ export class SimpleDateModule {
         },
     legacyTo?: string | Date | number
   ): Date {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.between(from, to)',
         proposed: 'faker.date.between({ from, to })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options };
     }
 
     const { from, to } = options;
@@ -563,14 +568,15 @@ export class SimpleDateModule {
     legacyTo?: string | Date | number,
     legacyCount: number = 3
   ): Date[] {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.betweens(from, to, count)',
         proposed: 'faker.date.betweens({ from, to, count })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo, count: legacyCount };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options, count: legacyCount };
     }
 
     const { from, to, count = 3 } = options;
@@ -868,12 +874,6 @@ export class SimpleDateModule {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    if (options.max < options.min) {
-      throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
-      );
-    }
-
     const mode = options.mode === 'age' ? 'age' : 'year';
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
@@ -895,6 +895,12 @@ export class SimpleDateModule {
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
         options.max ?? refYear - 18
+      );
+    }
+
+    if (max < min) {
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
       );
     }
 
@@ -1108,7 +1114,14 @@ export class DateModule extends SimpleDateModule {
       type = 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    const values = source[type];
+
+    if (values == null) {
+      // This should never happen due to the checks above, but TS doesn't know that
+      throw new FakerError(`No month values found for type '${type}'.`);
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -1298,6 +1311,13 @@ export class DateModule extends SimpleDateModule {
       type = 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    const values = source[type];
+
+    if (values == null) {
+      // This should never happen due to the checks above, but TS doesn't know that
+      throw new FakerError(`No weekday values found for type '${type}'.`);
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 }

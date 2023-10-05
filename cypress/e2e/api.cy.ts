@@ -34,7 +34,7 @@ describe('API Test', () => {
       cy.get('.api-group li').each(($el) => {
         const anchor = $el.find('a');
         const text = anchor.text();
-        const link = anchor.attr('href').split('#')[0];
+        const link = anchor.attr('href')!.split('#')[0];
         if (checked.has(link)) {
           return;
         }

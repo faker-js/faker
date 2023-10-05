@@ -386,7 +386,7 @@ export class CommerceModule {
 
     const registrantLength = groupRules.find(
       ([rangeMaximum]) => elementValue <= rangeMaximum
-    )[1];
+    )![1];
 
     const registrant = element.slice(0, registrantLength);
     const publication = element.slice(registrantLength);

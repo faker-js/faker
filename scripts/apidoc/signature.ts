@@ -305,7 +305,7 @@ async function signatureTypeToText(
     await Promise.all(
       signature.parameters?.map(
         async (p) => `${p.name}: ${await typeToText(p.type)}`
-      )
+      ) ?? []
     )
   ).join(', ')}) => ${await typeToText(signature.type)}`;
 }

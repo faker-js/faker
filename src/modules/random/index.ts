@@ -128,7 +128,7 @@ export class RandomModule {
       '_',
       '-',
     ];
-    let result: string;
+    let result = '';
 
     let iteration = 0;
 

@@ -679,9 +679,9 @@ export class FinanceModule {
    */
   currencySymbol(): string {
     let symbol: string;
-    while (!symbol) {
+    do {
       symbol = this.currency().symbol;
-    }
+    } while (!symbol);
 
     return symbol;
   }
@@ -1163,7 +1163,7 @@ export class FinanceModule {
 
     const result = `${ibanFormat.country}${checksum}${s}`;
 
-    return formatted ? result.match(/.{1,4}/g).join(' ') : result;
+    return formatted ? result.replace(/(.{4})(?=.)/g, '$1 ') : result;
   }
 
   /**

@@ -11,6 +11,7 @@ expect.extend({
     return {
       pass: uniqueDuplication.length !== 0,
       message: () =>
+        // @ts-expect-error: `isNot` is incorrectly inferred as `function`.
         isNot
           ? `Duplicated values are [${uniqueDuplication.join(', ')}]`
           : `No duplicate values in [${received.join(', ')}]`,

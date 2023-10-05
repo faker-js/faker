@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 export enum Sex {
@@ -26,9 +27,13 @@ function selectDefinition<T>(
   elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
   // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
-  { generic, female, male }: { generic?: T[]; female?: T[]; male?: T[] } = {}
+  {
+    generic,
+    female,
+    male,
+  }: { generic?: T[] | null; female?: T[] | null; male?: T[] | null } = {}
 ): string {
-  let values: T[] | undefined;
+  let values: T[] | undefined | null;
 
   switch (sex) {
     case Sex.Female:
@@ -49,6 +54,12 @@ function selectDefinition<T>(
       values = faker.helpers.arrayElement([female, male]);
     } else {
       values = generic;
+    }
+
+    if (values == null) {
+      throw new FakerError(
+        'Neither female, male or generic definitions are available.'
+      );
     }
   }
 
@@ -97,7 +108,7 @@ export class PersonModule {
       this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: first_name,
+      generic: first_name ?? undefined,
       female: female_first_name,
       male: male_first_name,
     });
@@ -352,9 +363,13 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.descriptor
-    );
+    const values = this.faker.definitions.person.title.descriptor;
+
+    if (values == null) {
+      throw new FakerError('No person.title.descriptor definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -366,9 +381,13 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobArea(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.level
-    );
+    const values = this.faker.definitions.person.title.level;
+
+    if (values == null) {
+      throw new FakerError('No person.title.area definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -380,9 +399,13 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobType(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.job
-    );
+    const values = this.faker.definitions.person.title.job;
+
+    if (values == null) {
+      throw new FakerError('No person.title.job definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
