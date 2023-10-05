@@ -6,7 +6,7 @@ import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
-describe('mersenne twister', () => {
+describe('generateMersenne32Randomizer()', () => {
   const randomizer: Randomizer = generateMersenne32Randomizer();
 
   describe.each(

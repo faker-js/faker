@@ -328,13 +328,14 @@ class MersenneTwister19937 {
 
 /**
  * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
+ * This is the default randomizer used by faker.
  *
  * @internal
  */
 export function generateMersenne32Randomizer(): Randomizer {
   const twister = new MersenneTwister19937();
 
-  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
+  twister.initGenrand(Date.now() ^ (Math.random() * 0x100000000));
 
   return {
     next(): number {
