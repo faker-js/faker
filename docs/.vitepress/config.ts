@@ -201,6 +201,10 @@ const config = defineConfig({
             link: '/guide/frameworks',
           },
           {
+            text: 'Randomizer',
+            link: '/guide/randomizer',
+          },
+          {
             text: 'Upgrading to v8',
             link: '/guide/upgrading',
           },

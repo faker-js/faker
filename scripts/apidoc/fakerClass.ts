@@ -21,23 +21,33 @@ export async function processFakerClasses(
   return Promise.all(fakerClasses.map(processClass));
 }
 
-async function processClass(
-  fakerClass: DeclarationReflection
+export async function processFakerRandomizer(
+  project: ProjectReflection
 ): Promise<ModuleSummary> {
-  const { name } = fakerClass;
-  const moduleFieldName = extractModuleFieldName(fakerClass);
+  const randomizerClass = project
+    .getChildrenByKind(ReflectionKind.Interface)
+    .find((clazz) => clazz.name === 'Randomizer');
+
+  return processClass(randomizerClass);
+}
+
+async function processClass(
+  clazz: DeclarationReflection
+): Promise<ModuleSummary> {
+  const { name } = clazz;
+  const moduleFieldName = extractModuleFieldName(clazz);
 
   console.log(`Processing ${name} class`);
 
-  const { comment, deprecated, examples } = analyzeModule(fakerClass);
+  const { comment, deprecated, examples } = analyzeModule(clazz);
   const methods: Method[] = [];
 
-  console.debug(`- constructor`);
-  methods.push(await processConstructor(fakerClass));
+  if (hasConstructor(clazz)) {
+    console.debug(`- constructor`);
+    methods.push(await processConstructor(clazz));
+  }
 
-  methods.push(
-    ...(await processModuleMethods(fakerClass, `${moduleFieldName}.`))
-  );
+  methods.push(...(await processModuleMethods(clazz, `${moduleFieldName}.`)));
 
   return writeApiDocsModule(
     name,
@@ -49,20 +59,20 @@ async function processClass(
   );
 }
 
+function hasConstructor(clazz: DeclarationReflection): boolean {
+  return clazz
+    .getChildrenByKind(ReflectionKind.Constructor)
+    .some((constructor) => constructor.signatures.length > 0);
+}
+
 async function processConstructor(
-  fakerClass: DeclarationReflection
+  clazz: DeclarationReflection
 ): Promise<Method> {
-  const constructor = fakerClass.getChildrenByKind(
-    ReflectionKind.Constructor
-  )[0];
+  const constructor = clazz.getChildrenByKind(ReflectionKind.Constructor)[0];
 
   const signature = selectApiSignature(constructor);
 
-  const method = await analyzeSignature(
-    signature,
-    '',
-    `new ${fakerClass.name}`
-  );
+  const method = await analyzeSignature(signature, '', `new ${clazz.name}`);
 
   return {
     ...method,

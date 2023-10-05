@@ -1,7 +1,6 @@
 import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-import type { Mersenne } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate numbers of any kind.
@@ -83,10 +82,9 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const mersenne: Mersenne =
-      // @ts-expect-error: access private member field
-      this.faker._mersenne;
-    const real = mersenne.next();
+    // @ts-expect-error: access private member field
+    const randomizer = this.faker._randomizer;
+    const real = randomizer.next();
     return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
 
@@ -160,8 +158,8 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const mersenne: Mersenne = this.faker._mersenne;
-    const real = mersenne.next();
+    const randomizer = this.faker._randomizer;
+    const real = randomizer.next();
     return real * (max - min) + min;
   }
 
