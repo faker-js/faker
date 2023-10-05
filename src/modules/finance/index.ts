@@ -681,7 +681,7 @@ export class FinanceModule {
     let symbol: string;
     do {
       symbol = this.currency().symbol;
-    } while (!symbol);
+    } while (symbol.length === 0);
 
     return symbol;
   }
