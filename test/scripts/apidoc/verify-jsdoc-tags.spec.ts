@@ -241,7 +241,7 @@ describe('verify JSDoc tags', () => {
                 } else {
                   expect(
                     commentDefault,
-                    `Expect js default and jsdoc summary default for ${param.name} to be the same.`
+                    `Expect '${param.name}'s js implementation default to be the same as the jsdoc summary default.`
                   ).toBe(paramDefault);
                 }
               }
