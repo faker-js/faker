@@ -108,7 +108,7 @@ export class PersonModule {
       this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: first_name ?? undefined,
+      generic: first_name,
       female: female_first_name,
       male: male_first_name,
     });
