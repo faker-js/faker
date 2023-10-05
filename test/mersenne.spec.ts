@@ -9,6 +9,13 @@ const NON_SEEDED_BASED_RUN = 25;
 describe('generateMersenne32Randomizer()', () => {
   const randomizer: Randomizer = generateMersenne32Randomizer();
 
+  it('should match the interface', () => {
+    expect(randomizer).toBeDefined();
+    expect(randomizer).toBeTypeOf('object');
+    expect(randomizer.next).toBeTypeOf('function');
+    expect(randomizer.seed).toBeTypeOf('function');
+  });
+
   describe.each(
     [...seededRuns, ...seededRuns.map((v) => [v, 1, 2])].map((v) => [v])
   )('seed: %j', (seed) => {
