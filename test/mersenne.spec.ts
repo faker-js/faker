@@ -10,8 +10,8 @@ import { times } from './support/times';
 const NON_SEEDED_BASED_RUN = 25;
 
 describe.each([
-  ['generateMersenne32Randomizer', generateMersenne32Randomizer],
-  ['generateMersenne53Randomizer', generateMersenne53Randomizer],
+  ['generateMersenne32Randomizer()', generateMersenne32Randomizer],
+  ['generateMersenne53Randomizer()', generateMersenne53Randomizer],
 ])('%s', (_, factory) => {
   const randomizer: Randomizer = factory();
 
