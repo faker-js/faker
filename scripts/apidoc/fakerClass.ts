@@ -66,7 +66,7 @@ async function processClass(
 function hasConstructor(clazz: DeclarationReflection): boolean {
   return clazz
     .getChildrenByKind(ReflectionKind.Constructor)
-    .some((constructor) => constructor.signatures!.length > 0);
+    .some((constructor) => (constructor.signatures?.length ?? 0) > 0);
 }
 
 async function processConstructor(
