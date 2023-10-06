@@ -1551,7 +1551,7 @@ packages:
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
       magic-string: 0.30.3
-      postcss: 8.4.30
+      postcss: 8.4.31
       source-map-js: 1.0.2
     dev: true
 
@@ -4916,8 +4916,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss@8.4.30:
-    resolution: {integrity: sha512-7ZEao1g4kd68l97aWG/etQKPKq07us0ieSZ2TnFDk11i0ZfDW2AwKHYU8qv4MZKqN2fdBfg+7q0ES06UA73C1g==}
+  /postcss@8.4.31:
+    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
@@ -5271,7 +5271,7 @@ packages:
       htmlparser2: 8.0.2
       is-plain-object: 5.0.0
       parse-srcset: 1.0.2
-      postcss: 8.4.30
+      postcss: 8.4.31
     dev: true
 
   /search-insights@2.8.2:
@@ -6089,7 +6089,7 @@ packages:
     dependencies:
       '@types/node': 20.8.0
       esbuild: 0.18.20
-      postcss: 8.4.30
+      postcss: 8.4.31
       rollup: 3.29.2
     optionalDependencies:
       fsevents: 2.3.3
