@@ -19,6 +19,7 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:prettier/recommended',
     'plugin:jsdoc/recommended-typescript-error',
+    'plugin:unicorn/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -36,6 +37,64 @@ module.exports = defineConfig({
     'no-restricted-globals': ['error', 'Intl'],
 
     'deprecation/deprecation': 'error',
+
+    'unicorn/no-nested-ternary': 'off', // incompatible with prettier
+    'unicorn/no-null': 'off', // incompatible with TypeScript
+    'unicorn/number-literal-case': 'off', // incompatible with prettier
+
+    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
+    'unicorn/prefer-at': 'off',
+    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
+    'unicorn/prefer-string-replace-all': 'off',
+
+    // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
+    'unicorn/better-regex': 'off',
+    'unicorn/catch-error-name': 'off',
+    'unicorn/consistent-destructuring': 'off',
+    'unicorn/consistent-function-scoping': 'off',
+    'unicorn/escape-case': 'off',
+    'unicorn/explicit-length-check': 'off',
+    'unicorn/filename-case': 'off',
+    'unicorn/import-style': 'off',
+    'unicorn/no-array-callback-reference': 'off',
+    'unicorn/no-array-for-each': 'off',
+    'unicorn/no-array-push-push': 'off',
+    'unicorn/no-array-reduce': 'off',
+    'unicorn/no-await-expression-member': 'off',
+    'unicorn/no-console-spaces': 'off',
+    'unicorn/no-for-loop': 'off',
+    'unicorn/no-hex-escape': 'off',
+    'unicorn/no-instanceof-array': 'off',
+    'unicorn/no-negated-condition': 'off',
+    'unicorn/no-new-array': 'off',
+    'unicorn/no-object-as-default-parameter': 'off',
+    'unicorn/no-process-exit': 'off',
+    'unicorn/no-useless-switch-case': 'off',
+    'unicorn/no-zero-fractions': 'off',
+    'unicorn/numeric-separators-style': 'off',
+    'unicorn/prefer-array-flat-map': 'off',
+    'unicorn/prefer-array-some': 'off',
+    'unicorn/prefer-code-point': 'off',
+    'unicorn/prefer-date-now': 'off',
+    'unicorn/prefer-export-from': 'off',
+    'unicorn/prefer-includes': 'off',
+    'unicorn/prefer-module': 'off',
+    'unicorn/prefer-native-coercion-functions': 'off',
+    'unicorn/prefer-negative-index': 'off',
+    'unicorn/prefer-node-protocol': 'off',
+    'unicorn/prefer-number-properties': 'off',
+    'unicorn/prefer-object-from-entries': 'off',
+    'unicorn/prefer-optional-catch-binding': 'off',
+    'unicorn/prefer-spread': 'off',
+    'unicorn/prefer-string-slice': 'off',
+    'unicorn/prefer-string-starts-ends-with': 'off',
+    'unicorn/prefer-ternary': 'off',
+    'unicorn/prefer-top-level-await': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/require-array-join-separator': 'off',
+    'unicorn/switch-case-braces': 'off',
+    'unicorn/text-encoding-identifier-case': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
