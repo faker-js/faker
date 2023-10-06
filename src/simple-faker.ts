@@ -77,7 +77,7 @@ export class SimpleFaker {
   }
 
   /** @internal */
-  private readonly _randomizer: Randomizer = generateMersenne32Randomizer();
+  private readonly _randomizer: Randomizer;
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
