@@ -328,6 +328,7 @@ class MersenneTwister19937 {
 
 /**
  * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
+ * This is the default randomizer used by Faker.
  *
  * @internal
  */

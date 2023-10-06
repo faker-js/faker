@@ -6,8 +6,15 @@ import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
-describe('mersenne twister', () => {
+describe('generateMersenne32Randomizer()', () => {
   const randomizer: Randomizer = generateMersenne32Randomizer();
+
+  it('should return a result matching the interface', () => {
+    expect(randomizer).toBeDefined();
+    expect(randomizer).toBeTypeOf('object');
+    expect(randomizer.next).toBeTypeOf('function');
+    expect(randomizer.seed).toBeTypeOf('function');
+  });
 
   describe.each(
     [...seededRuns, ...seededRuns.map((v) => [v, 1, 2])].map((v) => [v])
