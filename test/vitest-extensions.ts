@@ -2,7 +2,7 @@ import { expect } from 'vitest';
 
 expect.extend({
   toContainDuplicates<T>(received: T[]) {
-    const { isNot } = this;
+    const { isNot = false } = this;
 
     const uniques = new Set(received);
     const duplications = received.filter((entry) => !uniques.delete(entry));
@@ -11,7 +11,6 @@ expect.extend({
     return {
       pass: uniqueDuplication.length !== 0,
       message: () =>
-        // @ts-expect-error: `isNot` is incorrectly inferred as `function`.
         isNot
           ? `Duplicated values are [${uniqueDuplication.join(', ')}]`
           : `No duplicate values in [${received.join(', ')}]`,
