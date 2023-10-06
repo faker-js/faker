@@ -41,7 +41,7 @@ describe('faker', () => {
   describe('rawDefinitions', () => {
     it('locale rawDefinition accessibility', () => {
       // Metadata
-      expect(faker.rawDefinitions.metadata!.title).toBeDefined();
+      expect(faker.rawDefinitions.metadata?.title).toBeDefined();
       // Standard modules
       expect(faker.rawDefinitions.location?.city_name).toBeDefined();
       // Non-existing module
