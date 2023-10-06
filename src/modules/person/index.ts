@@ -1,6 +1,7 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { assertLocaleData } from '../../locale-proxy';
 
 export enum Sex {
   Female = 'female',
@@ -19,6 +20,7 @@ export type SexType = `${Sex}`;
  * @param param2.generic Non-sex definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
+ * @param type Type of the definition.
  *
  * @returns Definition based on given sex.
  */
@@ -26,12 +28,12 @@ function selectDefinition<T>(
   faker: Faker,
   elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
-  // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
   {
     generic,
     female,
     male,
-  }: { generic?: T[] | null; female?: T[] | null; male?: T[] | null } = {}
+  }: { generic?: T[] | null; female?: T[] | null; male?: T[] | null },
+  type: string
 ): string {
   let values: T[] | undefined | null;
 
@@ -56,11 +58,7 @@ function selectDefinition<T>(
       values = generic;
     }
 
-    if (values == null) {
-      throw new FakerError(
-        'Neither female, male or generic definitions are available.'
-      );
-    }
+    assertLocaleData(values, `person.{${type}, female_${type}, male_${type}}`);
   }
 
   return elementSelectorFn(values);
@@ -107,11 +105,17 @@ export class PersonModule {
     const { first_name, female_first_name, male_first_name } =
       this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: first_name,
-      female: female_first_name,
-      male: male_first_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: first_name,
+        female: female_first_name,
+        male: male_first_name,
+      },
+      'first_name'
+    );
   }
 
   /**
@@ -150,16 +154,23 @@ export class PersonModule {
           generic: last_name_pattern,
           female: female_last_name_pattern,
           male: male_last_name_pattern,
-        }
+        },
+        'last_name_pattern'
       );
       return this.faker.helpers.fake(pattern);
     }
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: last_name,
-      female: female_last_name,
-      male: male_last_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: last_name,
+        female: female_last_name,
+        male: male_last_name,
+      },
+      'last_name'
+    );
   }
 
   /**
@@ -179,11 +190,17 @@ export class PersonModule {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: middle_name,
-      female: female_middle_name,
-      male: male_middle_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: middle_name,
+        female: female_middle_name,
+        male: male_middle_name,
+      },
+      'middle_name'
+    );
   }
 
   /**
@@ -320,11 +337,17 @@ export class PersonModule {
     const { prefix, female_prefix, male_prefix } =
       this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: prefix,
-      female: female_prefix,
-      male: male_prefix,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: prefix,
+        female: female_prefix,
+        male: male_prefix,
+      },
+      'prefix'
+    );
   }
 
   /**

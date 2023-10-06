@@ -3,6 +3,7 @@ import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { assertLocaleData } from '../../locale-proxy';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
@@ -1115,12 +1116,7 @@ export class DateModule extends SimpleDateModule {
     }
 
     const values = source[type];
-
-    if (values == null) {
-      // This should never happen due to the checks above, but TS doesn't know that
-      throw new FakerError(`No month values found for type '${type}'.`);
-    }
-
+    assertLocaleData(values, 'date.month', type);
     return this.faker.helpers.arrayElement(values);
   }
 
@@ -1312,12 +1308,7 @@ export class DateModule extends SimpleDateModule {
     }
 
     const values = source[type];
-
-    if (values == null) {
-      // This should never happen due to the checks above, but TS doesn't know that
-      throw new FakerError(`No weekday values found for type '${type}'.`);
-    }
-
+    assertLocaleData(values, 'date.weekday', type);
     return this.faker.helpers.arrayElement(values);
   }
 }
