@@ -25,6 +25,22 @@ export interface Currency {
 }
 
 /**
+ * Puts a space after every 4 characters.
+ *
+ * @internal
+ *
+ * @param iban The iban to pretty print.
+ */
+export function prettyPrintIban(iban: string): string {
+  let pretty = '';
+  for (let i = 0; i < iban.length; i += 4) {
+    pretty += `${iban.substring(i, i + 4)} `;
+  }
+
+  return pretty.trimEnd();
+}
+
+/**
  * Module to generate finance and money related entries.
  *
  * ### Overview
@@ -1163,7 +1179,7 @@ export class FinanceModule {
 
     const result = `${ibanFormat.country}${checksum}${s}`;
 
-    return formatted ? result.replace(/(.{4})(?=.)/g, '$1 ') : result;
+    return formatted ? prettyPrintIban(result) : result;
   }
 
   /**
