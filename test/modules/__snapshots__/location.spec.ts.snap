@@ -142,7 +142,7 @@ exports[`location > 42 > state > with options 1`] = `"ME"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Valentine Ridges"`;
+exports[`location > 42 > street 1`] = `"Wiegand Ridges"`;
 
 exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Anderson Throughway"`;
 
@@ -302,13 +302,13 @@ exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
-exports[`location > 1211 > street 1`] = `"Trantow Extensions"`;
+exports[`location > 1211 > street 1`] = `"W Chestnut Street"`;
 
-exports[`location > 1211 > streetAddress > noArgs 1`] = `"929 Paucek Rue"`;
+exports[`location > 1211 > streetAddress > noArgs 1`] = `"929 S Broad Street"`;
 
-exports[`location > 1211 > streetAddress > with boolean 1`] = `"929 Paucek Rue"`;
+exports[`location > 1211 > streetAddress > with boolean 1`] = `"929 S Broad Street"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"929 Paucek Rue Apt. 787"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"929 S Broad Street Suite 468"`;
 
 exports[`location > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
