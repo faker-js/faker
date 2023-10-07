@@ -103,7 +103,7 @@ export class GitModule {
       `Author: ${user} <${email}>`,
       `Date: ${this.commitDate({ refDate })}`,
       '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      `\u00a0\u00a0\u00a0\u00a0${this.commitMessage()}`,
       // to end with a eol char
       ''
     );
