@@ -60,7 +60,6 @@ module.exports = defineConfig({
     'unicorn/no-array-push-push': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
-    'unicorn/no-console-spaces': 'off',
     'unicorn/no-for-loop': 'off',
     'unicorn/no-hex-escape': 'off',
     'unicorn/no-instanceof-array': 'off',
