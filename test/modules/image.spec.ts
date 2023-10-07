@@ -410,7 +410,7 @@ describe('image', () => {
 
       expect(avatarUrl).toBeTypeOf('string');
       expect(avatarUrl).toMatch(
-        /^https:\/\/cloudflare\-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
+        /^https:\/\/cloudflare-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
       );
     });
   });
@@ -463,7 +463,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https\:\/\/loremflickr\.com\/\d+\/\d+\?lock=\d+$/
+        /^https:\/\/loremflickr\.com\/\d+\/\d+\?lock=\d+$/
       );
     });
   });
@@ -474,7 +474,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https\:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+$/
+        /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+$/
       );
     });
   });
@@ -485,7 +485,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https\:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
+        /^https:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
       );
     });
   });

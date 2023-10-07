@@ -89,10 +89,10 @@ export function exec<
     store?: Record<RecordKey, RecordKey>;
   } = {}
 ): ReturnType<TMethod> {
-  const now = new Date().getTime();
+  const now = Date.now();
 
   const {
-    startTime = new Date().getTime(),
+    startTime = Date.now(),
     maxTime = 50,
     maxRetries = 50,
     compare = defaultCompare,

@@ -562,7 +562,7 @@ describe('helpers', () => {
             '6453-####-####-####-###L'
           );
           expect(number).toMatch(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
+            /^6453-([0-9]){4}-([0-9]){4}-([0-9]){4}-([0-9]){4}$/
           );
           expect(number).toSatisfy(luhnCheck);
         });
@@ -573,7 +573,7 @@ describe('helpers', () => {
             '*'
           );
           expect(number).toMatch(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
+            /^6453-([0-9]){4}-([0-9]){4}-([0-9]){4}-([0-9]){4}$/
           );
           expect(number).toSatisfy(luhnCheck);
         });
@@ -584,14 +584,14 @@ describe('helpers', () => {
             '*'
           );
           expect(number).toMatch(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
+            /^6453-([0-9]){4}-([0-9]){4}-([0-9]){4}-([0-9]){4}$/
           );
           expect(number).toSatisfy(luhnCheck);
           number = faker.helpers.replaceCreditCardSymbols(
             '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
           );
           expect(number).toMatch(
-            /^645[5-9]\-([0-9]){4,6}\-([0-9]){1,2}\-([0-9]){4,6}\-([0-9]){4}$/
+            /^645[5-9]-([0-9]){4,6}-([0-9]){1,2}-([0-9]){4,6}-([0-9]){4}$/
           );
           expect(number).toSatisfy(luhnCheck);
         });
@@ -606,14 +606,14 @@ describe('helpers', () => {
           const string = faker.helpers.regexpStyleStringParse('#{5,10}');
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
+          expect(string).toMatch(/^#{5,10}$/);
         });
 
         it('flips the range when min > max', () => {
           const string = faker.helpers.regexpStyleStringParse('#{10,5}');
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
+          expect(string).toMatch(/^#{5,10}$/);
         });
 
         it('repeats string {n} number of times', () => {
@@ -637,9 +637,7 @@ describe('helpers', () => {
           const string = faker.helpers.regexpStyleStringParse(
             'Test#{5}%{2,5}Testing**[1-5]**{10}END'
           );
-          expect(string).toMatch(
-            /^Test\#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/
-          );
+          expect(string).toMatch(/^Test#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/);
         });
       });
 
@@ -648,7 +646,7 @@ describe('helpers', () => {
           const string = faker.helpers.fromRegExp(/#{5,10}/);
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
+          expect(string).toMatch(/^#{5,10}$/);
         });
 
         it('repeats string {n} number of times', () => {
@@ -666,7 +664,7 @@ describe('helpers', () => {
           const string = faker.helpers.fromRegExp(
             'Test#{5}%{2,5}Testing*[1-5]{10}END'
           );
-          expect(string).toMatch(/^Test\#{5}%{2,5}Testing*[1-5]{10}END$/);
+          expect(string).toMatch(/^Test#{5}%{2,5}Testing*[1-5]{10}END$/);
         });
 
         it('throws error when min > max outside set', () => {
@@ -1175,7 +1173,7 @@ describe('helpers', () => {
             'lName',
             'domain',
           ]); // third argument is provider, or domain for email
-          expect(result).toMatch(/\@domain/);
+          expect(result).toMatch(/@domain/);
         });
 
         it('should be possible to limit unique call by maxTime in ms', () => {
@@ -1291,7 +1289,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     it('should not mutate most of the input option properties', () => {
       const method = () => 'options-mutate-test';
 
-      const startTime = new Date().getTime();
+      const startTime = Date.now();
       const maxTime = 49;
       const maxRetries = 49;
       const currentIterations = 0;
