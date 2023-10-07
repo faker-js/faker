@@ -64,21 +64,17 @@ export function assertLocaleData<T>(
   value: T,
   ...path: string[]
 ): asserts value is NonNullable<T> {
-  if (value == null) {
-    if (value === null) {
-      throw new FakerError(
-        `The locale data for '${path.join(
-          '.'
-        )}' aren't applicable to this locale.
+  if (value === null) {
+    throw new FakerError(
+      `The locale data for '${path.join('.')}' aren't applicable to this locale.
   If you think this is a bug, please report it at: https://github.com/faker-js/faker`
-      );
-    } else if (value === undefined) {
-      throw new FakerError(
-        `The locale data for '${path.join('.')}' are missing in this locale.
+    );
+  } else if (value === undefined) {
+    throw new FakerError(
+      `The locale data for '${path.join('.')}' are missing in this locale.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
   For more information see https://fakerjs.dev/guide/localization.html`
-      );
-    }
+    );
   }
 }
 
