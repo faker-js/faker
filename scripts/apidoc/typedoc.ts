@@ -315,7 +315,9 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 export function extractDeprecated(
   reflection?: CommentHolder
 ): string | undefined {
-  const deprecated = extractTagContent('@deprecated', reflection).join().trim();
+  const deprecated = extractTagContent('@deprecated', reflection)
+    .join('')
+    .trim();
   return deprecated.length === 0 ? undefined : deprecated;
 }
 
@@ -327,7 +329,7 @@ export function extractDeprecated(
  * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
  */
 export function extractThrows(reflection?: CommentHolder): string | undefined {
-  const throws = extractTagContent('@throws', reflection).join().trim();
+  const throws = extractTagContent('@throws', reflection).join('').trim();
   return throws.length === 0 ? undefined : throws;
 }
 
@@ -339,5 +341,5 @@ export function extractThrows(reflection?: CommentHolder): string | undefined {
  * @returns The contents of the `@since` tag.
  */
 export function extractSince(reflection: CommentHolder): string {
-  return extractTagContent('@since', reflection).join().trim();
+  return extractTagContent('@since', reflection).join('').trim();
 }
