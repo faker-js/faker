@@ -240,7 +240,7 @@ function updateLocaleFile(filePath: string): void {
   if (lstatSync(filePath).isFile()) {
     const pathParts = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
-      .split(/[\\\/]/);
+      .split(/[\\/]/);
     const locale = pathParts[0];
     pathParts.splice(0, 1);
     updateLocaleFileHook(filePath, locale, pathParts);
