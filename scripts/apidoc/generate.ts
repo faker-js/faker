@@ -1,11 +1,11 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import {
   writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
   writeSourceBaseUrl,
 } from './apiDocsWriter';
-import { processFakerClasses } from './fakerClass';
+import { processFakerClasses, processFakerRandomizer } from './fakerClass';
 import { processFakerUtilities } from './fakerUtilities';
 import { processModules } from './moduleMethods';
 import { loadProject } from './typedoc';
@@ -27,6 +27,7 @@ export async function generate(): Promise<void> {
     ...(await processModules(project)).sort((a, b) =>
       a.text.localeCompare(b.text)
     ),
+    await processFakerRandomizer(project),
     processFakerUtilities(project),
   ]);
   await writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));

@@ -18,6 +18,7 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:prettier/recommended',
+    'plugin:jsdoc/recommended-typescript-error',
     'plugin:unicorn/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -26,10 +27,8 @@ module.exports = defineConfig({
     sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'deprecation'],
+  plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
-    // We may want to use this in the future
-    'no-useless-escape': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
@@ -37,19 +36,17 @@ module.exports = defineConfig({
 
     'deprecation/deprecation': 'error',
 
-    'unicorn/no-array-reduce': 'off',
-    'unicorn/no-nested-ternary': 'off',
-    'unicorn/no-null': 'off',
-    'unicorn/no-useless-switch-case': 'off',
-    'unicorn/number-literal-case': 'off',
-    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14
+    'unicorn/no-nested-ternary': 'off', // incompatible with prettier
+    'unicorn/no-null': 'off', // incompatible with TypeScript
+    'unicorn/number-literal-case': 'off', // incompatible with prettier
+
+    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
     'unicorn/prefer-at': 'off',
-    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14
+    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
     'unicorn/prefer-string-replace-all': 'off',
 
-    // TODO @Shinigami92 2023-09-23: All following unicorn rules are turned on by default through the unicorn/recommended set
-    // they should be turned on individually, removed or potentially configured to our needs
-    // But read https://github.com/faker-js/faker/pull/2417 for more
+    // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/catch-error-name': 'off',
     'unicorn/consistent-destructuring': 'off',
@@ -61,6 +58,7 @@ module.exports = defineConfig({
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-array-for-each': 'off',
     'unicorn/no-array-push-push': 'off',
+    'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-console-spaces': 'off',
     'unicorn/no-for-loop': 'off',
@@ -70,18 +68,17 @@ module.exports = defineConfig({
     'unicorn/no-new-array': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-process-exit': 'off',
+    'unicorn/no-useless-switch-case': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-array-flat-map': 'off',
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
-    'unicorn/prefer-date-now': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-includes': 'off',
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-native-coercion-functions': 'off',
     'unicorn/prefer-negative-index': 'off',
-    'unicorn/prefer-node-protocol': 'off',
     'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-object-from-entries': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
@@ -134,40 +131,39 @@ module.exports = defineConfig({
       { allowNumber: true, allowBoolean: true },
     ],
     '@typescript-eslint/unbound-method': 'off',
+
+    'jsdoc/no-types': 'error',
+    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/require-returns': 'off',
+    'jsdoc/sort-tags': [
+      'error',
+      {
+        tagSequence: [
+          { tags: ['template'] },
+          { tags: ['internal'] },
+          { tags: ['param'] },
+          { tags: ['returns'] },
+          { tags: ['throws'] },
+          { tags: ['see'] },
+          { tags: ['example'] },
+          { tags: ['since'] },
+          { tags: ['default'] },
+          { tags: ['deprecated'] },
+        ],
+      },
+    ],
+    'jsdoc/tag-lines': 'off',
+  },
+  settings: {
+    jsdoc: {
+      mode: 'typescript',
+    },
   },
   overrides: [
     {
       files: ['src/**/*.ts'],
-      plugins: ['jsdoc'],
-      extends: ['plugin:jsdoc/recommended-error'],
       rules: {
-        'jsdoc/no-types': 'error',
-        'jsdoc/require-param-type': 'off',
-        'jsdoc/require-returns-type': 'off',
-        'jsdoc/require-returns': 'off',
-        'jsdoc/tag-lines': 'off',
-        'jsdoc/sort-tags': [
-          'error',
-          {
-            tagSequence: [
-              { tags: ['template'] },
-              { tags: ['internal'] },
-              { tags: ['param'] },
-              { tags: ['returns'] },
-              { tags: ['throws'] },
-              { tags: ['see'] },
-              { tags: ['example'] },
-              { tags: ['since'] },
-              { tags: ['default'] },
-              { tags: ['deprecated'] },
-            ],
-          },
-        ],
-      },
-      settings: {
-        jsdoc: {
-          mode: 'typescript',
-        },
+        'jsdoc/require-jsdoc': 'error',
       },
     },
     {

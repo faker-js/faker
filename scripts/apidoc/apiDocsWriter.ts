@@ -199,7 +199,7 @@ export function writeApiDiffIndex(diffIndex: DocsApiDiffIndex): void {
 /**
  * Writes the api search index to the correct location.
  *
- * @param project The typedoc project.
+ * @param pages The pages to write into the index.
  */
 export function writeApiSearchIndex(pages: ModuleSummary[]): void {
   const apiIndex: APIGroup[] = [

@@ -30,5 +30,6 @@ export const apiPages = [
   { text: 'System', link: '/api/system.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },
   { text: 'Word', link: '/api/word.html' },
+  { text: 'Randomizer', link: '/api/randomizer.html' },
   { text: 'Utilities', link: '/api/utils.html' },
 ];

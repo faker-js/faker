@@ -92,7 +92,8 @@ describe('finance', () => {
     t.describe('creditCardNumber', (t) => {
       t.it('noArgs')
         .it('with issuer', 'visa')
-        .it('with issuer option', { issuer: 'visa' });
+        .it('with issuer option visa', { issuer: 'visa' })
+        .it('with issuer option mastercard', { issuer: 'mastercard' });
     });
 
     t.describe('mask', (t) => {
@@ -278,7 +279,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).toMatch(/^[0-9\.]+$/);
+          ).toMatch(/^[0-9.]+$/);
         });
 
         it('should handle negative amounts', () => {
@@ -455,11 +456,13 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(-([0-9]){4}){3})$/);
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toSatisfy((value) =>
+            isCreditCard(value as string, { provider: 'mastercard' })
+          );
           expect(mastercard).toSatisfy(luhnCheck);
 
           const discover = faker.finance.creditCardNumber('discover');
@@ -487,7 +490,7 @@ describe('finance', () => {
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toMatch(/^\d{3}-\d{3}-\d{3}$/);
           expect(number).toSatisfy(luhnCheck);
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
