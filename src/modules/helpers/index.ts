@@ -99,9 +99,9 @@ function legacyRegexpStringParse(
   string: string = ''
 ): string {
   // Deal with range repeat `{min,max}`
-  const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
+  const RANGE_REP_REG = /(.)\{(\d+),(\d+)\}/;
   const REP_REG = /(.)\{(\d+)\}/;
-  const RANGE_REG = /\[(\d+)\-(\d+)\]/;
+  const RANGE_REG = /\[(\d+)-(\d+)\]/;
   let min: number;
   let max: number;
   let tmp: number;
@@ -192,7 +192,7 @@ export class SimpleHelpersModule {
       .normalize('NFKD') //for example è decomposes to as e +  ̀
       .replace(/[\u0300-\u036f]/g, '') // removes combining marks
       .replace(/ /g, '-') // replaces spaces with hyphens
-      .replace(/[^\w\.\-]+/g, ''); // removes all non-word characters except for dots and hyphens
+      .replace(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
@@ -416,7 +416,7 @@ export class SimpleHelpersModule {
 
     // Deal with single wildcards
     const SINGLE_CHAR_REG =
-      /([.A-Za-z0-9])(?:\{(\d+)(?:\,(\d+)|)\}|(\?|\*|\+))(?![^[]*]|[^{]*})/;
+      /([.A-Za-z0-9])(?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+))(?![^[]*]|[^{]*})/;
     let token = pattern.match(SINGLE_CHAR_REG);
     while (token != null) {
       const quantifierMin: string = token[2];
@@ -439,7 +439,7 @@ export class SimpleHelpersModule {
 
     const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[-!@#$&()`.+,/"])/;
     const RANGE_ALPHANUMEMRIC_REG =
-      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:\,(\d+)|)\}|(\?|\*|\+)|)/;
+      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+)|)/;
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
     token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     while (token != null) {
@@ -548,7 +548,7 @@ export class SimpleHelpersModule {
       token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     }
 
-    const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
+    const RANGE_REP_REG = /(.)\{(\d+),(\d+)\}/;
     // Deal with quantifier ranges `{min,max}`
     token = pattern.match(RANGE_REP_REG);
     while (token != null) {
@@ -1181,7 +1181,7 @@ export class SimpleHelpersModule {
     } = options;
     return uniqueExec.exec(method, args, {
       ...options,
-      startTime: new Date().getTime(),
+      startTime: Date.now(),
       maxTime,
       maxRetries,
       currentIterations: 0,
