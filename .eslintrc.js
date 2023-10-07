@@ -74,7 +74,6 @@ module.exports = defineConfig({
     'unicorn/prefer-array-flat-map': 'off',
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
-    'unicorn/prefer-date-now': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-includes': 'off',
     'unicorn/prefer-module': 'off',
