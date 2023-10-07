@@ -1181,7 +1181,7 @@ export class SimpleHelpersModule {
     } = options;
     return uniqueExec.exec(method, args, {
       ...options,
-      startTime: new Date().getTime(),
+      startTime: Date.now(),
       maxTime,
       maxRetries,
       currentIterations: 0,

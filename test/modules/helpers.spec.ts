@@ -1302,7 +1302,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     it('should not mutate most of the input option properties', () => {
       const method = () => 'options-mutate-test';
 
-      const startTime = new Date().getTime();
+      const startTime = Date.now();
       const maxTime = 49;
       const maxRetries = 49;
       const currentIterations = 0;
