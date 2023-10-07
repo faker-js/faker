@@ -9,15 +9,14 @@ This is a shorthand for running the following scripts in order:
 
 - `pnpm install` - installs npm packages defined in package.json
 - `pnpm run generate:locales` - generates locale files
-- `pnpm run generate:api-doc` - generates API documentation
+- `pnpm run generate:api-docs` - generates API documentation
 - `pnpm run format` - runs [prettify](https://github.com/prettier/prettier) to format code
 - `pnpm run lint` - runs [ESLint](https://github.com/eslint/eslint) to enforce project code standards
 - `pnpm run build:clean` - removes artifacts from previous builds
 - `pnpm run build:code` - builds the code, both CommonJS and ESM versions
 - `pnpm run build:types` - builds the TypeScript type definitions
 - `pnpm run test:update-snapshots ` - runs all tests, and updates any snapshots if needed
-- `pnpm run ts-check:scripts` - checks that there are no TypeScript errors in script files
-- `pnpm run ts-check:tests` - checks that there are no TypeScript errors in test or script files
+- `pnpm run ts-check` - checks that there are no TypeScript errors in any files
 
 ## Good to know
 
@@ -42,6 +41,11 @@ If adding new data definitions to Faker, you'll often need to find source data. 
 - Facts cannot be copyrighted, so if you are adding or translating a finite, known, list of things such as the names of chemical elements into another language, that's OK.
 - But if you are compiling a list of, for example, popular personal names or cities, don't copy directly from a single source (Wikipedia, 'most popular' articles, government data sites etc). A compilation of facts [can be copyrighted](https://en.wikipedia.org/wiki/Copyright_in_compilation).
 - It's best to refer to multiple sources and use your own judgement/knowledge to make a sample list of data.
+
+## Adding new locale or updating existing one
+
+After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
+Please only change files related to one module (e.g. person, location) whenever possible. This can simplify/speed up the review process. Additionally, it allows the maintainers to track PRs in a meaningful way by adding related labels.
 
 ## Building Faker
 
@@ -163,10 +167,6 @@ describe('someModule', () => {
   });
 });
 ```
-
-## Adding new locale or updating existing one
-
-After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
 
 ## Deprecation workflow
 

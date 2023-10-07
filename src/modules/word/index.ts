@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { filterWordListByLength } from './filterWordListByLength';
 
 /**
@@ -7,16 +8,7 @@ import { filterWordListByLength } from './filterWordListByLength';
  */
 export class WordModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      WordModule.prototype
-    ) as Array<keyof WordModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

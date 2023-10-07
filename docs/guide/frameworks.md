@@ -13,13 +13,13 @@ Simply crop that line out for a Jest integration.
 These frameworks work about exactly as you would expect with Faker. Here's a minimal example:
 
 ```ts
-import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
+import { describe, expect, it } from 'vitest';
 
 describe('reverse array', () => {
   it('should reverse the array', () => {
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
+    const title = faker.person.jobTitle();
+    const name = faker.person.fullName();
     const animal = faker.animal.bear();
 
     const array = [title, name, animal];
@@ -36,8 +36,8 @@ These are especially useful in tests that are meant to be deterministic, such as
 - [Snapshots in Jest](https://jestjs.io/docs/snapshot-testing)
 
 ```ts
-import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
+import { afterEach, describe, expect, it } from 'vitest';
 
 // We might want other tests to *not* be seeded. This will re-seed our faker instance after each test.
 afterEach(() => {
@@ -48,8 +48,8 @@ describe('reverse array', () => {
   it('should reverse the array', () => {
     // Seed our faker instance with some static number.
     faker.seed(1234);
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
+    const title = faker.person.jobTitle();
+    const name = faker.person.fullName();
     const animal = faker.animal.bear();
 
     const array = [title, name, animal];
@@ -64,7 +64,7 @@ describe('reverse array', () => {
 
 ## Cypress
 
-[Cypress](https://www.cypress.io/) integration is fairly straighforward as well:
+[Cypress](https://www.cypress.io/) integration is fairly straightforward as well:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';

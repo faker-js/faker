@@ -1,5 +1,6 @@
-import type { Faker } from '../..';
+import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
@@ -102,17 +103,8 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
 export class StringModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      StringModule.prototype
-    ) as Array<keyof StringModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+  constructor(private readonly faker: SimpleFaker) {
+    bindThisToMemberFunctions(this);
   }
 
   /**

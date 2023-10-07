@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -37,16 +38,7 @@ const CRON_DAY_OF_WEEK = [
  */
 export class SystemModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      SystemModule.prototype
-    ) as Array<keyof SystemModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

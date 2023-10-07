@@ -6,9 +6,9 @@ import { processMethods } from './moduleMethods';
 import { selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
 
-export function processFakerUtilities(
+export async function processFakerUtilities(
   project: ProjectReflection
-): ModuleSummary {
+): Promise<ModuleSummary> {
   const fakerUtilities = project
     .getChildrenByKind(ReflectionKind.Function)
     .filter((method) => !method.flags.isPrivate);
@@ -16,17 +16,24 @@ export function processFakerUtilities(
   return processUtilities(fakerUtilities);
 }
 
-function processUtilities(
+async function processUtilities(
   fakerUtilities: DeclarationReflection[]
-): ModuleSummary {
+): Promise<ModuleSummary> {
   console.log(`Processing Faker Utilities`);
   const comment = 'A list of all the utilities available in Faker.js.';
 
-  const methods: Method[] = processMethods(
+  const methods: Method[] = await processMethods(
     Object.fromEntries(
       fakerUtilities.map((method) => [method.name, selectApiSignature(method)])
     )
   );
 
-  return writeApiDocsModule('Utilities', 'utils', comment, undefined, methods);
+  return writeApiDocsModule(
+    'Utilities',
+    'utils',
+    comment,
+    undefined,
+    undefined,
+    methods
+  );
 }
