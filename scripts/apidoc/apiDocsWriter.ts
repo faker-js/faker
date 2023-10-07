@@ -155,13 +155,7 @@ function writeApiDocsModuleData(
   methods: Method[]
 ): void {
   const content = JSON.stringify(
-    methods.reduce<Record<string, Method>>(
-      (map, method) => ({
-        ...map,
-        [method.name]: method,
-      }),
-      {}
-    )
+    Object.fromEntries(methods.map((method) => [method.name, method]))
   );
 
   writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.json`), content);
