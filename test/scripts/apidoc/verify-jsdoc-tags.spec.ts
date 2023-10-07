@@ -118,7 +118,7 @@ describe('verify JSDoc tags', () => {
 
             const path = resolvePathToMethodFile(moduleName, methodName);
             const imports = [
-              ...new Set(examples.match(/(?<!\.)faker[^\.]*(?=\.)/g)),
+              ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
             ];
             writeFileSync(
               path,

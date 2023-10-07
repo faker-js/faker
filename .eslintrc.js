@@ -29,8 +29,6 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
-    // We may want to use this in the future
-    'no-useless-escape': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
@@ -76,7 +74,6 @@ module.exports = defineConfig({
     'unicorn/prefer-array-flat-map': 'off',
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
-    'unicorn/prefer-date-now': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-includes': 'off',
     'unicorn/prefer-module': 'off',
