@@ -77,7 +77,6 @@ module.exports = defineConfig({
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-includes': 'off',
     'unicorn/prefer-module': 'off',
-    'unicorn/prefer-native-coercion-functions': 'off',
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-object-from-entries': 'off',

@@ -281,12 +281,12 @@ export function extractSeeAlsos(reflection?: CommentHolder): string[] {
       .map((link) => {
         link = link.trim();
         if (link.startsWith('-')) {
-          link = link.slice(1).trim();
+          link = link.slice(1).trimStart();
         }
 
         return link;
       })
-      .filter((link) => link)
+      .filter((link) => link.length > 0)
   );
 }
 
