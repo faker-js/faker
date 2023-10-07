@@ -366,6 +366,8 @@ async function main(): Promise<void> {
 }
 
 main().catch((e) => {
+  // Workaround until top level await is available
   console.error(e);
+  // eslint-disable-next-line unicorn/no-process-exit
   process.exit(1);
 });

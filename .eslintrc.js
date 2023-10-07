@@ -67,7 +67,6 @@ module.exports = defineConfig({
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-new-array': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
-    'unicorn/no-process-exit': 'off',
     'unicorn/no-useless-switch-case': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
