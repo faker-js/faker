@@ -44,6 +44,10 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
           text: 'Team',
           link: '/about/team',
         },
+        {
+          text: 'Contributing',
+          link: '/about/contributing',
+        },
       ],
     },
   ];
@@ -155,6 +159,10 @@ const config = defineConfig({
             text: 'Team',
             link: '/about/team',
           },
+          {
+            text: 'Contributing',
+            link: '/about/contributing',
+          },
         ],
       },
       {
@@ -193,6 +201,10 @@ const config = defineConfig({
             link: '/guide/frameworks',
           },
           {
+            text: 'Randomizer',
+            link: '/guide/randomizer',
+          },
+          {
             text: 'Upgrading to v8',
             link: '/guide/upgrading',
           },
@@ -229,6 +241,10 @@ const config = defineConfig({
           {
             text: 'Team',
             link: '/about/team',
+          },
+          {
+            text: 'Contributing',
+            link: '/about/contributing',
           },
         ],
       }),

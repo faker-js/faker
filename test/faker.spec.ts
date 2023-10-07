@@ -30,6 +30,14 @@ describe('faker', () => {
     }
   });
 
+  describe('getMetadata()', () => {
+    it('should return metadata for the locale', () => {
+      expect(faker.getMetadata()).toBeDefined();
+      expect(faker.getMetadata().title).toBeTypeOf('string');
+      // Not all properties are tested here, see locale-imports.spec.ts for full tests
+    });
+  });
+
   describe('rawDefinitions', () => {
     it('locale rawDefinition accessibility', () => {
       // Metadata
@@ -57,6 +65,22 @@ describe('faker', () => {
       expect(() => faker.definitions.missing.missing).toThrow();
       // Non-existing definition in an existing module
       expect(() => faker.definitions.location.missing).toThrow();
+    });
+  });
+
+  describe('randomizer', () => {
+    it('should be possible to provide a custom Randomizer', () => {
+      const customFaker = new Faker({
+        locale: {},
+        randomizer: {
+          next: () => 0,
+          seed: () => void 0,
+        },
+      });
+
+      expect(customFaker.number.int()).toBe(0);
+      expect(customFaker.number.int()).toBe(0);
+      expect(customFaker.number.int()).toBe(0);
     });
   });
 

@@ -1,28 +1,20 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * Module to generate animal related entries.
  *
  * ### Overview
  *
- * For a general type of animal (e.g. `'dog'`), use [`type()`](https://next.fakerjs.dev/api/animal.html#type).
+ * For a general type of animal (e.g. `'dog'`), use [`type()`](https://fakerjs.dev/api/animal.html#type).
  *
- * Otherwise, use one of the more specific methods, such as [`cat()`](https://next.fakerjs.dev/api/animal.html#cat) for a specific breed of cat.
+ * Otherwise, use one of the more specific methods, such as [`cat()`](https://fakerjs.dev/api/animal.html#cat) for a specific breed of cat.
  *
  * All values may be localized.
  */
 export class AnimalModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      AnimalModule.prototype
-    ) as Array<keyof AnimalModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

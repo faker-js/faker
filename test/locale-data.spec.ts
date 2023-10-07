@@ -8,13 +8,11 @@ function checkLocaleData(data: unknown) {
       expect(data).not.toContainDuplicates();
     });
   } else if (typeof data === 'object' && data != null) {
-    for (const [nestedKey, nestedData] of Object.entries(data)) {
-      describe(nestedKey, () => {
-        checkLocaleData(nestedData);
-      });
-    }
+    describe.each(Object.entries(data))('%s', (_, nestedData) => {
+      checkLocaleData(nestedData);
+    });
   } else {
-    it.skip(`primitives cannot be tested`);
+    it.skip('primitives cannot be tested');
   }
 }
 

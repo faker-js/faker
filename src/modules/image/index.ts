@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import type { MethodsOf } from '../../utils/types';
 import { LoremPicsum } from './providers/lorempicsum';
@@ -10,13 +11,13 @@ import { Unsplash } from './providers/unsplash';
  *
  * ### Overview
  *
- * For a random image, use [`url()`](https://next.fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://next.fakerjs.dev/api/image.html#urlpicsumphotos).
+ * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
  *
- * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://next.fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://next.fakerjs.dev/api/image.html#datauri) (returns a SVG string).
+ * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
- * For a random user avatar image, use [`avatar()`](https://next.fakerjs.dev/api/image.html#avatar).
+ * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar).
  *
- * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
+ * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
  */
 export class ImageModule {
   /**
@@ -38,18 +39,7 @@ export class ImageModule {
   readonly placeholder: Placeholder;
 
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      ImageModule.prototype
-    ) as Array<keyof ImageModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] =
-        // @ts-expect-error: remove this expect-error when we remove the deprecated sub-modules
-        this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
 
     // eslint-disable-next-line deprecation/deprecation
     this.unsplash = new Unsplash(this.faker);
@@ -358,15 +348,17 @@ export class ImageModule {
   }
 
   /**
-   * Generates a random data uri containing an svg image.
+   * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
-   * @param options.color The color of the image. Defaults to `grey`.
+   * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
+   * @param options.type The type of the image. Defaults to `'svg-uri'`.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
+   * faker.image.dataUri({ type: 'svg-base64' }) // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3...'
    *
    * @since 4.0.0
    */
@@ -385,14 +377,26 @@ export class ImageModule {
        */
       height?: number;
       /**
-       * The color of the image.
+       * The color of the image. Must be a color supported by svg.
        *
-       * @default 'grey'
+       * @default faker.color.rgb()
        */
       color?: string;
+      /**
+       * The type of the image to return. Consisting of
+       * the file extension and the used encoding.
+       *
+       * @default 'svg-uri'
+       */
+      type?: 'svg-uri' | 'svg-base64';
     } = {}
   ): string {
-    const { width = 640, height = 480, color = 'grey' } = options;
+    const {
+      width = 640,
+      height = 480,
+      color = this.faker.color.rgb(),
+      type = 'svg-uri',
+    } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
       width / 2
@@ -400,8 +404,11 @@ export class ImageModule {
       height / 2
     }" font-size="20" alignment-baseline="middle" text-anchor="middle" fill="white">${width}x${height}</text></svg>`;
 
-    const rawPrefix = 'data:image/svg+xml;charset=UTF-8,';
-    return rawPrefix + encodeURIComponent(svgString);
+    return type === 'svg-uri'
+      ? `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgString)}`
+      : `data:image/svg+xml;base64,${Buffer.from(svgString).toString(
+          'base64'
+        )}`;
   }
 
   /**

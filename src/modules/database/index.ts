@@ -1,26 +1,18 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * Module to generate database related entries.
  *
  * ### Overview
  *
- * Traditional relational database tables have data organized in columns with specific types - [`column()`](https://next.fakerjs.dev/api/database.html#column), [`type()`](https://next.fakerjs.dev/api/database.html#type). The database usually has an [`engine()`](https://next.fakerjs.dev/api/database.html#engine) and a default [`collation()`](https://next.fakerjs.dev/api/database.html#collation) for sorting.
+ * Traditional relational database tables have data organized in columns with specific types - [`column()`](https://fakerjs.dev/api/database.html#column), [`type()`](https://fakerjs.dev/api/database.html#type). The database usually has an [`engine()`](https://fakerjs.dev/api/database.html#engine) and a default [`collation()`](https://fakerjs.dev/api/database.html#collation) for sorting.
  *
- * For the NoSQL database MongoDB, [`mongodbObjectId()`](https://next.fakerjs.dev/api/database.html#mongodbobjectid) provides a random ID.
+ * For the NoSQL database MongoDB, [`mongodbObjectId()`](https://fakerjs.dev/api/database.html#mongodbobjectid) provides a random ID.
  */
 export class DatabaseModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      DatabaseModule.prototype
-    ) as Array<keyof DatabaseModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

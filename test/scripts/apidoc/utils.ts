@@ -12,6 +12,9 @@ import { mapByName } from '../../../scripts/apidoc/utils';
 
 /**
  * Returns a record with the (Module-Name -> (Method-Name -> Method-Signature)) for the project.
+ *
+ * @param options The TypeDoc options.
+ * @param includeTestModules Whether to include the test modules.
  */
 export function loadProjectModules(
   options?: Partial<TypeDocOptions>,
@@ -34,7 +37,6 @@ export function loadExampleMethods(): Record<string, SignatureReflection> {
   return loadProjectModules(
     {
       entryPoints: ['test/scripts/apidoc/signature.example.ts'],
-      tsconfig: 'test/scripts/apidoc/tsconfig.json',
     },
     true
   )['SignatureTest'][1];
@@ -47,7 +49,6 @@ export function loadExampleModules(): Record<string, DeclarationReflection> {
   const modules = loadProjectModules(
     {
       entryPoints: ['test/scripts/apidoc/module.example.ts'],
-      tsconfig: 'test/scripts/apidoc/tsconfig.json',
     },
     true
   );

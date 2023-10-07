@@ -14,12 +14,12 @@ import type {
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
 import { formatTypescript } from './format';
-import { mdToHtml } from './markdown';
+import { codeToHtml, mdToHtml } from './markdown';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractRawDefault,
-  extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
@@ -28,13 +28,11 @@ import {
   toBlock,
 } from './typedoc';
 
-const code = '```';
-
-export function analyzeSignature(
+export async function analyzeSignature(
   signature: SignatureReflection,
   accessor: string,
   methodName: string
-): Method {
+): Promise<Method> {
   const parameters: MethodParameter[] = [];
 
   // Collect Type Parameters
@@ -44,7 +42,7 @@ export function analyzeSignature(
     signatureTypeParameters.push(parameter.name);
     parameters.push({
       name: `<${parameter.name}>`,
-      type: parameter.type ? typeToText(parameter.type) : undefined,
+      type: parameter.type ? await typeToText(parameter.type) : undefined,
       description: mdToHtml(extractDescription(parameter)),
     });
   }
@@ -58,7 +56,7 @@ export function analyzeSignature(
   ) {
     const parameter = signature.parameters[index];
 
-    const aParam = analyzeParameter(parameter);
+    const aParam = await analyzeParameter(parameter);
     signatureParameters.push(aParam.signature);
     parameters.push(...aParam.parameters);
   }
@@ -74,9 +72,9 @@ export function analyzeSignature(
 
   let examples = `${accessor}${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
 
-  const exampleTags = extractRawExamples(signature);
-  if (exampleTags.length > 0) {
-    examples += `${exampleTags.join('\n').trim()}\n`;
+  const exampleTags = extractJoinedRawExamples(signature);
+  if (exampleTags) {
+    examples += exampleTags;
   }
 
   const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
@@ -96,17 +94,17 @@ export function analyzeSignature(
     since: extractSince(signature),
     sourcePath: extractSourcePath(signature),
     throws,
-    returns: typeToText(signature.type),
-    examples: mdToHtml(`${code}ts\n${examples}${code}`),
+    returns: await typeToText(signature.type),
+    examples: codeToHtml(examples),
     deprecated,
     seeAlsos,
   };
 }
 
-function analyzeParameter(parameter: ParameterReflection): {
+async function analyzeParameter(parameter: ParameterReflection): Promise<{
   parameters: MethodParameter[];
   signature: string;
-} {
+}> {
   const name = parameter.name;
   const declarationName = name + (isOptional(parameter) ? '?' : '');
   const type = parameter.type;
@@ -118,17 +116,19 @@ function analyzeParameter(parameter: ParameterReflection): {
     signatureText = ` = ${defaultValue}`;
   }
 
-  const signature = `${declarationName}: ${typeToText(type)}${signatureText}`;
+  const signature = `${declarationName}: ${await typeToText(
+    type
+  )}${signatureText}`;
 
   const parameters: MethodParameter[] = [
     {
       name: declarationName,
-      type: typeToText(type, true),
+      type: await typeToText(type, true),
       default: defaultValue,
       description: mdToHtml(extractDescription(parameter)),
     },
   ];
-  parameters.push(...analyzeParameterOptions(name, type));
+  parameters.push(...(await analyzeParameterOptions(name, type)));
 
   return {
     parameters,
@@ -136,10 +136,10 @@ function analyzeParameter(parameter: ParameterReflection): {
   };
 }
 
-function analyzeParameterOptions(
+async function analyzeParameterOptions(
   name: string,
   parameterType?: SomeType
-): MethodParameter[] {
+): Promise<MethodParameter[]> {
   if (!parameterType) {
     return [];
   }
@@ -149,28 +149,30 @@ function analyzeParameterOptions(
       return analyzeParameterOptions(`${name}[]`, parameterType.elementType);
 
     case 'union':
-      return parameterType.types.flatMap((type) =>
-        analyzeParameterOptions(name, type)
-      );
+      return Promise.all(
+        parameterType.types.map((type) => analyzeParameterOptions(name, type))
+      ).then((options) => options.flat());
 
     case 'reflection': {
       const properties = parameterType.declaration.children ?? [];
-      return properties.map((property) => {
-        const reflection = property.comment
-          ? property
-          : (property.type as ReflectionType)?.declaration?.signatures?.[0];
-        const comment = reflection?.comment;
-        const deprecated = extractDeprecated(reflection);
-        return {
-          name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-          type: declarationTypeToText(property),
-          default: extractDefaultFromComment(comment),
-          description: mdToHtml(
-            toBlock(comment) +
-              (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : '')
-          ),
-        };
-      });
+      return Promise.all(
+        properties.map(async (property) => {
+          const reflection = property.comment
+            ? property
+            : (property.type as ReflectionType)?.declaration?.signatures?.[0];
+          const comment = reflection?.comment;
+          const deprecated = extractDeprecated(reflection);
+          return {
+            name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+            type: await declarationTypeToText(property),
+            default: extractDefaultFromComment(comment),
+            description: mdToHtml(
+              toBlock(comment) +
+                (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : '')
+            ),
+          };
+        })
+      );
     }
 
     case 'typeOperator':
@@ -185,7 +187,7 @@ function isOptional(parameter: Reflection): boolean {
   return parameter.flags.hasFlag(ReflectionFlag.Optional);
 }
 
-function typeToText(type_?: Type, short = false): string {
+async function typeToText(type_?: Type, short = false): Promise<string> {
   if (!type_) {
     return '?';
   }
@@ -193,14 +195,13 @@ function typeToText(type_?: Type, short = false): string {
   const type = type_ as SomeType;
   switch (type.type) {
     case 'array': {
-      const text = typeToText(type.elementType, short);
+      const text = await typeToText(type.elementType, short);
       const isComplexType = text.includes('|') || text.includes('{');
       return isComplexType ? `Array<${text}>` : `${text}[]`;
     }
 
     case 'union':
-      return type.types
-        .map((t) => typeToText(t, short))
+      return (await Promise.all(type.types.map((t) => typeToText(t, short))))
         .map((t) => (t.includes('=>') ? `(${t})` : t))
         .sort()
         .join(' | ');
@@ -220,29 +221,29 @@ function typeToText(type_?: Type, short = false): string {
         return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
-          typeToText(type.typeArguments[0], short),
-          typeToText(type.typeArguments[1], short),
+          await typeToText(type.typeArguments[0], short),
+          await typeToText(type.typeArguments[1], short),
         ].join(' | ');
       }
 
       return `${type.name}<${type.typeArguments
-        .map((t) => typeToText(t, short))
+        .map(async (t) => await typeToText(t, short))
         .join(', ')}>`;
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
 
     case 'indexedAccess':
-      return `${typeToText(type.objectType, short)}[${typeToText(
+      return `${await typeToText(type.objectType, short)}[${await typeToText(
         type.indexType,
         short
       )}]`;
 
     case 'literal':
-      return formatTypescript(type.toString()).replace(/;\n$/, '');
+      return (await formatTypescript(type.toString())).replace(/;\n$/, '');
 
     case 'typeOperator': {
-      const text = typeToText(type.target, short);
+      const text = await typeToText(type.target, short);
       if (short && type.operator === 'readonly') {
         return text;
       }
@@ -255,10 +256,10 @@ function typeToText(type_?: Type, short = false): string {
   }
 }
 
-function declarationTypeToText(
+async function declarationTypeToText(
   declaration: DeclarationReflection,
   short = false
-): string {
+): Promise<string> {
   switch (declaration.kind) {
     case ReflectionKind.Method:
       return signatureTypeToText(declaration.signatures?.[0]);
@@ -273,9 +274,13 @@ function declarationTypeToText(
           return '{ ... }';
         }
 
-        const list = declaration.children
-          .map((c) => `  ${c.name}: ${declarationTypeToText(c)}`)
-          .join(',\n');
+        const list = (
+          await Promise.all(
+            declaration.children.map(
+              async (c) => `  ${c.name}: ${await declarationTypeToText(c)}`
+            )
+          )
+        ).join(',\n');
 
         return `{\n${list}\n}`;
       } else if (declaration.signatures?.length) {
@@ -289,20 +294,27 @@ function declarationTypeToText(
   }
 }
 
-function signatureTypeToText(signature?: SignatureReflection): string {
+async function signatureTypeToText(
+  signature?: SignatureReflection
+): Promise<string> {
   if (!signature) {
     return '(???) => ?';
   }
 
-  return `(${signature.parameters
-    ?.map((p) => `${p.name}: ${typeToText(p.type)}`)
-    .join(', ')}) => ${typeToText(signature.type)}`;
+  return `(${(
+    await Promise.all(
+      signature.parameters?.map(
+        async (p) => `${p.name}: ${await typeToText(p.type)}`
+      )
+    )
+  ).join(', ')}) => ${await typeToText(signature.type)}`;
 }
 
 /**
  * Extracts and removed the parameter default from the comments.
  *
  * @param comment The comment to extract the default from.
+ *
  * @returns The extracted default value.
  */
 function extractDefaultFromComment(comment?: Comment): string | undefined {

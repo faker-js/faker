@@ -182,6 +182,7 @@ export class SignatureTest {
    * @param options.b The string parameter.
    * @param options.c The boolean parameter.
    * @param options.d The method parameter.
+   * @param options.e The LiteralUnion parameter.
    */
   optionsParamMethod(options: {
     a: number;

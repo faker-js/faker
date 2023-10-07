@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -29,26 +30,17 @@ export type HTTPProtocolType = 'http' | 'https';
  *
  * ### Overview
  *
- * For user accounts, you may need an [`email()`](https://next.fakerjs.dev/api/internet.html#email) and a [`password()`](https://next.fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://next.fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://next.fakerjs.dev/api/internet.html#displayname), and an image [`avatar()`](https://next.fakerjs.dev/api/internet.html#avatar). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://next.fakerjs.dev/api/internet.html#exampleemail) instead.
+ * For user accounts, you may need an [`email()`](https://fakerjs.dev/api/internet.html#email) and a [`password()`](https://fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://fakerjs.dev/api/internet.html#displayname), and an image [`avatar()`](https://fakerjs.dev/api/internet.html#avatar). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://fakerjs.dev/api/internet.html#exampleemail) instead.
  *
- * For websites, you can generate a [`domainName()`](https://next.fakerjs.dev/api/internet.html#domainname) or a full [`url()`](https://next.fakerjs.dev/api/internet.html#url).
+ * For websites, you can generate a [`domainName()`](https://fakerjs.dev/api/internet.html#domainname) or a full [`url()`](https://fakerjs.dev/api/internet.html#url).
  *
- * To make your data more 🔥, you can use [`emoji()`](https://next.fakerjs.dev/api/internet.html#emoji).
+ * To make your data more 🔥, you can use [`emoji()`](https://fakerjs.dev/api/internet.html#emoji).
  *
- * You also have access to a number of the more technical elements of web requests, such as [`httpMethod`](https://next.fakerjs.dev/api/internet.html#httpmethod), [`httpStatusCode`](https://next.fakerjs.dev/api/internet.html#httpstatuscode), [`ip`](https://next.fakerjs.dev/api/internet.html#ip), [`mac`](https://next.fakerjs.dev/api/internet.html#mac), [`userAgent`](https://next.fakerjs.dev/api/internet.html#useragent), and [`port`](https://next.fakerjs.dev/api/internet.html#port).
+ * You also have access to a number of the more technical elements of web requests, such as [`httpMethod`](https://fakerjs.dev/api/internet.html#httpmethod), [`httpStatusCode`](https://fakerjs.dev/api/internet.html#httpstatuscode), [`ip`](https://fakerjs.dev/api/internet.html#ip), [`mac`](https://fakerjs.dev/api/internet.html#mac), [`userAgent`](https://fakerjs.dev/api/internet.html#useragent), and [`port`](https://fakerjs.dev/api/internet.html#port).
  */
 export class InternetModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      InternetModule.prototype
-    ) as Array<keyof InternetModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
@@ -273,7 +265,7 @@ export class InternetModule {
     let localPart: string = this.userName({ firstName, lastName });
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
-    localPart = localPart.replace(/[^A-Za-z0-9._+\-]+/g, '');
+    localPart = localPart.replace(/[^A-Za-z0-9._+-]+/g, '');
 
     // The local part of an email address is limited to 64 chars per RFC 3696
     // We limit to 50 chars to be more realistic
@@ -486,7 +478,7 @@ export class InternetModule {
 
   /**
    * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -522,7 +514,7 @@ export class InternetModule {
   }): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -546,7 +538,7 @@ export class InternetModule {
   userName(firstName?: string, lastName?: string): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -1309,7 +1301,7 @@ export class InternetModule {
    * @param options An options object. Defaults to `{}`.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match should match.
+   * @param options.pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param options.prefix The prefix to use. Defaults to `''`.
    *
@@ -1336,7 +1328,7 @@ export class InternetModule {
      */
     memorable?: boolean;
     /**
-     * The pattern that all chars should match should match.
+     * The pattern that all chars should match.
      * This option will be ignored, if `memorable` is `true`.
      *
      * @default /\w/
@@ -1354,7 +1346,7 @@ export class InternetModule {
    *
    * @param len The length of the password to generate. Defaults to `15`.
    * @param memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param pattern The pattern that all chars should match should match.
+   * @param pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param prefix The prefix to use. Defaults to `''`.
    *
@@ -1381,11 +1373,11 @@ export class InternetModule {
    * @param options The length of the password or an options object. Defaults to `{}`.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match should match.
+   * @param options.pattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param options.prefix The prefix to use. Defaults to `''`.
    * @param legacyMemorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param legacyPattern The pattern that all chars should match should match.
+   * @param legacyPattern The pattern that all chars should match.
    * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param legacyPrefix The prefix to use. Defaults to `''`.
    *
@@ -1415,7 +1407,7 @@ export class InternetModule {
            */
           memorable?: boolean;
           /**
-           * The pattern that all chars should match should match.
+           * The pattern that all chars should match.
            * This option will be ignored, if `memorable` is `true`.
            *
            * @default /\w/
@@ -1449,7 +1441,7 @@ export class InternetModule {
            */
           memorable?: boolean;
           /**
-           * The pattern that all chars should match should match.
+           * The pattern that all chars should match.
            * This option will be ignored, if `memorable` is `true`.
            *
            * @default /\w/

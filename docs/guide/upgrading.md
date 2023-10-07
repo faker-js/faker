@@ -2,8 +2,6 @@
 
 This is the migration guide for upgrading from v7 to v8.
 
-Since v8 has not yet been released, this is a work in progress list of any major and breaking changes in v8.
-
 ::: info Not the version you are looking for?
 
 - [Upgrading to v7](https://v7.fakerjs.dev/guide/upgrading.html)
@@ -30,7 +28,7 @@ import { faker } from '@faker-js/faker';
 faker.setLocale('de_CH');
 // or
 faker.locale = 'de_CH';
-faker.fallbackLocale = 'en';
+faker.localeFallback = 'en';
 ```
 
 **New**
@@ -44,11 +42,12 @@ This also fixes issues where more than two locales are required:
 **Old**
 
 ```ts
-import { faker } from '@faker-js/faker';
+import { faker, Faker } from '@faker-js/faker';
 
+const { de_CH, de, en } = faker.locales;
 const customFaker = new Faker({
   locale: 'de_CH', // the expected locale
-  fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
+  localeFallback: 'de', // ensure we have a German fallback for addresses
   locales: { de_CH, de, en },
 });
 const a = customFaker.internet.email();
@@ -59,7 +58,7 @@ const b = customFaker.internet.emoji();
 **New**
 
 ```ts
-import { Faker, de_CH, de, en, base } from '@faker-js/faker';
+import { base, de, de_CH, en, Faker } from '@faker-js/faker';
 
 // same as fakerDE_CH
 export const customFaker = new Faker({
@@ -99,7 +98,7 @@ For more information refer to our [Localization Guide](localization).
 
 ### For missing locale data, Faker will now throw instead of returning `undefined` or `a`-`c`
 
-::: note Note
+::: info Note
 The following section mostly applies to custom-built Faker instances.
 :::
 
@@ -111,7 +110,7 @@ This will also give you detailed information which data are missing.
 If you want to check for data you can either use `entry in faker.definitions.category` or use `faker.rawDefinitions.category?.entry` instead.
 
 ```ts
-import { Faker, fakerES, es } from '@faker-js/faker';
+import { es, Faker, fakerES } from '@faker-js/faker';
 
 const fakerES_noFallbacks = new Faker({
   locale: [es],
@@ -126,7 +125,7 @@ fakerES_noFallbacks.music.songName(); // throws a FakerError
 This also has an impact on data that aren't applicable to a locale, for example Hong Kong (`en_HK`) doesn't use ZIP codes/postcodes.
 
 ```ts
-import { fakerEN_US, fakerEN_HK } from '@faker-js/faker';
+import { fakerEN_HK, fakerEN_US } from '@faker-js/faker';
 fakerEN_US.location.zipCode(); // 90210
 fakerEN_HK.location.zipCode(); // throws a FakerError
 ```
@@ -185,21 +184,21 @@ try {
 
 ### Other deprecated methods removed/replaced
 
-| Old method                      | New method                                                                                                      |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `faker.unique`                  | `faker.helpers.unique` (:warning: please have a look at [#1785](https://github.com/faker-js/faker/issues/1785)) |
-| `faker.fake`                    | `faker.helpers.fake`                                                                                            |
-| `faker.commerce.color`          | `faker.color.human`                                                                                             |
-| `faker.company.companyName`     | `faker.company.name`                                                                                            |
-| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                            |
-| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                               |
-| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                               |
-| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                                 |
-| `faker.address.cityPrefix`      | _Removed_                                                                                                       |
-| `faker.address.citySuffix`      | _Removed_                                                                                                       |
-| `faker.address.streetPrefix`    | _Removed_                                                                                                       |
-| `faker.address.streetSuffix`    | _Removed_                                                                                                       |
-| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                                     |
+| Old method                      | New method                                                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `faker.unique`                  | `faker.helpers.unique` (:warning: please check [#1785](https://github.com/faker-js/faker/issues/1785)) |
+| `faker.fake`                    | `faker.helpers.fake`                                                                                   |
+| `faker.commerce.color`          | `faker.color.human`                                                                                    |
+| `faker.company.companyName`     | `faker.company.name`                                                                                   |
+| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                   |
+| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                      |
+| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                      |
+| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                        |
+| `faker.address.cityPrefix`      | _Removed_                                                                                              |
+| `faker.address.citySuffix`      | _Removed_                                                                                              |
+| `faker.address.streetPrefix`    | _Removed_                                                                                              |
+| `faker.address.streetSuffix`    | _Removed_                                                                                              |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                            |
 
 ### Definitions removed
 
@@ -212,6 +211,13 @@ Some data definitions, which were only available via the `faker.helpers.fake` me
 | `faker.definitions.business.credit_card_expiry_dates` | `faker.date.future()`              |
 
 ## Deprecations and other changes
+
+This is not an exhaustive list of all deprecations in v8.0.0. Many methods and parameters have been renamed in this release. You can:
+
+- use the warnings which are shown at runtime to guide you to the new names
+- use a [suitable plugin](https://www.npmjs.com/package/eslint-plugin-deprecation) to find usages of deprecated code
+- Review the full list of deprecations [here](https://github.com/faker-js/faker/issues?q=label%3Adeprecation+is%3Amerged+milestone%3A%22v8.0+-+Module+Re-Shuffling%22) and [here](https://github.com/faker-js/faker/issues?q=label%3Adeprecation+is%3Amerged+milestone%3A%22v8+-+None+milestone+specific+tasks%22)
+- Ignore the deprecations for now: the old names will continue to work for v8.x.x, however you will need to make changes before upgrading to v9.x.x.
 
 ### `faker.name` changed to `faker.person`
 
@@ -269,14 +275,6 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.streetPrefix`        | _Removed_                            |
 | `faker.address.streetSuffix`        | _Removed_                            |
 
-### `faker.finance.account` changed to `faker.finance.accountNumber`
-
-The `faker.finance.account` method has been renamed to `faker.finance.accountNumber` to better reflect the data it returns and not to get confused with a user "Account".
-
-### `faker.finance.mask` changed to `faker.finance.maskedNumber`
-
-The `faker.finance.mask` method has been renamed to `faker.finance.maskedNumber` to better reflect its purpose.
-
 ### Number methods of `faker.datatype` moved to new `faker.number` module
 
 The number-related methods previously found in `faker.datatype` have been moved to a new `faker.number` module.
@@ -286,12 +284,14 @@ By default, `faker.number.float` no longer defaults to a precision of 0.01
 
 ```js
 // OLD
+faker.datatype.number(); // 88999 (NOTE: The default max was 99999)
 faker.datatype.number({ max: 100 }); // 35
 faker.datatype.number({ max: 100, precision: 0.01 }); // 35.21
 faker.datatype.float({ max: 100 }); // 35.21
 faker.datatype.float({ max: 100, precision: 0.001 }); // 35.211
 
 // NEW
+faker.number.int({ max: 99999 }); // 88999 (NOTE: the default max is now Number.MAX_SAFE_INTEGER)
 faker.number.int({ max: 100 }); // 35
 faker.number.float({ max: 100 }); // 35.21092065742612
 faker.number.float({ max: 100, precision: 0.01 }); // 35.21
@@ -312,6 +312,22 @@ If you need an array of useful values, you are better off creating your own one 
 
 The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` or `faker.date.anytime` instead.
 
+### `faker.helpers.regexpStyleStringParse` deprecated in favor of `faker.helpers.fromRegExp`
+
+The `regexpStyleStringParse` method in `faker.helpers` has been deprecated in Faker 8.1. A likely replacement is the more powerful `faker.helpers.fromRegExp`.
+
+```js
+faker.helpers.regexpStyleStringParse('a{3,6}'); // aaaaa
+faker.helpers.fromRegExp('a{3,6}'); // aaaaa
+```
+
+However, please note that `faker.helpers.fromRegExp` is not an exact replacement for `faker.helpers.regexpStyleStringParse` as `fromRegExp` cannot handle numeric ranges. This will now need to be handled separately.
+
+```js
+faker.helpers.regexpStyleStringParse('a{3,6}[1-100]'); // "aaaa53", etc.
+faker.helpers.fromRegExp('a{3,6}') + faker.number.int({ min: 1, max: 100 });
+```
+
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 
 The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
@@ -323,7 +339,7 @@ The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system
 ### `faker.helpers.unique` is planned to be outsourced
 
 The `faker.helpers.unique` method is planned to be outsourced to a separate package.  
-Please have a look at issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
+Please check issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
 
 ### Locales renamed
 

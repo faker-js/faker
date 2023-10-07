@@ -1,32 +1,24 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * Module to generate hacker/IT words and phrases.
  *
  * ### Overview
  *
- * There are methods for different parts of speech, such as [`abbreviation()`](https://next.fakerjs.dev/api/hacker.html#abbreviation), [`adjective()`](https://next.fakerjs.dev/api/hacker.html#adjective), [`noun()`](https://next.fakerjs.dev/api/hacker.html#noun), [`verb()`](https://next.fakerjs.dev/api/hacker.html#verb), and [`ingverb()`](https://next.fakerjs.dev/api/hacker.html#ingverb). Alternatively, [`phrase()`](https://next.fakerjs.dev/api/hacker.html#phrase) creates a longer phrase combining these words.
+ * There are methods for different parts of speech, such as [`abbreviation()`](https://fakerjs.dev/api/hacker.html#abbreviation), [`adjective()`](https://fakerjs.dev/api/hacker.html#adjective), [`noun()`](https://fakerjs.dev/api/hacker.html#noun), [`verb()`](https://fakerjs.dev/api/hacker.html#verb), and [`ingverb()`](https://fakerjs.dev/api/hacker.html#ingverb). Alternatively, [`phrase()`](https://fakerjs.dev/api/hacker.html#phrase) creates a longer phrase combining these words.
  *
  * ### Related modules
  *
  * Various modules allow for generating other types of words and phrases:
  *
- * - [faker.word](https://next.fakerjs.dev/api/word.html) uses general vocabulary rather than hacker-specific terms.
- * - [faker.lorem](https://next.fakerjs.dev/api/lorem.html) uses faux-Latin "lorem ipsum" text.
- * - [faker.company](https://next.fakerjs.dev/api/company.html) includes corporate catchphrases and buzzwords.
+ * - [faker.word](https://fakerjs.dev/api/word.html) uses general vocabulary rather than hacker-specific terms.
+ * - [faker.lorem](https://fakerjs.dev/api/lorem.html) uses faux-Latin "lorem ipsum" text.
+ * - [faker.company](https://fakerjs.dev/api/company.html) includes corporate catchphrases and buzzwords.
  */
 export class HackerModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      HackerModule.prototype
-    ) as Array<keyof HackerModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

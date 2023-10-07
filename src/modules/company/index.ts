@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -6,27 +7,18 @@ import { deprecated } from '../../internal/deprecated';
  *
  * ### Overview
  *
- * To generate a random company name, use [`name()`](https://next.fakerjs.dev/api/company.html#name). This is localized in many locales.
+ * To generate a random company name, use [`name()`](https://fakerjs.dev/api/company.html#name). This is localized in many locales.
  *
- * To generate jargon-filled company catchphrases and buzzwords, use [`catchPhrase()`](https://next.fakerjs.dev/api/company.html#catchphrase) or [`buzzPhrase()`](https://next.fakerjs.dev/api/company.html#buzzphrase).
+ * To generate jargon-filled company catchphrases and buzzwords, use [`catchPhrase()`](https://fakerjs.dev/api/company.html#catchphrase) or [`buzzPhrase()`](https://fakerjs.dev/api/company.html#buzzphrase).
  *
  * ### Related Modules
  *
- * - For products and commerce, use [`faker.commerce`](https://next.fakerjs.dev/api/commerce.html).
- * - For finance-related entries, use [`faker.finance`](https://next.fakerjs.dev/api/finance.html).
+ * - For products and commerce, use [`faker.commerce`](https://fakerjs.dev/api/commerce.html).
+ * - For finance-related entries, use [`faker.finance`](https://fakerjs.dev/api/finance.html).
  */
 export class CompanyModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      CompanyModule.prototype
-    ) as Array<keyof CompanyModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

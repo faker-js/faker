@@ -4,42 +4,75 @@ import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
 import { analyzeModule, processModuleMethods } from './moduleMethods';
 import { analyzeSignature } from './signature';
-import { selectApiSignature } from './typedoc';
+import { extractModuleFieldName, selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
 
-export function processFakerClass(project: ProjectReflection): ModuleSummary {
-  const fakerClass = project
+export async function processFakerClasses(
+  project: ProjectReflection
+): Promise<ModuleSummary[]> {
+  const fakerClasses = project
     .getChildrenByKind(ReflectionKind.Class)
-    .filter((clazz) => clazz.name === 'Faker')[0];
+    .filter((clazz) => clazz.name === 'Faker' || clazz.name === 'SimpleFaker');
 
-  if (!fakerClass) {
-    throw new Error('Faker class not found');
+  if (fakerClasses.length !== 2) {
+    throw new Error('Faker classes not found');
   }
 
-  return processClass(fakerClass);
+  return Promise.all(fakerClasses.map(processClass));
 }
 
-function processClass(fakerClass: DeclarationReflection): ModuleSummary {
-  console.log(`Processing Faker class`);
-  const { comment, deprecated } = analyzeModule(fakerClass);
+export async function processFakerRandomizer(
+  project: ProjectReflection
+): Promise<ModuleSummary> {
+  const randomizerClass = project
+    .getChildrenByKind(ReflectionKind.Interface)
+    .find((clazz) => clazz.name === 'Randomizer');
+
+  return processClass(randomizerClass);
+}
+
+async function processClass(
+  clazz: DeclarationReflection
+): Promise<ModuleSummary> {
+  const { name } = clazz;
+  const moduleFieldName = extractModuleFieldName(clazz);
+
+  console.log(`Processing ${name} class`);
+
+  const { comment, deprecated, examples } = analyzeModule(clazz);
   const methods: Method[] = [];
 
-  console.debug(`- constructor`);
-  methods.push(processConstructor(fakerClass));
+  if (hasConstructor(clazz)) {
+    console.debug(`- constructor`);
+    methods.push(await processConstructor(clazz));
+  }
 
-  methods.push(...processModuleMethods(fakerClass, 'faker.'));
+  methods.push(...(await processModuleMethods(clazz, `${moduleFieldName}.`)));
 
-  return writeApiDocsModule('Faker', 'faker', comment, deprecated, methods);
+  return writeApiDocsModule(
+    name,
+    moduleFieldName,
+    comment,
+    examples,
+    deprecated,
+    methods
+  );
 }
 
-function processConstructor(fakerClass: DeclarationReflection): Method {
-  const constructor = fakerClass.getChildrenByKind(
-    ReflectionKind.Constructor
-  )[0];
+function hasConstructor(clazz: DeclarationReflection): boolean {
+  return clazz
+    .getChildrenByKind(ReflectionKind.Constructor)
+    .some((constructor) => constructor.signatures.length > 0);
+}
+
+async function processConstructor(
+  clazz: DeclarationReflection
+): Promise<Method> {
+  const constructor = clazz.getChildrenByKind(ReflectionKind.Constructor)[0];
 
   const signature = selectApiSignature(constructor);
 
-  const method = analyzeSignature(signature, '', 'new Faker');
+  const method = await analyzeSignature(signature, '', `new ${clazz.name}`);
 
   return {
     ...method,

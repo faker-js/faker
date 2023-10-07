@@ -61,7 +61,7 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
  * @param categoryData The module to create the proxy for.
  */
 function createCategoryProxy<
-  TCategoryData extends Record<string | symbol, unknown>
+  TCategoryData extends Record<string | symbol, unknown>,
 >(
   categoryName: string,
   categoryData: TCategoryData = {} as TCategoryData
@@ -88,7 +88,7 @@ function createCategoryProxy<
         throw new FakerError(
           `The locale data for '${categoryName}.${entryName.toString()}' are missing in this locale.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
-  For more information see https://next.fakerjs.dev/guide/localization.html`
+  For more information see https://fakerjs.dev/guide/localization.html`
         );
       } else {
         return value;

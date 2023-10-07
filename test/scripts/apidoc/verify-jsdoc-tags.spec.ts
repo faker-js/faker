@@ -7,8 +7,8 @@ import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import {
   extractDeprecated,
   extractDescription,
+  extractJoinedRawExamples,
   extractModuleFieldName,
-  extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractTagContent,
@@ -110,14 +110,16 @@ describe('verify JSDoc tags', () => {
             // Write temp files to disk
 
             // Extract examples and make them runnable
-            const examples = extractRawExamples(signature).join('').trim();
+            const examples = extractJoinedRawExamples(signature);
 
             // Save examples to a file to run them later in the specific tests
             const dir = resolveDirToModule(moduleName);
             mkdirSync(dir, { recursive: true });
 
             const path = resolvePathToMethodFile(moduleName, methodName);
-            const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+            const imports = [
+              ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
+            ];
             writeFileSync(
               path,
               `import { ${imports.join(
@@ -133,7 +135,7 @@ describe('verify JSDoc tags', () => {
 
           it('verify @example tag', async () => {
             // Extract the examples
-            const examples = extractRawExamples(signature).join('').trim();
+            const examples = extractJoinedRawExamples(signature);
 
             expect(
               examples,
@@ -173,20 +175,20 @@ describe('verify JSDoc tags', () => {
             }
           });
 
-          it('verify @param tags', () => {
-            analyzeSignature(signature, '', methodName).parameters.forEach(
-              (param) => {
-                const { name, description } = param;
-                const plainDescription = description
-                  .replace(/<[^>]+>/g, '')
-                  .trim();
-                expect(
-                  plainDescription,
-                  `Expect param ${name} to have a description`
-                ).not.toBe(MISSING_DESCRIPTION);
-                assertDescription(description, true);
-              }
-            );
+          it('verify @param tags', async () => {
+            (
+              await analyzeSignature(signature, '', methodName)
+            ).parameters.forEach((param) => {
+              const { name, description } = param;
+              const plainDescription = description
+                .replace(/<[^>]+>/g, '')
+                .trim();
+              expect(
+                plainDescription,
+                `Expect param ${name} to have a description`
+              ).not.toBe(MISSING_DESCRIPTION);
+              assertDescription(description, true);
+            });
           });
 
           it('verify @see tags', () => {

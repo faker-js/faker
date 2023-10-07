@@ -75,7 +75,7 @@ export function exec<
     // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...parameters: any[]
-  ) => RecordKey
+  ) => RecordKey,
 >(
   method: TMethod,
   args: Parameters<TMethod>,
@@ -89,10 +89,10 @@ export function exec<
     store?: Record<RecordKey, RecordKey>;
   } = {}
 ): ReturnType<TMethod> {
-  const now = new Date().getTime();
+  const now = Date.now();
 
   const {
-    startTime = new Date().getTime(),
+    startTime = Date.now(),
     maxTime = 50,
     maxRetries = 50,
     compare = defaultCompare,

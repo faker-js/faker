@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { filterWordListByLength } from '../word/filterWordListByLength';
 
 /**
@@ -8,22 +9,13 @@ import { filterWordListByLength } from '../word/filterWordListByLength';
  *
  * Generate dummy content using traditional faux-Latin [lorem ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) (in other locales to `en`, alternative words may be used).
  *
- * In order of increasing size you can generate a single [`word()`](https://next.fakerjs.dev/api/lorem.html#word), multiple [`words()`](https://next.fakerjs.dev/api/lorem.html#words), a [`sentence()`](https://next.fakerjs.dev/api/lorem.html#sentence), multiple [`sentences()`](https://next.fakerjs.dev/api/lorem.html#sentences), [`lines()`](https://next.fakerjs.dev/api/lorem.html#lines) separated by newlines, one [`paragraph()`](https://next.fakerjs.dev/api/lorem.html#paragraph), or multiple [`paragraphs()`](https://next.fakerjs.dev/api/lorem.html#paragraphs).
+ * In order of increasing size you can generate a single [`word()`](https://fakerjs.dev/api/lorem.html#word), multiple [`words()`](https://fakerjs.dev/api/lorem.html#words), a [`sentence()`](https://fakerjs.dev/api/lorem.html#sentence), multiple [`sentences()`](https://fakerjs.dev/api/lorem.html#sentences), [`lines()`](https://fakerjs.dev/api/lorem.html#lines) separated by newlines, one [`paragraph()`](https://fakerjs.dev/api/lorem.html#paragraph), or multiple [`paragraphs()`](https://fakerjs.dev/api/lorem.html#paragraphs).
  *
- * The generic [`text()`](https://next.fakerjs.dev/api/lorem.html#text) method can be used to generate some text between one sentence and multiple paragraphs, while [`slug()`](https://next.fakerjs.dev/api/lorem.html#slug) generates an URL-friendly hyphenated string.
+ * The generic [`text()`](https://fakerjs.dev/api/lorem.html#text) method can be used to generate some text between one sentence and multiple paragraphs, while [`slug()`](https://fakerjs.dev/api/lorem.html#slug) generates an URL-friendly hyphenated string.
  */
 export class LoremModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      LoremModule.prototype
-    ) as Array<keyof LoremModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**

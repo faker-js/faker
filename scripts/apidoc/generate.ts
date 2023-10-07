@@ -1,11 +1,11 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import {
   writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
   writeSourceBaseUrl,
 } from './apiDocsWriter';
-import { processFakerClass } from './fakerClass';
+import { processFakerClasses, processFakerRandomizer } from './fakerClass';
 import { processFakerUtilities } from './fakerUtilities';
 import { processModules } from './moduleMethods';
 import { loadProject } from './typedoc';
@@ -22,16 +22,19 @@ export async function generate(): Promise<void> {
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);
 
-  const pages = [
-    processFakerClass(project),
-    ...processModules(project).sort((a, b) => a.text.localeCompare(b.text)),
+  const pages = await Promise.all([
+    ...(await processFakerClasses(project)),
+    ...(await processModules(project)).sort((a, b) =>
+      a.text.localeCompare(b.text)
+    ),
+    await processFakerRandomizer(project),
     processFakerUtilities(project),
-  ];
-  writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
+  ]);
+  await writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
   writeApiDiffIndex(
     pages.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
   );
   writeApiSearchIndex(pages);
 
-  writeSourceBaseUrl(project);
+  await writeSourceBaseUrl(project);
 }

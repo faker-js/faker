@@ -1,4 +1,5 @@
 import type { Faker } from '../../faker';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
 /**
  * Color space names supported by CSS.
@@ -166,26 +167,17 @@ function toColorFormat(
  *
  * ### Overview
  *
- * For a human-readable color like `'red'`, use [`human()`](https://next.fakerjs.dev/api/color.html#human).
+ * For a human-readable color like `'red'`, use [`human()`](https://fakerjs.dev/api/color.html#human).
  *
- * For a hex color like `#ff0000` used in HTML/CSS, use [`rgb()`](https://next.fakerjs.dev/api/color.html#rgb). There are also methods for other color formats such as [`hsl()`](https://next.fakerjs.dev/api/color.html#hsl), [`cmyk()`](https://next.fakerjs.dev/api/color.html#cmyk), [`hwb()`](https://next.fakerjs.dev/api/color.html#hwb), [`lab()`](https://next.fakerjs.dev/api/color.html#lab), and [`lch()`](https://next.fakerjs.dev/api/color.html#lch).
+ * For a hex color like `#ff0000` used in HTML/CSS, use [`rgb()`](https://fakerjs.dev/api/color.html#rgb). There are also methods for other color formats such as [`hsl()`](https://fakerjs.dev/api/color.html#hsl), [`cmyk()`](https://fakerjs.dev/api/color.html#cmyk), [`hwb()`](https://fakerjs.dev/api/color.html#hwb), [`lab()`](https://fakerjs.dev/api/color.html#lab), and [`lch()`](https://fakerjs.dev/api/color.html#lch).
  */
 export class ColorModule {
   constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      ColorModule.prototype
-    ) as Array<keyof ColorModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+    bindThisToMemberFunctions(this);
   }
 
   /**
-   * Returns a random human readable color name.
+   * Returns a random human-readable color name.
    *
    * @example
    * faker.color.human() // 'red'

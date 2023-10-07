@@ -1,4 +1,5 @@
-import type { Faker } from '../..';
+import type { SimpleFaker } from '../..';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -6,22 +7,13 @@ import { deprecated } from '../../internal/deprecated';
  *
  * ### Overview
  *
- * Most of the methods in this module are deprecated and have been moved to other modules like [`faker.number`](https://next.fakerjs.dev/api/number.html) and [`faker.string`](https://next.fakerjs.dev/api/string.html), see individual entries for replacements.
+ * Most of the methods in this module are deprecated and have been moved to other modules like [`faker.number`](https://fakerjs.dev/api/number.html) and [`faker.string`](https://fakerjs.dev/api/string.html), see individual entries for replacements.
  *
- * For a simple random true or false value, use [`boolean()`](https://next.fakerjs.dev/api/datatype.html#boolean).
+ * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
 export class DatatypeModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      DatatypeModule.prototype
-    ) as Array<keyof DatatypeModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+  constructor(private readonly faker: SimpleFaker) {
+    bindThisToMemberFunctions(this);
   }
 
   /**

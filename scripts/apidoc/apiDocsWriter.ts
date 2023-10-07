@@ -37,20 +37,23 @@ editLink: false
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
+ * @param examples The example code.
  * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
-export function writeApiDocsModule(
+export async function writeApiDocsModule(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  examples: string | undefined,
   deprecated: string | undefined,
   methods: Method[]
-): ModuleSummary {
-  writeApiDocsModulePage(
+): Promise<ModuleSummary> {
+  await writeApiDocsModulePage(
     moduleName,
     lowerModuleName,
     comment,
+    examples,
     deprecated,
     methods
   );
@@ -83,15 +86,18 @@ export function writeApiDocsModule(
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
+ * @param examples The example code.
+ * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
-function writeApiDocsModulePage(
+async function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  examples: string | undefined,
   deprecated: string | undefined,
   methods: Method[]
-): void {
+): Promise<void> {
   // Write api docs page
   let content = `
   <script setup>
@@ -118,6 +124,8 @@ function writeApiDocsModulePage(
 
   ${comment}
 
+  ${examples == null ? '' : `<div class="examples">${examples}</div>`}
+
   :::
 
   ${methods
@@ -131,7 +139,7 @@ function writeApiDocsModulePage(
     .join('')}
   `.replace(/\n +/g, '\n');
 
-  content = vitePressInFileOptions + formatMarkdown(content);
+  content = vitePressInFileOptions + (await formatMarkdown(content));
 
   writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.md`), content);
 }
@@ -164,7 +172,7 @@ function writeApiDocsModuleData(
  *
  * @param pages The pages to write into the index.
  */
-export function writeApiPagesIndex(pages: Page[]): void {
+export async function writeApiPagesIndex(pages: Page[]): Promise<void> {
   // Write api-pages.ts
   console.log('Updating api-pages.ts');
   pages.splice(0, 0, { text: 'Overview', link: '/api/' });
@@ -174,7 +182,7 @@ export function writeApiPagesIndex(pages: Page[]): void {
     export const apiPages = ${JSON.stringify(pages)};
     `.replace(/\n +/, '\n');
 
-  apiPagesContent = formatTypescript(apiPagesContent);
+  apiPagesContent = await formatTypescript(apiPagesContent);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
 }
@@ -191,7 +199,7 @@ export function writeApiDiffIndex(diffIndex: DocsApiDiffIndex): void {
 /**
  * Writes the api search index to the correct location.
  *
- * @param project The typedoc project.
+ * @param pages The pages to write into the index.
  */
 export function writeApiSearchIndex(pages: ModuleSummary[]): void {
   const apiIndex: APIGroup[] = [
@@ -217,7 +225,9 @@ export function writeApiSearchIndex(pages: ModuleSummary[]): void {
  *
  * @param project The typedoc project.
  */
-export function writeSourceBaseUrl(project: ProjectReflection): void {
+export async function writeSourceBaseUrl(
+  project: ProjectReflection
+): Promise<void> {
   const baseUrl = extractSourceBaseUrl(
     project.getChildrenByKind(ReflectionKind.Class)[0]
   );
@@ -228,7 +238,7 @@ export function writeSourceBaseUrl(project: ProjectReflection): void {
   export const sourceBaseUrl = '${baseUrl}';
   `.replace(/\n +/, '\n');
 
-  content = formatTypescript(content);
+  content = await formatTypescript(content);
 
   writeFileSync(resolve(pathOutputDir, 'source-base-url.ts'), content);
 }

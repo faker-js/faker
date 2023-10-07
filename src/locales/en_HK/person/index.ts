@@ -4,12 +4,12 @@
  */
 import type { PersonDefinition } from '../../..';
 import last_name from './last_name';
-import last_name_patterns from './last_name_patterns';
+import last_name_pattern from './last_name_pattern';
 import name_ from './name';
 
 const person: PersonDefinition = {
   last_name,
-  last_name_patterns,
+  last_name_pattern,
   name: name_,
 };
 

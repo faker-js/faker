@@ -4,11 +4,11 @@
 
 Did you know Faker supports many different locales?  
 When using our default instance `import { faker } from '@faker-js/faker'` you get English data.
-However, we also provide pre-built instances for more than 50 other locales.
+However, we also provide pre-built instances for [more than 60 available locales](#available-locales).
+
+For example, you can import the German locale:
 
 `import { fakerDE as faker } from '@faker-js/faker'`
-
-See below for a list of available locales.
 
 ::: tip Note
 You can also build your own Faker instances, with custom locales/overwrites.
@@ -28,7 +28,7 @@ import { faker } from '@faker-js/faker/locale/de';
 
 This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales containing data for all features. If you encounter a missing locale entry in your selected language, feel free to open a Pull Request fixing that issue.
 
-::: info
+::: info Info
 The English locales are around 600 KB in size.  
 All locales together are around 5 MB in size.
 :::
@@ -44,7 +44,7 @@ If our built-in faker instances don't satisfy your needs, you can build your own
 
 ```ts
 import type { LocaleDefinition } from '@faker-js/faker';
-import { Faker, de_CH, de, en, base } from '@faker-js/faker';
+import { base, de, de_CH, en, Faker } from '@faker-js/faker';
 
 const customLocale: LocaleDefinition = {
   title: 'My custom locale',
@@ -79,6 +79,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
 | `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
+| `da`          | Danish                    | `fakerDA`          |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
@@ -97,6 +98,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
 | `en_US`       | English (United States)   | `fakerEN_US`       |
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
+| `eo`          | Esperanto                 | `fakerEO`          |
 | `es`          | Spanish                   | `fakerES`          |
 | `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
 | `fa`          | Farsi/Persian             | `fakerFA`          |
@@ -135,6 +137,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
 | `vi`          | Vietnamese                | `fakerVI`          |
+| `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
 | `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
 | `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
 | `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
@@ -159,6 +162,7 @@ The recommended way to access Faker instances is by using one of the individual 
 
 ```ts
 import { allFakers, allLocales } from '@faker-js/faker';
+
 console.dir(allFakers['de_AT']); // the prebuilt Faker instance for de_AT
 console.dir(allLocales['de_AT']); // the raw locale definitions for de_AT
 ```
@@ -167,6 +171,7 @@ This could be useful if you want to enumerate all locales, for example:
 
 ```ts
 import { allFakers } from '@faker-js/faker';
+
 for (let key of Object.keys(allFakers)) {
   try {
     console.log(

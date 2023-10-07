@@ -1,5 +1,6 @@
-import type { Faker } from '../..';
+import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
@@ -90,29 +91,20 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  *
  * ### Overview
  *
- * For a string containing just A-Z characters, use [`alpha()`](https://next.fakerjs.dev/api/string.html#alpha). To add digits too, use [`alphanumeric()`](https://next.fakerjs.dev/api/string.html#alphanumeric). If you only want punctuation marks/symbols, use [`symbol()`](https://next.fakerjs.dev/api/string.html). For a full set of ASCII characters, use [`sample()`](https://next.fakerjs.dev/api/string.html#sample). For a custom set of characters, use [`fromCharacters()`](https://next.fakerjs.dev/api/string.html#fromcharacters).
+ * For a string containing just A-Z characters, use [`alpha()`](https://fakerjs.dev/api/string.html#alpha). To add digits too, use [`alphanumeric()`](https://fakerjs.dev/api/string.html#alphanumeric). If you only want punctuation marks/symbols, use [`symbol()`](https://fakerjs.dev/api/string.html). For a full set of ASCII characters, use [`sample()`](https://fakerjs.dev/api/string.html#sample). For a custom set of characters, use [`fromCharacters()`](https://fakerjs.dev/api/string.html#fromcharacters).
  *
- * For strings of base-ten digits, use [`numeric()`](https://next.fakerjs.dev/api/string.html#numeric). For other bases, use [`binary()`](https://next.fakerjs.dev/api/string.html#binary), [`octal()`](https://next.fakerjs.dev/api/string.html#octal), or [`hexadecimal()`](https://next.fakerjs.dev/api/string.html#hexadecimal)).
+ * For strings of base-ten digits, use [`numeric()`](https://fakerjs.dev/api/string.html#numeric). For other bases, use [`binary()`](https://fakerjs.dev/api/string.html#binary), [`octal()`](https://fakerjs.dev/api/string.html#octal), or [`hexadecimal()`](https://fakerjs.dev/api/string.html#hexadecimal)).
  *
- * You can generate standard ID strings using [`uuid()`](https://next.fakerjs.dev/api/string.html#uuid) or [`nanoid()`](https://next.fakerjs.dev/api/string.html#nanoid).
+ * You can generate standard ID strings using [`uuid()`](https://fakerjs.dev/api/string.html#uuid) or [`nanoid()`](https://fakerjs.dev/api/string.html#nanoid).
  *
  * ### Related modules
  *
- * - Emoji can be found at [`faker.internet.emoji()`](https://next.fakerjs.dev/api/internet.html#emoji).
- * - The [`faker.helpers`](https://next.fakerjs.dev/api/helpers.html) module includes a number of string related methods.
+ * - Emoji can be found at [`faker.internet.emoji()`](https://fakerjs.dev/api/internet.html#emoji).
+ * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
 export class StringModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      StringModule.prototype
-    ) as Array<keyof StringModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
+  constructor(private readonly faker: SimpleFaker) {
+    bindThisToMemberFunctions(this);
   }
 
   /**

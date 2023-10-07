@@ -9,15 +9,14 @@ This is a shorthand for running the following scripts in order:
 
 - `pnpm install` - installs npm packages defined in package.json
 - `pnpm run generate:locales` - generates locale files
-- `pnpm run generate:api-doc` - generates API documentation
+- `pnpm run generate:api-docs` - generates API documentation
 - `pnpm run format` - runs [prettify](https://github.com/prettier/prettier) to format code
 - `pnpm run lint` - runs [ESLint](https://github.com/eslint/eslint) to enforce project code standards
 - `pnpm run build:clean` - removes artifacts from previous builds
 - `pnpm run build:code` - builds the code, both CommonJS and ESM versions
 - `pnpm run build:types` - builds the TypeScript type definitions
 - `pnpm run test:update-snapshots ` - runs all tests, and updates any snapshots if needed
-- `pnpm run ts-check:scripts` - checks that there are no TypeScript errors in script files
-- `pnpm run ts-check:tests` - checks that there are no TypeScript errors in test or script files
+- `pnpm run ts-check` - checks that there are no TypeScript errors in any files
 
 ## Good to know
 
@@ -42,6 +41,11 @@ If adding new data definitions to Faker, you'll often need to find source data. 
 - Facts cannot be copyrighted, so if you are adding or translating a finite, known, list of things such as the names of chemical elements into another language, that's OK.
 - But if you are compiling a list of, for example, popular personal names or cities, don't copy directly from a single source (Wikipedia, 'most popular' articles, government data sites etc). A compilation of facts [can be copyrighted](https://en.wikipedia.org/wiki/Copyright_in_compilation).
 - It's best to refer to multiple sources and use your own judgement/knowledge to make a sample list of data.
+
+## Adding new locale or updating existing one
+
+After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
+Please only change files related to one module (e.g. person, location) whenever possible. This can simplify/speed up the review process. Additionally, it allows the maintainers to track PRs in a meaningful way by adding related labels.
 
 ## Building Faker
 
@@ -164,10 +168,6 @@ describe('someModule', () => {
 });
 ```
 
-## Adding new locale or updating existing one
-
-After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
-
 ## Deprecation workflow
 
 If you ever find yourself deprecating something in the source code, you can follow these steps to save yourself (and the reviewers) some trouble.
@@ -189,6 +189,39 @@ get cat() {
   return 'cat';
 }
 ```
+
+## Documenting changes for new major versions
+
+Each major version has an upgrading guide, e.g. [next.fakerjs.dev/guide/upgrading](https://next.fakerjs.dev/guide/upgrading.html).
+
+While developing new features and fixing bugs for a new release, changes are added to the migration guide to aid developers when the version is released.
+
+The general principle is to document anything which requires a normal user of the library to change their code which uses Faker when upgrading to the new major version.
+
+There are two sections:
+
+- Breaking changes (user MUST change their code)
+- Deprecations and other changes (user SHOULD change their code but it will still work for this major version even if they don't)
+
+Not every change needs to be in the migration guide. If it is too long, it becomes hard for users to spot the important changes.
+
+### Should be in the guide
+
+- Breaking changes, e.g. removal of methods
+- Behavior changes, e.g. a different default for a parameter, or a parameter becoming required
+- Whole modules renaming (e.g. faker.name to faker.person)
+- Locale renames
+- Changes to minimum versions e.g. requiring a new version of Node
+- Changes to how Faker is imported
+
+### Doesn't need to be in the guide
+
+- New locales
+- Changes to locale data in existing locales
+- Bugfixes where it's unlikely anyone was relying on the old behavior (eg broken values in locale files)
+- New methods and parameters
+- Straightforward method aliases, e.g. where a method or parameter is renamed but the old name still works identically. (Runtime warnings will already guide the user in this case)
+- Changes to locale definition files which only affect usage via `faker.helpers.fake`, e.g. if a definition file is renamed, but the public API for the method stays the same
 
 ## JSDocs
 
