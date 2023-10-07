@@ -37,5 +37,5 @@ features:
     details: Past, present, future, recent, soon... whenever!
   - icon: 🌏
     title: Localization
-    details: Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers for.
+    details: Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 ---
