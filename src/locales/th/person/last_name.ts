@@ -21,9 +21,9 @@ const common_isan_suffix = [
   'พิมาย',
   'นอก',
 ];
-const isan_complete = common_isan_prefix
-  .map((prefix) => common_isan_suffix.map((suffix) => `${prefix}${suffix}`))
-  .flat();
+const isan_complete = common_isan_prefix.flatMap((prefix) =>
+  common_isan_suffix.map((suffix) => `${prefix}${suffix}`)
+);
 
 // https://www.thairath.co.th/lifestyle/culture/2030525
 const chinese = [
