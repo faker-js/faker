@@ -70,7 +70,6 @@ module.exports = defineConfig({
     'unicorn/no-useless-switch-case': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
-    'unicorn/prefer-array-flat-map': 'off',
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
