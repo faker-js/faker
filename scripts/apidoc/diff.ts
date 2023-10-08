@@ -46,7 +46,7 @@ async function load(source: string): Promise<DocsApiDiffIndex> {
 function allKeys(
   ...entries: ReadonlyArray<Record<string, unknown>>
 ): Set<string> {
-  return new Set(entries.map(Object.keys).flat());
+  return new Set(entries.flatMap(Object.keys));
 }
 
 /**
