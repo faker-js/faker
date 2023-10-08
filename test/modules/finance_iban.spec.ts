@@ -56,7 +56,7 @@ describe('finance_iban', () => {
             `${iban.substring(
               2,
               4
-            )} must contains only digit in GE IBAN ${ibanFormatted}`
+            )} must contains only digits in GE IBAN ${ibanFormatted}`
           ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 6),
@@ -70,7 +70,7 @@ describe('finance_iban', () => {
             `${iban.substring(
               6,
               24
-            )} must contains only characters in GE IBAN ${ibanFormatted}`
+            )} must contains only digits in GE IBAN ${ibanFormatted}`
           ).toMatch(/^\d{16}$/);
 
           expect(
@@ -116,7 +116,7 @@ describe('finance_iban', () => {
             `${iban.substring(
               2,
               4
-            )} must contains only digit in PK IBAN ${ibanFormated}`
+            )} must contains only digits in PK IBAN ${ibanFormated}`
           ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 8),
@@ -182,7 +182,7 @@ describe('finance_iban', () => {
             `Control key:${iban.substring(
               2,
               4
-            )} must contains only digit in PK IBAN ${ibanFormated}`
+            )} must contains only digits in PK IBAN ${ibanFormated}`
           ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 9),
@@ -252,7 +252,7 @@ describe('finance_iban', () => {
             `${iban.substring(
               2,
               4
-            )} must contains only digit in AZ IBAN ${ibanFormated}`
+            )} must contains only digits in AZ IBAN ${ibanFormated}`
           ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 8),
@@ -266,7 +266,7 @@ describe('finance_iban', () => {
             `${iban.substring(
               8,
               28
-            )} must contains 20 characters in AZ IBAN ${ibanFormated}`
+            )} must contains 20 digits in AZ IBAN ${ibanFormated}`
           ).toMatch(/^\d{20}$/);
 
           expect(
@@ -312,7 +312,7 @@ describe('finance_iban', () => {
             `${iban.substring(
               2,
               22
-            )} must contains only digit in AZ IBAN ${ibanFormated}`
+            )} must contains only digits in AZ IBAN ${ibanFormated}`
           ).toMatch(/^\d{20}$/);
 
           expect(
