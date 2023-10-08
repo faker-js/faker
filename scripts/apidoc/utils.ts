@@ -51,9 +51,8 @@ export function mapByName<TInput extends { name: string }, TValue>(
   input: TInput[],
   valueExtractor: (item: TInput) => TValue
 ): Record<string, TValue> {
-  return input.reduce(
-    (acc, item) => ({ ...acc, [item.name]: valueExtractor(item) }),
-    {}
+  return Object.fromEntries(
+    input.map((item) => [item.name, valueExtractor(item)])
   );
 }
 
