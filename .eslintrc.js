@@ -29,8 +29,6 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
-    // We may want to use this in the future
-    'no-useless-escape': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
@@ -62,7 +60,6 @@ module.exports = defineConfig({
     'unicorn/no-array-push-push': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
-    'unicorn/no-console-spaces': 'off',
     'unicorn/no-for-loop': 'off',
     'unicorn/no-hex-escape': 'off',
     'unicorn/no-instanceof-array': 'off',
@@ -73,7 +70,6 @@ module.exports = defineConfig({
     'unicorn/no-useless-switch-case': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
-    'unicorn/prefer-array-flat-map': 'off',
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
@@ -82,7 +78,6 @@ module.exports = defineConfig({
     'unicorn/prefer-native-coercion-functions': 'off',
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-number-properties': 'off',
-    'unicorn/prefer-object-from-entries': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
     'unicorn/prefer-spread': 'off',
     'unicorn/prefer-string-slice': 'off',
