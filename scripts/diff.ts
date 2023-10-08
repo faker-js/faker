@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { existsSync } from 'node:fs';
 import { argv } from 'node:process';
 import { diff } from './apidoc/diff';
