@@ -127,9 +127,9 @@ export class CommerceModule {
    * @param options.symbol The currency value to use. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price({ min: 100 }) // 904.00
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price({ min: 100 }) // 904.15
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.56
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -170,9 +170,9 @@ export class CommerceModule {
    * @param symbol The currency value to use. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price(100) // 904.00
-   * faker.commerce.price(100, 200) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price(100) // 904.15
+   * faker.commerce.price(100, 200) // 154.56
    * faker.commerce.price(100, 200, 0) // 133
    * faker.commerce.price(100, 200, 0, '$') // $114
    *
@@ -194,9 +194,9 @@ export class CommerceModule {
    * @param legacySymbol The currency value to use. This argument is deprecated. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price({ min: 100 }) // 904.00
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price({ min: 100 }) // 904.15
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.56
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -228,9 +228,9 @@ export class CommerceModule {
    * @param legacySymbol The currency value to use. This argument is deprecated. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price({ min: 100 }) // 904.00
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price({ min: 100 }) // 904.15
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.56
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
