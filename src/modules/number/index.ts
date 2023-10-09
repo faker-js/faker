@@ -28,8 +28,10 @@ export class NumberModule {
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
+   * @param options.exclude An array of numbers to exclude from the generated range. Defaults to `[]`.
    *
    * @throws When options define `max < min`.
+   * @throws When exclude array covers all possible values in the range.
    *
    * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
    *
@@ -39,6 +41,7 @@ export class NumberModule {
    * faker.number.int({ min: 1000000 }) // 2900970162509863
    * faker.number.int({ max: 100 }) // 42
    * faker.number.int({ min: 10, max: 100 }) // 57
+   * faker.number.int({ min: 1, max: 7, exclude: [2, 4, 6] }) // 3
    *
    * @since 8.0.0
    */
@@ -58,15 +61,24 @@ export class NumberModule {
            * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
+          /**
+           * Exclude numbers from the generated range.
+           *
+           * @default []
+           */
+          exclude?: number[];
         } = {}
   ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
 
-    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER, exclude = [] } = options;
     const effectiveMin = Math.ceil(min);
     const effectiveMax = Math.floor(max);
+    const uniqueExclude = [...new Set(exclude)].filter((value: number) => {
+      return value >= effectiveMin && value <= effectiveMax;
+    });
 
     if (effectiveMin === effectiveMax) {
       return effectiveMin;
@@ -82,10 +94,27 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    if (uniqueExclude.length >= effectiveMax - effectiveMin + 1) {
+      throw new FakerError(
+        `More values in exclude list than possible values in the range.`
+      );
+    }
+
     // @ts-expect-error: access private member field
     const randomizer = this.faker._randomizer;
-    const real = randomizer.next();
-    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
+    const generate = () => {
+      const real = randomizer.next();
+      return Math.floor(
+        real * (effectiveMax + 1 - effectiveMin) + effectiveMin
+      );
+    };
+
+    let result = generate();
+    while (uniqueExclude.includes(result)) {
+      result = generate();
+    }
+
+    return result;
   }
 
   /**

@@ -163,6 +163,66 @@ describe('number', () => {
           new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
+
+      it('should exclude a value in the range', () => {
+        const actual = faker.number.int({ min: 1, max: 3, exclude: [2] });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
+
+        expect(actual).toBeGreaterThanOrEqual(1);
+        expect(actual).not.toBe(2);
+        expect(actual).toBeLessThanOrEqual(3);
+      });
+
+      it('should exclude multiple values', () => {
+        for (let i = 0; i < 1000; i++) {
+          const actual = faker.number.int({
+            min: 0,
+            max: 7,
+            exclude: [0, 2, 4, 6],
+          });
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(Number.isInteger);
+
+          expect(actual).toBeGreaterThanOrEqual(0);
+          expect(actual % 2).toBe(1);
+          expect(actual).toBeLessThanOrEqual(7);
+        }
+      });
+
+      it('should throw if range is exhausted by exclude', () => {
+        expect(() => {
+          faker.number.int({ min: 11, max: 13, exclude: [11, 12, 13] });
+        }).toThrow(
+          new FakerError(
+            `More values in exclude list than possible values in the range.`
+          )
+        );
+
+        expect(() => {
+          faker.number.int({ min: -2, max: 2, exclude: [-2, -1, 0, 1, 2] });
+        }).toThrow(
+          new FakerError(
+            `More values in exclude list than possible values in the range.`
+          )
+        );
+
+        faker.number.int({ min: 10, max: 13, exclude: [11, 12, 13] });
+        faker.number.int({ min: 11, max: 14, exclude: [11, 12, 13] });
+        faker.number.int({ min: -2, max: 2, exclude: [-1, 0, 1] });
+      });
+
+      it('should not throw due to duplicates or extra values in the exclude list', () => {
+        faker.number.int({ min: 11, max: 13, exclude: [11, 11, 13] });
+        faker.number.int({ min: 11, max: 13, exclude: [11, 11, 13, 14, 15] });
+        faker.number.int({
+          min: -2,
+          max: 2,
+          exclude: [-3, -1, -1, 0, 1, 100, -10],
+        });
+      });
     });
 
     describe('float', () => {
