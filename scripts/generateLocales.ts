@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * This file contains a script that can be used to update the following files:
  *
@@ -181,14 +183,14 @@ async function generateLocalesIndexFile(
   content.push(
     ...modules.map(
       (module) => `import ${escapeImport(name, module)} from './${module}';`
-    )
-  );
-
-  content.push(`\nconst ${name}${fieldType} = {
+    ),
+    '',
+    `const ${name}${fieldType} = {
         ${modules.map((module) => `${escapeField(name, module)},`).join('\n')}
-      };\n`);
-
-  content.push(`export default ${name};`);
+      };`,
+    '',
+    `export default ${name};`
+  );
 
   writeFileSync(
     resolve(path, 'index.ts'),
@@ -366,6 +368,7 @@ async function main(): Promise<void> {
 }
 
 main().catch((e) => {
+  // Workaround until top level await is available
   console.error(e);
   process.exit(1);
 });
