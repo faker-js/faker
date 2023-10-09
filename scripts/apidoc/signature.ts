@@ -213,7 +213,7 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
         if (
           (reflectionType?.type === 'literal' ||
             reflectionType?.type === 'union') &&
-          !/Char$/.test(type.name)
+          !type.name.endsWith('Char')
         ) {
           return typeToText(reflectionType, short);
         }

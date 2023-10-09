@@ -2,6 +2,8 @@ import type { Faker } from '../..';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
+const nbsp = '\u00a0';
+
 /**
  * Module to generate git related entries.
  *
@@ -103,7 +105,7 @@ export class GitModule {
       `Author: ${user} <${email}>`,
       `Date: ${this.commitDate({ refDate })}`,
       '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      `${nbsp.repeat(4)}${this.commitMessage()}`,
       // to end with a eol char
       ''
     );
