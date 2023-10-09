@@ -463,8 +463,10 @@ export class SimpleHelpersModule {
         if (range[0].indexOf('-') === -1) {
           // handle non-ranges
           if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
-            rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
-            rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
+            rangeCodes.push(
+              range[0].toUpperCase().charCodeAt(0),
+              range[0].toLowerCase().charCodeAt(0)
+            );
           } else {
             rangeCodes.push(range[0].charCodeAt(0));
           }
@@ -484,8 +486,10 @@ export class SimpleHelpersModule {
               Number.isNaN(Number(String.fromCharCode(i)))
             ) {
               const ch = String.fromCharCode(i);
-              rangeCodes.push(ch.toUpperCase().charCodeAt(0));
-              rangeCodes.push(ch.toLowerCase().charCodeAt(0));
+              rangeCodes.push(
+                ch.toUpperCase().charCodeAt(0),
+                ch.toLowerCase().charCodeAt(0)
+              );
             } else {
               rangeCodes.push(i);
             }
