@@ -186,7 +186,7 @@ export class SystemModule {
     }
 
     const extensionSet = new Set(
-      Object.values(mimeTypes).flatMap(({ extensions }) => extensions ?? [])
+      Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
     );
     const extensions = Array.from(extensionSet);
     return this.faker.helpers.arrayElement(extensions);
