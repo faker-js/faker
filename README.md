@@ -36,7 +36,7 @@ For detailed API documentation, please select the version of the documentation y
 
 - 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
 - ⏰ Time-based Data - Past, present, future, recent, soon... whenever!
-- 🌏 Localization - Set a locale to generate realistic looking Names, Addresses, and Phone Numbers.
+- 🌏 Localization - Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
 - 👠 Products - Generate Prices, Product Names, Adjectives, and Descriptions.
 - 👾 Hacker Jargon - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
