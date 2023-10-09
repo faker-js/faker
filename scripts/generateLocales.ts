@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * This file contains a script that can be used to update the following files:
  *
@@ -366,6 +368,7 @@ async function main(): Promise<void> {
 }
 
 main().catch((e) => {
+  // Workaround until top level await is available
   console.error(e);
   process.exit(1);
 });

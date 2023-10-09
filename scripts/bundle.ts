@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { buildSync } from 'esbuild';
 import { globSync } from 'glob';
 import { allLocales } from '../src';
