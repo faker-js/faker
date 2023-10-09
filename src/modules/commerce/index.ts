@@ -270,8 +270,11 @@ export class CommerceModule {
       return `${symbol}${0.0}`;
     }
 
-    // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/350
-    const randValue = this.faker.number.int({ min, max });
+    const randValue = this.faker.number.float({
+      min,
+      max,
+      precision: (1 / 10) ** dec,
+    });
 
     return symbol + randValue.toFixed(dec);
   }
