@@ -181,14 +181,14 @@ async function generateLocalesIndexFile(
   content.push(
     ...modules.map(
       (module) => `import ${escapeImport(name, module)} from './${module}';`
-    )
-  );
-
-  content.push(`\nconst ${name}${fieldType} = {
+    ),
+    '',
+    `const ${name}${fieldType} = {
         ${modules.map((module) => `${escapeField(name, module)},`).join('\n')}
-      };\n`);
-
-  content.push(`export default ${name};`);
+      };`,
+    '',
+    `export default ${name};`
+  );
 
   writeFileSync(
     resolve(path, 'index.ts'),
