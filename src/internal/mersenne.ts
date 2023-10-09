@@ -79,7 +79,7 @@ class MersenneTwister19937 {
   private readonly MATRIX_A = 0x9908b0df; // constant vector a
   private readonly UPPER_MASK = 0x80000000; // most significant w-r bits
   private readonly LOWER_MASK = 0x7fffffff; // least significant r bits
-  private mt: number[] = new Array(this.N); // the array for the state vector
+  private mt: number[] = Array.from({ length: this.N }); // the array for the state vector
   private mti = this.N + 1; // mti==N+1 means mt[N] is not initialized
 
   /**
