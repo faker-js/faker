@@ -80,7 +80,6 @@ module.exports = defineConfig({
     'unicorn/prefer-optional-catch-binding': 'off',
     'unicorn/prefer-spread': 'off',
     'unicorn/prefer-string-slice': 'off',
-    'unicorn/prefer-string-starts-ends-with': 'off',
     'unicorn/prefer-ternary': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
