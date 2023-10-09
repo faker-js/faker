@@ -61,7 +61,6 @@ module.exports = defineConfig({
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-for-loop': 'off',
-    'unicorn/no-hex-escape': 'off',
     'unicorn/no-instanceof-array': 'off',
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
