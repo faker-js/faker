@@ -70,7 +70,7 @@ function modulesList(): { [module: string]: string[] } {
     .reduce((result, mod) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
-      if (methods.length) {
+      if (methods.length > 0) {
         result[mod] = methods;
       } else {
         console.log(`Skipping ${mod} - No testable methods`);
