@@ -154,15 +154,11 @@ export class SystemModule {
    * @since 3.1.0
    */
   fileType(): string {
-    const typeSet = new Set<string>();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
 
-    Object.keys(mimeTypes).forEach((m) => {
-      const type = m.split('/')[0];
-
-      typeSet.add(type);
-    });
-
+    const typeSet = new Set(
+      Object.keys(mimeTypes).map((key) => key.split('/')[0])
+    );
     const types = Array.from(typeSet);
     return this.faker.helpers.arrayElement(types);
   }
@@ -179,22 +175,15 @@ export class SystemModule {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
+    const mimeTypes = this.faker.definitions.system.mimeTypes;
+
     if (typeof mimeType === 'string') {
-      const mimes = this.faker.definitions.system.mimeTypes;
-      return this.faker.helpers.arrayElement(mimes[mimeType].extensions);
+      return this.faker.helpers.arrayElement(mimeTypes[mimeType].extensions);
     }
 
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
-    const extensionSet = new Set<string>();
-
-    Object.keys(mimeTypes).forEach((m) => {
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
-    });
-
+    const extensionSet = new Set(
+      Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
+    );
     const extensions = Array.from(extensionSet);
     return this.faker.helpers.arrayElement(extensions);
   }
