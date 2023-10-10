@@ -2,16 +2,16 @@ import { describe, expect, it } from 'vitest';
 import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
-const IGNORED_MODULES = [
+const IGNORED_MODULES = new Set([
   'rawDefinitions',
   'definitions',
   'helpers',
   '_randomizer',
   '_defaultRefDate',
-];
+]);
 
 function isTestableModule(mod: string) {
-  return IGNORED_MODULES.indexOf(mod) === -1;
+  return !IGNORED_MODULES.has(mod);
 }
 
 function isMethodOf(mod: string) {
