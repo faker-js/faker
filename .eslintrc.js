@@ -49,7 +49,6 @@ module.exports = defineConfig({
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/catch-error-name': 'off',
-    'unicorn/consistent-destructuring': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/escape-case': 'off',
     'unicorn/explicit-length-check': 'off',
