@@ -51,7 +51,6 @@ module.exports = defineConfig({
     'unicorn/catch-error-name': 'off',
     'unicorn/consistent-destructuring': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/escape-case': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
