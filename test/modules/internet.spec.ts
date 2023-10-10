@@ -16,7 +16,6 @@ describe('internet', () => {
       'domainSuffix',
       'domainWord',
       'ip',
-      'ipv4',
       'ipv6',
       'port',
       'userAgent'
@@ -153,6 +152,13 @@ describe('internet', () => {
           appendSlash: false,
           protocol: 'http',
         });
+    });
+
+    t.describe('ipv4', (t) => {
+      t.it('noArgs')
+        .it('with test-net range 1', { testRange: 1 })
+        .it('with test-net range 2', { testRange: 2 })
+        .it('with test-net range 3', { testRange: 3 });
     });
   });
 
@@ -614,6 +620,25 @@ describe('internet', () => {
             expect(+part).toBeLessThanOrEqual(255);
           }
         });
+        it.each([1, 2, 3])(
+          'should return a random testing-safe IPv4 with four parts, from the specified test-net range',
+          (range) => {
+            const ip = faker.internet.ipv4({ testRange: range as 1 | 2 | 3 });
+            const ranges = ['192.0.2', '198.51.100', '203.0.113'];
+
+            expect(ip).toBeTruthy();
+            expect(ip).toBeTypeOf('string');
+            expect(ip).toSatisfy((value: string) => validator.isIP(value, 4));
+
+            const parts = ip.split('.');
+
+            expect(parts).toHaveLength(4);
+            expect(parts.slice(0, 3).join('.')).toBe(ranges[range - 1]);
+            expect(parts[3]).toMatch(/^\d+$/);
+            expect(+parts[3]).toBeGreaterThanOrEqual(0);
+            expect(+parts[3]).toBeLessThanOrEqual(255);
+          }
+        );
       });
 
       describe('ipv6()', () => {

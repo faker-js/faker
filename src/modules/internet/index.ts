@@ -989,12 +989,33 @@ export class InternetModule {
   /**
    * Generates a random IPv4 address.
    *
+   * @param options Optional options object.
+   * @param options.testRange The test-net range to use. Defaults to undefined, which generates any IP address.
+   *
    * @example
    * faker.internet.ipv4() // '245.108.222.0'
+   * faker.internet.ipv4({ testRange: 1 }) // '192.0.2.32'
+   * faker.internet.ipv4({ testRange: 2 }) // '198.51.100.59'
+   * faker.internet.ipv4({ testRange: 3 }) // '203.0.113.97'
    *
    * @since 6.1.1
    */
-  ipv4(): string {
+  ipv4(
+    options: {
+      /**
+       * Which TEST-NET range to use
+       *
+       * @default undefined (generates any random IP address)
+       */
+      testRange?: 1 | 2 | 3;
+    } = {}
+  ): string {
+    const { testRange = undefined } = options;
+    if (testRange) {
+      const ranges = ['192.0.2', '198.51.100', '203.0.113'];
+      return `${ranges[testRange - 1]}.${this.faker.number.int(255)}`;
+    }
+
     return Array.from({ length: 4 }, () => this.faker.number.int(255)).join(
       '.'
     );
