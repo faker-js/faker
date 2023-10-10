@@ -599,14 +599,9 @@ export class FinanceModule {
       precision: 10 ** -dec,
     });
 
-    let formattedString: string;
-    if (autoFormat) {
-      formattedString = randValue.toLocaleString(undefined, {
-        minimumFractionDigits: dec,
-      });
-    } else {
-      formattedString = randValue.toFixed(dec);
-    }
+    const formattedString = autoFormat
+      ? randValue.toLocaleString(undefined, { minimumFractionDigits: dec })
+      : randValue.toFixed(dec);
 
     return symbol + formattedString;
   }
@@ -1129,11 +1124,9 @@ export class FinanceModule {
         if (bban.type === 'a') {
           s += this.faker.helpers.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
-          if (this.faker.datatype.boolean(0.8)) {
-            s += this.faker.number.int(9);
-          } else {
-            s += this.faker.helpers.arrayElement(iban.alpha);
-          }
+          s += this.faker.datatype.boolean(0.8)
+            ? this.faker.number.int(9)
+            : this.faker.helpers.arrayElement(iban.alpha);
         } else {
           if (c >= 3 && this.faker.datatype.boolean(0.3)) {
             if (this.faker.datatype.boolean()) {

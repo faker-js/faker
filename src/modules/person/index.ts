@@ -45,11 +45,10 @@ function selectDefinition<T>(
   }
 
   if (values == null) {
-    if (female != null && male != null) {
-      values = faker.helpers.arrayElement([female, male]);
-    } else {
-      values = generic;
-    }
+    values =
+      female != null && male != null
+        ? faker.helpers.arrayElement([female, male])
+        : generic;
   }
 
   return elementSelectorFn(values);
