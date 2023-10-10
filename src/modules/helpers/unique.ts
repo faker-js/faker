@@ -135,7 +135,7 @@ export function exec<
   const result: ReturnType<TMethod> = method(...args) as ReturnType<TMethod>;
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
-  if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {
+  if (compare(store, result) === -1 && !exclude.includes(result)) {
     store[result] = result;
     options.currentIterations = 0;
     return result;
