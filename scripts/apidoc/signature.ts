@@ -64,7 +64,7 @@ export async function analyzeSignature(
   // Generate usage section
 
   let signatureTypeParametersString = '';
-  if (signatureTypeParameters.length !== 0) {
+  if (signatureTypeParameters.length > 0) {
     signatureTypeParametersString = `<${signatureTypeParameters.join(', ')}>`;
   }
 
@@ -207,13 +207,13 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
         .join(' | ');
 
     case 'reference':
-      if (!type.typeArguments || !type.typeArguments.length) {
+      if (!type.typeArguments || type.typeArguments.length === 0) {
         const reflection = type.reflection as DeclarationReflection | undefined;
         const reflectionType = reflection?.type;
         if (
           (reflectionType?.type === 'literal' ||
             reflectionType?.type === 'union') &&
-          !/Char$/.test(type.name)
+          !type.name.endsWith('Char')
         ) {
           return typeToText(reflectionType, short);
         }
