@@ -9,7 +9,7 @@ expect.extend({
     const uniqueDuplication = [...new Set(duplications)];
 
     return {
-      pass: uniqueDuplication.length !== 0,
+      pass: uniqueDuplication.length > 0,
       message: () =>
         isNot
           ? `Duplicated values are [${uniqueDuplication.join(', ')}]`
