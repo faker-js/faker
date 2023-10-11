@@ -113,13 +113,14 @@ describe('verify JSDoc tags', () => {
         );
 
       case 'union':
-        return parameterType.types.forEach((type) =>
-          assertNestedParameterDefault(name, type)
-        );
+        for (const type of parameterType.types) {
+          assertNestedParameterDefault(name, type);
+        }
+
+        return;
 
       case 'reflection': {
-        const properties = parameterType.declaration.children ?? [];
-        return properties.forEach((property) => {
+        for (const property of parameterType.declaration.children ?? []) {
           const reflection = property.comment
             ? property
             : (property.type as ReflectionType)?.declaration?.signatures?.[0];
@@ -133,7 +134,9 @@ describe('verify JSDoc tags', () => {
               `Expect jsdoc summary default and @default for ${name}.${property.name} to be the same`
             ).toBe(summaryDefault);
           }
-        });
+        }
+
+        return;
       }
 
       case 'typeOperator':
@@ -228,7 +231,7 @@ describe('verify JSDoc tags', () => {
 
           it('verify @param tags', async () => {
             // This must run before analyzeSignature
-            signature.parameters?.forEach((param) => {
+            for (const param of signature.parameters ?? []) {
               const type = param.type;
               const paramDefault = param.defaultValue;
               const commentDefault = extractSummaryDefault(
@@ -247,10 +250,11 @@ describe('verify JSDoc tags', () => {
               }
 
               assertNestedParameterDefault(param.name, type);
-            });
-            (
+            }
+
+            for (const param of (
               await analyzeSignature(signature, '', methodName)
-            ).parameters.forEach((param) => {
+            ).parameters) {
               const { name, description } = param;
               const plainDescription = description
                 .replace(/<[^>]+>/g, '')
@@ -260,11 +264,11 @@ describe('verify JSDoc tags', () => {
                 `Expect param ${name} to have a description`
               ).not.toBe(MISSING_DESCRIPTION);
               assertDescription(description, true);
-            });
+            }
           });
 
           it('verify @see tags', () => {
-            extractSeeAlsos(signature).forEach((link) => {
+            for (const link of extractSeeAlsos(signature)) {
               if (link.startsWith('faker.')) {
                 // Expected @see faker.xxx.yyy()
                 expect(link, 'Expect method reference to contain ()').toContain(
@@ -275,7 +279,7 @@ describe('verify JSDoc tags', () => {
                 );
                 expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
               }
-            });
+            }
           });
 
           it('verify @since tag', () => {

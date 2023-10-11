@@ -130,8 +130,7 @@ function patchSignatureParameterDefaults(
     throw new Error('Unexpected parameter length mismatch');
   }
 
-  signatureParameters.forEach(
-    (param, index) =>
-      (param.defaultValue = parameterDefaults[index] || param.defaultValue)
-  );
+  for (const [index, param] of signatureParameters.entries()) {
+    param.defaultValue = parameterDefaults[index] || param.defaultValue;
+  }
 }
