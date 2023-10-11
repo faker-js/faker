@@ -42,11 +42,11 @@ exports[`finance > 42 > creditCardCVV 1`] = `"379"`;
 
 exports[`finance > 42 > creditCardIssuer 1`] = `"discover"`;
 
-exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6591-6277-5514-1004-8364"`;
+exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6591-7755-1410-0485"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4791775514102"`;
 
-exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"5491-7755-1410-0488"`;
+exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"2619-9177-5514-1003"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer option visa 1`] = `"4791775514102"`;
 
@@ -156,7 +156,7 @@ exports[`finance > 1211 > creditCardNumber > noArgs 1`] = `"4872190616274"`;
 
 exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4487-2190-6162-7436"`;
 
-exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"2450-8721-9061-6279"`;
+exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"5387-2190-6162-7434"`;
 
 exports[`finance > 1211 > creditCardNumber > with issuer option visa 1`] = `"4487-2190-6162-7436"`;
 
@@ -266,7 +266,7 @@ exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"3612-254032-5529"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4512254032550"`;
 
-exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"5312-2540-3255-2395"`;
+exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"2501-1225-4032-5521"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer option visa 1`] = `"4512254032550"`;
 

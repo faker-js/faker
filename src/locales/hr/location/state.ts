@@ -14,10 +14,10 @@ export default [
   'Primorsko-goranska',
   'Sisačko-moslavačka',
   'Splitsko-dalmatinska',
-  'Šibensko-kninska',
   'Varaždinska',
   'Virovitičko-podravska',
   'Vukovarsko-srijemska',
   'Zadarska',
   'Zagrebačka',
+  'Šibensko-kninska',
 ];
