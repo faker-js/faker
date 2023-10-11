@@ -375,9 +375,9 @@ describe('helpers', () => {
           expect(subset.length).toBeLessThanOrEqual(testArray.length);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).not.toContainDuplicates();
@@ -391,9 +391,9 @@ describe('helpers', () => {
           expect(subset).toHaveLength(3);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).toHaveLength(new Set(subset).size);
@@ -411,9 +411,9 @@ describe('helpers', () => {
           expect(subset.length).toBeLessThanOrEqual(4);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).not.toContainDuplicates();
@@ -427,9 +427,9 @@ describe('helpers', () => {
           expect(subset.length).toBe(5);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
         });
 
         it('should return an empty array when array length > 0 and count = 0', () => {
