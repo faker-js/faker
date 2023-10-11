@@ -176,9 +176,9 @@ describe('verify JSDoc tags', () => {
           });
 
           it('verify @param tags', async () => {
-            (
+            for (const param of (
               await analyzeSignature(signature, '', methodName)
-            ).parameters.forEach((param) => {
+            ).parameters) {
               const { name, description } = param;
               const plainDescription = description
                 .replace(/<[^>]+>/g, '')
@@ -188,11 +188,11 @@ describe('verify JSDoc tags', () => {
                 `Expect param ${name} to have a description`
               ).not.toBe(MISSING_DESCRIPTION);
               assertDescription(description, true);
-            });
+            }
           });
 
           it('verify @see tags', () => {
-            extractSeeAlsos(signature).forEach((link) => {
+            for (const link of extractSeeAlsos(signature)) {
               if (link.startsWith('faker.')) {
                 // Expected @see faker.xxx.yyy()
                 expect(link, 'Expect method reference to contain ()').toContain(
@@ -203,7 +203,7 @@ describe('verify JSDoc tags', () => {
                 );
                 expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
               }
-            });
+            }
           });
 
           it('verify @since tag', () => {

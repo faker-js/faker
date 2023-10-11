@@ -95,39 +95,37 @@ export function exec<
     startTime = Date.now(),
     maxTime = 50,
     maxRetries = 50,
+    currentIterations = 0,
     compare = defaultCompare,
     store = {},
   } = options;
   let { exclude = [] } = options;
-  options.currentIterations = options.currentIterations ?? 0;
+  options.currentIterations = currentIterations;
 
   // Support single exclude argument as string
   if (!Array.isArray(exclude)) {
     exclude = [exclude];
   }
 
-  // if (options.currentIterations > 0) {
-  //   console.log('iterating', options.currentIterations)
-  // }
-
-  // console.log(now - startTime)
+  // If out of time -> throw error.
   if (now - startTime >= maxTime) {
     return errorMessage(
       startTime,
       now,
       `Exceeded maxTime: ${maxTime}`,
       store,
-      options.currentIterations
+      currentIterations
     );
   }
 
-  if (options.currentIterations >= maxRetries) {
+  // If out of retries -> throw error.
+  if (currentIterations >= maxRetries) {
     return errorMessage(
       startTime,
       now,
       `Exceeded maxRetries: ${maxRetries}`,
       store,
-      options.currentIterations
+      currentIterations
     );
   }
 
@@ -135,13 +133,13 @@ export function exec<
   const result: ReturnType<TMethod> = method(...args) as ReturnType<TMethod>;
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
-  if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {
+  if (compare(store, result) === -1 && !exclude.includes(result)) {
     store[result] = result;
     options.currentIterations = 0;
     return result;
   }
 
-  // console.log('conflict', result);
+  // Conflict, try again.
   options.currentIterations++;
   return exec(method, args, {
     ...options,
