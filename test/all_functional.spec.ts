@@ -119,7 +119,8 @@ describe('functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -140,7 +141,7 @@ describe('functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });
@@ -153,7 +154,8 @@ describe('faker.helpers.fake functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -172,7 +174,7 @@ describe('faker.helpers.fake functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });

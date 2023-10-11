@@ -95,39 +95,37 @@ export function exec<
     startTime = Date.now(),
     maxTime = 50,
     maxRetries = 50,
+    currentIterations = 0,
     compare = defaultCompare,
     store,
   } = options;
   let { exclude } = options;
-  options.currentIterations = options.currentIterations ?? 0;
+  options.currentIterations = currentIterations;
 
   // Support single exclude argument as string
   if (!Array.isArray(exclude)) {
     exclude = [exclude];
   }
 
-  // if (options.currentIterations > 0) {
-  //   console.log('iterating', options.currentIterations)
-  // }
-
-  // console.log(now - startTime)
+  // If out of time -> throw error.
   if (now - startTime >= maxTime) {
     return errorMessage(
       startTime,
       now,
       `Exceeded maxTime: ${maxTime}`,
       store,
-      options.currentIterations
+      currentIterations
     );
   }
 
-  if (options.currentIterations >= maxRetries) {
+  // If out of retries -> throw error.
+  if (currentIterations >= maxRetries) {
     return errorMessage(
       startTime,
       now,
       `Exceeded maxRetries: ${maxRetries}`,
       store,
-      options.currentIterations
+      currentIterations
     );
   }
 
@@ -141,7 +139,7 @@ export function exec<
     return result;
   }
 
-  // console.log('conflict', result);
+  // Conflict, try again.
   options.currentIterations++;
   return exec(method, args, {
     ...options,
