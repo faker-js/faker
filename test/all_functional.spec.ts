@@ -2,16 +2,16 @@ import { describe, expect, it } from 'vitest';
 import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
-const IGNORED_MODULES = [
+const IGNORED_MODULES = new Set([
   'rawDefinitions',
   'definitions',
   'helpers',
   '_randomizer',
   '_defaultRefDate',
-];
+]);
 
 function isTestableModule(mod: string) {
-  return IGNORED_MODULES.indexOf(mod) === -1;
+  return !IGNORED_MODULES.has(mod);
 }
 
 function isMethodOf(mod: string) {
@@ -70,7 +70,7 @@ function modulesList(): { [module: string]: string[] } {
     .reduce((result, mod) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
-      if (methods.length) {
+      if (methods.length > 0) {
         result[mod] = methods;
       } else {
         console.log(`Skipping ${mod} - No testable methods`);
@@ -119,7 +119,8 @@ describe('functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -140,7 +141,7 @@ describe('functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });
@@ -153,7 +154,8 @@ describe('faker.helpers.fake functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -172,7 +174,7 @@ describe('faker.helpers.fake functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });

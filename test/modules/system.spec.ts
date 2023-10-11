@@ -395,12 +395,12 @@ describe('system', () => {
           (options, count: number) => {
             const cron = faker.system.cron(options).split(' ');
             expect(cron).toHaveLength(count);
-            cron.forEach((cronElement, i) =>
+            for (const [index, cronElement] of cron.entries()) {
               expect(
                 cronElement,
-                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
-              ).toMatch(new RegExp(regexElements[i]))
-            );
+                `generated cron, ${cronElement} should match regex ${regexElements[index]}`
+              ).toMatch(new RegExp(regexElements[index]));
+            }
           }
         );
 
