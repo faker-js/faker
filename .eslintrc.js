@@ -55,7 +55,6 @@ module.exports = defineConfig({
     'unicorn/filename-case': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
-    'unicorn/no-array-for-each': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-for-loop': 'off',
