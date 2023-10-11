@@ -460,7 +460,7 @@ export class SimpleHelpersModule {
       }
 
       while (range != null) {
-        if (range[0].indexOf('-') === -1) {
+        if (!range[0].includes('-')) {
           // handle non-ranges
           if (isCaseInsensitive && isNaN(Number(range[0]))) {
             rangeCodes.push(
