@@ -12,6 +12,9 @@ import { mapByName } from '../../../scripts/apidoc/utils';
 
 /**
  * Returns a record with the (Module-Name -> (Method-Name -> Method-Signature)) for the project.
+ *
+ * @param options The TypeDoc options.
+ * @param includeTestModules Whether to include the test modules.
  */
 export function loadProjectModules(
   options?: Partial<TypeDocOptions>,

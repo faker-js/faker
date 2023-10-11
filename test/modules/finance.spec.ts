@@ -1,6 +1,7 @@
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
+import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
@@ -91,7 +92,8 @@ describe('finance', () => {
     t.describe('creditCardNumber', (t) => {
       t.it('noArgs')
         .it('with issuer', 'visa')
-        .it('with issuer option', { issuer: 'visa' });
+        .it('with issuer option visa', { issuer: 'visa' })
+        .it('with issuer option mastercard', { issuer: 'mastercard' });
     });
 
     t.describe('mask', (t) => {
@@ -277,7 +279,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).toMatch(/^[0-9\.]+$/);
+          ).toMatch(/^[0-9.]+$/);
         });
 
         it('should handle negative amounts', () => {
@@ -454,11 +456,13 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(-([0-9]){4}){3})$/);
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toSatisfy((value) =>
+            isCreditCard(value as string, { provider: 'mastercard' })
+          );
           expect(mastercard).toSatisfy(luhnCheck);
 
           const discover = faker.finance.creditCardNumber('discover');
@@ -472,21 +476,21 @@ describe('finance', () => {
           expect(diners_club).toSatisfy(luhnCheck);
           const jcb = faker.finance.creditCardNumber('jcb');
           expect(jcb).toSatisfy(luhnCheck);
-          const switchC = faker.finance.creditCardNumber('mastercard');
-          expect(switchC).toSatisfy(luhnCheck);
-          const solo = faker.finance.creditCardNumber('solo');
-          expect(solo).toSatisfy(luhnCheck);
           const maestro = faker.finance.creditCardNumber('maestro');
           expect(maestro).toSatisfy(luhnCheck);
-          const laser = faker.finance.creditCardNumber('laser');
-          expect(laser).toSatisfy(luhnCheck);
-          const instapayment = faker.finance.creditCardNumber('instapayment');
-          expect(instapayment).toSatisfy(luhnCheck);
+        });
+
+        it('should generate a valid union pay credit card', () => {
+          const actual = fakerZH_CN.finance.creditCardNumber('unionpay');
+          expect(actual).toSatisfy(luhnCheck);
+          expect(actual).toSatisfy((value) =>
+            isCreditCard(value as string, { provider: 'unionpay' })
+          );
         });
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toMatch(/^\d{3}-\d{3}-\d{3}$/);
           expect(number).toSatisfy(luhnCheck);
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');

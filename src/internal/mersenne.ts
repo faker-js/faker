@@ -1,3 +1,5 @@
+import type { Randomizer } from '../randomizer';
+
 /**
  * Copyright (c) 2022-2023 Faker
  *
@@ -71,13 +73,13 @@
  *
  * @internal
  */
-export default class MersenneTwister19937 {
+class MersenneTwister19937 {
   private readonly N = 624;
   private readonly M = 397;
   private readonly MATRIX_A = 0x9908b0df; // constant vector a
   private readonly UPPER_MASK = 0x80000000; // most significant w-r bits
   private readonly LOWER_MASK = 0x7fffffff; // least significant r bits
-  private mt: number[] = new Array(this.N); // the array for the state vector
+  private mt: number[] = Array.from({ length: this.N }); // the array for the state vector
   private mti = this.N + 1; // mti==N+1 means mt[N] is not initialized
 
   /**
@@ -322,4 +324,29 @@ export default class MersenneTwister19937 {
     return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
   }
   // These real versions are due to Isaku Wada, 2002/01/09
+}
+
+/**
+ * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
+ * This is the default randomizer used by Faker.
+ *
+ * @internal
+ */
+export function generateMersenne32Randomizer(): Randomizer {
+  const twister = new MersenneTwister19937();
+
+  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
+
+  return {
+    next(): number {
+      return twister.genrandReal2();
+    },
+    seed(seed: number | number[]): void {
+      if (typeof seed === 'number') {
+        twister.initGenrand(seed);
+      } else if (Array.isArray(seed)) {
+        twister.initByArray(seed, seed.length);
+      }
+    },
+  };
 }

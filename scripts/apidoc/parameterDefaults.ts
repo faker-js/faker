@@ -18,6 +18,9 @@ interface ParameterDefaultsAware extends Reflection {
 
 /**
  * TypeDoc EventCallback for EVENT_CREATE_DECLARATION events that reads the default parameters from the implementation.
+ *
+ * @param context The converter context.
+ * @param reflection The reflection to read the default parameters from.
  */
 export const parameterDefaultReader: EventCallback = (
   context: Context,
@@ -44,6 +47,7 @@ export const parameterDefaultReader: EventCallback = (
  * Removes compile expressions that don't add any value for readers.
  *
  * @param value The default value to clean.
+ *
  * @returns The cleaned default value.
  */
 function cleanParameterDefault(value: string): string;
@@ -126,8 +130,7 @@ function patchSignatureParameterDefaults(
     throw new Error('Unexpected parameter length mismatch');
   }
 
-  signatureParameters.forEach(
-    (param, index) =>
-      (param.defaultValue = parameterDefaults[index] || param.defaultValue)
-  );
+  for (const [index, param] of signatureParameters.entries()) {
+    param.defaultValue = parameterDefaults[index] || param.defaultValue;
+  }
 }

@@ -36,7 +36,7 @@ For detailed API documentation, please select the version of the documentation y
 
 - 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
 - ⏰ Time-based Data - Past, present, future, recent, soon... whenever!
-- 🌏 Localization - Set a locale to generate realistic looking Names, Addresses, and Phone Numbers.
+- 🌏 Localization - Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
 - 👠 Products - Generate Prices, Product Names, Adjectives, and Descriptions.
 - 👾 Hacker Jargon - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
@@ -79,12 +79,6 @@ export const USERS: User[] = faker.helpers.multiple(createRandomUser, {
 });
 ```
 
-The above code indicates a basic usage of Faker.
-The point of interest is the import statements at the top.
-The first import indicates how one can import the entirety of Faker, which includes every locale, while the commented-out import showcases how to import only a single locale.
-In most situations, importing a single locale is preferable for performance because some testing frameworks reload imports for every test file, which causes startup latencies to add up quickly.
-Thus, limiting the import to a single locale can speed up startup times.
-
 ## 💎 Modules
 
 An in-depth overview of the API methods is available in the documentation for [v8 (stable)](https://fakerjs.dev/api/) and [v8.\* (next)](https://next.fakerjs.dev/api/).
@@ -123,7 +117,7 @@ we fall back to English in such a case as this is the most complete and most com
 If you don't want that or prefer a different fallback, you can also build your own instances.
 
 ```ts
-import { Faker, de, de_CH } from '@faker-js/faker';
+import { de, de_CH, Faker } from '@faker-js/faker';
 
 export const faker = new Faker({
   locale: [de_CH, de],

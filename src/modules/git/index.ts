@@ -2,6 +2,8 @@ import type { Faker } from '../..';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
+const nbsp = '\u00a0';
+
 /**
  * Module to generate git related entries.
  *
@@ -97,13 +99,13 @@ export class GitModule {
     const email = this.faker.internet.email({ firstName, lastName });
 
     // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
-    user = user.replace(/^[\.,:;"\\']|[\<\>\n]|[\.,:;"\\']$/g, '');
+    user = user.replace(/^[.,:;"\\']|[<>\n]|[.,:;"\\']$/g, '');
 
     lines.push(
       `Author: ${user} <${email}>`,
       `Date: ${this.commitDate({ refDate })}`,
       '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      `${nbsp.repeat(4)}${this.commitMessage()}`,
       // to end with a eol char
       ''
     );

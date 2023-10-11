@@ -37,6 +37,7 @@ editLink: false
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
+ * @param examples The example code.
  * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
@@ -44,6 +45,7 @@ export async function writeApiDocsModule(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  examples: string | undefined,
   deprecated: string | undefined,
   methods: Method[]
 ): Promise<ModuleSummary> {
@@ -51,6 +53,7 @@ export async function writeApiDocsModule(
     moduleName,
     lowerModuleName,
     comment,
+    examples,
     deprecated,
     methods
   );
@@ -83,12 +86,15 @@ export async function writeApiDocsModule(
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
+ * @param examples The example code.
+ * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
 async function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  examples: string | undefined,
   deprecated: string | undefined,
   methods: Method[]
 ): Promise<void> {
@@ -117,6 +123,8 @@ async function writeApiDocsModulePage(
   }
 
   ${comment}
+
+  ${examples == null ? '' : `<div class="examples">${examples}</div>`}
 
   :::
 
@@ -147,13 +155,7 @@ function writeApiDocsModuleData(
   methods: Method[]
 ): void {
   const content = JSON.stringify(
-    methods.reduce<Record<string, Method>>(
-      (map, method) => ({
-        ...map,
-        [method.name]: method,
-      }),
-      {}
-    )
+    Object.fromEntries(methods.map((method) => [method.name, method]))
   );
 
   writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.json`), content);
@@ -191,7 +193,7 @@ export function writeApiDiffIndex(diffIndex: DocsApiDiffIndex): void {
 /**
  * Writes the api search index to the correct location.
  *
- * @param project The typedoc project.
+ * @param pages The pages to write into the index.
  */
 export function writeApiSearchIndex(pages: ModuleSummary[]): void {
   const apiIndex: APIGroup[] = [

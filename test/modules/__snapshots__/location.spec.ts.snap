@@ -16,11 +16,19 @@ exports[`location > 42 > country 1`] = `"Guernsey"`;
 
 exports[`location > 42 > countryCode > noArgs 1`] = `"GY"`;
 
-exports[`location > 42 > countryCode > with alphaCode option 1`] = `"GUY"`;
+exports[`location > 42 > countryCode > with string alpha-2 1`] = `"GY"`;
 
-exports[`location > 42 > countryCode > with string 1`] = `"GY"`;
+exports[`location > 42 > countryCode > with string alpha-3 1`] = `"GUY"`;
 
-exports[`location > 42 > county 1`] = `"Berkshire"`;
+exports[`location > 42 > countryCode > with string numeric 1`] = `"328"`;
+
+exports[`location > 42 > countryCode > with variant option alpha-2 1`] = `"GY"`;
+
+exports[`location > 42 > countryCode > with variant option alpha-3 1`] = `"GUY"`;
+
+exports[`location > 42 > countryCode > with variant option numeric 1`] = `"328"`;
+
+exports[`location > 42 > county 1`] = `"Borders"`;
 
 exports[`location > 42 > direction > noArgs 1`] = `"Northeast"`;
 
@@ -134,13 +142,13 @@ exports[`location > 42 > state > with options 1`] = `"MA"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"MA"`;
 
-exports[`location > 42 > street 1`] = `"Dillon Villages"`;
+exports[`location > 42 > street 1`] = `"Schinner Villages"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Miller Park"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Oxford Street"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Miller Park"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Oxford Street"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Miller Park Apt. 510"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Oxford Street Suite 241"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
@@ -168,11 +176,19 @@ exports[`location > 1211 > country 1`] = `"Uganda"`;
 
 exports[`location > 1211 > countryCode > noArgs 1`] = `"UM"`;
 
-exports[`location > 1211 > countryCode > with alphaCode option 1`] = `"UMI"`;
+exports[`location > 1211 > countryCode > with string alpha-2 1`] = `"UM"`;
 
-exports[`location > 1211 > countryCode > with string 1`] = `"UM"`;
+exports[`location > 1211 > countryCode > with string alpha-3 1`] = `"UMI"`;
 
-exports[`location > 1211 > county 1`] = `"Cambridgeshire"`;
+exports[`location > 1211 > countryCode > with string numeric 1`] = `"581"`;
+
+exports[`location > 1211 > countryCode > with variant option alpha-2 1`] = `"UM"`;
+
+exports[`location > 1211 > countryCode > with variant option alpha-3 1`] = `"UMI"`;
+
+exports[`location > 1211 > countryCode > with variant option numeric 1`] = `"581"`;
+
+exports[`location > 1211 > county 1`] = `"Tyne and Wear"`;
 
 exports[`location > 1211 > direction > noArgs 1`] = `"West"`;
 
@@ -286,7 +302,7 @@ exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
-exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
+exports[`location > 1211 > street 1`] = `"Market Street"`;
 
 exports[`location > 1211 > streetAddress > noArgs 1`] = `"58721 Batz Points"`;
 
@@ -320,11 +336,19 @@ exports[`location > 1337 > country 1`] = `"Ecuador"`;
 
 exports[`location > 1337 > countryCode > noArgs 1`] = `"EH"`;
 
-exports[`location > 1337 > countryCode > with alphaCode option 1`] = `"ESH"`;
+exports[`location > 1337 > countryCode > with string alpha-2 1`] = `"EH"`;
 
-exports[`location > 1337 > countryCode > with string 1`] = `"EH"`;
+exports[`location > 1337 > countryCode > with string alpha-3 1`] = `"ESH"`;
 
-exports[`location > 1337 > county 1`] = `"Bedfordshire"`;
+exports[`location > 1337 > countryCode > with string numeric 1`] = `"732"`;
+
+exports[`location > 1337 > countryCode > with variant option alpha-2 1`] = `"EH"`;
+
+exports[`location > 1337 > countryCode > with variant option alpha-3 1`] = `"ESH"`;
+
+exports[`location > 1337 > countryCode > with variant option numeric 1`] = `"732"`;
+
+exports[`location > 1337 > county 1`] = `"Morgan County"`;
 
 exports[`location > 1337 > direction > noArgs 1`] = `"Northeast"`;
 
@@ -440,11 +464,11 @@ exports[`location > 1337 > stateAbbr 1`] = `"IL"`;
 
 exports[`location > 1337 > street 1`] = `"Chyna Crest"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"612 Chester Land"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"61225 Barton Gateway"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"612 Chester Land"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"61225 Barton Gateway"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"612 Chester Land Apt. 325"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"61225 Barton Gateway Apt. 552"`;
 
 exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 

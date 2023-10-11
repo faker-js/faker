@@ -2,16 +2,16 @@ import { describe, expect, it } from 'vitest';
 import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
-const IGNORED_MODULES = [
+const IGNORED_MODULES = new Set([
   'rawDefinitions',
   'definitions',
   'helpers',
-  '_mersenne',
+  '_randomizer',
   '_defaultRefDate',
-];
+]);
 
 function isTestableModule(mod: string) {
-  return IGNORED_MODULES.indexOf(mod) === -1;
+  return !IGNORED_MODULES.has(mod);
 }
 
 function isMethodOf(mod: string) {
@@ -31,49 +31,6 @@ const BROKEN_LOCALE_METHODS = {
   location: {
     state: ['az', 'nb_NO', 'ro_MD', 'sk'],
     stateAbbr: ['cs_CZ', 'ro_MD', 'sk'],
-    streetName: [
-      'af_ZA',
-      'ar',
-      'dv',
-      'el',
-      'en',
-      'en_AU',
-      'en_BORK',
-      'en_CA',
-      'en_GB',
-      'en_GH',
-      'en_HK',
-      'en_IE',
-      'en_IN',
-      'en_NG',
-      'en_US',
-      'en_ZA',
-      'eo',
-      'es',
-      'fa',
-      'fi',
-      'fr',
-      'fr_BE',
-      'fr_CA',
-      'fr_CH',
-      'fr_LU',
-      'hu',
-      'hy',
-      'id_ID',
-      'it',
-      'ja',
-      'ne',
-      'nl',
-      'nl_BE',
-      'pl',
-      'pt_BR',
-      'pt_PT',
-      'ur',
-      'vi',
-      'zh_CN',
-      'zh_TW',
-      'zu_ZA',
-    ],
     zipCode: ['en_HK'],
     zipCodeByState: ['en_HK'],
   },
@@ -113,7 +70,7 @@ function modulesList(): { [module: string]: string[] } {
     .reduce((result, mod) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
-      if (methods.length) {
+      if (methods.length > 0) {
         result[mod] = methods;
       } else {
         console.log(`Skipping ${mod} - No testable methods`);
@@ -162,7 +119,8 @@ describe('functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -183,7 +141,7 @@ describe('functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });
@@ -196,7 +154,8 @@ describe('faker.helpers.fake functional tests', () => {
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      methods.forEach((meth) => {
+      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -215,7 +174,7 @@ describe('faker.helpers.fake functional tests', () => {
           // We expect a failure here to ensure we remove the exclusions when fixed
           it.fails(`${meth}()`, testAssertion);
         }
-      });
+      }
     });
   });
 });

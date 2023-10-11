@@ -12,10 +12,10 @@ const methods = loadExampleMethods();
 
 initMarkdownRenderer()
   .then(() => {
-    Object.entries(methods).forEach(([name, method]) => {
-      console.log('Analyzing: ', name);
+    for (const [name, method] of Object.entries(methods)) {
+      console.log('Analyzing:', name);
       const result = analyzeSignature(method, '', method.name);
-      console.log('Result: ', result);
-    });
+      console.log('Result:', result);
+    }
   })
   .catch(console.error);

@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { SimpleFaker } from '../..';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
@@ -12,7 +12,7 @@ import { deprecated } from '../../internal/deprecated';
  * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
 export class DatatypeModule {
-  constructor(private readonly faker: Faker) {
+  constructor(private readonly faker: SimpleFaker) {
     bindThisToMemberFunctions(this);
   }
 
@@ -407,11 +407,11 @@ export class DatatypeModule {
     const properties = ['foo', 'bar', 'bike', 'a', 'b', 'name', 'prop'];
     const returnObject: Record<string, string | number> = {};
 
-    properties.forEach((prop) => {
+    for (const prop of properties) {
       returnObject[prop] = this.boolean()
         ? this.faker.string.sample()
         : this.faker.number.int();
-    });
+    }
 
     return JSON.stringify(returnObject);
   }
