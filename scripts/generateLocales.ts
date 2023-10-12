@@ -359,7 +359,7 @@ async function main(): Promise<void> {
 
   localizationLocales = await format(localizationLocales, prettierMdOptions);
 
-  let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf-8');
+  let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf8');
   localizationContent = localizationContent.replace(
     /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
     `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
