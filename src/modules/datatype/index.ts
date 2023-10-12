@@ -159,7 +159,7 @@ export class DatatypeModule {
    *    as maximum generated date. Defaults to `4102444800000`.
    *
    * @see faker.date.anytime(): For the new method when generating a random date in either the past or future.
-   * @see faker.date.between(): For the new method when generating a random date between the two dates.
+   * @see faker.date.between(): For the new method when generating a random date in between two dates.
    *
    * @example
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'

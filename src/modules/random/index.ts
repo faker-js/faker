@@ -23,7 +23,7 @@ export class RandomModule {
   /**
    * Returns a random word.
    *
-   * @see faker.lorem.word(): To generate a random placeholder/unreadable word.
+   * @see faker.lorem.word(): To generate a random placeholder word.
    * @see faker.word.sample(): To generate a random existing word.
    *
    * @example
@@ -162,7 +162,7 @@ export class RandomModule {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
-   * @see faker.lorem.words(): To generate a sequence of random placeholder/unreadable words.
+   * @see faker.lorem.words(): To generate a sequence of random placeholder words.
    * @see faker.word.words(): To generate a sequence of random existing words.
    *
    * @example
