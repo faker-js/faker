@@ -102,8 +102,8 @@ export class ImageModule {
    * Generates a random image url.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
-   * @param options.height The height of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
+   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    *
    * @example
    * faker.image.url() // 'https://loremflickr.com/640/480?lock=1234'
@@ -115,13 +115,13 @@ export class ImageModule {
       /**
        * The width of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
     } = {}
@@ -143,8 +143,8 @@ export class ImageModule {
    * Generates a random image url provided via https://loremflickr.com.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
-   * @param options.height The height of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
+   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    * @param options.category Category to use for the image.
    *
    * @example
@@ -160,13 +160,13 @@ export class ImageModule {
       /**
        * The width of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
       /**
@@ -190,8 +190,8 @@ export class ImageModule {
    * Generates a random image url provided via https://picsum.photos.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
-   * @param options.height The height of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
+   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    * @param options.grayscale Whether the image should be grayscale. Defaults to `false`.
    * @param options.blur Whether the image should be blurred. Defaults to `false`.
    *
@@ -210,13 +210,13 @@ export class ImageModule {
       /**
        * The width of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
       /**
@@ -363,8 +363,8 @@ export class ImageModule {
    * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
-   * @param options.width The width of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
-   * @param options.height The height of the image. Defaults to `this.faker.number.int({ min: 1, max: 3999 })`.
+   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
    * @param options.type The type of the image. Defaults to `'svg-uri'`.
    *
@@ -379,13 +379,13 @@ export class ImageModule {
       /**
        * The width of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default this.faker.number.int({ min: 1, max: 3999 })
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
       /**
