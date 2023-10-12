@@ -22,14 +22,14 @@ export async function generate(): Promise<void> {
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);
 
-  const pages = await Promise.all([
+  const pages = [
     ...(await processFakerClasses(project)),
     ...(await processModules(project)).sort((a, b) =>
       a.text.localeCompare(b.text)
     ),
     await processFakerRandomizer(project),
-    processFakerUtilities(project),
-  ]);
+    await processFakerUtilities(project),
+  ];
   await writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
   writeApiDiffIndex(
     Object.fromEntries(pages.map(({ text, diff }) => [text, diff]))
