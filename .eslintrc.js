@@ -77,7 +77,6 @@ module.exports = defineConfig({
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/switch-case-braces': 'off',
-    'unicorn/text-encoding-identifier-case': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
@@ -152,6 +151,12 @@ module.exports = defineConfig({
       files: ['src/**/*.ts'],
       rules: {
         'jsdoc/require-jsdoc': 'error',
+      },
+    },
+    {
+      files: ['src/locales/**/*.ts'],
+      rules: {
+        'unicorn/text-encoding-identifier-case': 'off',
       },
     },
     {
