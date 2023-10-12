@@ -27,8 +27,8 @@ export class DatatypeModule {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.number.int() for the default precision of `1`
-   * @see faker.number.float() for a custom precision
+   * @see faker.number.int(): For the new method when generating a random integer.
+   * @see faker.number.float(): For the new method when generating a random floating-point number.
    *
    * @example
    * faker.datatype.number() // 55422
@@ -90,7 +90,7 @@ export class DatatypeModule {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
-   * @see faker.number.float()
+   * @see faker.number.float(): For the new method when generating a random floating-point number.
    *
    * @example
    * faker.datatype.float() // 51696.36
@@ -158,8 +158,8 @@ export class DatatypeModule {
    *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date. Defaults to `4102444800000`.
    *
-   * @see faker.date.anytime()
-   * @see faker.date.between()
+   * @see faker.date.anytime(): For the new method when generating a random date in either the past or future.
+   * @see faker.date.between(): For the new method when generating a random date between the two dates.
    *
    * @example
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'
@@ -221,7 +221,7 @@ export class DatatypeModule {
    * @param options Length of the generated string or an options object. Defaults to `{}`.
    * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
-   * @see faker.string.sample()
+   * @see faker.string.sample(): For the new method when generating a random string.
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
@@ -262,7 +262,7 @@ export class DatatypeModule {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * @see faker.string.uuid()
+   * @see faker.string.uuid(): For the new method when generating a random UUID.
    *
    * @example
    * faker.datatype.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
@@ -339,7 +339,8 @@ export class DatatypeModule {
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
-   * @see faker.string.hexadecimal()
+   * @see faker.string.hexadecimal(): For the new method when generating a random hexadecimal string.
+   * @see faker.number.hex(): For the new method when generating a random hexadecimal number.
    *
    * @example
    * faker.datatype.hexadecimal() // '0xB'
@@ -469,7 +470,7 @@ export class DatatypeModule {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.number.bigInt()
+   * @see faker.number.bigInt(): For the new method when generating a random bigint.
    *
    * @example
    * faker.datatype.bigInt() // 55422n

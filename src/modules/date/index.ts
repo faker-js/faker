@@ -37,9 +37,9 @@ export class SimpleDateModule {
    * @param options The optional options object.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.between() For dates in a specific range.
-   * @see faker.date.past() For dates explicitly in the past.
-   * @see faker.date.future() For dates explicitly in the future.
+   * @see faker.date.between(): For dates in a specific range.
+   * @see faker.date.past(): For dates explicitly in the past.
+   * @see faker.date.future(): For dates explicitly in the future.
    *
    * @example
    * faker.date.anytime() // '2022-07-31T01:33:29.567Z'
@@ -73,7 +73,7 @@ export class SimpleDateModule {
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -102,7 +102,7 @@ export class SimpleDateModule {
    * @param years The range of years the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -122,7 +122,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -195,7 +195,7 @@ export class SimpleDateModule {
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -224,7 +224,7 @@ export class SimpleDateModule {
    * @param years The range of years the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -244,7 +244,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -587,7 +587,7 @@ export class SimpleDateModule {
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -616,7 +616,7 @@ export class SimpleDateModule {
    * @param days The range of days the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -636,7 +636,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -704,7 +704,7 @@ export class SimpleDateModule {
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -733,7 +733,7 @@ export class SimpleDateModule {
    * @param days The range of days the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -753,7 +753,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'

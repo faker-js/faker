@@ -508,8 +508,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.abstract() // 'https://loremflickr.com/640/480/abstract'
@@ -540,8 +540,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.animals() // 'https://loremflickr.com/640/480/animals'
@@ -572,8 +572,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.business() // 'https://loremflickr.com/640/480/business'
@@ -605,8 +605,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.cats() // 'https://loremflickr.com/640/480/cats'
@@ -636,8 +636,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.city() // 'https://loremflickr.com/640/480/city'
@@ -667,8 +667,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.food() // 'https://loremflickr.com/640/480/food'
@@ -698,8 +698,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.nightlife() // 'https://loremflickr.com/640/480/nightlife'
@@ -729,8 +729,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.fashion() // 'https://loremflickr.com/640/480/fashion'
@@ -760,8 +760,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.people() // 'https://loremflickr.com/640/480/people'
@@ -791,8 +791,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.nature() // 'https://loremflickr.com/640/480/nature'
@@ -822,8 +822,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.sports() // 'https://loremflickr.com/640/480/sports'
@@ -853,8 +853,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.technics() // 'https://loremflickr.com/640/480/technics'
@@ -884,8 +884,8 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
-   * @see faker.image.url()
-   * @see faker.image.urlLoremFlickr()
+   * @see faker.image.url(): To generate a random image url (has less options, but doesn't break when LoremFlickr is removed).
+   * @see faker.image.urlLoremFlickr(): To generate a random image url from LoremFlickr.
    *
    * @example
    * faker.image.transport() // 'https://loremflickr.com/640/480/transport'

@@ -23,8 +23,8 @@ export class RandomModule {
   /**
    * Returns a random word.
    *
-   * @see faker.lorem.word()
-   * @see faker.word.sample()
+   * @see faker.lorem.word(): To generate a random placeholder/unreadable word.
+   * @see faker.word.sample(): To generate a random existing word.
    *
    * @example
    * faker.random.word() // 'Seamless'
@@ -162,8 +162,8 @@ export class RandomModule {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
-   * @see faker.lorem.words()
-   * @see faker.word.words()
+   * @see faker.lorem.words(): To generate a sequence of random placeholder/unreadable words.
+   * @see faker.word.words(): To generate a sequence of random existing words.
    *
    * @example
    * faker.random.words() // 'neural'
@@ -225,7 +225,7 @@ export class RandomModule {
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
-   * @see faker.string.alpha()
+   * @see faker.string.alpha(): For the new method replacing this one.
    *
    * @example
    * faker.random.alpha() // 'b'
@@ -285,7 +285,7 @@ export class RandomModule {
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.alphanumeric()
+   * @see faker.string.alphanumeric(): For the new method replacing this one.
    *
    * @example
    * faker.random.alphaNumeric() // '2'
@@ -334,7 +334,7 @@ export class RandomModule {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.numeric()
+   * @see faker.string.numeric(): For the new method replacing this one.
    *
    * @example
    * faker.random.numeric() // '2'

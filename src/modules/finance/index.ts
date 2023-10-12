@@ -47,7 +47,7 @@ export class FinanceModule {
    *
    * @param length The length of the account number. Defaults to `8`.
    *
-   * @see faker.finance.accountNumber()
+   * @see faker.finance.accountNumber(): For the new method that replaces this one.
    *
    * @example
    * faker.finance.account() // 92842238
@@ -209,7 +209,7 @@ export class FinanceModule {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
-   * @see faker.finance.maskedNumber()
+   * @see faker.finance.maskedNumber(): For the new method that replaces this one.
    *
    * @example
    * faker.finance.mask() // '(...9711)'
@@ -629,9 +629,9 @@ export class FinanceModule {
    * Returns a random currency object, containing `code`, `name `and `symbol` properties.
    *
    * @see
-   * faker.finance.currencyCode()
-   * faker.finance.currencyName()
-   * faker.finance.currencySymbol()
+   * faker.finance.currencyCode(): For a method that returns specifically the currency code.
+   * faker.finance.currencyName(): For a method that returns specifically the currency name.
+   * faker.finance.currencySymbol(): For a method that returns specifically the currency symbol.
    *
    * @example
    * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }

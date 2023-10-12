@@ -146,7 +146,7 @@ export class Faker extends SimpleFaker {
      * The locale data to use for this instance.
      * If an array is provided, the first locale that has a definition for a given property will be used.
      *
-     * @see mergeLocales
+     * @see mergeLocales() For more information about how the locales are merged.
      */
     locale: LocaleDefinition | LocaleDefinition[];
 
@@ -218,7 +218,7 @@ export class Faker extends SimpleFaker {
            * The locale data to use for this instance.
            * If an array is provided, the first locale that has a definition for a given property will be used.
            *
-           * @see mergeLocales
+           * @see mergeLocales() For more information about how the locales are merged.
            */
           locale: LocaleDefinition | LocaleDefinition[];
 

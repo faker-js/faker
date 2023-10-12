@@ -329,7 +329,7 @@ export class SimpleHelpersModule {
    *
    * @param string The template string to parse.
    *
-   * @see faker.helpers.fromRegExp()
+   * @see faker.helpers.fromRegExp(): Generates a string matching the given regex like expressions.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
@@ -1293,7 +1293,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param pattern The pattern string that will get interpolated.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): If you wish to use custom functions for resolution.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
@@ -1345,7 +1345,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): If you wish to use custom functions for resolution.
    *
    * @example
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
@@ -1388,7 +1388,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): If you wish to use custom functions for resolution.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'

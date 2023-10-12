@@ -201,6 +201,14 @@ describe('verify JSDoc tags', () => {
                 expect(link, 'Expect method reference to contain ()').toContain(
                   ')'
                 );
+                expect(
+                  link,
+                  "Expect method reference to have a ': ' after the parenthesis"
+                ).toContain('): ');
+                expect(
+                  link,
+                  'Expect method reference to have a description sentence ending with a dot'
+                ).toMatch(/\): [A-Z].{9,}\.$/);
                 expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
               }
             }
