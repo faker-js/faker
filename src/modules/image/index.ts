@@ -192,8 +192,8 @@ export class ImageModule {
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
    * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
-   * @param options.grayscale Whether the image should be grayscale. Defaults to `false`.
-   * @param options.blur Whether the image should be blurred. Defaults to `false`.
+   * @param options.grayscale Whether the image should be grayscale. Defaults to a random boolean value.
+   * @param options.blur Whether the image should be blurred. Defaults to a random selection between `false` and a random integer from `1` to `10`.
    *
    * @example
    * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
@@ -222,13 +222,13 @@ export class ImageModule {
       /**
        * Whether the image should be grayscale.
        *
-       * @default false
+       * @default faker.datatype.boolean()
        */
       grayscale?: boolean;
       /**
        * Whether the image should be blurred.
        *
-       * @default false
+       * @default faker.helpers.arrayElements([false, this.faker.number.int({ min: 1, max: 10 })])
        */
       blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     } = {}
@@ -236,8 +236,11 @@ export class ImageModule {
     const {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
-      grayscale = false,
-      blur,
+      grayscale = this.faker.datatype.boolean(),
+      blur = this.faker.helpers.arrayElements([
+        false,
+        this.faker.number.int({ min: 1, max: 10 }),
+      ]),
     } = options;
 
     let url = `https://picsum.photos/seed/${this.faker.string.alphanumeric({
@@ -366,7 +369,7 @@ export class ImageModule {
    * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
    * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
-   * @param options.type The type of the image. Defaults to `'svg-uri'`.
+   * @param options.type The type of the image. Defaults to a random type.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
@@ -398,7 +401,7 @@ export class ImageModule {
        * The type of the image to return. Consisting of
        * the file extension and the used encoding.
        *
-       * @default 'svg-uri'
+       * @default faker.helpers.arrayElements(['svg-uri', 'svg-base64'])
        */
       type?: 'svg-uri' | 'svg-base64';
     } = {}
@@ -407,7 +410,7 @@ export class ImageModule {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
       color = this.faker.color.rgb(),
-      type = 'svg-uri',
+      type = this.faker.helpers.arrayElements(['svg-uri', 'svg-base64']),
     } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
