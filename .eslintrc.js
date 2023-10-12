@@ -78,7 +78,6 @@ module.exports = defineConfig({
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
     'unicorn/switch-case-braces': 'off',
-    'unicorn/text-encoding-identifier-case': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
@@ -153,6 +152,12 @@ module.exports = defineConfig({
       files: ['src/**/*.ts'],
       rules: {
         'jsdoc/require-jsdoc': 'error',
+      },
+    },
+    {
+      files: ['src/locales/**/*.ts'],
+      rules: {
+        'unicorn/text-encoding-identifier-case': 'off',
       },
     },
     {
