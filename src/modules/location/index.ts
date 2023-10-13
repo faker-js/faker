@@ -840,14 +840,16 @@ export class LocationModule {
     const { abbreviated = false } = options;
 
     if (!abbreviated) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction
-      );
+      return this.faker.helpers.arrayElement([
+        ...this.faker.definitions.location.direction.cardinal,
+        ...this.faker.definitions.location.direction.ordinal,
+      ]);
     }
 
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction_abbr
-    );
+    return this.faker.helpers.arrayElement([
+      ...this.faker.definitions.location.direction.cardinal_abbr,
+      ...this.faker.definitions.location.direction.ordinal_abbr,
+    ]);
   }
 
   /**
@@ -953,12 +955,12 @@ export class LocationModule {
     const { abbreviated = false } = options;
     if (!abbreviated) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.slice(0, 4)
+        this.faker.definitions.location.direction.cardinal
       );
     }
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction_abbr.slice(0, 4)
+      this.faker.definitions.location.direction.cardinal_abbr
     );
   }
 
@@ -1066,12 +1068,12 @@ export class LocationModule {
     const { abbreviated = false } = options;
     if (!abbreviated) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.slice(4, 8)
+        this.faker.definitions.location.direction.ordinal
       );
     }
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction_abbr.slice(4, 8)
+      this.faker.definitions.location.direction.ordinal_abbr
     );
   }
 
