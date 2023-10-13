@@ -193,7 +193,7 @@ export class ImageModule {
    * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
    * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    * @param options.grayscale Whether the image should be grayscale. Defaults to a random boolean value.
-   * @param options.blur Whether the image should be blurred. Defaults to a random integer from `1` to `10` or `undefined`.
+   * @param options.blur Whether the image should be blurred. Defaults to a random integer from `0` to `10`.
    *
    * @example
    * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
@@ -228,18 +228,16 @@ export class ImageModule {
       /**
        * Whether the image should be blurred.
        *
-       * @default faker.helpers.maybe(() => faker.number.int({ min: 1, max: 10 }))
+       * @default faker.number.int({ max: 10 })
        */
-      blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      blur?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     } = {}
   ): string {
     const {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
       grayscale = this.faker.datatype.boolean(),
-      blur = this.faker.helpers.maybe(() =>
-        this.faker.number.int({ min: 1, max: 10 })
-      ),
+      blur = this.faker.number.int({ max: 10 }),
     } = options;
 
     let url = `https://picsum.photos/seed/${this.faker.string.alphanumeric({

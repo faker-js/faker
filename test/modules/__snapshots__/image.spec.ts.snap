@@ -22,11 +22,11 @@ exports[`image > 42 > dataUri > with width 1`] = `"data:image/svg+xml;base64,PHN
 
 exports[`image > 42 > dataUri > with width and height 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOGJlNGFiIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
 
-exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/BB9r963sR/1498/3186?grayscale"`;
+exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/BB9r963sR/1498/3186?grayscale&blur=8"`;
 
-exports[`image > 42 > url > with height 1`] = `"https://picsum.photos/seed/BB9r963sR/1498/128?blur=8"`;
+exports[`image > 42 > url > with height 1`] = `"https://picsum.photos/seed/MBB9r963s/1498/128?blur=2"`;
 
-exports[`image > 42 > url > with width 1`] = `"https://picsum.photos/seed/BB9r963sR/128/1498?blur=8"`;
+exports[`image > 42 > url > with width 1`] = `"https://picsum.photos/seed/MBB9r963s/128/1498?blur=2"`;
 
 exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=7174621373661184"`;
 
@@ -42,7 +42,7 @@ exports[`image > 42 > urlLoremFlickr > with width 1`] = `"https://loremflickr.co
 
 exports[`image > 42 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=3373557438480384"`;
 
-exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/BB9r963sR/1498/3186?blur=8"`;
+exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/MBB9r963s/1498/3186?blur=2"`;
 
 exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/NWbJMBB/128/128?grayscale&blur=4"`;
 
@@ -50,11 +50,11 @@ exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/
 
 exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/bJMBB9r963/1498/3186?grayscale&blur=3"`;
 
-exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/JMBB9r/1498/128"`;
+exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/JMBB9r/1498/128?blur=10"`;
 
-exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/JMBB9r/128/1498"`;
+exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/JMBB9r/128/1498?blur=10"`;
 
-exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/bJMBB9r963/128/128?grayscale"`;
+exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/bJMBB9r963/128/128?grayscale&blur=8"`;
 
 exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=concido%20paulatim%20aranea"`;
 
@@ -98,13 +98,13 @@ exports[`image > 1211 > dataUri > with width 1`] = `"data:image/svg+xml;base64,P
 
 exports[`image > 1211 > dataUri > with width and height 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWFkYjQyIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
 
-exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/2F9GdLqlaH/3714/1836?blur=2"`;
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/Z2F9G/3714/1836?blur=2"`;
 
 exports[`image > 1211 > url > with height 1`] = `"https://loremflickr.com/3714/128?lock=8047677172350976"`;
 
 exports[`image > 1211 > url > with width 1`] = `"https://loremflickr.com/128/3714?lock=8047677172350976"`;
 
-exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/128/128?grayscale"`;
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/128/128?grayscale&blur=9"`;
 
 exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/3714/1836?lock=8047677172350976"`;
 
@@ -118,7 +118,7 @@ exports[`image > 1211 > urlLoremFlickr > with width 1`] = `"https://loremflickr.
 
 exports[`image > 1211 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8363366036799488"`;
 
-exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/8Z2F9G/3714/1836"`;
+exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/8Z2F9G/3714/1836?blur=8"`;
 
 exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/128?grayscale&blur=4"`;
 
@@ -126,11 +126,11 @@ exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photo
 
 exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/Md8Z2F9GdL/3714/1836?grayscale&blur=3"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/3714/128?grayscale"`;
+exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/3714/128?grayscale&blur=9"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/128/3714?grayscale"`;
+exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/128/3714?grayscale&blur=9"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/128/128?blur=9"`;
+exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/Md8Z2F9GdL/128/128?blur=5"`;
 
 exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.jpeg?text=ascit%20suasoria%20tamisium"`;
 
@@ -176,9 +176,9 @@ exports[`image > 1337 > dataUri > with width and height 1`] = `"data:image/svg+x
 
 exports[`image > 1337 > url > noArgs 1`] = `"https://loremflickr.com/1048/2242?lock=1914819313664000"`;
 
-exports[`image > 1337 > url > with height 1`] = `"https://picsum.photos/seed/s2jewAgk/1048/128?grayscale&blur=3"`;
+exports[`image > 1337 > url > with height 1`] = `"https://picsum.photos/seed/xs2jew/1048/128?grayscale&blur=2"`;
 
-exports[`image > 1337 > url > with width 1`] = `"https://picsum.photos/seed/s2jewAgk/128/1048?grayscale&blur=3"`;
+exports[`image > 1337 > url > with width 1`] = `"https://picsum.photos/seed/xs2jew/128/1048?grayscale&blur=2"`;
 
 exports[`image > 1337 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=5048803172286464"`;
 
@@ -194,7 +194,7 @@ exports[`image > 1337 > urlLoremFlickr > with width 1`] = `"https://loremflickr.
 
 exports[`image > 1337 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=2360108468142080"`;
 
-exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/s2jewAgk/1048/2242?grayscale&blur=3"`;
+exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/xs2jew/1048/2242?grayscale&blur=2"`;
 
 exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/y9dhxs/128/128?grayscale&blur=4"`;
 
@@ -202,11 +202,11 @@ exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photo
 
 exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/dhxs2/1048/2242?grayscale&blur=3"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/xs2jew/1048/128?blur=3"`;
+exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/hxs2je/1048/128?blur=1"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/xs2jew/128/1048?blur=3"`;
+exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/hxs2je/128/1048?blur=1"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/dhxs2/128/128?grayscale"`;
+exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/dhxs2/128/128?grayscale&blur=6"`;
 
 exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=cerno%20tabella%20cohors"`;
 
