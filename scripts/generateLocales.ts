@@ -298,11 +298,12 @@ async function normalizeLocaleFile(filePath: string) {
       );
     }
 
-    for (const key of Object.keys(localeData).sort()) {
-      localeData[key] = normalizeDataRecursive(localeData[key]);
+    const result = {} as T;
+    for (const key of Object.keys(localeData)) {
+      result[key] = normalizeDataRecursive(localeData[key]);
     }
 
-    return localeData;
+    return result;
   }
 
   const filesToSkip = ['metadata.ts'];
