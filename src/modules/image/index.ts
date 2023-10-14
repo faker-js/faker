@@ -193,7 +193,7 @@ export class ImageModule {
    * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
    * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
    * @param options.grayscale Whether the image should be grayscale. Defaults to a random boolean value.
-   * @param options.blur Whether the image should be blurred. Defaults to a random integer from `0` to `10`.
+   * @param options.blur Whether the image should be blurred. Defaults to a random integer from `0` to `10`. `0` disables the blur.
    *
    * @example
    * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
@@ -226,7 +226,7 @@ export class ImageModule {
        */
       grayscale?: boolean;
       /**
-       * Whether the image should be blurred.
+       * Whether the image should be blurred. `0` disables the blur.
        *
        * @default faker.number.int({ max: 10 })
        */
