@@ -14,6 +14,7 @@ import type { MetadataDefinition } from './metadata';
 import type { MusicDefinition } from './music';
 import type { PersonDefinition } from './person';
 import type { PhoneNumberDefinition } from './phone_number';
+import type { PlantDefinition } from './plant';
 import type { ScienceDefinition } from './science';
 import type { SystemDefinition } from './system';
 import type { VehicleDefinition } from './vehicle';
@@ -46,6 +47,7 @@ export type LocaleDefinition = {
   music?: MusicDefinition;
   person?: PersonDefinition;
   phone_number?: PhoneNumberDefinition;
+  plant?: PlantDefinition;
   science?: ScienceDefinition;
   system?: SystemDefinition;
   vehicle?: VehicleDefinition;

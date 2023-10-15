@@ -54,6 +54,9 @@ export type {
   PhoneNumberDefinition,
   /** @deprecated Use PhoneNumberDefinition instead */
   PhoneNumberDefinition as PhoneNumberDefinitions,
+  PlantDefinition,
+  /** @deprecated Use AnimalDefinition instead */
+  PlantDefinition as PlantDefinitions,
   ScienceDefinition,
   /** @deprecated Use ScienceDefinition instead */
   ScienceDefinition as ScienceDefinitions,
@@ -121,6 +124,7 @@ export type {
   SexType,
 } from './modules/person';
 export type { PhoneModule } from './modules/phone';
+export type { PlantModule } from './modules/plant';
 // eslint-disable-next-line deprecation/deprecation
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';

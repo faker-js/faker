@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plant > 42 > flower 1`] = `"Daisy"`;
+
+exports[`plant > 42 > tree 1`] = `"European Hornbeam"`;
+
+exports[`plant > 1211 > flower 1`] = `"Verbena"`;
+
+exports[`plant > 1211 > tree 1`] = `"Tulip Tree"`;
+
+exports[`plant > 1337 > flower 1`] = `"Celosia"`;
+
+exports[`plant > 1337 > tree 1`] = `"Common Hackberry"`;

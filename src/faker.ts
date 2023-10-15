@@ -23,6 +23,7 @@ import { MusicModule } from './modules/music';
 import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
+import { PlantModule } from './modules/plant';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
@@ -85,6 +86,7 @@ export class Faker extends SimpleFaker {
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
+  readonly plant: PlantModule = new PlantModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
