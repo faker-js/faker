@@ -43,7 +43,6 @@ module.exports = defineConfig({
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
-    'unicorn/catch-error-name': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/escape-case': 'off',
     'unicorn/filename-case': 'off',
