@@ -811,6 +811,14 @@ describe('helpers', () => {
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(2);
         });
+
+        it('works as expected when seeded', () => {
+          const input = ['a', 'a', 'a', 'a', 'a', 'f', 'g', 'h', 'i', 'j'];
+          const length = 5;
+          faker.seed(100);
+          const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).toStrictEqual(['g', 'a', 'i', 'f', 'j']);
+        });
       });
 
       describe('mustache()', () => {
@@ -1244,24 +1252,6 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
       });
     }
   );
-
-  describe('uniqueArray()', () => {
-    it('works as expected when seeded', () => {
-      const input = ['a', 'a', 'a', 'a', 'a', 'f', 'g', 'h', 'i', 'j'];
-      const length = 5;
-      faker.seed(100);
-      const unique = faker.helpers.uniqueArray(input, length);
-      expect(unique).toMatchInlineSnapshot(`
-        [
-          "g",
-          "a",
-          "i",
-          "f",
-          "j",
-        ]
-      `);
-    });
-  });
 
   // This test can be only executed once, because the unique function has a global state.
   // See: https://github.com/faker-js/faker/issues/371

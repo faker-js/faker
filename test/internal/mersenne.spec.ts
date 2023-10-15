@@ -46,6 +46,8 @@ describe('MersenneTwister19937', () => {
   describe('genrandReal2()', () => {
     it('should be able to return 0', () => {
       const twister = newTwister();
+      // shortcut to return minimal value
+      // the test above shows that it is possible to return 0
       twister.genrandInt32 = () => 0;
       const actual = twister.genrandReal2();
       expect(actual).toBe(0);
@@ -53,6 +55,8 @@ describe('MersenneTwister19937', () => {
 
     it('should be able to return almost 1', () => {
       const twister = newTwister();
+      // shortcut to return maximal value
+      // the test above shows that it is possible to return 2^32-1
       twister.genrandInt32 = () => 2 ** 32 - 1;
       const actual = twister.genrandReal2();
       expect(actual).toBe(TWISTER_32CO_MAX_VALUE);
@@ -62,6 +66,8 @@ describe('MersenneTwister19937', () => {
   describe('genrandRes53()', () => {
     it('should be able to return 0', () => {
       const twister = newTwister();
+      // shortcut to return minimal value
+      // the test above shows that it is possible to return 0
       twister.genrandInt32 = () => 0;
       const actual = twister.genrandRes53();
       expect(actual).toBe(0);
@@ -69,6 +75,8 @@ describe('MersenneTwister19937', () => {
 
     it('should be able to return almost 1', () => {
       const twister = newTwister();
+      // shortcut to return maximal value
+      // the test above shows that it is possible to return 2^32-1
       twister.genrandInt32 = () => 2 ** 32 - 1;
       const actual = twister.genrandRes53();
       expect(actual).toBe(TWISTER_53CO_MAX_VALUE);
@@ -121,6 +129,7 @@ describe('generateMersenne32Randomizer()', () => {
 
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(MERSENNE_MAX_VALUE);
+        expect(actual).toBeLessThan(1);
       });
     });
   });
