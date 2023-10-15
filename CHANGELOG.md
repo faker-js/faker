@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://github.com/faker-js/faker/compare/v8.1.0...v8.2.0) (2023-10-14)
+
+
+### Features
+
+* support custom randomizer ([#2284](https://github.com/faker-js/faker/issues/2284)) ([5410239](https://github.com/faker-js/faker/commit/5410239245b4a6fe8c1976f8aa33c970923f9f40))
+
+
+### Bug Fixes
+
+* **docs:** revert filter code that breaks search in docs ([#2425](https://github.com/faker-js/faker/issues/2425)) ([c498c09](https://github.com/faker-js/faker/commit/c498c091f488db287684690ab4ff109b1589523f))
+* **locale:** Dutch phone number ([#2400](https://github.com/faker-js/faker/issues/2400)) ([005369b](https://github.com/faker-js/faker/commit/005369b29c7ee290a870396ff0acc85e3f715e10))
+
+
+### New Locales
+
+* **locale:** add airline database science commerce and vehicle for zh_CN ([#2395](https://github.com/faker-js/faker/issues/2395)) ([9c96c0a](https://github.com/faker-js/faker/commit/9c96c0a131e0609a21dc5ee110cc407e76852373))
+* **locale:** add street_name to `en_US`, `en_GB` and `en` ([#2371](https://github.com/faker-js/faker/issues/2371)) ([491d319](https://github.com/faker-js/faker/commit/491d3191213e2ceaaee46dcc50ac25c3995ba2d5))
+* **locale:** add unionpay credit card for zh_CN ([#2338](https://github.com/faker-js/faker/issues/2338)) ([74eeccc](https://github.com/faker-js/faker/commit/74eecccd3af702d8a1d8072f94032ccb54293cb1))
+
 ## [8.1.0](https://github.com/faker-js/faker/compare/v8.0.2...v8.1.0) (2023-09-19)
 
 
