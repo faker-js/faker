@@ -296,11 +296,11 @@ async function main(): Promise<void> {
       }
 
       localeTitle = title;
-    } catch (e) {
+    } catch (error) {
       console.error(
         `Failed to load ${pathMetadata}. Please make sure the file exists and exports a MetadataDefinition.`
       );
-      console.error(e);
+      console.error(error);
     }
 
     const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
@@ -367,8 +367,8 @@ async function main(): Promise<void> {
   writeFileSync(pathDocsGuideLocalization, localizationContent);
 }
 
-main().catch((e) => {
+main().catch((error) => {
   // Workaround until top level await is available
-  console.error(e);
+  console.error(error);
   process.exit(1);
 });
