@@ -43,7 +43,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L358",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L367",
   "throws": undefined,
 }
 `;
@@ -93,6 +93,7 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
   "optionsInterfaceParamMethodWithDefaults",
   "optionsParamMethod",
   "optionsTypeParamMethodWithDefaults",
+  "recordParamMethod",
   "requiredNumberParamMethod",
   "stringUnionParamMethod",
 ]
@@ -198,7 +199,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L278",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L287",
   "throws": undefined,
 }
 `;
@@ -250,7 +251,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L299",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L308",
   "throws": undefined,
 }
 `;
@@ -268,7 +269,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L267",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L276",
   "throws": undefined,
 }
 `;
@@ -288,7 +289,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L326",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L335",
   "throws": undefined,
 }
 `;
@@ -308,7 +309,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L336",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L345",
   "throws": undefined,
 }
 `;
@@ -325,7 +326,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L345",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L354",
   "throws": undefined,
 }
 `;
@@ -342,7 +343,7 @@ exports[`signature > analyzeSignature() > methodWithThrows 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L287",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L296",
   "throws": "a Faker error",
 }
 `;
@@ -491,7 +492,7 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L217",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L226",
   "throws": undefined,
 }
 `;
@@ -530,7 +531,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L253",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L262",
   "throws": undefined,
 }
 `;
@@ -538,7 +539,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
 exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
 {
   "deprecated": undefined,
-  "description": "<p>Test with a function parameters.</p>
+  "description": "<p>Test with an options parameter.</p>
 ",
   "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsParamMethod</span><span style=\\"color:#BABED8\\">(options: </span><span style=\\"color:#89DDFF\\">{</span></span>
 <span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
@@ -552,7 +553,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "parameters": [
     {
       "default": undefined,
-      "description": "<p>The function parameter.</p>
+      "description": "<p>The options parameter.</p>
 ",
       "name": "options",
       "type": "{ ... }",
@@ -596,7 +597,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L187",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L196",
   "throws": undefined,
 }
 `;
@@ -635,7 +636,32 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L235",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L244",
+  "throws": undefined,
+}
+`;
+
+exports[`signature > analyzeSignature() > recordParamMethod 1`] = `
+{
+  "deprecated": undefined,
+  "description": "<p>Test with a Record parameter.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">recordParamMethod</span><span style=\\"color:#BABED8\\">(object: Record</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#BABED8\\">string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+</div>",
+  "name": "recordParamMethod",
+  "parameters": [
+    {
+      "default": undefined,
+      "description": "<p>The Record parameter.</p>
+",
+      "name": "object",
+      "type": "Record<string, number>",
+    },
+  ],
+  "returns": "number",
+  "seeAlsos": [],
+  "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L182",
   "throws": undefined,
 }
 `;
