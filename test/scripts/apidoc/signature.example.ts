@@ -175,9 +175,18 @@ export class SignatureTest {
   }
 
   /**
-   * Test with a function parameters.
+   * Test with a Record parameter.
    *
-   * @param options The function parameter.
+   * @param object The Record parameter.
+   */
+  recordParamMethod(object: Record<string, number>): number {
+    return object.a;
+  }
+
+  /**
+   * Test with an options parameter.
+   *
+   * @param options The options parameter.
    * @param options.a The number parameter.
    * @param options.b The string parameter.
    * @param options.c The boolean parameter.
