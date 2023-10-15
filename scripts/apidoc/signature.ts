@@ -226,9 +226,9 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
         ].join(' | ');
       }
 
-      return `${type.name}<${type.typeArguments
-        .map(async (t) => await typeToText(t, short))
-        .join(', ')}>`;
+      return `${type.name}<${(
+        await Promise.all(type.typeArguments.map((t) => typeToText(t, short)))
+      ).join(', ')}>`;
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);

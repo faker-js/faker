@@ -1471,7 +1471,7 @@ export class HelpersModule extends SimpleHelpersModule {
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
       params = JSON.parse(`[${parameters}]`);
-    } catch (err) {
+    } catch {
       // since JSON.parse threw an error, assume parameters was actually a string
       params = [parameters];
     }
