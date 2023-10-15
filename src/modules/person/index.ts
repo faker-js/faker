@@ -269,7 +269,7 @@ export class PersonModule {
   }
 
   /**
-   * Returns a random sex type (usable in parameters).
+   * Returns a random sex type. The `SexType` is intended to be used in parameters and conditions.
    *
    * @see faker.person.gender(): If you would like to use the gender value in forms.
    * @see faker.person.sex(): If you would like to use the sex value in forms.
