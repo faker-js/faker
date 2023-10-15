@@ -10,12 +10,33 @@ const IGNORED_MODULES = new Set([
   '_defaultRefDate',
 ]);
 
-function isTestableModule(mod: string) {
-  return !IGNORED_MODULES.has(mod);
+function getMethodNamesByModules(): { [module: string]: string[] } {
+  return Object.fromEntries(
+    Object.keys(fakerEN)
+      .filter(isTestableModule)
+      .sort()
+      .map<[string, string[]]>((module) => [module, getMethodNamesOf(module)])
+      .filter(([module, methods]) => {
+        if (methods.length === 0) {
+          console.log(`Skipping ${module} - No testable methods`);
+          return false;
+        }
+
+        return true;
+      })
+  );
 }
 
-function isMethodOf(mod: string) {
-  return (meth: string) => typeof fakerEN[mod][meth] === 'function';
+function isTestableModule(module: string): module is keyof Faker {
+  return !IGNORED_MODULES.has(module);
+}
+
+function getMethodNamesOf(module: keyof Faker): string[] {
+  return Object.keys(fakerEN[module]).filter(isMethodOf(module));
+}
+
+function isMethodOf(module: string): (method: string) => boolean {
+  return (method: string) => typeof fakerEN[module][method] === 'function';
 }
 
 type SkipConfig<TModule> = Partial<
@@ -53,36 +74,17 @@ const BROKEN_LOCALE_METHODS = {
 };
 
 function isWorkingLocaleForMethod(
-  mod: string,
-  meth: string,
+  module: string,
+  method: string,
   locale: string
 ): boolean {
-  const broken = BROKEN_LOCALE_METHODS[mod]?.[meth] ?? [];
+  const broken = BROKEN_LOCALE_METHODS[module]?.[method] ?? [];
   return broken !== '*' && !broken.includes(locale);
 }
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
-function modulesList(): { [module: string]: string[] } {
-  const modules = Object.keys(fakerEN)
-    .sort()
-    .filter(isTestableModule)
-    .reduce((result, mod) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
-      if (methods.length > 0) {
-        result[mod] = methods;
-      } else {
-        console.log(`Skipping ${mod} - No testable methods`);
-      }
-
-      return result;
-    }, {});
-
-  return modules;
-}
-
-const modules = modulesList();
+const modules = getMethodNamesByModules();
 
 describe('BROKEN_LOCALE_METHODS test', () => {
   it('should not contain obsolete configuration (modules)', () => {

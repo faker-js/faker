@@ -36,6 +36,7 @@ module.exports = defineConfig({
 
     'deprecation/deprecation': 'error',
 
+    'unicorn/no-array-reduce': 'off', // not easy to avoid for new contributors
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/number-literal-case': 'off', // incompatible with prettier
@@ -53,7 +54,6 @@ module.exports = defineConfig({
     'unicorn/filename-case': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
-    'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-for-loop': 'off',
     'unicorn/no-instanceof-array': 'off',

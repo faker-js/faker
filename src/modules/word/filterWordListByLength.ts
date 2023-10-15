@@ -13,6 +13,7 @@ const STRATEGIES = {
     wordList: ReadonlyArray<string>,
     length: { min: number; max: number }
   ): string[] => {
+    // This could be replaced with Map.groupBy once it is available
     const wordsByLength = wordList.reduce(
       (data, word) => {
         (data[word.length] = data[word.length] ?? []).push(word);
