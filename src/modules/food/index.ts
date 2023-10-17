@@ -1,14 +1,24 @@
 import type { Faker } from '../../faker';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 
+/**
+ * Module for generating food-related data.
+ *
+ * ### Overview
+ *
+ * This module provides methods to generate various food-related information, such as [dish names](https://fakerjs.dev/api/food.html#dish), [spices](https://fakerjs.dev/api/food.html#spice) or [vegetables](https://fakerjs.dev/api/food.html#vegetable).
+ * To generate descriptions for a dish use [`description()`](https://fakerjs.dev/api/food.html#description).
+ */
 export class FoodModule {
   constructor(private readonly faker: Faker) {
     bindThisToMemberFunctions(this);
   }
 
   /**
+   * Generates a random dish description.
+   *
    * @example
-   * faker.food.description() // 'Lasagne'
+   * faker.food.description() // 'Three Coconut Water with Pumpkin, Turnips, Peppers, Raspberry and Coffee. With a side of baked Apricots, and your choice of Pineapple or Kidney Beans'
    *
    * @since 8.3.0
    */
@@ -31,8 +41,10 @@ export class FoodModule {
   }
 
   /**
+   * Generates a random food's ethnic category.
+   *
    * @example
-   * faker.food.ethnicCategory() // 'Lasagne'
+   * faker.food.ethnicCategory() // 'Italian'
    *
    * @since 8.3.0
    */
@@ -43,6 +55,8 @@ export class FoodModule {
   }
 
   /**
+   * Generates a random fruit name.
+   *
    * @example
    * faker.food.fruit() // 'Lemon'
    *
@@ -53,6 +67,8 @@ export class FoodModule {
   }
 
   /**
+   * Generates a random ingredient name.
+   *
    * @example
    * faker.food.ingredient() // 'Butter'
    *
@@ -65,6 +81,8 @@ export class FoodModule {
   }
 
   /**
+   * Generates a random spice name.
+   *
    * @example
    * faker.food.spice() // 'Chilli'
    *
@@ -75,6 +93,8 @@ export class FoodModule {
   }
 
   /**
+   * Generates a random spice name.
+   *
    * @example
    * faker.food.vegetable() // 'Broccoli'
    *
