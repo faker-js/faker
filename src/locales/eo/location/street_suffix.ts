@@ -6,6 +6,7 @@ export default [
   'avenuo',
   'bulvardo',
   'digo',
+  'ĝardeno',
   'insulo',
   'kampo',
   'klifo',
@@ -19,5 +20,4 @@ export default [
   'tunelo',
   'viadukto',
   'vojo',
-  'ĝardeno',
 ];

@@ -1,1 +1,1 @@
-export default ['a.s.', 's.r.o.', 'v.o.s.'];
+export default ['s.r.o.', 'a.s.', 'v.o.s.'];

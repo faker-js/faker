@@ -1,11 +1,11 @@
 export default [
-  'Amarillo',
-  'Azul',
-  'Blanco',
-  'Gris',
-  'Morado',
-  'Negro',
   'Rojo',
+  'Azul',
+  'Negro',
+  'Gris',
+  'Blanco',
+  'Amarillo',
   'Verde',
+  'Morado',
   'Violeta',
 ];

@@ -1,1 +1,1 @@
-export default ['dreef', 'laan', 'park', 'plein', 'straat', 'weg'];
+export default ['straat', 'laan', 'weg', 'dreef', 'plein', 'park'];

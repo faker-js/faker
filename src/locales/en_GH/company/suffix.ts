@@ -1,1 +1,1 @@
-export default ['Ltd', 'Venture'];
+export default ['Venture', 'Ltd'];

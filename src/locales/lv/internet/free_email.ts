@@ -1,10 +1,10 @@
 export default [
-  'apollo.lv',
-  'gmail.com',
-  'hotmail.com',
   'inbox.lv',
-  'mail.lv',
   'one.lv',
+  'mail.lv',
   'outlook.lv',
+  'apollo.lv',
   'yahoo.com',
+  'hotmail.com',
+  'gmail.com',
 ];

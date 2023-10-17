@@ -1,1 +1,1 @@
-export default ['سواری', 'ہیچ بیک'];
+export default ['ہیچ بیک', 'سواری'];

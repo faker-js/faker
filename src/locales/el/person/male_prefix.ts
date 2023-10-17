@@ -1,1 +1,1 @@
-export default ['Δόκτορ', 'Κύριος'];
+export default ['Κύριος', 'Δόκτορ'];

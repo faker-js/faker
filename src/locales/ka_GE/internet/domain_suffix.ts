@@ -1,1 +1,1 @@
-export default ['com', 'com.ge', 'ge', 'net', 'org', 'org.ge'];
+export default ['ge', 'com', 'net', 'org', 'com.ge', 'org.ge'];

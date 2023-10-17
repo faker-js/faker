@@ -1,1 +1,1 @@
-export default ['동', '면', '읍'];
+export default ['읍', '면', '동'];

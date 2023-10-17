@@ -1,1 +1,1 @@
-export default ['com', 'com.vn', 'info', 'net', 'vn'];
+export default ['com', 'net', 'info', 'vn', 'com.vn'];

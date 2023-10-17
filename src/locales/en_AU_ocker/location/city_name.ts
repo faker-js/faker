@@ -7,8 +7,8 @@ export default [
   'Glenelg',
   'Manly',
   'Noosa',
-  'St Kilda',
   'Stones Corner',
+  'St Kilda',
   'Surry Hills',
   'Yarra Valley',
 ];

@@ -1,11 +1,11 @@
 export default [
   'Allée',
+  'Voie',
+  'Rue',
   'Avenue',
   'Boulevard',
-  'Impasse',
-  'Passage',
-  'Place',
   'Quai',
-  'Rue',
-  'Voie',
+  'Passage',
+  'Impasse',
+  'Place',
 ];

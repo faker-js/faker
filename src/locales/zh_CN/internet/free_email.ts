@@ -3,10 +3,8 @@ export default [
   '139.com',
   '163.com',
   '21cn.com',
-  'foxmail.com',
   'gmail.com',
   'hotmail.com',
-  'outlook.com',
   'qq.com',
   'sina.com',
   'sohu.com',
@@ -15,4 +13,6 @@ export default [
   'yahoo.cn',
   'yahoo.com.cn',
   'yeah.net',
+  'foxmail.com',
+  'outlook.com',
 ];

@@ -1,8 +1,8 @@
 export default [
-  'Antwerpen',
-  'Brussel',
-  'Limburg',
+  'West-Vlaanderen',
   'Oost-Vlaanderen',
   'Vlaams-Brabant',
-  'West-Vlaanderen',
+  'Antwerpen',
+  'Limburg',
+  'Brussel',
 ];

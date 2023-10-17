@@ -1,9 +1,9 @@
 export default [
   'BV',
-  'Bedrijf',
-  'Combinatie',
+  'V.O.F.',
   'Groep',
   'NV',
-  'V.O.F.',
+  'Bedrijf',
   'en Zonen',
+  'Combinatie',
 ];

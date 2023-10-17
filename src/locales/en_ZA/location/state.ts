@@ -1,11 +1,11 @@
 export default [
-  'Eastern Cape',
-  'Free State',
-  'Gauteng',
-  'KwaZulu-Natal',
   'Limpopo',
-  'Mpumalanga',
+  'Gauteng',
+  'Free State',
   'North West',
   'Northern Cape',
   'Western Cape',
+  'KwaZulu-Natal',
+  'Mpumalanga',
+  'Eastern Cape',
 ];

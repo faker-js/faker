@@ -1,10 +1,10 @@
 export default [
-  'Auto Loan',
   'Checking',
-  'Credit Card',
-  'Home Loan',
-  'Investment',
-  'Money Market',
-  'Personal Loan',
   'Savings',
+  'Money Market',
+  'Investment',
+  'Home Loan',
+  'Credit Card',
+  'Auto Loan',
+  'Personal Loan',
 ];

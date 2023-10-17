@@ -1,1 +1,1 @@
-export default ['# طبقه', 'واحد #'];
+export default ['واحد #', '# طبقه'];

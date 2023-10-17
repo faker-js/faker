@@ -1,1 +1,1 @@
-export default ['vom', 'von', 'von der', 'zu'];
+export default ['zu', 'von', 'vom', 'von der'];

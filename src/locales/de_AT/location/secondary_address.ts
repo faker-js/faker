@@ -1,1 +1,1 @@
-export default ['# OG', 'Apt. ###', 'Zimmer ###'];
+export default ['Apt. ###', 'Zimmer ###', '# OG'];

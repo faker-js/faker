@@ -1,11 +1,11 @@
 export default [
-  'Avenue',
-  'Court',
-  'Crescent',
-  'Drive',
+  'Street',
+  'Road',
   'Lane',
   'Path',
-  'Road',
-  'Street',
   'Terrace',
+  'Avenue',
+  'Drive',
+  'Crescent',
+  'Court',
 ];

@@ -1,1 +1,1 @@
-export default ['Dr.', 'PhD.', 'Prof.'];
+export default ['Dr.', 'Prof.', 'PhD.'];

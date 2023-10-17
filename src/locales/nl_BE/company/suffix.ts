@@ -1,1 +1,1 @@
-export default ['BVBA', 'CVBA', 'NV', 'VZW'];
+export default ['NV', 'BVBA', 'CVBA', 'VZW'];

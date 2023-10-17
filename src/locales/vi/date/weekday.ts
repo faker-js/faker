@@ -1,14 +1,16 @@
 export default {
   wide: [
     'Chủ nhật',
-    'Thứ ba',
-    'Thứ bảy',
     'Thứ hai',
+    'Thứ ba',
+    'Thứ tư',
     'Thứ năm',
     'Thứ sáu',
-    'Thứ tư',
+    'Thứ bảy',
   ],
   abbr: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
+  // It is used to specify a word in context, which may differ from a stand-alone word
   abbr_context: [
     'C.Nhật',
     'Thứ 2',

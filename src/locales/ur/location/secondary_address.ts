@@ -1,1 +1,1 @@
-export default ['گلی ###', 'گھر. ###'];
+export default ['گھر. ###', 'گلی ###'];

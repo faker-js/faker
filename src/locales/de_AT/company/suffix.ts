@@ -1,1 +1,1 @@
-export default ['AG', 'GmbH', 'GmbH & Co. KG', 'Gruppe', 'KG', 'OHG', 'UG'];
+export default ['GmbH', 'AG', 'Gruppe', 'KG', 'GmbH & Co. KG', 'UG', 'OHG'];

@@ -1,1 +1,1 @@
-export default ['Group', 'SPA', 'e figli', 's.r.l.'];
+export default ['SPA', 'e figli', 'Group', 's.r.l.'];

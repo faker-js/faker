@@ -1,1 +1,1 @@
-export default ['Alt', 'Bad', 'Neu', 'Nord', 'Ost', 'Süd', 'West'];
+export default ['Nord', 'Ost', 'West', 'Süd', 'Neu', 'Alt', 'Bad'];

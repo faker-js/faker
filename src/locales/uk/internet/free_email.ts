@@ -1,9 +1,9 @@
 export default [
-  'e-mail.ua',
+  'ukr.net',
   'ex.ua',
-  'gmail.com',
+  'e-mail.ua',
   'i.ua',
   'meta.ua',
-  'ukr.net',
   'yandex.ua',
+  'gmail.com',
 ];

@@ -1,1 +1,1 @@
-export default ['Filho', 'Jr.', 'Neto'];
+export default ['Jr.', 'Neto', 'Filho'];

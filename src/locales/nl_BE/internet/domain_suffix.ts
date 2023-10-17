@@ -1,1 +1,1 @@
-export default ['be', 'brussels', 'com', 'net', 'org', 'vlaanderen'];
+export default ['be', 'brussels', 'vlaanderen', 'com', 'net', 'org'];

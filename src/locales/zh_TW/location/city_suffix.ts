@@ -1,1 +1,1 @@
-export default ['市', '縣'];
+export default ['縣', '市'];

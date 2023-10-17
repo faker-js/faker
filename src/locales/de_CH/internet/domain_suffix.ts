@@ -1,1 +1,1 @@
-export default ['at', 'biz', 'ch', 'com', 'de', 'li', 'net'];
+export default ['com', 'net', 'biz', 'ch', 'de', 'li', 'at'];

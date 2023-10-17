@@ -1,5 +1,4 @@
 export default [
-  'ROI',
   'applikationer',
   'arkitektur',
   'blockchains',
@@ -32,6 +31,7 @@ export default [
   'platforme',
   'portaler',
   'relationer',
+  'ROI',
   'skemaer',
   'synergier',
   'systemer',

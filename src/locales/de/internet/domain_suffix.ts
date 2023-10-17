@@ -1,1 +1,1 @@
-export default ['ch', 'com', 'de', 'info', 'name', 'net', 'org'];
+export default ['com', 'info', 'name', 'net', 'org', 'de', 'ch'];

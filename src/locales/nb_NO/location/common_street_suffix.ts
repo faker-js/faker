@@ -1,1 +1,1 @@
-export default ['gata', 's Gate', 's Vei', 'sgate', 'svei', 'veien'];
+export default ['sgate', 'svei', 's Gate', 's Vei', 'gata', 'veien'];

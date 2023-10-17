@@ -1,1 +1,1 @@
-export default ['d-ro', 'prof.', 's-ro'];
+export default ['s-ro', 'd-ro', 'prof.'];

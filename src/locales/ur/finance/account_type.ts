@@ -1,1 +1,1 @@
-export default ['Current', 'Savings'];
+export default ['Savings', 'Current'];

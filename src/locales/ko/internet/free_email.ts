@@ -1,1 +1,1 @@
-export default ['gmail.com', 'hanmail.net', 'naver.com', 'yahoo.co.kr'];
+export default ['gmail.com', 'yahoo.co.kr', 'hanmail.net', 'naver.com'];

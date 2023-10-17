@@ -1,5 +1,6 @@
 export default [
   'amarelo',
+  'âmbar',
   'ametista',
   'azul',
   'azul celeste',
@@ -21,6 +22,7 @@ export default [
   'fuligem',
   'fúchsia',
   'grená',
+  'índigo',
   'jade',
   'laranja',
   'lilás',
@@ -42,6 +44,4 @@ export default [
   'verde-azulado',
   'vermelho',
   'violeta',
-  'âmbar',
-  'índigo',
 ];

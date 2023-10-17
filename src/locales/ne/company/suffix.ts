@@ -1,1 +1,1 @@
-export default ['Group', 'Limited', 'Ltd', 'Pvt Ltd'];
+export default ['Pvt Ltd', 'Group', 'Ltd', 'Limited'];

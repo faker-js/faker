@@ -1,1 +1,1 @@
-export default ['SA', 'South Africa', 'The Republic of South Africa'];
+export default ['South Africa', 'The Republic of South Africa', 'SA'];

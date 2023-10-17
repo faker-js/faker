@@ -1,8 +1,10 @@
 export default [
+  'Álava',
   'Albacete',
   'Alicante',
   'Almería',
   'Asturias',
+  'Ávila',
   'Badajoz',
   'Barcelona',
   'Burgos',
@@ -26,6 +28,7 @@ export default [
   'Las Palmas',
   'León',
   'Lugo',
+  'lérida',
   'Madrid',
   'Murcia',
   'Málaga',
@@ -46,7 +49,4 @@ export default [
   'Vizcaya',
   'Zamora',
   'Zaragoza',
-  'lérida',
-  'Álava',
-  'Ávila',
 ];

@@ -1,1 +1,1 @@
-export default ['E', 'N', 'NE', 'NU', 'S', 'SE', 'SU', 'U'];
+export default ['N', 'E', 'S', 'U', 'NE', 'NU', 'SE', 'SU'];

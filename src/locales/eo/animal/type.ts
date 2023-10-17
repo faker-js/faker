@@ -2,6 +2,7 @@ export default [
   'birdo',
   'bovo',
   'cetaco',
+  'ĉevalo',
   'fiŝo',
   'hundo',
   'insekto',
@@ -11,5 +12,4 @@ export default [
   'leono',
   'serpento',
   'urso',
-  'ĉevalo',
 ];

@@ -10,6 +10,7 @@ export default [
   'Corse',
   'Franche-Comté',
   'Haute-Normandie',
+  'Île-de-France',
   'Languedoc-Roussillon',
   'Limousin',
   'Lorraine',
@@ -20,5 +21,4 @@ export default [
   'Poitou-Charentes',
   "Provence-Alpes-Côte d'Azur",
   'Rhône-Alpes',
-  'Île-de-France',
 ];

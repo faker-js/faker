@@ -1,1 +1,1 @@
-export default ['biz', 'ca', 'com', 'info', 'name', 'net', 'org', 'qc.ca'];
+export default ['qc.ca', 'ca', 'com', 'biz', 'info', 'name', 'net', 'org'];

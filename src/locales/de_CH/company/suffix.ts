@@ -1,10 +1,10 @@
 export default [
-  '& Co.',
   'AG',
   'GmbH',
-  'Gruppe',
-  'Inc.',
-  'LLC',
-  'und Partner',
   'und Söhne',
+  'und Partner',
+  '& Co.',
+  'Gruppe',
+  'LLC',
+  'Inc.',
 ];

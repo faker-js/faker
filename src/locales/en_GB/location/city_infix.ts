@@ -1,1 +1,1 @@
-export default ['-le-', '-on-', '-over-', '-under-', '-upon-'];
+export default ['-under-', '-over-', '-le-', '-upon-', '-on-'];

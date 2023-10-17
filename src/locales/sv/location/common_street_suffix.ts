@@ -1,1 +1,1 @@
-export default ['s Gata', 's Väg'];
+export default ['s Väg', 's Gata'];

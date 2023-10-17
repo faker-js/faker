@@ -1,12 +1,13 @@
 export default {
   wide: [
-    'csütörtök',
     'hétfő',
     'kedd',
-    'péntek',
     'szerda',
+    'csütörtök',
+    'péntek',
     'szombat',
     'vasárnap',
   ],
-  abbr: ['Csüt', 'Hé', 'Ke', 'Pé', 'Sze', 'Szo', 'Va'],
+
+  abbr: ['Hé', 'Ke', 'Sze', 'Csüt', 'Pé', 'Szo', 'Va'],
 };

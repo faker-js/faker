@@ -1,1 +1,7 @@
-export default [{ name: 'Ευρώ', code: 'EUR', symbol: '€' }];
+export default [
+  {
+    name: 'Ευρώ',
+    code: 'EUR',
+    symbol: '€',
+  },
+];

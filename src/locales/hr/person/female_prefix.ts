@@ -1,1 +1,1 @@
-export default ['dr.', 'gđa', 'gđa.'];
+export default ['gđa.', 'gđa', 'dr.'];

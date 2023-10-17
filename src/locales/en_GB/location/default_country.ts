@@ -1,1 +1,1 @@
-export default ['England', 'Northern Ireland', 'Scotland', 'Wales'];
+export default ['England', 'Scotland', 'Wales', 'Northern Ireland'];

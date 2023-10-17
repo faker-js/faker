@@ -1,11 +1,11 @@
 export default [
-  'aeiou.pt',
   'gmail.com',
-  'hotmail.com',
-  'live.com',
-  'mail.pt',
-  'outlook.com',
-  'portugalmail.pt',
-  'sapo.pt',
   'yahoo.com',
+  'hotmail.com',
+  'outlook.com',
+  'live.com',
+  'portugalmail.pt',
+  'mail.pt',
+  'sapo.pt',
+  'aeiou.pt',
 ];

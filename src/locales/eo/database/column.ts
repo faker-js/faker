@@ -1,12 +1,12 @@
 export default [
-  'grupo',
   'identigilo',
-  'kategorio',
-  'komento',
+  'titolo',
   'nomo',
+  'telefonnumero',
+  'grupo',
+  'kategorio',
   'pasvorto',
+  'komento',
   'profilbildo',
   'stato',
-  'telefonnumero',
-  'titolo',
 ];

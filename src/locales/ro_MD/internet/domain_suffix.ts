@@ -1,1 +1,8 @@
-export default ['com', 'md', 'net', 'org', 'ru'];
+export default [
+  'com',
+  'ru',
+  'net',
+  'org',
+  // Moldavian
+  'md',
+];

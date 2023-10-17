@@ -1,1 +1,1 @@
-export default ['구', '군', '시'];
+export default ['구', '시', '군'];

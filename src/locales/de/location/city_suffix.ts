@@ -1,1 +1,1 @@
-export default ['burg', 'dorf', 'land', 'scheid', 'stadt'];
+export default ['stadt', 'dorf', 'land', 'scheid', 'burg'];

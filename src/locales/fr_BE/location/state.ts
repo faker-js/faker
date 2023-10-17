@@ -1,12 +1,12 @@
 export default [
   'Anvers',
-  'Brabant flamand',
-  'Brabant wallon',
+  'Limbourg',
   'Flandre occidentale',
   'Flandre orientale',
   'Hainaut',
-  'Limbourg',
   'Liège',
   'Luxembourg',
   'Namur',
+  'Brabant flamand',
+  'Brabant wallon',
 ];

@@ -1,1 +1,1 @@
-export default ['BA', 'GB', 'ICT', 'J&K', 'KP', 'PB', 'SD'];
+export default ['KP', 'ICT', 'J&K', 'GB', 'PB', 'SD', 'BA'];

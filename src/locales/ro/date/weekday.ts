@@ -1,4 +1,5 @@
 export default {
-  wide: ['Duminică', 'Joi', 'Luni', 'Marți', 'Miercuri', 'Sâmbătă', 'Vineri'],
-  abbr: ['Duminică', 'Joi', 'Luni', 'Marți', 'Miercuri', 'Sâmbătă', 'Vineri'],
+  wide: ['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică'],
+
+  abbr: ['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică'],
 };

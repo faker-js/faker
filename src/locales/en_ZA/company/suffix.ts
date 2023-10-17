@@ -1,1 +1,1 @@
-export default ['CC', 'Ltd', 'Pty Ltd'];
+export default ['Pty Ltd', 'Ltd', 'CC'];

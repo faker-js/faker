@@ -1,8 +1,8 @@
 export default [
-  'gmail.com',
-  'hotmail.com',
-  'mail.ru',
-  'ya.ru',
-  'yahoo.com',
   'yandex.ru',
+  'ya.ru',
+  'mail.ru',
+  'gmail.com',
+  'yahoo.com',
+  'hotmail.com',
 ];

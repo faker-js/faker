@@ -2,13 +2,15 @@
 export default {
   wide: [
     'domingo',
-    'jueves',
     'lunes',
     'martes',
     'miércoles',
-    'sábado',
+    'jueves',
     'viernes',
+    'sábado',
   ],
-  abbr: ['dom', 'jue', 'lun', 'mar', 'mié', 'sáb', 'vie'],
-  abbr_context: ['dom.', 'juev.', 'lun.', 'mart.', 'miérc.', 'sáb.', 'vier.'],
+  abbr: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
+  // It is used to specify a word in context, which may differ from a stand-alone word
+  abbr_context: ['dom.', 'lun.', 'mart.', 'miérc.', 'juev.', 'vier.', 'sáb.'],
 };

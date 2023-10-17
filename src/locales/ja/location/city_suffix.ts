@@ -1,1 +1,1 @@
-export default ['区', '市', '村', '町'];
+export default ['市', '区', '町', '村'];

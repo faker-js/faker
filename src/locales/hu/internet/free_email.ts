@@ -1,9 +1,9 @@
 export default [
-  'citromail.hu',
-  'freemail.hu',
   'gmail.com',
-  'hotamil.com',
   'hotmail.hu',
+  'hotamil.com',
+  'freemail.hu',
+  'citromail.hu',
   'outlook.com',
   'outlook.hu',
 ];

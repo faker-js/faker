@@ -4,8 +4,8 @@ export default [
   'berget',
   'bråten',
   'eggen',
-  'ekra',
   'engen',
+  'ekra',
   'faret',
   'flata',
   'gata',
@@ -42,7 +42,7 @@ export default [
   'tjernet',
   'toppen',
   'tunet',
-  'vika',
   'vollen',
+  'vika',
   'åsen',
 ];

@@ -1,1 +1,1 @@
-export default ['dépôt', 'facture', 'paiement', 'retrait'];
+export default ['dépôt', 'retrait', 'paiement', 'facture'];
