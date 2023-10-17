@@ -70,7 +70,6 @@ module.exports = defineConfig({
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
-    'unicorn/prefer-spread': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-ternary': 'off',
     'unicorn/prefer-top-level-await': 'off',
