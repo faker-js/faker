@@ -11,6 +11,7 @@ import { CompanyModule } from './modules/company';
 import { DatabaseModule } from './modules/database';
 import { DateModule } from './modules/date';
 import { FinanceModule } from './modules/finance';
+import { FoodModule } from './modules/food';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
@@ -75,6 +76,7 @@ export class Faker extends SimpleFaker {
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);
+  readonly food = new FoodModule(this);
   readonly git: GitModule = new GitModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
   readonly helpers: HelpersModule = new HelpersModule(this);
