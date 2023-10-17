@@ -4,6 +4,8 @@ import type { SimpleFaker } from '../simple-faker';
 
 /**
  * Base class for all modules that use a `SimpleFaker` instance.
+ *
+ * @internal
  */
 export abstract class SimpleModuleBase {
   constructor(protected readonly faker: SimpleFaker) {
@@ -13,6 +15,8 @@ export abstract class SimpleModuleBase {
 
 /**
  * Base class for all modules that use a `Faker` instance.
+ *
+ * @internal
  */
 export abstract class ModuleBase extends SimpleModuleBase {
   constructor(protected readonly faker: Faker) {
