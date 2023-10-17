@@ -10,7 +10,7 @@ export class FoodModule {
    * @example
    * faker.food.description() // 'Lasagne'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   description(): string {
     return this.faker.helpers.fake(
@@ -24,7 +24,7 @@ export class FoodModule {
    * @example
    * faker.food.dish() // 'Lasagne'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   dish(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.dish);
@@ -34,7 +34,7 @@ export class FoodModule {
    * @example
    * faker.food.ethnicCategory() // 'Lasagne'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   ethnicCategory(): string {
     return this.faker.helpers.arrayElement(
@@ -46,7 +46,7 @@ export class FoodModule {
    * @example
    * faker.food.fruit() // 'Lemon'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   fruit(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.fruit);
@@ -56,7 +56,7 @@ export class FoodModule {
    * @example
    * faker.food.ingredient() // 'Butter'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   ingredient(): string {
     return this.faker.helpers.arrayElement(
@@ -68,7 +68,7 @@ export class FoodModule {
    * @example
    * faker.food.spice() // 'Chilli'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   spice(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.spice);
@@ -78,7 +78,7 @@ export class FoodModule {
    * @example
    * faker.food.vegetable() // 'Broccoli'
    *
-   * @since v8.3.0
+   * @since 8.3.0
    */
   vegetable(): string {
     return this.faker.helpers.arrayElement(

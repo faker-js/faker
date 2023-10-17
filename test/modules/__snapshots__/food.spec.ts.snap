@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`food > 42 > description 1`] = `"A slow-roasted Bachman's Warbler with a crisp, golden exterior. Stuffed with Sultanas and covered in Cavalo sauce. Sides with Peppers puree and wild Purple carrot."`;
+
+exports[`food > 42 > dish 1`] = `"Katsu Curry"`;
+
+exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
+
+exports[`food > 42 > fruit 1`] = `"Feijoa"`;
+
+exports[`food > 42 > ingredient 1`] = `"Fish Sauce"`;
+
+exports[`food > 42 > spice 1`] = `"Five Spice Mix"`;
+
+exports[`food > 42 > vegetable 1`] = `"Dried Chinese Broccoli"`;
+
+exports[`food > 1211 > description 1`] = `"A special turquoise Sunflower Seeds from San Marino. To support the strong flavor it is sided with a tablespoon of Chillies."`;
+
+exports[`food > 1211 > dish 1`] = `"Teriyaki Chicken Donburi"`;
+
+exports[`food > 1211 > ethnicCategory 1`] = `"Thai"`;
+
+exports[`food > 1211 > fruit 1`] = `"Strawberries"`;
+
+exports[`food > 1211 > ingredient 1`] = `"Tofu"`;
+
+exports[`food > 1211 > spice 1`] = `"Tarragon"`;
+
+exports[`food > 1211 > vegetable 1`] = `"Sun dried tomatoes"`;
+
+exports[`food > 1337 > description 1`] = `"Macadamia Oil with a pinch of Cardamom, topped by a caramelized Cherries with whipped cream"`;
+
+exports[`food > 1337 > dish 1`] = `"Ebiten maki"`;
+
+exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
+
+exports[`food > 1337 > fruit 1`] = `"Currants"`;
+
+exports[`food > 1337 > ingredient 1`] = `"Cinnamon"`;
+
+exports[`food > 1337 > spice 1`] = `"Cloves"`;
+
+exports[`food > 1337 > vegetable 1`] = `"Carob Carrot"`;
