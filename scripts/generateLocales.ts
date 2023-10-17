@@ -21,7 +21,7 @@ import {
   readFileSync,
   writeFileSync,
 } from 'node:fs';
-import { basename, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.js';
@@ -240,12 +240,10 @@ async function generateRecursiveModuleIndexes(
  */
 async function updateLocaleFile(filePath: string): Promise<void> {
   if (lstatSync(filePath).isFile()) {
-    const pathParts = filePath
+    const [locale, moduleKey, entryKey] = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
       .split(/[\\/]/);
-    const locale = pathParts[0];
-    pathParts.splice(0, 1);
-    await updateLocaleFileHook(filePath, locale, pathParts);
+    await updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }
 
@@ -255,19 +253,21 @@ async function updateLocaleFile(filePath: string): Promise<void> {
  *
  * @param filePath The full file path to the file.
  * @param locale The locale for that file.
- * @param localePath The locale path parts (after the locale).
+ * @param definitionKey The definition key of the current file (ex. 'location').
+ * @param entryName The entry key of the current file (ex. 'state'). Is `undefined` if `definitionKey` is `'metadata'`.
  */
 async function updateLocaleFileHook(
   filePath: string,
   locale: string,
-  localePath: string[]
+  definitionKey: string,
+  entryName: string | undefined
 ): Promise<void> {
   // this needs to stay so all arguments are "used"
   if (filePath === 'never') {
-    console.log(`${filePath} <-> ${locale} @ ${localePath.join(' -> ')}`);
+    console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
 
-  await normalizeLocaleFile(filePath);
+  await normalizeLocaleFile(filePath, definitionKey);
 }
 
 /**
@@ -280,8 +280,9 @@ async function updateLocaleFileHook(
  * This function mutates the file by reading and writing to it!
  *
  * @param filePath The full file path to the file.
+ * @param definitionKey The definition key of the current file (ex. 'location').
  */
-async function normalizeLocaleFile(filePath: string) {
+async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   function normalizeDataRecursive<T>(localeData: T): T {
     if (typeof localeData !== 'object' || localeData === null) {
       // we can only traverse object-like structs
@@ -306,11 +307,35 @@ async function normalizeLocaleFile(filePath: string) {
     return result;
   }
 
-  const filesToSkip = ['metadata.ts'];
-  const fileName = basename(filePath);
-  if (filesToSkip.includes(fileName)) {
+  const legacyDefinitions = ['app', 'cell_phone', 'team'];
+  const definitionsToSkip = [
+    'airline',
+    'animal',
+    'color',
+    'commerce',
+    'company',
+    'database',
+    'date',
+    'finance',
+    'hacker',
+    'internet',
+    'location',
+    'lorem',
+    'metadata',
+    'music',
+    'person',
+    'phone_number',
+    'science',
+    'system',
+    'vehicle',
+    'word',
+    ...legacyDefinitions,
+  ];
+  if (definitionsToSkip.includes(definitionKey)) {
     return;
   }
+
+  console.log(`Running data normalization for:`, filePath);
 
   const fileContent = readFileSync(filePath).toString();
   const searchString = 'export default ';
