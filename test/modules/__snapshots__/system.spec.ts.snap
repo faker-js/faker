@@ -2,9 +2,9 @@
 
 exports[`system > 42 > commonFileExt 1`] = `"png"`;
 
-exports[`system > 42 > commonFileName > noArgs 1`] = `"blood_clot.png"`;
+exports[`system > 42 > commonFileName > noArgs 1`] = `"nondisclosure_stud.png"`;
 
-exports[`system > 42 > commonFileName > with extension 1`] = `"blood_clot.ext"`;
+exports[`system > 42 > commonFileName > with extension 1`] = `"nondisclosure_stud.ext"`;
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
 
@@ -18,19 +18,19 @@ exports[`system > 42 > cron > with includeYear false 1`] = `"* 19 * 3 5"`;
 
 exports[`system > 42 > cron > with includeYear true 1`] = `"* 19 * 3 5 2047"`;
 
-exports[`system > 42 > directoryPath 1`] = `"/net"`;
+exports[`system > 42 > directoryPath 1`] = `"/opt/bin"`;
 
 exports[`system > 42 > fileExt > noArgs 1`] = `"docx"`;
 
 exports[`system > 42 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 42 > fileName > noArgs 1`] = `"blood_clot.ppt"`;
+exports[`system > 42 > fileName > noArgs 1`] = `"nondisclosure_stud.pot"`;
 
-exports[`system > 42 > fileName > with extensionCount 1`] = `"blood_clot.ppt.mp2"`;
+exports[`system > 42 > fileName > with extensionCount 1`] = `"nondisclosure_stud.pot.mp2a"`;
 
-exports[`system > 42 > fileName > with extensionCount range 1`] = `"blood_clot.mp2"`;
+exports[`system > 42 > fileName > with extensionCount range 1`] = `"nondisclosure_stud.mp2a"`;
 
-exports[`system > 42 > filePath 1`] = `"/net/chubby_base_woefully.jpe"`;
+exports[`system > 42 > filePath 1`] = `"/opt/bin/crooked_falter_woefully.jpeg"`;
 
 exports[`system > 42 > fileType 1`] = `"font"`;
 
@@ -80,7 +80,7 @@ exports[`system > 42 > networkInterface > with {} 1`] = `"wlp1s7"`;
 
 exports[`system > 42 > semver 1`] = `"3.7.9"`;
 
-exports[`system > 1211 > commonFileExt 1`] = `"html"`;
+exports[`system > 1211 > commonFileExt 1`] = `"htm"`;
 
 exports[`system > 1211 > commonFileName > noArgs 1`] = `"although_instantly_though.gif"`;
 
@@ -106,9 +106,9 @@ exports[`system > 1211 > fileExt > with mimeType 1`] = `"map"`;
 
 exports[`system > 1211 > fileName > noArgs 1`] = `"although_instantly_though.wav"`;
 
-exports[`system > 1211 > fileName > with extensionCount 1`] = `"although_instantly_though.wav.jpeg"`;
+exports[`system > 1211 > fileName > with extensionCount 1`] = `"although_instantly_though.wav.jpg"`;
 
-exports[`system > 1211 > fileName > with extensionCount range 1`] = `"although_instantly_though.jpeg"`;
+exports[`system > 1211 > fileName > with extensionCount range 1`] = `"although_instantly_though.jpg"`;
 
 exports[`system > 1211 > filePath 1`] = `"/var/log/outside_even.woff2"`;
 
@@ -178,19 +178,19 @@ exports[`system > 1337 > cron > with includeYear false 1`] = `"15 13 5 * *"`;
 
 exports[`system > 1337 > cron > with includeYear true 1`] = `"15 13 5 * * 2029"`;
 
-exports[`system > 1337 > directoryPath 1`] = `"/home"`;
+exports[`system > 1337 > directoryPath 1`] = `"/Library"`;
 
 exports[`system > 1337 > fileExt > noArgs 1`] = `"xul"`;
 
 exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 1337 > fileName > noArgs 1`] = `"although.pot"`;
+exports[`system > 1337 > fileName > noArgs 1`] = `"although.ppt"`;
 
-exports[`system > 1337 > fileName > with extensionCount 1`] = `"although.pot.pdf"`;
+exports[`system > 1337 > fileName > with extensionCount 1`] = `"although.ppt.pdf"`;
 
 exports[`system > 1337 > fileName > with extensionCount range 1`] = `"although"`;
 
-exports[`system > 1337 > filePath 1`] = `"/home/fooey_disloyal.jpg"`;
+exports[`system > 1337 > filePath 1`] = `"/Library/yum_fast.jpe"`;
 
 exports[`system > 1337 > fileType 1`] = `"audio"`;
 

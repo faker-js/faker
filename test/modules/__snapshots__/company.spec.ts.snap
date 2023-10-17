@@ -1,12 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`company > 42 > buzzAdjective 1`] = `"front-end"`;
+exports[`company > 42 > buzzAdjective 1`] = `"dynamic"`;
 
-exports[`company > 42 > buzzNoun 1`] = `"eyeballs"`;
+exports[`company > 42 > buzzNoun 1`] = `"technologies"`;
 
-exports[`company > 42 > buzzPhrase 1`] = `"generate strategic technologies"`;
+exports[`company > 42 > buzzPhrase 1`] = `"seize impactful methodologies"`;
 
-exports[`company > 42 > buzzVerb 1`] = `"generate"`;
+exports[`company > 42 > buzzVerb 1`] = `"seize"`;
 
 exports[`company > 42 > catchPhrase 1`] = `"Implemented responsive throughput"`;
 
@@ -14,28 +14,28 @@ exports[`company > 42 > catchPhraseAdjective 1`] = `"Implemented"`;
 
 exports[`company > 42 > catchPhraseDescriptor 1`] = `"explicit"`;
 
-exports[`company > 42 > catchPhraseNoun 1`] = `"forecast"`;
+exports[`company > 42 > catchPhraseNoun 1`] = `"framework"`;
 
-exports[`company > 42 > companySuffix 1`] = `"Inc"`;
+exports[`company > 42 > companySuffix 1`] = `"and Sons"`;
 
-exports[`company > 42 > name 1`] = `"Schinner and Sons"`;
+exports[`company > 42 > name 1`] = `"Schinner - Wiegand"`;
 
 exports[`company > 42 > suffixes 1`] = `
 [
-  "Group",
   "Inc",
-  "LLC",
   "and Sons",
+  "LLC",
+  "Group",
 ]
 `;
 
-exports[`company > 1211 > buzzAdjective 1`] = `"virtual"`;
+exports[`company > 1211 > buzzAdjective 1`] = `"plug-and-play"`;
 
-exports[`company > 1211 > buzzNoun 1`] = `"technologies"`;
+exports[`company > 1211 > buzzNoun 1`] = `"methodologies"`;
 
-exports[`company > 1211 > buzzPhrase 1`] = `"transition innovative synergies"`;
+exports[`company > 1211 > buzzPhrase 1`] = `"cultivate bleeding-edge experiences"`;
 
-exports[`company > 1211 > buzzVerb 1`] = `"transition"`;
+exports[`company > 1211 > buzzVerb 1`] = `"cultivate"`;
 
 exports[`company > 1211 > catchPhrase 1`] = `"Up-sized high-level success"`;
 
@@ -45,44 +45,44 @@ exports[`company > 1211 > catchPhraseDescriptor 1`] = `"upward-trending"`;
 
 exports[`company > 1211 > catchPhraseNoun 1`] = `"system engine"`;
 
-exports[`company > 1211 > companySuffix 1`] = `"and Sons"`;
+exports[`company > 1211 > companySuffix 1`] = `"Group"`;
 
 exports[`company > 1211 > name 1`] = `"Koelpin, Trantow and Satterfield"`;
 
 exports[`company > 1211 > suffixes 1`] = `
 [
-  "Group",
   "Inc",
-  "LLC",
   "and Sons",
+  "LLC",
+  "Group",
 ]
 `;
 
-exports[`company > 1337 > buzzAdjective 1`] = `"dynamic"`;
+exports[`company > 1337 > buzzAdjective 1`] = `"global"`;
 
-exports[`company > 1337 > buzzNoun 1`] = `"deliverables"`;
+exports[`company > 1337 > buzzNoun 1`] = `"ROI"`;
 
-exports[`company > 1337 > buzzPhrase 1`] = `"enhance mission-critical channels"`;
+exports[`company > 1337 > buzzPhrase 1`] = `"incentivize efficient initiatives"`;
 
-exports[`company > 1337 > buzzVerb 1`] = `"enhance"`;
+exports[`company > 1337 > buzzVerb 1`] = `"incentivize"`;
 
-exports[`company > 1337 > catchPhrase 1`] = `"Expanded leading edge budgetary management"`;
+exports[`company > 1337 > catchPhrase 1`] = `"Expanded leading edge capacity"`;
 
 exports[`company > 1337 > catchPhraseAdjective 1`] = `"Expanded"`;
 
 exports[`company > 1337 > catchPhraseDescriptor 1`] = `"demand-driven"`;
 
-exports[`company > 1337 > catchPhraseNoun 1`] = `"customer loyalty"`;
+exports[`company > 1337 > catchPhraseNoun 1`] = `"data-warehouse"`;
 
-exports[`company > 1337 > companySuffix 1`] = `"Inc"`;
+exports[`company > 1337 > companySuffix 1`] = `"and Sons"`;
 
-exports[`company > 1337 > name 1`] = `"Macejkovic - Cronin"`;
+exports[`company > 1337 > name 1`] = `"MacGyver Inc"`;
 
 exports[`company > 1337 > suffixes 1`] = `
 [
-  "Group",
   "Inc",
-  "LLC",
   "and Sons",
+  "LLC",
+  "Group",
 ]
 `;

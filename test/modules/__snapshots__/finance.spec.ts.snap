@@ -4,7 +4,7 @@ exports[`finance > 42 > account > noArgs 1`] = `"37917755"`;
 
 exports[`finance > 42 > account > with length 1`] = `"3791775514"`;
 
-exports[`finance > 42 > accountName 1`] = `"Credit Card Account"`;
+exports[`finance > 42 > accountName 1`] = `"Money Market Account"`;
 
 exports[`finance > 42 > accountNumber > noArgs 1`] = `"37917755"`;
 
@@ -42,11 +42,11 @@ exports[`finance > 42 > creditCardCVV 1`] = `"379"`;
 
 exports[`finance > 42 > creditCardIssuer 1`] = `"discover"`;
 
-exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6591-7755-1410-0485"`;
+exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6591-6277-5514-1004-8364"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4791775514102"`;
 
-exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"2619-9177-5514-1003"`;
+exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"5491-7755-1410-0488"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer option visa 1`] = `"4791775514102"`;
 
@@ -106,15 +106,15 @@ exports[`finance > 42 > pin > with length option 1`] = `"3791775514"`;
 
 exports[`finance > 42 > routingNumber 1`] = `"379177554"`;
 
-exports[`finance > 42 > transactionDescription 1`] = `"withdrawal transaction at Wiegand, Deckow and Reynolds using card ending with ***8361 for RSD 374.54 in account ***55141004"`;
+exports[`finance > 42 > transactionDescription 1`] = `"invoice transaction at Wiegand, Deckow and Reynolds using card ending with ***8361 for RSD 374.54 in account ***55141004"`;
 
-exports[`finance > 42 > transactionType 1`] = `"invoice"`;
+exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
 
 exports[`finance > 1211 > account > noArgs 1`] = `"94872190"`;
 
 exports[`finance > 1211 > account > with length 1`] = `"9487219061"`;
 
-exports[`finance > 1211 > accountName 1`] = `"Savings Account"`;
+exports[`finance > 1211 > accountName 1`] = `"Personal Loan Account"`;
 
 exports[`finance > 1211 > accountNumber > noArgs 1`] = `"94872190"`;
 
@@ -156,7 +156,7 @@ exports[`finance > 1211 > creditCardNumber > noArgs 1`] = `"4872190616274"`;
 
 exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4487-2190-6162-7436"`;
 
-exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"5387-2190-6162-7434"`;
+exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"2450-8721-9061-6279"`;
 
 exports[`finance > 1211 > creditCardNumber > with issuer option visa 1`] = `"4487-2190-6162-7436"`;
 
@@ -216,15 +216,15 @@ exports[`finance > 1211 > pin > with length option 1`] = `"9487219061"`;
 
 exports[`finance > 1211 > routingNumber 1`] = `"948721904"`;
 
-exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow and Sons using card ending with ***4316 for SDG 928.52 in account ***19061627"`;
+exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow - Satterfield using card ending with ***4316 for SDG 928.52 in account ***19061627"`;
 
-exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
+exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
 
 exports[`finance > 1337 > account > noArgs 1`] = `"25122540"`;
 
 exports[`finance > 1337 > account > with length 1`] = `"2512254032"`;
 
-exports[`finance > 1337 > accountName 1`] = `"Credit Card Account"`;
+exports[`finance > 1337 > accountName 1`] = `"Money Market Account"`;
 
 exports[`finance > 1337 > accountNumber > noArgs 1`] = `"25122540"`;
 
@@ -266,7 +266,7 @@ exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"3612-254032-5529"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4512254032550"`;
 
-exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"2501-1225-4032-5521"`;
+exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"5312-2540-3255-2395"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer option visa 1`] = `"4512254032550"`;
 
@@ -326,6 +326,6 @@ exports[`finance > 1337 > pin > with length option 1`] = `"2512254032"`;
 
 exports[`finance > 1337 > routingNumber 1`] = `"251225401"`;
 
-exports[`finance > 1337 > transactionDescription 1`] = `"invoice transaction at Cronin Group using card ending with ***3927 for GIP 262.02 in account ***54032552"`;
+exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Cronin - Effertz using card ending with ***3927 for GIP 262.02 in account ***54032552"`;
 
-exports[`finance > 1337 > transactionType 1`] = `"invoice"`;
+exports[`finance > 1337 > transactionType 1`] = `"withdrawal"`;
