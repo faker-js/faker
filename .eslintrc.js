@@ -70,7 +70,6 @@ module.exports = defineConfig({
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
-    'unicorn/prefer-spread': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
@@ -112,6 +111,7 @@ module.exports = defineConfig({
       'error',
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
+    '@typescript-eslint/prefer-regexp-exec': 'error',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
