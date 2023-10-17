@@ -227,8 +227,8 @@ describe('number', () => {
       });
 
       it('provides numbers with a given precision of 0.5 steps', () => {
-        const results = Array.from(
-          new Set(
+        const results = [
+          ...new Set(
             Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
@@ -236,15 +236,15 @@ describe('number', () => {
                 precision: 0.5,
               })
             )
-          )
-        ).sort();
+          ),
+        ].sort();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
       it('provides numbers with a given precision of 0.4 steps', () => {
-        const results = Array.from(
-          new Set(
+        const results = [
+          ...new Set(
             Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
@@ -252,8 +252,8 @@ describe('number', () => {
                 precision: 0.4,
               })
             )
-          )
-        ).sort();
+          ),
+        ].sort();
 
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
