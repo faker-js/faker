@@ -6,6 +6,7 @@ import type { CompanyDefinition } from './company';
 import type { DatabaseDefinition } from './database';
 import type { DateDefinition } from './date';
 import type { FinanceDefinition } from './finance';
+import type { FoodDefinition } from './food';
 import type { HackerDefinition } from './hacker';
 import type { InternetDefinition } from './internet';
 import type { LocationDefinition } from './location';
@@ -39,6 +40,7 @@ export type LocaleDefinition = {
   database?: DatabaseDefinition;
   date?: DateDefinition;
   finance?: FinanceDefinition;
+  food?: FoodDefinition;
   hacker?: HackerDefinition;
   internet?: InternetDefinition;
   location?: LocationDefinition;
