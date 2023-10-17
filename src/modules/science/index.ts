@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 
 /**
  * The possible definitions related to elements.
@@ -37,11 +36,7 @@ export interface Unit {
  *
  * Both methods in this module return objects rather than strings. For example, you can use `faker.science.chemicalElement().name` to pick out the specific property you need.
  */
-export class ScienceModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class ScienceModule extends ModuleBase {
   /**
    * Returns a random periodic table element.
    *

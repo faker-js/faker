@@ -1,7 +1,6 @@
-import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import type { LiteralUnion } from '../../utils/types';
+import { SimpleModuleBase } from '../module-base';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
@@ -98,11 +97,7 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  * - Emoji can be found at [`faker.internet.emoji()`](https://fakerjs.dev/api/internet.html#emoji).
  * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
-export class StringModule {
-  constructor(private readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class StringModule extends SimpleModuleBase {
   /**
    * Generates a string from the given characters.
    *

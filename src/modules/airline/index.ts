@@ -4,8 +4,7 @@
  * responsible for setting standards relating to many aspects of airline
  * operations.
  */
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -78,11 +77,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  *
  * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://fakerjs.dev/api/person.html) module.
  */
-export class AirlineModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class AirlineModule extends ModuleBase {
   /**
    * Generates a random airport.
    *

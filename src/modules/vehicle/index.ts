@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 
 /**
  * Module to generate vehicle related entries.
@@ -10,11 +9,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  *
  * If you prefer two wheels, you can generate a [`bicycle()`](https://fakerjs.dev/api/vehicle.html#bicycle) type instead.
  */
-export class VehicleModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class VehicleModule extends ModuleBase {
   /**
    * Returns a random vehicle.
    *

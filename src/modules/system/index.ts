@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -36,11 +35,7 @@ const CRON_DAY_OF_WEEK = [
 /**
  * Generates fake data for many computer systems properties.
  */
-export class SystemModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class SystemModule extends ModuleBase {
   /**
    * Returns a random file name with extension.
    *

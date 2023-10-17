@@ -1,16 +1,11 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 import { filterWordListByLength } from './filterWordListByLength';
 
 /**
  * Module to return various types of words.
  */
-export class WordModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class WordModule extends ModuleBase {
   /**
    * Returns an adjective of random or optionally specified length.
    *

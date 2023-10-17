@@ -1,6 +1,5 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
 
@@ -38,11 +37,7 @@ export type HTTPProtocolType = 'http' | 'https';
  *
  * You also have access to a number of the more technical elements of web requests, such as [`httpMethod`](https://fakerjs.dev/api/internet.html#httpmethod), [`httpStatusCode`](https://fakerjs.dev/api/internet.html#httpstatuscode), [`ip`](https://fakerjs.dev/api/internet.html#ip), [`mac`](https://fakerjs.dev/api/internet.html#mac), [`userAgent`](https://fakerjs.dev/api/internet.html#useragent), and [`port`](https://fakerjs.dev/api/internet.html#port).
  */
-export class InternetModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class InternetModule extends ModuleBase {
   /**
    * Returns a random avatar url.
    *

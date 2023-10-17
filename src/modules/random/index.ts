@@ -1,8 +1,7 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
+import { ModuleBase } from '../module-base';
 import type {
   AlphaChar,
   AlphaNumericChar,
@@ -15,11 +14,7 @@ import type {
  *
  * @deprecated Use the modules specific to the type of data you want to generate instead.
  */
-export class RandomModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class RandomModule extends ModuleBase {
   /**
    * Returns a random word.
    *

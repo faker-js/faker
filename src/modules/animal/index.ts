@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 
 /**
  * Module to generate animal related entries.
@@ -12,11 +11,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  *
  * All values may be localized.
  */
-export class AnimalModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class AnimalModule extends ModuleBase {
   /**
    * Returns a random dog breed.
    *

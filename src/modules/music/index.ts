@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../module-base';
 
 /**
  * Module to generate music related entries.
@@ -8,11 +7,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  *
  * Generate a random music genre with [`genre()`](https://fakerjs.dev/api/music.html#genre) or song name with [`songName()`](https://fakerjs.dev/api/music.html#songname). Both may be localized.
  */
-export class MusicModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class MusicModule extends ModuleBase {
   /**
    * Returns a random music genre.
    *
