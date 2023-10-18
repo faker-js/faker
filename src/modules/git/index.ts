@@ -2,7 +2,7 @@ import type { Faker } from '../..';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
 
-const nbsp = '\u00a0';
+const nbsp = '\u00A0';
 
 /**
  * Module to generate git related entries.

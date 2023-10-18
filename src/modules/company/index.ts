@@ -42,7 +42,7 @@ export class CompanyModule {
     });
     // Don't want the source array exposed to modification, so return a copy
     // eslint-disable-next-line deprecation/deprecation
-    return this.faker.definitions.company.suffix.slice(0);
+    return [...this.faker.definitions.company.suffix];
   }
 
   /**
