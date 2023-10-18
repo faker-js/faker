@@ -270,13 +270,32 @@ export class CommerceModule {
       return `${symbol}${0.0}`;
     }
 
+    if (min === max) {
+      return `${symbol}${min.toFixed(dec)}`;
+    }
+
     const randValue = this.faker.number.float({
       min,
       max,
       precision: (1 / 10) ** dec,
     });
 
-    return symbol + randValue.toFixed(dec);
+    if (dec === 0) {
+      return `${symbol}${randValue.toFixed(dec)}`;
+    }
+
+    const randValueString = randValue.toFixed(dec).toString();
+    const lastDigit = this.faker.helpers.weightedArrayElement([
+      { weight: 5, value: '9' },
+      { weight: 3, value: '5' },
+      { weight: 1, value: '0' },
+      {
+        weight: 1,
+        value: this.faker.number.int({ min: 0, max: 9 }).toString(),
+      },
+    ]);
+
+    return `${symbol}${randValueString.replace(/\d$/, lastDigit)}`;
   }
 
   /**

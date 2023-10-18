@@ -12,27 +12,27 @@ exports[`commerce > 42 > isbn > with variant 10 and space separators 1`] = `"0 7
 
 exports[`commerce > 42 > isbn > with variant 13 1`] = `"978-0-7917-7551-6"`;
 
-exports[`commerce > 42 > price > noArgs 1`] = `"375.16"`;
+exports[`commerce > 42 > price > noArgs 1`] = `"375.17"`;
 
-exports[`commerce > 42 > price > with max 1`] = `"375.16"`;
+exports[`commerce > 42 > price > with max 1`] = `"375.17"`;
 
-exports[`commerce > 42 > price > with max option 1`] = `"501.38"`;
+exports[`commerce > 42 > price > with max option 1`] = `"501.37"`;
 
-exports[`commerce > 42 > price > with min 1`] = `"405.81"`;
+exports[`commerce > 42 > price > with min 1`] = `"405.87"`;
 
-exports[`commerce > 42 > price > with min and max 1`] = `"68.72"`;
+exports[`commerce > 42 > price > with min and max 1`] = `"68.77"`;
 
-exports[`commerce > 42 > price > with min and max and decimals 1`] = `"68.7270"`;
+exports[`commerce > 42 > price > with min and max and decimals 1`] = `"68.7277"`;
 
-exports[`commerce > 42 > price > with min and max and decimals and symbol 1`] = `"$68.7270"`;
+exports[`commerce > 42 > price > with min and max and decimals and symbol 1`] = `"68.7277"`;
 
-exports[`commerce > 42 > price > with min and max and decimals and symbol option 1`] = `"$68.7270"`;
+exports[`commerce > 42 > price > with min and max and decimals and symbol option 1`] = `"68.7277"`;
 
-exports[`commerce > 42 > price > with min and max and decimals option 1`] = `"68.7270"`;
+exports[`commerce > 42 > price > with min and max and decimals option 1`] = `"68.7277"`;
 
-exports[`commerce > 42 > price > with min and max option 1`] = `"68.72"`;
+exports[`commerce > 42 > price > with min and max option 1`] = `"68.77"`;
 
-exports[`commerce > 42 > price > with min option 1`] = `"400.80"`;
+exports[`commerce > 42 > price > with min option 1`] = `"400.87"`;
 
 exports[`commerce > 42 > product 1`] = `"Pants"`;
 
@@ -56,27 +56,27 @@ exports[`commerce > 1211 > isbn > with variant 10 and space separators 1`] = `"1
 
 exports[`commerce > 1211 > isbn > with variant 13 1`] = `"978-1-4872-1906-2"`;
 
-exports[`commerce > 1211 > price > noArgs 1`] = `"928.59"`;
+exports[`commerce > 1211 > price > noArgs 1`] = `"928.50"`;
 
-exports[`commerce > 1211 > price > with max 1`] = `"928.59"`;
+exports[`commerce > 1211 > price > with max 1`] = `"928.50"`;
 
 exports[`commerce > 1211 > price > with max option 1`] = `"1241.50"`;
 
-exports[`commerce > 1211 > price > with min 1`] = `"932.09"`;
+exports[`commerce > 1211 > price > with min 1`] = `"932.00"`;
 
-exports[`commerce > 1211 > price > with min and max 1`] = `"96.42"`;
+exports[`commerce > 1211 > price > with min and max 1`] = `"96.40"`;
 
 exports[`commerce > 1211 > price > with min and max and decimals 1`] = `"96.4260"`;
 
-exports[`commerce > 1211 > price > with min and max and decimals and symbol 1`] = `"$96.4260"`;
+exports[`commerce > 1211 > price > with min and max and decimals and symbol 1`] = `"96.4260"`;
 
-exports[`commerce > 1211 > price > with min and max and decimals and symbol option 1`] = `"$96.4260"`;
+exports[`commerce > 1211 > price > with min and max and decimals and symbol option 1`] = `"96.4260"`;
 
 exports[`commerce > 1211 > price > with min and max and decimals option 1`] = `"96.4260"`;
 
-exports[`commerce > 1211 > price > with min and max option 1`] = `"96.42"`;
+exports[`commerce > 1211 > price > with min and max option 1`] = `"96.40"`;
 
-exports[`commerce > 1211 > price > with min option 1`] = `"931.52"`;
+exports[`commerce > 1211 > price > with min option 1`] = `"931.50"`;
 
 exports[`commerce > 1211 > product 1`] = `"Sausages"`;
 
@@ -100,27 +100,27 @@ exports[`commerce > 1337 > isbn > with variant 10 and space separators 1`] = `"0
 
 exports[`commerce > 1337 > isbn > with variant 13 1`] = `"978-0-512-25403-0"`;
 
-exports[`commerce > 1337 > price > noArgs 1`] = `"262.76"`;
+exports[`commerce > 1337 > price > noArgs 1`] = `"262.79"`;
 
-exports[`commerce > 1337 > price > with max 1`] = `"262.76"`;
+exports[`commerce > 1337 > price > with max 1`] = `"262.79"`;
 
-exports[`commerce > 1337 > price > with max option 1`] = `"351.06"`;
+exports[`commerce > 1337 > price > with max option 1`] = `"351.09"`;
 
-exports[`commerce > 1337 > price > with min 1`] = `"298.92"`;
+exports[`commerce > 1337 > price > with min 1`] = `"298.99"`;
 
-exports[`commerce > 1337 > price > with min and max 1`] = `"63.10"`;
+exports[`commerce > 1337 > price > with min and max 1`] = `"63.19"`;
 
-exports[`commerce > 1337 > price > with min and max and decimals 1`] = `"63.1012"`;
+exports[`commerce > 1337 > price > with min and max and decimals 1`] = `"63.1019"`;
 
-exports[`commerce > 1337 > price > with min and max and decimals and symbol 1`] = `"$63.1012"`;
+exports[`commerce > 1337 > price > with min and max and decimals and symbol 1`] = `"63.1019"`;
 
-exports[`commerce > 1337 > price > with min and max and decimals and symbol option 1`] = `"$63.1012"`;
+exports[`commerce > 1337 > price > with min and max and decimals and symbol option 1`] = `"63.1019"`;
 
-exports[`commerce > 1337 > price > with min and max and decimals option 1`] = `"63.1012"`;
+exports[`commerce > 1337 > price > with min and max and decimals option 1`] = `"63.1019"`;
 
-exports[`commerce > 1337 > price > with min and max option 1`] = `"63.10"`;
+exports[`commerce > 1337 > price > with min and max option 1`] = `"63.19"`;
 
-exports[`commerce > 1337 > price > with min option 1`] = `"293.01"`;
+exports[`commerce > 1337 > price > with min option 1`] = `"293.09"`;
 
 exports[`commerce > 1337 > product 1`] = `"Ball"`;
 
