@@ -71,7 +71,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElement', (t) => {
-      t.it('with array', 'Hello World!'.split(''));
+      t.it('with array', [...'Hello World!']);
     });
 
     t.describe('enumValue', (t) => {
@@ -120,26 +120,26 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElements', (t) => {
-      t.it('with array', 'Hello World!'.split(''))
-        .it('with array and count', 'Hello World!'.split(''), 3)
-        .it('with array and count range', 'Hello World!'.split(''), {
+      t.it('with array', [...'Hello World!'])
+        .it('with array and count', [...'Hello World!'], 3)
+        .it('with array and count range', [...'Hello World!'], {
           min: 1,
           max: 5,
         });
     });
 
     t.describe('shuffle', (t) => {
-      t.it('with array', 'Hello World!'.split(''))
-        .it('with array and inplace true', 'Hello World!'.split(''), {
+      t.it('with array', [...'Hello World!'])
+        .it('with array and inplace true', [...'Hello World!'], {
           inplace: true,
         })
-        .it('with array and inplace false', 'Hello World!'.split(''), {
+        .it('with array and inplace false', [...'Hello World!'], {
           inplace: false,
         });
     });
 
     t.describe('uniqueArray', (t) => {
-      t.it('with array', 'Hello World!'.split(''), 3);
+      t.it('with array', [...'Hello World!'], 3);
     });
 
     t.describe('maybe', (t) => {
@@ -375,9 +375,9 @@ describe('helpers', () => {
           expect(subset.length).toBeLessThanOrEqual(testArray.length);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).not.toContainDuplicates();
@@ -391,9 +391,9 @@ describe('helpers', () => {
           expect(subset).toHaveLength(3);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).toHaveLength(new Set(subset).size);
@@ -411,9 +411,9 @@ describe('helpers', () => {
           expect(subset.length).toBeLessThanOrEqual(4);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
 
           // Check uniqueness
           expect(subset).not.toContainDuplicates();
@@ -427,9 +427,9 @@ describe('helpers', () => {
           expect(subset.length).toBe(5);
 
           // Check elements
-          subset.forEach((element) => {
+          for (const element of subset) {
             expect(testArray).toContain(element);
-          });
+          }
         });
 
         it('should return an empty array when array length > 0 and count = 0', () => {

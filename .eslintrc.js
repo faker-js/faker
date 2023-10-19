@@ -48,19 +48,13 @@ module.exports = defineConfig({
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
-    'unicorn/catch-error-name': 'off',
-    'unicorn/consistent-destructuring': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/escape-case': 'off',
-    'unicorn/explicit-length-check': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
-    'unicorn/no-array-for-each': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-for-loop': 'off',
-    'unicorn/no-instanceof-array': 'off',
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-useless-switch-case': 'off',
@@ -69,20 +63,17 @@ module.exports = defineConfig({
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
-    'unicorn/prefer-includes': 'off',
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-native-coercion-functions': 'off',
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
-    'unicorn/prefer-spread': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-ternary': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
     'unicorn/switch-case-braces': 'off',
-    'unicorn/text-encoding-identifier-case': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
@@ -119,6 +110,7 @@ module.exports = defineConfig({
       'error',
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
+    '@typescript-eslint/prefer-regexp-exec': 'error',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
@@ -157,6 +149,12 @@ module.exports = defineConfig({
       files: ['src/**/*.ts'],
       rules: {
         'jsdoc/require-jsdoc': 'error',
+      },
+    },
+    {
+      files: ['src/locales/**/*.ts'],
+      rules: {
+        'unicorn/text-encoding-identifier-case': 'off',
       },
     },
     {

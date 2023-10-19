@@ -395,23 +395,21 @@ describe('system', () => {
           (options, count: number) => {
             const cron = faker.system.cron(options).split(' ');
             expect(cron).toHaveLength(count);
-            cron.forEach((cronElement, i) =>
+            for (const [index, cronElement] of cron.entries()) {
               expect(
                 cronElement,
-                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
-              ).toMatch(new RegExp(regexElements[i]))
-            );
+                `generated cron, ${cronElement} should match regex ${regexElements[index]}`
+              ).toMatch(new RegExp(regexElements[index]));
+            }
           }
         );
 
         it('should be able to return non-standard cron expressions', () => {
-          const validResults = [...'0123456789'.split(''), '*', '@'];
+          const validResults = new Set('0123456789*@');
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
             'generated cron, string should contain standard or non-standard cron labels'
-          ).toSatisfy(
-            (value) => !!validResults.find((result) => value === result)
-          );
+          ).toSatisfy((value: string) => validResults.has(value));
         });
       });
     }

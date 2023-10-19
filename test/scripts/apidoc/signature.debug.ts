@@ -11,11 +11,11 @@ import { loadExampleMethods } from './utils';
 const methods = loadExampleMethods();
 
 initMarkdownRenderer()
-  .then(() => {
-    Object.entries(methods).forEach(([name, method]) => {
+  .then(async () => {
+    for (const [name, method] of Object.entries(methods)) {
       console.log('Analyzing:', name);
-      const result = analyzeSignature(method, '', method.name);
+      const result = await analyzeSignature(method, '', method.name);
       console.log('Result:', result);
-    });
+    }
   })
   .catch(console.error);
