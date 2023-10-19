@@ -24,9 +24,9 @@ exports[`commerce > 42 > price > with min and max 1`] = `"68.77"`;
 
 exports[`commerce > 42 > price > with min and max and decimals 1`] = `"68.7277"`;
 
-exports[`commerce > 42 > price > with min and max and decimals and symbol 1`] = `"68.7277"`;
+exports[`commerce > 42 > price > with min and max and decimals and symbol 1`] = `"$68.7277"`;
 
-exports[`commerce > 42 > price > with min and max and decimals and symbol option 1`] = `"68.7277"`;
+exports[`commerce > 42 > price > with min and max and decimals and symbol option 1`] = `"$68.7277"`;
 
 exports[`commerce > 42 > price > with min and max and decimals option 1`] = `"68.7277"`;
 
@@ -68,9 +68,9 @@ exports[`commerce > 1211 > price > with min and max 1`] = `"96.40"`;
 
 exports[`commerce > 1211 > price > with min and max and decimals 1`] = `"96.4260"`;
 
-exports[`commerce > 1211 > price > with min and max and decimals and symbol 1`] = `"96.4260"`;
+exports[`commerce > 1211 > price > with min and max and decimals and symbol 1`] = `"$96.4260"`;
 
-exports[`commerce > 1211 > price > with min and max and decimals and symbol option 1`] = `"96.4260"`;
+exports[`commerce > 1211 > price > with min and max and decimals and symbol option 1`] = `"$96.4260"`;
 
 exports[`commerce > 1211 > price > with min and max and decimals option 1`] = `"96.4260"`;
 
@@ -112,9 +112,9 @@ exports[`commerce > 1337 > price > with min and max 1`] = `"63.19"`;
 
 exports[`commerce > 1337 > price > with min and max and decimals 1`] = `"63.1019"`;
 
-exports[`commerce > 1337 > price > with min and max and decimals and symbol 1`] = `"63.1019"`;
+exports[`commerce > 1337 > price > with min and max and decimals and symbol 1`] = `"$63.1019"`;
 
-exports[`commerce > 1337 > price > with min and max and decimals and symbol option 1`] = `"63.1019"`;
+exports[`commerce > 1337 > price > with min and max and decimals and symbol option 1`] = `"$63.1019"`;
 
 exports[`commerce > 1337 > price > with min and max and decimals option 1`] = `"63.1019"`;
 
