@@ -422,7 +422,6 @@ export class SimpleHelpersModule {
       const quantifierMin: string = token[2];
       const quantifierMax: string = token[3];
       const quantifierSymbol: string = token[4];
-      const tokenIndex: number = token.index;
 
       repetitions = getRepetitionsBasedOnQuantifierParameters(
         this.faker,
@@ -432,11 +431,9 @@ export class SimpleHelpersModule {
       );
 
       pattern =
-        pattern.slice(0, tokenIndex) +
+        pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
-        pattern.slice(tokenIndex + token[0].length);
-
-      pattern.slice(token.index + token[0].length);
+        pattern.slice(token.index + token[0].length);
       token = SINGLE_CHAR_REG.exec(pattern);
     }
 
@@ -451,7 +448,6 @@ export class SimpleHelpersModule {
       const quantifierMin: string = token[4];
       const quantifierMax: string = token[5];
       const quantifierSymbol: string = token[6];
-      const tokenIndex: number = token.index;
 
       const rangeCodes: number[] = [];
 
@@ -550,9 +546,9 @@ export class SimpleHelpersModule {
       ).join('');
 
       pattern =
-        pattern.slice(0, tokenIndex) +
+        pattern.slice(0, token.index) +
         generatedString +
-        pattern.slice(tokenIndex + token[0].length);
+        pattern.slice(token.index + token[0].length);
       token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
     }
 
@@ -562,7 +558,6 @@ export class SimpleHelpersModule {
     while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
-      const tokenIndex = token.index;
       // throw error if min larger than max
       if (min > max) {
         throw new FakerError('Numbers out of order in {} quantifier.');
@@ -570,9 +565,9 @@ export class SimpleHelpersModule {
 
       repetitions = this.faker.number.int({ min, max });
       pattern =
-        pattern.slice(0, tokenIndex) +
+        pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
-        pattern.slice(tokenIndex + token[0].length);
+        pattern.slice(token.index + token[0].length);
       token = RANGE_REP_REG.exec(pattern);
     }
 
@@ -581,11 +576,10 @@ export class SimpleHelpersModule {
     token = REP_REG.exec(pattern);
     while (token != null) {
       repetitions = parseInt(token[2]);
-      const tokenIndex = token.index;
       pattern =
-        pattern.slice(0, tokenIndex) +
+        pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
-        pattern.slice(tokenIndex + token[0].length);
+        pattern.slice(token.index + token[0].length);
       token = REP_REG.exec(pattern);
     }
 
