@@ -738,9 +738,9 @@ export class FinanceModule {
     let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
 
     for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
-      );
+      address += this.faker.helpers.arrayElement([
+        ...'123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+      ]);
 
     return address;
   }
