@@ -69,10 +69,11 @@ export class SimpleFaker {
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
   ): void {
-    this._defaultRefDate =
-      typeof dateOrSource === 'function'
-        ? dateOrSource
-        : () => new Date(dateOrSource);
+    if (typeof dateOrSource === 'function') {
+      this._defaultRefDate = dateOrSource;
+    } else {
+      this._defaultRefDate = () => new Date(dateOrSource);
+    }
   }
 
   /** @internal */

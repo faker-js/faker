@@ -18,10 +18,12 @@ export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
 
   for (const locale of locales) {
     for (const key in locale) {
-      merged[key] =
-        merged[key] === undefined
-          ? { ...locale[key] }
-          : { ...locale[key], ...merged[key] };
+      const value = locale[key];
+      if (merged[key] === undefined) {
+        merged[key] = { ...value };
+      } else {
+        merged[key] = { ...value, ...merged[key] };
+      }
     }
   }
 

@@ -39,6 +39,7 @@ module.exports = defineConfig({
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/number-literal-case': 'off', // incompatible with prettier
+    'unicorn/prefer-ternary': 'off', // ternaries aren't always better
 
     // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
     'unicorn/prefer-at': 'off',
