@@ -159,8 +159,7 @@ export class SystemModule {
     const typeSet = new Set(
       Object.keys(mimeTypes).map((key) => key.split('/')[0])
     );
-    const types = Array.from(typeSet);
-    return this.faker.helpers.arrayElement(types);
+    return this.faker.helpers.arrayElement([...typeSet]);
   }
 
   /**
@@ -184,8 +183,7 @@ export class SystemModule {
     const extensionSet = new Set(
       Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
     );
-    const extensions = Array.from(extensionSet);
-    return this.faker.helpers.arrayElement(extensions);
+    return this.faker.helpers.arrayElement([...extensionSet]);
   }
 
   /**

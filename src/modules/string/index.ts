@@ -5,13 +5,9 @@ import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
-const UPPER_CHARS: ReadonlyArray<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(
-  ''
-);
-const LOWER_CHARS: ReadonlyArray<string> = 'abcdefghijklmnopqrstuvwxyz'.split(
-  ''
-);
-const DIGIT_CHARS: ReadonlyArray<string> = '0123456789'.split('');
+const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
+const LOWER_CHARS: ReadonlyArray<string> = [...'abcdefghijklmnopqrstuvwxyz'];
+const DIGIT_CHARS: ReadonlyArray<string> = [...'0123456789'];
 
 export type LowerAlphaChar =
   | 'a'
@@ -145,7 +141,7 @@ export class StringModule {
     }
 
     if (typeof characters === 'string') {
-      characters = characters.split('');
+      characters = [...characters];
     }
 
     if (characters.length === 0) {
@@ -229,7 +225,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     let charsArray: string[];
@@ -319,7 +315,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     let charsArray = [...DIGIT_CHARS];
@@ -616,7 +612,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     const allowedDigits = DIGIT_CHARS.filter(
