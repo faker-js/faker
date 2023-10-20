@@ -1,5 +1,5 @@
 import { deprecated } from '../../internal/deprecated';
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<

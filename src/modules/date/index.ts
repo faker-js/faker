@@ -2,7 +2,7 @@ import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import { SimpleModuleBase } from '../module-base';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.

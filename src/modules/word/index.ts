@@ -1,5 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 import { filterWordListByLength } from './filterWordListByLength';
 
 /**

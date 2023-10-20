@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 import iban from './iban';
 
 /**

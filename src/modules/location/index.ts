@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate addresses and locations. Prior to Faker 8.0.0, this module was known as `faker.address`.

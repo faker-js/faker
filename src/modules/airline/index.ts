@@ -4,7 +4,7 @@
  * responsible for setting standards relating to many aspects of airline
  * operations.
  */
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',

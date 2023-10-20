@@ -1,4 +1,4 @@
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Color space names supported by CSS.

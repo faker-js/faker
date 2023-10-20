@@ -1,4 +1,4 @@
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 

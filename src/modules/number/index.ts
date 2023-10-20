@@ -1,5 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
-import { SimpleModuleBase } from '../module-base';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate numbers of any kind.

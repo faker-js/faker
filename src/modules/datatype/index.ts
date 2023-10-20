@@ -1,5 +1,5 @@
 import { deprecated } from '../../internal/deprecated';
-import { SimpleModuleBase } from '../module-base';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate various primitive values and data types.

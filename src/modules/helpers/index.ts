@@ -1,7 +1,7 @@
 import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import { SimpleModuleBase } from '../module-base';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';

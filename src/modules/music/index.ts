@@ -1,4 +1,4 @@
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate music related entries.

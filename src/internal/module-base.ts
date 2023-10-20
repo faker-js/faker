@@ -1,6 +1,6 @@
 import type { Faker } from '../faker';
-import { bindThisToMemberFunctions } from '../internal/bind-this-to-member-functions';
 import type { SimpleFaker } from '../simple-faker';
+import { bindThisToMemberFunctions } from './bind-this-to-member-functions';
 
 /**
  * Base class for all modules that use a `SimpleFaker` instance.

@@ -1,7 +1,7 @@
 import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 import type { MethodsOf } from '../../utils/types';
-import { ModuleBase } from '../module-base';
 import { LoremPicsum } from './providers/lorempicsum';
 import { Placeholder } from './providers/placeholder';
 import { Unsplash } from './providers/unsplash';

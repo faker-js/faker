@@ -1,7 +1,7 @@
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
-import { ModuleBase } from '../module-base';
 import type {
   AlphaChar,
   AlphaNumericChar,

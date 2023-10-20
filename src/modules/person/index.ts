@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 export enum Sex {
   Female = 'female',

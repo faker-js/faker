@@ -1,5 +1,5 @@
 import { deprecated } from '../../internal/deprecated';
-import { ModuleBase } from '../module-base';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate company related entries.
