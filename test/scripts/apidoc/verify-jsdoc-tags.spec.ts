@@ -207,8 +207,16 @@ describe('verify JSDoc tags', () => {
                 ).toContain('): ');
                 expect(
                   link,
-                  'Expect method reference to have a description sentence ending with a dot'
-                ).toMatch(/\): [A-Z].{9,}\.$/);
+                  'Expect method reference to have a description starting with a capital letter'
+                ).toMatch(/\): [A-Z]/);
+                expect(
+                  link,
+                  'Expect method reference to have a description sentence'
+                ).toMatch(/\): .{10,}$/);
+                expect(
+                  link,
+                  'Expect method reference to have a description ending with a dot'
+                ).toMatch(/\.$/);
                 expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
               }
             }
