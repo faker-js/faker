@@ -196,8 +196,8 @@ describe('finance_iban', () => {
             `National Digit:${iban.substring(
               9,
               10
-            )} must contains only digits in PK IBAN ${ibanFormated}`
-          ).toMatch(/^\d{1}$/);
+            )} must contains only one digit in PK IBAN ${ibanFormated}`
+          ).toMatch(/^\d$/);
           expect(
             iban.substring(10, 26),
             `Account Code:${iban.substring(

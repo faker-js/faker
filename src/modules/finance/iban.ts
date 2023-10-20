@@ -1407,7 +1407,7 @@ const iban: Iban = {
   pattern10: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
   pattern100: ['001', '002', '003', '004', '005', '006', '007', '008', '009'],
   toDigitString: (str) =>
-    str.replace(/[A-Z]/gi, (match) =>
+    str.replace(/[a-z]/gi, (match) =>
       String(match.toUpperCase().charCodeAt(0) - 55)
     ),
 };

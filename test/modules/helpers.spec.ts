@@ -44,6 +44,7 @@ describe('helpers', () => {
         .it('some string', 'Hello !#{3}test[1-5]');
     });
 
+    /* eslint-disable unicorn/better-regex -- we don't support the fancy patterns yet */
     t.describe('fromRegExp', (t) => {
       t.it('with static string', 'Hello World!')
         .it('with static RegExp', /Hello World!/)
@@ -61,6 +62,7 @@ describe('helpers', () => {
         .it('with negation and case insensitive flag', /[^a-t0-7]{10}/i)
         .it('with negation', /[^A-Za-y0-9]{10}/);
     });
+    /* eslint-enable unicorn/better-regex */
 
     t.describe('mustache', (t) => {
       t.it('template with string', 'Hello {{name}}!', { name: 'John' }).it(
@@ -562,9 +564,7 @@ describe('helpers', () => {
           const number = faker.helpers.replaceCreditCardSymbols(
             '6453-####-####-####-###L'
           );
-          expect(number).toMatch(
-            /^6453-([0-9]){4}-([0-9]){4}-([0-9]){4}-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^6453(?:-\d{4}){4}$/);
           expect(number).toSatisfy(luhnCheck);
         });
 
@@ -573,9 +573,7 @@ describe('helpers', () => {
             '6453-****-****-****-***L',
             '*'
           );
-          expect(number).toMatch(
-            /^6453-([0-9]){4}-([0-9]){4}-([0-9]){4}-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^6453(?:-\d{4}){4}$/);
           expect(number).toSatisfy(luhnCheck);
         });
 
@@ -584,16 +582,12 @@ describe('helpers', () => {
             '6453-*{4}-*{4}-*{4}-*{3}L',
             '*'
           );
-          expect(number).toMatch(
-            /^6453-([0-9]){4}-([0-9]){4}-([0-9]){4}-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^6453(?:-\d{4}){4}$/);
           expect(number).toSatisfy(luhnCheck);
           number = faker.helpers.replaceCreditCardSymbols(
             '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
           );
-          expect(number).toMatch(
-            /^645[5-9]-([0-9]){4,6}-([0-9]){1,2}-([0-9]){4,6}-([0-9]){4}$/
-          );
+          expect(number).toMatch(/^645[5-9]-\d{4,6}-\d{1,2}-\d{4,6}-\d{4}$/);
           expect(number).toSatisfy(luhnCheck);
         });
       });
@@ -631,14 +625,14 @@ describe('helpers', () => {
 
         it('creates a numerical range', () => {
           const string = faker.helpers.regexpStyleStringParse('Hello[0-9]');
-          expect(string).toMatch(/^Hello[0-9]$/);
+          expect(string).toMatch(/^Hello\d$/);
         });
 
         it('deals with multiple tokens in one string', () => {
           const string = faker.helpers.regexpStyleStringParse(
             'Test#{5}%{2,5}Testing**[1-5]**{10}END'
           );
-          expect(string).toMatch(/^Test#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/);
+          expect(string).toMatch(/^Test#{5}%{2,5}Testing\*\*[1-5]\*{11}END$/);
         });
       });
 
@@ -658,7 +652,7 @@ describe('helpers', () => {
 
         it('creates a numerical range', () => {
           const string = faker.helpers.fromRegExp('Hello[0-9]');
-          expect(string).toMatch(/^Hello[0-9]$/);
+          expect(string).toMatch(/^Hello\d$/);
         });
 
         it('deals with multiple tokens in one string', () => {
@@ -676,6 +670,7 @@ describe('helpers', () => {
           expect(() => faker.helpers.fromRegExp('[a-z0-9]{10,5}')).toThrow();
         });
 
+        /* eslint-disable unicorn/better-regex -- we don't support the fancy patterns yet */
         it('deals with RegExp object', () => {
           const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/);
           expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/);
@@ -690,6 +685,7 @@ describe('helpers', () => {
           const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
           expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
         });
+        /* eslint-enable unicorn/better-regex */
       });
 
       describe('shuffle()', () => {
@@ -1102,13 +1098,13 @@ describe('helpers', () => {
 
         it('should be able to handle random }} brackets', () => {
           expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
-            /^}}hello[a-zA-Z]$/
+            /^}}hello[A-Za-z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
           expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
-            /^{[a-zA-Z]}$/
+            /^{[a-z]}$/i
           );
         });
 

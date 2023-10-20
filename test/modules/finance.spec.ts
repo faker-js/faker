@@ -279,7 +279,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).toMatch(/^[0-9.]+$/);
+          ).toMatch(/^[\d.]+$/);
         });
 
         it('should handle negative amounts', () => {
@@ -414,7 +414,7 @@ describe('finance', () => {
           const litecoinAddress = faker.finance.litecoinAddress();
 
           expect(litecoinAddress).toBeTypeOf('string');
-          expect(litecoinAddress).toMatch(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+          expect(litecoinAddress).toMatch(/^[3LM][1-9A-HJ-NP-Za-km-z]{25,32}$/);
         });
       });
 
@@ -456,7 +456,7 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4(\d{12}|\d{3}(-\d{4}){3})$/);
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
@@ -530,7 +530,7 @@ describe('finance', () => {
 
         it('should contain only digits', () => {
           const pin = faker.finance.pin();
-          expect(pin).toMatch(/^[0-9]+$/);
+          expect(pin).toMatch(/^\d+$/);
         });
 
         it('should default to a length of 4', () => {
@@ -553,7 +553,7 @@ describe('finance', () => {
           const ethereumAddress = faker.finance.ethereumAddress();
 
           expect(ethereumAddress).toBeTypeOf('string');
-          expect(ethereumAddress).toMatch(/^(0x)[0-9a-f]{40}$/);
+          expect(ethereumAddress).toMatch(/^(0x)[\da-f]{40}$/);
         });
       });
 
@@ -598,7 +598,7 @@ describe('finance', () => {
           const bic = faker.finance.bic();
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(bic).toMatch(/^[A-Z]{6}[\dA-Z]{2}([\dA-Z]{3})?$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
 
@@ -606,7 +606,7 @@ describe('finance', () => {
           const bic = faker.finance.bic({ includeBranchCode: true });
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
+          expect(bic).toMatch(/^[A-Z]{6}[\dA-Z]{5}$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });

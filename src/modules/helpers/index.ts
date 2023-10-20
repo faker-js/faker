@@ -99,9 +99,9 @@ function legacyRegexpStringParse(
   string: string = ''
 ): string {
   // Deal with range repeat `{min,max}`
-  const RANGE_REP_REG = /(.)\{(\d+),(\d+)\}/;
-  const REP_REG = /(.)\{(\d+)\}/;
-  const RANGE_REG = /\[(\d+)-(\d+)\]/;
+  const RANGE_REP_REG = /(.){(\d+),(\d+)}/;
+  const REP_REG = /(.){(\d+)}/;
+  const RANGE_REG = /\[(\d+)-(\d+)]/;
   let min: number;
   let max: number;
   let tmp: number;
@@ -416,7 +416,7 @@ export class SimpleHelpersModule {
 
     // Deal with single wildcards
     const SINGLE_CHAR_REG =
-      /([.A-Za-z0-9])(?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+))(?![^[]*]|[^{]*})/;
+      /([\d.A-Za-z])(?:{(\d+)(?:,(\d+)|)}|([*+?]))(?![^[]*]|[^{]*})/;
     let token = SINGLE_CHAR_REG.exec(pattern);
     while (token != null) {
       const quantifierMin: string = token[2];
@@ -437,9 +437,9 @@ export class SimpleHelpersModule {
       token = SINGLE_CHAR_REG.exec(pattern);
     }
 
-    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[-!@#$&()`.+,/"])/;
+    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[!"#$&()+,./@`-])/;
     const RANGE_ALPHANUMEMRIC_REG =
-      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+)|)/;
+      /\[(\^|)(-|)(.+?)](?:{(\d+)(?:,(\d+)|)}|([*+?])|)/;
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
     token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
     while (token != null) {
@@ -552,7 +552,7 @@ export class SimpleHelpersModule {
       token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
     }
 
-    const RANGE_REP_REG = /(.)\{(\d+),(\d+)\}/;
+    const RANGE_REP_REG = /(.){(\d+),(\d+)}/;
     // Deal with quantifier ranges `{min,max}`
     token = RANGE_REP_REG.exec(pattern);
     while (token != null) {
@@ -571,7 +571,7 @@ export class SimpleHelpersModule {
       token = RANGE_REP_REG.exec(pattern);
     }
 
-    const REP_REG = /(.)\{(\d+)\}/;
+    const REP_REG = /(.){(\d+)}/;
     // Deal with repeat `{num}`
     token = REP_REG.exec(pattern);
     while (token != null) {

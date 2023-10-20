@@ -72,9 +72,7 @@ describe('verify JSDoc tags', () => {
   );
 
   function assertDescription(description: string, isHtml: boolean): void {
-    const linkRegexp = isHtml
-      ? /(href)="([^"]+)"/g
-      : /\[([^\]]+)\]\(([^)]+)\)/g;
+    const linkRegexp = isHtml ? /(href)="([^"]+)"/g : /\[([^\]]+)]\(([^)]+)\)/g;
     const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
     for (const link of links) {

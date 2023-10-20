@@ -59,28 +59,28 @@ describe('color', () => {
       describe(`rgb()`, () => {
         it('should return a random rgb hex color', () => {
           const color = faker.color.rgb();
-          expect(color).match(/^(#[a-f0-9]{6})$/);
+          expect(color).match(/^(#[\da-f]{6})$/);
         });
       });
 
       describe(`rgb({ prefix: '0x' })`, () => {
         it('should return a random rgb hex color with # prefix', () => {
           const color = faker.color.rgb({ prefix: '0x' });
-          expect(color).match(/^(0x[a-f0-9]{6})$/);
+          expect(color).match(/^(0x[\da-f]{6})$/);
         });
       });
 
       describe(`rgbHex({ prefix: '0x', casing: 'lower' })`, () => {
         it('should return a random rgb hex color with # prefix and lower casing only', () => {
           const color = faker.color.rgb({ prefix: '0x', casing: 'lower' });
-          expect(color).match(/^(0x[a-f0-9]{6})$/);
+          expect(color).match(/^(0x[\da-f]{6})$/);
         });
       });
 
       describe(`rgb({ prefix: '0x', casing: 'upper' })`, () => {
         it('should return a random rgb hex color with # prefix and upper casing only', () => {
           const color = faker.color.rgb({ prefix: '0x', casing: 'upper' });
-          expect(color).match(/^(0x[A-F0-9]{6})$/);
+          expect(color).match(/^(0x[\dA-F]{6})$/);
         });
       });
 
@@ -98,21 +98,21 @@ describe('color', () => {
       describe(`rgb({ format: 'css' })`, () => {
         it('should return a random rgb color in css format', () => {
           const color = faker.color.rgb({ format: 'css' });
-          expect(color).match(/^(rgb\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\))$/);
+          expect(color).match(/^(rgb\((?:\d{1,3}, ){2}\d{1,3}\))$/);
         });
       });
 
       describe(`rgb({ format: 'binary' })`, () => {
         it('should return a random rgb color in binary format', () => {
           const color = faker.color.rgb({ format: 'binary' });
-          expect(color).match(/^([01]{8} [01]{8} [01]{8})$/);
+          expect(color).match(/^((?:[01]{8} ){2}[01]{8})$/);
         });
       });
 
       describe(`rgb({ includeAlpha: true })`, () => {
         it('should return a random rgb color in hex format with alpha value', () => {
           const color = faker.color.rgb({ includeAlpha: true });
-          expect(color).match(/^(#[a-fA-F0-9]{8})$/);
+          expect(color).match(/^(#[\dA-Fa-f]{8})$/);
         });
       });
 
@@ -137,16 +137,14 @@ describe('color', () => {
             format: 'binary',
             includeAlpha: true,
           });
-          expect(color).match(/^([01]{8} [01]{8} [01]{8} [01]{8,32})$/);
+          expect(color).match(/^((?:[01]{8} ){3}[01]{8,32})$/);
         });
       });
 
       describe(`rgb({ format: 'css', includeAlpha: true })`, () => {
         it('should return a random rgb color in css format with alpha value', () => {
           const color = faker.color.rgb({ format: 'css', includeAlpha: true });
-          expect(color).match(
-            /^(rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, \d*\.?\d*\))$/
-          );
+          expect(color).match(/^(rgba\((?:\d{1,3}, ){3}\d*\.?\d*\))$/);
         });
       });
 
@@ -175,18 +173,14 @@ describe('color', () => {
       describe(`cmyk({ format: 'css' })`, () => {
         it('should return a random cmyk color in css format', () => {
           const color = faker.color.cmyk({ format: 'css' });
-          expect(color).match(
-            /^(cmyk\([0-9]{1,3}%, [0-9]{1,3}%, [0-9]{1,3}%, [0-9]{1,3}%\))$/
-          );
+          expect(color).match(/^(cmyk\((?:\d{1,3}%, ){3}\d{1,3}%\))$/);
         });
       });
 
       describe(`cmyk({ format: 'binary' })`, () => {
         it('should return a random cmyk color in binary format', () => {
           const color = faker.color.cmyk({ format: 'binary' });
-          expect(color).match(
-            /^([01]{8,32} [01]{8,32} [01]{8,32} [01]{8,32})$/
-          );
+          expect(color).match(/^((?:[01]{8,32} ){3}[01]{8,32})$/);
         });
       });
 
@@ -206,9 +200,7 @@ describe('color', () => {
       describe(`hsl({ format: 'css' })`, () => {
         it('should return a random hsl color in css format', () => {
           const color = faker.color.hsl({ format: 'css' });
-          expect(color).match(
-            /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}%\))$/
-          );
+          expect(color).match(/^(hsl\(\d{1,3}deg(?: \d{1,3}%){2}\))$/);
         });
       });
 
@@ -216,7 +208,7 @@ describe('color', () => {
         it('should return a random hsl color in css format with an alpha value', () => {
           const color = faker.color.hsl({ format: 'css', includeAlpha: true });
           expect(color).match(
-            /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}% \/ \d*\.?\d*\))$/
+            /^(hsl\(\d{1,3}deg(?: \d{1,3}%){2} \/ \d*\.?\d*\))$/
           );
         });
       });
@@ -224,7 +216,7 @@ describe('color', () => {
       describe(`hsl({ format: 'binary' })`, () => {
         it('should return a random hsl color in binary format', () => {
           const color = faker.color.hsl({ format: 'binary' });
-          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
+          expect(color).match(/^((?:[01]{8,32} ){2}[01]{8,32})$/);
         });
       });
 
@@ -234,9 +226,7 @@ describe('color', () => {
             format: 'binary',
             includeAlpha: true,
           });
-          expect(color).match(
-            /^([01]{8,32} [01]{8,32} [01]{8,32} [01]{8,32})$/
-          );
+          expect(color).match(/^((?:[01]{8,32} ){3}[01]{8,32})$/);
         });
       });
 
@@ -269,14 +259,14 @@ describe('color', () => {
       describe(`hwb({ format: 'css' })`, () => {
         it('should return a random hwb color in css format', () => {
           const color = faker.color.hwb({ format: 'css' });
-          expect(color).match(/^(hwb\([0-9]{1,3} [0-9]{1,3}% [0-9]{1,3}%\))$/);
+          expect(color).match(/^(hwb\(\d{1,3}(?: \d{1,3}%){2}\))$/);
         });
       });
 
       describe(`hwb({ format: 'binary' })`, () => {
         it('should return a random hwb color in binary format', () => {
           const color = faker.color.hwb({ format: 'binary' });
-          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
+          expect(color).match(/^((?:[01]{8,32} ){2}[01]{8,32})$/);
         });
       });
 
@@ -310,7 +300,7 @@ describe('color', () => {
         it('should return a random lab color in css format', () => {
           const color = faker.color.lab({ format: 'css' });
           expect(color).match(
-            /^(lab\((\d*\.?\d*|[0-9]{1,3})% -?\d*\.?\d* -?\d*\.?\d*\))$/
+            /^(lab\((\d*\.?\d*|\d{1,3})%(?: -?\d*\.?\d*){2}\))$/
           );
         });
       });
@@ -318,7 +308,7 @@ describe('color', () => {
       describe(`lab({ format: 'binary' })`, () => {
         it('should return a random lab color in binary format', () => {
           const color = faker.color.lab({ format: 'binary' });
-          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
+          expect(color).match(/^((?:[01]{8,32} ){2}[01]{8,32})$/);
         });
       });
 
@@ -352,7 +342,7 @@ describe('color', () => {
         it('should return a random lch color in css format', () => {
           const color = faker.color.lch({ format: 'css' });
           expect(color).match(
-            /^(lch\((\d*\.?\d*|[0-9]{1,3})% \d*\.?\d* \d*\.?\d*\))$/
+            /^(lch\((\d*\.?\d*|\d{1,3})%(?: \d*\.?\d*){2}\))$/
           );
         });
       });
@@ -360,7 +350,7 @@ describe('color', () => {
       describe(`lch({ format: 'binary' })`, () => {
         it('should return a random lch color in binary format', () => {
           const color = faker.color.lch({ format: 'binary' });
-          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
+          expect(color).match(/^((?:[01]{8,32} ){2}[01]{8,32})$/);
         });
       });
 
@@ -392,16 +382,14 @@ describe('color', () => {
             format: 'css',
             space: 'prophoto-rgb',
           });
-          expect(color).match(
-            /^color\(prophoto-rgb \d*\.?\d* \d*\.?\d* \d*\.?\d*\)$/
-          );
+          expect(color).match(/^color\(prophoto-rgb(?: \d*\.?\d*){3}\)$/);
         });
       });
 
       describe(`colorByCSSColorSpace({ format: 'binary' })`, () => {
         it('should return a random color for a CSS color space in binary format', () => {
           const color = faker.color.colorByCSSColorSpace({ format: 'binary' });
-          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
+          expect(color).match(/^((?:[01]{8,32} ){2}[01]{8,32})$/);
         });
       });
     }

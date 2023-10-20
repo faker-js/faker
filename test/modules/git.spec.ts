@@ -57,7 +57,7 @@ describe('git', () => {
           expect(parts.length).toBeGreaterThanOrEqual(6);
           expect(parts.length).toBeLessThanOrEqual(7);
 
-          expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
+          expect(parts[0]).toMatch(/^commit [\da-f]+$/);
           const isValidAuthor = (email: string) => {
             // `validator.isEmail()` does not support display names
             // that contain unquoted characters like . output by Git so we need
@@ -70,7 +70,7 @@ describe('git', () => {
 
           const authorRegex = /^Author: .*$/;
           if (parts.length === 7) {
-            expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
+            expect(parts[1]).toMatch(/^Merge:(?: [\da-f]+){2}$/);
             expect(parts[2]).toMatch(authorRegex);
             expect(parts[2].substring(8)).toSatisfy(isValidAuthor);
             expect(parts[3]).toMatch(/^Date: .+$/);

@@ -306,7 +306,7 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(
-            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[\da-f]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
           );
         });
 
@@ -319,7 +319,7 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(
-            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[\da-f]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
           );
         });
 
@@ -353,7 +353,7 @@ describe('system', () => {
           expect(
             networkInterface,
             `generated network interface should be valid network interface.`
-          ).toMatch(/^(?:en|wl|ww)x[a-f\d]{12}$/);
+          ).toMatch(/^(?:en|wl|ww)x[\da-f]{12}$/);
         });
 
         it('should return a network interface with a pci schema', () => {
@@ -376,13 +376,13 @@ describe('system', () => {
           expect(
             networkInterface,
             `generated network interface should be valid network interface.`
-          ).toMatch(/^enx[a-f\d]{12}$/);
+          ).toMatch(/^enx[\da-f]{12}$/);
         });
       });
 
       describe('cron()', () => {
         const regex =
-          /^([0-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
+          /^(\d|[1-5]\d|\*) (\d|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
 
         const regexElements = regex.toString().replace(/\//g, '').split(' ');
 

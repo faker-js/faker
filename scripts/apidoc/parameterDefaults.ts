@@ -58,7 +58,7 @@ function cleanParameterDefault(value?: string): string | undefined {
   }
 
   // Strip type casts: "'foobar' as unknown as T" => "'foobar'"
-  return value.replace(/ as unknown as [A-Za-z<>]+/, '');
+  return value.replace(/ as unknown as [<>A-Za-z]+/, '');
 }
 
 /**

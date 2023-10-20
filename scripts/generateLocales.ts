@@ -242,7 +242,7 @@ async function updateLocaleFile(filePath: string): Promise<void> {
   if (lstatSync(filePath).isFile()) {
     const [locale, moduleKey, entryKey] = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
-      .split(/[\\/]/);
+      .split(/[/\\]/);
     await updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }
