@@ -210,7 +210,7 @@ async function generateRecursiveModuleIndexes(
   submodules = removeIndexTs(submodules);
   for (const submodule of submodules) {
     const pathModule = resolve(path, submodule);
-    updateLocaleFile(pathModule);
+    await updateLocaleFile(pathModule);
     // Only process sub folders recursively
     if (lstatSync(pathModule).isDirectory()) {
       let moduleDefinition =
@@ -238,14 +238,12 @@ async function generateRecursiveModuleIndexes(
  *
  * @param filePath The full file path to the file.
  */
-function updateLocaleFile(filePath: string): void {
+async function updateLocaleFile(filePath: string): Promise<void> {
   if (lstatSync(filePath).isFile()) {
-    const pathParts = filePath
+    const [locale, moduleKey, entryKey] = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
       .split(/[\\/]/);
-    const locale = pathParts[0];
-    pathParts.splice(0, 1);
-    updateLocaleFileHook(filePath, locale, pathParts);
+    await updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }
 
@@ -255,16 +253,120 @@ function updateLocaleFile(filePath: string): void {
  *
  * @param filePath The full file path to the file.
  * @param locale The locale for that file.
- * @param localePath The locale path parts (after the locale).
+ * @param definitionKey The definition key of the current file (ex. 'location').
+ * @param entryName The entry key of the current file (ex. 'state'). Is `undefined` if `definitionKey` is `'metadata'`.
  */
-function updateLocaleFileHook(
+async function updateLocaleFileHook(
   filePath: string,
   locale: string,
-  localePath: string[]
-): void {
+  definitionKey: string,
+  entryName: string | undefined
+): Promise<void> {
+  // this needs to stay so all arguments are "used"
   if (filePath === 'never') {
-    console.log(`${filePath} <-> ${locale} @ ${localePath.join(' -> ')}`);
+    console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
+
+  await normalizeLocaleFile(filePath, definitionKey);
+}
+
+/**
+ * Normalizes the data of a locale file based on a set of rules.
+ * Those include:
+ * - filter the entry list for duplicates
+ * - limiting the maximum entries of a file to 1000
+ * - sorting the entries alphabetically
+ *
+ * This function mutates the file by reading and writing to it!
+ *
+ * @param filePath The full file path to the file.
+ * @param definitionKey The definition key of the current file (ex. 'location').
+ */
+async function normalizeLocaleFile(filePath: string, definitionKey: string) {
+  function normalizeDataRecursive<T>(localeData: T): T {
+    if (typeof localeData !== 'object' || localeData === null) {
+      // we can only traverse object-like structs
+      return localeData;
+    }
+
+    if (Array.isArray(localeData)) {
+      return (
+        [...new Set(localeData)]
+          // limit entries to 1k
+          .slice(0, 1000)
+          // sort entries alphabetically
+          .sort() as T
+      );
+    }
+
+    const result = {} as T;
+    for (const key of Object.keys(localeData)) {
+      result[key] = normalizeDataRecursive(localeData[key]);
+    }
+
+    return result;
+  }
+
+  const legacyDefinitions = ['app', 'cell_phone', 'team'];
+  const definitionsToSkip = [
+    'airline',
+    'animal',
+    'color',
+    'commerce',
+    'company',
+    'database',
+    'date',
+    'finance',
+    'hacker',
+    'internet',
+    'location',
+    'lorem',
+    'metadata',
+    'music',
+    'person',
+    'phone_number',
+    'science',
+    'system',
+    'vehicle',
+    'word',
+    ...legacyDefinitions,
+  ];
+  if (definitionsToSkip.includes(definitionKey)) {
+    return;
+  }
+
+  console.log(`Running data normalization for:`, filePath);
+
+  const fileContent = readFileSync(filePath).toString();
+  const searchString = 'export default ';
+  const compareIndex = fileContent.indexOf(searchString) + searchString.length;
+  const compareString = fileContent.substring(compareIndex);
+
+  const isDynamicFile = compareString.startsWith('mergeArrays');
+  const isNonApplicable = compareString.startsWith('null');
+  const isFrozenData = compareString.startsWith('Object.freeze');
+  if (isDynamicFile || isNonApplicable || isFrozenData) {
+    return;
+  }
+
+  const validEntryListStartCharacters = ['[', '{'];
+  const staticFileOpenSyntax = validEntryListStartCharacters.find(
+    (validStart) => compareString.startsWith(validStart)
+  );
+  if (staticFileOpenSyntax === undefined) {
+    console.log('Found an unhandled dynamic file:', filePath);
+    return;
+  }
+
+  const fileContentPreData = fileContent.substring(0, compareIndex);
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const localeData = normalizeDataRecursive(require(filePath).default);
+
+  // We reattach the content before the actual data implementation to keep stuff like comments.
+  // In the long term we should probably define a whether we want those in the files at all.
+  const newContent = fileContentPreData + JSON.stringify(localeData);
+
+  writeFileSync(filePath, await format(newContent, prettierTsOptions));
 }
 
 // Start of actual logic
