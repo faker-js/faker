@@ -416,7 +416,7 @@ export class SimpleHelpersModule {
 
     // Deal with single wildcards
     const SINGLE_CHAR_REG =
-      /([\d.A-Za-z])(?:{(\d+)(?:,(\d+)|)}|([*+?]))(?![^[]*]|[^{]*})/;
+      /([\d.a-z])(?:{(\d+)(?:,(\d+)|)}|([*+?]))(?![^[]*]|[^{]*})/i;
     let token = SINGLE_CHAR_REG.exec(pattern);
     while (token != null) {
       const quantifierMin: string = token[2];

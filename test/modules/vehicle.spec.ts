@@ -88,7 +88,7 @@ describe('vehicle', () => {
       describe('vin()', () => {
         it('returns valid vin number', () => {
           const vin = faker.vehicle.vin();
-          expect(vin).toMatch(/^([\dA-HJ-NPR-Z]{12}\d{5})$/);
+          expect(vin).toMatch(/^[\dA-HJ-NPR-Z]{12}\d{5}$/);
         });
 
         it('should return valid vin number', () => {
@@ -96,7 +96,7 @@ describe('vehicle', () => {
 
           expect(vin).toBeTruthy();
           expect(vin).toBeTypeOf('string');
-          expect(vin).toMatch(/^([\dA-HJ-NPR-Z]{12}\d{5})$/);
+          expect(vin).toMatch(/^[\dA-HJ-NPR-Z]{12}\d{5}$/);
         });
       });
 
