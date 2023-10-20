@@ -1,7 +1,7 @@
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../module-base';
 
-const nbsp = '\u00a0';
+const nbsp = '\u00A0';
 
 /**
  * Module to generate git related entries.

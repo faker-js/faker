@@ -631,7 +631,7 @@ export class InternetModule extends ModuleBase {
     // First remove simple accents etc
     result = result
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
+      .replace(/[\u0300-\u036F]/g, ''); // removes combining marks
 
     result = [...result]
       .map((char) => {
