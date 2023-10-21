@@ -38,8 +38,7 @@ describe.runIf(isFakerOrigin())('docs versions', () => {
         semver.valid(version)
       );
       const latestMajorRelease = semver.major(releaseVersions[0].version);
-      for (let i = 0; i < releaseVersions.length; i++) {
-        const { version, link } = releaseVersions[i];
+      for (const [i, { version, link }] of releaseVersions.entries()) {
         const oldMajorVersion = semver.major(version);
         expect(oldMajorVersion).toBe(latestMajorRelease - i);
         expect(link).toBe(`https://v${oldMajorVersion}.fakerjs.dev/`);
