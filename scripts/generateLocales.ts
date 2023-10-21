@@ -405,7 +405,7 @@ async function main(): Promise<void> {
       console.error(error);
     }
 
-    const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
+    const localizedFaker = `faker${locale.replace(/^[a-z]+/, (part) =>
       part.toUpperCase()
     )}`;
 

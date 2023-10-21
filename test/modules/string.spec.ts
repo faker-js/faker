@@ -197,13 +197,13 @@ describe('string', () => {
         it('should return any letters when no option is provided', () => {
           const actual = faker.string.alpha();
 
-          expect(actual).toMatch(/^[A-Za-z]$/);
+          expect(actual).toMatch(/^[a-z]$/i);
         });
 
         it.each([
           ['upper', /^[A-Z]{250}$/],
           ['lower', /^[a-z]{250}$/],
-          ['mixed', /^[A-Za-z]{250}$/],
+          ['mixed', /^[a-z]{250}$/i],
         ] as const)('should return %s-case', (casing, pattern) => {
           const actual = faker.string.alpha({ length: 250, casing });
           expect(actual).toMatch(pattern);
@@ -477,7 +477,7 @@ describe('string', () => {
             length: 5,
             prefix: '',
           });
-          expect(binary).toMatch(/^[01]*$/i);
+          expect(binary).toMatch(/^[01]*$/);
           expect(binary).toHaveLength(5);
         });
 
@@ -516,7 +516,7 @@ describe('string', () => {
             length: 5,
             prefix: '',
           });
-          expect(octal).toMatch(/^[0-7]*$/i);
+          expect(octal).toMatch(/^[0-7]*$/);
           expect(octal).toHaveLength(5);
         });
 

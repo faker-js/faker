@@ -649,7 +649,7 @@ describe('internet', () => {
           expect(ua).toBeTypeOf('string');
           expect(ua.length).toBeGreaterThanOrEqual(1);
           expect(ua).toMatch(
-            /^((\D+\/[\d.A-Za-z]+(\s\(.*\)))|(\D+\/[\d.A-Za-z]+(\s\(.*\)*))(\s\D+\/[\d.A-Za-z]+(\s\(.*\)*))*)$/
+            /^((\D+\/[\d.a-z]+(\s\(.*\)))|(\D+\/[\d.a-z]+(\s\(.*))(\s\D+\/[\d.a-z]+(\s\(.*))*)$/i
           );
         });
       });
@@ -773,7 +773,7 @@ describe('internet', () => {
           const password = faker.internet.password({
             length: 32,
             memorable: false,
-            pattern: /(!|\?|&|\[|]|%|\$|[\dA-Za-z])/,
+            pattern: /([\d!$%&?[\]a-z])/i,
           });
 
           expect(password).toBeTruthy();
@@ -787,7 +787,7 @@ describe('internet', () => {
           const password = faker.internet.password({
             length: 32,
             memorable: false,
-            pattern: /(!|\?|&|\[|]|%|\$|[\dA-Za-z])/,
+            pattern: /([\d!$%&?[\]a-z])/i,
             prefix: 'a!G6',
           });
 

@@ -184,7 +184,7 @@ describe('location', () => {
         it('returns random zipCode - user specified format', () => {
           let zipCode = faker.location.zipCode({ format: '?#? #?#' });
 
-          expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/);
+          expect(zipCode).toMatch(/^[a-z]\d[a-z]\s\d[a-z]\d$/i);
 
           // try another format
           zipCode = faker.location.zipCode({ format: '###-###' });
@@ -196,7 +196,7 @@ describe('location', () => {
           // we'll use the en_CA locale..
           const zipCode = fakerEN_CA.location.zipCode();
 
-          expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+          expect(zipCode).toMatch(/^[a-z]\d[a-z]\s?\d[a-z]\d$/i);
         });
 
         it.each([

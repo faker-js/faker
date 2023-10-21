@@ -112,7 +112,7 @@ describe('color', () => {
       describe(`rgb({ includeAlpha: true })`, () => {
         it('should return a random rgb color in hex format with alpha value', () => {
           const color = faker.color.rgb({ includeAlpha: true });
-          expect(color).match(/^#[\dA-Fa-f]{8}$/);
+          expect(color).match(/^#[\da-f]{8}$/i);
         });
       });
 
