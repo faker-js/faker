@@ -65,7 +65,6 @@ module.exports = defineConfig({
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-negative-index': 'off',
-    'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-ternary': 'off',
