@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
 import { seededTests } from './../support/seededRuns';
@@ -747,12 +748,10 @@ describe('string', () => {
         });
       });
 
-      describe(`uuid`, () => {
-        it('generates a valid UUID', () => {
-          const UUID = faker.string.uuid();
-          const RFC4122 =
-            /^[\da-f]{8}-[\da-f]{4}-[1-5][\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/;
-          expect(UUID).toMatch(RFC4122);
+      describe('uuid', () => {
+        it('generates a valid UUID v4', () => {
+          const actual = faker.string.uuid();
+          expect(actual).toSatisfy((uuid: string) => validator.isUUID(uuid, 4));
         });
       });
 
