@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - next
-  pull_request:
+  pull_request_target:
 
 permissions:
   contents: read # to fetch code (actions/checkout)
