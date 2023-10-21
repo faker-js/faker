@@ -19,7 +19,7 @@ import {
   DefaultParameterAwareSerializer,
   parameterDefaultReader,
   patchProjectParameterDefaults,
-} from './parameterDefaults';
+} from './parameter-defaults';
 import { mapByName } from './utils';
 
 type CommentHolder = Pick<Reflection, 'comment'>;
