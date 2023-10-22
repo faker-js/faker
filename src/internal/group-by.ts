@@ -6,11 +6,11 @@
  * @param values The values to group.
  * @param keyFunction The function to get the key from the value.
  */
-export function groupBy<T>(
-  values: ReadonlyArray<T>,
-  keyFunction: (key: T) => string | number
-): Record<string, T[]> {
-  const result: Record<string, T[]> = {};
+export function groupBy<TValue>(
+  values: ReadonlyArray<TValue>,
+  keyFunction: (value: TValue) => string | number
+): Record<string, TValue[]> {
+  const result: Record<string, TValue[]> = {};
 
   for (const value of values) {
     const key = keyFunction(value);
