@@ -38,6 +38,7 @@ module.exports = defineConfig({
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
+    'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
     'unicorn/number-literal-case': 'off', // incompatible with prettier
 
     // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
@@ -58,14 +59,12 @@ module.exports = defineConfig({
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-useless-switch-case': 'off',
-    'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-negative-index': 'off',
-    'unicorn/prefer-optional-catch-binding': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-ternary': 'off',
     'unicorn/prefer-top-level-await': 'off',
