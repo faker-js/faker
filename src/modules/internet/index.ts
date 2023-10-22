@@ -1353,7 +1353,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.internet({ length, memorable, pattern, prefix })` instead.
+   * @deprecated Use `faker.internet.password({ length, memorable, pattern, prefix })` instead.
    */
   password(
     len?: number,
