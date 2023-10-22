@@ -351,7 +351,7 @@ export class FinanceModule {
     }
 
     // set defaults
-    const { ellipsis, length = 4, parens } = options;
+    const { ellipsis = true, length = 4, parens = true } = options;
 
     // create a template for length
     let template = '';
