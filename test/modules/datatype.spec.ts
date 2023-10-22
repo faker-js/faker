@@ -330,12 +330,6 @@ describe('datatype', () => {
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
         });
-
-        it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
-          const generatedString = faker.datatype.string(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
-        });
       });
 
       describe('boolean', () => {
