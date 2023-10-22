@@ -10,12 +10,15 @@ const IGNORED_MODULES = new Set([
   '_defaultRefDate',
 ]);
 
-function getMethodNamesByModules(): { [module: string]: string[] } {
+function getMethodNamesByModules(faker: Faker): { [module: string]: string[] } {
   return Object.fromEntries(
-    Object.keys(fakerEN)
+    Object.keys(faker)
       .filter(isTestableModule)
       .sort()
-      .map<[string, string[]]>((module) => [module, getMethodNamesOf(module)])
+      .map<[string, string[]]>((moduleName) => [
+        moduleName,
+        getMethodNamesOf(faker[moduleName]),
+      ])
       .filter(([module, methods]) => {
         if (methods.length === 0) {
           console.log(`Skipping ${module} - No testable methods`);
@@ -27,16 +30,16 @@ function getMethodNamesByModules(): { [module: string]: string[] } {
   );
 }
 
-function isTestableModule(module: string): module is keyof Faker {
-  return !IGNORED_MODULES.has(module);
+function isTestableModule(moduleName: string): moduleName is keyof Faker {
+  return !IGNORED_MODULES.has(moduleName);
 }
 
-function getMethodNamesOf(module: keyof Faker): string[] {
-  return Object.keys(fakerEN[module]).filter(isMethodOf(module));
+function getMethodNamesOf(module: Faker[keyof Faker]): string[] {
+  return Object.keys(module).filter(isMethodOf(module));
 }
 
-function isMethodOf(module: keyof Faker): (method: string) => boolean {
-  return (method: string) => typeof fakerEN[module][method] === 'function';
+function isMethodOf(module: Faker[keyof Faker]): (method: string) => boolean {
+  return (method: string) => typeof module[method] === 'function';
 }
 
 type SkipConfig<TModule> = Partial<
@@ -84,7 +87,7 @@ function isWorkingLocaleForMethod(
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
-const modules = getMethodNamesByModules();
+const modules = getMethodNamesByModules(fakerEN);
 
 describe('BROKEN_LOCALE_METHODS test', () => {
   it('should not contain obsolete configuration (modules)', () => {
