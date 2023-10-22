@@ -382,7 +382,7 @@ export class CommerceModule {
     const [group, groupRules] =
       this.faker.helpers.objectEntry(ISBN_LENGTH_RULES);
     const element = this.faker.string.numeric(8);
-    const elementValue = parseInt(element.slice(0, -1));
+    const elementValue = Number.parseInt(element.slice(0, -1));
 
     const registrantLength = groupRules.find(
       ([rangeMaximum]) => elementValue <= rangeMaximum
@@ -401,7 +401,7 @@ export class CommerceModule {
     let checksum = 0;
     for (let i = 0; i < variant - 1; i++) {
       const weight = variant === 10 ? i + 1 : i % 2 ? 3 : 1;
-      checksum += weight * parseInt(isbn[i]);
+      checksum += weight * Number.parseInt(isbn[i]);
     }
 
     checksum = variant === 10 ? checksum % 11 : (10 - (checksum % 10)) % 10;

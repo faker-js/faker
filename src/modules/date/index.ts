@@ -21,7 +21,7 @@ function toDate(
   }
 
   date = new Date(date);
-  if (isNaN(date.valueOf())) {
+  if (Number.isNaN(date.valueOf())) {
     date = fallback();
   }
 
