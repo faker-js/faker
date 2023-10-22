@@ -35,7 +35,7 @@ function getMethodNamesOf(module: keyof Faker): string[] {
   return Object.keys(fakerEN[module]).filter(isMethodOf(module));
 }
 
-function isMethodOf(module: string): (method: string) => boolean {
+function isMethodOf(module: keyof Faker): (method: string) => boolean {
   return (method: string) => typeof fakerEN[module][method] === 'function';
 }
 

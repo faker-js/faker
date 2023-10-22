@@ -36,7 +36,6 @@ module.exports = defineConfig({
 
     'deprecation/deprecation': 'error',
 
-    'unicorn/no-array-reduce': 'off', // not easy to avoid for new contributors
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
