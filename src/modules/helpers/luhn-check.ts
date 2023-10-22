@@ -28,7 +28,7 @@ function luhnChecksum(str: string): number {
   let sum = 0;
   let alternate = false;
   for (let i = str.length - 1; i >= 0; i--) {
-    let n = Number.parseInt(str.substring(i, i + 1));
+    let n = Number.parseInt(str.charAt(i));
     if (alternate) {
       n *= 2;
       if (n > 9) {
