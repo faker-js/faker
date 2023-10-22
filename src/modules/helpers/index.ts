@@ -62,11 +62,11 @@ function getRepetitionsBasedOnQuantifierParameters(
     }
   } else if (quantifierMin != null && quantifierMax != null) {
     repetitions = faker.number.int({
-      min: parseInt(quantifierMin),
-      max: parseInt(quantifierMax),
+      min: Number.parseInt(quantifierMin),
+      max: Number.parseInt(quantifierMax),
     });
   } else if (quantifierMin != null && quantifierMax == null) {
-    repetitions = parseInt(quantifierMin);
+    repetitions = Number.parseInt(quantifierMin);
   }
 
   return repetitions;
@@ -108,8 +108,8 @@ function legacyRegexpStringParse(
   let repetitions: number;
   let token = RANGE_REP_REG.exec(string);
   while (token != null) {
-    min = parseInt(token[2]);
-    max = parseInt(token[3]);
+    min = Number.parseInt(token[2]);
+    max = Number.parseInt(token[3]);
     // switch min and max
     if (min > max) {
       tmp = max;
@@ -128,7 +128,7 @@ function legacyRegexpStringParse(
   // Deal with repeat `{num}`
   token = REP_REG.exec(string);
   while (token != null) {
-    repetitions = parseInt(token[2]);
+    repetitions = Number.parseInt(token[2]);
     string =
       string.slice(0, token.index) +
       token[1].repeat(repetitions) +
@@ -139,8 +139,8 @@ function legacyRegexpStringParse(
 
   token = RANGE_REG.exec(string);
   while (token != null) {
-    min = parseInt(token[1]); // This time we are not capturing the char before `[]`
-    max = parseInt(token[2]);
+    min = Number.parseInt(token[1]); // This time we are not capturing the char before `[]`
+    max = Number.parseInt(token[2]);
     // switch min and max
     if (min > max) {
       tmp = max;
@@ -462,7 +462,7 @@ export class SimpleHelpersModule {
       while (range != null) {
         if (!range[0].includes('-')) {
           // handle non-ranges
-          if (isCaseInsensitive && isNaN(Number(range[0]))) {
+          if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
             rangeCodes.push(
               range[0].toUpperCase().charCodeAt(0),
               range[0].toLowerCase().charCodeAt(0)
@@ -481,7 +481,10 @@ export class SimpleHelpersModule {
           }
 
           for (let i = min; i <= max; i++) {
-            if (isCaseInsensitive && isNaN(Number(String.fromCharCode(i)))) {
+            if (
+              isCaseInsensitive &&
+              Number.isNaN(Number(String.fromCharCode(i)))
+            ) {
               const ch = String.fromCharCode(i);
               rangeCodes.push(
                 ch.toUpperCase().charCodeAt(0),
@@ -556,8 +559,8 @@ export class SimpleHelpersModule {
     // Deal with quantifier ranges `{min,max}`
     token = RANGE_REP_REG.exec(pattern);
     while (token != null) {
-      min = parseInt(token[2]);
-      max = parseInt(token[3]);
+      min = Number.parseInt(token[2]);
+      max = Number.parseInt(token[3]);
       // throw error if min larger than max
       if (min > max) {
         throw new FakerError('Numbers out of order in {} quantifier.');
@@ -575,7 +578,7 @@ export class SimpleHelpersModule {
     // Deal with repeat `{num}`
     token = REP_REG.exec(pattern);
     while (token != null) {
-      repetitions = parseInt(token[2]);
+      repetitions = Number.parseInt(token[2]);
       pattern =
         pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -1046,7 +1049,7 @@ export class SimpleHelpersModule {
   ): T[keyof T] {
     // ignore numeric keys added by TypeScript
     const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
-      isNaN(Number(key))
+      Number.isNaN(Number(key))
     );
     const randomKey = this.arrayElement(keys);
     return enumObject[randomKey];
