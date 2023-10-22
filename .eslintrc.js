@@ -28,8 +28,8 @@ module.exports = defineConfig({
   rules: {
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
-    'prefer-template': 'error',
     'no-restricted-globals': ['error', 'Intl'],
+    'prefer-template': 'error',
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
