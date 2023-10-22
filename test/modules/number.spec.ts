@@ -320,7 +320,7 @@ describe('number', () => {
         expect(binary).toBeTypeOf('string');
         expect(binary).toSatisfy(isBinary);
 
-        const binaryNum = parseInt(binary, 2);
+        const binaryNum = Number.parseInt(binary, 2);
         expect(binaryNum).toBeLessThanOrEqual(5);
       });
 
@@ -330,7 +330,7 @@ describe('number', () => {
         expect(binary).toBeTypeOf('string');
         expect(binary).toSatisfy(isBinary);
 
-        const binaryNum = parseInt(binary, 2);
+        const binaryNum = Number.parseInt(binary, 2);
         expect(binaryNum).toBeLessThanOrEqual(255);
         expect(binaryNum).greaterThanOrEqual(15);
       });
@@ -363,7 +363,7 @@ describe('number', () => {
         expect(octal).toBeTypeOf('string');
         expect(octal).toSatisfy(validator.isOctal);
 
-        const octalNum = parseInt(octal, 8);
+        const octalNum = Number.parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(5);
       });
 
@@ -373,7 +373,7 @@ describe('number', () => {
         expect(octal).toBeTypeOf('string');
         expect(octal).toSatisfy(validator.isOctal);
 
-        const octalNum = parseInt(octal, 8);
+        const octalNum = Number.parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(255);
         expect(octalNum).greaterThanOrEqual(15);
       });
@@ -413,7 +413,7 @@ describe('number', () => {
         expect(hex).toBeTypeOf('string');
         expect(hex).toSatisfy(validator.isHexadecimal);
 
-        const hexNum = parseInt(hex, 16);
+        const hexNum = Number.parseInt(hex, 16);
         expect(hexNum).toBeLessThanOrEqual(255);
         expect(hexNum).greaterThanOrEqual(15);
       });
