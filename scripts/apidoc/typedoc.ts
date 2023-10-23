@@ -154,7 +154,7 @@ export function extractModuleName(module: DeclarationReflection): string {
 
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
-  return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+  return moduleName[0].toLowerCase() + moduleName.substring(1);
 }
 
 export const MISSING_DESCRIPTION = 'Missing';
