@@ -55,7 +55,6 @@ module.exports = defineConfig({
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
-    'unicorn/no-for-loop': 'off',
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-useless-switch-case': 'off',
