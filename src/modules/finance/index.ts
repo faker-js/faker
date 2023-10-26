@@ -599,14 +599,9 @@ export class FinanceModule {
       precision: 10 ** -dec,
     });
 
-    let formattedString: string;
-    if (autoFormat) {
-      formattedString = randValue.toLocaleString(undefined, {
-        minimumFractionDigits: dec,
-      });
-    } else {
-      formattedString = randValue.toFixed(dec);
-    }
+    const formattedString = autoFormat
+      ? randValue.toLocaleString(undefined, { minimumFractionDigits: dec })
+      : randValue.toFixed(dec);
 
     return symbol + formattedString;
   }
@@ -719,12 +714,12 @@ export class FinanceModule {
   litecoinAddress(): string {
     const addressLength = this.faker.number.int({ min: 26, max: 33 });
 
-    let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
-
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement([
-        ...'123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
-      ]);
+    const address =
+      this.faker.string.fromCharacters('LM3') +
+      this.faker.string.fromCharacters(
+        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+        addressLength - 1
+      );
 
     return address;
   }
