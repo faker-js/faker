@@ -271,8 +271,8 @@ export class InternetModule {
     // We limit to 50 chars to be more realistic
     localPart = localPart.substring(0, 50);
     if (allowSpecialCharacters) {
-      const usernameChars: string[] = '._-'.split('');
-      const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
+      const usernameChars: string[] = [...'._-'];
+      const specialChars: string[] = [...".!#$%&'*+-/=?^_`{|}~"];
       localPart = localPart.replace(
         this.faker.helpers.arrayElement(usernameChars),
         this.faker.helpers.arrayElement(specialChars)
@@ -636,10 +636,9 @@ export class InternetModule {
     // First remove simple accents etc
     result = result
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
+      .replace(/[\u0300-\u036F]/g, ''); // removes combining marks
 
-    result = result
-      .split('')
+    result = [...result]
       .map((char) => {
         // If we have a mapping for this character, (for Cyrillic, Greek etc) use it
         if (charMapping[char]) {
@@ -1359,7 +1358,7 @@ export class InternetModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.internet({ length, memorable, pattern, prefix })` instead.
+   * @deprecated Use `faker.internet.password({ length, memorable, pattern, prefix })` instead.
    */
   password(
     len?: number,
@@ -1476,11 +1475,7 @@ export class InternetModule {
       }
 
       if (memorable) {
-        if (consonant.test(prefix)) {
-          pattern = vowel;
-        } else {
-          pattern = consonant;
-        }
+        pattern = consonant.test(prefix) ? vowel : consonant;
       }
 
       const n = this.faker.number.int(94) + 33;
