@@ -225,7 +225,7 @@ export class RandomModule {
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
-   * @see faker.string.alpha(): For the new method replacing this one.
+   * @see faker.string.alpha(): For the replacement method.
    *
    * @example
    * faker.random.alpha() // 'b'
@@ -285,7 +285,7 @@ export class RandomModule {
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.alphanumeric(): For the new method replacing this one.
+   * @see faker.string.alphanumeric(): For the replacement method.
    *
    * @example
    * faker.random.alphaNumeric() // '2'
@@ -334,7 +334,7 @@ export class RandomModule {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.numeric(): For the new method replacing this one.
+   * @see faker.string.numeric(): For the replacement method.
    *
    * @example
    * faker.random.numeric() // '2'

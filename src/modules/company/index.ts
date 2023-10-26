@@ -24,7 +24,7 @@ export class CompanyModule {
   /**
    * Returns an array with possible company name suffixes.
    *
-   * @see faker.company.name(): For a method that returns a complete company name.
+   * @see faker.company.name(): For generating a complete company name.
    *
    * @example
    * faker.company.suffixes() // [ 'Inc', 'and Sons', 'LLC', 'Group' ]
@@ -60,7 +60,7 @@ export class CompanyModule {
   /**
    * Returns a random company suffix.
    *
-   * @see faker.company.name(): For a method that returns a complete company name.
+   * @see faker.company.name(): For generating a complete company name.
    *
    * @example
    * faker.company.companySuffix() // 'and Sons'

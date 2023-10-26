@@ -47,7 +47,7 @@ export class FinanceModule {
    *
    * @param length The length of the account number. Defaults to `8`.
    *
-   * @see faker.finance.accountNumber(): For the new method that replaces this one.
+   * @see faker.finance.accountNumber(): For the replacement method.
    *
    * @example
    * faker.finance.account() // 92842238
@@ -209,7 +209,7 @@ export class FinanceModule {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
-   * @see faker.finance.maskedNumber(): For the new method that replaces this one.
+   * @see faker.finance.maskedNumber(): For the replacement method.
    *
    * @example
    * faker.finance.mask() // '(...9711)'

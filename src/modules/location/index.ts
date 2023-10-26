@@ -94,7 +94,7 @@ export class LocationModule {
    * @param options.state The abbreviation of the state to generate the zip code for.
    * If not specified, a random zip code is generated according to the locale's zip format.
    *
-   * @see faker.location.zipCode(): For the new method that replaces this one.
+   * @see faker.location.zipCode(): For the replacement method.
    *
    * @example
    * fakerEN_US.location.zipCodeByState("AK") // '99595'
@@ -150,7 +150,7 @@ export class LocationModule {
   /**
    * Returns a random city name from a list of real cities for the locale.
    *
-   * @see faker.location.city(): For the new method that replaces this one.
+   * @see faker.location.city(): For the replacement method.
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
@@ -208,7 +208,7 @@ export class LocationModule {
   /**
    * Returns a random localized street name.
    *
-   * @see faker.location.street(): For the new method that replaces this one.
+   * @see faker.location.street(): For the replacement method.
    *
    * @example
    * fakerDE.location.streetName() // 'Cavill Avenue'
