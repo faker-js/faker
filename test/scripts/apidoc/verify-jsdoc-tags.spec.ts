@@ -211,8 +211,10 @@ describe('verify JSDoc tags', () => {
                 ).toMatch(/\): [A-Z]/);
                 expect(
                   link,
-                  'Expect method reference to have a description sentence'
-                ).toMatch(/\): .{10,}$/);
+                  'Expect method reference to start with a standard description phrase'
+                ).toMatch(
+                  /\): (?:For generating |For more information about |For using |For the replacement method)/
+                );
                 expect(
                   link,
                   'Expect method reference to have a description ending with a dot'

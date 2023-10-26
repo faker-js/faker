@@ -629,9 +629,9 @@ export class FinanceModule {
    * Returns a random currency object, containing `code`, `name `and `symbol` properties.
    *
    * @see
-   * faker.finance.currencyCode(): For a method that returns specifically the currency code.
-   * faker.finance.currencyName(): For a method that returns specifically the currency name.
-   * faker.finance.currencySymbol(): For a method that returns specifically the currency symbol.
+   * faker.finance.currencyCode(): For generating specifically the currency code.
+   * faker.finance.currencyName(): For generating returns specifically the currency name.
+   * faker.finance.currencySymbol(): For generating returns specifically the currency symbol.
    *
    * @example
    * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
