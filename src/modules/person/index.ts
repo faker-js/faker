@@ -237,7 +237,7 @@ export class PersonModule {
   /**
    * Returns a random gender.
    *
-   * @see faker.person.sex(): If you would like to generate binary-gender values.
+   * @see faker.person.sex(): For generating binary-gender values.
    *
    * @example
    * faker.person.gender() // 'Trans*Man'
@@ -256,7 +256,7 @@ export class PersonModule {
    * Output of this method is localised, so it should not be used to fill the parameter `sex`
    * available in some other modules for example `faker.person.firstName()`.
    *
-   * @see faker.person.gender(): If you would like to generate gender related values.
+   * @see faker.person.gender(): For generating gender related values.
    * @see faker.person.sexType(): If you would like to use the sex value as a parameter.
    *
    * @example

@@ -345,7 +345,7 @@ export class StringModule {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
    *
-   * @see faker.number.binary(): If you would like to generate a `binary number` (within a range).
+   * @see faker.number.binary(): For generating a `binary number` (within a range).
    *
    * @example
    * faker.string.binary() // '0b1'
@@ -387,7 +387,7 @@ export class StringModule {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
    *
-   * @see faker.number.octal(): If you would like to generate an `octal number` (within a range).
+   * @see faker.number.octal(): For generating an `octal number` (within a range).
    *
    * @example
    * faker.string.octal() // '0o3'
@@ -530,7 +530,7 @@ export class StringModule {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
-   * @see faker.number.int(): If you would like to generate a `number` (within a range).
+   * @see faker.number.int(): For generating a `number` (within a range).
    *
    * @example
    * faker.string.numeric() // '2'
