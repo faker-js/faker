@@ -17,23 +17,19 @@ module.exports = defineConfig({
     'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:prettier/recommended',
+    'plugin:deprecation/recommended',
     'plugin:jsdoc/recommended-typescript-error',
     'plugin:unicorn/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['./tsconfig.json'],
-    sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
-    'prefer-template': 'error',
     'no-restricted-globals': ['error', 'Intl'],
-
-    'deprecation/deprecation': 'error',
+    'prefer-template': 'error',
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
@@ -54,16 +50,13 @@ module.exports = defineConfig({
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
-    'unicorn/no-for-loop': 'off',
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-useless-switch-case': 'off',
     'unicorn/numeric-separators-style': 'off',
-    'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-module': 'off',
-    'unicorn/prefer-native-coercion-functions': 'off',
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-ternary': 'off',
@@ -118,8 +111,7 @@ module.exports = defineConfig({
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     '@typescript-eslint/no-confusing-void-expression': 'off',
 
-    'jsdoc/no-types': 'error',
-    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
     'jsdoc/sort-tags': [
       'error',
