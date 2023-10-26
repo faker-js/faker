@@ -34,11 +34,11 @@ function isTestableModule(moduleName: string): moduleName is keyof Faker {
   return !IGNORED_MODULES.has(moduleName);
 }
 
-function getMethodNamesOf(module: Faker[keyof Faker]): string[] {
+function getMethodNamesOf(module: object): string[] {
   return Object.keys(module).filter(isMethodOf(module));
 }
 
-function isMethodOf(module: Faker[keyof Faker]): (method: string) => boolean {
+function isMethodOf(module: object): (method: string) => boolean {
   return (method: string) => typeof module[method] === 'function';
 }
 
