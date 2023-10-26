@@ -1093,15 +1093,11 @@ export class DateModule extends SimpleDateModule {
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
-      if (context && source['abbr_context'] != null) {
-        type = 'abbr_context';
-      } else {
-        type = 'abbr';
-      }
-    } else if (context && source['wide_context'] != null) {
-      type = 'wide_context';
+      const useContext = context && source['abbr_context'] != null;
+      type = useContext ? 'abbr_context' : 'abbr';
     } else {
-      type = 'wide';
+      const useContext = context && source['wide_context'] != null;
+      type = useContext ? 'wide_context' : 'wide';
     }
 
     return this.faker.helpers.arrayElement(source[type]);
@@ -1283,15 +1279,11 @@ export class DateModule extends SimpleDateModule {
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
-      if (context && source['abbr_context'] != null) {
-        type = 'abbr_context';
-      } else {
-        type = 'abbr';
-      }
-    } else if (context && source['wide_context'] != null) {
-      type = 'wide_context';
+      const useContext = context && source['abbr_context'] != null;
+      type = useContext ? 'abbr_context' : 'abbr';
     } else {
-      type = 'wide';
+      const useContext = context && source['wide_context'] != null;
+      type = useContext ? 'wide_context' : 'wide';
     }
 
     return this.faker.helpers.arrayElement(source[type]);

@@ -1470,11 +1470,7 @@ export class InternetModule extends ModuleBase {
       }
 
       if (memorable) {
-        if (consonant.test(prefix)) {
-          pattern = vowel;
-        } else {
-          pattern = consonant;
-        }
+        pattern = consonant.test(prefix) ? vowel : consonant;
       }
 
       const n = this.faker.number.int(94) + 33;

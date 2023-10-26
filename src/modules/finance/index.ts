@@ -594,14 +594,9 @@ export class FinanceModule extends ModuleBase {
       precision: 10 ** -dec,
     });
 
-    let formattedString: string;
-    if (autoFormat) {
-      formattedString = randValue.toLocaleString(undefined, {
-        minimumFractionDigits: dec,
-      });
-    } else {
-      formattedString = randValue.toFixed(dec);
-    }
+    const formattedString = autoFormat
+      ? randValue.toLocaleString(undefined, { minimumFractionDigits: dec })
+      : randValue.toFixed(dec);
 
     return symbol + formattedString;
   }
