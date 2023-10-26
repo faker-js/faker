@@ -15,29 +15,25 @@ module.exports = defineConfig({
   reportUnusedDisableDirectives: true,
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:prettier/recommended',
+    'plugin:deprecation/recommended',
     'plugin:jsdoc/recommended-typescript-error',
     'plugin:unicorn/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['./tsconfig.json'],
-    sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
-    'prefer-template': 'error',
     'no-restricted-globals': ['error', 'Intl'],
-
-    'deprecation/deprecation': 'error',
+    'prefer-template': 'error',
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
+    'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
     'unicorn/number-literal-case': 'off', // incompatible with prettier
 
     // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
@@ -49,28 +45,19 @@ module.exports = defineConfig({
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/escape-case': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
-    'unicorn/no-for-loop': 'off',
-    'unicorn/no-instanceof-array': 'off',
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-useless-switch-case': 'off',
-    'unicorn/no-zero-fractions': 'off',
     'unicorn/numeric-separators-style': 'off',
-    'unicorn/prefer-array-some': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-module': 'off',
-    'unicorn/prefer-native-coercion-functions': 'off',
     'unicorn/prefer-negative-index': 'off',
-    'unicorn/prefer-number-properties': 'off',
-    'unicorn/prefer-optional-catch-binding': 'off',
-    'unicorn/prefer-spread': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-ternary': 'off',
     'unicorn/prefer-top-level-await': 'off',
@@ -104,23 +91,21 @@ module.exports = defineConfig({
       'error',
       { ignoreParameters: true },
     ],
-    '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'error',
     '@typescript-eslint/padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
+    '@typescript-eslint/prefer-regexp-exec': 'error',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
     '@typescript-eslint/unbound-method': 'off',
 
-    'jsdoc/no-types': 'error',
-    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
     'jsdoc/sort-tags': [
       'error',
