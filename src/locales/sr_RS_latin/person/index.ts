@@ -5,9 +5,6 @@
 import type { PersonDefinition } from '../../..';
 import female_first_name from './female_first_name';
 import first_name from './first_name';
-import job_area from './job_area';
-import job_descriptor from './job_descriptor';
-import job_type from './job_type';
 import last_name from './last_name';
 import male_first_name from './male_first_name';
 import name_ from './name';
@@ -15,9 +12,6 @@ import name_ from './name';
 const person: PersonDefinition = {
   female_first_name,
   first_name,
-  job_area,
-  job_descriptor,
-  job_type,
   last_name,
   male_first_name,
   name: name_,
