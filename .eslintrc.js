@@ -58,7 +58,6 @@ module.exports = defineConfig({
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-module': 'off',
-    'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
