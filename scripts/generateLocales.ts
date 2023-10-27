@@ -360,7 +360,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   }
 
   const fileContentPreData = fileContent.substring(0, compareIndex);
-  const fileImport = await import(filePath);
+  const fileImport = await import(`file:${filePath}`);
   const localeData = normalizeDataRecursive(fileImport.default);
 
   // We reattach the content before the actual data implementation to keep stuff like comments.
@@ -389,7 +389,7 @@ async function main(): Promise<void> {
     const pathMetadata = resolve(pathModules, 'metadata.ts');
     let localeTitle = 'No title found';
     try {
-      const metadataImport = await import(pathMetadata);
+      const metadataImport = await import(`file:${pathMetadata}`);
       const metadata: MetadataDefinition = metadataImport.default;
       const { title } = metadata;
       if (!title) {
