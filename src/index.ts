@@ -48,9 +48,6 @@ export type {
   /** @deprecated Use PersonDefinitions instead */
   PersonDefinition as NameDefinitions,
   PersonDefinition,
-  /** @deprecated Use PersonTitleDefinitions instead */
-  PersonTitleDefinition as NameTitleDefinitions,
-  PersonTitleDefinition,
   PhoneNumberDefinition,
   /** @deprecated Use PhoneNumberDefinition instead */
   PhoneNumberDefinition as PhoneNumberDefinitions,

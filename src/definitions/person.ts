@@ -39,16 +39,9 @@ export type PersonDefinition = LocaleEntry<{
 
   bio_pattern: string[];
 
-  title: PersonTitleDefinition;
+  job_descriptor: string[];
+  job_area: string[];
+  job_type: string[];
 
   western_zodiac_sign: string[];
-}>;
-
-/**
- * The possible definitions related to people's titles.
- */
-export type PersonTitleDefinition = LocaleEntry<{
-  descriptor: string[];
-  job: string[];
-  level: string[];
 }>;

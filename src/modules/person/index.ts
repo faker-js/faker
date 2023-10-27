@@ -353,7 +353,7 @@ export class PersonModule {
    */
   jobDescriptor(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.descriptor
+      this.faker.definitions.person.job_descriptor
     );
   }
 
@@ -367,7 +367,7 @@ export class PersonModule {
    */
   jobArea(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.level
+      this.faker.definitions.person.job_area
     );
   }
 
@@ -381,7 +381,7 @@ export class PersonModule {
    */
   jobType(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.job
+      this.faker.definitions.person.job_type
     );
   }
 

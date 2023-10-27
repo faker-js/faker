@@ -3,9 +3,11 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PersonDefinition } from '../../..';
+import job_type from './job_type';
 import last_name_pattern from './last_name_pattern';
 
 const person: PersonDefinition = {
+  job_type,
   last_name_pattern,
 };
 
