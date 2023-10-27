@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
@@ -22,7 +23,7 @@ import { loadProjectModules } from './utils';
 
 beforeAll(initMarkdownRenderer);
 
-const tempDir = resolve(__dirname, 'temp');
+const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
 
 afterAll(() => {
   // Remove temp folder

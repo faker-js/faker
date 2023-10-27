@@ -49,7 +49,7 @@ const BROKEN_LOCALE_METHODS = {
     jobType: ['ur'],
   },
 } satisfies {
-  [module in keyof Faker]?: SkipConfig<Faker[module]>;
+  [module_ in keyof Faker]?: SkipConfig<Faker[module_]>;
 };
 
 function isWorkingLocaleForMethod(
@@ -63,7 +63,7 @@ function isWorkingLocaleForMethod(
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
-function modulesList(): { [module: string]: string[] } {
+function modulesList(): { [module_: string]: string[] } {
   const modules = Object.keys(fakerEN)
     .sort()
     .filter(isTestableModule)

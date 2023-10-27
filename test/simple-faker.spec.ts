@@ -3,15 +3,14 @@ import { describe, expect, it, vi } from 'vitest';
 import { SimpleFaker, simpleFaker } from '../src';
 
 describe('simpleFaker', () => {
-  it('should not log anything on startup', () => {
+  it('should not log anything on startup', async () => {
     const spies: SpyInstance[] = Object.keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) =>
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require('..').simpleFaker;
+    (await import('..')).simpleFaker;
 
     new SimpleFaker();
 
