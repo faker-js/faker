@@ -252,6 +252,7 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(prefix).includes('Aiden');
+          expect(prefix).includes('Harann');
           expect(prefix).toMatch(
             /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );

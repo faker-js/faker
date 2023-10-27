@@ -254,7 +254,7 @@ export class InternetModule {
 
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName ?? this.faker.person.lastName(),
+      lastName = legacyLastName,
       provider = legacyProvider ??
         this.faker.helpers.arrayElement(
           this.faker.definitions.internet.free_email
@@ -460,7 +460,7 @@ export class InternetModule {
 
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName ?? this.faker.person.lastName(),
+      lastName = legacyLastName,
       allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
 
@@ -616,7 +616,12 @@ export class InternetModule {
     } = options;
 
     let result: string;
-    switch (this.faker.number.int(2)) {
+    switch (
+      this.faker.number.int({
+        min: options.lastName || legacyLastName ? 1 : 0,
+        max: 2,
+      })
+    ) {
       case 0:
         result = `${firstName}${this.faker.number.int(99)}`;
         break;

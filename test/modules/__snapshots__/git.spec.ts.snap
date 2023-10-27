@@ -10,28 +10,28 @@ exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 15:
 
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg Beahan III <Gregg.Beahan@hotmail.com>
-Date: Tue Dec 31 14:49:14 2019 +0100
+Author: Gregg Beahan III <Gregg.Beahan38@hotmail.com>
+Date: Tue Dec 31 11:39:29 2019 +1200
 
-    parse multi-byte sensor
+    quantify online protocol
 "
 `;
 
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg Beahan III <Gregg.Beahan@hotmail.com>
-Date: Tue Dec 31 14:49:14 2019 +0100
+Author: Gregg Beahan III <Gregg.Beahan38@hotmail.com>
+Date: Tue Dec 31 11:39:29 2019 +1200
 
-    parse multi-byte sensor
+    quantify online protocol
 "
 `;
 
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg Beahan III <Gregg.Beahan@hotmail.com>
-Date: Tue Dec 31 14:49:14 2019 +0100
+Author: Gregg Beahan III <Gregg.Beahan38@hotmail.com>
+Date: Tue Dec 31 11:39:29 2019 +1200
 
-    parse multi-byte sensor
+    quantify online protocol
 "
 `;
 
@@ -53,7 +53,7 @@ exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 0
 
 exports[`git > 1211 > commitEntry > with only Date refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani Anderson <Imani22@hotmail.com>
+Author: Imani Anderson <Imani.Anderson@hotmail.com>
 Date: Tue Dec 31 10:07:32 2019 -0400
 
     override wireless interface
@@ -62,7 +62,7 @@ Date: Tue Dec 31 10:07:32 2019 -0400
 
 exports[`git > 1211 > commitEntry > with only number refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani Anderson <Imani22@hotmail.com>
+Author: Imani Anderson <Imani.Anderson@hotmail.com>
 Date: Tue Dec 31 10:07:32 2019 -0400
 
     override wireless interface
@@ -71,7 +71,7 @@ Date: Tue Dec 31 10:07:32 2019 -0400
 
 exports[`git > 1211 > commitEntry > with only string refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani Anderson <Imani22@hotmail.com>
+Author: Imani Anderson <Imani.Anderson@hotmail.com>
 Date: Tue Dec 31 10:07:32 2019 -0400
 
     override wireless interface
@@ -96,7 +96,7 @@ exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 1
 
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Miss Friedrich Krajcik <Friedrich41@gmail.com>
+Author: Miss Friedrich Krajcik <Friedrich.Krajcik@gmail.com>
 Date: Tue Dec 31 04:18:56 2019 -0700
 
     reboot haptic capacitor
@@ -105,7 +105,7 @@ Date: Tue Dec 31 04:18:56 2019 -0700
 
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Miss Friedrich Krajcik <Friedrich41@gmail.com>
+Author: Miss Friedrich Krajcik <Friedrich.Krajcik@gmail.com>
 Date: Tue Dec 31 04:18:56 2019 -0700
 
     reboot haptic capacitor
@@ -114,7 +114,7 @@ Date: Tue Dec 31 04:18:56 2019 -0700
 
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Miss Friedrich Krajcik <Friedrich41@gmail.com>
+Author: Miss Friedrich Krajcik <Friedrich.Krajcik@gmail.com>
 Date: Tue Dec 31 04:18:56 2019 -0700
 
     reboot haptic capacitor
