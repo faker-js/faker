@@ -127,6 +127,7 @@ const config = defineConfig({
     ],
 
     algolia: {
+      // Set by netlify
       apiKey: process.env.API_KEY,
       appId: process.env.APP_ID,
       indexName: algoliaIndex,
