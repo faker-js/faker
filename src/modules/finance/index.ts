@@ -366,23 +366,17 @@ export class FinanceModule {
       options = { length: options };
     }
 
-    // set defaults
     const { ellipsis, length = 4, parens } = options;
 
-    // create a template for length
-    let template = '';
+    let template = this.faker.string.numeric({ length });
 
-    for (let i = 0; i < length; i++) {
-      template = `${template}#`;
+    if (ellipsis) {
+      template = `...${template}`;
     }
 
-    //prefix with ellipsis
-    template = ellipsis ? ['...', template].join('') : template;
-
-    template = parens ? ['(', template, ')'].join('') : template;
-
-    //generate random numbers
-    template = this.faker.helpers.replaceSymbolWithNumber(template);
+    if (parens) {
+      template = `(${template})`;
+    }
 
     return template;
   }

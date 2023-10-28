@@ -1,11 +1,11 @@
 import type { DeclarationReflection, ProjectReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
-import { writeApiDocsModule } from './apiDocsWriter';
-import { analyzeModule, processModuleMethods } from './moduleMethods';
+import { analyzeModule, processModuleMethods } from './module-methods';
 import { analyzeSignature } from './signature';
 import { extractModuleFieldName, selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
+import { writeApiDocsModule } from './writer';
 
 export async function processFakerClasses(
   project: ProjectReflection
