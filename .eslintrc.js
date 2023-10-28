@@ -46,7 +46,6 @@ module.exports = defineConfig({
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/filename-case': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-array-reduce': 'off',
@@ -139,8 +138,26 @@ module.exports = defineConfig({
       },
     },
     {
-      files: ['src/locales/**/*.ts'],
+      files: ['src/locale/**/*.ts'],
       rules: {
+        'unicorn/filename-case': 'off', // our locale files have a custom naming scheme
+      },
+    },
+    {
+      files: ['src/definitions/**/*.ts', 'src/locales/**/*.ts'],
+      rules: {
+        'unicorn/filename-case': [
+          'error',
+          {
+            case: 'snakeCase',
+            // TODO @ST-DDT 2023-10-21: rename the definitions in v9
+            ignore: [
+              /chemicalElement\.ts$/,
+              /directoryPaths\.ts$/,
+              /mimeTypes\.ts$/,
+            ],
+          },
+        ],
         'unicorn/text-encoding-identifier-case': 'off',
       },
     },

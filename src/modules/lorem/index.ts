@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import { filterWordListByLength } from '../word/filterWordListByLength';
+import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
  * Module to generate random texts and words.
