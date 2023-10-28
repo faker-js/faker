@@ -1,15 +1,15 @@
 import { resolve } from 'node:path';
+import { processFakerClasses, processFakerRandomizer } from './faker-class';
+import { processFakerUtilities } from './faker-utilities';
+import { processModules } from './module-methods';
+import { loadProject } from './typedoc';
+import { pathOutputDir } from './utils';
 import {
   writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
   writeSourceBaseUrl,
-} from './apiDocsWriter';
-import { processFakerClasses, processFakerRandomizer } from './fakerClass';
-import { processFakerUtilities } from './fakerUtilities';
-import { processModules } from './moduleMethods';
-import { loadProject } from './typedoc';
-import { pathOutputDir } from './utils';
+} from './writer';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
