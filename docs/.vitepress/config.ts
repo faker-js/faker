@@ -126,11 +126,14 @@ const config = defineConfig({
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
-    algolia: {
-      // Set by netlify
-      apiKey: process.env.API_KEY,
-      appId: process.env.APP_ID,
-      indexName: algoliaIndex,
+    search: {
+      provider: 'algolia',
+      options: {
+        // Set by netlify
+        apiKey: process.env.API_KEY,
+        appId: process.env.APP_ID,
+        indexName: algoliaIndex,
+      },
     },
 
     footer: {
