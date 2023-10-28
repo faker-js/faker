@@ -1,7 +1,7 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-import { filterWordListByLength } from './filterWordListByLength';
+import { filterWordListByLength } from './filter-word-list-by-length';
 
 /**
  * Module to return various types of words.
