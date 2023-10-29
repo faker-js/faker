@@ -41,6 +41,8 @@ module.exports = defineConfig({
     'unicorn/prefer-at': 'off',
     // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
     'unicorn/prefer-string-replace-all': 'off',
+    // TODO @ST-DDT 2023-10-28: The following rule should be turned on when we switch to esm.
+    'unicorn/prefer-top-level-await': 'off',
 
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
@@ -59,7 +61,6 @@ module.exports = defineConfig({
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-string-slice': 'off',
-    'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
     'unicorn/switch-case-braces': 'off',
