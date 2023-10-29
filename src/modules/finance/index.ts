@@ -350,7 +350,6 @@ export class FinanceModule {
       options = { length: options };
     }
 
-    // set defaults
     const { ellipsis = true, length = 4, parens = true } = options;
 
     let template = this.faker.string.numeric({ length });
