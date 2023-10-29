@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { generateMersenne32Randomizer } from '../src/internal/mersenne';
 import type { Randomizer } from '../src/randomizer';
-import { seededRuns } from './support/seededRuns';
+import { seededRuns } from './support/seeded-runs';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
