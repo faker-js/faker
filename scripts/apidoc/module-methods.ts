@@ -4,7 +4,6 @@ import type {
   SignatureReflection,
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
-import { writeApiDocsModule } from './apiDocsWriter';
 import { codeToHtml } from './markdown';
 import { analyzeSignature } from './signature';
 import {
@@ -18,6 +17,7 @@ import {
 } from './typedoc';
 import type { ModuleSummary } from './utils';
 import { adjustUrls } from './utils';
+import { writeApiDocsModule } from './writer';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.

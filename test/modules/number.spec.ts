@@ -2,7 +2,7 @@ import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError, SimpleFaker } from '../../src';
 import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 
 describe('number', () => {
   seededTests(faker, 'number', (t) => {

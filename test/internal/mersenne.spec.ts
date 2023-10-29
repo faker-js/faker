@@ -4,7 +4,7 @@ import {
   MersenneTwister19937,
 } from '../../src/internal/mersenne';
 import type { Randomizer } from '../../src/randomizer';
-import { seededRuns } from '../support/seededRuns';
+import { seededRuns } from '../support/seeded-runs';
 import { times } from '../support/times';
 import {
   MERSENNE_MAX_VALUE,
