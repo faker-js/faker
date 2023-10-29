@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 function degreesToRadians(degrees: number) {
