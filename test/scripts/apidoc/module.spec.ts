@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
-import { analyzeModule } from '../../../scripts/apidoc/moduleMethods';
+import { analyzeModule } from '../../../scripts/apidoc/module-methods';
 import * as ModuleTests from './module.example';
 import { loadExampleModules } from './utils';
 
