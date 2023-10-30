@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-import { filterWordListByLength } from '../word/filterWordListByLength';
+import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
  * Module to generate random texts and words.
