@@ -62,11 +62,11 @@ function getRepetitionsBasedOnQuantifierParameters(
     }
   } else if (quantifierMin != null && quantifierMax != null) {
     repetitions = faker.number.int({
-      min: parseInt(quantifierMin),
-      max: parseInt(quantifierMax),
+      min: Number.parseInt(quantifierMin),
+      max: Number.parseInt(quantifierMax),
     });
   } else if (quantifierMin != null && quantifierMax == null) {
-    repetitions = parseInt(quantifierMin);
+    repetitions = Number.parseInt(quantifierMin);
   }
 
   return repetitions;
@@ -108,8 +108,8 @@ function legacyRegexpStringParse(
   let repetitions: number;
   let token = RANGE_REP_REG.exec(string);
   while (token != null) {
-    min = parseInt(token[2]);
-    max = parseInt(token[3]);
+    min = Number.parseInt(token[2]);
+    max = Number.parseInt(token[3]);
     // switch min and max
     if (min > max) {
       tmp = max;
@@ -128,7 +128,7 @@ function legacyRegexpStringParse(
   // Deal with repeat `{num}`
   token = REP_REG.exec(string);
   while (token != null) {
-    repetitions = parseInt(token[2]);
+    repetitions = Number.parseInt(token[2]);
     string =
       string.slice(0, token.index) +
       token[1].repeat(repetitions) +
@@ -139,8 +139,8 @@ function legacyRegexpStringParse(
 
   token = RANGE_REG.exec(string);
   while (token != null) {
-    min = parseInt(token[1]); // This time we are not capturing the char before `[]`
-    max = parseInt(token[2]);
+    min = Number.parseInt(token[1]); // This time we are not capturing the char before `[]`
+    max = Number.parseInt(token[2]);
     // switch min and max
     if (min > max) {
       tmp = max;
@@ -190,7 +190,7 @@ export class SimpleHelpersModule {
   slugify(string: string = ''): string {
     return string
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036f]/g, '') // removes combining marks
+      .replace(/[\u0300-\u036F]/g, '') // removes combining marks
       .replace(/ /g, '-') // replaces spaces with hyphens
       .replace(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
@@ -407,7 +407,7 @@ export class SimpleHelpersModule {
     if (pattern instanceof RegExp) {
       isCaseInsensitive = pattern.flags.includes('i');
       pattern = pattern.toString();
-      pattern = pattern.match(/\/(.+?)\//)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
+      pattern = /\/(.+?)\//.exec(pattern)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
     }
 
     let min: number;
@@ -417,7 +417,7 @@ export class SimpleHelpersModule {
     // Deal with single wildcards
     const SINGLE_CHAR_REG =
       /([.A-Za-z0-9])(?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+))(?![^[]*]|[^{]*})/;
-    let token = pattern.match(SINGLE_CHAR_REG);
+    let token = SINGLE_CHAR_REG.exec(pattern);
     while (token != null) {
       const quantifierMin: string = token[2];
       const quantifierMax: string = token[3];
@@ -434,14 +434,14 @@ export class SimpleHelpersModule {
         pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
         pattern.slice(token.index + token[0].length);
-      token = pattern.match(SINGLE_CHAR_REG);
+      token = SINGLE_CHAR_REG.exec(pattern);
     }
 
     const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[-!@#$&()`.+,/"])/;
     const RANGE_ALPHANUMEMRIC_REG =
       /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+)|)/;
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
-    token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
+    token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
     while (token != null) {
       const isNegated = token[1] === '^';
       const includesDash: boolean = token[2] === '-';
@@ -452,7 +452,7 @@ export class SimpleHelpersModule {
       const rangeCodes: number[] = [];
 
       let ranges = token[3];
-      let range = ranges.match(SINGLE_RANGE_REG);
+      let range = SINGLE_RANGE_REG.exec(ranges);
 
       if (includesDash) {
         // 45 is the ascii code for '-'
@@ -460,9 +460,9 @@ export class SimpleHelpersModule {
       }
 
       while (range != null) {
-        if (range[0].indexOf('-') === -1) {
+        if (!range[0].includes('-')) {
           // handle non-ranges
-          if (isCaseInsensitive && isNaN(Number(range[0]))) {
+          if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
             rangeCodes.push(
               range[0].toUpperCase().charCodeAt(0),
               range[0].toLowerCase().charCodeAt(0)
@@ -481,7 +481,10 @@ export class SimpleHelpersModule {
           }
 
           for (let i = min; i <= max; i++) {
-            if (isCaseInsensitive && isNaN(Number(String.fromCharCode(i)))) {
+            if (
+              isCaseInsensitive &&
+              Number.isNaN(Number(String.fromCharCode(i)))
+            ) {
               const ch = String.fromCharCode(i);
               rangeCodes.push(
                 ch.toUpperCase().charCodeAt(0),
@@ -494,7 +497,7 @@ export class SimpleHelpersModule {
         }
 
         ranges = ranges.substring(range[0].length);
-        range = ranges.match(SINGLE_RANGE_REG);
+        range = SINGLE_RANGE_REG.exec(ranges);
       }
 
       repetitions = getRepetitionsBasedOnQuantifierParameters(
@@ -549,15 +552,15 @@ export class SimpleHelpersModule {
         pattern.slice(0, token.index) +
         generatedString +
         pattern.slice(token.index + token[0].length);
-      token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
+      token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
     }
 
     const RANGE_REP_REG = /(.)\{(\d+),(\d+)\}/;
     // Deal with quantifier ranges `{min,max}`
-    token = pattern.match(RANGE_REP_REG);
+    token = RANGE_REP_REG.exec(pattern);
     while (token != null) {
-      min = parseInt(token[2]);
-      max = parseInt(token[3]);
+      min = Number.parseInt(token[2]);
+      max = Number.parseInt(token[3]);
       // throw error if min larger than max
       if (min > max) {
         throw new FakerError('Numbers out of order in {} quantifier.');
@@ -568,19 +571,19 @@ export class SimpleHelpersModule {
         pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
         pattern.slice(token.index + token[0].length);
-      token = pattern.match(RANGE_REP_REG);
+      token = RANGE_REP_REG.exec(pattern);
     }
 
     const REP_REG = /(.)\{(\d+)\}/;
     // Deal with repeat `{num}`
-    token = pattern.match(REP_REG);
+    token = REP_REG.exec(pattern);
     while (token != null) {
-      repetitions = parseInt(token[2]);
+      repetitions = Number.parseInt(token[2]);
       pattern =
         pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
         pattern.slice(token.index + token[0].length);
-      token = pattern.match(REP_REG);
+      token = REP_REG.exec(pattern);
     }
 
     return pattern;
@@ -704,7 +707,7 @@ export class SimpleHelpersModule {
   uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
-      const array = Array.from(set);
+      const array = [...set];
       return this.shuffle(array).splice(0, length);
     }
 
@@ -722,7 +725,7 @@ export class SimpleHelpersModule {
       // Ignore
     }
 
-    return Array.from(set);
+    return [...set];
   }
 
   /**
@@ -1003,7 +1006,7 @@ export class SimpleHelpersModule {
       return [];
     }
 
-    const arrayCopy = array.slice(0);
+    const arrayCopy = [...array];
     let i = array.length;
     const min = i - numElements;
     let temp: T;
@@ -1046,7 +1049,7 @@ export class SimpleHelpersModule {
   ): T[keyof T] {
     // ignore numeric keys added by TypeScript
     const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
-      isNaN(Number(key))
+      Number.isNaN(Number(key))
     );
     const randomKey = this.arrayElement(keys);
     return enumObject[randomKey];
@@ -1467,7 +1470,7 @@ export class HelpersModule extends SimpleHelpersModule {
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
       params = JSON.parse(`[${parameters}]`);
-    } catch (err) {
+    } catch {
       // since JSON.parse threw an error, assume parameters was actually a string
       params = [parameters];
     }

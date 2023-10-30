@@ -350,23 +350,17 @@ export class FinanceModule {
       options = { length: options };
     }
 
-    // set defaults
     const { ellipsis, length = 4, parens } = options;
 
-    // create a template for length
-    let template = '';
+    let template = this.faker.string.numeric({ length });
 
-    for (let i = 0; i < length; i++) {
-      template = `${template}#`;
+    if (ellipsis) {
+      template = `...${template}`;
     }
 
-    //prefix with ellipsis
-    template = ellipsis ? ['...', template].join('') : template;
-
-    template = parens ? ['(', template, ')'].join('') : template;
-
-    //generate random numbers
-    template = this.faker.helpers.replaceSymbolWithNumber(template);
+    if (parens) {
+      template = `(${template})`;
+    }
 
     return template;
   }
@@ -599,14 +593,9 @@ export class FinanceModule {
       precision: 10 ** -dec,
     });
 
-    let formattedString: string;
-    if (autoFormat) {
-      formattedString = randValue.toLocaleString(undefined, {
-        minimumFractionDigits: dec,
-      });
-    } else {
-      formattedString = randValue.toFixed(dec);
-    }
+    const formattedString = autoFormat
+      ? randValue.toLocaleString(undefined, { minimumFractionDigits: dec })
+      : randValue.toFixed(dec);
 
     return symbol + formattedString;
   }
@@ -719,11 +708,11 @@ export class FinanceModule {
   litecoinAddress(): string {
     const addressLength = this.faker.number.int({ min: 26, max: 33 });
 
-    let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
-
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
+    const address =
+      this.faker.string.fromCharacters('LM3') +
+      this.faker.string.fromCharacters(
+        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+        addressLength - 1
       );
 
     return address;

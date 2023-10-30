@@ -19,7 +19,7 @@ import {
   DefaultParameterAwareSerializer,
   parameterDefaultReader,
   patchProjectParameterDefaults,
-} from './parameterDefaults';
+} from './parameter-defaults';
 import { mapByName } from './utils';
 
 type CommentHolder = Pick<Reflection, 'comment'>;
@@ -154,7 +154,7 @@ export function extractModuleName(module: DeclarationReflection): string {
 
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
-  return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+  return moduleName[0].toLowerCase() + moduleName.substring(1);
 }
 
 export const MISSING_DESCRIPTION = 'Missing';
@@ -281,12 +281,12 @@ export function extractSeeAlsos(reflection?: CommentHolder): string[] {
       .map((link) => {
         link = link.trim();
         if (link.startsWith('-')) {
-          link = link.slice(1).trim();
+          link = link.slice(1).trimStart();
         }
 
         return link;
       })
-      .filter((link) => link)
+      .filter((link) => link.length > 0)
   );
 }
 
