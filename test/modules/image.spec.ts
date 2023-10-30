@@ -1,7 +1,7 @@
 import isDataURI from 'validator/lib/isDataURI';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
