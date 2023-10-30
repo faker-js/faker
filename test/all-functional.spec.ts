@@ -63,7 +63,7 @@ function isWorkingLocaleForMethod(
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
-function modulesList(): { [module_: string]: string[] } {
+function modulesList(): { [module: string]: string[] } {
   const modules = Object.keys(fakerEN)
     .sort()
     .filter(isTestableModule)

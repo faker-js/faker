@@ -16,7 +16,7 @@ export interface DocsApiDiffIndex {
   /**
    * The methods in the module by name.
    */
-  [module_: string]: DocsApiDiff;
+  [module: string]: DocsApiDiff;
 }
 
 export interface DocsApiDiff {
