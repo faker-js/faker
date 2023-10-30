@@ -168,7 +168,7 @@ interface User {
 }
 ```
 
-As you can see, your `User` model probably looks completely different from the one you have in your codebase.
+As you can see, our `User` model probably looks completely different from the one you have in your codebase.
 One thing to keep an eye on is the `subscriptionTier` property, as it is not simply a string, but only one of the strings defined in the `SubscriptionTier` type (`'free'` or `'basic'` or `'business'`).
 Also, in a real scenario, your model should not depend on a type of a third party library (`SexType` in this case).
 
