@@ -62,7 +62,7 @@ export class PhoneModule {
       deprecated({
         deprecated: 'faker.phone.number(format)',
         proposed:
-          'faker.phone.number() or faker.string.numeric() or faker.helpers.fromRegExp()',
+          'faker.phone.number(), faker.string.numeric() or faker.helpers.fromRegExp()',
         since: '8.1',
         until: '9.0',
       });
