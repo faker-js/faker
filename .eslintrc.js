@@ -103,6 +103,7 @@ module.exports = defineConfig({
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/unbound-method': 'off',
 
     'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts

@@ -65,6 +65,8 @@ function formatHexColor(
     case 'lower':
       hexColor = hexColor.toLowerCase();
       break;
+    case 'mixed':
+    // Do nothing
   }
 
   if (options?.prefix) {
@@ -133,7 +135,6 @@ function toCSS(
     case 'lch':
       return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
     case 'rgb':
-    default:
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
   }
 }
@@ -157,7 +158,7 @@ function toColorFormat(
       return toCSS(values, cssFunction, space);
     case 'binary':
       return toBinary(values);
-    default:
+    case 'decimal':
       return values;
   }
 }
