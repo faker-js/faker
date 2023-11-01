@@ -142,8 +142,10 @@ describe('commerce', () => {
           );
 
           for (const price of result) {
-            expect(parseFloat(price)).toBeLessThanOrEqual(1.1);
-            expect(parseFloat(price)).toBeGreaterThanOrEqual(1);
+            const parsedPrice = Number.parseFloat(price);
+
+            expect(parsedPrice).toBeLessThanOrEqual(1.1);
+            expect(parsedPrice).toBeGreaterThanOrEqual(1);
           }
         });
       });

@@ -98,8 +98,6 @@ export class NumberModule {
    * @param options.precision Precision of the generated number, for example `0.01` will round to 2 decimal points.
    * If precision is passed, the upper bound is inclusive.
    *
-   * @see faker.commerce.price() for prices
-   *
    * @example
    * faker.number.float() // 0.5688541042618454
    * faker.number.float(3) // 2.367973240558058

@@ -323,10 +323,11 @@ export class CommerceModule {
       },
     ]);
 
-    if (
-      parseFloat(randValueString.replace(/\d$/, lastDigit)) <= max &&
-      parseFloat(randValueString.replace(/\d$/, lastDigit)) >= min
-    ) {
+    const parsedNewRandValue = Number.parseFloat(
+      randValueString.replace(/\d$/, lastDigit)
+    );
+
+    if (parsedNewRandValue <= max && parsedNewRandValue >= min) {
       return `${symbol}${randValueString.replace(/\d$/, lastDigit)}`;
     }
 
