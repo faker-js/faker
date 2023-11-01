@@ -120,6 +120,13 @@ export class CommerceModule {
   /**
    * Generates a price between min and max (inclusive).
    *
+   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: '9'
+   * - 30% of the time: '5'
+   * - 10% of the time: '0'
+   * - 10% of the time: a random digit from 0-9
+   *
    * @param options An options object. Defaults to `{}`.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
@@ -128,8 +135,8 @@ export class CommerceModule {
    *
    * @example
    * faker.commerce.price() // 828.07
-   * faker.commerce.price({ min: 100 }) // 904.15
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.56
+   * faker.commerce.price({ min: 100 }) // 904.19
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -164,6 +171,13 @@ export class CommerceModule {
   /**
    * Generates a price between min and max (inclusive).
    *
+   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: '9'
+   * - 30% of the time: '5'
+   * - 10% of the time: '0'
+   * - 10% of the time: a random digit from 0-9
+   *
    * @param min The minimum price. Defaults to `1`.
    * @param max The maximum price. Defaults to `1000`.
    * @param dec The number of decimal places. Defaults to `2`.
@@ -171,8 +185,8 @@ export class CommerceModule {
    *
    * @example
    * faker.commerce.price() // 828.07
-   * faker.commerce.price(100) // 904.15
-   * faker.commerce.price(100, 200) // 154.56
+   * faker.commerce.price(100) // 904.19
+   * faker.commerce.price(100, 200) // 154.55
    * faker.commerce.price(100, 200, 0) // 133
    * faker.commerce.price(100, 200, 0, '$') // $114
    *
@@ -183,6 +197,13 @@ export class CommerceModule {
   price(min?: number, max?: number, dec?: number, symbol?: string): string;
   /**
    * Generates a price between min and max (inclusive).
+   *
+   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: '9'
+   * - 30% of the time: '5'
+   * - 10% of the time: '0'
+   * - 10% of the time: a random digit from 0-9
    *
    * @param options The minimum price or on options object. Defaults to `{}`.
    * @param options.min The minimum price. Defaults to `1`.
@@ -195,8 +216,8 @@ export class CommerceModule {
    *
    * @example
    * faker.commerce.price() // 828.07
-   * faker.commerce.price({ min: 100 }) // 904.15
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.56
+   * faker.commerce.price({ min: 100 }) // 904.19
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -218,6 +239,13 @@ export class CommerceModule {
   /**
    * Generates a price between min and max (inclusive).
    *
+   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: '9'
+   * - 30% of the time: '5'
+   * - 10% of the time: '0'
+   * - 10% of the time: a random digit from 0-9
+   *
    * @param options The minimum price or on options object. Defaults to `{}`.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
@@ -229,8 +257,8 @@ export class CommerceModule {
    *
    * @example
    * faker.commerce.price() // 828.07
-   * faker.commerce.price({ min: 100 }) // 904.15
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.56
+   * faker.commerce.price({ min: 100 }) // 904.19
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -295,7 +323,14 @@ export class CommerceModule {
       },
     ]);
 
-    return `${symbol}${randValueString.replace(/\d$/, lastDigit)}`;
+    if (
+      parseFloat(randValueString.replace(/\d$/, lastDigit)) <= max &&
+      parseFloat(randValueString.replace(/\d$/, lastDigit)) >= min
+    ) {
+      return `${symbol}${randValueString.replace(/\d$/, lastDigit)}`;
+    }
+
+    return `${symbol}${randValueString}`;
   }
 
   /**
