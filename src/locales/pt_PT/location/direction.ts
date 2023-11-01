@@ -1,6 +1,6 @@
 export default {
   cardinal: ['Norte', 'Este', 'Sul', 'Oeste'],
-  cardinal_abbr: [],
+  cardinal_abbr: ['N', 'E', 'S', 'O'],
   ordinal: ['Nordeste', 'Noroeste', 'Sudeste', 'Sodoeste'],
-  ordinal_abbr: [],
+  ordinal_abbr: ['NE', 'NO', 'SE', 'SO'],
 };
