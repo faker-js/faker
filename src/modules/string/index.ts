@@ -237,6 +237,7 @@ export class StringModule {
         charsArray = [...LOWER_CHARS];
         break;
       case 'mixed':
+      default:
         charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
         break;
     }
@@ -327,6 +328,7 @@ export class StringModule {
         charsArray.push(...LOWER_CHARS);
         break;
       case 'mixed':
+      default:
         charsArray.push(...LOWER_CHARS, ...UPPER_CHARS);
         break;
     }

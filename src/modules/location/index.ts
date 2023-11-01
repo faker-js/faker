@@ -365,6 +365,7 @@ export class LocationModule {
         case 'alpha-3':
           return 'alpha3';
         case 'alpha-2':
+        default:
           return 'alpha2';
       }
     })();
