@@ -127,7 +127,7 @@ test.describe('Testing the application', () => {
     await page.goto('https://www.example.com/login');
     await page.getByLabel('email').fill(email);
     await page.getByLabel('password').fill(password);
-    await page.getByRole('button', { name: 'Register' }).click();
+    await page.getByRole('button', { name: 'Login' }).click();
 
     // We should have logged in successfully to the dashboard page.
     await expect(page).toHaveURL(/.*dashboard/);
