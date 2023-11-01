@@ -328,7 +328,7 @@ export class CommerceModule {
     );
 
     if (parsedNewRandValue <= max && parsedNewRandValue >= min) {
-      return `${symbol}${randValueString.replace(/\d$/, lastDigit)}`;
+      return `${symbol}${parsedNewRandValue}`;
     }
 
     return `${symbol}${randValueString}`;
