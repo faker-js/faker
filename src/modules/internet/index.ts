@@ -70,7 +70,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne'}) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne'}) // 'Jeanne_Smith63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne.Doe63@yahoo.com'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
@@ -112,7 +114,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
+   * faker.internet.email('Jeanne') // 'Jeanne63@yahoo.com'
+   * faker.internet.email('Jeanne') // 'Jeanne.Smith63@yahoo.com'
+   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne_Doe63@yahoo.com'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
@@ -150,7 +154,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne' }) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne' }) // 'Jeanne.Smith63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe63@yahoo.com'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
@@ -300,7 +306,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
    * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
@@ -336,7 +344,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail('Jeanne') // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail('Jeanne') // 'Jeanne.Smith96@example.net'
+   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne_Doe96@example.net'
    * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
@@ -370,7 +380,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
    * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
@@ -478,7 +490,7 @@ export class InternetModule {
 
   /**
    * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
+   * The resulting username will use the names provided or choose a random name if one is not provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -490,7 +502,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
+   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne98'
+   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
    * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
    * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
    * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
@@ -514,7 +528,7 @@ export class InternetModule {
   }): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
+   * The resulting username will use the names provided or choose a random name if one is not provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -525,7 +539,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.userName('Jeanne') // 'Jeanne98'
+   * faker.internet.userName('Jeanne') // 'Jeanne.Smith98'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne_Doe98'
    * faker.internet.userName('John', 'Doe') // 'John.Doe'
    * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
    * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
@@ -538,7 +554,7 @@ export class InternetModule {
   userName(firstName?: string, lastName?: string): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
+   * The resulting username will use the names provided or choose a random name if one is not provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -551,7 +567,9 @@ export class InternetModule {
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
+   * faker.internet.userName({ firstName: 'Jeanne'}) // 'Jeanne98'
+   * faker.internet.userName({ firstName: 'Jeanne'}) // 'Jeanne.Smith98'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
    * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
    * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
    * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
@@ -616,24 +634,21 @@ export class InternetModule {
     } = options;
 
     let result: string;
-    switch (
-      this.faker.number.int({
-        min: options.lastName || legacyLastName ? 1 : 0,
-        max: 2,
-      })
-    ) {
+    const hasLastName = options.lastName || legacyLastName;
+    const strategy = this.faker.number.int(hasLastName ? 1 : 2);
+    switch (strategy) {
       case 0:
-        result = `${firstName}${this.faker.number.int(99)}`;
+        result = `${firstName}${this.faker.helpers.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.number.int(99)}`;
         break;
       case 1:
         result =
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-        result = `${firstName}${this.faker.helpers.arrayElement([
-          '.',
-          '_',
-        ])}${lastName}${this.faker.number.int(99)}`;
+        result = `${firstName}${this.faker.number.int(99)}`;
         break;
     }
 
