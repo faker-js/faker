@@ -136,7 +136,7 @@ exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller95"
 
 exports[`internet > 42 > userName > with all option 1`] = `"Jane_Doe95"`;
 
-exports[`internet > 42 > userName > with firstName option 1`] = `"Jane18"`;
+exports[`internet > 42 > userName > with firstName option 1`] = `"Jane73"`;
 
 exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe"`;
 
@@ -186,7 +186,7 @@ exports[`internet > 1211 > email > with all options 1`] = `"Jane.Doe@fakerjs.dev
 
 exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Tito^Satterfield99@yahoo.com"`;
 
-exports[`internet > 1211 > email > with firstName option 1`] = `"Jane22@hotmail.com"`;
+exports[`internet > 1211 > email > with firstName option 1`] = `"Jane12@hotmail.com"`;
 
 exports[`internet > 1211 > email > with lastName option 1`] = `"Tito_Doe@yahoo.com"`;
 
@@ -194,9 +194,9 @@ exports[`internet > 1211 > email > with legacy names 1`] = `"Jane_Doe77@hotmail.
 
 exports[`internet > 1211 > email > with legacy names and provider 1`] = `"Jane.Doe@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with legacy provider 1`] = `"Tito22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with legacy provider 1`] = `"Tito12@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with provider option 1`] = `"Tito22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with provider option 1`] = `"Tito12@fakerjs.dev"`;
 
 exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
 
@@ -208,7 +208,7 @@ exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane_Doe77@ex
 
 exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Tito^Satterfield99@example.com"`;
 
-exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane22@example.net"`;
+exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane12@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Tito_Doe@example.com"`;
 
@@ -266,7 +266,7 @@ exports[`internet > 1211 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.3; Trident/4.0)"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Tito22"`;
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito12"`;
 
 exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d.tpv"`;
 
@@ -278,7 +278,7 @@ exports[`internet > 1211 > userName > with accented names 1`] = `"Helene.Muller"
 
 exports[`internet > 1211 > userName > with all option 1`] = `"Jane.Doe"`;
 
-exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane77"`;
+exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane22"`;
 
 exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito_Doe77"`;
 

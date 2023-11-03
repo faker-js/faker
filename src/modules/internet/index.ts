@@ -490,7 +490,7 @@ export class InternetModule {
 
   /**
    * Generates a username using the given person's name as base.
-   * The resulting username will use the names provided or choose a random name if one is not provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -528,7 +528,7 @@ export class InternetModule {
   }): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resulting username will use the names provided or choose a random name if one is not provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -554,7 +554,7 @@ export class InternetModule {
   userName(firstName?: string, lastName?: string): string;
   /**
    * Generates a username using the given person's name as base.
-   * The resulting username will use the names provided or choose a random name if one is not provided.
+   * The resulting username may use neither, one or both of the names provided.
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
@@ -636,16 +636,15 @@ export class InternetModule {
     let result: string;
     const hasLastName = options.lastName || legacyLastName;
     const strategy = this.faker.number.int(hasLastName ? 1 : 2);
+    const separator = this.faker.helpers.arrayElement(['.', '_']);
     switch (strategy) {
       case 0:
-        result = `${firstName}${this.faker.helpers.arrayElement([
-          '.',
-          '_',
-        ])}${lastName}${this.faker.number.int(99)}`;
+        result = `${firstName}${separator}${lastName}${this.faker.number.int(
+          99
+        )}`;
         break;
       case 1:
-        result =
-          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
+        result = `${firstName}${separator}${lastName}`;
         break;
       case 2:
         result = `${firstName}${this.faker.number.int(99)}`;
