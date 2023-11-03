@@ -164,6 +164,16 @@ exports[`string > 42 > symbol > with length parameter 5`] = `"!\\"~\\\\_"`;
 
 exports[`string > 42 > symbol > with length range 1`] = `"^}&\\\\]>>%/%$\\"/\`"`;
 
+exports[`string > 42 > ulid 1`] = `"1SY5QRKK4E431EVAK4PM01ZQTY"`;
+
+exports[`string > 42 > ulid 2`] = `"005Z5K9KG0D09GKC419ZB7E2SK"`;
+
+exports[`string > 42 > ulid 3`] = `"0CGZJE1VKN5E20YYYJSC9037N7"`;
+
+exports[`string > 42 > ulid 4`] = `"1N3KFT15XC85NR9DG6HJ51ZTRE"`;
+
+exports[`string > 42 > ulid 5`] = `"2CWXKQXA2J6G1YAVCQ8HTJBY8K"`;
+
 exports[`string > 42 > uuid 1`] = `"5cf2bc99-2721-407d-8592-ba00fbdf302f"`;
 
 exports[`string > 42 > uuid 2`] = `"94980604-8962-404f-a537-1c9368f970d9"`;
@@ -338,6 +348,16 @@ exports[`string > 1211 > symbol > with length parameter 5`] = `"]@?\\\\_"`;
 
 exports[`string > 1211 > symbol > with length range 1`] = `"/{](%~\\"@&@'].,&[\\\\_!]"`;
 
+exports[`string > 1211 > ulid 1`] = `"2EWR74Z1N5N6RDB5PQT0RNMQTX"`;
+
+exports[`string > 1211 > ulid 2`] = `"19VZVZ6EJW64BKZER0C9X0HDZ5"`;
+
+exports[`string > 1211 > ulid 3`] = `"0J95PCGXBZV9CJ8C9J52H7P741"`;
+
+exports[`string > 1211 > ulid 4`] = `"2VFM76DD6KVDJJF21MPH5KPF84"`;
+
+exports[`string > 1211 > ulid 5`] = `"2NGPEF64KHVE3GVEE1CJFPJ2SW"`;
+
 exports[`string > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-b2bb-d0caabde64df"`;
 
 exports[`string > 1211 > uuid 2`] = `"f379e325-9f7c-4064-be08-6f23942b68e5"`;
@@ -511,6 +531,16 @@ exports[`string > 1337 > symbol > with length parameter 4`] = `")\\\\*$^"`;
 exports[`string > 1337 > symbol > with length parameter 5`] = `"-$?,%"`;
 
 exports[`string > 1337 > symbol > with length range 1`] = `"<&')</\\"+(;=)"`;
+
+exports[`string > 1337 > ulid 1`] = `"0H568HE1A7GJ8AZ8Q93SC3MB4Q"`;
+
+exports[`string > 1337 > ulid 2`] = `"25EVSSS0BEDCJGRB6F9VNCFE54"`;
+
+exports[`string > 1337 > ulid 3`] = `"1T6WHXTK5YYWDTGPGP0TQKZN5E"`;
+
+exports[`string > 1337 > ulid 4`] = `"0DBMPS0NBV1RSYB1PGFNZQTHK8"`;
+
+exports[`string > 1337 > ulid 5`] = `"1TZQ8V092KY8ZWF9AGQ40PRWNH"`;
 
 exports[`string > 1337 > uuid 1`] = `"48234870-5389-445f-b4b4-1c61a52bf27d"`;
 

@@ -687,6 +687,21 @@ export class StringModule {
   }
 
   /**
+   * Returns a ULID ([Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec)).
+   *
+   * @example
+   * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+   *
+   * @since 8.2.0
+   */
+  ulid(): string {
+    return (
+      this.fromCharacters('012', 1) +
+      this.fromCharacters('0123456789ABCDEFGHJKMNPQRSTVWXYZ', 25)
+    );
+  }
+
+  /**
    * Generates a [Nano ID](https://github.com/ai/nanoid).
    *
    * @param length Length of the generated string. Defaults to `21`.
