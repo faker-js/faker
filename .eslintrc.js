@@ -15,7 +15,7 @@ module.exports = defineConfig({
   reportUnusedDisableDirectives: true,
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/strict-type-checked',
     'plugin:prettier/recommended',
     'plugin:deprecation/recommended',
     'plugin:jsdoc/recommended-typescript-error',
@@ -41,6 +41,8 @@ module.exports = defineConfig({
     'unicorn/prefer-at': 'off',
     // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
     'unicorn/prefer-string-replace-all': 'off',
+    // TODO @ST-DDT 2023-10-28: The following rule should be turned on when we switch to esm.
+    'unicorn/prefer-top-level-await': 'off',
 
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
@@ -59,7 +61,6 @@ module.exports = defineConfig({
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-string-slice': 'off',
-    'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
     'unicorn/switch-case-braces': 'off',
@@ -90,6 +91,7 @@ module.exports = defineConfig({
       'error',
       { ignoreParameters: true },
     ],
+    '@typescript-eslint/no-unnecessary-condition': 'off', // requires `strictNullChecks` to be enabled
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -103,6 +105,11 @@ module.exports = defineConfig({
       { allowNumber: true, allowBoolean: true },
     ],
     '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
+
+    // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
+    '@typescript-eslint/no-confusing-void-expression': 'off',
 
     'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
