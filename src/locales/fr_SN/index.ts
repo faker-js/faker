@@ -4,17 +4,11 @@
  */
 import type { LocaleDefinition } from '../..';
 import internet from './internet';
-import location from './location';
 import metadata from './metadata';
-import person from './person';
-import phone_number from './phone_number';
 
 const fr_SN: LocaleDefinition = {
   internet,
-  location,
   metadata,
-  person,
-  phone_number,
 };
 
 export default fr_SN;
