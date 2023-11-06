@@ -89,8 +89,8 @@
   "devDependencies": {
     "@actions/github": "~6.0.0",
     "@algolia/client-search": "~4.19.1",
-    "@types/markdown-it": "~13.0.4",
-    "@types/node": "~20.8.7",
+    "@types/markdown-it": "~13.0.5",
+    "@types/node": "~20.8.10",
     "@types/sanitize-html": "~2.9.3",
     "@types/semver": "~7.5.4",
     "@types/validator": "~13.11.5",
@@ -100,9 +100,9 @@
     "@vitest/ui": "~0.34.7",
     "@vueuse/core": "~10.5.0",
     "conventional-changelog-cli": "~4.1.0",
-    "cypress": "~13.3.2",
+    "cypress": "~13.4.0",
     "esbuild": "~0.19.5",
-    "eslint": "~8.52.0",
+    "eslint": "~8.53.0",
     "eslint-config-prettier": "~9.0.0",
     "eslint-define-config": "~1.24.1",
     "eslint-gitignore": "~0.1.0",
@@ -110,7 +110,7 @@
     "eslint-plugin-jsdoc": "~46.8.2",
     "eslint-plugin-prettier": "~5.0.1",
     "eslint-plugin-unicorn": "~49.0.0",
-    "eslint-plugin-vitest": "~0.3.8",
+    "eslint-plugin-vitest": "~0.3.9",
     "glob": "~10.3.10",
     "npm-run-all": "~4.1.5",
     "prettier": "3.0.3",
@@ -126,7 +126,7 @@
     "vite": "~4.5.0",
     "vitepress": "1.0.0-beta.7",
     "vitest": "~0.34.6",
-    "vue": "~3.3.6"
+    "vue": "~3.3.7"
   },
   "packageManager": "pnpm@8.5.1",
   "engines": {
