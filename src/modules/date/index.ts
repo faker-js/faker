@@ -1,8 +1,8 @@
-import type { Faker, SimpleFaker } from '../..';
+import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
@@ -26,11 +26,7 @@ function toDate(
 /**
  * Module to generate dates (without methods requiring localized data).
  */
-export class SimpleDateModule {
-  constructor(protected readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class SimpleDateModule extends SimpleModuleBase {
   /**
    * Generates a random date that can be either in the past or in the future.
    *
