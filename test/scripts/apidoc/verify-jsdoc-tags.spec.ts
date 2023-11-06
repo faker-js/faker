@@ -50,7 +50,7 @@ describe('verify JSDoc tags', () => {
   }
 
   const allowedReferences = new Set(
-    Object.values(modules).reduce((acc, [module, methods]) => {
+    Object.values(modules).reduce<string[]>((acc, [module, methods]) => {
       const moduleFieldName = extractModuleFieldName(module);
       return [
         ...acc,
@@ -58,10 +58,10 @@ describe('verify JSDoc tags', () => {
           (methodName) => `faker.${moduleFieldName}.${methodName}`
         ),
       ];
-    }, [] as string[])
+    }, [])
   );
   const allowedLinks = new Set(
-    Object.values(modules).reduce((acc, [module, methods]) => {
+    Object.values(modules).reduce<string[]>((acc, [module, methods]) => {
       const moduleFieldName = extractModuleFieldName(module);
       return [
         ...acc,
@@ -71,7 +71,7 @@ describe('verify JSDoc tags', () => {
             `/api/${moduleFieldName}.html#${methodName.toLowerCase()}`
         ),
       ];
-    }, [] as string[])
+    }, [])
   );
 
   function assertDescription(description: string, isHtml: boolean): void {

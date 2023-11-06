@@ -1,6 +1,5 @@
-import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate numbers of any kind.
@@ -16,11 +15,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  * - For numeric strings of a given length, use [`faker.string.numeric()`](https://fakerjs.dev/api/string.html#numeric).
  * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
-export class NumberModule {
-  constructor(private readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class NumberModule extends SimpleModuleBase {
   /**
    * Returns a single random integer between zero and the given max value or the given range.
    * The bounds are inclusive.
