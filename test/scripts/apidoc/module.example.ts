@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-extraneous-class -- required for tests */
+
 /**
  * A simple module without anything special.
  */

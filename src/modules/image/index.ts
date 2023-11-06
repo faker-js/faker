@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 import type { MethodsOf } from '../../utils/types';
 import { LoremPicsum } from './providers/lorempicsum';
 import { Placeholder } from './providers/placeholder';
@@ -19,7 +19,7 @@ import { Unsplash } from './providers/unsplash';
  *
  * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
  */
-export class ImageModule {
+export class ImageModule extends ModuleBase {
   /**
    * @deprecated Use `faker.image` instead.
    */
@@ -38,8 +38,8 @@ export class ImageModule {
   // eslint-disable-next-line deprecation/deprecation
   readonly placeholder: Placeholder;
 
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
+  constructor(faker: Faker) {
+    super(faker);
 
     // eslint-disable-next-line deprecation/deprecation
     this.unsplash = new Unsplash(this.faker);
@@ -232,17 +232,16 @@ export class ImageModule {
       length: { min: 5, max: 10 },
     })}/${width}/${height}`;
 
-    const hasValidGrayscale = grayscale === true;
     const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
 
-    if (hasValidGrayscale || hasValidBlur) {
+    if (grayscale || hasValidBlur) {
       url += '?';
 
-      if (hasValidGrayscale) {
+      if (grayscale) {
         url += `grayscale`;
       }
 
-      if (hasValidGrayscale && hasValidBlur) {
+      if (grayscale && hasValidBlur) {
         url += '&';
       }
 

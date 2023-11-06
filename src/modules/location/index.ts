@@ -1,7 +1,6 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate addresses and locations. Prior to Faker 8.0.0, this module was known as `faker.address`.
@@ -14,11 +13,7 @@ import { deprecated } from '../../internal/deprecated';
  *
  * For a random country, you can use [`country()`](https://fakerjs.dev/api/location.html#country) or [`countryCode()`](https://fakerjs.dev/api/location.html#countrycode).
  */
-export class LocationModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class LocationModule extends ModuleBase {
   /**
    * Generates random zip code from specified format. If format is not specified,
    * the locale's zip format is used.

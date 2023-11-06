@@ -1,6 +1,5 @@
-import type { SimpleFaker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate various primitive values and data types.
@@ -11,11 +10,7 @@ import { deprecated } from '../../internal/deprecated';
  *
  * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
-export class DatatypeModule {
-  constructor(private readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class DatatypeModule extends SimpleModuleBase {
   /**
    * Returns a single random number between zero and the given max value or the given range with the specified precision.
    * The bounds are inclusive.
