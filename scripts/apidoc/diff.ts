@@ -8,13 +8,13 @@ import { nameDocsDiffIndexFile, pathDocsDiffIndexFile } from './utils';
  */
 async function loadRemote(url: string): Promise<DocsApiDiffIndex> {
   return fetch(url).then((res) => {
-    if (res.ok) {
-      return res.json() as Promise<DocsApiDiffIndex>;
+    if (!res.ok) {
+      throw new Error(
+        `Failed to load remote diff index from ${url}: ${res.statusText}`
+      );
     }
 
-    throw new Error(
-      `Failed to load remote diff index from ${url}: ${res.statusText}`
-    );
+    return res.json() as Promise<DocsApiDiffIndex>;
   });
 }
 
