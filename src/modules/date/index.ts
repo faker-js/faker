@@ -1292,3 +1292,27 @@ export class DateModule extends SimpleDateModule {
     return this.faker.helpers.arrayElement(values);
   }
 }
+
+/**
+ *
+ * @param options asd
+ * @param options.deprecated as
+ * @param options.replacement asd
+ */
+export function demo(
+  options: {
+    /**
+     * @deprecated
+     */
+    deprecated?: boolean;
+    replacement?: boolean;
+  } = {}
+): boolean {
+  const {
+    // eslint-disable-next-line deprecation/deprecation
+    deprecated = false,
+    // eslint-disable-next-line deprecation/deprecation
+    replacement = deprecated,
+  } = options;
+  return replacement;
+}
