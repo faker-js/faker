@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
@@ -13,11 +12,7 @@ import { filterWordListByLength } from '../word/filter-word-list-by-length';
  *
  * The generic [`text()`](https://fakerjs.dev/api/lorem.html#text) method can be used to generate some text between one sentence and multiple paragraphs, while [`slug()`](https://fakerjs.dev/api/lorem.html#slug) generates an URL-friendly hyphenated string.
  */
-export class LoremModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class LoremModule extends ModuleBase {
   /**
    * Generates a word of a specified length.
    *
