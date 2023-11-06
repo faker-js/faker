@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate hacker/IT words and phrases.
@@ -16,11 +15,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  * - [faker.lorem](https://fakerjs.dev/api/lorem.html) uses faux-Latin "lorem ipsum" text.
  * - [faker.company](https://fakerjs.dev/api/company.html) includes corporate catchphrases and buzzwords.
  */
-export class HackerModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class HackerModule extends ModuleBase {
   /**
    * Returns a random hacker/IT abbreviation.
    *
