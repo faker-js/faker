@@ -232,17 +232,16 @@ export class ImageModule extends ModuleBase {
       length: { min: 5, max: 10 },
     })}/${width}/${height}`;
 
-    const hasValidGrayscale = grayscale === true;
     const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
 
-    if (hasValidGrayscale || hasValidBlur) {
+    if (grayscale || hasValidBlur) {
       url += '?';
 
-      if (hasValidGrayscale) {
+      if (grayscale) {
         url += `grayscale`;
       }
 
-      if (hasValidGrayscale && hasValidBlur) {
+      if (grayscale && hasValidBlur) {
         url += '&';
       }
 
