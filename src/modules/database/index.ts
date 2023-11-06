@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate database related entries.
@@ -10,11 +9,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  *
  * For the NoSQL database MongoDB, [`mongodbObjectId()`](https://fakerjs.dev/api/database.html#mongodbobjectid) provides a random ID.
  */
-export class DatabaseModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class DatabaseModule extends ModuleBase {
   /**
    * Returns a random database column name.
    *

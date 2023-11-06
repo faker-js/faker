@@ -13,12 +13,12 @@ const STRATEGIES = {
     wordList: ReadonlyArray<string>,
     length: { min: number; max: number }
   ): string[] => {
-    const wordsByLength = wordList.reduce(
+    const wordsByLength = wordList.reduce<Record<number, string[]>>(
       (data, word) => {
         (data[word.length] = data[word.length] ?? []).push(word);
         return data;
       },
-      {} as Record<number, string[]>
+      {}
     );
 
     const lengths = Object.keys(wordsByLength).map(Number);
