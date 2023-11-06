@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
-import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { FakerError } from '../..';
+import { ModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
 
 export enum Sex {
@@ -83,11 +83,7 @@ function selectDefinition<T>(
  *
  * For personal contact information like phone numbers and email addresses, see the [`faker.phone`](https://fakerjs.dev/api/phone.html) and [`faker.internet`](https://fakerjs.dev/api/internet.html) modules.
  */
-export class PersonModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class PersonModule extends ModuleBase {
   /**
    * Returns a random first name.
    *

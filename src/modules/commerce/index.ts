@@ -1,7 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
-import type { Faker } from '../../faker';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<
@@ -87,11 +86,7 @@ const ISBN_LENGTH_RULES: Record<
  *
  * You can also create a price using [`price()`](https://fakerjs.dev/api/commerce.html#price).
  */
-export class CommerceModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class CommerceModule extends ModuleBase {
   /**
    * Returns a department inside a shop.
    *
