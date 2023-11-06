@@ -35,8 +35,8 @@ afterAll(() => {
   }
 });
 
-describe('verify JSDoc tags', () => {
-  const modules = loadProjectModules();
+describe('verify JSDoc tags', async () => {
+  const modules = await loadProjectModules();
 
   function resolveDirToModule(moduleName: string): string {
     return resolve(tempDir, moduleName);
