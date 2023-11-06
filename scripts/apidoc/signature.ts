@@ -342,7 +342,7 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
     throw new Error(`Found description text after the default value:\n${text}`);
   }
 
-  summary.splice(summary.length - 2, 2);
+  summary.splice(-2, 2);
   const lastSummaryPart = summary[summary.length - 1];
   lastSummaryPart.text = lastSummaryPart.text.replace(/[ \n]Defaults to $/, '');
   return result[2];
