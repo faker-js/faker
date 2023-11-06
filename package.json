@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "@actions/github": "~6.0.0",
-    "@algolia/client-search": "~4.19.1",
+    "@algolia/client-search": "~4.20.0",
     "@eslint-types/deprecation": "2.0.0-1",
     "@eslint-types/jsdoc": "~46.9.1",
     "@eslint-types/prettier": "5.1.2",
@@ -125,11 +125,11 @@
     "semver": "~7.5.4",
     "standard-version": "~9.5.0",
     "tsx": "~3.13.0",
-    "typedoc": "~0.24.8",
+    "typedoc": "~0.25.3",
     "typescript": "~4.9.5",
     "validator": "~13.11.0",
     "vite": "~4.5.1",
-    "vitepress": "1.0.0-beta.7",
+    "vitepress": "1.0.0-rc.25",
     "vitest": "~0.34.6",
     "vue": "~3.3.13"
   },
