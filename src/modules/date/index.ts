@@ -1081,6 +1081,7 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
+    // eslint-disable-next-line deprecation/deprecation
     const { abbr, abbreviated = abbr ?? false, context = false } = options;
 
     if (abbr != null) {
@@ -1264,6 +1265,7 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
+    // eslint-disable-next-line deprecation/deprecation
     const { abbr, abbreviated = abbr ?? false, context = false } = options;
 
     if (abbr != null) {
