@@ -79,8 +79,6 @@ export type NumericChar =
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
 
-const SAMPLE_MAX_LENGTH = 2 ** 20;
-
 /**
  * Module to generate string related entries.
  *
@@ -621,7 +619,7 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param length Length of the generated string. Defaults to `10`.
    * @param length.min The minimum number of characters to generate.
    * @param length.max The maximum number of characters to generate.
    *
@@ -647,9 +645,6 @@ export class StringModule extends SimpleModuleBase {
         } = 10
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
-    if (length >= SAMPLE_MAX_LENGTH) {
-      length = SAMPLE_MAX_LENGTH;
-    }
 
     const charCodeOption = {
       min: 33,
