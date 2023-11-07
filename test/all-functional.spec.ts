@@ -10,12 +10,36 @@ const IGNORED_MODULES = new Set([
   '_defaultRefDate',
 ]);
 
-function isTestableModule(mod: string) {
-  return !IGNORED_MODULES.has(mod);
+function getMethodNamesByModules(faker: Faker): { [module: string]: string[] } {
+  return Object.fromEntries(
+    Object.keys(faker)
+      .filter(isTestableModule)
+      .sort()
+      .map<[string, string[]]>((moduleName) => [
+        moduleName,
+        getMethodNamesOf(faker[moduleName]),
+      ])
+      .filter(([module, methods]) => {
+        if (methods.length === 0) {
+          console.log(`Skipping ${module} - No testable methods`);
+          return false;
+        }
+
+        return true;
+      })
+  );
 }
 
-function isMethodOf(mod: string) {
-  return (meth: string) => typeof fakerEN[mod][meth] === 'function';
+function isTestableModule(moduleName: string): moduleName is keyof Faker {
+  return !IGNORED_MODULES.has(moduleName);
+}
+
+function getMethodNamesOf(module: object): string[] {
+  return Object.keys(module).filter(isMethodOf(module));
+}
+
+function isMethodOf(module: object): (method: string) => boolean {
+  return (method: string) => typeof module[method] === 'function';
 }
 
 type SkipConfig<TModule> = Partial<
@@ -43,9 +67,9 @@ const BROKEN_LOCALE_METHODS = {
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
-    jobArea: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
-    jobDescriptor: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
-    jobTitle: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'ur'],
+    jobArea: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'fr_SN'],
+    jobDescriptor: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'fr_SN'],
+    jobTitle: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'ur', 'fr_SN'],
     jobType: ['ur'],
   },
 } satisfies {
@@ -53,36 +77,17 @@ const BROKEN_LOCALE_METHODS = {
 };
 
 function isWorkingLocaleForMethod(
-  mod: string,
-  meth: string,
+  module: string,
+  method: string,
   locale: string
 ): boolean {
-  const broken = BROKEN_LOCALE_METHODS[mod]?.[meth] ?? [];
+  const broken = BROKEN_LOCALE_METHODS[module]?.[method] ?? [];
   return broken !== '*' && !broken.includes(locale);
 }
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
-function modulesList(): { [module: string]: string[] } {
-  const modules = Object.keys(fakerEN)
-    .sort()
-    .filter(isTestableModule)
-    .reduce((result, mod) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
-      if (methods.length > 0) {
-        result[mod] = methods;
-      } else {
-        console.log(`Skipping ${mod} - No testable methods`);
-      }
-
-      return result;
-    }, {});
-
-  return modules;
-}
-
-const modules = modulesList();
+const modules = getMethodNamesByModules(fakerEN);
 
 describe('BROKEN_LOCALE_METHODS test', () => {
   it('should not contain obsolete configuration (modules)', () => {

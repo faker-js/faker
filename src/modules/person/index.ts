@@ -336,7 +336,9 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobTitle(): string {
-    return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
+    return this.faker.helpers.fake(
+      this.faker.definitions.person.job_title_pattern
+    );
   }
 
   /**
