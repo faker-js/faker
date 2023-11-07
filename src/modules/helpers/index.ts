@@ -458,7 +458,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       while (range != null) {
         if (range[0].includes('-')) {
           // handle ranges
-          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
+          const rangeMinMax = range[0].split('-').map((x) => x.codePointAt(0));
           min = rangeMinMax[0];
           max = rangeMinMax[1];
           // throw error if min larger than max
@@ -469,12 +469,12 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           for (let i = min; i <= max; i++) {
             if (
               isCaseInsensitive &&
-              Number.isNaN(Number(String.fromCharCode(i)))
+              Number.isNaN(Number(String.fromCodePoint(i)))
             ) {
-              const ch = String.fromCharCode(i);
+              const ch = String.fromCodePoint(i);
               rangeCodes.push(
-                ch.toUpperCase().charCodeAt(0),
-                ch.toLowerCase().charCodeAt(0)
+                ch.toUpperCase().codePointAt(0),
+                ch.toLowerCase().codePointAt(0)
               );
             } else {
               rangeCodes.push(i);
@@ -484,11 +484,11 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           // handle non-ranges
           if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
             rangeCodes.push(
-              range[0].toUpperCase().charCodeAt(0),
-              range[0].toLowerCase().charCodeAt(0)
+              range[0].toUpperCase().codePointAt(0),
+              range[0].toLowerCase().codePointAt(0)
             );
           } else {
-            rangeCodes.push(range[0].charCodeAt(0));
+            rangeCodes.push(range[0].codePointAt(0));
           }
         }
 
@@ -540,7 +540,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       }
 
       const generatedString = this.multiple(
-        () => String.fromCharCode(this.arrayElement(rangeCodes)),
+        () => String.fromCodePoint(this.arrayElement(rangeCodes)),
         { count: repetitions }
       ).join('');
 
