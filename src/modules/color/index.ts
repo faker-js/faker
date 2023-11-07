@@ -64,6 +64,8 @@ function formatHexColor(
     case 'lower':
       hexColor = hexColor.toLowerCase();
       break;
+    case 'mixed':
+    // Do nothing
   }
 
   if (options?.prefix) {
@@ -156,6 +158,7 @@ function toColorFormat(
       return toCSS(values, cssFunction, space);
     case 'binary':
       return toBinary(values);
+    case 'decimal':
     default:
       return values;
   }

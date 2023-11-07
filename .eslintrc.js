@@ -101,6 +101,7 @@ module.exports = defineConfig({
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
 
