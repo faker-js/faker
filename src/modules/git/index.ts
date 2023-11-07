@@ -1,6 +1,5 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 
 const nbsp = '\u00A0';
 
@@ -11,11 +10,7 @@ const nbsp = '\u00A0';
  *
  * [`commitEntry()`](https://fakerjs.dev/api/git.html#commitentry) generates a random commit entry as printed by `git log`. This includes a commit hash [`commitSha()`](https://fakerjs.dev/api/git.html#commitsha), author, date [`commitDate()`](https://fakerjs.dev/api/git.html#commitdate), and commit message [`commitMessage()`](https://fakerjs.dev/api/git.html#commitmessage). You can also generate a random branch name with [`branch()`](https://fakerjs.dev/api/git.html#branch).
  */
-export class GitModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class GitModule extends ModuleBase {
   /**
    * Generates a random branch name.
    *

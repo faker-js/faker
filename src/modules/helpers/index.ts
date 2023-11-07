@@ -1,7 +1,7 @@
 import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -161,7 +161,7 @@ function legacyRegexpStringParse(
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
-export class SimpleHelpersModule {
+export class SimpleHelpersModule extends SimpleModuleBase {
   /**
    * Global store of unique values.
    * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
@@ -169,10 +169,6 @@ export class SimpleHelpersModule {
    * @internal
    */
   private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
-
-  constructor(protected readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
 
   /**
    * Slugifies the given string.
@@ -460,17 +456,7 @@ export class SimpleHelpersModule {
       }
 
       while (range != null) {
-        if (!range[0].includes('-')) {
-          // handle non-ranges
-          if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
-            rangeCodes.push(
-              range[0].toUpperCase().charCodeAt(0),
-              range[0].toLowerCase().charCodeAt(0)
-            );
-          } else {
-            rangeCodes.push(range[0].charCodeAt(0));
-          }
-        } else {
+        if (range[0].includes('-')) {
           // handle ranges
           const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
           min = rangeMinMax[0];
@@ -493,6 +479,16 @@ export class SimpleHelpersModule {
             } else {
               rangeCodes.push(i);
             }
+          }
+        } else {
+          // handle non-ranges
+          if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
+            rangeCodes.push(
+              range[0].toUpperCase().charCodeAt(0),
+              range[0].toLowerCase().charCodeAt(0)
+            );
+          } else {
+            rangeCodes.push(range[0].charCodeAt(0));
           }
         }
 

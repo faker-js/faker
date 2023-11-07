@@ -97,6 +97,7 @@ describe('helpers', () => {
       enum MixedFoo {
         Foo = 0,
         Bar = 1,
+        // eslint-disable-next-line @typescript-eslint/no-mixed-enums
         FooName = 'Foo',
         BarName = 'Bar',
       }
@@ -258,6 +259,7 @@ describe('helpers', () => {
         enum FooMixedEnum {
           Foo = 0,
           Bar = 1,
+          // eslint-disable-next-line @typescript-eslint/no-mixed-enums
           StrFoo = 'FOO',
           StrBar = 'BAR',
         }
