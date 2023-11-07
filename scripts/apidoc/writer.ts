@@ -63,20 +63,17 @@ export async function writeApiDocsModule(
     text: moduleName,
     link: `/api/${lowerModuleName}.html`,
     methods,
-    diff: methods.reduce(
-      (data, method) => ({
-        ...data,
-        [method.name]: methodDiffHash(method),
+    diff: {
+      moduleHash: diffHash({
+        name: moduleName,
+        field: lowerModuleName,
+        deprecated,
+        comment,
       }),
-      {
-        moduleHash: diffHash({
-          name: moduleName,
-          field: lowerModuleName,
-          deprecated,
-          comment,
-        }),
-      }
-    ),
+      ...Object.fromEntries(
+        methods.map((method) => [method.name, methodDiffHash(method)])
+      ),
+    },
   };
 }
 
