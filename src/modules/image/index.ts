@@ -175,7 +175,7 @@ export class ImageModule extends ModuleBase {
     const { width = 640, height = 480, category } = options;
 
     return `https://loremflickr.com/${width}/${height}${
-      category != null ? `/${category}` : ''
+      category == null ? '' : `/${category}`
     }?lock=${this.faker.number.int()}`;
   }
 

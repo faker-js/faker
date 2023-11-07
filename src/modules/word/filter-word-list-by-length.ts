@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { groupBy } from '../../internal/group-by';
 
 /**
  * The error handling strategies for the `filterWordListByLength` function.
@@ -13,14 +14,7 @@ const STRATEGIES = {
     wordList: ReadonlyArray<string>,
     length: { min: number; max: number }
   ): string[] => {
-    const wordsByLength = wordList.reduce<Record<number, string[]>>(
-      (data, word) => {
-        (data[word.length] = data[word.length] ?? []).push(word);
-        return data;
-      },
-      {}
-    );
-
+    const wordsByLength = groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
     const min = Math.min(...lengths);
     const max = Math.max(...lengths);
