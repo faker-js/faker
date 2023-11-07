@@ -348,7 +348,7 @@ describe('internet', () => {
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^Aiden([._]Harann)?\d*/);
+          expect(prefix).toMatch(/^Aiden[._]Harann\d*/);
         });
 
         it('should return an email with special characters', () => {
@@ -366,7 +366,7 @@ describe('internet', () => {
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
+          expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
         });
       });
 
@@ -397,9 +397,7 @@ describe('internet', () => {
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
           expect(username).includes('Aiden');
-          expect(username).toMatch(
-            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
-          );
+          expect(username).toMatch(/^Aiden[._]Harann\d*/);
         });
 
         it('should strip accents', () => {
