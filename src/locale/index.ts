@@ -37,6 +37,7 @@ import { faker as fakerFR_BE } from './fr_BE';
 import { faker as fakerFR_CA } from './fr_CA';
 import { faker as fakerFR_CH } from './fr_CH';
 import { faker as fakerFR_LU } from './fr_LU';
+import { faker as fakerFR_SN } from './fr_SN';
 import { faker as fakerHE } from './he';
 import { faker as fakerHR } from './hr';
 import { faker as fakerHU } from './hu';
@@ -106,6 +107,7 @@ export {
   fakerFR_CA,
   fakerFR_CH,
   fakerFR_LU,
+  fakerFR_SN,
   fakerHE,
   fakerHR,
   fakerHU,
@@ -176,6 +178,7 @@ export const allFakers = {
   fr_CA: fakerFR_CA,
   fr_CH: fakerFR_CH,
   fr_LU: fakerFR_LU,
+  fr_SN: fakerFR_SN,
   he: fakerHE,
   hr: fakerHR,
   hu: fakerHU,

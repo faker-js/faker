@@ -1,6 +1,5 @@
-import type { SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
@@ -80,8 +79,6 @@ export type NumericChar =
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
 
-const SAMPLE_MAX_LENGTH = 2 ** 20;
-
 /**
  * Module to generate string related entries.
  *
@@ -98,11 +95,7 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
  * - Emoji can be found at [`faker.internet.emoji()`](https://fakerjs.dev/api/internet.html#emoji).
  * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
-export class StringModule {
-  constructor(private readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class StringModule extends SimpleModuleBase {
   /**
    * Generates a string from the given characters.
    *
@@ -626,7 +619,7 @@ export class StringModule {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param length Length of the generated string. Defaults to `10`.
    * @param length.min The minimum number of characters to generate.
    * @param length.max The maximum number of characters to generate.
    *
@@ -652,9 +645,6 @@ export class StringModule {
         } = 10
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
-    if (length >= SAMPLE_MAX_LENGTH) {
-      length = SAMPLE_MAX_LENGTH;
-    }
 
     const charCodeOption = {
       min: 33,

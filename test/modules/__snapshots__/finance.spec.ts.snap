@@ -78,23 +78,23 @@ exports[`finance > 42 > iban > with formatted option 1`] = `"GT69 T10P 0V13 4624
 
 exports[`finance > 42 > litecoinAddress 1`] = `"3JAaa4SAH2YQdbbiwrhB9hnsMcvA"`;
 
-exports[`finance > 42 > mask > noArgs 1`] = `"3975"`;
+exports[`finance > 42 > mask > noArgs 1`] = `"(...3975)"`;
 
-exports[`finance > 42 > mask > with ellipsis 1`] = `"...3975"`;
+exports[`finance > 42 > mask > with ellipsis 1`] = `"(...3975)"`;
 
-exports[`finance > 42 > mask > with length 1`] = `"39751"`;
+exports[`finance > 42 > mask > with length 1`] = `"(...39751)"`;
 
 exports[`finance > 42 > mask > with length, parenthesis and ellipsis 1`] = `"(...39751)"`;
 
-exports[`finance > 42 > mask > with parenthesis 1`] = `"(3975)"`;
+exports[`finance > 42 > mask > with parenthesis 1`] = `"(...3975)"`;
 
-exports[`finance > 42 > maskedNumber > noArgs 1`] = `"3975"`;
+exports[`finance > 42 > maskedNumber > noArgs 1`] = `"(...3975)"`;
 
-exports[`finance > 42 > maskedNumber > with length 1`] = `"39751"`;
+exports[`finance > 42 > maskedNumber > with length 1`] = `"(...39751)"`;
 
-exports[`finance > 42 > maskedNumber > with length and parenthesis option 1`] = `"39751"`;
+exports[`finance > 42 > maskedNumber > with length and parenthesis option 1`] = `"...39751"`;
 
-exports[`finance > 42 > maskedNumber > with length option 1`] = `"39751"`;
+exports[`finance > 42 > maskedNumber > with length option 1`] = `"(...39751)"`;
 
 exports[`finance > 42 > maskedNumber > with length, parenthesis and ellipsis option 1`] = `"...39751"`;
 
@@ -106,7 +106,7 @@ exports[`finance > 42 > pin > with length option 1`] = `"3975110867"`;
 
 exports[`finance > 42 > routingNumber 1`] = `"397511082"`;
 
-exports[`finance > 42 > transactionDescription 1`] = `"deposit transaction at Reynolds, Miller and Crist using card ending with ***1135 for KES 374.54 in account ***08670982"`;
+exports[`finance > 42 > transactionDescription 1`] = `"deposit transaction at Reynolds, Miller and Crist using card ending with ***(...1135) for KES 374.54 in account ***08670982"`;
 
 exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
 
@@ -188,23 +188,23 @@ exports[`finance > 1211 > iban > with formatted option 1`] = `"TN83 2673 6788 21
 
 exports[`finance > 1211 > litecoinAddress 1`] = `"3eZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog"`;
 
-exports[`finance > 1211 > mask > noArgs 1`] = `"9829"`;
+exports[`finance > 1211 > mask > noArgs 1`] = `"(...9829)"`;
 
-exports[`finance > 1211 > mask > with ellipsis 1`] = `"...9829"`;
+exports[`finance > 1211 > mask > with ellipsis 1`] = `"(...9829)"`;
 
-exports[`finance > 1211 > mask > with length 1`] = `"98296"`;
+exports[`finance > 1211 > mask > with length 1`] = `"(...98296)"`;
 
 exports[`finance > 1211 > mask > with length, parenthesis and ellipsis 1`] = `"(...98296)"`;
 
-exports[`finance > 1211 > mask > with parenthesis 1`] = `"(9829)"`;
+exports[`finance > 1211 > mask > with parenthesis 1`] = `"(...9829)"`;
 
-exports[`finance > 1211 > maskedNumber > noArgs 1`] = `"9829"`;
+exports[`finance > 1211 > maskedNumber > noArgs 1`] = `"(...9829)"`;
 
-exports[`finance > 1211 > maskedNumber > with length 1`] = `"98296"`;
+exports[`finance > 1211 > maskedNumber > with length 1`] = `"(...98296)"`;
 
-exports[`finance > 1211 > maskedNumber > with length and parenthesis option 1`] = `"98296"`;
+exports[`finance > 1211 > maskedNumber > with length and parenthesis option 1`] = `"...98296"`;
 
-exports[`finance > 1211 > maskedNumber > with length option 1`] = `"98296"`;
+exports[`finance > 1211 > maskedNumber > with length option 1`] = `"(...98296)"`;
 
 exports[`finance > 1211 > maskedNumber > with length, parenthesis and ellipsis option 1`] = `"...98296"`;
 
@@ -216,7 +216,7 @@ exports[`finance > 1211 > pin > with length option 1`] = `"9829667368"`;
 
 exports[`finance > 1211 > routingNumber 1`] = `"982966738"`;
 
-exports[`finance > 1211 > transactionDescription 1`] = `"payment transaction at Fahey, Zieme and Osinski using card ending with ***8825 for CRC 928.52 in account ***73687684"`;
+exports[`finance > 1211 > transactionDescription 1`] = `"payment transaction at Fahey, Zieme and Osinski using card ending with ***(...8825) for CRC 928.52 in account ***73687684"`;
 
 exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
 
@@ -298,23 +298,23 @@ exports[`finance > 1337 > iban > with formatted option 1`] = `"FO22 0053 2700 60
 
 exports[`finance > 1337 > litecoinAddress 1`] = `"LhsjwgYJ7oC8ZrMNmqzLbhEubpcw"`;
 
-exports[`finance > 1337 > mask > noArgs 1`] = `"2124"`;
+exports[`finance > 1337 > mask > noArgs 1`] = `"(...2124)"`;
 
-exports[`finance > 1337 > mask > with ellipsis 1`] = `"...2124"`;
+exports[`finance > 1337 > mask > with ellipsis 1`] = `"(...2124)"`;
 
-exports[`finance > 1337 > mask > with length 1`] = `"21243"`;
+exports[`finance > 1337 > mask > with length 1`] = `"(...21243)"`;
 
 exports[`finance > 1337 > mask > with length, parenthesis and ellipsis 1`] = `"(...21243)"`;
 
-exports[`finance > 1337 > mask > with parenthesis 1`] = `"(2124)"`;
+exports[`finance > 1337 > mask > with parenthesis 1`] = `"(...2124)"`;
 
-exports[`finance > 1337 > maskedNumber > noArgs 1`] = `"2124"`;
+exports[`finance > 1337 > maskedNumber > noArgs 1`] = `"(...2124)"`;
 
-exports[`finance > 1337 > maskedNumber > with length 1`] = `"21243"`;
+exports[`finance > 1337 > maskedNumber > with length 1`] = `"(...21243)"`;
 
-exports[`finance > 1337 > maskedNumber > with length and parenthesis option 1`] = `"21243"`;
+exports[`finance > 1337 > maskedNumber > with length and parenthesis option 1`] = `"...21243"`;
 
-exports[`finance > 1337 > maskedNumber > with length option 1`] = `"21243"`;
+exports[`finance > 1337 > maskedNumber > with length option 1`] = `"(...21243)"`;
 
 exports[`finance > 1337 > maskedNumber > with length, parenthesis and ellipsis option 1`] = `"...21243"`;
 
@@ -326,6 +326,6 @@ exports[`finance > 1337 > pin > with length option 1`] = `"2124352971"`;
 
 exports[`finance > 1337 > routingNumber 1`] = `"212435298"`;
 
-exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Gottlieb and Sons using card ending with ***9477 for HUF 262.02 in account ***52971361"`;
+exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Gottlieb and Sons using card ending with ***(...9477) for HUF 262.02 in account ***52971361"`;
 
 exports[`finance > 1337 > transactionType 1`] = `"withdrawal"`;

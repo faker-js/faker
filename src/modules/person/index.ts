@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 export enum Sex {
   Female = 'female',
@@ -74,11 +74,7 @@ function selectDefinition<T>(
  *
  * For personal contact information like phone numbers and email addresses, see the [`faker.phone`](https://fakerjs.dev/api/phone.html) and [`faker.internet`](https://fakerjs.dev/api/internet.html) modules.
  */
-export class PersonModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class PersonModule extends ModuleBase {
   /**
    * Returns a random first name.
    *
@@ -340,7 +336,9 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobTitle(): string {
-    return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
+    return this.faker.helpers.fake(
+      this.faker.definitions.person.job_title_pattern
+    );
   }
 
   /**
