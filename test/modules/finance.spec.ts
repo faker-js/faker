@@ -217,6 +217,12 @@ describe('finance', () => {
       });
 
       describe('maskedNumber()', () => {
+        it('should return contain parenthesis, ellipsis and have a length of 4 by default', () => {
+          const actual = faker.finance.maskedNumber();
+
+          expect(actual).toMatch(/\(\.{3}\d{4}\)/);
+        });
+
         it('should set a default length', () => {
           const expected = 4; // default account mask length
           const mask = faker.finance.maskedNumber({
