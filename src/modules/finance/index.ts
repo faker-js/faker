@@ -361,7 +361,7 @@ export class FinanceModule extends ModuleBase {
       options = { length: options };
     }
 
-    const { ellipsis, length = 4, parens } = options;
+    const { ellipsis = true, length = 4, parens = true } = options;
 
     let template = this.faker.string.numeric({ length });
 
