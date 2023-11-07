@@ -1,7 +1,6 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 import iban from './iban';
 
 /**
@@ -37,11 +36,7 @@ export interface Currency {
  *
  * For blockchain related methods, use: [`bitcoinAddress()`](https://fakerjs.dev/api/finance.html#bitcoinaddress), [`ethereumAddress()`](https://fakerjs.dev/api/finance.html#ethereumaddress) and [`litecoinAddress()`](https://fakerjs.dev/api/finance.html#litecoinaddress).
  */
-export class FinanceModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class FinanceModule extends ModuleBase {
   /**
    * Generates a random account number.
    *
@@ -350,7 +345,7 @@ export class FinanceModule {
       options = { length: options };
     }
 
-    const { ellipsis, length = 4, parens } = options;
+    const { ellipsis = true, length = 4, parens = true } = options;
 
     let template = this.faker.string.numeric({ length });
 
@@ -815,7 +810,7 @@ export class FinanceModule {
     const normalizedIssuer = issuer.toLowerCase();
     if (normalizedIssuer in localeFormat) {
       format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
-    } else if (/#/.test(issuer)) {
+    } else if (issuer.includes('#')) {
       // The user chose an optional scheme
       format = issuer;
     } else {
