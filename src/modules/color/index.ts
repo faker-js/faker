@@ -1,5 +1,4 @@
-import type { Faker } from '../../faker';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Color space names supported by CSS.
@@ -65,6 +64,8 @@ function formatHexColor(
     case 'lower':
       hexColor = hexColor.toLowerCase();
       break;
+    case 'mixed':
+    // Do nothing
   }
 
   if (options?.prefix) {
@@ -157,6 +158,7 @@ function toColorFormat(
       return toCSS(values, cssFunction, space);
     case 'binary':
       return toBinary(values);
+    case 'decimal':
     default:
       return values;
   }
@@ -171,11 +173,7 @@ function toColorFormat(
  *
  * For a hex color like `#ff0000` used in HTML/CSS, use [`rgb()`](https://fakerjs.dev/api/color.html#rgb). There are also methods for other color formats such as [`hsl()`](https://fakerjs.dev/api/color.html#hsl), [`cmyk()`](https://fakerjs.dev/api/color.html#cmyk), [`hwb()`](https://fakerjs.dev/api/color.html#hwb), [`lab()`](https://fakerjs.dev/api/color.html#lab), and [`lch()`](https://fakerjs.dev/api/color.html#lch).
  */
-export class ColorModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class ColorModule extends ModuleBase {
   /**
    * Returns a random human-readable color name.
    *

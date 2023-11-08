@@ -3,38 +3,22 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import animal from './animal';
 import cell_phone from './cell_phone';
-import color from './color';
-import commerce from './commerce';
-import date from './date';
-import finance from './finance';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
 import metadata from './metadata';
-import music from './music';
 import person from './person';
 import phone_number from './phone_number';
-import vehicle from './vehicle';
-import word from './word';
 
 const fr_CH: LocaleDefinition = {
-  animal,
   cell_phone,
-  color,
-  commerce,
-  date,
-  finance,
   internet,
   location,
   lorem,
   metadata,
-  music,
   person,
   phone_number,
-  vehicle,
-  word,
 };
 
 export default fr_CH;

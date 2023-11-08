@@ -15,7 +15,7 @@ module.exports = defineConfig({
   reportUnusedDisableDirectives: true,
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/strict-type-checked',
     'plugin:prettier/recommended',
     'plugin:deprecation/recommended',
     'plugin:jsdoc/recommended-typescript-error',
@@ -50,16 +50,13 @@ module.exports = defineConfig({
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/import-style': 'off',
     'unicorn/no-array-callback-reference': 'off',
-    'unicorn/no-array-reduce': 'off',
     'unicorn/no-await-expression-member': 'off',
-    'unicorn/no-negated-condition': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-useless-switch-case': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-module': 'off',
-    'unicorn/prefer-negative-index': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
@@ -91,6 +88,7 @@ module.exports = defineConfig({
       'error',
       { ignoreParameters: true },
     ],
+    '@typescript-eslint/no-unnecessary-condition': 'off', // requires `strictNullChecks` to be enabled
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -103,7 +101,13 @@ module.exports = defineConfig({
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
+
+    // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
+    '@typescript-eslint/no-confusing-void-expression': 'off',
 
     'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
