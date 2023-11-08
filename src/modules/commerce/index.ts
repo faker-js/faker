@@ -297,36 +297,35 @@ export class CommerceModule extends ModuleBase {
       return `${symbol}${min.toFixed(dec)}`;
     }
 
-    const randValue = this.faker.number.float({
+    const generated = this.faker.number.float({
       min,
       max,
-      precision: (1 / 10) ** dec,
+      precision: (1 / 10) ** (dec - 1),
     });
 
     if (dec === 0) {
-      return `${symbol}${randValue.toFixed(dec)}`;
+      return `${symbol}${generated.toFixed(dec)}`;
     }
 
-    const randValueString = randValue.toFixed(dec).toString();
-    const lastDigit = this.faker.helpers.weightedArrayElement([
-      { weight: 5, value: '9' },
-      { weight: 3, value: '5' },
-      { weight: 1, value: '0' },
-      {
-        weight: 1,
-        value: this.faker.number.int({ min: 0, max: 9 }).toString(),
-      },
-    ]);
+    const lastDigit =
+      (1 / 10) ** dec *
+      this.faker.helpers.weightedArrayElement([
+        { weight: 5, value: 9 },
+        { weight: 3, value: 5 },
+        { weight: 1, value: 0 },
+        {
+          weight: 1,
+          value: this.faker.number.int({ min: 0, max: 9 }),
+        },
+      ]);
 
-    const parsedNewRandValue = Number.parseFloat(
-      randValueString.replace(/\d$/, lastDigit)
-    );
+    const combined = generated + lastDigit;
 
-    if (parsedNewRandValue <= max && parsedNewRandValue >= min) {
-      return `${symbol}${parsedNewRandValue}`;
+    if (combined <= max && combined >= min) {
+      return `${symbol}${combined.toFixed(dec)}`;
     }
 
-    return `${symbol}${randValueString}`;
+    return `${symbol}${generated.toFixed(dec)}`;
   }
 
   /**
