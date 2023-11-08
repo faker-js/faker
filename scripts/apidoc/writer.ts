@@ -5,6 +5,7 @@ import { ReflectionKind } from 'typedoc';
 import { type DefaultTheme } from 'vitepress';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { APIGroup } from '../../docs/api/api-types';
+import { groupBy } from '../../src/internal/group-by';
 import { formatMarkdown, formatTypescript } from './format';
 import { extractSourceBaseUrl } from './typedoc';
 import type { DocsApiDiffIndex, ModuleSummary, Page } from './utils';
@@ -15,7 +16,6 @@ import {
   pathDocsDir,
   pathOutputDir,
 } from './utils';
-import { groupBy } from '../../src/internal/group-by';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 const pathDocsApiSearchIndex = resolve(
