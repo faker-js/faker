@@ -234,7 +234,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
    *
    * - 50% of the time: '9'
    * - 30% of the time: '5'
