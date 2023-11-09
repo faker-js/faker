@@ -254,7 +254,7 @@ export class InternetModule extends ModuleBase {
     }
 
     const {
-      firstName = this.faker.person.firstName(),
+      firstName,
       lastName = legacyLastName,
       provider = legacyProvider ??
         this.faker.helpers.arrayElement(
@@ -466,7 +466,7 @@ export class InternetModule extends ModuleBase {
     }
 
     const {
-      firstName = this.faker.person.firstName(),
+      firstName,
       lastName = legacyLastName,
       allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
@@ -626,10 +626,10 @@ export class InternetModule extends ModuleBase {
     const {
       firstName = this.faker.person.firstName(),
       lastName = legacyLastName ?? this.faker.person.lastName(),
+      lastName: hasLastName = legacyLastName,
     } = options;
 
     let result: string;
-    const hasLastName = options.lastName || legacyLastName;
     const strategy = this.faker.number.int(hasLastName ? 1 : 2);
     const separator = this.faker.helpers.arrayElement(['.', '_']);
     switch (strategy) {
