@@ -477,33 +477,22 @@ describe('date', () => {
           expect(birthdate).toBeInstanceOf(Date);
         });
 
-        it('returns a random birthdate between two years', () => {
-          const min = 1990;
-          const max = 2000;
+        it.each(['year', 'age', undefined] as const)(
+          'returns a random birthdate that is 18+ by default (%s mode)',
+          (mode) => {
+            // Generate the latest possible value => youngest
+            faker.seed(2855577693);
 
-          const birthdate = faker.date.birthdate({ min, max, mode: 'year' });
-
-          // birthdate is a date object
-          expect(birthdate).toBeInstanceOf(Date);
-
-          // Generated date is between min and max
-          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(min);
-          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
-        });
-
-        it('returns a random birthdate that is 18+ by default', () => {
-          // Generate the latest possible value => youngest
-          faker.seed(2855577693);
-
-          const refDate = new Date();
-          const birthdate = faker.date.birthdate({ refDate });
-          expect(birthdate).toBeInstanceOf(Date);
-          const value = birthdate.valueOf();
-          const refDateValue = refDate.valueOf();
-          expect(value).toBeLessThanOrEqual(refDateValue);
-          const deltaDate = new Date(refDateValue - value);
-          expect(deltaDate.getUTCFullYear() - 1970).toBeGreaterThanOrEqual(18);
-        });
+            const refDate = new Date();
+            const birthdate = faker.date.birthdate({ refDate, mode });
+            expect(birthdate).toBeInstanceOf(Date);
+            const value = birthdate.valueOf();
+            const refDateValue = refDate.valueOf();
+            expect(value).toBeLessThanOrEqual(refDateValue);
+            const deltaDate = new Date(refDateValue - value);
+            expect(deltaDate.getUTCFullYear() - 1970).toBe(18);
+          }
+        );
 
         it('returns a random birthdate in one year', () => {
           const min = 1990;
@@ -520,22 +509,54 @@ describe('date', () => {
           expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
         });
 
-        it('returns a random birthdate between two ages', () => {
-          const min = 4;
-          const max = 5;
+        it('returns a random birthdate between two years', () => {
+          const min = 1990;
+          const max = 2000;
 
-          const birthdate = faker.date.birthdate({ min, max, mode: 'age' });
+          const birthdate = faker.date.birthdate({ min, max, mode: 'year' });
 
           // birthdate is a date object
           expect(birthdate).toBeInstanceOf(Date);
 
           // Generated date is between min and max
-          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(
-            new Date().getUTCFullYear() - max - 1
-          );
-          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(
-            new Date().getUTCFullYear() - min
-          );
+          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(min);
+          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
+        });
+
+        it('returns a random birthdate for specific age', () => {
+          const min = 21;
+          const max = 21;
+          const refDate = new Date();
+
+          const birthdate = faker.date.birthdate({
+            min,
+            max,
+            refDate,
+            mode: 'age',
+          });
+
+          expect(birthdate).toBeInstanceOf(Date);
+          const value = birthdate.valueOf();
+          const refDateValue = refDate.valueOf();
+          expect(value).toBeLessThanOrEqual(refDateValue);
+          const deltaDate = new Date(refDateValue - value);
+          expect(deltaDate.getUTCFullYear() - 1970).toBe(21);
+        });
+
+        it('returns a random birthdate between two ages', () => {
+          const min = 21;
+          const max = 22;
+          const refDate = new Date();
+
+          const birthdate = faker.date.birthdate({ min, max, mode: 'age' });
+
+          expect(birthdate).toBeInstanceOf(Date);
+          const value = birthdate.valueOf();
+          const refDateValue = refDate.valueOf();
+          expect(value).toBeLessThanOrEqual(refDateValue);
+          const deltaDate = new Date(refDateValue - value);
+          expect(deltaDate.getUTCFullYear() - 1970).toBeGreaterThanOrEqual(21);
+          expect(deltaDate.getUTCFullYear() - 1970).toBeLessThanOrEqual(22);
         });
 
         it('should throw an error when the min > max year', () => {
@@ -546,7 +567,21 @@ describe('date', () => {
             faker.date.birthdate({ min, max, mode: 'year' })
           ).toThrow(
             new FakerError(
-              `Max 1990 should be larger than or equal to min 2000.`
+              `Max year 1990 (662515200000) should be greater than or equal to min year 2000 (946771200000).`
+            )
+          );
+        });
+
+        it('should throw an error when the min > max age', () => {
+          const min = 31;
+          const max = 25;
+          const refDate = Date.UTC(2020, 0, 1);
+
+          expect(() =>
+            faker.date.birthdate({ min, max, refDate, mode: 'age' })
+          ).toThrow(
+            new FakerError(
+              `Max age 25 (599616000000) should be greater than or equal to min age 31 (757382400000).`
             )
           );
         });

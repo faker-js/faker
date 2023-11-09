@@ -415,7 +415,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const mode = options.mode === 'age' ? 'age' : 'year';
+    const { min, max, mode = 'year' } = options;
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
 
@@ -423,29 +423,25 @@ export class SimpleDateModule extends SimpleModuleBase {
     // So that people can still be considered as adults in most cases
 
     // Convert to epoch timestamps
-    let min: number;
-    let max: number;
+    let from: number;
+    let to: number;
     if (mode === 'age') {
-      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
-      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
+      from = new Date(refDate).setUTCFullYear(refYear - (max ?? 80) - 1);
+      to = new Date(refDate).setUTCFullYear(refYear - (min ?? 18));
     } else {
-      // Avoid generating dates the first and last date of the year
+      // Avoid generating dates on the first and last date of the year
       // to avoid running into other years depending on the timezone.
-      min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
-        options.min ?? refYear - 80
-      );
-      max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 19
-      );
+      from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min ?? refYear - 80);
+      to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(max ?? refYear - 19);
     }
 
-    if (max < min) {
+    if (from > to) {
       throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
+        `Max ${mode} ${max} (${to}) should be greater than or equal to min ${mode} ${min} (${from}).`
       );
     }
 
-    return new Date(this.faker.number.int({ min, max }));
+    return this.between({ from, to });
   }
 }
 
