@@ -115,12 +115,12 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
    *
-   * - 50% of the time: '9'
-   * - 30% of the time: '5'
-   * - 10% of the time: '0'
-   * - 10% of the time: a random digit from 0-9
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
    *
    * @param options An options object. Defaults to `{}`.
    * @param options.min The minimum price. Defaults to `1`.
@@ -166,12 +166,12 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
    *
-   * - 50% of the time: '9'
-   * - 30% of the time: '5'
-   * - 10% of the time: '0'
-   * - 10% of the time: a random digit from 0-9
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
    *
    * @param min The minimum price. Defaults to `1`.
    * @param max The maximum price. Defaults to `1000`.
@@ -193,12 +193,12 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * To better represent real-world prices, when `options.dec` is greater than 0, the final decimal digit in the returned string will be generated as follows:
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
    *
-   * - 50% of the time: '9'
-   * - 30% of the time: '5'
-   * - 10% of the time: '0'
-   * - 10% of the time: a random digit from 0-9
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
    *
    * @param options The minimum price or on options object. Defaults to `{}`.
    * @param options.min The minimum price. Defaults to `1`.
