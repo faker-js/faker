@@ -236,10 +236,10 @@ export class CommerceModule extends ModuleBase {
    *
    * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
    *
-   * - 50% of the time: '9'
-   * - 30% of the time: '5'
-   * - 10% of the time: '0'
-   * - 10% of the time: a random digit from 0-9
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
    *
    * @param options The minimum price or on options object. Defaults to `{}`.
    * @param options.min The minimum price. Defaults to `1`.
