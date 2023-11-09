@@ -33,7 +33,6 @@ module.exports = defineConfig({
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
-    'unicorn/no-useless-switch-case': 'off', // deactivated to better support enums in switch statements
     'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
     'unicorn/number-literal-case': 'off', // incompatible with prettier
     'unicorn/prefer-ternary': 'off', // ternaries aren't always better

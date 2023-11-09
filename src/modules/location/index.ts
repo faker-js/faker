@@ -360,7 +360,6 @@ export class LocationModule extends ModuleBase {
         case 'alpha-3':
           return 'alpha3';
         case 'alpha-2':
-        default:
           return 'alpha2';
       }
     })();
