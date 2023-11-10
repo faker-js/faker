@@ -31,7 +31,7 @@ export async function generate(): Promise<void> {
     ),
   ];
   await writeApiPagesIndex(
-    pages.map(({ text, link, apiCategory }) => ({ text, link, apiCategory }))
+    pages.map(({ text, link, category }) => ({ text, link, category }))
   );
   writeApiDiffIndex(
     Object.fromEntries(pages.map(({ text, diff }) => [text, diff]))

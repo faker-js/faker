@@ -4,7 +4,7 @@ import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 
 // Types
 
-export type Page = { text: string; link: string; apiCategory?: string };
+export type Page = { text: string; link: string; category: string };
 
 export type ModuleSummary = Page & {
   methods: Method[];
