@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ProjectReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
-import { type DefaultTheme } from 'vitepress';
+import type { DefaultTheme } from 'vitepress';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { APIGroup } from '../../docs/api/api-types';
 import { groupBy } from '../../src/internal/group-by';
@@ -172,10 +172,10 @@ export async function writeApiPagesIndex(pages: Page[]): Promise<void> {
   const pagesByCategory = groupBy(pages, (page) => page.category);
   const pageTree = Object.entries(pagesByCategory).flatMap(
     ([category, items]): DefaultTheme.SidebarItem[] => {
-      const dataCleaning = items.map(({ text, link }) => ({ text, link }));
+      const cleanedItems = items.map(({ text, link }) => ({ text, link }));
       return category
-        ? [{ text: category, items: dataCleaning }]
-        : dataCleaning;
+        ? [{ text: category, items: cleanedItems }]
+        : cleanedItems;
     }
   );
 
