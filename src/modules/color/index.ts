@@ -52,12 +52,14 @@ export type Casing = 'lower' | 'upper' | 'mixed';
  */
 function formatHexColor(
   hexColor: string,
-  options?: {
+  options: {
     prefix?: string;
     casing?: Casing;
-  }
+  } = {}
 ): string {
-  switch (options?.casing) {
+  const { prefix = '0x', casing = 'mixed' } = options;
+
+  switch (casing) {
     case 'upper':
       hexColor = hexColor.toUpperCase();
       break;
@@ -68,7 +70,7 @@ function formatHexColor(
     // Do nothing
   }
 
-  if (options?.prefix) {
+  if (prefix) {
     hexColor = options.prefix + hexColor;
   }
 
