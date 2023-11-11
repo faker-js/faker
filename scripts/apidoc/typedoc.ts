@@ -188,7 +188,7 @@ export function extractSourceBaseUrl(
   reflection: DeclarationReflection | SignatureReflection
 ): string {
   return extractSourceUrl(reflection).replace(
-    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    /^(.*\/blob\/[\da-f]+\/)(.*)$/,
     '$1'
   );
 }
@@ -202,7 +202,7 @@ export function extractSourcePath(
   reflection: DeclarationReflection | SignatureReflection
 ): string {
   return extractSourceUrl(reflection).replace(
-    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    /^(.*\/blob\/[\da-f]+\/)(.*)$/,
     '$2'
   );
 }

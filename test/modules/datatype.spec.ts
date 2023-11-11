@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -390,37 +391,35 @@ describe('datatype', () => {
         });
       });
 
-      describe('UUID', () => {
-        it('generates a valid UUID', () => {
-          const UUID = faker.datatype.uuid();
-          const RFC4122 =
-            /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
-          expect(UUID).toMatch(RFC4122);
+      describe('uuid', () => {
+        it('generates a valid UUID v4', () => {
+          const actual = faker.datatype.uuid();
+          expect(actual).toSatisfy((uuid: string) => validator.isUUID(uuid, 4));
         });
       });
 
       describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.datatype.hexadecimal();
-          expect(hex).toMatch(/^(0x)[0-9a-f]{1}$/i);
+          expect(hex).toMatch(/^(0x)[\da-f]$/i);
           expect(hex.substring(2)).toHaveLength(1);
         });
 
         it('generates a hex string with a provided prefix', () => {
           const hex = faker.datatype.hexadecimal({ prefix: '0x' });
-          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
           expect(hex).toHaveLength(3);
         });
 
         it('generates a random hex string with a provided length', () => {
           const hex = faker.datatype.hexadecimal({ length: 5 });
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
           expect(hex.substring(2)).toHaveLength(5);
         });
 
         it('generates a hex string with a provided casing', () => {
           const hex = faker.datatype.hexadecimal({ case: 'lower' });
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
           expect(hex.substring(2)).toHaveLength(1);
         });
 
@@ -430,7 +429,7 @@ describe('datatype', () => {
             length: 7,
             case: 'upper',
           });
-          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
+          expect(hex).toMatch(/^(0x)[\da-f]+$/i);
           expect(hex.substring(2)).toHaveLength(7);
         });
       });

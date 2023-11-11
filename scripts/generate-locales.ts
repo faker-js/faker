@@ -242,7 +242,7 @@ async function updateLocaleFile(filePath: string): Promise<void> {
   if (lstatSync(filePath).isFile()) {
     const [locale, moduleKey, entryKey] = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
-      .split(/[\\/]/);
+      .split(/[/\\]/);
     await updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }
@@ -405,7 +405,7 @@ async function main(): Promise<void> {
       console.error(error);
     }
 
-    const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
+    const localizedFaker = `faker${locale.replace(/^[a-z]+/, (part) =>
       part.toUpperCase()
     )}`;
 

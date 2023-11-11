@@ -474,7 +474,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+$/
+        /^https:\/\/picsum\.photos\/seed\/[\dA-Za-z]+\/\d+\/\d+$/
       );
     });
   });
@@ -485,7 +485,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
+        /^ht{2}ps:\/{2}via\.placeholder\.com\/\d+x\d+(?:\/[\dA-Fa-f]{6}){2}\.[a-z]{3,4}\?text=.+$/
       );
     });
   });

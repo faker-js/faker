@@ -110,7 +110,7 @@ describe('commerce', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).toMatch(/^[0-9.]+$/);
+          ).toMatch(/^[\d.]+$/);
         });
 
         it('should handle negative amounts, but return 0', () => {
