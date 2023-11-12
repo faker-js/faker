@@ -4,10 +4,12 @@
  */
 import type { LocaleDefinition } from '../..';
 import internet from './internet';
+import location from './location';
 import metadata from './metadata';
 
 const fr_SN: LocaleDefinition = {
   internet,
+  location,
   metadata,
 };
 
