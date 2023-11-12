@@ -24,13 +24,15 @@ export async function generate(): Promise<void> {
 
   const pages = [
     ...(await processFakerClasses(project)),
+    await processFakerRandomizer(project),
+    await processFakerUtilities(project),
     ...(await processModules(project)).sort((a, b) =>
       a.text.localeCompare(b.text)
     ),
-    await processFakerRandomizer(project),
-    await processFakerUtilities(project),
   ];
-  await writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
+  await writeApiPagesIndex(
+    pages.map(({ text, link, category }) => ({ text, link, category }))
+  );
   writeApiDiffIndex(
     Object.fromEntries(pages.map(({ text, diff }) => [text, diff]))
   );
