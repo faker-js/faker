@@ -55,7 +55,8 @@ async function processClass(
     comment,
     examples,
     deprecated,
-    methods
+    methods,
+    ''
   );
 }
 
