@@ -34,6 +34,7 @@ async function processUtilities(
     comment,
     undefined,
     undefined,
-    methods
+    methods,
+    ''
   );
 }
