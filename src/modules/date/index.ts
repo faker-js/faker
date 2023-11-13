@@ -890,7 +890,7 @@ export class SimpleDateModule extends SimpleModuleBase {
         options.min ?? refYear - 80
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 18
+        options.max ?? refYear - 19
       );
     }
 
