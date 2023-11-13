@@ -11,8 +11,8 @@ type FakerModule = {
   [Key in keyof Faker]: Faker[Key] extends Callable | string | number | number[]
     ? never
     : Key extends 'definitions' | 'locales'
-    ? never
-    : Key;
+      ? never
+      : Key;
 }[keyof Faker];
 
 /**
