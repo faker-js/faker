@@ -351,6 +351,11 @@ export class StringModule extends SimpleModuleBase {
    */
   binary(
     options: {
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
       length?:
         | number
         | {
@@ -363,6 +368,11 @@ export class StringModule extends SimpleModuleBase {
              */
             max: number;
           };
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0b'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -393,6 +403,11 @@ export class StringModule extends SimpleModuleBase {
    */
   octal(
     options: {
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
       length?:
         | number
         | {
@@ -405,6 +420,11 @@ export class StringModule extends SimpleModuleBase {
              */
             max: number;
           };
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0o'
+       */
       prefix?: string;
     } = {}
   ): string {

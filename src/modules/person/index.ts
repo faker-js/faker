@@ -174,7 +174,7 @@ export class PersonModule extends ModuleBase {
   /**
    * Generates a random full name.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
    * @param options.sex The optional sex to use. Can be either `'female'` or `'male'`.
