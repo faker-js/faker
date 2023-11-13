@@ -119,7 +119,7 @@
     "sanitize-html": "~2.11.0",
     "semver": "~7.5.4",
     "standard-version": "~9.5.0",
-    "tsx": "~3.14.0",
+    "tsx": "~3.13.0",
     "typedoc": "~0.24.8",
     "typescript": "~4.9.5",
     "validator": "~13.11.0",
