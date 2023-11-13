@@ -1,6 +1,6 @@
 //credit : https://github.com/asmarques/pt-id  
 
-function pad(value, length) {
+function pad(value: string|number, length: number) {
     var result = value + '';
   
     while (result.length < length) {
@@ -10,7 +10,7 @@ function pad(value, length) {
     return result;
   }
   
-  function checkDigit(value) {
+  function checkDigit(value: string|any[]) {
     var sum = 0;
     var len = value.length;
   
@@ -21,7 +21,7 @@ function pad(value, length) {
     var mod = sum % 11;
     return '' + ((mod === 0 || mod === 1) ? 0 : 11 - mod);
   }
-  function nif(prefix) {
+  function nif(prefix: string|any[]) {
     var value = pad(Math.floor(Math.random() * 99999999), 8);
   
     if (prefix) {
@@ -34,4 +34,5 @@ function pad(value, length) {
   //company = 5
   
   nif('1');
-  export default nif;
+
+export default nif;
