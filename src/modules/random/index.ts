@@ -19,7 +19,7 @@ export class RandomModule extends ModuleBase {
    * Returns a random word.
    *
    * @see faker.lorem.word(): For generating a random placeholder word.
-   * @see faker.word.sample(): For generating a random existing word.
+   * @see faker.word.sample(): For generating a random real word.
    *
    * @example
    * faker.random.word() // 'Seamless'
@@ -158,7 +158,7 @@ export class RandomModule extends ModuleBase {
    * @param count.max The maximum number of words. Defaults to `3`.
    *
    * @see faker.lorem.words(): For generating a sequence of random placeholder words.
-   * @see faker.word.words(): For generating a sequence of random existing words.
+   * @see faker.word.words(): For generating a sequence of random real words.
    *
    * @example
    * faker.random.words() // 'neural'

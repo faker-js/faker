@@ -338,7 +338,7 @@ export class StringModule extends SimpleModuleBase {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
    *
-   * @see faker.number.binary(): For generating a `binary number` (within a range).
+   * @see faker.number.binary(): For generating a binary number (within a range).
    *
    * @example
    * faker.string.binary() // '0b1'

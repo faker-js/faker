@@ -325,7 +325,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param string The template string to parse. Defaults to `''`.
    *
-   * @see faker.helpers.fromRegExp(): For generating a string matching the given regex like expressions.
+   * @see faker.helpers.fromRegExp(): For generating a string matching the given regex-like expressions.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
