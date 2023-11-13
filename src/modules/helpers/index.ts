@@ -175,7 +175,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * For that all spaces (` `) are replaced by hyphens (`-`)
    * and most non word characters except for dots and hyphens will be removed.
    *
-   * @param string The input to slugify.
+   * @param string The input to slugify. Defaults to `''`.
    *
    * @example
    * faker.helpers.slugify() // ''
@@ -195,7 +195,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
    * `!` will be replaced by digits >=2 (`2` - `9`).
    *
-   * @param string The template string to parse.
+   * @param string The template string to parse. Defaults to `''`.
    * @param symbol The symbol to replace with digits. Defaults to `'#'`.
    *
    * @example
@@ -228,7 +228,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * - `?` will be replaced with an upper letter ('A' - 'Z')
    * - and `*` will be replaced with either a digit or letter.
    *
-   * @param string The template string to parse.
+   * @param string The template string to parse. Defaults to `''`.
    *
    * @example
    * faker.helpers.replaceSymbols() // ''
@@ -293,8 +293,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
    * `L` will be replaced with the appropriate Luhn checksum.
    *
-   * @param string The credit card format pattern. Defaults to `6453-####-####-####-###L`.
-   * @param symbol The symbol to replace with a digit.
+   * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.
+   * @param symbol The symbol to replace with a digit. Defaults to `'#'`.
    *
    * @example
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3771'
@@ -323,7 +323,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @param string The template string to parse.
+   * @param string The template string to parse. Defaults to `''`.
    *
    * @see faker.helpers.fromRegExp()
    *
@@ -769,7 +769,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template TResult The type of result of the given callback.
    *
    * @param callback The callback to that will be invoked if the probability check was successful.
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *
    * @example
@@ -1092,7 +1092,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template TMethod The type of the method to execute.
    *
    * @param method The method used to generate the values.
-   * @param args The arguments used to call the method.
+   * @param args The arguments used to call the method. Defaults to `[]`.
    * @param options The optional options used to configure this method.
    * @param options.startTime This parameter does nothing.
    * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.

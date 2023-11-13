@@ -497,7 +497,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    * @param legacyTo Deprecated, use `options.to` instead.
-   * @param legacyCount Deprecated, use `options.count` instead.
+   * @param legacyCount Deprecated, use `options.count` instead. Defaults to `3`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -891,7 +891,7 @@ export class SimpleDateModule extends SimpleModuleBase {
         options.min ?? refYear - 80
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 18
+        options.max ?? refYear - 19
       );
     }
 

@@ -116,7 +116,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -180,7 +180,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * @param options The minimum price or on options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -202,9 +202,29 @@ export class CommerceModule extends ModuleBase {
     options?:
       | number
       | {
+          /**
+           * The minimum price.
+           *
+           * @default 1
+           */
           min?: number;
+          /**
+           * The maximum price.
+           *
+           * @default 1000
+           */
           max?: number;
+          /**
+           * The number of decimal places.
+           *
+           * @default 2
+           */
           dec?: number;
+          /**
+           * The currency value to use.
+           *
+           * @default ''
+           */
           symbol?: string;
         },
     legacyMax?: number,
@@ -214,7 +234,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * @param options The minimum price or on options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -331,7 +351,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Returns a random [ISBN](https://en.wikipedia.org/wiki/ISBN) identifier.
    *
-   * @param options The variant to return or an options object. Defaults to `{}`.
+   * @param options The variant to return or an options object.
    * @param options.variant The variant to return. Can be either `10` (10-digit format)
    * or `13` (13-digit format). Defaults to `13`.
    * @param options.separator The separator to use in the format. Defaults to `'-'`.
