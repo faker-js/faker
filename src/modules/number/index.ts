@@ -20,7 +20,7 @@ export class NumberModule extends SimpleModuleBase {
    * Returns a single random integer between zero and the given max value or the given range.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
@@ -87,7 +87,7 @@ export class NumberModule extends SimpleModuleBase {
    * Returns a single random floating-point number for a given precision or range and precision.
    * The lower bound is inclusive, the upper bound is exclusive, unless precision is passed.
    *
-   * @param options Upper bound or options object. Defaults to `{}`.
+   * @param options Upper bound or options object.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
    * @param options.max Upper bound for generated number. Defaults to `1.0`.
    * @param options.precision Precision of the generated number, for example `0.01` will round to 2 decimal points.
@@ -164,7 +164,7 @@ export class NumberModule extends SimpleModuleBase {
    * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) number.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `1`.
    *
@@ -213,7 +213,7 @@ export class NumberModule extends SimpleModuleBase {
    * Returns an [octal](https://en.wikipedia.org/wiki/Octal) number.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `7`.
    *
@@ -262,7 +262,7 @@ export class NumberModule extends SimpleModuleBase {
    * Returns a lowercase [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `15`.
    *
@@ -309,7 +309,7 @@ export class NumberModule extends SimpleModuleBase {
    * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
