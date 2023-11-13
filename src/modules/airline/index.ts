@@ -125,7 +125,7 @@ export class AirlineModule extends ModuleBase {
    * are used by airlines to identify reservations. They're also known as booking reference numbers,
    * locator codes, confirmation codes, or reservation codes.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.allowNumerics Whether to allow numeric characters. Defaults to `false`.
    * @param options.allowVisuallySimilarCharacters Whether to allow visually similar characters such as '1' and 'I'. Defaults to `false`.
    *
@@ -174,7 +174,7 @@ export class AirlineModule extends ModuleBase {
   /**
    * Generates a random seat.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.aircraftType The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`. Defaults to `narrowbody`.
    *
    * @example
@@ -225,7 +225,7 @@ export class AirlineModule extends ModuleBase {
    * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    * ```
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.length The number or range of digits to generate. Defaults to `{ min: 1, max: 4 }`.
    * @param options.addLeadingZeros Whether to pad the flight number up to 4 digits with leading zeros. Defaults to `false`.
    *
