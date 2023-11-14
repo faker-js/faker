@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { ReflectionType, SomeType } from 'typedoc';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -25,7 +26,7 @@ import { loadProjectModules } from './utils';
 
 beforeAll(initMarkdownRenderer);
 
-const tempDir = resolve(__dirname, 'temp');
+const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
 
 afterAll(() => {
   // Remove temp folder
@@ -160,7 +161,7 @@ describe('verify JSDoc tags', () => {
             // Write temp files to disk
 
             // Extract examples and make them runnable
-            const examples = extractJoinedRawExamples(signature);
+            const examples = extractJoinedRawExamples(signature) ?? '';
 
             // Save examples to a file to run them later in the specific tests
             const dir = resolveDirToModule(moduleName);
