@@ -97,9 +97,9 @@ export function exec<
     maxRetries = 50,
     currentIterations = 0,
     compare = defaultCompare,
-    store,
+    store = {},
   } = options;
-  let { exclude } = options;
+  let { exclude = [] } = options;
   options.currentIterations = currentIterations;
 
   // Support single exclude argument as string
