@@ -21,7 +21,8 @@ import {
   readFileSync,
   writeFileSync,
 } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.js';
@@ -29,7 +30,7 @@ import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 
 // Constants
 
-const pathRoot = resolve(__dirname, '..');
+const pathRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
@@ -359,8 +360,8 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   }
 
   const fileContentPreData = fileContent.substring(0, compareIndex);
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const localeData = normalizeDataRecursive(require(filePath).default);
+  const fileImport = await import(`file:${filePath}`);
+  const localeData = normalizeDataRecursive(fileImport.default);
 
   // We reattach the content before the actual data implementation to keep stuff like comments.
   // In the long term we should probably define a whether we want those in the files at all.
@@ -388,8 +389,8 @@ async function main(): Promise<void> {
     const pathMetadata = resolve(pathModules, 'metadata.ts');
     let localeTitle = 'No title found';
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const metadata: MetadataDefinition = require(pathMetadata).default;
+      const metadataImport = await import(`file:${pathMetadata}`);
+      const metadata: MetadataDefinition = metadataImport.default;
       const { title } = metadata;
       if (!title) {
         throw new Error(

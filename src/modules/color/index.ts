@@ -47,17 +47,19 @@ export type Casing = 'lower' | 'upper' | 'mixed';
  *
  * @param hexColor Hex color string to be formatted.
  * @param options Options object.
- * @param options.prefix Prefix of the generated hex color. Defaults to `'0x'`.
- * @param options.casing Letter type case of the generated hex color. Defaults to `'mixed'`.
+ * @param options.prefix Prefix of the generated hex color.
+ * @param options.casing Letter type case of the generated hex color.
  */
 function formatHexColor(
   hexColor: string,
-  options?: {
-    prefix?: string;
-    casing?: Casing;
+  options: {
+    prefix: string;
+    casing: Casing;
   }
 ): string {
-  switch (options?.casing) {
+  const { prefix, casing } = options;
+
+  switch (casing) {
     case 'upper':
       hexColor = hexColor.toUpperCase();
       break;
@@ -68,8 +70,8 @@ function formatHexColor(
     // Do nothing
   }
 
-  if (options?.prefix) {
-    hexColor = options.prefix + hexColor;
+  if (prefix) {
+    hexColor = prefix + hexColor;
   }
 
   return hexColor;
@@ -360,19 +362,20 @@ export class ColorModule extends ModuleBase {
      */
     includeAlpha?: boolean;
   }): string | number[];
-  rgb(options?: {
-    prefix?: string;
-    casing?: Casing;
-    format?: 'hex' | ColorFormat;
-    includeAlpha?: boolean;
-  }): string | number[] {
+  rgb(
+    options: {
+      prefix?: string;
+      casing?: Casing;
+      format?: 'hex' | ColorFormat;
+      includeAlpha?: boolean;
+    } = {}
+  ): string | number[] {
     const {
       format = 'hex',
       includeAlpha = false,
       prefix = '#',
       casing = 'lower',
-    } = options || {};
-    options = { format, includeAlpha, prefix, casing };
+    } = options;
     let color: string | number[];
     let cssFunction: CssFunctionType = 'rgb';
     if (format === 'hex') {
@@ -380,7 +383,7 @@ export class ColorModule extends ModuleBase {
         length: includeAlpha ? 8 : 6,
         prefix: '',
       });
-      color = formatHexColor(color, options);
+      color = formatHexColor(color, { prefix, casing });
       return color;
     }
 
