@@ -160,7 +160,7 @@ describe('verify JSDoc tags', () => {
             // Write temp files to disk
 
             // Extract examples and make them runnable
-            const examples = extractJoinedRawExamples(signature);
+            const examples = extractJoinedRawExamples(signature) ?? '';
 
             // Save examples to a file to run them later in the specific tests
             const dir = resolveDirToModule(moduleName);

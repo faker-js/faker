@@ -620,6 +620,7 @@ export class InternetModule extends ModuleBase {
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
+      default:
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
@@ -804,6 +805,7 @@ export class InternetModule extends ModuleBase {
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
+      default:
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',

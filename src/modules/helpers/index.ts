@@ -1120,7 +1120,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     ) => RecordKey,
   >(
     method: TMethod,
-    args: Parameters<TMethod> = [] as Parameters<TMethod>,
+    args: Parameters<TMethod> = [] as unknown as Parameters<TMethod>,
     options: {
       /**
        * This parameter does nothing.
