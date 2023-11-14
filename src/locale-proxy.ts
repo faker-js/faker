@@ -55,6 +55,30 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
 }
 
 /**
+ * Checks that the value is not null or undefined and throws an error if it is.
+ *
+ * @param value The value to check.
+ * @param path The path to the locale data.
+ */
+export function assertLocaleData<T>(
+  value: T,
+  ...path: string[]
+): asserts value is NonNullable<T> {
+  if (value === null) {
+    throw new FakerError(
+      `The locale data for '${path.join('.')}' aren't applicable to this locale.
+  If you think this is a bug, please report it at: https://github.com/faker-js/faker`
+    );
+  } else if (value === undefined) {
+    throw new FakerError(
+      `The locale data for '${path.join('.')}' are missing in this locale.
+  Please contribute the missing data to the project or use a locale/Faker instance that has these data.
+  For more information see https://fakerjs.dev/guide/localization.html`
+    );
+  }
+}
+
+/**
  * Creates a proxy for a category that throws an error when accessing an undefined property.
  *
  * @param categoryName The name of the category.
@@ -79,20 +103,10 @@ function createCategoryProxy<
       const value = target[entryName];
       if (typeof entryName === 'symbol' || entryName === 'nodeType') {
         return value;
-      } else if (value === null) {
-        throw new FakerError(
-          `The locale data for '${categoryName}.${entryName.toString()}' aren't applicable to this locale.
-  If you think this is a bug, please report it at: https://github.com/faker-js/faker`
-        );
-      } else if (value === undefined) {
-        throw new FakerError(
-          `The locale data for '${categoryName}.${entryName.toString()}' are missing in this locale.
-  Please contribute the missing data to the project or use a locale/Faker instance that has these data.
-  For more information see https://fakerjs.dev/guide/localization.html`
-        );
-      } else {
-        return value;
       }
+
+      assertLocaleData(value, categoryName, entryName.toString());
+      return value;
     },
 
     set: throwReadOnlyError,
