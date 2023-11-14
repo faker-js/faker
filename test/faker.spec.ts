@@ -41,7 +41,7 @@ describe('faker', () => {
   describe('rawDefinitions', () => {
     it('locale rawDefinition accessibility', () => {
       // Metadata
-      expect(faker.rawDefinitions.metadata.title).toBeDefined();
+      expect(faker.rawDefinitions.metadata?.title).toBeDefined();
       // Standard modules
       expect(faker.rawDefinitions.location?.city_name).toBeDefined();
       // Non-existing module
@@ -62,7 +62,7 @@ describe('faker', () => {
       // Non-existing module
       expect(faker.definitions.missing).toBeDefined();
       // Non-existing definition in a non-existing module
-      expect(() => faker.definitions.missing.missing).toThrow();
+      expect(() => faker.definitions.missing?.missing).toThrow();
       // Non-existing definition in an existing module
       expect(() => faker.definitions.location.missing).toThrow();
     });

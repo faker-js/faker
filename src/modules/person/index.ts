@@ -1,5 +1,7 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import { assertLocaleData } from '../../locale-proxy';
 
 export enum Sex {
   Female = 'female',
@@ -18,6 +20,7 @@ export type SexType = `${Sex}`;
  * @param param2.generic Non-sex definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
+ * @param type Type of the definition.
  *
  * @returns Definition based on given sex.
  */
@@ -25,10 +28,14 @@ function selectDefinition<T>(
   faker: Faker,
   elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
-  // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
-  { generic, female, male }: { generic?: T[]; female?: T[]; male?: T[] } = {}
+  {
+    generic,
+    female,
+    male,
+  }: { generic?: T[] | null; female?: T[] | null; male?: T[] | null },
+  type: string
 ): string {
-  let values: T[] | undefined;
+  let values: T[] | undefined | null;
 
   switch (sex) {
     case Sex.Female:
@@ -50,6 +57,8 @@ function selectDefinition<T>(
     } else {
       values = generic;
     }
+
+    assertLocaleData(values, `person.{${type}, female_${type}, male_${type}}`);
   }
 
   return elementSelectorFn(values);
@@ -92,11 +101,17 @@ export class PersonModule extends ModuleBase {
     const { first_name, female_first_name, male_first_name } =
       this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: first_name,
-      female: female_first_name,
-      male: male_first_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: first_name,
+        female: female_first_name,
+        male: male_first_name,
+      },
+      'first_name'
+    );
   }
 
   /**
@@ -135,16 +150,23 @@ export class PersonModule extends ModuleBase {
           generic: last_name_pattern,
           female: female_last_name_pattern,
           male: male_last_name_pattern,
-        }
+        },
+        'last_name_pattern'
       );
       return this.faker.helpers.fake(pattern);
     }
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: last_name,
-      female: female_last_name,
-      male: male_last_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: last_name,
+        female: female_last_name,
+        male: male_last_name,
+      },
+      'last_name'
+    );
   }
 
   /**
@@ -164,11 +186,17 @@ export class PersonModule extends ModuleBase {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: middle_name,
-      female: female_middle_name,
-      male: male_middle_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: middle_name,
+        female: female_middle_name,
+        male: male_middle_name,
+      },
+      'middle_name'
+    );
   }
 
   /**
@@ -305,11 +333,17 @@ export class PersonModule extends ModuleBase {
     const { prefix, female_prefix, male_prefix } =
       this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
-      generic: prefix,
-      female: female_prefix,
-      male: male_prefix,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: prefix,
+        female: female_prefix,
+        male: male_prefix,
+      },
+      'prefix'
+    );
   }
 
   /**
@@ -350,9 +384,13 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.descriptor
-    );
+    const values = this.faker.definitions.person.title.descriptor;
+
+    if (values == null) {
+      throw new FakerError('No person.title.descriptor definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -364,9 +402,13 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobArea(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.level
-    );
+    const values = this.faker.definitions.person.title.level;
+
+    if (values == null) {
+      throw new FakerError('No person.title.area definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -378,9 +420,13 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobType(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.job
-    );
+    const values = this.faker.definitions.person.title.job;
+
+    if (values == null) {
+      throw new FakerError('No person.title.job definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**

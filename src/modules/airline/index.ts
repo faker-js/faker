@@ -155,7 +155,7 @@ export class AirlineModule extends ModuleBase {
   ): string {
     const { allowNumerics = false, allowVisuallySimilarCharacters = false } =
       options;
-    const excludedChars = [];
+    const excludedChars: string[] = [];
     if (!allowNumerics) {
       excludedChars.push(...numerics);
     }
