@@ -458,7 +458,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       while (range != null) {
         if (range[0].includes('-')) {
           // handle ranges
-          const rangeMinMax = range[0].split('-').map((x) => x.codePointAt(0));
+          const rangeMinMax = range[0]
+            .split('-')
+            .map((x) => x.codePointAt(0) ?? Number.NaN);
           min = rangeMinMax[0];
           max = rangeMinMax[1];
           // throw error if min larger than max
@@ -473,8 +475,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
             ) {
               const ch = String.fromCodePoint(i);
               rangeCodes.push(
-                ch.toUpperCase().codePointAt(0),
-                ch.toLowerCase().codePointAt(0)
+                ch.toUpperCase().codePointAt(0) ?? Number.NaN,
+                ch.toLowerCase().codePointAt(0) ?? Number.NaN
               );
             } else {
               rangeCodes.push(i);
@@ -484,11 +486,11 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           // handle non-ranges
           if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
             rangeCodes.push(
-              range[0].toUpperCase().codePointAt(0),
-              range[0].toLowerCase().codePointAt(0)
+              range[0].toUpperCase().codePointAt(0) ?? Number.NaN,
+              range[0].toLowerCase().codePointAt(0) ?? Number.NaN
             );
           } else {
-            rangeCodes.push(range[0].codePointAt(0));
+            rangeCodes.push(range[0].codePointAt(0) ?? Number.NaN);
           }
         }
 
