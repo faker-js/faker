@@ -19,7 +19,7 @@ describe('faker', () => {
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
     require('..').faker;
 
     new Faker({ locale: { metadata: { title: '' } } });
