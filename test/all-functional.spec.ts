@@ -73,7 +73,7 @@ const BROKEN_LOCALE_METHODS = {
     jobType: ['ur'],
   },
 } satisfies {
-  [module in keyof Faker]?: SkipConfig<Faker[module]>;
+  [module_ in keyof Faker]?: SkipConfig<Faker[module_]>;
 };
 
 function isWorkingLocaleForMethod(
