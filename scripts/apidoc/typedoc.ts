@@ -414,5 +414,5 @@ export function extractThrows(reflection?: CommentHolder): string | undefined {
  * @returns The contents of the `@since` tag.
  */
 export function extractSince(reflection: CommentHolder): string {
-  return extractSingleTagContent('@since', reflection);
+  return extractSingleTagContent('@since', reflection) || MISSING_DESCRIPTION;
 }
