@@ -71,11 +71,11 @@ exports[`date > 42 > birthdate > with age mode and refDate 1`] = `1963-09-27T06:
 
 exports[`date > 42 > birthdate > with age range and refDate 1`] = `1962-12-27T20:14:08.437Z`;
 
-exports[`date > 42 > birthdate > with only refDate 1`] = `1964-08-06T01:04:06.037Z`;
+exports[`date > 42 > birthdate > with only refDate 1`] = `1964-03-22T08:05:48.849Z`;
 
 exports[`date > 42 > birthdate > with year and refDate 1`] = `0020-07-07T19:06:53.165Z`;
 
-exports[`date > 42 > birthdate > with year mode and refDate 1`] = `1964-08-06T01:04:06.037Z`;
+exports[`date > 42 > birthdate > with year mode and refDate 1`] = `1964-03-22T08:05:48.849Z`;
 
 exports[`date > 42 > birthdate > with year range and refDate 1`] = `0057-12-20T11:59:38.353Z`;
 
@@ -199,11 +199,11 @@ exports[`date > 1211 > birthdate > with age mode and refDate 1`] = `1998-08-21T2
 
 exports[`date > 1211 > birthdate > with age range and refDate 1`] = `1996-10-13T01:44:07.954Z`;
 
-exports[`date > 1211 > birthdate > with only refDate 1`] = `1999-06-29T11:06:58.825Z`;
+exports[`date > 1211 > birthdate > with only refDate 1`] = `1998-07-25T13:16:47.251Z`;
 
 exports[`date > 1211 > birthdate > with year and refDate 1`] = `0021-01-26T13:16:31.426Z`;
 
-exports[`date > 1211 > birthdate > with year mode and refDate 1`] = `1999-06-29T11:06:58.825Z`;
+exports[`date > 1211 > birthdate > with year mode and refDate 1`] = `1998-07-25T13:16:47.251Z`;
 
 exports[`date > 1211 > birthdate > with year range and refDate 1`] = `0113-12-03T19:45:28.165Z`;
 
@@ -325,11 +325,11 @@ exports[`date > 1337 > birthdate > with age mode and refDate 1`] = `1956-08-25T0
 
 exports[`date > 1337 > birthdate > with age range and refDate 1`] = `1956-02-15T21:16:37.850Z`;
 
-exports[`date > 1337 > birthdate > with only refDate 1`] = `1957-07-05T09:38:26.714Z`;
+exports[`date > 1337 > birthdate > with only refDate 1`] = `1957-03-31T18:18:16.563Z`;
 
 exports[`date > 1337 > birthdate > with year and refDate 1`] = `0020-05-27T14:46:44.794Z`;
 
-exports[`date > 1337 > birthdate > with year mode and refDate 1`] = `1957-07-05T09:38:26.714Z`;
+exports[`date > 1337 > birthdate > with year mode and refDate 1`] = `1957-03-31T18:18:16.563Z`;
 
 exports[`date > 1337 > birthdate > with year range and refDate 1`] = `0046-08-09T19:19:14.289Z`;
 

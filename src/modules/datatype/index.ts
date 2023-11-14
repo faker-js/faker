@@ -15,7 +15,7 @@ export class DatatypeModule extends SimpleModuleBase {
    * Returns a single random number between zero and the given max value or the given range with the specified precision.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object.
+   * @param options Maximum value or options object. Defaults to `99999`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
@@ -213,7 +213,7 @@ export class DatatypeModule extends SimpleModuleBase {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param options Length of the generated string or an options object. Defaults to `{}`.
+   * @param options Length of the generated string or an options object.
    * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
    * @see faker.string.sample()
@@ -285,7 +285,7 @@ export class DatatypeModule extends SimpleModuleBase {
    * If the probability is `>= 1.0`, it will always return `true`.
    * The probability is limited to two decimal places.
    *
-   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`.
    * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
    *
    * @example

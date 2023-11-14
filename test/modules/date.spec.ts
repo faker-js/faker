@@ -587,6 +587,35 @@ describe('date', () => {
           expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
         });
 
+        it('returns a random birthdate that is 18+ by default', () => {
+          // Generate the latest possible value => youngest
+          faker.seed(2855577693);
+
+          const refDate = new Date();
+          const birthdate = faker.date.birthdate({ refDate });
+          expect(birthdate).toBeInstanceOf(Date);
+          const value = birthdate.valueOf();
+          const refDateValue = refDate.valueOf();
+          expect(value).toBeLessThanOrEqual(refDateValue);
+          const deltaDate = new Date(refDateValue - value);
+          expect(deltaDate.getUTCFullYear() - 1970).toBeGreaterThanOrEqual(18);
+        });
+
+        it('returns a random birthdate in one year', () => {
+          const min = 1990;
+          const max = 1990;
+
+          const birthdate = faker.date.birthdate({ min, max, mode: 'year' });
+
+          // birthdate is a date object
+          expect(birthdate).toBeInstanceOf(Date);
+          expect(birthdate.toISOString()).not.toMatch(/T00:00:00.000Z/);
+
+          // Generated date is between min and max
+          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(min);
+          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
+        });
+
         it('returns a random birthdate between two ages', () => {
           const min = 4;
           const max = 5;
