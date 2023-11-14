@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.1](https://github.com/faker-js/faker/compare/v8.3.0...v8.3.1) (2023-11-14)
+
+
+### Bug Fixes
+
+* remove `[@internal](https://github.com/internal)` from module parent classes ([#2548](https://github.com/faker-js/faker/issues/2548)) ([77f54ad](https://github.com/faker-js/faker/commit/77f54ad78f9d7952b3b315f72878267f18ed1e69))
+
 ## [8.3.0](https://github.com/faker-js/faker/compare/v8.2.0...v8.3.0) (2023-11-14)
 
 
