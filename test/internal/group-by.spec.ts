@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { groupBy } from '../../src/internal/group-by';
 
-describe('groupBy', () => {
+describe('groupBy()', () => {
   it('should group values by key', () => {
     const values = [
       { id: 1, name: 'John' },
