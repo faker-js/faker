@@ -1143,7 +1143,7 @@ describe('helpers', () => {
         it('does allow complex data', () => {
           const actual = faker.helpers.fake('{{science.unit}}');
           expect(
-            faker.rawDefinitions.science?.unit?.map((value) =>
+            faker.definitions.science.unit.map((value) =>
               JSON.stringify(value)
             )
           ).toContain(actual);
