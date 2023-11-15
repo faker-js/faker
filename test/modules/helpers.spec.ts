@@ -223,7 +223,6 @@ describe('helpers', () => {
         });
 
         it('should throw on an empty array', () => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           expect(() => faker.helpers.arrayElement([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
@@ -1062,7 +1061,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings', () => {
-          expect(faker.definitions.cell_phone.formats).toContain(
+          expect(faker.definitions.cell_phone?.formats).toContain(
             faker.helpers.fake('{{cell_phone.formats}}')
           );
         });
