@@ -163,6 +163,12 @@ describe('helpers', () => {
       t.it('simple', { a: 1, b: 2, c: 3 });
     });
 
+    t.describe('eval', (t) => {
+      t.it('simple call', 'string.sample')
+        .it('call with arguments', 'helpers.arrayElement([1, 2, 3])')
+        .it('with custom entrypoints', 'data', [{ data: 'Hello World!' }]);
+    });
+
     t.describe('fake', (t) => {
       t.it('with empty string', '')
         .it('with a static template', 'my test string')
@@ -965,6 +971,104 @@ describe('helpers', () => {
         });
       });
 
+      describe('eval()', () => {
+        it('does not allow empty string input', () => {
+          expect(() => faker.helpers.eval('')).toThrowError(
+            new FakerError('Eval expression cannot be empty.')
+          );
+        });
+
+        it('supports single pattern part invocations', () => {
+          const actual = faker.helpers.eval('string');
+          expect(actual).toBeTypeOf('object');
+          expect(actual).toBe(faker.string);
+        });
+
+        it('supports simple method calls', () => {
+          const actual = faker.helpers.eval('string.numeric');
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toMatch(/^\d$/);
+        });
+
+        it('supports method calls without arguments', () => {
+          const actual = faker.helpers.eval('string.numeric()');
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toMatch(/^\d$/);
+        });
+
+        it('supports method calls with simple arguments', () => {
+          const actual = faker.helpers.eval('string.numeric(5)');
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toMatch(/^\d{5}$/);
+        });
+
+        it('supports method calls with complex arguments', () => {
+          const actual = faker.helpers.eval(
+            'string.numeric({ "length": 5, "allowLeadingZeros": true, "exclude": ["5"] })'
+          );
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toMatch(/^[0-46-9]{5}$/);
+        });
+
+        it('supports method calls with multiple arguments', () => {
+          const actual = faker.helpers.eval(
+            'helpers.mustache("{{foo}}", { "foo": "bar" })'
+          );
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('bar');
+        });
+
+        it('supports method calls with unquoted string argument', () => {
+          const actual = faker.helpers.eval('helpers.slugify(This Works)');
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('This-Works');
+        });
+
+        it('supports returning complex objects', () => {
+          const actual = faker.helpers.eval('airline.airline');
+          expect(actual).toBeTypeOf('object');
+          expect(faker.definitions.airline.airline).toContain(actual);
+        });
+
+        it('supports accessing properties on functions', () => {
+          const actual = faker.helpers.eval('airline.airline.name');
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('bound airline'); // function.name
+        });
+
+        it('supports patterns after a function call', () => {
+          const actual = faker.helpers.eval('airline.airline().name');
+          expect(actual).toBeTypeOf('string');
+          expect(
+            faker.definitions.airline.airline.map(({ name }) => name)
+          ).toContain(actual); // function().name
+        });
+
+        it('supports patterns after a function reference', () => {
+          const actual = faker.helpers.eval('airline.airline.iataCode');
+          expect(actual).toBeTypeOf('string');
+          expect(
+            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
+          ).toContain(actual);
+        });
+
+        it('requires a dot after a function call', () => {
+          expect(() =>
+            faker.helpers.eval('airline.airline()iataCode')
+          ).toThrowError(
+            new FakerError(
+              "Expected dot ('.'), open parenthesis ('('), or nothing after function call but got 'i'"
+            )
+          );
+        });
+
+        it('requires a valid expression', () => {
+          expect(() => faker.helpers.eval('foo.bar')).toThrow(
+            new FakerError(`Pattern 'foo.bar' cannot be resolved.`)
+          );
+        });
+      });
+
       describe('fake()', () => {
         it('does allow empty string input', () => {
           const actual = faker.helpers.fake('');
@@ -1026,34 +1130,23 @@ describe('helpers', () => {
 
         it('does not allow invalid module name', () => {
           expect(() => faker.helpers.fake('{{foo.bar}}')).toThrow(
-            new FakerError(`Invalid module method or definition: foo.bar
-- faker.foo.bar is not a function
-- faker.definitions.foo.bar is not an array`)
-          );
-        });
-
-        it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{location}}')).toThrow(
-            new FakerError(`Invalid module method or definition: location
-- faker.location is not a function
-- faker.definitions.location is not an array`)
+            new FakerError(`Pattern 'foo.bar' cannot be resolved.`)
           );
         });
 
         it('does not allow invalid method name', () => {
           expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
-            new FakerError(`Invalid module method or definition: location.foo
-- faker.location.foo is not a function
-- faker.definitions.location.foo is not an array`)
+            new FakerError(`Pattern 'location.foo' cannot be resolved.`)
           );
         });
 
-        it('does not allow invalid definitions data', () => {
-          expect(() => faker.helpers.fake('{{finance.credit_card}}')).toThrow(
-            new FakerError(`Invalid module method or definition: finance.credit_card
-- faker.finance.credit_card is not a function
-- faker.definitions.finance.credit_card is not an array`)
-          );
+        it('does allow complex data', () => {
+          const actual = faker.helpers.fake('{{science.unit}}');
+          expect(
+            faker.rawDefinitions.science?.unit?.map((value) =>
+              JSON.stringify(value)
+            )
+          ).toContain(actual);
         });
 
         it('should be able to return empty strings', () => {
@@ -1148,6 +1241,13 @@ describe('helpers', () => {
 
         it('should not trim whitespace', () => {
           expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
+        });
+
+        it('should support resolving a value in a complex object', () => {
+          const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
+          expect(
+            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
+          ).toContain(actual);
         });
       });
 

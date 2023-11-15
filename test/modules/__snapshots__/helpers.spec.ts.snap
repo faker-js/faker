@@ -35,6 +35,12 @@ exports[`helpers > 42 > enumValue > with mixed enum 1`] = `1`;
 
 exports[`helpers > 42 > enumValue > with string enum 1`] = `"Brazil"`;
 
+exports[`helpers > 42 > eval > call with arguments 1`] = `2`;
+
+exports[`helpers > 42 > eval > simple call 1`] = `"Cky2eiXX/J"`;
+
+exports[`helpers > 42 > eval > with custom entrypoints 1`] = `"Hello World!"`;
+
 exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
 
 exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
@@ -269,6 +275,12 @@ exports[`helpers > 1211 > enumValue > with mixed enum 1`] = `"Bar"`;
 
 exports[`helpers > 1211 > enumValue > with string enum 1`] = `"United States of America"`;
 
+exports[`helpers > 1211 > eval > call with arguments 1`] = `3`;
+
+exports[`helpers > 1211 > eval > simple call 1`] = `"wKti5-}$_/"`;
+
+exports[`helpers > 1211 > eval > with custom entrypoints 1`] = `"Hello World!"`;
+
 exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
 
 exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
@@ -497,6 +509,12 @@ exports[`helpers > 1337 > enumValue > with enum starting from some index 1`] = `
 exports[`helpers > 1337 > enumValue > with mixed enum 1`] = `1`;
 
 exports[`helpers > 1337 > enumValue > with string enum 1`] = `"Brazil"`;
+
+exports[`helpers > 1337 > eval > call with arguments 1`] = `1`;
+
+exports[`helpers > 1337 > eval > simple call 1`] = `"9U/4:SK$>6"`;
+
+exports[`helpers > 1337 > eval > with custom entrypoints 1`] = `"Hello World!"`;
 
 exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
 
