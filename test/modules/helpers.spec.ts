@@ -1024,6 +1024,12 @@ describe('helpers', () => {
           expect(actual).toBe('This-Works');
         });
 
+        it('should be able to return empty strings', () => {
+          const actual = faker.helpers.eval('string.alphanumeric(0)');
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
         it('supports returning complex objects', () => {
           const actual = faker.helpers.eval('airline.airline');
           expect(actual).toBeTypeOf('object');
