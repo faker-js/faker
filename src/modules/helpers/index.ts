@@ -2,7 +2,7 @@ import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
-import { evalProcessExpression, evalProcessFunction } from './eval';
+import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -1259,104 +1259,6 @@ export class HelpersModule extends SimpleHelpersModule {
   }
 
   /**
-   * Resolves the given expression and returns its result. This method should only be used when using serialized expressions.
-   *
-   * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a developer, stored in a database or a file).
-   *
-   * It tries to resolve the expression on the given/default entrypoints:
-   *
-   * ```js
-   * const firstName = faker.helpers.eval('person.firstName');
-   * const firstName2 = faker.helpers.eval('person.first_name');
-   * ```
-   *
-   * Is equivalent to:
-   *
-   * ```js
-   * const firstName = faker.person.firstName();
-   * const firstName2 = faker.helpers.arrayElement(faker.rawDefinitions.person.first_name);
-   * ```
-   *
-   * You can provide parameters as well. At first, they will be parsed as json,
-   * and if that isn't possible, it will fall back to string:
-   *
-   * ```js
-   * const message = faker.helpers.eval('phone.number(+!# !## #### #####!)');
-   * ```
-   *
-   * It is also possible to use multiple parameters (comma separated).
-   *
-   * ```js
-   * const pin = faker.helpers.eval('string.numeric(4, {"allowLeadingZeros": true})');
-   * ```
-   *
-   * This method can resolve patterns with varying depths.
-   *
-   * ```ts
-   * const airlineModule = faker.helpers.eval('airline'); // AirlineModule
-   * const airlineObject = faker.helpers.eval('airline.airline'); // { name: 'Etihad Airways', iataCode: 'EY' }
-   * const airlineCode = faker.helpers.eval('airline.airline.iataCode'); // 'EY'
-   * const airlineName = faker.helpers.eval('airline.airline().name'); // 'Etihad Airways'
-   * const airlineMethodName = faker.helpers.eval('airline.airline.name'); // 'bound airline'
-   * ```
-   *
-   * It is NOT possible to access any values not passed as entrypoints.
-   *
-   * This method will never return arrays, as it will pick a random element from them instead.
-   *
-   * @param expression The expression to evaluate on the entrypoints.
-   * @param entrypoints The entrypoints to use when evaluating the pattern. Defaults to the faker instance and its locale data.
-   *
-   * @see faker.helpers.fake() If you wish to have a string with multiple patterns.
-   *
-   * @example
-   * faker.helpers.eval('person.lastName') // 'Barrows'
-   * faker.helpers.eval('helpers.arrayElement(["heads", "tails"])') // 'tails'
-   * faker.helpers.eval('number.int(9999)') // 4834
-   *
-   * @since 8.4.0
-   */
-  eval(
-    expression: string,
-    entrypoints: ReadonlyArray<unknown> = [
-      this.faker,
-      this.faker.rawDefinitions,
-    ]
-  ): unknown {
-    if (expression.length === 0) {
-      throw new FakerError('Eval expression cannot be empty.');
-    }
-
-    let current = entrypoints;
-    let remaining = expression;
-    do {
-      let index: number;
-      if (remaining.startsWith('(')) {
-        [index, current] = evalProcessFunction(remaining, current);
-      } else {
-        [index, current] = evalProcessExpression(remaining, current);
-      }
-
-      remaining = remaining.substring(index);
-
-      // Remove garbage and resolve array values
-      current = current
-        .filter((value) => value != null)
-        .map((value): unknown =>
-          Array.isArray(value) ? this.arrayElement(value) : value
-        );
-    } while (remaining.length > 0 && current.length > 0);
-
-    if (current.length === 0) {
-      throw new FakerError(`Pattern '${expression}' cannot be resolved.`);
-    }
-
-    const value = current[0];
-    return typeof value === 'function' ? value() : value;
-  }
-
-  /**
    * Generator for combining faker methods based on a static string input.
    *
    * Note: We recommend using string template literals instead of `fake()`,
@@ -1392,7 +1294,6 @@ export class HelpersModule extends SimpleHelpersModule {
    * @param pattern The pattern string that will get interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
-   * @see faker.helpers.eval() to evaluate a single expression.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
@@ -1445,7 +1346,6 @@ export class HelpersModule extends SimpleHelpersModule {
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
-   * @see faker.helpers.eval() to evaluate a single expression.
    *
    * @example
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
@@ -1489,7 +1389,6 @@ export class HelpersModule extends SimpleHelpersModule {
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
-   * @see faker.helpers.eval() to evaluate a single expression.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
@@ -1521,7 +1420,7 @@ export class HelpersModule extends SimpleHelpersModule {
     const token = pattern.substring(start + 2, end + 2);
     const method = token.replace('}}', '').replace('{{', '');
 
-    const result = this.eval(method);
+    const result = fakeEval(method, this.faker);
     const stringified =
       typeof result === 'object' ? JSON.stringify(result) : String(result);
 

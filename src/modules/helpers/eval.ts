@@ -1,6 +1,104 @@
 import { FakerError } from '../../errors/faker-error';
+import type { Faker } from '../../faker';
 
 const REGEX_DOT_OR_BRACKET = /\.|\(/;
+
+/**
+ * Resolves the given expression and returns its result. This method should only be used when using serialized expressions.
+ *
+ * This method is useful if you have to build a random string from a static, non-executable source
+ * (e.g. string coming from a developer, stored in a database or a file).
+ *
+ * It tries to resolve the expression on the given/default entrypoints:
+ *
+ * ```js
+ * const firstName = fakeEval('person.firstName');
+ * const firstName2 = fakeEval('person.first_name');
+ * ```
+ *
+ * Is equivalent to:
+ *
+ * ```js
+ * const firstName = faker.person.firstName();
+ * const firstName2 = faker.helpers.arrayElement(faker.rawDefinitions.person.first_name);
+ * ```
+ *
+ * You can provide parameters as well. At first, they will be parsed as json,
+ * and if that isn't possible, it will fall back to string:
+ *
+ * ```js
+ * const message = fakeEval('phone.number(+!# !## #### #####!)');
+ * ```
+ *
+ * It is also possible to use multiple parameters (comma separated).
+ *
+ * ```js
+ * const pin = fakeEval('string.numeric(4, {"allowLeadingZeros": true})');
+ * ```
+ *
+ * This method can resolve expressions with varying depths (dot separated parts).
+ *
+ * ```ts
+ * const airlineModule = fakeEval('airline'); // AirlineModule
+ * const airlineObject = fakeEval('airline.airline'); // { name: 'Etihad Airways', iataCode: 'EY' }
+ * const airlineCode = fakeEval('airline.airline.iataCode'); // 'EY'
+ * const airlineName = fakeEval('airline.airline().name'); // 'Etihad Airways'
+ * const airlineMethodName = fakeEval('airline.airline.name'); // 'bound airline'
+ * ```
+ *
+ * It is NOT possible to access any values not passed as entrypoints.
+ *
+ * This method will never return arrays, as it will pick a random element from them instead.
+ *
+ * @param expression The expression to evaluate on the entrypoints.
+ * @param faker The faker instance to resolve array elements.
+ * @param entrypoints The entrypoints to use when evaluating the expression.
+ *
+ * @see faker.helpers.fake() If you wish to have a string with multiple expressions.
+ *
+ * @example
+ * fakeEval('person.lastName', faker) // 'Barrows'
+ * fakeEval('helpers.arrayElement(["heads", "tails"])', faker) // 'tails'
+ * fakeEval('number.int(9999)', faker) // 4834
+ *
+ * @since 8.4.0
+ */
+export function fakeEval(
+  expression: string,
+  faker: Faker,
+  entrypoints: ReadonlyArray<unknown> = [faker, faker.rawDefinitions]
+): unknown {
+  if (expression.length === 0) {
+    throw new FakerError('Eval expression cannot be empty.');
+  }
+
+  let current = entrypoints;
+  let remaining = expression;
+  do {
+    let index: number;
+    if (remaining.startsWith('(')) {
+      [index, current] = evalProcessFunction(remaining, current);
+    } else {
+      [index, current] = evalProcessExpression(remaining, current);
+    }
+
+    remaining = remaining.substring(index);
+
+    // Remove garbage and resolve array values
+    current = current
+      .filter((value) => value != null)
+      .map((value): unknown =>
+        Array.isArray(value) ? faker.helpers.arrayElement(value) : value
+      );
+  } while (remaining.length > 0 && current.length > 0);
+
+  if (current.length === 0) {
+    throw new FakerError(`Expression '${expression}' cannot be resolved.`);
+  }
+
+  const value = current[0];
+  return typeof value === 'function' ? value() : value;
+}
 
 /**
  * Evaluates a function call and returns the remaining string and the mapped results.
@@ -8,7 +106,7 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to attempt the call on.
  */
-export function evalProcessFunction(
+function evalProcessFunction(
   input: string,
   entrypoints: ReadonlyArray<unknown>
 ): [remaining: number, mapped: unknown[]] {
@@ -70,7 +168,7 @@ function findParams(input: string): [remaining: number, params: unknown[]] {
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to resolve on.
  */
-export function evalProcessExpression(
+function evalProcessExpression(
   input: string,
   entrypoints: ReadonlyArray<unknown>
 ): [remaining: number, mapped: unknown[]] {
@@ -79,7 +177,7 @@ export function evalProcessExpression(
   const index = result?.index ?? input.length;
   const key = input.substring(0, index);
   if (key.length === 0) {
-    throw new FakerError(`Pattern parts cannot be empty in '${input}'`);
+    throw new FakerError(`Expression parts cannot be empty in '${input}'`);
   }
 
   return [
