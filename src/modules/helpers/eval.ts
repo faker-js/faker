@@ -12,8 +12,8 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * It tries to resolve the expression on the given/default entrypoints:
  *
  * ```js
- * const firstName = fakeEval('person.firstName');
- * const firstName2 = fakeEval('person.first_name');
+ * const firstName = fakeEval('person.firstName', faker);
+ * const firstName2 = fakeEval('person.first_name', faker);
  * ```
  *
  * Is equivalent to:
@@ -27,23 +27,23 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * and if that isn't possible, it will fall back to string:
  *
  * ```js
- * const message = fakeEval('phone.number(+!# !## #### #####!)');
+ * const message = fakeEval('phone.number(+!# !## #### #####!)', faker);
  * ```
  *
  * It is also possible to use multiple parameters (comma separated).
  *
  * ```js
- * const pin = fakeEval('string.numeric(4, {"allowLeadingZeros": true})');
+ * const pin = fakeEval('string.numeric(4, {"allowLeadingZeros": true})', faker);
  * ```
  *
  * This method can resolve expressions with varying depths (dot separated parts).
  *
  * ```ts
- * const airlineModule = fakeEval('airline'); // AirlineModule
- * const airlineObject = fakeEval('airline.airline'); // { name: 'Etihad Airways', iataCode: 'EY' }
- * const airlineCode = fakeEval('airline.airline.iataCode'); // 'EY'
- * const airlineName = fakeEval('airline.airline().name'); // 'Etihad Airways'
- * const airlineMethodName = fakeEval('airline.airline.name'); // 'bound airline'
+ * const airlineModule = fakeEval('airline', faker); // AirlineModule
+ * const airlineObject = fakeEval('airline.airline', faker); // { name: 'Etihad Airways', iataCode: 'EY' }
+ * const airlineCode = fakeEval('airline.airline.iataCode', faker); // 'EY'
+ * const airlineName = fakeEval('airline.airline().name', faker); // 'Etihad Airways'
+ * const airlineMethodName = fakeEval('airline.airline.name', faker); // 'bound airline'
  * ```
  *
  * It is NOT possible to access any values not passed as entrypoints.
