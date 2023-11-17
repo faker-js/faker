@@ -26,8 +26,9 @@ export interface DateEntryDefinition {
 
   /**
    * The short name/abbreviation of the entry.
+   * If null, the locale does not support a short name/abbreviation for the entry.
    */
-  abbr: string[];
+  abbr: string[] | null;
 
   /**
    * The wide name of the entry when used in context. If absent wide will be used instead.

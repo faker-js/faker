@@ -3,6 +3,7 @@ import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
+import { assertLocaleData } from '../../locale-proxy';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
@@ -15,6 +16,10 @@ function toDate(
   date: string | Date | number | undefined,
   fallback: () => Date
 ): Date {
+  if (date == null) {
+    return fallback();
+  }
+
   date = new Date(date);
   if (Number.isNaN(date.valueOf())) {
     date = fallback();
@@ -383,14 +388,15 @@ export class SimpleDateModule extends SimpleModuleBase {
         },
     legacyTo?: string | Date | number
   ): Date {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.between(from, to)',
         proposed: 'faker.date.between({ from, to })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options };
     }
 
     const { from, to } = options;
@@ -559,14 +565,15 @@ export class SimpleDateModule extends SimpleModuleBase {
     legacyTo?: string | Date | number,
     legacyCount: number = 3
   ): Date[] {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.betweens(from, to, count)',
         proposed: 'faker.date.betweens({ from, to, count })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo, count: legacyCount };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options, count: legacyCount };
     }
 
     const { from, to, count = 3 } = options;
@@ -864,12 +871,6 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    if (options.max < options.min) {
-      throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
-      );
-    }
-
     const mode = options.mode === 'age' ? 'age' : 'year';
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
@@ -891,6 +892,12 @@ export class SimpleDateModule extends SimpleModuleBase {
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
         options.max ?? refYear - 19
+      );
+    }
+
+    if (max < min) {
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
       );
     }
 
@@ -1074,12 +1081,8 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    const {
-      // eslint-disable-next-line deprecation/deprecation
-      abbr,
-      abbreviated = abbr ?? false,
-      context = false,
-    } = options;
+    // eslint-disable-next-line deprecation/deprecation
+    const { abbr, abbreviated = abbr ?? false, context = false } = options;
 
     if (abbr != null) {
       deprecated({
@@ -1100,7 +1103,9 @@ export class DateModule extends SimpleDateModule {
       type = useContext ? 'wide_context' : 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    const values = source[type];
+    assertLocaleData(values, 'date.month', type);
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -1260,12 +1265,8 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    const {
-      // eslint-disable-next-line deprecation/deprecation
-      abbr,
-      abbreviated = abbr ?? false,
-      context = false,
-    } = options;
+    // eslint-disable-next-line deprecation/deprecation
+    const { abbr, abbreviated = abbr ?? false, context = false } = options;
 
     if (abbr != null) {
       deprecated({
@@ -1286,6 +1287,8 @@ export class DateModule extends SimpleDateModule {
       type = useContext ? 'wide_context' : 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    const values = source[type];
+    assertLocaleData(values, 'date.weekday', type);
+    return this.faker.helpers.arrayElement(values);
   }
 }
