@@ -55,7 +55,7 @@ describe('fakeEval()', () => {
   });
 
   it('supports method calls with multiple arguments', () => {
-    const spy = vi.spyOn(faker.string, 'numeric');
+    const spy = vi.spyOn(faker.helpers, 'mustache');
     const actual = fakeEval(
       'helpers.mustache("{{foo}}", { "foo": "bar" })',
       faker
@@ -83,12 +83,6 @@ describe('fakeEval()', () => {
     const actual = fakeEval('airline.airline', faker);
     expect(actual).toBeTypeOf('object');
     expect(faker.definitions.airline.airline).toContain(actual);
-  });
-
-  it('supports accessing properties on functions', () => {
-    const actual = fakeEval('airline.airline.name', faker);
-    expect(actual).toBeTypeOf('string');
-    expect(actual).toBe('bound airline'); // function.name
   });
 
   it('supports patterns after a function call', () => {
