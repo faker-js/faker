@@ -1138,7 +1138,12 @@ describe('helpers', () => {
         });
 
         it('should support resolving a value in a complex object', () => {
+          const complex = faker.helpers.fake('{{airline.airline}}');
+          expect(complex).toBeTypeOf('object');
+          expect(faker.definitions.airline.airline).toContain(complex);
+
           const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
+          expect(actual).toBeTypeOf('string');
           expect(
             faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
           ).toContain(actual);

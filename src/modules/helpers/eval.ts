@@ -101,7 +101,7 @@ export function fakeEval(
 }
 
 /**
- * Evaluates a function call and returns the remaining string and the mapped results.
+ * Evaluates a function call and returns the new read index and the mapped results.
  *
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to attempt the call on.
@@ -109,7 +109,7 @@ export function fakeEval(
 function evalProcessFunction(
   input: string,
   entrypoints: ReadonlyArray<unknown>
-): [remaining: number, mapped: unknown[]] {
+): [continueIndex: number, mapped: unknown[]] {
   const [index, params] = findParams(input);
   const nextChar = input[index + 1];
   switch (nextChar) {
@@ -136,7 +136,7 @@ function evalProcessFunction(
  *
  * @param input The input string to parse.
  */
-function findParams(input: string): [remaining: number, params: unknown[]] {
+function findParams(input: string): [continueIndex: number, params: unknown[]] {
   let index = input.indexOf(')');
   while (index !== -1) {
     const params = input.substring(1, index);
@@ -163,7 +163,7 @@ function findParams(input: string): [remaining: number, params: unknown[]] {
 }
 
 /**
- * Processes one expression part and returns the remaining index and the mapped results.
+ * Processes one expression part and returns the new read index and the mapped results.
  *
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to resolve on.
@@ -171,7 +171,7 @@ function findParams(input: string): [remaining: number, params: unknown[]] {
 function evalProcessExpression(
   input: string,
   entrypoints: ReadonlyArray<unknown>
-): [remaining: number, mapped: unknown[]] {
+): [continueIndex: number, mapped: unknown[]] {
   const result = REGEX_DOT_OR_BRACKET.exec(input);
   const dotMatch = (result?.[0] ?? '') === '.';
   const index = result?.index ?? input.length;
@@ -195,12 +195,10 @@ function evalProcessExpression(
 function resolveProperty(entrypoint: unknown, key: string): unknown {
   switch (typeof entrypoint) {
     case 'function': {
-      if (entrypoint[key as keyof typeof entrypoint] == null) {
-        try {
-          entrypoint = entrypoint();
-        } catch {
-          return undefined;
-        }
+      try {
+        entrypoint = entrypoint();
+      } catch {
+        return undefined;
       }
 
       return entrypoint?.[key as keyof typeof entrypoint];

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker, FakerError } from '../../src';
 import { fakeEval } from '../../src/modules/helpers/eval';
 
@@ -16,43 +16,59 @@ describe('fakeEval()', () => {
   });
 
   it('supports simple method calls', () => {
+    const spy = vi.spyOn(faker.string, 'numeric');
     const actual = fakeEval('string.numeric', faker);
+    expect(spy).toHaveBeenCalledWith();
     expect(actual).toBeTypeOf('string');
     expect(actual).toMatch(/^\d$/);
   });
 
   it('supports method calls without arguments', () => {
+    const spy = vi.spyOn(faker.string, 'numeric');
     const actual = fakeEval('string.numeric()', faker);
+    expect(spy).toHaveBeenCalledWith();
     expect(actual).toBeTypeOf('string');
     expect(actual).toMatch(/^\d$/);
   });
 
   it('supports method calls with simple arguments', () => {
+    const spy = vi.spyOn(faker.string, 'numeric');
     const actual = fakeEval('string.numeric(5)', faker);
+    expect(spy).toHaveBeenCalledWith(5);
     expect(actual).toBeTypeOf('string');
     expect(actual).toMatch(/^\d{5}$/);
   });
 
   it('supports method calls with complex arguments', () => {
+    const spy = vi.spyOn(faker.string, 'numeric');
     const actual = fakeEval(
       'string.numeric({ "length": 5, "allowLeadingZeros": true, "exclude": ["5"] })',
       faker
     );
+    expect(spy).toHaveBeenCalledWith({
+      length: 5,
+      allowLeadingZeros: true,
+      exclude: ['5'],
+    });
     expect(actual).toBeTypeOf('string');
     expect(actual).toMatch(/^[0-46-9]{5}$/);
   });
 
   it('supports method calls with multiple arguments', () => {
+    const spy = vi.spyOn(faker.string, 'numeric');
     const actual = fakeEval(
       'helpers.mustache("{{foo}}", { "foo": "bar" })',
       faker
     );
+    expect(spy).toHaveBeenCalledWith('{{foo}}', { foo: 'bar' });
     expect(actual).toBeTypeOf('string');
     expect(actual).toBe('bar');
   });
 
   it('supports method calls with unquoted string argument', () => {
+    const spy = vi.spyOn(faker.helpers, 'slugify');
     const actual = fakeEval('helpers.slugify(This Works)', faker);
+    expect(spy).toHaveBeenCalledWith('This Works');
     expect(actual).toBeTypeOf('string');
     expect(actual).toBe('This-Works');
   });
