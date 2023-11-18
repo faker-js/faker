@@ -57,7 +57,8 @@ async function processModule(
     comment,
     examples,
     deprecated,
-    methods
+    methods,
+    'Modules'
   );
 }
 

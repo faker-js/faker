@@ -28,6 +28,10 @@ export async function processFakerRandomizer(
     .getChildrenByKind(ReflectionKind.Interface)
     .find((clazz) => clazz.name === 'Randomizer');
 
+  if (randomizerClass == null) {
+    throw new Error('Randomizer class not found');
+  }
+
   return processClass(randomizerClass);
 }
 
@@ -55,14 +59,15 @@ async function processClass(
     comment,
     examples,
     deprecated,
-    methods
+    methods,
+    ''
   );
 }
 
 function hasConstructor(clazz: DeclarationReflection): boolean {
   return clazz
     .getChildrenByKind(ReflectionKind.Constructor)
-    .some((constructor) => constructor.signatures.length > 0);
+    .some((constructor) => (constructor.signatures?.length ?? 0) > 0);
 }
 
 async function processConstructor(

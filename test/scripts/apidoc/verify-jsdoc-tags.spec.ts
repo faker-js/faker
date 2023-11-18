@@ -1,5 +1,7 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import type { ReflectionType, SomeType } from 'typedoc';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
@@ -9,8 +11,10 @@ import {
   extractDescription,
   extractJoinedRawExamples,
   extractModuleFieldName,
+  extractRawDefault,
   extractSeeAlsos,
   extractSince,
+  extractSummaryDefault,
   extractTagContent,
   MISSING_DESCRIPTION,
 } from '../../../scripts/apidoc/typedoc';
@@ -22,7 +26,7 @@ import { loadProjectModules } from './utils';
 
 beforeAll(initMarkdownRenderer);
 
-const tempDir = resolve(__dirname, 'temp');
+const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
 
 afterAll(() => {
   // Remove temp folder
@@ -89,6 +93,57 @@ describe('verify JSDoc tags', () => {
     }
   }
 
+  // keep in sync with analyzeParameterOptions
+  function assertNestedParameterDefault(
+    name: string,
+    parameterType?: SomeType
+  ): void {
+    if (!parameterType) {
+      return;
+    }
+
+    switch (parameterType.type) {
+      case 'array':
+        return assertNestedParameterDefault(
+          `${name}[]`,
+          parameterType.elementType
+        );
+
+      case 'union':
+        for (const type of parameterType.types) {
+          assertNestedParameterDefault(name, type);
+        }
+
+        return;
+
+      case 'reflection': {
+        for (const property of parameterType.declaration.children ?? []) {
+          const reflection = property.comment
+            ? property
+            : (property.type as ReflectionType)?.declaration?.signatures?.[0];
+          const comment = reflection?.comment;
+          const tagDefault = extractRawDefault({ comment }) || undefined;
+          const summaryDefault = extractSummaryDefault(comment, false);
+
+          if (summaryDefault) {
+            expect(
+              tagDefault,
+              `Expect jsdoc summary default and @default for ${name}.${property.name} to be the same`
+            ).toBe(summaryDefault);
+          }
+        }
+
+        return;
+      }
+
+      case 'typeOperator':
+        return assertNestedParameterDefault(name, parameterType.target);
+
+      default:
+        return;
+    }
+  }
+
   describe.each(Object.entries(modules))(
     '%s',
     (moduleName, [module, methodsByName]) => {
@@ -106,7 +161,7 @@ describe('verify JSDoc tags', () => {
             // Write temp files to disk
 
             // Extract examples and make them runnable
-            const examples = extractJoinedRawExamples(signature);
+            const examples = extractJoinedRawExamples(signature) ?? '';
 
             // Save examples to a file to run them later in the specific tests
             const dir = resolveDirToModule(moduleName);
@@ -172,6 +227,28 @@ describe('verify JSDoc tags', () => {
           });
 
           it('verify @param tags', async () => {
+            // This must run before analyzeSignature
+            for (const param of signature.parameters ?? []) {
+              const type = param.type;
+              const paramDefault = param.defaultValue;
+              const commentDefault = extractSummaryDefault(
+                param.comment,
+                false
+              );
+              if (paramDefault) {
+                if (/^{.*}$/.test(paramDefault)) {
+                  expect(commentDefault).toBeUndefined();
+                } else {
+                  expect(
+                    commentDefault,
+                    `Expect '${param.name}'s js implementation default to be the same as the jsdoc summary default.`
+                  ).toBe(paramDefault);
+                }
+              }
+
+              assertNestedParameterDefault(param.name, type);
+            }
+
             for (const param of (
               await analyzeSignature(signature, '', methodName)
             ).parameters) {
