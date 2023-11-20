@@ -92,7 +92,7 @@
     "@eslint-types/deprecation": "2.0.0-1",
     "@eslint-types/jsdoc": "~46.9.0",
     "@eslint-types/prettier": "5.0.1-1",
-    "@eslint-types/typescript-eslint": "~6.11.0",
+    "@eslint-types/typescript-eslint": "~6.12.0",
     "@eslint-types/unicorn": "~49.0.0",
     "@types/markdown-it": "~13.0.6",
     "@types/node": "~20.9.2",
