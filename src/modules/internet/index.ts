@@ -493,7 +493,7 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.displayName()
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
@@ -530,7 +530,7 @@ export class InternetModule extends ModuleBase {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.displayName()
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
@@ -558,7 +558,7 @@ export class InternetModule extends ModuleBase {
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.displayName()
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
@@ -685,7 +685,7 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName()
+   * @see faker.internet.userName(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
@@ -720,7 +720,7 @@ export class InternetModule extends ModuleBase {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName()
+   * @see faker.internet.userName(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
@@ -746,7 +746,7 @@ export class InternetModule extends ModuleBase {
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName()
+   * @see faker.internet.userName(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
