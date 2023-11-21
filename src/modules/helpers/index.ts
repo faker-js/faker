@@ -159,6 +159,39 @@ function legacyRegexpStringParse(
 }
 
 /**
+ * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
+ * `!` will be replaced by digits >=2 (`2` - `9`).
+ *
+ * @param faker Faker instance
+ * @param string The template string to parse. Defaults to `''`.
+ * @param symbol The symbol to replace with digits. Defaults to `'#'`.
+ *
+ * @internal
+ *
+ * @example
+ * faker.helpers.legacyReplaceSymbolWithNumber(this.faker) // ''
+ * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, '#####') // '04812'
+ * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, '!####') // '27378'
+ * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, 'Your pin is: !####') // '29841'
+ *
+ * @since 9.0.0
+ * */
+export function legacyReplaceSymbolWithNumber(faker: SimpleFaker, string: string = '', symbol: string = '#'): string {
+  let str = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string.charAt(i) === symbol) {
+      str += faker.number.int(9);
+    } else if (string.charAt(i) === '!') {
+      str += faker.number.int({ min: 2, max: 9 });
+    } else {
+      str += string.charAt(i);
+    }
+  }
+
+  return str;
+}
+
+/**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
 export class SimpleHelpersModule extends SimpleModuleBase {
@@ -204,21 +237,20 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
    * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    *
+   * @see faker.string.numeric()
+   *
+   * @deprecated Use `faker.string.numeric()` instead. Example: `string.replace(/#+/g, (m) => faker.string.numeric(m.length));`
+   *
    * @since 2.0.1
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    let str = '';
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === symbol) {
-        str += this.faker.number.int(9);
-      } else if (string.charAt(i) === '!') {
-        str += this.faker.number.int({ min: 2, max: 9 });
-      } else {
-        str += string.charAt(i);
-      }
-    }
+    deprecated({
+      deprecated: 'faker.helpers.replaceSymbolWithNumber',
+      proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
+      since: '9.0.0',
+    });
 
-    return str;
+    return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
   }
 
   /**
@@ -290,7 +322,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   /**
    * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
    *
-   * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
+   * This method supports both range patterns `[4-9]` as well as the patterns used by `legacyReplaceSymbolWithNumber()`.
    * `L` will be replaced with the appropriate Luhn checksum.
    *
    * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.
@@ -309,7 +341,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     // default values required for calling method without arguments
 
     string = legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
-    string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
+    string = legacyReplaceSymbolWithNumber(this.faker, string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
