@@ -237,7 +237,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
    * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    *
-   * @see faker.string.numeric()
+   * @see faker.string.numeric(): For the replacement method.
    *
    * @deprecated Use `faker.string.numeric()` instead. Example: `string.replace(/#+/g, (m) => faker.string.numeric(m.length));`
    *
