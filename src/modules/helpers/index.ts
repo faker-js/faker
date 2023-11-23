@@ -325,7 +325,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param string The template string to parse. Defaults to `''`.
    *
-   * @see faker.helpers.fromRegExp()
+   * @see faker.helpers.fromRegExp(): For generating a string matching the given regex-like expressions.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
@@ -458,7 +458,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       while (range != null) {
         if (range[0].includes('-')) {
           // handle ranges
-          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
+          const rangeMinMax = range[0]
+            .split('-')
+            .map((x) => x.codePointAt(0) ?? Number.NaN);
           min = rangeMinMax[0];
           max = rangeMinMax[1];
           // throw error if min larger than max
@@ -469,12 +471,12 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           for (let i = min; i <= max; i++) {
             if (
               isCaseInsensitive &&
-              Number.isNaN(Number(String.fromCharCode(i)))
+              Number.isNaN(Number(String.fromCodePoint(i)))
             ) {
-              const ch = String.fromCharCode(i);
+              const ch = String.fromCodePoint(i);
               rangeCodes.push(
-                ch.toUpperCase().charCodeAt(0),
-                ch.toLowerCase().charCodeAt(0)
+                ch.toUpperCase().codePointAt(0) ?? Number.NaN,
+                ch.toLowerCase().codePointAt(0) ?? Number.NaN
               );
             } else {
               rangeCodes.push(i);
@@ -484,11 +486,11 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           // handle non-ranges
           if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
             rangeCodes.push(
-              range[0].toUpperCase().charCodeAt(0),
-              range[0].toLowerCase().charCodeAt(0)
+              range[0].toUpperCase().codePointAt(0) ?? Number.NaN,
+              range[0].toLowerCase().codePointAt(0) ?? Number.NaN
             );
           } else {
-            rangeCodes.push(range[0].charCodeAt(0));
+            rangeCodes.push(range[0].codePointAt(0) ?? Number.NaN);
           }
         }
 
@@ -540,7 +542,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       }
 
       const generatedString = this.multiple(
-        () => String.fromCharCode(this.arrayElement(rangeCodes)),
+        () => String.fromCodePoint(this.arrayElement(rangeCodes)),
         { count: repetitions }
       ).join('');
 
@@ -1292,7 +1294,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param pattern The pattern string that will get interpolated.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): For using custom functions to resolve templates.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
@@ -1344,7 +1346,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): For using custom functions to resolve templates.
    *
    * @example
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
@@ -1387,7 +1389,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): For using custom functions to resolve templates.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
