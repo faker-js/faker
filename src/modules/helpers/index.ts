@@ -9,7 +9,7 @@ import * as uniqueExec from './unique';
 /**
  * Returns a number based on given RegEx-based quantifier symbol or quantifier values.
  *
- * @param faker Faker instance
+ * @param faker The Faker instance to use.
  * @param quantifierSymbol Quantifier symbols can be either of these: `?`, `*`, `+`.
  * @param quantifierMin Quantifier minimum value. If given without a maximum, this will be used as the quantifier value.
  * @param quantifierMax Quantifier maximum value. Will randomly get a value between the minimum and maximum if both are provided.
@@ -17,9 +17,9 @@ import * as uniqueExec from './unique';
  * @returns a random number based on the given quantifier parameters.
  *
  * @example
- * getRepetitionsBasedOnQuantifierParameters(this.faker, '*', null, null) // 3
- * getRepetitionsBasedOnQuantifierParameters(this.faker, null, 10, null) // 10
- * getRepetitionsBasedOnQuantifierParameters(this.faker, null, 5, 8) // 6
+ * getRepetitionsBasedOnQuantifierParameters(faker, '*', null, null) // 3
+ * getRepetitionsBasedOnQuantifierParameters(faker, null, 10, null) // 10
+ * getRepetitionsBasedOnQuantifierParameters(faker, null, 5, 8) // 6
  *
  * @since 8.0.0
  */
@@ -82,15 +82,15 @@ function getRepetitionsBasedOnQuantifierParameters(
  *
  * @internal
  *
- * @param faker A Faker instance.
+ * @param faker The Faker instance to use.
  * @param string The template string to parse.
  *
  * @example
- * faker.helpers.legacyRegexpStringParse() // ''
- * faker.helpers.legacyRegexpStringParse('#{5}') // '#####'
- * faker.helpers.legacyRegexpStringParse('#{2,9}') // '#######'
- * faker.helpers.legacyRegexpStringParse('[500-15000]') // '8375'
- * faker.helpers.legacyRegexpStringParse('#{3}test[1-5]') // '###test3'
+ * legacyRegexpStringParse(faker) // ''
+ * legacyRegexpStringParse(faker, '#{5}') // '#####'
+ * legacyRegexpStringParse(faker, '#{2,9}') // '#######'
+ * legacyRegexpStringParse(faker, '[500-15000]') // '8375'
+ * legacyRegexpStringParse(faker, '#{3}test[1-5]') // '###test3'
  *
  * @since 5.0.0
  */
