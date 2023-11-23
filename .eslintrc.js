@@ -2,6 +2,12 @@
 const { defineConfig } = require('eslint-define-config');
 const { readGitignoreFiles } = require('eslint-gitignore');
 
+/// <reference types="@eslint-types/deprecation" />
+/// <reference types="@eslint-types/jsdoc" />
+/// <reference types="@eslint-types/prettier" />
+/// <reference types="@eslint-types/typescript-eslint" />
+/// <reference types="@eslint-types/unicorn" />
+
 module.exports = defineConfig({
   ignorePatterns: [
     ...readGitignoreFiles(),
@@ -99,7 +105,10 @@ module.exports = defineConfig({
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
-    '@typescript-eslint/switch-exhaustiveness-check': 'error',
+    '@typescript-eslint/switch-exhaustiveness-check': [
+      'error',
+      { requireDefaultForNonUnion: true },
+    ],
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
 

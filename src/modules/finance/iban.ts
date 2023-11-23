@@ -1133,7 +1133,7 @@ const iban: Iban = {
       total: 24,
       bban: [
         {
-          type: 'c',
+          type: 'a',
           count: 4,
         },
         {
