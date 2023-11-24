@@ -164,7 +164,7 @@ function legacyRegexpStringParse(
  *
  * @internal
  *
- * @param faker Faker instance
+ * @param faker A Faker instance.
  * @param string The template string to parse. Defaults to `''`.
  * @param symbol The symbol to replace with digits. Defaults to `'#'`.
  *
@@ -174,7 +174,7 @@ function legacyRegexpStringParse(
  * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, '!####') // '27378'
  * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, 'Your pin is: !####') // '29841'
  *
- * @since 9.0.0
+ * @since 8.4.0
  */
 export function legacyReplaceSymbolWithNumber(
   faker: SimpleFaker,
@@ -245,13 +245,14 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.string.numeric()` instead. Example: `string.replace(/#+/g, (m) => faker.string.numeric(m.length));`
+   * @deprecated Use `faker.string.numeric()` instead. Example: `value.replace(/#+/g, (m) => faker.string.numeric(m.length));`
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     deprecated({
       deprecated: 'faker.helpers.replaceSymbolWithNumber',
       proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
-      since: '9.0.0',
+      since: '8.4',
+      until: '9.0',
     });
 
     return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
