@@ -162,17 +162,19 @@ function legacyRegexpStringParse(
  * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
  * `!` will be replaced by digits >=2 (`2` - `9`).
  *
+ * Note: This method will be removed in v9.
+ *
  * @internal
  *
- * @param faker A Faker instance.
+ * @param faker The Faker instance to use.
  * @param string The template string to parse. Defaults to `''`.
  * @param symbol The symbol to replace with digits. Defaults to `'#'`.
  *
  * @example
- * faker.helpers.legacyReplaceSymbolWithNumber(this.faker) // ''
- * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, '#####') // '04812'
- * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, '!####') // '27378'
- * faker.helpers.legacyReplaceSymbolWithNumber(this.faker, 'Your pin is: !####') // '29841'
+ * legacyReplaceSymbolWithNumber(faker) // ''
+ * legacyReplaceSymbolWithNumber(faker, '#####') // '04812'
+ * legacyReplaceSymbolWithNumber(faker, '!####') // '27378'
+ * legacyReplaceSymbolWithNumber(faker, 'Your pin is: !####') // '29841'
  *
  * @since 8.4.0
  */
