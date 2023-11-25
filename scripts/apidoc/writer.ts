@@ -169,14 +169,13 @@ function writeApiDocsModuleData(
  * @param pages The pages to write into the index.
  */
 export async function writeApiPagesIndex(pages: Page[]): Promise<void> {
-  const pagesByCategory = groupBy(pages, (page) => page.category);
+  const pagesByCategory: Record<string, DefaultTheme.SidebarItem[]> = groupBy(
+    pages,
+    (page) => page.category,
+    ({ text, link }) => ({ text, link })
+  );
   const pageTree = Object.entries(pagesByCategory).flatMap(
-    ([category, items]): DefaultTheme.SidebarItem[] => {
-      const cleanedItems = items.map(({ text, link }) => ({ text, link }));
-      return category
-        ? [{ text: category, items: cleanedItems }]
-        : cleanedItems;
-    }
+    ([category, items]) => (category ? [{ text: category, items }] : items)
   );
 
   // Write api-pages.ts
