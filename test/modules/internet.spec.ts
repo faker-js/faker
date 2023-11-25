@@ -422,6 +422,14 @@ describe('internet', () => {
           const username = faker.internet.userName('大羽', '陳');
           expect(username).includes('hlzp8d');
         });
+
+        it('should provide a fallback special unicode characters', () => {
+          const username = faker.internet.userName({
+            firstName: '🐼',
+            lastName: '❤️',
+          });
+          expect(username).includes('2qt8');
+        });
       });
 
       describe('displayName()', () => {

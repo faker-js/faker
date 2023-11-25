@@ -660,13 +660,15 @@ export class InternetModule extends ModuleBase {
           return charMapping[char];
         }
 
-        if (char.charCodeAt(0) < 0x80) {
+        const charCode = char.codePointAt(0) ?? Number.NaN;
+
+        if (charCode < 0x80) {
           // Keep ASCII characters
           return char;
         }
 
         // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
-        return char.charCodeAt(0).toString(36);
+        return charCode.toString(36);
       })
       .join('');
     result = result.toString().replace(/'/g, '');
@@ -1495,7 +1497,7 @@ export class InternetModule extends ModuleBase {
       }
 
       const n = this.faker.number.int(94) + 33;
-      let char = String.fromCharCode(n);
+      let char = String.fromCodePoint(n);
       if (memorable) {
         char = char.toLowerCase();
       }
