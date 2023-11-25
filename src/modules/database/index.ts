@@ -1,22 +1,15 @@
-import type { Faker } from '../..';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate database related entries.
+ *
+ * ### Overview
+ *
+ * Traditional relational database tables have data organized in columns with specific types - [`column()`](https://fakerjs.dev/api/database.html#column), [`type()`](https://fakerjs.dev/api/database.html#type). The database usually has an [`engine()`](https://fakerjs.dev/api/database.html#engine) and a default [`collation()`](https://fakerjs.dev/api/database.html#collation) for sorting.
+ *
+ * For the NoSQL database MongoDB, [`mongodbObjectId()`](https://fakerjs.dev/api/database.html#mongodbobjectid) provides a random ID.
  */
-export class DatabaseModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      DatabaseModule.prototype
-    ) as Array<keyof DatabaseModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class DatabaseModule extends ModuleBase {
   /**
    * Returns a random database column name.
    *

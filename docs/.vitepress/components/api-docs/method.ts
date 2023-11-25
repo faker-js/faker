@@ -1,14 +1,14 @@
 export interface Method {
   readonly name: string;
-  readonly title: string;
   readonly description: string; // HTML
   readonly parameters: MethodParameter[];
   readonly returns: string;
   readonly examples: string; // HTML
-  readonly deprecated: boolean;
+  readonly deprecated?: string; // HTML
   readonly since: string;
   readonly sourcePath: string; // URL-Suffix
   readonly seeAlsos: string[];
+  readonly throws?: string; // HTML
 }
 
 export interface MethodParameter {

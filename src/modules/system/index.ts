@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import { ModuleBase } from '../../internal/module-base';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -35,20 +35,7 @@ const CRON_DAY_OF_WEEK = [
 /**
  * Generates fake data for many computer systems properties.
  */
-export class SystemModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      SystemModule.prototype
-    ) as Array<keyof SystemModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class SystemModule extends ModuleBase {
   /**
    * Returns a random file name with extension.
    *
@@ -102,6 +89,7 @@ export class SystemModule {
    * Returns a random file name with a given extension or a commonly used extension.
    *
    * @param ext Extension. Empty string is considered to be not set.
+   *
    * @example
    * faker.system.commonFileName() // 'dollar.jpg'
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
@@ -161,17 +149,12 @@ export class SystemModule {
    * @since 3.1.0
    */
   fileType(): string {
-    const typeSet = new Set<string>();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
 
-    Object.keys(mimeTypes).forEach((m) => {
-      const type = m.split('/')[0];
-
-      typeSet.add(type);
-    });
-
-    const types = Array.from(typeSet);
-    return this.faker.helpers.arrayElement(types);
+    const typeSet = new Set(
+      Object.keys(mimeTypes).map((key) => key.split('/')[0])
+    );
+    return this.faker.helpers.arrayElement([...typeSet]);
   }
 
   /**
@@ -186,24 +169,16 @@ export class SystemModule {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
+    const mimeTypes = this.faker.definitions.system.mimeTypes;
+
     if (typeof mimeType === 'string') {
-      const mimes = this.faker.definitions.system.mimeTypes;
-      return this.faker.helpers.arrayElement(mimes[mimeType].extensions);
+      return this.faker.helpers.arrayElement(mimeTypes[mimeType].extensions);
     }
 
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
-    const extensionSet = new Set<string>();
-
-    Object.keys(mimeTypes).forEach((m) => {
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
-    });
-
-    const extensions = Array.from(extensionSet);
-    return this.faker.helpers.arrayElement(extensions);
+    const extensionSet = new Set(
+      Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
+    );
+    return this.faker.helpers.arrayElement([...extensionSet]);
   }
 
   /**
@@ -251,7 +226,7 @@ export class SystemModule {
   /**
    * Returns a random [network interface](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-understanding_the_predictable_network_interface_device_names).
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.interfaceType The interface type. Can be one of `en`, `wl`, `ww`.
    * @param options.interfaceSchema The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
    *

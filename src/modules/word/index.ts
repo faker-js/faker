@@ -1,24 +1,11 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { filterWordListByLength } from './filterWordListByLength';
+import { ModuleBase } from '../../internal/module-base';
+import { filterWordListByLength } from './filter-word-list-by-length';
 
 /**
  * Module to return various types of words.
  */
-export class WordModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      WordModule.prototype
-    ) as Array<keyof WordModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class WordModule extends ModuleBase {
   /**
    * Returns an adjective of random or optionally specified length.
    *

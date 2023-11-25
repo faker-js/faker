@@ -1,40 +1,37 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import type { Mersenne } from '../../internal/mersenne/mersenne';
+import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate numbers of any kind.
+ *
+ * ### Overview
+ *
+ * For simple integers, use [`int()`](https://fakerjs.dev/api/number.html#int). For decimal/floating-point numbers, use [`float()`](https://fakerjs.dev/api/number.html#float).
+ *
+ * For numbers not in base-10, you can use [`hex()`](https://fakerjs.dev/api/number.html#hex), [`octal()`](https://fakerjs.dev/api/number.html#octal) and [`binary()`](https://fakerjs.dev/api/number.html#binary)`.
+ *
+ * ### Related modules
+ *
+ * - For numeric strings of a given length, use [`faker.string.numeric()`](https://fakerjs.dev/api/string.html#numeric).
+ * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
-export class NumberModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      NumberModule.prototype
-    ) as Array<keyof NumberModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class NumberModule extends SimpleModuleBase {
   /**
    * Returns a single random integer between zero and the given max value or the given range.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
+   * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
    * @example
-   * faker.number.int() // 55422
+   * faker.number.int() // 2900970162509863
    * faker.number.int(100) // 52
-   * faker.number.int({ min: 1000000 }) // 1031433
+   * faker.number.int({ min: 1000000 }) // 2900970162509863
    * faker.number.int({ max: 100 }) // 42
    * faker.number.int({ min: 10, max: 100 }) // 57
    *
@@ -53,7 +50,7 @@ export class NumberModule {
           /**
            * Upper bound for generated number.
            *
-           * @default min + 99999
+           * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
         } = {}
@@ -80,20 +77,20 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const mersenne: Mersenne =
-      // @ts-expect-error: access private member field
-      this.faker._mersenne;
-    const real = mersenne.next();
+    // @ts-expect-error: access private member field
+    const randomizer = this.faker._randomizer;
+    const real = randomizer.next();
     return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
 
   /**
    * Returns a single random floating-point number for a given precision or range and precision.
+   * The lower bound is inclusive, the upper bound is exclusive, unless precision is passed.
    *
-   * @param options Upper bound or options object. Defaults to `{}`.
+   * @param options Upper bound or options object.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
    * @param options.max Upper bound for generated number. Defaults to `1.0`.
-   * @param options.fractionDigits The number of digits to appear after the decimal point.
+   * @param options.fractionDigits The number of digits to appear after the decimal point. Defaults to `16`.
    *
    * @throws If options.max is smaller than options.min.
    * @throws If options.fractionDigits is negative.
@@ -126,6 +123,8 @@ export class NumberModule {
           max?: number;
           /**
            * The number of digits to appear after the decimal point.
+           *
+           * @default 16
            */
           fractionDigits?: number;
         } = {}
@@ -136,7 +135,7 @@ export class NumberModule {
       };
     }
 
-    const { min = 0, max = 1, fractionDigits } = options;
+    const { min = 0, max = 1, fractionDigits = 16 } = options;
 
     if (max === min) {
       return min;
@@ -153,11 +152,11 @@ export class NumberModule {
     }
 
     // @ts-expect-error: access private member field
-    const mersenne: Mersenne = this.faker._mersenne;
-    let real = mersenne.next() * (max - min) + min;
+    const randomizer = this.faker._randomizer;
+    let real = randomizer.next() * (max - min) + min;
 
     if (fractionDigits !== undefined) {
-      real = parseFloat(real.toFixed(fractionDigits));
+      real = Number.parseFloat(real.toFixed(fractionDigits));
     }
 
     return real;
@@ -165,14 +164,15 @@ export class NumberModule {
 
   /**
    * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) number.
+   * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `1`.
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.string.binary() If you would like to generate a `binary string` with a given length (range).
+   * @see faker.string.binary(): For generating a `binary string` with a given length (range).
    *
    * @example
    * faker.number.binary() // '1'
@@ -213,14 +213,15 @@ export class NumberModule {
 
   /**
    * Returns an [octal](https://en.wikipedia.org/wiki/Octal) number.
+   * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `7`.
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.string.octal() If you would like to generate an `octal string` with a given length (range).
+   * @see faker.string.octal(): For generating an `octal string` with a given length (range).
    *
    * @example
    * faker.number.octal() // '5'
@@ -261,10 +262,13 @@ export class NumberModule {
 
   /**
    * Returns a lowercase [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
+   * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `15`.
+   *
+   * @throws When options define `max < min`.
    *
    * @example
    * faker.number.hex() // 'b'
@@ -305,8 +309,9 @@ export class NumberModule {
 
   /**
    * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
+   * The bounds are inclusive.
    *
-   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options Maximum value or options object.
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *

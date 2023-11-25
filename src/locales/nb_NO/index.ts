@@ -8,18 +8,19 @@ import commerce from './commerce';
 import company from './company';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
 import word from './word';
 
 const nb_NO: LocaleDefinition = {
-  title: 'Norwegian',
   color,
   commerce,
   company,
   internet,
   location,
+  metadata,
   person,
   phone_number,
   science,

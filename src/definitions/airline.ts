@@ -1,7 +1,7 @@
 import type { Airline, Airplane, Airport } from '../modules/airline';
 import type { LocaleEntry } from './definitions';
 
-export type AirlineDefinitions = LocaleEntry<{
+export type AirlineDefinition = LocaleEntry<{
   /**
    * Some airline information
    */

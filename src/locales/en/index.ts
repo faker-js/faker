@@ -6,7 +6,6 @@ import type { LocaleDefinition } from '../..';
 import airline from './airline';
 import animal from './animal';
 import app from './app';
-import business from './business';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -18,21 +17,19 @@ import hacker from './hacker';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
-import system from './system';
 import team from './team';
 import vehicle from './vehicle';
 import word from './word';
 
 const en: LocaleDefinition = {
-  title: 'English',
   airline,
   animal,
   app,
-  business,
   cell_phone,
   color,
   commerce,
@@ -44,11 +41,11 @@ const en: LocaleDefinition = {
   internet,
   location,
   lorem,
+  metadata,
   music,
   person,
   phone_number,
   science,
-  system,
   team,
   vehicle,
   word,

@@ -3,18 +3,6 @@ import { FakerError } from '../../errors/faker-error';
 export type RecordKey = string | number | symbol;
 
 /**
- * Global store of unique values.
- * This means that faker should *never* return duplicate values across all API methods when using `Faker.helpers.unique` without passing `options.store`.
- */
-const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
-
-/**
- * Global exclude list of results.
- * Defaults to nothing excluded.
- */
-const GLOBAL_UNIQUE_EXCLUDE: RecordKey[] = [];
-
-/**
  * Uniqueness compare function.
  * Default behavior is to check value as key against object hash.
  *
@@ -69,7 +57,8 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * Generates a unique result using the results of the given method.
  * Used unique entries will be stored internally and filtered from subsequent calls.
  *
- * @template Method The type of the method to execute.
+ * @template TMethod The type of the method to execute.
+ *
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
  * @param options The optional options used to configure this method.
@@ -82,14 +71,14 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * @param options.store The store of unique entries. Defaults to `GLOBAL_UNIQUE_STORE`.
  */
 export function exec<
-  Method extends (
-    // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+  TMethod extends (
+    // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...parameters: any[]
-  ) => RecordKey
+  ) => RecordKey,
 >(
-  method: Method,
-  args: Parameters<Method>,
+  method: TMethod,
+  args: Parameters<TMethod>,
   options: {
     startTime?: number;
     maxTime?: number;
@@ -99,67 +88,65 @@ export function exec<
     compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     store?: Record<RecordKey, RecordKey>;
   } = {}
-): ReturnType<Method> {
-  const now = new Date().getTime();
+): ReturnType<TMethod> {
+  const now = Date.now();
 
   const {
-    startTime = new Date().getTime(),
+    startTime = Date.now(),
     maxTime = 50,
     maxRetries = 50,
+    currentIterations = 0,
     compare = defaultCompare,
-    store = GLOBAL_UNIQUE_STORE,
+    store = {},
   } = options;
-  let { exclude = GLOBAL_UNIQUE_EXCLUDE } = options;
-  options.currentIterations = options.currentIterations ?? 0;
+  let { exclude = [] } = options;
+  options.currentIterations = currentIterations;
 
   // Support single exclude argument as string
   if (!Array.isArray(exclude)) {
     exclude = [exclude];
   }
 
-  // if (options.currentIterations > 0) {
-  //   console.log('iterating', options.currentIterations)
-  // }
-
-  // console.log(now - startTime)
+  // If out of time -> throw error.
   if (now - startTime >= maxTime) {
     return errorMessage(
       startTime,
       now,
       `Exceeded maxTime: ${maxTime}`,
       store,
-      options.currentIterations
+      currentIterations
     );
   }
 
-  if (options.currentIterations >= maxRetries) {
+  // If out of retries -> throw error.
+  if (currentIterations >= maxRetries) {
     return errorMessage(
       startTime,
       now,
       `Exceeded maxRetries: ${maxRetries}`,
       store,
-      options.currentIterations
+      currentIterations
     );
   }
 
   // Execute the provided method to find a potential satisfied value.
-  const result: ReturnType<Method> = method.apply(this, args);
+  const result: ReturnType<TMethod> = method(...args) as ReturnType<TMethod>;
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
-  if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {
+  if (compare(store, result) === -1 && !exclude.includes(result)) {
     store[result] = result;
     options.currentIterations = 0;
     return result;
-  } else {
-    // console.log('conflict', result);
-    options.currentIterations++;
-    return exec(method, args, {
-      ...options,
-      startTime,
-      maxTime,
-      maxRetries,
-      compare,
-      exclude,
-    });
   }
+
+  // Conflict, try again.
+  options.currentIterations++;
+  return exec(method, args, {
+    ...options,
+    startTime,
+    maxTime,
+    maxRetries,
+    compare,
+    exclude,
+  });
 }

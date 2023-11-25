@@ -8,6 +8,9 @@ const props = defineProps<{ method: Method }>();
 
 function seeAlsoToUrl(see: string): string {
   const [, module, method] = see.replace(/\(.*/, '').split('\.');
+  if (!method) {
+    return 'faker.html#' + slugify(module);
+  }
   return module + '.html#' + slugify(method);
 }
 </script>
@@ -17,6 +20,7 @@ function seeAlsoToUrl(see: string): string {
     <div v-if="props.method.deprecated" class="warning custom-block">
       <p class="custom-block-title">Deprecated</p>
       <p>This method is deprecated and will be removed in a future version.</p>
+      <span v-html="props.method.deprecated" />
     </div>
 
     <div v-html="props.method.description"></div>
@@ -31,6 +35,10 @@ function seeAlsoToUrl(see: string): string {
     />
 
     <p><strong>Returns:</strong> {{ props.method.returns }}</p>
+
+    <p v-if="props.method.throws">
+      <strong>Throws:</strong> <span v-html="props.method.throws" />
+    </p>
 
     <div v-html="props.method.examples" />
 

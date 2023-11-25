@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to vehicles.
  */
-export type VehicleDefinitions = LocaleEntry<{
+export type VehicleDefinition = LocaleEntry<{
   /**
    * Some types of bicycles.
    */

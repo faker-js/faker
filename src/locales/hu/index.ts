@@ -4,23 +4,28 @@
  */
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
 import finance from './finance';
 import internet from './internet';
+import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import word from './word';
 
 const hu: LocaleDefinition = {
-  title: 'Hungarian',
   animal,
+  color,
   commerce,
   company,
   date,
   finance,
   internet,
+  location,
+  metadata,
   person,
   phone_number,
   word,

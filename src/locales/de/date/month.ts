@@ -13,39 +13,8 @@ export default {
     'November',
     'Dezember',
   ],
-  // Property "wide_context" is optional, if not set then "wide" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  wide_context: [
-    'Januar',
-    'Februar',
-    'März',
-    'April',
-    'Mai',
-    'Juni',
-    'Juli',
-    'August',
-    'September',
-    'Oktober',
-    'November',
-    'Dezember',
-  ],
+
   abbr: [
-    'Jan',
-    'Feb',
-    'Mrz',
-    'Apr',
-    'Mai',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Okt',
-    'Nov',
-    'Dez',
-  ],
-  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  abbr_context: [
     'Jan',
     'Feb',
     'Mrz',

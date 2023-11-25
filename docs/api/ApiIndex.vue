@@ -1,7 +1,7 @@
 <!-- This content is mostly copied over from https://github.com/vuejs/docs/blob/main/src/api/ApiIndex.vue -->
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { slugify } from '../.vitepress/shared/utils/slugify';
 import apiSearchIndex from './api-search-index.json';
 import { APIGroup } from './api-types';
@@ -43,29 +43,6 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[];
 });
-
-const apiFilter = ref<HTMLInputElement>();
-
-function apiSearchFocusHandler(event: KeyboardEvent): void {
-  if (event.key === 'Escape') {
-    if (apiFilter.value !== document.activeElement) {
-      query.value = '';
-    } else {
-      apiFilter.value!.blur();
-    }
-  } else if (
-    /^[a-z]$/.test(event.key) &&
-    !event.altKey &&
-    !event.ctrlKey &&
-    !event.shiftKey &&
-    !event.metaKey
-  ) {
-    apiFilter.value!.focus();
-  }
-}
-
-onMounted(() => window.addEventListener('keydown', apiSearchFocusHandler));
-onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
 </script>
 
 <template>
@@ -77,7 +54,6 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
         <input
           type="search"
           placeholder="Enter keyword"
-          ref="apiFilter"
           id="api-filter"
           v-model="query"
         />
@@ -88,12 +64,16 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
       <h2 :id="slugify(section.text)">{{ section.text }}</h2>
       <div class="api-groups">
         <div v-for="item of section.items" :key="item.text" class="api-group">
-          <h3>{{ item.text }}</h3>
+          <h3>
+            <a :href="item.link">{{ item.text }}</a>
+          </h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
-              <a :href="item.link + '.html#' + slugify(h.anchor)">{{
-                h.text
-              }}</a>
+              <a
+                :href="item.link + '#' + slugify(h.anchor)"
+                :class="{ deprecated: h.deprecated }"
+                >{{ h.text }}</a
+              >
             </li>
           </ul>
         </div>
@@ -150,7 +130,7 @@ h3 {
   margin-bottom: 64px;
 }
 
-.api-groups a {
+.api-groups ul a {
   font-size: 15px;
   font-weight: 500;
   line-height: 2;
@@ -158,11 +138,15 @@ h3 {
   transition: color 0.5s;
 }
 
-.dark .api-groups a {
+.api-groups ul a.deprecated {
+  text-decoration: line-through;
+}
+
+.dark .api-groups ul a {
   font-weight: 400;
 }
 
-.api-groups a:hover {
+.api-groups ul a:hover {
   color: var(--vp-c-green);
   transition: none;
 }
@@ -225,7 +209,7 @@ h3 {
     padding-top: 32px;
   }
 
-  .api-groups a {
+  .api-groups ul a {
     font-size: 14px;
   }
 

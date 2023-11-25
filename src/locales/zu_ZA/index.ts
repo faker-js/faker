@@ -7,15 +7,16 @@ import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const zu_ZA: LocaleDefinition = {
-  title: 'Zulu (South Africa)',
   cell_phone,
   company,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };

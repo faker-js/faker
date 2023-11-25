@@ -1,4 +1,10 @@
+import type { Casing, ColorFormat } from '../../../src';
+import { FakerError } from '../../../src/errors/faker-error';
+import type { AlphaNumericChar } from '../../../src/modules/string';
 import type { LiteralUnion } from '../../../src/utils/types';
+// explicitly export types so they show up in the docs as decomposed types
+export type { NumberColorFormat, StringColorFormat } from '../../../src';
+export { Casing, ColorFormat, AlphaNumericChar, LiteralUnion };
 
 /**
  * Parameter options type with default from signature.
@@ -88,7 +94,7 @@ export class SignatureTest {
    * @param b The string parameter.
    */
   optionalStringParamMethod(b?: string): number {
-    return +b;
+    return b ? 0 : 1;
   }
 
   /**
@@ -108,7 +114,7 @@ export class SignatureTest {
    * @param c The boolean parameter.
    */
   multiParamMethod(a: number, b?: string, c: boolean = true): number {
-    return c ? a : +b;
+    return c ? a : b ? 0 : 1;
   }
 
   /**
@@ -124,9 +130,20 @@ export class SignatureTest {
    * Test with string union.
    *
    * @param value `'a'` or `'b'`.
+   * @param options The options parameter.
+   * @param options.casing The casing parameter.
+   * @param options.format The format parameter.
+   * @param options.excludes The excludes parameter.
    */
-  stringUnionParamMethod(value: 'a' | 'b'): string {
-    return value;
+  stringUnionParamMethod(
+    value: 'a' | 'b',
+    options?: {
+      casing?: Casing;
+      format?: 'hex' | ColorFormat;
+      excludes?: ReadonlyArray<AlphaNumericChar>;
+    }
+  ): string {
+    return options?.format ?? value;
   }
 
   /**
@@ -158,21 +175,37 @@ export class SignatureTest {
   }
 
   /**
-   * Test with a function parameters.
+   * Test with a Record parameter.
    *
-   * @param options The function parameter.
+   * @param object The Record parameter.
+   */
+  recordParamMethod(object: Record<string, number>): number {
+    return object.a;
+  }
+
+  /**
+   * Test with an options parameter.
+   *
+   * @param options The options parameter.
    * @param options.a The number parameter.
    * @param options.b The string parameter.
    * @param options.c The boolean parameter.
    * @param options.d The method parameter.
+   * @param options.e The LiteralUnion parameter.
    */
   optionsParamMethod(options: {
     a: number;
     b?: string;
     c: boolean;
     d: () => string;
+    /**
+     * A parameter with inline documentation.
+     *
+     * @default 'a'
+     */
+    e: LiteralUnion<'a' | 'b'>;
   }): number {
-    return options.c ? options.a : +options.b;
+    return options.a;
   }
 
   /**
@@ -249,10 +282,48 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample()
    *
-   * @deprecated
+   * @deprecated do something else
    */
   methodWithDeprecated(): number {
     return 0;
+  }
+
+  /**
+   * Test with throws
+   *
+   * @throws a Faker error
+   */
+  methodWithThrows(): number {
+    throw new FakerError('Test error');
+  }
+
+  /**
+   * Test with deprecated option.
+   *
+   * @param option The options.
+   * @param option.a Some deprecated option.
+   * @param option.b Some other deprecated option.
+   * @param option.c Some other option.
+   */
+  methodWithDeprecatedOption(option: {
+    /**
+     * Some deprecated option.
+     *
+     * @deprecated do something else.
+     */
+    a: string;
+    /**
+     * Some other deprecated option.
+     *
+     * @deprecated do something else.
+     */
+    b: () => number;
+    /**
+     * Some other option.
+     */
+    c: number;
+  }): number {
+    return option.c;
   }
 
   /**
@@ -288,6 +359,7 @@ export class SignatureTest {
    * Complex array parameter.
    *
    * @template T The type of the entries to pick from.
+   *
    * @param array Array to pick the value from.
    * @param array[].weight The weight of the value.
    * @param array[].value The value to pick.

@@ -1,346 +1,432 @@
-export default {
-  Dollar: {
-    symbol: '$',
+export default [
+  {
+    name: 'Dollar',
     code: 'USD',
-  },
-  'Dollar canadien': {
     symbol: '$',
+  },
+  {
+    name: 'Dollar canadien',
     code: 'CAD',
-  },
-  'Peso mexicain': {
     symbol: '$',
+  },
+  {
+    name: 'Peso mexicain',
     code: 'MXN',
+    symbol: '$',
   },
-  Florin: {
-    symbol: 'ƒ',
+  {
+    name: 'Florin',
     code: 'AWG',
+    symbol: 'ƒ',
   },
-  'Baisse du dollar': {
-    symbol: '$',
+  {
+    name: 'Baisse du dollar',
     code: 'BBD',
-  },
-  'Dollar bermudien': {
     symbol: '$',
+  },
+  {
+    name: 'Dollar bermudien',
     code: 'BMD',
-  },
-  'Dollar des Bahamas': {
     symbol: '$',
+  },
+  {
+    name: 'Dollar des Bahamas',
     code: 'BSD',
-  },
-  'Peso dominicain': {
     symbol: '$',
+  },
+  {
+    name: 'Peso dominicain',
     code: 'DOP',
-  },
-  'Dollar jamaïcain': {
     symbol: '$',
+  },
+  {
+    name: 'Dollar jamaïcain',
     code: 'JMD',
+    symbol: '$',
   },
-  'Quetzal guatémaltèque': {
-    symbol: 'Q',
+  {
+    name: 'Quetzal guatémaltèque',
     code: 'GTQ',
+    symbol: 'Q',
   },
-  'Balboa panaméen': {
-    symbol: 'B/.',
+  {
+    name: 'Balboa panaméen',
     code: 'PAB',
+    symbol: 'B/.',
   },
-  'Dollar des Caraïbes': {
-    symbol: '$',
+  {
+    name: 'Dollar des Caraïbes',
     code: 'XCD',
+    symbol: '$',
   },
-  euro: {
-    symbol: '€',
+  {
+    name: 'euro',
     code: 'EUR',
+    symbol: '€',
   },
-  'Livre sterling': {
-    symbol: '£',
+  {
+    name: 'Livre sterling',
     code: 'GBP',
+    symbol: '£',
   },
-  'Course géorgienne': {
-    symbol: '₾',
+  {
+    name: 'Course géorgienne',
     code: 'GEL',
+    symbol: '₾',
   },
-  'Lev bulgare': {
-    symbol: 'лв',
+  {
+    name: 'Lev bulgare',
     code: 'BGN',
+    symbol: 'лв',
   },
-  'Franc suisse': {
-    symbol: 'CHF',
+  {
+    name: 'Franc suisse',
     code: 'CHF',
+    symbol: 'CHF',
   },
-  'Couronne danoise': {
-    symbol: 'kr',
+  {
+    name: 'Couronne danoise',
     code: 'DKK',
+    symbol: 'kr',
   },
-  'République tchèque Couronne': {
-    symbol: 'Kč',
+  {
+    name: 'République tchèque Couronne',
     code: 'CZK',
+    symbol: 'Kč',
   },
-  'Kuna croate': {
-    symbol: 'kn',
+  {
+    name: 'Kuna croate',
     code: 'HRK',
+    symbol: 'kn',
   },
-  'Forint hongrois': {
-    symbol: 'ft',
+  {
+    name: 'Forint hongrois',
     code: 'HUF',
+    symbol: 'ft',
   },
-  'couronne norvégienne': {
-    symbol: 'kr',
+  {
+    name: 'couronne norvégienne',
     code: 'NOK',
-  },
-  'Rouble russe': {
-    symbol: '₽',
-    code: 'RUB',
-  },
-  'Zloty polonais': {
-    symbol: 'zł',
-    code: 'PLN',
-  },
-  'Leu roumain': {
-    symbol: 'lei',
-    code: 'RON',
-  },
-  'couronne suédoise': {
     symbol: 'kr',
+  },
+  {
+    name: 'Rouble russe',
+    code: 'RUB',
+    symbol: '₽',
+  },
+  {
+    name: 'Zloty polonais',
+    code: 'PLN',
+    symbol: 'zł',
+  },
+  {
+    name: 'Leu roumain',
+    code: 'RON',
+    symbol: 'lei',
+  },
+  {
+    name: 'couronne suédoise',
     code: 'SEK',
+    symbol: 'kr',
   },
-  'Hryvnia ukrainienne': {
-    symbol: '₴',
+  {
+    name: 'Hryvnia ukrainienne',
     code: 'UAH',
+    symbol: '₴',
   },
-  'lire turque': {
-    symbol: '₺',
+  {
+    name: 'lire turque',
     code: 'TRY',
+    symbol: '₺',
   },
-  'Argentine Peso': {
-    symbol: '$',
+  {
+    name: 'Argentine Peso',
     code: 'ARS',
+    symbol: '$',
   },
-  'Bolivien bolivien': {
-    symbol: 'Bs.',
+  {
+    name: 'Bolivien bolivien',
     code: 'BOB',
-  },
-  'Real brésilien': {
-    symbol: 'R$',
-    code: 'BRL',
-  },
-  'Peso chilien': {
-    symbol: '$',
-    code: 'CLP',
-  },
-  'Peso colombien': {
-    symbol: '$',
-    code: 'COP',
-  },
-  'Nouveau Sol Péruvien': {
-    symbol: 'S/.',
-    code: 'PEN',
-  },
-  'Guarani paraguayen': {
-    symbol: '₲',
-    code: 'PYG',
-  },
-  'Peso uruguayen': {
-    symbol: '$',
-    code: 'UYU',
-  },
-  'Bolivar vénézuélien': {
     symbol: 'Bs.',
+  },
+  {
+    name: 'Real brésilien',
+    code: 'BRL',
+    symbol: 'R$',
+  },
+  {
+    name: 'Peso chilien',
+    code: 'CLP',
+    symbol: '$',
+  },
+  {
+    name: 'Peso colombien',
+    code: 'COP',
+    symbol: '$',
+  },
+  {
+    name: 'Nouveau Sol Péruvien',
+    code: 'PEN',
+    symbol: 'S/.',
+  },
+  {
+    name: 'Guarani paraguayen',
+    code: 'PYG',
+    symbol: '₲',
+  },
+  {
+    name: 'Peso uruguayen',
+    code: 'UYU',
+    symbol: '$',
+  },
+  {
+    name: 'Bolivar vénézuélien',
     code: 'VES',
+    symbol: 'Bs.',
   },
-  'Yen japonais': {
-    symbol: '¥',
+  {
+    name: 'Yen japonais',
     code: 'JPY',
-  },
-  'Bangladesh Taka': {
-    symbol: '৳',
-    code: 'BDT',
-  },
-  'Le yuan chinois': {
     symbol: '¥',
+  },
+  {
+    name: 'Bangladesh Taka',
+    code: 'BDT',
+    symbol: '৳',
+  },
+  {
+    name: 'Le yuan chinois',
     code: 'CNY',
+    symbol: '¥',
   },
-  'Dollar de Hong Kong': {
-    symbol: '$',
+  {
+    name: 'Dollar de Hong Kong',
     code: 'HKD',
+    symbol: '$',
   },
-  'Roupie indienne': {
-    symbol: '₹',
+  {
+    name: 'Roupie indienne',
     code: 'INR',
+    symbol: '₹',
   },
-  'Riel cambodgien': {
-    symbol: '៛',
+  {
+    name: 'Riel cambodgien',
     code: 'KHR',
+    symbol: '៛',
   },
-  Poulet: {
-    symbol: '₭',
+  {
+    name: 'Poulet',
     code: 'LAK',
+    symbol: '₭',
   },
-  'Roupie sri lankaise': {
-    symbol: 'රු',
+  {
+    name: 'Roupie sri lankaise',
     code: 'LKR',
+    symbol: 'රු',
   },
-  Rufiyaa: {
-    symbol: '.ރ',
+  {
+    name: 'Rufiyaa',
     code: 'MVR',
+    symbol: '.ރ',
   },
-  'cloche malaisienne': {
-    symbol: 'RM',
+  {
+    name: 'cloche malaisienne',
     code: 'MYR',
+    symbol: 'RM',
   },
-  'Roupie népalaise': {
-    symbol: 'रू',
+  {
+    name: 'Roupie népalaise',
     code: 'NPR',
+    symbol: 'रू',
   },
-  'Peso philippin': {
-    symbol: '₱',
+  {
+    name: 'Peso philippin',
     code: 'PHP',
+    symbol: '₱',
   },
-  'Roupie pakistanaise': {
-    symbol: '₨',
+  {
+    name: 'Roupie pakistanaise',
     code: 'PKR',
+    symbol: '₨',
   },
-  'Dollar de Singapour': {
-    symbol: '$',
+  {
+    name: 'Dollar de Singapour',
     code: 'SGD',
+    symbol: '$',
   },
-  'Baht thaïlandais': {
-    symbol: '฿',
+  {
+    name: 'Baht thaïlandais',
     code: 'THB',
+    symbol: '฿',
   },
-  'Nouveau dollar de Taïwan': {
-    symbol: '$',
+  {
+    name: 'Nouveau dollar de Taïwan',
     code: 'TWD',
+    symbol: '$',
   },
-  'Dong vietnamien': {
-    symbol: '₫',
+  {
+    name: 'Dong vietnamien',
     code: 'VND',
+    symbol: '₫',
   },
-  'Dollar australien': {
-    symbol: '$',
+  {
+    name: 'Dollar australien',
     code: 'AUD',
-  },
-  'Dollar fidjien': {
     symbol: '$',
+  },
+  {
+    name: 'Dollar fidjien',
     code: 'FJD',
-  },
-  'Dollar néo-zélandais': {
     symbol: '$',
+  },
+  {
+    name: 'Dollar néo-zélandais',
     code: 'NZD',
-  },
-  'Franc CFP': {
-    symbol: '₣',
-    code: 'XPF',
-  },
-  'Livre égyptienne': {
-    symbol: '£',
-    code: 'EGP',
-  },
-  'Cédi ghanéen': {
-    symbol: '₵',
-    code: 'GHS',
-  },
-  Dalasi: {
-    symbol: 'D',
-    code: 'GMD',
-  },
-  'Shilling kenyan': {
-    symbol: 'Sh',
-    code: 'KES',
-  },
-  'Dirham marocain': {
-    symbol: 'DH',
-    code: 'MAD',
-  },
-  'Ariary malgache': {
-    symbol: 'Ar',
-    code: 'MGA',
-  },
-  'Roupie mauricienne': {
-    symbol: '₨',
-    code: 'MUR',
-  },
-  'Dollar namibien': {
     symbol: '$',
-    code: 'NAD',
   },
-  'Naira nigérian': {
-    symbol: '₦',
-    code: 'NGN',
+  {
+    name: 'Franc CFP',
+    code: 'XPF',
+    symbol: '₣',
   },
-  Roupie: {
-    symbol: '₨',
-    code: 'SCR',
-  },
-  'Dinar tunisien': {
-    symbol: 'DT',
-    code: 'TND',
-  },
-  'Shilling ougandais': {
-    symbol: 'Sh',
-    code: 'UGX',
-  },
-  'CFA Franc BEAC': {
-    symbol: 'Fr',
-    code: 'XAF',
-  },
-  'CFA Franc BCEAO': {
-    symbol: 'Fr',
-    code: 'XOF',
-  },
-  'Rand sud-africain': {
-    symbol: 'Br',
-    code: 'ZAR',
-  },
-  'Dirham des Émirats arabes unis': {
-    symbol: 'د.إ',
-    code: 'AED',
-  },
-  'Nouveau Shekel israélien': {
-    symbol: '₪',
-    code: 'ILS',
-  },
-  'Livre syrienne': {
+  {
+    name: 'Livre égyptienne',
+    code: 'EGP',
     symbol: '£',
+  },
+  {
+    name: 'Cédi ghanéen',
+    code: 'GHS',
+    symbol: '₵',
+  },
+  {
+    name: 'Dalasi',
+    code: 'GMD',
+    symbol: 'D',
+  },
+  {
+    name: 'Shilling kenyan',
+    code: 'KES',
+    symbol: 'Sh',
+  },
+  {
+    name: 'Dirham marocain',
+    code: 'MAD',
+    symbol: 'DH',
+  },
+  {
+    name: 'Ariary malgache',
+    code: 'MGA',
+    symbol: 'Ar',
+  },
+  {
+    name: 'Roupie mauricienne',
+    code: 'MUR',
+    symbol: '₨',
+  },
+  {
+    name: 'Dollar namibien',
+    code: 'NAD',
+    symbol: '$',
+  },
+  {
+    name: 'Naira nigérian',
+    code: 'NGN',
+    symbol: '₦',
+  },
+  {
+    name: 'Roupie',
+    code: 'SCR',
+    symbol: '₨',
+  },
+  {
+    name: 'Dinar tunisien',
+    code: 'TND',
+    symbol: 'DT',
+  },
+  {
+    name: 'Shilling ougandais',
+    code: 'UGX',
+    symbol: 'Sh',
+  },
+  {
+    name: 'CFA Franc BEAC',
+    code: 'XAF',
+    symbol: 'Fr',
+  },
+  {
+    name: 'CFA Franc BCEAO',
+    code: 'XOF',
+    symbol: 'Fr',
+  },
+  {
+    name: 'Rand sud-africain',
+    code: 'ZAR',
+    symbol: 'Br',
+  },
+  {
+    name: 'Dirham des Émirats arabes unis',
+    code: 'AED',
+    symbol: 'د.إ',
+  },
+  {
+    name: 'Nouveau Shekel israélien',
+    code: 'ILS',
+    symbol: '₪',
+  },
+  {
+    name: 'Livre syrienne',
     code: 'SYP',
+    symbol: '£',
   },
-  'Dinar jordanien': {
-    symbol: 'د.ا',
+  {
+    name: 'Dinar jordanien',
     code: 'JOD',
+    symbol: 'د.ا',
   },
-  'Dinar koweïtien': {
-    symbol: 'د.ك',
+  {
+    name: 'Dinar koweïtien',
     code: 'KWD',
+    symbol: 'د.ك',
   },
-  'Livre libanaise': {
-    symbol: 'ل.ل',
+  {
+    name: 'Livre libanaise',
     code: 'LBP',
+    symbol: 'ل.ل',
   },
-  'Rial omanais': {
-    symbol: 'ر.ع.',
+  {
+    name: 'Rial omanais',
     code: 'OMR',
+    symbol: 'ر.ع.',
   },
-  'Rial qatari': {
-    symbol: 'ر.ق',
+  {
+    name: 'Rial qatari',
     code: 'QAR',
+    symbol: 'ر.ق',
   },
-  'Riyal saoudien': {
-    symbol: '',
+  {
+    name: 'Riyal saoudien',
     code: 'SAR',
+    symbol: '',
   },
-  Bitcoin: {
-    symbol: '₿',
+  {
+    name: 'Bitcoin',
     code: 'BTC',
+    symbol: '₿',
   },
-  Ethereum: {
-    symbol: 'Ξ',
+  {
+    name: 'Ethereum',
     code: 'ETH',
+    symbol: 'Ξ',
   },
-  Litecoin: {
-    symbol: 'Ł',
+  {
+    name: 'Litecoin',
     code: 'LTC',
+    symbol: 'Ł',
   },
-  Ripples: {
-    symbol: 'XRP',
+  {
+    name: 'Ripples',
     code: 'XRP',
+    symbol: 'XRP',
   },
-};
+];

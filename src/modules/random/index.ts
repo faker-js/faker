@@ -1,5 +1,6 @@
-import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
 import type {
   AlphaChar,
@@ -10,37 +11,37 @@ import type {
 
 /**
  * Generates random values of different kinds.
+ *
+ * @deprecated Use the modules specific to the type of data you want to generate instead.
  */
-export class RandomModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      RandomModule.prototype
-    ) as Array<keyof RandomModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class RandomModule extends ModuleBase {
   /**
-   * Returns random word.
+   * Returns a random word.
+   *
+   * @see faker.lorem.word(): For generating a random placeholder word.
+   * @see faker.word.sample(): For generating a random real word.
    *
    * @example
    * faker.random.word() // 'Seamless'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.lorem.word()` or `faker.word.sample()` instead.
    */
   word(): string {
+    deprecated({
+      deprecated: 'faker.random.word()',
+      proposed: 'faker.lorem.word() or faker.word.sample()',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const wordMethods = [
-      this.faker.location.cardinalDirection,
-      this.faker.location.cityName,
+      () => this.faker.location.cardinalDirection(),
       this.faker.location.country,
       this.faker.location.county,
-      this.faker.location.direction,
-      this.faker.location.ordinalDirection,
+      () => this.faker.location.direction(),
+      () => this.faker.location.ordinalDirection(),
       this.faker.location.state,
       this.faker.location.street,
 
@@ -52,9 +53,9 @@ export class RandomModule {
       this.faker.commerce.productMaterial,
       this.faker.commerce.productName,
 
-      this.faker.company.bsAdjective,
-      this.faker.company.bsBuzz,
-      this.faker.company.bsNoun,
+      this.faker.company.buzzAdjective,
+      this.faker.company.buzzNoun,
+      this.faker.company.buzzVerb,
       this.faker.company.catchPhraseAdjective,
       this.faker.company.catchPhraseDescriptor,
       this.faker.company.catchPhraseNoun,
@@ -122,7 +123,9 @@ export class RandomModule {
       '_',
       '-',
     ];
-    let result: string;
+    let result = '';
+
+    let iteration = 0;
 
     do {
       // randomly pick from the many faker methods that can generate words
@@ -132,6 +135,14 @@ export class RandomModule {
         result = randomWordMethod();
       } catch {
         // catch missing locale data potentially required by randomWordMethod
+        iteration++;
+
+        if (iteration > 100) {
+          throw new FakerError(
+            'No matching word data available for the current locale'
+          );
+        }
+
         continue;
       }
     } while (!result || bannedChars.some((char) => result.includes(char)));
@@ -146,12 +157,17 @@ export class RandomModule {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
+   * @see faker.lorem.words(): For generating a sequence of random placeholder words.
+   * @see faker.word.words(): For generating a sequence of random real words.
+   *
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
    * faker.random.words({ min: 3, max: 5 }) // 'cool sticky Borders'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.lorem.words()` or `faker.word.words()` instead.
    */
   words(
     count:
@@ -167,31 +183,44 @@ export class RandomModule {
           max: number;
         } = { min: 1, max: 3 }
   ): string {
+    deprecated({
+      deprecated: 'faker.random.words()',
+      proposed: 'faker.lorem.words() or faker.word.words()',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    // eslint-disable-next-line deprecation/deprecation
     return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
 
   /**
-   * Returns a random locale, that is available in this faker instance.
-   * You can use the returned locale with `faker.setLocale(result)`.
+   * Do NOT use. This property has been removed.
    *
    * @example
-   * faker.random.locale() // 'el'
+   * faker.helpers.objectKey(allLocales)
+   * faker.helpers.objectValue(allFakers)
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.helpers.objectKey(allLocales/allFakers)` instead.
    */
-  locale(): string {
-    return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
+  private locale(): never {
+    // We cannot invoke this ourselves, because this would link to all locale data and increase the bundle size by a lot.
+    throw new FakerError(
+      'This method has been removed. Please use `faker.helpers.objectKey(allLocales/allFakers)` instead.'
+    );
   }
 
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance.
    * @param options.count The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
-   * @see faker.string.alpha()
+   * @see faker.string.alpha(): For the replacement method.
    *
    * @example
    * faker.random.alpha() // 'b'
@@ -200,7 +229,7 @@ export class RandomModule {
    *
    * @since 5.0.0
    *
-   * @deprecated Use faker.string.alpha() instead.
+   * @deprecated Use `faker.string.alpha()` instead.
    */
   alpha(
     options:
@@ -247,11 +276,11 @@ export class RandomModule {
    * Generating a string consisting of alpha characters and digits.
    *
    * @param count The number of characters and digits to generate. Defaults to `1`.
-   * @param options The options to use. Defaults to `{ bannedChars: [] }`.
+   * @param options The options to use.
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.alphanumeric()
+   * @see faker.string.alphanumeric(): For the replacement method.
    *
    * @example
    * faker.random.alphaNumeric() // '2'
@@ -260,7 +289,7 @@ export class RandomModule {
    *
    * @since 3.1.0
    *
-   * @deprecated Use faker.string.alphanumeric() instead.
+   * @deprecated Use `faker.string.alphanumeric()` instead.
    */
   alphaNumeric(
     count: number = 1,
@@ -296,11 +325,11 @@ export class RandomModule {
    * Generates a given length string of digits.
    *
    * @param length The number of digits to generate. Defaults to `1`.
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.numeric()
+   * @see faker.string.numeric(): For the replacement method.
    *
    * @example
    * faker.random.numeric() // '2'
@@ -311,7 +340,7 @@ export class RandomModule {
    *
    * @since 6.3.0
    *
-   * @deprecated Use faker.string.numeric() instead.
+   * @deprecated Use `faker.string.numeric()` instead.
    */
   numeric(
     length: number = 1,

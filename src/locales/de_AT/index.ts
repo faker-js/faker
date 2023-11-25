@@ -7,16 +7,17 @@ import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import word from './word';
 
 const de_AT: LocaleDefinition = {
-  title: 'German (Austria)',
   cell_phone,
   company,
   internet,
   location,
+  metadata,
   person,
   phone_number,
   word,

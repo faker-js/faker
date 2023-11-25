@@ -13,13 +13,13 @@ Simply crop that line out for a Jest integration.
 These frameworks work about exactly as you would expect with Faker. Here's a minimal example:
 
 ```ts
-import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
+import { describe, expect, it } from 'vitest';
 
 describe('reverse array', () => {
   it('should reverse the array', () => {
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
+    const title = faker.person.jobTitle();
+    const name = faker.person.fullName();
     const animal = faker.animal.bear();
 
     const array = [title, name, animal];
@@ -36,8 +36,8 @@ These are especially useful in tests that are meant to be deterministic, such as
 - [Snapshots in Jest](https://jestjs.io/docs/snapshot-testing)
 
 ```ts
-import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
+import { afterEach, describe, expect, it } from 'vitest';
 
 // We might want other tests to *not* be seeded. This will re-seed our faker instance after each test.
 afterEach(() => {
@@ -48,8 +48,8 @@ describe('reverse array', () => {
   it('should reverse the array', () => {
     // Seed our faker instance with some static number.
     faker.seed(1234);
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
+    const title = faker.person.jobTitle();
+    const name = faker.person.fullName();
     const animal = faker.animal.bear();
 
     const array = [title, name, animal];
@@ -64,7 +64,7 @@ describe('reverse array', () => {
 
 ## Cypress
 
-[Cypress](https://www.cypress.io/) integration is fairly straighforward as well:
+[Cypress](https://www.cypress.io/) integration is fairly straightforward as well:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
@@ -95,6 +95,42 @@ describe('Testing the application', () => {
 
     // We should have logged in successfully to the dashboard page.
     cy.url().should('include', '/dashboard');
+  });
+});
+```
+
+## Playwright
+
+Integration with [Playwright](https://playwright.dev/) is also easy:
+
+```ts
+import { faker } from '@faker-js/faker/locale/en';
+import { expect, test } from '@playwright/test';
+
+test.describe('Testing the application', () => {
+  test('should create an account with username and password', async ({
+    page,
+  }) => {
+    const username = faker.internet.userName();
+    const password = faker.internet.password();
+    const email = faker.internet.exampleEmail();
+
+    // Visit the webpage and create an account.
+    await page.goto('https://www.example.com/register');
+    await page.getByLabel('email').fill(email);
+    await page.getByLabel('username').fill(username);
+    await page.getByLabel('password', { exact: true }).fill(password);
+    await page.getByLabel('confirm password').fill(password);
+    await page.getByRole('button', { name: 'Register' }).click();
+
+    // Now, we try to login with these credentials.
+    await page.goto('https://www.example.com/login');
+    await page.getByLabel('email').fill(email);
+    await page.getByLabel('password').fill(password);
+    await page.getByRole('button', { name: 'Login' }).click();
+
+    // We should have logged in successfully to the dashboard page.
+    await expect(page).toHaveURL(/.*dashboard/);
   });
 });
 ```

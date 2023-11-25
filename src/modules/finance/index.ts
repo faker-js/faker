@@ -1,22 +1,82 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 import iban from './iban';
 
 /**
- * Module to generate finance related entries.
+ * The possible definitions related to currency entries.
  */
-export class FinanceModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      FinanceModule.prototype
-    ) as Array<keyof FinanceModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
+export interface Currency {
+  /**
+   * The full name for the currency (e.g. `US Dollar`).
+   */
+  name: string;
 
-      this[name] = this[name].bind(this);
-    }
+  /**
+   * The code/short text/abbreviation for the currency (e.g. `USD`).
+   */
+  code: string;
+
+  /**
+   * The symbol for the currency (e.g. `$`).
+   */
+  symbol: string;
+}
+
+/**
+ * Puts a space after every 4 characters.
+ *
+ * @internal
+ *
+ * @param iban The iban to pretty print.
+ */
+export function prettyPrintIban(iban: string): string {
+  let pretty = '';
+  for (let i = 0; i < iban.length; i += 4) {
+    pretty += `${iban.substring(i, i + 4)} `;
+  }
+
+  return pretty.trimEnd();
+}
+
+/**
+ * Module to generate finance and money related entries.
+ *
+ * ### Overview
+ *
+ * For a random amount, use [`amount()`](https://fakerjs.dev/api/finance.html#amount).
+ *
+ * For traditional bank accounts, use: [`accountNumber()`](https://fakerjs.dev/api/finance.html#accountnumber), [`accountName()`](https://fakerjs.dev/api/finance.html#accountname), [`bic()`](https://fakerjs.dev/api/finance.html#bic), [`iban()`](https://fakerjs.dev/api/finance.html#iban), [`pin()`](https://fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://fakerjs.dev/api/finance.html#routingnumber).
+ *
+ * For credit card related methods, use: [`creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber), [`creditCardCVV()`](https://fakerjs.dev/api/finance.html#creditcardcvv), [`creditCardIssuer()`](https://fakerjs.dev/api/finance.html#creditcardissuer), [`transactionDescription()`](https://fakerjs.dev/api/finance.html#transactiondescription) and [`transactionType()`](https://fakerjs.dev/api/finance.html#transactiontype).
+ *
+ * For blockchain related methods, use: [`bitcoinAddress()`](https://fakerjs.dev/api/finance.html#bitcoinaddress), [`ethereumAddress()`](https://fakerjs.dev/api/finance.html#ethereumaddress) and [`litecoinAddress()`](https://fakerjs.dev/api/finance.html#litecoinaddress).
+ */
+export class FinanceModule extends ModuleBase {
+  /**
+   * Generates a random account number.
+   *
+   * @param length The length of the account number. Defaults to `8`.
+   *
+   * @see faker.finance.accountNumber(): For the replacement method.
+   *
+   * @example
+   * faker.finance.account() // 92842238
+   * faker.finance.account(5) // 32564
+   *
+   * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.accountNumber` instead.
+   */
+  account(length?: number): string {
+    deprecated({
+      deprecated: 'faker.finance.account',
+      proposed: 'faker.finance.accountNumber',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    return this.accountNumber(length);
   }
 
   /**
@@ -25,25 +85,25 @@ export class FinanceModule {
    * @param length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(length?: number): string;
+  accountNumber(length?: number): string;
   /**
    * Generates a random account number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(options?: {
+  accountNumber(options?: {
     /**
      * The length of the account number.
      *
@@ -54,17 +114,17 @@ export class FinanceModule {
   /**
    * Generates a random account number.
    *
-   * @param optionsOrLength An options object or the length of the account number. Defaults to `{}`.
+   * @param optionsOrLength An options object or the length of the account number.
    * @param optionsOrLength.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 28736
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 28736
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(
+  accountNumber(
     optionsOrLength?:
       | number
       | {
@@ -79,17 +139,17 @@ export class FinanceModule {
   /**
    * Generates a random account number.
    *
-   * @param options An options object or the length of the account number. Defaults to `{}`.
+   * @param options An options object or the length of the account number.
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 28736
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 28736
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(
+  accountNumber(
     options:
       | number
       | {
@@ -105,19 +165,9 @@ export class FinanceModule {
       options = { length: options };
     }
 
-    let { length = 8 } = options;
-    if (length === 0) {
-      length = 8;
-    }
+    const { length = 8 } = options;
 
-    let template = '';
-
-    for (let i = 0; i < length; i++) {
-      template += '#';
-    }
-
-    length = null;
-    return this.faker.helpers.replaceSymbolWithNumber(template);
+    return this.faker.string.numeric({ length, allowLeadingZeros: true });
   }
 
   /**
@@ -146,8 +196,10 @@ export class FinanceModule {
    * @since 5.0.0
    */
   routingNumber(): string {
-    const routingNumber =
-      this.faker.helpers.replaceSymbolWithNumber('########');
+    const routingNumber = this.faker.string.numeric({
+      length: 8,
+      allowLeadingZeros: true,
+    });
 
     // Modules 10 straight summation.
     let sum = 0;
@@ -168,6 +220,8 @@ export class FinanceModule {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
+   * @see faker.finance.maskedNumber(): For the replacement method.
+   *
    * @example
    * faker.finance.mask() // '(...9711)'
    * faker.finance.mask(3) // '(...342)'
@@ -175,25 +229,48 @@ export class FinanceModule {
    * faker.finance.mask(3, false, false) // '298'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.maskedNumber` instead.
    */
-  mask(length?: number, parens?: boolean, ellipsis?: boolean): string;
+  mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
+    deprecated({
+      deprecated: 'faker.finance.mask',
+      proposed: 'faker.finance.maskedNumber',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.maskedNumber({ length, parens, ellipsis });
+  }
+
   /**
    * Generates a random masked number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param length The length of the unmasked number. Defaults to `4`.
+   *
+   * @example
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   *
+   * @since 8.0.0
+   */
+  maskedNumber(length?: number): string;
+  /**
+   * Generates a random masked number.
+   *
+   * @param options An options object.
    * @param options.length The length of the unmasked number. Defaults to `4`.
    * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask({ length: 3 }) // '(...342)'
-   * faker.finance.mask({ length: 3, parens: false }) // '...236'
-   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(options?: {
+  maskedNumber(options?: {
     length?: number;
     parens?: boolean;
     ellipsis?: boolean;
@@ -201,25 +278,21 @@ export class FinanceModule {
   /**
    * Generates a random masked number.
    *
-   * @param optionsOrLength An options object or the length of the unmask number. Defaults to `{}`.
+   * @param optionsOrLength An options object or the length of the unmask number.
    * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
    * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param legacyEllipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask({ length: 3 }) // '(...342)'
-   * faker.finance.mask({ length: 3, parens: false }) // '...236'
-   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(
+  maskedNumber(
     optionsOrLength?:
       | number
       | {
@@ -241,29 +314,26 @@ export class FinanceModule {
            * @default true
            */
           ellipsis?: boolean;
-        },
-    legacyParens?: boolean,
-    legacyEllipsis?: boolean
+        }
   ): string;
   /**
    * Generates a random masked number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the unmasked number. Defaults to `4`.
    * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param legacyEllipsis Whether to use surrounding parenthesis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(
+  maskedNumber(
     options:
       | number
       | {
@@ -285,35 +355,23 @@ export class FinanceModule {
            * @default true
            */
           ellipsis?: boolean;
-        } = {},
-    legacyParens: boolean = true,
-    legacyEllipsis: boolean = true
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
     }
 
-    // set defaults
-    const {
-      ellipsis = legacyEllipsis,
-      length = 4,
-      parens = legacyParens,
-    } = options;
+    const { ellipsis = true, length = 4, parens = true } = options;
 
-    // create a template for length
-    let template = '';
+    let template = this.faker.string.numeric({ length });
 
-    for (let i = 0; i < length; i++) {
-      template = `${template}#`;
+    if (ellipsis) {
+      template = `...${template}`;
     }
 
-    //prefix with ellipsis
-    template = ellipsis ? ['...', template].join('') : template;
-
-    template = parens ? ['(', template, ')'].join('') : template;
-
-    //generate random numbers
-    template = this.faker.helpers.replaceSymbolWithNumber(template);
+    if (parens) {
+      template = `(${template})`;
+    }
 
     return template;
   }
@@ -346,7 +404,7 @@ export class FinanceModule {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
@@ -397,7 +455,7 @@ export class FinanceModule {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
@@ -406,7 +464,7 @@ export class FinanceModule {
    * @param legacyMax The upper bound for the amount. Defaults to `1000`.
    * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
    * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -464,7 +522,7 @@ export class FinanceModule {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
@@ -473,7 +531,7 @@ export class FinanceModule {
    * @param legacyMax The upper bound for the amount. Defaults to `1000`.
    * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
    * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -546,14 +604,9 @@ export class FinanceModule {
       fractionDigits: dec,
     });
 
-    let formattedString: string;
-    if (autoFormat) {
-      formattedString = randValue.toLocaleString(undefined, {
-        minimumFractionDigits: dec,
-      });
-    } else {
-      formattedString = randValue.toFixed(dec);
-    }
+    const formattedString = autoFormat
+      ? randValue.toLocaleString(undefined, { minimumFractionDigits: dec })
+      : randValue.toFixed(dec);
 
     return symbol + formattedString;
   }
@@ -573,6 +626,25 @@ export class FinanceModule {
   }
 
   /**
+   * Returns a random currency object, containing `code`, `name `and `symbol` properties.
+   *
+   * @see
+   * faker.finance.currencyCode(): For generating specifically the currency code.
+   * faker.finance.currencyName(): For generating specifically the currency name.
+   * faker.finance.currencySymbol(): For generating specifically the currency symbol.
+   *
+   * @example
+   * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
+   *
+   * @since 8.0.0
+   */
+  currency(): Currency {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.currency
+    );
+  }
+
+  /**
    * Returns a random currency code.
    * (The short text/abbreviation for the currency (e.g. `US Dollar` -> `USD`))
    *
@@ -582,9 +654,7 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyCode(): string {
-    return this.faker.helpers.objectValue(
-      this.faker.definitions.finance.currency
-    )['code'];
+    return this.currency().code;
   }
 
   /**
@@ -596,9 +666,7 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyName(): string {
-    return this.faker.helpers.objectKey(
-      this.faker.definitions.finance.currency
-    ) as string;
+    return this.currency().name;
   }
 
   /**
@@ -611,11 +679,9 @@ export class FinanceModule {
    */
   currencySymbol(): string {
     let symbol: string;
-    while (!symbol) {
-      symbol = this.faker.helpers.objectValue(
-        this.faker.definitions.finance.currency
-      )['symbol'];
-    }
+    do {
+      symbol = this.currency().symbol;
+    } while (symbol.length === 0);
 
     return symbol;
   }
@@ -653,11 +719,11 @@ export class FinanceModule {
   litecoinAddress(): string {
     const addressLength = this.faker.number.int({ min: 26, max: 33 });
 
-    let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
-
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
+    const address =
+      this.faker.string.fromCharacters('LM3') +
+      this.faker.string.fromCharacters(
+        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+        addressLength - 1
       );
 
     return address;
@@ -666,7 +732,7 @@ export class FinanceModule {
   /**
    * Generates a random credit card number.
    *
-   * @param issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -680,7 +746,7 @@ export class FinanceModule {
    * Generates a random credit card number.
    *
    * @param options An options object. Defaults to `''`.
-   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -691,7 +757,7 @@ export class FinanceModule {
    */
   creditCardNumber(options?: {
     /**
-     * The name of the issuer (case insensitive) or the format used to generate one.
+     * The name of the issuer (case-insensitive) or the format used to generate one.
      *
      * @default ''
      */
@@ -700,8 +766,8 @@ export class FinanceModule {
   /**
    * Generates a random credit card number.
    *
-   * @param options An options object, the issuer or a custom format. Defaults to `{}`.
-   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param options An options object, the issuer or a custom format.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -716,7 +782,7 @@ export class FinanceModule {
       | string
       | {
           /**
-           * The name of the issuer (case insensitive) or the format used to generate one.
+           * The name of the issuer (case-insensitive) or the format used to generate one.
            *
            * @default ''
            */
@@ -726,8 +792,8 @@ export class FinanceModule {
   /**
    * Generates a random credit card number.
    *
-   * @param options An options object, the issuer or a custom format. Defaults to `{}`.
-   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   * @param options An options object, the issuer or a custom format.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -742,7 +808,7 @@ export class FinanceModule {
       | string
       | {
           /**
-           * The name of the issuer (case insensitive) or the format used to generate one.
+           * The name of the issuer (case-insensitive) or the format used to generate one.
            *
            * @default ''
            */
@@ -760,7 +826,7 @@ export class FinanceModule {
     const normalizedIssuer = issuer.toLowerCase();
     if (normalizedIssuer in localeFormat) {
       format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
-    } else if (issuer.match(/#/)) {
+    } else if (issuer.includes('#')) {
       // The user chose an optional scheme
       format = issuer;
     } else {
@@ -804,6 +870,7 @@ export class FinanceModule {
    * Generates a random PIN number.
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -816,8 +883,9 @@ export class FinanceModule {
   /**
    * Generates a random PIN number.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -837,8 +905,9 @@ export class FinanceModule {
   /**
    * Generates a random PIN number.
    *
-   * @param options An options object or the length of the PIN. Defaults to `{}`.
+   * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -863,8 +932,9 @@ export class FinanceModule {
   /**
    * Generates a random PIN number.
    *
-   * @param options An options object or the length of the PIN. Defaults to `{}`.
+   * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -922,6 +992,7 @@ export class FinanceModule {
    *
    * @param formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
    * @throws Will throw an error if the passed country code is not supported.
    *
    * @example
@@ -935,9 +1006,10 @@ export class FinanceModule {
   /**
    * Generates a random iban.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
    * @throws Will throw an error if the passed country code is not supported.
    *
    * @example
@@ -963,7 +1035,7 @@ export class FinanceModule {
   /**
    * Generates a random iban.
    *
-   * @param options An options object or whether the return value should be formatted. Defaults to `{}`.
+   * @param options An options object or whether the return value should be formatted.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
@@ -1000,7 +1072,7 @@ export class FinanceModule {
   /**
    * Generates a random iban.
    *
-   * @param options An options object or whether the return value should be formatted. Defaults to `{}`.
+   * @param options An options object or whether the return value should be formatted.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
@@ -1091,7 +1163,7 @@ export class FinanceModule {
 
     const result = `${ibanFormat.country}${checksum}${s}`;
 
-    return formatted ? result.match(/.{1,4}/g).join(' ') : result;
+    return formatted ? prettyPrintIban(result) : result;
   }
 
   /**
@@ -1150,8 +1222,8 @@ export class FinanceModule {
     const amount = this.amount();
     const company = this.faker.company.name();
     const transactionType = this.transactionType();
-    const account = this.account();
-    const card = this.mask();
+    const account = this.accountNumber();
+    const card = this.maskedNumber();
     const currency = this.currencyCode();
 
     return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;

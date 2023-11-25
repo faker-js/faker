@@ -1,26 +1,12 @@
+#!/usr/bin/env node
+
 import { buildSync } from 'esbuild';
-import { sync as globSync } from 'glob';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import locales from '../src/locales';
+import { globSync } from 'glob';
+import { allLocales } from '../src';
 
 console.log('Building dist for node (cjs)...');
 
-// Generate entry-points for cjs compatibility
-const localeDir = 'locale';
 const target = ['ES2019', 'node14.17'];
-
-if (existsSync(localeDir)) {
-  rmSync(localeDir, { recursive: true, force: true });
-}
-
-mkdirSync(localeDir);
-for (const locale of Object.keys(locales)) {
-  writeFileSync(
-    `${localeDir}/${locale}.js`,
-    `module.exports = require('../dist/cjs/locale/${locale}');\n`,
-    { encoding: 'utf8' }
-  );
-}
 
 buildSync({
   entryPoints: globSync('./src/**/*.ts'),
@@ -43,7 +29,7 @@ console.log('Building dist for node type=module (esm)...');
 buildSync({
   entryPoints: [
     './src/index.ts',
-    ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
+    ...Object.keys(allLocales).map((locale) => `./src/locale/${locale}.ts`),
   ],
   outdir: './dist/esm',
   bundle: true,

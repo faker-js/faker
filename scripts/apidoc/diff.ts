@@ -12,9 +12,9 @@ async function loadRemote(url: string): Promise<DocsApiDiffIndex> {
       throw new Error(
         `Failed to load remote diff index from ${url}: ${res.statusText}`
       );
-    } else {
-      return res.json() as Promise<DocsApiDiffIndex>;
     }
+
+    return res.json() as Promise<DocsApiDiffIndex>;
   });
 }
 
@@ -35,11 +35,7 @@ async function loadLocal(path: string): Promise<DocsApiDiffIndex> {
  * @param source The source to load the diff index from.
  */
 async function load(source: string): Promise<DocsApiDiffIndex> {
-  if (source.startsWith('https://')) {
-    return loadRemote(source);
-  } else {
-    return loadLocal(source);
-  }
+  return source.startsWith('https://') ? loadRemote(source) : loadLocal(source);
 }
 
 /**
@@ -50,7 +46,7 @@ async function load(source: string): Promise<DocsApiDiffIndex> {
 function allKeys(
   ...entries: ReadonlyArray<Record<string, unknown>>
 ): Set<string> {
-  return new Set(entries.map(Object.keys).flat());
+  return new Set(entries.flatMap(Object.keys));
 }
 
 /**

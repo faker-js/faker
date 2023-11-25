@@ -2,10 +2,12 @@ import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import { SimpleModuleBase } from '../../internal/module-base';
+import { assertLocaleData } from '../../locale-proxy';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parsable value is passed, then it will take the value from the given fallback.
+ * If nothing or a non-parsable value is passed, then it will take the value from the given fallback.
  *
  * @param date The date to convert.
  * @param fallback The fallback date to use if the passed date is not valid.
@@ -14,8 +16,12 @@ function toDate(
   date: string | Date | number | undefined,
   fallback: () => Date
 ): Date {
+  if (date == null) {
+    return fallback();
+  }
+
   date = new Date(date);
-  if (isNaN(date.valueOf())) {
+  if (Number.isNaN(date.valueOf())) {
     date = fallback();
   }
 
@@ -23,20 +29,42 @@ function toDate(
 }
 
 /**
- * Module to generate dates.
+ * Module to generate dates (without methods requiring localized data).
  */
-export class DateModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      DateModule.prototype
-    ) as Array<keyof DateModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
+export class SimpleDateModule extends SimpleModuleBase {
+  /**
+   * Generates a random date that can be either in the past or in the future.
+   *
+   * @param options The optional options object.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @see faker.date.between(): For generating dates in a specific range.
+   * @see faker.date.past(): For generating dates explicitly in the past.
+   * @see faker.date.future(): For generating dates explicitly in the future.
+   *
+   * @example
+   * faker.date.anytime() // '2022-07-31T01:33:29.567Z'
+   *
+   * @since 8.0.0
+   */
+  anytime(
+    options: {
+      /**
+       * The date to use as reference point for the newly generated date.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): Date {
+    const { refDate } = options;
 
-      this[name] = this[name].bind(this);
-    }
+    const date = toDate(refDate, this.faker.defaultRefDate);
+
+    return this.between({
+      from: new Date(date.getTime() - 1000 * 60 * 60 * 24 * 365),
+      to: new Date(date.getTime() + 1000 * 60 * 60 * 24 * 365),
+    });
   }
 
   /**
@@ -46,7 +74,7 @@ export class DateModule {
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -75,7 +103,7 @@ export class DateModule {
    * @param years The range of years the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -95,7 +123,7 @@ export class DateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -168,7 +196,7 @@ export class DateModule {
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -197,7 +225,7 @@ export class DateModule {
    * @param years The range of years the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -217,7 +245,7 @@ export class DateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -360,14 +388,15 @@ export class DateModule {
         },
     legacyTo?: string | Date | number
   ): Date {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.between(from, to)',
         proposed: 'faker.date.between({ from, to })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options };
     }
 
     const { from, to } = options;
@@ -468,7 +497,7 @@ export class DateModule {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    * @param legacyTo Deprecated, use `options.to` instead.
-   * @param legacyCount Deprecated, use `options.count` instead.
+   * @param legacyCount Deprecated, use `options.count` instead. Defaults to `3`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -536,14 +565,15 @@ export class DateModule {
     legacyTo?: string | Date | number,
     legacyCount: number = 3
   ): Date[] {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.betweens(from, to, count)',
         proposed: 'faker.date.betweens({ from, to, count })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo, count: legacyCount };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options, count: legacyCount };
     }
 
     const { from, to, count = 3 } = options;
@@ -560,7 +590,7 @@ export class DateModule {
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -589,7 +619,7 @@ export class DateModule {
    * @param days The range of days the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -609,7 +639,7 @@ export class DateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -677,7 +707,7 @@ export class DateModule {
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -706,7 +736,7 @@ export class DateModule {
    * @param days The range of days the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -726,7 +756,7 @@ export class DateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -788,114 +818,6 @@ export class DateModule {
   }
 
   /**
-   * Returns a random name of a month.
-   *
-   * @param options The optional options to use.
-   * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
-   *
-   * @example
-   * faker.date.month() // 'October'
-   * faker.date.month({ abbr: true }) // 'Feb'
-   * faker.date.month({ context: true }) // 'June'
-   * faker.date.month({ abbr: true, context: true }) // 'Sep'
-   *
-   * @since 3.0.1
-   */
-  month(
-    options: {
-      /**
-       * Whether to return an abbreviation.
-       *
-       * @default false
-       */
-      abbr?: boolean;
-      /**
-       * Whether to return the name of a month in the context of a date.
-       *
-       * In the default `en` locale this has no effect,
-       * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
-       * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
-       *
-       * @default false
-       */
-      context?: boolean;
-    } = {}
-  ): string {
-    const { abbr = false, context = false } = options;
-
-    const source = this.faker.definitions.date.month;
-    let type: keyof DateEntryDefinition;
-    if (abbr) {
-      if (context && source['abbr_context'] != null) {
-        type = 'abbr_context';
-      } else {
-        type = 'abbr';
-      }
-    } else if (context && source['wide_context'] != null) {
-      type = 'wide_context';
-    } else {
-      type = 'wide';
-    }
-
-    return this.faker.helpers.arrayElement(source[type]);
-  }
-
-  /**
-   * Returns a random day of the week.
-   *
-   * @param options The optional options to use.
-   * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
-   *
-   * @example
-   * faker.date.weekday() // 'Monday'
-   * faker.date.weekday({ abbr: true }) // 'Thu'
-   * faker.date.weekday({ context: true }) // 'Thursday'
-   * faker.date.weekday({ abbr: true, context: true }) // 'Fri'
-   *
-   * @since 3.0.1
-   */
-  weekday(
-    options: {
-      /**
-       * Whether to return an abbreviation.
-       *
-       * @default false
-       */
-      abbr?: boolean;
-      /**
-       * Whether to return the day of the week in the context of a date.
-       *
-       * In the default `en` locale this has no effect,
-       * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
-       * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
-       *
-       * @default false
-       */
-      context?: boolean;
-    } = {}
-  ): string {
-    const { abbr = false, context = false } = options;
-
-    const source = this.faker.definitions.date.weekday;
-    let type: keyof DateEntryDefinition;
-    if (abbr) {
-      if (context && source['abbr_context'] != null) {
-        type = 'abbr_context';
-      } else {
-        type = 'abbr';
-      }
-    } else if (context && source['wide_context'] != null) {
-      type = 'wide_context';
-    } else {
-      type = 'wide';
-    }
-
-    return this.faker.helpers.arrayElement(source[type]);
-  }
-
-  /**
    * Returns a random birthdate.
    *
    * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
@@ -949,12 +871,6 @@ export class DateModule {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    if (options.max < options.min) {
-      throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
-      );
-    }
-
     const mode = options.mode === 'age' ? 'age' : 'year';
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
@@ -975,10 +891,404 @@ export class DateModule {
         options.min ?? refYear - 80
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 18
+        options.max ?? refYear - 19
+      );
+    }
+
+    if (max < min) {
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
       );
     }
 
     return new Date(this.faker.number.int({ min, max }));
+  }
+}
+
+/**
+ * Module to generate dates.
+ *
+ * ### Overview
+ *
+ * To quickly generate a date in the past, use [`recent()`](https://fakerjs.dev/api/date.html#recent) (last day) or [`past()`](https://fakerjs.dev/api/date.html#past) (last year).
+ * To quickly generate a date in the future, use [`soon()`](https://fakerjs.dev/api/date.html#soon) (next day) or [`future()`](https://fakerjs.dev/api/date.html#future) (next year).
+ * For a realistic birthdate for an adult, use [`birthdate()`](https://fakerjs.dev/api/date.html#birthdate).
+ *
+ * For more control, any of these methods can be customized with further options, or use [`between()`](https://fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://fakerjs.dev/api/date.html#betweens) for multiple dates.
+ *
+ * You can generate random localized month and weekday names using [`month()`](https://fakerjs.dev/api/date.html#month) and [`weekday()`](https://fakerjs.dev/api/date.html#weekday).
+ *
+ * These methods have additional concerns about reproducibility, see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
+ */
+export class DateModule extends SimpleDateModule {
+  constructor(protected readonly faker: Faker) {
+    super(faker);
+  }
+
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbreviated: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
+   */
+  month(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the name of a month in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbr: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbr: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
+   *
+   * @deprecated Use `faker.date.month({ abbreviated, ... })` instead.
+   */
+  month(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return the name of a month in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbreviated: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
+   */
+  month(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the name of a month in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbreviated: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
+   */
+  month(
+    options: {
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       *
+       * @deprecated Use `abbreviated` instead.
+       */
+      abbr?: boolean;
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       */
+      abbreviated?: boolean;
+      /**
+       * Whether to return the name of a month in the context of a date.
+       *
+       * In the default `en` locale this has no effect,
+       * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+       * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+       *
+       * @default false
+       */
+      context?: boolean;
+    } = {}
+  ): string {
+    // eslint-disable-next-line deprecation/deprecation
+    const { abbr, abbreviated = abbr ?? false, context = false } = options;
+
+    if (abbr != null) {
+      deprecated({
+        deprecated: 'faker.date.month({ abbr })',
+        proposed: 'faker.date.month({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
+    const source = this.faker.definitions.date.month;
+    let type: keyof DateEntryDefinition;
+    if (abbreviated) {
+      const useContext = context && source['abbr_context'] != null;
+      type = useContext ? 'abbr_context' : 'abbr';
+    } else {
+      const useContext = context && source['wide_context'] != null;
+      type = useContext ? 'wide_context' : 'wide';
+    }
+
+    const values = source[type];
+    assertLocaleData(values, 'date.month', type);
+    return this.faker.helpers.arrayElement(values);
+  }
+
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbreviated: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
+   */
+  weekday(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the day of the week in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbr: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbr: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
+   *
+   * @deprecated Use `faker.date.weekday({ abbreviated, ... })` instead.
+   */
+  weekday(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return the day of the week in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbreviated: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
+   */
+  weekday(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the day of the week in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbreviated: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
+   */
+  weekday(
+    options: {
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       *
+       * @deprecated Use `abbreviated` instead.
+       */
+      abbr?: boolean;
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       */
+      abbreviated?: boolean;
+      /**
+       * Whether to return the day of the week in the context of a date.
+       *
+       * In the default `en` locale this has no effect,
+       * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+       * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+       *
+       * @default false
+       */
+      context?: boolean;
+    } = {}
+  ): string {
+    // eslint-disable-next-line deprecation/deprecation
+    const { abbr, abbreviated = abbr ?? false, context = false } = options;
+
+    if (abbr != null) {
+      deprecated({
+        deprecated: 'faker.date.weekday({ abbr })',
+        proposed: 'faker.date.weekday({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
+    const source = this.faker.definitions.date.weekday;
+    let type: keyof DateEntryDefinition;
+    if (abbreviated) {
+      const useContext = context && source['abbr_context'] != null;
+      type = useContext ? 'abbr_context' : 'abbr';
+    } else {
+      const useContext = context && source['wide_context'] != null;
+      type = useContext ? 'wide_context' : 'wide';
+    }
+
+    const values = source[type];
+    assertLocaleData(values, 'date.weekday', type);
+    return this.faker.helpers.arrayElement(values);
   }
 }

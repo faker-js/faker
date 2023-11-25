@@ -43,20 +43,4 @@ export default {
     'nov.',
     'déc.',
   ],
-  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  abbr_context: [
-    'janv.',
-    'févr.',
-    'mars',
-    'avril',
-    'mai',
-    'juin',
-    'juil.',
-    'août',
-    'sept.',
-    'oct.',
-    'nov.',
-    'déc.',
-  ],
 };

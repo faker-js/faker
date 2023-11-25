@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to commerce.
  */
-export type CommerceDefinitions = LocaleEntry<{
+export type CommerceDefinition = LocaleEntry<{
   /**
    * Department names inside a shop.
    */
@@ -12,7 +12,7 @@ export type CommerceDefinitions = LocaleEntry<{
   /**
    * Product name generation definitions.
    */
-  product_name: CommerceProductNameDefinitions;
+  product_name: CommerceProductNameDefinition;
 
   /**
    * Descriptions for products.
@@ -23,7 +23,7 @@ export type CommerceDefinitions = LocaleEntry<{
 /**
  * The possible definitions related to product name generation.
  */
-export interface CommerceProductNameDefinitions {
+export interface CommerceProductNameDefinition {
   /**
    * Adjectives describing a product (e.g. tasty).
    */

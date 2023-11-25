@@ -1,22 +1,13 @@
-import type { Faker } from '../..';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate music related entries.
+ *
+ * ### Overview
+ *
+ * Generate a random music genre with [`genre()`](https://fakerjs.dev/api/music.html#genre) or song name with [`songName()`](https://fakerjs.dev/api/music.html#songname). Both may be localized.
  */
-export class MusicModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      MusicModule.prototype
-    ) as Array<keyof MusicModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class MusicModule extends ModuleBase {
   /**
    * Returns a random music genre.
    *

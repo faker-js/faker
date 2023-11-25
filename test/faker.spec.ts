@@ -1,51 +1,13 @@
 import type { SpyInstance } from 'vitest';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker, Faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 
 describe('faker', () => {
-  beforeEach(() => {
-    faker.locale = 'en';
-  });
-
-  it('should throw error if no options passed', () => {
-    expect(
-      () =>
-        // @ts-expect-error: mission options
-        new Faker()
-    ).toThrow(
-      new FakerError(
-        'Options with at least one entry in locales must be provided'
-      )
-    );
-  });
-
   it('should throw error if no locales passed', () => {
-    expect(
-      () =>
-        // @ts-expect-error: missing locales
-        new Faker({})
-    ).toThrow(
+    expect(() => new Faker({ locale: [] })).toThrow(
       new FakerError(
-        'At least one entry in locales must be provided in the locales parameter'
-      )
-    );
-  });
-
-  it('should throw error if locale is not known', () => {
-    const instance = new Faker({ locales: { en: { title: 'English' } } });
-    expect(() => (instance.locale = 'unknown')).toThrow(
-      new FakerError(
-        'Locale unknown is not supported. You might want to add the requested locale first to `faker.locales`.'
-      )
-    );
-  });
-
-  it('should throw error if localeFallback is not known', () => {
-    const instance = new Faker({ locales: { en: { title: 'English' } } });
-    expect(() => (instance.localeFallback = 'unknown')).toThrow(
-      new FakerError(
-        'Locale unknown is not supported. You might want to add the requested locale first to `faker.locales`.'
+        'The locale option must contain at least one locale definition.'
       )
     );
   });
@@ -57,10 +19,10 @@ describe('faker', () => {
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
     require('..').faker;
 
-    new Faker({ locales: { en: { title: '' } } });
+    new Faker({ locale: { metadata: { title: '' } } });
 
     for (const spy of spies) {
       expect(spy).not.toHaveBeenCalled();
@@ -68,23 +30,57 @@ describe('faker', () => {
     }
   });
 
-  describe('definitions', () => {
-    describe('title', () => {
-      it.each(Object.keys(faker.locales))('title (%s)', (locale) => {
-        faker.locale = locale;
-        expect(faker.definitions.title).toBe(faker.locales[locale].title);
-      });
+  describe('getMetadata()', () => {
+    it('should return metadata for the locale', () => {
+      expect(faker.getMetadata()).toBeDefined();
+      expect(faker.getMetadata().title).toBeTypeOf('string');
+      // Not all properties are tested here, see locale-imports.spec.ts for full tests
     });
+  });
 
-    it('locale definition accessability', () => {
+  describe('rawDefinitions', () => {
+    it('locale rawDefinition accessibility', () => {
       // Metadata
-      expect(faker.definitions.title).toBeDefined();
+      expect(faker.rawDefinitions.metadata?.title).toBeDefined();
+      // Standard modules
+      expect(faker.rawDefinitions.location?.city_name).toBeDefined();
+      // Non-existing module
+      expect(faker.rawDefinitions.missing).toBeUndefined();
+      // Non-existing definition in a non-existing module
+      expect(faker.rawDefinitions.missing?.missing).toBeUndefined();
+      // Non-existing definition in an existing module
+      expect(faker.rawDefinitions.location?.missing).toBeUndefined();
+    });
+  });
+
+  describe('definitions', () => {
+    it('locale definition accessibility', () => {
+      // Metadata
+      expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
       expect(faker.definitions.location.city_name).toBeDefined();
-      // Custom modules
-      expect(faker.definitions.business.credit_card_types).toBeDefined();
-      expect(faker.definitions.missing).toBeUndefined();
-      expect(faker.definitions.business.missing).toBeUndefined();
+      // Non-existing module
+      expect(faker.definitions.missing).toBeDefined();
+      // Non-existing definition in a non-existing module
+      expect(() => faker.definitions.missing?.missing).toThrow();
+      // Non-existing definition in an existing module
+      expect(() => faker.definitions.location.missing).toThrow();
+    });
+  });
+
+  describe('randomizer', () => {
+    it('should be possible to provide a custom Randomizer', () => {
+      const customFaker = new Faker({
+        locale: {},
+        randomizer: {
+          next: () => 0,
+          seed: () => void 0,
+        },
+      });
+
+      expect(customFaker.number.int()).toBe(0);
+      expect(customFaker.number.int()).toBe(0);
+      expect(customFaker.number.int()).toBe(0);
     });
   });
 

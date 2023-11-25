@@ -8,16 +8,17 @@ import company from './company';
 import date from './date';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const mk: LocaleDefinition = {
-  title: 'Macedonian',
   cell_phone,
   company,
   date,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };

@@ -8,18 +8,21 @@ import color from './color';
 import commerce from './commerce';
 import date from './date';
 import location from './location';
+import lorem from './lorem';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import team from './team';
 import vehicle from './vehicle';
 
 const ar: LocaleDefinition = {
-  title: 'Arabic',
   cell_phone,
   color,
   commerce,
   date,
   location,
+  lorem,
+  metadata,
   person,
   phone_number,
   team,

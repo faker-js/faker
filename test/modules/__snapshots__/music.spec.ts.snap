@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`music > 42 > genre 1`] = `"Country"`;
+
+exports[`music > 42 > songName 1`] = `"God Bless the Child"`;
+
+exports[`music > 1211 > genre 1`] = `"Non Music"`;
+
+exports[`music > 1211 > songName 1`] = `"The End of the World"`;
+
+exports[`music > 1337 > genre 1`] = `"Folk"`;
+
+exports[`music > 1337 > songName 1`] = `"That'll Be the Day"`;

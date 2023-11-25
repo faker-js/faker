@@ -4,14 +4,10 @@
  */
 
 import { Faker } from '../faker';
+import base from '../locales/base';
 import en from '../locales/en';
 import es from '../locales/es';
 
 export const faker = new Faker({
-  locale: 'es',
-  localeFallback: 'en',
-  locales: {
-    es,
-    en,
-  },
+  locale: [es, en, base],
 });

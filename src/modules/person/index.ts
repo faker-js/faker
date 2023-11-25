@@ -1,4 +1,7 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
+import { ModuleBase } from '../../internal/module-base';
+import { assertLocaleData } from '../../locale-proxy';
 
 export enum Sex {
   Female = 'female',
@@ -11,24 +14,28 @@ export type SexType = `${Sex}`;
  * Select a definition based on given sex.
  *
  * @param faker Faker instance.
+ * @param elementSelectorFn The method used to select the actual element.
  * @param sex Sex.
  * @param param2 Definitions.
  * @param param2.generic Non-sex definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
+ * @param type Type of the definition.
+ *
  * @returns Definition based on given sex.
  */
-function selectDefinition(
+function selectDefinition<T>(
   faker: Faker,
+  elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
-  // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
   {
     generic,
     female,
     male,
-  }: { generic?: string[]; female?: string[]; male?: string[] } = {}
-) {
-  let values: string[] | undefined;
+  }: { generic?: T[] | null; female?: T[] | null; male?: T[] | null },
+  type: string
+): string {
+  let values: T[] | undefined | null;
 
   switch (sex) {
     case Sex.Female:
@@ -50,28 +57,33 @@ function selectDefinition(
     } else {
       values = generic;
     }
+
+    assertLocaleData(values, `person.{${type}, female_${type}, male_${type}}`);
   }
 
-  return faker.helpers.arrayElement(values);
+  return elementSelectorFn(values);
 }
 
 /**
- * Module to generate people's names and titles.
+ * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0, this module was known as `faker.name`.
+ *
+ * ### Overview
+ *
+ * To generate a full name, use [`fullName`](https://fakerjs.dev/api/person.html#fullname). Note that this is not the same as simply concatenating [`firstName`](https://fakerjs.dev/api/person.html#firstname) and [`lastName`](https://fakerjs.dev/api/person.html#lastname), as the full name may contain a prefix, suffix, or both. Additionally, different supported locales will have differing name patterns. For example, the last name may appear before the first name, or there may be a double or hyphenated first or last name.
+ *
+ * You can also generate the parts of a name separately, using [`prefix`](https://fakerjs.dev/api/person.html#prefix), [`firstName`](https://fakerjs.dev/api/person.html#firstname), [`middleName`](https://fakerjs.dev/api/person.html#middlename), [`lastName`](https://fakerjs.dev/api/person.html#lastname), and [`suffix`](https://fakerjs.dev/api/person.html#suffix). Not all locales support all of these parts.
+ *
+ * Many of the methods in this module can optionally choose either female, male or mixed names.
+ *
+ * Job-related data is also available. To generate a job title, use [`jobTitle`](https://fakerjs.dev/api/person.html#jobtitle).
+ *
+ * This module can also generate other personal information which might appear in user profiles, such as [`gender`](https://fakerjs.dev/api/person.html#gender), [`zodiacSign`](https://fakerjs.dev/api/person.html#zodiacsign), and [`bio`](https://fakerjs.dev/api/person.html#bio).
+ *
+ * ### Related modules
+ *
+ * For personal contact information like phone numbers and email addresses, see the [`faker.phone`](https://fakerjs.dev/api/phone.html) and [`faker.internet`](https://fakerjs.dev/api/internet.html) modules.
  */
-export class PersonModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      PersonModule.prototype
-    ) as Array<keyof PersonModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class PersonModule extends ModuleBase {
   /**
    * Returns a random first name.
    *
@@ -87,13 +99,19 @@ export class PersonModule {
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, sex, {
-      generic: first_name,
-      female: female_first_name,
-      male: male_first_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: first_name,
+        female: female_first_name,
+        male: male_first_name,
+      },
+      'first_name'
+    );
   }
 
   /**
@@ -110,14 +128,45 @@ export class PersonModule {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    const { last_name, female_last_name, male_last_name } =
-      this.faker.definitions.person;
+    const {
+      last_name,
+      female_last_name,
+      male_last_name,
+      last_name_pattern,
+      male_last_name_pattern,
+      female_last_name_pattern,
+    } = this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, sex, {
-      generic: last_name,
-      female: female_last_name,
-      male: male_last_name,
-    });
+    if (
+      last_name_pattern != null ||
+      male_last_name_pattern != null ||
+      female_last_name_pattern != null
+    ) {
+      const pattern = selectDefinition(
+        this.faker,
+        this.faker.helpers.weightedArrayElement,
+        sex,
+        {
+          generic: last_name_pattern,
+          female: female_last_name_pattern,
+          male: male_last_name_pattern,
+        },
+        'last_name_pattern'
+      );
+      return this.faker.helpers.fake(pattern);
+    }
+
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: last_name,
+        female: female_last_name,
+        male: male_last_name,
+      },
+      'last_name'
+    );
   }
 
   /**
@@ -135,19 +184,25 @@ export class PersonModule {
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, sex, {
-      generic: middle_name,
-      female: female_middle_name,
-      male: male_middle_name,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: middle_name,
+        female: female_middle_name,
+        male: male_middle_name,
+      },
+      'middle_name'
+    );
   }
 
   /**
    * Generates a random full name.
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
    * @param options.sex The optional sex to use. Can be either `'female'` or `'male'`.
@@ -206,7 +261,7 @@ export class PersonModule {
   /**
    * Returns a random gender.
    *
-   * @see faker.person.sex() if you would like to generate binary-gender value
+   * @see faker.person.sex(): For generating a binary-gender value.
    *
    * @example
    * faker.person.gender() // 'Trans*Man'
@@ -225,7 +280,8 @@ export class PersonModule {
    * Output of this method is localised, so it should not be used to fill the parameter `sex`
    * available in some other modules for example `faker.person.firstName()`.
    *
-   * @see faker.person.gender() if you would like to generate gender related values.
+   * @see faker.person.gender(): For generating a gender related value.
+   * @see faker.person.sexType(): For generating a sex value to be used as a parameter.
    *
    * @example
    * faker.person.sex() // 'female'
@@ -237,7 +293,10 @@ export class PersonModule {
   }
 
   /**
-   * Returns a random sex type.
+   * Returns a random sex type. The `SexType` is intended to be used in parameters and conditions.
+   *
+   * @see faker.person.gender(): For generating a gender related value in forms.
+   * @see faker.person.sex(): For generating a binary-gender value in forms.
    *
    * @example
    * faker.person.sexType() // Sex.Female
@@ -245,7 +304,7 @@ export class PersonModule {
    * @since 8.0.0
    */
   sexType(): SexType {
-    return this.faker.helpers.objectValue(Sex);
+    return this.faker.helpers.enumValue(Sex);
   }
 
   /**
@@ -257,9 +316,9 @@ export class PersonModule {
    * @since 8.0.0
    */
   bio(): string {
-    const { bio_patterns } = this.faker.definitions.person;
+    const { bio_pattern } = this.faker.definitions.person;
 
-    return this.faker.helpers.fake(bio_patterns);
+    return this.faker.helpers.fake(bio_pattern);
   }
 
   /**
@@ -276,13 +335,19 @@ export class PersonModule {
    */
   prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
-    return selectDefinition(this.faker, sex, {
-      generic: prefix,
-      female: female_prefix,
-      male: male_prefix,
-    });
+    return selectDefinition(
+      this.faker,
+      this.faker.helpers.arrayElement,
+      sex,
+      {
+        generic: prefix,
+        female: female_prefix,
+        male: male_prefix,
+      },
+      'prefix'
+    );
   }
 
   /**
@@ -309,7 +374,9 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobTitle(): string {
-    return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
+    return this.faker.helpers.fake(
+      this.faker.definitions.person.job_title_pattern
+    );
   }
 
   /**
@@ -321,9 +388,13 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.descriptor
-    );
+    const values = this.faker.definitions.person.title.descriptor;
+
+    if (values == null) {
+      throw new FakerError('No person.title.descriptor definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -335,9 +406,13 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobArea(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.level
-    );
+    const values = this.faker.definitions.person.title.level;
+
+    if (values == null) {
+      throw new FakerError('No person.title.area definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -349,9 +424,13 @@ export class PersonModule {
    * @since 8.0.0
    */
   jobType(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.title.job
-    );
+    const values = this.faker.definitions.person.title.job;
+
+    if (values == null) {
+      throw new FakerError('No person.title.job definitions available.');
+    }
+
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**

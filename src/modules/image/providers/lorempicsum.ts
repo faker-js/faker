@@ -1,8 +1,11 @@
+/* eslint-disable deprecation/deprecation */
 import type { Faker } from '../../..';
 import { deprecated } from '../../../internal/deprecated';
 
 /**
  * Module to generate links to random images on https://picsum.photos.
+ *
+ * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which are broken or point to unexpected, disturbing, or offensive images. The service may also be subject to usage limits.
  *
  * @deprecated Use `faker.image.urlPicsumPhotos` instead.
  */
@@ -11,6 +14,8 @@ export class LoremPicsum {
 
   /**
    * Generates a new picsum photos image url.
+   *
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -37,6 +42,8 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
+   *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param grayscale Whether to return a grayscale image. Default to `false`.
@@ -55,6 +62,8 @@ export class LoremPicsum {
 
   /**
    * Generates a new picsum photos image url.
+   *
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -79,6 +88,8 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
+   *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param grayscale Whether to return a grayscale image. Default to `false`.
@@ -100,12 +111,14 @@ export class LoremPicsum {
       since: '8.0',
       until: '9.0',
     });
-    // TODO ST-DDT 2022-03-11: This method does the same as image url, maybe generate a seed, if it is missig?
+    // TODO @ST-DDT 2022-03-11: This method does the same as image url, maybe generate a seed, if it is missing?
     return this.imageUrl(width, height, grayscale, blur, seed);
   }
 
   /**
    * Generates a new picsum photos image url.
+   *
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.

@@ -1,16 +1,12 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
-const UPPER_CHARS: ReadonlyArray<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(
-  ''
-);
-const LOWER_CHARS: ReadonlyArray<string> = 'abcdefghijklmnopqrstuvwxyz'.split(
-  ''
-);
-const DIGIT_CHARS: ReadonlyArray<string> = '0123456789'.split('');
+const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
+const LOWER_CHARS: ReadonlyArray<string> = [...'abcdefghijklmnopqrstuvwxyz'];
+const DIGIT_CHARS: ReadonlyArray<string> = [...'0123456789'];
 
 export type LowerAlphaChar =
   | 'a'
@@ -83,25 +79,23 @@ export type NumericChar =
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
 
-const SAMPLE_MAX_LENGTH = 2 ** 20;
-
 /**
  * Module to generate string related entries.
+ *
+ * ### Overview
+ *
+ * For a string containing just A-Z characters, use [`alpha()`](https://fakerjs.dev/api/string.html#alpha). To add digits too, use [`alphanumeric()`](https://fakerjs.dev/api/string.html#alphanumeric). If you only want punctuation marks/symbols, use [`symbol()`](https://fakerjs.dev/api/string.html). For a full set of ASCII characters, use [`sample()`](https://fakerjs.dev/api/string.html#sample). For a custom set of characters, use [`fromCharacters()`](https://fakerjs.dev/api/string.html#fromcharacters).
+ *
+ * For strings of base-ten digits, use [`numeric()`](https://fakerjs.dev/api/string.html#numeric). For other bases, use [`binary()`](https://fakerjs.dev/api/string.html#binary), [`octal()`](https://fakerjs.dev/api/string.html#octal), or [`hexadecimal()`](https://fakerjs.dev/api/string.html#hexadecimal)).
+ *
+ * You can generate standard ID strings using [`uuid()`](https://fakerjs.dev/api/string.html#uuid) or [`nanoid()`](https://fakerjs.dev/api/string.html#nanoid).
+ *
+ * ### Related modules
+ *
+ * - Emoji can be found at [`faker.internet.emoji()`](https://fakerjs.dev/api/internet.html#emoji).
+ * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
-export class StringModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      StringModule.prototype
-    ) as Array<keyof StringModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class StringModule extends SimpleModuleBase {
   /**
    * Generates a string from the given characters.
    *
@@ -140,7 +134,7 @@ export class StringModule {
     }
 
     if (typeof characters === 'string') {
-      characters = characters.split('');
+      characters = [...characters];
     }
 
     if (characters.length === 0) {
@@ -224,7 +218,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     let charsArray: string[];
@@ -314,7 +308,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     let charsArray = [...DIGIT_CHARS];
@@ -344,7 +338,7 @@ export class StringModule {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
    *
-   * @see faker.number.binary() If you would like to generate a `binary number` (within a range).
+   * @see faker.number.binary(): For generating a binary number (within a range).
    *
    * @example
    * faker.string.binary() // '0b1'
@@ -357,6 +351,11 @@ export class StringModule {
    */
   binary(
     options: {
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
       length?:
         | number
         | {
@@ -369,6 +368,11 @@ export class StringModule {
              */
             max: number;
           };
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0b'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -386,7 +390,7 @@ export class StringModule {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
    *
-   * @see faker.number.octal() If you would like to generate an `octal number` (within a range).
+   * @see faker.number.octal(): For generating an octal number (within a range).
    *
    * @example
    * faker.string.octal() // '0o3'
@@ -399,6 +403,11 @@ export class StringModule {
    */
   octal(
     options: {
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
       length?:
         | number
         | {
@@ -411,6 +420,11 @@ export class StringModule {
              */
             max: number;
           };
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0o'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -529,7 +543,7 @@ export class StringModule {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
-   * @see faker.number.int() If you would like to generate a `number` (within a range).
+   * @see faker.number.int(): For generating a number (within a range).
    *
    * @example
    * faker.string.numeric() // '2'
@@ -591,7 +605,7 @@ export class StringModule {
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {
-      exclude = exclude.split('');
+      exclude = [...exclude];
     }
 
     const allowedDigits = DIGIT_CHARS.filter(
@@ -625,7 +639,7 @@ export class StringModule {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param length Length of the generated string. Defaults to `10`.
    * @param length.min The minimum number of characters to generate.
    * @param length.max The maximum number of characters to generate.
    *
@@ -651,9 +665,6 @@ export class StringModule {
         } = 10
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
-    if (length >= SAMPLE_MAX_LENGTH) {
-      length = SAMPLE_MAX_LENGTH;
-    }
 
     const charCodeOption = {
       min: 33,
@@ -663,7 +674,7 @@ export class StringModule {
     let returnString = '';
 
     while (returnString.length < length) {
-      returnString += String.fromCharCode(
+      returnString += String.fromCodePoint(
         this.faker.number.int(charCodeOption)
       );
     }

@@ -4,28 +4,29 @@
 
 Using Faker is as easy as importing it from `@faker-js/faker`.
 
-```js
+::: code-group
+
+```js [esm]
 import { faker } from '@faker-js/faker';
-// or, if desiring only a specific locale
-// import { faker } from '@faker-js/faker/locale/de'
+// or, if desiring a different locale
+// import { fakerDE as faker } from '@faker-js/faker';
+
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
-:::tip Note
-Using the first import statement will load every locale into memory.
-As such, start-up times and performance may be slow.
-Thus, by declaring a locale in the import, one can increase performance and reduce the time on start-up.
+```js [cjs]
+const { faker } = require('@faker-js/faker');
+// or, if desiring a different locale
+// const { fakerDE: faker } = require('@faker-js/faker');
+
+const randomName = faker.person.fullName(); // Rowan Nikolaus
+const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+```
+
 :::
 
-Or if you're using CommonJS:
-
-```js
-const { faker } = require('@faker-js/faker');
-
-const randomName = faker.person.fullName(); // Rowan Nikolaus
-const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-```
+For more information about changing and customizing the locales, please refer to our [Localization Guide](localization).
 
 ## Browser
 
@@ -41,7 +42,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 </script>
 ```
 
-::: info NOTE
+::: info Note
 Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker in your web app.**
 :::
 
@@ -54,7 +55,7 @@ const randomName = faker.person.fullName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
-::: info NOTE
+::: info Note
 It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0?dts"`.
 :::
 
@@ -84,6 +85,63 @@ In order to have Faker working properly, you need to check if these `compilerOpt
 }
 ```
 
+## Reproducible results
+
+Normally Faker will give you different random values each time it is used.
+
+```ts
+faker.music.genre(); // "Soul"
+faker.music.genre(); // "Reggae"
+```
+
+If you want consistent results, you can set your own seed:
+
+```ts
+faker.seed(123);
+
+const firstRandom = faker.number.int();
+
+// Setting the seed again resets the sequence.
+faker.seed(123);
+
+const secondRandom = faker.number.int();
+
+console.log(firstRandom === secondRandom);
+```
+
+::: info Note
+When upgrading to a new version of Faker, you may get different values for the same seed, as the underlying data (lists of names, words etc) may have changed.
+:::
+
+There are a few methods which use relative dates for which setting a random seed is not sufficient to have reproducible results, for example: `faker.date.past`, `faker.date.future`, `faker.date.birthdate`, `faker.date.recent`, `faker.date.soon` and `faker.git.commitEntry`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
+
+```ts
+// creates a date soon after 2023-01-01
+faker.date.soon({ refDate: '2023-01-01T00:00:00.000Z' });
+```
+
+or alternatively you can set a default reference date for all these methods:
+
+```ts
+// affects all future faker.date.* calls
+faker.setDefaultRefDate('2023-01-01T00:00:00.000Z');
+```
+
+## Simple data generation
+
+Faker provides a `simpleFaker` that can be used to generate data that are not based on any locales like numbers and strings.  
+Also **helpers** like `arrayElement` or `multiple` are available.
+
+This is useful if you just want to generate e.g. `uuid`s for your test environment, but don't want/need to initiate/load a full Faker instance, which would include at least 500KB of locale data.
+
+```ts
+import { simpleFaker } from '@faker-js/faker';
+
+const uuid = simpleFaker.string.uuid();
+```
+
+See more about `SimpleFaker` in the [API docs](/api/simpleFaker).
+
 ## Create complex objects
 
 Faker mostly generates values for primitives.
@@ -110,7 +168,7 @@ interface User {
 }
 ```
 
-As you can see, your `User` model probably looks completely different from the one you have in your codebase.
+As you can see, our `User` model probably looks completely different from the one you have in your codebase.
 One thing to keep an eye on is the `subscriptionTier` property, as it is not simply a string, but only one of the strings defined in the `SubscriptionTier` type (`'free'` or `'basic'` or `'business'`).
 Also, in a real scenario, your model should not depend on a type of a third party library (`SexType` in this case).
 
@@ -123,7 +181,7 @@ interface User { ... }
 
 function createRandomUser(): User {
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email: faker.internet.email(),
@@ -152,10 +210,10 @@ function createRandomUser(): User {
   const sex = faker.person.sexType();
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName();
-  const email = faker.internet.email(firstName, lastName);
+  const email = faker.internet.email({ firstName, lastName });
 
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email,
@@ -182,7 +240,7 @@ But, in most use-cases, this would be desirable.
 
 Faker has your back, with another helper method:
 
-```ts {7-9}
+```ts {7-10}
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
@@ -195,7 +253,7 @@ function createRandomUser(): User {
   ]);
 
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email,
@@ -210,5 +268,11 @@ const user = createRandomUser();
 ```
 
 By wrapping Faker's `email` function with the [`unique`](../api/helpers.md#unique) helper function, we ensure that the return value of `email` is always unique.
+
+::: warning
+The `faker.helpers.unique` is targeted to be removed from Faker in the future.  
+Please have a look at the issue [#1785](https://github.com/faker-js/faker/issues/1785).  
+We will update these docs once a replacement is available.
+:::
 
 Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.

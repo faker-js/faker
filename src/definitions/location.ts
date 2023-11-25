@@ -3,11 +3,13 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to addresses and locations.
  */
-export type LocationDefinitions = LocaleEntry<{
+export type LocationDefinition = LocaleEntry<{
   /**
    * Postcodes patterns by state
    */
-  postcode_by_state: { [state: string]: { min: number; max: number } };
+  postcode_by_state: {
+    [state: string]: string;
+  };
 
   /**
    * Postcodes patterns.
@@ -17,7 +19,7 @@ export type LocationDefinitions = LocaleEntry<{
   /**
    * The patterns to generate city names.
    */
-  city: string[];
+  city_pattern: string[];
 
   /**
    * The names of actual cities.
@@ -40,17 +42,22 @@ export type LocationDefinitions = LocaleEntry<{
   country: string[];
 
   /**
-   * The names of this country's states.
+   * The [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country codes.
+   */
+  country_code: Array<{ alpha2: string; alpha3: string; numeric: string }>;
+
+  /**
+   * The names of this country's states, or other first-level administrative areas.
    */
   state: string[];
 
   /**
-   * The abbreviated names of this country's states.
+   * The abbreviated names of this country's states, or other first-level administrative areas.
    */
   state_abbr: string[];
 
   /**
-   * The names of counties inside the country or state.
+   * The names of counties, or other second-level administrative areas, inside the country's states.
    */
   county: string[];
 
@@ -67,14 +74,14 @@ export type LocationDefinitions = LocaleEntry<{
   direction_abbr: string[];
 
   /**
-   * The pattern used to generate building numbers.
+   * The pattern used to generate building numbers. Since building numbers rarely start with 0, any consecutive # characters will be replaced by a number without a leading zero.
    */
   building_number: string[];
 
   /**
    * The patterns to generate street names.
    */
-  street: string[];
+  street_pattern: string[];
 
   /**
    * The names of actual streets.
@@ -107,19 +114,9 @@ export type LocationDefinitions = LocaleEntry<{
   };
 
   /**
-   * The address "inside" an address/e.g. an apartment or office.
+   * The address "inside" an address/e.g. an apartment or office. Since these rarely start with 0, any consecutive # characters will be replaced by a number without a leading zero.
    */
   secondary_address: string[];
-
-  /**
-   * The ISO-3166-1 ALPHA-2 country codes related to this locale.
-   */
-  country_code: string[];
-
-  /**
-   * The ISO-3166-1 ALPHA-3 country codes related to this locale.
-   */
-  country_code_alpha_3: string[];
 
   /**
    * A list of timezones names.

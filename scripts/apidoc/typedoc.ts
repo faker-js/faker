@@ -1,4 +1,5 @@
 import type {
+  Comment,
   CommentDisplayPart,
   CommentTag,
   DeclarationReflection,
@@ -18,13 +19,16 @@ import {
   DefaultParameterAwareSerializer,
   parameterDefaultReader,
   patchProjectParameterDefaults,
-} from './parameterDefaults';
+} from './parameter-defaults';
 import { mapByName } from './utils';
+
+type CommentHolder = Pick<Reflection, 'comment'>;
 
 /**
  * Loads the project using TypeDoc.
  *
  * @param options The options to use for the project.
+ *
  * @returns The TypeDoc application and the project reflection.
  */
 export function loadProject(
@@ -32,6 +36,7 @@ export function loadProject(
     entryPoints: ['src/index.ts'],
     pretty: true,
     cleanOutputDir: true,
+    tsconfig: 'tsconfig.build.json',
   }
 ): [Application, ProjectReflection] {
   const app = newTypeDocApp();
@@ -71,6 +76,8 @@ function newTypeDocApp(): Application {
  * Selects the modules from the project that needs to be documented.
  *
  * @param project The project to extract the modules from.
+ * @param includeTestModules Whether to include test modules.
+ *
  * @returns The modules to document.
  */
 export function selectApiModules(
@@ -89,18 +96,22 @@ export function selectApiModules(
  * Selects the methods from the module that needs to be documented.
  *
  * @param module The module to extract the methods from.
+ *
  * @returns The methods to document.
  */
 export function selectApiMethods(
   module: DeclarationReflection
 ): DeclarationReflection[] {
-  return module.getChildrenByKind(ReflectionKind.Method);
+  return module
+    .getChildrenByKind(ReflectionKind.Method)
+    .filter((method) => !method.flags.isPrivate);
 }
 
 /**
  * Selects the signature from the method that needs to be documented.
  *
  * @param method The method to extract the signature from.
+ *
  * @returns The signature to document.
  */
 export function selectApiSignature(
@@ -118,7 +129,8 @@ export function selectApiSignature(
  * Selects the method signatures from the module that needs to be documented.
  * Method-Name -> Method-Signature
  *
- * @param method The module to extract the method signatures from.
+ * @param module The module to extract the method signatures from.
+ *
  * @returns The method signatures to document.
  */
 export function selectApiMethodSignatures(
@@ -142,7 +154,17 @@ export function extractModuleName(module: DeclarationReflection): string {
 
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
-  return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+  return moduleName[0].toLowerCase() + moduleName.substring(1);
+}
+
+export const MISSING_DESCRIPTION = 'Missing';
+
+export function toBlock(comment?: Comment): string {
+  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
+}
+
+export function extractDescription(reflection: Reflection): string {
+  return toBlock(reflection.comment);
 }
 
 /**
@@ -150,7 +172,9 @@ export function extractModuleFieldName(module: DeclarationReflection): string {
  *
  * @param reflection The reflection instance to extract the source url from.
  */
-function extractSourceUrl(reflection: Reflection): string {
+function extractSourceUrl(
+  reflection: DeclarationReflection | SignatureReflection
+): string {
   const source = reflection.sources?.[0];
   return source?.url ?? '';
 }
@@ -160,7 +184,9 @@ function extractSourceUrl(reflection: Reflection): string {
  *
  * @param reflection The reflection instance to extract the source base url from.
  */
-export function extractSourceBaseUrl(reflection: Reflection): string {
+export function extractSourceBaseUrl(
+  reflection: DeclarationReflection | SignatureReflection
+): string {
   return extractSourceUrl(reflection).replace(
     /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
     '$1'
@@ -172,7 +198,9 @@ export function extractSourceBaseUrl(reflection: Reflection): string {
  *
  * @param reflection The reflection instance to extract the source path from.
  */
-export function extractSourcePath(reflection: Reflection): string {
+export function extractSourcePath(
+  reflection: DeclarationReflection | SignatureReflection
+): string {
   return extractSourceUrl(reflection).replace(
     /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
     '$2'
@@ -183,34 +211,112 @@ export function extractSourcePath(reflection: Reflection): string {
  * Extracts the text (md) from a jsdoc tag.
  *
  * @param tag The tag to extract the text from.
- * @param signature The signature to extract the text from.
+ * @param reflection The reflection to extract the text from.
+ * @param tagProcessor The function used to extract the text from the tag.
  */
 export function extractTagContent(
   tag: `@${string}`,
-  signature?: SignatureReflection,
+  reflection?: CommentHolder,
   tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
-  return signature?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
+  return reflection?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
 }
 
 /**
- * Extracts the examples from the jsdocs without the surrounding md code block.
+ * Extracts the raw code from the jsdocs without the surrounding md code block.
  *
- * @param signature The signature to extract the examples from.
+ * @param tag The tag to extract the code from.
+ * @param reflection The reflection to extract the code from.
  */
-export function extractRawExamples(signature?: SignatureReflection): string[] {
-  return extractTagContent('@example', signature).map((tag) =>
+function extractRawCode(
+  tag: `@${string}`,
+  reflection?: CommentHolder
+): string[] {
+  return extractTagContent(tag, reflection).map((tag) =>
     tag.replace(/^```ts\n/, '').replace(/\n```$/, '')
   );
 }
 
 /**
+ * Extracts the default from the jsdocs without the surrounding md code block.
+ *
+ * @param reflection The reflection to extract the examples from.
+ */
+export function extractRawDefault(reflection?: CommentHolder): string {
+  return extractRawCode('@default', reflection)[0] ?? '';
+}
+
+/**
+ * Extracts and optionally removes the default from the comment summary.
+ *
+ * @param comment The comment to extract the default from.
+ * @param eraseDefault Whether to erase the default text from the comment.
+ *
+ * @returns The extracted default value.
+ */
+export function extractSummaryDefault(
+  comment?: Comment,
+  eraseDefault = true
+): string | undefined {
+  if (!comment) {
+    return;
+  }
+
+  const summary = comment.summary;
+  const text = joinTagParts(summary).trim();
+  if (!text) {
+    return;
+  }
+
+  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
+  if (!result) {
+    return;
+  }
+
+  if (result[3].trim()) {
+    throw new Error(`Found description text after the default value:\n${text}`);
+  }
+
+  if (eraseDefault) {
+    summary.splice(-2, 2);
+    const lastSummaryPart = summary[summary.length - 1];
+    lastSummaryPart.text = lastSummaryPart.text.replace(
+      /[ \n]Defaults to $/,
+      ''
+    );
+  }
+
+  return result[2];
+}
+
+/**
+ * Extracts the examples from the jsdocs without the surrounding md code block.
+ *
+ * @param reflection The reflection to extract the examples from.
+ */
+function extractRawExamples(reflection?: CommentHolder): string[] {
+  return extractRawCode('@example', reflection);
+}
+
+/**
+ * Extracts the examples from the jsdocs without the surrounding md code block, then joins them with newlines and trims.
+ *
+ * @param reflection The reflection to extract the examples from.
+ */
+export function extractJoinedRawExamples(
+  reflection?: CommentHolder
+): string | undefined {
+  const examples = extractRawExamples(reflection);
+  return examples.length === 0 ? undefined : examples.join('\n').trim();
+}
+
+/**
  * Extracts all the `@see` references from the jsdocs separately.
  *
- * @param signature The signature to extract the see also references from.
+ * @param reflection The reflection to extract the see also references from.
  */
-export function extractSeeAlsos(signature?: SignatureReflection): string[] {
-  return extractTagContent('@see', signature, (tag) =>
+export function extractSeeAlsos(reflection?: CommentHolder): string[] {
+  return extractTagContent('@see', reflection, (tag) =>
     // If the @see tag contains code in backticks, the content is split into multiple parts.
     // So we join together, split on newlines and filter out empty tags.
     joinTagParts(tag.content)
@@ -218,17 +324,19 @@ export function extractSeeAlsos(signature?: SignatureReflection): string[] {
       .map((link) => {
         link = link.trim();
         if (link.startsWith('-')) {
-          link = link.slice(1).trim();
+          link = link.slice(1).trimStart();
         }
 
         return link;
       })
-      .filter((link) => link)
+      .filter((link) => link.length > 0)
   );
 }
 
 /**
  * Joins the parts of the given jsdocs tag.
+ *
+ * @param tag The tag to join the parts of.
  */
 export function joinTagContent(tag: CommentTag): string[] {
   return [joinTagParts(tag?.content)];
@@ -241,23 +349,38 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 }
 
 /**
- * Checks if the given signature is deprecated.
+ * Checks if the given reflection is deprecated.
  *
- * @param signature The signature to check.
+ * @param reflection The reflection to check.
  *
- * @returns `true` if it is deprecated, otherwise `false`.
+ * @returns The message explaining the deprecation if deprecated, otherwise `undefined`.
  */
-export function isDeprecated(signature: SignatureReflection): boolean {
-  return extractTagContent('@deprecated', signature).length > 0;
+export function extractDeprecated(
+  reflection?: CommentHolder
+): string | undefined {
+  const deprecated = extractTagContent('@deprecated', reflection).join().trim();
+  return deprecated.length === 0 ? undefined : deprecated;
+}
+
+/**
+ * Extracts the "throws" tag from the provided signature.
+ *
+ * @param reflection The reflection to check.
+ *
+ * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
+ */
+export function extractThrows(reflection?: CommentHolder): string | undefined {
+  const throws = extractTagContent('@throws', reflection).join().trim();
+  return throws.length === 0 ? undefined : throws;
 }
 
 /**
  * Extracts the "since" tag from the provided signature.
  *
- * @param signature The signature to check.
+ * @param reflection The signature to check.
  *
- * @returns the contents of the @since tag
+ * @returns The contents of the `@since` tag.
  */
-export function extractSince(signature: SignatureReflection): string {
-  return extractTagContent('@since', signature).join().trim();
+export function extractSince(reflection: CommentHolder): string {
+  return extractTagContent('@since', reflection).join().trim();
 }

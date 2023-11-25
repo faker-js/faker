@@ -4,7 +4,7 @@
  * responsible for setting standards relating to many aspects of airline
  * operations.
  */
-import type { Faker } from '../..';
+import { ModuleBase } from '../../internal/module-base';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -61,22 +61,23 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
 };
 
 /**
- * Module to generate airline related data.
+ * Module to generate airline and airport related data.
+ *
+ * ### Overview
+ *
+ * Several methods in this module return objects rather than strings. For example, you can use `faker.airline.airport().iataCode` to pick out the specific property you need.
+ *
+ * For a random airport, use [`airport()`](https://fakerjs.dev/api/airline.html#airport).
+ *
+ * For a random airline, use [`airline()`](https://fakerjs.dev/api/airline.html#airline).
+ *
+ * For a dummy booking, a passenger will generally book a flight on a specific [`flightNumber()`](https://fakerjs.dev/api/airline.html#flightnumber), [`airplane()`](https://fakerjs.dev/api/airline.html#airplane), be allocated a [`seat()`](https://fakerjs.dev/api/airline.html#seat), and [`recordLocator()`](https://fakerjs.dev/api/airline.html#recordlocator).
+ *
+ * ### Related Modules
+ *
+ * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://fakerjs.dev/api/person.html) module.
  */
-export class AirlineModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      AirlineModule.prototype
-    ) as Array<keyof AirlineModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class AirlineModule extends ModuleBase {
   /**
    * Generates a random airport.
    *
@@ -124,7 +125,7 @@ export class AirlineModule {
    * are used by airlines to identify reservations. They're also known as booking reference numbers,
    * locator codes, confirmation codes, or reservation codes.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.allowNumerics Whether to allow numeric characters. Defaults to `false`.
    * @param options.allowVisuallySimilarCharacters Whether to allow visually similar characters such as '1' and 'I'. Defaults to `false`.
    *
@@ -154,7 +155,7 @@ export class AirlineModule {
   ): string {
     const { allowNumerics = false, allowVisuallySimilarCharacters = false } =
       options;
-    const excludedChars = [];
+    const excludedChars: string[] = [];
     if (!allowNumerics) {
       excludedChars.push(...numerics);
     }
@@ -173,7 +174,7 @@ export class AirlineModule {
   /**
    * Generates a random seat.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.aircraftType The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`. Defaults to `narrowbody`.
    *
    * @example
@@ -210,7 +211,7 @@ export class AirlineModule {
    * @since 8.0.0
    */
   aircraftType(): AircraftType {
-    return this.faker.helpers.objectValue(Aircraft);
+    return this.faker.helpers.enumValue(Aircraft);
   }
 
   /**
@@ -224,7 +225,7 @@ export class AirlineModule {
    * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    * ```
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.length The number or range of digits to generate. Defaults to `{ min: 1, max: 4 }`.
    * @param options.addLeadingZeros Whether to pad the flight number up to 4 digits with leading zeros. Defaults to `false`.
    *

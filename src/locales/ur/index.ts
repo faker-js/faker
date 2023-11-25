@@ -5,7 +5,6 @@
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import app from './app';
-import business from './business';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -13,16 +12,15 @@ import date from './date';
 import finance from './finance';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import music from './music';
 import person from './person';
 import team from './team';
 import vehicle from './vehicle';
 
 const ur: LocaleDefinition = {
-  title: 'Urdu',
   animal,
   app,
-  business,
   cell_phone,
   color,
   commerce,
@@ -30,6 +28,7 @@ const ur: LocaleDefinition = {
   finance,
   location,
   lorem,
+  metadata,
   music,
   person,
   team,

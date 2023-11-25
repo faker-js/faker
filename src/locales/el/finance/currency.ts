@@ -1,6 +1,7 @@
-export default {
-  Ευρώ: {
+export default [
+  {
+    name: 'Ευρώ',
     code: 'EUR',
     symbol: '€',
   },
-};
+];

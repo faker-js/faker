@@ -19,7 +19,13 @@ const props = defineProps<{ parameters: MethodParameter[] }>();
       </thead>
       <tbody>
         <tr v-for="parameter of props.parameters" :key="parameter.name">
-          <td>{{ parameter.name }}</td>
+          <td
+            :class="{
+              deprecated: parameter.description.includes('DEPRECATED'),
+            }"
+          >
+            {{ parameter.name }}
+          </td>
           <td>{{ parameter.type }}</td>
           <td>
             <code v-if="parameter.default">{{ parameter.default }}</code>
@@ -30,3 +36,9 @@ const props = defineProps<{ parameters: MethodParameter[] }>();
     </table>
   </div>
 </template>
+
+<style scoped>
+td.deprecated {
+  text-decoration: line-through;
+}
+</style>

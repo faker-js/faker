@@ -1,9 +1,10 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import { SimpleModuleBase } from '../../internal/module-base';
+import type { SimpleFaker } from '../../simple-faker';
 
 /**
- * The legcy implementation for datatype float.
+ * The legacy implementation for datatype float.
  *
  * @param options An options object.
  * @param options.min Lower bound for generated number. Defaults to `0`.
@@ -16,7 +17,7 @@ function legacyFloatImplementation(options: {
   /**
    * A faker instance.
    */
-  faker: Faker;
+  faker: SimpleFaker;
   /**
    * Lower bound for generated number.
    */
@@ -53,34 +54,27 @@ function legacyFloatImplementation(options: {
 
 /**
  * Module to generate various primitive values and data types.
+ *
+ * ### Overview
+ *
+ * Most of the methods in this module are deprecated and have been moved to other modules like [`faker.number`](https://fakerjs.dev/api/number.html) and [`faker.string`](https://fakerjs.dev/api/string.html), see individual entries for replacements.
+ *
+ * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
-export class DatatypeModule {
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(
-      DatatypeModule.prototype
-    ) as Array<keyof DatatypeModule | 'constructor'>) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export class DatatypeModule extends SimpleModuleBase {
   /**
    * Returns a single random number between zero and the given max value or the given range with the specified precision.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object.
+   * @param options Maximum value or options object. Defaults to `99999`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.number.int() for the default precision of `1`
-   * @see faker.number.float() for a custom precision
+   * @see faker.number.int(): For generating a random integer.
+   * @see faker.number.float(): For generating a random floating-point number.
    *
    * @example
    * faker.datatype.number() // 55422
@@ -147,7 +141,7 @@ export class DatatypeModule {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
-   * @see faker.number.float()
+   * @see faker.number.float(): For the replacement method.
    *
    * @example
    * faker.datatype.float() // 51696.36
@@ -220,12 +214,17 @@ export class DatatypeModule {
    *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date. Defaults to `4102444800000`.
    *
+   * @see faker.date.anytime(): For generating a random date in either the past or future.
+   * @see faker.date.between(): For generating a random date in between two dates.
+   *
    * @example
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'
    * faker.datatype.datetime(1893456000000) // '2022-03-28T07:00:56.876Z'
    * faker.datatype.datetime({ min: 1577836800000, max: 1893456000000 }) // '2021-09-12T07:13:00.255Z'
    *
    * @since 5.5.0
+   *
+   * @deprecated Use `faker.date.between({ from: min, to: max })` or `faker.date.anytime()` instead.
    */
   datetime(
     options:
@@ -249,6 +248,13 @@ export class DatatypeModule {
           max?: number;
         } = {}
   ): Date {
+    deprecated({
+      deprecated: 'faker.datatype.datetime({ min, max })',
+      proposed: 'faker.date.between({ from, to }) or faker.date.anytime()',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const minMax = 8640000000000000;
 
     let min = typeof options === 'number' ? undefined : options.min;
@@ -262,16 +268,16 @@ export class DatatypeModule {
       max = Date.UTC(2100, 0);
     }
 
-    return new Date(this.faker.number.int({ min, max }));
+    return this.faker.date.between({ from: min, to: max });
   }
 
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param options Length of the generated string or an options object. Defaults to `{}`.
+   * @param options Length of the generated string or an options object.
    * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
-   * @see faker.string.sample()
+   * @see faker.string.sample(): For the replacement method.
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
@@ -280,7 +286,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use faker.string.sample() instead.
+   * @deprecated Use `faker.string.sample()` instead.
    */
   string(
     options:
@@ -312,7 +318,7 @@ export class DatatypeModule {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * @see faker.string.uuid()
+   * @see faker.string.uuid(): For the replacement method.
    *
    * @example
    * faker.datatype.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
@@ -340,7 +346,7 @@ export class DatatypeModule {
    * If the probability is `>= 1.0`, it will always return `true`.
    * The probability is limited to two decimal places.
    *
-   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`.
    * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
    *
    * @example
@@ -389,7 +395,8 @@ export class DatatypeModule {
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
-   * @see faker.string.hexadecimal()
+   * @see faker.string.hexadecimal(): For generating a random hexadecimal string.
+   * @see faker.number.hex(): For generating a random hexadecimal number.
    *
    * @example
    * faker.datatype.hexadecimal() // '0xB'
@@ -443,16 +450,25 @@ export class DatatypeModule {
    * faker.datatype.json() // `{"foo":"mxz.v8ISij","bar":29154,"bike":8658,"a":"GxTlw$nuC:","b":40693,"name":"%'<FTou{7X","prop":"X(bd4iT>77"}`
    *
    * @since 5.5.0
+   *
+   * @deprecated Build your own function to generate complex objects.
    */
   json(): string {
+    deprecated({
+      deprecated: 'faker.datatype.json()',
+      proposed: 'your own function to generate complex objects',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const properties = ['foo', 'bar', 'bike', 'a', 'b', 'name', 'prop'];
     const returnObject: Record<string, string | number> = {};
 
-    properties.forEach((prop) => {
+    for (const prop of properties) {
       returnObject[prop] = this.boolean()
         ? this.faker.string.sample()
         : this.faker.number.int();
-    });
+    }
 
     return JSON.stringify(returnObject);
   }
@@ -470,6 +486,8 @@ export class DatatypeModule {
    * faker.datatype.array({ min: 3, max: 5 }) // [ 99403, 76924, 42281, "Q'|$&y\\G/9" ]
    *
    * @since 5.5.0
+   *
+   * @deprecated Use your own function to build complex arrays.
    */
   array(
     length:
@@ -485,6 +503,13 @@ export class DatatypeModule {
           max: number;
         } = 10
   ): Array<string | number> {
+    deprecated({
+      deprecated: 'faker.datatype.array()',
+      proposed: 'your own function to build complex arrays',
+      since: '8.0',
+      until: '9.0',
+    });
+
     return this.faker.helpers.multiple(
       () =>
         this.boolean() ? this.faker.string.sample() : this.faker.number.int(),
@@ -501,7 +526,7 @@ export class DatatypeModule {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.number.bigInt()
+   * @see faker.number.bigInt(): For the replacement method.
    *
    * @example
    * faker.datatype.bigInt() // 55422n

@@ -1,15 +1,14 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Complex array parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">(array: readonly </span><span style=\\"color:#82AAFF\\">Array</span><span style=\\"color:#89DDFF\\">&lt;{</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">weight</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}&gt;</span><span style=\\"color:#A6ACCD\\">): T</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">(array: readonly </span><span style=\\"color:#82AAFF\\">Array</span><span style=\\"color:#89DDFF\\">&lt;{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">weight</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FFCB6B\\">number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}&gt;</span><span style=\\"color:#BABED8\\">): T</span></span></code></pre>
 </div>",
   "name": "complexArrayParameter",
   "parameters": [
@@ -44,18 +43,17 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L295",
-  "title": "Complex Array Parameter",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L367",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with a default parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">defaultBooleanParamMethod</span><span style=\\"color:#A6ACCD\\">(c: boolean </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FF9CAC\\">true</span><span style=\\"color:#A6ACCD\\">): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">defaultBooleanParamMethod</span><span style=\\"color:#BABED8\\">(c: boolean </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FF9CAC\\">true</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
 </div>",
   "name": "defaultBooleanParamMethod",
   "parameters": [
@@ -70,8 +68,8 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L99",
-  "title": "Default Boolean Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L105",
+  "throws": undefined,
 }
 `;
 
@@ -82,10 +80,12 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
   "functionParamMethod",
   "literalUnionParamMethod",
   "methodWithDeprecated",
+  "methodWithDeprecatedOption",
   "methodWithExample",
   "methodWithMultipleSeeMarkers",
   "methodWithMultipleSeeMarkersAndBackticks",
   "methodWithSinceMarker",
+  "methodWithThrows",
   "multiParamMethod",
   "noParamMethod",
   "optionalStringParamMethod",
@@ -93,6 +93,7 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
   "optionsInterfaceParamMethodWithDefaults",
   "optionsParamMethod",
   "optionsTypeParamMethodWithDefaults",
+  "recordParamMethod",
   "requiredNumberParamMethod",
   "stringUnionParamMethod",
 ]
@@ -100,11 +101,10 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
 
 exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with a function parameters.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">functionParamMethod</span><span style=\\"color:#A6ACCD\\">(fn: </span><span style=\\"color:#89DDFF\\">(</span><span style=\\"color:#A6ACCD;font-style:italic\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">string</span><span style=\\"color:#89DDFF\\">)</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#A6ACCD\\"> number): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">functionParamMethod</span><span style=\\"color:#BABED8\\">(fn: </span><span style=\\"color:#89DDFF\\">(</span><span style=\\"color:#BABED8;font-style:italic\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FFCB6B\\">string</span><span style=\\"color:#89DDFF\\">)</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#BABED8\\"> number): number</span></span></code></pre>
 </div>",
   "name": "functionParamMethod",
   "parameters": [
@@ -119,18 +119,17 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L119",
-  "title": "Function Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L125",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with LiteralUnion.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedValue: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> mixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedMixed: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">): string</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#BABED8\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> namedValue: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#BABED8\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#BABED8\\"> mixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#BABED8\\"> namedMixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">): string</span></span></code></pre>
 </div>",
   "name": "literalUnionParamMethod",
   "parameters": [
@@ -146,7 +145,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedValue",
-      "type": "AB | string",
+      "type": "'a' | 'b' | string",
     },
     {
       "default": undefined,
@@ -160,7 +159,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedArray",
-      "type": "Array<AB | string>",
+      "type": "Array<'a' | 'b' | string>",
     },
     {
       "default": undefined,
@@ -174,24 +173,24 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
 ",
       "name": "namedMixed",
-      "type": "AB | string | Array<AB | string>",
+      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
     },
   ],
   "returns": "string",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L142",
-  "title": "Literal Union Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L159",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
 {
-  "deprecated": true,
+  "deprecated": "<p>do something else</p>
+",
   "description": "<p>Test with deprecated and see marker.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithDeprecated</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithDeprecated</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithDeprecated",
   "parameters": [],
@@ -200,37 +199,87 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L254",
-  "title": "Method With Deprecated",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L287",
+  "throws": undefined,
+}
+`;
+
+exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
+{
+  "deprecated": undefined,
+  "description": "<p>Test with deprecated option.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithDeprecatedOption</span><span style=\\"color:#BABED8\\">(option: </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#82AAFF\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+</div>",
+  "name": "methodWithDeprecatedOption",
+  "parameters": [
+    {
+      "default": undefined,
+      "description": "<p>The options.</p>
+",
+      "name": "option",
+      "type": "{ ... }",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Some deprecated option.</p>
+<p><strong>DEPRECATED:</strong> do something else.</p>
+",
+      "name": "option.a",
+      "type": "string",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Some other deprecated option.</p>
+<p><strong>DEPRECATED:</strong> do something else.</p>
+",
+      "name": "option.b",
+      "type": "() => number",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Some other option.</p>
+",
+      "name": "option.c",
+      "type": "number",
+    },
+  ],
+  "returns": "number",
+  "seeAlsos": [],
+  "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L308",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > methodWithExample 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with example marker.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">test</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#A6ACCD\\">apidoc</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#A6ACCD\\">() </span><span style=\\"color:#676E95;font-style:italic\\">// 0</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">(): number</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">test</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#BABED8\\">apidoc</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">() </span><span style=\\"color:#676E95;font-style:italic\\">// 0</span></span></code></pre>
 </div>",
   "name": "methodWithExample",
   "parameters": [],
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L243",
-  "title": "Method With Example",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L276",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with multiple see markers.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkers</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkers</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithMultipleSeeMarkers",
   "parameters": [],
@@ -240,18 +289,17 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L264",
-  "title": "Method With Multiple See Markers",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L335",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBackticks 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with multiple see markers and backticks.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkersAndBackticks</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkersAndBackticks</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithMultipleSeeMarkersAndBackticks",
   "parameters": [],
@@ -261,36 +309,51 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L274",
-  "title": "Method With Multiple See Markers And Backticks",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L345",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with since marker.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithSinceMarker</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithSinceMarker</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithSinceMarker",
   "parameters": [],
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L283",
-  "title": "Method With Since Marker",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L354",
+  "throws": undefined,
+}
+`;
+
+exports[`signature > analyzeSignature() > methodWithThrows 1`] = `
+{
+  "deprecated": undefined,
+  "description": "<p>Test with throws</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithThrows</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+</div>",
+  "name": "methodWithThrows",
+  "parameters": [],
+  "returns": "number",
+  "seeAlsos": [],
+  "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L296",
+  "throws": "a Faker error",
 }
 `;
 
 exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with multiple parameters.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">multiParamMethod</span><span style=\\"color:#A6ACCD\\">(a: number</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> b</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> c: boolean </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FF9CAC\\">true</span><span style=\\"color:#A6ACCD\\">): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">multiParamMethod</span><span style=\\"color:#BABED8\\">(a: number</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> b</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> c: boolean </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FF9CAC\\">true</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
 </div>",
   "name": "multiParamMethod",
   "parameters": [
@@ -319,36 +382,34 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L110",
-  "title": "Multi Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L116",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > noParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with no parameters.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">noParamMethod</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">noParamMethod</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
 </div>",
   "name": "noParamMethod",
   "parameters": [],
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L72",
-  "title": "No Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L78",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with an optional parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">optionalStringParamMethod</span><span style=\\"color:#A6ACCD\\">(b</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#A6ACCD\\"> string): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionalStringParamMethod</span><span style=\\"color:#BABED8\\">(b</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#BABED8\\"> string): number</span></span></code></pre>
 </div>",
   "name": "optionalStringParamMethod",
   "parameters": [
@@ -363,24 +424,23 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L90",
-  "title": "Optional String Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L96",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > optionsInlineParamMethodWithDefaults 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with a function parameters (inline types) with defaults.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">optionsInlineParamMethodWithDefaults</span><span style=\\"color:#A6ACCD\\">(a: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#A6ACCD\\"> b: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#A6ACCD\\"> c: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\">): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsInlineParamMethodWithDefaults</span><span style=\\"color:#BABED8\\">(a: </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> b: </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> c: </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
 </div>",
   "name": "optionsInlineParamMethodWithDefaults",
   "parameters": [
@@ -432,18 +492,17 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L193",
-  "title": "Options Inline Param Method With Defaults",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L226",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefaults 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with a function parameters with defaults.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">optionsInterfaceParamMethodWithDefaults</span><span style=\\"color:#A6ACCD\\">(a: ParameterOptionsInterfaceA </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#A6ACCD\\"> b: ParameterOptionsInterfaceB </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#A6ACCD\\"> c: ParameterOptionsInterfaceC): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsInterfaceParamMethodWithDefaults</span><span style=\\"color:#BABED8\\">(a: ParameterOptionsInterfaceA </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> b: ParameterOptionsInterfaceB </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> c: ParameterOptionsInterfaceC): number</span></span></code></pre>
 </div>",
   "name": "optionsInterfaceParamMethodWithDefaults",
   "parameters": [
@@ -472,29 +531,29 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L229",
-  "title": "Options Interface Param Method With Defaults",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L262",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
 {
-  "deprecated": false,
-  "description": "<p>Test with a function parameters.</p>
+  "deprecated": undefined,
+  "description": "<p>Test with an options parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">optionsParamMethod</span><span style=\\"color:#A6ACCD\\">(options: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> boolean</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#82AAFF\\">d</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#A6ACCD\\"> string</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\">): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsParamMethod</span><span style=\\"color:#BABED8\\">(options: </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> boolean</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#82AAFF\\">d</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">e</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
 </div>",
   "name": "optionsParamMethod",
   "parameters": [
     {
       "default": undefined,
-      "description": "<p>The function parameter.</p>
+      "description": "<p>The options parameter.</p>
 ",
       "name": "options",
       "type": "{ ... }",
@@ -527,22 +586,28 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
       "name": "options.d",
       "type": "() => string",
     },
+    {
+      "default": "'a'",
+      "description": "<p>A parameter with inline documentation.</p>
+",
+      "name": "options.e",
+      "type": "'a' | 'b' | string",
+    },
   ],
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L169",
-  "title": "Options Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L196",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with a function parameters with defaults.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">optionsTypeParamMethodWithDefaults</span><span style=\\"color:#A6ACCD\\">(a: ParameterOptionsTypeA </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#A6ACCD\\"> b: ParameterOptionsTypeB </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#A6ACCD\\"> c: ParameterOptionsTypeC): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsTypeParamMethodWithDefaults</span><span style=\\"color:#BABED8\\">(a: ParameterOptionsTypeA </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> b: ParameterOptionsTypeB </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> c: ParameterOptionsTypeC): number</span></span></code></pre>
 </div>",
   "name": "optionsTypeParamMethodWithDefaults",
   "parameters": [
@@ -571,18 +636,42 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L211",
-  "title": "Options Type Param Method With Defaults",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L244",
+  "throws": undefined,
+}
+`;
+
+exports[`signature > analyzeSignature() > recordParamMethod 1`] = `
+{
+  "deprecated": undefined,
+  "description": "<p>Test with a Record parameter.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">recordParamMethod</span><span style=\\"color:#BABED8\\">(object: Record</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#BABED8\\">string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+</div>",
+  "name": "recordParamMethod",
+  "parameters": [
+    {
+      "default": undefined,
+      "description": "<p>The Record parameter.</p>
+",
+      "name": "object",
+      "type": "Record<string, number>",
+    },
+  ],
+  "returns": "number",
+  "seeAlsos": [],
+  "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L182",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with a required parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">requiredNumberParamMethod</span><span style=\\"color:#A6ACCD\\">(a: number): number</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">requiredNumberParamMethod</span><span style=\\"color:#BABED8\\">(a: number): number</span></span></code></pre>
 </div>",
   "name": "requiredNumberParamMethod",
   "parameters": [
@@ -597,18 +686,21 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L81",
-  "title": "Required Number Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L87",
+  "throws": undefined,
 }
 `;
 
 exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
 {
-  "deprecated": false,
+  "deprecated": undefined,
   "description": "<p>Test with string union.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">stringUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\">): string</span></span>
-<span class=\\"line\\"></span></code></pre>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">stringUnionParamMethod</span><span style=\\"color:#BABED8\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> options</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">casing</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">lower</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">mixed</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">upper</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">excludes</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> readonly AlphaNumericChar[]</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">format</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">binary</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">css</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">decimal</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">hex</span><span style=\\"color:#89DDFF\\">'</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): string</span></span></code></pre>
 </div>",
   "name": "stringUnionParamMethod",
   "parameters": [
@@ -619,11 +711,39 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
       "name": "value",
       "type": "'a' | 'b'",
     },
+    {
+      "default": undefined,
+      "description": "<p>The options parameter.</p>
+",
+      "name": "options?",
+      "type": "{ ... }",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The casing parameter.</p>
+",
+      "name": "options.casing?",
+      "type": "'lower' | 'mixed' | 'upper'",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The excludes parameter.</p>
+",
+      "name": "options.excludes?",
+      "type": "readonly AlphaNumericChar[]",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The format parameter.</p>
+",
+      "name": "options.format?",
+      "type": "'binary' | 'css' | 'decimal' | 'hex'",
+    },
   ],
   "returns": "string",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L128",
-  "title": "String Union Param Method",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L138",
+  "throws": undefined,
 }
 `;

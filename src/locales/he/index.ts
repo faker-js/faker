@@ -9,18 +9,19 @@ import commerce from './commerce';
 import date from './date';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 
 const he: LocaleDefinition = {
-  title: 'Hebrew',
   cell_phone,
   color,
   commerce,
   date,
   location,
   lorem,
+  metadata,
   music,
   person,
   phone_number,

@@ -1,61 +1,53 @@
-import type { AirlineDefinitions } from './airline';
-import type { AnimalDefinitions } from './animal';
-import type { ColorDefinitions } from './color';
-import type { CommerceDefinitions } from './commerce';
-import type { CompanyDefinitions } from './company';
-import type { DatabaseDefinitions } from './database';
-import type { DateDefinitions } from './date';
-import type { FinanceDefinitions } from './finance';
-import type { HackerDefinitions } from './hacker';
-import type { InternetDefinitions } from './internet';
-import type { LocationDefinitions } from './location';
-import type { LoremDefinitions } from './lorem';
-import type { MusicDefinitions } from './music';
-import type { PersonDefinitions } from './person';
-import type { PhoneNumberDefinitions } from './phone_number';
-import type { ScienceDefinitions } from './science';
-import type { SystemDefinitions } from './system';
-import type { VehicleDefinitions } from './vehicle';
-import type { WordDefinitions } from './word';
-
-export type LocaleEntry<T> = Partial<T> &
-  // Unsupported & custom modules
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Record<string, any>;
+import type { AirlineDefinition } from './airline';
+import type { AnimalDefinition } from './animal';
+import type { ColorDefinition } from './color';
+import type { CommerceDefinition } from './commerce';
+import type { CompanyDefinition } from './company';
+import type { DatabaseDefinition } from './database';
+import type { DateDefinition } from './date';
+import type { FinanceDefinition } from './finance';
+import type { HackerDefinition } from './hacker';
+import type { InternetDefinition } from './internet';
+import type { LocationDefinition } from './location';
+import type { LoremDefinition } from './lorem';
+import type { MetadataDefinition } from './metadata';
+import type { MusicDefinition } from './music';
+import type { PersonDefinition } from './person';
+import type { PhoneNumberDefinition } from './phone_number';
+import type { ScienceDefinition } from './science';
+import type { SystemDefinition } from './system';
+import type { VehicleDefinition } from './vehicle';
+import type { WordDefinition } from './word';
 
 /**
- * The definitions as used by the Faker modules.
+ * Wrapper type for all definition categories that will make all properties optional and allow extra properties.
  */
-export interface Definitions {
-  airline: AirlineDefinitions;
-  animal: AnimalDefinitions;
-  color: ColorDefinitions;
-  commerce: CommerceDefinitions;
-  company: CompanyDefinitions;
-  database: DatabaseDefinitions;
-  date: DateDefinitions;
-  finance: FinanceDefinitions;
-  hacker: HackerDefinitions;
-  internet: InternetDefinitions;
-  location: LocationDefinitions;
-  lorem: LoremDefinitions;
-  music: MusicDefinitions;
-  person: PersonDefinitions;
-  phone_number: PhoneNumberDefinitions;
-  science: ScienceDefinitions;
-  system: SystemDefinitions;
-  vehicle: VehicleDefinitions;
-  word: WordDefinitions;
-}
+export type LocaleEntry<TCategoryDefinition extends Record<string, unknown>> = {
+  [P in keyof TCategoryDefinition]?: TCategoryDefinition[P] | null;
+} & Record<string, unknown>; // Unsupported & custom entries
 
 /**
  * The definitions as used by the translations/locales.
- * This is basically the same as Definitions with the exception,
- * that most properties are optional and extra properties are allowed.
  */
 export type LocaleDefinition = {
-  /**
-   * The name of the language.
-   */
-  title: string;
-} & LocaleEntry<Definitions>;
+  metadata?: MetadataDefinition;
+  airline?: AirlineDefinition;
+  animal?: AnimalDefinition;
+  color?: ColorDefinition;
+  commerce?: CommerceDefinition;
+  company?: CompanyDefinition;
+  database?: DatabaseDefinition;
+  date?: DateDefinition;
+  finance?: FinanceDefinition;
+  hacker?: HackerDefinition;
+  internet?: InternetDefinition;
+  location?: LocationDefinition;
+  lorem?: LoremDefinition;
+  music?: MusicDefinition;
+  person?: PersonDefinition;
+  phone_number?: PhoneNumberDefinition;
+  science?: ScienceDefinition;
+  system?: SystemDefinition;
+  vehicle?: VehicleDefinition;
+  word?: WordDefinition;
+} & Record<string, Record<string, unknown>>;

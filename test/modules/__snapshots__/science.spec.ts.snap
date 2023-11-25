@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`science > 42 > chemicalElement 1`] = `
+{
+  "atomicNumber": 45,
+  "name": "Rhodium",
+  "symbol": "Rh",
+}
+`;
+
+exports[`science > 42 > unit 1`] = `
+{
+  "name": "pascal",
+  "symbol": "Pa",
+}
+`;
+
+exports[`science > 1211 > chemicalElement 1`] = `
+{
+  "atomicNumber": 110,
+  "name": "Darmstadtium",
+  "symbol": "Ds",
+}
+`;
+
+exports[`science > 1211 > unit 1`] = `
+{
+  "name": "henry",
+  "symbol": "H",
+}
+`;
+
+exports[`science > 1337 > chemicalElement 1`] = `
+{
+  "atomicNumber": 31,
+  "name": "Gallium",
+  "symbol": "Ga",
+}
+`;
+
+exports[`science > 1337 > unit 1`] = `
+{
+  "name": "radian",
+  "symbol": "rad",
+}
+`;

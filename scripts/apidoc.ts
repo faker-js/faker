@@ -1,10 +1,10 @@
-import { faker } from '../src';
+#!/usr/bin/env node
+
 import { generate } from './apidoc/generate';
-import { initMarkdownRenderer } from './apidoc/signature';
+import { initMarkdownRenderer } from './apidoc/markdown';
 
 async function build(): Promise<void> {
   await initMarkdownRenderer();
-  faker.setDefaultRefDate(Date.UTC(2023, 0, 1));
   await generate();
 }
 

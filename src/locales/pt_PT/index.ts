@@ -9,17 +9,18 @@ import commerce from './commerce';
 import date from './date';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const pt_PT: LocaleDefinition = {
-  title: 'Portuguese (Portugal)',
   cell_phone,
   color,
   commerce,
   date,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };

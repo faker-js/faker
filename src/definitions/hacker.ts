@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to computers.
  */
-export type HackerDefinitions = LocaleEntry<{
+export type HackerDefinition = LocaleEntry<{
   /**
    * Generic computer related abbreviations (e.g. `RAM`, `EXE`).
    */
@@ -29,7 +29,7 @@ export type HackerDefinitions = LocaleEntry<{
    * May use any of the HackerDefinition keys wrapped in double braces
    * (e.g. `I'm {{ingverb}} {{adjective}} {{noun}}`).
    *
-   * @see faker.helpers.mustache()
+   * @see faker.helpers.mustache(): For more information about how the phrases are generated.
    */
   phrase: string[];
 
