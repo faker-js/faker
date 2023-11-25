@@ -26,7 +26,7 @@ export class NumberModule extends SimpleModuleBase {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
+   * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
    * @example
    * faker.number.int() // 2900970162509863
@@ -170,7 +170,7 @@ export class NumberModule extends SimpleModuleBase {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.string.binary() If you would like to generate a `binary string` with a given length (range).
+   * @see faker.string.binary(): For generating a `binary string` with a given length (range).
    *
    * @example
    * faker.number.binary() // '1'
@@ -219,7 +219,7 @@ export class NumberModule extends SimpleModuleBase {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.string.octal() If you would like to generate an `octal string` with a given length (range).
+   * @see faker.string.octal(): For generating an `octal string` with a given length (range).
    *
    * @example
    * faker.number.octal() // '5'
