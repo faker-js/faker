@@ -1026,13 +1026,13 @@ describe('helpers', () => {
 
         it('does not allow invalid module name', () => {
           expect(() => faker.helpers.fake('{{foo.bar}}')).toThrow(
-            new FakerError(`Expression 'foo.bar' cannot be resolved.`)
+            new FakerError(`Cannot resolve expression 'foo.bar'`)
           );
         });
 
         it('does not allow invalid method name', () => {
           expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
-            new FakerError(`Expression 'location.foo' cannot be resolved.`)
+            new FakerError(`Cannot resolve expression 'location.foo'`)
           );
         });
 

@@ -93,7 +93,7 @@ export function fakeEval(
   } while (remaining.length > 0 && current.length > 0);
 
   if (current.length === 0) {
-    throw new FakerError(`Expression '${expression}' cannot be resolved.`);
+    throw new FakerError(`Cannot resolve expression '${expression}'`);
   }
 
   const value = current[0];

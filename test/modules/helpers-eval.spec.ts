@@ -111,7 +111,7 @@ describe('fakeEval()', () => {
 
   it('requires a valid expression', () => {
     expect(() => fakeEval('foo.bar', faker)).toThrow(
-      new FakerError(`Expression 'foo.bar' cannot be resolved.`)
+      new FakerError(`Cannot resolve expression 'foo.bar'`)
     );
   });
 });
