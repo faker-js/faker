@@ -73,7 +73,9 @@ function getRepetitionsBasedOnQuantifierParameters(
 }
 
 /**
- * Replaces the regex like expressions in the given string with matching values. Note: This method will be removed in v9.
+ * Replaces the regex like expressions in the given string with matching values.
+ *
+ * Note: This method will be removed in v9.
  *
  * Supported patterns:
  * - `.{times}` => Repeat the character exactly `times` times.
