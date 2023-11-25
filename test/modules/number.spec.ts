@@ -304,7 +304,7 @@ describe('number', () => {
         return [...str].every((char) => char === '0' || char === '1');
       }
 
-      it('enerates single binary character when no additional argument was provided', () => {
+      it('generates single binary character when no additional argument was provided', () => {
         const binary = faker.number.binary();
 
         expect(binary).toBeTypeOf('string');
@@ -342,6 +342,14 @@ describe('number', () => {
           faker.number.binary({ min, max });
         }).toThrow(
           new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
+      });
+
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.binary({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
     });
@@ -387,6 +395,14 @@ describe('number', () => {
           new FakerError(`Max ${max} should be greater than min ${min}.`)
         );
       });
+
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.octal({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+        );
+      });
     });
 
     describe('hex', () => {
@@ -425,6 +441,14 @@ describe('number', () => {
           faker.number.hex({ min, max });
         }).toThrow(
           new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
+      });
+
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.hex({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
     });
