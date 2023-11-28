@@ -88,7 +88,8 @@ export function selectApiModules(
     .getChildrenByKind(ReflectionKind.Class)
     .filter(
       (module) =>
-        faker[extractModuleFieldName(module)] != null || includeTestModules
+        faker[extractModuleFieldName(module) as keyof typeof faker] != null ||
+        includeTestModules
     );
 }
 

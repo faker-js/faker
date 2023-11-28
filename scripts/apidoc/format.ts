@@ -1,5 +1,6 @@
 import type { Options } from 'prettier';
 import { format } from 'prettier';
+// @ts-expect-error: No types available.
 import prettierConfig from '../../.prettierrc.js';
 
 /**

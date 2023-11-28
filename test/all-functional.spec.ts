@@ -35,11 +35,9 @@ function isTestableModule(moduleName: string): moduleName is keyof Faker {
 }
 
 function getMethodNamesOf(module: object): string[] {
-  return Object.keys(module).filter(isMethodOf(module));
-}
-
-function isMethodOf(module: object): (method: string) => boolean {
-  return (method: string) => typeof module[method] === 'function';
+  return (Object.keys(module) as Array<keyof typeof module>).filter(
+    (method) => typeof module[method] === 'function'
+  );
 }
 
 type SkipConfig<TModule> = Partial<
@@ -81,6 +79,7 @@ function isWorkingLocaleForMethod(
   method: string,
   locale: string
 ): boolean {
+  // @ts-expect-error: We don't have types for the dynamic access
   const broken = BROKEN_LOCALE_METHODS[module]?.[method] ?? [];
   return broken !== '*' && !broken.includes(locale);
 }
@@ -104,6 +103,7 @@ describe('BROKEN_LOCALE_METHODS test', () => {
     it('should not contain obsolete configuration (methods)', () => {
       const existingMethods = modules[module];
       const configuredMethods = Object.keys(
+        // @ts-expect-error: We don't have types for the dynamic access
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         BROKEN_LOCALE_METHODS[module] ?? {}
       );
@@ -129,6 +129,7 @@ describe('functional tests', () => {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
+          // @ts-expect-error: We don't have types for the dynamic access
           const result = faker[module][meth]();
 
           if (meth === 'boolean') {
