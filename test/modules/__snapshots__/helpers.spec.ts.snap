@@ -98,6 +98,14 @@ exports[`helpers > 42 > multiple > with method and count range 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > multiple > with method using index 1`] = `
+[
+  0,
+  3,
+  6,
+]
+`;
+
 exports[`helpers > 42 > multiple > with only method 1`] = `
 [
   37454,
@@ -338,6 +346,14 @@ exports[`helpers > 1211 > multiple > with method and count range 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > multiple > with method using index 1`] = `
+[
+  0,
+  3,
+  6,
+]
+`;
+
 exports[`helpers > 1211 > multiple > with only method 1`] = `
 [
   92852,
@@ -557,6 +573,14 @@ exports[`helpers > 1337 > multiple > with method and count range 1`] = `
   56052,
   15868,
   21258,
+]
+`;
+
+exports[`helpers > 1337 > multiple > with method using index 1`] = `
+[
+  0,
+  3,
+  6,
 ]
 `;
 

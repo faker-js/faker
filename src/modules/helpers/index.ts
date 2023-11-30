@@ -1246,11 +1246,12 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @example
    * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
    * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   * faker.helpers.multiple((_el, i) => `Person ${i + 1}` ) // [ 'Person 1', 'Person 2', 'Person 3' ]
    *
    * @since 8.0.0
    */
   multiple<TResult>(
-    method: () => TResult,
+    method: (() => TResult) | ((v: unknown, k: number) => TResult),
     options: {
       /**
        * The number or range of elements to generate.

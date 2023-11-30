@@ -191,7 +191,8 @@ describe('helpers', () => {
         .it('with method and count', faker.datatype.number, { count: 5 })
         .it('with method and count range', faker.datatype.number, {
           count: { min: 1, max: 10 },
-        });
+        })
+        .it('with method using index', (_el, i) => i * 3);
     });
   });
 
@@ -1249,6 +1250,16 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBeGreaterThanOrEqual(1);
           expect(result.length).toBeLessThanOrEqual(10);
+        });
+
+        it('should generate values using index of created value', () => {
+          const result = faker.helpers.multiple((_el, i) => i * 2, {
+            count: 3,
+          });
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result.length).toBe(3);
+          expect(result).toStrictEqual([0, 2, 4]);
         });
       });
     }
