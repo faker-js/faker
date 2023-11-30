@@ -73,6 +73,14 @@ describe('fakeEval()', () => {
     expect(actual).toBe('This-Works');
   });
 
+  it('supports method calls with wrongly quoted argument', () => {
+    const spy = vi.spyOn(faker.helpers, 'slugify');
+    const actual = fakeEval("helpers.slugify('')", faker);
+    expect(spy).toHaveBeenCalledWith("''");
+    expect(actual).toBeTypeOf('string');
+    expect(actual).toBe('');
+  });
+
   it('should be able to return empty strings', () => {
     const actual = fakeEval('string.alphanumeric(0)', faker);
     expect(actual).toBeTypeOf('string');
@@ -109,9 +117,30 @@ describe('fakeEval()', () => {
     );
   });
 
-  it('requires a valid expression', () => {
+  it('requires a valid expression (missing value)', () => {
     expect(() => fakeEval('foo.bar', faker)).toThrow(
       new FakerError(`Cannot resolve expression 'foo.bar'`)
+    );
+  });
+
+  it('requires a valid expression (trailing dot)', () => {
+    expect(() => fakeEval('airline.airline.', faker)).toThrowError(
+      new FakerError("Found dot without property name in 'airline.'")
+    );
+    expect(() => fakeEval('airline.airline.()', faker)).toThrowError(
+      new FakerError("Found dot without property name in 'airline.()'")
+    );
+    expect(() => fakeEval('airline.airline.().iataCode', faker)).toThrowError(
+      new FakerError("Found dot without property name in 'airline.().iataCode'")
+    );
+  });
+
+  it('requires a valid expression (unclosed parenthesis)', () => {
+    expect(() => fakeEval('airline.airline(', faker)).toThrowError(
+      new FakerError("Missing closing parenthesis in '('")
+    );
+    expect(() => fakeEval('airline.airline(.iataCode', faker)).toThrowError(
+      new FakerError("Missing closing parenthesis in '(.iataCode'")
     );
   });
 });

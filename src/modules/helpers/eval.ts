@@ -161,9 +161,9 @@ function findParams(input: string): [continueIndex: number, params: unknown[]] {
     index = input.indexOf(')', index + 1);
   }
 
-  index = input.lastIndexOf(')', 1);
+  index = input.lastIndexOf(')');
   const params = input.substring(1, index);
-  return [index, JSON.parse(`["${params}"]`) as unknown[]];
+  return [index, [params]];
 }
 
 /**
@@ -182,6 +182,11 @@ function evalProcessExpression(
   const key = input.substring(0, index);
   if (key.length === 0) {
     throw new FakerError(`Expression parts cannot be empty in '${input}'`);
+  }
+
+  const next = input[index + 1];
+  if (dotMatch && (next == null || next === '.' || next === '(')) {
+    throw new FakerError(`Found dot without property name in '${input}'`);
   }
 
   return [
