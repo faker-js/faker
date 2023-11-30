@@ -25,6 +25,11 @@ describe('number', () => {
           min: -42,
           max: 69,
           precision: 0.0001,
+        })
+        .it('with min, max and multipleOf', {
+          min: -42,
+          max: 69,
+          multipleOf: 0.0001,
         });
     });
 
@@ -242,6 +247,22 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
+      it('provides numbers with a given multipleOf of 0.5 steps', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 1.5,
+                multipleOf: 0.5,
+              })
+            )
+          ),
+        ].sort();
+
+        expect(results).toEqual([0, 0.5, 1, 1.5]);
+      });
+
       it('provides numbers with a given precision of 0.4 steps', () => {
         const results = [
           ...new Set(
@@ -250,6 +271,22 @@ describe('number', () => {
                 min: 0,
                 max: 1.9,
                 precision: 0.4,
+              })
+            )
+          ),
+        ].sort();
+
+        expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
+      });
+
+      it('provides numbers with a given multipleOf of 0.4 steps', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 1.9,
+                multipleOf: 0.4,
               })
             )
           ),
@@ -269,15 +306,38 @@ describe('number', () => {
         }
       });
 
+      it('provides numbers with an exact precision via multipleOf', () => {
+        for (let i = 0; i < 100; i++) {
+          const actual = faker.number.float({
+            min: 0.5,
+            max: 0.99,
+            multipleOf: 0.01,
+          });
+          expect(actual).toBe(Number(actual.toFixed(2)));
+        }
+      });
+
       it('throws an error for precision 0', () => {
         expect(() => faker.number.float({ precision: 0 })).toThrow(
-          new FakerError('Precision should be greater than 0.')
+          new FakerError('Multiple of should be greater than 0.')
+        );
+      });
+
+      it('throws an error for multipleOf 0', () => {
+        expect(() => faker.number.float({ multipleOf: 0 })).toThrow(
+          new FakerError('Multiple of should be greater than 0.')
         );
       });
 
       it('throws an error for negative precision', () => {
         expect(() => faker.number.float({ precision: -0.01 })).toThrow(
-          new FakerError('Precision should be greater than 0.')
+          new FakerError('Multiple of should be greater than 0.')
+        );
+      });
+
+      it('throws an error for negative multipleOf', () => {
+        expect(() => faker.number.float({ multipleOf: -0.01 })).toThrow(
+          new FakerError('Multiple of should be greater than 0.')
         );
       });
 
