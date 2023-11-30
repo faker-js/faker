@@ -24,6 +24,7 @@ import {
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
+import { keys } from '../src/internal/keys';
 import { formatMarkdown, formatTypescript } from './apidoc/format';
 
 // Constants
@@ -296,7 +297,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     }
 
     const result = {} as T;
-    for (const key of Object.keys(localeData) as Array<keyof T>) {
+    for (const key of keys(localeData)) {
       result[key] = normalizeDataRecursive(localeData[key]);
     }
 

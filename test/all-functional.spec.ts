@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
+import { keys } from '../src/internal/keys';
 
 const IGNORED_MODULES = new Set([
   'rawDefinitions',
@@ -35,9 +36,7 @@ function isTestableModule(moduleName: string): moduleName is keyof Faker {
 }
 
 function getMethodNamesOf(module: object): string[] {
-  return (Object.keys(module) as Array<keyof typeof module>).filter(
-    (method) => typeof module[method] === 'function'
-  );
+  return keys(module).filter((method) => typeof module[method] === 'function');
 }
 
 type SkipConfig<TModule> = Partial<
