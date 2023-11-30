@@ -137,7 +137,11 @@ function evalProcessFunction(
  * @param input The input string to parse.
  */
 function findParams(input: string): [continueIndex: number, params: unknown[]] {
-  let index = input.indexOf(')');
+  let index = input.indexOf(')', 1);
+  if (index === -1) {
+    throw new FakerError(`Missing closing parenthesis in '${input}'`);
+  }
+
   while (index !== -1) {
     const params = input.substring(1, index);
     try {
@@ -157,9 +161,9 @@ function findParams(input: string): [continueIndex: number, params: unknown[]] {
     index = input.indexOf(')', index + 1);
   }
 
-  throw new FakerError(
-    `Function parameters cannot be parsed as JSON or simple string: '${input}'`
-  );
+  index = input.lastIndexOf(')', 1);
+  const params = input.substring(1, index);
+  return [index, JSON.parse(`["${params}"]`) as unknown[]];
 }
 
 /**

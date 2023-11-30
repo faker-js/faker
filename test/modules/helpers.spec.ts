@@ -1030,16 +1030,30 @@ describe('helpers', () => {
           );
         });
 
+        it('does allow missing method name', () => {
+          const actual = faker.helpers.fake('{{location}}');
+          expect(actual).toBe('[object Object]');
+        });
+
         it('does not allow invalid method name', () => {
           expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
             new FakerError(`Cannot resolve expression 'location.foo'`)
           );
         });
 
-        it('does allow complex data', () => {
+        it('should support complex data', () => {
           const actual = faker.helpers.fake('{{science.unit}}');
+          expect(actual).toBe('[object Object]');
+        });
+
+        it('should support resolving a value in a complex object', () => {
+          const complex = faker.helpers.fake('{{airline.airline}}');
+          expect(complex).toBe('[object Object]');
+
+          const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
+          expect(actual).toBeTypeOf('string');
           expect(
-            faker.definitions.science.unit.map((value) => JSON.stringify(value))
+            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
           ).toContain(actual);
         });
 
@@ -1135,17 +1149,6 @@ describe('helpers', () => {
 
         it('should not trim whitespace', () => {
           expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
-        });
-
-        it('should support resolving a value in a complex object', () => {
-          const complex = faker.helpers.fake('{{airline.airline}}');
-          expect(complex).toMatch(/^{.+}$/i); // JSON string
-
-          const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
-          expect(actual).toBeTypeOf('string');
-          expect(
-            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
-          ).toContain(actual);
         });
       });
 

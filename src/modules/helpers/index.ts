@@ -1423,8 +1423,7 @@ export class HelpersModule extends SimpleHelpersModule {
     const method = token.replace('}}', '').replace('{{', '');
 
     const result = fakeEval(method, this.faker);
-    const stringified =
-      typeof result === 'object' ? JSON.stringify(result) : String(result);
+    const stringified = String(result);
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
