@@ -1,3 +1,4 @@
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
@@ -122,7 +123,7 @@ export class CommerceModule extends ModuleBase {
    * - 10% of the time: `0`
    * - 10% of the time: a random digit from `0` to `9`
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -200,7 +201,7 @@ export class CommerceModule extends ModuleBase {
    * - 10% of the time: `0`
    * - 10% of the time: a random digit from `0` to `9`
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * @param options The minimum price or an options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -222,9 +223,29 @@ export class CommerceModule extends ModuleBase {
     options?:
       | number
       | {
+          /**
+           * The minimum price.
+           *
+           * @default 1
+           */
           min?: number;
+          /**
+           * The maximum price.
+           *
+           * @default 1000
+           */
           max?: number;
+          /**
+           * The number of decimal places.
+           *
+           * @default 2
+           */
           dec?: number;
+          /**
+           * The currency value to use.
+           *
+           * @default ''
+           */
           symbol?: string;
         },
     legacyMax?: number,
@@ -241,7 +262,7 @@ export class CommerceModule extends ModuleBase {
    * - 10% of the time: `0`
    * - 10% of the time: a random digit from `0` to `9`
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * @param options The minimum price or an options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -387,7 +408,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Returns a random [ISBN](https://en.wikipedia.org/wiki/ISBN) identifier.
    *
-   * @param options The variant to return or an options object. Defaults to `{}`.
+   * @param options The variant to return or an options object.
    * @param options.variant The variant to return. Can be either `10` (10-digit format)
    * or `13` (13-digit format). Defaults to `13`.
    * @param options.separator The separator to use in the format. Defaults to `'-'`.
@@ -438,7 +459,14 @@ export class CommerceModule extends ModuleBase {
 
     const registrantLength = groupRules.find(
       ([rangeMaximum]) => elementValue <= rangeMaximum
-    )[1];
+    )?.[1];
+
+    if (!registrantLength) {
+      // This can only happen if the ISBN_LENGTH_RULES are corrupted
+      throw new FakerError(
+        `Unable to find a registrant length for the group ${group}`
+      );
+    }
 
     const registrant = element.slice(0, registrantLength);
     const publication = element.slice(registrantLength);

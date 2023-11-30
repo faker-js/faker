@@ -67,13 +67,13 @@ const BROKEN_LOCALE_METHODS = {
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
-    jobArea: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'fr_SN'],
-    jobDescriptor: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'fr_SN'],
-    jobTitle: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'ur', 'fr_SN'],
+    jobArea: ['ar'],
+    jobDescriptor: ['ar'],
+    jobTitle: ['ar', 'ur'],
     jobType: ['ur'],
   },
 } satisfies {
-  [module in keyof Faker]?: SkipConfig<Faker[module]>;
+  [module_ in keyof Faker]?: SkipConfig<Faker[module_]>;
 };
 
 function isWorkingLocaleForMethod(

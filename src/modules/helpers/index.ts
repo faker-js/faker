@@ -159,6 +159,45 @@ function legacyRegexpStringParse(
 }
 
 /**
+ * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
+ * `!` will be replaced by digits >=2 (`2` - `9`).
+ *
+ * Note: This method will be removed in v9.
+ *
+ * @internal
+ *
+ * @param faker The Faker instance to use.
+ * @param string The template string to parse. Defaults to `''`.
+ * @param symbol The symbol to replace with digits. Defaults to `'#'`.
+ *
+ * @example
+ * legacyReplaceSymbolWithNumber(faker) // ''
+ * legacyReplaceSymbolWithNumber(faker, '#####') // '04812'
+ * legacyReplaceSymbolWithNumber(faker, '!####') // '27378'
+ * legacyReplaceSymbolWithNumber(faker, 'Your pin is: !####') // '29841'
+ *
+ * @since 8.4.0
+ */
+export function legacyReplaceSymbolWithNumber(
+  faker: SimpleFaker,
+  string: string = '',
+  symbol: string = '#'
+): string {
+  let str = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string.charAt(i) === symbol) {
+      str += faker.number.int(9);
+    } else if (string.charAt(i) === '!') {
+      str += faker.number.int({ min: 2, max: 9 });
+    } else {
+      str += string.charAt(i);
+    }
+  }
+
+  return str;
+}
+
+/**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
 export class SimpleHelpersModule extends SimpleModuleBase {
@@ -175,7 +214,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * For that all spaces (` `) are replaced by hyphens (`-`)
    * and most non word characters except for dots and hyphens will be removed.
    *
-   * @param string The input to slugify.
+   * @param string The input to slugify. Defaults to `''`.
    *
    * @example
    * faker.helpers.slugify() // ''
@@ -195,8 +234,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
    * `!` will be replaced by digits >=2 (`2` - `9`).
    *
-   * @param string The template string to parse.
+   * @param string The template string to parse. Defaults to `''`.
    * @param symbol The symbol to replace with digits. Defaults to `'#'`.
+   *
+   * @see faker.string.numeric(): For the replacement method.
    *
    * @example
    * faker.helpers.replaceSymbolWithNumber() // ''
@@ -205,20 +246,18 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.string.numeric()` instead. Example: `value.replace(/#+/g, (m) => faker.string.numeric(m.length));`
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    let str = '';
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === symbol) {
-        str += this.faker.number.int(9);
-      } else if (string.charAt(i) === '!') {
-        str += this.faker.number.int({ min: 2, max: 9 });
-      } else {
-        str += string.charAt(i);
-      }
-    }
+    deprecated({
+      deprecated: 'faker.helpers.replaceSymbolWithNumber',
+      proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
+      since: '8.4',
+      until: '9.0',
+    });
 
-    return str;
+    return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
   }
 
   /**
@@ -228,7 +267,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * - `?` will be replaced with an upper letter ('A' - 'Z')
    * - and `*` will be replaced with either a digit or letter.
    *
-   * @param string The template string to parse.
+   * @param string The template string to parse. Defaults to `''`.
    *
    * @example
    * faker.helpers.replaceSymbols() // ''
@@ -293,8 +332,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
    * `L` will be replaced with the appropriate Luhn checksum.
    *
-   * @param string The credit card format pattern. Defaults to `6453-####-####-####-###L`.
-   * @param symbol The symbol to replace with a digit.
+   * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.
+   * @param symbol The symbol to replace with a digit. Defaults to `'#'`.
    *
    * @example
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3771'
@@ -309,7 +348,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     // default values required for calling method without arguments
 
     string = legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
-    string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
+    string = legacyReplaceSymbolWithNumber(this.faker, string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
@@ -323,9 +362,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @param string The template string to parse.
+   * @param string The template string to parse. Defaults to `''`.
    *
-   * @see faker.helpers.fromRegExp()
+   * @see faker.helpers.fromRegExp(): For generating a string matching the given regex-like expressions.
    *
    * @example
    * faker.helpers.regexpStyleStringParse() // ''
@@ -458,7 +497,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       while (range != null) {
         if (range[0].includes('-')) {
           // handle ranges
-          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
+          const rangeMinMax = range[0]
+            .split('-')
+            .map((x) => x.codePointAt(0) ?? Number.NaN);
           min = rangeMinMax[0];
           max = rangeMinMax[1];
           // throw error if min larger than max
@@ -469,12 +510,12 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           for (let i = min; i <= max; i++) {
             if (
               isCaseInsensitive &&
-              Number.isNaN(Number(String.fromCharCode(i)))
+              Number.isNaN(Number(String.fromCodePoint(i)))
             ) {
-              const ch = String.fromCharCode(i);
+              const ch = String.fromCodePoint(i);
               rangeCodes.push(
-                ch.toUpperCase().charCodeAt(0),
-                ch.toLowerCase().charCodeAt(0)
+                ch.toUpperCase().codePointAt(0) ?? Number.NaN,
+                ch.toLowerCase().codePointAt(0) ?? Number.NaN
               );
             } else {
               rangeCodes.push(i);
@@ -484,11 +525,11 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           // handle non-ranges
           if (isCaseInsensitive && Number.isNaN(Number(range[0]))) {
             rangeCodes.push(
-              range[0].toUpperCase().charCodeAt(0),
-              range[0].toLowerCase().charCodeAt(0)
+              range[0].toUpperCase().codePointAt(0) ?? Number.NaN,
+              range[0].toLowerCase().codePointAt(0) ?? Number.NaN
             );
           } else {
-            rangeCodes.push(range[0].charCodeAt(0));
+            rangeCodes.push(range[0].codePointAt(0) ?? Number.NaN);
           }
         }
 
@@ -540,7 +581,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       }
 
       const generatedString = this.multiple(
-        () => String.fromCharCode(this.arrayElement(rangeCodes)),
+        () => String.fromCodePoint(this.arrayElement(rangeCodes)),
         { count: repetitions }
       ).join('');
 
@@ -769,7 +810,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template TResult The type of result of the given callback.
    *
    * @param callback The callback to that will be invoked if the probability check was successful.
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *
    * @example
@@ -1092,7 +1133,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template TMethod The type of the method to execute.
    *
    * @param method The method used to generate the values.
-   * @param args The arguments used to call the method.
+   * @param args The arguments used to call the method. Defaults to `[]`.
    * @param options The optional options used to configure this method.
    * @param options.startTime This parameter does nothing.
    * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
@@ -1120,7 +1161,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     ) => RecordKey,
   >(
     method: TMethod,
-    args: Parameters<TMethod> = [] as Parameters<TMethod>,
+    args: Parameters<TMethod> = [] as unknown as Parameters<TMethod>,
     options: {
       /**
        * This parameter does nothing.
@@ -1292,7 +1333,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param pattern The pattern string that will get interpolated.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): For using custom functions to resolve templates.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
@@ -1344,7 +1385,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): For using custom functions to resolve templates.
    *
    * @example
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
@@ -1387,7 +1428,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helpers.mustache(): For using custom functions to resolve templates.
    *
    * @example
    * faker.helpers.fake('{{person.lastName}}') // 'Barrows'

@@ -121,11 +121,14 @@ const config = defineConfig({
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
-    algolia: {
-      apiKey: process.env.API_KEY,
-      appId: process.env.APP_ID,
-      indexName: 'fakerjs',
-    },
+    algolia:
+      process.env.API_KEY == null || process.env.APP_ID == null
+        ? undefined
+        : {
+            apiKey: process.env.API_KEY,
+            appId: process.env.APP_ID,
+            indexName: 'fakerjs',
+          },
 
     footer: {
       message: 'Released under the MIT License.',
@@ -140,7 +143,7 @@ const config = defineConfig({
         link: '/api/',
       },
       {
-        text: 'Ecosystem',
+        text: 'Try it',
         items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
       },
       {
