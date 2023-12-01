@@ -161,6 +161,45 @@ function legacyRegexpStringParse(
 }
 
 /**
+ * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
+ * `!` will be replaced by digits >=2 (`2` - `9`).
+ *
+ * Note: This method will be removed in v9.
+ *
+ * @internal
+ *
+ * @param faker The Faker instance to use.
+ * @param string The template string to parse. Defaults to `''`.
+ * @param symbol The symbol to replace with digits. Defaults to `'#'`.
+ *
+ * @example
+ * legacyReplaceSymbolWithNumber(faker) // ''
+ * legacyReplaceSymbolWithNumber(faker, '#####') // '04812'
+ * legacyReplaceSymbolWithNumber(faker, '!####') // '27378'
+ * legacyReplaceSymbolWithNumber(faker, 'Your pin is: !####') // '29841'
+ *
+ * @since 8.4.0
+ */
+export function legacyReplaceSymbolWithNumber(
+  faker: SimpleFaker,
+  string: string = '',
+  symbol: string = '#'
+): string {
+  let str = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string.charAt(i) === symbol) {
+      str += faker.number.int(9);
+    } else if (string.charAt(i) === '!') {
+      str += faker.number.int({ min: 2, max: 9 });
+    } else {
+      str += string.charAt(i);
+    }
+  }
+
+  return str;
+}
+
+/**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
 export class SimpleHelpersModule extends SimpleModuleBase {
@@ -200,6 +239,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @param string The template string to parse. Defaults to `''`.
    * @param symbol The symbol to replace with digits. Defaults to `'#'`.
    *
+   * @see faker.string.numeric(): For the replacement method.
+   *
    * @example
    * faker.helpers.replaceSymbolWithNumber() // ''
    * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
@@ -207,20 +248,18 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.string.numeric()` instead. Example: `value.replace(/#+/g, (m) => faker.string.numeric(m.length));`
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    let str = '';
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === symbol) {
-        str += this.faker.number.int(9);
-      } else if (string.charAt(i) === '!') {
-        str += this.faker.number.int({ min: 2, max: 9 });
-      } else {
-        str += string.charAt(i);
-      }
-    }
+    deprecated({
+      deprecated: 'faker.helpers.replaceSymbolWithNumber',
+      proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
+      since: '8.4',
+      until: '9.0',
+    });
 
-    return str;
+    return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
   }
 
   /**
@@ -311,7 +350,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     // default values required for calling method without arguments
 
     string = legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
-    string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
+    string = legacyReplaceSymbolWithNumber(this.faker, string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
