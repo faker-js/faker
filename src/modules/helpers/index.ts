@@ -417,8 +417,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param pattern The template string/RegExp to generate a matching string for.
    *
-   * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
-   * @throws If invalid quantifier symbol is passed in.
+   * @throws If min value is more than max value in quantifier, e.g. `#{10,5}`.
+   * @throws If an invalid quantifier symbol is passed in.
    *
    * @example
    * faker.helpers.fromRegExp('#{5}') // '#####'
