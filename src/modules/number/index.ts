@@ -25,7 +25,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `min` and `max` do not provide a sufficient range to generate integers in between them.
+   * @throws When there are no integers between `min` and `max`.
    *
    * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
@@ -173,7 +173,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `1`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `min` and `max` do not provide a sufficient range to generate integers in between them.
+   * @throws When there are no integers between `min` and `max`.
    *
    * @see faker.string.binary(): For generating a `binary string` with a given length (range).
    *
@@ -223,7 +223,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `7`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `min` and `max` do not provide a sufficient range to generate integers in between them.
+   * @throws When there are no integers between `min` and `max`.
    *
    * @see faker.string.octal(): For generating an `octal string` with a given length (range).
    *
@@ -273,7 +273,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `15`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `min` and `max` do not provide a sufficient range to generate integers in between them.
+   * @throws When there are no integers between `min` and `max`.
    *
    * @example
    * faker.number.hex() // 'b'
