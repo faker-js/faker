@@ -320,7 +320,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
-   * @throws When `min` is greater to `max`.
+   * @throws When `min` is greater than `max`.
    *
    * @example
    * faker.number.bigInt() // 55422n
