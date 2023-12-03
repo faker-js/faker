@@ -1,6 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../../src';
+import { faker, FakerError, SimpleFaker } from '../../src';
+import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
 import { seededTests } from '../support/seeded-runs';
 
 describe('number', () => {
@@ -528,6 +529,40 @@ describe('number', () => {
         }).toThrow(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
+      });
+    });
+  });
+
+  describe('value range tests', () => {
+    const customFaker = new SimpleFaker();
+    // @ts-expect-error: access private member field
+    const randomizer = customFaker._randomizer;
+    describe('int', () => {
+      it('should be able to return 0', () => {
+        randomizer.next = () => 0;
+        const actual = customFaker.number.int();
+        expect(actual).toBe(0);
+      });
+
+      // TODO @ST-DDT 2023-10-12: This requires a randomizer with 53 bits of precision
+      it.todo('should be able to return MAX_SAFE_INTEGER', () => {
+        randomizer.next = () => MERSENNE_MAX_VALUE;
+        const actual = customFaker.number.int();
+        expect(actual).toBe(Number.MAX_SAFE_INTEGER);
+      });
+    });
+
+    describe('float', () => {
+      it('should be able to return 0', () => {
+        randomizer.next = () => 0;
+        const actual = customFaker.number.float();
+        expect(actual).toBe(0);
+      });
+
+      it('should be able to return almost 1', () => {
+        randomizer.next = () => MERSENNE_MAX_VALUE;
+        const actual = customFaker.number.float();
+        expect(actual).toBe(MERSENNE_MAX_VALUE);
       });
     });
   });
