@@ -282,7 +282,7 @@ describe('number', () => {
       it('provides numbers with a given multipleOf of 0.4 steps', () => {
         const results = [
           ...new Set(
-            Array.from({ length: 50 }, () =>
+            Array.from({ length: 100 }, () =>
               faker.number.float({
                 min: 0,
                 max: 1.9,
