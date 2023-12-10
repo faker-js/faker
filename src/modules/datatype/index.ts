@@ -20,7 +20,8 @@ export class DatatypeModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
+   * @throws When `precision` is negative.
    *
    * @see faker.number.int(): For generating a random integer.
    * @see faker.number.float(): For generating a random floating-point number.
@@ -84,6 +85,9 @@ export class DatatypeModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
+   *
+   * @throws When `min` is greater than `max`.
+   * @throws When `precision` is negative.
    *
    * @see faker.number.float(): For the replacement method.
    *

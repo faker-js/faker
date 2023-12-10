@@ -42,8 +42,8 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   ],
   "returns": "T",
   "seeAlsos": [],
-  "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L367",
+  "since": "Missing",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L377",
   "throws": undefined,
 }
 `;
@@ -67,7 +67,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L105",
   "throws": undefined,
 }
@@ -84,6 +84,7 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
   "methodWithExample",
   "methodWithMultipleSeeMarkers",
   "methodWithMultipleSeeMarkersAndBackticks",
+  "methodWithMultipleThrows",
   "methodWithSinceMarker",
   "methodWithThrows",
   "multiParamMethod",
@@ -118,7 +119,7 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L125",
   "throws": undefined,
 }
@@ -178,7 +179,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   ],
   "returns": "string",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L159",
   "throws": undefined,
 }
@@ -198,7 +199,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
   "seeAlsos": [
     "test.apidoc.methodWithExample()",
   ],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L287",
   "throws": undefined,
 }
@@ -250,8 +251,8 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L308",
+  "since": "Missing",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L318",
   "throws": undefined,
 }
 `;
@@ -268,7 +269,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "parameters": [],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L276",
   "throws": undefined,
 }
@@ -288,8 +289,8 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithExample()",
     "test.apidoc.methodWithDeprecated()",
   ],
-  "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L335",
+  "since": "Missing",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L345",
   "throws": undefined,
 }
 `;
@@ -308,9 +309,27 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithExample() with parameter <code>foo</code>.",
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
-  "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L345",
+  "since": "Missing",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L355",
   "throws": undefined,
+}
+`;
+
+exports[`signature > analyzeSignature() > methodWithMultipleThrows 1`] = `
+{
+  "deprecated": undefined,
+  "description": "<p>Test with multiple throws.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithMultipleThrows</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+</div>",
+  "name": "methodWithMultipleThrows",
+  "parameters": [],
+  "returns": "number",
+  "seeAlsos": [],
+  "since": "Missing",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L306",
+  "throws": "First error case.
+Another error case.",
 }
 `;
 
@@ -326,7 +345,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L354",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L364",
   "throws": undefined,
 }
 `;
@@ -334,7 +353,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
 exports[`signature > analyzeSignature() > methodWithThrows 1`] = `
 {
   "deprecated": undefined,
-  "description": "<p>Test with throws</p>
+  "description": "<p>Test with throws.</p>
 ",
   "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithThrows</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
 </div>",
@@ -342,9 +361,9 @@ exports[`signature > analyzeSignature() > methodWithThrows 1`] = `
   "parameters": [],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L296",
-  "throws": "a Faker error",
+  "throws": "Everytime.",
 }
 `;
 
@@ -381,7 +400,7 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L116",
   "throws": undefined,
 }
@@ -398,7 +417,7 @@ exports[`signature > analyzeSignature() > noParamMethod 1`] = `
   "parameters": [],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L78",
   "throws": undefined,
 }
@@ -423,7 +442,7 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L96",
   "throws": undefined,
 }
@@ -491,7 +510,7 @@ It also has a more complex description.</p>
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L226",
   "throws": undefined,
 }
@@ -530,7 +549,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L262",
   "throws": undefined,
 }
@@ -596,7 +615,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L196",
   "throws": undefined,
 }
@@ -635,7 +654,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L244",
   "throws": undefined,
 }
@@ -660,7 +679,7 @@ exports[`signature > analyzeSignature() > recordParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L182",
   "throws": undefined,
 }
@@ -685,7 +704,7 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   ],
   "returns": "number",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L87",
   "throws": undefined,
 }
@@ -742,7 +761,7 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
   ],
   "returns": "string",
   "seeAlsos": [],
-  "since": "",
+  "since": "Missing",
   "sourcePath": "test/scripts/apidoc/signature.example.ts#L138",
   "throws": undefined,
 }
