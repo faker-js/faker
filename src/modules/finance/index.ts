@@ -601,7 +601,7 @@ export class FinanceModule extends ModuleBase {
     const randValue = this.faker.number.float({
       max,
       min,
-      precision: 10 ** -dec,
+      multipleOf: 10 ** -dec,
     });
 
     const formattedString = autoFormat
