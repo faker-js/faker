@@ -85,8 +85,8 @@ export class NumberModule extends SimpleModuleBase {
   }
 
   /**
-   * Returns a single random floating-point number for a given multipleOf or range and multipleOf.
-   * The lower bound is inclusive, the upper bound is exclusive, unless multipleOf is passed.
+   * Returns a single random floating-point number.
+   * The lower bound is inclusive, the upper bound is exclusive, unless `multipleOf` is passed.
    *
    * @param options Upper bound or options object.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
@@ -94,7 +94,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.precision Precision of the generated number, for example `0.01` will round to 2 decimal points.
    * If precision is passed, the upper bound is inclusive.
    * @param options.multipleOf The generated number will be a multiple of this property.
-   * This property can be used to achieve specific decimal points.
+   * This property can be used to limit the result to a specific number of decimal digits.
    * For example `0.01` will round to 2 decimal points.
    * If multipleOf is passed, the upper bound is inclusive.
    *
