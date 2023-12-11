@@ -372,6 +372,7 @@ export class LocationModule extends ModuleBase {
 
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
+   * Generally, these are the ISO 3166-2 subdivisions for a country. However, not all locales have a country attached to them (e.g. en, ar, es).
    *
    * @param options An options object.
    * @param options.abbreviated If true this will return abbreviated first-level administrative entity names.
