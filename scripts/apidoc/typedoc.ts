@@ -220,7 +220,40 @@ export function extractTagContent(
   reflection?: CommentHolder,
   tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
-  return reflection?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
+  const tags =
+    reflection?.comment
+      ?.getTags(tag)
+      .flatMap(tagProcessor)
+      .map((tag) => tag.trim()) ?? [];
+  if (tags.some((tag) => tag.length === 0)) {
+    throw new Error(`Expected non-empty ${tag} tag.`);
+  }
+
+  return tags;
+}
+
+/**
+ * Extracts the text (md) from a single jsdoc tag.
+ *
+ * @param tag The tag to extract the text from.
+ * @param reflection The reflection to extract the text from.
+ * @param tagProcessor The function used to extract the text from the tag.
+ *
+ * @throws If there are multiple tags of that type.
+ */
+function extractSingleTagContent(
+  tag: `@${string}`,
+  reflection?: CommentHolder,
+  tagProcessor: (tag: CommentTag) => string[] = joinTagContent
+): string | undefined {
+  const tags = extractTagContent(tag, reflection, tagProcessor);
+  if (tags.length === 0) {
+    return undefined;
+  } else if (tags.length === 1) {
+    return tags[0];
+  }
+
+  throw new Error(`Expected 1 ${tag} tag, but got ${tags.length}.`);
 }
 
 /**
@@ -359,8 +392,7 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 export function extractDeprecated(
   reflection?: CommentHolder
 ): string | undefined {
-  const deprecated = extractTagContent('@deprecated', reflection).join().trim();
-  return deprecated.length === 0 ? undefined : deprecated;
+  return extractSingleTagContent('@deprecated', reflection);
 }
 
 /**
@@ -371,8 +403,8 @@ export function extractDeprecated(
  * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
  */
 export function extractThrows(reflection?: CommentHolder): string | undefined {
-  const throws = extractTagContent('@throws', reflection).join().trim();
-  return throws.length === 0 ? undefined : throws;
+  const content = extractTagContent('@throws', reflection).join('\n');
+  return content.length === 0 ? undefined : content;
 }
 
 /**
@@ -383,5 +415,5 @@ export function extractThrows(reflection?: CommentHolder): string | undefined {
  * @returns The contents of the `@since` tag.
  */
 export function extractSince(reflection: CommentHolder): string {
-  return extractTagContent('@since', reflection).join().trim();
+  return extractSingleTagContent('@since', reflection) || MISSING_DESCRIPTION;
 }
