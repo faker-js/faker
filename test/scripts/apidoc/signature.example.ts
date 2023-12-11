@@ -289,12 +289,22 @@ export class SignatureTest {
   }
 
   /**
-   * Test with throws
+   * Test with throws.
    *
-   * @throws a Faker error
+   * @throws Everytime.
    */
   methodWithThrows(): number {
     throw new FakerError('Test error');
+  }
+
+  /**
+   * Test with multiple throws.
+   *
+   * @throws First error case.
+   * @throws Another error case.
+   */
+  methodWithMultipleThrows(): number {
+    throw new FakerError('Another test error');
   }
 
   /**
