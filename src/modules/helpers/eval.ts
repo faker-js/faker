@@ -72,6 +72,10 @@ export function fakeEval(
     throw new FakerError('Eval expression cannot be empty.');
   }
 
+  if (entrypoints.length === 0) {
+    throw new FakerError('Eval entrypoints cannot be empty.');
+  }
+
   let current = entrypoints;
   let remaining = expression;
   do {
@@ -126,7 +130,9 @@ function evalProcessFunction(
   return [
     index + (nextChar === '.' ? 2 : 1), // one for the closing bracket, one for the dot
     entrypoints.map((entrypoint): unknown =>
-      typeof entrypoint === 'function' ? entrypoint(...params) : undefined
+      // TODO @ST-DDT 2023-12-11: Replace in v9
+      // typeof entrypoint === 'function' ? entrypoint(...params) : undefined
+      typeof entrypoint === 'function' ? entrypoint(...params) : entrypoint
     ),
   ];
 }
