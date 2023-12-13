@@ -9,10 +9,7 @@ const NON_SEEDED_BASED_RUN = 25;
 describe('phone', () => {
   seededTests(faker, 'phone', (t) => {
     t.it('imei');
-
-    t.describe('number', (t) => {
-      t.it('noArgs').it('format', '###-###-####');
-    });
+    t.it('number');
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(

@@ -1,4 +1,3 @@
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import { legacyReplaceSymbolWithNumber } from '../helpers';
 
@@ -22,27 +21,12 @@ export class PhoneModule extends ModuleBase {
    * @since 7.3.0
    */
   number(): string;
+
   /**
    * Generates a random phone number.
    *
-   * @param format Format of the phone number.
-   *
-   * @see faker.string.numeric(): For generating a random string of numbers.
-   * @see faker.helpers.fromRegExp(): For generating a phone number matching a regular expression.
-   *
-   * @example
-   * faker.phone.number('501-###-###') // '501-039-841'
-   * faker.phone.number('+48 91 ### ## ##') // '+48 91 463 61 70'
-   *
-   * @since 7.3.0
-   *
-   * @deprecated Use `faker.phone.number()` without an argument, `faker.string.numeric()` or `faker.helpers.fromRegExp()` instead.
-   */
-  number(format: string): string;
-  /**
-   * Generates a random phone number.
-   *
-   * @param format Format of the phone number. Defaults to a random phone number format.
+   * @param options Options object
+   * @param options.style Style of the phone number. Defaults to 'human'
    *
    * @see faker.string.numeric(): For generating a random string of numbers.
    * @see faker.helpers.fromRegExp(): For generating a phone number matching a regular expression.
@@ -52,23 +36,27 @@ export class PhoneModule extends ModuleBase {
    *
    * @since 7.3.0
    */
-  number(format?: string): string;
-  number(format?: string): string {
-    if (format != null) {
-      deprecated({
-        deprecated: 'faker.phone.number(format)',
-        proposed:
-          'faker.phone.number(), faker.string.numeric() or faker.helpers.fromRegExp()',
-        since: '8.1',
-        until: '9.0',
-      });
-    }
+  number(options: { style: 'human' | 'national' | 'raw' }): string;
+  number(options?: {
+    /**
+     * Style of the generated phone number:
+     * - `'human'`: (default) A human-input phone number, e.g. 555-770-7727 or 555.770.7727 x1234
+     * - `'national'`: A phone number in a standardized national format, e.g. (555) 123-4567.
+     * - `'raw'`: A phone number in the raw format, e.g. +15551234567
+     *
+     * @default 'human'
+     */
+    style: 'human' | 'national' | 'raw';
+  }): string {
+    const { style } = options ?? { style: 'human' };
+    const styleDefinitions = {
+      human: this.faker.definitions.phone_number.human,
+      national: this.faker.definitions.phone_number.national,
+      raw: this.faker.definitions.phone_number.raw,
+    };
 
-    format =
-      format ??
-      this.faker.helpers.arrayElement(
-        this.faker.definitions.phone_number.formats
-      );
+    const definitions = styleDefinitions[style] || styleDefinitions.human;
+    const format = this.faker.helpers.arrayElement(definitions);
     return legacyReplaceSymbolWithNumber(this.faker, format);
   }
 
