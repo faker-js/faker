@@ -4,11 +4,15 @@
  */
 import type { PhoneNumberDefinition } from '../../..';
 import area_code from './area_code';
-import formats from './formats';
+import human from './human';
+import national from './national';
+import raw from './raw';
 
 const phone_number: PhoneNumberDefinition = {
   area_code,
-  formats,
+  human,
+  national,
+  raw,
 };
 
 export default phone_number;
