@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+import type { RecordKey } from '../../src/modules/helpers/unique';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 import './../vitest-extensions';
@@ -1295,8 +1296,9 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
       const maxTime = 49;
       const maxRetries = 49;
       const currentIterations = 0;
-      const exclude = [];
-      const compare = (obj, key) => (obj[key] === undefined ? -1 : 0);
+      const exclude: string[] = [];
+      const compare = (obj: Record<RecordKey, RecordKey>, key: RecordKey) =>
+        obj[key] === undefined ? -1 : 0;
 
       const options = {
         startTime,
@@ -1318,7 +1320,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     });
 
     it('should be possible to pass a user-specific store', () => {
-      const store = {};
+      const store: Record<string, string> = {};
 
       const method = () => 'with conflict: 0';
 
