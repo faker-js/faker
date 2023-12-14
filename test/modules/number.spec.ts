@@ -320,25 +320,25 @@ describe('number', () => {
 
       it('throws an error for precision 0', () => {
         expect(() => faker.number.float({ precision: 0 })).toThrow(
-          new FakerError('multipleOf/precision be greater than 0.')
+          new FakerError('multipleOf/precision should be greater than 0.')
         );
       });
 
       it('throws an error for multipleOf 0', () => {
         expect(() => faker.number.float({ multipleOf: 0 })).toThrow(
-          new FakerError('multipleOf/precision be greater than 0.')
+          new FakerError('multipleOf/precision should be greater than 0.')
         );
       });
 
       it('throws an error for negative precision', () => {
         expect(() => faker.number.float({ precision: -0.01 })).toThrow(
-          new FakerError('multipleOf/precision be greater than 0.')
+          new FakerError('multipleOf/precision should be greater than 0.')
         );
       });
 
       it('throws an error for negative multipleOf', () => {
         expect(() => faker.number.float({ multipleOf: -0.01 })).toThrow(
-          new FakerError('multipleOf/precision be greater than 0.')
+          new FakerError('multipleOf/precision should be greater than 0.')
         );
       });
 

@@ -170,7 +170,7 @@ export class NumberModule extends SimpleModuleBase {
     if (multipleOf !== undefined) {
       if (multipleOf <= 0) {
         // TODO @xDivisionByZerox: Clean up in v9.0
-        throw new FakerError(`multipleOf/precision be greater than 0.`);
+        throw new FakerError(`multipleOf/precision should be greater than 0.`);
       }
 
       const factor = 1 / multipleOf;
