@@ -259,6 +259,22 @@ describe('number', () => {
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
 
+      it('provides numbers with a given precision of 0.2', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 0.4,
+                precision: 0.2,
+              })
+            )
+          ),
+        ].sort();
+
+        expect(results).toEqual([0, 0.2, 0.4]);
+      });
+
       it('provides numbers with an exact precision', () => {
         for (let i = 0; i < 100; i++) {
           const actual = faker.number.float({
