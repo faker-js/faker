@@ -270,6 +270,17 @@ describe('number', () => {
         }
       });
 
+      it('provides numbers with an exact precision of 0.00001', () => {
+        for (let i = 0; i < 100; i++) {
+          const actual = faker.number.float({
+            min: 0.5,
+            max: 0.99,
+            precision: 0.00001,
+          });
+          expect(actual).toBe(Number(actual.toFixed(5)));
+        }
+      });
+
       it('throws an error for precision 0', () => {
         expect(() => faker.number.float({ precision: 0 })).toThrow(
           new FakerError('Precision should be greater than 0.')
