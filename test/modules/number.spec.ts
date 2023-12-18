@@ -275,25 +275,16 @@ describe('number', () => {
         expect(results).toEqual([0, 0.2, 0.4]);
       });
 
-      it('provides numbers with an exact precision', () => {
-        for (let i = 0; i < 100; i++) {
-          const actual = faker.number.float({
-            min: 0.5,
-            max: 0.99,
-            precision: 0.01,
-          });
-          expect(actual).toBe(Number(actual.toFixed(2)));
-        }
-      });
-
-      it('provides numbers with an exact precision of 0.00001', () => {
-        for (let i = 0; i < 100; i++) {
-          const actual = faker.number.float({
-            min: 0.5,
-            max: 0.99,
-            precision: 0.00001,
-          });
-          expect(actual).toBe(Number(actual.toFixed(5)));
+      it('provides numbers with an exact precision of 10^-x for x=1 to 18', () => {
+        for (let factor = 1; factor <= 18; factor++) {
+          for (let i = 0; i < 100; i++) {
+            const actual = faker.number.float({
+              min: 0.5,
+              max: 0.99,
+              precision: Math.pow(10, -factor),
+            });
+            expect(actual).toBe(Number(actual.toFixed(factor)));
+          }
         }
       });
 
