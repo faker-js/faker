@@ -275,18 +275,20 @@ describe('number', () => {
         expect(results).toEqual([0, 0.2, 0.4]);
       });
 
-      it('provides numbers with an exact precision of 10^-x for x=1 to 18', () => {
-        for (let factor = 1; factor <= 18; factor++) {
+      const exponents = Array.from({ length: 18 }, (_, i) => i + 1);
+      it.each(exponents)(
+        `provides numbers with an exact precision of 10^-%d`,
+        (exponent) => {
           for (let i = 0; i < 100; i++) {
             const actual = faker.number.float({
               min: 0.5,
               max: 0.99,
-              precision: Math.pow(10, -factor),
+              precision: Math.pow(10, -exponent),
             });
-            expect(actual).toBe(Number(actual.toFixed(factor)));
+            expect(actual).toBe(Number(actual.toFixed(exponent)));
           }
         }
-      });
+      );
 
       it('throws an error for precision 0', () => {
         expect(() => faker.number.float({ precision: 0 })).toThrow(
