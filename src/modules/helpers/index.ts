@@ -978,7 +978,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     const random = this.faker.number.float({
       min: 0,
       max: total,
-      multipleOf: 1e-9,
     });
     let current = 0;
     for (const { weight, value } of array) {
