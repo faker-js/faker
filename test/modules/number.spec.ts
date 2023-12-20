@@ -275,7 +275,8 @@ describe('number', () => {
         expect(results).toEqual([0, 0.2, 0.4]);
       });
 
-      it.each(Array.from({ length: 18 }, (_, i) => i + 1))(
+      const exponents = Array.from({ length: 18 }, (_, i) => i + 1);
+      it.each(exponents)(
         `provides numbers with an exact precision of 10^-%d`,
         (exponent) => {
           for (let i = 0; i < 100; i++) {
@@ -285,19 +286,6 @@ describe('number', () => {
               precision: Math.pow(10, -exponent),
             });
             expect(actual).toBe(Number(actual.toFixed(exponent)));
-          }
-        }
-      );
-      it.each(Array.from({ length: 18 }, (_, i) => i))(
-        `provides numbers with an exact precision of 10^%d`,
-        (exponent) => {
-          for (let i = 0; i < 100; i++) {
-            const actual = faker.number.float({
-              min: 1,
-              max: Math.pow(10, exponent + 1),
-              precision: Math.pow(10, exponent),
-            });
-            expect(Number.isInteger(actual)).toBe(true);
           }
         }
       );
