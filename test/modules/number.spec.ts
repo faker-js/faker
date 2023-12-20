@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { faker, FakerError, SimpleFaker } from '../../src';
 import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
 import { seededTests } from '../support/seeded-runs';
+import { times } from './../support/times';
 
 describe('number', () => {
   seededTests(faker, 'number', (t) => {
@@ -275,15 +276,14 @@ describe('number', () => {
         expect(results).toEqual([0, 0.2, 0.4]);
       });
 
-      const exponents = Array.from({ length: 18 }, (_, i) => i + 1);
-      it.each(exponents)(
+      it.each(times(18))(
         `provides numbers with an exact precision of 10^-%d`,
         (exponent) => {
           for (let i = 0; i < 100; i++) {
             const actual = faker.number.float({
               min: 0.5,
               max: 0.99,
-              precision: Math.pow(10, -exponent),
+              precision: 10 ** -exponent,
             });
             expect(actual).toBe(Number(actual.toFixed(exponent)));
           }
