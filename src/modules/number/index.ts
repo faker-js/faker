@@ -151,9 +151,11 @@ export class NumberModule extends SimpleModuleBase {
       }
 
       const logPrecision = Math.log10(precision);
-      const factor = Number.isInteger(logPrecision)
-        ? Math.pow(10, -logPrecision) //mathematically this is the same as 1/precision, however it helpfully gives integer values for all precisions of the form 10^-n
-        : 1 / precision;
+      // Workaround to get integer values for the inverse of all precisions of the form 10^-n
+      const factor =
+        precision < 1 && Number.isInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / precision;
       const int = this.int({
         min: min * factor,
         max: max * factor,
