@@ -148,6 +148,20 @@ describe('commerce', () => {
             expect(parsedPrice).toBeGreaterThanOrEqual(1);
           }
         });
+
+        it('should return values with three decimal places between min and max', () => {
+          const result = faker.helpers.multiple(
+            () => faker.commerce.price({ min: 0.001, max: 0.009, dec: 3 }),
+            { count: 50 }
+          );
+
+          for (const price of result) {
+            const parsedPrice = Number.parseFloat(price);
+
+            expect(parsedPrice).toBeLessThanOrEqual(0.009);
+            expect(parsedPrice).toBeGreaterThanOrEqual(0.001);
+          }
+        });
       });
 
       describe(`productAdjective()`, () => {

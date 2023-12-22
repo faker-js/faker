@@ -318,11 +318,21 @@ export class CommerceModule extends ModuleBase {
       return `${symbol}${min.toFixed(dec)}`;
     }
 
-    const generated = this.faker.number.float({
-      min,
-      max,
-      precision: (1 / 10) ** (dec - 1),
-    });
+    let generated: number;
+
+    try {
+      generated = this.faker.number.float({
+        min,
+        max,
+        precision: (1 / 10) ** (dec - 1),
+      });
+    } catch {
+      generated = this.faker.number.float({
+        min,
+        max,
+        precision: (1 / 10) ** dec,
+      });
+    }
 
     if (dec === 0) {
       return `${symbol}${generated.toFixed(dec)}`;
