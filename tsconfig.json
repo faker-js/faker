@@ -8,9 +8,6 @@
     "declaration": true,
     "stripInternal": true,
 
-    // We need to disable these for now, and need to tackle them in another PR
-    "noImplicitAny": false,
-
     // These are configs specifically for !build and have to be reverted in the tsconfig.build.json
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,

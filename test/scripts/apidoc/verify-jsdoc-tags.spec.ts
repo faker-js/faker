@@ -300,6 +300,7 @@ describe('verify JSDoc tags', () => {
           it('verify @since tag', () => {
             const since = extractSince(signature);
             expect(since, '@since to be present').toBeTruthy();
+            expect(since).not.toBe(MISSING_DESCRIPTION);
             expect(since, '@since to be a valid semver').toSatisfy(
               validator.isSemVer
             );

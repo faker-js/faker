@@ -35,6 +35,7 @@ module.exports = defineConfig({
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'no-restricted-globals': ['error', 'Intl'],
+    'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
