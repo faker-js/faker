@@ -55,6 +55,78 @@ describe('number', () => {
         expect(actual).lessThanOrEqual(Number.MAX_SAFE_INTEGER);
       });
 
+      it('should return an even integer', () => {
+        const actual = faker.number.int({ multipleOf: 2 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
+        expect(actual).toSatisfy((x: number) => x % 2 === 0);
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).toBeLessThanOrEqual(Number.MAX_SAFE_INTEGER);
+      });
+
+      it('provides numbers with a given multipleOf of 10 with exclusive ends', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 100 }, () =>
+              faker.number.int({
+                min: 12,
+                max: 37,
+                multipleOf: 10,
+              })
+            )
+          ),
+        ].sort();
+        expect(results).toEqual([20, 30]);
+      });
+      it('provides numbers with a given multipleOf of 10 with inclusive ends', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 100 }, () =>
+              faker.number.int({
+                min: 10,
+                max: 50,
+                multipleOf: 10,
+              })
+            )
+          ),
+        ].sort();
+        expect(results).toEqual([10, 20, 30, 40, 50]);
+      });
+      it('throws for float multipleOf', () => {
+        const input = {
+          min: 0,
+          max: 10,
+          multipleOf: 0.1,
+        };
+
+        expect(() => faker.number.int(input)).toThrow(
+          new FakerError('multipleOf should be an integer.')
+        );
+      });
+      it('throws for negative multipleOf', () => {
+        const input = {
+          min: -10,
+          max: 10,
+          multipleOf: -1,
+        };
+
+        expect(() => faker.number.int(input)).toThrow(
+          new FakerError('multipleOf should be greater than 0.')
+        );
+      });
+      it('throws for impossible multipleOf', () => {
+        const input = {
+          min: 11,
+          max: 19,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.int(input)).toThrow(
+          new FakerError('No suitable integer value between 11 and 19 found.')
+        );
+      });
+
       it('should return a random number given a maximum value as Number', () => {
         const actual = faker.number.int(10);
 

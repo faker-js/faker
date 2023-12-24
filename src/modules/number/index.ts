@@ -54,13 +54,17 @@ export class NumberModule extends SimpleModuleBase {
            * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
+          /**
+           * Generated number must be a multiple of the given integer. Defaults to 1.
+           */
+          multipleOf?: number;
         } = {}
   ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
 
-    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER, multipleOf = 1 } = options;
     const effectiveMin = Math.ceil(min);
     const effectiveMax = Math.floor(max);
 
@@ -78,9 +82,30 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    if (!Number.isInteger(multipleOf)) {
+      throw new FakerError(`multipleOf should be an integer.`);
+    }
+
+    if (multipleOf <= 0) {
+      throw new FakerError(`multipleOf should be greater than 0.`);
+    }
+
     // @ts-expect-error: access private member field
     const randomizer = this.faker._randomizer;
     const real = randomizer.next();
+    if (multipleOf > 1) {
+      const minMultiple = Math.ceil(effectiveMin / multipleOf) * multipleOf;
+      const maxMultiple = Math.floor(effectiveMax / multipleOf) * multipleOf;
+      if (maxMultiple < minMultiple) {
+        throw new FakerError(
+          `No suitable integer value between ${min} and ${max} found.`
+        );
+      }
+
+      const delta = (maxMultiple - minMultiple) / multipleOf + 1;
+      return Math.floor(real * delta) * multipleOf + minMultiple;
+    }
+
     return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
 
