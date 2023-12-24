@@ -23,9 +23,11 @@ export class NumberModule extends SimpleModuleBase {
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
+   * @param options.multipleOf Generated number must be a multiple of the given integer. Defaults to `1`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When there are no integers between `min` and `max`.
+   * @throws When there are no suitable integers between `min` and `max`.
+   * @throws When multipleOf is not a positive integer.
    *
    * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
@@ -35,6 +37,7 @@ export class NumberModule extends SimpleModuleBase {
    * faker.number.int({ min: 1000000 }) // 2900970162509863
    * faker.number.int({ max: 100 }) // 42
    * faker.number.int({ min: 10, max: 100 }) // 57
+   * faker.number.int({ min: 10, max: 100, multipleOf: 10 }) // 50
    *
    * @since 8.0.0
    */
@@ -55,7 +58,7 @@ export class NumberModule extends SimpleModuleBase {
            */
           max?: number;
           /**
-           * Generated number must be a multiple of the given integer. Defaults to 1.
+           * Generated number must be a multiple of the given integer. Defaults to `1`.
            */
           multipleOf?: number;
         } = {}
