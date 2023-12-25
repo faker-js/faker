@@ -58,7 +58,9 @@ export class NumberModule extends SimpleModuleBase {
            */
           max?: number;
           /**
-           * Generated number must be a multiple of the given integer. Defaults to `1`.
+           * Generated number must be a multiple of the given integer.
+           *
+           * @default 1
            */
           multipleOf?: number;
         } = {}
