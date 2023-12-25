@@ -27,7 +27,7 @@ export class NumberModule extends SimpleModuleBase {
    *
    * @throws When `min` is greater than `max`.
    * @throws When there are no suitable integers between `min` and `max`.
-   * @throws When multipleOf is not a positive integer.
+   * @throws When `multipleOf` is not a positive integer.
    *
    * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
