@@ -2,6 +2,7 @@ import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
+import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -1460,66 +1461,15 @@ export class HelpersModule extends SimpleHelpersModule {
     // extract method name from between the {{ }} that we found
     // for example: {{person.firstName}}
     const token = pattern.substring(start + 2, end + 2);
-    let method = token.replace('}}', '').replace('{{', '');
+    const method = token.replace('}}', '').replace('{{', '');
 
-    // extract method parameters
-    const regExp = /\(([^)]*)\)/;
-    const matches = regExp.exec(method);
-    let parameters = '';
-    if (matches) {
-      method = method.replace(regExp, '');
-      parameters = matches[1];
-    }
-
-    // split the method into module and function
-    const parts = method.split('.');
-
-    let currentModuleOrMethod: unknown = this.faker;
-    let currentDefinitions: unknown = this.faker.rawDefinitions;
-
-    // Search for the requested method or definition
-    for (const part of parts) {
-      currentModuleOrMethod =
-        currentModuleOrMethod?.[part as keyof typeof currentModuleOrMethod];
-      currentDefinitions =
-        currentDefinitions?.[part as keyof typeof currentDefinitions];
-    }
-
-    // Make method executable
-    let fn: (...args: unknown[]) => unknown;
-    if (typeof currentModuleOrMethod === 'function') {
-      fn = currentModuleOrMethod as (args?: unknown) => unknown;
-    } else if (Array.isArray(currentDefinitions)) {
-      fn = () =>
-        this.faker.helpers.arrayElement(currentDefinitions as unknown[]);
-    } else {
-      throw new FakerError(`Invalid module method or definition: ${method}
-- faker.${method} is not a function
-- faker.definitions.${method} is not an array`);
-    }
-
-    // assign the function from the module.function namespace
-    fn = fn.bind(this);
-
-    // If parameters are populated here, they are always going to be of string type
-    // since we might actually be dealing with an object or array,
-    // we always attempt to the parse the incoming parameters into JSON
-    let params: unknown[];
-    // Note: we experience a small performance hit here due to JSON.parse try / catch
-    // If anyone actually needs to optimize this specific code path, please open a support issue on github
-    try {
-      params = JSON.parse(`[${parameters}]`);
-    } catch {
-      // since JSON.parse threw an error, assume parameters was actually a string
-      params = [parameters];
-    }
-
-    const result = String(fn(...params));
+    const result = fakeEval(method, this.faker);
+    const stringified = String(result);
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
     const res =
-      pattern.substring(0, start) + result + pattern.substring(end + 2);
+      pattern.substring(0, start) + stringified + pattern.substring(end + 2);
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);

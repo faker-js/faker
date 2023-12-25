@@ -236,7 +236,10 @@ describe('verify JSDoc tags', () => {
                 false
               );
               if (paramDefault) {
-                if (/^{.*}$/.test(paramDefault)) {
+                if (
+                  /^{.*}$/.test(paramDefault) ||
+                  paramDefault.includes('\n')
+                ) {
                   expect(commentDefault).toBeUndefined();
                 } else {
                   expect(

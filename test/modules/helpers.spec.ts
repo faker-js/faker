@@ -1027,34 +1027,35 @@ describe('helpers', () => {
 
         it('does not allow invalid module name', () => {
           expect(() => faker.helpers.fake('{{foo.bar}}')).toThrow(
-            new FakerError(`Invalid module method or definition: foo.bar
-- faker.foo.bar is not a function
-- faker.definitions.foo.bar is not an array`)
+            new FakerError(`Cannot resolve expression 'foo.bar'`)
           );
         });
 
-        it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{location}}')).toThrow(
-            new FakerError(`Invalid module method or definition: location
-- faker.location is not a function
-- faker.definitions.location is not an array`)
-          );
+        it('does allow missing method name', () => {
+          const actual = faker.helpers.fake('{{location}}');
+          expect(actual).toBe('[object Object]');
         });
 
         it('does not allow invalid method name', () => {
           expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
-            new FakerError(`Invalid module method or definition: location.foo
-- faker.location.foo is not a function
-- faker.definitions.location.foo is not an array`)
+            new FakerError(`Cannot resolve expression 'location.foo'`)
           );
         });
 
-        it('does not allow invalid definitions data', () => {
-          expect(() => faker.helpers.fake('{{finance.credit_card}}')).toThrow(
-            new FakerError(`Invalid module method or definition: finance.credit_card
-- faker.finance.credit_card is not a function
-- faker.definitions.finance.credit_card is not an array`)
-          );
+        it('should support complex data', () => {
+          const actual = faker.helpers.fake('{{science.unit}}');
+          expect(actual).toBe('[object Object]');
+        });
+
+        it('should support resolving a value in a complex object', () => {
+          const complex = faker.helpers.fake('{{airline.airline}}');
+          expect(complex).toBe('[object Object]');
+
+          const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
+          expect(actual).toBeTypeOf('string');
+          expect(
+            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
+          ).toContain(actual);
         });
 
         it('should be able to return empty strings', () => {
