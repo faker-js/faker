@@ -150,7 +150,12 @@ export class NumberModule extends SimpleModuleBase {
         throw new FakerError(`Precision should be greater than 0.`);
       }
 
-      const factor = 1 / precision;
+      const logPrecision = Math.log10(precision);
+      // Workaround to get integer values for the inverse of all precisions of the form 10^-n
+      const factor =
+        precision < 1 && Number.isInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / precision;
       const int = this.int({
         min: min * factor,
         max: max * factor,
