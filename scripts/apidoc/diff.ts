@@ -85,7 +85,11 @@ export async function diff(
       const localMethod = localModule[methodName];
 
       if (remoteMethod !== localMethod) {
-        (diff[moduleName] ??= []).push(methodName);
+        if (!diff[moduleName]) {
+          diff[moduleName] = [];
+        }
+
+        diff[moduleName].push(methodName);
       }
     }
   }
