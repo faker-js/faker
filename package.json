@@ -137,5 +137,10 @@
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vitepress@1.0.0-rc.25": "patches/vitepress@1.0.0-rc.25.patch"
+    }
   }
 }

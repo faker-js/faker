@@ -1,0 +1,16 @@
+diff --git a/dist/node/serve-JefD-RjH.js b/dist/node/serve-JefD-RjH.js
+index d1b5a360c7b0e4339e0b28e4209afbf596abbf55..f3d64985e3731a185df6ebb3ba863af8b7758e20 100644
+--- a/dist/node/serve-JefD-RjH.js
++++ b/dist/node/serve-JefD-RjH.js
+@@ -48584,7 +48584,10 @@ async function createVitePressPlugin(siteConfig, ssr = false, pageToHashMap, cli
+         allDeadLinks.push(...deadLinks);
+         if (includes.length) {
+           includes.forEach((i) => {
+-            (importerMap[slash(i)] ??= /* @__PURE__ */ new Set()).add(id);
++            if (!importerMap[slash(i)]) {
++              importerMap[slash(i)] = /* @__PURE__ */ new Set();
++            }
++            importerMap[slash(i)].add(id);
+             this.addWatchFile(i);
+           });
+         }
