@@ -305,6 +305,9 @@ export class LoremModule extends ModuleBase {
   /**
    * Generates a random text based on a random lorem method.
    *
+   * @param options The options for the text to generate or options.length as quick primitive argument.
+   * @param options.length The length of text to generate as number or range.
+   *
    * @example
    * faker.lorem.text() // 'Doloribus autem non quis vero quia.'
    * faker.lorem.text()
@@ -313,10 +316,33 @@ export class LoremModule extends ModuleBase {
    * // Quis ut dolor dolores facilis possimus tempore voluptates.
    * // Iure nam officia optio cumque.
    * // Dolor tempora iusto.'
+   * faker.lorem.text(14) // 'Doloribus aut.'
+   * faker.lorem.text({length: 14}) // 'Doloribus aut.'
+   * faker.lorem.text({length: {min: 10, max: 15}}) // 'autem non quis.'
    *
    * @since 3.1.0
    */
-  text(): string {
+  text(
+    options:
+      | number
+      | {
+          /**
+           * The length (range) of text to generate.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of text to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum length of text to generate.
+                 */
+                max: number;
+              };
+        } = {}
+  ): string {
     const methods: Array<keyof LoremModule> = [
       'sentence',
       'sentences',
@@ -327,7 +353,26 @@ export class LoremModule extends ModuleBase {
 
     const method = this.faker.helpers.arrayElement(methods);
 
-    return `${this[method]()}`;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
+    if (options.length == null) {
+      return `${this[method]()}`;
+    }
+
+    const length = this.faker.helpers.rangeToNumber(options.length);
+
+    if (length <= 0) {
+      return '';
+    }
+
+    let text = '';
+    do {
+      text = `${text}${this[method]()} `;
+    } while (text.length < length);
+
+    return `${text.substring(0, length).replace(/.$/, '.')}`;
   }
 
   /**

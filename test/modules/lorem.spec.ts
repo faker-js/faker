@@ -325,6 +325,53 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
         });
+
+        it('should return text of length 15 for the options object', () => {
+          const actual = faker.lorem.text({ length: 15 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(15);
+          expect(actual.trim()).toHaveLength(15);
+        });
+
+        it('should return text of length 15 for the quick primitive argument', () => {
+          const actual = faker.lorem.text(15);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(15);
+          expect(actual.trim()).toHaveLength(15);
+        });
+
+        it('should return text with a length in range [25, 40]', () => {
+          const actual = faker.lorem.text({ length: { min: 25, max: 40 } });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual.length).toBeGreaterThanOrEqual(25);
+          expect(actual.length).toBeLessThanOrEqual(40);
+        });
+
+        it('should throw an error if min is greater than max', () => {
+          expect(() =>
+            faker.lorem.text({ length: { min: 3, max: 1 } })
+          ).toThrowError(/^Max 1 should be greater than min 3.$/);
+        });
+
+        it('should return an empty string for length zero', () => {
+          const actual = faker.lorem.text({ length: 0 });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('');
+        });
+
+        it('should return a dot for length one', () => {
+          const actual = faker.lorem.text({ length: 1 });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toBe('.');
+        });
       });
 
       describe('lines()', () => {
