@@ -327,7 +327,7 @@ export class LoremModule extends ModuleBase {
 
     const method = this.faker.helpers.arrayElement(methods);
 
-    return `${this[method]()}`;
+    return this[method]();
   }
 
   /**

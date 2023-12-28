@@ -283,7 +283,7 @@ export class CommerceModule extends ModuleBase {
     const { dec = 2, max = 1000, min = 1, symbol = '' } = options;
 
     if (min < 0 || max < 0) {
-      return `${symbol}${0.0}`;
+      return `${symbol}0`;
     }
 
     // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/350
