@@ -5,6 +5,7 @@ const VITEST_SEQUENCE_SEED = Date.now();
 
 console.log('VITEST_SEQUENCE_SEED', VITEST_SEQUENCE_SEED);
 
+// TODO @Shinigami92 2023-12-28: remove when we drop support for Node 14
 const [nodeVersionMajor] = process.versions.node.split('.').map(Number);
 const excludedTests: string[] = [];
 if (nodeVersionMajor < 16) {
@@ -30,6 +31,7 @@ export default defineConfig({
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,
     },
+    // TODO @Shinigami92 2023-12-28: remove the whole `exclude` when we drop support for Node 14
     exclude: [
       // should be originally `...configDefaults.exclude` from `'vitest/config'`, but esm...
       'node_modules',
