@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress';
-import { DefaultTheme } from 'vitepress/theme';
+import type { UserConfig } from 'vitepress';
+import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import { currentVersion, oldVersions, versionBannerInfix } from './versions';
 
@@ -55,7 +55,8 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
   return links;
 }
 
-const config = defineConfig({
+// TODO @Shinigami92 2023-12-28: reuse `defineConfig` from vitepress, when we can go esm-only
+const config: UserConfig<DefaultTheme.Config> = {
   title: 'Faker',
   description,
 
@@ -259,7 +260,7 @@ const config = defineConfig({
       __BANNER__: versionBannerInfix ?? false,
     },
   },
-});
+};
 
 if (versionBannerInfix) {
   config.head?.push([
