@@ -129,7 +129,7 @@
     "typescript": "~4.9.5",
     "validator": "~13.11.0",
     "vite": "~4.5.1",
-    "vitepress": "1.0.0-rc.25",
+    "vitepress": "1.0.0-rc.15",
     "vitest": "~0.34.6",
     "vue": "~3.3.13"
   },
@@ -137,10 +137,5 @@
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "vitepress@1.0.0-rc.25": "patches/vitepress@1.0.0-rc.25.patch"
-    }
   }
 }

@@ -1,10 +1,5 @@
 lockfileVersion: '6.0'
 
-patchedDependencies:
-  vitepress@1.0.0-rc.25:
-    hash: lljts473z4dvgkkjuqo4vie7y4
-    path: patches/vitepress@1.0.0-rc.25.patch
-
 devDependencies:
   '@actions/github':
     specifier: ~6.0.0
@@ -133,8 +128,8 @@ devDependencies:
     specifier: ~4.5.1
     version: 4.5.1(@types/node@20.10.5)
   vitepress:
-    specifier: 1.0.0-rc.25
-    version: 1.0.0-rc.25(patch_hash=lljts473z4dvgkkjuqo4vie7y4)(@algolia/client-search@4.22.0)(@types/node@20.10.5)(search-insights@2.13.0)(typescript@4.9.5)
+    specifier: 1.0.0-rc.15
+    version: 1.0.0-rc.15(@algolia/client-search@4.22.0)(@types/node@20.10.5)(search-insights@2.13.0)(typescript@4.9.5)
   vitest:
     specifier: ~0.34.6
     version: 0.34.6(@vitest/ui@0.34.7)
@@ -1405,17 +1400,6 @@ packages:
 
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
-    dev: true
-
-  /@vitejs/plugin-vue@4.3.1(vite@4.5.1)(vue@3.3.13):
-    resolution: {integrity: sha512-tUBEtWcF7wFtII7ayNiLNDTCE1X1afySEo+XNVMNkFXaThENyCowIEX095QqbJZGTgoOcSVDJGlnde2NG4jtbQ==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^4.0.0
-      vue: ^3.2.25
-    dependencies:
-      vite: 4.5.1(@types/node@20.10.5)
-      vue: 3.3.13(typescript@4.9.5)
     dev: true
 
   /@vitest/coverage-v8@0.34.6(vitest@0.34.6):
@@ -5898,22 +5882,17 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitepress@1.0.0-rc.25(patch_hash=lljts473z4dvgkkjuqo4vie7y4)(@algolia/client-search@4.22.0)(@types/node@20.10.5)(search-insights@2.13.0)(typescript@4.9.5):
-    resolution: {integrity: sha512-1dqWiHNThNrVZ08ixmfEDBEH+764KOgnev9oXga/x6cN++Vb9pnuu8p3K6DQP+KZrYcG+WiX7jxal0iSNpAWuQ==}
+  /vitepress@1.0.0-rc.15(@algolia/client-search@4.22.0)(@types/node@20.10.5)(search-insights@2.13.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-5criiHoEibkT/du7t6wQ2xQVsuTNuirQZbMAi0M9Hp0YzJoJvEX68Ej9p2PtNC84bYb/CxAh5QkMtMutk03lHw==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4.3.2
-      postcss: ^8.4.31
     peerDependenciesMeta:
       markdown-it-mathjax3:
-        optional: true
-      postcss:
         optional: true
     dependencies:
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.22.0)(search-insights@2.13.0)
-      '@types/markdown-it': 13.0.7
-      '@vitejs/plugin-vue': 4.3.1(vite@4.5.1)(vue@3.3.13)
       '@vue/devtools-api': 6.5.1
       '@vueuse/core': 10.7.1(vue@3.3.13)
       '@vueuse/integrations': 10.7.1(focus-trap@7.5.4)(vue@3.3.13)
@@ -5950,7 +5929,6 @@ packages:
       - typescript
       - universal-cookie
     dev: true
-    patched: true
 
   /vitest@0.34.6(@vitest/ui@0.34.7):
     resolution: {integrity: sha512-+5CALsOvbNKnS+ZHMXtuUC7nL8/7F1F2DnHGjSsszX8zCjWSSviphCb/NuS9Nzf4Q03KyyDRBAXhF/8lffME4Q==}
