@@ -25,7 +25,7 @@ export class LocationModule extends ModuleBase {
    * By default, a random format is used from the locale zip formats.
    * This won't be used if the state option is specified.
    *
-   * @see faker.helpers.replaceSymbols()
+   * @see faker.helpers.replaceSymbols(): For more information about how the pattern is used.
    *
    * @example
    * faker.location.zipCode() // '17839'
@@ -89,7 +89,7 @@ export class LocationModule extends ModuleBase {
    * @param options.state The abbreviation of the state to generate the zip code for.
    * If not specified, a random zip code is generated according to the locale's zip format.
    *
-   * @see faker.location.zipCode()
+   * @see faker.location.zipCode(): For the replacement method.
    *
    * @example
    * fakerEN_US.location.zipCodeByState("AK") // '99595'
@@ -145,7 +145,7 @@ export class LocationModule extends ModuleBase {
   /**
    * Returns a random city name from a list of real cities for the locale.
    *
-   * @see faker.location.city()
+   * @see faker.location.city(): For the replacement method.
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
@@ -203,7 +203,7 @@ export class LocationModule extends ModuleBase {
   /**
    * Returns a random localized street name.
    *
-   * @see faker.location.street()
+   * @see faker.location.street(): For the replacement method.
    *
    * @example
    * fakerDE.location.streetName() // 'Cavill Avenue'
@@ -372,6 +372,9 @@ export class LocationModule extends ModuleBase {
 
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
+   * Generally, these are the ISO 3166-2 subdivisions for a country.
+   * If a locale doesn't correspond to one specific country, the method may return ISO 3166-2 subdivisions from one or more countries that uses that language. For example, the `ar` locale includes subdivisions from Arabic-speaking countries, such as Tunisia, Algeria, Syria, Lebanon, etc.
+   * For historical compatibility reasons, the default `en` locale only includes states in the United States (identical to `en_US`). However, you can use other English locales, such as `en_IN`, `en_GB`, and `en_AU`, if needed.
    *
    * @param options An options object.
    * @param options.abbreviated If true this will return abbreviated first-level administrative entity names.

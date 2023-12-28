@@ -148,7 +148,7 @@ const config = defineConfig({
         link: '/api/',
       },
       {
-        text: 'Ecosystem',
+        text: 'Try it',
         items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
       },
       {

@@ -24,9 +24,10 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
+   * @throws When there are no integers between `min` and `max`.
    *
-   * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
+   * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
    * @example
    * faker.number.int() // 2900970162509863
@@ -93,6 +94,9 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.precision Precision of the generated number, for example `0.01` will round to 2 decimal points.
    * If precision is passed, the upper bound is inclusive.
    *
+   * @throws When `min` is greater than `max`.
+   * @throws When `precision` is negative.
+   *
    * @example
    * faker.number.float() // 0.5688541042618454
    * faker.number.float(3) // 2.367973240558058
@@ -146,7 +150,12 @@ export class NumberModule extends SimpleModuleBase {
         throw new FakerError(`Precision should be greater than 0.`);
       }
 
-      const factor = 1 / precision;
+      const logPrecision = Math.log10(precision);
+      // Workaround to get integer values for the inverse of all precisions of the form 10^-n
+      const factor =
+        precision < 1 && Number.isInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / precision;
       const int = this.int({
         min: min * factor,
         max: max * factor,
@@ -168,9 +177,10 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `1`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
+   * @throws When there are no integers between `min` and `max`.
    *
-   * @see faker.string.binary() If you would like to generate a `binary string` with a given length (range).
+   * @see faker.string.binary(): For generating a `binary string` with a given length (range).
    *
    * @example
    * faker.number.binary() // '1'
@@ -217,9 +227,10 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `7`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
+   * @throws When there are no integers between `min` and `max`.
    *
-   * @see faker.string.octal() If you would like to generate an `octal string` with a given length (range).
+   * @see faker.string.octal(): For generating an `octal string` with a given length (range).
    *
    * @example
    * faker.number.octal() // '5'
@@ -266,7 +277,8 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `15`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
+   * @throws When there are no integers between `min` and `max`.
    *
    * @example
    * faker.number.hex() // 'b'
@@ -313,7 +325,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
    *
    * @example
    * faker.number.bigInt() // 55422n

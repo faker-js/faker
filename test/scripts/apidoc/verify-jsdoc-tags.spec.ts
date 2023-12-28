@@ -236,7 +236,10 @@ describe('verify JSDoc tags', () => {
                 false
               );
               if (paramDefault) {
-                if (/^{.*}$/.test(paramDefault)) {
+                if (
+                  /^{.*}$/.test(paramDefault) ||
+                  paramDefault.includes('\n')
+                ) {
                   expect(commentDefault).toBeUndefined();
                 } else {
                   expect(
@@ -274,6 +277,24 @@ describe('verify JSDoc tags', () => {
                 expect(link, 'Expect method reference to contain ()').toContain(
                   ')'
                 );
+                expect(
+                  link,
+                  "Expect method reference to have a ': ' after the parenthesis"
+                ).toContain('): ');
+                expect(
+                  link,
+                  'Expect method reference to have a description starting with a capital letter'
+                ).toMatch(/\): [A-Z]/);
+                expect(
+                  link,
+                  'Expect method reference to start with a standard description phrase'
+                ).toMatch(
+                  /\): (?:For generating |For more information about |For using |For the replacement method)/
+                );
+                expect(
+                  link,
+                  'Expect method reference to have a description ending with a dot'
+                ).toMatch(/\.$/);
                 expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
               }
             }
@@ -282,6 +303,7 @@ describe('verify JSDoc tags', () => {
           it('verify @since tag', () => {
             const since = extractSince(signature);
             expect(since, '@since to be present').toBeTruthy();
+            expect(since).not.toBe(MISSING_DESCRIPTION);
             expect(since, '@since to be a valid semver').toSatisfy(
               validator.isSemVer
             );

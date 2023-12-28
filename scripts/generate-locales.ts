@@ -23,10 +23,9 @@ import {
 } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { Options } from 'prettier';
-import { format } from 'prettier';
-import options from '../.prettierrc.js';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
+import { keys } from '../src/internal/keys';
+import { formatMarkdown, formatTypescript } from './apidoc/format';
 
 // Constants
 
@@ -77,9 +76,6 @@ const definitionsTypes: DefinitionType = {
   vehicle: 'VehicleDefinition',
   word: 'WordDefinition',
 };
-
-const prettierTsOptions: Options = { ...options, parser: 'typescript' };
-const prettierMdOptions: Options = { ...options, parser: 'markdown' };
 
 const scriptCommand = 'pnpm run generate:locales';
 
@@ -154,7 +150,7 @@ async function generateLocaleFile(locale: string): Promise<void> {
       });
       `;
 
-  content = await format(content, prettierTsOptions);
+  content = await formatTypescript(content);
   writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
 }
 
@@ -195,7 +191,7 @@ async function generateLocalesIndexFile(
 
   writeFileSync(
     resolve(path, 'index.ts'),
-    await format(content.join('\n'), prettierTsOptions)
+    await formatTypescript(content.join('\n'))
   );
 }
 
@@ -301,7 +297,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     }
 
     const result = {} as T;
-    for (const key of Object.keys(localeData)) {
+    for (const key of keys(localeData)) {
       result[key] = normalizeDataRecursive(localeData[key]);
     }
 
@@ -367,7 +363,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   // In the long term we should probably define a whether we want those in the files at all.
   const newContent = fileContentPreData + JSON.stringify(localeData);
 
-  writeFileSync(filePath, await format(newContent, prettierTsOptions));
+  writeFileSync(filePath, await formatTypescript(newContent));
 }
 
 // Start of actual logic
@@ -444,7 +440,7 @@ async function main(): Promise<void> {
   } as const;
   `;
 
-  localeIndexContent = await format(localeIndexContent, prettierTsOptions);
+  localeIndexContent = await formatTypescript(localeIndexContent);
   writeFileSync(pathLocaleIndex, localeIndexContent);
 
   // src/locales/index.ts
@@ -455,12 +451,12 @@ async function main(): Promise<void> {
   ${localesIndexExports}
   `;
 
-  localesIndexContent = await format(localesIndexContent, prettierTsOptions);
+  localesIndexContent = await formatTypescript(localesIndexContent);
   writeFileSync(pathLocalesIndex, localesIndexContent);
 
   // docs/guide/localization.md
 
-  localizationLocales = await format(localizationLocales, prettierMdOptions);
+  localizationLocales = await formatMarkdown(localizationLocales);
 
   let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf8');
   localizationContent = localizationContent.replace(
