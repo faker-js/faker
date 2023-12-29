@@ -173,7 +173,12 @@ export class NumberModule extends SimpleModuleBase {
         throw new FakerError(`multipleOf/precision should be greater than 0.`);
       }
 
-      const factor = 1 / multipleOf;
+      const logPrecision = Math.log10(multipleOf);
+      // Workaround to get integer values for the inverse of all multiples of the form 10^-n
+      const factor =
+        multipleOf < 1 && Number.isInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / multipleOf;
       const int = this.int({
         min: min * factor,
         max: max * factor,

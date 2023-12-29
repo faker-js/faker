@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { faker, FakerError, SimpleFaker } from '../../src';
 import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
 import { seededTests } from '../support/seeded-runs';
+import { times } from './../support/times';
 
 describe('number', () => {
   seededTests(faker, 'number', (t) => {
@@ -280,43 +281,35 @@ describe('number', () => {
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
 
-      it('provides numbers with a given multipleOf of 0.4 steps', () => {
+      it('provides numbers with a given precision of 0.2', () => {
         const results = [
           ...new Set(
-            Array.from({ length: 100 }, () =>
+            Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
-                max: 1.9,
-                multipleOf: 0.4,
+                max: 0.4,
+                precision: 0.2,
               })
             )
           ),
         ].sort();
 
-        expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
+        expect(results).toEqual([0, 0.2, 0.4]);
       });
 
-      it('provides numbers with an exact precision', () => {
-        for (let i = 0; i < 100; i++) {
-          const actual = faker.number.float({
-            min: 0.5,
-            max: 0.99,
-            precision: 0.01,
-          });
-          expect(actual).toBe(Number(actual.toFixed(2)));
+      it.each(times(18))(
+        `provides numbers with an exact precision of 10^-%d`,
+        (exponent) => {
+          for (let i = 0; i < 100; i++) {
+            const actual = faker.number.float({
+              min: 0.5,
+              max: 0.99,
+              precision: 10 ** -exponent,
+            });
+            expect(actual).toBe(Number(actual.toFixed(exponent)));
+          }
         }
-      });
-
-      it('provides numbers with an exact precision via multipleOf', () => {
-        for (let i = 0; i < 100; i++) {
-          const actual = faker.number.float({
-            min: 0.5,
-            max: 0.99,
-            multipleOf: 0.01,
-          });
-          expect(actual).toBe(Number(actual.toFixed(2)));
-        }
-      });
+      );
 
       it('throws an error for precision 0', () => {
         expect(() => faker.number.float({ precision: 0 })).toThrow(

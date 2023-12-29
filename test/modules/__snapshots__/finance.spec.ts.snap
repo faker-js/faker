@@ -24,13 +24,13 @@ exports[`finance > 42 > amount > with min and max option 1`] = `"24.98"`;
 
 exports[`finance > 42 > amount > with min option 1`] = `"380.79"`;
 
-exports[`finance > 42 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$24.98161"`;
+exports[`finance > 42 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$24.98160"`;
 
-exports[`finance > 42 > amount > with min, max and dec option 1`] = `"24.98161"`;
+exports[`finance > 42 > amount > with min, max and dec option 1`] = `"24.98160"`;
 
-exports[`finance > 42 > amount > with min, max, dec and symbol option 1`] = `"#24.98161"`;
+exports[`finance > 42 > amount > with min, max, dec and symbol option 1`] = `"#24.98160"`;
 
-exports[`finance > 42 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#24.98161"`;
+exports[`finance > 42 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#24.98160"`;
 
 exports[`finance > 42 > bic > noArgs 1`] = `"UYETSCLLG53"`;
 
@@ -244,13 +244,13 @@ exports[`finance > 1337 > amount > with min and max option 1`] = `"20.48"`;
 
 exports[`finance > 1337 > amount > with min option 1`] = `"269.40"`;
 
-exports[`finance > 1337 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$20.48099"`;
+exports[`finance > 1337 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$20.48098"`;
 
-exports[`finance > 1337 > amount > with min, max and dec option 1`] = `"20.48099"`;
+exports[`finance > 1337 > amount > with min, max and dec option 1`] = `"20.48098"`;
 
-exports[`finance > 1337 > amount > with min, max, dec and symbol option 1`] = `"#20.48099"`;
+exports[`finance > 1337 > amount > with min, max, dec and symbol option 1`] = `"#20.48098"`;
 
-exports[`finance > 1337 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#20.48099"`;
+exports[`finance > 1337 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#20.48098"`;
 
 exports[`finance > 1337 > bic > noArgs 1`] = `"OEFHLYG18IL"`;
 
