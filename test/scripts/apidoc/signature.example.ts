@@ -175,9 +175,18 @@ export class SignatureTest {
   }
 
   /**
-   * Test with a function parameters.
+   * Test with a Record parameter.
    *
-   * @param options The function parameter.
+   * @param object The Record parameter.
+   */
+  recordParamMethod(object: Record<string, number>): number {
+    return object.a;
+  }
+
+  /**
+   * Test with an options parameter.
+   *
+   * @param options The options parameter.
    * @param options.a The number parameter.
    * @param options.b The string parameter.
    * @param options.c The boolean parameter.
@@ -280,12 +289,22 @@ export class SignatureTest {
   }
 
   /**
-   * Test with throws
+   * Test with throws.
    *
-   * @throws a Faker error
+   * @throws Everytime.
    */
   methodWithThrows(): number {
     throw new FakerError('Test error');
+  }
+
+  /**
+   * Test with multiple throws.
+   *
+   * @throws First error case.
+   * @throws Another error case.
+   */
+  methodWithMultipleThrows(): number {
+    throw new FakerError('Another test error');
   }
 
   /**

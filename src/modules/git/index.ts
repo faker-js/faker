@@ -1,6 +1,7 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
+
+const nbsp = '\u00A0';
 
 /**
  * Module to generate git related entries.
@@ -9,11 +10,7 @@ import { deprecated } from '../../internal/deprecated';
  *
  * [`commitEntry()`](https://fakerjs.dev/api/git.html#commitentry) generates a random commit entry as printed by `git log`. This includes a commit hash [`commitSha()`](https://fakerjs.dev/api/git.html#commitsha), author, date [`commitDate()`](https://fakerjs.dev/api/git.html#commitdate), and commit message [`commitMessage()`](https://fakerjs.dev/api/git.html#commitmessage). You can also generate a random branch name with [`branch()`](https://fakerjs.dev/api/git.html#branch).
  */
-export class GitModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class GitModule extends ModuleBase {
   /**
    * Generates a random branch name.
    *
@@ -97,13 +94,13 @@ export class GitModule {
     const email = this.faker.internet.email({ firstName, lastName });
 
     // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
-    user = user.replace(/^[\.,:;"\\']|[\<\>\n]|[\.,:;"\\']$/g, '');
+    user = user.replace(/^[.,:;"\\']|[<>\n]|[.,:;"\\']$/g, '');
 
     lines.push(
       `Author: ${user} <${email}>`,
       `Date: ${this.commitDate({ refDate })}`,
       '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      `${nbsp.repeat(4)}${this.commitMessage()}`,
       // to end with a eol char
       ''
     );

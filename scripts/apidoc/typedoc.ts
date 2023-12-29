@@ -19,7 +19,7 @@ import {
   DefaultParameterAwareSerializer,
   parameterDefaultReader,
   patchProjectParameterDefaults,
-} from './parameterDefaults';
+} from './parameter-defaults';
 import { mapByName } from './utils';
 
 type CommentHolder = Pick<Reflection, 'comment'>;
@@ -88,7 +88,8 @@ export function selectApiModules(
     .getChildrenByKind(ReflectionKind.Class)
     .filter(
       (module) =>
-        faker[extractModuleFieldName(module)] != null || includeTestModules
+        faker[extractModuleFieldName(module) as keyof typeof faker] != null ||
+        includeTestModules
     );
 }
 
@@ -154,7 +155,7 @@ export function extractModuleName(module: DeclarationReflection): string {
 
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
-  return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+  return moduleName[0].toLowerCase() + moduleName.substring(1);
 }
 
 export const MISSING_DESCRIPTION = 'Missing';
@@ -219,7 +220,40 @@ export function extractTagContent(
   reflection?: CommentHolder,
   tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
-  return reflection?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
+  const tags =
+    reflection?.comment
+      ?.getTags(tag)
+      .flatMap(tagProcessor)
+      .map((tag) => tag.trim()) ?? [];
+  if (tags.some((tag) => tag.length === 0)) {
+    throw new Error(`Expected non-empty ${tag} tag.`);
+  }
+
+  return tags;
+}
+
+/**
+ * Extracts the text (md) from a single jsdoc tag.
+ *
+ * @param tag The tag to extract the text from.
+ * @param reflection The reflection to extract the text from.
+ * @param tagProcessor The function used to extract the text from the tag.
+ *
+ * @throws If there are multiple tags of that type.
+ */
+function extractSingleTagContent(
+  tag: `@${string}`,
+  reflection?: CommentHolder,
+  tagProcessor: (tag: CommentTag) => string[] = joinTagContent
+): string | undefined {
+  const tags = extractTagContent(tag, reflection, tagProcessor);
+  if (tags.length === 0) {
+    return undefined;
+  } else if (tags.length === 1) {
+    return tags[0];
+  }
+
+  throw new Error(`Expected 1 ${tag} tag, but got ${tags.length}.`);
 }
 
 /**
@@ -244,6 +278,49 @@ function extractRawCode(
  */
 export function extractRawDefault(reflection?: CommentHolder): string {
   return extractRawCode('@default', reflection)[0] ?? '';
+}
+
+/**
+ * Extracts and optionally removes the default from the comment summary.
+ *
+ * @param comment The comment to extract the default from.
+ * @param eraseDefault Whether to erase the default text from the comment.
+ *
+ * @returns The extracted default value.
+ */
+export function extractSummaryDefault(
+  comment?: Comment,
+  eraseDefault = true
+): string | undefined {
+  if (!comment) {
+    return;
+  }
+
+  const summary = comment.summary;
+  const text = joinTagParts(summary).trim();
+  if (!text) {
+    return;
+  }
+
+  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
+  if (!result) {
+    return;
+  }
+
+  if (result[3].trim()) {
+    throw new Error(`Found description text after the default value:\n${text}`);
+  }
+
+  if (eraseDefault) {
+    summary.splice(-2, 2);
+    const lastSummaryPart = summary[summary.length - 1];
+    lastSummaryPart.text = lastSummaryPart.text.replace(
+      /[ \n]Defaults to $/,
+      ''
+    );
+  }
+
+  return result[2];
 }
 
 /**
@@ -281,12 +358,12 @@ export function extractSeeAlsos(reflection?: CommentHolder): string[] {
       .map((link) => {
         link = link.trim();
         if (link.startsWith('-')) {
-          link = link.slice(1).trim();
+          link = link.slice(1).trimStart();
         }
 
         return link;
       })
-      .filter((link) => link)
+      .filter((link) => link.length > 0)
   );
 }
 
@@ -315,8 +392,7 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 export function extractDeprecated(
   reflection?: CommentHolder
 ): string | undefined {
-  const deprecated = extractTagContent('@deprecated', reflection).join().trim();
-  return deprecated.length === 0 ? undefined : deprecated;
+  return extractSingleTagContent('@deprecated', reflection);
 }
 
 /**
@@ -327,8 +403,8 @@ export function extractDeprecated(
  * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
  */
 export function extractThrows(reflection?: CommentHolder): string | undefined {
-  const throws = extractTagContent('@throws', reflection).join().trim();
-  return throws.length === 0 ? undefined : throws;
+  const content = extractTagContent('@throws', reflection).join('\n');
+  return content.length === 0 ? undefined : content;
 }
 
 /**
@@ -339,5 +415,5 @@ export function extractThrows(reflection?: CommentHolder): string | undefined {
  * @returns The contents of the `@since` tag.
  */
 export function extractSince(reflection: CommentHolder): string {
-  return extractTagContent('@since', reflection).join().trim();
+  return extractSingleTagContent('@since', reflection) || MISSING_DESCRIPTION;
 }

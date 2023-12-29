@@ -5,7 +5,7 @@ import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -217,6 +217,12 @@ describe('finance', () => {
       });
 
       describe('maskedNumber()', () => {
+        it('should return contain parenthesis, ellipsis and have a length of 4 by default', () => {
+          const actual = faker.finance.maskedNumber();
+
+          expect(actual).toMatch(/\(\.{3}\d{4}\)/);
+        });
+
         it('should set a default length', () => {
           const expected = 4; // default account mask length
           const mask = faker.finance.maskedNumber({
@@ -279,7 +285,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).toMatch(/^[0-9\.]+$/);
+          ).toMatch(/^[0-9.]+$/);
         });
 
         it('should handle negative amounts', () => {
@@ -456,7 +462,7 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(-([0-9]){4}){3})$/);
           expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
@@ -490,7 +496,7 @@ describe('finance', () => {
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toMatch(/^\d{3}-\d{3}-\d{3}$/);
           expect(number).toSatisfy(luhnCheck);
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');

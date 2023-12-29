@@ -1,5 +1,4 @@
-import type { Faker } from '../../faker';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Color space names supported by CSS.
@@ -48,27 +47,31 @@ export type Casing = 'lower' | 'upper' | 'mixed';
  *
  * @param hexColor Hex color string to be formatted.
  * @param options Options object.
- * @param options.prefix Prefix of the generated hex color. Defaults to `'0x'`.
- * @param options.casing Letter type case of the generated hex color. Defaults to `'mixed'`.
+ * @param options.prefix Prefix of the generated hex color.
+ * @param options.casing Letter type case of the generated hex color.
  */
 function formatHexColor(
   hexColor: string,
-  options?: {
-    prefix?: string;
-    casing?: Casing;
+  options: {
+    prefix: string;
+    casing: Casing;
   }
 ): string {
-  switch (options?.casing) {
+  const { prefix, casing } = options;
+
+  switch (casing) {
     case 'upper':
       hexColor = hexColor.toUpperCase();
       break;
     case 'lower':
       hexColor = hexColor.toLowerCase();
       break;
+    case 'mixed':
+    // Do nothing
   }
 
-  if (options?.prefix) {
-    hexColor = options.prefix + hexColor;
+  if (prefix) {
+    hexColor = prefix + hexColor;
   }
 
   return hexColor;
@@ -86,7 +89,7 @@ function toBinary(values: number[]): string {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
       const bytes = new Uint8Array(buffer);
-      return toBinary(Array.from(bytes)).split(' ').join('');
+      return toBinary([...bytes]).replace(/ /g, '');
     }
 
     return (value >>> 0).toString(2).padStart(8, '0');
@@ -157,6 +160,7 @@ function toColorFormat(
       return toCSS(values, cssFunction, space);
     case 'binary':
       return toBinary(values);
+    case 'decimal':
     default:
       return values;
   }
@@ -171,11 +175,7 @@ function toColorFormat(
  *
  * For a hex color like `#ff0000` used in HTML/CSS, use [`rgb()`](https://fakerjs.dev/api/color.html#rgb). There are also methods for other color formats such as [`hsl()`](https://fakerjs.dev/api/color.html#hsl), [`cmyk()`](https://fakerjs.dev/api/color.html#cmyk), [`hwb()`](https://fakerjs.dev/api/color.html#hwb), [`lab()`](https://fakerjs.dev/api/color.html#lab), and [`lch()`](https://fakerjs.dev/api/color.html#lch).
  */
-export class ColorModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class ColorModule extends ModuleBase {
   /**
    * Returns a random human-readable color name.
    *
@@ -362,19 +362,20 @@ export class ColorModule {
      */
     includeAlpha?: boolean;
   }): string | number[];
-  rgb(options?: {
-    prefix?: string;
-    casing?: Casing;
-    format?: 'hex' | ColorFormat;
-    includeAlpha?: boolean;
-  }): string | number[] {
+  rgb(
+    options: {
+      prefix?: string;
+      casing?: Casing;
+      format?: 'hex' | ColorFormat;
+      includeAlpha?: boolean;
+    } = {}
+  ): string | number[] {
     const {
       format = 'hex',
       includeAlpha = false,
       prefix = '#',
       casing = 'lower',
-    } = options || {};
-    options = { format, includeAlpha, prefix, casing };
+    } = options;
     let color: string | number[];
     let cssFunction: CssFunctionType = 'rgb';
     if (format === 'hex') {
@@ -382,7 +383,7 @@ export class ColorModule {
         length: includeAlpha ? 8 : 6,
         prefix: '',
       });
-      color = formatHexColor(color, options);
+      color = formatHexColor(color, { prefix, casing });
       return color;
     }
 

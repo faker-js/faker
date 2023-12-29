@@ -2,6 +2,12 @@
 const { defineConfig } = require('eslint-define-config');
 const { readGitignoreFiles } = require('eslint-gitignore');
 
+/// <reference types="@eslint-types/deprecation" />
+/// <reference types="@eslint-types/jsdoc" />
+/// <reference types="@eslint-types/prettier" />
+/// <reference types="@eslint-types/typescript-eslint" />
+/// <reference types="@eslint-types/unicorn" />
+
 module.exports = defineConfig({
   ignorePatterns: [
     ...readGitignoreFiles(),
@@ -15,27 +21,51 @@ module.exports = defineConfig({
   reportUnusedDisableDirectives: true,
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/strict-type-checked',
     'plugin:prettier/recommended',
+    'plugin:deprecation/recommended',
     'plugin:jsdoc/recommended-typescript-error',
+    'plugin:unicorn/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['./tsconfig.json'],
-    sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'deprecation', 'jsdoc'],
   rules: {
-    // We may want to use this in the future
-    'no-useless-escape': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
-    'prefer-template': 'error',
     'no-restricted-globals': ['error', 'Intl'],
+    'prefer-exponentiation-operator': 'error',
+    'prefer-template': 'error',
 
-    'deprecation/deprecation': 'error',
+    'unicorn/no-nested-ternary': 'off', // incompatible with prettier
+    'unicorn/no-null': 'off', // incompatible with TypeScript
+    'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
+    'unicorn/number-literal-case': 'off', // incompatible with prettier
+    'unicorn/prefer-ternary': 'off', // ternaries aren't always better
+
+    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
+    'unicorn/prefer-at': 'off',
+    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
+    'unicorn/prefer-string-replace-all': 'off',
+    // TODO @ST-DDT 2023-10-28: The following rule should be turned on when we switch to esm.
+    'unicorn/prefer-top-level-await': 'off',
+
+    // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
+    'unicorn/better-regex': 'off',
+    'unicorn/consistent-function-scoping': 'off',
+    'unicorn/import-style': 'off',
+    'unicorn/no-array-callback-reference': 'off',
+    'unicorn/no-await-expression-member': 'off',
+    'unicorn/no-object-as-default-parameter': 'off',
+    'unicorn/no-useless-switch-case': 'off',
+    'unicorn/numeric-separators-style': 'off',
+    'unicorn/prefer-export-from': 'off',
+    'unicorn/prefer-string-slice': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/require-array-join-separator': 'off',
+    'unicorn/switch-case-braces': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
@@ -63,23 +93,31 @@ module.exports = defineConfig({
       'error',
       { ignoreParameters: true },
     ],
-    '@typescript-eslint/no-unsafe-argument': 'error',
+    '@typescript-eslint/no-unnecessary-condition': 'off', // requires `strictNullChecks` to be enabled
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'error',
     '@typescript-eslint/padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
+    '@typescript-eslint/prefer-regexp-exec': 'error',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
+    '@typescript-eslint/switch-exhaustiveness-check': [
+      'error',
+      { requireDefaultForNonUnion: true },
+    ],
     '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
 
-    'jsdoc/no-types': 'error',
-    'jsdoc/require-jsdoc': 'off',
+    // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
+    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
+    '@typescript-eslint/no-confusing-void-expression': 'off',
+
+    'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
     'jsdoc/sort-tags': [
       'error',
@@ -110,6 +148,30 @@ module.exports = defineConfig({
       files: ['src/**/*.ts'],
       rules: {
         'jsdoc/require-jsdoc': 'error',
+      },
+    },
+    {
+      files: ['src/locale/**/*.ts'],
+      rules: {
+        'unicorn/filename-case': 'off', // our locale files have a custom naming scheme
+      },
+    },
+    {
+      files: ['src/definitions/**/*.ts', 'src/locales/**/*.ts'],
+      rules: {
+        'unicorn/filename-case': [
+          'error',
+          {
+            case: 'snakeCase',
+            // TODO @ST-DDT 2023-10-21: rename the definitions in v9
+            ignore: [
+              /chemicalElement\.ts$/,
+              /directoryPaths\.ts$/,
+              /mimeTypes\.ts$/,
+            ],
+          },
+        ],
+        'unicorn/text-encoding-identifier-case': 'off',
       },
     },
     {

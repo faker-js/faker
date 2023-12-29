@@ -2,14 +2,14 @@ import { expect } from 'vitest';
 
 expect.extend({
   toContainDuplicates<T>(received: T[]) {
-    const { isNot } = this;
+    const { isNot = false } = this;
 
     const uniques = new Set(received);
     const duplications = received.filter((entry) => !uniques.delete(entry));
     const uniqueDuplication = [...new Set(duplications)];
 
     return {
-      pass: uniqueDuplication.length !== 0,
+      pass: uniqueDuplication.length > 0,
       message: () =>
         isNot
           ? `Duplicated values are [${uniqueDuplication.join(', ')}]`

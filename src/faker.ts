@@ -28,6 +28,7 @@ import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
+import type { Randomizer } from './randomizer';
 import { SimpleFaker } from './simple-faker';
 import { mergeLocales } from './utils/merge-locales';
 
@@ -123,6 +124,10 @@ export class Faker extends SimpleFaker {
    *
    * @param options The options to use.
    * @param options.locale The locale data to use.
+   * @param options.randomizer The Randomizer to use.
+   * Specify this only if you want to use it to achieve a specific goal,
+   * such as sharing the same random generator with other instances/tools.
+   * Defaults to faker's Mersenne Twister based pseudo random number generator.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -141,9 +146,18 @@ export class Faker extends SimpleFaker {
      * The locale data to use for this instance.
      * If an array is provided, the first locale that has a definition for a given property will be used.
      *
-     * @see mergeLocales
+     * @see mergeLocales(): For more information about how the locales are merged.
      */
     locale: LocaleDefinition | LocaleDefinition[];
+
+    /**
+     * The Randomizer to use.
+     * Specify this only if you want to use it to achieve a specific goal,
+     * such as sharing the same random generator with other instances/tools.
+     *
+     * @default generateMersenne32Randomizer()
+     */
+    randomizer?: Randomizer;
   });
   /**
    * Creates a new instance of Faker.
@@ -180,6 +194,10 @@ export class Faker extends SimpleFaker {
    * @param options.locale The locale data to use or the name of the main locale.
    * @param options.locales The locale data to use.
    * @param options.localeFallback The name of the fallback locale to use.
+   * @param options.randomizer The Randomizer to use.
+   * Specify this only if you want to use it to achieve a specific goal,
+   * such as sharing the same random generator with other instances/tools.
+   * Defaults to faker's Mersenne Twister based pseudo random number generator.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -200,9 +218,18 @@ export class Faker extends SimpleFaker {
            * The locale data to use for this instance.
            * If an array is provided, the first locale that has a definition for a given property will be used.
            *
-           * @see mergeLocales
+           * @see mergeLocales(): For more information about how the locales are merged.
            */
           locale: LocaleDefinition | LocaleDefinition[];
+
+          /**
+           * The Randomizer to use.
+           * Specify this only if you want to use it to achieve a specific goal,
+           * such as sharing the same random generator with other instances/tools.
+           *
+           * @default generateMersenne32Randomizer()
+           */
+          randomizer?: Randomizer;
         }
       | {
           /**
@@ -231,14 +258,18 @@ export class Faker extends SimpleFaker {
   );
   constructor(
     options:
-      | { locale: LocaleDefinition | LocaleDefinition[] }
+      | {
+          locale: LocaleDefinition | LocaleDefinition[];
+          randomizer?: Randomizer;
+        }
       | {
           locales: Record<string, LocaleDefinition>;
           locale?: string;
           localeFallback?: string;
+          randomizer?: Randomizer;
         }
   ) {
-    super();
+    super({ randomizer: options.randomizer });
 
     const { locales } = options as {
       locales: Record<string, LocaleDefinition>;

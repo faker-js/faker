@@ -1,15 +1,15 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
+import { processFakerClasses, processFakerRandomizer } from './faker-class';
+import { processFakerUtilities } from './faker-utilities';
+import { processModules } from './module-methods';
+import { loadProject } from './typedoc';
+import { pathOutputDir } from './utils';
 import {
   writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
   writeSourceBaseUrl,
-} from './apiDocsWriter';
-import { processFakerClasses } from './fakerClass';
-import { processFakerUtilities } from './fakerUtilities';
-import { processModules } from './moduleMethods';
-import { loadProject } from './typedoc';
-import { pathOutputDir } from './utils';
+} from './writer';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
@@ -22,16 +22,19 @@ export async function generate(): Promise<void> {
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);
 
-  const pages = await Promise.all([
+  const pages = [
     ...(await processFakerClasses(project)),
+    await processFakerRandomizer(project),
+    await processFakerUtilities(project),
     ...(await processModules(project)).sort((a, b) =>
       a.text.localeCompare(b.text)
     ),
-    processFakerUtilities(project),
-  ]);
-  await writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
+  ];
+  await writeApiPagesIndex(
+    pages.map(({ text, link, category }) => ({ text, link, category }))
+  );
   writeApiDiffIndex(
-    pages.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
+    Object.fromEntries(pages.map(({ text, diff }) => [text, diff]))
   );
   writeApiSearchIndex(pages);
 
