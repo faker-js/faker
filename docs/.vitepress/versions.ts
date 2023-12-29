@@ -76,5 +76,5 @@ export const oldVersions = [
 ].filter(({ link }) => link !== hiddenLink);
 
 export const algoliaIndex = isReleaseBranch
-  ? `faker-v${semver.major(version)}`
-  : 'faker-next';
+  ? `fakerjs-v${semver.major(version)}`
+  : 'fakerjs-next';
