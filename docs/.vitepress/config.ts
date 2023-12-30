@@ -1,7 +1,12 @@
 import type { UserConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
-import { currentVersion, oldVersions, versionBannerInfix } from './versions';
+import {
+  algoliaIndex,
+  currentVersion,
+  oldVersions,
+  versionBannerInfix,
+} from './versions';
 
 type SidebarItem = DefaultTheme.SidebarItem;
 
@@ -128,7 +133,7 @@ const config: UserConfig<DefaultTheme.Config> = {
         : {
             apiKey: process.env.API_KEY,
             appId: process.env.APP_ID,
-            indexName: 'fakerjs',
+            indexName: algoliaIndex,
           },
 
     footer: {
