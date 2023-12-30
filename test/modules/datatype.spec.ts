@@ -236,7 +236,9 @@ describe('datatype', () => {
         it('should throw when precision is negative', () => {
           expect(() => {
             faker.datatype.number({ precision: -0.01 });
-          }).toThrow(new FakerError('Precision should be greater than 0.'));
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
         });
       });
 
@@ -327,7 +329,9 @@ describe('datatype', () => {
         it('should throw when precision is negative', () => {
           expect(() => {
             faker.datatype.float({ precision: -0.01 });
-          }).toThrow(new FakerError('Precision should be greater than 0.'));
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
         });
       });
 

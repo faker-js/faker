@@ -579,7 +579,7 @@ export class LocationModule extends ModuleBase {
 
     const { max = 90, min = legacyMin, precision = legacyPrecision } = options;
 
-    return this.faker.number.float({ min, max, precision: 10 ** -precision });
+    return this.faker.number.float({ min, max, multipleOf: 10 ** -precision });
   }
 
   /**
@@ -732,7 +732,7 @@ export class LocationModule extends ModuleBase {
 
     const { max = 180, min = legacyMin, precision = legacyPrecision } = options;
 
-    return this.faker.number.float({ max, min, precision: 10 ** -precision });
+    return this.faker.number.float({ max, min, multipleOf: 10 ** -precision });
   }
 
   /**
@@ -1207,7 +1207,7 @@ export class LocationModule extends ModuleBase {
 
     const angleRadians = this.faker.number.float({
       max: 2 * Math.PI,
-      precision: 0.00001,
+      multipleOf: 0.00001,
     }); // in ° radians
 
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
@@ -1215,7 +1215,7 @@ export class LocationModule extends ModuleBase {
     const distanceInKm =
       this.faker.number.float({
         max: radiusMetric,
-        precision: 0.001,
+        multipleOf: 0.001,
       }) * errorCorrection; // in km
 
     /**
