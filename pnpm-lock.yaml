@@ -128,8 +128,8 @@ devDependencies:
     specifier: ~4.5.1
     version: 4.5.1(@types/node@20.10.6)
   vitepress:
-    specifier: 1.0.0-rc.29
-    version: 1.0.0-rc.29(@algolia/client-search@4.22.0)(@types/node@20.10.6)(search-insights@2.13.0)(typescript@4.9.5)
+    specifier: 1.0.0-rc.34
+    version: 1.0.0-rc.34(@algolia/client-search@4.22.0)(@types/node@20.10.6)(search-insights@2.13.0)(typescript@4.9.5)
   vitest:
     specifier: ~0.34.6
     version: 0.34.6(@vitest/ui@0.34.7)
@@ -1445,11 +1445,11 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-vue@4.6.0(vite@5.0.10)(vue@3.4.3):
-    resolution: {integrity: sha512-XHuyFdAikWRmHuAd89FOyUGIjrBU5KlxJtyi2hVeR9ySGFxQwE0bl5xAQju/ArMq5azdBivY4d+D2yPKwoYWUg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
+  /@vitejs/plugin-vue@5.0.2(vite@5.0.10)(vue@3.4.3):
+    resolution: {integrity: sha512-kEjJHrLb5ePBvjD0SPZwJlw1QTRcjjCA9sB5VyfonoXVBxTS7TMnqL6EkLt1Eu61RDeiuZ/WN9Hf6PxXhPI2uA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      vite: ^4.0.0 || ^5.0.0
+      vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
       vite: 5.0.10(@types/node@20.10.6)
@@ -4396,11 +4396,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /mrmime@1.0.1:
-    resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}
-    engines: {node: '>=10'}
-    dev: true
-
   /mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
     engines: {node: '>=10'}
@@ -5210,6 +5205,22 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
+  /shikiji-core@0.9.15:
+    resolution: {integrity: sha512-7hqIcUKS15OMs/61Qp2GvO1fSajBB36bDqi8vexIg5kp80V6v6SGtBrlq+nLlo7erMG2d1kvIuTIq1bwKI6fEg==}
+    dev: true
+
+  /shikiji-transformers@0.9.15:
+    resolution: {integrity: sha512-k0sQ6tX26/cdb8QV9CCwwr7QjRp6/AVP9C0oNIXNld3of+xCrpf74kD74piybG6vMfzBoHGsz/s60RVBJOUaYQ==}
+    dependencies:
+      shikiji: 0.9.15
+    dev: true
+
+  /shikiji@0.9.15:
+    resolution: {integrity: sha512-+inN4cN+nY7b0uCPOiqFHAk+cn2DEdM3AIQgPhAV7QKqhww/o7OGS5xvLh3SNnjke9C/HispALqGOQGYHVq7KQ==}
+    dependencies:
+      shikiji-core: 0.9.15
+    dev: true
+
   /side-channel@1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -5988,12 +5999,12 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitepress@1.0.0-rc.29(@algolia/client-search@4.22.0)(@types/node@20.10.6)(search-insights@2.13.0)(typescript@4.9.5):
-    resolution: {integrity: sha512-6sKmyEvH16SgMqkHzRwwadt9Uju13AOIqouzOVEg3Rk6X9mds6jLsq2GxnAJvg0s6bl/0Qs/cw+f8SNki82ltw==}
+  /vitepress@1.0.0-rc.34(@algolia/client-search@4.22.0)(@types/node@20.10.6)(search-insights@2.13.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-TUbTiSdAZFni2XlHlpx61KikgkQ5uG4Wtmw2R0SXhIOG6qGqzDJczAFjkMc4i45I9c3KyatwOYe8oEfCnzVYwQ==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4.3.2
-      postcss: ^8.4.31
+      postcss: ^8.4.32
     peerDependenciesMeta:
       markdown-it-mathjax3:
         optional: true
@@ -6003,15 +6014,17 @@ packages:
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.22.0)(search-insights@2.13.0)
       '@types/markdown-it': 13.0.7
-      '@vitejs/plugin-vue': 4.6.0(vite@5.0.10)(vue@3.4.3)
+      '@vitejs/plugin-vue': 5.0.2(vite@5.0.10)(vue@3.4.3)
       '@vue/devtools-api': 6.5.1
       '@vueuse/core': 10.7.1(vue@3.4.3)
       '@vueuse/integrations': 10.7.1(focus-trap@7.5.4)(vue@3.4.3)
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 6.3.0
-      mrmime: 1.0.1
-      shiki: 0.14.7
+      mrmime: 2.0.0
+      shikiji: 0.9.15
+      shikiji-core: 0.9.15
+      shikiji-transformers: 0.9.15
       vite: 5.0.10(@types/node@20.10.6)
       vue: 3.4.3(typescript@4.9.5)
     transitivePeerDependencies:
