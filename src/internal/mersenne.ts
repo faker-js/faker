@@ -1,7 +1,7 @@
 import type { Randomizer } from '../randomizer';
 
 /**
- * Copyright (c) 2022-2023 Faker
+ * Copyright (c) 2022-2024 Faker
  *
  * This is a version of the original source code migrated to TypeScript and
  * modified by the Faker team.
