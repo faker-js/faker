@@ -28,6 +28,8 @@ exports[`number > 42 > float > with min and max 1`] = `-0.4260473116301`;
 
 exports[`number > 42 > float > with min, max and fractionDigits 1`] = `-0.426`;
 
+exports[`number > 42 > float > with min, max and multipleOf 1`] = `-0.4261`;
+
 exports[`number > 42 > float > with plain number 1`] = `1.498160457238555`;
 
 exports[`number > 42 > hex > noArgs 1`] = `"5"`;
@@ -76,6 +78,8 @@ exports[`number > 1211 > float > with min and max 1`] = `61.06573706539348`;
 
 exports[`number > 1211 > float > with min, max and fractionDigits 1`] = `61.0657`;
 
+exports[`number > 1211 > float > with min, max and multipleOf 1`] = `61.0658`;
+
 exports[`number > 1211 > float > with plain number 1`] = `3.7140806149691343`;
 
 exports[`number > 1211 > hex > noArgs 1`] = `"e"`;
@@ -123,6 +127,8 @@ exports[`number > 1337 > float > with min 1`] = `-30.732938923640177`;
 exports[`number > 1337 > float > with min and max 1`] = `-12.915260942419991`;
 
 exports[`number > 1337 > float > with min, max and fractionDigits 1`] = `-12.9153`;
+
+exports[`number > 1337 > float > with min, max and multipleOf 1`] = `-12.9153`;
 
 exports[`number > 1337 > float > with plain number 1`] = `1.048098704777658`;
 

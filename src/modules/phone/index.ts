@@ -1,5 +1,6 @@
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
+import { legacyReplaceSymbolWithNumber } from '../helpers';
 
 /**
  * Module to generate phone-related data.
@@ -68,7 +69,7 @@ export class PhoneModule extends ModuleBase {
       this.faker.helpers.arrayElement(
         this.faker.definitions.phone_number.formats
       );
-    return this.faker.helpers.replaceSymbolWithNumber(format);
+    return legacyReplaceSymbolWithNumber(this.faker, format);
   }
 
   /**

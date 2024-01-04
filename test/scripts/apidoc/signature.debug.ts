@@ -8,10 +8,9 @@ import { loadExampleMethods } from './utils';
 
 /* Run with `pnpm tsx test/scripts/apidoc/signature.debug.ts` */
 
-const methods = loadExampleMethods();
-
 initMarkdownRenderer()
   .then(async () => {
+    const methods = await loadExampleMethods();
     for (const [name, method] of Object.entries(methods)) {
       console.log('Analyzing:', name);
       const result = await analyzeSignature(method, '', method.name);

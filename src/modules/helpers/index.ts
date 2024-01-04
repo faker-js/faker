@@ -2,6 +2,7 @@ import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
+import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -9,7 +10,7 @@ import * as uniqueExec from './unique';
 /**
  * Returns a number based on given RegEx-based quantifier symbol or quantifier values.
  *
- * @param faker Faker instance
+ * @param faker The Faker instance to use.
  * @param quantifierSymbol Quantifier symbols can be either of these: `?`, `*`, `+`.
  * @param quantifierMin Quantifier minimum value. If given without a maximum, this will be used as the quantifier value.
  * @param quantifierMax Quantifier maximum value. Will randomly get a value between the minimum and maximum if both are provided.
@@ -17,9 +18,9 @@ import * as uniqueExec from './unique';
  * @returns a random number based on the given quantifier parameters.
  *
  * @example
- * getRepetitionsBasedOnQuantifierParameters(this.faker, '*', null, null) // 3
- * getRepetitionsBasedOnQuantifierParameters(this.faker, null, 10, null) // 10
- * getRepetitionsBasedOnQuantifierParameters(this.faker, null, 5, 8) // 6
+ * getRepetitionsBasedOnQuantifierParameters(faker, '*', null, null) // 3
+ * getRepetitionsBasedOnQuantifierParameters(faker, null, 10, null) // 10
+ * getRepetitionsBasedOnQuantifierParameters(faker, null, 5, 8) // 6
  *
  * @since 8.0.0
  */
@@ -73,7 +74,9 @@ function getRepetitionsBasedOnQuantifierParameters(
 }
 
 /**
- * Replaces the regex like expressions in the given string with matching values. Note: This method will be removed in v9.
+ * Replaces the regex like expressions in the given string with matching values.
+ *
+ * Note: This method will be removed in v9.
  *
  * Supported patterns:
  * - `.{times}` => Repeat the character exactly `times` times.
@@ -82,15 +85,15 @@ function getRepetitionsBasedOnQuantifierParameters(
  *
  * @internal
  *
- * @param faker A Faker instance.
+ * @param faker The Faker instance to use.
  * @param string The template string to parse.
  *
  * @example
- * faker.helpers.legacyRegexpStringParse() // ''
- * faker.helpers.legacyRegexpStringParse('#{5}') // '#####'
- * faker.helpers.legacyRegexpStringParse('#{2,9}') // '#######'
- * faker.helpers.legacyRegexpStringParse('[500-15000]') // '8375'
- * faker.helpers.legacyRegexpStringParse('#{3}test[1-5]') // '###test3'
+ * legacyRegexpStringParse(faker) // ''
+ * legacyRegexpStringParse(faker, '#{5}') // '#####'
+ * legacyRegexpStringParse(faker, '#{2,9}') // '#######'
+ * legacyRegexpStringParse(faker, '[500-15000]') // '8375'
+ * legacyRegexpStringParse(faker, '#{3}test[1-5]') // '###test3'
  *
  * @since 5.0.0
  */
@@ -159,6 +162,45 @@ function legacyRegexpStringParse(
 }
 
 /**
+ * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
+ * `!` will be replaced by digits >=2 (`2` - `9`).
+ *
+ * Note: This method will be removed in v9.
+ *
+ * @internal
+ *
+ * @param faker The Faker instance to use.
+ * @param string The template string to parse. Defaults to `''`.
+ * @param symbol The symbol to replace with digits. Defaults to `'#'`.
+ *
+ * @example
+ * legacyReplaceSymbolWithNumber(faker) // ''
+ * legacyReplaceSymbolWithNumber(faker, '#####') // '04812'
+ * legacyReplaceSymbolWithNumber(faker, '!####') // '27378'
+ * legacyReplaceSymbolWithNumber(faker, 'Your pin is: !####') // '29841'
+ *
+ * @since 8.4.0
+ */
+export function legacyReplaceSymbolWithNumber(
+  faker: SimpleFaker,
+  string: string = '',
+  symbol: string = '#'
+): string {
+  let str = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string.charAt(i) === symbol) {
+      str += faker.number.int(9);
+    } else if (string.charAt(i) === '!') {
+      str += faker.number.int({ min: 2, max: 9 });
+    } else {
+      str += string.charAt(i);
+    }
+  }
+
+  return str;
+}
+
+/**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
 export class SimpleHelpersModule extends SimpleModuleBase {
@@ -198,6 +240,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @param string The template string to parse. Defaults to `''`.
    * @param symbol The symbol to replace with digits. Defaults to `'#'`.
    *
+   * @see faker.string.numeric(): For the replacement method.
+   *
    * @example
    * faker.helpers.replaceSymbolWithNumber() // ''
    * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
@@ -205,20 +249,18 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.string.numeric()` instead. Example: `value.replace(/#+/g, (m) => faker.string.numeric(m.length));`
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    let str = '';
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === symbol) {
-        str += this.faker.number.int(9);
-      } else if (string.charAt(i) === '!') {
-        str += this.faker.number.int({ min: 2, max: 9 });
-      } else {
-        str += string.charAt(i);
-      }
-    }
+    deprecated({
+      deprecated: 'faker.helpers.replaceSymbolWithNumber',
+      proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
+      since: '8.4',
+      until: '9.0',
+    });
 
-    return str;
+    return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
   }
 
   /**
@@ -309,7 +351,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     // default values required for calling method without arguments
 
     string = legacyRegexpStringParse(this.faker, string); // replace [4-9] with a random number in range etc...
-    string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
+    string = legacyReplaceSymbolWithNumber(this.faker, string, symbol); // replace ### with random numbers
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
@@ -376,8 +418,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param pattern The template string/RegExp to generate a matching string for.
    *
-   * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
-   * @throws If invalid quantifier symbol is passed in.
+   * @throws If min value is more than max value in quantifier, e.g. `#{10,5}`.
+   * @throws If an invalid quantifier symbol is passed in.
    *
    * @example
    * faker.helpers.fromRegExp('#{5}') // '#####'
@@ -937,7 +979,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     const random = this.faker.number.float({
       min: 0,
       max: total,
-      fractionDigits: 9,
     });
     let current = 0;
     for (const { weight, value } of array) {
@@ -1419,66 +1460,15 @@ export class HelpersModule extends SimpleHelpersModule {
     // extract method name from between the {{ }} that we found
     // for example: {{person.firstName}}
     const token = pattern.substring(start + 2, end + 2);
-    let method = token.replace('}}', '').replace('{{', '');
+    const method = token.replace('}}', '').replace('{{', '');
 
-    // extract method parameters
-    const regExp = /\(([^)]*)\)/;
-    const matches = regExp.exec(method);
-    let parameters = '';
-    if (matches) {
-      method = method.replace(regExp, '');
-      parameters = matches[1];
-    }
-
-    // split the method into module and function
-    const parts = method.split('.');
-
-    let currentModuleOrMethod: unknown = this.faker;
-    let currentDefinitions: unknown = this.faker.rawDefinitions;
-
-    // Search for the requested method or definition
-    for (const part of parts) {
-      currentModuleOrMethod =
-        currentModuleOrMethod?.[part as keyof typeof currentModuleOrMethod];
-      currentDefinitions =
-        currentDefinitions?.[part as keyof typeof currentDefinitions];
-    }
-
-    // Make method executable
-    let fn: (...args: unknown[]) => unknown;
-    if (typeof currentModuleOrMethod === 'function') {
-      fn = currentModuleOrMethod as (args?: unknown) => unknown;
-    } else if (Array.isArray(currentDefinitions)) {
-      fn = () =>
-        this.faker.helpers.arrayElement(currentDefinitions as unknown[]);
-    } else {
-      throw new FakerError(`Invalid module method or definition: ${method}
-- faker.${method} is not a function
-- faker.definitions.${method} is not an array`);
-    }
-
-    // assign the function from the module.function namespace
-    fn = fn.bind(this);
-
-    // If parameters are populated here, they are always going to be of string type
-    // since we might actually be dealing with an object or array,
-    // we always attempt to the parse the incoming parameters into JSON
-    let params: unknown[];
-    // Note: we experience a small performance hit here due to JSON.parse try / catch
-    // If anyone actually needs to optimize this specific code path, please open a support issue on github
-    try {
-      params = JSON.parse(`[${parameters}]`);
-    } catch {
-      // since JSON.parse threw an error, assume parameters was actually a string
-      params = [parameters];
-    }
-
-    const result = String(fn(...params));
+    const result = fakeEval(method, this.faker);
+    const stringified = String(result);
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
     const res =
-      pattern.substring(0, start) + result + pattern.substring(end + 2);
+      pattern.substring(0, start) + stringified + pattern.substring(end + 2);
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
