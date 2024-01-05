@@ -100,7 +100,6 @@ export class NumberModule extends SimpleModuleBase {
    * If multipleOf is passed, the upper bound is inclusive and the `fractionDigits` option has to be excluded.
    * @param options.fractionDigits The maximum number of digits to appear after the decimal point.
    * This parameter has to be excluded if `multipleOf` is provided.
-   * Defaults to `16`.
    *
    * @throws When `min` is greater than `max`.
    * @throws When `precision` is negative.
@@ -138,8 +137,6 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
           /**
            * The number of digits to appear after the decimal point.
-           *
-           * @default 16
            */
           fractionDigits?: number;
           /*
@@ -161,13 +158,8 @@ export class NumberModule extends SimpleModuleBase {
       };
     }
 
-    const {
-      min = 0,
-      max = 1,
-      precision,
-      multipleOf: possibleMultipleOf = precision,
-      fractionDigits = 16,
-    } = options;
+    const { min = 0, max = 1, precision, fractionDigits } = options;
+    let { multipleOf = precision } = options;
 
     if (precision !== undefined) {
       deprecated({
@@ -186,38 +178,47 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (
-      typeof options.fractionDigits === 'number' &&
-      typeof options.multipleOf === 'number'
-    ) {
+    if (typeof fractionDigits === 'number' && typeof multipleOf === 'number') {
       throw new FakerError(
         'multipleOf and fractionDigits cannot exist at the same time.'
       );
     }
 
-    if (fractionDigits < 0) {
-      throw new FakerError(
-        'The fractional digits count should be greater than 0.'
-      );
+    if (fractionDigits !== undefined) {
+      if (fractionDigits < 0) {
+        throw new FakerError(
+          'The fractional digits count should be greater than 0.'
+        );
+      }
+
+      if (multipleOf === undefined) {
+        multipleOf = 10 ** -fractionDigits;
+      }
     }
 
-    if (possibleMultipleOf !== undefined && possibleMultipleOf <= 0) {
-      // TODO @xDivisionByZerox: Clean up in v9.0
-      throw new FakerError(`multipleOf/precision should be greater than 0.`);
+    if (multipleOf !== undefined) {
+      if (multipleOf <= 0) {
+        // TODO @xDivisionByZerox: Clean up in v9.0
+        throw new FakerError(`multipleOf/precision should be greater than 0.`);
+      }
+
+      const logPrecision = Math.log10(multipleOf);
+      // Workaround to get integer values for the inverse of all multiples of the form 10^-n
+      const factor =
+        multipleOf < 1 && Number.isInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / multipleOf;
+      const int = this.int({
+        min: min * factor,
+        max: max * factor,
+      });
+      return int / factor;
     }
 
-    const multipleOf = possibleMultipleOf ?? 10 ** -fractionDigits;
-    const logPrecision = Math.log10(multipleOf);
-    // Workaround to get integer values for the inverse of all multiples of the form 10^-n
-    const factor =
-      multipleOf < 1 && Number.isInteger(logPrecision)
-        ? 10 ** -logPrecision
-        : 1 / multipleOf;
-    const int = this.int({
-      min: min * factor,
-      max: max * factor,
-    });
-    return int / factor;
+    // @ts-expect-error: access private member field
+    const randomizer = this.faker._randomizer;
+    const real = randomizer.next();
+    return real * (max - min) + min;
   }
 
   /**
