@@ -114,7 +114,8 @@ export class NumberModule extends SimpleModuleBase {
    * faker.number.float({ max: 100 }) // 17.3687307164073
    * faker.number.float({ multipleOf: 0.25 }) // 3.75
    * faker.number.float({ fractionDigits: 1 }) // 0.9
-   * faker.number.float({ min: 10, max: 100, multipleOf: 0.002, fractionDigits: 3 }) // 35.416
+   * faker.number.float({ min: 10, max: 100, multipleOf: 0.02 }) // 35.42
+   * faker.number.float({ min: 10, max: 100, fractionDigits: 3 }) // 65.716
    *
    * @since 8.0.0
    */
@@ -163,7 +164,7 @@ export class NumberModule extends SimpleModuleBase {
       min = 0,
       max = 1,
       precision,
-      multipleOf = precision,
+      multipleOf: possibleMultipleOf = precision,
       fractionDigits = 16,
     } = options;
 
@@ -184,23 +185,13 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (multipleOf !== undefined) {
-      if (multipleOf <= 0) {
-        // TODO @xDivisionByZerox: Clean up in v9.0
-        throw new FakerError(`multipleOf/precision should be greater than 0.`);
-      }
-
-      const logPrecision = Math.log10(multipleOf);
-      // Workaround to get integer values for the inverse of all multiples of the form 10^-n
-      const factor =
-        multipleOf < 1 && Number.isInteger(logPrecision)
-          ? 10 ** -logPrecision
-          : 1 / multipleOf;
-      const int = this.int({
-        min: min * factor,
-        max: max * factor,
-      });
-      return int / factor;
+    if (
+      typeof options.fractionDigits === 'number' &&
+      typeof options.multipleOf === 'number'
+    ) {
+      throw new FakerError(
+        'multipleOf and fractionDigits cannot exist at the same time.'
+      );
     }
 
     if (fractionDigits < 0) {
@@ -209,15 +200,23 @@ export class NumberModule extends SimpleModuleBase {
       );
     }
 
-    // @ts-expect-error: access private member field
-    const randomizer = this.faker._randomizer;
-    let real = randomizer.next() * (max - min) + min;
-
-    if (fractionDigits !== undefined) {
-      real = Number.parseFloat(real.toFixed(fractionDigits));
+    if (possibleMultipleOf !== undefined && possibleMultipleOf <= 0) {
+      // TODO @xDivisionByZerox: Clean up in v9.0
+      throw new FakerError(`multipleOf/precision should be greater than 0.`);
     }
 
-    return real;
+    const multipleOf = possibleMultipleOf ?? 10 ** -fractionDigits;
+    const logPrecision = Math.log10(multipleOf);
+    // Workaround to get integer values for the inverse of all multiples of the form 10^-n
+    const factor =
+      multipleOf < 1 && Number.isInteger(logPrecision)
+        ? 10 ** -logPrecision
+        : 1 / multipleOf;
+    const int = this.int({
+      min: min * factor,
+      max: max * factor,
+    });
+    return int / factor;
   }
 
   /**
