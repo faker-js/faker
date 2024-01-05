@@ -23,6 +23,11 @@ describe('number', () => {
         .it('with min', { min: -42 })
         .it('with max', { max: 69 })
         .it('with min and max', { min: -42, max: 69 })
+        .it('with min, max and precision', {
+          min: -42,
+          max: 69,
+          precision: 0.0001,
+        })
         .it('with min, max and fractionDigits', {
           min: -42,
           max: 69,
