@@ -356,7 +356,7 @@ describe('number', () => {
         );
       });
 
-      it('throws an error for and0', () => {
+      it('throws an error for multipleOf 0', () => {
         expect(() => faker.number.float({ multipleOf: 0 })).toThrow(
           new FakerError('multipleOf/precision should be greater than 0.')
         );
