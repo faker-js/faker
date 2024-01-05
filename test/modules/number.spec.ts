@@ -233,25 +233,6 @@ describe('number', () => {
         }
       });
 
-      it.todo(
-        'provides numbers with a given precision of 0.5 steps'
-        // () => {
-        //   const results = [
-        //     ...new Set(
-        //       Array.from({ length: 50 }, () =>
-        //         faker.number.float({
-        //           min: 0,
-        //           max: 1.5,
-        //           precision: 0.5,
-        //         })
-        //       )
-        //     ),
-        //   ].sort();
-
-        //   expect(results).toEqual([0, 0.5, 1, 1.5]);
-        // }
-      );
-
       it('provides numbers with a given multipleOf of 0.5 steps', () => {
         const results = [
           ...new Set(
