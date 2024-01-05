@@ -102,10 +102,10 @@ export class NumberModule extends SimpleModuleBase {
    * This parameter is ignored if `multipleOf` is given as well.
    * Defaults to `16`.
    *
-   * @throws If `max` is smaller than `min`.
-   * @throws If `precision` is negative.
-   * @throws If `multipleOf` is negative.
-   * @throws If `fractionDigits` is negative.
+   * @throws When `min` is greater than `max`.
+   * @throws When `precision` is negative.
+   * @throws When `multipleOf` is negative.
+   * @throws When `fractionDigits` is negative.
    *
    * @example
    * faker.number.float() // 0.5688541042618454
