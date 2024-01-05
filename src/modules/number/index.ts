@@ -98,7 +98,7 @@ export class NumberModule extends SimpleModuleBase {
    * This property can be used to limit the result to a specific number of decimal digits.
    * For example `0.01` will round to 2 decimal points.
    * If multipleOf is passed, the upper bound is inclusive and the `fractionDigits` option has to be excluded.
-   * @param options.fractionDigits The number of digits to appear after the decimal point.
+   * @param options.fractionDigits The maximum number of digits to appear after the decimal point.
    * This parameter has to be excluded if `multipleOf` is provided.
    * Defaults to `16`.
    *
