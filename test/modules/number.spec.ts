@@ -276,7 +276,19 @@ describe('number', () => {
         }
       });
 
-      it('throws an error for negative fractional digits', () => {
+      it('should ignore fractionDigits if multipleOf is provided at the same time', () => {
+        const actual = faker.number.float({
+          min: 0,
+          max: 10,
+          multipleOf: 0.25,
+          fractionDigits: 6,
+        });
+        const fractionCount = actual.toString().split('.')[1]?.length ?? 0;
+        expect(actual % 0.25).toBe(0);
+        expect(fractionCount).toBeLessThanOrEqual(2);
+      });
+
+      it('throws an error for negative fractionDigits', () => {
         expect(() => faker.number.float({ fractionDigits: -2 })).toThrow(
           new FakerError(
             'The fractional digits count should be greater than 0.'
