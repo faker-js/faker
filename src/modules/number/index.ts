@@ -97,15 +97,16 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.multipleOf The generated number will be a multiple of this property.
    * This property can be used to limit the result to a specific number of decimal digits.
    * For example `0.01` will round to 2 decimal points.
-   * If multipleOf is passed, the upper bound is inclusive.
+   * If multipleOf is passed, the upper bound is inclusive and the `fractionDigits` option has to be excluded.
    * @param options.fractionDigits The number of digits to appear after the decimal point.
-   * This parameter is ignored if `multipleOf` is given as well.
+   * This parameter has to be excluded if `multipleOf` is provided.
    * Defaults to `16`.
    *
    * @throws When `min` is greater than `max`.
    * @throws When `precision` is negative.
    * @throws When `multipleOf` is negative.
    * @throws When `fractionDigits` is negative.
+   * @throws When `fractionDigits` and `multipleOf` is passed in the same options object.
    *
    * @example
    * faker.number.float() // 0.5688541042618454
