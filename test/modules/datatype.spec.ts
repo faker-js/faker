@@ -334,10 +334,10 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.float({ min, max, precision: 0 });
-          }).toThrowError('Precision should be greater than 0.');
+          }).toThrowError('multipleOf/precision should be greater than 0.');
           expect(() => {
             faker.datatype.float({ min, max, precision: -1 });
-          }).toThrowError('Precision should be greater than 0.');
+          }).toThrowError('multipleOf/precision should be greater than 0.');
         });
       });
 
