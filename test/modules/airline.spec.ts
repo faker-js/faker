@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Aircraft, faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -96,7 +96,7 @@ describe('airline', () => {
         it('should return a random narrowbody seat when not passing an argument', () => {
           const seat = faker.airline.seat();
           const matchResult = seatRegex.exec(seat);
-          expect(matchResult).not.toBeNull();
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 35);
@@ -107,7 +107,7 @@ describe('airline', () => {
             aircraftType: Aircraft.Narrowbody,
           });
           const matchResult = seatRegex.exec(seat);
-          expect(matchResult).not.toBeNull();
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 35);
@@ -116,7 +116,7 @@ describe('airline', () => {
         it('should return a random regional seat', () => {
           const seat = faker.airline.seat({ aircraftType: Aircraft.Regional });
           const matchResult = seatRegex.exec(seat);
-          expect(matchResult).not.toBeNull();
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 20);
@@ -125,7 +125,7 @@ describe('airline', () => {
         it('should return a random widebody seat', () => {
           const seat = faker.airline.seat({ aircraftType: Aircraft.Widebody });
           const matchResult = seatRegex.exec(seat);
-          expect(matchResult).not.toBeNull();
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 60);
@@ -179,3 +179,7 @@ describe('airline', () => {
     }
   );
 });
+
+function expectNotNull<T>(value: T): asserts value is NonNullable<T> {
+  expect(value).not.toBeNull();
+}

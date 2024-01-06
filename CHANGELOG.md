@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.1](https://github.com/faker-js/faker/compare/v8.3.0...v8.3.1) (2023-11-14)
+
+
+### Bug Fixes
+
+* remove `[@internal](https://github.com/internal)` from module parent classes ([#2548](https://github.com/faker-js/faker/issues/2548)) ([77f54ad](https://github.com/faker-js/faker/commit/77f54ad78f9d7952b3b315f72878267f18ed1e69))
+
+## [8.3.0](https://github.com/faker-js/faker/compare/v8.2.0...v8.3.0) (2023-11-14)
+
+
+### Features
+
+* **person:** use fake patterns for jobTitle ([#2528](https://github.com/faker-js/faker/issues/2528)) ([b40ad45](https://github.com/faker-js/faker/commit/b40ad45ad3cca6769968a63264e6d925bf4b328a))
+
+
+### Bug Fixes
+
+* **date:** ensures correct range for birthdate ([#2535](https://github.com/faker-js/faker/issues/2535)) ([7ce8c28](https://github.com/faker-js/faker/commit/7ce8c285cb5b2d13e95a17be78ecbd52f3c7d9db))
+* **finance:** maskedNumber has incorrect defaults ([#2494](https://github.com/faker-js/faker/issues/2494)) ([e0ba50b](https://github.com/faker-js/faker/commit/e0ba50b37e438503ed1899bff35afc92b4f8f49c))
+* **locale:** improve Swedish phone numbers format ([#2520](https://github.com/faker-js/faker/issues/2520)) ([e4865df](https://github.com/faker-js/faker/commit/e4865df199359797397cc3c5455f3a1a9c179f93))
+
+
+### Changed Locales
+
+* **locale:** remove fr_CH data which is identical to fr ([#2526](https://github.com/faker-js/faker/issues/2526)) ([fafcba4](https://github.com/faker-js/faker/commit/fafcba473f8a91eeb8230ebdc1ad5039b25091e1))
+
+
+### New Locales
+
+* **locale:** add person to fr_SN ([#2537](https://github.com/faker-js/faker/issues/2537)) ([ef965da](https://github.com/faker-js/faker/commit/ef965da48a8089e6bb19bcf260bfcd8af1a43799))
+* **locale:** add Senegal locale ([#2525](https://github.com/faker-js/faker/issues/2525)) ([6df70bc](https://github.com/faker-js/faker/commit/6df70bce16500ab74a37f932f2e17a08f297430b))
+* **locale:** add streets to location fr_SN ([#2536](https://github.com/faker-js/faker/issues/2536)) ([36fc517](https://github.com/faker-js/faker/commit/36fc517d17591c8ea1d5135d9a93c7591e3d1f74))
+* **locale:** and location to fr_SN ([#2533](https://github.com/faker-js/faker/issues/2533)) ([f730125](https://github.com/faker-js/faker/commit/f730125ffb941fe936d6a18c775cbe3a99b312dc))
+
 ## [8.2.0](https://github.com/faker-js/faker/compare/v8.1.0...v8.2.0) (2023-10-14)
 
 

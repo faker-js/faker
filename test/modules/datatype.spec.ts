@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
@@ -232,6 +232,14 @@ describe('datatype', () => {
             new FakerError(`Max ${max} should be greater than min ${min}.`)
           );
         });
+
+        it('should throw when precision is negative', () => {
+          expect(() => {
+            faker.datatype.number({ precision: -0.01 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
+        });
       });
 
       describe('float', () => {
@@ -306,6 +314,25 @@ describe('datatype', () => {
           expect(opts.min).toBe(min);
           expect(opts.max).toBe(max);
         });
+
+        it('should throw when min > max', () => {
+          const min = 10;
+          const max = 9;
+
+          expect(() => {
+            faker.datatype.number({ min, max });
+          }).toThrow(
+            new FakerError(`Max ${max} should be greater than min ${min}.`)
+          );
+        });
+
+        it('should throw when precision is negative', () => {
+          expect(() => {
+            faker.datatype.float({ precision: -0.01 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
+        });
       });
 
       describe('datetime', () => {
@@ -329,12 +356,6 @@ describe('datatype', () => {
           const generatedString = faker.datatype.string(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
-        });
-
-        it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
-          const generatedString = faker.datatype.string(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
         });
       });
 

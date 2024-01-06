@@ -43,5 +43,7 @@ export type PersonDefinition = LocaleEntry<{
   job_area: string[];
   job_type: string[];
 
+  job_title_pattern: string[];
+
   western_zodiac_sign: string[];
 }>;

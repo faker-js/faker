@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -722,12 +722,6 @@ describe('string', () => {
           const generatedString = faker.string.sample(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
-        });
-
-        it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = 2 ** 28;
-          const generatedString = faker.string.sample(overMaxValue);
-          expect(generatedString).toHaveLength(2 ** 20);
         });
 
         it('should return string with a specific length', () => {
