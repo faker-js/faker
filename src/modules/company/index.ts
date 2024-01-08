@@ -1,6 +1,5 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 
 /**
  * Module to generate company related entries.
@@ -16,15 +15,11 @@ import { deprecated } from '../../internal/deprecated';
  * - For products and commerce, use [`faker.commerce`](https://fakerjs.dev/api/commerce.html).
  * - For finance-related entries, use [`faker.finance`](https://fakerjs.dev/api/finance.html).
  */
-export class CompanyModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class CompanyModule extends ModuleBase {
   /**
    * Returns an array with possible company name suffixes.
    *
-   * @see faker.company.name()
+   * @see faker.company.name(): For generating a complete company name.
    *
    * @example
    * faker.company.suffixes() // [ 'Inc', 'and Sons', 'LLC', 'Group' ]
@@ -60,7 +55,7 @@ export class CompanyModule {
   /**
    * Returns a random company suffix.
    *
-   * @see faker.company.name()
+   * @see faker.company.name(): For generating a complete company name.
    *
    * @example
    * faker.company.companySuffix() // 'and Sons'

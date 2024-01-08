@@ -13,7 +13,6 @@ import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
 import sex from './sex';
-import title from './title';
 
 const person: PersonDefinition = {
   female_first_name,
@@ -26,7 +25,6 @@ const person: PersonDefinition = {
   name: name_,
   prefix,
   sex,
-  title,
 };
 
 export default person;

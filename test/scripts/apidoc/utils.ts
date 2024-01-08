@@ -16,14 +16,13 @@ import { mapByName } from '../../../scripts/apidoc/utils';
  * @param options The TypeDoc options.
  * @param includeTestModules Whether to include the test modules.
  */
-export function loadProjectModules(
+export async function loadProjectModules(
   options?: Partial<TypeDocOptions>,
   includeTestModules = false
-): Record<
-  string,
-  [DeclarationReflection, Record<string, SignatureReflection>]
+): Promise<
+  Record<string, [DeclarationReflection, Record<string, SignatureReflection>]>
 > {
-  const [, project] = loadProject(options);
+  const [, project] = await loadProject(options);
 
   const modules = selectApiModules(project, includeTestModules);
 
@@ -33,20 +32,25 @@ export function loadProjectModules(
 /**
  * Loads the example methods using TypeDoc.
  */
-export function loadExampleMethods(): Record<string, SignatureReflection> {
-  return loadProjectModules(
+export async function loadExampleMethods(): Promise<
+  Record<string, SignatureReflection>
+> {
+  const modules = await loadProjectModules(
     {
       entryPoints: ['test/scripts/apidoc/signature.example.ts'],
     },
     true
-  )['SignatureTest'][1];
+  );
+  return modules['SignatureTest'][1];
 }
 
 /**
  * Loads the example modules using TypeDoc.
  */
-export function loadExampleModules(): Record<string, DeclarationReflection> {
-  const modules = loadProjectModules(
+export async function loadExampleModules(): Promise<
+  Record<string, DeclarationReflection>
+> {
+  const modules = await loadProjectModules(
     {
       entryPoints: ['test/scripts/apidoc/module.example.ts'],
     },

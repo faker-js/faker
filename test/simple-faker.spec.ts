@@ -1,16 +1,15 @@
 import type { SpyInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { SimpleFaker, simpleFaker } from '../src';
+import { keys } from '../src/internal/keys';
 
 describe('simpleFaker', () => {
   it('should not log anything on startup', () => {
-    const spies: SpyInstance[] = Object.keys(console)
+    const spies: SpyInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
-      .map((methodName) =>
-        vi.spyOn(console, methodName as keyof typeof console)
-      );
+      .map((methodName) => vi.spyOn(console, methodName));
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
     require('..').simpleFaker;
 
     new SimpleFaker();

@@ -257,7 +257,7 @@ describe('image', () => {
       'objects',
       'people',
       'technology',
-    ];
+    ] satisfies Array<keyof typeof faker.image.unsplash>;
 
     describe.each(categories)(`%s()`, (category) => {
       it(`should return a random ${category} image url`, () => {

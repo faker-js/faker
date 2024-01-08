@@ -4,8 +4,7 @@
  * responsible for setting standards relating to many aspects of airline
  * operations.
  */
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -78,11 +77,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  *
  * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://fakerjs.dev/api/person.html) module.
  */
-export class AirlineModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class AirlineModule extends ModuleBase {
   /**
    * Generates a random airport.
    *
@@ -130,7 +125,7 @@ export class AirlineModule {
    * are used by airlines to identify reservations. They're also known as booking reference numbers,
    * locator codes, confirmation codes, or reservation codes.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.allowNumerics Whether to allow numeric characters. Defaults to `false`.
    * @param options.allowVisuallySimilarCharacters Whether to allow visually similar characters such as '1' and 'I'. Defaults to `false`.
    *
@@ -160,7 +155,7 @@ export class AirlineModule {
   ): string {
     const { allowNumerics = false, allowVisuallySimilarCharacters = false } =
       options;
-    const excludedChars = [];
+    const excludedChars: string[] = [];
     if (!allowNumerics) {
       excludedChars.push(...numerics);
     }
@@ -179,7 +174,7 @@ export class AirlineModule {
   /**
    * Generates a random seat.
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.aircraftType The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`. Defaults to `narrowbody`.
    *
    * @example
@@ -230,7 +225,7 @@ export class AirlineModule {
    * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    * ```
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.length The number or range of digits to generate. Defaults to `{ min: 1, max: 4 }`.
    * @param options.addLeadingZeros Whether to pad the flight number up to 4 digits with leading zeros. Defaults to `false`.
    *
