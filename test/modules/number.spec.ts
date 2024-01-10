@@ -312,11 +312,15 @@ describe('number', () => {
         );
       });
 
+      it('throws an error for non integer fractionDigits numbers', () => {
+        expect(() => faker.number.float({ fractionDigits: 1.337 })).toThrow(
+          new FakerError('fractionDigits should be an integer.')
+        );
+      });
+
       it('throws an error for negative fractionDigits', () => {
         expect(() => faker.number.float({ fractionDigits: -2 })).toThrow(
-          new FakerError(
-            'The fractional digits count should be greater than 0.'
-          )
+          new FakerError('fractionDigits should be greater than 0.')
         );
       });
 

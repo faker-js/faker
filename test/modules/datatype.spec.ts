@@ -233,16 +233,12 @@ describe('datatype', () => {
           );
         });
 
-        it('should throw when precision <= 0', () => {
-          const min = 10;
-          const max = 9;
-
+        it('should throw when precision is negative', () => {
           expect(() => {
-            faker.datatype.number({ min, max, precision: 0 });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
-          expect(() => {
-            faker.datatype.number({ min, max, precision: -1 });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+            faker.datatype.number({ precision: -0.01 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
         });
       });
 

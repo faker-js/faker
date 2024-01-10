@@ -158,8 +158,15 @@ export class NumberModule extends SimpleModuleBase {
       };
     }
 
-    const { min = 0, max = 1, precision, fractionDigits } = options;
-    let { multipleOf = precision } = options;
+    const {
+      min = 0,
+      max = 1,
+      fractionDigits,
+      precision,
+      multipleOf: originalMultipleOf = precision,
+      multipleOf = precision ??
+        (fractionDigits == null ? undefined : 10 ** -fractionDigits),
+    } = options;
 
     if (precision !== undefined) {
       deprecated({
@@ -178,21 +185,22 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (typeof fractionDigits === 'number' && typeof multipleOf === 'number') {
+    if (
+      typeof fractionDigits === 'number' &&
+      typeof originalMultipleOf === 'number'
+    ) {
       throw new FakerError(
         'multipleOf and fractionDigits cannot exist at the same time.'
       );
     }
 
     if (fractionDigits !== undefined) {
-      if (fractionDigits < 0) {
-        throw new FakerError(
-          'The fractional digits count should be greater than 0.'
-        );
+      if (fractionDigits % 1 !== 0) {
+        throw new FakerError('fractionDigits should be an integer.');
       }
 
-      if (multipleOf === undefined) {
-        multipleOf = 10 ** -fractionDigits;
+      if (fractionDigits < 0) {
+        throw new FakerError('fractionDigits should be greater than 0.');
       }
     }
 
