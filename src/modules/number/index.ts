@@ -185,17 +185,14 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (
-      typeof fractionDigits === 'number' &&
-      typeof originalMultipleOf === 'number'
-    ) {
-      throw new FakerError(
-        'multipleOf and fractionDigits cannot exist at the same time.'
-      );
-    }
-
     if (fractionDigits !== undefined) {
-      if (fractionDigits % 1 !== 0) {
+      if (typeof originalMultipleOf === 'number') {
+        throw new FakerError(
+          'multipleOf and fractionDigits cannot exist at the same time.'
+        );
+      }
+
+      if (!Number.isInteger(fractionDigits)) {
         throw new FakerError('fractionDigits should be an integer.');
       }
 
