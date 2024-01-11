@@ -188,7 +188,7 @@ export class NumberModule extends SimpleModuleBase {
     if (fractionDigits !== undefined) {
       if (typeof originalMultipleOf === 'number') {
         throw new FakerError(
-          'multipleOf and fractionDigits cannot exist at the same time.'
+          'multipleOf and fractionDigits cannot be set at the same time.'
         );
       }
 
@@ -197,7 +197,7 @@ export class NumberModule extends SimpleModuleBase {
       }
 
       if (fractionDigits < 0) {
-        throw new FakerError('fractionDigits should be greater than 0.');
+        throw new FakerError('fractionDigits should be greater than or equal to 0.');
       }
     }
 
