@@ -338,7 +338,8 @@ export class CommerceModule extends ModuleBase {
       return `${symbol}${generated.toFixed(dec)}`;
     }
 
-    const lastDigit =
+    const oldLastDigit = (generated * 10 ** dec) % 10;
+    const newLastDigit =
       (1 / 10) ** dec *
       this.faker.helpers.weightedArrayElement([
         { weight: 5, value: 9 },
@@ -350,7 +351,7 @@ export class CommerceModule extends ModuleBase {
         },
       ]);
 
-    const combined = generated + lastDigit;
+    const combined = generated - oldLastDigit + newLastDigit;
 
     if (combined <= max && combined >= min) {
       return `${symbol}${combined.toFixed(dec)}`;

@@ -112,7 +112,7 @@ exports[`commerce > 1337 > price > with max 1`] = `"262.79"`;
 
 exports[`commerce > 1337 > price > with max option 1`] = `"351.09"`;
 
-exports[`commerce > 1337 > price > with min 1`] = `"298.99"`;
+exports[`commerce > 1337 > price > with min 1`] = `"288.99"`;
 
 exports[`commerce > 1337 > price > with min and max 1`] = `"63.19"`;
 
