@@ -168,7 +168,7 @@ export class NumberModule extends SimpleModuleBase {
         (fractionDigits == null ? undefined : 10 ** -fractionDigits),
     } = options;
 
-    if (precision !== undefined) {
+    if (precision != null) {
       deprecated({
         deprecated: 'faker.number.float({ precision })',
         proposed: 'faker.number.float({ multipleOf })',
@@ -185,8 +185,8 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (fractionDigits !== undefined) {
-      if (typeof originalMultipleOf === 'number') {
+    if (fractionDigits != null) {
+      if (originalMultipleOf != null) {
         throw new FakerError(
           'multipleOf and fractionDigits cannot be set at the same time.'
         );
@@ -203,7 +203,7 @@ export class NumberModule extends SimpleModuleBase {
       }
     }
 
-    if (multipleOf !== undefined) {
+    if (multipleOf != null) {
       if (multipleOf <= 0) {
         // TODO @xDivisionByZerox: Clean up in v9.0
         throw new FakerError(`multipleOf/precision should be greater than 0.`);
