@@ -311,7 +311,7 @@ export class CommerceModule extends ModuleBase {
     const { dec = 2, max = 1000, min = 1, symbol = '' } = options;
 
     if (min < 0 || max < 0) {
-      return `${symbol}${0.0}`;
+      return `${symbol}0`;
     }
 
     if (min === max) {

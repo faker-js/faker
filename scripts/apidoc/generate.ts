@@ -17,7 +17,7 @@ const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
  * Generates the API documentation.
  */
 export async function generate(): Promise<void> {
-  const [app, project] = loadProject();
+  const [app, project] = await loadProject();
 
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);

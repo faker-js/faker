@@ -31,19 +31,17 @@ type CommentHolder = Pick<Reflection, 'comment'>;
  *
  * @returns The TypeDoc application and the project reflection.
  */
-export function loadProject(
+export async function loadProject(
   options: Partial<TypeDocOptions> = {
     entryPoints: ['src/index.ts'],
     pretty: true,
     cleanOutputDir: true,
     tsconfig: 'tsconfig.build.json',
   }
-): [Application, ProjectReflection] {
-  const app = newTypeDocApp();
+): Promise<[Application, ProjectReflection]> {
+  const app = await newTypeDocApp(options);
 
-  app.bootstrap(options);
-
-  const project = app.convert();
+  const project = await app.convert();
 
   if (!project) {
     throw new Error('Failed to convert project');
@@ -56,13 +54,15 @@ export function loadProject(
 
 /**
  * Creates and configures a new typedoc application.
+ *
+ * @param options The options to use for the project.
  */
-function newTypeDocApp(): Application {
-  const app = new Application();
-
-  app.options.addReader(new TSConfigReader());
-  // If you want TypeDoc to load typedoc.json files
-  //app.options.addReader(new TypeDoc.TypeDocReader());
+async function newTypeDocApp(
+  options?: Partial<TypeDocOptions>
+): Promise<Application> {
+  const app = await Application.bootstrapWithPlugins(options, [
+    new TSConfigReader(),
+  ]);
 
   // Read parameter defaults
   app.converter.on(Converter.EVENT_CREATE_DECLARATION, parameterDefaultReader);

@@ -4,12 +4,11 @@ import { analyzeModule } from '../../../scripts/apidoc/module-methods';
 import * as ModuleTests from './module.example';
 import { loadExampleModules } from './utils';
 
+beforeAll(initMarkdownRenderer);
+const modules = await loadExampleModules();
+
 describe('module', () => {
   describe('analyzeModule()', () => {
-    const modules = loadExampleModules();
-
-    beforeAll(initMarkdownRenderer);
-
     it('dummy dependency to rerun the test if the example changes', () => {
       expect(Object.keys(ModuleTests)).not.toEqual([]);
     });
