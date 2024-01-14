@@ -59,7 +59,7 @@ export class InternetModule extends ModuleBase {
       since: '8.4',
       until: '9.0',
     });
-    // TODO @ST-DDT 2024-01-14: Replace with `faker.image.avatar()` in v9
+    // TODO @ST-DDT 2024-01-14: Remove or replace with `faker.image.avatar()` in v9
     return this.faker.image.avatarLegacy();
   }
 
