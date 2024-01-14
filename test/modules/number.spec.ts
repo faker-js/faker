@@ -307,7 +307,7 @@ describe('number', () => {
           })
         ).toThrow(
           new FakerError(
-            'multipleOf and fractionDigits cannot exist at the same time.'
+            'multipleOf and fractionDigits cannot be set at the same time.'
           )
         );
       });
@@ -320,7 +320,7 @@ describe('number', () => {
 
       it('throws an error for negative fractionDigits', () => {
         expect(() => faker.number.float({ fractionDigits: -2 })).toThrow(
-          new FakerError('fractionDigits should be greater than 0.')
+          new FakerError('fractionDigits should be greater than or equal to 0.')
         );
       });
 

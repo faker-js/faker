@@ -197,7 +197,9 @@ export class NumberModule extends SimpleModuleBase {
       }
 
       if (fractionDigits < 0) {
-        throw new FakerError('fractionDigits should be greater than or equal to 0.');
+        throw new FakerError(
+          'fractionDigits should be greater than or equal to 0.'
+        );
       }
     }
 
