@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "@actions/github": "~6.0.0",
-    "@algolia/client-search": "~4.22.0",
+    "@algolia/client-search": "~4.22.1",
     "@eslint-types/deprecation": "2.0.0-1",
     "@eslint-types/jsdoc": "~46.9.1",
     "@eslint-types/prettier": "5.1.2",
