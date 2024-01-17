@@ -22,11 +22,11 @@ exports[`image > 42 > dataUri > with width 1`] = `"data:image/svg+xml;base64,PHN
 
 exports[`image > 42 > dataUri > with width and height 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOGJlNGFiIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
 
-exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/BB9r963sR/1498/3186?grayscale&blur=8"`;
+exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/JMBB9r/1498/3186"`;
 
-exports[`image > 42 > url > with height 1`] = `"https://picsum.photos/seed/MBB9r963s/1498/128?blur=2"`;
+exports[`image > 42 > url > with height 1`] = `"https://picsum.photos/seed/bJMBB9r963/1498/128"`;
 
-exports[`image > 42 > url > with width 1`] = `"https://picsum.photos/seed/MBB9r963s/128/1498?blur=2"`;
+exports[`image > 42 > url > with width 1`] = `"https://picsum.photos/seed/bJMBB9r963/128/1498"`;
 
 exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=7174621373661184"`;
 
@@ -98,13 +98,13 @@ exports[`image > 1211 > dataUri > with width 1`] = `"data:image/svg+xml;base64,P
 
 exports[`image > 1211 > dataUri > with width and height 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWFkYjQyIi8+PHRleHQgeD0iNjQiIHk9IjY0IiBmb250LXNpemU9IjIwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPjEyOHgxMjg8L3RleHQ+PC9zdmc+"`;
 
-exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/Z2F9G/3714/1836?blur=2"`;
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/3714/1836"`;
 
 exports[`image > 1211 > url > with height 1`] = `"https://loremflickr.com/3714/128?lock=8047677172350976"`;
 
 exports[`image > 1211 > url > with width 1`] = `"https://loremflickr.com/128/3714?lock=8047677172350976"`;
 
-exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/d8Z2F9GdL/128/128?grayscale&blur=9"`;
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/TMd8Z2F/128/128"`;
 
 exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/3714/1836?lock=8047677172350976"`;
 
@@ -176,9 +176,9 @@ exports[`image > 1337 > dataUri > with width and height 1`] = `"data:image/svg+x
 
 exports[`image > 1337 > url > noArgs 1`] = `"https://loremflickr.com/1048/2242?lock=1914819313664000"`;
 
-exports[`image > 1337 > url > with height 1`] = `"https://picsum.photos/seed/xs2jew/1048/128?grayscale&blur=2"`;
+exports[`image > 1337 > url > with height 1`] = `"https://picsum.photos/seed/dhxs2/1048/128"`;
 
-exports[`image > 1337 > url > with width 1`] = `"https://picsum.photos/seed/xs2jew/128/1048?grayscale&blur=2"`;
+exports[`image > 1337 > url > with width 1`] = `"https://picsum.photos/seed/dhxs2/128/1048"`;
 
 exports[`image > 1337 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=5048803172286464"`;
 

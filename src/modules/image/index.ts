@@ -133,7 +133,8 @@ export class ImageModule extends ModuleBase {
 
     const urlMethod = this.faker.helpers.arrayElement([
       this.urlLoremFlickr,
-      this.urlPicsumPhotos,
+      ({ width, height }: { width?: number; height?: number }) =>
+        this.urlPicsumPhotos({ width, height, grayscale: false, blur: 0 }),
     ]);
 
     return urlMethod({ width, height });
