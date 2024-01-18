@@ -18,8 +18,8 @@ export class RandomModule extends ModuleBase {
   /**
    * Returns a random word.
    *
-   * @see faker.lorem.word()
-   * @see faker.word.sample()
+   * @see faker.lorem.word(): For generating a random placeholder word.
+   * @see faker.word.sample(): For generating a random real word.
    *
    * @example
    * faker.random.word() // 'Seamless'
@@ -123,7 +123,7 @@ export class RandomModule extends ModuleBase {
       '_',
       '-',
     ];
-    let result: string;
+    let result = '';
 
     let iteration = 0;
 
@@ -157,8 +157,8 @@ export class RandomModule extends ModuleBase {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
-   * @see faker.lorem.words()
-   * @see faker.word.words()
+   * @see faker.lorem.words(): For generating a sequence of random placeholder words.
+   * @see faker.word.words(): For generating a sequence of random real words.
    *
    * @example
    * faker.random.words() // 'neural'
@@ -220,7 +220,7 @@ export class RandomModule extends ModuleBase {
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
-   * @see faker.string.alpha()
+   * @see faker.string.alpha(): For the replacement method.
    *
    * @example
    * faker.random.alpha() // 'b'
@@ -280,7 +280,7 @@ export class RandomModule extends ModuleBase {
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.alphanumeric()
+   * @see faker.string.alphanumeric(): For the replacement method.
    *
    * @example
    * faker.random.alphaNumeric() // '2'
@@ -329,7 +329,7 @@ export class RandomModule extends ModuleBase {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.numeric()
+   * @see faker.string.numeric(): For the replacement method.
    *
    * @example
    * faker.random.numeric() // '2'

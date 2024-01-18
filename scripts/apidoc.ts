@@ -8,4 +8,8 @@ async function build(): Promise<void> {
   await generate();
 }
 
-build().catch(console.error);
+build().catch((error) => {
+  // Workaround until top level await is available
+  console.error(error);
+  process.exit(1);
+});

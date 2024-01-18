@@ -24,6 +24,22 @@ export interface Currency {
 }
 
 /**
+ * Puts a space after every 4 characters.
+ *
+ * @internal
+ *
+ * @param iban The iban to pretty print.
+ */
+export function prettyPrintIban(iban: string): string {
+  let pretty = '';
+  for (let i = 0; i < iban.length; i += 4) {
+    pretty += `${iban.substring(i, i + 4)} `;
+  }
+
+  return pretty.trimEnd();
+}
+
+/**
  * Module to generate finance and money related entries.
  *
  * ### Overview
@@ -42,7 +58,7 @@ export class FinanceModule extends ModuleBase {
    *
    * @param length The length of the account number. Defaults to `8`.
    *
-   * @see faker.finance.accountNumber()
+   * @see faker.finance.accountNumber(): For the replacement method.
    *
    * @example
    * faker.finance.account() // 92842238
@@ -204,7 +220,7 @@ export class FinanceModule extends ModuleBase {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
-   * @see faker.finance.maskedNumber()
+   * @see faker.finance.maskedNumber(): For the replacement method.
    *
    * @example
    * faker.finance.mask() // '(...9711)'
@@ -585,7 +601,7 @@ export class FinanceModule extends ModuleBase {
     const randValue = this.faker.number.float({
       max,
       min,
-      precision: 10 ** -dec,
+      multipleOf: 10 ** -dec,
     });
 
     const formattedString = autoFormat
@@ -613,9 +629,9 @@ export class FinanceModule extends ModuleBase {
    * Returns a random currency object, containing `code`, `name `and `symbol` properties.
    *
    * @see
-   * faker.finance.currencyCode()
-   * faker.finance.currencyName()
-   * faker.finance.currencySymbol()
+   * faker.finance.currencyCode(): For generating specifically the currency code.
+   * faker.finance.currencyName(): For generating specifically the currency name.
+   * faker.finance.currencySymbol(): For generating specifically the currency symbol.
    *
    * @example
    * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
@@ -663,9 +679,9 @@ export class FinanceModule extends ModuleBase {
    */
   currencySymbol(): string {
     let symbol: string;
-    while (!symbol) {
+    do {
       symbol = this.currency().symbol;
-    }
+    } while (symbol.length === 0);
 
     return symbol;
   }
@@ -1147,7 +1163,7 @@ export class FinanceModule extends ModuleBase {
 
     const result = `${ibanFormat.country}${checksum}${s}`;
 
-    return formatted ? result.match(/.{1,4}/g).join(' ') : result;
+    return formatted ? prettyPrintIban(result) : result;
   }
 
   /**

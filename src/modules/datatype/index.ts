@@ -20,10 +20,11 @@ export class DatatypeModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
-   * @throws When options define `max < min`.
+   * @throws When `min` is greater than `max`.
+   * @throws When `precision` is negative.
    *
-   * @see faker.number.int() for the default precision of `1`
-   * @see faker.number.float() for a custom precision
+   * @see faker.number.int(): For generating a random integer.
+   * @see faker.number.float(): For generating a random floating-point number.
    *
    * @example
    * faker.datatype.number() // 55422
@@ -74,7 +75,7 @@ export class DatatypeModule extends SimpleModuleBase {
 
     const { min = 0, max = min + 99999, precision = 1 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, multipleOf: precision });
   }
 
   /**
@@ -85,7 +86,10 @@ export class DatatypeModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
-   * @see faker.number.float()
+   * @throws When `min` is greater than `max`.
+   * @throws When `precision` is negative.
+   *
+   * @see faker.number.float(): For the replacement method.
    *
    * @example
    * faker.datatype.float() // 51696.36
@@ -138,7 +142,7 @@ export class DatatypeModule extends SimpleModuleBase {
 
     const { min = 0, max = min + 99999, precision = 0.01 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, multipleOf: precision });
   }
 
   /**
@@ -153,8 +157,8 @@ export class DatatypeModule extends SimpleModuleBase {
    *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date. Defaults to `4102444800000`.
    *
-   * @see faker.date.anytime()
-   * @see faker.date.between()
+   * @see faker.date.anytime(): For generating a random date in either the past or future.
+   * @see faker.date.between(): For generating a random date in between two dates.
    *
    * @example
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'
@@ -216,7 +220,7 @@ export class DatatypeModule extends SimpleModuleBase {
    * @param options Length of the generated string or an options object.
    * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
-   * @see faker.string.sample()
+   * @see faker.string.sample(): For the replacement method.
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
@@ -257,7 +261,7 @@ export class DatatypeModule extends SimpleModuleBase {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * @see faker.string.uuid()
+   * @see faker.string.uuid(): For the replacement method.
    *
    * @example
    * faker.datatype.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
@@ -334,7 +338,8 @@ export class DatatypeModule extends SimpleModuleBase {
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
-   * @see faker.string.hexadecimal()
+   * @see faker.string.hexadecimal(): For generating a random hexadecimal string.
+   * @see faker.number.hex(): For generating a random hexadecimal number.
    *
    * @example
    * faker.datatype.hexadecimal() // '0xB'
@@ -464,7 +469,7 @@ export class DatatypeModule extends SimpleModuleBase {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.number.bigInt()
+   * @see faker.number.bigInt(): For the replacement method.
    *
    * @example
    * faker.datatype.bigInt() // 55422n

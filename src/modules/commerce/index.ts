@@ -1,3 +1,4 @@
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
@@ -282,7 +283,7 @@ export class CommerceModule extends ModuleBase {
     const { dec = 2, max = 1000, min = 1, symbol = '' } = options;
 
     if (min < 0 || max < 0) {
-      return `${symbol}${0.0}`;
+      return `${symbol}0`;
     }
 
     // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/350
@@ -401,7 +402,14 @@ export class CommerceModule extends ModuleBase {
 
     const registrantLength = groupRules.find(
       ([rangeMaximum]) => elementValue <= rangeMaximum
-    )[1];
+    )?.[1];
+
+    if (!registrantLength) {
+      // This can only happen if the ISBN_LENGTH_RULES are corrupted
+      throw new FakerError(
+        `Unable to find a registrant length for the group ${group}`
+      );
+    }
 
     const registrant = element.slice(0, registrantLength);
     const publication = element.slice(registrantLength);

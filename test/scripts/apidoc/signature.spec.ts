@@ -4,12 +4,11 @@ import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import { SignatureTest } from './signature.example';
 import { loadExampleMethods } from './utils';
 
+beforeAll(initMarkdownRenderer);
+const methods = await loadExampleMethods();
+
 describe('signature', () => {
   describe('analyzeSignature()', () => {
-    const methods = loadExampleMethods();
-
-    beforeAll(initMarkdownRenderer);
-
     it('dummy dependency to rerun the test if the example changes', () => {
       expect(new SignatureTest()).toBeTruthy();
     });

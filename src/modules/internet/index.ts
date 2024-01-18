@@ -41,16 +41,26 @@ export class InternetModule extends ModuleBase {
   /**
    * Returns a random avatar url.
    *
+   * @see faker.image.avatarLegacy(): For the replacement method.
+   * @see faker.image.avatar(): For the replacement method with a wider variety of avatars.
+   *
    * @example
    * faker.internet.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.image.avatar()` instead.
    */
   avatar(): string {
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
-      1249
-    )}.jpg`;
+    deprecated({
+      deprecated: 'faker.internet.avatar()',
+      proposed: 'faker.image.avatarLegacy() or faker.image.avatar()',
+      since: '8.4',
+      until: '9.0',
+    });
+    // TODO @ST-DDT 2024-01-14: Remove or replace with `faker.image.avatar()` in v9
+    return this.faker.image.avatarLegacy();
   }
 
   /**
@@ -65,7 +75,9 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne'}) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne'}) // 'Jeanne_Smith63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne.Doe63@yahoo.com'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
@@ -107,7 +119,9 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
+   * faker.internet.email('Jeanne') // 'Jeanne63@yahoo.com'
+   * faker.internet.email('Jeanne') // 'Jeanne.Smith63@yahoo.com'
+   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne_Doe63@yahoo.com'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
@@ -145,7 +159,9 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne' }) // 'Jeanne63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne' }) // 'Jeanne.Smith63@yahoo.com'
+   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe63@yahoo.com'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
@@ -248,8 +264,8 @@ export class InternetModule extends ModuleBase {
     }
 
     const {
-      firstName = this.faker.person.firstName(),
-      lastName = legacyLastName ?? this.faker.person.lastName(),
+      firstName,
+      lastName = legacyLastName,
       provider = legacyProvider ??
         this.faker.helpers.arrayElement(
           this.faker.definitions.internet.free_email
@@ -295,7 +311,9 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
    * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
@@ -331,7 +349,9 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail('Jeanne') // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail('Jeanne') // 'Jeanne.Smith96@example.net'
+   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne_Doe96@example.net'
    * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
@@ -365,7 +385,9 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
+   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
    * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
@@ -454,8 +476,8 @@ export class InternetModule extends ModuleBase {
     }
 
     const {
-      firstName = this.faker.person.firstName(),
-      lastName = legacyLastName ?? this.faker.person.lastName(),
+      firstName,
+      lastName = legacyLastName,
       allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
 
@@ -481,11 +503,13 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.displayName()
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
+   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne98'
+   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
    * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
    * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
    * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
@@ -516,11 +540,13 @@ export class InternetModule extends ModuleBase {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.displayName()
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.userName('Jeanne') // 'Jeanne98'
+   * faker.internet.userName('Jeanne') // 'Jeanne.Smith98'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne_Doe98'
    * faker.internet.userName('John', 'Doe') // 'John.Doe'
    * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
    * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
@@ -542,11 +568,13 @@ export class InternetModule extends ModuleBase {
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.displayName()
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
+   * faker.internet.userName({ firstName: 'Jeanne'}) // 'Jeanne98'
+   * faker.internet.userName({ firstName: 'Jeanne'}) // 'Jeanne.Smith98'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
    * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
    * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
    * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
@@ -608,22 +636,24 @@ export class InternetModule extends ModuleBase {
     const {
       firstName = this.faker.person.firstName(),
       lastName = legacyLastName ?? this.faker.person.lastName(),
+      lastName: hasLastName = legacyLastName,
     } = options;
 
     let result: string;
-    switch (this.faker.number.int(2)) {
+    const strategy = this.faker.number.int(hasLastName ? 1 : 2);
+    const separator = this.faker.helpers.arrayElement(['.', '_']);
+    switch (strategy) {
       case 0:
-        result = `${firstName}${this.faker.number.int(99)}`;
+        result = `${firstName}${separator}${lastName}${this.faker.number.int(
+          99
+        )}`;
         break;
       case 1:
-        result =
-          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
+        result = `${firstName}${separator}${lastName}`;
         break;
       case 2:
-        result = `${firstName}${this.faker.helpers.arrayElement([
-          '.',
-          '_',
-        ])}${lastName}${this.faker.number.int(99)}`;
+      default:
+        result = `${firstName}${this.faker.number.int(99)}`;
         break;
     }
 
@@ -640,13 +670,15 @@ export class InternetModule extends ModuleBase {
           return charMapping[char];
         }
 
-        if (char.charCodeAt(0) < 0x80) {
+        const charCode = char.codePointAt(0) ?? Number.NaN;
+
+        if (charCode < 0x80) {
           // Keep ASCII characters
           return char;
         }
 
         // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
-        return char.charCodeAt(0).toString(36);
+        return charCode.toString(36);
       })
       .join('');
     result = result.toString().replace(/'/g, '');
@@ -665,7 +697,7 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName()
+   * @see faker.internet.userName(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
@@ -700,7 +732,7 @@ export class InternetModule extends ModuleBase {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName()
+   * @see faker.internet.userName(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
@@ -726,7 +758,7 @@ export class InternetModule extends ModuleBase {
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName()
+   * @see faker.internet.userName(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
@@ -804,6 +836,7 @@ export class InternetModule extends ModuleBase {
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
+      default:
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
@@ -1474,7 +1507,7 @@ export class InternetModule extends ModuleBase {
       }
 
       const n = this.faker.number.int(94) + 33;
-      let char = String.fromCharCode(n);
+      let char = String.fromCodePoint(n);
       if (memorable) {
         char = char.toLowerCase();
       }

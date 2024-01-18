@@ -1,7 +1,9 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../../src';
+import { faker, FakerError, SimpleFaker } from '../../src';
+import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
 import { seededTests } from '../support/seeded-runs';
+import { times } from './../support/times';
 
 describe('number', () => {
   seededTests(faker, 'number', (t) => {
@@ -25,6 +27,11 @@ describe('number', () => {
           min: -42,
           max: 69,
           precision: 0.0001,
+        })
+        .it('with min, max and multipleOf', {
+          min: -42,
+          max: 69,
+          multipleOf: 0.0001,
         });
     });
 
@@ -242,6 +249,22 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
+      it('provides numbers with a given multipleOf of 0.5 steps', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 1.5,
+                multipleOf: 0.5,
+              })
+            )
+          ),
+        ].sort();
+
+        expect(results).toEqual([0, 0.5, 1, 1.5]);
+      });
+
       it('provides numbers with a given precision of 0.4 steps', () => {
         const results = [
           ...new Set(
@@ -258,26 +281,57 @@ describe('number', () => {
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
 
-      it('provides numbers with an exact precision', () => {
-        for (let i = 0; i < 100; i++) {
-          const actual = faker.number.float({
-            min: 0.5,
-            max: 0.99,
-            precision: 0.01,
-          });
-          expect(actual).toBe(Number(actual.toFixed(2)));
-        }
+      it('provides numbers with a given precision of 0.2', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 0.4,
+                precision: 0.2,
+              })
+            )
+          ),
+        ].sort();
+
+        expect(results).toEqual([0, 0.2, 0.4]);
       });
+
+      it.each(times(18))(
+        `provides numbers with an exact precision of 10^-%d`,
+        (exponent) => {
+          for (let i = 0; i < 100; i++) {
+            const actual = faker.number.float({
+              min: 0.5,
+              max: 0.99,
+              precision: 10 ** -exponent,
+            });
+            expect(actual).toBe(Number(actual.toFixed(exponent)));
+          }
+        }
+      );
 
       it('throws an error for precision 0', () => {
         expect(() => faker.number.float({ precision: 0 })).toThrow(
-          new FakerError('Precision should be greater than 0.')
+          new FakerError('multipleOf/precision should be greater than 0.')
+        );
+      });
+
+      it('throws an error for multipleOf 0', () => {
+        expect(() => faker.number.float({ multipleOf: 0 })).toThrow(
+          new FakerError('multipleOf/precision should be greater than 0.')
         );
       });
 
       it('throws an error for negative precision', () => {
         expect(() => faker.number.float({ precision: -0.01 })).toThrow(
-          new FakerError('Precision should be greater than 0.')
+          new FakerError('multipleOf/precision should be greater than 0.')
+        );
+      });
+
+      it('throws an error for negative multipleOf', () => {
+        expect(() => faker.number.float({ multipleOf: -0.01 })).toThrow(
+          new FakerError('multipleOf/precision should be greater than 0.')
         );
       });
 
@@ -304,7 +358,7 @@ describe('number', () => {
         return [...str].every((char) => char === '0' || char === '1');
       }
 
-      it('enerates single binary character when no additional argument was provided', () => {
+      it('generates single binary character when no additional argument was provided', () => {
         const binary = faker.number.binary();
 
         expect(binary).toBeTypeOf('string');
@@ -342,6 +396,14 @@ describe('number', () => {
           faker.number.binary({ min, max });
         }).toThrow(
           new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
+      });
+
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.binary({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
     });
@@ -387,6 +449,14 @@ describe('number', () => {
           new FakerError(`Max ${max} should be greater than min ${min}.`)
         );
       });
+
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.octal({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+        );
+      });
     });
 
     describe('hex', () => {
@@ -425,6 +495,14 @@ describe('number', () => {
           faker.number.hex({ min, max });
         }).toThrow(
           new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
+      });
+
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.hex({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
         );
       });
     });
@@ -504,6 +582,40 @@ describe('number', () => {
         }).toThrow(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
+      });
+    });
+  });
+
+  describe('value range tests', () => {
+    const customFaker = new SimpleFaker();
+    // @ts-expect-error: access private member field
+    const randomizer = customFaker._randomizer;
+    describe('int', () => {
+      it('should be able to return 0', () => {
+        randomizer.next = () => 0;
+        const actual = customFaker.number.int();
+        expect(actual).toBe(0);
+      });
+
+      // TODO @ST-DDT 2023-10-12: This requires a randomizer with 53 bits of precision
+      it.todo('should be able to return MAX_SAFE_INTEGER', () => {
+        randomizer.next = () => MERSENNE_MAX_VALUE;
+        const actual = customFaker.number.int();
+        expect(actual).toBe(Number.MAX_SAFE_INTEGER);
+      });
+    });
+
+    describe('float', () => {
+      it('should be able to return 0', () => {
+        randomizer.next = () => 0;
+        const actual = customFaker.number.float();
+        expect(actual).toBe(0);
+      });
+
+      it('should be able to return almost 1', () => {
+        randomizer.next = () => MERSENNE_MAX_VALUE;
+        const actual = customFaker.number.float();
+        expect(actual).toBe(MERSENNE_MAX_VALUE);
       });
     });
   });
