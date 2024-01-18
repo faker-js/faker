@@ -286,8 +286,9 @@ describe('number', () => {
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
 
-      it('provides numbers with an exact fractional digits', () => {
-        for (let i = 0; i < 100; i++) {
+      it.each(times(100))(
+        'provides numbers with an exact fractional digits',
+        () => {
           const actual = faker.number.float({
             min: 0.5,
             max: 0.99,
@@ -295,7 +296,7 @@ describe('number', () => {
           });
           expect(actual).toBe(Number(actual.toFixed(2)));
         }
-      });
+      );
 
       it('throws an error if fractionDigits and multipleOf is provided at the same time', () => {
         expect(() =>

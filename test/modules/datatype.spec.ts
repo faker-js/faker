@@ -321,7 +321,9 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.float({ min, max });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+          }).toThrow(
+            new FakerError(`Max ${max} should be greater than min ${min}.`)
+          );
         });
 
         it('should throw when precision <= 0', () => {
@@ -330,10 +332,14 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.float({ min, max, precision: 0 });
-          }).toThrowError('multipleOf/precision should be greater than 0.');
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
           expect(() => {
             faker.datatype.float({ min, max, precision: -1 });
-          }).toThrowError('multipleOf/precision should be greater than 0.');
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
         });
       });
 
