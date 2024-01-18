@@ -316,8 +316,8 @@ describe('datatype', () => {
         });
 
         it('should throw when min > max', () => {
-          const min = 2;
-          const max = 1;
+          const min = 10;
+          const max = 9;
 
           expect(() => {
             faker.datatype.float({ min, max });
