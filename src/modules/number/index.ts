@@ -97,10 +97,16 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.multipleOf The generated number will be a multiple of this property.
    * This property can be used to limit the result to a specific number of decimal digits.
    * For example `0.01` will round to 2 decimal points.
-   * If multipleOf is passed, the upper bound is inclusive.
+   * If `multipleOf` is passed, the upper bound is inclusive.
+   * This option is incompatible with the `fractionDigits` option.
+   * @param options.fractionDigits The maximum number of digits to appear after the decimal point.
+   * This option is incompatible with the `multipleOf` option.
    *
    * @throws When `min` is greater than `max`.
    * @throws When `precision` is negative.
+   * @throws When `multipleOf` is negative.
+   * @throws When `fractionDigits` is negative.
+   * @throws When `fractionDigits` and `multipleOf` is passed in the same options object.
    *
    * @example
    * faker.number.float() // 0.5688541042618454
@@ -108,7 +114,9 @@ export class NumberModule extends SimpleModuleBase {
    * faker.number.float({ min: -1000000 }) //-780678.849672846
    * faker.number.float({ max: 100 }) // 17.3687307164073
    * faker.number.float({ multipleOf: 0.25 }) // 3.75
-   * faker.number.float({ min: 10, max: 100, multipleOf: 0.001 }) // 35.415
+   * faker.number.float({ fractionDigits: 1 }) // 0.9
+   * faker.number.float({ min: 10, max: 100, multipleOf: 0.02 }) // 35.42
+   * faker.number.float({ min: 10, max: 100, fractionDigits: 3 }) // 65.716
    *
    * @since 8.0.0
    */
@@ -129,6 +137,10 @@ export class NumberModule extends SimpleModuleBase {
            */
           max?: number;
           /**
+           * The number of digits to appear after the decimal point.
+           */
+          fractionDigits?: number;
+          /*
            * Precision of the generated number.
            *
            * @deprecated Use `multipleOf` instead.
@@ -147,10 +159,17 @@ export class NumberModule extends SimpleModuleBase {
       };
     }
 
-    // eslint-disable-next-line deprecation/deprecation
-    const { min = 0, max = 1, precision, multipleOf = precision } = options;
+    const {
+      min = 0,
+      max = 1,
+      fractionDigits,
+      precision,
+      multipleOf: originalMultipleOf = precision,
+      multipleOf = precision ??
+        (fractionDigits == null ? undefined : 10 ** -fractionDigits),
+    } = options;
 
-    if (precision !== undefined) {
+    if (precision != null) {
       deprecated({
         deprecated: 'faker.number.float({ precision })',
         proposed: 'faker.number.float({ multipleOf })',
@@ -167,7 +186,25 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (multipleOf !== undefined) {
+    if (fractionDigits != null) {
+      if (originalMultipleOf != null) {
+        throw new FakerError(
+          'multipleOf and fractionDigits cannot be set at the same time.'
+        );
+      }
+
+      if (!Number.isInteger(fractionDigits)) {
+        throw new FakerError('fractionDigits should be an integer.');
+      }
+
+      if (fractionDigits < 0) {
+        throw new FakerError(
+          'fractionDigits should be greater than or equal to 0.'
+        );
+      }
+    }
+
+    if (multipleOf != null) {
       if (multipleOf <= 0) {
         // TODO @xDivisionByZerox: Clean up in v9.0
         throw new FakerError(`multipleOf/precision should be greater than 0.`);

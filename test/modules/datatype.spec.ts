@@ -320,15 +320,23 @@ describe('datatype', () => {
           const max = 9;
 
           expect(() => {
-            faker.datatype.number({ min, max });
+            faker.datatype.float({ min, max });
           }).toThrow(
             new FakerError(`Max ${max} should be greater than min ${min}.`)
           );
         });
 
-        it('should throw when precision is negative', () => {
+        it('should throw when precision <= 0', () => {
+          const min = 1;
+          const max = 2;
+
           expect(() => {
-            faker.datatype.float({ precision: -0.01 });
+            faker.datatype.float({ min, max, precision: 0 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
+          expect(() => {
+            faker.datatype.float({ min, max, precision: -1 });
           }).toThrow(
             new FakerError('multipleOf/precision should be greater than 0.')
           );
