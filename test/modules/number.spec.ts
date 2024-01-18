@@ -28,6 +28,11 @@ describe('number', () => {
           max: 69,
           precision: 0.0001,
         })
+        .it('with min, max and fractionDigits', {
+          min: -42,
+          max: 69,
+          fractionDigits: 4,
+        })
         .it('with min, max and multipleOf', {
           min: -42,
           max: 69,
@@ -279,6 +284,45 @@ describe('number', () => {
         ].sort();
 
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
+      });
+
+      it.each(times(100))(
+        'provides numbers with an exact fractional digits',
+        () => {
+          const actual = faker.number.float({
+            min: 0.5,
+            max: 0.99,
+            fractionDigits: 2,
+          });
+          expect(actual).toBe(Number(actual.toFixed(2)));
+        }
+      );
+
+      it('throws an error if fractionDigits and multipleOf is provided at the same time', () => {
+        expect(() =>
+          faker.number.float({
+            min: 0,
+            max: 10,
+            multipleOf: 0.25,
+            fractionDigits: 6,
+          })
+        ).toThrow(
+          new FakerError(
+            'multipleOf and fractionDigits cannot be set at the same time.'
+          )
+        );
+      });
+
+      it('throws an error for non integer fractionDigits numbers', () => {
+        expect(() => faker.number.float({ fractionDigits: 1.337 })).toThrow(
+          new FakerError('fractionDigits should be an integer.')
+        );
+      });
+
+      it('throws an error for negative fractionDigits', () => {
+        expect(() => faker.number.float({ fractionDigits: -2 })).toThrow(
+          new FakerError('fractionDigits should be greater than or equal to 0.')
+        );
       });
 
       it('provides numbers with a given precision of 0.2', () => {
