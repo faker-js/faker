@@ -1,6 +1,6 @@
-import type { Faker } from '../../faker';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import { ModuleBase } from '../../internal/module-base';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<
@@ -86,11 +86,7 @@ const ISBN_LENGTH_RULES: Record<
  *
  * You can also create a price using [`price()`](https://fakerjs.dev/api/commerce.html#price).
  */
-export class CommerceModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class CommerceModule extends ModuleBase {
   /**
    * Returns a department inside a shop.
    *
@@ -120,7 +116,7 @@ export class CommerceModule {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * @param options An options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -184,7 +180,7 @@ export class CommerceModule {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * @param options The minimum price or on options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -206,9 +202,29 @@ export class CommerceModule {
     options?:
       | number
       | {
+          /**
+           * The minimum price.
+           *
+           * @default 1
+           */
           min?: number;
+          /**
+           * The maximum price.
+           *
+           * @default 1000
+           */
           max?: number;
+          /**
+           * The number of decimal places.
+           *
+           * @default 2
+           */
           dec?: number;
+          /**
+           * The currency value to use.
+           *
+           * @default ''
+           */
           symbol?: string;
         },
     legacyMax?: number,
@@ -218,7 +234,7 @@ export class CommerceModule {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * @param options The minimum price or on options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -267,7 +283,7 @@ export class CommerceModule {
     const { dec = 2, max = 1000, min = 1, symbol = '' } = options;
 
     if (min < 0 || max < 0) {
-      return `${symbol}${0.0}`;
+      return `${symbol}0`;
     }
 
     // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/350
@@ -335,7 +351,7 @@ export class CommerceModule {
   /**
    * Returns a random [ISBN](https://en.wikipedia.org/wiki/ISBN) identifier.
    *
-   * @param options The variant to return or an options object. Defaults to `{}`.
+   * @param options The variant to return or an options object.
    * @param options.variant The variant to return. Can be either `10` (10-digit format)
    * or `13` (13-digit format). Defaults to `13`.
    * @param options.separator The separator to use in the format. Defaults to `'-'`.
@@ -382,11 +398,18 @@ export class CommerceModule {
     const [group, groupRules] =
       this.faker.helpers.objectEntry(ISBN_LENGTH_RULES);
     const element = this.faker.string.numeric(8);
-    const elementValue = parseInt(element.slice(0, -1));
+    const elementValue = Number.parseInt(element.slice(0, -1));
 
     const registrantLength = groupRules.find(
       ([rangeMaximum]) => elementValue <= rangeMaximum
-    )[1];
+    )?.[1];
+
+    if (!registrantLength) {
+      // This can only happen if the ISBN_LENGTH_RULES are corrupted
+      throw new FakerError(
+        `Unable to find a registrant length for the group ${group}`
+      );
+    }
 
     const registrant = element.slice(0, registrantLength);
     const publication = element.slice(registrantLength);
@@ -401,7 +424,7 @@ export class CommerceModule {
     let checksum = 0;
     for (let i = 0; i < variant - 1; i++) {
       const weight = variant === 10 ? i + 1 : i % 2 ? 3 : 1;
-      checksum += weight * parseInt(isbn[i]);
+      checksum += weight * Number.parseInt(isbn[i]);
     }
 
     checksum = variant === 10 ? checksum % 11 : (10 - (checksum % 10)) % 10;

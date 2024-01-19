@@ -1,5 +1,4 @@
-import type { Faker } from '../..';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
+import { ModuleBase } from '../../internal/module-base';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -36,11 +35,7 @@ const CRON_DAY_OF_WEEK = [
 /**
  * Generates fake data for many computer systems properties.
  */
-export class SystemModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class SystemModule extends ModuleBase {
   /**
    * Returns a random file name with extension.
    *
@@ -159,8 +154,7 @@ export class SystemModule {
     const typeSet = new Set(
       Object.keys(mimeTypes).map((key) => key.split('/')[0])
     );
-    const types = Array.from(typeSet);
-    return this.faker.helpers.arrayElement(types);
+    return this.faker.helpers.arrayElement([...typeSet]);
   }
 
   /**
@@ -184,8 +178,7 @@ export class SystemModule {
     const extensionSet = new Set(
       Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
     );
-    const extensions = Array.from(extensionSet);
-    return this.faker.helpers.arrayElement(extensions);
+    return this.faker.helpers.arrayElement([...extensionSet]);
   }
 
   /**
@@ -233,7 +226,7 @@ export class SystemModule {
   /**
    * Returns a random [network interface](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-understanding_the_predictable_network_interface_device_names).
    *
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.interfaceType The interface type. Can be one of `en`, `wl`, `ww`.
    * @param options.interfaceSchema The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
    *

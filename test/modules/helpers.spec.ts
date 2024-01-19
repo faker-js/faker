@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
-import { seededTests } from './../support/seededRuns';
+import type { RecordKey } from '../../src/modules/helpers/unique';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 import './../vitest-extensions';
 
@@ -71,7 +72,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElement', (t) => {
-      t.it('with array', 'Hello World!'.split(''));
+      t.it('with array', [...'Hello World!']);
     });
 
     t.describe('enumValue', (t) => {
@@ -95,6 +96,7 @@ describe('helpers', () => {
       enum MixedFoo {
         Foo = 0,
         Bar = 1,
+        // eslint-disable-next-line @typescript-eslint/no-mixed-enums
         FooName = 'Foo',
         BarName = 'Bar',
       }
@@ -120,26 +122,26 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElements', (t) => {
-      t.it('with array', 'Hello World!'.split(''))
-        .it('with array and count', 'Hello World!'.split(''), 3)
-        .it('with array and count range', 'Hello World!'.split(''), {
+      t.it('with array', [...'Hello World!'])
+        .it('with array and count', [...'Hello World!'], 3)
+        .it('with array and count range', [...'Hello World!'], {
           min: 1,
           max: 5,
         });
     });
 
     t.describe('shuffle', (t) => {
-      t.it('with array', 'Hello World!'.split(''))
-        .it('with array and inplace true', 'Hello World!'.split(''), {
+      t.it('with array', [...'Hello World!'])
+        .it('with array and inplace true', [...'Hello World!'], {
           inplace: true,
         })
-        .it('with array and inplace false', 'Hello World!'.split(''), {
+        .it('with array and inplace false', [...'Hello World!'], {
           inplace: false,
         });
     });
 
     t.describe('uniqueArray', (t) => {
-      t.it('with array', 'Hello World!'.split(''), 3);
+      t.it('with array', [...'Hello World!'], 3);
     });
 
     t.describe('maybe', (t) => {
@@ -222,7 +224,6 @@ describe('helpers', () => {
         });
 
         it('should throw on an empty array', () => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           expect(() => faker.helpers.arrayElement([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
@@ -256,6 +257,7 @@ describe('helpers', () => {
         enum FooMixedEnum {
           Foo = 0,
           Bar = 1,
+          // eslint-disable-next-line @typescript-eslint/no-mixed-enums
           StrFoo = 'FOO',
           StrBar = 'BAR',
         }
@@ -1025,34 +1027,35 @@ describe('helpers', () => {
 
         it('does not allow invalid module name', () => {
           expect(() => faker.helpers.fake('{{foo.bar}}')).toThrow(
-            new FakerError(`Invalid module method or definition: foo.bar
-- faker.foo.bar is not a function
-- faker.definitions.foo.bar is not an array`)
+            new FakerError(`Cannot resolve expression 'foo.bar'`)
           );
         });
 
-        it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{location}}')).toThrow(
-            new FakerError(`Invalid module method or definition: location
-- faker.location is not a function
-- faker.definitions.location is not an array`)
-          );
+        it('does allow missing method name', () => {
+          const actual = faker.helpers.fake('{{location}}');
+          expect(actual).toBe('[object Object]');
         });
 
         it('does not allow invalid method name', () => {
           expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
-            new FakerError(`Invalid module method or definition: location.foo
-- faker.location.foo is not a function
-- faker.definitions.location.foo is not an array`)
+            new FakerError(`Cannot resolve expression 'location.foo'`)
           );
         });
 
-        it('does not allow invalid definitions data', () => {
-          expect(() => faker.helpers.fake('{{finance.credit_card}}')).toThrow(
-            new FakerError(`Invalid module method or definition: finance.credit_card
-- faker.finance.credit_card is not a function
-- faker.definitions.finance.credit_card is not an array`)
-          );
+        it('should support complex data', () => {
+          const actual = faker.helpers.fake('{{science.unit}}');
+          expect(actual).toBe('[object Object]');
+        });
+
+        it('should support resolving a value in a complex object', () => {
+          const complex = faker.helpers.fake('{{airline.airline}}');
+          expect(complex).toBe('[object Object]');
+
+          const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
+          expect(actual).toBeTypeOf('string');
+          expect(
+            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
+          ).toContain(actual);
         });
 
         it('should be able to return empty strings', () => {
@@ -1060,7 +1063,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings', () => {
-          expect(faker.definitions.cell_phone.formats).toContain(
+          expect(faker.definitions.cell_phone?.formats).toContain(
             faker.helpers.fake('{{cell_phone.formats}}')
           );
         });
@@ -1294,8 +1297,9 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
       const maxTime = 49;
       const maxRetries = 49;
       const currentIterations = 0;
-      const exclude = [];
-      const compare = (obj, key) => (obj[key] === undefined ? -1 : 0);
+      const exclude: string[] = [];
+      const compare = (obj: Record<RecordKey, RecordKey>, key: RecordKey) =>
+        obj[key] === undefined ? -1 : 0;
 
       const options = {
         startTime,
@@ -1317,7 +1321,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     });
 
     it('should be possible to pass a user-specific store', () => {
-      const store = {};
+      const store: Record<string, string> = {};
 
       const method = () => 'with conflict: 0';
 

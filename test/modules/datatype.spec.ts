@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
@@ -164,8 +164,8 @@ describe('datatype', () => {
         });
 
         it('provides numbers with a given precision of 0.5 steps', () => {
-          const results = Array.from(
-            new Set(
+          const results = [
+            ...new Set(
               Array.from({ length: 50 }, () =>
                 faker.datatype.float({
                   min: 0,
@@ -173,16 +173,16 @@ describe('datatype', () => {
                   precision: 0.5,
                 })
               )
-            )
-          ).sort();
+            ),
+          ].sort();
 
           expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
 
         // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/1595
         it.todo('provides numbers with a given precision of 0.4 steps', () => {
-          const results = Array.from(
-            new Set(
+          const results = [
+            ...new Set(
               Array.from({ length: 50 }, () =>
                 faker.datatype.float({
                   min: 0,
@@ -190,8 +190,8 @@ describe('datatype', () => {
                   precision: 0.4,
                 })
               )
-            )
-          ).sort();
+            ),
+          ].sort();
 
           expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
         });
@@ -230,6 +230,14 @@ describe('datatype', () => {
             faker.datatype.number({ min, max });
           }).toThrow(
             new FakerError(`Max ${max} should be greater than min ${min}.`)
+          );
+        });
+
+        it('should throw when precision is negative', () => {
+          expect(() => {
+            faker.datatype.number({ precision: -0.01 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
           );
         });
       });
@@ -279,11 +287,11 @@ describe('datatype', () => {
 
         it('provides numbers with a given precision', () => {
           const options = { min: 0, max: 1.5, precision: 0.5 };
-          const results = Array.from(
-            new Set(
+          const results = [
+            ...new Set(
               Array.from({ length: 50 }, () => faker.datatype.float(options))
-            )
-          ).sort();
+            ),
+          ].sort();
 
           expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
@@ -305,6 +313,33 @@ describe('datatype', () => {
 
           expect(opts.min).toBe(min);
           expect(opts.max).toBe(max);
+        });
+
+        it('should throw when min > max', () => {
+          const min = 10;
+          const max = 9;
+
+          expect(() => {
+            faker.datatype.float({ min, max });
+          }).toThrow(
+            new FakerError(`Max ${max} should be greater than min ${min}.`)
+          );
+        });
+
+        it('should throw when precision <= 0', () => {
+          const min = 1;
+          const max = 2;
+
+          expect(() => {
+            faker.datatype.float({ min, max, precision: 0 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
+          expect(() => {
+            faker.datatype.float({ min, max, precision: -1 });
+          }).toThrow(
+            new FakerError('multipleOf/precision should be greater than 0.')
+          );
         });
       });
 
@@ -329,12 +364,6 @@ describe('datatype', () => {
           const generatedString = faker.datatype.string(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
-        });
-
-        it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
-          const generatedString = faker.datatype.string(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
         });
       });
 
