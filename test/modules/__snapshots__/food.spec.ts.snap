@@ -1,43 +1,55 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`food > 42 > description 1`] = `"A slow-roasted Bachman's Warbler with a crisp, golden exterior. Stuffed with Sultanas and covered in Cavalo sauce. Sides with Peppers puree and wild Purple carrot."`;
+exports[`food > 42 > adjective 1`] = `"golden"`;
 
-exports[`food > 42 > dish 1`] = `"Katsu Curry"`;
+exports[`food > 42 > description 1`] = `"A succulent venison steak, encased in a sour liquorice root crust, served with a side of bay leaves mashed broccoli."`;
+
+exports[`food > 42 > dish 1`] = `"Caraway Seed-Crusted Rabbit"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 
-exports[`food > 42 > fruit 1`] = `"Feijoa"`;
+exports[`food > 42 > fruit 1`] = `"fig"`;
 
-exports[`food > 42 > ingredient 1`] = `"Fish Sauce"`;
+exports[`food > 42 > ingredient 1`] = `"flat mushrooms"`;
 
-exports[`food > 42 > spice 1`] = `"Five Spice Mix"`;
+exports[`food > 42 > meat 1`] = `"goose"`;
 
-exports[`food > 42 > vegetable 1`] = `"Dried Chinese Broccoli"`;
+exports[`food > 42 > spice 1`] = `"dhansak"`;
 
-exports[`food > 1211 > description 1`] = `"A special turquoise Sunflower Seeds from San Marino. To support the strong flavor it is sided with a tablespoon of Chillies."`;
+exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
 
-exports[`food > 1211 > dish 1`] = `"Teriyaki Chicken Donburi"`;
+exports[`food > 1211 > adjective 1`] = `"tender"`;
 
-exports[`food > 1211 > ethnicCategory 1`] = `"Thai"`;
+exports[`food > 1211 > description 1`] = `"tamari with a pinch of chamomile, topped by a caramelized watermelon with whipped cream"`;
 
-exports[`food > 1211 > fruit 1`] = `"Strawberries"`;
+exports[`food > 1211 > dish 1`] = `"Lasagne"`;
 
-exports[`food > 1211 > ingredient 1`] = `"Tofu"`;
+exports[`food > 1211 > ethnicCategory 1`] = `"Texan"`;
 
-exports[`food > 1211 > spice 1`] = `"Tarragon"`;
+exports[`food > 1211 > fruit 1`] = `"strawberry"`;
 
-exports[`food > 1211 > vegetable 1`] = `"Sun dried tomatoes"`;
+exports[`food > 1211 > ingredient 1`] = `"turmeric"`;
 
-exports[`food > 1337 > description 1`] = `"Macadamia Oil with a pinch of Cardamom, topped by a caramelized Cherries with whipped cream"`;
+exports[`food > 1211 > meat 1`] = `"turkey"`;
 
-exports[`food > 1337 > dish 1`] = `"Ebiten maki"`;
+exports[`food > 1211 > spice 1`] = `"tagine"`;
+
+exports[`food > 1211 > vegetable 1`] = `"sun dried tomatoes"`;
+
+exports[`food > 1337 > adjective 1`] = `"fluffy"`;
+
+exports[`food > 1337 > description 1`] = `"A slow-roasted White-winged Scoter with a fluffy, moist exterior. Stuffed with dried apricot and covered in kiwi fruit sauce. Sides with carrot puree and wild turnips."`;
+
+exports[`food > 1337 > dish 1`] = `"Cauliflower-Infused Ostrich"`;
 
 exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
 
-exports[`food > 1337 > fruit 1`] = `"Currants"`;
+exports[`food > 1337 > fruit 1`] = `"custard apple"`;
 
-exports[`food > 1337 > ingredient 1`] = `"Cinnamon"`;
+exports[`food > 1337 > ingredient 1`] = `"coconut water"`;
 
-exports[`food > 1337 > spice 1`] = `"Cloves"`;
+exports[`food > 1337 > meat 1`] = `"emu"`;
 
-exports[`food > 1337 > vegetable 1`] = `"Carob Carrot"`;
+exports[`food > 1337 > spice 1`] = `"chilli pepper"`;
+
+exports[`food > 1337 > vegetable 1`] = `"carrot"`;

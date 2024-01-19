@@ -1,12 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { seededTests } from '../support/seededRuns';
-import { times } from '../support/times';
+import { seededTests } from '../support/seeded-runs';
+import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('food', () => {
   seededTests(faker, 'food', (t) => {
+    t.it('adjective');
+
     t.it('description');
 
     t.it('dish');
@@ -17,6 +19,8 @@ describe('food', () => {
 
     t.it('ingredient');
 
+    t.it('meat');
+
     t.it('spice');
 
     t.it('vegetable');
@@ -25,10 +29,17 @@ describe('food', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
+      describe('adjective', () => {
+        it(`should return random value from adjective array`, () => {
+          const actual = faker.food.adjective();
+          expect(faker.definitions.food.adjective).toContain(actual);
+        });
+      });
+
       describe('dish', () => {
-        it(`should return random value from dish array`, () => {
+        it(`should be a capitalized string`, () => {
           const actual = faker.food.dish();
-          expect(faker.definitions.food.dish).toContain(actual);
+          expect(actual[0]).toBe(actual[0].toUpperCase());
         });
       });
 
@@ -50,6 +61,13 @@ describe('food', () => {
         it(`should return random value from ingredient array`, () => {
           const actual = faker.food.ingredient();
           expect(faker.definitions.food.ingredient).toContain(actual);
+        });
+      });
+
+      describe('meat', () => {
+        it(`should return random value from meat array`, () => {
+          const actual = faker.food.meat();
+          expect(faker.definitions.food.meat).toContain(actual);
         });
       });
 
