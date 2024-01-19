@@ -2,6 +2,11 @@ import type { LocaleEntry } from './definitions';
 
 export type FoodDefinition = LocaleEntry<{
   /**
+   * Common food adjectives.
+   */
+  adjective: string[];
+
+  /**
    * List of description patterns.
    */
   description_pattern: string[];
@@ -10,6 +15,11 @@ export type FoodDefinition = LocaleEntry<{
    * Common dish names.
    */
   dish: string[];
+
+  /**
+   * List of dish patterns.
+   */
+  dish_pattern: string[];
 
   /**
    * A list of cooking styles that are commonly associated with a particular food item or recipe.
@@ -25,6 +35,11 @@ export type FoodDefinition = LocaleEntry<{
    * Common ingredient names.
    */
   ingredient: string[];
+
+  /**
+   * Common meat names.
+   */
+  meat: string[];
 
   /**
    * A list of common spice names.

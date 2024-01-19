@@ -6,8 +6,9 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  *
  * ### Overview
  *
- * This module provides methods to generate various food-related information, such as [dish names](https://fakerjs.dev/api/food.html#dish), [spices](https://fakerjs.dev/api/food.html#spice) or [vegetables](https://fakerjs.dev/api/food.html#vegetable).
- * To generate descriptions for a dish use [`description()`](https://fakerjs.dev/api/food.html#description).
+ * This module provides methods to generate various food-related information, such as items on a menu.
+ * To generate the name of a dish, use [dish()](https://fakerjs.dev/api/food.html#dish) and to generate a long description for a dish use [`description()`](https://fakerjs.dev/api/food.html#description). Note that these will not correspond with each other.
+ * You can also generate individual components of a dish such as [spices](https://fakerjs.dev/api/food.html#spice), [vegetables](https://fakerjs.dev/api/food.html#vegetable), [meats](https://fakerjs.dev/api/food.html#meat), [fruits](https://fakerjs.dev/api/food.html#fruit), or generic [ingredients](https://fakerjs.dev/api/food.html#ingredient).
  */
 export class FoodModule {
   constructor(private readonly faker: Faker) {
@@ -15,12 +16,24 @@ export class FoodModule {
   }
 
   /**
+   * Generates a random dish adjective.
+   *
+   * @example
+   * faker.food.adjective() // 'crispy'
+   *
+   * @since 9.0.0
+   */
+  adjective(): string {
+    return this.faker.helpers.fake(this.faker.definitions.food.adjective);
+  }
+
+  /**
    * Generates a random dish description.
    *
    * @example
-   * faker.food.description() // 'Three Coconut Water with Pumpkin, Turnips, Peppers, Raspberry and Coffee. With a side of baked Apricots, and your choice of Pineapple or Kidney Beans'
+   * faker.food.description() // ''An exquisite ostrich roast, infused with the essence of longan, slow-roasted to bring out its natural flavors and served with a side of creamy red cabbage'
    *
-   * @since 8.3.0
+   * @since 9.0.0
    */
   description(): string {
     return this.faker.helpers.fake(
@@ -32,12 +45,22 @@ export class FoodModule {
    * Generates a random dish name.
    *
    * @example
-   * faker.food.dish() // 'Lasagne'
+   * faker.food.dish() // 'Tagine-Rubbed Venison Salad'
    *
-   * @since 8.3.0
+   * @since 9.0.0
    */
   dish(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.dish);
+    // A 50/50 mix of specific dishes and dish_patterns
+    const toTitleCase = (d: string) =>
+      d.toLowerCase().replace(/\b\w/g, (s) => s.toUpperCase());
+    if (this.faker.datatype.boolean()) {
+      return toTitleCase(
+        this.faker.helpers.fake(this.faker.definitions.food.dish_pattern)
+      );
+    }
+    return toTitleCase(
+      this.faker.helpers.arrayElement(this.faker.definitions.food.dish)
+    );
   }
 
   /**
@@ -46,7 +69,7 @@ export class FoodModule {
    * @example
    * faker.food.ethnicCategory() // 'Italian'
    *
-   * @since 8.3.0
+   * @since 9.0.0
    */
   ethnicCategory(): string {
     return this.faker.helpers.arrayElement(
@@ -58,9 +81,9 @@ export class FoodModule {
    * Generates a random fruit name.
    *
    * @example
-   * faker.food.fruit() // 'Lemon'
+   * faker.food.fruit() // 'lemon'
    *
-   * @since 8.3.0
+   * @since 9.0.0
    */
   fruit(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.fruit);
@@ -70,9 +93,9 @@ export class FoodModule {
    * Generates a random ingredient name.
    *
    * @example
-   * faker.food.ingredient() // 'Butter'
+   * faker.food.ingredient() // 'butter'
    *
-   * @since 8.3.0
+   * @since 9.0.0
    */
   ingredient(): string {
     return this.faker.helpers.arrayElement(
@@ -81,24 +104,36 @@ export class FoodModule {
   }
 
   /**
-   * Generates a random spice name.
+   * Generates a random meat
    *
    * @example
-   * faker.food.spice() // 'Chilli'
+   * faker.food.meat() // 'venison'
    *
-   * @since 8.3.0
+   * @since 9.0.0
    */
-  spice(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.spice);
+  meat(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.food.meat);
   }
 
   /**
    * Generates a random spice name.
    *
    * @example
-   * faker.food.vegetable() // 'Broccoli'
+   * faker.food.spice() // 'chilli'
    *
-   * @since 8.3.0
+   * @since 9.0.0
+   */
+  spice(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.food.spice);
+  }
+
+  /**
+   * Generates a random vegetable name.
+   *
+   * @example
+   * faker.food.vegetable() // 'broccoli'
+   *
+   * @since 9.0.0
    */
   vegetable(): string {
     return this.faker.helpers.arrayElement(
