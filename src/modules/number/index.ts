@@ -120,7 +120,7 @@ export class NumberModule extends SimpleModuleBase {
       | number
       | {
           /**
-           * Lower bound for generated number, inclusive. Defaults to `0.0`.
+           * Lower bound for generated number, inclusive.
            *
            * @default 0.0
            */
