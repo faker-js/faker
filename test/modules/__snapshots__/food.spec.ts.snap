@@ -20,7 +20,7 @@ exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
 
 exports[`food > 1211 > adjective 1`] = `"tender"`;
 
-exports[`food > 1211 > description 1`] = `"tamari with a pinch of chamomile, topped by a caramelized watermelon with whipped cream"`;
+exports[`food > 1211 > description 1`] = `"Three tamari with capers, zucchini, onion, onion and rice paper. With a side of baked feijoa, and your choice of persimmon or slivered almonds."`;
 
 exports[`food > 1211 > dish 1`] = `"Lasagne"`;
 
