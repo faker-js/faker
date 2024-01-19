@@ -58,6 +58,7 @@ export class FoodModule {
         this.faker.helpers.fake(this.faker.definitions.food.dish_pattern)
       );
     }
+
     return toTitleCase(
       this.faker.helpers.arrayElement(this.faker.definitions.food.dish)
     );
