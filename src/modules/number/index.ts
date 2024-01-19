@@ -112,6 +112,7 @@ export class NumberModule extends SimpleModuleBase {
    * faker.number.float({ min: 10, max: 100, multipleOf: 0.02 }) // 35.42
    * faker.number.float({ min: 10, max: 100, fractionDigits: 3 }) // 65.716
    * faker.number.float({ min: 10, max: 100, multipleOf: 0.001 }) // 65.716 - same as above
+   *
    * @since 8.0.0
    */
   float(
