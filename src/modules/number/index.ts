@@ -104,9 +104,8 @@ export class NumberModule extends SimpleModuleBase {
    * @example
    * faker.number.float() // 0.5688541042618454
    * faker.number.float(3) // 2.367973240558058
-   * faker.number.float({ min: -1000000, max: 0 }) //-780678.849672846
    * faker.number.float({ max: 100 }) // 17.3687307164073
-   * faker.number.float({ multipleOf: 0.25 }) // 0.75
+   * faker.number.float({ min: 20, max: 30 }) // 23.94764115102589
    * faker.number.float({ multipleOf: 0.25, min: 0, max:10 }) // 7.75
    * faker.number.float({ fractionDigits: 1 }) // 0.9
    * faker.number.float({ min: 10, max: 100, multipleOf: 0.02 }) // 35.42
