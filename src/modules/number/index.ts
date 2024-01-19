@@ -125,7 +125,7 @@ export class NumberModule extends SimpleModuleBase {
            */
           min?: number;
           /**
-           * exclusive, unless `multipleOf`, `precision` or `fractionDigits` are passed. Defaults to `1.0`.
+           * Upper bound for generated number, exclusive, unless `multipleOf`, `precision` or `fractionDigits` are passed. Defaults to `1.0`.
            *
            * @default 1.0
            */
