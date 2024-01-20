@@ -600,19 +600,19 @@ export class LocationModule extends ModuleBase {
    */
   longitude(options?: {
     /**
-     * The upper bound for the latitude to generate.
+     * The upper bound for the longitude to generate.
      *
-     * @default 90
+     * @default 180
      */
     max?: number;
     /**
-     * The lower bound for the latitude to generate.
+     * The lower bound for the longitude to generate.
      *
-     * @default -90
+     * @default -180
      */
     min?: number;
     /**
-     * The number of decimal points of precision for the latitude.
+     * The number of decimal points of precision for the longitude.
      *
      * @default 4
      */
