@@ -128,10 +128,10 @@
     "typedoc": "~0.25.7",
     "typescript": "~4.9.5",
     "validator": "~13.11.0",
-    "vite": "~4.5.1",
+    "vite": "~4.5.2",
     "vitepress": "1.0.0-rc.36",
     "vitest": "~0.34.6",
-    "vue": "~3.4.14"
+    "vue": "~3.4.15"
   },
   "packageManager": "pnpm@8.5.1",
   "engines": {
