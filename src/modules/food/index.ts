@@ -1,6 +1,4 @@
-import type { Faker } from '../../faker';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
-
+import { ModuleBase } from '../../internal/module-base';
 /**
  * Module for generating food-related data.
  *
