@@ -10,10 +10,7 @@ import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-fu
  * To generate the name of a dish, use [dish()](https://fakerjs.dev/api/food.html#dish) and to generate a long description for a dish use [`description()`](https://fakerjs.dev/api/food.html#description). Note that these will not correspond with each other.
  * You can also generate individual components of a dish such as [spices](https://fakerjs.dev/api/food.html#spice), [vegetables](https://fakerjs.dev/api/food.html#vegetable), [meats](https://fakerjs.dev/api/food.html#meat), [fruits](https://fakerjs.dev/api/food.html#fruit), or generic [ingredients](https://fakerjs.dev/api/food.html#ingredient).
  */
-export class FoodModule {
-  constructor(private readonly faker: Faker) {
-    bindThisToMemberFunctions(this);
-  }
+export class FoodModule extends ModuleBase {
 
   /**
    * Generates a random dish adjective.
