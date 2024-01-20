@@ -9,7 +9,6 @@ import { ModuleBase } from '../../internal/module-base';
  * You can also generate individual components of a dish such as [spices](https://fakerjs.dev/api/food.html#spice), [vegetables](https://fakerjs.dev/api/food.html#vegetable), [meats](https://fakerjs.dev/api/food.html#meat), [fruits](https://fakerjs.dev/api/food.html#fruit), or generic [ingredients](https://fakerjs.dev/api/food.html#ingredient).
  */
 export class FoodModule extends ModuleBase {
-
   /**
    * Generates a random dish adjective.
    *
@@ -46,8 +45,11 @@ export class FoodModule extends ModuleBase {
    */
   dish(): string {
     // A 50/50 mix of specific dishes and dish_patterns
-    const toTitleCase = (d: string) =>
-      d.toLowerCase().replace(/\b\w/g, (s) => s.toUpperCase());
+    const toTitleCase = (s: string) =>
+      s
+        .split(' ')
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ');
     if (this.faker.datatype.boolean()) {
       return toTitleCase(
         this.faker.helpers.fake(this.faker.definitions.food.dish_pattern)

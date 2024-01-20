@@ -4,7 +4,7 @@ exports[`food > 42 > adjective 1`] = `"golden"`;
 
 exports[`food > 42 > description 1`] = `"A succulent venison steak, encased in a sour liquorice root crust, served with a side of bay leaves mashed broccoli."`;
 
-exports[`food > 42 > dish 1`] = `"Caraway Seed-Crusted Rabbit"`;
+exports[`food > 42 > dish 1`] = `"Caraway Seed-crusted Rabbit"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 
@@ -40,7 +40,7 @@ exports[`food > 1337 > adjective 1`] = `"fluffy"`;
 
 exports[`food > 1337 > description 1`] = `"A slow-roasted White-winged Scoter with a fluffy, moist exterior. Stuffed with dried apricot and covered in kiwi fruit sauce. Sides with carrot puree and wild turnips."`;
 
-exports[`food > 1337 > dish 1`] = `"Cauliflower-Infused Ostrich"`;
+exports[`food > 1337 > dish 1`] = `"Cauliflower-infused Ostrich"`;
 
 exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
 
