@@ -356,7 +356,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 3.1.0
    *
-   * @deprecated Use `faker.internet.exampleEmail({ firstName: lastName, ... })` instead.
+   * @deprecated Use `faker.internet.exampleEmail({ firstName, lastName, ... })` instead.
    */
   exampleEmail(
     firstName?: string,
