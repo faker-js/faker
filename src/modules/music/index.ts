@@ -5,9 +5,45 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * ### Overview
  *
- * Generate a random music genre with [`genre()`](https://fakerjs.dev/api/music.html#genre) or song name with [`songName()`](https://fakerjs.dev/api/music.html#songname). Both may be localized.
+ * Generate random music content.
+ *
+ * For a random album name, use [`albumName()`](https://fakerjs.dev/api/music.html#albumname).
+ *
+ * For a ranom artist, use [`artist()`](https://fakerjs.dev/api/music.html#artist).
+ *
+ * For a random genre, use [`genre()`](https://fakerjs.dev/api/music.html#genre).
+ *
+ * For a random song name, [`songName()`](https://fakerjs.dev/api/music.html#songname).
+ *
+ * All data types may be localized.
  */
 export class MusicModule extends ModuleBase {
+  /**
+   * Returns a random album name.
+   *
+   * @example
+   * faker.music.albumName() // '1989'
+   *
+   * @since 8.5.0
+   */
+  albumName(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.music.album_name
+    );
+  }
+
+  /**
+   * Returns a random artist name.
+   *
+   * @example
+   * faker.music.artist() // 'The Beatles'
+   *
+   * @since 8.5.0
+   */
+  artist(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.music.artist);
+  }
+
   /**
    * Returns a random music genre.
    *
