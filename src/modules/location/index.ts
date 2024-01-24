@@ -477,6 +477,8 @@ export class LocationModule extends ModuleBase {
    * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.latitude({ max, min, precision })` instead.
    */
   latitude(max?: number, min?: number, precision?: number): number;
   /**
@@ -494,9 +496,6 @@ export class LocationModule extends ModuleBase {
    * faker.location.latitude({ max: 10 }) // 5.7225
    * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
    * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
-   * faker.location.latitude(10) // 5.7225
-   * faker.location.latitude(10, -10) // -9.6273
-   * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
    */
@@ -541,9 +540,6 @@ export class LocationModule extends ModuleBase {
    * faker.location.latitude({ max: 10 }) // 5.7225
    * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
    * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
-   * faker.location.latitude(10) // 5.7225
-   * faker.location.latitude(10, -10) // -9.6273
-   * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
    */
@@ -574,6 +570,12 @@ export class LocationModule extends ModuleBase {
     legacyPrecision = 4
   ): number {
     if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.location.latitude(max, min, precision)',
+        proposed: 'faker.location.latitude({ max, min, precision })',
+        since: '8.0',
+        until: '9.0',
+      });
       options = { max: options };
     }
 
@@ -633,6 +635,8 @@ export class LocationModule extends ModuleBase {
    * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // 2.68452
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.longitude({ max, min, precision })` instead.
    */
   longitude(max?: number, min?: number, precision?: number): number;
   /**
@@ -694,9 +698,6 @@ export class LocationModule extends ModuleBase {
    * faker.location.longitude({ max: 10 }) // 2.4387
    * faker.location.longitude({ max: 10, min: -10 }) // 6.9126
    * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // -4.03620
-   * faker.location.longitude(10) // 2.4387
-   * faker.location.longitude(10, -10) // 6.9126
-   * faker.location.longitude(10, -10, 5) // -4.03620
    *
    * @since 8.0.0
    */
@@ -727,6 +728,12 @@ export class LocationModule extends ModuleBase {
     legacyPrecision = 4
   ): number {
     if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.location.longitude(max, min, precision)',
+        proposed: 'faker.location.longitude({ max, min, precision })',
+        since: '8.0',
+        until: '9.0',
+      });
       options = { max: options };
     }
 
