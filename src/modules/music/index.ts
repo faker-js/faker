@@ -9,7 +9,7 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * For a random album name, use [`albumName()`](https://fakerjs.dev/api/music.html#albumname).
  *
- * For a ranom artist, use [`artist()`](https://fakerjs.dev/api/music.html#artist).
+ * For a random artist, use [`artist()`](https://fakerjs.dev/api/music.html#artist).
  *
  * For a random genre, use [`genre()`](https://fakerjs.dev/api/music.html#genre).
  *

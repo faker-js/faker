@@ -13,7 +13,7 @@ describe('music', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
-      describe('album()', () => {
+      describe('albumName()', () => {
         it('should return an album name', () => {
           const albumName = faker.music.albumName();
 
