@@ -75,7 +75,7 @@ export class DatatypeModule extends SimpleModuleBase {
 
     const { min = 0, max = min + 99999, precision = 1 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, multipleOf: precision });
   }
 
   /**
@@ -142,7 +142,7 @@ export class DatatypeModule extends SimpleModuleBase {
 
     const { min = 0, max = min + 99999, precision = 0.01 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, multipleOf: precision });
   }
 
   /**
