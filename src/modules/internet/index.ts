@@ -356,7 +356,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 3.1.0
    *
-   * @deprecated Use `faker.internet.exampleEmail({ firstName: lastName, ... })` instead.
+   * @deprecated Use `faker.internet.exampleEmail({ firstName, lastName, ... })` instead.
    */
   exampleEmail(
     firstName?: string,
@@ -1123,7 +1123,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.internet.color({ redbase, greenBase, blueBase })` instead.
+   * @deprecated Use `faker.internet.color({ redBase, greenBase, blueBase })` instead.
    */
   color(redBase?: number, greenBase?: number, blueBase?: number): string;
   /**
