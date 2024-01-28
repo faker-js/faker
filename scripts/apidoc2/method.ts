@@ -20,8 +20,6 @@ export function processMethods(methods: MethodDeclaration[]): ApiDocMethod[] {
 export function processConstructors(
   constructors: ConstructorDeclaration[]
 ): ApiDocMethod[] {
-  console.log(`Processing ${constructors.length} constructors`);
-
   return processMethodLikes(constructors, () => 'constructor');
 }
 

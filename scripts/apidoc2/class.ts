@@ -1,4 +1,5 @@
 import type { ClassDeclaration, Project } from 'ts-morph';
+import { processConstructors } from './method';
 import { processModule } from './module';
 import { getSourceLink } from './source';
 import type { ApiDocPage } from './types';
@@ -43,6 +44,6 @@ function processClasses(clazzes: ClassDeclaration[]): ApiDocPage[] {
 
 function processClass(clazz: ClassDeclaration): ApiDocPage {
   const result = processModule(clazz);
-  //result.methods.unshift(processConstructors(clazz.getConstructors()));
+  result.methods.unshift(...processConstructors(clazz.getConstructors()));
   return result;
 }

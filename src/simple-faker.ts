@@ -97,6 +97,10 @@ export class SimpleFaker {
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   *
+   * @example Nothing to see here.
+   *
+   * @since 0.0.0
    */
   constructor(
     options: {

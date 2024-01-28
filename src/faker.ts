@@ -140,6 +140,8 @@ export class Faker extends SimpleFaker {
    * customFaker.person.lastName(); // 'Ocampo Corrales'
    *
    * customFaker.music.genre(); // throws Error as this data is not available in `es`
+   *
+   * @since 0.0.0
    */
   constructor(options: {
     /**
@@ -172,6 +174,10 @@ export class Faker extends SimpleFaker {
    * @param options.locales The locale data to use.
    * @param options.locale The name of the main locale to use.
    * @param options.localeFallback The name of the fallback locale to use.
+   *
+   * @example Why are you looking at examples here? It's deprecated!
+   *
+   * @since 0.0.0
    *
    * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
    */
@@ -210,6 +216,8 @@ export class Faker extends SimpleFaker {
    * customFaker.person.lastName(); // 'Ocampo Corrales'
    *
    * customFaker.music.genre(); // throws Error as this data is not available in `es`
+   *
+   * @since 0.0.0
    */
   constructor(
     options:
