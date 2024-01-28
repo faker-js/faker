@@ -1,9 +1,14 @@
-import type { ClassDeclaration } from 'ts-morph';
+import type { ClassDeclaration, Project } from 'ts-morph';
+import { getClasses } from './class';
 import { getDeprecated, getDescription, getJsDocs } from './jsdoc';
 import { processMethods } from './method';
 import { getSourceLink } from './source';
 import type { ApiDocPage } from './types';
 import { required } from './utils';
+
+export function processModuleClasses(project: Project): ApiDocPage[] {
+  return processModules(getClasses(project, (name) => name.endsWith('Module')));
+}
 
 export function processModules(modules: ClassDeclaration[]): ApiDocPage[] {
   return modules.map((v) => {

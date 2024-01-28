@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import type { Project } from 'ts-morph';
 import { processProjectClasses } from './class';
+import { processModuleClasses } from './module';
 import { getProject } from './project';
 import type { ApiDocPage } from './types';
 
@@ -12,7 +13,10 @@ export function generate(): void {
 
 function processComponents(project: Project): ApiDocPage[] {
   try {
-    return [...processProjectClasses(project, 'Faker', 'SimpleFaker')];
+    return [
+      ...processProjectClasses(project, 'Faker', 'SimpleFaker'),
+      ...processModuleClasses(project),
+    ];
   } catch (error) {
     let e = error;
     let message = '';
