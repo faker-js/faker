@@ -98,9 +98,17 @@ export class SimpleFaker {
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
    *
-   * @example Nothing to see here.
+   * @example
+   * import { SimpleFaker } from '@faker-js/faker';
+   * // const { SimpleFaker } = require('@faker-js/faker');
    *
-   * @since 0.0.0
+   * // create a SimpleFaker without any locale data
+   * const customSimpleFaker = new SimpleFaker();
+   *
+   * customSimpleFaker.helpers.arrayElement([red', 'green', 'blue']); // 'green'
+   * customSimpleFaker.number.int(10); // 4
+   *
+   * @since 8.1.0
    */
   constructor(
     options: {
@@ -153,7 +161,7 @@ export class SimpleFaker {
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
    *
-   * @since 0.0.0
+   * @since 6.0.0
    */
   seed(seed?: number): number;
   /**
@@ -190,7 +198,7 @@ export class SimpleFaker {
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
    *
-   * @since 0.0.0
+   * @since 6.0.0
    */
   seed(seedArray: number[]): number[];
   /**
@@ -236,7 +244,7 @@ export class SimpleFaker {
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
    *
-   * @since 0.0.0
+   * @since 6.0.0
    */
   seed(seed?: number | number[]): number | number[];
   seed(

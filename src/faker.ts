@@ -141,7 +141,7 @@ export class Faker extends SimpleFaker {
    *
    * customFaker.music.genre(); // throws Error as this data is not available in `es`
    *
-   * @since 0.0.0
+   * @since 8.0.0
    */
   constructor(options: {
     /**
@@ -177,7 +177,7 @@ export class Faker extends SimpleFaker {
    *
    * @example Why are you looking at examples here? It's deprecated!
    *
-   * @since 0.0.0
+   * @since 6.0.0
    *
    * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
    */
@@ -217,7 +217,7 @@ export class Faker extends SimpleFaker {
    *
    * customFaker.music.genre(); // throws Error as this data is not available in `es`
    *
-   * @since 0.0.0
+   * @since 8.0.0
    */
   constructor(
     options:
