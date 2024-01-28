@@ -19,17 +19,15 @@ export function getSince(jsdocs: JSDoc): string {
   return getOnlyTagFromJSDoc(jsdocs, 'since');
 }
 
-export function getModuleExample(jsdocs: JSDoc): string {
-  return getTagsFromJSDoc(jsdocs, 'example').join(
-    '\n// -----------------------------------------------------------------------------\n\n'
-  );
+export function getThrows(jsdocs: JSDoc): string[] {
+  return getTagsFromJSDoc(jsdocs, 'throws');
 }
 
-export function getMethodExample(jsdocs: JSDoc): string {
-  return getOnlyTagFromJSDoc(jsdocs, 'example');
+export function getExamples(jsdocs: JSDoc): string[] {
+  return getTagsFromJSDoc(jsdocs, 'example');
 }
 
-export function getSeeAlso(jsdocs: JSDoc): string[] {
+export function getSeeAlsos(jsdocs: JSDoc): string[] {
   return getTagsFromJSDoc(jsdocs, 'see');
 }
 

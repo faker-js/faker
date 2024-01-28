@@ -1,8 +1,9 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import type { DocsMethod } from '../../docs/.vitepress/components/api-docs/method';
 import { pathApiDocsDir } from './file';
 import { formatMarkdown } from './format';
-import type { ApiDocPage } from './types';
+import type { ApiDocMethod, ApiDocPage } from './types';
 import { scriptCommand } from './utils';
 
 // Moved here because this must not be formatted by prettier
@@ -37,7 +38,8 @@ async function writePage(page: ApiDocPage): Promise<void> {
  * @param page The page to write.
  */
 export async function writePageMarkdown(page: ApiDocPage): Promise<void> {
-  const { title, camelTitle, deprecated, description, example, methods } = page;
+  const { title, camelTitle, deprecated, description, examples, methods } =
+    page;
   // Write api docs page
   let content = `
   <script setup>
@@ -64,7 +66,7 @@ export async function writePageMarkdown(page: ApiDocPage): Promise<void> {
 
   ${description}
 
-  ${example == null ? '' : `<div class="examples">${example}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${examples.join('\n')}</div>`}
 
   :::
 
@@ -91,9 +93,53 @@ export async function writePageMarkdown(page: ApiDocPage): Promise<void> {
  */
 function writePageJsonData(page: ApiDocPage): void {
   const { camelTitle, methods } = page;
-  const content = JSON.stringify(
-    Object.fromEntries(methods.map((method) => [method.name, method]))
+  const pageData: Record<string, DocsMethod> = Object.fromEntries(
+    methods.map((method) => [method.name, toMethodData(method)])
   );
+  const content = JSON.stringify(pageData, null, 2);
 
   writeFileSync(resolve(pathApiDocsDir, `${camelTitle}2.json`), content);
+}
+
+function toMethodData(method: ApiDocMethod): DocsMethod {
+  const { name, signatures, sourcePath } = method;
+  const signature = signatures[signatures.length - 1];
+  const {
+    deprecated,
+    description,
+    since,
+    parameters,
+    returns,
+    throws,
+    examples,
+    seeAlsos,
+  } = signature;
+
+  /* Target order, omitted to improve diff to old files
+  return {
+    name,
+    deprecated,
+    description,
+    since,
+    parameters,
+    returns,
+    throws: throws.length === 0 ? undefined : throws.join('\n'),
+    examples: examples.join('\n'),
+    seeAlsos,
+    sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
+  };
+  */
+
+  return {
+    name,
+    description,
+    parameters,
+    since,
+    sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
+    throws: throws.length === 0 ? undefined : throws.join('\n'),
+    returns,
+    examples: examples.join('\n'),
+    deprecated,
+    seeAlsos,
+  };
 }

@@ -58,7 +58,7 @@ function moduleDiffHashs(module: ApiDocPage): ModuleDiffHashs {
 function methodDiffHash(method: ApiDocMethod): string {
   return diffHash({
     ...method,
-    sourcePath: method.sourceLink.replace(/:.*/g, ''),
+    sourcePath: method.sourcePath.replace(/:.*/g, ''),
   });
 }
 

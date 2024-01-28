@@ -5,7 +5,7 @@ import {
 } from 'ts-morph';
 import type { SignatureLikeDeclaration } from './signature';
 import { processSignature } from './signature';
-import { getSourceLink } from './source';
+import { getSourcePath } from './source';
 import type { ApiDocMethod } from './types';
 
 type MethodLikeDeclaration = SignatureLikeDeclaration &
@@ -36,7 +36,7 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
       return processMethod(name, v);
     } catch (error) {
       throw new Error(
-        `Error processing method ${name} at ${getSourceLink(v)}`,
+        `Error processing method ${name} at ${getSourcePath(v)}`,
         {
           cause: error,
         }
@@ -58,16 +58,16 @@ function processMethod(
       return processSignature(v);
     } catch (error) {
       throw new Error(
-        `Error processing signature ${name}/${i} at ${getSourceLink(v)}}`,
+        `Error processing signature ${name}/${i} at ${getSourcePath(v)}}`,
         { cause: error }
       );
     }
   });
-  const sourceLink = getSourceLink(method);
+  const sourcePath = getSourcePath(method);
 
   return {
     name,
     signatures: apiDocsSignatures,
-    sourceLink,
+    sourcePath,
   };
 }

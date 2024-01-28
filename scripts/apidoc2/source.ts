@@ -9,7 +9,7 @@ export type SourceableNode = Pick<Node, 'getSourceFile' | 'getStart'>;
 
 const pathSourceBaseUrlFile = resolve(pathApiDocsDir, 'source-base-url.ts');
 
-export function getSourceLink(node: SourceableNode): string {
+export function getSourcePath(node: SourceableNode): string {
   const sourceFile = node.getSourceFile();
   const filePath = sourceFile
     .getFilePath()

@@ -3,10 +3,11 @@ import type { JSDocableLikeNode } from './jsdoc';
 import {
   getDeprecated,
   getDescription,
+  getExamples,
   getJsDocs,
-  getMethodExample,
-  getSeeAlso,
+  getSeeAlsos,
   getSince,
+  getThrows,
 } from './jsdoc';
 import { processParameters } from './parameter';
 import type { SourceableNode } from './source';
@@ -30,8 +31,9 @@ export function processSignature(
   const since = getSince(jsdocs);
   const parameters = processParameters(signature.getParameters(), jsdocs);
   const returns = getTypeText(signature.getReturnType());
-  const example = getMethodExample(jsdocs);
-  const seeAlso = getSeeAlso(jsdocs);
+  const throws = getThrows(jsdocs);
+  const examples = getExamples(jsdocs);
+  const seeAlsos = getSeeAlsos(jsdocs);
 
   return {
     deprecated,
@@ -39,7 +41,8 @@ export function processSignature(
     since,
     parameters,
     returns,
-    example,
-    seeAlso,
+    throws,
+    examples,
+    seeAlsos,
   };
 }

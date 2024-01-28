@@ -4,7 +4,7 @@ export interface ApiDocPage {
   category: string;
   deprecated: string | undefined;
   description: string;
-  example: string | undefined;
+  examples: string[];
   methods: ApiDocMethod[];
 }
 
@@ -17,7 +17,7 @@ export interface ApiDocMethod {
    * @example
    * `src/faker.ts:123:45`
    */
-  sourceLink: string;
+  sourcePath: string;
 }
 
 export interface ApiDocSignature {
@@ -26,13 +26,14 @@ export interface ApiDocSignature {
   since: string;
   parameters: ApiDocParameter[];
   returns: string;
-  example: string;
-  seeAlso: string[];
+  throws: string[];
+  examples: string[];
+  seeAlsos: string[];
 }
 
 export interface ApiDocParameter {
   name: string;
   type: string;
-  defaultValue: string | undefined;
+  default: string | undefined;
   description: string;
 }

@@ -10,8 +10,11 @@ import { writeSearchIndex } from './search-index';
 import type { ApiDocPage } from './types';
 
 export async function generate(): Promise<void> {
+  console.log('Reading project');
   const project = getProject();
+  console.log('Processing components');
   const apiDocPages = processComponents(project);
+  console.log('Writing files');
   writeDiffIndex(apiDocPages);
   await writePageIndex(apiDocPages);
   await writePages(apiDocPages);

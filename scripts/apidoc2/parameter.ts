@@ -1,7 +1,7 @@
 import type { JSDoc, JSDocTag, ParameterDeclaration } from 'ts-morph';
 import { JSDocParameterTag } from 'ts-morph';
 import { getDescription } from './jsdoc';
-import { getSourceLink } from './source';
+import { getSourcePath } from './source';
 import { getTypeText } from './type';
 import type { ApiDocParameter } from './types';
 import { required } from './utils';
@@ -26,7 +26,7 @@ export function processParameters(
       return processParameter(v, jsdocTag);
     } catch (error: unknown) {
       throw new Error(
-        `Error processing parameter ${name} at ${getSourceLink(v)}`,
+        `Error processing parameter ${name} at ${getSourcePath(v)}`,
         { cause: error }
       );
     }
@@ -39,13 +39,13 @@ export function processParameter(
 ): ApiDocParameter {
   const name = parameter.getName();
   const type = getTypeText(parameter.getType());
-  const defaultValue = parameter.getInitializer()?.getText() ?? '';
+  const defaultValue = parameter.getInitializer()?.getText();
   const description = getDescription(jsdocTag);
 
   return {
     name,
     type,
-    defaultValue,
+    default: defaultValue,
     description,
   };
 }

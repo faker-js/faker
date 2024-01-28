@@ -1,7 +1,7 @@
 import type { ClassDeclaration, Project } from 'ts-morph';
 import { processConstructors } from './method';
 import { processModule } from './module';
-import { getSourceLink } from './source';
+import { getSourcePath } from './source';
 import type { ApiDocPage } from './types';
 import { mapBy, required } from './utils';
 
@@ -41,7 +41,7 @@ function processClasses(classes: ClassDeclaration[]): ApiDocPage[] {
       return processClass(c);
     } catch (error) {
       throw new Error(
-        `Error processing class ${c.getNameOrThrow()} at ${getSourceLink(c)}`,
+        `Error processing class ${c.getNameOrThrow()} at ${getSourcePath(c)}`,
         {
           cause: error,
         }
