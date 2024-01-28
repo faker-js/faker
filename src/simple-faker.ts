@@ -65,6 +65,8 @@ export class SimpleFaker {
    *
    * faker.defaultRefDate() // 2020-01-01T00:00:01Z
    * faker.defaultRefDate() // 2020-01-01T00:00:02Z
+   *
+   * @since 8.0.0
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
@@ -146,6 +148,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 0.0.0
    */
   seed(seed?: number): number;
   /**
@@ -181,6 +185,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 0.0.0
    */
   seed(seedArray: number[]): number[];
   /**
@@ -225,6 +231,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 0.0.0
    */
   seed(seed?: number | number[]): number | number[];
   seed(

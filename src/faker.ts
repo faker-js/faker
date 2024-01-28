@@ -317,6 +317,8 @@ export class Faker extends SimpleFaker {
    * // const { faker, fakerES_MX } = require("@faker-js/faker")
    * faker.getMetadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
    * fakerES_MX.getMetadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
+   *
+   * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
     return this.rawDefinitions.metadata ?? {};
