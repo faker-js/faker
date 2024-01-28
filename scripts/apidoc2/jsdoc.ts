@@ -19,7 +19,13 @@ export function getSince(jsdocs: JSDoc): string {
   return getOnlyTagFromJSDoc(jsdocs, 'since');
 }
 
-export function getExample(jsdocs: JSDoc): string {
+export function getModuleExample(jsdocs: JSDoc): string {
+  return getTagsFromJSDoc(jsdocs, 'example').join(
+    '\n// -----------------------------------------------------------------------------\n\n'
+  );
+}
+
+export function getMethodExample(jsdocs: JSDoc): string {
   return getOnlyTagFromJSDoc(jsdocs, 'example');
 }
 

@@ -3,8 +3,8 @@ import type { JSDocableLikeNode } from './jsdoc';
 import {
   getDeprecated,
   getDescription,
-  getExample,
   getJsDocs,
+  getMethodExample,
   getSeeAlso,
   getSince,
 } from './jsdoc';
@@ -30,7 +30,7 @@ export function processSignature(
   const since = getSince(jsdocs);
   const parameters = processParameters(signature.getParameters(), jsdocs);
   const returns = getTypeText(signature.getReturnType());
-  const example = getExample(jsdocs);
+  const example = getMethodExample(jsdocs);
   const seeAlso = getSeeAlso(jsdocs);
 
   return {

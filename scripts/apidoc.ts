@@ -3,8 +3,8 @@
 import { generate } from './apidoc2/generate';
 
 async function build(): Promise<void> {
-  await new Promise((resolve) => setTimeout(resolve, 1));
-  generate();
+  // await initMarkdownRenderer();
+  await generate();
 }
 
 build().catch((error) => {

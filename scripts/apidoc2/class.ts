@@ -51,7 +51,7 @@ function processClasses(classes: ClassDeclaration[]): ApiDocPage[] {
 }
 
 function processClass(clazz: ClassDeclaration): ApiDocPage {
-  const result = processModule(clazz);
+  const result = processModule(clazz, '');
   result.methods.unshift(...processConstructors(clazz.getConstructors()));
   return result;
 }
