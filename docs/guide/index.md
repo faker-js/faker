@@ -40,3 +40,5 @@ yarn add @faker-js/faker --dev
 ## Community
 
 If you have questions or need help, reach out to the community via [Discord](https://chat.fakerjs.dev) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).
+
+You can see awesome things people in the community have built with Faker at [Awesome Faker](https://github.com/faker-js/awesome-faker).
