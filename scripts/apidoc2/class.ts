@@ -13,9 +13,9 @@ export function getClasses(
     project
       .getSourceFiles()
       .flatMap((s) => s.getClasses())
-      .filter((c: ClassDeclaration) => names.includes(c.getNameOrThrow())),
-    (c: ClassDeclaration) => c.getNameOrThrow(),
-    (c: ClassDeclaration) => c
+      .filter((c) => names.includes(c.getNameOrThrow())),
+    (c) => c.getNameOrThrow(),
+    (c) => c
   );
   return names.map((n) => required(byName[n], n));
 }
@@ -27,8 +27,8 @@ export function processProjectClasses(
   return processClasses(getClasses(project, ...names));
 }
 
-function processClasses(clazzes: ClassDeclaration[]): ApiDocPage[] {
-  return clazzes.map((c) => {
+function processClasses(classes: ClassDeclaration[]): ApiDocPage[] {
+  return classes.map((c) => {
     try {
       return processClass(c);
     } catch (error) {
