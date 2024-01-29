@@ -175,7 +175,8 @@ export class Faker extends SimpleFaker {
    * @param options.locale The name of the main locale to use.
    * @param options.localeFallback The name of the fallback locale to use.
    *
-   * @example new Faker({ locales });
+   * @example
+   * new Faker({ locales: allLocales });
    *
    * @since 6.0.0
    *
