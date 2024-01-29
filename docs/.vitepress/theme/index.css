@@ -1,3 +1,18 @@
+:root {
+  --faker-brand-hue: 2;
+  --vp-c-brand-1: hsl(var(--faker-brand-hue), 53%, 45%);
+  --vp-c-brand-2: hsl(var(--faker-brand-hue), 53%, 51%);
+  --vp-c-brand-3: hsl(var(--faker-brand-hue), 53%, 57%);
+  --vp-c-brand-soft: hsla(var(--faker-brand-hue), 100%, 70%, 0.14);
+}
+
+.dark {
+  --vp-c-brand-1: hsl(var(--faker-brand-hue), 100%, 83%);
+  --vp-c-brand-2: hsl(var(--faker-brand-hue), 74%, 63%);
+  --vp-c-brand-3: hsl(var(--faker-brand-hue), 70%, 55%);
+  --vp-c-brand-soft: hsla(var(--faker-brand-hue), 100%, 70%, 0.16);
+}
+
 table td * {
   display: inline;
 }
