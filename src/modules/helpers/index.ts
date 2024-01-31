@@ -1252,7 +1252,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @since 8.0.0
    */
   multiple<TResult>(
-    method: () => TResult,
+    method: (_: undefined, index: number) => TResult,
     options: {
       /**
        * The number or range of elements to generate.
