@@ -16,5 +16,8 @@ table td ul li {
 
 .VPHero .action:not(:last-child) a.VPButton.alt {
   border-color: var(--vp-button-brand-bg) !important;
-  color: var(--vp-button-brand-text) !important;
+
+  .dark & {
+    color: var(--vp-button-brand-text) !important;
+  }
 }

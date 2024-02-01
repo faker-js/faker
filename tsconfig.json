@@ -11,12 +11,12 @@
     // These are configs specifically for !build and have to be reverted in the tsconfig.build.json
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "exclude": [
     "node_modules",
     "dist",
     // required for the typedoc related tests on macOS #2280
-    "test/scripts/apidoc/temp"
-  ]
+    "test/scripts/apidoc/temp",
+  ],
 }
