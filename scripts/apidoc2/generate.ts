@@ -1,13 +1,17 @@
 import { writeFileSync } from 'node:fs';
 import type { Project } from 'ts-morph';
-import { processProjectClasses } from './class';
+import type { RawApiDocsPage } from './class';
+import {
+  processModuleClasses,
+  processProjectClasses,
+  processProjectInterfaces,
+} from './class';
 import { writeDiffIndex } from './diff-index';
-import { processModuleClasses } from './module';
+import { processProjectFunctions } from './method';
 import { writePages } from './page';
 import { writePageIndex } from './page-index';
 import { getProject } from './project';
 import { writeSearchIndex } from './search-index';
-import type { ApiDocPage } from './types';
 
 export async function generate(): Promise<void> {
   console.log('Reading project');
@@ -22,10 +26,20 @@ export async function generate(): Promise<void> {
   writeFileSync('api-doc.json', JSON.stringify(apiDocPages, null, 2));
 }
 
-function processComponents(project: Project): ApiDocPage[] {
+function processComponents(project: Project): RawApiDocsPage[] {
   try {
     return [
       ...processProjectClasses(project, 'Faker', 'SimpleFaker'),
+      ...processProjectInterfaces(project, 'Randomizer'),
+      {
+        title: 'Utilities',
+        camelTitle: 'utils',
+        category: '',
+        deprecated: undefined,
+        description: 'A list of all the utilities available in Faker.js.',
+        examples: [],
+        methods: processProjectFunctions(project, 'mergeLocales'),
+      },
       ...processModuleClasses(project),
     ];
   } catch (error) {

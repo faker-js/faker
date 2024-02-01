@@ -1,24 +1,31 @@
 import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { pathPublicDir } from './file';
-import type { ApiDocMethod, ApiDocPage } from './types';
+import type { RawApiDocsPage } from './class';
+import type { RawApiDocsMethod } from './method';
+import { pathPublicDir } from './paths';
 
 const nameDocsDiffIndexFile = 'api-diff-index2.json';
 const pathDocsDiffIndexFile = resolve(pathPublicDir, nameDocsDiffIndexFile);
 
+/**
+ * The diff hashes for the entire api.
+ */
 export interface ApiDiffHashs {
   /**
-   * The module names with their diff hashs.
+   * The pages with their diff hashs.
    */
-  [module: string]: ModuleDiffHashs;
+  [pages: string]: ApiPageDiffHashs;
 }
 
-export interface ModuleDiffHashs {
+/**
+ * The diff hashes for a single api doc page.
+ */
+export interface ApiPageDiffHashs {
   /**
-   * The checksum of the entire module.
+   * The checksum of the entire page.
    */
-  moduleHash: string;
+  pageHash: string;
   /**
    * The checksum of the method by name.
    */
@@ -30,22 +37,22 @@ export interface ModuleDiffHashs {
  *
  * @param pages The pages to write into the index.
  */
-export function writeDiffIndex(pages: ApiDocPage[]): void {
+export function writeDiffIndex(pages: RawApiDocsPage[]): void {
   const diffIndex: ApiDiffHashs = Object.fromEntries(
-    pages.map((page) => [page.title, moduleDiffHashs(page)])
+    pages.map((page) => [page.title, pageDiffHashs(page)])
   );
   writeFileSync(pathDocsDiffIndexFile, JSON.stringify(diffIndex));
 }
 
-function moduleDiffHashs(module: ApiDocPage): ModuleDiffHashs {
+function pageDiffHashs(page: RawApiDocsPage): ApiPageDiffHashs {
   return {
-    moduleHash: diffHash({
-      name: module.title,
-      deprecated: module.deprecated,
-      description: module.description,
+    pageHash: diffHash({
+      name: page.title,
+      deprecated: page.deprecated,
+      description: page.description,
     }),
     ...Object.fromEntries(
-      module.methods.map((method) => [method.name, methodDiffHash(method)])
+      page.methods.map((method) => [method.name, methodDiffHash(method)])
     ),
   };
 }
@@ -55,7 +62,7 @@ function moduleDiffHashs(module: ApiDocPage): ModuleDiffHashs {
  *
  * @param method The method to create a hash for.
  */
-function methodDiffHash(method: ApiDocMethod): string {
+function methodDiffHash(method: RawApiDocsMethod): string {
   return diffHash({
     ...method,
     sourcePath: method.sourcePath.replace(/:.*/g, ''),

@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { APIGroup } from '../../docs/api/api-types';
-import { pathApiDocsDir } from './file';
-import type { ApiDocPage } from './types';
+import type { RawApiDocsPage } from './class';
+import { pathApiDocsDir } from './paths';
 
 const pathDocsApiSearchIndex = resolve(
   pathApiDocsDir,
@@ -14,7 +14,7 @@ const pathDocsApiSearchIndex = resolve(
  *
  * @param pages The pages to write into the index.
  */
-export function writeSearchIndex(pages: ApiDocPage[]): void {
+export function writeSearchIndex(pages: RawApiDocsPage[]): void {
   const apiIndex: APIGroup[] = [
     {
       text: 'Module API',

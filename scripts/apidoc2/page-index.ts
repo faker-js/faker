@@ -2,9 +2,9 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { DefaultTheme } from 'vitepress';
 import { groupBy } from '../../src/internal/group-by';
-import { pathDocsDir } from './file';
+import type { RawApiDocsPage } from './class';
 import { formatTypescript } from './format';
-import type { ApiDocPage } from './types';
+import { pathDocsDir } from './paths';
 import { scriptCommand } from './utils';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages2.ts');
@@ -14,7 +14,7 @@ const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages2.ts');
  *
  * @param pages The pages to write into the index.
  */
-export async function writePageIndex(pages: ApiDocPage[]): Promise<void> {
+export async function writePageIndex(pages: RawApiDocsPage[]): Promise<void> {
   const pagesByCategory: Record<string, DefaultTheme.SidebarItem[]> = groupBy(
     pages,
     (page) => page.category,

@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Node } from 'ts-morph';
-import { pathApiDocsDir, pathProjectDir } from './file';
 import { formatTypescript } from './format';
+import { pathApiDocsDir, pathProjectDir } from './paths';
 import { scriptCommand } from './utils';
 
 export type SourceableNode = Pick<Node, 'getSourceFile' | 'getStart'>;

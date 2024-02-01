@@ -1,9 +1,10 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { DocsMethod } from '../../docs/.vitepress/components/api-docs/method';
-import { pathApiDocsDir } from './file';
+import type { ApiDocsMethod } from '../../docs/.vitepress/components/api-docs/method';
+import type { RawApiDocsPage } from './class';
 import { formatMarkdown } from './format';
-import type { ApiDocMethod, ApiDocPage } from './types';
+import type { RawApiDocsMethod } from './method';
+import { pathApiDocsDir } from './paths';
 import { scriptCommand } from './utils';
 
 // Moved here because this must not be formatted by prettier
@@ -18,7 +19,7 @@ editLink: false
  *
  * @param pages The pages to write.
  */
-export async function writePages(pages: ApiDocPage[]): Promise<void> {
+export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
   await Promise.all(pages.map(writePage));
 }
 
@@ -27,7 +28,7 @@ export async function writePages(pages: ApiDocPage[]): Promise<void> {
  *
  * @param page The page to write.
  */
-async function writePage(page: ApiDocPage): Promise<void> {
+async function writePage(page: RawApiDocsPage): Promise<void> {
   await writePageMarkdown(page);
   writePageJsonData(page);
 }
@@ -37,7 +38,7 @@ async function writePage(page: ApiDocPage): Promise<void> {
  *
  * @param page The page to write.
  */
-export async function writePageMarkdown(page: ApiDocPage): Promise<void> {
+export async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
   const { title, camelTitle, deprecated, description, examples, methods } =
     page;
   // Write api docs page
@@ -91,9 +92,9 @@ export async function writePageMarkdown(page: ApiDocPage): Promise<void> {
  *
  * @param page The page to write.
  */
-function writePageJsonData(page: ApiDocPage): void {
+function writePageJsonData(page: RawApiDocsPage): void {
   const { camelTitle, methods } = page;
-  const pageData: Record<string, DocsMethod> = Object.fromEntries(
+  const pageData: Record<string, ApiDocsMethod> = Object.fromEntries(
     methods.map((method) => [method.name, toMethodData(method)])
   );
   const content = JSON.stringify(pageData, null, 2);
@@ -101,7 +102,7 @@ function writePageJsonData(page: ApiDocPage): void {
   writeFileSync(resolve(pathApiDocsDir, `${camelTitle}2.json`), content);
 }
 
-function toMethodData(method: ApiDocMethod): DocsMethod {
+function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
   const { name, signatures, sourcePath } = method;
   const signature = signatures[signatures.length - 1];
   const {

@@ -1,10 +1,15 @@
 import type { JSDoc, JSDocTag, JSDocableNode } from 'ts-morph';
-import { allRequired, onlyOne, optionalOne, required } from './utils';
+import {
+  allRequired,
+  onlyOne as exactlyOne,
+  optionalOne,
+  required,
+} from './utils';
 
 export type JSDocableLikeNode = Pick<JSDocableNode, 'getJsDocs'>;
 
 export function getJsDocs(node: JSDocableLikeNode): JSDoc {
-  return onlyOne(node.getJsDocs(), 'jsdocs');
+  return exactlyOne(node.getJsDocs(), 'jsdocs');
 }
 
 export function getDeprecated(jsdocs: JSDoc): string | undefined {
@@ -16,7 +21,7 @@ export function getDescription(jsdocs: JSDoc | JSDocTag): string {
 }
 
 export function getSince(jsdocs: JSDoc): string {
-  return getOnlyTagFromJSDoc(jsdocs, 'since');
+  return getExactlyOneTagFromJSDoc(jsdocs, 'since');
 }
 
 export function getThrows(jsdocs: JSDoc): string[] {
@@ -35,11 +40,11 @@ function getOptionalTagFromJSDoc(
   jsdocs: JSDoc,
   type: string
 ): string | undefined {
-  return optionalOne(getTagsFromJSDoc(jsdocs, type), type);
+  return optionalOne(getTagsFromJSDoc(jsdocs, type), `@${type}`);
 }
 
-function getOnlyTagFromJSDoc(jsdocs: JSDoc, type: string): string {
-  return onlyOne(getTagsFromJSDoc(jsdocs, type), `@${type}`);
+function getExactlyOneTagFromJSDoc(jsdocs: JSDoc, type: string): string {
+  return exactlyOne(getTagsFromJSDoc(jsdocs, type), `@${type}`);
 }
 
 function getTagsFromJSDoc(jsdocs: JSDoc, type: string): string[] {

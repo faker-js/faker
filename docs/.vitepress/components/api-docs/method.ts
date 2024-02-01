@@ -1,9 +1,9 @@
-export interface DocsMethod {
+export interface ApiDocsMethod {
   readonly name: string;
   readonly deprecated: string | undefined; // HTML
   readonly description: string; // HTML
   readonly since: string;
-  readonly parameters: DocsMethodParameter[];
+  readonly parameters: ApiDocsMethodParameter[];
   readonly returns: string;
   readonly throws: string | undefined; // HTML
   readonly examples: string; // HTML
@@ -11,7 +11,7 @@ export interface DocsMethod {
   readonly sourcePath: string; // URL-Suffix
 }
 
-export interface DocsMethodParameter {
+export interface ApiDocsMethodParameter {
   readonly name: string;
   readonly type: string | undefined;
   readonly default: string | undefined;

@@ -1,15 +1,36 @@
 import type { JSDoc, JSDocTag, ParameterDeclaration } from 'ts-morph';
 import { JSDocParameterTag } from 'ts-morph';
-import { getDescription } from './jsdoc';
+import { getDescription } from './jsdocs';
 import { getSourcePath } from './source';
 import { getTypeText } from './type';
-import type { ApiDocParameter } from './types';
 import { required } from './utils';
+
+/**
+ * Represents a parameter in the raw API docs.
+ */
+export interface RawApiDocsParameter {
+  /**
+   * The name of the parameter.
+   */
+  name: string;
+  /**
+   * The type of the parameter.
+   */
+  type: string;
+  /**
+   * The default value or expression of the parameter, if it has one.
+   */
+  default: string | undefined;
+  /**
+   * The description of the parameter.
+   */
+  description: string;
+}
 
 export function processParameters(
   parameters: ParameterDeclaration[],
   jsdocs: JSDoc
-): ApiDocParameter[] {
+): RawApiDocsParameter[] {
   const paramTags = jsdocs
     .getTags()
     .filter((tag) => tag.getTagName() === 'param')
@@ -36,16 +57,11 @@ export function processParameters(
 export function processParameter(
   parameter: ParameterDeclaration,
   jsdocTag: JSDocTag
-): ApiDocParameter {
-  const name = parameter.getName();
-  const type = getTypeText(parameter.getType());
-  const defaultValue = parameter.getInitializer()?.getText();
-  const description = getDescription(jsdocTag);
-
+): RawApiDocsParameter {
   return {
-    name,
-    type,
-    default: defaultValue,
-    description,
+    name: parameter.getName(),
+    type: getTypeText(parameter.getType()),
+    default: parameter.getInitializer()?.getText(),
+    description: getDescription(jsdocTag),
   };
 }
