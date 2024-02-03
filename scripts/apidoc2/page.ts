@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../docs/.vitepress/components/api-docs/method';
 import type { RawApiDocsPage } from './class';
 import { formatMarkdown } from './format';
+import { codeToHtml, mdToHtml } from './markdown';
 import type { RawApiDocsMethod } from './method';
 import { pathApiDocsDir } from './paths';
 import { scriptCommand } from './utils';
@@ -119,13 +120,13 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
   /* Target order, omitted to improve diff to old files
   return {
     name,
-    deprecated,
-    description,
+    deprecated: mdToHtml(deprecated),
+    description: mdToHtml(description),
     since,
     parameters,
     returns,
     throws: throws.length === 0 ? undefined : throws.join('\n'),
-    examples: examples.join('\n'),
+    examples: codeToHtml(examples.join('\n')),
     seeAlsos,
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
   };
@@ -133,14 +134,17 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
 
   return {
     name,
-    description,
-    parameters,
+    description: mdToHtml(description),
+    parameters: parameters.map((param) => ({
+      ...param,
+      description: mdToHtml(param.description, true),
+    })),
     since,
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
     throws: throws.length === 0 ? undefined : throws.join('\n'),
     returns,
-    examples: examples.join('\n'),
-    deprecated,
+    examples: codeToHtml(examples.join('\n')),
+    deprecated: mdToHtml(deprecated),
     seeAlsos,
   };
 }
