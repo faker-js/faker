@@ -1,7 +1,13 @@
-import type { Type, TypeParameterDeclaration } from 'ts-morph';
+import type {
+  PropertySignature,
+  Type,
+  TypeParameterDeclaration,
+} from 'ts-morph';
 import { type JSDoc, type JSDocTag, type ParameterDeclaration } from 'ts-morph';
 import {
+  getDefault,
   getDescription,
+  getJsDocs,
   getParameterTags,
   getTypeParameterTags,
 } from './jsdocs';
@@ -143,8 +149,10 @@ function processComplexParameter(
         const declaration = exactlyOne(
           property.getDeclarations(),
           'property declaration'
-        ).getType();
-        const propertyType = declaration;
+        ) as PropertySignature;
+        const propertyType = declaration.getType();
+        const jsdocs = getJsDocs(declaration);
+
         return [
           {
             name: `${name}.${property.getName()}${getNameSuffix(propertyType)}`,
@@ -152,8 +160,8 @@ function processComplexParameter(
               abbreviate: false,
               stripUndefined: true,
             }),
-            default: 'MISSING',
-            description: 'MISSING',
+            default: getDefault(jsdocs),
+            description: getDescription(jsdocs),
           },
         ];
       })
