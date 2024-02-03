@@ -1,10 +1,6 @@
 import type { JSDoc, JSDocTag, JSDocableNode } from 'ts-morph';
-import {
-  allRequired,
-  onlyOne as exactlyOne,
-  optionalOne,
-  required,
-} from './utils';
+import { JSDocParameterTag, JSDocTemplateTag } from 'ts-morph';
+import { allRequired, exactlyOne, optionalOne, required } from './utils';
 
 export type JSDocableLikeNode = Pick<JSDocableNode, 'getJsDocs'>;
 
@@ -24,6 +20,32 @@ export function getSince(jsdocs: JSDoc): string {
   return getExactlyOneTagFromJSDoc(jsdocs, 'since');
 }
 
+export function getTypeParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
+  return Object.fromEntries(
+    jsdocs
+      .getTags()
+      .filter((tag) => tag.getTagName() === 'template')
+      .filter((tag) => tag instanceof JSDocTemplateTag)
+      .map((tag) => tag as JSDocTemplateTag)
+      .map((tag) => [tag.getTypeParameters()[0].getName(), tag] as const)
+  );
+}
+
+export function getParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
+  return Object.fromEntries(
+    jsdocs
+      .getTags()
+      .filter((tag) => tag.getTagName() === 'param')
+      .filter((tag) => tag instanceof JSDocParameterTag)
+      .map((tag) => tag as JSDocParameterTag)
+      .map((tag) => [tag.getName(), tag] as const)
+  );
+}
+
+export function getDefault(jsdocs: JSDoc): string | undefined {
+  return getOptionalTagFromJSDoc(jsdocs, `default`);
+}
+
 export function getThrows(jsdocs: JSDoc): string[] {
   return getTagsFromJSDoc(jsdocs, 'throws');
 }
@@ -33,7 +55,7 @@ export function getExamples(jsdocs: JSDoc): string[] {
 }
 
 export function getSeeAlsos(jsdocs: JSDoc): string[] {
-  return getTagsFromJSDoc(jsdocs, 'see');
+  return getTagsFromJSDoc(jsdocs, 'see', true);
 }
 
 function getOptionalTagFromJSDoc(
@@ -47,12 +69,18 @@ function getExactlyOneTagFromJSDoc(jsdocs: JSDoc, type: string): string {
   return exactlyOne(getTagsFromJSDoc(jsdocs, type), `@${type}`);
 }
 
-function getTagsFromJSDoc(jsdocs: JSDoc, type: string): string[] {
+function getTagsFromJSDoc(
+  jsdocs: JSDoc,
+  type: string,
+  full: boolean = false
+): string[] {
   return allRequired(
     jsdocs
       .getTags()
       .filter((tag) => tag.getTagName() === type)
-      .map((tag) => tag.getCommentText()),
+      .map((tag) =>
+        full ? tag.getStructure().text?.toString() : tag.getCommentText()
+      ),
     `@${type}`
   );
 }

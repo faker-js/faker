@@ -114,6 +114,7 @@ function processMethodSignatures(
       getName: () => signature.getName(),
       hasModifier: () => false,
       getOverloads: () => signatures,
+      getTypeParameters: () => signature.getTypeParameters(),
       getParameters: () => signature.getParameters(),
       getReturnType: () => signature.getReturnType(),
       getJsDocs: () => signature.getJsDocs(),

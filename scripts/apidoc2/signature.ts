@@ -10,7 +10,7 @@ import {
   getThrows,
 } from './jsdocs';
 import type { RawApiDocsParameter } from './parameter';
-import { processParameters } from './parameter';
+import { processParameters, processTypeParameters } from './parameter';
 import { getSourcePath, type SourceableNode } from './source';
 import { getTypeText } from './type';
 
@@ -54,7 +54,7 @@ export interface RawApiDocsSignature {
 
 export type SignatureLikeDeclaration = Pick<
   MethodDeclaration,
-  'getParameters' | 'getReturnType'
+  'getParameters' | 'getReturnType' | 'getTypeParameters'
 > &
   JSDocableLikeNode &
   SourceableNode;
@@ -63,7 +63,10 @@ export function processSignature(
   signature: SignatureLikeDeclaration
 ): RawApiDocsSignature {
   const jsdocs = getJsDocs(signature);
-  const parameters = processParameters(signature.getParameters(), jsdocs);
+  const parameters = [
+    ...processTypeParameters(signature.getTypeParameters(), jsdocs),
+    ...processParameters(signature.getParameters(), jsdocs),
+  ];
   const returns = getTypeText(signature.getReturnType());
 
   try {

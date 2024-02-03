@@ -1,6 +1,6 @@
 export const scriptCommand = 'pnpm run generate:api-docs';
 
-export function onlyOne<T>(input: ReadonlyArray<T>, property: string): T {
+export function exactlyOne<T>(input: ReadonlyArray<T>, property: string): T {
   if (input.length !== 1) {
     throw new Error(
       `Expected exactly one element for ${property}, got ${input.length}`
@@ -41,9 +41,13 @@ export function allRequired<T>(
   return input.map((v, i) => required(v, `${property}[${i}]`));
 }
 
+export function valueForKey<T>(input: Record<string, T>, key: string): T {
+  return required(input[key], key);
+}
+
 export function valuesForKeys<T>(
   input: Record<string, T>,
   keys: string[]
 ): T[] {
-  return keys.map((key) => required(input[key], key));
+  return keys.map((key) => valueForKey(input, key));
 }

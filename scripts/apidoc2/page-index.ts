@@ -7,7 +7,7 @@ import { formatTypescript } from './format';
 import { pathDocsDir } from './paths';
 import { scriptCommand } from './utils';
 
-const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages2.ts');
+const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 
 /**
  * Writes the api docs index to correct location.

@@ -1,9 +1,13 @@
-import type { JSDoc, JSDocTag, ParameterDeclaration } from 'ts-morph';
-import { JSDocParameterTag } from 'ts-morph';
-import { getDescription } from './jsdocs';
+import type { Type, TypeParameterDeclaration } from 'ts-morph';
+import { type JSDoc, type JSDocTag, type ParameterDeclaration } from 'ts-morph';
+import {
+  getDescription,
+  getParameterTags,
+  getTypeParameterTags,
+} from './jsdocs';
 import { getSourcePath } from './source';
-import { getTypeText } from './type';
-import { required } from './utils';
+import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
+import { exactlyOne, valueForKey } from './utils';
 
 /**
  * Represents a parameter in the raw API docs.
@@ -27,41 +31,134 @@ export interface RawApiDocsParameter {
   description: string;
 }
 
-export function processParameters(
-  parameters: ParameterDeclaration[],
+export function processTypeParameters(
+  parameters: TypeParameterDeclaration[],
   jsdocs: JSDoc
 ): RawApiDocsParameter[] {
-  const paramTags = jsdocs
-    .getTags()
-    .filter((tag) => tag.getTagName() === 'param')
-    .filter((tag) => tag instanceof JSDocParameterTag)
-    .map((tag) => tag as JSDocParameterTag);
+  const paramTags = getTypeParameterTags(jsdocs);
 
-  return parameters.map((v) => {
-    const name = v.getName();
+  return parameters.flatMap((parameter) => {
     try {
-      const jsdocTag = required(
-        paramTags.find((tag) => tag.getName() === name),
-        `@param ${name}`
-      );
-      return processParameter(v, jsdocTag);
-    } catch (error: unknown) {
+      return processTypeParameterEntry(parameter, paramTags);
+    } catch (error) {
       throw new Error(
-        `Error processing parameter ${name} at ${getSourcePath(v)}`,
+        `Error processing type parameter ${parameter.getText()} at ${getSourcePath(
+          parameter
+        )}`,
         { cause: error }
       );
     }
   });
 }
 
-export function processParameter(
-  parameter: ParameterDeclaration,
-  jsdocTag: JSDocTag
+function processTypeParameterEntry(
+  parameter: TypeParameterDeclaration,
+  paramTags: Record<string, JSDocTag>
 ): RawApiDocsParameter {
   return {
-    name: parameter.getName(),
-    type: getTypeText(parameter.getType()),
-    default: parameter.getInitializer()?.getText(),
+    name: `<${parameter.getName()}>`,
+    type: getTypeText(parameter.getType(), { resolveTypeParameters: true }),
+    default: parameter.getDefault()?.getText(),
+    description: getDescription(valueForKey(paramTags, parameter.getName())),
+  };
+}
+
+export function processParameters(
+  parameters: ParameterDeclaration[],
+  jsdocs: JSDoc
+): RawApiDocsParameter[] {
+  const paramTags = getParameterTags(jsdocs);
+
+  return parameters.flatMap((parameter) => {
+    try {
+      return processParameterEntry(parameter, paramTags);
+    } catch (error) {
+      throw new Error(
+        `Error processing parameter ${parameter.getName()} at ${getSourcePath(parameter)}`,
+        { cause: error }
+      );
+    }
+  });
+}
+
+function processParameterEntry(
+  parameter: ParameterDeclaration,
+  paramTags: Record<string, JSDocTag>
+): RawApiDocsParameter[] {
+  const name = parameter.getName();
+  return [
+    processParameter(parameter, valueForKey(paramTags, name)),
+    ...processComplexParameter(name, parameter.getType()),
+  ];
+}
+
+type ParameterLikeDeclaration = Pick<
+  ParameterDeclaration,
+  'getName' | 'getType'
+> &
+  Partial<Pick<ParameterDeclaration, 'getInitializer'>>;
+
+function processParameter(
+  parameter: ParameterLikeDeclaration,
+  jsdocTag: JSDocTag
+): RawApiDocsParameter {
+  const type = parameter.getType();
+  return {
+    name: `${parameter.getName()}${getNameSuffix(type)}`,
+    type: getTypeText(type, {
+      abbreviate: true,
+      stripUndefined: true,
+    }),
+    default: parameter
+      .getInitializer?.()
+      ?.getText()
+      .replace(/ as .+$/, ''),
     description: getDescription(jsdocTag),
   };
+}
+
+function processComplexParameter(
+  name: string,
+  type: Type
+): RawApiDocsParameter[] {
+  if (type.isNullable()) {
+    return processComplexParameter(`${name}?`, type.getNonNullableType());
+  } else if (type.isUnion()) {
+    return type
+      .getUnionTypes()
+      .flatMap((unionType) => processComplexParameter(name, unionType));
+  } else if (type.isArray()) {
+    return processComplexParameter(
+      `${name}[]`,
+      type.getArrayElementTypeOrThrow()
+    );
+  } else if (type.isObject()) {
+    if (!isOptionsLikeType(type)) {
+      return [];
+    }
+
+    return type
+      .getApparentProperties()
+      .flatMap((property) => {
+        const declaration = exactlyOne(
+          property.getDeclarations(),
+          'property declaration'
+        ).getType();
+        const propertyType = declaration;
+        return [
+          {
+            name: `${name}.${property.getName()}${getNameSuffix(propertyType)}`,
+            type: getTypeText(propertyType, {
+              abbreviate: false,
+              stripUndefined: true,
+            }),
+            default: 'MISSING',
+            description: 'MISSING',
+          },
+        ];
+      })
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  return [];
 }
