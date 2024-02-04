@@ -179,6 +179,8 @@ function processInterface(iface: InterfaceDeclaration): RawApiDocsPage {
   };
 }
 
+// Utilities
+
 export function processProjectUtilities(project: Project): RawApiDocsPage {
   console.log(`- Utilities`);
 
