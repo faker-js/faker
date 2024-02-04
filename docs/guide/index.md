@@ -4,6 +4,10 @@
 
 Faker is a popular library that generates fake (but reasonable) data that can be used for things such as:
 
+<p style="background-color:var(--vp-c-brand-1) !important;">Brand 1</p>
+<p style="background-color:var(--vp-c-brand-2) !important;">Brand 2</p>
+<p style="background-color:var(--vp-c-brand-3) !important;">Brand 3</p>
+
 - Unit Testing
 - Performance Testing
 - Building Demos
