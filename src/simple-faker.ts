@@ -105,7 +105,7 @@ export class SimpleFaker {
    * // create a SimpleFaker without any locale data
    * const customSimpleFaker = new SimpleFaker();
    *
-   * customSimpleFaker.helpers.arrayElement([red', 'green', 'blue']); // 'green'
+   * customSimpleFaker.helpers.arrayElement(['red', 'green', 'blue']); // 'green'
    * customSimpleFaker.number.int(10); // 4
    *
    * @since 8.1.0
