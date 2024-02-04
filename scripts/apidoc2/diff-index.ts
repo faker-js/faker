@@ -47,9 +47,8 @@ export function writeDiffIndex(pages: RawApiDocsPage[]): void {
 function pageDiffHashs(page: RawApiDocsPage): ApiPageDiffHashs {
   return {
     pageHash: diffHash({
-      name: page.title,
-      deprecated: page.deprecated,
-      description: page.description,
+      ...page,
+      methods: undefined,
     }),
     ...Object.fromEntries(
       page.methods.map((method) => [method.name, methodDiffHash(method)])

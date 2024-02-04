@@ -11,8 +11,10 @@ import {
 } from './jsdocs';
 import type { RawApiDocsParameter } from './parameter';
 import { processParameters, processTypeParameters } from './parameter';
+import { getProject } from './project';
 import { getSourcePath, type SourceableNode } from './source';
 import { getTypeText } from './type';
+import { exactlyOne } from './utils';
 
 /**
  * Represents a method signature in the raw API docs.
@@ -54,7 +56,7 @@ export interface RawApiDocsSignature {
 
 export type SignatureLikeDeclaration = Pick<
   MethodDeclaration,
-  'getParameters' | 'getReturnType' | 'getTypeParameters'
+  'getTypeParameters' | 'getParameters' | 'getReturnType' | 'getText'
 > &
   JSDocableLikeNode &
   SourceableNode;
@@ -77,7 +79,7 @@ export function processSignature(
       parameters,
       returns,
       throws: getThrows(jsdocs),
-      examples: getExamples(jsdocs),
+      examples: [getSignatureText(signature), ...getExamples(jsdocs)],
       seeAlsos: getSeeAlsos(jsdocs),
     };
   } catch (error) {
@@ -85,4 +87,38 @@ export function processSignature(
       cause: error,
     });
   }
+}
+
+// Cache the project for performance reasons
+const signatureExtractionProject = getProject({
+  skipAddingFilesFromTsConfig: true,
+});
+
+function getSignatureText(signature: SignatureLikeDeclaration): string {
+  const fullText = signature
+    .getText()
+    // Remove all jsdocs
+    .replaceAll(/ *\/\*\*[^\n]*\n(\s*\*[^\n]*\n)*\s*\*\/\n/g, '')
+    // Remove all empty lines
+    .replaceAll(/\n\n+/g, '\n')
+    // Remove the export keyword
+    .replace(/^export function /, '');
+
+  // This is already a signature
+  if (fullText.endsWith(';')) {
+    // Remove the trailing semicolon
+    return `function ${fullText}`;
+  }
+
+  // Create a copy of the signature to keep the line numbers unchanged
+  // and for performance reasons, as removing and re-adding the body is slow.
+  // We use a function here to avoid unnecessary boilerplate
+  const fn = exactlyOne(
+    signatureExtractionProject
+      .createSourceFile('temp.ts', `function ${fullText}`, { overwrite: true })
+      .getFunctions(),
+    'function signature'
+  );
+  fn.removeBody();
+  return fn.getText();
 }

@@ -120,6 +120,7 @@ function processMethodSignatures(
       getJsDocs: () => signature.getJsDocs(),
       getSourceFile: () => signature.getSourceFile(),
       getStart: () => signature.getStart(),
+      getText: () => signature.getText(),
     };
   });
 
@@ -183,6 +184,7 @@ function processMethodLike(
   name: string,
   method: MethodLikeDeclaration
 ): RawApiDocsMethod {
+  console.log(`  - ${name}`);
   const signatures = method.getOverloads();
   const apiSignatures: SignatureLikeDeclaration[] =
     signatures.length > 0 ? signatures : [method];

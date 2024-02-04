@@ -11,6 +11,7 @@ import {
   processClassConstructors,
   processClassMethods,
   processInterfaceMethods,
+  processProjectFunctions,
 } from './method';
 import { getAll } from './project';
 import { getSourcePath } from './source';
@@ -178,6 +179,20 @@ function processInterface(iface: InterfaceDeclaration): RawApiDocsPage {
   };
 }
 
+export function processProjectUtilities(project: Project): RawApiDocsPage {
+  console.log(`- Utilities`);
+
+  return {
+    title: 'Utilities',
+    camelTitle: 'utils',
+    category: '',
+    deprecated: undefined,
+    description: 'A list of all the utilities available in Faker.js.',
+    examples: [],
+    methods: processProjectFunctions(project, 'mergeLocales'),
+  };
+}
+
 // Helpers
 
 function preparePage(
@@ -185,6 +200,8 @@ function preparePage(
   category: string,
   title: string
 ): RawApiDocsPage {
+  console.log(`- ${title}`);
+
   const jsdocs = getJsDocs(module);
 
   return {

@@ -5,9 +5,9 @@ import {
   processModuleClasses,
   processProjectClasses,
   processProjectInterfaces,
+  processProjectUtilities,
 } from './class';
 import { writeDiffIndex } from './diff-index';
-import { processProjectFunctions } from './method';
 import { writePages } from './page';
 import { writePageIndex } from './page-index';
 import { getProject } from './project';
@@ -19,11 +19,7 @@ export async function generate(): Promise<void> {
   console.log('Processing components');
   const apiDocPages = processComponents(project);
   console.log('Writing files');
-  writeDiffIndex(apiDocPages);
-  await writePageIndex(apiDocPages);
-  await writePages(apiDocPages);
-  writeSearchIndex(apiDocPages);
-  writeFileSync('api-doc.json', JSON.stringify(apiDocPages, null, 2));
+  await writeFiles(apiDocPages);
 }
 
 function processComponents(project: Project): RawApiDocsPage[] {
@@ -31,15 +27,7 @@ function processComponents(project: Project): RawApiDocsPage[] {
     return [
       ...processProjectClasses(project, 'Faker', 'SimpleFaker'),
       ...processProjectInterfaces(project, 'Randomizer'),
-      {
-        title: 'Utilities',
-        camelTitle: 'utils',
-        category: '',
-        deprecated: undefined,
-        description: 'A list of all the utilities available in Faker.js.',
-        examples: [],
-        methods: processProjectFunctions(project, 'mergeLocales'),
-      },
+      processProjectUtilities(project),
       ...processModuleClasses(project),
     ];
   } catch (error) {
@@ -56,4 +44,18 @@ function processComponents(project: Project): RawApiDocsPage[] {
       cause: lastError,
     });
   }
+}
+
+async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {
+  console.log('- diff index');
+  writeDiffIndex(apiDocPages);
+  console.log('- page index');
+  await writePageIndex(apiDocPages);
+  console.log('- pages');
+  await writePages(apiDocPages);
+  console.log('- search index');
+  writeSearchIndex(apiDocPages);
+  // TODO @ST-DDT 2024-02-04: Remove this part
+  console.log('- api-doc debug output');
+  writeFileSync('api-doc.json', JSON.stringify(apiDocPages, null, 2));
 }
