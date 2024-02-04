@@ -101,12 +101,12 @@ function getSignatureText(signature: SignatureLikeDeclaration): string {
     .replaceAll(/ *\/\*\*[^\n]*\n(\s*\*[^\n]*\n)*\s*\*\/\n/g, '')
     // Remove all empty lines
     .replaceAll(/\n\n+/g, '\n')
-    // Remove the export keyword
+    // Remove the export function keyword for consistency with member methods
     .replace(/^export function /, '');
 
-  // This is already a signature
+  // Is this already a signature
   if (fullText.endsWith(';')) {
-    // Remove the trailing semicolon
+    // Restore the function keyword
     return `function ${fullText}`;
   }
 
