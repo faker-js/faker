@@ -11,8 +11,8 @@
   "forwardPorts": [5173],
   "portsAttributes": {
     "5173": {
-      "label": "Docs",
-    },
+      "label": "Docs"
+    }
   },
 
   // Use 'postCreateCommand' to run commands after the container is created.
@@ -26,10 +26,10 @@
         "editorconfig.editorconfig",
         "esbenp.prettier-vscode",
         "redhat.vscode-yaml",
-        "github.vscode-pull-request-github",
-      ],
-    },
-  },
+        "github.vscode-pull-request-github"
+      ]
+    }
+  }
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"

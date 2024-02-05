@@ -271,8 +271,23 @@ export class FinanceModule extends ModuleBase {
    * @since 8.0.0
    */
   maskedNumber(options?: {
+    /**
+     * The length of the unmasked number.
+     *
+     * @default 4
+     */
     length?: number;
+    /**
+     * Whether to use surrounding parenthesis.
+     *
+     * @default true
+     */
     parens?: boolean;
+    /**
+     * Whether to prefix the numbers with an ellipsis.
+     *
+     * @default true
+     */
     ellipsis?: boolean;
   }): string;
   /**
