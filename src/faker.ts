@@ -183,8 +183,27 @@ export class Faker extends SimpleFaker {
    * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
    */
   constructor(options: {
+    /**
+     * The locale data to use for this instance.
+     *
+     * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+     */
     locales: Record<string, LocaleDefinition>;
+    /**
+     * The name of the main locale to use.
+     *
+     * @default 'en'
+     *
+     * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+     */
     locale?: string;
+    /**
+     * The name of the fallback locale to use.
+     *
+     * @default 'en'
+     *
+     * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+     */
     localeFallback?: string;
   });
   // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
