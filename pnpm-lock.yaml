@@ -92,8 +92,8 @@ devDependencies:
     specifier: ~10.3.10
     version: 10.3.10
   npm-run-all2:
-    specifier: ~5.0.0
-    version: 5.0.0
+    specifier: ~5.0.2
+    version: 5.0.2
   prettier:
     specifier: 3.2.5
     version: 3.2.5
@@ -113,8 +113,8 @@ devDependencies:
     specifier: ~9.5.0
     version: 9.5.0
   tsx:
-    specifier: ~3.13.0
-    version: 3.13.0
+    specifier: ~3.14.0
+    version: 3.14.0
   typedoc:
     specifier: ~0.25.7
     version: 0.25.7(typescript@4.9.5)
@@ -4738,12 +4738,12 @@ packages:
       validate-npm-package-license: 3.0.4
     dev: true
 
-  /npm-run-all2@5.0.0:
-    resolution: {integrity: sha512-twczQhEpj55UROtg0Xz0nzn83TanS5Re12g5g1hcdnyAhlWOt9VNHdSHf2Z6MO3/wOVqy9tEdi0ruJt5NnMgmw==}
+  /npm-run-all2@5.0.2:
+    resolution: {integrity: sha512-S2G6FWZ3pNWAAKm2PFSOtEAG/N+XO/kz3+9l6V91IY+Y3XFSt7Lp7DV92KCgEboEW0hRTu0vFaMe4zXDZYaOyA==}
     engines: {node: '>= 10'}
     hasBin: true
     dependencies:
-      ansi-styles: 4.3.0
+      ansi-styles: 5.2.0
       cross-spawn: 7.0.3
       memorystream: 0.3.1
       minimatch: 3.1.2
@@ -5925,8 +5925,8 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /tsx@3.13.0:
-    resolution: {integrity: sha512-rjmRpTu3as/5fjNq/kOkOtihgLxuIz6pbKdj9xwP4J5jOLkBxw/rjN5ANw+KyrrOXV5uB7HC8+SrrSJxT65y+A==}
+  /tsx@3.14.0:
+    resolution: {integrity: sha512-xHtFaKtHxM9LOklMmJdI3BEnQq/D5F73Of2E1GDrITi9sgoVkvIsrQUTY1G8FlmGtA+awCI4EBlTRRYxkL2sRg==}
     hasBin: true
     dependencies:
       esbuild: 0.18.20
