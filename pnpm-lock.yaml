@@ -113,8 +113,8 @@ devDependencies:
     specifier: ~9.5.0
     version: 9.5.0
   tsx:
-    specifier: ~3.14.0
-    version: 3.14.0
+    specifier: ~3.13.0
+    version: 3.13.0
   typedoc:
     specifier: ~0.25.7
     version: 0.25.7(typescript@4.9.5)
@@ -5925,8 +5925,8 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /tsx@3.14.0:
-    resolution: {integrity: sha512-xHtFaKtHxM9LOklMmJdI3BEnQq/D5F73Of2E1GDrITi9sgoVkvIsrQUTY1G8FlmGtA+awCI4EBlTRRYxkL2sRg==}
+  /tsx@3.13.0:
+    resolution: {integrity: sha512-rjmRpTu3as/5fjNq/kOkOtihgLxuIz6pbKdj9xwP4J5jOLkBxw/rjN5ANw+KyrrOXV5uB7HC8+SrrSJxT65y+A==}
     hasBin: true
     dependencies:
       esbuild: 0.18.20
