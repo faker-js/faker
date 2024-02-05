@@ -123,11 +123,14 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     deprecated: mdToHtml(deprecated),
     description: mdToHtml(description),
     since,
-    parameters,
+    parameters: parameters.map((param) => ({
+      ...param,
+      description: mdToHtml(param.description),
+    })),
     returns,
-    throws: throws.length === 0 ? undefined : throws.join('\n'),
+    throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     examples: codeToHtml(examples.join('\n')),
-    seeAlsos,
+    seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
   };
   */
@@ -141,10 +144,10 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     })),
     since,
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
-    throws: throws.length === 0 ? undefined : throws.join('\n'),
+    throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     returns,
     examples: codeToHtml(examples.join('\n')),
     deprecated: mdToHtml(deprecated),
-    seeAlsos,
+    seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
   };
 }
