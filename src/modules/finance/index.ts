@@ -271,8 +271,23 @@ export class FinanceModule extends ModuleBase {
    * @since 8.0.0
    */
   maskedNumber(options?: {
+    /**
+     * The length of the unmasked number.
+     *
+     * @default 4
+     */
     length?: number;
+    /**
+     * Whether to use surrounding parenthesis.
+     *
+     * @default true
+     */
     parens?: boolean;
+    /**
+     * Whether to prefix the numbers with an ellipsis.
+     *
+     * @default true
+     */
     ellipsis?: boolean;
   }): string;
   /**
@@ -379,31 +394,6 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
-   * @param min The lower bound for the amount. Defaults to `0`.
-   * @param max The upper bound for the amount. Defaults to `1000`.
-   * @param dec The number of decimal places for the amount. Defaults to `2`.
-   * @param symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-   *
-   * @example
-   * faker.finance.amount() // '617.87'
-   * faker.finance.amount(5, 10) // '5.53'
-   * faker.finance.amount(5, 10, 0) // '8'
-   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
-   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
-   *
-   * @since 2.0.1
-   */
-  amount(
-    min?: number,
-    max?: number,
-    dec?: number,
-    symbol?: string,
-    autoFormat?: boolean
-  ): string;
-  /**
-   * Generates a random amount between the given bounds (inclusive).
-   *
    * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
@@ -455,6 +445,33 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random amount between the given bounds (inclusive).
    *
+   * @param min The lower bound for the amount. Defaults to `0`.
+   * @param max The upper bound for the amount. Defaults to `1000`.
+   * @param dec The number of decimal places for the amount. Defaults to `2`.
+   * @param symbol The symbol used to prefix the amount. Defaults to `''`.
+   * @param autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   *
+   * @example
+   * faker.finance.amount() // '617.87'
+   * faker.finance.amount(5, 10) // '5.53'
+   * faker.finance.amount(5, 10, 0) // '8'
+   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
+   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
+   *
+   * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.amount({ min, max, dec, symbol, autoFormat })` instead.
+   */
+  amount(
+    min?: number,
+    max?: number,
+    dec?: number,
+    symbol?: string,
+    autoFormat?: boolean
+  ): string;
+  /**
+   * Generates a random amount between the given bounds (inclusive).
+   *
    * @param options An options object.
    * @param options.min The lower bound for the amount. Defaults to `0`.
    * @param options.max The upper bound for the amount. Defaults to `1000`.
@@ -472,10 +489,6 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
    * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
    * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
-   * faker.finance.amount(5, 10) // '5.53'
-   * faker.finance.amount(5, 10, 0) // '8'
-   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
-   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
    *
    * @since 2.0.1
    */
@@ -539,10 +552,6 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
    * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
    * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
-   * faker.finance.amount(5, 10) // '5.53'
-   * faker.finance.amount(5, 10, 0) // '8'
-   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
-   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
    *
    * @since 2.0.1
    */
@@ -587,6 +596,12 @@ export class FinanceModule extends ModuleBase {
     legacyAutoFormat: boolean = false
   ): string {
     if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.finance.amount(min, max, dec, symbol, autoFormat)',
+        proposed: 'faker.finance.amount({ min, max, dec, symbol, autoFormat })',
+        since: '8.0',
+        until: '9.0',
+      });
       options = { min: options };
     }
 
@@ -601,7 +616,7 @@ export class FinanceModule extends ModuleBase {
     const randValue = this.faker.number.float({
       max,
       min,
-      multipleOf: 10 ** -dec,
+      fractionDigits: dec,
     });
 
     const formattedString = autoFormat
@@ -990,22 +1005,6 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random iban.
    *
-   * @param formatted Return a formatted version of the generated IBAN. Defaults to `false`.
-   * @param countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
-   *
-   * @throws Will throw an error if the passed country code is not supported.
-   *
-   * @example
-   * faker.finance.iban() // 'TR736918640040966092800056'
-   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
-   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
-   *
-   * @since 4.0.0
-   */
-  iban(formatted?: boolean, countryCode?: string): string;
-  /**
-   * Generates a random iban.
-   *
    * @param options An options object.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
@@ -1035,6 +1034,24 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random iban.
    *
+   * @param formatted Return a formatted version of the generated IBAN. Defaults to `false`.
+   * @param countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
+   * @throws Will throw an error if the passed country code is not supported.
+   *
+   * @example
+   * faker.finance.iban() // 'TR736918640040966092800056'
+   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
+   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
+   *
+   * @since 4.0.0
+   *
+   * @deprecated Use `faker.finance.iban({ formatted, countryCode })` instead.
+   */
+  iban(formatted?: boolean, countryCode?: string): string;
+  /**
+   * Generates a random iban.
+   *
    * @param options An options object or whether the return value should be formatted.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
@@ -1046,8 +1063,6 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.iban() // 'TR736918640040966092800056'
    * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
    * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
-   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
-   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
    *
    * @since 4.0.0
    */
@@ -1083,8 +1098,6 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.iban() // 'TR736918640040966092800056'
    * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
    * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
-   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
-   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
    *
    * @since 4.0.0
    */
@@ -1107,6 +1120,12 @@ export class FinanceModule extends ModuleBase {
     legacyCountryCode?: string
   ): string {
     if (typeof options === 'boolean') {
+      deprecated({
+        deprecated: 'faker.finance.iban(formatted, countryCode)',
+        proposed: 'faker.finance.iban({ formatted, countryCode })',
+        since: '8.0',
+        until: '9.0',
+      });
       options = { formatted: options };
     }
 
