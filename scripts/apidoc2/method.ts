@@ -12,11 +12,12 @@ import {
 } from 'ts-morph';
 import { groupBy } from '../../src/internal/group-by';
 import { getAll } from './project';
+import { shouldProcessMethod } from './select';
 import type {
   RawApiDocsSignature,
   SignatureLikeDeclaration,
 } from './signature';
-import { processSignature } from './signature';
+import { processSignatures } from './signature';
 import { getSourcePath } from './source';
 import { valuesForKeys } from './utils';
 
@@ -157,20 +158,19 @@ type MethodLikeDeclaration = SignatureLikeDeclaration &
   };
 
 function processMethodLikes<T extends MethodLikeDeclaration>(
-  signatures: T[],
+  methods: T[],
   nameResolver: (v: T) => string
 ): RawApiDocsMethod[] {
-  const apiSignatures = signatures.filter(
-    (m) => !m.hasModifier(SyntaxKind.PrivateKeyword)
-  );
-  return apiSignatures
-    .map((v) => {
-      const name = nameResolver(v);
+  return methods
+    .filter((m) => !m.hasModifier(SyntaxKind.PrivateKeyword))
+    .filter((m) => shouldProcessMethod(nameResolver(m)))
+    .map((m) => {
+      const name = nameResolver(m);
       try {
-        return processMethodLike(name, v);
+        return processMethodLike(name, m);
       } catch (error) {
         throw new Error(
-          `Error processing method ${name} at ${getSourcePath(v)}`,
+          `Error processing method ${name} at ${getSourcePath(m)}`,
           {
             cause: error,
           }
@@ -185,25 +185,16 @@ function processMethodLike(
   method: MethodLikeDeclaration
 ): RawApiDocsMethod {
   console.log(`  - ${name}`);
-  const signatures = method.getOverloads();
-  const apiSignatures: SignatureLikeDeclaration[] =
-    signatures.length > 0 ? signatures : [method];
+  const overloads = method.getOverloads();
+  const signatureData: SignatureLikeDeclaration[] =
+    overloads.length > 0 ? overloads : [method];
 
-  const apiDocsSignatures = apiSignatures.map((v, i) => {
-    try {
-      return processSignature(v);
-    } catch (error) {
-      throw new Error(
-        `Error processing signature ${name}/${i} at ${getSourcePath(v)}}`,
-        { cause: error }
-      );
-    }
-  });
+  const signatures = processSignatures(name, signatureData);
   const sourcePath = getSourcePath(method);
 
   return {
     name,
-    signatures: apiDocsSignatures,
+    signatures,
     sourcePath,
   };
 }

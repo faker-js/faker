@@ -105,7 +105,7 @@ function writePageJsonData(page: RawApiDocsPage): void {
 
 function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
   const { name, signatures, sourcePath } = method;
-  const signature = signatures[signatures.length - 1];
+  const signatureData = signatures[signatures.length - 1];
   const {
     deprecated,
     description,
@@ -113,9 +113,10 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     parameters,
     returns,
     throws,
+    signature,
     examples,
     seeAlsos,
-  } = signature;
+  } = signatureData;
 
   /* Target order, omitted to improve diff to old files
   return {
@@ -129,6 +130,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     })),
     returns,
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
+    signature: codeToHtml(signature),
     examples: codeToHtml(examples.join('\n')),
     seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
@@ -146,7 +148,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     returns,
-    examples: codeToHtml(examples.join('\n')),
+    examples: codeToHtml([signature, ...examples].join('\n')),
     deprecated: mdToHtml(deprecated),
     seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
   };

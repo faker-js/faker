@@ -12,6 +12,7 @@ import {
 import type { RawApiDocsParameter } from './parameter';
 import { processParameters, processTypeParameters } from './parameter';
 import { getProject } from './project';
+import { shouldProcessSignature } from './select';
 import { getSourcePath, type SourceableNode } from './source';
 import { getTypeText } from './type';
 import { exactlyOne } from './utils';
@@ -45,6 +46,10 @@ export interface RawApiDocsSignature {
    */
   throws: string[];
   /**
+   * The full call signature as text.
+   */
+  signature: string;
+  /**
    * The usage examples of the signature.
    */
   examples: string[];
@@ -61,7 +66,25 @@ export type SignatureLikeDeclaration = Pick<
   JSDocableLikeNode &
   SourceableNode;
 
-export function processSignature(
+export function processSignatures(
+  name: string,
+  signatures: SignatureLikeDeclaration[]
+): RawApiDocsSignature[] {
+  return signatures
+    .filter((_, i) => shouldProcessSignature(name, i))
+    .map((s, i) => {
+      try {
+        return processSignature(s);
+      } catch (error) {
+        throw new Error(
+          `Error processing signature ${name}/${i} at ${getSourcePath(s)}}`,
+          { cause: error }
+        );
+      }
+    });
+}
+
+function processSignature(
   signature: SignatureLikeDeclaration
 ): RawApiDocsSignature {
   const jsdocs = getJsDocs(signature);
@@ -79,7 +102,8 @@ export function processSignature(
       parameters,
       returns,
       throws: getThrows(jsdocs),
-      examples: [getSignatureText(signature), ...getExamples(jsdocs)],
+      signature: getSignatureText(signature),
+      examples: getExamples(jsdocs),
       seeAlsos: getSeeAlsos(jsdocs),
     };
   } catch (error) {

@@ -14,6 +14,13 @@ import {
   processProjectFunctions,
 } from './method';
 import { getAll } from './project';
+import {
+  DOC_CLASS_NAMES,
+  DOC_INTERFACE_NAMES,
+  DOC_MODULE_FILTER,
+  DOC_UTILITY_NAMES,
+  shouldProcessType,
+} from './select';
 import { getSourcePath } from './source';
 import { required, valuesForKeys } from './utils';
 
@@ -65,26 +72,25 @@ function getAllClasses(
   );
 }
 
-export function processProjectClasses(
-  project: Project,
-  ...names: string[]
-): RawApiDocsPage[] {
-  return processClasses(valuesForKeys(getAllClasses(project), names));
+export function processProjectClasses(project: Project): RawApiDocsPage[] {
+  return processClasses(valuesForKeys(getAllClasses(project), DOC_CLASS_NAMES));
 }
 
 function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
-  return classes.map((c) => {
-    try {
-      return processClass(c);
-    } catch (error) {
-      throw new Error(
-        `Error processing class ${c.getNameOrThrow()} at ${getSourcePath(c)}`,
-        {
-          cause: error,
-        }
-      );
-    }
-  });
+  return classes
+    .filter((m) => shouldProcessType(m.getNameOrThrow()))
+    .map((c) => {
+      try {
+        return processClass(c);
+      } catch (error) {
+        throw new Error(
+          `Error processing class ${c.getNameOrThrow()} at ${getSourcePath(c)}`,
+          {
+            cause: error,
+          }
+        );
+      }
+    });
 }
 
 function processClass(clazz: ClassDeclaration): RawApiDocsPage {
@@ -97,28 +103,27 @@ function processClass(clazz: ClassDeclaration): RawApiDocsPage {
 
 export function processModuleClasses(project: Project): RawApiDocsPage[] {
   return processModules(
-    Object.values(
-      getAllClasses(
-        project,
-        (name) => name.endsWith('Module') && !name.startsWith('Simple')
-      )
-    ).sort((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
+    Object.values(getAllClasses(project, (v) => DOC_MODULE_FILTER(v))).sort(
+      (a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow())
+    )
   );
 }
 
 function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
-  return modules.map((v) => {
-    try {
-      return processModule(v, 'Modules');
-    } catch (error: unknown) {
-      throw new Error(
-        `Error processing module ${v.getName()} at ${getSourcePath(v)}`,
-        {
-          cause: error,
-        }
-      );
-    }
-  });
+  return modules
+    .filter((m) => shouldProcessType(m.getNameOrThrow()))
+    .map((m) => {
+      try {
+        return processModule(m, 'Modules');
+      } catch (error: unknown) {
+        throw new Error(
+          `Error processing module ${m.getName()} at ${getSourcePath(m)}`,
+          {
+            cause: error,
+          }
+        );
+      }
+    });
 }
 
 function processModule(
@@ -148,28 +153,29 @@ function getAllInterfaces(
   );
 }
 
-export function processProjectInterfaces(
-  project: Project,
-  ...names: string[]
-): RawApiDocsPage[] {
-  return processInterfaces(valuesForKeys(getAllInterfaces(project), names));
+export function processProjectInterfaces(project: Project): RawApiDocsPage[] {
+  return processInterfaces(
+    valuesForKeys(getAllInterfaces(project), DOC_INTERFACE_NAMES)
+  );
 }
 
 function processInterfaces(
   interfaces: InterfaceDeclaration[]
 ): RawApiDocsPage[] {
-  return interfaces.map((c) => {
-    try {
-      return processInterface(c);
-    } catch (error) {
-      throw new Error(
-        `Error processing interface ${c.getName()} at ${getSourcePath(c)}`,
-        {
-          cause: error,
-        }
-      );
-    }
-  });
+  return interfaces
+    .filter((c) => shouldProcessType(c.getName()))
+    .map((c) => {
+      try {
+        return processInterface(c);
+      } catch (error) {
+        throw new Error(
+          `Error processing interface ${c.getName()} at ${getSourcePath(c)}`,
+          {
+            cause: error,
+          }
+        );
+      }
+    });
 }
 
 function processInterface(iface: InterfaceDeclaration): RawApiDocsPage {
@@ -191,7 +197,7 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
     deprecated: undefined,
     description: 'A list of all the utilities available in Faker.js.',
     examples: [],
-    methods: processProjectFunctions(project, 'mergeLocales'),
+    methods: processProjectFunctions(project, ...DOC_UTILITY_NAMES),
   };
 }
 

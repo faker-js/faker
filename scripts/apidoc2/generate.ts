@@ -25,8 +25,8 @@ export async function generate(): Promise<void> {
 function processComponents(project: Project): RawApiDocsPage[] {
   try {
     return [
-      ...processProjectClasses(project, 'Faker', 'SimpleFaker'),
-      ...processProjectInterfaces(project, 'Randomizer'),
+      ...processProjectClasses(project),
+      ...processProjectInterfaces(project),
       processProjectUtilities(project),
       ...processModuleClasses(project),
     ];
