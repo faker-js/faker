@@ -5,7 +5,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### [8.4.1](https://github.com/faker-js/faker/compare/v8.4.0...v8.4.1) (2024-02-06)
 
 * JSDocs improvements
-* Dependency updates
 
 ## [8.4.0](https://github.com/faker-js/faker/compare/v8.3.1...v8.4.0) (2024-01-24)
 
