@@ -6,11 +6,13 @@ import type {
 import { type JSDoc, type JSDocTag, type ParameterDeclaration } from 'ts-morph';
 import {
   getDefault,
+  getDeprecated,
   getDescription,
   getJsDocs,
   getParameterTags,
   getTypeParameterTags,
 } from './jsdocs';
+import { shouldProcessParameter } from './select';
 import { getSourcePath } from './source';
 import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
 import { exactlyOne, valueForKey } from './utils';
@@ -43,18 +45,20 @@ export function processTypeParameters(
 ): RawApiDocsParameter[] {
   const paramTags = getTypeParameterTags(jsdocs);
 
-  return parameters.flatMap((parameter) => {
-    try {
-      return processTypeParameterEntry(parameter, paramTags);
-    } catch (error) {
-      throw new Error(
-        `Error processing type parameter ${parameter.getText()} at ${getSourcePath(
-          parameter
-        )}`,
-        { cause: error }
-      );
-    }
-  });
+  return parameters
+    .filter((p) => shouldProcessParameter(`<${p.getName()}>`))
+    .flatMap((parameter) => {
+      try {
+        return processTypeParameterEntry(parameter, paramTags);
+      } catch (error) {
+        throw new Error(
+          `Error processing type parameter ${parameter.getText()} at ${getSourcePath(
+            parameter
+          )}`,
+          { cause: error }
+        );
+      }
+    });
 }
 
 function processTypeParameterEntry(
@@ -70,30 +74,45 @@ function processTypeParameterEntry(
 }
 
 export function processParameters(
-  parameters: ParameterDeclaration[],
+  signatureParameters: ParameterDeclaration[],
+  implParameters: ParameterDeclaration[],
   jsdocs: JSDoc
 ): RawApiDocsParameter[] {
   const paramTags = getParameterTags(jsdocs);
+  const implParameterDefaults = Object.fromEntries(
+    implParameters.map((p) => [p.getName(), getDefaultValue(p)])
+  );
 
-  return parameters.flatMap((parameter) => {
-    try {
-      return processParameterEntry(parameter, paramTags);
-    } catch (error) {
-      throw new Error(
-        `Error processing parameter ${parameter.getName()} at ${getSourcePath(parameter)}`,
-        { cause: error }
-      );
-    }
-  });
+  return signatureParameters
+    .filter((p) => shouldProcessParameter(p.getName()))
+    .flatMap((p) => {
+      try {
+        return processParameter(
+          p,
+          paramTags,
+          implParameterDefaults[p.getName()]
+        );
+      } catch (error) {
+        throw new Error(
+          `Error processing parameter ${p.getName()} at ${getSourcePath(p)}`,
+          { cause: error }
+        );
+      }
+    });
 }
 
-function processParameterEntry(
+function processParameter(
   parameter: ParameterDeclaration,
-  paramTags: Record<string, JSDocTag>
+  paramTags: Record<string, JSDocTag>,
+  implementationDefault: string | undefined
 ): RawApiDocsParameter[] {
   const name = parameter.getName();
   return [
-    processParameter(parameter, valueForKey(paramTags, name)),
+    processSimpleParameter(
+      parameter,
+      valueForKey(paramTags, name),
+      implementationDefault
+    ),
     ...processComplexParameter(name, parameter.getType()),
   ];
 }
@@ -104,23 +123,31 @@ type ParameterLikeDeclaration = Pick<
 > &
   Partial<Pick<ParameterDeclaration, 'getInitializer'>>;
 
-function processParameter(
+function processSimpleParameter(
   parameter: ParameterLikeDeclaration,
-  jsdocTag: JSDocTag
+  jsdocTag: JSDocTag,
+  implementationDefault: string | undefined
 ): RawApiDocsParameter {
+  const name = parameter.getName();
   const type = parameter.getType();
   return {
-    name: `${parameter.getName()}${getNameSuffix(type)}`,
+    name: `${name}${getNameSuffix(type)}`,
     type: getTypeText(type, {
       abbreviate: true,
       stripUndefined: true,
     }),
-    default: parameter
-      .getInitializer?.()
-      ?.getText()
-      .replace(/ as .+$/, ''),
+    default: getDefaultValue(parameter) ?? implementationDefault,
     description: getDescription(jsdocTag),
   };
+}
+
+function getDefaultValue(
+  parameter: ParameterLikeDeclaration
+): string | undefined {
+  return parameter
+    .getInitializer?.()
+    ?.getText()
+    .replace(/ as .+$/, '');
 }
 
 function processComplexParameter(
@@ -128,7 +155,7 @@ function processComplexParameter(
   type: Type
 ): RawApiDocsParameter[] {
   if (type.isNullable()) {
-    return processComplexParameter(`${name}?`, type.getNonNullableType());
+    return processComplexParameter(name, type.getNonNullableType());
   } else if (type.isUnion()) {
     return type
       .getUnionTypes()
@@ -145,23 +172,27 @@ function processComplexParameter(
 
     return type
       .getApparentProperties()
-      .flatMap((property) => {
+      .filter((p) => shouldProcessParameter(`${name}.${p.getName()}`))
+      .flatMap((p) => {
         const declaration = exactlyOne(
-          property.getDeclarations(),
+          p.getDeclarations(),
           'property declaration'
         ) as PropertySignature;
         const propertyType = declaration.getType();
         const jsdocs = getJsDocs(declaration);
+        const deprecated = getDeprecated(jsdocs);
 
         return [
           {
-            name: `${name}.${property.getName()}${getNameSuffix(propertyType)}`,
+            name: `${name}.${p.getName()}${getNameSuffix(propertyType)}`,
             type: getTypeText(propertyType, {
               abbreviate: false,
               stripUndefined: true,
             }),
             default: getDefault(jsdocs),
-            description: getDescription(jsdocs),
+            description:
+              getDescription(jsdocs) +
+              (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
           },
         ];
       })

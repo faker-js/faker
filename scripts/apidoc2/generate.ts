@@ -55,7 +55,7 @@ async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {
   await writePages(apiDocPages);
   console.log('- search index');
   writeSearchIndex(apiDocPages);
-  // TODO @ST-DDT 2024-02-04: Remove this part
+  // TODO @ST-DDT 2024-02-04: Remove this part prior to merge
   console.log('- api-doc debug output');
   writeFileSync('api-doc.json', JSON.stringify(apiDocPages, null, 2));
 }

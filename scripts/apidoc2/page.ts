@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../docs/.vitepress/components/api-docs/method';
 import type { RawApiDocsPage } from './class';
@@ -101,7 +101,28 @@ function writePageJsonData(page: RawApiDocsPage): void {
   const content = JSON.stringify(pageData, null, 2);
 
   writeFileSync(resolve(pathApiDocsDir, `${camelTitle}2.json`), content);
+
+  // TODO @ST-DDT 2024-02-08: Remove this prior to merge
+  const old = JSON.parse(
+    readFileSync(resolve(pathApiDocsDir, `${camelTitle}.json`), 'utf8')
+  ) as Record<string, ApiDocsMethod>;
+
+  for (const [key, value] of Object.entries(pageData)) {
+    const oldMethod = old[key] as unknown as { examples: string } | undefined;
+    if (oldMethod != null) {
+      oldMethod.examples = value.examples;
+    }
+  }
+
+  const contentOld = JSON.stringify(old, null, 2);
+  writeFileSync(resolve(pathApiDocsDir, `${camelTitle}.json`), contentOld);
+
+  if (content !== contentOld) {
+    console.log(`  - Diff detected ${camelTitle}`);
+  }
 }
+
+const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
 
 function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
   const { name, signatures, sourcePath } = method;
@@ -142,7 +163,10 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     description: mdToHtml(description),
     parameters: parameters.map((param) => ({
       ...param,
-      description: mdToHtml(param.description),
+      // TODO @ST-DDT 2024-02-08: Check if this is still needed
+      default:
+        param.default ?? defaultCommentRegex.exec(param.description)?.[1],
+      description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
     })),
     since,
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),

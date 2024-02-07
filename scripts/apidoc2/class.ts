@@ -111,13 +111,13 @@ export function processModuleClasses(project: Project): RawApiDocsPage[] {
 
 function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
   return modules
-    .filter((m) => shouldProcessType(m.getNameOrThrow()))
+    .filter((m) => shouldProcessType(getModuleName(m)))
     .map((m) => {
       try {
         return processModule(m, 'Modules');
       } catch (error: unknown) {
         throw new Error(
-          `Error processing module ${m.getName()} at ${getSourcePath(m)}`,
+          `Error processing module ${getModuleName(m)} at ${getSourcePath(m)}`,
           {
             cause: error,
           }
@@ -130,15 +130,16 @@ function processModule(
   module: ClassDeclaration,
   category: string
 ): RawApiDocsPage {
-  const title = required(module.getNameOrThrow(), 'module name').replace(
-    /Module$/,
-    ''
-  );
+  const title = getModuleName(module);
 
   return {
     ...preparePage(module, category, title),
     methods: processClassMethods(module),
   };
+}
+
+function getModuleName(module: ClassDeclaration): string {
+  return required(module.getName(), 'module name').replace(/Module$/, '');
 }
 
 // Interfaces
@@ -197,7 +198,9 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
     deprecated: undefined,
     description: 'A list of all the utilities available in Faker.js.',
     examples: [],
-    methods: processProjectFunctions(project, ...DOC_UTILITY_NAMES),
+    methods: shouldProcessType('Utilities')
+      ? processProjectFunctions(project, ...DOC_UTILITY_NAMES)
+      : [],
   };
 }
 

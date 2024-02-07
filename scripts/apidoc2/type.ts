@@ -30,11 +30,29 @@ export function getTypeText(
   }
 
   if (type.isUnion()) {
-    return type
+    let unionTypes = type
       .getUnionTypes()
       .map((t) => getTypeText(t, options))
-      .filter((t) => !stripUndefined || t !== 'undefined')
-      .map((t) => (t.includes('|') || t.includes('(') ? `(${t})` : t))
+      .filter((t) => !stripUndefined || t !== 'undefined');
+
+    if (unionTypes.includes('true') && unionTypes.includes('false')) {
+      unionTypes = unionTypes.filter((t) => t !== 'true' && t !== 'false');
+      unionTypes.push('boolean');
+    }
+
+    if (unionTypes.length === 1) {
+      return unionTypes[0];
+    }
+
+    return unionTypes
+      .map((t) =>
+        // T | U -> (T | U)
+        // But NOT Array<T | U> -> (Array<T | U>)
+        // () => T -> (() => T)
+        (t.includes('|') && !/^[A-Z]+<[^>]+>$/i.test(t)) || t.includes('(')
+          ? `(${t})`
+          : t
+      )
       .sort()
       .join(' | ');
   }

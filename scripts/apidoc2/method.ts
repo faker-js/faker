@@ -189,7 +189,7 @@ function processMethodLike(
   const signatureData: SignatureLikeDeclaration[] =
     overloads.length > 0 ? overloads : [method];
 
-  const signatures = processSignatures(name, signatureData);
+  const signatures = processSignatures(name, signatureData, method);
   const sourcePath = getSourcePath(method);
 
   return {

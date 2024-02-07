@@ -68,13 +68,14 @@ export type SignatureLikeDeclaration = Pick<
 
 export function processSignatures(
   name: string,
-  signatures: SignatureLikeDeclaration[]
+  signatures: SignatureLikeDeclaration[],
+  implementation: SignatureLikeDeclaration
 ): RawApiDocsSignature[] {
   return signatures
     .filter((_, i) => shouldProcessSignature(name, i))
     .map((s, i) => {
       try {
-        return processSignature(s);
+        return processSignature(s, implementation);
       } catch (error) {
         throw new Error(
           `Error processing signature ${name}/${i} at ${getSourcePath(s)}}`,
@@ -85,12 +86,17 @@ export function processSignatures(
 }
 
 function processSignature(
-  signature: SignatureLikeDeclaration
+  signature: SignatureLikeDeclaration,
+  implementation: SignatureLikeDeclaration
 ): RawApiDocsSignature {
   const jsdocs = getJsDocs(signature);
   const parameters = [
     ...processTypeParameters(signature.getTypeParameters(), jsdocs),
-    ...processParameters(signature.getParameters(), jsdocs),
+    ...processParameters(
+      signature.getParameters(),
+      implementation.getParameters(),
+      jsdocs
+    ),
   ];
   const returns = getTypeText(signature.getReturnType());
 
