@@ -640,7 +640,7 @@ export class InternetModule extends ModuleBase {
     } = options;
 
     let result: string;
-    const strategy = this.faker.number.int(hasLastName ? 1 : 2);
+    const strategy = this.faker.number.int(hasLastName ? 1 : 2) as 0 | 1 | 2;
     const separator = this.faker.helpers.arrayElement(['.', '_']);
     switch (strategy) {
       case 0:
@@ -652,7 +652,6 @@ export class InternetModule extends ModuleBase {
         result = `${firstName}${separator}${lastName}`;
         break;
       case 2:
-      default:
         result = `${firstName}${this.faker.number.int(99)}`;
         break;
     }
@@ -827,7 +826,7 @@ export class InternetModule extends ModuleBase {
     } = options;
 
     let result: string;
-    switch (this.faker.number.int(2)) {
+    switch (this.faker.number.int(2) as 0 | 1 | 2) {
       case 0:
         result = `${firstName}${this.faker.number.int(99)}`;
         break;
@@ -836,7 +835,6 @@ export class InternetModule extends ModuleBase {
           firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-      default:
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
