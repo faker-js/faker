@@ -10,7 +10,7 @@ exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 15:
 
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Jerome52 <Jerome_Vandervort93@gmail.com>
+Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
 Date: Tue Dec 31 02:31:26 2019 +0300
 
     reboot primary microchip
@@ -19,7 +19,7 @@ Date: Tue Dec 31 02:31:26 2019 +0300
 
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Jerome52 <Jerome_Vandervort93@gmail.com>
+Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
 Date: Tue Dec 31 02:31:26 2019 +0300
 
     reboot primary microchip
@@ -28,7 +28,7 @@ Date: Tue Dec 31 02:31:26 2019 +0300
 
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Jerome52 <Jerome_Vandervort93@gmail.com>
+Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
 Date: Tue Dec 31 02:31:26 2019 +0300
 
     reboot primary microchip
@@ -53,28 +53,28 @@ exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 0
 
 exports[`git > 1211 > commitEntry > with only Date refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
-Author: Deion.Durgan <Deion.Durgan77@gmail.com>
-Date: Tue Dec 31 11:41:28 2019 +0000
+Author: Deion Durgan <Deion_Durgan51@hotmail.com>
+Date: Tue Dec 31 12:51:43 2019 -0600
 
-    override bluetooth bus
+    calculate optical bandwidth
 "
 `;
 
 exports[`git > 1211 > commitEntry > with only number refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
-Author: Deion.Durgan <Deion.Durgan77@gmail.com>
-Date: Tue Dec 31 11:41:28 2019 +0000
+Author: Deion Durgan <Deion_Durgan51@hotmail.com>
+Date: Tue Dec 31 12:51:43 2019 -0600
 
-    override bluetooth bus
+    calculate optical bandwidth
 "
 `;
 
 exports[`git > 1211 > commitEntry > with only string refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
-Author: Deion.Durgan <Deion.Durgan77@gmail.com>
-Date: Tue Dec 31 11:41:28 2019 +0000
+Author: Deion Durgan <Deion_Durgan51@hotmail.com>
+Date: Tue Dec 31 12:51:43 2019 -0600
 
-    override bluetooth bus
+    calculate optical bandwidth
 "
 `;
 
@@ -96,28 +96,28 @@ exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 1
 
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Matt.Hills97 <Matt_Hills@yahoo.com>
-Date: Tue Dec 31 17:53:11 2019 -1100
+Author: Matt.Hills <Matt_Hills@hotmail.com>
+Date: Tue Dec 31 00:03:45 2019 -0500
 
-    bypass solid state matrix
+    back up primary capacitor
 "
 `;
 
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Matt.Hills97 <Matt_Hills@yahoo.com>
-Date: Tue Dec 31 17:53:11 2019 -1100
+Author: Matt.Hills <Matt_Hills@hotmail.com>
+Date: Tue Dec 31 00:03:45 2019 -0500
 
-    bypass solid state matrix
+    back up primary capacitor
 "
 `;
 
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Matt.Hills97 <Matt_Hills@yahoo.com>
-Date: Tue Dec 31 17:53:11 2019 -1100
+Author: Matt.Hills <Matt_Hills@hotmail.com>
+Date: Tue Dec 31 00:03:45 2019 -0500
 
-    bypass solid state matrix
+    back up primary capacitor
 "
 `;
 

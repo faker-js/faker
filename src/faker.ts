@@ -140,13 +140,15 @@ export class Faker extends SimpleFaker {
    * customFaker.person.lastName(); // 'Ocampo Corrales'
    *
    * customFaker.music.genre(); // throws Error as this data is not available in `es`
+   *
+   * @since 8.0.0
    */
   constructor(options: {
     /**
      * The locale data to use for this instance.
      * If an array is provided, the first locale that has a definition for a given property will be used.
      *
-     * @see mergeLocales
+     * @see mergeLocales(): For more information about how the locales are merged.
      */
     locale: LocaleDefinition | LocaleDefinition[];
 
@@ -173,11 +175,35 @@ export class Faker extends SimpleFaker {
    * @param options.locale The name of the main locale to use.
    * @param options.localeFallback The name of the fallback locale to use.
    *
+   * @example
+   * new Faker({ locales: allLocales });
+   *
+   * @since 6.0.0
+   *
    * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
    */
   constructor(options: {
+    /**
+     * The locale data to use for this instance.
+     *
+     * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+     */
     locales: Record<string, LocaleDefinition>;
+    /**
+     * The name of the main locale to use.
+     *
+     * @default 'en'
+     *
+     * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+     */
     locale?: string;
+    /**
+     * The name of the fallback locale to use.
+     *
+     * @default 'en'
+     *
+     * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+     */
     localeFallback?: string;
   });
   // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
@@ -210,6 +236,8 @@ export class Faker extends SimpleFaker {
    * customFaker.person.lastName(); // 'Ocampo Corrales'
    *
    * customFaker.music.genre(); // throws Error as this data is not available in `es`
+   *
+   * @since 8.0.0
    */
   constructor(
     options:
@@ -218,7 +246,7 @@ export class Faker extends SimpleFaker {
            * The locale data to use for this instance.
            * If an array is provided, the first locale that has a definition for a given property will be used.
            *
-           * @see mergeLocales
+           * @see mergeLocales(): For more information about how the locales are merged.
            */
           locale: LocaleDefinition | LocaleDefinition[];
 
@@ -317,6 +345,8 @@ export class Faker extends SimpleFaker {
    * // const { faker, fakerES_MX } = require("@faker-js/faker")
    * faker.getMetadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
    * fakerES_MX.getMetadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
+   *
+   * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
     return this.rawDefinitions.metadata ?? {};

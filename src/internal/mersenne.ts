@@ -73,7 +73,7 @@ import type { Randomizer } from '../randomizer';
  *
  * @internal
  */
-class MersenneTwister19937 {
+export class MersenneTwister19937 {
   private readonly N = 624;
   private readonly M = 397;
   private readonly MATRIX_A = 0x9908b0df; // constant vector a

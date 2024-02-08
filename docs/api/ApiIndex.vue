@@ -120,7 +120,7 @@ h2 {
 
 h3 {
   letter-spacing: -0.01em;
-  color: var(--vp-c-green);
+  color: var(--vp-c-brand-1);
   font-size: 18px;
   margin-bottom: 1em;
   transition: color 0.5s;
@@ -147,7 +147,7 @@ h3 {
 }
 
 .api-groups ul a:hover {
-  color: var(--vp-c-green);
+  color: var(--vp-c-brand-1);
   transition: none;
 }
 
@@ -181,7 +181,7 @@ h3 {
 }
 
 .api-filter:focus {
-  border-color: var(--vp-c-green-light);
+  border-color: var(--vp-c-brand-2);
 }
 
 .no-match {
