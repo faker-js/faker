@@ -1,8 +1,9 @@
-import type { Faker, SimpleFaker } from '../..';
+import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
-import { bindThisToMemberFunctions } from '../../internal/bind-this-to-member-functions';
 import { deprecated } from '../../internal/deprecated';
+import { SimpleModuleBase } from '../../internal/module-base';
+import { assertLocaleData } from '../../locale-proxy';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
@@ -15,6 +16,10 @@ function toDate(
   date: string | Date | number | undefined,
   fallback: () => Date
 ): Date {
+  if (date == null) {
+    return fallback();
+  }
+
   date = new Date(date);
   if (Number.isNaN(date.valueOf())) {
     date = fallback();
@@ -26,20 +31,16 @@ function toDate(
 /**
  * Module to generate dates (without methods requiring localized data).
  */
-export class SimpleDateModule {
-  constructor(protected readonly faker: SimpleFaker) {
-    bindThisToMemberFunctions(this);
-  }
-
+export class SimpleDateModule extends SimpleModuleBase {
   /**
    * Generates a random date that can be either in the past or in the future.
    *
    * @param options The optional options object.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.between() For dates in a specific range.
-   * @see faker.date.past() For dates explicitly in the past.
-   * @see faker.date.future() For dates explicitly in the future.
+   * @see faker.date.between(): For generating dates in a specific range.
+   * @see faker.date.past(): For generating dates explicitly in the past.
+   * @see faker.date.future(): For generating dates explicitly in the future.
    *
    * @example
    * faker.date.anytime() // '2022-07-31T01:33:29.567Z'
@@ -73,7 +74,7 @@ export class SimpleDateModule {
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -102,7 +103,7 @@ export class SimpleDateModule {
    * @param years The range of years the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -122,7 +123,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.recent()
+   * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
@@ -195,7 +196,7 @@ export class SimpleDateModule {
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -224,7 +225,7 @@ export class SimpleDateModule {
    * @param years The range of years the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -244,7 +245,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.soon()
+   * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
@@ -387,14 +388,15 @@ export class SimpleDateModule {
         },
     legacyTo?: string | Date | number
   ): Date {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.between(from, to)',
         proposed: 'faker.date.between({ from, to })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options };
     }
 
     const { from, to } = options;
@@ -407,7 +409,7 @@ export class SimpleDateModule {
   }
 
   /**
-   * Generates random dates between the given boundaries.
+   * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
    *
    * @param options The optional options object.
    * @param options.from The early date boundary.
@@ -495,7 +497,7 @@ export class SimpleDateModule {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    * @param legacyTo Deprecated, use `options.to` instead.
-   * @param legacyCount Deprecated, use `options.count` instead.
+   * @param legacyCount Deprecated, use `options.count` instead. Defaults to `3`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -563,14 +565,15 @@ export class SimpleDateModule {
     legacyTo?: string | Date | number,
     legacyCount: number = 3
   ): Date[] {
-    if (typeof options !== 'object' || options instanceof Date) {
+    if (options instanceof Date || typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.betweens(from, to, count)',
         proposed: 'faker.date.betweens({ from, to, count })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo, count: legacyCount };
+      // We use options as fallback for legacyTo avoid TS errors for unintended usage.
+      options = { from: options, to: legacyTo ?? options, count: legacyCount };
     }
 
     const { from, to, count = 3 } = options;
@@ -587,7 +590,7 @@ export class SimpleDateModule {
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -616,7 +619,7 @@ export class SimpleDateModule {
    * @param days The range of days the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -636,7 +639,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.past()
+   * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
@@ -704,7 +707,7 @@ export class SimpleDateModule {
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -733,7 +736,7 @@ export class SimpleDateModule {
    * @param days The range of days the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -753,7 +756,7 @@ export class SimpleDateModule {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
-   * @see faker.date.future()
+   * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
@@ -868,12 +871,6 @@ export class SimpleDateModule {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    if (options.max < options.min) {
-      throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
-      );
-    }
-
     const mode = options.mode === 'age' ? 'age' : 'year';
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
@@ -894,7 +891,13 @@ export class SimpleDateModule {
         options.min ?? refYear - 80
       );
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 18
+        options.max ?? refYear - 19
+      );
+    }
+
+    if (max < min) {
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
       );
     }
 
@@ -1078,12 +1081,8 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    const {
-      // eslint-disable-next-line deprecation/deprecation
-      abbr,
-      abbreviated = abbr ?? false,
-      context = false,
-    } = options;
+    // eslint-disable-next-line deprecation/deprecation
+    const { abbr, abbreviated = abbr ?? false, context = false } = options;
 
     if (abbr != null) {
       deprecated({
@@ -1104,7 +1103,9 @@ export class DateModule extends SimpleDateModule {
       type = useContext ? 'wide_context' : 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    const values = source[type];
+    assertLocaleData(values, 'date.month', type);
+    return this.faker.helpers.arrayElement(values);
   }
 
   /**
@@ -1264,12 +1265,8 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    const {
-      // eslint-disable-next-line deprecation/deprecation
-      abbr,
-      abbreviated = abbr ?? false,
-      context = false,
-    } = options;
+    // eslint-disable-next-line deprecation/deprecation
+    const { abbr, abbreviated = abbr ?? false, context = false } = options;
 
     if (abbr != null) {
       deprecated({
@@ -1290,6 +1287,8 @@ export class DateModule extends SimpleDateModule {
       type = useContext ? 'wide_context' : 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    const values = source[type];
+    assertLocaleData(values, 'date.weekday', type);
+    return this.faker.helpers.arrayElement(values);
   }
 }

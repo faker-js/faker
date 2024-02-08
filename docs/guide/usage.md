@@ -32,7 +32,7 @@ For more information about changing and customizing the locales, please refer to
 
 ```html
 <script type="module">
-  import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+  import { faker } from 'https://esm.sh/@faker-js/faker';
 
   // Caitlyn Kerluke
   const randomName = faker.person.fullName();
@@ -49,21 +49,20 @@ Using the browser is great for experimenting 👍. However, due to all of the st
 ## CDN/Deno
 
 ```js
-import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+import { faker } from 'https://esm.sh/@faker-js/faker';
 
 const randomName = faker.person.fullName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0?dts"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v8.4.0"`.
 :::
 
 ### Alternative CDN links
 
 **esm:**
 
-- https://esm.sh/@faker-js/faker
 - https://cdn.jsdelivr.net/npm/@faker-js/faker/+esm
 
 **cjs:**

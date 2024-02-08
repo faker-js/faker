@@ -1,6 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
+import { prettyPrintIban } from '../../src/modules/finance';
 import ibanLib from '../../src/modules/finance/iban';
 import { times } from '../support/times';
 
@@ -36,7 +37,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormatted = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormatted = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -96,7 +97,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -162,7 +163,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -232,7 +233,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -291,7 +292,7 @@ describe('finance_iban', () => {
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -336,7 +337,7 @@ describe('finance_iban', () => {
           // Bank account number    16 digit
 
           const iban = faker.finance.iban(false, 'AL');
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
 
           expect(iban).toSatisfy(validator.isIBAN);
 

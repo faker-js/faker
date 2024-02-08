@@ -12,9 +12,9 @@ async function loadRemote(url: string): Promise<DocsApiDiffIndex> {
       throw new Error(
         `Failed to load remote diff index from ${url}: ${res.statusText}`
       );
-    } else {
-      return res.json() as Promise<DocsApiDiffIndex>;
     }
+
+    return res.json() as Promise<DocsApiDiffIndex>;
   });
 }
 
