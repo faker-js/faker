@@ -117,7 +117,7 @@ export class SimpleFaker {
        * Specify this only if you want to use it to achieve a specific goal,
        * such as sharing the same random generator with other instances/tools.
        *
-       * @default generateMersenne32Randomizer()
+       * @default generateMersenne53Randomizer()
        */
       randomizer?: Randomizer;
     } = {}
