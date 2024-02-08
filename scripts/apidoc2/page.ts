@@ -108,9 +108,13 @@ function writePageJsonData(page: RawApiDocsPage): void {
   ) as Record<string, ApiDocsMethod>;
 
   for (const [key, value] of Object.entries(pageData)) {
-    const oldMethod = old[key] as unknown as { examples: string } | undefined;
+    const oldMethod = old[key];
     if (oldMethod != null) {
-      oldMethod.examples = value.examples;
+      old[key] = {
+        ...oldMethod,
+        examples: value.examples, // Has different signature
+        sourcePath: value.sourcePath, // Points to a different line
+      };
     }
   }
 

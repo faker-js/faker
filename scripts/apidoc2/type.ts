@@ -17,6 +17,11 @@ export function getTypeText(
     stripUndefined = false,
     resolveTypeParameters = false,
   } = options;
+
+  if (type.isStringLiteral()) {
+    return type.getText().replace(/^"(.*)"$/, "'$1'");
+  }
+
   if (type.isArray()) {
     const elementTypeText = getTypeText(
       type.getArrayElementTypeOrThrow(),
