@@ -477,6 +477,8 @@ export class LocationModule extends ModuleBase {
    * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.latitude({ max, min, precision })` instead.
    */
   latitude(max?: number, min?: number, precision?: number): number;
   /**
@@ -494,9 +496,6 @@ export class LocationModule extends ModuleBase {
    * faker.location.latitude({ max: 10 }) // 5.7225
    * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
    * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
-   * faker.location.latitude(10) // 5.7225
-   * faker.location.latitude(10, -10) // -9.6273
-   * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
    */
@@ -541,9 +540,6 @@ export class LocationModule extends ModuleBase {
    * faker.location.latitude({ max: 10 }) // 5.7225
    * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
    * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
-   * faker.location.latitude(10) // 5.7225
-   * faker.location.latitude(10, -10) // -9.6273
-   * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
    */
@@ -574,12 +570,18 @@ export class LocationModule extends ModuleBase {
     legacyPrecision = 4
   ): number {
     if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.location.latitude(max, min, precision)',
+        proposed: 'faker.location.latitude({ max, min, precision })',
+        since: '8.0',
+        until: '9.0',
+      });
       options = { max: options };
     }
 
     const { max = 90, min = legacyMin, precision = legacyPrecision } = options;
 
-    return this.faker.number.float({ min, max, precision: 10 ** -precision });
+    return this.faker.number.float({ min, max, fractionDigits: precision });
   }
 
   /**
@@ -600,19 +602,19 @@ export class LocationModule extends ModuleBase {
    */
   longitude(options?: {
     /**
-     * The upper bound for the latitude to generate.
+     * The upper bound for the longitude to generate.
      *
-     * @default 90
+     * @default 180
      */
     max?: number;
     /**
-     * The lower bound for the latitude to generate.
+     * The lower bound for the longitude to generate.
      *
-     * @default -90
+     * @default -180
      */
     min?: number;
     /**
-     * The number of decimal points of precision for the latitude.
+     * The number of decimal points of precision for the longitude.
      *
      * @default 4
      */
@@ -621,10 +623,9 @@ export class LocationModule extends ModuleBase {
   /**
    * Generates a random longitude.
    *
-   * @param options An options object.
-   * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
-   * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
-   * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
+   * @param max The upper bound for the longitude to generate. Defaults to `180`.
+   * @param min The lower bound for the longitude to generate. Defaults to `-180`.
+   * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
    *
    * @example
    * faker.location.longitude() // -30.9501
@@ -633,6 +634,8 @@ export class LocationModule extends ModuleBase {
    * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // 2.68452
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.longitude({ max, min, precision })` instead.
    */
   longitude(max?: number, min?: number, precision?: number): number;
   /**
@@ -694,9 +697,6 @@ export class LocationModule extends ModuleBase {
    * faker.location.longitude({ max: 10 }) // 2.4387
    * faker.location.longitude({ max: 10, min: -10 }) // 6.9126
    * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // -4.03620
-   * faker.location.longitude(10) // 2.4387
-   * faker.location.longitude(10, -10) // 6.9126
-   * faker.location.longitude(10, -10, 5) // -4.03620
    *
    * @since 8.0.0
    */
@@ -727,12 +727,18 @@ export class LocationModule extends ModuleBase {
     legacyPrecision = 4
   ): number {
     if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.location.longitude(max, min, precision)',
+        proposed: 'faker.location.longitude({ max, min, precision })',
+        since: '8.0',
+        until: '9.0',
+      });
       options = { max: options };
     }
 
     const { max = 180, min = legacyMin, precision = legacyPrecision } = options;
 
-    return this.faker.number.float({ max, min, precision: 10 ** -precision });
+    return this.faker.number.float({ max, min, fractionDigits: precision });
   }
 
   /**
@@ -985,8 +991,7 @@ export class LocationModule extends ModuleBase {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object.
-   * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
+   * @param abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
@@ -1207,7 +1212,7 @@ export class LocationModule extends ModuleBase {
 
     const angleRadians = this.faker.number.float({
       max: 2 * Math.PI,
-      precision: 0.00001,
+      fractionDigits: 5,
     }); // in ° radians
 
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
@@ -1215,7 +1220,7 @@ export class LocationModule extends ModuleBase {
     const distanceInKm =
       this.faker.number.float({
         max: radiusMetric,
-        precision: 0.001,
+        fractionDigits: 3,
       }) * errorCorrection; // in km
 
     /**
