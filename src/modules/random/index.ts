@@ -18,8 +18,8 @@ export class RandomModule extends ModuleBase {
   /**
    * Returns a random word.
    *
-   * @see faker.lorem.word()
-   * @see faker.word.sample()
+   * @see faker.lorem.word(): For generating a random placeholder word.
+   * @see faker.word.sample(): For generating a random real word.
    *
    * @example
    * faker.random.word() // 'Seamless'
@@ -123,7 +123,7 @@ export class RandomModule extends ModuleBase {
       '_',
       '-',
     ];
-    let result: string;
+    let result = '';
 
     let iteration = 0;
 
@@ -157,8 +157,8 @@ export class RandomModule extends ModuleBase {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
-   * @see faker.lorem.words()
-   * @see faker.word.words()
+   * @see faker.lorem.words(): For generating a sequence of random placeholder words.
+   * @see faker.word.words(): For generating a sequence of random real words.
    *
    * @example
    * faker.random.words() // 'neural'
@@ -215,12 +215,12 @@ export class RandomModule extends ModuleBase {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance.
    * @param options.count The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
-   * @see faker.string.alpha()
+   * @see faker.string.alpha(): For the replacement method.
    *
    * @example
    * faker.random.alpha() // 'b'
@@ -276,11 +276,11 @@ export class RandomModule extends ModuleBase {
    * Generating a string consisting of alpha characters and digits.
    *
    * @param count The number of characters and digits to generate. Defaults to `1`.
-   * @param options The options to use. Defaults to `{ bannedChars: [] }`.
+   * @param options The options to use.
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.alphanumeric()
+   * @see faker.string.alphanumeric(): For the replacement method.
    *
    * @example
    * faker.random.alphaNumeric() // '2'
@@ -325,11 +325,11 @@ export class RandomModule extends ModuleBase {
    * Generates a given length string of digits.
    *
    * @param length The number of digits to generate. Defaults to `1`.
-   * @param options The options to use. Defaults to `{}`.
+   * @param options The options to use.
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.numeric()
+   * @see faker.string.numeric(): For the replacement method.
    *
    * @example
    * faker.random.numeric() // '2'

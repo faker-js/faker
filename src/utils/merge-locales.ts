@@ -12,6 +12,8 @@ import type { LocaleDefinition } from '..';
  *
  * @example
  * const de_CH_with_fallbacks = mergeLocales([ de_CH, de, en ]);
+ *
+ * @since 8.0.0
  */
 export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
   const merged: LocaleDefinition = {};

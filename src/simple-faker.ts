@@ -43,7 +43,7 @@ export class SimpleFaker {
    * Defaults to `() => new Date()`.
    *
    * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.seed() for reproducible results.
+   * @see faker.seed(): For generating reproducible values.
    *
    * @example
    * faker.seed(1234);
@@ -65,6 +65,8 @@ export class SimpleFaker {
    *
    * faker.defaultRefDate() // 2020-01-01T00:00:01Z
    * faker.defaultRefDate() // 2020-01-01T00:00:02Z
+   *
+   * @since 8.0.0
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
@@ -95,6 +97,18 @@ export class SimpleFaker {
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   *
+   * @example
+   * import { SimpleFaker } from '@faker-js/faker';
+   * // const { SimpleFaker } = require('@faker-js/faker');
+   *
+   * // create a SimpleFaker without any locale data
+   * const customSimpleFaker = new SimpleFaker();
+   *
+   * customSimpleFaker.helpers.arrayElement(['red', 'green', 'blue']); // 'green'
+   * customSimpleFaker.number.int(10); // 4
+   *
+   * @since 8.1.0
    */
   constructor(
     options: {
@@ -131,7 +145,7 @@ export class SimpleFaker {
    * @returns The seed that was set.
    *
    * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.setDefaultRefDate() when generating relative dates.
+   * @see faker.setDefaultRefDate(): For generating reproducible relative dates.
    *
    * @example
    * // Consistent values for tests:
@@ -146,6 +160,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 6.0.0
    */
   seed(seed?: number): number;
   /**
@@ -166,7 +182,7 @@ export class SimpleFaker {
    * @returns The seed array that was set.
    *
    * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.setDefaultRefDate() when generating relative dates.
+   * @see faker.setDefaultRefDate(): For generating reproducible relative dates.
    *
    * @example
    * // Consistent values for tests:
@@ -181,6 +197,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 6.0.0
    */
   seed(seedArray: number[]): number[];
   /**
@@ -201,7 +219,7 @@ export class SimpleFaker {
    * @returns The seed that was set.
    *
    * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
-   * @see faker.setDefaultRefDate() when generating relative dates.
+   * @see faker.setDefaultRefDate(): For generating reproducible dates.
    *
    * @example
    * // Consistent values for tests (using a number):
@@ -225,6 +243,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 6.0.0
    */
   seed(seed?: number | number[]): number | number[];
   seed(

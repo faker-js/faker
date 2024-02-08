@@ -2,6 +2,12 @@
 const { defineConfig } = require('eslint-define-config');
 const { readGitignoreFiles } = require('eslint-gitignore');
 
+/// <reference types="@eslint-types/deprecation" />
+/// <reference types="@eslint-types/jsdoc" />
+/// <reference types="@eslint-types/prettier" />
+/// <reference types="@eslint-types/typescript-eslint" />
+/// <reference types="@eslint-types/unicorn" />
+
 module.exports = defineConfig({
   ignorePatterns: [
     ...readGitignoreFiles(),
@@ -29,6 +35,7 @@ module.exports = defineConfig({
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'no-restricted-globals': ['error', 'Intl'],
+    'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
 
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
@@ -53,9 +60,7 @@ module.exports = defineConfig({
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
-    'unicorn/prefer-code-point': 'off',
     'unicorn/prefer-export-from': 'off',
-    'unicorn/prefer-module': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
@@ -100,7 +105,10 @@ module.exports = defineConfig({
       'error',
       { allowNumber: true, allowBoolean: true },
     ],
-    '@typescript-eslint/switch-exhaustiveness-check': 'error',
+    '@typescript-eslint/switch-exhaustiveness-check': [
+      'error',
+      { requireDefaultForNonUnion: true },
+    ],
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
 

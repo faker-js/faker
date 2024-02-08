@@ -37,6 +37,8 @@
  *   locale: ...,
  *   randomizer,
  * });
+ *
+ * @since 8.2.0
  */
 export interface Randomizer {
   /**
@@ -46,6 +48,8 @@ export interface Randomizer {
    * randomizer.next() // 0.3404027920160495
    * randomizer.next() // 0.929890375900335
    * randomizer.next() // 0.5866362918861691
+   *
+   * @since 8.2.0
    */
   next(): number;
 
@@ -60,6 +64,8 @@ export interface Randomizer {
    * // Fixed seeds (for reproducibility)
    * randomizer.seed(42);
    * randomizer.seed([42, 13.37]);
+   *
+   * @since 8.2.0
    */
   seed(seed: number | number[]): void;
 }
