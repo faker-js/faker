@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.1](https://github.com/faker-js/faker/compare/v8.4.0...v8.4.1) (2024-02-06)
+
+* JSDocs improvements
+
+## [8.4.0](https://github.com/faker-js/faker/compare/v8.3.1...v8.4.0) (2024-01-24)
+
+
+### Features
+
+* **helpers:** add support for complex intermediate types ([#2550](https://github.com/faker-js/faker/issues/2550)) ([24482a3](https://github.com/faker-js/faker/commit/24482a30042eec5b553b30d60985e89fd69a8660))
+* **number:** add parameter `fractionDigits` in float ([#1855](https://github.com/faker-js/faker/issues/1855)) ([41d8778](https://github.com/faker-js/faker/commit/41d87789c7ff353acfd0f5ca88a99c0d1fd3b500))
+* **person:** add job titles for fr ([#2531](https://github.com/faker-js/faker/issues/2531)) ([ba28ab6](https://github.com/faker-js/faker/commit/ba28ab6e59009cceb5b691ddd212e09df22b586e))
+
+
+### Bug Fixes
+
+* **finance:** correct VG IBAN format ([#2552](https://github.com/faker-js/faker/issues/2552)) ([b8049d1](https://github.com/faker-js/faker/commit/b8049d171086bce7b46eb617c88f44cfdd019e00))
+* **internet:** username method to return value that always includes… ([#2506](https://github.com/faker-js/faker/issues/2506)) ([0ee1c67](https://github.com/faker-js/faker/commit/0ee1c6751ec97e10ca1436d2b100b4acb1ac90ec))
+* **locale:** incomplete airline names in zh_CN ([#2558](https://github.com/faker-js/faker/issues/2558)) ([5525b55](https://github.com/faker-js/faker/commit/5525b55cc47fa97b55de52fccff7ab51633e639a))
+* **number:** improve float generation for precisions of form 10^-n ([#2581](https://github.com/faker-js/faker/issues/2581)) ([39c715d](https://github.com/faker-js/faker/commit/39c715d916d69e83795932260f1681df3241db91))
+
 ### [8.3.1](https://github.com/faker-js/faker/compare/v8.3.0...v8.3.1) (2023-11-14)
 
 
