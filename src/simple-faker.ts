@@ -65,6 +65,8 @@ export class SimpleFaker {
    *
    * faker.defaultRefDate() // 2020-01-01T00:00:01Z
    * faker.defaultRefDate() // 2020-01-01T00:00:02Z
+   *
+   * @since 8.0.0
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
@@ -95,6 +97,18 @@ export class SimpleFaker {
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   *
+   * @example
+   * import { SimpleFaker } from '@faker-js/faker';
+   * // const { SimpleFaker } = require('@faker-js/faker');
+   *
+   * // create a SimpleFaker without any locale data
+   * const customSimpleFaker = new SimpleFaker();
+   *
+   * customSimpleFaker.helpers.arrayElement(['red', 'green', 'blue']); // 'green'
+   * customSimpleFaker.number.int(10); // 4
+   *
+   * @since 8.1.0
    */
   constructor(
     options: {
@@ -146,6 +160,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 6.0.0
    */
   seed(seed?: number): number;
   /**
@@ -181,6 +197,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 6.0.0
    */
   seed(seedArray: number[]): number[];
   /**
@@ -225,6 +243,8 @@ export class SimpleFaker {
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
+   * @since 6.0.0
    */
   seed(seed?: number | number[]): number | number[];
   seed(
