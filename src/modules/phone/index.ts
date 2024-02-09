@@ -36,7 +36,7 @@ export class PhoneModule extends ModuleBase {
    *
    * @since 7.3.0
    */
-  number(options: { style: 'human' | 'national' | 'raw' }): string;
+  number(options?: { style: 'human' | 'national' | 'raw' }): string;
   number(options?: {
     /**
      * Style of the generated phone number:
