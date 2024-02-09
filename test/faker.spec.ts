@@ -1,4 +1,4 @@
-import type { SpyInstance } from 'vitest';
+import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { faker, Faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
@@ -14,7 +14,7 @@ describe('faker', () => {
   });
 
   it('should not log anything on startup', () => {
-    const spies: SpyInstance[] = keys(console)
+    const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) =>
         vi.spyOn(console, methodName as keyof typeof console)
