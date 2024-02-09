@@ -1,6 +1,6 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { faker, Faker } from '../src';
+import { Faker, faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import { keys } from '../src/internal/keys';
 

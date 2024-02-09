@@ -130,7 +130,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with LiteralUnion.</p>
 ",
-  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">literalUnionParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(value: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string, namedValue: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string, array: readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedArray: readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, mixed: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedMixed: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">): string</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">literalUnionParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(value: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedValue</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedArray</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, mixed</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedMixed</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span></span></code></pre>
 </div>",
   "name": "literalUnionParamMethod",
   "parameters": [
@@ -139,42 +139,42 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "value",
-      "type": "'a' | 'b' | string",
+      "type": "'a' | 'b' | ?",
     },
     {
       "default": undefined,
       "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedValue",
-      "type": "'a' | 'b' | string",
+      "type": "'a' | 'b' | ?",
     },
     {
       "default": undefined,
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "array",
-      "type": "Array<'a' | 'b' | string>",
+      "type": "Array<'a' | 'b' | ?>",
     },
     {
       "default": undefined,
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedArray",
-      "type": "Array<'a' | 'b' | string>",
+      "type": "Array<'a' | 'b' | ?>",
     },
     {
       "default": undefined,
       "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
 ",
       "name": "mixed",
-      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
+      "type": "'a' | 'b' | ? | Array<'a' | 'b' | ?>",
     },
     {
       "default": undefined,
       "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
 ",
       "name": "namedMixed",
-      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
+      "type": "'a' | 'b' | ? | Array<'a' | 'b' | ?>",
     },
   ],
   "returns": "string",
@@ -565,8 +565,8 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  b: string,</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  c: boolean,</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  d</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}): number</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> number</span></span></code></pre>
 </div>",
   "name": "optionsParamMethod",
   "parameters": [
@@ -610,7 +610,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
       "description": "<p>A parameter with inline documentation.</p>
 ",
       "name": "options.e",
-      "type": "'a' | 'b' | string",
+      "type": "'a' | 'b' | ?",
     },
   ],
   "returns": "number",
