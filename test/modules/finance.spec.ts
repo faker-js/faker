@@ -168,7 +168,7 @@ describe('finance', () => {
         it('should set a specified length', () => {
           let expected = faker.number.int(20);
 
-          expected = expected || 4;
+          expected ||= 4;
 
           const mask = faker.finance.maskedNumber({
             length: expected,
