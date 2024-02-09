@@ -146,23 +146,23 @@ exports[`string > 42 > sample > with length parameter 3`] = `"/*&Kq"`;
 
 exports[`string > 42 > sample > with length parameter 4`] = `"@X.b]"`;
 
-exports[`string > 42 > sample > with length parameter 5`] = `"\\"&{dn"`;
+exports[`string > 42 > sample > with length parameter 5`] = `""&{dn"`;
 
 exports[`string > 42 > sample > with length range 1`] = `"ky2eiXX/J/*&Kq"`;
 
 exports[`string > 42 > symbol > noArgs 1`] = `","`;
 
-exports[`string > 42 > symbol > with length parameter 1`] = `",^}&\\\\"`;
+exports[`string > 42 > symbol > with length parameter 1`] = `",^}&\\"`;
 
 exports[`string > 42 > symbol > with length parameter 2`] = `"]>>%/"`;
 
-exports[`string > 42 > symbol > with length parameter 3`] = `"%$\\"/\`"`;
+exports[`string > 42 > symbol > with length parameter 3`] = `"%$"/\`"`;
 
 exports[`string > 42 > symbol > with length parameter 4`] = `"+>%[?"`;
 
-exports[`string > 42 > symbol > with length parameter 5`] = `"!\\"~\\\\_"`;
+exports[`string > 42 > symbol > with length parameter 5`] = `"!"~\\_"`;
 
-exports[`string > 42 > symbol > with length range 1`] = `"^}&\\\\]>>%/%$\\"/\`"`;
+exports[`string > 42 > symbol > with length range 1`] = `"^}&\\]>>%/%$"/\`"`;
 
 exports[`string > 42 > uuid 1`] = `"5cf2bc99-2721-407d-8592-ba00fbdf302f"`;
 
@@ -318,25 +318,25 @@ exports[`string > 1211 > sample > with length parameter 2`] = `"-}$_/"`;
 
 exports[`string > 1211 > sample > with length parameter 3`] = `"\`4hHA"`;
 
-exports[`string > 1211 > sample > with length parameter 4`] = `"0afl\\""`;
+exports[`string > 1211 > sample > with length parameter 4`] = `"0afl""`;
 
 exports[`string > 1211 > sample > with length parameter 5`] = `"h^]dn"`;
 
-exports[`string > 1211 > sample > with length range 1`] = `"Kti5-}$_/\`4hHA0afl\\"h"`;
+exports[`string > 1211 > sample > with length range 1`] = `"Kti5-}$_/\`4hHA0afl"h"`;
 
 exports[`string > 1211 > symbol > noArgs 1`] = `"|"`;
 
 exports[`string > 1211 > symbol > with length parameter 1`] = `"|/{]("`;
 
-exports[`string > 1211 > symbol > with length parameter 2`] = `"%~\\"@&"`;
+exports[`string > 1211 > symbol > with length parameter 2`] = `"%~"@&"`;
 
 exports[`string > 1211 > symbol > with length parameter 3`] = `"@'].,"`;
 
-exports[`string > 1211 > symbol > with length parameter 4`] = `"&[\\\\_!"`;
+exports[`string > 1211 > symbol > with length parameter 4`] = `"&[\\_!"`;
 
-exports[`string > 1211 > symbol > with length parameter 5`] = `"]@?\\\\_"`;
+exports[`string > 1211 > symbol > with length parameter 5`] = `"]@?\\_"`;
 
-exports[`string > 1211 > symbol > with length range 1`] = `"/{](%~\\"@&@'].,&[\\\\_!]"`;
+exports[`string > 1211 > symbol > with length range 1`] = `"/{](%~"@&@'].,&[\\_!]"`;
 
 exports[`string > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-b2bb-d0caabde64df"`;
 
@@ -502,15 +502,15 @@ exports[`string > 1337 > symbol > noArgs 1`] = `")"`;
 
 exports[`string > 1337 > symbol > with length parameter 1`] = `")<&')"`;
 
-exports[`string > 1337 > symbol > with length parameter 2`] = `"</\\"+("`;
+exports[`string > 1337 > symbol > with length parameter 2`] = `"</"+("`;
 
 exports[`string > 1337 > symbol > with length parameter 3`] = `";=)+~"`;
 
-exports[`string > 1337 > symbol > with length parameter 4`] = `")\\\\*$^"`;
+exports[`string > 1337 > symbol > with length parameter 4`] = `")\\*$^"`;
 
 exports[`string > 1337 > symbol > with length parameter 5`] = `"-$?,%"`;
 
-exports[`string > 1337 > symbol > with length range 1`] = `"<&')</\\"+(;=)"`;
+exports[`string > 1337 > symbol > with length range 1`] = `"<&')</"+(;=)"`;
 
 exports[`string > 1337 > uuid 1`] = `"48234870-5389-445f-b4b4-1c61a52bf27d"`;
 
