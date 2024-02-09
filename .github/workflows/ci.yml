@@ -14,21 +14,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node_version: [14, 16, 18, 20]
-        include:
-          - os: macos-latest
-            node_version: 16
-          - os: macos-latest
-            node_version: 18
-          - os: macos-latest
-            node_version: 20
-          - os: windows-latest
-            node_version: 16
-          - os: windows-latest
-            node_version: 18
-          - os: windows-latest
-            node_version: 20
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node_version: [18, 20]
       fail-fast: false
     timeout-minutes: 10
 
@@ -40,14 +27,7 @@ jobs:
           # Required for docs/versions tests
           fetch-depth: 0
 
-      - name: Install pnpm (node 14, pnpm 7)
-        if: matrix.node_version == 14
-        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
-        with:
-          version: 7
-
       - name: Install pnpm
-        if: matrix.node_version != 14
         uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
 
       - name: Set node version to ${{ matrix.node_version }}
