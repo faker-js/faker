@@ -1,4 +1,4 @@
-import { describe, describe as vi_describe, expect, it as vi_it } from 'vitest';
+import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
 import type { Callable, MethodOf } from '../../src/utils/types';
 

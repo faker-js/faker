@@ -5,7 +5,7 @@
     "types": ["cypress"],
     "esModuleInterop": true,
     "noEmit": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts"]
 }
