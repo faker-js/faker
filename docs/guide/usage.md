@@ -275,3 +275,188 @@ We will update these docs once a replacement is available.
 :::
 
 Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
+
+## Create multiple complex objects
+
+Sometimes having a single one of your complex objects isn't enough.
+Imagine having a list view/database of some kind you want to populate:
+
+| ID        | First Name | Last Name |
+| --------- | ---------- | --------- |
+| 6fbe024f… | Tatyana    | Koch      |
+| 862f3ccb… | Hans       | Donnelly  |
+| b452acd6… | Judy       | Boehm     |
+
+The values are directly created using this method:
+
+```ts
+import { faker } from '@faker-js/faker';
+
+function createRandomUser(): User {
+  return {
+    _id: faker.string.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+  };
+}
+
+const users = Array.from({ length: 3 }, () => createRandomUser());
+```
+
+After some time you notice that you need a new column `createdDate`.
+
+You modify the method to also create that:
+
+```ts
+function createRandomUser(): User {
+  return {
+    _id: faker.string.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    createdDate: faker.date.past(),
+  };
+}
+```
+
+Now let's have a look at our table again:
+
+| ID        | First Name | Last Name | Created Date |
+| --------- | ---------- | --------- | ------------ |
+| 6fbe024f… | Tatyana    | Koch      | 2022-12-28   |
+| 62f3ccbf… | Kacie      | Pouros    | 2023-04-06   |
+| 52acd600… | Aron       | Von       | 2023-05-04   |
+
+Suddenly the second line onwards look different.
+
+Why? Because calling `faker.date.past()` consumes a value from the seed changing all subsequent values.
+
+There are two solutions to that:
+
+1. Set the seed explicitly before creating the data for that row:
+
+```ts
+const users = Array.from({ length: 3 }, (_, i) => {
+  faker.seed(i);
+  return createRandomUser();
+});
+```
+
+Which is very straightforward, but comes at the disadvantage, that you change the seed of your faker instance.
+This might cause issues, if you have lists of groups that contains lists of users. Each group contains the same users because the seed is reset.
+
+2. Derive a new faker instance for each user you create.
+
+```ts
+function createRandomUser(faker: Faker): User {
+  const derivedFaker = faker.derive();
+  return {
+    _id: derivedFaker.string.uuid(),
+    firstName: derivedFaker.person.firstName(),
+    lastName: derivedFaker.person.lastName(),
+    createdDate: derivedFaker.date.past(),
+  };
+}
+
+const users = Array.from({ length: 3 }, () => createRandomUser(faker));
+```
+
+The `faker.derive()` call clones the instance and re-initializes the seed of the clone with a generated value from the original.
+This decouples the generation of the list from generating a user.
+It does not matter how many properties you add to or remove from the `User` the following rows will not change.
+
+::: tip Note
+The following is only relevant, if you want to avoid changing your generated objects as much as possible:
+
+When adding one or more new properties, we recommend generating them last, because if you create a new property in the middle of your object, then the properties after that will still change (due to the extra seed consumption).
+When removing properties, you can continue calling the old method (or a dummy method) to consume the same amount of seed values.
+:::
+
+This also works for deeply nested complex objects:
+
+```ts
+function createLegalAgreement(faker: Faker) {
+  const derivedFaker = faker.derive();
+  return {
+    _id: derivedFaker.string.uuid(),
+    partyA: createRandomUser(derivedFaker),
+    partyB: createRandomUser(derivedFaker),
+  };
+}
+
+function createRandomUser(faker: Faker): User {
+  const derivedFaker = faker.derive();
+  return {
+    _id: derivedFaker.string.uuid(),
+    firstName: derivedFaker.person.firstName(),
+    lastName: derivedFaker.person.lastName(),
+    createdDate: derivedFaker.date.past(),
+    address: createRandomAddress(derivedFaker),
+  };
+}
+
+function createRandomAddress(faker: Faker): Address {
+  const derivedFaker = faker.derive();
+  return {
+    _id: derivedFaker.string.uuid(),
+    streetName: derivedFaker.location.street(),
+  };
+}
+```
+
+::: warning Warning
+Migrating your existing data generators will still change all data once, but after that they are independent.
+So we recommend writing your methods like this from the start.
+:::
+
+::: info Note
+Depending on your preferences and requirements you can design the methods either like this:
+
+```ts
+function createRandomXyz(faker: Faker): Xyz {
+  return {
+    _id: faker.string.uuid(),
+  };
+}
+
+createRandomXyz(faker.derive());
+createRandomXyz(faker.derive());
+createRandomXyz(faker.derive());
+```
+
+or this
+
+```ts
+function createRandomXyz(faker: Faker): Xyz {
+  const derivedFaker = faker.derive();
+  return {
+    _id: derivedFaker.string.uuid(),
+  };
+}
+
+createRandomXyz(faker);
+createRandomXyz(faker);
+createRandomXyz(faker);
+```
+
+The sole difference being more or less explicit about deriving a faker instance (writing more or less code).
+:::
+
+## Create identical complex objects
+
+If you want to create two identical objects, e.g. one to mutate and one to compare it to,
+then you can use `faker.clone()` to create a faker instance with the same settings and seed as the original.
+
+```ts
+const clonedFaker = faker.clone();
+const user1 = createRandomUser(faker);
+const user2 = createRandomUser(clonedFaker);
+expect(user1).toEqual(user2); ✅
+
+subscribeToNewsletter(user1);
+// Check that the user hasn't been modified
+expect(user1).toEqual(user2); ✅
+```
+
+::: info Note
+Calling `faker.clone()` is idempotent. So you can call it as often as you want, it doesn't have an impact on the original faker instance.
+:::

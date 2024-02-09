@@ -71,12 +71,14 @@ describe('faker', () => {
 
   describe('randomizer', () => {
     it('should be possible to provide a custom Randomizer', () => {
+      const randomizer = {
+        next: () => 0,
+        seed: () => void 0,
+        clone: () => randomizer,
+      };
       const customFaker = new Faker({
         locale: {},
-        randomizer: {
-          next: () => 0,
-          seed: () => void 0,
-        },
+        randomizer,
       });
 
       expect(customFaker.number.int()).toBe(0);
@@ -122,6 +124,60 @@ describe('faker', () => {
 
       const actual = faker.animal.cat();
       expect(actual).toBe('Oriental');
+    });
+  });
+
+  describe('clone()', () => {
+    it('should create a clone that returns the same values as the original', () => {
+      const clone1 = faker.clone();
+      const clone2 = faker.clone();
+      const clone3 = clone1.clone();
+
+      expect(clone1).not.toBe(faker);
+      expect(clone2).not.toBe(faker);
+      expect(clone3).not.toBe(faker);
+      expect(clone1).not.toBe(clone2);
+      expect(clone1).not.toBe(clone3);
+      expect(clone2).not.toBe(clone3);
+
+      const value0 = faker.number.int();
+      expect(clone1.number.int()).toBe(value0);
+      expect(clone2.number.int()).toBe(value0);
+      expect(clone3.number.int()).toBe(value0);
+
+      const value1 = clone1.number.int();
+      expect(faker.number.int()).toBe(value1);
+      expect(clone2.number.int()).toBe(value1);
+      expect(clone3.number.int()).toBe(value1);
+
+      const value2 = clone2.number.int();
+      expect(clone1.number.int()).toBe(value2);
+      expect(faker.number.int()).toBe(value2);
+      expect(clone3.number.int()).toBe(value2);
+
+      const value3 = clone3.number.int();
+      expect(clone1.number.int()).toBe(value3);
+      expect(clone2.number.int()).toBe(value3);
+      expect(faker.number.int()).toBe(value3);
+    });
+  });
+
+  describe('derive()', () => {
+    it("should create a derived faker, that doesn't affect the original", () => {
+      const seed = faker.seed();
+      faker.number.int();
+      const value = faker.number.int();
+
+      faker.seed(seed);
+      const derived = faker.derive();
+
+      expect(derived).not.toBe(faker);
+
+      for (let i = 0; i < derived.number.int(100); i++) {
+        derived.number.int();
+      }
+
+      expect(faker.number.int()).toBe(value);
     });
   });
 

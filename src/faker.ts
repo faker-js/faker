@@ -430,6 +430,21 @@ export class Faker extends SimpleFaker {
       'This method has been removed. Please use the constructor instead.'
     );
   }
+
+  clone(): Faker {
+    const instance = new Faker({
+      locale: this.rawDefinitions,
+      randomizer: this._randomizer.clone(),
+    });
+    instance.setDefaultRefDate(this._defaultRefDate);
+    return instance;
+  }
+
+  derive(): Faker {
+    const instance = this.clone();
+    instance.seed(this.number.int());
+    return instance;
+  }
 }
 
 export type FakerOptions = ConstructorParameters<typeof Faker>[0];

@@ -83,6 +83,22 @@ export class MersenneTwister19937 {
   private mti = this.N + 1; // mti==N+1 means mt[N] is not initialized
 
   /**
+   * Creates a new instance of MersenneTwister19937.
+   *
+   * @param options The required options to initialize the instance.
+   * @param options.mt The state vector to use. The array will be copied.
+   * @param options.mti The state vector index to use.
+   */
+  constructor(options?: { mt: number[]; mti: number }) {
+    if (options != null && 'mt' in options) {
+      this.mt = [...options.mt];
+      this.mti = options.mti;
+    } else {
+      this.initGenrand(Date.now() ^ (Math.random() * 0x100000000));
+    }
+  }
+
+  /**
    * Returns a 32-bits unsigned integer from an operand to which applied a bit
    * operator.
    *
@@ -166,11 +182,11 @@ export class MersenneTwister19937 {
   /**
    * Initialize by an array with array-length.
    *
-   * @param initKey is the array for initializing keys
-   * @param keyLength is its length
+   * @param initKey Is the array for initializing keys.
    */
-  initByArray(initKey: number[], keyLength: number): void {
+  initByArray(initKey: number[]): void {
     this.initGenrand(19650218);
+    const keyLength = initKey.length;
     let i = 1;
     let j = 0;
     let k = this.N > keyLength ? this.N : keyLength;
@@ -239,11 +255,6 @@ export class MersenneTwister19937 {
     if (this.mti >= this.N) {
       // generate N words at one time
       let kk: number;
-
-      // if initGenrand() has not been called a default initial seed is used
-      if (this.mti === this.N + 1) {
-        this.initGenrand(5489);
-      }
 
       for (kk = 0; kk < this.N - this.M; kk++) {
         y = this.unsigned32(
@@ -324,6 +335,10 @@ export class MersenneTwister19937 {
     return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
   }
   // These real versions are due to Isaku Wada, 2002/01/09
+
+  clone(): MersenneTwister19937 {
+    return new MersenneTwister19937({ mt: this.mt, mti: this.mti });
+  }
 }
 
 /**
@@ -333,10 +348,21 @@ export class MersenneTwister19937 {
  * @internal
  */
 export function generateMersenne32Randomizer(): Randomizer {
+  // This method does not expose any internal parameters to users.
   const twister = new MersenneTwister19937();
+  return _generateMersenne32Randomizer(twister);
+}
 
-  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
-
+/**
+ * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
+ *
+ * @internal
+ *
+ * @param twister The twister to use.
+ */
+function _generateMersenne32Randomizer(
+  twister: MersenneTwister19937
+): Randomizer {
   return {
     next(): number {
       return twister.genrandReal2();
@@ -345,8 +371,11 @@ export function generateMersenne32Randomizer(): Randomizer {
       if (typeof seed === 'number') {
         twister.initGenrand(seed);
       } else if (Array.isArray(seed)) {
-        twister.initByArray(seed, seed.length);
+        twister.initByArray(seed);
       }
+    },
+    clone(): Randomizer {
+      return _generateMersenne32Randomizer(twister.clone());
     },
   };
 }
