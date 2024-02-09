@@ -72,7 +72,10 @@ export class SystemModule extends ModuleBase {
   ): string {
     const { extensionCount = 1 } = options;
 
-    const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
+    const baseName = this.faker.word
+      .words()
+      .toLowerCase()
+      .replaceAll(/\W/g, '_');
 
     const extensionsStr = this.faker.helpers
       .multiple(() => this.fileExt(), { count: extensionCount })
