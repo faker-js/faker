@@ -41,16 +41,26 @@ export class InternetModule extends ModuleBase {
   /**
    * Returns a random avatar url.
    *
+   * @see faker.image.avatarLegacy(): For the replacement method.
+   * @see faker.image.avatar(): For the replacement method with a wider variety of avatars.
+   *
    * @example
    * faker.internet.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.image.avatar()` instead.
    */
   avatar(): string {
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
-      1249
-    )}.jpg`;
+    deprecated({
+      deprecated: 'faker.internet.avatar()',
+      proposed: 'faker.image.avatarLegacy() or faker.image.avatar()',
+      since: '8.4',
+      until: '9.0',
+    });
+    // TODO @ST-DDT 2024-01-14: Remove or replace with `faker.image.avatar()` in v9
+    return this.faker.image.avatarLegacy();
   }
 
   /**
@@ -346,7 +356,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 3.1.0
    *
-   * @deprecated Use `faker.internet.exampleEmail({ firstName: lastName, ... })` instead.
+   * @deprecated Use `faker.internet.exampleEmail({ firstName, lastName, ... })` instead.
    */
   exampleEmail(
     firstName?: string,
@@ -1113,7 +1123,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.internet.color({ redbase, greenBase, blueBase })` instead.
+   * @deprecated Use `faker.internet.color({ redBase, greenBase, blueBase })` instead.
    */
   color(redBase?: number, greenBase?: number, blueBase?: number): string;
   /**
