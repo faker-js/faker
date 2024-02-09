@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.1](https://github.com/faker-js/faker/compare/v8.4.0...v8.4.1) (2024-02-06)
+
+* JSDocs improvements
+
 ## [8.4.0](https://github.com/faker-js/faker/compare/v8.3.1...v8.4.0) (2024-01-24)
 
 
