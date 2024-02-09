@@ -271,7 +271,7 @@ describe('system', () => {
             'generated filePath should start with /'
           ).toBeTruthy();
           expect(
-            parts[parts.length - 1],
+            parts.at(-1),
             'generated filePath should have a file extension'
           ).toMatch(/^\w+\.\w+$/);
         });

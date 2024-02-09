@@ -989,7 +989,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     }
 
     // In case of rounding errors, return the last element
-    return array[array.length - 1].value;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return array.at(-1)!.value;
   }
 
   /**
