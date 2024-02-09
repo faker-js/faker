@@ -1,8 +1,8 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import {
+  MersenneTwister19937,
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
-  MersenneTwister19937,
 } from '../../src/internal/mersenne';
 import type { Randomizer } from '../../src/randomizer';
 import { seededRuns } from '../support/seeded-runs';

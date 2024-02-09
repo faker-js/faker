@@ -142,19 +142,19 @@ exports[`string > 42 > sample > with length parameter 1`] = `"CyeX/"`;
 
 exports[`string > 42 > sample > with length parameter 2`] = `"/&qXb"`;
 
-exports[`string > 42 > sample > with length parameter 3`] = `"\\"{n41"`;
+exports[`string > 42 > sample > with length parameter 3`] = `""{n41"`;
 
 exports[`string > 42 > sample > with length parameter 4`] = `"2=QI<"`;
 
 exports[`string > 42 > sample > with length parameter 5`] = `"Y-<CK"`;
 
-exports[`string > 42 > sample > with length range 1`] = `"yeX//&qXb\\"{n41"`;
+exports[`string > 42 > sample > with length range 1`] = `"yeX//&qXb"{n41"`;
 
 exports[`string > 42 > symbol > noArgs 1`] = `","`;
 
-exports[`string > 42 > symbol > with length parameter 1`] = `",}\\\\>%"`;
+exports[`string > 42 > symbol > with length parameter 1`] = `",}\\>%"`;
 
-exports[`string > 42 > symbol > with length parameter 2`] = `"%\\"\`>["`;
+exports[`string > 42 > symbol > with length parameter 2`] = `"%"\`>["`;
 
 exports[`string > 42 > symbol > with length parameter 3`] = `"!~_'&"`;
 
@@ -162,7 +162,7 @@ exports[`string > 42 > symbol > with length parameter 4`] = `"&*;.*"`;
 
 exports[`string > 42 > symbol > with length parameter 5`] = `">%*,/"`;
 
-exports[`string > 42 > symbol > with length range 1`] = `"}\\\\>%%\\"\`>[!~_'&"`;
+exports[`string > 42 > symbol > with length range 1`] = `"}\\>%%"\`>[!~_'&"`;
 
 exports[`string > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
@@ -502,7 +502,7 @@ exports[`string > 1337 > symbol > noArgs 1`] = `")"`;
 
 exports[`string > 1337 > symbol > with length parameter 1`] = `")&)/+"`;
 
-exports[`string > 1337 > symbol > with length parameter 2`] = `";)~\\\\$"`;
+exports[`string > 1337 > symbol > with length parameter 2`] = `";)~\\$"`;
 
 exports[`string > 1337 > symbol > with length parameter 3`] = `"-?%~/"`;
 
@@ -510,7 +510,7 @@ exports[`string > 1337 > symbol > with length parameter 4`] = `"^^,.="`;
 
 exports[`string > 1337 > symbol > with length parameter 5`] = `"]'*@:"`;
 
-exports[`string > 1337 > symbol > with length range 1`] = `"&)/+;)~\\\\$-?%"`;
+exports[`string > 1337 > symbol > with length range 1`] = `"&)/+;)~\\$-?%"`;
 
 exports[`string > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 
