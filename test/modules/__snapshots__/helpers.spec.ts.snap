@@ -135,19 +135,19 @@ exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3791-7755
 
 exports[`helpers > 42 > replaceCreditCardSymbols > only symbols 1`] = `"7917-6-7563-4"`;
 
-exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+7*,..-;:_NaN"`;
+exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+7*,..-;:_NaN"`;
 
 exports[`helpers > 42 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > replaceSymbolWithNumber > only symbols 1`] = `"47917"`;
 
-exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+7*,..-;:_"`;
+exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+7*,..-;:_"`;
 
 exports[`helpers > 42 > replaceSymbols > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3U17U5"`;
 
-exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=J\`+71,..-;:_"`;
+exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=J\`+71,..-;:_"`;
 
 exports[`helpers > 42 > shuffle > with array 1`] = `
 [
@@ -375,19 +375,19 @@ exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9487-21
 
 exports[`helpers > 1211 > replaceCreditCardSymbols > only symbols 1`] = `"4872-9-1927-1"`;
 
-exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9\\"§$%&/()=?\`+4*,..-;:_NaN"`;
+exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+4*,..-;:_NaN"`;
 
 exports[`helpers > 1211 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > replaceSymbolWithNumber > only symbols 1`] = `"94872"`;
 
-exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9\\"§$%&/()=?\`+4*,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+4*,..-;:_"`;
 
 exports[`helpers > 1211 > replaceSymbols > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9L72D0"`;
 
-exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=Y\`+47,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=Y\`+47,..-;:_"`;
 
 exports[`helpers > 1211 > shuffle > with array 1`] = `
 [
@@ -597,19 +597,19 @@ exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2512-25
 
 exports[`helpers > 1337 > replaceCreditCardSymbols > only symbols 1`] = `"5122-5-5424-8"`;
 
-exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+5*,..-;:_NaN"`;
+exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+5*,..-;:_NaN"`;
 
 exports[`helpers > 1337 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > replaceSymbolWithNumber > only symbols 1`] = `"45122"`;
 
-exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+5*,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+5*,..-;:_"`;
 
 exports[`helpers > 1337 > replaceSymbols > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2OF2OA"`;
 
-exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=G\`+5F,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=G\`+5F,..-;:_"`;
 
 exports[`helpers > 1337 > shuffle > with array 1`] = `
 [
