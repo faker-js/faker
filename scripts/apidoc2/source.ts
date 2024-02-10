@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Node } from 'ts-morph';
@@ -38,5 +39,14 @@ export async function writeSourceBaseUrl(): Promise<void> {
 }
 
 function getSourceBaseUrl(): string {
-  return 'TODO';
+  return `https://github.com/faker-js/faker/blob/${getCommitHash() || 'next'}/`;
+}
+
+function getCommitHash(): string | undefined {
+  try {
+    return execSync('git rev-parse --verify HEAD').toString('utf8').trim();
+  } catch (error) {
+    console.warn('Failed to get commit hash', error);
+    return undefined;
+  }
 }

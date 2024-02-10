@@ -12,6 +12,7 @@ import { writePages } from './page';
 import { writePageIndex } from './page-index';
 import { getProject } from './project';
 import { writeSearchIndex } from './search-index';
+import { writeSourceBaseUrl } from './source';
 
 export async function generate(): Promise<void> {
   console.log('Reading project');
@@ -55,6 +56,8 @@ async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {
   await writePages(apiDocPages);
   console.log('- search index');
   writeSearchIndex(apiDocPages);
+  console.log('- source base url');
+  await writeSourceBaseUrl();
   // TODO @ST-DDT 2024-02-04: Remove this part prior to merge
   console.log('- api-doc debug output');
   writeFileSync('api-doc.json', JSON.stringify(apiDocPages, null, 2));
