@@ -14,6 +14,7 @@ import {
 } from './jsdocs';
 import { shouldProcessParameter } from './select';
 import { getSourcePath } from './source';
+import type { RawApiDocsType } from './type';
 import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
 import { exactlyOne, valueForKey } from './utils';
 
@@ -28,7 +29,7 @@ export interface RawApiDocsParameter {
   /**
    * The type of the parameter.
    */
-  type: string;
+  type: RawApiDocsType;
   /**
    * The default value or expression of the parameter, if it has one.
    */

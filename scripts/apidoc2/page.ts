@@ -167,6 +167,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     description: mdToHtml(description),
     parameters: parameters.map((param) => ({
       ...param,
+      type: param.type.text,
       // TODO @ST-DDT 2024-02-08: Check if this is still needed
       default:
         param.default ?? defaultCommentRegex.exec(param.description)?.[1],
@@ -175,7 +176,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     since,
     sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
-    returns,
+    returns: returns.text,
     examples: codeToHtml([signature, ...examples].join('\n')),
     deprecated: mdToHtml(deprecated),
     seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),

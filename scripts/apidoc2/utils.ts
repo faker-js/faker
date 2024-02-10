@@ -41,6 +41,24 @@ export function allRequired<T>(
   return input.map((v, i) => required(v, `${property}[${i}]`));
 }
 
+export function atLeastOne<T>(
+  input: ReadonlyArray<T>,
+  property: string
+): ReadonlyArray<T> {
+  if (input.length === 0) {
+    throw new Error(`Expected at least one element for ${property}`);
+  }
+
+  return input;
+}
+
+export function atLeastOneAndAllRequired<T>(
+  input: ReadonlyArray<T | undefined>,
+  property: string
+): ReadonlyArray<NonNullable<T>> {
+  return atLeastOne(allRequired(input, property), property);
+}
+
 export function valueForKey<T>(input: Record<string, T>, key: string): T {
   return required(input[key], key);
 }

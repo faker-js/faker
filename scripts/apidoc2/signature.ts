@@ -14,6 +14,7 @@ import { processParameters, processTypeParameters } from './parameter';
 import { getProject } from './project';
 import { shouldProcessSignature } from './select';
 import { getSourcePath, type SourceableNode } from './source';
+import type { RawApiDocsType } from './type';
 import { getTypeText } from './type';
 import { exactlyOne } from './utils';
 
@@ -40,7 +41,7 @@ export interface RawApiDocsSignature {
   /**
    * The return type of the signature.
    */
-  returns: string;
+  returns: RawApiDocsType;
   /**
    * The exceptions thrown by the signature.
    */
