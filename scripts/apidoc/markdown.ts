@@ -2,13 +2,13 @@ import sanitizeHtml from 'sanitize-html';
 import type { MarkdownRenderer } from 'vitepress';
 import { createMarkdownRenderer } from 'vitepress';
 import vitepressConfig from '../../docs/.vitepress/config';
-import { adjustUrls, pathOutputDir } from './utils';
+import { pathApiDocsDir } from './paths';
 
 let markdown: MarkdownRenderer;
 
 export async function initMarkdownRenderer(): Promise<void> {
   markdown = await createMarkdownRenderer(
-    pathOutputDir,
+    pathApiDocsDir,
     vitepressConfig.markdown,
     '/'
   );
@@ -31,7 +31,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
     div: ['class'],
-    pre: ['class', 'tabindex', 'v-pre'],
+    pre: ['class', 'v-pre'],
     span: ['class', 'style'],
   },
   selfClosing: [],
@@ -45,7 +45,6 @@ function comparableSanitizedHtml(html: string): string {
     .replace(/&gt;/g, '>')
     .replace(/&lt;/g, '<')
     .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
     .replace(/=""/g, '')
     .replace(/ /g, '');
 }
@@ -70,7 +69,27 @@ export function codeToHtml(code: string): string {
  *
  * @returns The converted HTML string.
  */
-export function mdToHtml(md: string, inline: boolean = false): string {
+export function mdToHtml(md: string, inline?: boolean): string;
+/**
+ * Converts Markdown to an HTML string and sanitizes it.
+ *
+ * @param md The markdown to convert.
+ * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
+ *
+ * @returns The converted HTML string.
+ */
+export function mdToHtml(
+  md: string | undefined,
+  inline?: boolean
+): string | undefined;
+export function mdToHtml(
+  md: string | undefined,
+  inline: boolean = false
+): string | undefined {
+  if (md == null) {
+    return undefined;
+  }
+
   const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
 
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
@@ -79,9 +98,14 @@ export function mdToHtml(md: string, inline: boolean = false): string {
     return adjustUrls(safeHtml);
   }
 
-  console.debug('Rejected unsafe md:', md);
-  console.error('Rejected unsafe html:', rawHtml);
-  console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
-  console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
+  console.debug('Rejected unsafe md:\n', md);
+  console.error('Rejected unsafe html:\n', rawHtml);
+  console.error('Clean unsafe html:\n', comparableSanitizedHtml(rawHtml));
+  console.error('Clean safe html:\n', comparableSanitizedHtml(safeHtml));
+  console.log('-'.repeat(80));
   throw new Error('Found unsafe html');
+}
+
+export function adjustUrls(description: string): string {
+  return description.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
 }

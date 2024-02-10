@@ -1,79 +1,71 @@
-import { createHash } from 'node:crypto';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import type { Method } from '../../docs/.vitepress/components/api-docs/method';
+export const scriptCommand = 'pnpm run generate:api-docs';
 
-// Types
+export function exactlyOne<T>(input: ReadonlyArray<T>, property: string): T {
+  if (input.length !== 1) {
+    throw new Error(
+      `Expected exactly one element for ${property}, got ${input.length}`
+    );
+  }
 
-export type Page = { text: string; link: string; category: string };
-
-export type ModuleSummary = Page & {
-  methods: Method[];
-  diff: DocsApiDiff;
-};
-
-export interface DocsApiDiffIndex {
-  /**
-   * The methods in the module by name.
-   */
-  [module: string]: DocsApiDiff;
+  return input[0];
 }
 
-export interface DocsApiDiff {
-  /**
-   * The checksum of the entire module.
-   */
-  moduleHash: string;
-  /**
-   * The checksum of the method by name.
-   */
-  [method: string]: string;
+export function optionalOne<T>(
+  input: ReadonlyArray<T>,
+  property: string
+): T | undefined {
+  if (input.length > 1) {
+    throw new Error(
+      `Expected one optional element for ${property}, got ${input.length}`
+    );
+  }
+
+  return input[0];
 }
 
-// Paths
+export function required<T>(
+  input: T | undefined,
+  property: string
+): NonNullable<T> {
+  if (input == null) {
+    throw new Error(`Expected a value for ${property}, got undefined`);
+  }
 
-const pathRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
-export const pathDocsDir = resolve(pathRoot, 'docs');
-const pathPublicDir = resolve(pathDocsDir, 'public');
-export const nameDocsDiffIndexFile = 'api-diff-index.json';
-export const pathDocsDiffIndexFile = resolve(
-  pathPublicDir,
-  nameDocsDiffIndexFile
-);
-export const pathOutputDir = resolve(pathDocsDir, 'api');
-
-// Functions
-
-export function adjustUrls(description: string): string {
-  return description.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
+  return input;
 }
 
-export function mapByName<TInput extends { name: string }, TValue>(
-  input: TInput[],
-  valueExtractor: (item: TInput) => TValue
-): Record<string, TValue> {
-  return Object.fromEntries(
-    input.map((item) => [item.name, valueExtractor(item)])
-  );
+export function allRequired<T>(
+  input: ReadonlyArray<T | undefined>,
+  property: string
+): Array<NonNullable<T>> {
+  return input.map((v, i) => required(v, `${property}[${i}]`));
 }
 
-/**
- * Creates a diff hash for the given method by removing the line number from the source path.
- *
- * @param method The method to create a hash for.
- */
-export function methodDiffHash(method: Method): string {
-  return diffHash({
-    ...method,
-    sourcePath: method.sourcePath.replace(/#.*/g, ''),
-  });
+export function atLeastOne<T>(
+  input: ReadonlyArray<T>,
+  property: string
+): ReadonlyArray<T> {
+  if (input.length === 0) {
+    throw new Error(`Expected at least one element for ${property}`);
+  }
+
+  return input;
 }
 
-/**
- * Creates a diff hash for the given object.
- *
- * @param object The object to create a hash for.
- */
-export function diffHash(object: unknown): string {
-  return createHash('md5').update(JSON.stringify(object)).digest('hex');
+export function atLeastOneAndAllRequired<T>(
+  input: ReadonlyArray<T | undefined>,
+  property: string
+): ReadonlyArray<NonNullable<T>> {
+  return atLeastOne(allRequired(input, property), property);
+}
+
+export function valueForKey<T>(input: Record<string, T>, key: string): T {
+  return required(input[key], key);
+}
+
+export function valuesForKeys<T>(
+  input: Record<string, T>,
+  keys: string[]
+): T[] {
+  return keys.map((key) => valueForKey(input, key));
 }

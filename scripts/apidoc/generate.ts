@@ -1,42 +1,60 @@
-import { resolve } from 'node:path';
-import { processFakerClasses, processFakerRandomizer } from './faker-class';
-import { processFakerUtilities } from './faker-utilities';
-import { processModules } from './module-methods';
-import { loadProject } from './typedoc';
-import { pathOutputDir } from './utils';
+import type { Project } from 'ts-morph';
+import type { RawApiDocsPage } from './class';
 import {
-  writeApiDiffIndex,
-  writeApiPagesIndex,
-  writeApiSearchIndex,
-  writeSourceBaseUrl,
-} from './writer';
+  processModuleClasses,
+  processProjectClasses,
+  processProjectInterfaces,
+  processProjectUtilities,
+} from './class';
+import { writeDiffIndex } from './diff-index';
+import { writePages } from './page';
+import { writePageIndex } from './page-index';
+import { getProject } from './project';
+import { writeSearchIndex } from './search-index';
+import { writeSourceBaseUrl } from './source';
 
-const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
-
-/**
- * Generates the API documentation.
- */
 export async function generate(): Promise<void> {
-  const [app, project] = await loadProject();
+  console.log('Reading project');
+  const project = getProject();
+  console.log('Processing components');
+  const apiDocPages = processComponents(project);
+  console.log('Writing files');
+  await writeFiles(apiDocPages);
+}
 
-  // Useful for manually analyzing the content
-  await app.generateJson(project, pathOutputJson);
+function processComponents(project: Project): RawApiDocsPage[] {
+  try {
+    return [
+      ...processProjectClasses(project),
+      ...processProjectInterfaces(project),
+      processProjectUtilities(project),
+      ...processModuleClasses(project),
+    ];
+  } catch (error) {
+    let e = error;
+    let message = '';
+    let lastError = e;
+    while (e instanceof Error) {
+      message += `\n${e.message}`;
+      lastError = e;
+      e = e.cause;
+    }
 
-  const pages = [
-    ...(await processFakerClasses(project)),
-    await processFakerRandomizer(project),
-    await processFakerUtilities(project),
-    ...(await processModules(project)).sort((a, b) =>
-      a.text.localeCompare(b.text)
-    ),
-  ];
-  await writeApiPagesIndex(
-    pages.map(({ text, link, category }) => ({ text, link, category }))
-  );
-  writeApiDiffIndex(
-    Object.fromEntries(pages.map(({ text, diff }) => [text, diff]))
-  );
-  writeApiSearchIndex(pages);
+    throw new Error(`Failed to generate API docs: ${message}`, {
+      cause: lastError,
+    });
+  }
+}
 
-  await writeSourceBaseUrl(project);
+async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {
+  console.log('- diff index');
+  writeDiffIndex(apiDocPages);
+  console.log('- page index');
+  await writePageIndex(apiDocPages);
+  console.log('- pages');
+  await writePages(apiDocPages);
+  console.log('- search index');
+  writeSearchIndex(apiDocPages);
+  console.log('- source base url');
+  await writeSourceBaseUrl();
 }

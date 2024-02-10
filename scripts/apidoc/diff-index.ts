@@ -5,7 +5,7 @@ import type { RawApiDocsPage } from './class';
 import type { RawApiDocsMethod } from './method';
 import { pathPublicDir } from './paths';
 
-const nameDocsDiffIndexFile = 'api-diff-index2.json';
+const nameDocsDiffIndexFile = 'api-diff-index.json';
 const pathDocsDiffIndexFile = resolve(pathPublicDir, nameDocsDiffIndexFile);
 
 /**
