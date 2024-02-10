@@ -96,17 +96,16 @@ export function getTypeText(
       const typeParameters = typeArguments.map((t) => getTypeText(t, options));
 
       if (typeParameters.length === 0) {
-        const displayType = newSimpleType(name);
         const resolvedType = getTypeText(type, {
           ...options,
           resolveAliases: true,
         });
 
         if (name === resolvedType.text) {
-          return displayType;
+          return newSimpleType(name);
         }
 
-        return newShadowType(displayType, resolvedType);
+        return newShadowType(name, resolvedType);
       }
 
       return newGenericType(name, typeParameters);
@@ -211,14 +210,14 @@ function newUnionType(types: RawApiDocsType[]): RawApiDocsUnionType {
 }
 
 function newShadowType(
-  displayType: RawApiDocsType,
+  displayText: string,
   resolvedType: RawApiDocsType
 ): RawApiDocsShadowType {
-  required(displayType, 'display type');
+  required(displayText, 'display text');
   required(resolvedType, 'resolved type');
   return {
     type: 'shadow',
     resolvedType,
-    text: displayType.text,
+    text: displayText,
   };
 }
