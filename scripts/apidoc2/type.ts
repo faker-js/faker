@@ -4,25 +4,31 @@ import { atLeastOneAndAllRequired, required } from './utils';
 export type RawApiDocsType =
   | RawApiDocsSimpleType
   | RawApiDocsGenericType
-  | RawApiDocsUnionType;
+  | RawApiDocsUnionType
+  | RawApiDocsShadowType;
 
-export interface RawApiDocsSimpleType {
+interface RawApiDocsBaseType {
+  type: string;
+  text: string;
+}
+
+export interface RawApiDocsSimpleType extends RawApiDocsBaseType {
   type: 'simple';
-  name: string;
-  text: string;
 }
 
-export interface RawApiDocsGenericType {
+export interface RawApiDocsGenericType extends RawApiDocsBaseType {
   type: 'generic';
-  name: string;
   typeParameters: RawApiDocsType[];
-  text: string;
 }
 
-export interface RawApiDocsUnionType {
+export interface RawApiDocsUnionType extends RawApiDocsBaseType {
   type: 'union';
   types: RawApiDocsType[];
-  text: string;
+}
+
+export interface RawApiDocsShadowType extends RawApiDocsBaseType {
+  type: 'shadow';
+  resolvedType: RawApiDocsType;
 }
 
 export function getNameSuffix(type: Type): string {
@@ -34,14 +40,12 @@ export function getTypeText(
   options: {
     abbreviate?: boolean;
     stripUndefined?: boolean;
-    resolveTypeParameters?: boolean;
     resolveAliases?: boolean;
   } = {}
 ): RawApiDocsType {
   const {
     abbreviate = false,
     stripUndefined = false,
-    resolveTypeParameters = false,
     resolveAliases = false,
   } = options;
 
@@ -67,6 +71,8 @@ export function getTypeText(
     return newArrayType(
       getTypeText(type.getArrayElementTypeOrThrow(), options)
     );
+  } else if (stripUndefined && type.isNullable()) {
+    return getTypeText(type.getNonNullableType(), options);
   }
 
   const symbol = type.getSymbol() ?? type.getAliasSymbol();
@@ -79,23 +85,28 @@ export function getTypeText(
       ];
 
       if (name === 'LiteralUnion') {
-        const typeParameters = typeArguments.map((t) =>
-          getTypeText(t, options)
-        );
+        const displayType = getTypeText(typeArguments[0], options);
+        const baseType = typeArguments[1]
+          ? getTypeText(typeArguments[1], options)
+          : newSimpleType('string');
 
-        if (typeParameters.length === 1) {
-          typeParameters.push(newSimpleType('string'));
-        }
-
-        return newUnionType(typeParameters);
+        return newUnionType([displayType, baseType]);
       }
 
-      const typeParameters = typeArguments.map((t) =>
-        getTypeText(t, { ...options, resolveAliases: true })
-      );
+      const typeParameters = typeArguments.map((t) => getTypeText(t, options));
 
       if (typeParameters.length === 0) {
-        return newSimpleType(name);
+        const displayType = newSimpleType(name);
+        const resolvedType = getTypeText(type, {
+          ...options,
+          resolveAliases: true,
+        });
+
+        if (name === resolvedType.text) {
+          return displayType;
+        }
+
+        return newShadowType(displayType, resolvedType);
       }
 
       return newGenericType(name, typeParameters);
@@ -108,14 +119,12 @@ export function getTypeText(
       .map((t) => getTypeText(t, options))
       .filter((t) => !stripUndefined || t.text !== 'undefined');
 
-    if (
-      unionTypes.some((t) => t.text === 'true') &&
-      unionTypes.some((t) => t.text === 'false')
-    ) {
+    const trueIndex = unionTypes.findIndex((t) => t.text === 'true');
+    if (trueIndex !== -1 && unionTypes.some((t) => t.text === 'false')) {
+      unionTypes[trueIndex] = newSimpleType('boolean');
       unionTypes = unionTypes.filter(
         (t) => t.text !== 'true' && t.text !== 'false'
       );
-      unionTypes.push(newSimpleType('boolean'));
     }
 
     if (unionTypes.length === 1) {
@@ -129,8 +138,11 @@ export function getTypeText(
     return newSimpleType('{ ... }');
   }
 
-  if (resolveTypeParameters && type.isTypeParameter()) {
-    const text = getTypeText(type.getApparentType());
+  if (resolveAliases && type.isTypeParameter()) {
+    const text = getTypeText(type.getApparentType(), {
+      ...options,
+      resolveAliases: true,
+    });
 
     if (text.text === 'unknown') {
       return newSimpleType('any');
@@ -153,7 +165,7 @@ export function isOptionsLikeType(type: Type): boolean {
 
 function newSimpleType(name: string): RawApiDocsSimpleType {
   required(name, 'name');
-  return { type: 'simple', name, text: name };
+  return { type: 'simple', text: name };
 }
 
 function newArrayType(typeParameter: RawApiDocsType): RawApiDocsGenericType {
@@ -161,7 +173,6 @@ function newArrayType(typeParameter: RawApiDocsType): RawApiDocsGenericType {
   const useGeneric = text.includes('|') || text.includes('{');
   return {
     type: 'generic',
-    name: 'Array',
     typeParameters: [typeParameter],
     text: useGeneric ? `Array<${text}>` : `${text}[]`,
   };
@@ -175,7 +186,6 @@ function newGenericType(
   atLeastOneAndAllRequired(typeParameters, 'type parameters');
   return {
     type: 'generic',
-    name: name,
     typeParameters,
     text: `${name}<${typeParameters.map((t) => t.text).join(', ')}>`,
   };
@@ -197,5 +207,18 @@ function newUnionType(types: RawApiDocsType[]): RawApiDocsUnionType {
           : t
       )
       .join(' | '),
+  };
+}
+
+function newShadowType(
+  displayType: RawApiDocsType,
+  resolvedType: RawApiDocsType
+): RawApiDocsShadowType {
+  required(displayType, 'display type');
+  required(resolvedType, 'resolved type');
+  return {
+    type: 'shadow',
+    resolvedType,
+    text: displayType.text,
   };
 }

@@ -68,7 +68,7 @@ function processTypeParameterEntry(
 ): RawApiDocsParameter {
   return {
     name: `<${parameter.getName()}>`,
-    type: getTypeText(parameter.getType(), { resolveTypeParameters: true }),
+    type: getTypeText(parameter.getType(), { resolveAliases: true }),
     default: parameter.getDefault()?.getText(),
     description: getDescription(valueForKey(paramTags, parameter.getName())),
   };
