@@ -5,8 +5,11 @@ import type { RawApiDocsPage } from './class';
 import type { RawApiDocsMethod } from './method';
 import { pathPublicDir } from './paths';
 
-const nameDocsDiffIndexFile = 'api-diff-index.json';
-const pathDocsDiffIndexFile = resolve(pathPublicDir, nameDocsDiffIndexFile);
+export const nameDocsDiffIndexFile = 'api-diff-index.json';
+export const pathDocsDiffIndexFile = resolve(
+  pathPublicDir,
+  nameDocsDiffIndexFile
+);
 
 /**
  * The diff hashes for the entire api.
