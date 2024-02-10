@@ -25,7 +25,7 @@ export class FoodModule extends ModuleBase {
    * Generates a random dish description.
    *
    * @example
-   * faker.food.description() // ''An exquisite ostrich roast, infused with the essence of longan, slow-roasted to bring out its natural flavors and served with a side of creamy red cabbage'
+   * faker.food.description() // 'An exquisite ostrich roast, infused with the essence of longan, slow-roasted to bring out its natural flavors and served with a side of creamy red cabbage'
    *
    * @since 9.0.0
    */
