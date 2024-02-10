@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../docs/.vitepress/components/api-docs/method';
 import type { RawApiDocsPage } from './class';
 import { formatMarkdown } from './format';
-import { codeToHtml, mdToHtml } from './markdown';
+import { adjustUrls, codeToHtml, mdToHtml } from './markdown';
 import type { RawApiDocsMethod } from './method';
 import { pathApiDocsDir } from './paths';
 import { scriptCommand } from './utils';
@@ -70,9 +70,9 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
          </div>`
   }
 
-  ${description}
+  ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${examples.join('\n')}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${codeToHtml(examples.join('\n'))}</div>`}
 
   :::
 
@@ -88,6 +88,28 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
   `.replace(/\n +/g, '\n');
 
   content = vitePressInFileOptions + (await formatMarkdown(content));
+
+  // TODO @ST-DDT 2024-02-10: Remove this prior to merge
+  const oldContent = readFileSync(
+    resolve(pathApiDocsDir, `${camelTitle}.md`),
+    'utf8'
+  ).replaceAll(/2?\.json'/g, "2.json'");
+  if (content.trim() !== oldContent.trim()) {
+    console.log(`  - Diff detected ${camelTitle}.md`);
+    let i = 0,
+      l = 0;
+    while (content[i] === oldContent[i]) {
+      i++;
+      l += content[i] === '\n' ? 1 : 0;
+    }
+
+    console.log(
+      '    L:',
+      `${resolve(pathApiDocsDir, `${camelTitle}.md`)}:${l}`
+    );
+    console.log('    N:', content.slice(i, i + 100).replace(/\n.*/g, ''));
+    console.log('    O:', oldContent.slice(i, i + 100).replace(/\n.*/g, ''));
+  }
 
   writeFileSync(resolve(pathApiDocsDir, `${camelTitle}2.md`), content);
 }
@@ -126,7 +148,7 @@ function writePageJsonData(page: RawApiDocsPage): void {
   writeFileSync(resolve(pathApiDocsDir, `${camelTitle}.json`), contentOld);
 
   if (content !== contentOld) {
-    console.log(`  - Diff detected ${camelTitle}`);
+    console.log(`  - Diff detected ${camelTitle}.json`);
   }
 }
 

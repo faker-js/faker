@@ -31,7 +31,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
     div: ['class'],
-    pre: ['class', 'tabindex', 'v-pre'],
+    pre: ['class', 'v-pre'],
     span: ['class', 'style'],
   },
   selfClosing: [],
@@ -45,7 +45,6 @@ function comparableSanitizedHtml(html: string): string {
     .replace(/&gt;/g, '>')
     .replace(/&lt;/g, '<')
     .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
     .replace(/=""/g, '')
     .replace(/ /g, '');
 }
@@ -99,13 +98,14 @@ export function mdToHtml(
     return adjustUrls(safeHtml);
   }
 
-  console.debug('Rejected unsafe md:', md);
-  console.error('Rejected unsafe html:', rawHtml);
-  console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
-  console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
+  console.debug('Rejected unsafe md:\n', md);
+  console.error('Rejected unsafe html:\n', rawHtml);
+  console.error('Clean unsafe html:\n', comparableSanitizedHtml(rawHtml));
+  console.error('Clean safe html:\n', comparableSanitizedHtml(safeHtml));
+  console.log('-'.repeat(80));
   throw new Error('Found unsafe html');
 }
 
-function adjustUrls(description: string): string {
+export function adjustUrls(description: string): string {
   return description.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
 }
