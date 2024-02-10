@@ -106,22 +106,7 @@ export function getTypeText(
     let unionTypes = type
       .getUnionTypes()
       .map((t) => getTypeText(t, options))
-      .filter((t) => !stripUndefined || t.text !== 'undefined')
-      .sort((a, b) => {
-        const aText = a.text;
-        const bText = b.text;
-
-        return sortBy(
-          aText,
-          bText,
-          /^[a-z]+$/,
-          /^[a-z]+$/i,
-          /\[/,
-          /</,
-          /\{/,
-          /\(/
-        );
-      });
+      .filter((t) => !stripUndefined || t.text !== 'undefined');
 
     if (
       unionTypes.some((t) => t.text === 'true') &&
@@ -164,19 +149,6 @@ export function isOptionsLikeType(type: Type): boolean {
     type.getCallSignatures().length === 0 &&
     type.getTupleElements().length === 0
   );
-}
-
-function sortBy(a: string, b: string, ...regexps: RegExp[]): number {
-  for (const regexp of regexps) {
-    const aMatch = regexp.test(a) ? 0 : 1;
-    const bMatch = regexp.test(b) ? 0 : 1;
-
-    if (aMatch !== bMatch) {
-      return aMatch - bMatch;
-    }
-  }
-
-  return a.localeCompare(b);
 }
 
 function newSimpleType(name: string): RawApiDocsSimpleType {

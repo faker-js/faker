@@ -30,8 +30,12 @@ export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
  * @param page The page to write.
  */
 async function writePage(page: RawApiDocsPage): Promise<void> {
-  await writePageMarkdown(page);
-  writePageJsonData(page);
+  try {
+    await writePageMarkdown(page);
+    writePageJsonData(page);
+  } catch (error) {
+    throw new Error(`Error writing page ${page.title}`, { cause: error });
+  }
 }
 
 /**
