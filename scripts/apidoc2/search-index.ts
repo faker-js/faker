@@ -4,10 +4,7 @@ import type { APIGroup } from '../../docs/api/api-types';
 import type { RawApiDocsPage } from './class';
 import { pathApiDocsDir } from './paths';
 
-const pathDocsApiSearchIndex = resolve(
-  pathApiDocsDir,
-  'api-search-index2.json'
-);
+const pathDocsApiSearchIndex = resolve(pathApiDocsDir, 'api-search-index.json');
 
 /**
  * Writes the api search index to the correct location.

@@ -1,4 +1,3 @@
-import { writeFileSync } from 'node:fs';
 import type { Project } from 'ts-morph';
 import type { RawApiDocsPage } from './class';
 import {
@@ -58,7 +57,4 @@ async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {
   writeSearchIndex(apiDocPages);
   console.log('- source base url');
   await writeSourceBaseUrl();
-  // TODO @ST-DDT 2024-02-04: Remove this part prior to merge
-  console.log('- api-doc debug output');
-  writeFileSync('api-doc.json', JSON.stringify(apiDocPages, null, 2));
 }
