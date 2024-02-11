@@ -1,5 +1,3 @@
-export const scriptCommand = 'pnpm run generate:api-docs';
-
 export function exactlyOne<T>(input: ReadonlyArray<T>, property: string): T {
   if (input.length !== 1) {
     throw new Error(

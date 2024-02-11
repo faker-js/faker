@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { RawApiDocsPage } from './class';
-import type { RawApiDocsMethod } from './method';
-import { pathPublicDir } from './paths';
+import type { RawApiDocsPage } from '../processing/class';
+import type { RawApiDocsMethod } from '../processing/method';
+import { pathPublicDir } from '../utils/paths';
 
 export const nameDocsDiffIndexFile = 'api-diff-index.json';
 export const pathDocsDiffIndexFile = resolve(

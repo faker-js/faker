@@ -1,17 +1,17 @@
 import type { Project } from 'ts-morph';
-import type { RawApiDocsPage } from './class';
+import { writeDiffIndex } from './output/diff-index';
+import { writePages } from './output/page';
+import { writePageIndex } from './output/page-index';
+import { writeSearchIndex } from './output/search-index';
+import { writeSourceBaseUrl } from './output/source-base-url';
+import type { RawApiDocsPage } from './processing/class';
 import {
   processModuleClasses,
   processProjectClasses,
   processProjectInterfaces,
   processProjectUtilities,
-} from './class';
-import { writeDiffIndex } from './diff-index';
-import { writePages } from './page';
-import { writePageIndex } from './page-index';
+} from './processing/class';
 import { getProject } from './project';
-import { writeSearchIndex } from './search-index';
-import { writeSourceBaseUrl } from './source';
 
 export async function generate(): Promise<void> {
   console.log('Reading project');
@@ -22,7 +22,7 @@ export async function generate(): Promise<void> {
   await writeFiles(apiDocPages);
 }
 
-function processComponents(project: Project): RawApiDocsPage[] {
+export function processComponents(project: Project): RawApiDocsPage[] {
   try {
     return [
       ...processProjectClasses(project),

@@ -1,5 +1,5 @@
 import { TypeFlags, type Type } from 'ts-morph';
-import { atLeastOneAndAllRequired, required } from './utils';
+import { atLeastOneAndAllRequired, required } from '../utils/value-checks';
 
 export type RawApiDocsType =
   | RawApiDocsSimpleType

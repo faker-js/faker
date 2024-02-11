@@ -4,6 +4,7 @@ import type {
   TypeParameterDeclaration,
 } from 'ts-morph';
 import { type JSDoc, type JSDocTag, type ParameterDeclaration } from 'ts-morph';
+import { exactlyOne, valueForKey } from '../utils/value-checks';
 import {
   getDefault,
   getDeprecated,
@@ -16,7 +17,6 @@ import { shouldProcessParameter } from './select';
 import { getSourcePath } from './source';
 import type { RawApiDocsType } from './type';
 import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
-import { exactlyOne, valueForKey } from './utils';
 
 /**
  * Represents a parameter in the raw API docs.

@@ -1,25 +1,11 @@
 import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { Node } from 'ts-morph';
-import { formatTypescript } from './format';
-import { pathApiDocsDir, pathProjectDir } from './paths';
-import { scriptCommand } from './utils';
-
-export type SourceableNode = Pick<Node, 'getSourceFile' | 'getStart'>;
+import { formatTypescript } from '../utils/format';
+import { pathApiDocsDir } from '../utils/paths';
+import { scriptCommand } from './constants';
 
 const pathSourceBaseUrlFile = resolve(pathApiDocsDir, 'source-base-url.ts');
-
-export function getSourcePath(node: SourceableNode): string {
-  const sourceFile = node.getSourceFile();
-  const filePath = sourceFile
-    .getFilePath()
-    .substring(pathProjectDir.length + 1);
-  const startPosition = node.getStart();
-  const { line, column } = sourceFile.getLineAndColumnAtPos(startPosition);
-
-  return `${filePath}:${line}:${column}`;
-}
 
 /**
  * Writes the source base url to the correct location.

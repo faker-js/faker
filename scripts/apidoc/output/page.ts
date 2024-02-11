@@ -1,12 +1,12 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { ApiDocsMethod } from '../../docs/.vitepress/components/api-docs/method';
-import type { RawApiDocsPage } from './class';
-import { formatMarkdown } from './format';
-import { adjustUrls, codeToHtml, mdToHtml } from './markdown';
-import type { RawApiDocsMethod } from './method';
-import { pathApiDocsDir } from './paths';
-import { scriptCommand } from './utils';
+import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
+import type { RawApiDocsPage } from '../processing/class';
+import type { RawApiDocsMethod } from '../processing/method';
+import { formatMarkdown } from '../utils/format';
+import { adjustUrls, codeToHtml, mdToHtml } from '../utils/markdown';
+import { pathApiDocsDir } from '../utils/paths';
+import { scriptCommand } from './constants';
 
 // Moved here because this must not be formatted by prettier
 const vitePressInFileOptions = `---

@@ -3,7 +3,7 @@
 import { existsSync } from 'node:fs';
 import { argv } from 'node:process';
 import { diff } from './apidoc/diff';
-import { pathDocsDiffIndexFile } from './apidoc/diff-index';
+import { pathDocsDiffIndexFile } from './apidoc/output/diff-index';
 
 const [target, source] = argv.slice(2);
 

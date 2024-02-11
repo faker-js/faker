@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { generate } from './apidoc/generate';
-import { initMarkdownRenderer } from './apidoc/markdown';
+import { initMarkdownRenderer } from './apidoc/utils/markdown';
 
 async function build(): Promise<void> {
   await initMarkdownRenderer();

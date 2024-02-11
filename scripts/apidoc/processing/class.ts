@@ -1,4 +1,6 @@
 import type { ClassDeclaration, InterfaceDeclaration, Project } from 'ts-morph';
+import { getAll } from '../project';
+import { required, valuesForKeys } from '../utils/value-checks';
 import type { JSDocableLikeNode } from './jsdocs';
 import {
   getDeprecated,
@@ -13,7 +15,6 @@ import {
   processInterfaceMethods,
   processProjectFunctions,
 } from './method';
-import { getAll } from './project';
 import {
   DOC_CLASS_NAMES,
   DOC_INTERFACE_NAMES,
@@ -22,7 +23,6 @@ import {
   shouldProcessType,
 } from './select';
 import { getSourcePath } from './source';
-import { required, valuesForKeys } from './utils';
 
 /**
  * Represents a raw page in the API docs.

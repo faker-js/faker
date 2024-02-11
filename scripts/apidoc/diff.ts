@@ -2,7 +2,7 @@ import {
   nameDocsDiffIndexFile,
   pathDocsDiffIndexFile,
   type ApiDiffHashs,
-} from './diff-index';
+} from './output/diff-index';
 
 /**
  * Loads the diff index from the given source url.

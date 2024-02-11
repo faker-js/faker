@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { APIGroup } from '../../docs/api/api-types';
-import type { RawApiDocsPage } from './class';
-import { pathApiDocsDir } from './paths';
+import type { APIGroup } from '../../../docs/api/api-types';
+import type { RawApiDocsPage } from '../processing/class';
+import { pathApiDocsDir } from '../utils/paths';
 
 const pathDocsApiSearchIndex = resolve(pathApiDocsDir, 'api-search-index.json');
 

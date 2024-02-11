@@ -1,4 +1,6 @@
 import type { MethodDeclaration } from 'ts-morph';
+import { getProject } from '../project';
+import { exactlyOne } from '../utils/value-checks';
 import type { JSDocableLikeNode } from './jsdocs';
 import {
   getDeprecated,
@@ -11,12 +13,10 @@ import {
 } from './jsdocs';
 import type { RawApiDocsParameter } from './parameter';
 import { processParameters, processTypeParameters } from './parameter';
-import { getProject } from './project';
 import { shouldProcessSignature } from './select';
 import { getSourcePath, type SourceableNode } from './source';
 import type { RawApiDocsType } from './type';
 import { getTypeText } from './type';
-import { exactlyOne } from './utils';
 
 /**
  * Represents a method signature in the raw API docs.

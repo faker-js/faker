@@ -1,6 +1,11 @@
 import type { JSDoc, JSDocTag, JSDocableNode } from 'ts-morph';
 import { JSDocParameterTag, JSDocTemplateTag } from 'ts-morph';
-import { allRequired, exactlyOne, optionalOne, required } from './utils';
+import {
+  allRequired,
+  exactlyOne,
+  optionalOne,
+  required,
+} from '../utils/value-checks';
 
 export type JSDocableLikeNode = Pick<JSDocableNode, 'getJsDocs'>;
 

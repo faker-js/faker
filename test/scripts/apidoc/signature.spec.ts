@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
-import { analyzeSignature } from '../../../scripts/apidoc/signature';
+import { analyzeSignature } from '../../../scripts/apidoc/processing/signature';
+import { initMarkdownRenderer } from '../../../scripts/apidoc/utils/markdown';
 import { SignatureTest } from './signature.example';
 import { loadExampleMethods } from './utils';
 

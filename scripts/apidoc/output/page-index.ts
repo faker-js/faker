@@ -1,11 +1,11 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { DefaultTheme } from 'vitepress';
-import { groupBy } from '../../src/internal/group-by';
-import type { RawApiDocsPage } from './class';
-import { formatTypescript } from './format';
-import { pathDocsDir } from './paths';
-import { scriptCommand } from './utils';
+import { groupBy } from '../../../src/internal/group-by';
+import type { RawApiDocsPage } from '../processing/class';
+import { formatTypescript } from '../utils/format';
+import { pathDocsDir } from '../utils/paths';
+import { scriptCommand } from './constants';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 

@@ -4,21 +4,7 @@ import { fileURLToPath } from 'node:url';
 import type { ReflectionType, SomeType } from 'typedoc';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
-import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
-import { analyzeSignature } from '../../../scripts/apidoc/signature';
-import {
-  MISSING_DESCRIPTION,
-  extractDeprecated,
-  extractDescription,
-  extractJoinedRawExamples,
-  extractModuleFieldName,
-  extractRawDefault,
-  extractSeeAlsos,
-  extractSince,
-  extractSummaryDefault,
-  extractTagContent,
-} from '../../../scripts/apidoc/typedoc';
-import { loadProjectModules } from './utils';
+import { initMarkdownRenderer } from '../../../scripts/apidoc/utils/markdown';
 
 // This test ensures, that every method
 // - has working examples
@@ -35,7 +21,7 @@ afterAll(() => {
   }
 });
 
-const modules = await loadProjectModules();
+const modules = await loadAndProcessProject();
 
 function resolveDirToModule(moduleName: string): string {
   return resolve(tempDir, moduleName);

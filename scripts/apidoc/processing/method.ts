@@ -10,8 +10,9 @@ import {
   type ConstructorDeclaration,
   type MethodDeclaration,
 } from 'ts-morph';
-import { groupBy } from '../../src/internal/group-by';
-import { getAll } from './project';
+import { groupBy } from '../../../src/internal/group-by';
+import { getAll } from '../project';
+import { valuesForKeys } from '../utils/value-checks';
 import { shouldProcessMethod } from './select';
 import type {
   RawApiDocsSignature,
@@ -19,7 +20,6 @@ import type {
 } from './signature';
 import { processSignatures } from './signature';
 import { getSourcePath } from './source';
-import { valuesForKeys } from './utils';
 
 /**
  * Represents a  method in the raw API docs.

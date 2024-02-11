@@ -1,7 +1,7 @@
 import sanitizeHtml from 'sanitize-html';
 import type { MarkdownRenderer } from 'vitepress';
 import { createMarkdownRenderer } from 'vitepress';
-import vitepressConfig from '../../docs/.vitepress/config';
+import vitepressConfig from '../../../docs/.vitepress/config';
 import { pathApiDocsDir } from './paths';
 
 let markdown: MarkdownRenderer;

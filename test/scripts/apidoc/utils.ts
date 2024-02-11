@@ -1,66 +1,33 @@
 import type {
-  DeclarationReflection,
-  SignatureReflection,
-  TypeDocOptions,
-} from 'typedoc';
-import {
-  loadProject,
-  selectApiMethodSignatures,
-  selectApiModules,
-} from '../../../scripts/apidoc/typedoc';
-import { mapByName } from '../../../scripts/apidoc/utils';
+  ClassDeclaration,
+  FunctionDeclaration,
+  SourceFile,
+} from 'ts-morph';
+import { getProject } from '../../../scripts/apidoc/project';
 
 /**
- * Returns a record with the (Module-Name -> (Method-Name -> Method-Signature)) for the project.
+ * Loads the example functions.
+ */
+export function loadExampleFunctions(): FunctionDeclaration[] {
+  return loadProjectFile(
+    'test/scripts/apidoc/signature.example.ts'
+  ).getFunctions();
+}
+
+/**
+ * Loads the example classes.
+ */
+export function loadExampleModules(): ClassDeclaration[] {
+  return loadProjectFile('test/scripts/apidoc/module.example.ts').getClasses();
+}
+
+/**
+ * Loads the project.
  *
- * @param options The TypeDoc options.
- * @param includeTestModules Whether to include the test modules.
+ * @param sourceFile The source file to load.
  */
-export async function loadProjectModules(
-  options?: Partial<TypeDocOptions>,
-  includeTestModules = false
-): Promise<
-  Record<string, [DeclarationReflection, Record<string, SignatureReflection>]>
-> {
-  const [, project] = await loadProject(options);
+function loadProjectFile(sourceFile: string): SourceFile {
+  const project = getProject();
 
-  const modules = selectApiModules(project, includeTestModules);
-
-  return mapByName(modules, (m) => [m, selectApiMethodSignatures(m)]);
-}
-
-/**
- * Loads the example methods using TypeDoc.
- */
-export async function loadExampleMethods(): Promise<
-  Record<string, SignatureReflection>
-> {
-  const modules = await loadProjectModules(
-    {
-      entryPoints: ['test/scripts/apidoc/signature.example.ts'],
-    },
-    true
-  );
-  return modules['SignatureTest'][1];
-}
-
-/**
- * Loads the example modules using TypeDoc.
- */
-export async function loadExampleModules(): Promise<
-  Record<string, DeclarationReflection>
-> {
-  const modules = await loadProjectModules(
-    {
-      entryPoints: ['test/scripts/apidoc/module.example.ts'],
-    },
-    true
-  );
-
-  const result: Record<string, DeclarationReflection> = {};
-  for (const key in modules) {
-    result[key] = modules[key][0];
-  }
-
-  return result;
+  return project.addSourceFileAtPath(sourceFile);
 }
