@@ -63,6 +63,7 @@ const definitionsTypes: DefinitionType = {
   database: 'DatabaseDefinition',
   date: 'DateDefinition',
   finance: 'FinanceDefinition',
+  food: 'FoodDefinition',
   hacker: 'HackerDefinition',
   internet: 'InternetDefinition',
   location: 'LocationDefinition',
