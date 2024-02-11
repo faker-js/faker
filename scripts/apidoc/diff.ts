@@ -1,7 +1,7 @@
+import type { ApiDiffHashs } from './output/diff-index';
 import {
   nameDocsDiffIndexFile,
   pathDocsDiffIndexFile,
-  type ApiDiffHashs,
 } from './output/diff-index';
 
 /**
