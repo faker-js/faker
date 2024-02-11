@@ -6,7 +6,7 @@ const thisDir = dirname(fileURLToPath(import.meta.url));
  * The path to the project directory.
  */
 // Required for converting the source file paths to relative paths
-export const pathProjectDir = resolve(thisDir, '..', '..');
+export const pathProjectDir = resolve(thisDir, '..', '..', '..');
 /**
  * The path to the docs directory.
  */

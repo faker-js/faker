@@ -1,6 +1,7 @@
 import type { ClassDeclaration, InterfaceDeclaration, Project } from 'ts-morph';
 import { getAll } from '../project';
 import { required, valuesForKeys } from '../utils/value-checks';
+import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';
 import {
   getDeprecated,
@@ -22,7 +23,6 @@ import {
   DOC_UTILITY_NAMES,
   shouldProcessType,
 } from './select';
-import { getSourcePath } from './source';
 
 /**
  * Represents a raw page in the API docs.
@@ -83,12 +83,12 @@ function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
       try {
         return processClass(c);
       } catch (error) {
-        throw new Error(
-          `Error processing class ${c.getNameOrThrow()} at ${getSourcePath(c)}`,
-          {
-            cause: error,
-          }
-        );
+        throw newProcessingError({
+          type: 'class',
+          name: c.getNameOrThrow(),
+          source: c,
+          cause: error,
+        });
       }
     });
 }
@@ -116,12 +116,12 @@ function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
       try {
         return processModule(m, 'Modules');
       } catch (error: unknown) {
-        throw new Error(
-          `Error processing module ${getModuleName(m)} at ${getSourcePath(m)}`,
-          {
-            cause: error,
-          }
-        );
+        throw newProcessingError({
+          type: 'module',
+          name: getModuleName(m),
+          source: m,
+          cause: error,
+        });
       }
     });
 }
@@ -169,12 +169,12 @@ function processInterfaces(
       try {
         return processInterface(c);
       } catch (error) {
-        throw new Error(
-          `Error processing interface ${c.getName()} at ${getSourcePath(c)}`,
-          {
-            cause: error,
-          }
-        );
+        throw newProcessingError({
+          type: 'interface',
+          name: c.getName(),
+          source: c,
+          cause: error,
+        });
       }
     });
 }

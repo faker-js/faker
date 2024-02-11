@@ -13,6 +13,7 @@ import {
 import { groupBy } from '../../../src/internal/group-by';
 import { getAll } from '../project';
 import { valuesForKeys } from '../utils/value-checks';
+import { newProcessingError } from './error';
 import { shouldProcessMethod } from './select';
 import type {
   RawApiDocsSignature,
@@ -169,12 +170,12 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
       try {
         return processMethodLike(name, m);
       } catch (error) {
-        throw new Error(
-          `Error processing method ${name} at ${getSourcePath(m)}`,
-          {
-            cause: error,
-          }
-        );
+        throw newProcessingError({
+          type: 'method',
+          name,
+          source: m,
+          cause: error,
+        });
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name));

@@ -23,27 +23,12 @@ export async function generate(): Promise<void> {
 }
 
 export function processComponents(project: Project): RawApiDocsPage[] {
-  try {
-    return [
-      ...processProjectClasses(project),
-      ...processProjectInterfaces(project),
-      processProjectUtilities(project),
-      ...processModuleClasses(project),
-    ];
-  } catch (error) {
-    let e = error;
-    let message = '';
-    let lastError = e;
-    while (e instanceof Error) {
-      message += `\n${e.message}`;
-      lastError = e;
-      e = e.cause;
-    }
-
-    throw new Error(`Failed to generate API docs: ${message}`, {
-      cause: lastError,
-    });
-  }
+  return [
+    ...processProjectClasses(project),
+    ...processProjectInterfaces(project),
+    processProjectUtilities(project),
+    ...processModuleClasses(project),
+  ];
 }
 
 async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {

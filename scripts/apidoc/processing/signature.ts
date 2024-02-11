@@ -1,6 +1,7 @@
 import type { MethodDeclaration } from 'ts-morph';
 import { getProject } from '../project';
 import { exactlyOne } from '../utils/value-checks';
+import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';
 import {
   getDeprecated,
@@ -14,7 +15,7 @@ import {
 import type { RawApiDocsParameter } from './parameter';
 import { processParameters, processTypeParameters } from './parameter';
 import { shouldProcessSignature } from './select';
-import { getSourcePath, type SourceableNode } from './source';
+import type { SourceableNode } from './source';
 import type { RawApiDocsType } from './type';
 import { getTypeText } from './type';
 
@@ -78,10 +79,12 @@ export function processSignatures(
       try {
         return processSignature(s, implementation);
       } catch (error) {
-        throw new Error(
-          `Error processing signature ${name}/${i} at ${getSourcePath(s)}}`,
-          { cause: error }
-        );
+        throw newProcessingError({
+          type: 'signature',
+          name: `${name}/${i}`,
+          source: s,
+          cause: error,
+        });
       }
     });
 }
@@ -114,7 +117,10 @@ function processSignature(
       seeAlsos: getSeeAlsos(jsdocs),
     };
   } catch (error) {
-    throw new Error(`Error processing jsdocs at ${getSourcePath(jsdocs)}`, {
+    throw newProcessingError({
+      type: 'jsdocs',
+      name: signature.getText(),
+      source: jsdocs,
       cause: error,
     });
   }

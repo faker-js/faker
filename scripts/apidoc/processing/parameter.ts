@@ -5,6 +5,7 @@ import type {
 } from 'ts-morph';
 import { type JSDoc, type JSDocTag, type ParameterDeclaration } from 'ts-morph';
 import { exactlyOne, valueForKey } from '../utils/value-checks';
+import { newProcessingError } from './error';
 import {
   getDefault,
   getDeprecated,
@@ -14,7 +15,6 @@ import {
   getTypeParameterTags,
 } from './jsdocs';
 import { shouldProcessParameter } from './select';
-import { getSourcePath } from './source';
 import type { RawApiDocsType } from './type';
 import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
 
@@ -48,16 +48,16 @@ export function processTypeParameters(
 
   return parameters
     .filter((p) => shouldProcessParameter(`<${p.getName()}>`))
-    .flatMap((parameter) => {
+    .flatMap((p) => {
       try {
-        return processTypeParameterEntry(parameter, paramTags);
+        return processTypeParameterEntry(p, paramTags);
       } catch (error) {
-        throw new Error(
-          `Error processing type parameter ${parameter.getText()} at ${getSourcePath(
-            parameter
-          )}`,
-          { cause: error }
-        );
+        throw newProcessingError({
+          type: 'type parameter',
+          name: p.getName(),
+          source: p,
+          cause: error,
+        });
       }
     });
 }
@@ -94,10 +94,12 @@ export function processParameters(
           implParameterDefaults[p.getName()]
         );
       } catch (error) {
-        throw new Error(
-          `Error processing parameter ${p.getName()} at ${getSourcePath(p)}`,
-          { cause: error }
-        );
+        throw newProcessingError({
+          type: 'parameter',
+          name: p.getName(),
+          source: p,
+          cause: error,
+        });
       }
     });
 }
