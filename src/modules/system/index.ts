@@ -310,7 +310,7 @@ export class SystemModule extends ModuleBase {
        */
       includeYear?: boolean;
       /**
-       * Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression.
+       * Whether to include a `@yearly`, `@monthly`, `@daily`, etc text labels in the generated expression.
        *
        * @default false
        */
