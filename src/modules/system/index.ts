@@ -290,7 +290,7 @@ export class SystemModule extends ModuleBase {
    *
    * @param options The optional options to use.
    * @param options.includeYear Whether to include a year in the generated expression. Defaults to `false`.
-   * @param options.includeNonStandard Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression. Defaults to `false`.
+   * @param options.includeNonStandard Whether to include a `@yearly`, `@monthly`, `@daily`, etc text labels in the generated expression. Defaults to `false`.
    *
    * @example
    * faker.system.cron() // '45 23 * * 6'
@@ -310,7 +310,7 @@ export class SystemModule extends ModuleBase {
        */
       includeYear?: boolean;
       /**
-       * Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression.
+       * Whether to include a `@yearly`, `@monthly`, `@daily`, etc text labels in the generated expression.
        *
        * @default false
        */
