@@ -1,19 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
-import type { RecordKey } from '../../src/modules/helpers/unique';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 import './../vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-function customUniqueMethod(prefix: string = ''): string {
-  const element = faker.helpers.arrayElement(
-    Array.from({ length: 500 }, (_, index) => `Test-${index + 1}`)
-  );
-  return `${prefix}${element}`;
-}
 
 describe('helpers', () => {
   seededTests(faker, 'helpers', (t) => {
@@ -178,13 +170,6 @@ describe('helpers', () => {
 
     t.describe('rangeToNumber', (t) => {
       t.it('with number', 5).it('with range', { min: 1, max: 10 });
-    });
-
-    t.describe('unique', (t) => {
-      t.it('with customMethod', customUniqueMethod)
-        .it('with customMethod and args', customUniqueMethod, ['prefix-1-'])
-        .it('with () => number', faker.number.int)
-        .it('with () => number and args', faker.number.int, [50]);
     });
 
     t.describe('multiple', (t) => {
@@ -1165,67 +1150,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('unique()', () => {
-        it('should be possible to call a function with no arguments and return a result', () => {
-          const result = faker.helpers.unique(faker.internet.email);
-          expect(result).toBeTypeOf('string');
-        });
-
-        it('should be possible to call a function with arguments and return a result', () => {
-          const result = faker.helpers.unique(faker.internet.email, [
-            'fName',
-            'lName',
-            'domain',
-          ]); // third argument is provider, or domain for email
-          expect(result).toMatch(/@domain/);
-        });
-
-        it('should be possible to limit unique call by maxTime in ms', () => {
-          expect(() => {
-            faker.helpers.unique(faker.internet.protocol, [], {
-              maxTime: 1,
-              maxRetries: 9999,
-              exclude: ['https', 'http'],
-            });
-          }).toThrow(
-            new FakerError(`Exceeded maxTime: 1 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
-          );
-        });
-
-        it('should be possible to limit unique call by maxRetries', () => {
-          expect(() => {
-            faker.helpers.unique(faker.internet.protocol, [], {
-              maxTime: 5000,
-              maxRetries: 5,
-              exclude: ['https', 'http'],
-            });
-          }).toThrow(
-            new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
-          );
-        });
-
-        it('should throw a FakerError instance on error', () => {
-          expect(() => {
-            faker.helpers.unique(faker.internet.protocol, [], {
-              maxTime: 5000,
-              maxRetries: 5,
-              exclude: ['https', 'http'],
-            });
-          }).toThrow(
-            new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
-          );
-        });
-      });
-
       describe('multiple()', () => {
         it('should generate values from the function with a default length of 3', () => {
           const result = faker.helpers.multiple(faker.person.firstName);
@@ -1255,89 +1179,4 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
       });
     }
   );
-
-  // This test can be only executed once, because the unique function has a global state.
-  // See: https://github.com/faker-js/faker/issues/371
-  describe('global unique()', () => {
-    it('should be possible to exclude results as array', () => {
-      const internetProtocol = () =>
-        faker.helpers.arrayElement(['https', 'http']);
-      const result = faker.helpers.unique(internetProtocol, [], {
-        exclude: ['https'],
-      });
-      expect(result).toBe('http');
-    });
-
-    it('no conflict', () => {
-      let i = 0;
-      const method = () => `no conflict: ${i++}`;
-      expect(faker.helpers.unique(method)).toBe('no conflict: 0');
-      expect(faker.helpers.unique(method)).toBe('no conflict: 1');
-    });
-
-    it('with conflict', () => {
-      const method = () => 'with conflict: 0';
-      expect(faker.helpers.unique(method)).toBe('with conflict: 0');
-      expect(() =>
-        faker.helpers.unique(method, [], {
-          maxRetries: 1,
-        })
-      ).toThrow(
-        new FakerError(`Exceeded maxRetries: 1 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
-      );
-    });
-
-    it('should not mutate most of the input option properties', () => {
-      const method = () => 'options-mutate-test';
-
-      const startTime = Date.now();
-      const maxTime = 49;
-      const maxRetries = 49;
-      const currentIterations = 0;
-      const exclude: string[] = [];
-      const compare = (obj: Record<RecordKey, RecordKey>, key: RecordKey) =>
-        obj[key] === undefined ? -1 : 0;
-
-      const options = {
-        startTime,
-        maxTime,
-        maxRetries,
-        currentIterations,
-        exclude,
-        compare,
-      };
-
-      faker.helpers.unique(method, [], options);
-
-      expect(options.startTime).toBe(startTime);
-      expect(options.maxTime).toBe(maxTime);
-      expect(options.maxRetries).toBe(maxRetries);
-      // `options.currentIterations` is incremented in the `faker.helpers.unique` function.
-      expect(options.exclude).toBe(exclude);
-      expect(options.compare).toBe(compare);
-    });
-
-    it('should be possible to pass a user-specific store', () => {
-      const store: Record<string, string> = {};
-
-      const method = () => 'with conflict: 0';
-
-      expect(faker.helpers.unique(method, [], { store })).toBe(
-        'with conflict: 0'
-      );
-      expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
-
-      expect(() => faker.helpers.unique(method, [], { store })).toThrow();
-
-      delete store['with conflict: 0'];
-
-      expect(faker.helpers.unique(method, [], { store })).toBe(
-        'with conflict: 0'
-      );
-      expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
-    });
-  });
 });
