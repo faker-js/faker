@@ -30,6 +30,7 @@ export type {
   FinanceDefinition,
   /** @deprecated Use FinanceDefinition instead */
   FinanceDefinition as FinanceDefinitions,
+  FoodDefinition,
   HackerDefinition,
   /** @deprecated Use HackerDefinition instead */
   HackerDefinition as HackerDefinitions,
@@ -101,6 +102,7 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type { Currency, FinanceModule } from './modules/finance';
+export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
