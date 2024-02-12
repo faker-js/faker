@@ -474,7 +474,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+$/
+        /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+(\?(grayscale&?)?(blur=\d+)?)?$/
       );
     });
   });
