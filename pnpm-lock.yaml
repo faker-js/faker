@@ -24,8 +24,8 @@ devDependencies:
     specifier: ~6.21.0
     version: 6.21.0
   '@eslint-types/unicorn':
-    specifier: ~50.0.1
-    version: 50.0.1
+    specifier: ~51.0.1
+    version: 51.0.1
   '@types/markdown-it':
     specifier: ~13.0.7
     version: 13.0.7
@@ -891,8 +891,8 @@ packages:
     resolution: {integrity: sha512-ao4TdMLw+zFdAJ9q6iBBxC5GSrJ14Hpv0VKaergr++jRTDaGgoYiAq84tx1FYqUJzQgzJC7dm6s52IAQP7EiHA==}
     dev: true
 
-  /@eslint-types/unicorn@50.0.1:
-    resolution: {integrity: sha512-nuJuipTNcg9f+oxZ+3QZw4tuDLmir4RJOPfM/oujgToiy1s+tePDZhwg5jUGc3q8OzTtPbVpsFSYX7QApjO3EA==}
+  /@eslint-types/unicorn@51.0.1:
+    resolution: {integrity: sha512-RuuEK+dBISEikf7a8lrWOrDCUYv09sZfqLoG/kozH+5UqEvot1xMmGHXomGkTyB68rzjgJe0N4uESVyL62obJw==}
     dev: true
 
   /@eslint/eslintrc@2.1.4:
