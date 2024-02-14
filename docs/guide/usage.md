@@ -233,6 +233,6 @@ Here, we could also pass in the `sex` value as argument, but in our use-case the
 By doing this first, we are able to pass both names into the `email` generation function.
 This allows the value to be more reasonable based on the provided arguments.
 
-Unlike the `_id` property that uses an `uuid` implementation, which is unique by design, the `email` may contain duplicates. We have a dedicated guide page on generating [unique values](unique).
+Unlike the `_id` property that uses an `uuid` implementation, which has a low chance of duplicates, the `email` function is more likely to produce duplicates, especially if the call arguments are similar. We have a dedicated guide page on generating [unique values](unique).
 
 Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
