@@ -214,6 +214,10 @@ const config: UserConfig<DefaultTheme.Config> = {
             link: '/guide/randomizer',
           },
           {
+            text: 'Unique Values',
+            link: '/guide/unique',
+          },
+          {
             text: 'Upgrading to v9',
             link: '/guide/upgrading',
           },
