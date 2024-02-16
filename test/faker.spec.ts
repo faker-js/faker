@@ -20,7 +20,6 @@ describe('faker', () => {
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // @ts-expect-error: eat it
     (await import('..')).default;
 
     new Faker({ locale: { metadata: { title: '' } } });
