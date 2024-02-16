@@ -10,7 +10,7 @@ import type { context as ctx, GitHub } from '@actions/github/lib/utils';
  * @param context An object containing the context of the workflow run
  * @param isSuccess A boolean indicating whether the workflow was successful
  */
-module.exports = async (
+export default async (
   github: InstanceType<typeof GitHub>,
   context: typeof ctx,
   isSuccess: boolean
