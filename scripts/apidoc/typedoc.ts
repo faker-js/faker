@@ -314,9 +314,8 @@ export function extractSummaryDefault(
 
   if (eraseDefault) {
     summary.splice(-2, 2);
-    const lastSummaryPart =
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      summary.at(-1)!;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const lastSummaryPart = summary.at(-1)!;
     lastSummaryPart.text = lastSummaryPart.text.replace(
       /[ \n]Defaults to $/,
       ''
