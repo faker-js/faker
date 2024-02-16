@@ -1,10 +1,6 @@
-import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { MethodsOf } from '../../utils/types';
-import { LoremPicsum } from './providers/lorempicsum';
-import { Placeholder } from './providers/placeholder';
-import { Unsplash } from './providers/unsplash';
 
 /**
  * Module to generate images.
@@ -20,35 +16,6 @@ import { Unsplash } from './providers/unsplash';
  * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
  */
 export class ImageModule extends ModuleBase {
-  /**
-   * @deprecated Use `faker.image` instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly unsplash: Unsplash;
-
-  /**
-   * @deprecated Use `faker.image` instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly lorempicsum: LoremPicsum;
-
-  /**
-   * @deprecated Use `faker.image.urlPlaceholder` instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly placeholder: Placeholder;
-
-  constructor(faker: Faker) {
-    super(faker);
-
-    // eslint-disable-next-line deprecation/deprecation
-    this.unsplash = new Unsplash(this.faker);
-    // eslint-disable-next-line deprecation/deprecation
-    this.lorempicsum = new LoremPicsum(this.faker);
-    // eslint-disable-next-line deprecation/deprecation
-    this.placeholder = new Placeholder(this.faker);
-  }
-
   /**
    * Generates a random avatar image url.
    *
