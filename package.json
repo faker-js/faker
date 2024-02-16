@@ -28,8 +28,8 @@
   ],
   "bugs": "https://github.com/faker-js/faker/issues",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "index.d.ts",
   "typesVersions": {
     ">=4.0": {
@@ -41,13 +41,13 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.mjs"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
     },
     "./locale/*": {
       "types": "./dist/types/locale/*.d.ts",
-      "require": "./dist/cjs/locale/*.js",
-      "import": "./dist/esm/locale/*.mjs"
+      "require": "./dist/locale/*.js",
+      "import": "./dist/locale/*.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -58,7 +58,7 @@
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist locale pnpm-lock.yaml node_modules",
     "build:clean": "rimraf dist",
-    "build:code": "tsx ./scripts/bundle.ts",
+    "build:code": "tsup-node",
     "build:types": "tsc --project tsconfig.build.json",
     "build": "run-s build:clean build:code build:types",
     "generate": "run-s generate:locales generate:api-docs",
@@ -106,7 +106,6 @@
     "@vueuse/core": "~10.7.2",
     "conventional-changelog-cli": "~4.1.0",
     "cypress": "~13.6.4",
-    "esbuild": "~0.20.0",
     "eslint": "~8.56.0",
     "eslint-config-prettier": "~9.1.0",
     "eslint-define-config": "~2.1.0",
@@ -124,6 +123,7 @@
     "sanitize-html": "~2.11.0",
     "semver": "~7.6.0",
     "standard-version": "~9.5.0",
+    "tsup": "~8.0.2",
     "tsx": "~4.7.1",
     "typedoc": "~0.25.7",
     "typescript": "~5.3.3",
