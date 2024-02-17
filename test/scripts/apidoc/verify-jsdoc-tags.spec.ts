@@ -6,19 +6,19 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidoc/generate';
 import { extractSummaryDefault } from '../../../scripts/apidoc/output/page';
 import { getProject } from '../../../scripts/apidoc/project';
-import { initMarkdownRenderer } from '../../../scripts/apidoc/utils/markdown';
 
-// This test ensures, that every method
+// This test suite ensures, that every method
 // - has working examples
 // - running these do not log anything, unless the method is deprecated
-
-beforeAll(initMarkdownRenderer);
+// - has a valid @since tag
+// - has valid @see tags
+// - has proper links in the description
 
 const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
 
 afterAll(() => {
   // Remove temp folder
-  if (existsSync(tempDir)) {
+  if (false && existsSync(tempDir)) {
     rmSync(tempDir, { recursive: true });
   }
 });
@@ -90,31 +90,46 @@ describe('verify JSDoc tags', () => {
             (signatureIndex, signature) => {
               beforeAll(() => {
                 // Write temp files to disk
+                // By extracting the examples
+                // Guessing required imports
+                // And saving them to disk for later execution
 
-                // Extract examples and make them runnable
-                const examples = signature.examples.join('\n');
-
-                // Save examples to a file to run them later in the specific tests
                 const dir = resolveDirToModule(moduleName);
                 mkdirSync(dir, { recursive: true });
-
                 const path = resolvePathToMethodFile(
                   moduleName,
                   methodName,
                   signatureIndex
                 );
-                const imports = examples.includes('import ')
-                  ? []
-                  : [
-                      'faker',
-                      ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
-                    ];
-                writeFileSync(
-                  path,
-                  `import { ${imports.join(
-                    ', '
-                  )} } from '../../../../../src';\n\n${examples.replaceAll(" from '@faker-js/faker'", " from '../../../../../src'")}`
+
+                let examples = signature.examples.join('\n');
+                if (moduleName === 'faker' && methodName === 'constructor') {
+                  // That case should demonstrate an error and is thus not suitable for testing
+                  examples = examples.replace(
+                    'customFaker.music.genre()',
+                    '// customFaker.music.genre()'
+                  );
+                }
+
+                // Replace imports for users with our source path
+                examples = examples.replaceAll(
+                  " from '@faker-js/faker'",
+                  " from '../../../../../src'"
                 );
+
+                // If imports are present, we expect them to be complete
+                if (!examples.includes('import ')) {
+                  const imports = [
+                    ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
+                  ];
+                  if (imports.length > 0) {
+                    examples = `import { ${imports.join(
+                      ', '
+                    )} } from '../../../../../src';\n\n${examples}`;
+                  }
+                }
+
+                writeFileSync(path, examples);
               });
 
               it('verify description', () => {
