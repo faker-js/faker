@@ -93,7 +93,7 @@ function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
     });
 }
 
-function processClass(clazz: ClassDeclaration): RawApiDocsPage {
+export function processClass(clazz: ClassDeclaration): RawApiDocsPage {
   const result = processModule(clazz, '');
   result.methods.unshift(...processClassConstructors(clazz));
   return result;

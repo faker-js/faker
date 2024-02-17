@@ -1,11 +1,11 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { analyzeSignature } from '../../../scripts/apidoc/processing/signature';
-import { initMarkdownRenderer } from '../../../scripts/apidoc/utils/markdown';
+import { describe, expect, it } from 'vitest';
+import { processMethodLike } from '../../../scripts/apidoc/processing/method';
 import { SignatureTest } from './signature.example';
-import { loadExampleMethods } from './utils';
+import { loadExampleFunctions } from './utils';
 
-beforeAll(initMarkdownRenderer);
-const methods = await loadExampleMethods();
+const methods = Object.fromEntries(
+  loadExampleFunctions().map((fn) => [fn.getName(), fn])
+);
 
 describe('signature', () => {
   describe('analyzeSignature()', () => {
@@ -17,8 +17,8 @@ describe('signature', () => {
       expect(Object.keys(methods)).toMatchSnapshot();
     });
 
-    it.each(Object.entries(methods))('%s', async (name, signature) => {
-      const actual = await analyzeSignature(signature, '', name);
+    it.each(Object.entries(methods))('%s', (name, signature) => {
+      const actual = processMethodLike(name, signature);
 
       expect(actual).toMatchSnapshot();
     });

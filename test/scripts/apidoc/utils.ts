@@ -1,17 +1,13 @@
-import type {
-  ClassDeclaration,
-  FunctionDeclaration,
-  SourceFile,
-} from 'ts-morph';
+import type { ClassDeclaration, MethodDeclaration, SourceFile } from 'ts-morph';
 import { getProject } from '../../../scripts/apidoc/project';
 
 /**
  * Loads the example functions.
  */
-export function loadExampleFunctions(): FunctionDeclaration[] {
-  return loadProjectFile(
-    'test/scripts/apidoc/signature.example.ts'
-  ).getFunctions();
+export function loadExampleFunctions(): MethodDeclaration[] {
+  return loadProjectFile('test/scripts/apidoc/signature.example.ts')
+    .getClassOrThrow('SignatureTest')
+    .getMethods();
 }
 
 /**

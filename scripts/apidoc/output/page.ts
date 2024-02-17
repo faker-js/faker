@@ -152,8 +152,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     parameters: parameters.map((param) => ({
       ...param,
       type: param.type.text,
-      default:
-        param.default ?? defaultCommentRegex.exec(param.description)?.[1],
+      default: param.default ?? extractSummaryDefault(param.description),
       description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
     })),
     since,
@@ -164,4 +163,8 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     deprecated: mdToHtml(deprecated),
     seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
   };
+}
+
+export function extractSummaryDefault(description: string): string | undefined {
+  return defaultCommentRegex.exec(description)?.[1];
 }

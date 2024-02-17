@@ -1,11 +1,13 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { analyzeModule } from '../../../scripts/apidoc/module-methods';
+import { processClass } from '../../../scripts/apidoc/processing/class';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/utils/markdown';
 import * as ModuleTests from './module.example';
 import { loadExampleModules } from './utils';
 
 beforeAll(initMarkdownRenderer);
-const modules = await loadExampleModules();
+const modules = Object.fromEntries(
+  loadExampleModules().map((m) => [m.getNameOrThrow(), m])
+);
 
 describe('module', () => {
   describe('analyzeModule()', () => {
@@ -18,7 +20,7 @@ describe('module', () => {
     });
 
     it.each(Object.entries(modules))('%s', (_, module) => {
-      const actual = analyzeModule(module);
+      const actual = processClass(module);
 
       expect(actual).toMatchSnapshot();
     });

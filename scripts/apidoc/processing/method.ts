@@ -181,7 +181,7 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function processMethodLike(
+export function processMethodLike(
   name: string,
   method: MethodLikeDeclaration
 ): RawApiDocsMethod {
