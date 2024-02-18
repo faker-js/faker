@@ -759,8 +759,8 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random credit card number.
    *
-   * @param options An options object. Defaults to `''`.
-   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
+   * @param options An options object.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one. Defaults to `''`.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -781,7 +781,7 @@ export class FinanceModule extends ModuleBase {
    * Generates a random credit card number.
    *
    * @param options An options object, the issuer or a custom format.
-   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one. Defaults to `''`.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
