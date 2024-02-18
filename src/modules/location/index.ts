@@ -273,7 +273,7 @@ export class LocationModule extends ModuleBase {
    */
   secondaryAddress(): string {
     return this.faker.helpers
-      .arrayElement(this.faker.definitions.location.secondary_address)
+      .fake(this.faker.definitions.location.secondary_address)
       .replace(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,

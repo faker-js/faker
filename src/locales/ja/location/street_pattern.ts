@@ -1,4 +1,3 @@
 export default [
-  '{{person.first_name}}{{location.street_suffix}}',
-  '{{person.last_name}}{{location.street_suffix}}',
+  '{{number.int({"max": 9, "min": 1})}}丁目{{number.int({"max": 9, "min": 1})}}番{{number.int({"max": 9, "min": 1})}}号',
 ];
