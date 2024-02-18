@@ -17,7 +17,7 @@ const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 export async function writePageIndex(pages: RawApiDocsPage[]): Promise<void> {
   const pagesByCategory: Record<string, DefaultTheme.SidebarItem[]> = groupBy(
     pages,
-    (page) => page.category,
+    (page) => page.category ?? '',
     ({ title: text, camelTitle }) => ({ text, link: `/api/${camelTitle}.html` })
   );
   const pageTree = Object.entries(pagesByCategory).flatMap(

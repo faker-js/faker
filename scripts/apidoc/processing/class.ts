@@ -37,9 +37,9 @@ export interface RawApiDocsPage {
    */
   camelTitle: string;
   /**
-   * The category of the page.
+   * The category of the page, if it has one.
    */
-  category: string;
+  category: string | undefined;
   /**
    * The deprecation notice of the page, if it has one.
    */
@@ -94,7 +94,7 @@ function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
 }
 
 export function processClass(clazz: ClassDeclaration): RawApiDocsPage {
-  const result = processModule(clazz, '');
+  const result = processModule(clazz);
   result.methods.unshift(...processClassConstructors(clazz));
   return result;
 }
@@ -128,12 +128,12 @@ function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
 
 function processModule(
   module: ClassDeclaration,
-  category: string
+  category: string | undefined = undefined
 ): RawApiDocsPage {
   const title = getModuleName(module);
 
   return {
-    ...preparePage(module, category, title),
+    ...preparePage(module, title, category),
     methods: processClassMethods(module),
   };
 }
@@ -181,7 +181,7 @@ function processInterfaces(
 
 function processInterface(iface: InterfaceDeclaration): RawApiDocsPage {
   return {
-    ...preparePage(iface, '', iface.getName()),
+    ...preparePage(iface, iface.getName()),
     methods: processInterfaceMethods(iface),
   };
 }
@@ -194,7 +194,7 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
   return {
     title: 'Utilities',
     camelTitle: 'utils',
-    category: '',
+    category: undefined,
     deprecated: undefined,
     description: 'A list of all the utilities available in Faker.js.',
     examples: [],
@@ -208,8 +208,8 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
 
 function preparePage(
   module: JSDocableLikeNode,
-  category: string,
-  title: string
+  title: string,
+  category: string | undefined = undefined
 ): RawApiDocsPage {
   console.log(`- ${title}`);
 

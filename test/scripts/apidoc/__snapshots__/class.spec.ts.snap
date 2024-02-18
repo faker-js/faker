@@ -13,7 +13,7 @@ exports[`class > expected and actual modules are equal 1`] = `
 exports[`class > processClass(ModuleDeprecationTest) 1`] = `
 {
   "camelTitle": "moduleDeprecationTest",
-  "category": "",
+  "category": undefined,
   "deprecated": "Well, this is deprecated.",
   "description": "This is a description for a module with a code example.",
   "examples": [],
@@ -25,7 +25,7 @@ exports[`class > processClass(ModuleDeprecationTest) 1`] = `
 exports[`class > processClass(ModuleExampleTest) 1`] = `
 {
   "camelTitle": "moduleExampleTest",
-  "category": "",
+  "category": undefined,
   "deprecated": undefined,
   "description": "This is a description for a module with a code example.",
   "examples": [
@@ -39,7 +39,7 @@ exports[`class > processClass(ModuleExampleTest) 1`] = `
 exports[`class > processClass(ModuleFakerJsLinkTest) 1`] = `
 {
   "camelTitle": "moduleFakerJsLinkTest",
-  "category": "",
+  "category": undefined,
   "deprecated": undefined,
   "description": "Description with a link to our [website](https://fakerjs.dev/)
 and [api docs](https://fakerjs.dev/api/).",
@@ -52,7 +52,7 @@ and [api docs](https://fakerjs.dev/api/).",
 exports[`class > processClass(ModuleNextFakerJsLinkTest) 1`] = `
 {
   "camelTitle": "moduleNextFakerJsLinkTest",
-  "category": "",
+  "category": undefined,
   "deprecated": undefined,
   "description": "Description with a link to our [website](https://next.fakerjs.dev/)
 and [api docs](https://next.fakerjs.dev/api/).",
@@ -65,7 +65,7 @@ and [api docs](https://next.fakerjs.dev/api/).",
 exports[`class > processClass(ModuleSimpleTest) 1`] = `
 {
   "camelTitle": "moduleSimpleTest",
-  "category": "",
+  "category": undefined,
   "deprecated": undefined,
   "description": "A simple module without anything special.",
   "examples": [],
