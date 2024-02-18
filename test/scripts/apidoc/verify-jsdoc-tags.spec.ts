@@ -15,10 +15,11 @@ import { getProject } from '../../../scripts/apidoc/project';
 // - has proper links in the description
 
 const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
+const relativeImportPath = `${'../'.repeat(5)}src`;
 
 afterAll(() => {
   // Remove temp folder
-  if (false && existsSync(tempDir)) {
+  if (existsSync(tempDir)) {
     rmSync(tempDir, { recursive: true });
   }
 });
@@ -114,18 +115,28 @@ describe('verify JSDoc tags', () => {
                 // Replace imports for users with our source path
                 examples = examples.replaceAll(
                   " from '@faker-js/faker'",
-                  " from '../../../../../src'"
+                  ` from '${relativeImportPath}'`
                 );
+
+                if (moduleName === 'randomizer') {
+                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/internal/mersenne';
+
+const randomizer = generateMersenne32Randomizer();
+
+${examples}`;
+                }
 
                 // If imports are present, we expect them to be complete
                 if (!examples.includes('import ')) {
                   const imports = [
+                    // collect the imports for the various locales e.g. fakerDE_CH
                     ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
                   ];
+
                   if (imports.length > 0) {
                     examples = `import { ${imports.join(
                       ', '
-                    )} } from '../../../../../src';\n\n${examples}`;
+                    )} } from '${relativeImportPath}';\n\n${examples}`;
                   }
                 }
 
@@ -183,39 +194,43 @@ describe('verify JSDoc tags', () => {
                 }
               });
 
-              describe('verify parameters', () => {
-                describe.each(signature.parameters.map((p) => [p.name, p]))(
-                  '%s',
-                  (_, parameter) => {
-                    it('verify default value', () => {
-                      const {
-                        name,
-                        default: paramDefault,
-                        description,
-                      } = parameter;
+              describe.each(signature.parameters.map((p) => [p.name, p]))(
+                '%s',
+                (_, parameter) => {
+                  it('verify default value', () => {
+                    const {
+                      name,
+                      default: paramDefault,
+                      description,
+                    } = parameter;
 
-                      const commentDefault = extractSummaryDefault(description);
-                      if (paramDefault) {
-                        if (
-                          /^{.*}$/.test(paramDefault) ||
-                          paramDefault.includes('\n')
-                        ) {
-                          expect(commentDefault).toBeUndefined();
-                        } else if (!name.includes('.')) {
-                          expect(
-                            commentDefault,
-                            `Expect '${name}'s js implementation default to be the same as the jsdoc summary default.`
-                          ).toBe(paramDefault);
-                        }
+                    const commentDefault = extractSummaryDefault(description);
+                    if (paramDefault) {
+                      if (
+                        /^{.*}$/.test(paramDefault) ||
+                        paramDefault.includes('\n')
+                      ) {
+                        expect(commentDefault).toBeUndefined();
+                      } else if (
+                        !name.includes('.') &&
+                        // Skip check of defaults in descriptions if it is a paraphrased function call
+                        (commentDefault ||
+                          (!description.includes('Defaults to') &&
+                            !paramDefault.includes('(')))
+                      ) {
+                        expect(
+                          commentDefault,
+                          `Expect '${name}'s js implementation default to be the same as the jsdoc summary default`
+                        ).toBe(paramDefault);
                       }
-                    });
+                    }
+                  });
 
-                    it('verify description', () => {
-                      assertDescription(parameter.description);
-                    });
-                  }
-                );
-              });
+                  it('verify description', () => {
+                    assertDescription(parameter.description);
+                  });
+                }
+              );
 
               it('verify @see tags', () => {
                 for (const link of signature.seeAlsos) {
