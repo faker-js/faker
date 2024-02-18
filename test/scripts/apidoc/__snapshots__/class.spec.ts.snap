@@ -1,6 +1,16 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`module > analyzeModule() > ModuleDeprecationTest 1`] = `
+exports[`class > expected and actual modules are equal 1`] = `
+[
+  "ModuleDeprecationTest",
+  "ModuleExampleTest",
+  "ModuleFakerJsLinkTest",
+  "ModuleNextFakerJsLinkTest",
+  "ModuleSimpleTest",
+]
+`;
+
+exports[`class > processClass(ModuleDeprecationTest) 1`] = `
 {
   "camelTitle": "moduleDeprecationTest",
   "category": "",
@@ -12,7 +22,7 @@ exports[`module > analyzeModule() > ModuleDeprecationTest 1`] = `
 }
 `;
 
-exports[`module > analyzeModule() > ModuleExampleTest 1`] = `
+exports[`class > processClass(ModuleExampleTest) 1`] = `
 {
   "camelTitle": "moduleExampleTest",
   "category": "",
@@ -26,7 +36,7 @@ exports[`module > analyzeModule() > ModuleExampleTest 1`] = `
 }
 `;
 
-exports[`module > analyzeModule() > ModuleFakerJsLinkTest 1`] = `
+exports[`class > processClass(ModuleFakerJsLinkTest) 1`] = `
 {
   "camelTitle": "moduleFakerJsLinkTest",
   "category": "",
@@ -39,7 +49,7 @@ and [api docs](https://fakerjs.dev/api/).",
 }
 `;
 
-exports[`module > analyzeModule() > ModuleNextFakerJsLinkTest 1`] = `
+exports[`class > processClass(ModuleNextFakerJsLinkTest) 1`] = `
 {
   "camelTitle": "moduleNextFakerJsLinkTest",
   "category": "",
@@ -52,7 +62,7 @@ and [api docs](https://next.fakerjs.dev/api/).",
 }
 `;
 
-exports[`module > analyzeModule() > ModuleSimpleTest 1`] = `
+exports[`class > processClass(ModuleSimpleTest) 1`] = `
 {
   "camelTitle": "moduleSimpleTest",
   "category": "",
@@ -62,14 +72,4 @@ exports[`module > analyzeModule() > ModuleSimpleTest 1`] = `
   "methods": [],
   "title": "ModuleSimpleTest",
 }
-`;
-
-exports[`module > analyzeModule() > expected and actual modules are equal 1`] = `
-[
-  "ModuleDeprecationTest",
-  "ModuleExampleTest",
-  "ModuleFakerJsLinkTest",
-  "ModuleNextFakerJsLinkTest",
-  "ModuleSimpleTest",
-]
 `;

@@ -74,6 +74,8 @@ export type AB = 'a' | 'b';
 export class SignatureTest {
   /**
    * Test with no parameters.
+   *
+   * @since 1.0.0
    */
   noParamMethod(): number {
     return 0;
@@ -83,6 +85,8 @@ export class SignatureTest {
    * Test with a required parameter.
    *
    * @param a The number parameter.
+   *
+   * @since 1.0.0
    */
   requiredNumberParamMethod(a: number): number {
     return a;
@@ -92,6 +96,8 @@ export class SignatureTest {
    * Test with an optional parameter.
    *
    * @param b The string parameter.
+   *
+   * @since 1.0.0
    */
   optionalStringParamMethod(b?: string): number {
     return b ? 0 : 1;
@@ -101,6 +107,8 @@ export class SignatureTest {
    * Test with a default parameter.
    *
    * @param c The boolean parameter.
+   *
+   * @since 1.0.0
    */
   defaultBooleanParamMethod(c: boolean = true): number {
     return c ? 1 : 0;
@@ -112,6 +120,8 @@ export class SignatureTest {
    * @param a The number parameter.
    * @param b The string parameter.
    * @param c The boolean parameter.
+   *
+   * @since 1.0.0
    */
   multiParamMethod(a: number, b?: string, c: boolean = true): number {
     return c ? a : b ? 0 : 1;
@@ -121,6 +131,8 @@ export class SignatureTest {
    * Test with a function parameters.
    *
    * @param fn The function parameter.
+   *
+   * @since 1.0.0
    */
   functionParamMethod(fn: (a: string) => number): number {
     return fn('a');
@@ -134,12 +146,23 @@ export class SignatureTest {
    * @param options.casing The casing parameter.
    * @param options.format The format parameter.
    * @param options.excludes The excludes parameter.
+   *
+   * @since 1.0.0
    */
   stringUnionParamMethod(
     value: 'a' | 'b',
     options?: {
+      /**
+       * The casing parameter.
+       */
       casing?: Casing;
+      /**
+       * The format parameter.
+       */
       format?: 'hex' | ColorFormat;
+      /**
+       * The excludes parameter.
+       */
       excludes?: ReadonlyArray<AlphaNumericChar>;
     }
   ): string {
@@ -155,6 +178,8 @@ export class SignatureTest {
    * @param namedArray Array of `'a'` or `'b'`.
    * @param mixed Value `'a'` or `'b'` or an array thereof.
    * @param namedMixed Value `'a'` or `'b'` or an array thereof.
+   *
+   * @since 1.0.0
    */
   literalUnionParamMethod(
     value: LiteralUnion<'a' | 'b'>,
@@ -178,6 +203,8 @@ export class SignatureTest {
    * Test with a Record parameter.
    *
    * @param object The Record parameter.
+   *
+   * @since 1.0.0
    */
   recordParamMethod(object: Record<string, number>): number {
     return object.a;
@@ -192,11 +219,25 @@ export class SignatureTest {
    * @param options.c The boolean parameter.
    * @param options.d The method parameter.
    * @param options.e The LiteralUnion parameter.
+   *
+   * @since 1.0.0
    */
   optionsParamMethod(options: {
+    /**
+     * The number parameter.
+     */
     a: number;
+    /**
+     * The string parameter.
+     */
     b?: string;
+    /**
+     * The boolean parameter.
+     */
     c: boolean;
+    /**
+     * The method parameter.
+     */
     d: () => string;
     /**
      * A parameter with inline documentation.
@@ -222,11 +263,28 @@ export class SignatureTest {
    * @param b.value The number parameter.
    * @param c Parameter with inner jsdocs default.
    * @param c.value The number parameter. It also has a more complex description. Defaults to `2`.
+   *
+   * @since 1.0.0
    */
   optionsInlineParamMethodWithDefaults(
-    a: { value?: number } = { value: 1 },
-    b: { value?: number },
-    c: { value?: number }
+    a: {
+      /**
+       * The number parameter.
+       */
+      value?: number;
+    } = { value: 1 },
+    b: {
+      /**
+       * The number parameter.
+       */
+      value?: number;
+    },
+    c: {
+      /**
+       * The number parameter.
+       */
+      value?: number;
+    }
   ): number {
     return a.value ?? b.value ?? c.value ?? -1;
   }
@@ -240,6 +298,8 @@ export class SignatureTest {
    * @param b.value The number parameter.
    * @param c Parameter with inner jsdocs default.
    * @param c.value The number parameter. Defaults to `2`.
+   *
+   * @since 1.0.0
    */
   optionsTypeParamMethodWithDefaults(
     a: ParameterOptionsTypeA = { value: 1 },
@@ -258,6 +318,8 @@ export class SignatureTest {
    * @param b.value The number parameter.
    * @param c Parameter with inner jsdocs default.
    * @param c.value The number parameter. Defaults to `2`.
+   *
+   * @since 1.0.0
    */
   optionsInterfaceParamMethodWithDefaults(
     a: ParameterOptionsInterfaceA = { value: 1 },
@@ -272,6 +334,8 @@ export class SignatureTest {
    *
    * @example
    * test.apidoc.methodWithExample() // 0
+   *
+   * @since 1.0.0
    */
   methodWithExample(): number {
     return 0;
@@ -282,7 +346,12 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample()
    *
+   * @since 1.0.0
+   *
    * @deprecated do something else
+   *
+   *
+   *
    */
   methodWithDeprecated(): number {
     return 0;
@@ -292,6 +361,8 @@ export class SignatureTest {
    * Test with throws.
    *
    * @throws Everytime.
+   *
+   * @since 1.0.0
    */
   methodWithThrows(): number {
     throw new FakerError('Test error');
@@ -302,6 +373,8 @@ export class SignatureTest {
    *
    * @throws First error case.
    * @throws Another error case.
+   *
+   * @since 1.0.0
    */
   methodWithMultipleThrows(): number {
     throw new FakerError('Another test error');
@@ -314,6 +387,8 @@ export class SignatureTest {
    * @param option.a Some deprecated option.
    * @param option.b Some other deprecated option.
    * @param option.c Some other option.
+   *
+   * @since 1.0.0
    */
   methodWithDeprecatedOption(option: {
     /**
@@ -341,6 +416,8 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample()
    * @see test.apidoc.methodWithDeprecated()
+   *
+   * @since 1.0.0
    */
   methodWithMultipleSeeMarkers(): number {
     return 0;
@@ -351,6 +428,8 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample() with parameter `foo`.
    * @see test.apidoc.methodWithDeprecated() with parameter `bar` and `baz`.
+   *
+   * @since 1.0.0
    */
   methodWithMultipleSeeMarkersAndBackticks(): number {
     return 0;
@@ -373,6 +452,8 @@ export class SignatureTest {
    * @param array Array to pick the value from.
    * @param array[].weight The weight of the value.
    * @param array[].value The value to pick.
+   *
+   * @since 1.0.0
    */
   complexArrayParameter<T>(
     array: ReadonlyArray<{

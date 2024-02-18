@@ -2,19 +2,28 @@ import type { ClassDeclaration, MethodDeclaration, SourceFile } from 'ts-morph';
 import { getProject } from '../../../scripts/apidoc/project';
 
 /**
- * Loads the example functions.
+ * Loads the example methods.
  */
-export function loadExampleFunctions(): MethodDeclaration[] {
-  return loadProjectFile('test/scripts/apidoc/signature.example.ts')
-    .getClassOrThrow('SignatureTest')
-    .getMethods();
+export function loadExampleMethods(): Record<string, MethodDeclaration> {
+  return Object.fromEntries(
+    loadProjectFile('test/scripts/apidoc/method.example.ts')
+      .getClassOrThrow('SignatureTest')
+      .getMethods()
+      .map((m) => [m.getName(), m] as const)
+      .sort(([a], [b]) => a.localeCompare(b)) // Relevant for Object.keys() order
+  );
 }
 
 /**
  * Loads the example classes.
  */
-export function loadExampleModules(): ClassDeclaration[] {
-  return loadProjectFile('test/scripts/apidoc/module.example.ts').getClasses();
+export function loadExampleClasses(): Record<string, ClassDeclaration> {
+  return Object.fromEntries(
+    loadProjectFile('test/scripts/apidoc/class.example.ts')
+      .getClasses()
+      .map((m) => [m.getNameOrThrow(), m] as const)
+      .sort(([a], [b]) => a.localeCompare(b)) // Relevant for Object.keys() order
+  );
 }
 
 /**
