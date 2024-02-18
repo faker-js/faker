@@ -46,8 +46,6 @@ module.exports = defineConfig({
 
     // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
     'unicorn/prefer-at': 'off',
-    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
-    'unicorn/prefer-string-replace-all': 'off',
     // TODO @ST-DDT 2023-10-28: The following rule should be turned on when we switch to esm.
     'unicorn/prefer-top-level-await': 'off',
 
