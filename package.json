@@ -28,8 +28,9 @@
   ],
   "bugs": "https://github.com/faker-js/faker/issues",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "index.d.ts",
   "typesVersions": {
     ">=4.0": {
@@ -41,13 +42,15 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
     "./locale/*": {
       "types": "./dist/types/locale/*.d.ts",
-      "require": "./dist/locale/*.js",
-      "import": "./dist/locale/*.mjs"
+      "import": "./dist/locale/*.js",
+      "require": "./dist/locale/*.cjs",
+      "default": "./dist/locale/*.js"
     },
     "./package.json": "./package.json"
   },

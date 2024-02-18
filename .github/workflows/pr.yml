@@ -50,13 +50,13 @@ jobs:
         continue-on-error: true
 
       - name: Transpile ts
-        run: pnpm exec tsc .github/workflows/commentCodeGeneration.ts --outDir .github/workflows
+        run: pnpm tsup-node .github/workflows/commentCodeGeneration.ts --format cjs --clean false --out-dir .github/workflows
 
       - name: Comment
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
-            const script = require('${{ github.workspace }}/.github/workflows/commentCodeGeneration.js')
+            const { script } = require('${{ github.workspace }}/.github/workflows/commentCodeGeneration.cjs')
             await script(github, context, ${{ steps.generate.outcome == 'success' && steps.diff.outcome == 'success' }})
 
       - name: Status
