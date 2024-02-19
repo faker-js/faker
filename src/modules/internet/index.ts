@@ -639,22 +639,17 @@ export class InternetModule extends ModuleBase {
       lastName: hasLastName = legacyLastName,
     } = options;
 
-    let result: string;
-    const strategy = this.faker.number.int(hasLastName ? 1 : 2) as 0 | 1 | 2;
     const separator = this.faker.helpers.arrayElement(['.', '_']);
-    switch (strategy) {
-      case 0:
-        result = `${firstName}${separator}${lastName}${this.faker.number.int(
-          99
-        )}`;
-        break;
-      case 1:
-        result = `${firstName}${separator}${lastName}`;
-        break;
-      case 2:
-        result = `${firstName}${this.faker.number.int(99)}`;
-        break;
+    const disambiguator = this.faker.number.int(99);
+    const strategies: Array<() => string> = [
+      () => `${firstName}${separator}${lastName}${disambiguator}`,
+      () => `${firstName}${separator}${lastName}`,
+    ];
+    if (!hasLastName) {
+      strategies.push(() => `${firstName}${disambiguator}`);
     }
+
+    let result = this.faker.helpers.arrayElement(strategies)();
 
     // There may still be non-ascii characters in the result.
     // First remove simple accents etc
@@ -825,23 +820,15 @@ export class InternetModule extends ModuleBase {
       lastName = legacyLastName ?? this.faker.person.lastName(),
     } = options;
 
-    let result: string;
-    switch (this.faker.number.int(2) as 0 | 1 | 2) {
-      case 0:
-        result = `${firstName}${this.faker.number.int(99)}`;
-        break;
-      case 1:
-        result =
-          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
-        break;
-      case 2:
-        result = `${firstName}${this.faker.helpers.arrayElement([
-          '.',
-          '_',
-        ])}${lastName}${this.faker.number.int(99)}`;
-        break;
-    }
+    const separator = this.faker.helpers.arrayElement(['.', '_']);
+    const disambiguator = this.faker.number.int(99);
+    const strategies: Array<() => string> = [
+      () => `${firstName}${disambiguator}`,
+      () => `${firstName}${separator}${lastName}`,
+      () => `${firstName}${separator}${lastName}${disambiguator}`,
+    ];
 
+    let result = this.faker.helpers.arrayElement(strategies)();
     result = result.toString().replaceAll("'", '');
     result = result.replaceAll(' ', '');
     return result;
