@@ -460,7 +460,7 @@ async function main(): Promise<void> {
   localizationLocales = await formatMarkdown(localizationLocales);
 
   let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf8');
-  localizationContent = localizationContent.replace(
+  localizationContent = localizationContent.replaceAll(
     /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
     `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
   );
