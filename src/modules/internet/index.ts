@@ -695,11 +695,11 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
-   * faker.internet.displayName({ firstname 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
-   * faker.internet.displayName({ firstname 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.displayName({ firstname 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
-   * faker.internet.displayName({ firstname 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
-   * faker.internet.displayName({ firstname '大羽', lastName: '陳' }) // '大羽.陳'
+   * faker.internet.displayName({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
+   * faker.internet.displayName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+   * faker.internet.displayName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
+   * faker.internet.displayName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
+   * faker.internet.displayName({ firstName: '大羽', lastName: '陳' }) // '大羽.陳'
    *
    * @since 8.0.0
    */
