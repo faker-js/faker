@@ -228,9 +228,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   slugify(string: string = ''): string {
     return string
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036F]/g, '') // removes combining marks
-      .replace(/ /g, '-') // replaces spaces with hyphens
-      .replace(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
+      .replaceAll(/[\u0300-\u036F]/g, '') // removes combining marks
+      .replaceAll(' ', '-') // replaces spaces with hyphens
+      .replaceAll(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
@@ -797,7 +797,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       let value = data[p];
       if (typeof value === 'string') {
         // escape $, source: https://stackoverflow.com/a/6969486/6897682
-        value = value.replace(/\$/g, '$$$$');
+        value = value.replaceAll('$', '$$$$');
         str = str.replace(re, value);
       } else {
         str = str.replace(re, value);
@@ -989,7 +989,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     }
 
     // In case of rounding errors, return the last element
-    return array[array.length - 1].value;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return array.at(-1)!.value;
   }
 
   /**

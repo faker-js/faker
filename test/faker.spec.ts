@@ -13,15 +13,14 @@ describe('faker', () => {
     );
   });
 
-  it('should not log anything on startup', () => {
+  it('should not log anything on startup', async () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) =>
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
-    require('..').faker;
+    (await import('..')).default;
 
     new Faker({ locale: { metadata: { title: '' } } });
 

@@ -850,7 +850,7 @@ export class FinanceModule extends ModuleBase {
       format = this.faker.helpers.arrayElement(formats);
     }
 
-    format = format.replace(/\//g, '');
+    format = format.replaceAll('/', '');
     return this.faker.helpers.replaceCreditCardSymbols(format);
   }
 
