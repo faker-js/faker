@@ -128,11 +128,11 @@ async function generateLocaleFile(locale: string): Promise<void> {
   }
 
   // TODO @Shinigami92 2023-03-07: Remove 'en' fallback in a separate PR
-  if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
+  if (locales.at(-1) !== 'en' && locale !== 'base') {
     locales.push('en');
   }
 
-  if (locales[locales.length - 1] !== 'base') {
+  if (locales.at(-1) !== 'base') {
     locales.push('base');
   }
 
@@ -460,7 +460,7 @@ async function main(): Promise<void> {
   localizationLocales = await formatMarkdown(localizationLocales);
 
   let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf8');
-  localizationContent = localizationContent.replace(
+  localizationContent = localizationContent.replaceAll(
     /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
     `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
   );
