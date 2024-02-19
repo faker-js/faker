@@ -6,6 +6,7 @@ import type { RawApiDocsMethod } from '../processing/method';
 import { formatMarkdown } from '../utils/format';
 import { adjustUrls, codeToHtml, mdToHtml } from '../utils/markdown';
 import { pathApiDocsDir } from '../utils/paths';
+import { required } from '../utils/value-checks';
 import { scriptCommand } from './constants';
 
 // Moved here because this must not be formatted by prettier
@@ -111,8 +112,7 @@ const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
 
 function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
   const { name, signatures, sourcePath } = method;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const signatureData = signatures.at(-1)!;
+  const signatureData = required(signatures.at(-1), 'method signature');
   const {
     deprecated,
     description,
