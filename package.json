@@ -133,7 +133,7 @@
     "typescript": "~5.3.3",
     "validator": "~13.11.0",
     "vite": "~5.1.3",
-    "vitepress": "1.0.0-rc.39",
+    "vitepress": "1.0.0-rc.44",
     "vitest": "~1.3.0",
     "vue": "~3.4.19"
   },
