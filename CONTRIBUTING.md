@@ -20,7 +20,7 @@ This is a shorthand for running the following scripts in order:
 
 ## Good to know
 
-- The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
+- The project is being built by [tsup](https://tsup.egoist.dev) (see [tsup.config.ts](tsup.config.ts))
 - The documentation is running via VitePress.
   Make sure you **build** the project before running the docs, cause some files depend on `dist`.
   Use `pnpm run docs:dev` to edit them in live mode.
@@ -49,7 +49,7 @@ Please only change files related to one module (e.g. person, location) whenever 
 
 ## Building Faker
 
-The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
+The project is being built by [tsup](https://tsup.egoist.dev) (see [tsup.config.ts](tsup.config.ts))
 
 ```shell
 pnpm install

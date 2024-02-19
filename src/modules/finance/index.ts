@@ -643,10 +643,9 @@ export class FinanceModule extends ModuleBase {
   /**
    * Returns a random currency object, containing `code`, `name `and `symbol` properties.
    *
-   * @see
-   * faker.finance.currencyCode(): For generating specifically the currency code.
-   * faker.finance.currencyName(): For generating specifically the currency name.
-   * faker.finance.currencySymbol(): For generating specifically the currency symbol.
+   * @see faker.finance.currencyCode(): For generating specifically the currency code.
+   * @see faker.finance.currencyName(): For generating specifically the currency name.
+   * @see faker.finance.currencySymbol(): For generating specifically the currency symbol.
    *
    * @example
    * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
@@ -851,7 +850,7 @@ export class FinanceModule extends ModuleBase {
       format = this.faker.helpers.arrayElement(formats);
     }
 
-    format = format.replace(/\//g, '');
+    format = format.replaceAll('/', '');
     return this.faker.helpers.replaceCreditCardSymbols(format);
   }
 

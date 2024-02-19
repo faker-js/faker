@@ -214,7 +214,7 @@ const config: UserConfig<DefaultTheme.Config> = {
             link: '/guide/randomizer',
           },
           {
-            text: 'Upgrading to v8',
+            text: 'Upgrading to v9',
             link: '/guide/upgrading',
           },
         ],

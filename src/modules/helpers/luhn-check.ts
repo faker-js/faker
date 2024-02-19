@@ -24,7 +24,7 @@ export function luhnCheckValue(str: string): number {
  * @param str The string to generate the checksum for.
  */
 function luhnChecksum(str: string): number {
-  str = str.replace(/[\s-]/g, '');
+  str = str.replaceAll(/[\s-]/g, '');
   let sum = 0;
   let alternate = false;
   for (let i = str.length - 1; i >= 0; i--) {

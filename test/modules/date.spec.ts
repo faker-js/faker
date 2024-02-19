@@ -362,7 +362,7 @@ describe('date', () => {
               expect(dates[i]).greaterThan(dates[i - 1]);
             }
 
-            expect(dates[dates.length - 1]).lessThan(to);
+            expect(dates.at(-1)).lessThan(to);
           }
         );
       });

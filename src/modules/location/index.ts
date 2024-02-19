@@ -178,7 +178,7 @@ export class LocationModule extends ModuleBase {
   buildingNumber(): string {
     return this.faker.helpers
       .arrayElement(this.faker.definitions.location.building_number)
-      .replace(/#+/g, (m) =>
+      .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
@@ -274,7 +274,7 @@ export class LocationModule extends ModuleBase {
   secondaryAddress(): string {
     return this.faker.helpers
       .arrayElement(this.faker.definitions.location.secondary_address)
-      .replace(/#+/g, (m) =>
+      .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
