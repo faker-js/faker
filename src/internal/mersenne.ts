@@ -329,8 +329,6 @@ export class MersenneTwister19937 {
 /**
  * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
  * This is the default randomizer used by faker prior to v9.0.
- *
- * @internal
  */
 export function generateMersenne32Randomizer(): Randomizer {
   const twister = new MersenneTwister19937();
@@ -354,8 +352,6 @@ export function generateMersenne32Randomizer(): Randomizer {
 /**
  * Generates a MersenneTwister19937 randomizer with 53 bits of precision.
  * This is the default randomizer used by faker starting with v9.0.
- *
- * @internal
  */
 export function generateMersenne53Randomizer(): Randomizer {
   const twister = new MersenneTwister19937();
