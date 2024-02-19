@@ -67,7 +67,7 @@ function pageDiffHashs(page: RawApiDocsPage): ApiPageDiffHashs {
 function methodDiffHash(method: RawApiDocsMethod): string {
   return diffHash({
     ...method,
-    sourcePath: method.sourcePath.replace(/:.*/g, ''),
+    sourcePath: method.sourcePath.replaceAll(/:.*/g, ''),
   });
 }
 

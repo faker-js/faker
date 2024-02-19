@@ -85,7 +85,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
   `
     )
     .join('')}
-  `.replace(/\n +/g, '\n');
+  `.replaceAll(/\n +/g, '\n');
 
   content = vitePressInFileOptions + (await formatMarkdown(content));
 
@@ -111,7 +111,8 @@ const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
 
 function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
   const { name, signatures, sourcePath } = method;
-  const signatureData = signatures[signatures.length - 1];
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const signatureData = signatures.at(-1)!;
   const {
     deprecated,
     description,
@@ -156,7 +157,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
       description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
     })),
     since,
-    sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
+    sourcePath: sourcePath.replaceAll(/:(\d+):\d+/g, '#L$1'),
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     examples: codeToHtml([signature, ...examples].join('\n')),
