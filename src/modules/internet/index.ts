@@ -276,7 +276,7 @@ export class InternetModule extends ModuleBase {
     let localPart: string = this.userName({ firstName, lastName });
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
-    localPart = localPart.replace(/[^A-Za-z0-9._+-]+/g, '');
+    localPart = localPart.replaceAll(/[^A-Za-z0-9._+-]+/g, '');
 
     // The local part of an email address is limited to 64 chars per RFC 3696
     // We limit to 50 chars to be more realistic
@@ -291,7 +291,7 @@ export class InternetModule extends ModuleBase {
     }
 
     // local parts may not contain two or more consecutive . characters
-    localPart = localPart.replace(/\.{2,}/g, '.');
+    localPart = localPart.replaceAll(/\.{2,}/g, '.');
 
     // local parts may not start with or end with a . character
     localPart = localPart.replace(/^\./, '');
@@ -661,7 +661,7 @@ export class InternetModule extends ModuleBase {
     // First remove simple accents etc
     result = result
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036F]/g, ''); // removes combining marks
+      .replaceAll(/[\u0300-\u036F]/g, ''); // removes combining marks
 
     result = [...result]
       .map((char) => {
@@ -681,8 +681,8 @@ export class InternetModule extends ModuleBase {
         return charCode.toString(36);
       })
       .join('');
-    result = result.toString().replace(/'/g, '');
-    result = result.replace(/ /g, '');
+    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll(' ', '');
 
     return result;
   }
@@ -844,8 +844,8 @@ export class InternetModule extends ModuleBase {
         break;
     }
 
-    result = result.toString().replace(/'/g, '');
-    result = result.replace(/ /g, '');
+    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll(' ', '');
     return result;
   }
 

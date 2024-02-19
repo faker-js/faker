@@ -692,8 +692,8 @@ export class StringModule extends SimpleModuleBase {
    */
   uuid(): string {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-      .replace(/x/g, () => this.faker.number.hex({ min: 0x0, max: 0xf }))
-      .replace(/y/g, () => this.faker.number.hex({ min: 0x8, max: 0xb }));
+      .replaceAll('x', () => this.faker.number.hex({ min: 0x0, max: 0xf }))
+      .replaceAll('y', () => this.faker.number.hex({ min: 0x8, max: 0xb }));
   }
 
   /**

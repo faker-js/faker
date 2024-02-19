@@ -384,7 +384,7 @@ describe('system', () => {
         const regex =
           /^([0-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
 
-        const regexElements = regex.toString().replace(/\//g, '').split(' ');
+        const regexElements = regex.toString().replaceAll('/', '').split(' ');
 
         it.each([
           [{}, 5],
