@@ -128,11 +128,11 @@ async function generateLocaleFile(locale: string): Promise<void> {
   }
 
   // TODO @Shinigami92 2023-03-07: Remove 'en' fallback in a separate PR
-  if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
+  if (locales.at(-1) !== 'en' && locale !== 'base') {
     locales.push('en');
   }
 
-  if (locales[locales.length - 1] !== 'base') {
+  if (locales.at(-1) !== 'base') {
     locales.push('base');
   }
 
