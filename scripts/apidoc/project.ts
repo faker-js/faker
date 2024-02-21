@@ -1,6 +1,12 @@
 import type { ProjectOptions, SourceFile } from 'ts-morph';
 import { Project } from 'ts-morph';
 
+try {
+  await import('../../src'); // Make watch mode work on the source files
+} catch {
+  // Ignore
+}
+
 export function getProject(options: Partial<ProjectOptions> = {}): Project {
   return new Project({
     ...options,
