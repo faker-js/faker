@@ -97,8 +97,6 @@ REVISION
 .yarn/
 package-lock.json
 yarn.lock
-api-doc.json
-docs/public/api-diff-index2.json
 
 cypress/screenshots
 cypress/videos
