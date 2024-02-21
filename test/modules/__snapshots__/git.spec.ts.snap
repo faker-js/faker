@@ -10,7 +10,7 @@ exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 15:
 
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg.Beahan9 <Gregg.Beahan51@yahoo.com>
+Author: Gregg.Beahan45 <Gregg.Beahan@yahoo.com>
 Date: Tue Dec 31 00:24:08 2019 +0300
 
     connect auxiliary bus
@@ -19,7 +19,7 @@ Date: Tue Dec 31 00:24:08 2019 +0300
 
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg.Beahan9 <Gregg.Beahan51@yahoo.com>
+Author: Gregg.Beahan45 <Gregg.Beahan@yahoo.com>
 Date: Tue Dec 31 00:24:08 2019 +0300
 
     connect auxiliary bus
@@ -28,7 +28,7 @@ Date: Tue Dec 31 00:24:08 2019 +0300
 
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg.Beahan9 <Gregg.Beahan51@yahoo.com>
+Author: Gregg.Beahan45 <Gregg.Beahan@yahoo.com>
 Date: Tue Dec 31 00:24:08 2019 +0300
 
     connect auxiliary bus
@@ -53,28 +53,28 @@ exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 0
 
 exports[`git > 1211 > commitEntry > with only Date refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani.Anderson <Imani.Anderson@yahoo.com>
-Date: Tue Dec 31 18:36:59 2019 +0200
+Author: Imani Anderson <Imani.Anderson@hotmail.com>
+Date: Tue Dec 31 16:48:46 2019 -0700
 
-    copy digital feed
+    synthesize cross-platform firewall
 "
 `;
 
 exports[`git > 1211 > commitEntry > with only number refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani.Anderson <Imani.Anderson@yahoo.com>
-Date: Tue Dec 31 18:36:59 2019 +0200
+Author: Imani Anderson <Imani.Anderson@hotmail.com>
+Date: Tue Dec 31 16:48:46 2019 -0700
 
-    copy digital feed
+    synthesize cross-platform firewall
 "
 `;
 
 exports[`git > 1211 > commitEntry > with only string refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani.Anderson <Imani.Anderson@yahoo.com>
-Date: Tue Dec 31 18:36:59 2019 +0200
+Author: Imani Anderson <Imani.Anderson@hotmail.com>
+Date: Tue Dec 31 16:48:46 2019 -0700
 
-    copy digital feed
+    synthesize cross-platform firewall
 "
 `;
 
@@ -96,7 +96,7 @@ exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 1
 
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Miss Friedrich Krajcik <Friedrich_Krajcik19@gmail.com>
+Author: Miss Friedrich Krajcik <Friedrich.Krajcik82@gmail.com>
 Date: Tue Dec 31 02:27:22 2019 +0100
 
     reboot neural pixel
@@ -105,7 +105,7 @@ Date: Tue Dec 31 02:27:22 2019 +0100
 
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Miss Friedrich Krajcik <Friedrich_Krajcik19@gmail.com>
+Author: Miss Friedrich Krajcik <Friedrich.Krajcik82@gmail.com>
 Date: Tue Dec 31 02:27:22 2019 +0100
 
     reboot neural pixel
@@ -114,7 +114,7 @@ Date: Tue Dec 31 02:27:22 2019 +0100
 
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Miss Friedrich Krajcik <Friedrich_Krajcik19@gmail.com>
+Author: Miss Friedrich Krajcik <Friedrich.Krajcik82@gmail.com>
 Date: Tue Dec 31 02:27:22 2019 +0100
 
     reboot neural pixel

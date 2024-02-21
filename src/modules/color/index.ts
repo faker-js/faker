@@ -136,7 +136,6 @@ function toCSS(
     case 'lch':
       return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
     case 'rgb':
-    default:
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
   }
 }
@@ -161,7 +160,6 @@ function toColorFormat(
     case 'binary':
       return toBinary(values);
     case 'decimal':
-    default:
       return values;
   }
 }
