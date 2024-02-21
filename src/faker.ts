@@ -178,6 +178,9 @@ export class Faker extends SimpleFaker {
    * @param options.localeFallback The name of the fallback locale to use.
    *
    * @example
+   * import { Faker, allLocales } from '@faker-js/faker';
+   * // const { Faker, allLocales } = require('@faker-js/faker');
+   *
    * new Faker({ locales: allLocales });
    *
    * @since 6.0.0
