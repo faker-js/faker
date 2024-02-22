@@ -349,9 +349,6 @@ export class SignatureTest {
    * @since 1.0.0
    *
    * @deprecated do something else
-   *
-   *
-   *
    */
   methodWithDeprecated(): number {
     return 0;
