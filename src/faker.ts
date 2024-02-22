@@ -24,7 +24,6 @@ import { MusicModule } from './modules/music';
 import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
-import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
@@ -61,12 +60,6 @@ import { mergeLocales } from './utils/merge-locales';
 export class Faker extends SimpleFaker {
   readonly rawDefinitions: LocaleDefinition;
   readonly definitions: LocaleProxy;
-
-  /**
-   * @deprecated Use the modules specific to the type of data you want to generate instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly random: RandomModule = new RandomModule(this);
 
   readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
