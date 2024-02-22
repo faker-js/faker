@@ -102,7 +102,7 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:458:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:455:3",
 }
 `;
 
@@ -470,7 +470,7 @@ exports[`method > processMethodLike(methodWithDeprecated) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:356:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:353:3",
 }
 `;
 
@@ -538,7 +538,7 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:393:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:390:3",
 }
 `;
 
@@ -589,7 +589,7 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkers) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:422:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:419:3",
 }
 `;
 
@@ -615,7 +615,7 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkersAndBackticks) 1`
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:434:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:431:3",
 }
 `;
 
@@ -641,7 +641,7 @@ exports[`method > processMethodLike(methodWithMultipleThrows) 1`] = `
       ],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:379:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:376:3",
 }
 `;
 
@@ -664,7 +664,7 @@ exports[`method > processMethodLike(methodWithSinceMarker) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:443:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:440:3",
 }
 `;
 
@@ -689,7 +689,7 @@ exports[`method > processMethodLike(methodWithThrows) 1`] = `
       ],
     },
   ],
-  "sourcePath": "test/scripts/apidoc/method.example.ts:367:3",
+  "sourcePath": "test/scripts/apidoc/method.example.ts:364:3",
 }
 `;
 
