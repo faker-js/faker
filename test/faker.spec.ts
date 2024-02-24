@@ -6,6 +6,7 @@ import { keys } from '../src/internal/keys';
 
 describe('faker', () => {
   it('should throw error if no locales passed', () => {
+    expect(false).toBe(true);
     expect(() => new Faker({ locale: [] })).toThrow(
       new FakerError(
         'The locale option must contain at least one locale definition.'
