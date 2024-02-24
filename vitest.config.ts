@@ -14,7 +14,7 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
-    reporters: process.env.GITHUB_ACTIONS
+    reporters: process.env.CI_PREFLIGHT
       ? ['basic', 'github-actions']
       : ['basic'],
     sequence: {
