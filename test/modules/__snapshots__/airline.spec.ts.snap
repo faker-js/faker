@@ -4,7 +4,7 @@ exports[`airline > 42 > aircraftType 1`] = `"regional"`;
 
 exports[`airline > 42 > airline 1`] = `
 {
-  "iataCode": "",
+  "iataCode": "ET",
   "name": "Ethiopian Airlines",
 }
 `;
