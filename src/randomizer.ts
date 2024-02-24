@@ -19,14 +19,20 @@
  *   seed: number | number[] = Date.now() ^ (Math.random() * 0x100000000),
  *   factory: (seed: number) => RandomGenerator = xoroshiro128plus
  * ): Randomizer {
- *   const self = {
- *     next: () => (self.generator.unsafeNext() >>> 0) / 0x100000000,
- *     seed: (seed: number | number[]) => {
- *       self.generator = factory(typeof seed === 'number' ? seed : seed[0]);
- *     },
- *   } as Randomizer & { generator: RandomGenerator };
- *   self.seed(seed);
- *   return self;
+ *   function wrapperFactory(generator?: RandomGenerator): Randomizer {
+ *     const self = {
+ *       next: () => (self.generator.unsafeNext() >>> 0) / 0x100000000,
+ *       seed: (seed: number | number[]) => {
+ *         self.generator = factory(typeof seed === 'number' ? seed : seed[0]);
+ *       },
+ *       clone: () => wrapperFactory(self.generator.clone()),
+ *     } as Randomizer & { generator: RandomGenerator };
+ *     return self;
+ *   }
+ *
+ *   const randomizer = wrapperFactory();
+ *   randomizer.seed(seed);
+ *   return randomizer;
  * }
  *
  * const randomizer = generatePureRandRandomizer();
@@ -68,4 +74,16 @@ export interface Randomizer {
    * @since 8.2.0
    */
   seed(seed: number | number[]): void;
+
+  /**
+   * Creates an exact copy of this Randomizer. Including the current seed state.
+   *
+   * @example
+   * const clone = randomizer.clone();
+   * randomizer.next() // 0.3404027920160495
+   * clone.next() // 0.3404027920160495 (same as above)
+   * randomizer.next() // 0.929890375900335
+   * clone.next() // 0.929890375900335 (same as above)
+   */
+  clone(): Randomizer;
 }

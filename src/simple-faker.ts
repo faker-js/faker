@@ -79,7 +79,7 @@ export class SimpleFaker {
   }
 
   /** @internal */
-  private readonly _randomizer: Randomizer;
+  protected readonly _randomizer: Randomizer;
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
@@ -253,6 +253,70 @@ export class SimpleFaker {
     this._randomizer.seed(seed);
 
     return seed;
+  }
+
+  /**
+   * Clones this instance, preserving the current state.
+   * This method is idempotent and does not consume any seed values.
+   * The cloned instance will produce the same values as the original, given that the methods are called in the same order.
+   * This is useful for creating identical complex objects:
+   * - One to be mutated by the method under test
+   * - and the other one serves as a comparison.
+   *
+   * @see faker.derive If you want to generate deterministic but different values.
+   *
+   * @example
+   * faker.seed(42);
+   * faker.number.int(10); // 4 (1st call)
+   * faker.number.int(10); // 8 (2nd call)
+   *
+   * faker.seed(42);
+   * // Creates a new instance with the same state as the current instance
+   * const clonedFaker = faker.clone();
+   * // The cloned instance will produce the same values as the original
+   * clonedFaker.number.int(10); // 4 (cloned 1st call)
+   * clonedFaker.number.int(10); // 8 (cloned 2nd call)
+   *
+   * // The original instance is not affected
+   * faker.number.int(10); // 4 (1st call)
+   * faker.number.int(10); // 8 (2nd call)
+   */
+  clone(): SimpleFaker {
+    const instance = new SimpleFaker({
+      randomizer: this._randomizer.clone(),
+    });
+    instance.setDefaultRefDate(this._defaultRefDate);
+    return instance;
+  }
+
+  /**
+   * Derives a new instance from this one.
+   * This consumes a single value from the original instance to initialize the seed of the derived instance, and thus has a one-time effect on subsequent calls.
+   * The derived instance can be used to generate deterministic values based on the current seed without consuming a dynamic amount of seed values.
+   * This is useful, if you wish to generate a complex object (e.g. a Person) and might want to add a property to it later.
+   * If the Person is created from a derived instance, then adding or removing properties from the Person doesn't have any impact on the following data, generated using the original instance (except from the derive call itself).
+   *
+   * @see simpleFaker.clone If you want to create an exact clone of this SimpleFaker instance without consuming a seed value.
+   *
+   * @example
+   * simpleFaker.seed(42);
+   * simpleFaker.number.int(10); // 4 (1st call)
+   * simpleFaker.number.int(10); // 8 (2nd call)
+   *
+   * simpleFaker.seed(42);
+   * // Creates a new instance with a seed generated from the current instance
+   * const derivedFaker = simpleFaker.derive(); // (1st call)
+   * // The derived instance will produce values dependent on the state of the original instance at the time of the derive call
+   * derivedFaker.number.int(10); // 7 (derived 1st call)
+   * derivedFaker.number.int(10); // 0 (derived 2nd call)
+   *
+   * // It doesn't matter how many calls to derived are executed
+   * simpleFaker.number.int(10); // 8 (2nd call) <- This is same as before
+   */
+  derive(): SimpleFaker {
+    const instance = this.clone();
+    instance.seed(this.number.int());
+    return instance;
   }
 }
 

@@ -133,4 +133,26 @@ describe('generateMersenne32Randomizer()', () => {
       });
     });
   });
+
+  describe('clone()', () => {
+    it('should return a new instance', () => {
+      const clone = randomizer.clone();
+
+      expect(clone).not.toBe(randomizer);
+    });
+
+    it('should return a new instance with the same state', () => {
+      const clone = randomizer.clone();
+
+      // Test that the clone is independent from the original at intervals
+      const originalValues = Array.from({ length: 1000 }, randomizer.next);
+      const clonedValues = Array.from({ length: 1000 }, clone.next);
+      expect(clonedValues).toEqual(originalValues);
+
+      // Test that the clone is independent from the original at each call
+      for (let i = 0; i < 1000; i++) {
+        expect(clone.next()).toBe(randomizer.next());
+      }
+    });
+  });
 });
