@@ -31,14 +31,7 @@
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "index.d.ts",
-  "typesVersions": {
-    ">=4.0": {
-      "*": [
-        "dist/types/*"
-      ]
-    }
-  },
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",

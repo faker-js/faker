@@ -633,7 +633,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: T[],
     options: {
       /**
@@ -659,7 +659,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: ReadonlyArray<T>,
     options?: {
       /**
@@ -686,7 +686,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: T[],
     options?: {
       /**
@@ -697,7 +697,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       inplace?: boolean;
     }
   ): T[];
-  shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
+  shuffle<const T>(list: T[], options: { inplace?: boolean } = {}): T[] {
     const { inplace = false } = options;
 
     if (!inplace) {
@@ -734,7 +734,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.0.0
    */
-  uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
+  uniqueArray<const T>(
+    source: ReadonlyArray<T> | (() => T),
+    length: number
+  ): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = [...set];
@@ -813,7 +816,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  maybe<TResult>(
+  maybe<const TResult>(
     callback: () => TResult,
     options: {
       /**
@@ -845,7 +848,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  objectKey<T extends Record<string, unknown>>(object: T): keyof T {
+  objectKey<const T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
     return this.arrayElement(array);
   }
@@ -864,7 +867,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
+  objectValue<const T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.helpers.objectKey(object);
     return object[key];
   }
@@ -883,7 +886,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  objectEntry<T extends Record<string, unknown>>(
+  objectEntry<const T extends Record<string, unknown>>(
     object: T
   ): [keyof T, T[keyof T]] {
     const key = this.faker.helpers.objectKey(object);
@@ -904,7 +907,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElement<T>(array: ReadonlyArray<T>): T {
+  arrayElement<const T>(array: ReadonlyArray<T>): T {
     // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
       throw new FakerError(
@@ -941,7 +944,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  weightedArrayElement<T>(
+  weightedArrayElement<const T>(
     array: ReadonlyArray<{
       /**
        * The weight of the value.
@@ -1000,7 +1003,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElements<T>(
+  arrayElements<const T>(
     array: ReadonlyArray<T>,
     count?:
       | number
@@ -1074,6 +1077,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
+  // This does not use `const T` because enums shouldn't be created on the spot.
   enumValue<T extends Record<string | number, string | number>>(
     enumObject: T
   ): T[keyof T] {
@@ -1134,7 +1138,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  multiple<TResult>(
+  multiple<const TResult>(
     method: () => TResult,
     options: {
       /**
