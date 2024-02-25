@@ -8,6 +8,9 @@
     "helpers:pinGitHubActionDigests"
   ],
   "labels": ["c: dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "reviewersFromCodeOwners": true,
   "rangeStrategy": "bump",
   "packageRules": [
