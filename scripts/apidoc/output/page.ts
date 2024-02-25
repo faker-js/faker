@@ -9,7 +9,7 @@ import { FILE_PATH_API_DOCS } from '../utils/paths';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
-// Moved here because this must not be formatted by prettier
+// Extracted to a constant because the contents must not be formatted by prettier
 const vitePressInFileOptions = `---
 editLink: false
 ---
