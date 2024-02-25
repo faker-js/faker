@@ -41,6 +41,8 @@ jobs:
           pnpm run build
           pnpm run test -u
         continue-on-error: true
+        env:
+          CI_PREFLIGHT: true
 
       - name: Check diff
         id: diff

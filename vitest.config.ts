@@ -14,7 +14,9 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
-    reporters: 'basic',
+    reporters: process.env.CI_PREFLIGHT
+      ? ['basic', 'github-actions']
+      : ['basic'],
     sequence: {
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,
