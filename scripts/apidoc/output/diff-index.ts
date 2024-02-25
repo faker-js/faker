@@ -3,12 +3,12 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
-import { pathPublicDir } from '../utils/paths';
+import { FILE_PATH_PUBLIC } from '../utils/paths';
 
-export const nameDocsDiffIndexFile = 'api-diff-index.json';
-export const pathDocsDiffIndexFile = resolve(
-  pathPublicDir,
-  nameDocsDiffIndexFile
+export const FILE_NAME_DOCS_DIFF_INDEX = 'api-diff-index.json';
+export const FILE_PATH_DOCS_DIFF_INDEX = resolve(
+  FILE_PATH_PUBLIC,
+  FILE_NAME_DOCS_DIFF_INDEX
 );
 
 /**
@@ -44,7 +44,7 @@ export function writeDiffIndex(pages: RawApiDocsPage[]): void {
   const diffIndex: ApiDiffHashs = Object.fromEntries(
     pages.map((page) => [page.title, pageDiffHashs(page)])
   );
-  writeFileSync(pathDocsDiffIndexFile, JSON.stringify(diffIndex));
+  writeFileSync(FILE_PATH_DOCS_DIFF_INDEX, JSON.stringify(diffIndex));
 }
 
 function pageDiffHashs(page: RawApiDocsPage): ApiPageDiffHashs {

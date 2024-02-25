@@ -66,8 +66,8 @@ function getAllClasses(
 ): Record<string, ClassDeclaration> {
   return getAll(
     project,
-    (s) => s.getClasses(),
-    (c) => c.getNameOrThrow(),
+    (file) => file.getClasses(),
+    (clazz) => clazz.getNameOrThrow(),
     filter
   );
 }
@@ -78,15 +78,15 @@ export function processProjectClasses(project: Project): RawApiDocsPage[] {
 
 function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
   return classes
-    .filter((m) => shouldProcessType(m.getNameOrThrow()))
-    .map((c) => {
+    .filter((clazz) => shouldProcessType(clazz.getNameOrThrow()))
+    .map((clazz) => {
       try {
-        return processClass(c);
+        return processClass(clazz);
       } catch (error) {
         throw newProcessingError({
           type: 'class',
-          name: c.getNameOrThrow(),
-          source: c,
+          name: clazz.getNameOrThrow(),
+          source: clazz,
           cause: error,
         });
       }
@@ -103,23 +103,23 @@ export function processClass(clazz: ClassDeclaration): RawApiDocsPage {
 
 export function processModuleClasses(project: Project): RawApiDocsPage[] {
   return processModules(
-    Object.values(getAllClasses(project, (v) => DOC_MODULE_FILTER(v))).sort(
-      (a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow())
-    )
+    Object.values(
+      getAllClasses(project, (name) => DOC_MODULE_FILTER(name))
+    ).sort((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
 }
 
 function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
   return modules
-    .filter((m) => shouldProcessType(getModuleName(m)))
-    .map((m) => {
+    .filter((module) => shouldProcessType(getModuleName(module)))
+    .map((module) => {
       try {
-        return processModule(m, 'Modules');
+        return processModule(module, 'Modules');
       } catch (error: unknown) {
         throw newProcessingError({
           type: 'module',
-          name: getModuleName(m),
-          source: m,
+          name: getModuleName(module),
+          source: module,
           cause: error,
         });
       }
@@ -149,8 +149,8 @@ function getAllInterfaces(
 ): Record<string, InterfaceDeclaration> {
   return getAll(
     project,
-    (s) => s.getInterfaces(),
-    (c) => c.getName()
+    (file) => file.getInterfaces(),
+    (iface) => iface.getName()
   );
 }
 
@@ -164,15 +164,15 @@ function processInterfaces(
   interfaces: InterfaceDeclaration[]
 ): RawApiDocsPage[] {
   return interfaces
-    .filter((c) => shouldProcessType(c.getName()))
-    .map((c) => {
+    .filter((iface) => shouldProcessType(iface.getName()))
+    .map((iface) => {
       try {
-        return processInterface(c);
+        return processInterface(iface);
       } catch (error) {
         throw newProcessingError({
           type: 'interface',
-          name: c.getName(),
-          source: c,
+          name: iface.getName(),
+          source: iface,
           cause: error,
         });
       }

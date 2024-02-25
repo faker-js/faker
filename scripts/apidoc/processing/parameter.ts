@@ -47,15 +47,15 @@ export function processTypeParameters(
   const paramTags = getTypeParameterTags(jsdocs);
 
   return parameters
-    .filter((p) => shouldProcessParameter(`<${p.getName()}>`))
-    .flatMap((p) => {
+    .filter((parameter) => shouldProcessParameter(`<${parameter.getName()}>`))
+    .flatMap((parameter) => {
       try {
-        return processTypeParameterEntry(p, paramTags);
+        return processTypeParameterEntry(parameter, paramTags);
       } catch (error) {
         throw newProcessingError({
           type: 'type parameter',
-          name: p.getName(),
-          source: p,
+          name: parameter.getName(),
+          source: parameter,
           cause: error,
         });
       }
@@ -81,23 +81,26 @@ export function processParameters(
 ): RawApiDocsParameter[] {
   const paramTags = getParameterTags(jsdocs);
   const implParameterDefaults = Object.fromEntries(
-    implParameters.map((p) => [p.getName(), getDefaultValue(p)])
+    implParameters.map((parameter) => [
+      parameter.getName(),
+      getDefaultValue(parameter),
+    ])
   );
 
   return signatureParameters
-    .filter((p) => shouldProcessParameter(p.getName()))
-    .flatMap((p) => {
+    .filter((parameter) => shouldProcessParameter(parameter.getName()))
+    .flatMap((parameter) => {
       try {
         return processParameter(
-          p,
+          parameter,
           paramTags,
-          implParameterDefaults[p.getName()]
+          implParameterDefaults[parameter.getName()]
         );
       } catch (error) {
         throw newProcessingError({
           type: 'parameter',
-          name: p.getName(),
-          source: p,
+          name: parameter.getName(),
+          source: parameter,
           cause: error,
         });
       }
@@ -175,10 +178,12 @@ function processComplexParameter(
 
     return type
       .getApparentProperties()
-      .filter((p) => shouldProcessParameter(`${name}.${p.getName()}`))
-      .flatMap((p) => {
+      .filter((parameter) =>
+        shouldProcessParameter(`${name}.${parameter.getName()}`)
+      )
+      .flatMap((parameter) => {
         const declaration = exactlyOne(
-          p.getDeclarations(),
+          parameter.getDeclarations(),
           'property declaration'
         ) as PropertySignature;
         const propertyType = declaration.getType();
@@ -187,7 +192,7 @@ function processComplexParameter(
 
         return [
           {
-            name: `${name}.${p.getName()}${getNameSuffix(propertyType)}`,
+            name: `${name}.${parameter.getName()}${getNameSuffix(propertyType)}`,
             type: getTypeText(propertyType, {
               abbreviate: false,
               stripUndefined: true,

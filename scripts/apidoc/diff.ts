@@ -1,7 +1,7 @@
 import type { ApiDiffHashs } from './output/diff-index';
 import {
-  nameDocsDiffIndexFile,
-  pathDocsDiffIndexFile,
+  FILE_NAME_DOCS_DIFF_INDEX,
+  FILE_PATH_DOCS_DIFF_INDEX,
 } from './output/diff-index';
 
 /**
@@ -61,8 +61,8 @@ function allKeys(
  * @param sourceDiffIndex The path to the source (changed) index. Defaults to the local diff index.
  */
 export async function diff(
-  targetDiffIndex = `https://next.fakerjs.dev/${nameDocsDiffIndexFile}`,
-  sourceDiffIndex = `file://${pathDocsDiffIndexFile}`
+  targetDiffIndex = `https://next.fakerjs.dev/${FILE_NAME_DOCS_DIFF_INDEX}`,
+  sourceDiffIndex = `file://${FILE_PATH_DOCS_DIFF_INDEX}`
 ): Promise<Record<string, ['ADDED'] | ['REMOVED'] | string[]>> {
   const target = await load(targetDiffIndex);
   const source = await load(sourceDiffIndex);

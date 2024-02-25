@@ -75,14 +75,14 @@ export function processSignatures(
 ): RawApiDocsSignature[] {
   return signatures
     .filter((_, i) => shouldProcessSignature(name, i))
-    .map((s, i) => {
+    .map((signature, i) => {
       try {
-        return processSignature(s, implementation);
+        return processSignature(signature, implementation);
       } catch (error) {
         throw newProcessingError({
           type: 'signature',
           name: `${name}/${i}`,
-          source: s,
+          source: signature,
           cause: error,
         });
       }

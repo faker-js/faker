@@ -2,9 +2,12 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { APIGroup } from '../../../docs/api/api-types';
 import type { RawApiDocsPage } from '../processing/class';
-import { pathApiDocsDir } from '../utils/paths';
+import { FILE_PATH_API_DOCS } from '../utils/paths';
 
-const pathDocsApiSearchIndex = resolve(pathApiDocsDir, 'api-search-index.json');
+const pathDocsApiSearchIndex = resolve(
+  FILE_PATH_API_DOCS,
+  'api-search-index.json'
+);
 
 /**
  * Writes the api search index to the correct location.

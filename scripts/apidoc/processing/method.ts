@@ -160,20 +160,20 @@ type MethodLikeDeclaration = SignatureLikeDeclaration &
 
 function processMethodLikes<T extends MethodLikeDeclaration>(
   methods: T[],
-  nameResolver: (v: T) => string
+  nameResolver: (value: T) => string
 ): RawApiDocsMethod[] {
   return methods
-    .filter((m) => !m.hasModifier(SyntaxKind.PrivateKeyword))
-    .filter((m) => shouldProcessMethod(nameResolver(m)))
-    .map((m) => {
-      const name = nameResolver(m);
+    .filter((method) => !method.hasModifier(SyntaxKind.PrivateKeyword))
+    .filter((method) => shouldProcessMethod(nameResolver(method)))
+    .map((method) => {
+      const name = nameResolver(method);
       try {
-        return processMethodLike(name, m);
+        return processMethodLike(name, method);
       } catch (error) {
         throw newProcessingError({
           type: 'method',
           name,
-          source: m,
+          source: method,
           cause: error,
         });
       }

@@ -115,14 +115,19 @@ export function getTypeText(
   if (type.isUnion()) {
     let unionTypes = type
       .getUnionTypes()
-      .map((t) => getTypeText(t, options))
-      .filter((t) => !stripUndefined || t.text !== 'undefined');
+      .map((unionType) => getTypeText(unionType, options))
+      .filter((unionType) => !stripUndefined || unionType.text !== 'undefined');
 
-    const trueIndex = unionTypes.findIndex((t) => t.text === 'true');
-    if (trueIndex !== -1 && unionTypes.some((t) => t.text === 'false')) {
+    const trueIndex = unionTypes.findIndex(
+      (unionType) => unionType.text === 'true'
+    );
+    if (
+      trueIndex !== -1 &&
+      unionTypes.some((unionType) => unionType.text === 'false')
+    ) {
       unionTypes[trueIndex] = newSimpleType('boolean');
       unionTypes = unionTypes.filter(
-        (t) => t.text !== 'true' && t.text !== 'false'
+        (unionType) => unionType.text !== 'true' && unionType.text !== 'false'
       );
     }
 

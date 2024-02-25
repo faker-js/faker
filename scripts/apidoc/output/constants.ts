@@ -1,1 +1,1 @@
-export const scriptCommand = 'pnpm run generate:api-docs';
+export const SCRIPT_COMMAND = 'pnpm run generate:api-docs';
