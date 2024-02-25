@@ -227,4 +227,4 @@ export default [
   "Shodiyor",
   "Shukrulloh",
   "Sherzod"
-]
+];
