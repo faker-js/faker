@@ -21,6 +21,10 @@ export default defineConfig({
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,
     },
+    typecheck: {
+      enabled: true,
+      include: ['test/**/*.spec-d.ts'],
+    },
     onConsoleLog(log, type) {
       if (
         type === 'stderr' &&
