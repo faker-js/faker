@@ -30,7 +30,6 @@ export const apiPages = [
       { text: 'Number', link: '/api/number.html' },
       { text: 'Person', link: '/api/person.html' },
       { text: 'Phone', link: '/api/phone.html' },
-      { text: 'Random', link: '/api/random.html' },
       { text: 'Science', link: '/api/science.html' },
       { text: 'String', link: '/api/string.html' },
       { text: 'System', link: '/api/system.html' },

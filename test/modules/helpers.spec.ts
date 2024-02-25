@@ -993,7 +993,7 @@ describe('helpers', () => {
         });
 
         it('replaces a token with a random value for a method with an object parameter', () => {
-          const actual = faker.helpers.fake('{{random.alpha({"count": 3})}}');
+          const actual = faker.helpers.fake('{{string.alpha({"length": 3})}}');
           expect(actual).toMatch(/^[a-z]{3}$/i);
         });
 
