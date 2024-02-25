@@ -1077,7 +1077,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  enumValue<const T extends Record<string | number, string | number>>(
+  // This does not use `const T` because enums shouldn't be created on the spot.
+  enumValue<T extends Record<string | number, string | number>>(
     enumObject: T
   ): T[keyof T] {
     // ignore numeric keys added by TypeScript

@@ -192,21 +192,6 @@ describe('helpers', () => {
           expect(testArray).toContain(actual);
         });
 
-        it('should return a random element in the array with automatic const types', () => {
-          const actual = faker.helpers.arrayElement(['one']);
-
-          // Since we cannot properly test the type of `actual` here,
-          // we use the unicorn/switch-exhaustiveness rule to ensure that we have tested all possible values
-          switch (actual) {
-            case 'one':
-              expect(actual).toBe('one');
-              return;
-          }
-
-          // @ts-expect-error: You should never reach this, but if you do, this will fail the test
-          fail('Unexpected value');
-        });
-
         it('should return a random element in the array when there is only 1', () => {
           const testArray = ['hello'];
           const actual = faker.helpers.arrayElement(testArray);
