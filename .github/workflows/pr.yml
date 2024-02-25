@@ -41,12 +41,15 @@ jobs:
           pnpm run build
           pnpm run test -u
         continue-on-error: true
+        env:
+          CI_PREFLIGHT: true
 
       - name: Check diff
         id: diff
         run: |
           git add .
-          git diff --cached --exit-code
+          git diff --cached --name-only | sed -E 's/^(.*)$/::error file=\1,title=Diff detected::Please run `pnpm run preflight` and commit the changes./'
+          git diff --cached --name-only --exit-code
         continue-on-error: true
 
       - name: Transpile ts

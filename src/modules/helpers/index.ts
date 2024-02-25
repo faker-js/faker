@@ -4,8 +4,6 @@ import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
-import type { RecordKey } from './unique';
-import * as uniqueExec from './unique';
 
 /**
  * Returns a number based on given RegEx-based quantifier symbol or quantifier values.
@@ -204,14 +202,6 @@ export function legacyReplaceSymbolWithNumber(
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
 export class SimpleHelpersModule extends SimpleModuleBase {
-  /**
-   * Global store of unique values.
-   * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
-   *
-   * @internal
-   */
-  private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
-
   /**
    * Slugifies the given string.
    * For that all spaces (` `) are replaced by hyphens (`-`)
@@ -643,7 +633,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: T[],
     options: {
       /**
@@ -669,7 +659,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: ReadonlyArray<T>,
     options?: {
       /**
@@ -696,7 +686,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: T[],
     options?: {
       /**
@@ -707,7 +697,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       inplace?: boolean;
     }
   ): T[];
-  shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
+  shuffle<const T>(list: T[], options: { inplace?: boolean } = {}): T[] {
     const { inplace = false } = options;
 
     if (!inplace) {
@@ -744,7 +734,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.0.0
    */
-  uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
+  uniqueArray<const T>(
+    source: ReadonlyArray<T> | (() => T),
+    length: number
+  ): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = [...set];
@@ -823,7 +816,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  maybe<TResult>(
+  maybe<const TResult>(
     callback: () => TResult,
     options: {
       /**
@@ -855,7 +848,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  objectKey<T extends Record<string, unknown>>(object: T): keyof T {
+  objectKey<const T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
     return this.arrayElement(array);
   }
@@ -874,7 +867,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
+  objectValue<const T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.helpers.objectKey(object);
     return object[key];
   }
@@ -893,7 +886,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  objectEntry<T extends Record<string, unknown>>(
+  objectEntry<const T extends Record<string, unknown>>(
     object: T
   ): [keyof T, T[keyof T]] {
     const key = this.faker.helpers.objectKey(object);
@@ -914,7 +907,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElement<T>(array: ReadonlyArray<T>): T {
+  arrayElement<const T>(array: ReadonlyArray<T>): T {
     // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
       throw new FakerError(
@@ -951,7 +944,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  weightedArrayElement<T>(
+  weightedArrayElement<const T>(
     array: ReadonlyArray<{
       /**
        * The weight of the value.
@@ -1010,7 +1003,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElements<T>(
+  arrayElements<const T>(
     array: ReadonlyArray<T>,
     count?:
       | number
@@ -1084,6 +1077,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
+  // This does not use `const T` because enums shouldn't be created on the spot.
   enumValue<T extends Record<string | number, string | number>>(
     enumObject: T
   ): T[keyof T] {
@@ -1130,114 +1124,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   }
 
   /**
-   * Generates a unique result using the results of the given method.
-   * Used unique entries will be stored internally and filtered from subsequent calls.
-   *
-   * @template TMethod The type of the method to execute.
-   *
-   * @param method The method used to generate the values.
-   * @param args The arguments used to call the method. Defaults to `[]`.
-   * @param options The optional options used to configure this method.
-   * @param options.startTime This parameter does nothing.
-   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
-   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
-   * @param options.currentIterations This parameter does nothing.
-   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
-   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
-   * @param options.store The store of unique entries. Defaults to a global store.
-   *
-   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
-   *
-   * @example
-   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
-   *
-   * @since 7.5.0
-   *
-   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
-   * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
-   */
-  unique<
-    TMethod extends (
-      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ...parameters: any[]
-    ) => RecordKey,
-  >(
-    method: TMethod,
-    args: Parameters<TMethod> = [] as unknown as Parameters<TMethod>,
-    options: {
-      /**
-       * This parameter does nothing.
-       *
-       * @default new Date().getTime()
-       */
-      startTime?: number;
-      /**
-       * The time in milliseconds this method may take before throwing an error.
-       *
-       * @default 50
-       */
-      maxTime?: number;
-      /**
-       * The total number of attempts to try before throwing an error.
-       *
-       * @default 50
-       */
-      maxRetries?: number;
-      /**
-       * This parameter does nothing.
-       *
-       * @default 0
-       */
-      currentIterations?: number;
-      /**
-       * The value or values that should be excluded/skipped.
-       *
-       * @default []
-       */
-      exclude?: RecordKey | RecordKey[];
-      /**
-       * The function used to determine whether a value was already returned.
-       *
-       * Defaults to check the existence of the key.
-       *
-       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
-       */
-      compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
-      /**
-       * The store of unique entries.
-       *
-       * Defaults to a global store.
-       */
-      store?: Record<RecordKey, RecordKey>;
-    } = {}
-  ): ReturnType<TMethod> {
-    deprecated({
-      deprecated: 'faker.helpers.unique',
-      proposed:
-        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
-      since: '8.0',
-      until: '9.0',
-    });
-
-    const {
-      maxTime = 50,
-      maxRetries = 50,
-      exclude = [],
-      store = this.uniqueStore,
-    } = options;
-    return uniqueExec.exec(method, args, {
-      ...options,
-      startTime: Date.now(),
-      maxTime,
-      maxRetries,
-      currentIterations: 0,
-      exclude,
-      store,
-    });
-  }
-
-  /**
    * Generates an array containing values returned by the given method.
    *
    * @template TResult The type of elements.
@@ -1252,7 +1138,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  multiple<TResult>(
+  multiple<const TResult>(
     method: () => TResult,
     options: {
       /**

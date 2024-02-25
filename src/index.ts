@@ -128,8 +128,6 @@ export type {
   SexType,
 } from './modules/person';
 export type { PhoneModule } from './modules/phone';
-// eslint-disable-next-line deprecation/deprecation
-export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
