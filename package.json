@@ -129,7 +129,7 @@
     "vitest": "~1.3.0",
     "vue": "~3.4.20"
   },
-  "packageManager": "pnpm@8.15.3",
+  "packageManager": "pnpm@8.15.4",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
