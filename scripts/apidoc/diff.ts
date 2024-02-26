@@ -1,4 +1,4 @@
-import type { ApiDiffHashs } from './output/diff-index';
+import type { ApiDiffHashes } from './output/diff-index';
 import {
   FILE_NAME_DOCS_DIFF_INDEX,
   FILE_PATH_DOCS_DIFF_INDEX,
@@ -9,7 +9,7 @@ import {
  *
  * @param url The url to load the diff index from.
  */
-async function loadRemote(url: string): Promise<ApiDiffHashs> {
+async function loadRemote(url: string): Promise<ApiDiffHashes> {
   return fetch(url).then((res) => {
     if (!res.ok) {
       throw new Error(
@@ -17,7 +17,7 @@ async function loadRemote(url: string): Promise<ApiDiffHashs> {
       );
     }
 
-    return res.json() as Promise<ApiDiffHashs>;
+    return res.json() as Promise<ApiDiffHashes>;
   });
 }
 
@@ -26,8 +26,8 @@ async function loadRemote(url: string): Promise<ApiDiffHashs> {
  *
  * @param path The path to load the diff index from. Should start with `file://` for cross platform compatibility.
  */
-async function loadLocal(path: string): Promise<ApiDiffHashs> {
-  return import(path).then((imp) => imp.default as ApiDiffHashs);
+async function loadLocal(path: string): Promise<ApiDiffHashes> {
+  return import(path).then((imp) => imp.default as ApiDiffHashes);
 }
 
 /**
@@ -37,7 +37,7 @@ async function loadLocal(path: string): Promise<ApiDiffHashs> {
  *
  * @param source The source to load the diff index from.
  */
-async function load(source: string): Promise<ApiDiffHashs> {
+async function load(source: string): Promise<ApiDiffHashes> {
   return source.startsWith('https://') ? loadRemote(source) : loadLocal(source);
 }
 

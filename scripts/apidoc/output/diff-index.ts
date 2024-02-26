@@ -14,17 +14,17 @@ export const FILE_PATH_DOCS_DIFF_INDEX = resolve(
 /**
  * The diff hashes for the entire api.
  */
-export interface ApiDiffHashs {
+export interface ApiDiffHashes {
   /**
-   * The pages with their diff hashs.
+   * The pages with their diff hashes.
    */
-  [pages: string]: ApiPageDiffHashs;
+  [pages: string]: ApiPageDiffHashes;
 }
 
 /**
  * The diff hashes for a single api doc page.
  */
-export interface ApiPageDiffHashs {
+export interface ApiPageDiffHashes {
   /**
    * The checksum of the entire page.
    */
@@ -41,13 +41,13 @@ export interface ApiPageDiffHashs {
  * @param pages The pages to write into the index.
  */
 export function writeDiffIndex(pages: RawApiDocsPage[]): void {
-  const diffIndex: ApiDiffHashs = Object.fromEntries(
-    pages.map((page) => [page.title, pageDiffHashs(page)])
+  const diffIndex: ApiDiffHashes = Object.fromEntries(
+    pages.map((page) => [page.title, pageDiffHashes(page)])
   );
   writeFileSync(FILE_PATH_DOCS_DIFF_INDEX, JSON.stringify(diffIndex));
 }
 
-function pageDiffHashs(page: RawApiDocsPage): ApiPageDiffHashs {
+function pageDiffHashes(page: RawApiDocsPage): ApiPageDiffHashes {
   return {
     pageHash: diffHash({
       ...page,
