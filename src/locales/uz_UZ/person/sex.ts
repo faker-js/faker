@@ -1,4 +1,1 @@
-export default [
-  "Erkak",
-  "Ayol"
-];
+export default ['Erkak', 'Ayol'];

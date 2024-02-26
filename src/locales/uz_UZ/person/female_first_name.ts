@@ -2,8 +2,6 @@ export default [
   'Adiba',
   'Afzuna',
   'Afruza',
-  'Afzuna',
-  'Afruza',
   'Akifa',
   'Alima',
   'Anora',
@@ -133,5 +131,5 @@ export default [
   'Xalima',
   'Yozida',
   'Zilola',
-  'Zuxra'
+  'Zuxra',
 ];
