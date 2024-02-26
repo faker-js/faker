@@ -25,7 +25,7 @@ import {
 const randomizer = generateMersenne53Randomizer();
 ```
 
-The 32bit `Randomizer` is faster, but the 53bit `Randomizer` generates better random values (with significantly less duplicates).
+The 32bit `Randomizer` is faster, but the 53bit `Randomizer` generates better random values (with significantly fewer duplicates).
 
 But you can also implement your own by implementing the [related interface](/api/randomizer.html).
 
