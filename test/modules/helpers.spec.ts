@@ -1175,18 +1175,9 @@ describe('helpers', () => {
   describe('uniqueArray', () => {
     it('works as expected when seeded', () => {
       const input = ['a', 'a', 'a', 'a', 'a', 'f', 'g', 'h', 'i', 'j'];
-      const length = 5;
       faker.seed(100);
-      const unique = faker.helpers.uniqueArray(input, length);
-      expect(unique).toMatchInlineSnapshot(`
-        [
-          "j",
-          "a",
-          "g",
-          "i",
-          "f",
-        ]
-      `);
+      const unique = faker.helpers.uniqueArray(input, 5);
+      expect(unique).toStrictEqual(['j', 'a', 'g', 'i', 'f']);
     });
   });
 });
