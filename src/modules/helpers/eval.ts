@@ -54,7 +54,7 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * @param faker The faker instance to resolve array elements.
  * @param entrypoints The entrypoints to use when evaluating the expression.
  *
- * @see faker.helpers.fake() If you wish to have a string with multiple expressions.
+ * @see faker.helpers.fake(): If you wish to have a string with multiple expressions.
  *
  * @example
  * fakeEval('person.lastName', faker) // 'Barrows'
