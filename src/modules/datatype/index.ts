@@ -1,7 +1,7 @@
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
- * Module to generate a boolean value.
+ * Module to generate boolean values.
  *
  * ### Overview
  *
