@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`location > 42 > buildingNumber 1`] = `"8917"`;
+exports[`location > 42 > buildingNumber 1`] = `"9751"`;
 
 exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
@@ -8,7 +8,7 @@ exports[`location > 42 > cardinalDirection > with abbreviated option 1`] = `"E"`
 
 exports[`location > 42 > cardinalDirection > with boolean 1`] = `"East"`;
 
-exports[`location > 42 > city 1`] = `"Port Valentine"`;
+exports[`location > 42 > city 1`] = `"Fort Moses"`;
 
 exports[`location > 42 > cityName 1`] = `"Hamilton"`;
 
@@ -44,15 +44,15 @@ exports[`location > 42 > latitude > with max and min option 1`] = `-2.5092`;
 
 exports[`location > 42 > latitude > with max option 1`] = `-52.546`;
 
-exports[`location > 42 > latitude > with max, min and precision option 1`] = `-2.5091977138`;
+exports[`location > 42 > latitude > with max, min and precision option 1`] = `-2.5091976231`;
 
 exports[`location > 42 > latitude > with min 1`] = `27.454`;
 
 exports[`location > 42 > latitude > with min option 1`] = `27.454`;
 
-exports[`location > 42 > latitude > with precision 1`] = `-22.5827794243`;
+exports[`location > 42 > latitude > with precision 1`] = `-22.5827786075`;
 
-exports[`location > 42 > latitude > with precision option 1`] = `-22.5827794243`;
+exports[`location > 42 > latitude > with precision option 1`] = `-22.5827786075`;
 
 exports[`location > 42 > longitude > noArgs 1`] = `-45.1656`;
 
@@ -62,69 +62,69 @@ exports[`location > 42 > longitude > with max and min option 1`] = `-2.5092`;
 
 exports[`location > 42 > longitude > with max option 1`] = `-108.8374`;
 
-exports[`location > 42 > longitude > with max, min and precision option 1`] = `-2.5091977138`;
+exports[`location > 42 > longitude > with max, min and precision option 1`] = `-2.5091976231`;
 
 exports[`location > 42 > longitude > with min 1`] = `61.1626`;
 
 exports[`location > 42 > longitude > with min option 1`] = `61.1626`;
 
-exports[`location > 42 > longitude > with precision 1`] = `-45.1655588485`;
+exports[`location > 42 > longitude > with precision 1`] = `-45.165557215`;
 
-exports[`location > 42 > longitude > with precision option 1`] = `-45.1655588485`;
+exports[`location > 42 > longitude > with precision option 1`] = `-45.165557215`;
 
 exports[`location > 42 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  0.08140632875358447,
-  -0.08093642792425726,
+  0.09716177782431099,
+  -0.0966009319947716,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > noArgs 1`] = `
 [
   -22.5828,
-  106.7555,
+  162.2572,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > only isMetric 1`] = `
 [
   -22.5828,
-  106.7555,
+  162.2572,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > only radius 1`] = `
 [
   -22.5828,
-  106.7555,
+  162.2572,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > with origin and isMetric 1`] = `
 [
-  37.05058762889859,
-  -13.05029562250138,
+  37.06038001199696,
+  -13.060031481137685,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > with origin and radius 1`] = `
 [
-  37.122112668351875,
-  -13.121407798779614,
+  37.14574901717946,
+  -13.144907711778615,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > with origin, radius and isMetric 1`] = `
 [
-  37.075875092904894,
-  -13.075437119965613,
+  37.09056366755245,
+  -13.090040907920184,
 ]
 `;
 
 exports[`location > 42 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
 [
   -22.5828,
-  106.7555,
+  162.2572,
 ]
 `;
 
@@ -134,7 +134,7 @@ exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`
 
 exports[`location > 42 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
-exports[`location > 42 > secondaryAddress 1`] = `"Apt. 891"`;
+exports[`location > 42 > secondaryAddress 1`] = `"Apt. 975"`;
 
 exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
@@ -142,25 +142,25 @@ exports[`location > 42 > state > with options 1`] = `"ME"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Schinner Villages"`;
+exports[`location > 42 > street 1`] = `"Wiegand Ridges"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Oxford Street"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Anderson Throughway"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Oxford Street"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"9751 Anderson Throughway"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Oxford Street Suite 241"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"9751 Anderson Throughway Suite 709"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
-exports[`location > 42 > zipCode > noArgs 1`] = `"79177"`;
+exports[`location > 42 > zipCode > noArgs 1`] = `"97511"`;
 
-exports[`location > 42 > zipCode > with format option 1`] = `"379-177"`;
+exports[`location > 42 > zipCode > with format option 1`] = `"397-511"`;
 
-exports[`location > 42 > zipCode > with string 1`] = `"379"`;
+exports[`location > 42 > zipCode > with string 1`] = `"397"`;
 
-exports[`location > 42 > zipCodeByState > noArgs 1`] = `"79177"`;
+exports[`location > 42 > zipCodeByState > noArgs 1`] = `"97511"`;
 
-exports[`location > 1211 > buildingNumber 1`] = `"587"`;
+exports[`location > 1211 > buildingNumber 1`] = `"929"`;
 
 exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
 
@@ -168,7 +168,7 @@ exports[`location > 1211 > cardinalDirection > with abbreviated option 1`] = `"W
 
 exports[`location > 1211 > cardinalDirection > with boolean 1`] = `"West"`;
 
-exports[`location > 1211 > city 1`] = `"La Crosse"`;
+exports[`location > 1211 > city 1`] = `"The Villages"`;
 
 exports[`location > 1211 > cityName 1`] = `"Utica"`;
 
@@ -204,15 +204,15 @@ exports[`location > 1211 > latitude > with max and min option 1`] = `8.5704`;
 
 exports[`location > 1211 > latitude > with max option 1`] = `2.8521`;
 
-exports[`location > 1211 > latitude > with max, min and precision option 1`] = `8.5704030749`;
+exports[`location > 1211 > latitude > with max, min and precision option 1`] = `8.5704030781`;
 
 exports[`location > 1211 > latitude > with min 1`] = `82.8521`;
 
 exports[`location > 1211 > latitude > with min option 1`] = `82.8521`;
 
-exports[`location > 1211 > latitude > with precision 1`] = `77.1336276737`;
+exports[`location > 1211 > latitude > with precision 1`] = `77.1336277025`;
 
-exports[`location > 1211 > latitude > with precision option 1`] = `77.1336276737`;
+exports[`location > 1211 > latitude > with precision option 1`] = `77.1336277025`;
 
 exports[`location > 1211 > longitude > noArgs 1`] = `154.2673`;
 
@@ -222,69 +222,69 @@ exports[`location > 1211 > longitude > with max and min option 1`] = `8.5704`;
 
 exports[`location > 1211 > longitude > with max option 1`] = `-3.5811`;
 
-exports[`location > 1211 > longitude > with max, min and precision option 1`] = `8.5704030749`;
+exports[`location > 1211 > longitude > with max, min and precision option 1`] = `8.5704030781`;
 
 exports[`location > 1211 > longitude > with min 1`] = `166.4189`;
 
 exports[`location > 1211 > longitude > with min option 1`] = `166.4189`;
 
-exports[`location > 1211 > longitude > with precision 1`] = `154.2672553473`;
+exports[`location > 1211 > longitude > with precision 1`] = `154.267255405`;
 
-exports[`location > 1211 > longitude > with precision option 1`] = `154.2672553473`;
+exports[`location > 1211 > longitude > with precision option 1`] = `154.267255405`;
 
 exports[`location > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  -0.02872111236834621,
-  0.05959024752564801,
+  -0.0559064403336199,
+  0.11599406649133925,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > noArgs 1`] = `
 [
   77.1337,
-  -14.7545,
+  141.6498,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > only isMetric 1`] = `
 [
   77.1337,
-  -14.7545,
+  141.6498,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > only radius 1`] = `
 [
   77.1337,
-  -14.7545,
+  141.6498,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > with origin and isMetric 1`] = `
 [
-  36.98215379643012,
-  -12.962972893442156,
+  36.96526016799632,
+  -12.927922179282291,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > with origin and radius 1`] = `
 [
-  36.95691638741659,
-  -12.910610595257708,
+  36.91613839546868,
+  -12.826004866809171,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > with origin, radius and isMetric 1`] = `
 [
-  36.97323069464518,
-  -12.944459340163235,
+  36.94789219602537,
+  -12.891887302377313,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
 [
   77.1337,
-  -14.7545,
+  141.6498,
 ]
 `;
 
@@ -294,7 +294,7 @@ exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW
 
 exports[`location > 1211 > ordinalDirection > with boolean 1`] = `"Southwest"`;
 
-exports[`location > 1211 > secondaryAddress 1`] = `"Suite 587"`;
+exports[`location > 1211 > secondaryAddress 1`] = `"Suite 929"`;
 
 exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
 
@@ -302,25 +302,25 @@ exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
-exports[`location > 1211 > street 1`] = `"Market Street"`;
+exports[`location > 1211 > street 1`] = `"W Chestnut Street"`;
 
-exports[`location > 1211 > streetAddress > noArgs 1`] = `"587 Breana Wells"`;
+exports[`location > 1211 > streetAddress > noArgs 1`] = `"929 S Broad Street"`;
 
-exports[`location > 1211 > streetAddress > with boolean 1`] = `"587 Breana Wells"`;
+exports[`location > 1211 > streetAddress > with boolean 1`] = `"929 S Broad Street"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"587 Breana Wells Apt. 716"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"929 S Broad Street Suite 468"`;
 
 exports[`location > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
-exports[`location > 1211 > zipCode > noArgs 1`] = `"48721-9061"`;
+exports[`location > 1211 > zipCode > noArgs 1`] = `"82966-7368"`;
 
-exports[`location > 1211 > zipCode > with format option 1`] = `"948-721"`;
+exports[`location > 1211 > zipCode > with format option 1`] = `"982-966"`;
 
-exports[`location > 1211 > zipCode > with string 1`] = `"948"`;
+exports[`location > 1211 > zipCode > with string 1`] = `"982"`;
 
-exports[`location > 1211 > zipCodeByState > noArgs 1`] = `"48721-9061"`;
+exports[`location > 1211 > zipCodeByState > noArgs 1`] = `"82966-7368"`;
 
-exports[`location > 1337 > buildingNumber 1`] = `"61225"`;
+exports[`location > 1337 > buildingNumber 1`] = `"22435"`;
 
 exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
@@ -328,7 +328,7 @@ exports[`location > 1337 > cardinalDirection > with abbreviated option 1`] = `"E
 
 exports[`location > 1337 > cardinalDirection > with boolean 1`] = `"East"`;
 
-exports[`location > 1337 > city 1`] = `"New Carmella"`;
+exports[`location > 1337 > city 1`] = `"East Duane"`;
 
 exports[`location > 1337 > cityName 1`] = `"East Hartford"`;
 
@@ -364,15 +364,15 @@ exports[`location > 1337 > latitude > with max and min option 1`] = `-4.7595`;
 
 exports[`location > 1337 > latitude > with max option 1`] = `-63.7976`;
 
-exports[`location > 1337 > latitude > with max, min and precision option 1`] = `-4.7595064761`;
+exports[`location > 1337 > latitude > with max, min and precision option 1`] = `-4.7595064997`;
 
 exports[`location > 1337 > latitude > with min 1`] = `16.2024`;
 
 exports[`location > 1337 > latitude > with min option 1`] = `16.2024`;
 
-exports[`location > 1337 > latitude > with precision 1`] = `-42.835558285`;
+exports[`location > 1337 > latitude > with precision 1`] = `-42.8355584972`;
 
-exports[`location > 1337 > latitude > with precision option 1`] = `-42.835558285`;
+exports[`location > 1337 > latitude > with precision option 1`] = `-42.8355584972`;
 
 exports[`location > 1337 > longitude > noArgs 1`] = `-85.6711`;
 
@@ -382,69 +382,69 @@ exports[`location > 1337 > longitude > with max and min option 1`] = `-4.7595`;
 
 exports[`location > 1337 > longitude > with max option 1`] = `-130.2153`;
 
-exports[`location > 1337 > longitude > with max, min and precision option 1`] = `-4.7595064761`;
+exports[`location > 1337 > longitude > with max, min and precision option 1`] = `-4.7595064997`;
 
 exports[`location > 1337 > longitude > with min 1`] = `39.7847`;
 
 exports[`location > 1337 > longitude > with min option 1`] = `39.7847`;
 
-exports[`location > 1337 > longitude > with precision 1`] = `-85.67111657`;
+exports[`location > 1337 > longitude > with precision 1`] = `-85.6711169944`;
 
-exports[`location > 1337 > longitude > with precision option 1`] = `-85.67111657`;
+exports[`location > 1337 > longitude > with precision option 1`] = `-85.6711169944`;
 
 exports[`location > 1337 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  0.08055259537977688,
-  -0.006097651409731952,
+  0.022796893471297014,
+  -0.00172567387755862,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > noArgs 1`] = `
 [
   -42.8356,
-  21.7907,
+  -122.8738,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > only isMetric 1`] = `
 [
   -42.8356,
-  21.7907,
+  -122.8738,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > only radius 1`] = `
 [
   -42.8356,
-  21.7907,
+  -122.8738,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > with origin and isMetric 1`] = `
 [
-  37.05004958398222,
-  -13.003788641630877,
+  37.014162112434576,
+  -13.001072040254485,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > with origin and radius 1`] = `
 [
-  37.12082442834317,
-  -13.009146139144832,
+  37.034199804933436,
+  -13.002588848786104,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > with origin, radius and isMetric 1`] = `
 [
-  37.07507884069983,
-  -13.00568330041608,
+  37.02125209810485,
+  -13.001608736321373,
 ]
 `;
 
 exports[`location > 1337 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
 [
   -42.8356,
-  21.7907,
+  -122.8738,
 ]
 `;
 
@@ -454,7 +454,7 @@ exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW
 
 exports[`location > 1337 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
-exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 612"`;
+exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 224"`;
 
 exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
 
@@ -462,20 +462,20 @@ exports[`location > 1337 > state > with options 1`] = `"IN"`;
 
 exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 
-exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
+exports[`location > 1337 > street 1`] = `"Carmella Forge"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"61225 Barton Gateway"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"22435 Westley Ridges"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"61225 Barton Gateway"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"22435 Westley Ridges"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"61225 Barton Gateway Apt. 552"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"22435 Westley Ridges Apt. 461"`;
 
 exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 
-exports[`location > 1337 > zipCode > noArgs 1`] = `"51225"`;
+exports[`location > 1337 > zipCode > noArgs 1`] = `"12435"`;
 
-exports[`location > 1337 > zipCode > with format option 1`] = `"251-225"`;
+exports[`location > 1337 > zipCode > with format option 1`] = `"212-435"`;
 
-exports[`location > 1337 > zipCode > with string 1`] = `"251"`;
+exports[`location > 1337 > zipCode > with string 1`] = `"212"`;
 
-exports[`location > 1337 > zipCodeByState > noArgs 1`] = `"51225"`;
+exports[`location > 1337 > zipCodeByState > noArgs 1`] = `"12435"`;

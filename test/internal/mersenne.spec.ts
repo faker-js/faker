@@ -2,6 +2,7 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import {
   MersenneTwister19937,
   generateMersenne32Randomizer,
+  generateMersenne53Randomizer,
 } from '../../src/internal/mersenne';
 import type { Randomizer } from '../../src/randomizer';
 import { seededRuns } from '../support/seeded-runs';
@@ -84,8 +85,11 @@ describe('MersenneTwister19937', () => {
   });
 });
 
-describe('generateMersenne32Randomizer()', () => {
-  const randomizer: Randomizer = generateMersenne32Randomizer();
+describe.each([
+  ['generateMersenne32Randomizer()', generateMersenne32Randomizer],
+  ['generateMersenne53Randomizer()', generateMersenne53Randomizer],
+])('%s', (_, factory) => {
+  const randomizer: Randomizer = factory();
 
   it('should return a result matching the interface', () => {
     expect(randomizer).toBeDefined();

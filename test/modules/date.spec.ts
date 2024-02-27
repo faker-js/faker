@@ -830,22 +830,23 @@ describe('date', () => {
       faker.setDefaultRefDate(() => new Date(Date.UTC(2020, 0, 1)));
       faker.seed(20200101);
       const date = faker.date.past();
-      expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+      expect(date).toBeInstanceOf(Date);
+      expect(date).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
 
       faker.seed(20200101);
       const date2 = faker.date.past();
-      expect(date2).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+      expect(date2).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
     });
 
     it('should use the refDateSource when refDate is not provided (with value)', () => {
       faker.setDefaultRefDate(Date.UTC(2020, 0, 1));
       faker.seed(20200101);
       const date = faker.date.past();
-      expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+      expect(date).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
 
       faker.seed(20200101);
       const date2 = faker.date.past();
-      expect(date2).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+      expect(date2).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
     });
   });
 });
