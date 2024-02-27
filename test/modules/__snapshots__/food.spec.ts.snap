@@ -2,9 +2,9 @@
 
 exports[`food > 42 > adjective 1`] = `"golden"`;
 
-exports[`food > 42 > description 1`] = `"A succulent venison steak, encased in a sour liquorice root crust, served with a side of bay leaves mashed broccoli."`;
+exports[`food > 42 > description 1`] = `"A succulent quail steak, encased in a crunchy anise crust, served with a side of liquorice root mashed arugula."`;
 
-exports[`food > 42 > dish 1`] = `"Caraway Seed-crusted Rabbit"`;
+exports[`food > 42 > dish 1`] = `"Moses's Special Buckwheat Flour"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 
@@ -20,9 +20,9 @@ exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
 
 exports[`food > 1211 > adjective 1`] = `"tender"`;
 
-exports[`food > 1211 > description 1`] = `"Three tamari with capers, zucchini, onion, onion and rice paper. With a side of baked feijoa, and your choice of persimmon or slivered almonds."`;
+exports[`food > 1211 > description 1`] = `"Three cherries with onion, pumpkin, parsnip, purple carrot and soy flour. With a side of baked prune, and your choice of cayenne or capsicum."`;
 
-exports[`food > 1211 > dish 1`] = `"Lasagne"`;
+exports[`food > 1211 > dish 1`] = `"Sushi"`;
 
 exports[`food > 1211 > ethnicCategory 1`] = `"Texan"`;
 
@@ -38,9 +38,9 @@ exports[`food > 1211 > vegetable 1`] = `"sun dried tomatoes"`;
 
 exports[`food > 1337 > adjective 1`] = `"fluffy"`;
 
-exports[`food > 1337 > description 1`] = `"A slow-roasted White-winged Scoter with a fluffy, moist exterior. Stuffed with dried apricot and covered in kiwi fruit sauce. Sides with carrot puree and wild turnips."`;
+exports[`food > 1337 > description 1`] = `"A slow-roasted Black Oystercatcher with a fresh, fluffy exterior. Stuffed with orange and covered in fingerlime sauce. Sides with bok choy puree and wild english spinach."`;
 
-exports[`food > 1337 > dish 1`] = `"Cauliflower-infused Ostrich"`;
+exports[`food > 1337 > dish 1`] = `"Egyptian Dates Soup"`;
 
 exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
 
