@@ -155,11 +155,6 @@ export class Faker extends SimpleFaker {
      * @default generateMersenne53Randomizer()
      */
     randomizer?: Randomizer;
-  });
-
-  constructor(options: {
-    locale: LocaleDefinition | LocaleDefinition[];
-    randomizer?: Randomizer;
   }) {
     super({ randomizer: options.randomizer });
 
