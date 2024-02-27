@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
 
@@ -388,13 +387,9 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    const values = this.faker.definitions.person.title.descriptor;
-
-    if (values == null) {
-      throw new FakerError('No person.title.descriptor definitions available.');
-    }
-
-    return this.faker.helpers.arrayElement(values);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.person.job_descriptor
+    );
   }
 
   /**
@@ -406,13 +401,9 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobArea(): string {
-    const values = this.faker.definitions.person.title.level;
-
-    if (values == null) {
-      throw new FakerError('No person.title.area definitions available.');
-    }
-
-    return this.faker.helpers.arrayElement(values);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.person.job_area
+    );
   }
 
   /**
@@ -424,13 +415,9 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobType(): string {
-    const values = this.faker.definitions.person.title.job;
-
-    if (values == null) {
-      throw new FakerError('No person.title.job definitions available.');
-    }
-
-    return this.faker.helpers.arrayElement(values);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.person.job_type
+    );
   }
 
   /**
