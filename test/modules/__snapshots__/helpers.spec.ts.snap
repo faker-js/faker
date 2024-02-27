@@ -81,28 +81,28 @@ exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
 
 exports[`helpers > 42 > multiple > with method and count 1`] = `
 [
-  37454,
-  79654,
-  95071,
-  18343,
-  73199,
+  3373557438480384,
+  7174621373661184,
+  8563273238577152,
+  1652233682812928,
+  6593215255805952,
 ]
 `;
 
 exports[`helpers > 42 > multiple > with method and count range 1`] = `
 [
-  79654,
-  95071,
-  18343,
-  73199,
+  7174621373661184,
+  8563273238577152,
+  1652233682812928,
+  6593215255805952,
 ]
 `;
 
 exports[`helpers > 42 > multiple > with only method 1`] = `
 [
-  37454,
-  79654,
-  95071,
+  3373557438480384,
+  7174621373661184,
+  8563273238577152,
 ]
 `;
 
@@ -135,19 +135,19 @@ exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3791-7755
 
 exports[`helpers > 42 > replaceCreditCardSymbols > only symbols 1`] = `"7917-6-7563-4"`;
 
-exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+7*,..-;:_NaN"`;
+exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+7*,..-;:_NaN"`;
 
 exports[`helpers > 42 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > replaceSymbolWithNumber > only symbols 1`] = `"47917"`;
 
-exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+7*,..-;:_"`;
+exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+7*,..-;:_"`;
 
 exports[`helpers > 42 > replaceSymbols > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3U17U5"`;
 
-exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=J\`+71,..-;:_"`;
+exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=J\`+71,..-;:_"`;
 
 exports[`helpers > 42 > shuffle > with array 1`] = `
 [
@@ -203,14 +203,6 @@ exports[`helpers > 42 > shuffle > with array and inplace true 1`] = `
 exports[`helpers > 42 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > slugify > some string 1`] = `"hello-world"`;
-
-exports[`helpers > 42 > unique > with () => number 1`] = `3373557438480384`;
-
-exports[`helpers > 42 > unique > with () => number and args 1`] = `19`;
-
-exports[`helpers > 42 > unique > with customMethod 1`] = `"Test-188"`;
-
-exports[`helpers > 42 > unique > with customMethod and args 1`] = `"prefix-1-Test-188"`;
 
 exports[`helpers > 42 > uniqueArray > with array 1`] = `
 [
@@ -315,34 +307,34 @@ exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
 
 exports[`helpers > 1211 > multiple > with method and count 1`] = `
 [
-  92852,
-  45901,
-  89347,
-  77826,
-  22557,
+  8363366036799488,
+  4134441414819840,
+  8047677172350976,
+  7010029022478336,
+  2031760839802880,
 ]
 `;
 
 exports[`helpers > 1211 > multiple > with method and count range 1`] = `
 [
-  45901,
-  89347,
-  77826,
-  22557,
-  12988,
-  99725,
-  3842,
-  67199,
-  15897,
-  68481,
+  4134441414819840,
+  8047677172350976,
+  7010029022478336,
+  2031760839802880,
+  1169939440336896,
+  8982492805595136,
+  346135076012032,
+  6052754548064256,
+  1431911878623232,
+  6168278875504640,
 ]
 `;
 
 exports[`helpers > 1211 > multiple > with only method 1`] = `
 [
-  92852,
-  45901,
-  89347,
+  8363366036799488,
+  4134441414819840,
+  8047677172350976,
 ]
 `;
 
@@ -375,19 +367,19 @@ exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9487-21
 
 exports[`helpers > 1211 > replaceCreditCardSymbols > only symbols 1`] = `"4872-9-1927-1"`;
 
-exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9\\"§$%&/()=?\`+4*,..-;:_NaN"`;
+exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+4*,..-;:_NaN"`;
 
 exports[`helpers > 1211 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > replaceSymbolWithNumber > only symbols 1`] = `"94872"`;
 
-exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9\\"§$%&/()=?\`+4*,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+4*,..-;:_"`;
 
 exports[`helpers > 1211 > replaceSymbols > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9L72D0"`;
 
-exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=Y\`+47,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=Y\`+47,..-;:_"`;
 
 exports[`helpers > 1211 > shuffle > with array 1`] = `
 [
@@ -443,14 +435,6 @@ exports[`helpers > 1211 > shuffle > with array and inplace true 1`] = `
 exports[`helpers > 1211 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > slugify > some string 1`] = `"hello-world"`;
-
-exports[`helpers > 1211 > unique > with () => number 1`] = `8363366036799488`;
-
-exports[`helpers > 1211 > unique > with () => number and args 1`] = `47`;
-
-exports[`helpers > 1211 > unique > with customMethod 1`] = `"Test-465"`;
-
-exports[`helpers > 1211 > unique > with customMethod and args 1`] = `"prefix-1-Test-465"`;
 
 exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 [
@@ -544,27 +528,27 @@ exports[`helpers > 1337 > maybe > with value and probability 1`] = `undefined`;
 
 exports[`helpers > 1337 > multiple > with method and count 1`] = `
 [
-  26202,
-  56052,
-  15868,
-  21258,
-  27812,
+  2360108468142080,
+  5048803172286464,
+  1429298200182784,
+  1914819313664000,
+  2505140957347840,
 ]
 `;
 
 exports[`helpers > 1337 > multiple > with method and count range 1`] = `
 [
-  56052,
-  15868,
-  21258,
+  5048803172286464,
+  1429298200182784,
+  1914819313664000,
 ]
 `;
 
 exports[`helpers > 1337 > multiple > with only method 1`] = `
 [
-  26202,
-  56052,
-  15868,
+  2360108468142080,
+  5048803172286464,
+  1429298200182784,
 ]
 `;
 
@@ -597,19 +581,19 @@ exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2512-25
 
 exports[`helpers > 1337 > replaceCreditCardSymbols > only symbols 1`] = `"5122-5-5424-8"`;
 
-exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+5*,..-;:_NaN"`;
+exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+5*,..-;:_NaN"`;
 
 exports[`helpers > 1337 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > replaceSymbolWithNumber > only symbols 1`] = `"45122"`;
 
-exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+5*,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+5*,..-;:_"`;
 
 exports[`helpers > 1337 > replaceSymbols > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2OF2OA"`;
 
-exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=G\`+5F,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=G\`+5F,..-;:_"`;
 
 exports[`helpers > 1337 > shuffle > with array 1`] = `
 [
@@ -665,14 +649,6 @@ exports[`helpers > 1337 > shuffle > with array and inplace true 1`] = `
 exports[`helpers > 1337 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > slugify > some string 1`] = `"hello-world"`;
-
-exports[`helpers > 1337 > unique > with () => number 1`] = `2360108468142080`;
-
-exports[`helpers > 1337 > unique > with () => number and args 1`] = `13`;
-
-exports[`helpers > 1337 > unique > with customMethod 1`] = `"Test-132"`;
-
-exports[`helpers > 1337 > unique > with customMethod and args 1`] = `"prefix-1-Test-132"`;
 
 exports[`helpers > 1337 > uniqueArray > with array 1`] = `
 [

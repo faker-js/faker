@@ -4,7 +4,7 @@ import type { AlphaNumericChar } from '../../../src/modules/string';
 import type { LiteralUnion } from '../../../src/utils/types';
 // explicitly export types so they show up in the docs as decomposed types
 export type { NumberColorFormat, StringColorFormat } from '../../../src';
-export { Casing, ColorFormat, AlphaNumericChar, LiteralUnion };
+export { AlphaNumericChar, Casing, ColorFormat, LiteralUnion };
 
 /**
  * Parameter options type with default from signature.

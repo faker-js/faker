@@ -1,4 +1,7 @@
+// organize-imports-ignore
 export type {
+  /** @deprecated Use LocationDefinitions instead */
+  LocationDefinition as AddressDefinitions,
   AirlineDefinition,
   /** @deprecated Use AirlineDefinition instead */
   AirlineDefinition as AirlineDefinitions,
@@ -27,6 +30,7 @@ export type {
   FinanceDefinition,
   /** @deprecated Use FinanceDefinition instead */
   FinanceDefinition as FinanceDefinitions,
+  FoodDefinition,
   HackerDefinition,
   /** @deprecated Use HackerDefinition instead */
   HackerDefinition as HackerDefinitions,
@@ -35,8 +39,6 @@ export type {
   InternetDefinition as InternetDefinitions,
   LocaleDefinition,
   LocaleEntry,
-  /** @deprecated Use LocationDefinitions instead */
-  LocationDefinition as AddressDefinitions,
   LocationDefinition,
   LoremDefinition,
   /** @deprecated Use LoremDefinition instead */
@@ -79,14 +81,14 @@ export type { AircraftType, AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
+  /** @deprecated Use CssFunctionType instead */
+  CssFunctionType as CSSFunction,
+  /** @deprecated Use CssSpaceType instead */
+  CssSpaceType as CSSSpace,
   Casing,
   ColorFormat,
   ColorModule,
-  /** @deprecated Use CssFunctionType instead */
-  CssFunctionType as CSSFunction,
   CssFunctionType,
-  /** @deprecated Use CssSpaceType instead */
-  CssSpaceType as CSSSpace,
   CssSpaceType,
   NumberColorFormat,
   StringColorFormat,
@@ -97,6 +99,7 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type { Currency, FinanceModule } from './modules/finance';
+export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
@@ -118,8 +121,6 @@ export type {
   SexType,
 } from './modules/person';
 export type { PhoneModule } from './modules/phone';
-// eslint-disable-next-line deprecation/deprecation
-export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';

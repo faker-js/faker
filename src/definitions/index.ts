@@ -10,6 +10,7 @@ export type { DatabaseDefinition } from './database';
 export type { DateDefinition, DateEntryDefinition } from './date';
 export type { LocaleDefinition, LocaleEntry } from './definitions';
 export type { FinanceDefinition } from './finance';
+export type { FoodDefinition } from './food';
 export type { HackerDefinition } from './hacker';
 export type { InternetDefinition } from './internet';
 export type { LocationDefinition } from './location';

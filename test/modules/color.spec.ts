@@ -122,8 +122,8 @@ describe('color', () => {
             format: 'decimal',
             includeAlpha: true,
           });
-          expect(color[color.length - 1]).toBeGreaterThanOrEqual(0);
-          expect(color[color.length - 1]).toBeLessThanOrEqual(1);
+          expect(color.at(-1)).toBeGreaterThanOrEqual(0);
+          expect(color.at(-1)).toBeLessThanOrEqual(1);
           for (const value of color.slice(0, 4)) {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(255);

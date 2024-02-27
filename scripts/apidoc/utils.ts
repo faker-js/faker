@@ -45,7 +45,7 @@ export const pathOutputDir = resolve(pathDocsDir, 'api');
 // Functions
 
 export function adjustUrls(description: string): string {
-  return description.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
+  return description.replaceAll(/https:\/\/(next.)?fakerjs.dev\//g, '/');
 }
 
 export function mapByName<TInput extends { name: string }, TValue>(
@@ -65,7 +65,7 @@ export function mapByName<TInput extends { name: string }, TValue>(
 export function methodDiffHash(method: Method): string {
   return diffHash({
     ...method,
-    sourcePath: method.sourcePath.replace(/#.*/g, ''),
+    sourcePath: method.sourcePath.replaceAll(/#.*/g, ''),
   });
 }
 

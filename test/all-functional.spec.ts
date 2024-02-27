@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { allLocales, Faker, RandomModule } from '../src';
+import type { Faker, allLocales } from '../src';
 import { allFakers, fakerEN } from '../src';
 import { keys } from '../src/internal/keys';
 
@@ -55,9 +55,6 @@ const BROKEN_LOCALE_METHODS = {
     zipCode: ['en_HK'],
     zipCodeByState: ['en_HK'],
   },
-  random: {
-    locale: '*', // locale() has been pseudo removed
-  } as SkipConfig<RandomModule>,
   string: {
     fromCharacters: '*',
   },

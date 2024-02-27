@@ -643,10 +643,9 @@ export class FinanceModule extends ModuleBase {
   /**
    * Returns a random currency object, containing `code`, `name `and `symbol` properties.
    *
-   * @see
-   * faker.finance.currencyCode(): For generating specifically the currency code.
-   * faker.finance.currencyName(): For generating specifically the currency name.
-   * faker.finance.currencySymbol(): For generating specifically the currency symbol.
+   * @see faker.finance.currencyCode(): For generating specifically the currency code.
+   * @see faker.finance.currencyName(): For generating specifically the currency name.
+   * @see faker.finance.currencySymbol(): For generating specifically the currency symbol.
    *
    * @example
    * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
@@ -760,8 +759,8 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random credit card number.
    *
-   * @param options An options object. Defaults to `''`.
-   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
+   * @param options An options object.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one. Defaults to `''`.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -782,7 +781,7 @@ export class FinanceModule extends ModuleBase {
    * Generates a random credit card number.
    *
    * @param options An options object, the issuer or a custom format.
-   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
+   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one. Defaults to `''`.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
@@ -851,7 +850,7 @@ export class FinanceModule extends ModuleBase {
       format = this.faker.helpers.arrayElement(formats);
     }
 
-    format = format.replace(/\//g, '');
+    format = format.replaceAll('/', '');
     return this.faker.helpers.replaceCreditCardSymbols(format);
   }
 

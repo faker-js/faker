@@ -11,7 +11,7 @@ const { readGitignoreFiles } = require('eslint-gitignore');
 module.exports = defineConfig({
   ignorePatterns: [
     ...readGitignoreFiles(),
-    '.eslintrc.js', // Skip self linting
+    '.eslintrc.cjs', // Skip self linting
   ],
   root: true,
   env: {
@@ -44,13 +44,6 @@ module.exports = defineConfig({
     'unicorn/number-literal-case': 'off', // incompatible with prettier
     'unicorn/prefer-ternary': 'off', // ternaries aren't always better
 
-    // TODO @Shinigami92 2023-09-23: prefer-at should be turned on when we drop support for Node 14.
-    'unicorn/prefer-at': 'off',
-    // TODO @Shinigami92 2023-09-23: prefer-string-replace-all should be turned on when we drop support for Node 14.
-    'unicorn/prefer-string-replace-all': 'off',
-    // TODO @ST-DDT 2023-10-28: The following rule should be turned on when we switch to esm.
-    'unicorn/prefer-top-level-await': 'off',
-
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
@@ -59,7 +52,6 @@ module.exports = defineConfig({
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
-    'unicorn/no-useless-switch-case': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-string-slice': 'off',

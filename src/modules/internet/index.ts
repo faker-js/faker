@@ -276,7 +276,7 @@ export class InternetModule extends ModuleBase {
     let localPart: string = this.userName({ firstName, lastName });
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
-    localPart = localPart.replace(/[^A-Za-z0-9._+-]+/g, '');
+    localPart = localPart.replaceAll(/[^A-Za-z0-9._+-]+/g, '');
 
     // The local part of an email address is limited to 64 chars per RFC 3696
     // We limit to 50 chars to be more realistic
@@ -291,7 +291,7 @@ export class InternetModule extends ModuleBase {
     }
 
     // local parts may not contain two or more consecutive . characters
-    localPart = localPart.replace(/\.{2,}/g, '.');
+    localPart = localPart.replaceAll(/\.{2,}/g, '.');
 
     // local parts may not start with or end with a . character
     localPart = localPart.replace(/^\./, '');
@@ -639,29 +639,23 @@ export class InternetModule extends ModuleBase {
       lastName: hasLastName = legacyLastName,
     } = options;
 
-    let result: string;
-    const strategy = this.faker.number.int(hasLastName ? 1 : 2);
     const separator = this.faker.helpers.arrayElement(['.', '_']);
-    switch (strategy) {
-      case 0:
-        result = `${firstName}${separator}${lastName}${this.faker.number.int(
-          99
-        )}`;
-        break;
-      case 1:
-        result = `${firstName}${separator}${lastName}`;
-        break;
-      case 2:
-      default:
-        result = `${firstName}${this.faker.number.int(99)}`;
-        break;
+    const disambiguator = this.faker.number.int(99);
+    const strategies: Array<() => string> = [
+      () => `${firstName}${separator}${lastName}${disambiguator}`,
+      () => `${firstName}${separator}${lastName}`,
+    ];
+    if (!hasLastName) {
+      strategies.push(() => `${firstName}${disambiguator}`);
     }
+
+    let result = this.faker.helpers.arrayElement(strategies)();
 
     // There may still be non-ascii characters in the result.
     // First remove simple accents etc
     result = result
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036F]/g, ''); // removes combining marks
+      .replaceAll(/[\u0300-\u036F]/g, ''); // removes combining marks
 
     result = [...result]
       .map((char) => {
@@ -681,8 +675,8 @@ export class InternetModule extends ModuleBase {
         return charCode.toString(36);
       })
       .join('');
-    result = result.toString().replace(/'/g, '');
-    result = result.replace(/ /g, '');
+    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll(' ', '');
 
     return result;
   }
@@ -701,11 +695,11 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
-   * faker.internet.displayName({ firstname 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
-   * faker.internet.displayName({ firstname 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.displayName({ firstname 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
-   * faker.internet.displayName({ firstname 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
-   * faker.internet.displayName({ firstname '大羽', lastName: '陳' }) // '大羽.陳'
+   * faker.internet.displayName({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
+   * faker.internet.displayName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+   * faker.internet.displayName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
+   * faker.internet.displayName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
+   * faker.internet.displayName({ firstName: '大羽', lastName: '陳' }) // '大羽.陳'
    *
    * @since 8.0.0
    */
@@ -826,26 +820,17 @@ export class InternetModule extends ModuleBase {
       lastName = legacyLastName ?? this.faker.person.lastName(),
     } = options;
 
-    let result: string;
-    switch (this.faker.number.int(2)) {
-      case 0:
-        result = `${firstName}${this.faker.number.int(99)}`;
-        break;
-      case 1:
-        result =
-          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
-        break;
-      case 2:
-      default:
-        result = `${firstName}${this.faker.helpers.arrayElement([
-          '.',
-          '_',
-        ])}${lastName}${this.faker.number.int(99)}`;
-        break;
-    }
+    const separator = this.faker.helpers.arrayElement(['.', '_']);
+    const disambiguator = this.faker.number.int(99);
+    const strategies: Array<() => string> = [
+      () => `${firstName}${disambiguator}`,
+      () => `${firstName}${separator}${lastName}`,
+      () => `${firstName}${separator}${lastName}${disambiguator}`,
+    ];
 
-    result = result.toString().replace(/'/g, '');
-    result = result.replace(/ /g, '');
+    let result = this.faker.helpers.arrayElement(strategies)();
+    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll(' ', '');
     return result;
   }
 
