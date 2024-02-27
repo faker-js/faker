@@ -4,26 +4,26 @@ exports[`helpers > 42 > arrayElement > with array 1`] = `"o"`;
 
 exports[`helpers > 42 > arrayElements > with array 1`] = `
 [
-  "r",
-  "W",
-  "e",
   "d",
-  "l",
+  "e",
+  " ",
+  "r",
+  "!",
 ]
 `;
 
 exports[`helpers > 42 > arrayElements > with array and count 1`] = `
 [
-  "l",
-  "r",
+  "o",
+  "d",
   "o",
 ]
 `;
 
 exports[`helpers > 42 > arrayElements > with array and count range 1`] = `
 [
-  "d",
-  "l",
+  "r",
+  "!",
 ]
 `;
 
@@ -35,35 +35,35 @@ exports[`helpers > 42 > enumValue > with mixed enum 1`] = `1`;
 
 exports[`helpers > 42 > enumValue > with string enum 1`] = `"Brazil"`;
 
-exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
+exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: CyeX//&qXb"`;
 
 exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
 
 exports[`helpers > 42 > fake > with empty string 1`] = `""`;
 
-exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
+exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Waterloo"`;
 
 exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
 
-exports[`helpers > 42 > fromRegExp > with case insensitive flag 1`] = `"D69b5622B0"`;
+exports[`helpers > 42 > fromRegExp > with case insensitive flag 1`] = `"D952BBa724"`;
 
-exports[`helpers > 42 > fromRegExp > with dynamic RegExp 1`] = `"1-7-A"`;
+exports[`helpers > 42 > fromRegExp > with dynamic RegExp 1`] = `"1-9-A"`;
 
-exports[`helpers > 42 > fromRegExp > with dynamic string 1`] = `"1-7-A"`;
+exports[`helpers > 42 > fromRegExp > with dynamic string 1`] = `"1-9-A"`;
 
 exports[`helpers > 42 > fromRegExp > with negation 1`] = `"zzzzzzzzzz"`;
 
-exports[`helpers > 42 > fromRegExp > with negation and case insensitive flag 1`] = `"XxzUwwuuUY"`;
+exports[`helpers > 42 > fromRegExp > with negation and case insensitive flag 1`] = `"XzwuUU8yuv"`;
 
-exports[`helpers > 42 > fromRegExp > with optional character 1`] = `"-9-"`;
+exports[`helpers > 42 > fromRegExp > with optional character 1`] = `"-6-b"`;
 
-exports[`helpers > 42 > fromRegExp > with optional repetition 1`] = `"AA-44-1b21aa4234bab4b1c10ad"`;
+exports[`helpers > 42 > fromRegExp > with optional repetition 1`] = `"AA--2a4"`;
 
-exports[`helpers > 42 > fromRegExp > with quantifier 1`] = `"AA-179C-2311b0"`;
+exports[`helpers > 42 > fromRegExp > with quantifier 1`] = `"AA-1964-bba312"`;
 
-exports[`helpers > 42 > fromRegExp > with quantifier ranges 1`] = `"AAA-9C6644-0baa03"`;
+exports[`helpers > 42 > fromRegExp > with quantifier ranges 1`] = `"AAA-64CCA8-2a43bbb"`;
 
-exports[`helpers > 42 > fromRegExp > with required repetition 1`] = `"AA-44-1b21aa4234bab4b1c10ada"`;
+exports[`helpers > 42 > fromRegExp > with required repetition 1`] = `"AA-C-2a4"`;
 
 exports[`helpers > 42 > fromRegExp > with static RegExp 1`] = `"Hello World!"`;
 
@@ -81,28 +81,28 @@ exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
 
 exports[`helpers > 42 > multiple > with method and count 1`] = `
 [
-  37454,
-  79654,
-  95071,
-  18343,
-  73199,
+  3373557479352566,
+  8563273192166996,
+  6593215287158609,
+  5392236252703920,
+  1405290981918817,
 ]
 `;
 
 exports[`helpers > 42 > multiple > with method and count range 1`] = `
 [
-  79654,
-  95071,
-  18343,
-  73199,
+  8563273192166996,
+  6593215287158609,
+  5392236252703920,
+  1405290981918817,
 ]
 `;
 
 exports[`helpers > 42 > multiple > with only method 1`] = `
 [
-  37454,
-  79654,
-  95071,
+  3373557479352566,
+  8563273192166996,
+  6593215287158609,
 ]
 `;
 
@@ -131,71 +131,71 @@ exports[`helpers > 42 > regexpStyleStringParse > only symbols 1`] = `"###test2"`
 
 exports[`helpers > 42 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
 
-exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3791-7755-1410-0489"`;
+exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3975-1108-6709-8213"`;
 
-exports[`helpers > 42 > replaceCreditCardSymbols > only symbols 1`] = `"7917-6-7563-4"`;
+exports[`helpers > 42 > replaceCreditCardSymbols > only symbols 1`] = `"9751-6-1086-7"`;
 
-exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+7*,..-;:_NaN"`;
+exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+9*,..-;:_NaN"`;
 
 exports[`helpers > 42 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
-exports[`helpers > 42 > replaceSymbolWithNumber > only symbols 1`] = `"47917"`;
+exports[`helpers > 42 > replaceSymbolWithNumber > only symbols 1`] = `"49751"`;
 
-exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+7*,..-;:_"`;
+exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+9*,..-;:_"`;
 
 exports[`helpers > 42 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3U17U5"`;
+exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3Y51EW"`;
 
-exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=J\`+71,..-;:_"`;
+exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=J\`+95,..-;:_"`;
 
 exports[`helpers > 42 > shuffle > with array 1`] = `
 [
-  "!",
   "W",
-  "d",
+  "r",
+  "l",
+  "l",
+  "!",
   "H",
   "l",
-  "l",
-  "o",
-  " ",
   "e",
-  "l",
-  "r",
+  " ",
+  "o",
+  "d",
   "o",
 ]
 `;
 
 exports[`helpers > 42 > shuffle > with array and inplace false 1`] = `
 [
-  "!",
   "W",
-  "d",
+  "r",
+  "l",
+  "l",
+  "!",
   "H",
   "l",
-  "l",
-  "o",
-  " ",
   "e",
-  "l",
-  "r",
+  " ",
+  "o",
+  "d",
   "o",
 ]
 `;
 
 exports[`helpers > 42 > shuffle > with array and inplace true 1`] = `
 [
-  "!",
   "W",
-  "d",
+  "r",
+  "l",
+  "l",
+  "!",
   "H",
   "l",
-  "l",
-  "o",
-  " ",
   "e",
-  "l",
-  "r",
+  " ",
+  "o",
+  "d",
   "o",
 ]
 `;
@@ -206,9 +206,9 @@ exports[`helpers > 42 > slugify > some string 1`] = `"hello-world"`;
 
 exports[`helpers > 42 > uniqueArray > with array 1`] = `
 [
-  "H",
   "l",
-  "W",
+  "e",
+  "r",
 ]
 `;
 
@@ -220,36 +220,36 @@ exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
 [
-  "d",
-  "o",
-  "r",
-  "!",
-  "l",
   "H",
-  "W",
   "e",
-  "l",
+  "r",
   "o",
   "l",
+  "!",
+  "o",
   " ",
+  "W",
+  "l",
+  "l",
+  "d",
 ]
 `;
 
 exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 [
-  "r",
-  " ",
+  "l",
+  "l",
   "!",
 ]
 `;
 
 exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
 [
-  "e",
-  "l",
-  "o",
-  "l",
   " ",
+  "W",
+  "l",
+  "l",
+  "d",
 ]
 `;
 
@@ -261,35 +261,35 @@ exports[`helpers > 1211 > enumValue > with mixed enum 1`] = `"Bar"`;
 
 exports[`helpers > 1211 > enumValue > with string enum 1`] = `"United States of America"`;
 
-exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
+exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wt5}_\`hAal"`;
 
 exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
 
 exports[`helpers > 1211 > fake > with empty string 1`] = `""`;
 
-exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Crosse"`;
+exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"The Villages"`;
 
 exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
-exports[`helpers > 1211 > fromRegExp > with case insensitive flag 1`] = `"8086CB9A4B"`;
+exports[`helpers > 1211 > fromRegExp > with case insensitive flag 1`] = `"88C9445D46"`;
 
-exports[`helpers > 1211 > fromRegExp > with dynamic RegExp 1`] = `"8-2-A"`;
+exports[`helpers > 1211 > fromRegExp > with dynamic RegExp 1`] = `"8-8-A"`;
 
-exports[`helpers > 1211 > fromRegExp > with dynamic string 1`] = `"8-2-A"`;
+exports[`helpers > 1211 > fromRegExp > with dynamic string 1`] = `"8-8-A"`;
 
 exports[`helpers > 1211 > fromRegExp > with negation 1`] = `"zzzzzzzzzz"`;
 
-exports[`helpers > 1211 > fromRegExp > with negation and case insensitive flag 1`] = `"yYywV9z8vU"`;
+exports[`helpers > 1211 > fromRegExp > with negation and case insensitive flag 1`] = `"yyVzvvwWvx"`;
 
-exports[`helpers > 1211 > fromRegExp > with optional character 1`] = `"A--3"`;
+exports[`helpers > 1211 > fromRegExp > with optional character 1`] = `"A-D-2"`;
 
-exports[`helpers > 1211 > fromRegExp > with optional repetition 1`] = `"-D-"`;
+exports[`helpers > 1211 > fromRegExp > with optional repetition 1`] = `"A-56-21"`;
 
-exports[`helpers > 1211 > fromRegExp > with quantifier 1`] = `"AA-8286-cb4a2b"`;
+exports[`helpers > 1211 > fromRegExp > with quantifier 1`] = `"AA-88D9-222d23"`;
 
-exports[`helpers > 1211 > fromRegExp > with quantifier ranges 1`] = `"AAAAAA-86DB9-2b2b2d"`;
+exports[`helpers > 1211 > fromRegExp > with quantifier ranges 1`] = `"AAAAAA-D95560-3213d33b"`;
 
-exports[`helpers > 1211 > fromRegExp > with required repetition 1`] = `"A-DB-a"`;
+exports[`helpers > 1211 > fromRegExp > with required repetition 1`] = `"A-D-2"`;
 
 exports[`helpers > 1211 > fromRegExp > with static RegExp 1`] = `"Hello World!"`;
 
@@ -307,34 +307,34 @@ exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
 
 exports[`helpers > 1211 > multiple > with method and count 1`] = `
 [
-  92852,
-  45901,
-  89347,
-  77826,
-  22557,
+  8363366038243348,
+  8047677172150962,
+  2031760796090808,
+  8982492793493979,
+  6052754546149918,
 ]
 `;
 
 exports[`helpers > 1211 > multiple > with method and count range 1`] = `
 [
-  45901,
-  89347,
-  77826,
-  22557,
-  12988,
-  99725,
-  3842,
-  67199,
-  15897,
-  68481,
+  8047677172150962,
+  2031760796090808,
+  8982492793493979,
+  6052754546149918,
+  6168278835146506,
+  6882283339307904,
+  3188826061611959,
+  6251585130600839,
+  7319276504492921,
+  6921998649901472,
 ]
 `;
 
 exports[`helpers > 1211 > multiple > with only method 1`] = `
 [
-  92852,
-  45901,
-  89347,
+  8363366038243348,
+  8047677172150962,
+  2031760796090808,
 ]
 `;
 
@@ -363,71 +363,71 @@ exports[`helpers > 1211 > regexpStyleStringParse > only symbols 1`] = `"###test5
 
 exports[`helpers > 1211 > regexpStyleStringParse > some string 1`] = `"Hello !###test5"`;
 
-exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9487-2190-6162-7434"`;
+exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9829-6673-6876-8482"`;
 
-exports[`helpers > 1211 > replaceCreditCardSymbols > only symbols 1`] = `"4872-9-1927-1"`;
+exports[`helpers > 1211 > replaceCreditCardSymbols > only symbols 1`] = `"8296-9-6747-7"`;
 
-exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+4*,..-;:_NaN"`;
+exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+8*,..-;:_NaN"`;
 
 exports[`helpers > 1211 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
-exports[`helpers > 1211 > replaceSymbolWithNumber > only symbols 1`] = `"94872"`;
+exports[`helpers > 1211 > replaceSymbolWithNumber > only symbols 1`] = `"98296"`;
 
-exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+4*,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9"§$%&/()=?\`+8*,..-;:_"`;
 
 exports[`helpers > 1211 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9L72D0"`;
+exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9XZ6R3"`;
 
-exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=Y\`+47,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=Y\`+8Z,..-;:_"`;
 
 exports[`helpers > 1211 > shuffle > with array 1`] = `
 [
-  "l",
-  "l",
-  "o",
-  "l",
-  "W",
-  "d",
   "H",
-  "e",
   "o",
-  "r",
+  "l",
+  "d",
+  "e",
+  "W",
+  "o",
   " ",
+  "r",
+  "l",
+  "l",
   "!",
 ]
 `;
 
 exports[`helpers > 1211 > shuffle > with array and inplace false 1`] = `
 [
-  "l",
-  "l",
-  "o",
-  "l",
-  "W",
-  "d",
   "H",
-  "e",
   "o",
-  "r",
+  "l",
+  "d",
+  "e",
+  "W",
+  "o",
   " ",
+  "r",
+  "l",
+  "l",
   "!",
 ]
 `;
 
 exports[`helpers > 1211 > shuffle > with array and inplace true 1`] = `
 [
-  "l",
-  "l",
-  "o",
-  "l",
-  "W",
-  "d",
   "H",
-  "e",
   "o",
-  "r",
+  "l",
+  "d",
+  "e",
+  "W",
+  "o",
   " ",
+  "r",
+  "l",
+  "l",
   "!",
 ]
 `;
@@ -438,9 +438,9 @@ exports[`helpers > 1211 > slugify > some string 1`] = `"hello-world"`;
 
 exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 [
-  "W",
-  "d",
-  "l",
+  "r",
+  "H",
+  " ",
 ]
 `;
 
@@ -453,24 +453,24 @@ exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
 exports[`helpers > 1337 > arrayElements > with array 1`] = `
 [
   "l",
+  "o",
   "l",
   "e",
-  "W",
 ]
 `;
 
 exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
 [
+  "l",
   "e",
-  "W",
   "l",
 ]
 `;
 
 exports[`helpers > 1337 > arrayElements > with array and count range 1`] = `
 [
+  "l",
   "e",
-  "W",
 ]
 `;
 
@@ -482,35 +482,35 @@ exports[`helpers > 1337 > enumValue > with mixed enum 1`] = `1`;
 
 exports[`helpers > 1337 > enumValue > with string enum 1`] = `"Brazil"`;
 
-exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
+exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9/:K>Q9{e+"`;
 
 exports[`helpers > 1337 > fake > with a static template 1`] = `"my test string"`;
 
 exports[`helpers > 1337 > fake > with empty string 1`] = `""`;
 
-exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
+exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"/:K>Q9{e+D"`;
 
 exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
 
-exports[`helpers > 1337 > fromRegExp > with case insensitive flag 1`] = `"C2Bbc10AcC"`;
+exports[`helpers > 1337 > fromRegExp > with case insensitive flag 1`] = `"CBc0c1C95B"`;
 
-exports[`helpers > 1337 > fromRegExp > with dynamic RegExp 1`] = `"D-3-A"`;
+exports[`helpers > 1337 > fromRegExp > with dynamic RegExp 1`] = `"D-C-A"`;
 
-exports[`helpers > 1337 > fromRegExp > with dynamic string 1`] = `"D-3-A"`;
+exports[`helpers > 1337 > fromRegExp > with dynamic string 1`] = `"D-C-A"`;
 
 exports[`helpers > 1337 > fromRegExp > with negation 1`] = `"zzzzzzzzzz"`;
 
-exports[`helpers > 1337 > fromRegExp > with negation and case insensitive flag 1`] = `"VZUUVZY8WV"`;
+exports[`helpers > 1337 > fromRegExp > with negation and case insensitive flag 1`] = `"VUVYWZVzw9"`;
 
-exports[`helpers > 1337 > fromRegExp > with optional character 1`] = `"-C-"`;
+exports[`helpers > 1337 > fromRegExp > with optional character 1`] = `"--"`;
 
-exports[`helpers > 1337 > fromRegExp > with optional repetition 1`] = `"-A0-c"`;
+exports[`helpers > 1337 > fromRegExp > with optional repetition 1`] = `"AAAAAAAA-B-"`;
 
-exports[`helpers > 1337 > fromRegExp > with quantifier 1`] = `"AA-D3CC-c00acc"`;
+exports[`helpers > 1337 > fromRegExp > with quantifier 1`] = `"AA-DCD2-c0c42b"`;
 
-exports[`helpers > 1337 > fromRegExp > with quantifier ranges 1`] = `"AAA-CCD32-cc01cd"`;
+exports[`helpers > 1337 > fromRegExp > with quantifier ranges 1`] = `"AAA-D203-42bd1b"`;
 
-exports[`helpers > 1337 > fromRegExp > with required repetition 1`] = `"A-A0-cd"`;
+exports[`helpers > 1337 > fromRegExp > with required repetition 1`] = `"AAAAAAAAA-6-4"`;
 
 exports[`helpers > 1337 > fromRegExp > with static RegExp 1`] = `"Hello World!"`;
 
@@ -528,27 +528,27 @@ exports[`helpers > 1337 > maybe > with value and probability 1`] = `undefined`;
 
 exports[`helpers > 1337 > multiple > with method and count 1`] = `
 [
-  26202,
-  56052,
-  15868,
-  21258,
-  27812,
+  2360108457524098,
+  1429298155729043,
+  2505140979113303,
+  4137158724208997,
+  2891315829344705,
 ]
 `;
 
 exports[`helpers > 1337 > multiple > with method and count range 1`] = `
 [
-  56052,
-  15868,
-  21258,
+  1429298155729043,
+  2505140979113303,
+  4137158724208997,
 ]
 `;
 
 exports[`helpers > 1337 > multiple > with only method 1`] = `
 [
-  26202,
-  56052,
-  15868,
+  2360108457524098,
+  1429298155729043,
+  2505140979113303,
 ]
 `;
 
@@ -577,37 +577,37 @@ exports[`helpers > 1337 > regexpStyleStringParse > only symbols 1`] = `"###test2
 
 exports[`helpers > 1337 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
 
-exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2512-2540-3255-2399"`;
+exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2124-3529-7136-1945"`;
 
-exports[`helpers > 1337 > replaceCreditCardSymbols > only symbols 1`] = `"5122-5-5424-8"`;
+exports[`helpers > 1337 > replaceCreditCardSymbols > only symbols 1`] = `"1243-5-5297-1"`;
 
-exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+5*,..-;:_NaN"`;
+exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+1*,..-;:_NaN"`;
 
 exports[`helpers > 1337 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
-exports[`helpers > 1337 > replaceSymbolWithNumber > only symbols 1`] = `"45122"`;
+exports[`helpers > 1337 > replaceSymbolWithNumber > only symbols 1`] = `"41243"`;
 
-exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+5*,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4"§$%&/()=?\`+1*,..-;:_"`;
 
 exports[`helpers > 1337 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2OF2OA"`;
+exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2EL3NZ"`;
 
-exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=G\`+5F,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!"§$%&/()=G\`+1L,..-;:_"`;
 
 exports[`helpers > 1337 > shuffle > with array 1`] = `
 [
   " ",
-  "d",
-  "o",
-  "r",
+  "W",
   "H",
   "o",
+  "r",
+  "d",
   "!",
   "l",
+  "o",
   "l",
   "e",
-  "W",
   "l",
 ]
 `;
@@ -615,16 +615,16 @@ exports[`helpers > 1337 > shuffle > with array 1`] = `
 exports[`helpers > 1337 > shuffle > with array and inplace false 1`] = `
 [
   " ",
-  "d",
-  "o",
-  "r",
+  "W",
   "H",
   "o",
+  "r",
+  "d",
   "!",
   "l",
+  "o",
   "l",
   "e",
-  "W",
   "l",
 ]
 `;
@@ -632,16 +632,16 @@ exports[`helpers > 1337 > shuffle > with array and inplace false 1`] = `
 exports[`helpers > 1337 > shuffle > with array and inplace true 1`] = `
 [
   " ",
-  "d",
-  "o",
-  "r",
+  "W",
   "H",
   "o",
+  "r",
+  "d",
   "!",
   "l",
+  "o",
   "l",
   "e",
-  "W",
   "l",
 ]
 `;
@@ -653,8 +653,8 @@ exports[`helpers > 1337 > slugify > some string 1`] = `"hello-world"`;
 exports[`helpers > 1337 > uniqueArray > with array 1`] = `
 [
   "o",
+  " ",
   "H",
-  "d",
 ]
 `;
 
