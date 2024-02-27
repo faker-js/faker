@@ -61,10 +61,6 @@ const BROKEN_LOCALE_METHODS = {
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
-    jobArea: ['ar'],
-    jobDescriptor: ['ar'],
-    jobTitle: ['ar', 'ur'],
-    jobType: ['ur'],
   },
 } satisfies {
   [module_ in keyof Faker]?: SkipConfig<Faker[module_]>;
