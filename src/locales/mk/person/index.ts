@@ -8,6 +8,9 @@ import female_last_name from './female_last_name';
 import female_last_name_pattern from './female_last_name_pattern';
 import female_prefix from './female_prefix';
 import first_name from './first_name';
+import job_area from './job_area';
+import job_descriptor from './job_descriptor';
+import job_type from './job_type';
 import last_name from './last_name';
 import male_first_name from './male_first_name';
 import male_last_name from './male_last_name';
@@ -16,7 +19,6 @@ import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
-import title from './title';
 
 const person: PersonDefinition = {
   female_first_name,
@@ -24,6 +26,9 @@ const person: PersonDefinition = {
   female_last_name_pattern,
   female_prefix,
   first_name,
+  job_area,
+  job_descriptor,
+  job_type,
   last_name,
   male_first_name,
   male_last_name,
@@ -32,7 +37,6 @@ const person: PersonDefinition = {
   name: name_,
   prefix,
   suffix,
-  title,
 };
 
 export default person;

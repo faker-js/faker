@@ -49,10 +49,7 @@ export type {
   MusicDefinition as MusicDefinitions,
   /** @deprecated Use PersonDefinitions instead */
   PersonDefinition as NameDefinitions,
-  /** @deprecated Use PersonTitleDefinitions instead */
-  PersonTitleDefinition as NameTitleDefinitions,
   PersonDefinition,
-  PersonTitleDefinition,
   PhoneNumberDefinition,
   /** @deprecated Use PhoneNumberDefinition instead */
   PhoneNumberDefinition as PhoneNumberDefinitions,
