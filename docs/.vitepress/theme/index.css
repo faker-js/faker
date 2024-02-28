@@ -69,8 +69,8 @@ table td ul li {
 
 .VPHero .action:not(:last-child) a.VPButton.alt {
   border-color: var(--vp-button-brand-bg) !important;
+}
 
-  .dark & {
-    color: var(--vp-button-brand-text) !important;
-  }
+.dark .VPHero .action:not(:last-child) a.VPButton.alt {
+  color: var(--vp-button-brand-text) !important;
 }
