@@ -344,7 +344,7 @@ export class CommerceModule extends ModuleBase {
     const newLastDigitValue = newLastDigit * fraction;
     const combined = generated - oldLastDigitValue + newLastDigitValue;
 
-    if (combined <= max && combined >= min) {
+    if (min <= combined && combined <= max) {
       return `${symbol}${combined.toFixed(dec)}`;
     }
 
