@@ -89,7 +89,7 @@ function toBinary(values: number[]): string {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
       const bytes = new Uint8Array(buffer);
-      return toBinary([...bytes]).replace(/ /g, '');
+      return toBinary([...bytes]).replaceAll(' ', '');
     }
 
     return (value >>> 0).toString(2).padStart(8, '0');
@@ -136,7 +136,6 @@ function toCSS(
     case 'lch':
       return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
     case 'rgb':
-    default:
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
   }
 }
@@ -161,7 +160,6 @@ function toColorFormat(
     case 'binary':
       return toBinary(values);
     case 'decimal':
-    default:
       return values;
   }
 }

@@ -12,6 +12,23 @@ There are two connected use cases we have considered where this might be needed:
 1. Re-Use of the same `Randomizer` within multiple `Faker` instances.
 2. The use of a random number generator from a third party library.
 
+## Built-In `Randomizer`s
+
+Faker ships with two variations
+
+```ts
+import {
+  generateMersenne32Randomizer, // Default prior to v9
+  generateMersenne53Randomizer, // Default since v9
+} from '@faker-js/faker';
+
+const randomizer = generateMersenne53Randomizer();
+```
+
+The 32bit `Randomizer` is faster, but the 53bit `Randomizer` generates better random values (with significantly fewer duplicates).
+
+But you can also implement your own by implementing the [related interface](/api/randomizer.html).
+
 ## Using `Randomizer`s
 
 A `Randomizer` has to be set during construction of the instance:

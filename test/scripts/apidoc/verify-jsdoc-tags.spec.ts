@@ -253,7 +253,7 @@ describe('verify JSDoc tags', () => {
             ).parameters) {
               const { name, description } = param;
               const plainDescription = description
-                .replace(/<[^>]+>/g, '')
+                .replaceAll(/<[^>]+>/g, '')
                 .trim();
               expect(
                 plainDescription,

@@ -2,15 +2,15 @@
 
 exports[`commerce > 42 > department 1`] = `"Tools"`;
 
-exports[`commerce > 42 > isbn > noArgs 1`] = `"978-0-7917-7551-6"`;
+exports[`commerce > 42 > isbn > noArgs 1`] = `"978-0-9751108-6-7"`;
 
-exports[`commerce > 42 > isbn > with space separators 1`] = `"978 0 7917 7551 6"`;
+exports[`commerce > 42 > isbn > with space separators 1`] = `"978 0 9751108 6 7"`;
 
-exports[`commerce > 42 > isbn > with variant 10 1`] = `"0-7917-7551-8"`;
+exports[`commerce > 42 > isbn > with variant 10 1`] = `"0-9751108-6-1"`;
 
-exports[`commerce > 42 > isbn > with variant 10 and space separators 1`] = `"0 7917 7551 8"`;
+exports[`commerce > 42 > isbn > with variant 10 and space separators 1`] = `"0 9751108 6 1"`;
 
-exports[`commerce > 42 > isbn > with variant 13 1`] = `"978-0-7917-7551-6"`;
+exports[`commerce > 42 > isbn > with variant 13 1`] = `"978-0-9751108-6-7"`;
 
 exports[`commerce > 42 > price > noArgs 1`] = `"375.27"`;
 
@@ -44,19 +44,19 @@ exports[`commerce > 42 > productDescription 1`] = `"The Apollotech B340 is an af
 
 exports[`commerce > 42 > productMaterial 1`] = `"Plastic"`;
 
-exports[`commerce > 42 > productName 1`] = `"Fantastic Soft Sausages"`;
+exports[`commerce > 42 > productName 1`] = `"Fantastic Frozen Fish"`;
 
 exports[`commerce > 1211 > department 1`] = `"Automotive"`;
 
-exports[`commerce > 1211 > isbn > noArgs 1`] = `"978-1-4872-1906-2"`;
+exports[`commerce > 1211 > isbn > noArgs 1`] = `"978-1-82966-736-0"`;
 
-exports[`commerce > 1211 > isbn > with space separators 1`] = `"978 1 4872 1906 2"`;
+exports[`commerce > 1211 > isbn > with space separators 1`] = `"978 1 82966 736 0"`;
 
-exports[`commerce > 1211 > isbn > with variant 10 1`] = `"1-4872-1906-7"`;
+exports[`commerce > 1211 > isbn > with variant 10 1`] = `"1-82966-736-X"`;
 
-exports[`commerce > 1211 > isbn > with variant 10 and space separators 1`] = `"1 4872 1906 7"`;
+exports[`commerce > 1211 > isbn > with variant 10 and space separators 1`] = `"1 82966 736 X"`;
 
-exports[`commerce > 1211 > isbn > with variant 13 1`] = `"978-1-4872-1906-2"`;
+exports[`commerce > 1211 > isbn > with variant 13 1`] = `"978-1-82966-736-0"`;
 
 exports[`commerce > 1211 > price > noArgs 1`] = `"928.60"`;
 
@@ -90,19 +90,19 @@ exports[`commerce > 1211 > productDescription 1`] = `"Andy shoes are designed to
 
 exports[`commerce > 1211 > productMaterial 1`] = `"Frozen"`;
 
-exports[`commerce > 1211 > productName 1`] = `"Unbranded Cotton Salad"`;
+exports[`commerce > 1211 > productName 1`] = `"Unbranded Fresh Bike"`;
 
 exports[`commerce > 1337 > department 1`] = `"Computers"`;
 
-exports[`commerce > 1337 > isbn > noArgs 1`] = `"978-0-512-25403-0"`;
+exports[`commerce > 1337 > isbn > noArgs 1`] = `"978-0-12-435297-1"`;
 
-exports[`commerce > 1337 > isbn > with space separators 1`] = `"978 0 512 25403 0"`;
+exports[`commerce > 1337 > isbn > with space separators 1`] = `"978 0 12 435297 1"`;
 
-exports[`commerce > 1337 > isbn > with variant 10 1`] = `"0-512-25403-6"`;
+exports[`commerce > 1337 > isbn > with variant 10 1`] = `"0-12-435297-9"`;
 
-exports[`commerce > 1337 > isbn > with variant 10 and space separators 1`] = `"0 512 25403 6"`;
+exports[`commerce > 1337 > isbn > with variant 10 and space separators 1`] = `"0 12 435297 9"`;
 
-exports[`commerce > 1337 > isbn > with variant 13 1`] = `"978-0-512-25403-0"`;
+exports[`commerce > 1337 > isbn > with variant 13 1`] = `"978-0-12-435297-1"`;
 
 exports[`commerce > 1337 > price > noArgs 1`] = `"262.79"`;
 
@@ -136,4 +136,4 @@ exports[`commerce > 1337 > productDescription 1`] = `"The slim & simple Maple Ga
 
 exports[`commerce > 1337 > productMaterial 1`] = `"Concrete"`;
 
-exports[`commerce > 1337 > productName 1`] = `"Incredible Granite Keyboard"`;
+exports[`commerce > 1337 > productName 1`] = `"Incredible Bronze Ball"`;

@@ -233,45 +233,6 @@ Here, we could also pass in the `sex` value as argument, but in our use-case the
 By doing this first, we are able to pass both names into the `email` generation function.
 This allows the value to be more reasonable based on the provided arguments.
 
-But we can take this even another step further.
-Opposite to the `_id` property that uses an `uuid` implementation, which is unique by design, the `email` property potentially isn't.
-But, in most use-cases, this would be desirable.
-
-Faker has your back, with another helper method:
-
-```ts {7-10}
-import { faker } from '@faker-js/faker';
-
-function createRandomUser(): User {
-  const sex = faker.person.sexType();
-  const firstName = faker.person.firstName(sex);
-  const lastName = faker.person.lastName();
-  const email = faker.helpers.unique(faker.internet.email, [
-    firstName,
-    lastName,
-  ]);
-
-  return {
-    _id: faker.string.uuid(),
-    avatar: faker.image.avatar(),
-    birthday: faker.date.birthdate(),
-    email,
-    firstName,
-    lastName,
-    sex,
-    subscriptionTier: faker.helpers.arrayElement(['free', 'basic', 'business']),
-  };
-}
-
-const user = createRandomUser();
-```
-
-By wrapping Faker's `email` function with the [`unique`](../api/helpers.md#unique) helper function, we ensure that the return value of `email` is always unique.
-
-::: warning
-The `faker.helpers.unique` is targeted to be removed from Faker in the future.  
-Please have a look at the issue [#1785](https://github.com/faker-js/faker/issues/1785).  
-We will update these docs once a replacement is available.
-:::
+Unlike the `_id` property that uses an `uuid` implementation, which has a low chance of duplicates, the `email` function is more likely to produce duplicates, especially if the call arguments are similar. We have a dedicated guide page on generating [unique values](unique).
 
 Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.

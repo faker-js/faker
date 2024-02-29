@@ -28,26 +28,22 @@
   ],
   "bugs": "https://github.com/faker-js/faker/issues",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
-  "types": "index.d.ts",
-  "typesVersions": {
-    ">=4.0": {
-      "*": [
-        "dist/types/*"
-      ]
-    }
-  },
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.mjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
     "./locale/*": {
       "types": "./dist/types/locale/*.d.ts",
-      "require": "./dist/cjs/locale/*.js",
-      "import": "./dist/esm/locale/*.mjs"
+      "import": "./dist/locale/*.js",
+      "require": "./dist/locale/*.cjs",
+      "default": "./dist/locale/*.js"
     },
     "./package.json": "./package.json"
   },
@@ -56,9 +52,9 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist locale pnpm-lock.yaml node_modules",
+    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist locale node_modules",
     "build:clean": "rimraf dist",
-    "build:code": "tsx ./scripts/bundle.ts",
+    "build:code": "tsup-node",
     "build:types": "tsc --project tsconfig.build.json",
     "build": "run-s build:clean build:code build:types",
     "generate": "run-s generate:locales generate:api-docs",
@@ -90,29 +86,28 @@
     "@actions/github": "~6.0.0",
     "@algolia/client-search": "~4.22.1",
     "@eslint-types/deprecation": "2.0.0-1",
-    "@eslint-types/jsdoc": "~48.0.4",
+    "@eslint-types/jsdoc": "~48.2.0",
     "@eslint-types/prettier": "5.1.3",
-    "@eslint-types/typescript-eslint": "~6.19.1",
-    "@eslint-types/unicorn": "~50.0.1",
+    "@eslint-types/typescript-eslint": "~7.0.2",
+    "@eslint-types/unicorn": "~51.0.1",
     "@types/markdown-it": "~13.0.7",
-    "@types/node": "~20.11.17",
+    "@types/node": "~20.11.20",
     "@types/sanitize-html": "~2.11.0",
-    "@types/semver": "~7.5.6",
+    "@types/semver": "~7.5.8",
     "@types/validator": "~13.11.9",
-    "@typescript-eslint/eslint-plugin": "~6.21.0",
-    "@typescript-eslint/parser": "~6.21.0",
-    "@vitest/coverage-v8": "~1.2.2",
-    "@vitest/ui": "~1.2.2",
-    "@vueuse/core": "~10.7.2",
+    "@typescript-eslint/eslint-plugin": "~7.0.2",
+    "@typescript-eslint/parser": "~7.0.2",
+    "@vitest/coverage-v8": "~1.3.1",
+    "@vitest/ui": "~1.3.1",
+    "@vueuse/core": "~10.8.0",
     "conventional-changelog-cli": "~4.1.0",
-    "cypress": "~13.6.4",
-    "esbuild": "~0.20.0",
-    "eslint": "~8.56.0",
+    "cypress": "~13.6.6",
+    "eslint": "~8.57.0",
     "eslint-config-prettier": "~9.1.0",
     "eslint-define-config": "~2.1.0",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-deprecation": "~2.0.0",
-    "eslint-plugin-jsdoc": "~48.0.6",
+    "eslint-plugin-jsdoc": "~48.2.0",
     "eslint-plugin-prettier": "~5.1.3",
     "eslint-plugin-unicorn": "~51.0.1",
     "eslint-plugin-vitest": "~0.3.22",
@@ -121,19 +116,20 @@
     "prettier": "3.2.5",
     "prettier-plugin-organize-imports": "~3.2.4",
     "rimraf": "~5.0.5",
-    "sanitize-html": "~2.11.0",
+    "sanitize-html": "~2.12.1",
     "semver": "~7.6.0",
     "standard-version": "~9.5.0",
-    "tsx": "~4.7.0",
-    "typedoc": "~0.25.7",
+    "tsup": "~8.0.2",
+    "tsx": "~4.7.1",
+    "typedoc": "~0.25.9",
     "typescript": "~5.3.3",
     "validator": "~13.11.0",
-    "vite": "~5.1.1",
-    "vitepress": "1.0.0-rc.39",
-    "vitest": "~1.2.2",
-    "vue": "~3.4.18"
+    "vite": "~5.1.4",
+    "vitepress": "1.0.0-rc.44",
+    "vitest": "~1.3.1",
+    "vue": "~3.4.20"
   },
-  "packageManager": "pnpm@8.15.1",
+  "packageManager": "pnpm@8.15.4",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
