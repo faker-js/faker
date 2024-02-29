@@ -318,40 +318,31 @@ export class CommerceModule extends ModuleBase {
       return `${symbol}${min.toFixed(dec)}`;
     }
 
-    let generated: number;
-
-    try {
-      generated = this.faker.number.float({
-        min,
-        max,
-        precision: (1 / 10) ** (dec - 1),
-      });
-    } catch {
-      generated = this.faker.number.float({
-        min,
-        max,
-        precision: (1 / 10) ** dec,
-      });
-    }
+    const generated = this.faker.number.float({
+      min,
+      max,
+      fractionDigits: dec,
+    });
 
     if (dec === 0) {
       return `${symbol}${generated.toFixed(dec)}`;
     }
 
     const oldLastDigit = (generated * 10 ** dec) % 10;
-    const newLastDigit =
-      (1 / 10) ** dec *
-      this.faker.helpers.weightedArrayElement([
-        { weight: 5, value: 9 },
-        { weight: 3, value: 5 },
-        { weight: 1, value: 0 },
-        {
-          weight: 1,
-          value: this.faker.number.int({ min: 0, max: 9 }),
-        },
-      ]);
+    const newLastDigit = this.faker.helpers.weightedArrayElement([
+      { weight: 5, value: 9 },
+      { weight: 3, value: 5 },
+      { weight: 1, value: 0 },
+      {
+        weight: 1,
+        value: this.faker.number.int({ min: 0, max: 9 }),
+      },
+    ]);
 
-    const combined = generated - oldLastDigit + newLastDigit;
+    const fraction = (1 / 10) ** dec;
+    const oldLastDigitValue = oldLastDigit * fraction;
+    const newLastDigitValue = newLastDigit * fraction;
+    const combined = generated - oldLastDigitValue + newLastDigitValue;
 
     if (combined <= max && combined >= min) {
       return `${symbol}${combined.toFixed(dec)}`;
