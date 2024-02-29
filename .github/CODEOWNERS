@@ -1,20 +1,4 @@
 # These owners will be the default owners for everything in the repo.
 # Unless a later match takes precedence, @faker-js/maintainers will
 # be requested for review when someone opens a pull request.
-
-*                     @faker-js/maintainers
-
-# ================================================
-#  Docs owners ...
-# ================================================
-
-/docs/                @faker-js/maintainers-docs @faker-js/maintainers
-netlify.toml          @faker-js/maintainers-docs @faker-js/maintainers
-README.md             @faker-js/maintainers-docs @faker-js/maintainers
-CONTRIBUTING.md       @faker-js/maintainers-docs @faker-js/maintainers
-
-# ================================================
-#  CODEOWNERS owners ...
-# ================================================
-
-/.github/CODEOWNERS   @faker-js/maintainers
+* @faker-js/maintainers
