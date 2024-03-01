@@ -1246,7 +1246,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @example
    * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
    * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
-   * faker.helpers.multiple((_el, i) => `Person ${i + 1}` ) // [ 'Person 1', 'Person 2', 'Person 3' ]
+   * faker.helpers.multiple((_, i) => `Person ${i + 1}` ) // [ 'Person 1', 'Person 2', 'Person 3' ]
    *
    * @since 8.0.0
    */

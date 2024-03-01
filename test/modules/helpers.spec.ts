@@ -187,9 +187,11 @@ describe('helpers', () => {
     });
 
     t.describe('multiple', (t) => {
-      t.it('with only method', faker.datatype.number)
-        .it('with method and count', faker.datatype.number, { count: 5 })
-        .it('with method and count range', faker.datatype.number, {
+      t.it('with only method', () => faker.datatype.number())
+        .it('with method and count', () => faker.datatype.number(), {
+          count: 5,
+        })
+        .it('with method and count range', () => faker.datatype.number(), {
           count: { min: 1, max: 10 },
         })
         .it('with method using index', (_el, i) => i * 3);
@@ -1227,25 +1229,31 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
 
       describe('multiple()', () => {
         it('should generate values from the function with a default length of 3', () => {
-          const result = faker.helpers.multiple(faker.person.firstName);
+          const result = faker.helpers.multiple(() => faker.person.firstName());
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBe(3);
         });
 
         it('should generate the given amount of values from the function', () => {
-          const result = faker.helpers.multiple(faker.person.firstName, {
-            count: 5,
-          });
+          const result = faker.helpers.multiple(
+            () => faker.person.firstName(),
+            {
+              count: 5,
+            }
+          );
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBe(5);
         });
 
         it('should generate a ranged number of values from the function', () => {
-          const result = faker.helpers.multiple(faker.person.firstName, {
-            count: { min: 1, max: 10 },
-          });
+          const result = faker.helpers.multiple(
+            () => faker.person.firstName(),
+            {
+              count: { min: 1, max: 10 },
+            }
+          );
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBeGreaterThanOrEqual(1);
