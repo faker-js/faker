@@ -1,4 +1,4 @@
-import { generateMersenne32Randomizer } from './internal/mersenne';
+import { generateMersenne53Randomizer } from './internal/mersenne';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
@@ -117,12 +117,12 @@ export class SimpleFaker {
        * Specify this only if you want to use it to achieve a specific goal,
        * such as sharing the same random generator with other instances/tools.
        *
-       * @default generateMersenne32Randomizer()
+       * @default generateMersenne53Randomizer()
        */
       randomizer?: Randomizer;
     } = {}
   ) {
-    const { randomizer = generateMersenne32Randomizer() } = options;
+    const { randomizer = generateMersenne53Randomizer() } = options;
 
     this._randomizer = randomizer;
   }
