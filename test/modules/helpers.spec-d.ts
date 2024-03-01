@@ -104,12 +104,49 @@ describe('helpers', () => {
   describe('arrayElements', () => {
     it('const generic single element', () => {
       const actual = faker.helpers.arrayElements([1], 1);
-      expectTypeOf(actual).toEqualTypeOf<Array<1>>();
+      expectTypeOf(actual).toEqualTypeOf<[1]>();
     });
 
     it('const generic multiple elements', () => {
       const actual = faker.helpers.arrayElements([1, 'a', false], 3);
+      expectTypeOf(actual).toEqualTypeOf<
+        [1 | 'a' | false, 1 | 'a' | false, 1 | 'a' | false]
+      >();
+    });
+
+    it('without an explicit count', () => {
+      const actual = faker.helpers.arrayElements([1, 'a', false]);
       expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
+
+    it('with min and max', () => {
+      const actual = faker.helpers.arrayElements([1, 'a'], {
+        min: 2,
+        max: 10,
+      });
+      expectTypeOf(actual).toEqualTypeOf<
+        [1 | 'a', 1 | 'a', ...Array<1 | 'a'>]
+      >();
+    });
+
+    it('with opaque array and no explicit count', () => {
+      const actual = faker.helpers.arrayElements(['a', 'b'] as string[]);
+      expectTypeOf(actual).toEqualTypeOf<string[]>();
+    });
+
+    it('with opaque array and number count', () => {
+      const actual = faker.helpers.arrayElements(['a', 'b'] as string[], 3);
+      expectTypeOf(actual).toEqualTypeOf<[string, string, string]>();
+    });
+
+    it('with opaque array and mix max count', () => {
+      const actual = faker.helpers.arrayElements(['a', 'b'] as string[], {
+        min: 3,
+        max: 10,
+      });
+      expectTypeOf(actual).toEqualTypeOf<
+        [string, string, string, ...string[]]
+      >();
     });
   });
 

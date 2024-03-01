@@ -37,3 +37,34 @@ export type MethodsOf<
   TObjectType,
   TSignature extends Callable = Callable,
 > = ReadonlyArray<MethodOf<TObjectType, TSignature>>;
+
+/**
+ * Taken from type-fest ReadonlyTuple.
+ *
+ * @see https://github.com/sindresorhus/type-fest/blob/main/source/readonly-tuple.d.ts
+ */
+type BuildTuple<
+  TValue,
+  TLength extends number,
+  TCache extends ReadonlyArray<TValue>,
+> = TCache['length'] extends TLength
+  ? [...TCache]
+  : BuildTuple<TValue, TLength, [TValue, ...TCache]>;
+type BuildLooseTuple<
+  TValue,
+  TLength extends number,
+  TCache extends ReadonlyArray<TValue>,
+> = TCache['length'] extends TLength
+  ? [...TCache, ...TValue[]]
+  : BuildLooseTuple<TValue, TLength, [TValue, ...TCache]>;
+
+export type TupleOf<TValue, TLength extends number> = number extends TLength
+  ? TValue[] // Because `TLength extends number` and `number extends TLength`, then `TLength` is not a specific finite number.
+  : BuildTuple<TValue, TLength, []>;
+
+export type LooseTupleOf<
+  TValue,
+  TLength extends number,
+> = number extends TLength
+  ? TValue[] // Because `TLength extends number` and `number extends TLength`, then `TLength` is not a specific finite number.
+  : BuildLooseTuple<TValue, TLength, []>;

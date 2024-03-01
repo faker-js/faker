@@ -2,6 +2,7 @@ import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
+import type { LooseTupleOf, TupleOf } from '../../utils/types';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
 
@@ -1003,21 +1004,29 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElements<const T>(
-    array: ReadonlyArray<T>,
-    count?:
+  arrayElements<
+    const T,
+    const TCount extends
       | number
       | {
           /**
            * The minimum number of elements to pick.
            */
           min: number;
+
           /**
            * The maximum number of elements to pick.
            */
           max: number;
-        }
-  ): T[] {
+        },
+  >(
+    array: ReadonlyArray<T>,
+    count?: TCount
+  ): TCount extends { min: number; max: number }
+    ? LooseTupleOf<T, TCount['min']>
+    : TCount extends number
+      ? TupleOf<T, TCount>
+      : never {
     // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
       throw new FakerError(
@@ -1025,18 +1034,14 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       );
     }
 
-    if (array.length === 0) {
-      return [];
-    }
-
     const numElements = this.rangeToNumber(
       count ?? { min: 1, max: array.length }
     );
 
     if (numElements >= array.length) {
-      return this.shuffle(array);
+      return this.shuffle(array) as never;
     } else if (numElements <= 0) {
-      return [];
+      return [] as never;
     }
 
     const arrayCopy = [...array];
@@ -1053,7 +1058,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       arrayCopy[i] = temp;
     }
 
-    return arrayCopy.slice(min);
+    return arrayCopy.slice(min) as never;
   }
 
   /**
