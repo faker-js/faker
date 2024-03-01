@@ -1034,6 +1034,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       );
     }
 
+    if (array.length === 0) {
+      return [] as never;
+    }
+
     const numElements = this.rangeToNumber(
       count ?? { min: 1, max: array.length }
     );
