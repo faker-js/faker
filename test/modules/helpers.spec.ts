@@ -180,7 +180,7 @@ describe('helpers', () => {
         .it('with method and count range', () => faker.number.int(), {
           count: { min: 1, max: 10 },
         })
-        .it('with method using index', (_el, i) => i * 3);
+        .it('with method using index', (_, i) => i * 3);
     });
   });
 
@@ -1179,7 +1179,7 @@ describe('helpers', () => {
         });
 
         it('should generate values using index of created value', () => {
-          const result = faker.helpers.multiple((_el, i) => i * 2, {
+          const result = faker.helpers.multiple((_, i) => i * 2, {
             count: 3,
           });
           expect(result).toBeTypeOf('object');
