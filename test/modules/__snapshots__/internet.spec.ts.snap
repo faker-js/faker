@@ -1,7 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`internet > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
-
 exports[`internet > 42 > color > noArgs 1`] = `"#307a5e"`;
 
 exports[`internet > 42 > color > with all options 1`] = `"#62ac90"`;
@@ -9,8 +7,6 @@ exports[`internet > 42 > color > with all options 1`] = `"#62ac90"`;
 exports[`internet > 42 > color > with blueBase option 1`] = `"#307a90"`;
 
 exports[`internet > 42 > color > with greenBase option 1`] = `"#30ac5e"`;
-
-exports[`internet > 42 > color > with legacy color base 1`] = `"#62ac90"`;
 
 exports[`internet > 42 > color > with redBase option 1`] = `"#627a5e"`;
 
@@ -30,8 +26,6 @@ exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane59"`;
 
 exports[`internet > 42 > displayName > with lastName option 1`] = `"Garnet_Doe"`;
 
-exports[`internet > 42 > displayName > with legacy names 1`] = `"Jane.Doe95"`;
-
 exports[`internet > 42 > domainName 1`] = `"hasty-vegetable.net"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
@@ -48,12 +42,6 @@ exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Reynolds-Mil
 
 exports[`internet > 42 > email > with lastName option 1`] = `"Valentine_Doe59@yahoo.com"`;
 
-exports[`internet > 42 > email > with legacy names 1`] = `"Jane_Doe@yahoo.com"`;
-
-exports[`internet > 42 > email > with legacy names and provider 1`] = `"Jane.Doe@fakerjs.dev"`;
-
-exports[`internet > 42 > email > with legacy provider 1`] = `"Garnet.Reynolds-Miller15@fakerjs.dev"`;
-
 exports[`internet > 42 > email > with provider option 1`] = `"Garnet.Reynolds-Miller15@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🌾"`;
@@ -69,10 +57,6 @@ exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] =
 exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Reynolds-Miller15@example.com"`;
 
 exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Valentine_Doe59@example.com"`;
-
-exports[`internet > 42 > exampleEmail > with legacy names 1`] = `"Jane_Doe@example.com"`;
-
-exports[`internet > 42 > exampleEmail > with legacy names and options 1`] = `"Jane_Doe@example.com"`;
 
 exports[`internet > 42 > httpMethod 1`] = `"POST"`;
 
@@ -93,14 +77,6 @@ exports[`internet > 42 > mac > with separator 1`] = `"5f:b9:22:0d:9b:0f"`;
 exports[`internet > 42 > mac > with separator option 1`] = `"5f-b9-22-0d-9b-0f"`;
 
 exports[`internet > 42 > password > noArgs 1`] = `"DfYsZdp522RJCLk"`;
-
-exports[`internet > 42 > password > with legacy length 1`] = `"DfYsZdp522"`;
-
-exports[`internet > 42 > password > with legacy length and memorable 1`] = `"DfYsZdp522"`;
-
-exports[`internet > 42 > password > with legacy length, memorable and pattern 1`] = `"5223192338"`;
-
-exports[`internet > 42 > password > with legacy length, memorable, pattern and prefix 1`] = `"test522319"`;
 
 exports[`internet > 42 > password > with length option 1`] = `"DfYsZdp522"`;
 
@@ -140,10 +116,6 @@ exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Wiegand59
 
 exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe"`;
 
-exports[`internet > 42 > userName > with legacy names 1`] = `"Jane.Doe"`;
-
-exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
-
 exports[`internet > 1211 > color > noArgs 1`] = `"#77721c"`;
 
 exports[`internet > 1211 > color > with all options 1`] = `"#a9a44e"`;
@@ -151,8 +123,6 @@ exports[`internet > 1211 > color > with all options 1`] = `"#a9a44e"`;
 exports[`internet > 1211 > color > with blueBase option 1`] = `"#77724e"`;
 
 exports[`internet > 1211 > color > with greenBase option 1`] = `"#77a41c"`;
-
-exports[`internet > 1211 > color > with legacy color base 1`] = `"#a9a44e"`;
 
 exports[`internet > 1211 > color > with redBase option 1`] = `"#a9721c"`;
 
@@ -172,8 +142,6 @@ exports[`internet > 1211 > displayName > with firstName option 1`] = `"Jane.Tran
 
 exports[`internet > 1211 > displayName > with lastName option 1`] = `"Tito_Doe22"`;
 
-exports[`internet > 1211 > displayName > with legacy names 1`] = `"Jane89"`;
-
 exports[`internet > 1211 > domainName 1`] = `"vicious-teletype.biz"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
@@ -190,12 +158,6 @@ exports[`internet > 1211 > email > with firstName option 1`] = `"Jane67@hotmail.
 
 exports[`internet > 1211 > email > with lastName option 1`] = `"Skye.Doe@hotmail.com"`;
 
-exports[`internet > 1211 > email > with legacy names 1`] = `"Jane_Doe@hotmail.com"`;
-
-exports[`internet > 1211 > email > with legacy names and provider 1`] = `"Jane_Doe89@fakerjs.dev"`;
-
-exports[`internet > 1211 > email > with legacy provider 1`] = `"Tito67@fakerjs.dev"`;
-
 exports[`internet > 1211 > email > with provider option 1`] = `"Tito67@fakerjs.dev"`;
 
 exports[`internet > 1211 > emoji > noArgs 1`] = `"🇹🇳"`;
@@ -211,10 +173,6 @@ exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`]
 exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane67@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Skye.Doe@example.net"`;
-
-exports[`internet > 1211 > exampleEmail > with legacy names 1`] = `"Jane_Doe@example.net"`;
-
-exports[`internet > 1211 > exampleEmail > with legacy names and options 1`] = `"Jane_Doe@example.net"`;
 
 exports[`internet > 1211 > httpMethod 1`] = `"PATCH"`;
 
@@ -235,14 +193,6 @@ exports[`internet > 1211 > mac > with separator 1`] = `"ee:3f:aa:c5:bd:ca"`;
 exports[`internet > 1211 > mac > with separator option 1`] = `"ee-3f-aa-c5-bd-ca"`;
 
 exports[`internet > 1211 > password > noArgs 1`] = `"yu6biBbnj_oJsr5"`;
-
-exports[`internet > 1211 > password > with legacy length 1`] = `"yu6biBbnj_"`;
-
-exports[`internet > 1211 > password > with legacy length and memorable 1`] = `"yu6biBbnj_"`;
-
-exports[`internet > 1211 > password > with legacy length, memorable and pattern 1`] = `"6536184255"`;
-
-exports[`internet > 1211 > password > with legacy length, memorable, pattern and prefix 1`] = `"test653618"`;
 
 exports[`internet > 1211 > password > with length option 1`] = `"yu6biBbnj_"`;
 
@@ -282,10 +232,6 @@ exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane99"`;
 
 exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito_Doe"`;
 
-exports[`internet > 1211 > userName > with legacy names 1`] = `"Jane_Doe89"`;
-
-exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
-
 exports[`internet > 1337 > color > noArgs 1`] = `"#211423"`;
 
 exports[`internet > 1337 > color > with all options 1`] = `"#534655"`;
@@ -293,8 +239,6 @@ exports[`internet > 1337 > color > with all options 1`] = `"#534655"`;
 exports[`internet > 1337 > color > with blueBase option 1`] = `"#211455"`;
 
 exports[`internet > 1337 > color > with greenBase option 1`] = `"#214623"`;
-
-exports[`internet > 1337 > color > with legacy color base 1`] = `"#534655"`;
 
 exports[`internet > 1337 > color > with redBase option 1`] = `"#531423"`;
 
@@ -314,8 +258,6 @@ exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane45"`;
 
 exports[`internet > 1337 > displayName > with lastName option 1`] = `"Devyn.Doe"`;
 
-exports[`internet > 1337 > displayName > with legacy names 1`] = `"Jane15"`;
-
 exports[`internet > 1337 > domainName 1`] = `"fair-chow.biz"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
@@ -332,12 +274,6 @@ exports[`internet > 1337 > email > with firstName option 1`] = `"Jane.Gottlieb@g
 
 exports[`internet > 1337 > email > with lastName option 1`] = `"Carmella.Doe45@gmail.com"`;
 
-exports[`internet > 1337 > email > with legacy names 1`] = `"Jane.Doe27@gmail.com"`;
-
-exports[`internet > 1337 > email > with legacy names and provider 1`] = `"Jane.Doe15@fakerjs.dev"`;
-
-exports[`internet > 1337 > email > with legacy provider 1`] = `"Devyn.Gottlieb@fakerjs.dev"`;
-
 exports[`internet > 1337 > email > with provider option 1`] = `"Devyn.Gottlieb@fakerjs.dev"`;
 
 exports[`internet > 1337 > emoji > noArgs 1`] = `"🧏🏾‍♂️"`;
@@ -353,10 +289,6 @@ exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`]
 exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane.Gottlieb@example.org"`;
 
 exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Carmella.Doe45@example.org"`;
-
-exports[`internet > 1337 > exampleEmail > with legacy names 1`] = `"Jane.Doe27@example.org"`;
-
-exports[`internet > 1337 > exampleEmail > with legacy names and options 1`] = `"Jane/Doe27@example.org"`;
 
 exports[`internet > 1337 > httpMethod 1`] = `"POST"`;
 
@@ -377,14 +309,6 @@ exports[`internet > 1337 > mac > with separator 1`] = `"42:47:58:4f:b1:6a"`;
 exports[`internet > 1337 > mac > with separator option 1`] = `"42-47-58-4f-b1-6a"`;
 
 exports[`internet > 1337 > password > noArgs 1`] = `"90LR9fEKllCHXi2"`;
-
-exports[`internet > 1337 > password > with legacy length 1`] = `"90LR9fEKll"`;
-
-exports[`internet > 1337 > password > with legacy length and memorable 1`] = `"90LR9fEKll"`;
-
-exports[`internet > 1337 > password > with legacy length, memorable and pattern 1`] = `"9092132093"`;
-
-exports[`internet > 1337 > password > with legacy length, memorable, pattern and prefix 1`] = `"test909213"`;
 
 exports[`internet > 1337 > password > with length option 1`] = `"90LR9fEKll"`;
 
@@ -423,5 +347,3 @@ exports[`internet > 1337 > userName > with all option 1`] = `"Jane.Doe15"`;
 exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane.Cronin45"`;
 
 exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn.Doe27"`;
-
-exports[`internet > 1337 > userName > with legacy names 1`] = `"Jane.Doe15"`;

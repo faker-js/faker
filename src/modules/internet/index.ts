@@ -1,4 +1,3 @@
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -29,7 +28,7 @@ export type HTTPProtocolType = 'http' | 'https';
  *
  * ### Overview
  *
- * For user accounts, you may need an [`email()`](https://fakerjs.dev/api/internet.html#email) and a [`password()`](https://fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://fakerjs.dev/api/internet.html#displayname), and an image [`avatar()`](https://fakerjs.dev/api/internet.html#avatar). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://fakerjs.dev/api/internet.html#exampleemail) instead.
+ * For user accounts, you may need an [`email()`](https://fakerjs.dev/api/internet.html#email) and a [`password()`](https://fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://fakerjs.dev/api/internet.html#displayname). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://fakerjs.dev/api/internet.html#exampleemail) instead.
  *
  * For websites, you can generate a [`domainName()`](https://fakerjs.dev/api/internet.html#domainname) or a full [`url()`](https://fakerjs.dev/api/internet.html#url).
  *
@@ -38,31 +37,6 @@ export type HTTPProtocolType = 'http' | 'https';
  * You also have access to a number of the more technical elements of web requests, such as [`httpMethod`](https://fakerjs.dev/api/internet.html#httpmethod), [`httpStatusCode`](https://fakerjs.dev/api/internet.html#httpstatuscode), [`ip`](https://fakerjs.dev/api/internet.html#ip), [`mac`](https://fakerjs.dev/api/internet.html#mac), [`userAgent`](https://fakerjs.dev/api/internet.html#useragent), and [`port`](https://fakerjs.dev/api/internet.html#port).
  */
 export class InternetModule extends ModuleBase {
-  /**
-   * Returns a random avatar url.
-   *
-   * @see faker.image.avatarLegacy(): For the replacement method.
-   * @see faker.image.avatar(): For the replacement method with a wider variety of avatars.
-   *
-   * @example
-   * faker.internet.avatar()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.avatar()` instead.
-   */
-  avatar(): string {
-    deprecated({
-      deprecated: 'faker.internet.avatar()',
-      proposed: 'faker.image.avatarLegacy() or faker.image.avatar()',
-      since: '8.4',
-      until: '9.0',
-    });
-    // TODO @ST-DDT 2024-01-14: Remove or replace with `faker.image.avatar()` in v9
-    return this.faker.image.avatarLegacy();
-  }
-
   /**
    * Generates an email address using the given person's name as base.
    *
@@ -83,194 +57,39 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  email(options?: {
-    /**
-     * The optional first name to use.
-     *
-     * @default faker.person.firstName()
-     */
-    firstName?: string;
-    /**
-     * The optional last name to use.
-     *
-     * @default faker.person.lastName()
-     */
-    lastName?: string;
-    /**
-     * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-     */
-    provider?: string;
-    /**
-     * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-     *
-     * @default false
-     */
-    allowSpecialCharacters?: boolean;
-  }): string;
-  /**
-   * Generates an email address using the given person's name as base.
-   *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param options The options to use.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email('Jeanne') // 'Jeanne63@yahoo.com'
-   * faker.internet.email('Jeanne') // 'Jeanne.Smith63@yahoo.com'
-   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne_Doe63@yahoo.com'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet.email({ firstName, lastName, provider, ... })` instead.
-   */
   email(
-    firstName?: string,
-    lastName?: string,
-    provider?: string,
-    options?: {
+    options: {
+      /**
+       * The optional first name to use.
+       *
+       * @default faker.person.firstName()
+       */
+      firstName?: string;
+      /**
+       * The optional last name to use.
+       *
+       * @default faker.person.lastName()
+       */
+      lastName?: string;
+      /**
+       * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+       */
+      provider?: string;
       /**
        * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
        *
        * @default false
        */
       allowSpecialCharacters?: boolean;
-    }
-  ): string;
-  /**
-   * Generates an email address using the given person's name as base.
-   *
-   * @param options The options to use.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options.provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param legacyProvider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param legacyOptions The options to use.
-   * @param legacyOptions.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email({ firstName: 'Jeanne' }) // 'Jeanne63@yahoo.com'
-   * faker.internet.email({ firstName: 'Jeanne' }) // 'Jeanne.Smith63@yahoo.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe63@yahoo.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
-   *
-   * @since 2.0.1
-   */
-  email(
-    options?:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-           */
-          provider?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        },
-    legacyLastName?: string,
-    legacyProvider?: string,
-    legacyOptions?: {
-      /**
-       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-       *
-       * @default false
-       */
-      allowSpecialCharacters?: boolean;
-    }
-  ): string;
-  email(
-    options:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-           */
-          provider?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        } = {},
-    legacyLastName?: string,
-    legacyProvider?: string,
-    legacyOptions?: {
-      /**
-       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-       *
-       * @default false
-       */
-      allowSpecialCharacters?: boolean;
-    }
+    } = {}
   ): string {
-    if (
-      typeof options === 'string' ||
-      legacyLastName != null ||
-      legacyProvider != null ||
-      legacyOptions != null
-    ) {
-      deprecated({
-        deprecated:
-          'faker.internet.email(firstName, lastName, provider, options)',
-        proposed:
-          'faker.internet.email({ firstName, lastName, provider, ... })',
-        since: '8.0',
-        until: '9.0',
-      });
-    }
-
-    if (typeof options === 'string') {
-      options = { firstName: options };
-    }
-
     const {
       firstName,
-      lastName = legacyLastName,
-      provider = legacyProvider ??
-        this.faker.helpers.arrayElement(
-          this.faker.definitions.internet.free_email
-        ),
-      allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
+      lastName,
+      provider = this.faker.helpers.arrayElement(
+        this.faker.definitions.internet.free_email
+      ),
+      allowSpecialCharacters = false,
     } = options;
 
     let localPart: string = this.userName({ firstName, lastName });
@@ -318,168 +137,29 @@ export class InternetModule extends ModuleBase {
    *
    * @since 3.1.0
    */
-  exampleEmail(options?: {
-    /**
-     * The optional first name to use.
-     *
-     * @default faker.person.firstName()
-     */
-    firstName?: string;
-    /**
-     * The optional last name to use.
-     *
-     * @default faker.person.lastName()
-     */
-    lastName?: string;
-    /**
-     * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-     *
-     * @default false
-     */
-    allowSpecialCharacters?: boolean;
-  }): string;
-  /**
-   * Generates an email address using an example mail provider using the given person's name as base.
-   *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options The options to use.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail('Jeanne') // 'Jeanne96@example.net'
-   * faker.internet.exampleEmail('Jeanne') // 'Jeanne.Smith96@example.net'
-   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne_Doe96@example.net'
-   * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
-   *
-   * @since 3.1.0
-   *
-   * @deprecated Use `faker.internet.exampleEmail({ firstName, lastName, ... })` instead.
-   */
   exampleEmail(
-    firstName?: string,
-    lastName?: string,
-    options?: {
+    options: {
+      /**
+       * The optional first name to use.
+       *
+       * @default faker.person.firstName()
+       */
+      firstName?: string;
+      /**
+       * The optional last name to use.
+       *
+       * @default faker.person.lastName()
+       */
+      lastName?: string;
       /**
        * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
        *
        * @default false
        */
       allowSpecialCharacters?: boolean;
-    }
-  ): string;
-  /**
-   * Generates an email address using an example mail provider using the given person's name as base.
-   *
-   * @param options An options object.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param legacyOptions The options to use.
-   * @param legacyOptions.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne96@example.net'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
-   * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
-   *
-   * @since 3.1.0
-   */
-  exampleEmail(
-    options?:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        },
-    legacyLastName?: string,
-    legacyOptions?: {
-      /**
-       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-       *
-       * @default false
-       */
-      allowSpecialCharacters?: boolean;
-    }
-  ): string;
-  exampleEmail(
-    options:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-          /**
-           * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-           *
-           * @default false
-           */
-          allowSpecialCharacters?: boolean;
-        } = {},
-    legacyLastName?: string,
-    legacyOptions?: {
-      /**
-       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-       *
-       * @default false
-       */
-      allowSpecialCharacters?: boolean;
-    }
+    } = {}
   ): string {
-    if (
-      typeof options === 'string' ||
-      legacyLastName != null ||
-      legacyOptions != null
-    ) {
-      deprecated({
-        deprecated: 'faker.internet.exampleEmail(firstName, lastName, options)',
-        proposed: 'faker.internet.exampleEmail({ firstName, lastName, ... })',
-        since: '8.0',
-        until: '9.0',
-      });
-    }
-
-    if (typeof options === 'string') {
-      options = { firstName: options };
-    }
-
-    const {
-      firstName,
-      lastName = legacyLastName,
-      allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
-    } = options;
+    const { firstName, lastName, allowSpecialCharacters = false } = options;
 
     const provider = this.faker.helpers.arrayElement(
       this.faker.definitions.internet.example_email
@@ -517,126 +197,26 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  userName(options?: {
-    /**
-     * The optional first name to use.
-     *
-     * @default faker.person.firstName()
-     */
-    firstName?: string;
-    /**
-     * The optional last name to use.
-     *
-     * @default faker.person.lastName()
-     */
-    lastName?: string;
-  }): string;
-  /**
-   * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
-   * This will always return a plain ASCII string.
-   * Some basic stripping of accents and transliteration of characters will be done.
-   *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.displayName(): For generating an Unicode display name.
-   *
-   * @example
-   * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne') // 'Jeanne98'
-   * faker.internet.userName('Jeanne') // 'Jeanne.Smith98'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne_Doe98'
-   * faker.internet.userName('John', 'Doe') // 'John.Doe'
-   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
-   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
-   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet.userName({ firstName, lastName })` instead.
-   */
-  userName(firstName?: string, lastName?: string): string;
-  /**
-   * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
-   * This will always return a plain ASCII string.
-   * Some basic stripping of accents and transliteration of characters will be done.
-   *
-   * @param options An options object.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.displayName(): For generating an Unicode display name.
-   *
-   * @example
-   * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne'}) // 'Jeanne98'
-   * faker.internet.userName({ firstName: 'Jeanne'}) // 'Jeanne.Smith98'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
-   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
-   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
-   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
-   *
-   * @since 2.0.1
-   */
   userName(
-    options?:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        },
-    legacyLastName?: string
-  ): string;
-  userName(
-    options:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        } = {},
-    legacyLastName?: string
+    options: {
+      /**
+       * The optional first name to use.
+       *
+       * @default faker.person.firstName()
+       */
+      firstName?: string;
+      /**
+       * The optional last name to use.
+       *
+       * @default faker.person.lastName()
+       */
+      lastName?: string;
+    } = {}
   ): string {
-    if (typeof options === 'string' || legacyLastName != null) {
-      deprecated({
-        deprecated: 'faker.internet.userName(firstName, lastName)',
-        proposed: 'faker.internet.userName({ firstName, lastName })',
-        since: '8.0',
-        until: '9.0',
-      });
-    }
-
-    if (typeof options === 'string') {
-      options = { firstName: options };
-    }
-
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName ?? this.faker.person.lastName(),
-      lastName: hasLastName = legacyLastName,
+      lastName = this.faker.person.lastName(),
+      lastName: hasLastName,
     } = options;
 
     const separator = this.faker.helpers.arrayElement(['.', '_']);
@@ -703,121 +283,25 @@ export class InternetModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  displayName(options?: {
-    /**
-     * The optional first name to use.
-     *
-     * @default faker.person.firstName()
-     */
-    firstName?: string;
-    /**
-     * The optional last name to use.
-     *
-     * @default faker.person.lastName()
-     */
-    lastName?: string;
-  }): string;
-  /**
-   * Generates a display name using the given person's name as base.
-   * The resulting display name may use one or both of the provided names.
-   * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
-   * It will not contain spaces.
-   *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.userName(): For generating a plain ASCII username.
-   *
-   * @example
-   * faker.internet.displayName() // 'Nettie_Zboncak40'
-   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
-   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
-   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
-   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
-   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated Use `faker.internet.displayName({ firstName, lastName })` instead.
-   */
-  displayName(firstName?: string, lastName?: string): string;
-  /**
-   * Generates a display name using the given person's name as base.
-   * The resulting display name may use one or both of the provided names.
-   * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
-   * It will not contain spaces.
-   *
-   * @param options An options object.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.userName(): For generating a plain ASCII username.
-   *
-   * @example
-   * faker.internet.displayName() // 'Nettie_Zboncak40'
-   * faker.internet.displayName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
-   * faker.internet.displayName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.displayName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
-   * faker.internet.displayName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
-   * faker.internet.displayName({ firstName: '大羽', lastName: '陳' }) // '大羽.陳'
-   *
-   * @since 8.0.0
-   */
   displayName(
-    options?:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        },
-    legacyLastName?: string
-  ): string;
-  displayName(
-    options:
-      | string
-      | {
-          /**
-           * The optional first name to use.
-           *
-           * @default faker.person.firstName()
-           */
-          firstName?: string;
-          /**
-           * The optional last name to use.
-           *
-           * @default faker.person.lastName()
-           */
-          lastName?: string;
-        } = {},
-    legacyLastName?: string
+    options: {
+      /**
+       * The optional first name to use.
+       *
+       * @default faker.person.firstName()
+       */
+      firstName?: string;
+      /**
+       * The optional last name to use.
+       *
+       * @default faker.person.lastName()
+       */
+      lastName?: string;
+    } = {}
   ): string {
-    if (typeof options === 'string' || legacyLastName != null) {
-      deprecated({
-        deprecated: 'faker.internet.displayName(firstName, lastName)',
-        proposed: 'faker.internet.displayName({ firstName, lastName })',
-        since: '8.0',
-        until: '9.0',
-      });
-    }
-
-    if (typeof options === 'string') {
-      options = { firstName: options };
-    }
-
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName ?? this.faker.person.lastName(),
+      lastName = this.faker.person.lastName(),
     } = options;
 
     const separator = this.faker.helpers.arrayElement(['.', '_']);
@@ -1072,138 +556,29 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  color(options?: {
-    /**
-     * The optional base red in range between `0` and `255`.
-     *
-     * @default 0
-     */
-    redBase?: number;
-    /**
-     * The optional base green in range between `0` and `255`.
-     *
-     * @default 0
-     */
-    greenBase?: number;
-    /**
-     * The optional base blue in range between `0` and `255`.
-     *
-     * @default 0
-     */
-    blueBase?: number;
-  }): string;
-  /**
-   * Generates a random css hex color code in aesthetically pleasing color palette.
-   *
-   * Based on
-   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-   *
-   * @param redBase The optional base red in range between `0` and `255`. Defaults to `0`.
-   * @param greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
-   * @param blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
-   *
-   * @example
-   * faker.internet.color() // '#30686e'
-   * faker.internet.color(100, 100, 100) // '#4e5f8b'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet.color({ redBase, greenBase, blueBase })` instead.
-   */
-  color(redBase?: number, greenBase?: number, blueBase?: number): string;
-  /**
-   * Generates a random css hex color code in aesthetically pleasing color palette.
-   *
-   * Based on
-   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-   *
-   * @param options An options object.
-   * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
-   * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
-   * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
-   * @param legacyGreenBase The optional base green in range between `0` and `255`. Defaults to `0`.
-   * @param legacyBlueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
-   *
-   * @example
-   * faker.internet.color() // '#30686e'
-   * faker.internet.color({ redBase: 100, greenBase: 100, blueBase: 100 }) // '#4e5f8b'
-   *
-   * @since 2.0.1
-   */
   color(
-    options?:
-      | number
-      | {
-          /**
-           * The optional base red in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          redBase?: number;
-          /**
-           * The optional base green in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          greenBase?: number;
-          /**
-           * The optional base blue in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          blueBase?: number;
-        },
-    legacyGreenBase?: number,
-    legacyBlueBase?: number
-  ): string;
-  color(
-    options:
-      | number
-      | {
-          /**
-           * The optional base red in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          redBase?: number;
-          /**
-           * The optional base green in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          greenBase?: number;
-          /**
-           * The optional base blue in range between `0` and `255`.
-           *
-           * @default 0
-           */
-          blueBase?: number;
-        } = {},
-    legacyGreenBase?: number,
-    legacyBlueBase?: number
+    options: {
+      /**
+       * The optional base red in range between `0` and `255`.
+       *
+       * @default 0
+       */
+      redBase?: number;
+      /**
+       * The optional base green in range between `0` and `255`.
+       *
+       * @default 0
+       */
+      greenBase?: number;
+      /**
+       * The optional base blue in range between `0` and `255`.
+       *
+       * @default 0
+       */
+      blueBase?: number;
+    } = {}
   ): string {
-    if (
-      typeof options === 'number' ||
-      legacyBlueBase != null ||
-      legacyGreenBase != null
-    ) {
-      deprecated({
-        deprecated: 'faker.internet.color(redBase, greenBase, blueBase)',
-        proposed: 'faker.internet.color({ redBase, greenBase, blueBase })',
-        since: '8.0',
-        until: '9.0',
-      });
-    }
-
-    if (typeof options === 'number') {
-      options = { redBase: options };
-    }
-
-    const {
-      redBase = 0,
-      greenBase = legacyGreenBase ?? 0,
-      blueBase = legacyBlueBase ?? 0,
-    } = options;
+    const { redBase = 0, greenBase = 0, blueBase = 0 } = options;
 
     const colorFromBase = (base: number): string =>
       Math.floor((this.faker.number.int(256) + base) / 2)
@@ -1326,149 +701,34 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  password(options?: {
-    /**
-     * The length of the password to generate.
-     *
-     * @default 15
-     */
-    length?: number;
-    /**
-     * Whether the generated password should be memorable.
-     *
-     * @default false
-     */
-    memorable?: boolean;
-    /**
-     * The pattern that all chars should match.
-     * This option will be ignored, if `memorable` is `true`.
-     *
-     * @default /\w/
-     */
-    pattern?: RegExp;
-    /**
-     * The prefix to use.
-     *
-     * @default ''
-     */
-    prefix?: string;
-  }): string;
-  /**
-   * Generates a random password.
-   *
-   * @param len The length of the password to generate. Defaults to `15`.
-   * @param memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param pattern The pattern that all chars should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param prefix The prefix to use. Defaults to `''`.
-   *
-   * @example
-   * faker.internet.password() // '89G1wJuBLbGziIs'
-   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
-   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet.password({ length, memorable, pattern, prefix })` instead.
-   */
   password(
-    len?: number,
-    memorable?: boolean,
-    pattern?: RegExp,
-    prefix?: string
-  ): string;
-  /**
-   * Generates a random password.
-   *
-   * @param options The length of the password or an options object.
-   * @param options.length The length of the password to generate. Defaults to `15`.
-   * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param options.prefix The prefix to use. Defaults to `''`.
-   * @param legacyMemorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param legacyPattern The pattern that all chars should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param legacyPrefix The prefix to use. Defaults to `''`.
-   *
-   * @example
-   * faker.internet.password() // '89G1wJuBLbGziIs'
-   * faker.internet.password({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
-   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
-   *
-   * @since 2.0.1
-   */
-  password(
-    options?:
-      | number
-      | {
-          /**
-           * The length of the password to generate.
-           *
-           * @default 15
-           */
-          length?: number;
-          /**
-           * Whether the generated password should be memorable.
-           *
-           * @default false
-           */
-          memorable?: boolean;
-          /**
-           * The pattern that all chars should match.
-           * This option will be ignored, if `memorable` is `true`.
-           *
-           * @default /\w/
-           */
-          pattern?: RegExp;
-          /**
-           * The prefix to use.
-           *
-           * @default ''
-           */
-          prefix?: string;
-        },
-    legacyMemorable?: boolean,
-    legacyPattern?: RegExp,
-    legacyPrefix?: string
-  ): string;
-  password(
-    options:
-      | number
-      | {
-          /**
-           * The length of the password to generate.
-           *
-           * @default 15
-           */
-          length?: number;
-          /**
-           * Whether the generated password should be memorable.
-           *
-           * @default false
-           */
-          memorable?: boolean;
-          /**
-           * The pattern that all chars should match.
-           * This option will be ignored, if `memorable` is `true`.
-           *
-           * @default /\w/
-           */
-          pattern?: RegExp;
-          /**
-           * The prefix to use.
-           *
-           * @default ''
-           */
-          prefix?: string;
-        } = {},
-    legacyMemorable?: boolean,
-    legacyPattern?: RegExp,
-    legacyPrefix?: string
+    options: {
+      /**
+       * The length of the password to generate.
+       *
+       * @default 15
+       */
+      length?: number;
+      /**
+       * Whether the generated password should be memorable.
+       *
+       * @default false
+       */
+      memorable?: boolean;
+      /**
+       * The pattern that all chars should match.
+       * This option will be ignored, if `memorable` is `true`.
+       *
+       * @default /\w/
+       */
+      pattern?: RegExp;
+      /**
+       * The prefix to use.
+       *
+       * @default ''
+       */
+      prefix?: string;
+    } = {}
   ): string {
     /*
      * password-generator ( function )
@@ -1504,31 +764,11 @@ export class InternetModule extends ModuleBase {
       return _password(length, memorable, pattern, prefix + char);
     };
 
-    if (
-      typeof options === 'string' ||
-      legacyMemorable != null ||
-      legacyPattern != null ||
-      legacyPrefix != null
-    ) {
-      deprecated({
-        deprecated:
-          'faker.internet.password(length, memorable, pattern, prefix)',
-        proposed:
-          'faker.internet.password({ length, memorable, pattern, prefix })',
-        since: '8.0',
-        until: '9.0',
-      });
-    }
-
-    if (typeof options === 'number') {
-      options = { length: options };
-    }
-
     const {
       length = 15,
-      memorable = legacyMemorable ?? false,
-      pattern = legacyPattern ?? /\w/,
-      prefix = legacyPrefix ?? '',
+      memorable = false,
+      pattern = /\w/,
+      prefix = '',
     } = options;
 
     return _password(length, memorable, pattern, prefix);
