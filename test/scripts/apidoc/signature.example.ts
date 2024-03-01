@@ -4,7 +4,7 @@ import type { AlphaNumericChar } from '../../../src/modules/string';
 import type { LiteralUnion } from '../../../src/utils/types';
 // explicitly export types so they show up in the docs as decomposed types
 export type { NumberColorFormat, StringColorFormat } from '../../../src';
-export { Casing, ColorFormat, AlphaNumericChar, LiteralUnion };
+export { AlphaNumericChar, Casing, ColorFormat, LiteralUnion };
 
 /**
  * Parameter options type with default from signature.
@@ -289,12 +289,22 @@ export class SignatureTest {
   }
 
   /**
-   * Test with throws
+   * Test with throws.
    *
-   * @throws a Faker error
+   * @throws Everytime.
    */
   methodWithThrows(): number {
     throw new FakerError('Test error');
+  }
+
+  /**
+   * Test with multiple throws.
+   *
+   * @throws First error case.
+   * @throws Another error case.
+   */
+  methodWithMultipleThrows(): number {
+    throw new FakerError('Another test error');
   }
 
   /**

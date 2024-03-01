@@ -1,7 +1,8 @@
-import type { SpyInstance } from 'vitest';
+import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { faker, Faker } from '../src';
+import { Faker, faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
+import { keys } from '../src/internal/keys';
 
 describe('faker', () => {
   it('should throw error if no locales passed', () => {
@@ -12,15 +13,14 @@ describe('faker', () => {
     );
   });
 
-  it('should not log anything on startup', () => {
-    const spies: SpyInstance[] = Object.keys(console)
+  it('should not log anything on startup', async () => {
+    const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) =>
         vi.spyOn(console, methodName as keyof typeof console)
       );
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
-    require('..').faker;
+    (await import('..')).default;
 
     new Faker({ locale: { metadata: { title: '' } } });
 

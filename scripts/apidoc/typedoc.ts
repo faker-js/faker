@@ -31,19 +31,17 @@ type CommentHolder = Pick<Reflection, 'comment'>;
  *
  * @returns The TypeDoc application and the project reflection.
  */
-export function loadProject(
+export async function loadProject(
   options: Partial<TypeDocOptions> = {
     entryPoints: ['src/index.ts'],
     pretty: true,
     cleanOutputDir: true,
     tsconfig: 'tsconfig.build.json',
   }
-): [Application, ProjectReflection] {
-  const app = newTypeDocApp();
+): Promise<[Application, ProjectReflection]> {
+  const app = await newTypeDocApp(options);
 
-  app.bootstrap(options);
-
-  const project = app.convert();
+  const project = await app.convert();
 
   if (!project) {
     throw new Error('Failed to convert project');
@@ -56,13 +54,15 @@ export function loadProject(
 
 /**
  * Creates and configures a new typedoc application.
+ *
+ * @param options The options to use for the project.
  */
-function newTypeDocApp(): Application {
-  const app = new Application();
-
-  app.options.addReader(new TSConfigReader());
-  // If you want TypeDoc to load typedoc.json files
-  //app.options.addReader(new TypeDoc.TypeDocReader());
+async function newTypeDocApp(
+  options?: Partial<TypeDocOptions>
+): Promise<Application> {
+  const app = await Application.bootstrapWithPlugins(options, [
+    new TSConfigReader(),
+  ]);
 
   // Read parameter defaults
   app.converter.on(Converter.EVENT_CREATE_DECLARATION, parameterDefaultReader);
@@ -88,7 +88,8 @@ export function selectApiModules(
     .getChildrenByKind(ReflectionKind.Class)
     .filter(
       (module) =>
-        faker[extractModuleFieldName(module)] != null || includeTestModules
+        faker[extractModuleFieldName(module) as keyof typeof faker] != null ||
+        includeTestModules
     );
 }
 
@@ -122,7 +123,8 @@ export function selectApiSignature(
     throw new Error(`Method ${method.name} has no signature.`);
   }
 
-  return signatures[signatures.length - 1];
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return signatures.at(-1)!;
 }
 
 /**
@@ -219,7 +221,40 @@ export function extractTagContent(
   reflection?: CommentHolder,
   tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
-  return reflection?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
+  const tags =
+    reflection?.comment
+      ?.getTags(tag)
+      .flatMap(tagProcessor)
+      .map((tag) => tag.trim()) ?? [];
+  if (tags.some((tag) => tag.length === 0)) {
+    throw new Error(`Expected non-empty ${tag} tag.`);
+  }
+
+  return tags;
+}
+
+/**
+ * Extracts the text (md) from a single jsdoc tag.
+ *
+ * @param tag The tag to extract the text from.
+ * @param reflection The reflection to extract the text from.
+ * @param tagProcessor The function used to extract the text from the tag.
+ *
+ * @throws If there are multiple tags of that type.
+ */
+function extractSingleTagContent(
+  tag: `@${string}`,
+  reflection?: CommentHolder,
+  tagProcessor: (tag: CommentTag) => string[] = joinTagContent
+): string | undefined {
+  const tags = extractTagContent(tag, reflection, tagProcessor);
+  if (tags.length === 0) {
+    return undefined;
+  } else if (tags.length === 1) {
+    return tags[0];
+  }
+
+  throw new Error(`Expected 1 ${tag} tag, but got ${tags.length}.`);
 }
 
 /**
@@ -279,7 +314,8 @@ export function extractSummaryDefault(
 
   if (eraseDefault) {
     summary.splice(-2, 2);
-    const lastSummaryPart = summary[summary.length - 1];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const lastSummaryPart = summary.at(-1)!;
     lastSummaryPart.text = lastSummaryPart.text.replace(
       /[ \n]Defaults to $/,
       ''
@@ -358,8 +394,7 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 export function extractDeprecated(
   reflection?: CommentHolder
 ): string | undefined {
-  const deprecated = extractTagContent('@deprecated', reflection).join().trim();
-  return deprecated.length === 0 ? undefined : deprecated;
+  return extractSingleTagContent('@deprecated', reflection);
 }
 
 /**
@@ -370,8 +405,8 @@ export function extractDeprecated(
  * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
  */
 export function extractThrows(reflection?: CommentHolder): string | undefined {
-  const throws = extractTagContent('@throws', reflection).join().trim();
-  return throws.length === 0 ? undefined : throws;
+  const content = extractTagContent('@throws', reflection).join('\n');
+  return content.length === 0 ? undefined : content;
 }
 
 /**
@@ -382,5 +417,5 @@ export function extractThrows(reflection?: CommentHolder): string | undefined {
  * @returns The contents of the `@since` tag.
  */
 export function extractSince(reflection: CommentHolder): string {
-  return extractTagContent('@since', reflection).join().trim();
+  return extractSingleTagContent('@since', reflection) || MISSING_DESCRIPTION;
 }

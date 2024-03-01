@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import type { allLocales, Faker, RandomModule } from '../src';
+import type { Faker, allLocales } from '../src';
 import { allFakers, fakerEN } from '../src';
+import { keys } from '../src/internal/keys';
 
 const IGNORED_MODULES = new Set([
   'rawDefinitions',
@@ -35,11 +36,7 @@ function isTestableModule(moduleName: string): moduleName is keyof Faker {
 }
 
 function getMethodNamesOf(module: object): string[] {
-  return Object.keys(module).filter(isMethodOf(module));
-}
-
-function isMethodOf(module: object): (method: string) => boolean {
-  return (method: string) => typeof module[method] === 'function';
+  return keys(module).filter((method) => typeof module[method] === 'function');
 }
 
 type SkipConfig<TModule> = Partial<
@@ -58,19 +55,12 @@ const BROKEN_LOCALE_METHODS = {
     zipCode: ['en_HK'],
     zipCodeByState: ['en_HK'],
   },
-  random: {
-    locale: '*', // locale() has been pseudo removed
-  } as SkipConfig<RandomModule>,
   string: {
     fromCharacters: '*',
   },
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
-    jobArea: ['ar'],
-    jobDescriptor: ['ar'],
-    jobTitle: ['ar', 'ur'],
-    jobType: ['ur'],
   },
 } satisfies {
   [module_ in keyof Faker]?: SkipConfig<Faker[module_]>;
@@ -81,6 +71,7 @@ function isWorkingLocaleForMethod(
   method: string,
   locale: string
 ): boolean {
+  // @ts-expect-error: We don't have types for the dynamic access
   const broken = BROKEN_LOCALE_METHODS[module]?.[method] ?? [];
   return broken !== '*' && !broken.includes(locale);
 }
@@ -104,6 +95,7 @@ describe('BROKEN_LOCALE_METHODS test', () => {
     it('should not contain obsolete configuration (methods)', () => {
       const existingMethods = modules[module];
       const configuredMethods = Object.keys(
+        // @ts-expect-error: We don't have types for the dynamic access
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         BROKEN_LOCALE_METHODS[module] ?? {}
       );
@@ -129,6 +121,7 @@ describe('functional tests', () => {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
+          // @ts-expect-error: We don't have types for the dynamic access
           const result = faker[module][meth]();
 
           if (meth === 'boolean') {

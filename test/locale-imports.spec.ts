@@ -1,35 +1,36 @@
 import { describe, expect, it } from 'vitest';
 import type { Faker } from '../src';
 import { allLocales } from '../src';
+import { keys } from '../src/internal/keys';
 
-describe.each(Object.keys(allLocales))('locale imports', (locale) => {
+describe.each(keys(allLocales))('locale imports', (locale) => {
   it(`should be possible to directly require('@faker-js/faker/locale/${locale}')`, () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
-    const { faker } = require(`../dist/cjs/locale/${locale}`) as {
+    const { faker } = require(`../dist/locale/${locale}.cjs`) as {
       faker: Faker;
     };
 
     expect(faker).toBeDefined();
     expect(faker.string.alpha()).toBeTypeOf('string');
     expect(faker.definitions.metadata.title).toBe(
-      allLocales[locale].metadata.title
+      allLocales[locale].metadata?.title
     );
   });
 
   it(`should be possible to directly import('@faker-js/faker/locale/${locale}')`, async () => {
-    const { faker } = (await import(`../dist/esm/locale/${locale}`)) as {
+    const { faker } = (await import(`../dist/locale/${locale}`)) as {
       faker: Faker;
     };
 
     expect(faker).toBeDefined();
     expect(faker.string.alpha()).toBeTypeOf('string');
     expect(faker.definitions.metadata.title).toBe(
-      allLocales[locale].metadata.title
+      allLocales[locale].metadata?.title
     );
   });
 
   it('should have complete metadata values', () => {
-    const metadata = allLocales[locale].metadata;
+    const metadata = allLocales[locale].metadata ?? {};
     expect(metadata.title).toBeTypeOf('string');
     expect(metadata.code).toBeTypeOf('string');
     expect(metadata.code).toEqual(locale);
