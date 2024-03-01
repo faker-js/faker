@@ -27,6 +27,7 @@ describe('commerce', () => {
         .it('with min option', { min: 42 })
         .it('with max option', { max: 1337 })
         .it('with min and max option', { min: 50, max: 100 })
+        .it('with float min and float max option', { min: 1, max: 1.1 })
         .it('with min and max and decimals option', {
           min: 50,
           max: 100,
@@ -124,14 +125,42 @@ describe('commerce', () => {
           const price = faker.commerce.price(100, 100, 1);
 
           expect(price).toBeTruthy();
-          expect(price, 'the price should be equal 100.0').toBe('100.0');
+          expect(price, 'the price should equal 100.0').toBe('100.0');
         });
 
         it('should handle argument dec = 0', () => {
           const price = faker.commerce.price(100, 100, 0);
 
           expect(price).toBeTruthy();
-          expect(price, 'the price should be equal 100').toBe('100');
+          expect(price, 'the price should equal 100').toBe('100');
+        });
+
+        it('should return decimal values between min and max', () => {
+          const result = faker.helpers.multiple(
+            () => faker.commerce.price(1, 1.1, 2),
+            { count: 50 }
+          );
+
+          for (const price of result) {
+            const parsedPrice = Number.parseFloat(price);
+
+            expect(parsedPrice).toBeLessThanOrEqual(1.1);
+            expect(parsedPrice).toBeGreaterThanOrEqual(1);
+          }
+        });
+
+        it('should return values with three decimal places between min and max', () => {
+          const result = faker.helpers.multiple(
+            () => faker.commerce.price({ min: 0.001, max: 0.009, dec: 3 }),
+            { count: 50 }
+          );
+
+          for (const price of result) {
+            const parsedPrice = Number.parseFloat(price);
+
+            expect(parsedPrice).toBeLessThanOrEqual(0.009);
+            expect(parsedPrice).toBeGreaterThanOrEqual(0.001);
+          }
         });
       });
 
