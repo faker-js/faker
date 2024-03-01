@@ -6,9 +6,9 @@ import type { LocaleDefinition } from '../..';
 import metadata from './metadata';
 import person from './person';
 
-const uz_UZ: LocaleDefinition = {
+const uz_UZ_latin: LocaleDefinition = {
   metadata,
   person,
 };
 
-export default uz_UZ;
+export default uz_UZ_latin;

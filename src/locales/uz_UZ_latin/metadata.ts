@@ -2,7 +2,7 @@ import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/met
 
 const metadata: PreBuiltMetadataDefinitionForCountry = {
   title: 'Uzbek (Latin)',
-  code: 'uz_UZ',
+  code: 'uz_UZ_latin',
   country: 'UZ',
   language: 'uz',
   endonym: "O'zbekcha",
