@@ -1129,12 +1129,13 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template TResult The type of elements.
    *
    * @param method The method used to generate the values.
+   * The method will be called with `(_, index)`, to allow using the index in the generated value e.g. as id.
    * @param options The optional options object.
    * @param options.count The number or range of elements to generate. Defaults to `3`.
    *
    * @example
-   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
-   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   * faker.helpers.multiple(() => faker.person.firstName()) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(() => faker.person.firstName(), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
    * faker.helpers.multiple((_, i) => `Person ${i + 1}` ) // [ 'Person 1', 'Person 2', 'Person 3' ]
    *
    * @since 8.0.0
