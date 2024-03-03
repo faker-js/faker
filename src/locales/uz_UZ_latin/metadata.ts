@@ -1,7 +1,7 @@
 import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/metadata';
 
 const metadata: PreBuiltMetadataDefinitionForCountry = {
-  title: 'Uzbek (Latin)',
+  title: 'Uzbek (Uzbekistan, Latin)',
   code: 'uz_UZ_latin',
   country: 'UZ',
   language: 'uz',
