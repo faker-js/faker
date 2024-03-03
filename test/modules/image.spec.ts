@@ -89,22 +89,6 @@ describe('image', () => {
           type: 'svg-uri',
         });
     });
-
-    t.skip('abstract');
-    t.skip('animals');
-    t.skip('business');
-    t.skip('cats');
-    t.skip('city');
-    t.skip('fashion');
-    t.skip('food');
-    t.skip('image');
-    t.skip('imageUrl');
-    t.skip('nature');
-    t.skip('nightlife');
-    t.skip('people');
-    t.skip('sports');
-    t.skip('technics');
-    t.skip('transport');
   });
 
   describe('avatar', () => {

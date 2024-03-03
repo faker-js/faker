@@ -262,11 +262,9 @@ describe('person', () => {
 
           const [descriptor, level, job] = jobTitle.split(' ');
 
-          expect(faker.definitions.person.title.descriptor).toContain(
-            descriptor
-          );
-          expect(faker.definitions.person.title.level).toContain(level);
-          expect(faker.definitions.person.title.job).toContain(job);
+          expect(faker.definitions.person.job_descriptor).toContain(descriptor);
+          expect(faker.definitions.person.job_area).toContain(level);
+          expect(faker.definitions.person.job_type).toContain(job);
         });
       });
 
@@ -276,9 +274,7 @@ describe('person', () => {
 
           expect(descriptor).toBeTypeOf('string');
 
-          expect(faker.definitions.person.title.descriptor).toContain(
-            descriptor
-          );
+          expect(faker.definitions.person.job_descriptor).toContain(descriptor);
         });
       });
 
@@ -288,7 +284,7 @@ describe('person', () => {
 
           expect(level).toBeTypeOf('string');
 
-          expect(faker.definitions.person.title.level).toContain(level);
+          expect(faker.definitions.person.job_area).toContain(level);
         });
       });
 
@@ -298,7 +294,7 @@ describe('person', () => {
 
           expect(job).toBeTypeOf('string');
 
-          expect(faker.definitions.person.title.job).toContain(job);
+          expect(faker.definitions.person.job_type).toContain(job);
         });
       });
 
