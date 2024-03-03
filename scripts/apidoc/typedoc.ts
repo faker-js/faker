@@ -123,7 +123,8 @@ export function selectApiSignature(
     throw new Error(`Method ${method.name} has no signature.`);
   }
 
-  return signatures[signatures.length - 1];
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return signatures.at(-1)!;
 }
 
 /**
@@ -313,7 +314,8 @@ export function extractSummaryDefault(
 
   if (eraseDefault) {
     summary.splice(-2, 2);
-    const lastSummaryPart = summary[summary.length - 1];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const lastSummaryPart = summary.at(-1)!;
     lastSummaryPart.text = lastSummaryPart.text.replace(
       /[ \n]Defaults to $/,
       ''

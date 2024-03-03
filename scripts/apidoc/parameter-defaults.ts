@@ -33,7 +33,7 @@ export const parameterDefaultReader: EventCallback = (
     reflection.kindOf(reflectionKindFunctionOrMethod) &&
     symbol.declarations?.length
   ) {
-    const lastDeclaration = symbol.declarations[symbol.declarations.length - 1];
+    const lastDeclaration = symbol.declarations.at(-1);
     if (TypeScript.isFunctionLike(lastDeclaration)) {
       (reflection as ParameterDefaultsAware).implementationDefaultParameters =
         lastDeclaration.parameters.map((param) =>
