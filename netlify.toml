@@ -5,6 +5,13 @@
 [build]
   publish = "docs/.vitepress/dist"
   command = "pnpm docs:build:ci"
+  ignore = '''
+    if [ "$BRANCH" = "next" ] || [[ "$BRANCH" =~ ^v[0-9]+$ ]]; then
+      exit 1; # 1 = build; 0 = Don't build
+    else
+      git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . \':!src/locale/\' \':!src/locales/\' \':!test\' \':!package.json\' \':pnpm-lock.yaml\' \':.github\'
+    fi
+  '''
 
 # Alias for the main page
 [[redirects]]
