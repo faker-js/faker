@@ -12,7 +12,7 @@ exports[`module > analyzeModule() > ModuleExampleTest 1`] = `
 {
   "comment": "This is a description for a module with a code example.",
   "deprecated": undefined,
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#89DDFF\\">new</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#82AAFF\\">ModuleExampleTest</span><span style=\\"color:#BABED8\\">()</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ModuleExampleTest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
 </div>",
 }
 `;

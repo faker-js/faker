@@ -139,7 +139,7 @@ async function writeApiDocsModulePage(
   `
     )
     .join('')}
-  `.replace(/\n +/g, '\n');
+  `.replaceAll(/\n +/g, '\n');
 
   content = vitePressInFileOptions + (await formatMarkdown(content));
 

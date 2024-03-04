@@ -1,9 +1,9 @@
 // @ts-check
 
 /**
- * @type {import('prettier').Options}
+ * @type {import('prettier').Config}
  */
-module.exports = {
+export default {
   plugins: ['prettier-plugin-organize-imports'],
   singleQuote: true,
   trailingComma: 'es5',
@@ -20,6 +20,7 @@ module.exports = {
     {
       files: '*.md',
       options: {
+        // @ts-expect-error: known property
         organizeImportsSkipDestructiveCodeActions: true,
       },
     },

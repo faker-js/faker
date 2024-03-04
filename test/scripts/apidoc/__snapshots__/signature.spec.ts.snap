@@ -5,10 +5,10 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "deprecated": undefined,
   "description": "<p>Complex array parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">(array: readonly </span><span style=\\"color:#82AAFF\\">Array</span><span style=\\"color:#89DDFF\\">&lt;{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">weight</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FFCB6B\\">number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}&gt;</span><span style=\\"color:#BABED8\\">): T</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">complexArrayParameter</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&lt;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">T</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&gt;(array: readonly </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&lt;{</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  value</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> T</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  weight</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> number</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}&gt;): </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">T</span></span></code></pre>
 </div>",
   "name": "complexArrayParameter",
   "parameters": [
@@ -53,7 +53,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with a default parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">defaultBooleanParamMethod</span><span style=\\"color:#BABED8\\">(c: boolean </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FF9CAC\\">true</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">defaultBooleanParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(c: boolean </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">): number</span></span></code></pre>
 </div>",
   "name": "defaultBooleanParamMethod",
   "parameters": [
@@ -105,7 +105,7 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with a function parameters.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">functionParamMethod</span><span style=\\"color:#BABED8\\">(fn: </span><span style=\\"color:#89DDFF\\">(</span><span style=\\"color:#BABED8;font-style:italic\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FFCB6B\\">string</span><span style=\\"color:#89DDFF\\">)</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#BABED8\\"> number): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">functionParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(fn: (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">a</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> string</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> number): number</span></span></code></pre>
 </div>",
   "name": "functionParamMethod",
   "parameters": [
@@ -130,7 +130,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with LiteralUnion.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#BABED8\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> namedValue: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#BABED8\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#BABED8\\"> mixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#BABED8\\"> namedMixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">): string</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">literalUnionParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(value: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedValue</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedArray</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, mixed</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, namedMixed</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> readonly Array</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string</span></span></code></pre>
 </div>",
   "name": "literalUnionParamMethod",
   "parameters": [
@@ -139,42 +139,42 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "value",
-      "type": "'a' | 'b' | string",
+      "type": "'a' | 'b' | ?",
     },
     {
       "default": undefined,
       "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedValue",
-      "type": "'a' | 'b' | string",
+      "type": "'a' | 'b' | ?",
     },
     {
       "default": undefined,
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "array",
-      "type": "Array<'a' | 'b' | string>",
+      "type": "Array<'a' | 'b' | ?>",
     },
     {
       "default": undefined,
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedArray",
-      "type": "Array<'a' | 'b' | string>",
+      "type": "Array<'a' | 'b' | ?>",
     },
     {
       "default": undefined,
       "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
 ",
       "name": "mixed",
-      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
+      "type": "'a' | 'b' | ? | Array<'a' | 'b' | ?>",
     },
     {
       "default": undefined,
       "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
 ",
       "name": "namedMixed",
-      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
+      "type": "'a' | 'b' | ? | Array<'a' | 'b' | ?>",
     },
   ],
   "returns": "string",
@@ -191,7 +191,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
 ",
   "description": "<p>Test with deprecated and see marker.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithDeprecated</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithDeprecated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithDeprecated",
   "parameters": [],
@@ -210,11 +210,11 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with deprecated option.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithDeprecatedOption</span><span style=\\"color:#BABED8\\">(option: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#82AAFF\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithDeprecatedOption</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(option: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  a: string,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> number,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  c: number</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}): number</span></span></code></pre>
 </div>",
   "name": "methodWithDeprecatedOption",
   "parameters": [
@@ -262,8 +262,8 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with example marker.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">(): number</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">test</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#BABED8\\">apidoc</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithExample</span><span style=\\"color:#BABED8\\">() </span><span style=\\"color:#676E95;font-style:italic\\">// 0</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithExample</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">test.apidoc.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithExample</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0</span></span></code></pre>
 </div>",
   "name": "methodWithExample",
   "parameters": [],
@@ -280,7 +280,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with multiple see markers.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkers</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithMultipleSeeMarkers</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithMultipleSeeMarkers",
   "parameters": [],
@@ -300,7 +300,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
   "deprecated": undefined,
   "description": "<p>Test with multiple see markers and backticks.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkersAndBackticks</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithMultipleSeeMarkersAndBackticks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithMultipleSeeMarkersAndBackticks",
   "parameters": [],
@@ -320,7 +320,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleThrows 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with multiple throws.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithMultipleThrows</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithMultipleThrows</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithMultipleThrows",
   "parameters": [],
@@ -338,7 +338,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with since marker.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithSinceMarker</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithSinceMarker</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithSinceMarker",
   "parameters": [],
@@ -355,7 +355,7 @@ exports[`signature > analyzeSignature() > methodWithThrows 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with throws.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">methodWithThrows</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">methodWithThrows</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "methodWithThrows",
   "parameters": [],
@@ -372,7 +372,7 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with multiple parameters.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">multiParamMethod</span><span style=\\"color:#BABED8\\">(a: number</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> b</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> c: boolean </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#FF9CAC\\">true</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">multiParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(a: number, b</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string, c: boolean </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">): number</span></span></code></pre>
 </div>",
   "name": "multiParamMethod",
   "parameters": [
@@ -411,7 +411,7 @@ exports[`signature > analyzeSignature() > noParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with no parameters.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">noParamMethod</span><span style=\\"color:#BABED8\\">(): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">noParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(): number</span></span></code></pre>
 </div>",
   "name": "noParamMethod",
   "parameters": [],
@@ -428,7 +428,7 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with an optional parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionalStringParamMethod</span><span style=\\"color:#BABED8\\">(b</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#BABED8\\"> string): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">optionalStringParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(b</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string): number</span></span></code></pre>
 </div>",
   "name": "optionalStringParamMethod",
   "parameters": [
@@ -453,13 +453,13 @@ exports[`signature > analyzeSignature() > optionsInlineParamMethodWithDefaults 1
   "deprecated": undefined,
   "description": "<p>Test with a function parameters (inline types) with defaults.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsInlineParamMethodWithDefaults</span><span style=\\"color:#BABED8\\">(a: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> b: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> c: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">optionsInlineParamMethodWithDefaults</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(a: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  value: number</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { value: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, b: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  value: number</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { value: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, c: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  value: number</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}): number</span></span></code></pre>
 </div>",
   "name": "optionsInlineParamMethodWithDefaults",
   "parameters": [
@@ -521,7 +521,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "deprecated": undefined,
   "description": "<p>Test with a function parameters with defaults.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsInterfaceParamMethodWithDefaults</span><span style=\\"color:#BABED8\\">(a: ParameterOptionsInterfaceA </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> b: ParameterOptionsInterfaceB </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> c: ParameterOptionsInterfaceC): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">optionsInterfaceParamMethodWithDefaults</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(a: ParameterOptionsInterfaceA </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { value: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, b: ParameterOptionsInterfaceB </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { value: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, c: ParameterOptionsInterfaceC): number</span></span></code></pre>
 </div>",
   "name": "optionsInterfaceParamMethodWithDefaults",
   "parameters": [
@@ -560,13 +560,13 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with an options parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsParamMethod</span><span style=\\"color:#BABED8\\">(options: </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> boolean</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#82AAFF\\">d</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#BABED8\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">e</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> string</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">optionsParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(options: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  a: number,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  b: string,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  c: boolean,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  d</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> string,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ?</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> number</span></span></code></pre>
 </div>",
   "name": "optionsParamMethod",
   "parameters": [
@@ -610,7 +610,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
       "description": "<p>A parameter with inline documentation.</p>
 ",
       "name": "options.e",
-      "type": "'a' | 'b' | string",
+      "type": "'a' | 'b' | ?",
     },
   ],
   "returns": "number",
@@ -626,7 +626,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "deprecated": undefined,
   "description": "<p>Test with a function parameters with defaults.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">optionsTypeParamMethodWithDefaults</span><span style=\\"color:#BABED8\\">(a: ParameterOptionsTypeA </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> b: ParameterOptionsTypeB </span><span style=\\"color:#89DDFF\\">=</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#F78C6C\\">1</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">},</span><span style=\\"color:#BABED8\\"> c: ParameterOptionsTypeC): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">optionsTypeParamMethodWithDefaults</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(a: ParameterOptionsTypeA </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { value: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, b: ParameterOptionsTypeB </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { value: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, c: ParameterOptionsTypeC): number</span></span></code></pre>
 </div>",
   "name": "optionsTypeParamMethodWithDefaults",
   "parameters": [
@@ -665,7 +665,7 @@ exports[`signature > analyzeSignature() > recordParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with a Record parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">recordParamMethod</span><span style=\\"color:#BABED8\\">(object: Record</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#BABED8\\">string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> number</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#BABED8\\">): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">recordParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(object: Record</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">string, number</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">): number</span></span></code></pre>
 </div>",
   "name": "recordParamMethod",
   "parameters": [
@@ -690,7 +690,7 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with a required parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">requiredNumberParamMethod</span><span style=\\"color:#BABED8\\">(a: number): number</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">requiredNumberParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(a: number): number</span></span></code></pre>
 </div>",
   "name": "requiredNumberParamMethod",
   "parameters": [
@@ -715,11 +715,11 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with string union.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">stringUnionParamMethod</span><span style=\\"color:#BABED8\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#BABED8\\"> options</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">{</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">casing</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">lower</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">mixed</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">upper</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">excludes</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> readonly AlphaNumericChar[]</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#BABED8\\">  </span><span style=\\"color:#F07178\\">format</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">binary</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">css</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">decimal</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#BABED8\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">hex</span><span style=\\"color:#89DDFF\\">'</span></span>
-<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#BABED8\\">): string</span></span></code></pre>
+  "examples": "<div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">stringUnionParamMethod</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(value: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'b'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, options</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  casing: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'lower'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'mixed'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'upper'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  excludes: readonly AlphaNumericChar[],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  format: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'binary'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'css'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'decimal'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'hex'</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}): string</span></span></code></pre>
 </div>",
   "name": "stringUnionParamMethod",
   "parameters": [

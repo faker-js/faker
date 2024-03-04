@@ -7,6 +7,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
 import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import {
+  MISSING_DESCRIPTION,
   extractDeprecated,
   extractDescription,
   extractJoinedRawExamples,
@@ -16,7 +17,6 @@ import {
   extractSince,
   extractSummaryDefault,
   extractTagContent,
-  MISSING_DESCRIPTION,
 } from '../../../scripts/apidoc/typedoc';
 import { loadProjectModules } from './utils';
 
@@ -35,115 +35,111 @@ afterAll(() => {
   }
 });
 
-describe('verify JSDoc tags', () => {
-  const modules = loadProjectModules();
+const modules = await loadProjectModules();
 
-  function resolveDirToModule(moduleName: string): string {
-    return resolve(tempDir, moduleName);
-  }
+function resolveDirToModule(moduleName: string): string {
+  return resolve(tempDir, moduleName);
+}
 
-  function resolvePathToMethodFile(
-    moduleName: string,
-    methodName: string
-  ): string {
-    const dir = resolveDirToModule(moduleName);
-    return resolve(dir, `${methodName}.ts`);
-  }
+function resolvePathToMethodFile(
+  moduleName: string,
+  methodName: string
+): string {
+  const dir = resolveDirToModule(moduleName);
+  return resolve(dir, `${methodName}.ts`);
+}
 
-  const allowedReferences = new Set(
-    Object.values(modules).flatMap(([module, methods]) => {
-      const moduleFieldName = extractModuleFieldName(module);
-      return Object.keys(methods).map(
-        (methodName) => `faker.${moduleFieldName}.${methodName}`
+const allowedReferences = new Set(
+  Object.values(modules).flatMap(([module, methods]) => {
+    const moduleFieldName = extractModuleFieldName(module);
+    return Object.keys(methods).map(
+      (methodName) => `faker.${moduleFieldName}.${methodName}`
+    );
+  })
+);
+const allowedLinks = new Set(
+  Object.values(modules).flatMap(([module, methods]) => {
+    const moduleFieldName = extractModuleFieldName(module);
+    return [
+      `/api/${moduleFieldName}.html`,
+      ...Object.keys(methods).map(
+        (methodName) =>
+          `/api/${moduleFieldName}.html#${methodName.toLowerCase()}`
+      ),
+    ];
+  })
+);
+
+function assertDescription(description: string, isHtml: boolean): void {
+  const linkRegexp = isHtml ? /(href)="([^"]+)"/g : /\[([^\]]+)\]\(([^)]+)\)/g;
+  const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
+
+  for (const link of links) {
+    if (!isHtml) {
+      expect(link).toMatch(/^https?:\/\//);
+      expect(link).toSatisfy(validator.isURL);
+    }
+
+    if (isHtml ? link.startsWith('/api/') : link.includes('fakerjs.dev/api/')) {
+      expect(allowedLinks, `${link} to point to a valid target`).toContain(
+        link.replace(/.*fakerjs.dev\//, '/')
       );
-    })
-  );
-  const allowedLinks = new Set(
-    Object.values(modules).flatMap(([module, methods]) => {
-      const moduleFieldName = extractModuleFieldName(module);
-      return [
-        `/api/${moduleFieldName}.html`,
-        ...Object.keys(methods).map(
-          (methodName) =>
-            `/api/${moduleFieldName}.html#${methodName.toLowerCase()}`
-        ),
-      ];
-    })
-  );
-
-  function assertDescription(description: string, isHtml: boolean): void {
-    const linkRegexp = isHtml
-      ? /(href)="([^"]+)"/g
-      : /\[([^\]]+)\]\(([^)]+)\)/g;
-    const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
-
-    for (const link of links) {
-      if (!isHtml) {
-        expect(link).toMatch(/^https?:\/\//);
-        expect(link).toSatisfy(validator.isURL);
-      }
-
-      if (
-        isHtml ? link.startsWith('/api/') : link.includes('fakerjs.dev/api/')
-      ) {
-        expect(allowedLinks, `${link} to point to a valid target`).toContain(
-          link.replace(/.*fakerjs.dev\//, '/')
-        );
-      }
     }
   }
+}
 
-  // keep in sync with analyzeParameterOptions
-  function assertNestedParameterDefault(
-    name: string,
-    parameterType?: SomeType
-  ): void {
-    if (!parameterType) {
+// keep in sync with analyzeParameterOptions
+function assertNestedParameterDefault(
+  name: string,
+  parameterType?: SomeType
+): void {
+  if (!parameterType) {
+    return;
+  }
+
+  switch (parameterType.type) {
+    case 'array':
+      return assertNestedParameterDefault(
+        `${name}[]`,
+        parameterType.elementType
+      );
+
+    case 'union':
+      for (const type of parameterType.types) {
+        assertNestedParameterDefault(name, type);
+      }
+
+      return;
+
+    case 'reflection': {
+      for (const property of parameterType.declaration.children ?? []) {
+        const reflection = property.comment
+          ? property
+          : (property.type as ReflectionType)?.declaration?.signatures?.[0];
+        const comment = reflection?.comment;
+        const tagDefault = extractRawDefault({ comment }) || undefined;
+        const summaryDefault = extractSummaryDefault(comment, false);
+
+        if (summaryDefault) {
+          expect(
+            tagDefault,
+            `Expect jsdoc summary default and @default for ${name}.${property.name} to be the same`
+          ).toBe(summaryDefault);
+        }
+      }
+
       return;
     }
 
-    switch (parameterType.type) {
-      case 'array':
-        return assertNestedParameterDefault(
-          `${name}[]`,
-          parameterType.elementType
-        );
+    case 'typeOperator':
+      return assertNestedParameterDefault(name, parameterType.target);
 
-      case 'union':
-        for (const type of parameterType.types) {
-          assertNestedParameterDefault(name, type);
-        }
-
-        return;
-
-      case 'reflection': {
-        for (const property of parameterType.declaration.children ?? []) {
-          const reflection = property.comment
-            ? property
-            : (property.type as ReflectionType)?.declaration?.signatures?.[0];
-          const comment = reflection?.comment;
-          const tagDefault = extractRawDefault({ comment }) || undefined;
-          const summaryDefault = extractSummaryDefault(comment, false);
-
-          if (summaryDefault) {
-            expect(
-              tagDefault,
-              `Expect jsdoc summary default and @default for ${name}.${property.name} to be the same`
-            ).toBe(summaryDefault);
-          }
-        }
-
-        return;
-      }
-
-      case 'typeOperator':
-        return assertNestedParameterDefault(name, parameterType.target);
-
-      default:
-        return;
-    }
+    default:
+      return;
   }
+}
 
+describe('verify JSDoc tags', () => {
   describe.each(Object.entries(modules))(
     '%s',
     (moduleName, [module, methodsByName]) => {
@@ -257,7 +253,7 @@ describe('verify JSDoc tags', () => {
             ).parameters) {
               const { name, description } = param;
               const plainDescription = description
-                .replace(/<[^>]+>/g, '')
+                .replaceAll(/<[^>]+>/g, '')
                 .trim();
               expect(
                 plainDescription,

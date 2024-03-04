@@ -1,307 +1,36 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`datatype > 42 > array > noArgs 1`] = `
-[
-  "ky2eiXX/J/",
-  "&Kq@X.b]\\"&",
-  6503186795855872,
-  8453731307749376,
-  "!1}2Z=YQ!I",
-  "<QYF-%<{C6",
-  ")jZ3DP|XL%",
-  5472277529362432,
-  1535944771502080,
-  "'\\"yxzUlD=\\"",
-]
-`;
-
-exports[`datatype > 42 > array > with length 1`] = `
-[
-  "ky2eiXX/J/",
-  "&Kq@X.b]\\"&",
-  6503186795855872,
-  8453731307749376,
-]
-`;
-
-exports[`datatype > 42 > array > with length range 1`] = `
-[
-  8563273238577152,
-  "eiXX/J/*&K",
-  3005779955154944,
-  1286829863075840,
-]
-`;
-
-exports[`datatype > 42 > bigInt > noArgs 1`] = `379177551410048n`;
-
-exports[`datatype > 42 > bigInt > with value 1`] = `37n`;
-
 exports[`datatype > 42 > boolean > noArgs 1`] = `true`;
 
 exports[`datatype > 42 > boolean > noArgs 2`] = `false`;
 
 exports[`datatype > 42 > boolean > noArgs 3`] = `false`;
 
-exports[`datatype > 42 > boolean > noArgs 4`] = `true`;
+exports[`datatype > 42 > boolean > noArgs 4`] = `false`;
 
-exports[`datatype > 42 > boolean > noArgs 5`] = `false`;
+exports[`datatype > 42 > boolean > noArgs 5`] = `true`;
 
 exports[`datatype > 42 > boolean > with probability 1`] = `true`;
 
 exports[`datatype > 42 > boolean > with probability option 1`] = `false`;
 
-exports[`datatype > 42 > datetime > noArgs 1`] = `2031-03-14T21:33:22.114Z`;
-
-exports[`datatype > 42 > datetime > with given number 1`] = `1994-03-20T17:23:00.629Z`;
-
-exports[`datatype > 42 > datetime > with max 1`] = `1994-07-11T09:43:47.230Z`;
-
-exports[`datatype > 42 > datetime > with min 1`] = `1801-04-11T15:13:06.330Z`;
-
-exports[`datatype > 42 > datetime > with min and max 1`] = `1689-09-09T08:39:09.444Z`;
-
-exports[`datatype > 42 > float > noArgs 1`] = `37453.64`;
-
-exports[`datatype > 42 > float > repeated 1`] = `37453.64`;
-
-exports[`datatype > 42 > float > repeated 2`] = `79653.5`;
-
-exports[`datatype > 42 > float > repeated 3`] = `95070.48`;
-
-exports[`datatype > 42 > float > repeated 4`] = `18343.29`;
-
-exports[`datatype > 42 > float > repeated 5`] = `73198.66`;
-
-exports[`datatype > 42 > float > repeated 6`] = `77968.32`;
-
-exports[`datatype > 42 > float > with max 1`] = `25.84`;
-
-exports[`datatype > 42 > float > with min 1`] = `37411.64`;
-
-exports[`datatype > 42 > float > with min and max 1`] = `-0.43`;
-
-exports[`datatype > 42 > float > with min, max and precision 1`] = `-0.4261`;
-
-exports[`datatype > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
-
-exports[`datatype > 42 > hexadecimal > with casing 1`] = `"0x8"`;
-
-exports[`datatype > 42 > hexadecimal > with length 1`] = `"0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
-
-exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0x8be4abdd39321ad7d3fe"`;
-
-exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
-
-exports[`datatype > 42 > json 1`] = `"{\\"foo\\":\\"ky2eiXX/J/\\",\\"bar\\":\\"&Kq@X.b]\\\\\\"&\\",\\"bike\\":6503186795855872,\\"a\\":8453731307749376,\\"b\\":\\"!1}2Z=YQ!I\\",\\"name\\":\\"<QYF-%<{C6\\",\\"prop\\":\\")jZ3DP|XL%\\"}"`;
-
-exports[`datatype > 42 > number > noArgs 1`] = `37454`;
-
-exports[`datatype > 42 > number > repeated 1`] = `2`;
-
-exports[`datatype > 42 > number > repeated 2`] = `5`;
-
-exports[`datatype > 42 > number > repeated 3`] = `6`;
-
-exports[`datatype > 42 > number > repeated 4`] = `1`;
-
-exports[`datatype > 42 > number > repeated 5`] = `5`;
-
-exports[`datatype > 42 > number > with max 1`] = `26`;
-
-exports[`datatype > 42 > number > with min 1`] = `37412`;
-
-exports[`datatype > 42 > number > with min and max 1`] = `-1`;
-
-exports[`datatype > 42 > number > with min, max and precision 1`] = `-0.43`;
-
-exports[`datatype > 42 > string > noArgs 1`] = `"Cky2eiXX/J"`;
-
-exports[`datatype > 42 > string > with length option 1`] = `"Cky2eiXX/J/*&Kq@X.b]\\"&"`;
-
-exports[`datatype > 42 > string > with number 1`] = `"Cky2eiXX/J/*&Kq@X.b]\\"&{dnx4!1}2Z=YQ!I#<QYF"`;
-
-exports[`datatype > 42 > uuid 1`] = `"5cf2bc99-2721-407d-8592-ba00fbdf302f"`;
-
-exports[`datatype > 42 > uuid 2`] = `"94980604-8962-404f-a537-1c9368f970d9"`;
-
-exports[`datatype > 42 > uuid 3`] = `"2710fff9-c640-413a-937a-197d02e642ac"`;
-
-exports[`datatype > 42 > uuid 4`] = `"6838920f-dc7f-46ee-a9be-519380f5d6b4"`;
-
-exports[`datatype > 42 > uuid 5`] = `"d95f4984-24c2-410f-86c6-3400d3bbbcc9"`;
-
-exports[`datatype > 1211 > array > noArgs 1`] = `
-[
-  4134441414819840,
-  7010029022478336,
-  "-}$_/\`4hHA",
-  "afl\\"h^]dnw",
-  "<q|p|5KWu3",
-  "CZ|Jh!E=x\\"",
-  3794869965291520,
-  1431627091673088,
-  "V<1bEQuA|p",
-  "DW9F=V1(U7",
-]
-`;
-
-exports[`datatype > 1211 > array > with length 1`] = `
-[
-  4134441414819840,
-  7010029022478336,
-  "-}$_/\`4hHA",
-  "afl\\"h^]dnw",
-]
-`;
-
-exports[`datatype > 1211 > array > with length range 1`] = `
-[
-  "ti5-}$_/\`4",
-  3789861976801280,
-  "0afl\\"h^]dn",
-  3918465303838720,
-  "q|p|5KWu3/",
-]
-`;
-
-exports[`datatype > 1211 > bigInt > noArgs 1`] = `948721906162743n`;
-
-exports[`datatype > 1211 > bigInt > with value 1`] = `8n`;
-
 exports[`datatype > 1211 > boolean > noArgs 1`] = `false`;
 
-exports[`datatype > 1211 > boolean > noArgs 2`] = `true`;
+exports[`datatype > 1211 > boolean > noArgs 2`] = `false`;
 
-exports[`datatype > 1211 > boolean > noArgs 3`] = `false`;
+exports[`datatype > 1211 > boolean > noArgs 3`] = `true`;
 
 exports[`datatype > 1211 > boolean > noArgs 4`] = `false`;
 
-exports[`datatype > 1211 > boolean > noArgs 5`] = `true`;
+exports[`datatype > 1211 > boolean > noArgs 5`] = `false`;
 
 exports[`datatype > 1211 > boolean > with probability 1`] = `false`;
 
 exports[`datatype > 1211 > boolean > with probability option 1`] = `false`;
 
-exports[`datatype > 1211 > datetime > noArgs 1`] = `2092-02-20T03:42:04.341Z`;
-
-exports[`datatype > 1211 > datetime > with given number 1`] = `2000-06-14T02:54:42.082Z`;
-
-exports[`datatype > 1211 > datetime > with max 1`] = `2001-03-20T11:14:25.251Z`;
-
-exports[`datatype > 1211 > datetime > with min 1`] = `2065-11-10T19:27:20.915Z`;
-
-exports[`datatype > 1211 > datetime > with min and max 1`] = `1789-03-26T15:44:45.219Z`;
-
-exports[`datatype > 1211 > float > noArgs 1`] = `92851.09`;
-
-exports[`datatype > 1211 > float > repeated 1`] = `92851.09`;
-
-exports[`datatype > 1211 > float > repeated 2`] = `45901.06`;
-
-exports[`datatype > 1211 > float > repeated 3`] = `89346.28`;
-
-exports[`datatype > 1211 > float > repeated 4`] = `77826.18`;
-
-exports[`datatype > 1211 > float > repeated 5`] = `22556.85`;
-
-exports[`datatype > 1211 > float > repeated 6`] = `12988.8`;
-
-exports[`datatype > 1211 > float > with max 1`] = `64.07`;
-
-exports[`datatype > 1211 > float > with min 1`] = `92809.09`;
-
-exports[`datatype > 1211 > float > with min and max 1`] = `61.07`;
-
-exports[`datatype > 1211 > float > with min, max and precision 1`] = `61.0658`;
-
-exports[`datatype > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
-
-exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"0xe"`;
-
-exports[`datatype > 1211 > hexadecimal > with length 1`] = `"0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
-
-exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `"0xeadb42f0e3f4a973fab0"`;
-
-exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
-
-exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":4134441414819840,\\"bar\\":7010029022478336,\\"bike\\":\\"-}$_/\`4hHA\\",\\"a\\":\\"afl\\\\\\"h^]dnw\\",\\"b\\":\\"<q|p|5KWu3\\",\\"name\\":\\"CZ|Jh!E=x\\\\\\"\\",\\"prop\\":3794869965291520}"`;
-
-exports[`datatype > 1211 > number > noArgs 1`] = `92852`;
-
-exports[`datatype > 1211 > number > repeated 1`] = `6`;
-
-exports[`datatype > 1211 > number > repeated 2`] = `3`;
-
-exports[`datatype > 1211 > number > repeated 3`] = `6`;
-
-exports[`datatype > 1211 > number > repeated 4`] = `5`;
-
-exports[`datatype > 1211 > number > repeated 5`] = `1`;
-
-exports[`datatype > 1211 > number > with max 1`] = `64`;
-
-exports[`datatype > 1211 > number > with min 1`] = `92810`;
-
-exports[`datatype > 1211 > number > with min and max 1`] = `61`;
-
-exports[`datatype > 1211 > number > with min, max and precision 1`] = `61.07`;
-
-exports[`datatype > 1211 > string > noArgs 1`] = `"wKti5-}$_/"`;
-
-exports[`datatype > 1211 > string > with length option 1`] = `"wKti5-}$_/\`4hHA0afl\\"h^"`;
-
-exports[`datatype > 1211 > string > with number 1`] = `"wKti5-}$_/\`4hHA0afl\\"h^]dnwI<q|p|5KWu3/CZ|J"`;
-
-exports[`datatype > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-b2bb-d0caabde64df"`;
-
-exports[`datatype > 1211 > uuid 2`] = `"f379e325-9f7c-4064-be08-6f23942b68e5"`;
-
-exports[`datatype > 1211 > uuid 3`] = `"d4694649-2183-4b32-90bd-7a336639d699"`;
-
-exports[`datatype > 1211 > uuid 4`] = `"10ab829b-742c-4a8b-a773-298d718d7706"`;
-
-exports[`datatype > 1211 > uuid 5`] = `"7b91ce88-effb-4d1d-b13b-bad759e00b86"`;
-
-exports[`datatype > 1337 > array > noArgs 1`] = `
-[
-  "U/4:SK$>6Q",
-  2359372120326144,
-  "{:e=+kD)[B",
-  "e|/Jqjjj!B",
-  "GDWQgC2M;q",
-  3648103756333056,
-  "I1.Gm3tRwn",
-  1668592164667392,
-  8623125245722624,
-  3831794621218816,
-]
-`;
-
-exports[`datatype > 1337 > array > with length 1`] = `
-[
-  "U/4:SK$>6Q",
-  2359372120326144,
-  "{:e=+kD)[B",
-  "e|/Jqjjj!B",
-]
-`;
-
-exports[`datatype > 1337 > array > with length range 1`] = `
-[
-  1429298200182784,
-  ":SK$>6QX9@",
-  2436284417048576,
-]
-`;
-
-exports[`datatype > 1337 > bigInt > noArgs 1`] = `251225403255239n`;
-
-exports[`datatype > 1337 > bigInt > with value 1`] = `25n`;
-
 exports[`datatype > 1337 > boolean > noArgs 1`] = `true`;
 
-exports[`datatype > 1337 > boolean > noArgs 2`] = `false`;
+exports[`datatype > 1337 > boolean > noArgs 2`] = `true`;
 
 exports[`datatype > 1337 > boolean > noArgs 3`] = `true`;
 
@@ -312,83 +41,3 @@ exports[`datatype > 1337 > boolean > noArgs 5`] = `true`;
 exports[`datatype > 1337 > boolean > with probability 1`] = `true`;
 
 exports[`datatype > 1337 > boolean > with probability option 1`] = `false`;
-
-exports[`datatype > 1337 > datetime > noArgs 1`] = `2018-10-28T08:46:11.896Z`;
-
-exports[`datatype > 1337 > datetime > with given number 1`] = `1992-12-13T04:13:59.232Z`;
-
-exports[`datatype > 1337 > datetime > with max 1`] = `1993-03-02T00:10:04.335Z`;
-
-exports[`datatype > 1337 > datetime > with min 1`] = `1747-07-16T01:19:54.159Z`;
-
-exports[`datatype > 1337 > datetime > with min and max 1`] = `1669-06-22T01:21:21.236Z`;
-
-exports[`datatype > 1337 > float > noArgs 1`] = `26202.2`;
-
-exports[`datatype > 1337 > float > repeated 1`] = `26202.2`;
-
-exports[`datatype > 1337 > float > repeated 2`] = `56052.42`;
-
-exports[`datatype > 1337 > float > repeated 3`] = `15868.24`;
-
-exports[`datatype > 1337 > float > repeated 4`] = `21258.55`;
-
-exports[`datatype > 1337 > float > repeated 5`] = `27812.37`;
-
-exports[`datatype > 1337 > float > repeated 6`] = `54307.53`;
-
-exports[`datatype > 1337 > float > with max 1`] = `18.08`;
-
-exports[`datatype > 1337 > float > with min 1`] = `26160.2`;
-
-exports[`datatype > 1337 > float > with min and max 1`] = `-12.92`;
-
-exports[`datatype > 1337 > float > with min, max and precision 1`] = `-12.9153`;
-
-exports[`datatype > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
-
-exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"0x5"`;
-
-exports[`datatype > 1337 > hexadecimal > with length 1`] = `"0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
-
-exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `"0x5c346ba075bd57f5a62b"`;
-
-exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
-
-exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"U/4:SK$>6Q\\",\\"bar\\":2359372120326144,\\"bike\\":\\"{:e=+kD)[B\\",\\"a\\":\\"e|/Jqjjj!B\\",\\"b\\":\\"GDWQgC2M;q\\",\\"name\\":3648103756333056,\\"prop\\":\\"I1.Gm3tRwn\\"}"`;
-
-exports[`datatype > 1337 > number > noArgs 1`] = `26202`;
-
-exports[`datatype > 1337 > number > repeated 1`] = `1`;
-
-exports[`datatype > 1337 > number > repeated 2`] = `3`;
-
-exports[`datatype > 1337 > number > repeated 3`] = `1`;
-
-exports[`datatype > 1337 > number > repeated 4`] = `1`;
-
-exports[`datatype > 1337 > number > repeated 5`] = `1`;
-
-exports[`datatype > 1337 > number > with max 1`] = `18`;
-
-exports[`datatype > 1337 > number > with min 1`] = `26160`;
-
-exports[`datatype > 1337 > number > with min and max 1`] = `-13`;
-
-exports[`datatype > 1337 > number > with min, max and precision 1`] = `-12.92`;
-
-exports[`datatype > 1337 > string > noArgs 1`] = `"9U/4:SK$>6"`;
-
-exports[`datatype > 1337 > string > with length option 1`] = `"9U/4:SK$>6QX9@{:e=+kD)"`;
-
-exports[`datatype > 1337 > string > with number 1`] = `"9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC"`;
-
-exports[`datatype > 1337 > uuid 1`] = `"48234870-5389-445f-b4b4-1c61a52bf27d"`;
-
-exports[`datatype > 1337 > uuid 2`] = `"cc057669-8c53-474d-ba67-7226d3e8ed92"`;
-
-exports[`datatype > 1337 > uuid 3`] = `"fe6d8b8b-0db9-4fa2-9726-5abc0a5d0ccf"`;
-
-exports[`datatype > 1337 > uuid 4`] = `"0b87afbd-8949-4dfb-84d0-419f4fe7458b"`;
-
-exports[`datatype > 1337 > uuid 5`] = `"0bcea83c-a7ea-428e-9c5d-bd448f2b777a"`;
