@@ -37,7 +37,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
     if (locale !== 'base') {
       expect(metadata.code).toEqual(
         [metadata.language, metadata.country, metadata.variant]
-          .filter(Boolean)
+          .filter((v) => v != null)
           .join('_')
       );
       expect(metadata.language).toBeTypeOf('string');
