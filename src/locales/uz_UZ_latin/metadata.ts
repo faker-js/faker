@@ -5,6 +5,7 @@ const metadata: PreBuiltMetadataDefinitionForCountry = {
   code: 'uz_UZ_latin',
   country: 'UZ',
   language: 'uz',
+  variant: 'latin',
   endonym: "O'zbekcha",
   dir: 'ltr',
   script: 'Latn',
