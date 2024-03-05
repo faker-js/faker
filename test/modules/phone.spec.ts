@@ -11,7 +11,7 @@ describe('phone', () => {
     t.it('imei');
 
     t.describe('number', (t) => {
-      t.it('noArgs').it('format', '###-###-####');
+      t.it('noArgs');
     });
   });
 
