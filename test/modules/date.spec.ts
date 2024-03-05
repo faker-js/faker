@@ -243,7 +243,7 @@ describe('date', () => {
               from: '2000-01-01',
               to: '1990-01-01',
             })
-          ).toThrow(new FakerError('From date must be before to date.'));
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
         it('should throw an error if to is invalid', () => {
@@ -252,7 +252,7 @@ describe('date', () => {
               from: '1990-01-01',
               to: 'not-a-date',
             })
-          ).toThrow(new FakerError('Both from and to must be valid dates.'));
+          ).toThrow(new FakerError('Both `from` and `to` must be valid dates.'));
         });
       });
 
@@ -331,7 +331,7 @@ describe('date', () => {
               to: '1990-01-01',
               count: 3,
             })
-          ).toThrow(new FakerError('From date must be before to date.'));
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
         it('should throw an error if to is invalid', () => {
@@ -341,7 +341,7 @@ describe('date', () => {
               to: 'not-a-date',
               count: 3,
             })
-          ).toThrow(new FakerError('Both from and to must be valid dates.'));
+          ).toThrow(new FakerError('Both `from` and `to` must be valid dates.'));
         });
       });
 

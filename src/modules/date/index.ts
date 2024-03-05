@@ -195,7 +195,7 @@ export class SimpleDateModule extends SimpleModuleBase {
     to: string | Date | number;
   }): Date {
     if (!options) {
-      throw new FakerError('Both from and to must be valid dates.');
+      throw new FakerError('Must pass an options object with `from` and `to` values.');
     }
 
     const { from, to } = options;
@@ -203,11 +203,11 @@ export class SimpleDateModule extends SimpleModuleBase {
     const toMs = new Date(to).getTime();
 
     if (Number.isNaN(fromMs) || Number.isNaN(toMs)) {
-      throw new FakerError('Both from and to must be valid dates.');
+      throw new FakerError('Both `from` and `to` must be valid dates.');
     }
 
     if (fromMs > toMs) {
-      throw new FakerError('From date must be before to date.');
+      throw new FakerError('`from` date must be before `to` date.');
     }
 
     return new Date(this.faker.number.int({ min: fromMs, max: toMs }));
@@ -270,7 +270,7 @@ export class SimpleDateModule extends SimpleModuleBase {
         };
   }): Date[] {
     if (!options) {
-      throw new FakerError('Both from and to must be valid dates.');
+      throw new FakerError('Must pass an options object with `from` and `to` values.');
     }
 
     const { from, to, count = 3 } = options;
