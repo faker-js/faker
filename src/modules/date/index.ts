@@ -175,13 +175,14 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    *
+   * @throws If both `from` and `to` are not provided.
+   * @throws If `from` is after `to`.
+   *
    * @example
    * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
    *
    * @since 8.0.0
    *
-   * @throws If both `from` and `to` are not provided.
-   * @throws If `from` is after `to`.
    */
   between(options: {
     /**
@@ -221,6 +222,9 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    *
+   * @throws If both `from` and `to` are not provided.
+   * @throws If `from` is after `to`.
+   *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
    * // [
@@ -236,9 +240,6 @@ export class SimpleDateModule extends SimpleModuleBase {
    * //   2022-09-10T08:03:51.351Z,
    * //   2023-04-19T11:41:17.501Z
    * // ]
-   *
-   * @throws If both `from` and `to` are not provided.
-   * @throws If `from` is after `to`.
    *
    * @since 8.0.0
    */
