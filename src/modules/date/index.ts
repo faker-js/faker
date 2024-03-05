@@ -182,7 +182,6 @@ export class SimpleDateModule extends SimpleModuleBase {
    * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
    *
    * @since 8.0.0
-   *
    */
   between(options: {
     /**
