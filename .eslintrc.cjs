@@ -63,6 +63,7 @@ module.exports = defineConfig({
       'error',
       { default: 'array-simple', readonly: 'generic' },
     ],
+    '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/naming-convention': [
