@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError, SimpleFaker } from '../../src';
+import { FakerError, SimpleFaker, faker } from '../../src';
 import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';

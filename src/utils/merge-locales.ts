@@ -11,6 +11,8 @@ import type { LocaleDefinition } from '..';
  * @returns The newly merged locale.
  *
  * @example
+ * import { de_CH, de, en, mergeLocales } from '@faker-js/faker';
+ *
  * const de_CH_with_fallbacks = mergeLocales([ de_CH, de, en ]);
  *
  * @since 8.0.0

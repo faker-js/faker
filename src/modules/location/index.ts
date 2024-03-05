@@ -178,7 +178,7 @@ export class LocationModule extends ModuleBase {
   buildingNumber(): string {
     return this.faker.helpers
       .arrayElement(this.faker.definitions.location.building_number)
-      .replace(/#+/g, (m) =>
+      .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
@@ -274,7 +274,7 @@ export class LocationModule extends ModuleBase {
   secondaryAddress(): string {
     return this.faker.helpers
       .arrayElement(this.faker.definitions.location.secondary_address)
-      .replace(/#+/g, (m) =>
+      .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
@@ -360,7 +360,6 @@ export class LocationModule extends ModuleBase {
         case 'alpha-3':
           return 'alpha3';
         case 'alpha-2':
-        default:
           return 'alpha2';
       }
     })();
@@ -629,9 +628,9 @@ export class LocationModule extends ModuleBase {
    *
    * @example
    * faker.location.longitude() // -30.9501
-   * faker.location.longitude({ max: 10 }) // 5.7225
-   * faker.location.longitude({ max: 10, min: -10 }) // -9.6273
-   * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // 2.68452
+   * faker.location.longitude(10) // 5.7225
+   * faker.location.longitude(10, -10) // -9.6273
+   * faker.location.longitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
    *

@@ -11,7 +11,10 @@ import female_middle_name from './female_middle_name';
 import female_prefix from './female_prefix';
 import first_name from './first_name';
 import gender from './gender';
+import job_area from './job_area';
+import job_descriptor from './job_descriptor';
 import job_title_pattern from './job_title_pattern';
+import job_type from './job_type';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import male_first_name from './male_first_name';
@@ -22,7 +25,6 @@ import name_ from './name';
 import prefix from './prefix';
 import sex from './sex';
 import suffix from './suffix';
-import title from './title';
 import western_zodiac_sign from './western_zodiac_sign';
 
 const person: PersonDefinition = {
@@ -34,7 +36,10 @@ const person: PersonDefinition = {
   female_prefix,
   first_name,
   gender,
+  job_area,
+  job_descriptor,
   job_title_pattern,
+  job_type,
   last_name,
   last_name_pattern,
   male_first_name,
@@ -45,7 +50,6 @@ const person: PersonDefinition = {
   prefix,
   sex,
   suffix,
-  title,
   western_zodiac_sign,
 };
 

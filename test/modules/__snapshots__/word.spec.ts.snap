@@ -72,17 +72,17 @@ exports[`word > 42 > preposition > with options.length and options.strategy 1`] 
 
 exports[`word > 42 > preposition > with options.strategy 1`] = `"a"`;
 
-exports[`word > 42 > sample > noArgs 1`] = `"eek"`;
+exports[`word > 42 > sample > noArgs 1`] = `"bleakly"`;
 
-exports[`word > 42 > sample > with length = 10 1`] = `"eek"`;
+exports[`word > 42 > sample > with length = 10 1`] = `"arrogantly"`;
 
-exports[`word > 42 > sample > with length = 20 1`] = `"eek"`;
+exports[`word > 42 > sample > with length = 20 1`] = `"bleakly"`;
 
-exports[`word > 42 > sample > with options.length 1`] = `"eek"`;
+exports[`word > 42 > sample > with options.length 1`] = `"arrogantly"`;
 
-exports[`word > 42 > sample > with options.length and options.strategy 1`] = `"gadzooks"`;
+exports[`word > 42 > sample > with options.length and options.strategy 1`] = `"enthusiastically"`;
 
-exports[`word > 42 > sample > with options.strategy 1`] = `"aw"`;
+exports[`word > 42 > sample > with options.strategy 1`] = `"far"`;
 
 exports[`word > 42 > verb > noArgs 1`] = `"furrow"`;
 
@@ -96,15 +96,15 @@ exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"ins
 
 exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
 
-exports[`word > 42 > words > noArgs 1`] = `"nondisclosure stud"`;
+exports[`word > 42 > words > noArgs 1`] = `"unnaturally dreamily"`;
 
-exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind"`;
+exports[`word > 42 > words > with count = 10 1`] = `"bleakly counsellor gee psst why meh ugh valuable wherever without"`;
 
-exports[`word > 42 > words > with count = 20 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind power till gadzooks yippee unban generous between old-fashioned yowza hoof"`;
+exports[`word > 42 > words > with count = 20 1`] = `"bleakly counsellor gee psst why meh ugh valuable wherever without savage across amidst incomplete zowie compost usefully huddle whoa watchmaker"`;
 
-exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind"`;
+exports[`word > 42 > words > with options.count 1`] = `"bleakly counsellor gee psst why meh ugh valuable wherever without"`;
 
-exports[`word > 42 > words > with options.count range 1`] = `"nondisclosure stud across dreamily accurate circumvent boo news loftily through devoice about when boohoo graze busily to grouchy beneath"`;
+exports[`word > 42 > words > with options.count range 1`] = `"unnaturally dreamily ceiling news through anything delightful bowed indeed whenever after happily reinvest although atop upon provided smolt brr"`;
 
 exports[`word > 1211 > adjective > noArgs 1`] = `"vicious"`;
 
@@ -178,17 +178,17 @@ exports[`word > 1211 > preposition > with options.length and options.strategy 1`
 
 exports[`word > 1211 > preposition > with options.strategy 1`] = `"a"`;
 
-exports[`word > 1211 > sample > noArgs 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > noArgs 1`] = `"slow"`;
 
-exports[`word > 1211 > sample > with length = 10 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > with length = 10 1`] = `"scientific"`;
 
-exports[`word > 1211 > sample > with length = 20 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > with length = 20 1`] = `"slow"`;
 
-exports[`word > 1211 > sample > with options.length 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > with options.length 1`] = `"scientific"`;
 
-exports[`word > 1211 > sample > with options.length and options.strategy 1`] = `"enthusiastically"`;
+exports[`word > 1211 > sample > with options.length and options.strategy 1`] = `"well-documented"`;
 
-exports[`word > 1211 > sample > with options.strategy 1`] = `"too"`;
+exports[`word > 1211 > sample > with options.strategy 1`] = `"sad"`;
 
 exports[`word > 1211 > verb > noArgs 1`] = `"trick"`;
 
@@ -202,15 +202,15 @@ exports[`word > 1211 > verb > with options.length and options.strategy 1`] = `"i
 
 exports[`word > 1211 > verb > with options.strategy 1`] = `"up"`;
 
-exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
+exports[`word > 1211 > words > noArgs 1`] = `"gripping unnaturally phew"`;
 
-exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument"`;
+exports[`word > 1211 > words > with count = 10 1`] = `"slow infinite woodchuck gracefully if digitize ha furthermore nor true"`;
 
-exports[`word > 1211 > words > with count = 20 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument civilize for moose moult schoolhouse consequently whether per upon but"`;
+exports[`word > 1211 > words > with count = 20 1`] = `"slow infinite woodchuck gracefully if digitize ha furthermore nor true ugh fooey yippee unwieldy dimpled towel untrue trunk although puzzled"`;
 
-exports[`word > 1211 > words > with options.count 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument"`;
+exports[`word > 1211 > words > with options.count 1`] = `"slow infinite woodchuck gracefully if digitize ha furthermore nor true"`;
 
-exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie salesman except pumpernickel friendly contest arena kindheartedly nifty combination out pencil interpenetrate minus upchange excitedly"`;
+exports[`word > 1211 > words > with options.count range 1`] = `"gripping unnaturally phew sedately contest harrow combination pencil so early when tin organisation miserly via nightgown colossal critical fairly ordinary"`;
 
 exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
@@ -284,13 +284,13 @@ exports[`word > 1337 > preposition > with options.length and options.strategy 1`
 
 exports[`word > 1337 > preposition > with options.strategy 1`] = `"a"`;
 
-exports[`word > 1337 > sample > noArgs 1`] = `"nor"`;
+exports[`word > 1337 > sample > noArgs 1`] = `"how"`;
 
-exports[`word > 1337 > sample > with length = 10 1`] = `"nor"`;
+exports[`word > 1337 > sample > with length = 10 1`] = `"how"`;
 
-exports[`word > 1337 > sample > with length = 20 1`] = `"nor"`;
+exports[`word > 1337 > sample > with length = 20 1`] = `"how"`;
 
-exports[`word > 1337 > sample > with options.length 1`] = `"nor"`;
+exports[`word > 1337 > sample > with options.length 1`] = `"how"`;
 
 exports[`word > 1337 > sample > with options.length and options.strategy 1`] = `"consequently"`;
 
@@ -308,12 +308,12 @@ exports[`word > 1337 > verb > with options.length and options.strategy 1`] = `"c
 
 exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
 
-exports[`word > 1337 > words > noArgs 1`] = `"although"`;
+exports[`word > 1337 > words > noArgs 1`] = `"weedkiller"`;
 
-exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful"`;
+exports[`word > 1337 > words > with count = 10 1`] = `"how yet sleepy construction including safely kiwi actually actualise vaguely"`;
 
-exports[`word > 1337 > words > with count = 20 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful conceal the where duh ugh emotion lavish rudely planet servant"`;
+exports[`word > 1337 > words > with count = 20 1`] = `"how yet sleepy construction including safely kiwi actually actualise vaguely failing vaguely mindless grapple whoever scarily replace duh lazily sans"`;
 
-exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful"`;
+exports[`word > 1337 > words > with options.count 1`] = `"how yet sleepy construction including safely kiwi actually actualise vaguely"`;
 
-exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply lovingly elegantly imply maid underneath advanced nor abrogate oof within gosh against egg rush"`;
+exports[`word > 1337 > words > with options.count range 1`] = `"weedkiller drat dental into advanced yuck waterskiing busily ouch inasmuch grieve sad enraged or gee grounded phew now"`;

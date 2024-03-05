@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`phone > 42 > imei 1`] = `"37-917755-141004-5"`;
+exports[`phone > 42 > imei 1`] = `"39-751108-670982-8"`;
 
 exports[`phone > 42 > number > noArgs 1`] = `"(891) 775-5141 x004"`;
 

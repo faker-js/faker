@@ -94,7 +94,7 @@ export class GitModule extends ModuleBase {
     const email = this.faker.internet.email({ firstName, lastName });
 
     // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
-    user = user.replace(/^[.,:;"\\']|[<>\n]|[.,:;"\\']$/g, '');
+    user = user.replaceAll(/^[.,:;"\\']|[<>\n]|[.,:;"\\']$/g, '');
 
     lines.push(
       `Author: ${user} <${email}>`,

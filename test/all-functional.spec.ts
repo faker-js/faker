@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { allLocales, Faker, RandomModule } from '../src';
+import type { Faker, allLocales } from '../src';
 import { allFakers, fakerEN } from '../src';
 import { keys } from '../src/internal/keys';
 
@@ -49,25 +49,22 @@ const BROKEN_LOCALE_METHODS = {
     suffixes: ['az'],
     companySuffix: ['az'],
   },
+  date: {
+    between: '*',
+    betweens: '*',
+  },
   location: {
     state: ['az', 'nb_NO', 'ro_MD', 'sk'],
     stateAbbr: ['cs_CZ', 'ro_MD', 'sk'],
     zipCode: ['en_HK'],
     zipCodeByState: ['en_HK'],
   },
-  random: {
-    locale: '*', // locale() has been pseudo removed
-  } as SkipConfig<RandomModule>,
   string: {
     fromCharacters: '*',
   },
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
-    jobArea: ['ar'],
-    jobDescriptor: ['ar'],
-    jobTitle: ['ar', 'ur'],
-    jobType: ['ur'],
   },
 } satisfies {
   [module_ in keyof Faker]?: SkipConfig<Faker[module_]>;
