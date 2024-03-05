@@ -746,11 +746,18 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random credit card number.
    *
-   * If you need to generate a credit card number for a specific issuer, you can pass the issuer name as a string.
-   * The issuer name is case-insensitive.
-   * A list of supported issuers can be found in the `faker.definitions.finance.credit_card` object.
-   * You can access that value at runtime directly or from the sources on GitHub (`src/locales/<name>/finance/credit_card`).
-   * If the issuer is missing, please open an issue or a pull request to add it.
+   * If you need to generate a credit card number for a specific issuer, you can pass one of the following issuer names:
+   *
+   * - `american_express`
+   * - `diners_club`
+   * - `discover`
+   * - `jcb`
+   * - `maestro`
+   * - `mastercard`
+   * - `unionpay`
+   * - `visa`
+   *
+   * (Not all issuers are supported in all locales. If the issuer is missing, please open an issue or a pull request to add it.)
    *
    * @param issuer The name of the issuer (case-insensitive) or the format used to generate one.
    * Defaults to a random issuer.
@@ -768,11 +775,18 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random credit card number.
    *
-   * If you need to generate a credit card number for a specific issuer, you can pass the issuer name as a string.
-   * The issuer name is case-insensitive.
-   * A list of supported issuers can be found in the `faker.definitions.finance.credit_card` object.
-   * You can access that value at runtime directly or from the sources on GitHub (`src/locales/<name>/finance/credit_card`).
-   * If the issuer is missing, please open an issue or a pull request to add it.
+   * If you need to generate a credit card number for a specific issuer, you can pass one of the following issuer names:
+   *
+   * - `american_express`
+   * - `diners_club`
+   * - `discover`
+   * - `jcb`
+   * - `maestro`
+   * - `mastercard`
+   * - `unionpay`
+   * - `visa`
+   *
+   * (Not all issuers are supported in all locales. If the issuer is missing, please open an issue or a pull request to add it.)
    *
    * @param options An options object.
    * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
@@ -797,11 +811,18 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random credit card number.
    *
-   * If you need to generate a credit card number for a specific issuer, you can pass the issuer name as a string.
-   * The issuer name is case-insensitive.
-   * A list of supported issuers can be found in the `faker.definitions.finance.credit_card` object.
-   * You can access that value at runtime directly or from the sources on GitHub (`src/locales/<name>/finance/credit_card`).
-   * If the issuer is missing, please open an issue or a pull request to add it.
+   * If you need to generate a credit card number for a specific issuer, you can pass one of the following issuer names:
+   *
+   * - `american_express`
+   * - `diners_club`
+   * - `discover`
+   * - `jcb`
+   * - `maestro`
+   * - `mastercard`
+   * - `unionpay`
+   * - `visa`
+   *
+   * (Not all issuers are supported in all locales. If the issuer is missing, please open an issue or a pull request to add it.)
    *
    * @param options An options object, the issuer or a custom format.
    * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
