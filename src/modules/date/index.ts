@@ -192,10 +192,14 @@ export class SimpleDateModule extends SimpleModuleBase {
   }): Date {
     const { from, to } = options;
 
-    const fromMs = toDate(from, this.faker.defaultRefDate).getTime();
-    const toMs = toDate(to, this.faker.defaultRefDate).getTime();
-    const dateOffset = this.faker.number.int(toMs - fromMs);
+    const fromMs = new Date(from).getTime();
+    const toMs = new Date(to).getTime();
 
+    if (Number.isNaN(from) || Number.isNaN(to)) {
+      throw new FakerError('Both from and to are required.');
+    }
+
+    const dateOffset = this.faker.number.int(toMs - fromMs);
     return new Date(fromMs + dateOffset);
   }
 
@@ -253,6 +257,10 @@ export class SimpleDateModule extends SimpleModuleBase {
         };
   }): Date[] {
     const { from, to, count = 3 } = options;
+
+    if (!from || !to) {
+      throw new FakerError('Both from and to are required.');
+    }
 
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
@@ -459,6 +467,12 @@ export class SimpleDateModule extends SimpleModuleBase {
  * For a realistic birthdate for an adult, use [`birthdate()`](https://fakerjs.dev/api/date.html#birthdate).
  *
  * For more control, any of these methods can be customized with further options, or use [`between()`](https://fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://fakerjs.dev/api/date.html#betweens) for multiple dates.
+ *
+ * Dates can be specified as Javascript Date objects, strings or UNIX timestamps.
+ * For example to generate a date between 1st January 2000 and now, use:
+ * ```ts
+ * faker.date.between({ from: '2000-01-01', to: Date.now() });
+ * ```
  *
  * You can generate random localized month and weekday names using [`month()`](https://fakerjs.dev/api/date.html#month) and [`weekday()`](https://fakerjs.dev/api/date.html#weekday).
  *
