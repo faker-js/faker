@@ -16,5 +16,5 @@ export type PhoneNumberDefinition = LocaleEntry<{
     human: string[];
     national: string[];
     raw: string[];
-  }
+  };
 }>;
