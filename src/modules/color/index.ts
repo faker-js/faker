@@ -60,12 +60,16 @@ function formatHexColor(
   const { prefix, casing } = options;
 
   switch (casing) {
-    case 'upper':
+    case 'upper': {
       hexColor = hexColor.toUpperCase();
       break;
-    case 'lower':
+    }
+
+    case 'lower': {
       hexColor = hexColor.toLowerCase();
       break;
+    }
+
     case 'mixed':
     // Do nothing
   }
@@ -111,32 +115,49 @@ function toCSS(
 ): string {
   const percentage = (value: number) => Math.round(value * 100);
   switch (cssFunction) {
-    case 'rgba':
+    case 'rgba': {
       return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
-    case 'color':
+    }
+
+    case 'color': {
       return `color(${space} ${values[0]} ${values[1]} ${values[2]})`;
-    case 'cmyk':
+    }
+
+    case 'cmyk': {
       return `cmyk(${percentage(values[0])}%, ${percentage(
         values[1]
       )}%, ${percentage(values[2])}%, ${percentage(values[3])}%)`;
-    case 'hsl':
+    }
+
+    case 'hsl': {
       return `hsl(${values[0]}deg ${percentage(values[1])}% ${percentage(
         values[2]
       )}%)`;
-    case 'hsla':
+    }
+
+    case 'hsla': {
       return `hsl(${values[0]}deg ${percentage(values[1])}% ${percentage(
         values[2]
       )}% / ${percentage(values[3])})`;
-    case 'hwb':
+    }
+
+    case 'hwb': {
       return `hwb(${values[0]} ${percentage(values[1])}% ${percentage(
         values[2]
       )}%)`;
-    case 'lab':
+    }
+
+    case 'lab': {
       return `lab(${percentage(values[0])}% ${values[1]} ${values[2]})`;
-    case 'lch':
+    }
+
+    case 'lch': {
       return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
-    case 'rgb':
+    }
+
+    case 'rgb': {
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
+    }
   }
 }
 
@@ -155,12 +176,17 @@ function toColorFormat(
   space: CssSpaceType = 'sRGB'
 ): string | number[] {
   switch (format) {
-    case 'css':
+    case 'css': {
       return toCSS(values, cssFunction, space);
-    case 'binary':
+    }
+
+    case 'binary': {
       return toBinary(values);
-    case 'decimal':
+    }
+
+    case 'decimal': {
       return values;
+    }
   }
 }
 
