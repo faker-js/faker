@@ -175,7 +175,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    *
-   * @throws If both `from` and `to` are not provided.
+   * @throws If `from` or `to` are not provided.
    * @throws If `from` is after `to`.
    *
    * @example
@@ -221,7 +221,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    *
-   * @throws If both `from` and `to` are not provided.
+   * @throws If `from` or `to` are not provided.
    * @throws If `from` is after `to`.
    *
    * @example
