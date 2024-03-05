@@ -12,7 +12,9 @@ export type PhoneNumberDefinition = LocaleEntry<{
    *
    * @see faker.helpers.replaceSymbolWithNumber(format): For more information about how the patterns are used.
    */
-  human: string[];
-  national: string[];
-  raw: string[];
+  format: {
+    human: string[];
+    national: string[];
+    raw: string[];
+  }
 }>;

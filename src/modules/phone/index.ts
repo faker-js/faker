@@ -49,13 +49,9 @@ export class PhoneModule extends ModuleBase {
     style: 'human' | 'national' | 'raw';
   }): string {
     const { style } = options ?? { style: 'human' };
-    const styleDefinitions = {
-      human: this.faker.definitions.phone_number.human,
-      national: this.faker.definitions.phone_number.national,
-      raw: this.faker.definitions.phone_number.raw,
-    };
+    const formats = this.faker.definitions.phone_number.format;
 
-    const definitions = styleDefinitions[style] || styleDefinitions.human;
+    const definitions = formats[style] || formats.human;
     const format = this.faker.helpers.arrayElement(definitions);
     return legacyReplaceSymbolWithNumber(this.faker, format);
   }

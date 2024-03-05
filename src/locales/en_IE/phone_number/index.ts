@@ -3,14 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PhoneNumberDefinition } from '../../..';
-import human from './human';
-import national from './national';
-import raw from './raw';
+import format from './format';
 
 const phone_number: PhoneNumberDefinition = {
-  human,
-  national,
-  raw,
+  format,
 };
 
 export default phone_number;
