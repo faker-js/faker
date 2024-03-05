@@ -2,18 +2,12 @@
 
 exports[`phone > 42 > imei 1`] = `"39-751108-670982-8"`;
 
-exports[`phone > 42 > number > format 1`] = `"397-511-0867"`;
-
 exports[`phone > 42 > number > noArgs 1`] = `"(975) 310-8670 x982"`;
 
 exports[`phone > 1211 > imei 1`] = `"98-296673-687684-2"`;
 
-exports[`phone > 1211 > number > format 1`] = `"982-966-7368"`;
-
 exports[`phone > 1211 > number > noArgs 1`] = `"1-929-767-3687 x68488"`;
 
 exports[`phone > 1337 > imei 1`] = `"21-243529-713619-6"`;
-
-exports[`phone > 1337 > number > format 1`] = `"212-435-2971"`;
 
 exports[`phone > 1337 > number > noArgs 1`] = `"324-452-9713 x619"`;

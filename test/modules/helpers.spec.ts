@@ -173,11 +173,14 @@ describe('helpers', () => {
     });
 
     t.describe('multiple', (t) => {
-      t.it('with only method', faker.number.int)
-        .it('with method and count', faker.number.int, { count: 5 })
-        .it('with method and count range', faker.number.int, {
+      t.it('with only method', () => faker.number.int())
+        .it('with method and count', () => faker.number.int(), {
+          count: 5,
+        })
+        .it('with method and count range', () => faker.number.int(), {
           count: { min: 1, max: 10 },
-        });
+        })
+        .it('with method using index', (_, i) => i * 3);
     });
   });
 
@@ -1144,29 +1147,45 @@ describe('helpers', () => {
 
       describe('multiple()', () => {
         it('should generate values from the function with a default length of 3', () => {
-          const result = faker.helpers.multiple(faker.person.firstName);
+          const result = faker.helpers.multiple(() => faker.person.firstName());
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBe(3);
         });
 
         it('should generate the given amount of values from the function', () => {
-          const result = faker.helpers.multiple(faker.person.firstName, {
-            count: 5,
-          });
+          const result = faker.helpers.multiple(
+            () => faker.person.firstName(),
+            {
+              count: 5,
+            }
+          );
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBe(5);
         });
 
         it('should generate a ranged number of values from the function', () => {
-          const result = faker.helpers.multiple(faker.person.firstName, {
-            count: { min: 1, max: 10 },
-          });
+          const result = faker.helpers.multiple(
+            () => faker.person.firstName(),
+            {
+              count: { min: 1, max: 10 },
+            }
+          );
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBeGreaterThanOrEqual(1);
           expect(result.length).toBeLessThanOrEqual(10);
+        });
+
+        it('should generate values using index of created value', () => {
+          const result = faker.helpers.multiple((_, i) => i * 2, {
+            count: 3,
+          });
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result.length).toBe(3);
+          expect(result).toStrictEqual([0, 2, 4]);
         });
       });
     }
