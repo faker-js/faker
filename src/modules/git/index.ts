@@ -195,8 +195,8 @@ export class GitModule extends ModuleBase {
    *
    * @example
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
-   * faker.git.commitSha({ length: 7 }) // '2c6e388'
-   * faker.git.commitSha({ length: 8 }) // '2c6e3880'
+   * faker.git.commitSha({ length: 7 }) // 'dbee57b'
+   * faker.git.commitSha({ length: 8 }) // '0e52376a'
    *
    * @since 5.0.0
    */
