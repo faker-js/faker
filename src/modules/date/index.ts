@@ -210,8 +210,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       throw new FakerError('From date must be before to date.');
     }
 
-    const dateOffset = this.faker.number.int(toMs - fromMs);
-    return new Date(fromMs + dateOffset);
+    return new Date(this.faker.number.int({ from: fromMs, to: toMs }));
   }
 
   /**
