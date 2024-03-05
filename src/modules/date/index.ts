@@ -179,6 +179,9 @@ export class SimpleDateModule extends SimpleModuleBase {
    * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
    *
    * @since 8.0.0
+   *
+   * @throws If both `from` and `to` are not provided.
+   * @throws If `from` is after `to`.
    */
   between(options: {
     /**
@@ -190,13 +193,20 @@ export class SimpleDateModule extends SimpleModuleBase {
      */
     to: string | Date | number;
   }): Date {
-    const { from, to } = options;
+    if (!options) {
+      throw new FakerError('Both from and to must be valid dates.');
+    }
 
+    const { from, to } = options;
     const fromMs = new Date(from).getTime();
     const toMs = new Date(to).getTime();
 
-    if (Number.isNaN(from) || Number.isNaN(to)) {
-      throw new FakerError('Both from and to are required.');
+    if (Number.isNaN(fromMs) || Number.isNaN(toMs)) {
+      throw new FakerError('Both from and to must be valid dates.');
+    }
+
+    if (fromMs > toMs) {
+      throw new FakerError('From date must be before to date.');
     }
 
     const dateOffset = this.faker.number.int(toMs - fromMs);
@@ -227,6 +237,9 @@ export class SimpleDateModule extends SimpleModuleBase {
    * //   2023-04-19T11:41:17.501Z
    * // ]
    *
+   * @throws If both `from` and `to` are not provided.
+   * @throws If `from` is after `to`.
+   *
    * @since 8.0.0
    */
   betweens(options: {
@@ -256,12 +269,11 @@ export class SimpleDateModule extends SimpleModuleBase {
           max: number;
         };
   }): Date[] {
-    const { from, to, count = 3 } = options;
-
-    if (!from || !to) {
-      throw new FakerError('Both from and to are required.');
+    if (!options) {
+      throw new FakerError('Both from and to must be valid dates.');
     }
 
+    const { from, to, count = 3 } = options;
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
       .sort((a, b) => a.getTime() - b.getTime());

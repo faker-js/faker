@@ -236,6 +236,24 @@ describe('date', () => {
             expect(date).lessThan(to);
           }
         );
+
+        it('should throw an error when from is after to', () => {
+          expect(() =>
+            faker.date.between({
+              from: '2000-01-01',
+              to: '1990-01-01',
+            })
+          ).toThrow(new FakerError('From date must be before to date.'));
+        });
+
+        it('should throw an error if to is invalid', () => {
+          expect(() =>
+            faker.date.between({
+              from: '1990-01-01',
+              to: 'not-a-date',
+            })
+          ).toThrow(new FakerError('Both from and to must be valid dates.'));
+        });
       });
 
       describe('betweens()', () => {
@@ -305,6 +323,26 @@ describe('date', () => {
             expect(dates.at(-1)).lessThan(to);
           }
         );
+
+        it('should throw an error when from is after to', () => {
+          expect(() =>
+            faker.date.betweens({
+              from: '2000-01-01',
+              to: '1990-01-01',
+              count: 3,
+            })
+          ).toThrow(new FakerError('From date must be before to date.'));
+        });
+
+        it('should throw an error if to is invalid', () => {
+          expect(() =>
+            faker.date.betweens({
+              from: '1990-01-01',
+              to: 'not-a-date',
+              count: 3,
+            })
+          ).toThrow(new FakerError('Both from and to must be valid dates.'));
+        });
       });
 
       describe('recent()', () => {
