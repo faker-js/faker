@@ -26,18 +26,20 @@ export class PhoneModule extends ModuleBase {
    *
    * @since 7.3.0
    */
-  number(options?: {
-    /**
-     * Style of the generated phone number:
-     * - `'human'`: (default) A human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
-     * - `'national'`: A phone number in a standardized national format, e.g. `(555) 123-4567`.
-     * - `'international'`: A phone number in the E.123 international format, e.g. `+15551234567`
-     *
-     * @default 'human'
-     */
-    style: 'human' | 'national' | 'international';
-  }): string {
-    const { style } = options ?? { style: 'human' };
+  number(
+    options: {
+      /**
+       * Style of the generated phone number:
+       * - `'human'`: (default) A human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
+       * - `'national'`: A phone number in a standardized national format, e.g. `(555) 123-4567`.
+       * - `'international'`: A phone number in the E.123 international format, e.g. `+15551234567`
+       *
+       * @default 'human'
+       */
+      style?: 'human' | 'national' | 'international';
+    } = {}
+  ): string {
+    const { style = 'human' } = options;
     const formats = this.faker.definitions.phone_number.format;
 
     const definitions = formats[style];
