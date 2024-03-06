@@ -266,23 +266,30 @@ export class SystemModule extends ModuleBase {
     let prefix = '';
     const digit = () => this.faker.string.numeric({ allowLeadingZeros: true });
     switch (interfaceSchema) {
-      case 'index':
+      case 'index': {
         suffix = digit();
         break;
-      case 'slot':
+      }
+
+      case 'slot': {
         suffix = `${digit()}${
           this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
         }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
-      case 'mac':
+      }
+
+      case 'mac': {
         suffix = this.faker.internet.mac('');
         break;
-      case 'pci':
+      }
+
+      case 'pci': {
         prefix = this.faker.helpers.maybe(() => `P${digit()}`) ?? '';
         suffix = `${digit()}s${digit()}${
           this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
         }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
+      }
     }
 
     return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;

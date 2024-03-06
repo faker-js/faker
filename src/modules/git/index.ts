@@ -1,4 +1,3 @@
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
 const nbsp = '\u00A0';
@@ -196,6 +195,8 @@ export class GitModule extends ModuleBase {
    *
    * @example
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
+   * faker.git.commitSha({ length: 7 }) // 'dbee57b'
+   * faker.git.commitSha({ length: 8 }) // '0e52376a'
    *
    * @since 5.0.0
    */
@@ -215,25 +216,5 @@ export class GitModule extends ModuleBase {
       casing: 'lower',
       prefix: '',
     });
-  }
-
-  /**
-   * Generates a random commit sha (short).
-   *
-   * @example
-   * faker.git.shortSha() // '6155732'
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use `faker.git.commitSha({ length: 7 })` instead.
-   */
-  shortSha(): string {
-    deprecated({
-      deprecated: 'faker.git.shortSha()',
-      proposed: 'faker.git.commitSha({ length: 7 })',
-      since: '8.0',
-      until: '9.0',
-    });
-    return this.commitSha({ length: 7 });
   }
 }
