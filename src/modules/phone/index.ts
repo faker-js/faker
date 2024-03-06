@@ -13,7 +13,7 @@ export class PhoneModule extends ModuleBase {
    * Generates a random phone number.
    *
    * @param options Options object
-   * @param options.style Style of the phone number. Defaults to 'human'
+   * @param options.style Style of the phone number. Defaults to `'human'`.
    *
    * @see faker.string.numeric(): For generating a random string of numbers.
    * @see faker.helpers.fromRegExp(): For generating a phone number matching a regular expression.
