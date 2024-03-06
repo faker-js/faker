@@ -12,19 +12,6 @@ export class PhoneModule extends ModuleBase {
   /**
    * Generates a random phone number.
    *
-   * @see faker.string.numeric(): For generating a random string of numbers.
-   * @see faker.helpers.fromRegExp(): For generating a phone number matching a regular expression.
-   *
-   * @example
-   * faker.phone.number() // '961-770-7727'
-   *
-   * @since 7.3.0
-   */
-  number(): string;
-
-  /**
-   * Generates a random phone number.
-   *
    * @param options Options object
    * @param options.style Style of the phone number. Defaults to 'human'
    *
@@ -33,16 +20,18 @@ export class PhoneModule extends ModuleBase {
    *
    * @example
    * faker.phone.number() // '961-770-7727'
+   * faker.phone.number({ style: 'human' }) // '555.770.7727 x1234'
+   * faker.phone.number({ style: 'national' }) // '(961) 770-7727'
+   * faker.phone.number({ style: 'raw' }) // '+15551234567'
    *
    * @since 7.3.0
    */
-  number(options?: { style: 'human' | 'national' | 'raw' }): string;
   number(options?: {
     /**
      * Style of the generated phone number:
-     * - `'human'`: (default) A human-input phone number, e.g. 555-770-7727 or 555.770.7727 x1234
-     * - `'national'`: A phone number in a standardized national format, e.g. (555) 123-4567.
-     * - `'raw'`: A phone number in the raw format, e.g. +15551234567
+     * - `'human'`: (default) A human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
+     * - `'national'`: A phone number in a standardized national format, e.g. `(555) 123-4567`.
+     * - `'raw'`: A phone number in the raw format, e.g. `+15551234567`
      *
      * @default 'human'
      */
@@ -51,7 +40,11 @@ export class PhoneModule extends ModuleBase {
     const { style } = options ?? { style: 'human' };
     const formats = this.faker.definitions.phone_number.format;
 
-    const definitions = formats[style] || formats.human;
+    const definitions = formats[style];
+    if (!definitions) {
+      throw new Error(`No definitions for ${style} in this locale`);
+    }
+
     const format = this.faker.helpers.arrayElement(definitions);
     return legacyReplaceSymbolWithNumber(this.faker, format);
   }
