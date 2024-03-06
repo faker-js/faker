@@ -37,17 +37,20 @@ function selectDefinition<T>(
   let values: T[] | undefined | null;
 
   switch (sex) {
-    case Sex.Female:
+    case Sex.Female: {
       values = female;
       break;
+    }
 
-    case Sex.Male:
+    case Sex.Male: {
       values = male;
       break;
+    }
 
-    default:
+    default: {
       values = generic;
       break;
+    }
   }
 
   if (values == null) {
