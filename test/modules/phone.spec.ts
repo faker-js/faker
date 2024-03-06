@@ -14,7 +14,7 @@ describe('phone', () => {
       t.it('noArgs')
         .it('with human style', { style: 'human' })
         .it('with national style', { style: 'national' })
-        .it('with raw style', { style: 'raw' });
+        .it('with international style', { style: 'international' });
     });
   });
 

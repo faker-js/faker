@@ -4,13 +4,13 @@
  */
 import type { PhoneNumberDefinition } from '../../../..';
 import human from './human';
+import international from './international';
 import national from './national';
-import raw from './raw';
 
 const format: PhoneNumberDefinition['format'] = {
   human,
+  international,
   national,
-  raw,
 };
 
 export default format;
