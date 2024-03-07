@@ -3,12 +3,18 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import color from './color';
+import date from './date';
 import metadata from './metadata';
 import person from './person';
+import phone_number from './phone_number';
 
 const uz_UZ_latin: LocaleDefinition = {
+  color,
+  date,
   metadata,
   person,
+  phone_number,
 };
 
 export default uz_UZ_latin;
