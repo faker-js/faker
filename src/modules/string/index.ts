@@ -223,16 +223,20 @@ export class StringModule extends SimpleModuleBase {
 
     let charsArray: string[];
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray = [...UPPER_CHARS];
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray = [...LOWER_CHARS];
         break;
-      case 'mixed':
-      default:
+      }
+
+      case 'mixed': {
         charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
         break;
+      }
     }
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
@@ -314,16 +318,20 @@ export class StringModule extends SimpleModuleBase {
     let charsArray = [...DIGIT_CHARS];
 
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray.push(...UPPER_CHARS);
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray.push(...LOWER_CHARS);
         break;
-      case 'mixed':
-      default:
+      }
+
+      case 'mixed': {
         charsArray.push(...LOWER_CHARS, ...UPPER_CHARS);
         break;
+      }
     }
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
@@ -692,8 +700,8 @@ export class StringModule extends SimpleModuleBase {
    */
   uuid(): string {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-      .replace(/x/g, () => this.faker.number.hex({ min: 0x0, max: 0xf }))
-      .replace(/y/g, () => this.faker.number.hex({ min: 0x8, max: 0xb }));
+      .replaceAll('x', () => this.faker.number.hex({ min: 0x0, max: 0xf }))
+      .replaceAll('y', () => this.faker.number.hex({ min: 0x8, max: 0xb }));
   }
 
   /**

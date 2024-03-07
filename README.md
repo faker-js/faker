@@ -24,11 +24,11 @@ Please proceed to the [Getting Started Guide](https://fakerjs.dev/guide/) for th
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
-|   Version    | Website                   |
-| :----------: | :------------------------ |
-| v8.\* (next) | https://next.fakerjs.dev/ |
-| v8 (stable)  | https://fakerjs.dev/      |
-|   v7 (old)   | https://v7.fakerjs.dev/   |
+|   Version   | Website                   |
+| :---------: | :------------------------ |
+|  v9 (next)  | https://next.fakerjs.dev/ |
+| v8 (stable) | https://fakerjs.dev/      |
+|  v7 (old)   | https://v7.fakerjs.dev/   |
 
 ---
 

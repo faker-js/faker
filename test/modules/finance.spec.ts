@@ -260,13 +260,8 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(
-            +amount,
-            'the amount should be greater than 0'
-          ).toBeGreaterThan(0);
-          expect(+amount, 'the amount should be less than 1001').toBeLessThan(
-            1001
-          );
+          expect(+amount).toBeGreaterThanOrEqual(0);
+          expect(+amount).toBeLessThanOrEqual(1000);
         });
 
         it('should use the default decimal location when not passing arguments', () => {
@@ -275,13 +270,15 @@ describe('finance', () => {
           amount = faker.finance.amount(100, 100, 1);
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100.0').toBe('100.0');
+          expect(amount).toBe('100.0');
         });
 
         //TODO: add support for more currency and decimal options
         it('should not include a currency symbol by default', () => {
           const amount = faker.finance.amount();
 
+          expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(
             amount,
             'The expected match should not include a currency symbol'
@@ -293,34 +290,24 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be less than 0').toBeLessThan(0);
-          expect(
-            +amount,
-            'the amount should be greater than -201'
-          ).toBeGreaterThan(-201);
+          expect(+amount).toBeLessThanOrEqual(-1);
+          expect(+amount).toBeGreaterThanOrEqual(-200);
         });
 
         it('should handle argument dec', () => {
           const amount = faker.finance.amount(100, 100, 1);
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100.0').toBe('100.0');
+          expect(amount).toBeTypeOf('string');
+          expect(amount).toBe('100.0');
         });
 
         it('should handle argument dec = 0', () => {
           const amount = faker.finance.amount(100, 100, 0);
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100').toBe('100');
-        });
-
-        it('should return a string', () => {
-          const amount = faker.finance.amount(100, 100, 0);
-
-          expect(amount).toBeTruthy();
-          expect(amount, 'the amount type should be string').toBeTypeOf(
-            'string'
-          );
+          expect(amount).toBeTypeOf('string');
+          expect(amount).toBe('100');
         });
 
         it.each([false, undefined])(
@@ -335,7 +322,7 @@ describe('finance', () => {
               autoFormat
             );
 
-            expect(amount).toStrictEqual(number.toString());
+            expect(amount).toBe(number.toString());
           }
         );
 
@@ -427,7 +414,7 @@ describe('finance', () => {
       describe('creditCardNumber()', () => {
         it('should return a random credit card number', () => {
           let number = faker.finance.creditCardNumber();
-          number = number.replace(/\D/g, ''); // remove formatting
+          number = number.replaceAll(/\D/g, ''); // remove formatting
 
           expect(number.length).toBeGreaterThanOrEqual(13);
           expect(number.length).toBeLessThanOrEqual(20);

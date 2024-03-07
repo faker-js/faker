@@ -1,10 +1,4 @@
-import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
-import type { MethodsOf } from '../../utils/types';
-import { LoremPicsum } from './providers/lorempicsum';
-import { Placeholder } from './providers/placeholder';
-import { Unsplash } from './providers/unsplash';
 
 /**
  * Module to generate images.
@@ -20,35 +14,6 @@ import { Unsplash } from './providers/unsplash';
  * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
  */
 export class ImageModule extends ModuleBase {
-  /**
-   * @deprecated Use `faker.image` instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly unsplash: Unsplash;
-
-  /**
-   * @deprecated Use `faker.image` instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly lorempicsum: LoremPicsum;
-
-  /**
-   * @deprecated Use `faker.image.urlPlaceholder` instead.
-   */
-  // eslint-disable-next-line deprecation/deprecation
-  readonly placeholder: Placeholder;
-
-  constructor(faker: Faker) {
-    super(faker);
-
-    // eslint-disable-next-line deprecation/deprecation
-    this.unsplash = new Unsplash(this.faker);
-    // eslint-disable-next-line deprecation/deprecation
-    this.lorempicsum = new LoremPicsum(this.faker);
-    // eslint-disable-next-line deprecation/deprecation
-    this.placeholder = new Placeholder(this.faker);
-  }
-
   /**
    * Generates a random avatar image url.
    *
@@ -102,8 +67,8 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to `640`.
-   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    *
    * @example
    * faker.image.url() // 'https://loremflickr.com/640/480?lock=1234'
@@ -115,22 +80,26 @@ export class ImageModule extends ModuleBase {
       /**
        * The width of the image.
        *
-       * @default 640
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default 480
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
     } = {}
   ): string {
-    const { width = 640, height = 480 } = options;
+    const {
+      width = this.faker.number.int({ min: 1, max: 3999 }),
+      height = this.faker.number.int({ min: 1, max: 3999 }),
+    } = options;
 
     const urlMethod = this.faker.helpers.arrayElement([
       this.urlLoremFlickr,
-      this.urlPicsumPhotos,
+      ({ width, height }: { width?: number; height?: number }) =>
+        this.urlPicsumPhotos({ width, height, grayscale: false, blur: 0 }),
     ]);
 
     return urlMethod({ width, height });
@@ -140,8 +109,8 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url provided via https://loremflickr.com.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to `640`.
-   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.category Category to use for the image.
    *
    * @example
@@ -157,13 +126,13 @@ export class ImageModule extends ModuleBase {
       /**
        * The width of the image.
        *
-       * @default 640
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default 480
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
       /**
@@ -172,7 +141,11 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
-    const { width = 640, height = 480, category } = options;
+    const {
+      width = this.faker.number.int({ min: 1, max: 3999 }),
+      height = this.faker.number.int({ min: 1, max: 3999 }),
+      category,
+    } = options;
 
     return `https://loremflickr.com/${width}/${height}${
       category == null ? '' : `/${category}`
@@ -183,10 +156,10 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url provided via https://picsum.photos.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to `640`.
-   * @param options.height The height of the image. Defaults to `480`.
-   * @param options.grayscale Whether the image should be grayscale. Defaults to `false`.
-   * @param options.blur Whether the image should be blurred. Defaults to `false`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.grayscale Whether the image should be grayscale. Defaults to a random boolean value.
+   * @param options.blur Whether the image should be blurred. `0` disables the blur. Defaults to a random integer between `0` and `10`.
    *
    * @example
    * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
@@ -203,30 +176,35 @@ export class ImageModule extends ModuleBase {
       /**
        * The width of the image.
        *
-       * @default 640
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default 480
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
       /**
        * Whether the image should be grayscale.
        *
-       * @default false
+       * @default faker.datatype.boolean()
        */
       grayscale?: boolean;
       /**
-       * Whether the image should be blurred.
+       * Whether the image should be blurred. `0` disables the blur.
        *
-       * @default false
+       * @default faker.number.int({ max: 10 })
        */
-      blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      blur?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     } = {}
   ): string {
-    const { width = 640, height = 480, grayscale = false, blur } = options;
+    const {
+      width = this.faker.number.int({ min: 1, max: 3999 }),
+      height = this.faker.number.int({ min: 1, max: 3999 }),
+      grayscale = this.faker.datatype.boolean(),
+      blur = this.faker.number.int({ max: 10 }),
+    } = options;
 
     let url = `https://picsum.photos/seed/${this.faker.string.alphanumeric({
       length: { min: 5, max: 10 },
@@ -257,12 +235,12 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url provided via https://via.placeholder.com/.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to random number between 1 and 3999.
-   * @param options.height The height of the image. Defaults to random number between 1 and 3999.
-   * @param options.backgroundColor The background color of the image. Defaults to random hex color.
-   * @param options.textColor The text color of the image. Defaults to random hex color.
-   * @param options.format The format of the image. Defaults to random format.
-   * @param options.text The text to display on the image. Defaults to string.
+   * @param options.width The width of the image. Defaults to a random number between 1 and 3999.
+   * @param options.height The height of the image. Defaults to a random number between 1 and 3999.
+   * @param options.backgroundColor The background color of the image. Defaults to a random hex color.
+   * @param options.textColor The text color of the image. Defaults to a random hex color.
+   * @param options.format The format of the image. Defaults to a random format.
+   * @param options.text The text to display on the image. Defaults to a random string.
    *
    * @example
    * faker.image.urlPlaceholder() // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?text=lorem'
@@ -350,10 +328,10 @@ export class ImageModule extends ModuleBase {
    * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
-   * @param options.width The width of the image. Defaults to `640`.
-   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
-   * @param options.type The type of the image. Defaults to `'svg-uri'`.
+   * @param options.type The type of the image. Defaults to a random type.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
@@ -366,13 +344,13 @@ export class ImageModule extends ModuleBase {
       /**
        * The width of the image.
        *
-       * @default 640
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       width?: number;
       /**
        * The height of the image.
        *
-       * @default 480
+       * @default faker.number.int({ min: 1, max: 3999 })
        */
       height?: number;
       /**
@@ -385,16 +363,16 @@ export class ImageModule extends ModuleBase {
        * The type of the image to return. Consisting of
        * the file extension and the used encoding.
        *
-       * @default 'svg-uri'
+       * @default faker.helpers.arrayElements(['svg-uri', 'svg-base64'])
        */
       type?: 'svg-uri' | 'svg-base64';
     } = {}
   ): string {
     const {
-      width = 640,
-      height = 480,
+      width = this.faker.number.int({ min: 1, max: 3999 }),
+      height = this.faker.number.int({ min: 1, max: 3999 }),
       color = this.faker.color.rgb(),
-      type = 'svg-uri',
+      type = this.faker.helpers.arrayElements(['svg-uri', 'svg-base64']),
     } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
@@ -408,504 +386,5 @@ export class ImageModule extends ModuleBase {
       : `data:image/svg+xml;base64,${Buffer.from(svgString).toString(
           'base64'
         )}`;
-  }
-
-  /**
-   * Generates a random image url from one of the supported categories.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @example
-   * faker.image.image() // 'https://loremflickr.com/640/480/city'
-   * faker.image.image(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
-   * faker.image.image(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.url` instead.
-   */
-  image(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.image',
-      proposed: 'faker.image.url',
-      since: '8.0',
-      until: '9.0',
-    });
-    const categories: MethodsOf<ImageModule, ImageModule['image']> = [
-      'abstract',
-      'animals',
-      'business',
-      'cats',
-      'city',
-      'food',
-      'nightlife',
-      'fashion',
-      'people',
-      'nature',
-      'sports',
-      'technics',
-      'transport',
-    ];
-    return this[this.faker.helpers.arrayElement(categories)](
-      width,
-      height,
-      randomize
-    );
-  }
-
-  /**
-   * Generates a random image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param category The category of the image. By default, a random one will be selected.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @example
-   * faker.image.imageUrl() // 'https://loremflickr.com/640/480'
-   * faker.image.imageUrl(1234, 2345) // 'https://loremflickr.com/1234/2345'
-   * faker.image.imageUrl(1234, 2345, 'cat') // 'https://loremflickr.com/1234/2345/cat'
-   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'https://loremflickr.com/1234/2345/cat?lock=6849'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.url` instead.
-   */
-  imageUrl(
-    width?: number,
-    height?: number,
-    category?: string,
-    randomize?: boolean
-  ): string {
-    deprecated({
-      deprecated: 'faker.image.imageUrl',
-      proposed: 'faker.image.url',
-      since: '8.0',
-      until: '9.0',
-    });
-
-    width = width || 640;
-    height = height || 480;
-    let url = `https://loremflickr.com/${width}/${height}`;
-    if (category != null) {
-      url += `/${category}`;
-    }
-
-    if (randomize) {
-      url += `?lock=${this.faker.number.int()}`;
-    }
-
-    return url;
-  }
-
-  /**
-   * Generates a random abstract image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.abstract() // 'https://loremflickr.com/640/480/abstract'
-   * faker.image.abstract(1234, 2345) // 'https://loremflickr.com/1234/2345/abstract'
-   * faker.image.abstract(1234, 2345, true) // 'https://loremflickr.com/1234/2345/abstract?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'abstract' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   *
-   */
-  abstract(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.abstract',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'abstract' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'abstract', randomize);
-  }
-
-  /**
-   * Generates a random animal image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.animals() // 'https://loremflickr.com/640/480/animals'
-   * faker.image.animals(1234, 2345) // 'https://loremflickr.com/1234/2345/animals'
-   * faker.image.animals(1234, 2345, true) // 'https://loremflickr.com/1234/2345/animals?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'animals' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   *
-   */
-  animals(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.animals',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'animals' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'animals', randomize);
-  }
-
-  /**
-   * Generates a random business image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.business() // 'https://loremflickr.com/640/480/business'
-   * faker.image.business(1234, 2345) // 'https://loremflickr.com/1234/2345/business'
-   * faker.image.business(1234, 2345, true) // 'https://loremflickr.com/1234/2345/business?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'business' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   *
-   *
-   */
-  business(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.business',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'business' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'business', randomize);
-  }
-
-  /**
-   * Generates a random cat image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.cats() // 'https://loremflickr.com/640/480/cats'
-   * faker.image.cats(1234, 2345) // 'https://loremflickr.com/1234/2345/cats'
-   * faker.image.cats(1234, 2345, true) // 'https://loremflickr.com/1234/2345/cats?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'cats' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  cats(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.cats',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'cats' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'cats', randomize);
-  }
-
-  /**
-   * Generates a random city image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.city() // 'https://loremflickr.com/640/480/city'
-   * faker.image.city(1234, 2345) // 'https://loremflickr.com/1234/2345/city'
-   * faker.image.city(1234, 2345, true) // 'https://loremflickr.com/1234/2345/city?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'city' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  city(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.city',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'city' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'city', randomize);
-  }
-
-  /**
-   * Generates a random food image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.food() // 'https://loremflickr.com/640/480/food'
-   * faker.image.food(1234, 2345) // 'https://loremflickr.com/1234/2345/food'
-   * faker.image.food(1234, 2345, true) // 'https://loremflickr.com/1234/2345/food?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'food' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  food(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.food',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'food' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'food', randomize);
-  }
-
-  /**
-   * Generates a random nightlife image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.nightlife() // 'https://loremflickr.com/640/480/nightlife'
-   * faker.image.nightlife(1234, 2345) // 'https://loremflickr.com/1234/2345/nightlife'
-   * faker.image.nightlife(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nightlife?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'nightlife' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  nightlife(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.nightlife',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'nightlife' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'nightlife', randomize);
-  }
-
-  /**
-   * Generates a random fashion image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.fashion() // 'https://loremflickr.com/640/480/fashion'
-   * faker.image.fashion(1234, 2345) // 'https://loremflickr.com/1234/2345/fashion'
-   * faker.image.fashion(1234, 2345, true) // 'https://loremflickr.com/1234/2345/fashion?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'fashion' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  fashion(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.fashion',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'fashion' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'fashion', randomize);
-  }
-
-  /**
-   * Generates a random people image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.people() // 'https://loremflickr.com/640/480/people'
-   * faker.image.people(1234, 2345) // 'https://loremflickr.com/1234/2345/people'
-   * faker.image.people(1234, 2345, true) // 'https://loremflickr.com/1234/2345/people?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'people' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  people(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.people',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'people' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'people', randomize);
-  }
-
-  /**
-   * Generates a random nature image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.nature() // 'https://loremflickr.com/640/480/nature'
-   * faker.image.nature(1234, 2345) // 'https://loremflickr.com/1234/2345/nature'
-   * faker.image.nature(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'nature' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  nature(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.nature',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'nature' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'nature', randomize);
-  }
-
-  /**
-   * Generates a random sports image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.sports() // 'https://loremflickr.com/640/480/sports'
-   * faker.image.sports(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
-   * faker.image.sports(1234, 2345, true) // 'https://loremflickr.com/1234/2345/sports?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'sports' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  sports(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.sports',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'sports' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'sports', randomize);
-  }
-
-  /**
-   * Generates a random technics image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.technics() // 'https://loremflickr.com/640/480/technics'
-   * faker.image.technics(1234, 2345) // 'https://loremflickr.com/1234/2345/technics'
-   * faker.image.technics(1234, 2345, true) // 'https://loremflickr.com/1234/2345/technics?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'technics' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   */
-  technics(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.technics',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'technics' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'technics', randomize);
-  }
-
-  /**
-   * Generates a random transport image url.
-   *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param randomize Whether to randomize the image or not. Defaults to `false`.
-   *
-   * @see faker.image.url(): For generating a random image url (has fewer options, uses multiple image providers).
-   * @see faker.image.urlLoremFlickr(): For generating a random image url from LoremFlickr.
-   *
-   * @example
-   * faker.image.transport() // 'https://loremflickr.com/640/480/transport'
-   * faker.image.transport(1234, 2345) // 'https://loremflickr.com/1234/2345/transport'
-   * faker.image.transport(1234, 2345, true) // 'https://loremflickr.com/1234/2345/transport?lock=56789'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'transport' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
-   *
-   *
-   */
-  transport(width?: number, height?: number, randomize?: boolean): string {
-    deprecated({
-      deprecated: 'faker.image.transport',
-      proposed:
-        "faker.image.urlLoremFlickr({ category: 'transport' }) or faker.image.url",
-      since: '8.0',
-      until: '9.0',
-    });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.imageUrl(width, height, 'transport', randomize);
   }
 }

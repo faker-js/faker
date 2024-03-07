@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker, FakerError } from '../../src';
+import { FakerError, faker } from '../../src';
 import { fakeEval } from '../../src/modules/helpers/eval';
 
 describe('fakeEval()', () => {

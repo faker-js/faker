@@ -178,7 +178,7 @@ export class LocationModule extends ModuleBase {
   buildingNumber(): string {
     return this.faker.helpers
       .arrayElement(this.faker.definitions.location.building_number)
-      .replace(/#+/g, (m) =>
+      .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
@@ -274,7 +274,7 @@ export class LocationModule extends ModuleBase {
   secondaryAddress(): string {
     return this.faker.helpers
       .arrayElement(this.faker.definitions.location.secondary_address)
-      .replace(/#+/g, (m) =>
+      .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
           allowLeadingZeros: false,
@@ -355,13 +355,17 @@ export class LocationModule extends ModuleBase {
     const { variant = 'alpha-2' } = options;
     const key = (() => {
       switch (variant) {
-        case 'numeric':
+        case 'numeric': {
           return 'numeric';
-        case 'alpha-3':
+        }
+
+        case 'alpha-3': {
           return 'alpha3';
-        case 'alpha-2':
-        default:
+        }
+
+        case 'alpha-2': {
           return 'alpha2';
+        }
       }
     })();
 
@@ -623,16 +627,15 @@ export class LocationModule extends ModuleBase {
   /**
    * Generates a random longitude.
    *
-   * @param options An options object.
-   * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
-   * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
-   * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
+   * @param max The upper bound for the longitude to generate. Defaults to `180`.
+   * @param min The lower bound for the longitude to generate. Defaults to `-180`.
+   * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
    *
    * @example
    * faker.location.longitude() // -30.9501
-   * faker.location.longitude({ max: 10 }) // 5.7225
-   * faker.location.longitude({ max: 10, min: -10 }) // -9.6273
-   * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // 2.68452
+   * faker.location.longitude(10) // 5.7225
+   * faker.location.longitude(10, -10) // -9.6273
+   * faker.location.longitude(10, -10, 5) // 2.68452
    *
    * @since 8.0.0
    *
@@ -992,8 +995,7 @@ export class LocationModule extends ModuleBase {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object.
-   * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
+   * @param abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example

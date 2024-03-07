@@ -134,7 +134,7 @@ export class NumberModule extends SimpleModuleBase {
            * The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
            */
           fractionDigits?: number;
-          /*
+          /**
            * Deprecated alias for `multipleOf`. Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
            *
            * @deprecated Use `multipleOf` instead.
@@ -156,7 +156,9 @@ export class NumberModule extends SimpleModuleBase {
       min = 0,
       max = 1,
       fractionDigits,
+      // eslint-disable-next-line deprecation/deprecation
       precision,
+      // eslint-disable-next-line deprecation/deprecation
       multipleOf: originalMultipleOf = precision,
       multipleOf = precision ??
         (fractionDigits == null ? undefined : 10 ** -fractionDigits),

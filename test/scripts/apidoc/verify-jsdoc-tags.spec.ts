@@ -7,6 +7,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
 import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import {
+  MISSING_DESCRIPTION,
   extractDeprecated,
   extractDescription,
   extractJoinedRawExamples,
@@ -16,7 +17,6 @@ import {
   extractSince,
   extractSummaryDefault,
   extractTagContent,
-  MISSING_DESCRIPTION,
 } from '../../../scripts/apidoc/typedoc';
 import { loadProjectModules } from './utils';
 
@@ -98,18 +98,20 @@ function assertNestedParameterDefault(
   }
 
   switch (parameterType.type) {
-    case 'array':
+    case 'array': {
       return assertNestedParameterDefault(
         `${name}[]`,
         parameterType.elementType
       );
+    }
 
-    case 'union':
+    case 'union': {
       for (const type of parameterType.types) {
         assertNestedParameterDefault(name, type);
       }
 
       return;
+    }
 
     case 'reflection': {
       for (const property of parameterType.declaration.children ?? []) {
@@ -131,11 +133,13 @@ function assertNestedParameterDefault(
       return;
     }
 
-    case 'typeOperator':
+    case 'typeOperator': {
       return assertNestedParameterDefault(name, parameterType.target);
+    }
 
-    default:
+    default: {
       return;
+    }
   }
 }
 
@@ -253,7 +257,7 @@ describe('verify JSDoc tags', () => {
             ).parameters) {
               const { name, description } = param;
               const plainDescription = description
-                .replace(/<[^>]+>/g, '')
+                .replaceAll(/<[^>]+>/g, '')
                 .trim();
               expect(
                 plainDescription,
