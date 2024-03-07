@@ -27,5 +27,4 @@ export default {
     'Noy.',
     'Dek.',
   ],
-  narrov: ['Y', 'F', 'M', 'A', 'M', 'I', 'I', 'A', 'S', 'O', 'N', 'D'],
 };

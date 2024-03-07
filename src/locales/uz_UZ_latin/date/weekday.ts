@@ -19,5 +19,4 @@ export default {
   ],
   abbr: ['Ya', 'Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'],
   abbr_context: ['Ya', 'Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'],
-  narrov: ['Y', 'D', 'S', 'C', 'P', 'J', 'S'],
 };
