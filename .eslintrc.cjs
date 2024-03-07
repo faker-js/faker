@@ -57,7 +57,6 @@ module.exports = defineConfig({
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
-    'unicorn/switch-case-braces': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
