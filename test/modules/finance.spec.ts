@@ -238,7 +238,6 @@ describe('finance', () => {
               min: number,
               max: number,
               dec: 0,
-              symbol: undefined,
               autoFormat,
             });
 
@@ -257,7 +256,6 @@ describe('finance', () => {
             min: number,
             max: number,
             dec: decimalPlaces,
-            symbol: undefined,
             autoFormat: true,
           });
 
