@@ -799,20 +799,24 @@ export class FinanceModule extends ModuleBase {
     let format: string;
 
     switch (actualIssuer) {
-      case CreditCardIssuer.AmericanExpress:
+      case CreditCardIssuer.AmericanExpress: {
         format = this.faker.helpers.arrayElement([
           '34##-######-####L',
           '37##-######-####L',
         ]);
         break;
-      case CreditCardIssuer.DinersClub:
+      }
+
+      case CreditCardIssuer.DinersClub: {
         format = this.faker.helpers.arrayElement([
           '30[0-5]#-######-###L',
           '36##-######-###L',
           '54##-####-####-###L',
         ]);
         break;
-      case CreditCardIssuer.Discover:
+      }
+
+      case CreditCardIssuer.Discover: {
         format = this.faker.helpers.arrayElement([
           '6011-####-####-###L',
           '65##-####-####-###L',
@@ -822,14 +826,18 @@ export class FinanceModule extends ModuleBase {
           '64[4-9]#-62##-####-####-###L',
         ]);
         break;
-      case CreditCardIssuer.Jcb:
+      }
+
+      case CreditCardIssuer.Jcb: {
         format = this.faker.helpers.arrayElement([
           '3528-####-####-###L',
           '3529-####-####-###L',
           '35[3-8]#-####-####-###L',
         ]);
         break;
-      case CreditCardIssuer.Maestro:
+      }
+
+      case CreditCardIssuer.Maestro: {
         format = this.faker.helpers.arrayElement([
           '5018-#{4}-#{4}-#{3}L',
           '5020-#{4}-#{4}-#{3}L',
@@ -847,13 +855,17 @@ export class FinanceModule extends ModuleBase {
           '676[1-3]#{11,15}L',
         ]);
         break;
-      case CreditCardIssuer.Mastercard:
+      }
+
+      case CreditCardIssuer.Mastercard: {
         format = this.faker.helpers.arrayElement([
           '5[1-5]##-####-####-###L',
           '2[221-720]-####-####-###L',
         ]);
         break;
-      case CreditCardIssuer.Unionpay:
+      }
+
+      case CreditCardIssuer.Unionpay: {
         format = this.faker.helpers.arrayElement([
           '62#############L',
           '67#############L',
@@ -863,13 +875,17 @@ export class FinanceModule extends ModuleBase {
           '81################L',
         ]);
         break;
-      case CreditCardIssuer.Visa:
+      }
+
+      case CreditCardIssuer.Visa: {
         format = this.faker.helpers.arrayElement([
           '4###########L',
           '4###-####-####-###L',
         ]);
         break;
-      default:
+      }
+
+      default: {
         deprecated({
           deprecated: 'faker.finance.creditCardNumber(customFormat)',
           proposed: 'faker.finance.creditCardNumber(CreditCardType.<issuer>)',
@@ -877,6 +893,7 @@ export class FinanceModule extends ModuleBase {
           until: '10.0',
         });
         format = issuer;
+      }
     }
 
     return this.faker.helpers.replaceCreditCardSymbols(format);
