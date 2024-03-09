@@ -124,6 +124,8 @@ export type {
   PersonModule,
   SexType,
 } from './modules/person';
+export { CreditCardIssuer } from './modules/finance';
+export type { CreditCardIssuerType } from './modules/finance';
 export type { PhoneModule } from './modules/phone';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { StringModule } from './modules/string';

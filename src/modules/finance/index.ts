@@ -24,6 +24,22 @@ export interface Currency {
 }
 
 /**
+ * The supported credit card issuers.
+ */
+export enum CreditCardIssuer {
+  AmericanExpress = 'american_express',
+  DinersClub = 'diners_club',
+  Discover = 'discover',
+  Jcb = 'jcb',
+  Maestro = 'maestro',
+  Mastercard = 'mastercard',
+  Unionpay = 'unionpay',
+  Visa = 'visa',
+}
+
+export type CreditCardIssuerType = `${CreditCardIssuer}`;
+
+/**
  * Puts a space after every 4 characters.
  *
  * @internal
@@ -746,138 +762,123 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random credit card number.
    *
-   * If you need to generate a credit card number for a specific issuer, you can pass one of the following issuer names:
-   *
-   * - `american_express`
-   * - `diners_club`
-   * - `discover`
-   * - `jcb`
-   * - `maestro`
-   * - `mastercard`
-   * - `unionpay`
-   * - `visa`
-   *
-   * (Not all issuers are supported in all locales. If the issuer is missing, please open an issue or a pull request to add it.)
-   *
-   * @param issuer The name of the issuer (case-insensitive) or the format used to generate one.
-   * Defaults to a random issuer.
+   * @param issuer The name of the issuer to generate a credit card number for.
+   * Defaults to `this.creditCardIssuer()`.
    *
    * @see faker.finance.creditCardIssuer(): For generating a random credit card issuer.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488662'
    * faker.finance.creditCardNumber('visa') // '4882664999007'
-   * faker.finance.creditCardNumber('63[7-9]#-####-####-###L') // '6375-3265-4676-6646'
    *
-   * @since 5.0.0
+   * @since 9.0.0
    */
-  creditCardNumber(issuer?: string): string;
-  /**
-   * Generates a random credit card number.
-   *
-   * If you need to generate a credit card number for a specific issuer, you can pass one of the following issuer names:
-   *
-   * - `american_express`
-   * - `diners_club`
-   * - `discover`
-   * - `jcb`
-   * - `maestro`
-   * - `mastercard`
-   * - `unionpay`
-   * - `visa`
-   *
-   * (Not all issuers are supported in all locales. If the issuer is missing, please open an issue or a pull request to add it.)
-   *
-   * @param options An options object.
-   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
-   * Defaults to a random issuer.
-   *
-   * @see faker.finance.creditCardIssuer(): For generating a random credit card issuer.
-   *
-   * @example
-   * faker.finance.creditCardNumber() // '4427163488662'
-   * faker.finance.creditCardNumber({ issuer: 'visa' }) // '4882664999007'
-   * faker.finance.creditCardNumber({ issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
-   *
-   * @since 5.0.0
-   */
-  creditCardNumber(options?: {
-    /**
-     * The name of the issuer (case-insensitive) or the format used to generate one.
-     * Defaults to a random issuer.
-     */
-    issuer?: string;
-  }): string;
-  /**
-   * Generates a random credit card number.
-   *
-   * If you need to generate a credit card number for a specific issuer, you can pass one of the following issuer names:
-   *
-   * - `american_express`
-   * - `diners_club`
-   * - `discover`
-   * - `jcb`
-   * - `maestro`
-   * - `mastercard`
-   * - `unionpay`
-   * - `visa`
-   *
-   * (Not all issuers are supported in all locales. If the issuer is missing, please open an issue or a pull request to add it.)
-   *
-   * @param options An options object, the issuer or a custom format.
-   * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
-   * Defaults to a random issuer.
-   *
-   * @see faker.finance.creditCardIssuer(): For generating a random credit card issuer.
-   *
-   * @example
-   * faker.finance.creditCardNumber() // '4427163488662'
-   * faker.finance.creditCardNumber({ issuer: 'visa' }) // '4882664999007'
-   * faker.finance.creditCardNumber({ issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
-   * faker.finance.creditCardNumber('visa') // '1226423499765'
-   *
-   * @since 5.0.0
-   */
+  creditCardNumber(issuer?: CreditCardIssuerType): string;
   creditCardNumber(
-    options?:
-      | string
+    issuer:
+      | CreditCardIssuerType
       | {
-          /**
-           * The name of the issuer (case-insensitive) or the format used to generate one.
-           * Defaults to a random issuer.
-           */
-          issuer?: string;
-        }
-  ): string;
-  creditCardNumber(
-    options:
-      | string
-      | {
-          issuer?: string;
-        } = {}
+          issuer?: CreditCardIssuerType;
+        } = this.creditCardIssuer()
   ): string {
-    if (typeof options === 'string') {
-      options = { issuer: options };
+    if (typeof issuer !== 'string') {
+      issuer = issuer.issuer ?? this.creditCardIssuer();
     }
 
-    const { issuer = '' } = options;
+    // TODO @ST-DDT 2024-03-09: Remove the fallback in v10
+    const actualIssuer = issuer.toLowerCase() as CreditCardIssuerType;
+    if (actualIssuer !== issuer) {
+      deprecated({
+        deprecated: 'faker.finance.creditCardNumber(issuer)',
+        proposed: 'faker.finance.creditCardNumber(CreditCardIssuer.<issuer>)',
+        since: '9.0',
+        until: '10.0',
+      });
+    }
 
     let format: string;
-    const localeFormat = this.faker.definitions.finance.credit_card;
-    const normalizedIssuer = issuer.toLowerCase();
-    if (normalizedIssuer in localeFormat) {
-      format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
-    } else if (issuer.includes('#')) {
-      // The user chose an optional scheme
-      format = issuer;
-    } else {
-      // Choose a random issuer
-      // Credit cards are in an object structure
-      const formats = this.faker.helpers.objectValue(localeFormat); // There could be multiple formats
-      format = this.faker.helpers.arrayElement(formats);
+
+    switch (actualIssuer) {
+      case CreditCardIssuer.AmericanExpress:
+        format = this.faker.helpers.arrayElement([
+          '34##-######-####L',
+          '37##-######-####L',
+        ]);
+        break;
+      case CreditCardIssuer.DinersClub:
+        format = this.faker.helpers.arrayElement([
+          '30[0-5]#-######-###L',
+          '36##-######-###L',
+          '54##-####-####-###L',
+        ]);
+        break;
+      case CreditCardIssuer.Discover:
+        format = this.faker.helpers.arrayElement([
+          '6011-####-####-###L',
+          '65##-####-####-###L',
+          '64[4-9]#-####-####-###L',
+          '6011-62##-####-####-###L',
+          '65##-62##-####-####-###L',
+          '64[4-9]#-62##-####-####-###L',
+        ]);
+        break;
+      case CreditCardIssuer.Jcb:
+        format = this.faker.helpers.arrayElement([
+          '3528-####-####-###L',
+          '3529-####-####-###L',
+          '35[3-8]#-####-####-###L',
+        ]);
+        break;
+      case CreditCardIssuer.Maestro:
+        format = this.faker.helpers.arrayElement([
+          '5018-#{4}-#{4}-#{3}L',
+          '5020-#{4}-#{4}-#{3}L',
+          '5038-#{4}-#{4}-#{3}L',
+          '5893-#{4}-#{4}-#{3}L',
+          '6304-#{4}-#{4}-#{3}L',
+          '6759-#{4}-#{4}-#{3}L',
+          '676[1-3]-####-####-###L',
+          '5018#{11,15}L',
+          '5020#{11,15}L',
+          '5038#{11,15}L',
+          '5893#{11,15}L',
+          '6304#{11,15}L',
+          '6759#{11,15}L',
+          '676[1-3]#{11,15}L',
+        ]);
+        break;
+      case CreditCardIssuer.Mastercard:
+        format = this.faker.helpers.arrayElement([
+          '5[1-5]##-####-####-###L',
+          '2[221-720]-####-####-###L',
+        ]);
+        break;
+      case CreditCardIssuer.Unionpay:
+        format = this.faker.helpers.arrayElement([
+          '62#############L',
+          '67#############L',
+          '81#############L',
+          '81##############L',
+          '81###############L',
+          '81################L',
+        ]);
+        break;
+      case CreditCardIssuer.Visa:
+        format = this.faker.helpers.arrayElement([
+          '4###########L',
+          '4###-####-####-###L',
+        ]);
+        break;
+      default:
+        deprecated({
+          deprecated: 'faker.finance.creditCardNumber(customFormat)',
+          proposed: 'faker.finance.creditCardNumber(CreditCardType.<issuer>)',
+          since: '9.0',
+          until: '10.0',
+        });
+        format = issuer;
     }
 
-    format = format.replaceAll('/', '');
     return this.faker.helpers.replaceCreditCardSymbols(format);
   }
 
@@ -894,17 +895,22 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Returns a random credit card issuer.
+   * Returns a common credit card issuer.
+   *
+   * The `base` locale returns any supported issuer.
+   * The specific locales return issuers that are common in the respective country.
+   *
+   * @see faker.finance.creditCardNumber(): For generating a random credit card number.
    *
    * @example
    * faker.finance.creditCardIssuer() // 'discover'
    *
    * @since 6.3.0
    */
-  creditCardIssuer(): string {
-    return this.faker.helpers.objectKey(
-      this.faker.definitions.finance.credit_card
-    ) as string;
+  creditCardIssuer(): CreditCardIssuerType {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.common_credit_card_issuer
+    );
   }
 
   /**

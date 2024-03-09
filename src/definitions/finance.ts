@@ -1,4 +1,4 @@
-import type { Currency } from '../modules/finance';
+import type { CreditCardIssuerType, Currency } from '../modules/finance';
 import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to finance.
@@ -10,12 +10,9 @@ export type FinanceDefinition = LocaleEntry<{
   account_type: string[];
 
   /**
-   * The pattern by (lowercase) issuer name used to generate credit card codes.
-   * `L` will be replaced by the check bit.
-   *
-   * @see faker.helpers.replaceCreditCardSymbols(): For more information about how the pattern is used.
+   * The issers of credit cards that are commonly used in this locale.
    */
-  credit_card: { [issuer: string]: string[] };
+  common_credit_card_issuer: CreditCardIssuerType[];
 
   /**
    * Currencies including their name, code and symbol (e.g. `US Dollar` / `USD` / `$`).
