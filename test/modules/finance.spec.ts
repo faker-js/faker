@@ -193,17 +193,6 @@ describe('finance', () => {
           expect(+amount).toBeLessThanOrEqual(1000);
         });
 
-        // TODO @Shinigami92 2024-03-09: is this whole test wrong?
-        // duplicate of line 232
-        it('should use the default decimal location when not passing arguments', () => {
-          let amount = faker.finance.amount();
-
-          amount = faker.finance.amount({ min: 100, max: 100, dec: 1 });
-
-          expect(amount).toBeTruthy();
-          expect(amount).toBe('100.0');
-        });
-
         //TODO: add support for more currency and decimal options
         it('should not include a currency symbol by default', () => {
           const amount = faker.finance.amount();
