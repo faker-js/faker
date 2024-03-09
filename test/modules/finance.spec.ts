@@ -214,6 +214,14 @@ describe('finance', () => {
           expect(+amount).toBeGreaterThanOrEqual(-200);
         });
 
+        it('should use the default dec', () => {
+          const amount = faker.finance.amount({ min: 100, max: 100 });
+
+          expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
+          expect(amount).toBe('100.00');
+        });
+
         it('should handle argument dec', () => {
           const amount = faker.finance.amount({ min: 100, max: 100, dec: 1 });
 
