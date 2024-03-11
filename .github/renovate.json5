@@ -11,12 +11,12 @@
     "enabled": true
   },
   "reviewersFromCodeOwners": true,
-  "rangeStrategy": "bump",
+  "rangeStrategy": "replace",
   "packageRules": [
     {
       "groupName": "devDependencies",
       "matchDepTypes": ["devDependencies"],
-      "rangeStrategy": "bump"
+      "rangeStrategy": "replace"
     },
     {
       "groupName": "dependencies",
