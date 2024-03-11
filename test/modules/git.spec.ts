@@ -18,8 +18,6 @@ describe('git', () => {
         .it('with length 8', { length: 8 });
     });
 
-    t.skip('shortSha');
-
     t.describeEach(
       'commitEntry',
       'commitDate'

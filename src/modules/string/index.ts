@@ -223,15 +223,20 @@ export class StringModule extends SimpleModuleBase {
 
     let charsArray: string[];
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray = [...UPPER_CHARS];
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray = [...LOWER_CHARS];
         break;
-      case 'mixed':
+      }
+
+      case 'mixed': {
         charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
         break;
+      }
     }
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
@@ -313,15 +318,20 @@ export class StringModule extends SimpleModuleBase {
     let charsArray = [...DIGIT_CHARS];
 
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray.push(...UPPER_CHARS);
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray.push(...LOWER_CHARS);
         break;
-      case 'mixed':
+      }
+
+      case 'mixed': {
         charsArray.push(...LOWER_CHARS, ...UPPER_CHARS);
         break;
+      }
     }
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
