@@ -355,6 +355,7 @@ describe('finance', () => {
         });
 
         it('should return a valid credit card number', () => {
+          // Deprecated
           expect(
             faker.finance.creditCardNumber('' as CreditCardIssuerType)
           ).toSatisfy(luhnCheck);
