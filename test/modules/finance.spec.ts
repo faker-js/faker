@@ -355,6 +355,9 @@ describe('finance', () => {
         });
 
         it('should return a valid credit card number', () => {
+          expect(
+            faker.finance.creditCardNumber('' as CreditCardIssuerType)
+          ).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber()).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber('visa')).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber('mastercard')).toSatisfy(

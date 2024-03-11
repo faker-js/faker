@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import iban from './iban';
 
@@ -566,14 +567,21 @@ export class FinanceModule extends ModuleBase {
   ): string {
     if (typeof issuer !== 'string') {
       issuer = issuer.issuer ?? this.creditCardIssuer();
+      deprecated({
+        deprecated: 'faker.finance.creditCardNumber({ issuer })',
+        proposed: 'faker.finance.creditCardNumber(issuer)',
+        since: '9.0',
+        until: '10.0',
+      });
     }
 
     // TODO @ST-DDT 2024-03-09: Remove the fallback in v10
+    issuer ||= this.creditCardIssuer();
     const actualIssuer = issuer.toLowerCase() as CreditCardIssuerType;
     if (actualIssuer !== issuer) {
       deprecated({
-        deprecated: 'faker.finance.creditCardNumber(issuer)',
-        proposed: 'faker.finance.creditCardNumber(CreditCardIssuer.<issuer>)',
+        deprecated: 'faker.finance.creditCardNumber(iSsUeR)',
+        proposed: 'faker.finance.creditCardNumber(issuer)',
         since: '9.0',
         until: '10.0',
       });
@@ -671,7 +679,8 @@ export class FinanceModule extends ModuleBase {
       default: {
         deprecated({
           deprecated: 'faker.finance.creditCardNumber(customFormat)',
-          proposed: 'faker.finance.creditCardNumber(CreditCardType.<issuer>)',
+          proposed:
+            'faker.finance.creditCardNumber(issuer) or faker.helpers.replaceCreditCardSymbols(customFormat)',
           since: '9.0',
           until: '10.0',
         });

@@ -10,7 +10,7 @@ export type FinanceDefinition = LocaleEntry<{
   account_type: string[];
 
   /**
-   * The issers of credit cards that are commonly used in this locale.
+   * The issuers of credit cards that are commonly used in this locale.
    */
   common_credit_card_issuer: CreditCardIssuerType[];
 
