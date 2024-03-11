@@ -1,11 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
+    "config:best-practices",
     "schedule:earlyMondays",
     "group:allNonMajor",
-    ":prHourlyLimitNone",
-    "helpers:pinGitHubActionDigests"
+    ":prHourlyLimitNone"
   ],
   "labels": ["c: dependencies"],
   "lockFileMaintenance": {
