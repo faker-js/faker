@@ -24,7 +24,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
-   * @param options.multipleOf Generated number must be a multiple of the given integer. Defaults to `1`.
+   * @param options.multipleOf Generated number will be a multiple of the given integer. Defaults to `1`.
    *
    * @throws When `min` is greater than `max`.
    * @throws When there are no suitable integers between `min` and `max`.
@@ -59,7 +59,7 @@ export class NumberModule extends SimpleModuleBase {
            */
           max?: number;
           /**
-           * Generated number must be a multiple of the given integer.
+           * Generated number will be a multiple of the given integer.
            *
            * @default 1
            */
