@@ -71,22 +71,6 @@ export class NumberModule extends SimpleModuleBase {
     }
 
     const { min = 0, max = Number.MAX_SAFE_INTEGER, multipleOf = 1 } = options;
-    const effectiveMin = Math.ceil(min);
-    const effectiveMax = Math.floor(max);
-
-    if (effectiveMin === effectiveMax) {
-      return effectiveMin;
-    }
-
-    if (effectiveMax < effectiveMin) {
-      if (max >= min) {
-        throw new FakerError(
-          `No integer value between ${min} and ${max} found.`
-        );
-      }
-
-      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
-    }
 
     if (!Number.isInteger(multipleOf)) {
       throw new FakerError(`multipleOf should be an integer.`);
@@ -96,23 +80,29 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`multipleOf should be greater than 0.`);
     }
 
-    // @ts-expect-error: access private member field
-    const randomizer = this.faker._randomizer;
-    const real = randomizer.next();
-    if (multipleOf > 1) {
-      const minMultiple = Math.ceil(effectiveMin / multipleOf) * multipleOf;
-      const maxMultiple = Math.floor(effectiveMax / multipleOf) * multipleOf;
-      if (maxMultiple < minMultiple) {
+    const effectiveMin = Math.ceil(min / multipleOf);
+    const effectiveMax = Math.floor(max / multipleOf);
+
+    if (effectiveMin === effectiveMax) {
+      return effectiveMin * multipleOf;
+    }
+
+    if (effectiveMax < effectiveMin) {
+      if (max >= min) {
         throw new FakerError(
           `No suitable integer value between ${min} and ${max} found.`
         );
       }
 
-      const delta = (maxMultiple - minMultiple) / multipleOf + 1;
-      return Math.floor(real * delta) * multipleOf + minMultiple;
+      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
+    // @ts-expect-error: access private member field
+    const randomizer = this.faker._randomizer;
+    const real = randomizer.next();
+    const delta = effectiveMax - effectiveMin + 1; // +1 for inclusive max bounds and even distribution
+
+    return Math.floor(real * delta + effectiveMin) * multipleOf;
   }
 
   /**

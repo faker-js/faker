@@ -244,7 +244,7 @@ describe('number', () => {
         expect(() => {
           faker.number.int({ min: 2.1, max: 2.9 });
         }).toThrow(
-          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+          new FakerError(`No suitable integer value between 2.1 and 2.9 found.`)
         );
       });
     });
@@ -519,7 +519,7 @@ describe('number', () => {
         expect(() => {
           faker.number.binary({ min: 2.1, max: 2.9 });
         }).toThrow(
-          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+          new FakerError(`No suitable integer value between 2.1 and 2.9 found.`)
         );
       });
     });
@@ -570,7 +570,7 @@ describe('number', () => {
         expect(() => {
           faker.number.octal({ min: 2.1, max: 2.9 });
         }).toThrow(
-          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+          new FakerError(`No suitable integer value between 2.1 and 2.9 found.`)
         );
       });
     });
@@ -618,7 +618,7 @@ describe('number', () => {
         expect(() => {
           faker.number.hex({ min: 2.1, max: 2.9 });
         }).toThrow(
-          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+          new FakerError(`No suitable integer value between 2.1 and 2.9 found.`)
         );
       });
     });
