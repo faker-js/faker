@@ -35,6 +35,11 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
     expect(metadata.code).toBeTypeOf('string');
     expect(metadata.code).toEqual(locale);
     if (locale !== 'base') {
+      expect(metadata.code).toEqual(
+        [metadata.language, metadata.country, metadata.variant]
+          .filter((v) => v != null)
+          .join('_')
+      );
       expect(metadata.language).toBeTypeOf('string');
       expect(metadata.language).toMatch(/^[a-z]{2}$/);
       expect(metadata.script).toBeTypeOf('string');

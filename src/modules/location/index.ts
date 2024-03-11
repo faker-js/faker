@@ -355,12 +355,17 @@ export class LocationModule extends ModuleBase {
     const { variant = 'alpha-2' } = options;
     const key = (() => {
       switch (variant) {
-        case 'numeric':
+        case 'numeric': {
           return 'numeric';
-        case 'alpha-3':
+        }
+
+        case 'alpha-3': {
           return 'alpha3';
-        case 'alpha-2':
+        }
+
+        case 'alpha-2': {
           return 'alpha2';
+        }
       }
     })();
 

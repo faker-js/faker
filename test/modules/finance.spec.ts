@@ -28,10 +28,6 @@ describe('finance', () => {
       'transactionDescription'
     );
 
-    t.describe('account', (t) => {
-      t.it('noArgs').it('with length', 10);
-    });
-
     t.describe('accountNumber', (t) => {
       t.it('noArgs')
         .it('with length', 10)
@@ -61,17 +57,7 @@ describe('finance', () => {
           dec: 5,
           symbol: '#',
           autoFormat: false,
-        })
-        .it('with min', 10)
-        .it('with leagcy max', undefined, 50)
-        .it('with leagcy dec', undefined, undefined, 5)
-        .it(
-          'with min, leagcy max, leagcy dec and leagcy symbol',
-          10,
-          50,
-          5,
-          '$'
-        );
+        });
     });
 
     t.describe('bic', (t) => {
@@ -84,9 +70,7 @@ describe('finance', () => {
         .it('with formatted and countryCode option', {
           formatted: true,
           countryCode: 'DE',
-        })
-        .it('with formatted', true)
-        .it('with formatted and countryCode', true, 'DE');
+        });
     });
 
     t.describe('creditCardNumber', (t) => {
@@ -94,14 +78,6 @@ describe('finance', () => {
         .it('with issuer', 'visa')
         .it('with issuer option visa', { issuer: 'visa' })
         .it('with issuer option mastercard', { issuer: 'mastercard' });
-    });
-
-    t.describe('mask', (t) => {
-      t.it('noArgs')
-        .it('with length', 5)
-        .it('with parenthesis', undefined, true)
-        .it('with ellipsis', undefined, undefined, true)
-        .it('with length, parenthesis and ellipsis', 5, true, true);
     });
 
     t.describe('maskedNumber', (t) => {
@@ -120,28 +96,6 @@ describe('finance', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
-      describe('account()', () => {
-        it('should supply a default length', () => {
-          const accountNumber = faker.finance.account();
-
-          expect(accountNumber).toBeTruthy();
-          expect(
-            accountNumber,
-            'The length of the account number should be 8 characters long'
-          ).toHaveLength(8);
-        });
-
-        it('should have same length as given length number', () => {
-          const accountNumber = faker.finance.account(16);
-
-          expect(accountNumber).toBeTruthy();
-          expect(
-            accountNumber,
-            'The length of the account number should match the given number'
-          ).toHaveLength(16);
-        });
-      });
-
       describe('accountNumber()', () => {
         it('should supply a default length', () => {
           const accountNumber = faker.finance.accountNumber();
@@ -191,31 +145,6 @@ describe('finance', () => {
         });
       });
 
-      describe('mask()', () => {
-        it('should set a default length', () => {
-          const expected = 4; // default account mask length
-          const mask = faker.finance.mask(undefined, false, false);
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
-        });
-
-        it('should set a specified length', () => {
-          let expected = faker.number.int(20);
-
-          expected = expected || 4;
-
-          const mask = faker.finance.mask(expected, false, false); // the length of mask picks 4 if the random number generator picks 0
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
-        });
-      });
-
       describe('maskedNumber()', () => {
         it('should return contain parenthesis, ellipsis and have a length of 4 by default', () => {
           const actual = faker.finance.maskedNumber();
@@ -260,28 +189,16 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(
-            +amount,
-            'the amount should be greater than 0'
-          ).toBeGreaterThan(0);
-          expect(+amount, 'the amount should be less than 1001').toBeLessThan(
-            1001
-          );
-        });
-
-        it('should use the default decimal location when not passing arguments', () => {
-          let amount = faker.finance.amount();
-
-          amount = faker.finance.amount(100, 100, 1);
-
-          expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100.0').toBe('100.0');
+          expect(+amount).toBeGreaterThanOrEqual(0);
+          expect(+amount).toBeLessThanOrEqual(1000);
         });
 
         //TODO: add support for more currency and decimal options
         it('should not include a currency symbol by default', () => {
           const amount = faker.finance.amount();
 
+          expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(
             amount,
             'The expected match should not include a currency symbol'
@@ -289,53 +206,50 @@ describe('finance', () => {
         });
 
         it('should handle negative amounts', () => {
-          const amount = faker.finance.amount(-200, -1);
+          const amount = faker.finance.amount({ min: -200, max: -1 });
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be less than 0').toBeLessThan(0);
-          expect(
-            +amount,
-            'the amount should be greater than -201'
-          ).toBeGreaterThan(-201);
+          expect(+amount).toBeLessThanOrEqual(-1);
+          expect(+amount).toBeGreaterThanOrEqual(-200);
+        });
+
+        it('should use the default dec', () => {
+          const amount = faker.finance.amount({ min: 100, max: 100 });
+
+          expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
+          expect(amount).toBe('100.00');
         });
 
         it('should handle argument dec', () => {
-          const amount = faker.finance.amount(100, 100, 1);
+          const amount = faker.finance.amount({ min: 100, max: 100, dec: 1 });
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100.0').toBe('100.0');
+          expect(amount).toBeTypeOf('string');
+          expect(amount).toBe('100.0');
         });
 
         it('should handle argument dec = 0', () => {
-          const amount = faker.finance.amount(100, 100, 0);
+          const amount = faker.finance.amount({ min: 100, max: 100, dec: 0 });
 
           expect(amount).toBeTruthy();
-          expect(amount, 'the amount should be equal 100').toBe('100');
-        });
-
-        it('should return a string', () => {
-          const amount = faker.finance.amount(100, 100, 0);
-
-          expect(amount).toBeTruthy();
-          expect(amount, 'the amount type should be string').toBeTypeOf(
-            'string'
-          );
+          expect(amount).toBeTypeOf('string');
+          expect(amount).toBe('100');
         });
 
         it.each([false, undefined])(
           'should return unformatted if autoformat is %s',
           (autoFormat) => {
             const number = 6000;
-            const amount = faker.finance.amount(
-              number,
-              number,
-              0,
-              undefined,
-              autoFormat
-            );
+            const amount = faker.finance.amount({
+              min: number,
+              max: number,
+              dec: 0,
+              autoFormat,
+            });
 
-            expect(amount).toStrictEqual(number.toString());
+            expect(amount).toBe(number.toString());
           }
         );
 
@@ -346,13 +260,12 @@ describe('finance', () => {
             minimumFractionDigits: decimalPlaces,
           });
 
-          const amount = faker.finance.amount(
-            number,
-            number,
-            decimalPlaces,
-            undefined,
-            true
-          );
+          const amount = faker.finance.amount({
+            min: number,
+            max: number,
+            dec: decimalPlaces,
+            autoFormat: true,
+          });
 
           expect(amount).toStrictEqual(expected);
         });
@@ -575,7 +488,10 @@ describe('finance', () => {
         });
 
         it('should return a specific and formally correct IBAN number', () => {
-          const iban = faker.finance.iban(false, 'DE');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'DE',
+          });
           const bban = iban.substring(4) + iban.substring(0, 4);
           const countryCode = iban.substring(0, 2);
 
@@ -590,7 +506,10 @@ describe('finance', () => {
           'throws an error for unsupported country code "%s"',
           (unsupportedCountryCode) =>
             expect(() =>
-              faker.finance.iban(false, unsupportedCountryCode)
+              faker.finance.iban({
+                formatted: false,
+                countryCode: unsupportedCountryCode,
+              })
             ).toThrow(
               new FakerError(
                 `Country code ${unsupportedCountryCode} not supported.`

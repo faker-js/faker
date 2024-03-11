@@ -67,8 +67,8 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
-   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    *
    * @example
    * faker.image.url() // 'https://loremflickr.com/640/480?lock=1234'
@@ -109,8 +109,8 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url provided via https://loremflickr.com.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
-   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.category Category to use for the image.
    *
    * @example
@@ -156,10 +156,10 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url provided via https://picsum.photos.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
-   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.grayscale Whether the image should be grayscale. Defaults to a random boolean value.
-   * @param options.blur Whether the image should be blurred. `0` disables the blur. Defaults to a random integer from `0` to `10`.
+   * @param options.blur Whether the image should be blurred. `0` disables the blur. Defaults to a random integer between `0` and `10`.
    *
    * @example
    * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
@@ -235,12 +235,12 @@ export class ImageModule extends ModuleBase {
    * Generates a random image url provided via https://via.placeholder.com/.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to random number between 1 and 3999.
-   * @param options.height The height of the image. Defaults to random number between 1 and 3999.
-   * @param options.backgroundColor The background color of the image. Defaults to random hex color.
-   * @param options.textColor The text color of the image. Defaults to random hex color.
-   * @param options.format The format of the image. Defaults to random format.
-   * @param options.text The text to display on the image. Defaults to string.
+   * @param options.width The width of the image. Defaults to a random number between 1 and 3999.
+   * @param options.height The height of the image. Defaults to a random number between 1 and 3999.
+   * @param options.backgroundColor The background color of the image. Defaults to a random hex color.
+   * @param options.textColor The text color of the image. Defaults to a random hex color.
+   * @param options.format The format of the image. Defaults to a random format.
+   * @param options.text The text to display on the image. Defaults to a random string.
    *
    * @example
    * faker.image.urlPlaceholder() // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?text=lorem'
@@ -328,8 +328,8 @@ export class ImageModule extends ModuleBase {
    * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
-   * @param options.width The width of the image. Defaults to random integer between `1` and `3999`.
-   * @param options.height The height of the image. Defaults to random integer between `1` and `3999`.
+   * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
+   * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.color The color of the image. Must be a color supported by svg. Defaults to a random color.
    * @param options.type The type of the image. Defaults to a random type.
    *

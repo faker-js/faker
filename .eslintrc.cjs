@@ -38,6 +38,7 @@ module.exports = defineConfig({
     'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
 
+    'unicorn/no-array-callback-reference': 'off', // reduces readability
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
@@ -49,7 +50,6 @@ module.exports = defineConfig({
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/import-style': 'off',
-    'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
@@ -57,12 +57,12 @@ module.exports = defineConfig({
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
-    'unicorn/switch-case-braces': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
       { default: 'array-simple', readonly: 'generic' },
     ],
+    '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/naming-convention': [
