@@ -10,6 +10,7 @@
   "lockFileMaintenance": {
     "enabled": true
   },
+  "milestone": 15,
   "reviewersFromCodeOwners": true,
   "rangeStrategy": "pin",
   "packageRules": [
