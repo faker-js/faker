@@ -1,5 +1,4 @@
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import iban from './iban';
 
@@ -53,32 +52,6 @@ export function prettyPrintIban(iban: string): string {
  * For blockchain related methods, use: [`bitcoinAddress()`](https://fakerjs.dev/api/finance.html#bitcoinaddress), [`ethereumAddress()`](https://fakerjs.dev/api/finance.html#ethereumaddress) and [`litecoinAddress()`](https://fakerjs.dev/api/finance.html#litecoinaddress).
  */
 export class FinanceModule extends ModuleBase {
-  /**
-   * Generates a random account number.
-   *
-   * @param length The length of the account number. Defaults to `8`.
-   *
-   * @see faker.finance.accountNumber(): For the replacement method.
-   *
-   * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 32564
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.finance.accountNumber` instead.
-   */
-  account(length?: number): string {
-    deprecated({
-      deprecated: 'faker.finance.account',
-      proposed: 'faker.finance.accountNumber',
-      since: '8.0',
-      until: '9.0',
-    });
-
-    return this.accountNumber(length);
-  }
-
   /**
    * Generates a random account number.
    *
@@ -211,35 +184,6 @@ export class FinanceModule extends ModuleBase {
     }
 
     return `${routingNumber}${Math.ceil(sum / 10) * 10 - sum}`;
-  }
-
-  /**
-   * Generates a random masked number.
-   *
-   * @param length The length of the unmasked number. Defaults to `4`.
-   * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @see faker.finance.maskedNumber(): For the replacement method.
-   *
-   * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.finance.maskedNumber` instead.
-   */
-  mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
-    deprecated({
-      deprecated: 'faker.finance.mask',
-      proposed: 'faker.finance.maskedNumber',
-      since: '8.0',
-      until: '9.0',
-    });
-    return this.maskedNumber({ length, parens, ellipsis });
   }
 
   /**
@@ -410,207 +354,46 @@ export class FinanceModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  amount(options?: {
-    /**
-     * The lower bound for the amount.
-     *
-     * @default 0
-     */
-    min?: number;
-    /**
-     * The upper bound for the amount.
-     *
-     * @default 1000
-     */
-    max?: number;
-    /**
-     * The number of decimal places for the amount.
-     *
-     * @default 2
-     */
-    dec?: number;
-    /**
-     * The symbol used to prefix the amount.
-     *
-     * @default ''
-     */
-    symbol?: string;
-    /**
-     * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-     *
-     * @default false
-     */
-    autoFormat?: boolean;
-  }): string;
-  /**
-   * Generates a random amount between the given bounds (inclusive).
-   *
-   * @param min The lower bound for the amount. Defaults to `0`.
-   * @param max The upper bound for the amount. Defaults to `1000`.
-   * @param dec The number of decimal places for the amount. Defaults to `2`.
-   * @param symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-   *
-   * @example
-   * faker.finance.amount() // '617.87'
-   * faker.finance.amount(5, 10) // '5.53'
-   * faker.finance.amount(5, 10, 0) // '8'
-   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
-   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.finance.amount({ min, max, dec, symbol, autoFormat })` instead.
-   */
   amount(
-    min?: number,
-    max?: number,
-    dec?: number,
-    symbol?: string,
-    autoFormat?: boolean
-  ): string;
-  /**
-   * Generates a random amount between the given bounds (inclusive).
-   *
-   * @param options An options object.
-   * @param options.min The lower bound for the amount. Defaults to `0`.
-   * @param options.max The upper bound for the amount. Defaults to `1000`.
-   * @param options.dec The number of decimal places for the amount. Defaults to `2`.
-   * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-   * @param legacyMax The upper bound for the amount. Defaults to `1000`.
-   * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
-   * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
-   *
-   * @example
-   * faker.finance.amount() // '617.87'
-   * faker.finance.amount({ min: 5, max: 10 }) // '5.53'
-   * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
-   * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
-   * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
-   *
-   * @since 2.0.1
-   */
-  amount(
-    options?:
-      | number
-      | {
-          /**
-           * The lower bound for the amount.
-           *
-           * @default 0
-           */
-          min?: number;
-          /**
-           * The upper bound for the amount.
-           *
-           * @default 1000
-           */
-          max?: number;
-          /**
-           * The number of decimal places for the amount.
-           *
-           * @default 2
-           */
-          dec?: number;
-          /**
-           * The symbol used to prefix the amount.
-           *
-           * @default ''
-           */
-          symbol?: string;
-          /**
-           * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-           *
-           * @default false
-           */
-          autoFormat?: boolean;
-        },
-    legacyMax?: number,
-    legacyDec?: number,
-    legacySymbol?: string,
-    legacyAutoFormat?: boolean
-  ): string;
-  /**
-   * Generates a random amount between the given bounds (inclusive).
-   *
-   * @param options An options object.
-   * @param options.min The lower bound for the amount. Defaults to `0`.
-   * @param options.max The upper bound for the amount. Defaults to `1000`.
-   * @param options.dec The number of decimal places for the amount. Defaults to `2`.
-   * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-   * @param legacyMax The upper bound for the amount. Defaults to `1000`.
-   * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
-   * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
-   *
-   * @example
-   * faker.finance.amount() // '617.87'
-   * faker.finance.amount({ min: 5, max: 10 }) // '5.53'
-   * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
-   * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
-   * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
-   *
-   * @since 2.0.1
-   */
-  amount(
-    options:
-      | number
-      | {
-          /**
-           * The lower bound for the amount.
-           *
-           * @default 0
-           */
-          min?: number;
-          /**
-           * The upper bound for the amount.
-           *
-           * @default 1000
-           */
-          max?: number;
-          /**
-           * The number of decimal places for the amount.
-           *
-           * @default 2
-           */
-          dec?: number;
-          /**
-           * The symbol used to prefix the amount.
-           *
-           * @default ''
-           */
-          symbol?: string;
-          /**
-           * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
-           *
-           * @default false
-           */
-          autoFormat?: boolean;
-        } = {},
-    legacyMax: number = 1000,
-    legacyDec: number = 2,
-    legacySymbol: string = '',
-    legacyAutoFormat: boolean = false
+    options: {
+      /**
+       * The lower bound for the amount.
+       *
+       * @default 0
+       */
+      min?: number;
+      /**
+       * The upper bound for the amount.
+       *
+       * @default 1000
+       */
+      max?: number;
+      /**
+       * The number of decimal places for the amount.
+       *
+       * @default 2
+       */
+      dec?: number;
+      /**
+       * The symbol used to prefix the amount.
+       *
+       * @default ''
+       */
+      symbol?: string;
+      /**
+       * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+       *
+       * @default false
+       */
+      autoFormat?: boolean;
+    } = {}
   ): string {
-    if (typeof options === 'number') {
-      deprecated({
-        deprecated: 'faker.finance.amount(min, max, dec, symbol, autoFormat)',
-        proposed: 'faker.finance.amount({ min, max, dec, symbol, autoFormat })',
-        since: '8.0',
-        until: '9.0',
-      });
-      options = { min: options };
-    }
-
     const {
-      autoFormat = legacyAutoFormat,
-      dec = legacyDec,
-      max = legacyMax,
+      autoFormat = false,
+      dec = 2,
+      max = 1000,
       min = 0,
-      symbol = legacySymbol,
+      symbol = '',
     } = options;
 
     const randValue = this.faker.number.float({
@@ -1017,118 +800,22 @@ export class FinanceModule extends ModuleBase {
    *
    * @since 4.0.0
    */
-  iban(options?: {
-    /**
-     * Return a formatted version of the generated IBAN.
-     *
-     * @default false
-     */
-    formatted?: boolean;
-    /**
-     * The country code from which you want to generate an IBAN,
-     * if none is provided a random country will be used.
-     */
-    countryCode?: string;
-  }): string;
-  /**
-   * Generates a random iban.
-   *
-   * @param formatted Return a formatted version of the generated IBAN. Defaults to `false`.
-   * @param countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
-   *
-   * @throws Will throw an error if the passed country code is not supported.
-   *
-   * @example
-   * faker.finance.iban() // 'TR736918640040966092800056'
-   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
-   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
-   *
-   * @since 4.0.0
-   *
-   * @deprecated Use `faker.finance.iban({ formatted, countryCode })` instead.
-   */
-  iban(formatted?: boolean, countryCode?: string): string;
-  /**
-   * Generates a random iban.
-   *
-   * @param options An options object or whether the return value should be formatted.
-   * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
-   * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
-   * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
-   *
-   * @throws Will throw an error if the passed country code is not supported.
-   *
-   * @example
-   * faker.finance.iban() // 'TR736918640040966092800056'
-   * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
-   * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
-   *
-   * @since 4.0.0
-   */
   iban(
-    options?:
-      | boolean
-      | {
-          /**
-           * Return a formatted version of the generated IBAN.
-           *
-           * @default false
-           */
-          formatted?: boolean;
-          /**
-           * The country code from which you want to generate an IBAN,
-           * if none is provided a random country will be used.
-           */
-          countryCode?: string;
-        },
-    legacyCountryCode?: string
-  ): string;
-  /**
-   * Generates a random iban.
-   *
-   * @param options An options object or whether the return value should be formatted.
-   * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
-   * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
-   * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
-   *
-   * @throws Will throw an error if the passed country code is not supported.
-   *
-   * @example
-   * faker.finance.iban() // 'TR736918640040966092800056'
-   * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
-   * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
-   *
-   * @since 4.0.0
-   */
-  iban(
-    options:
-      | boolean
-      | {
-          /**
-           * Return a formatted version of the generated IBAN.
-           *
-           * @default false
-           */
-          formatted?: boolean;
-          /**
-           * The country code from which you want to generate an IBAN,
-           * if none is provided a random country will be used.
-           */
-          countryCode?: string;
-        } = {},
-    legacyCountryCode?: string
+    options: {
+      /**
+       * Return a formatted version of the generated IBAN.
+       *
+       * @default false
+       */
+      formatted?: boolean;
+      /**
+       * The country code from which you want to generate an IBAN,
+       * if none is provided a random country will be used.
+       */
+      countryCode?: string;
+    } = {}
   ): string {
-    if (typeof options === 'boolean') {
-      deprecated({
-        deprecated: 'faker.finance.iban(formatted, countryCode)',
-        proposed: 'faker.finance.iban({ formatted, countryCode })',
-        since: '8.0',
-        until: '9.0',
-      });
-      options = { formatted: options };
-    }
-
-    const { countryCode = legacyCountryCode, formatted = false } = options;
+    const { countryCode, formatted = false } = options;
 
     const ibanFormat = countryCode
       ? iban.formats.find((f) => f.country === countryCode)
