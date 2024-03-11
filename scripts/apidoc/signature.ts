@@ -145,13 +145,15 @@ async function analyzeParameterOptions(
   }
 
   switch (parameterType.type) {
-    case 'array':
+    case 'array': {
       return analyzeParameterOptions(`${name}[]`, parameterType.elementType);
+    }
 
-    case 'union':
+    case 'union': {
       return Promise.all(
         parameterType.types.map((type) => analyzeParameterOptions(name, type))
       ).then((options) => options.flat());
+    }
 
     case 'reflection': {
       const properties = parameterType.declaration.children ?? [];
@@ -175,11 +177,13 @@ async function analyzeParameterOptions(
       );
     }
 
-    case 'typeOperator':
+    case 'typeOperator': {
       return analyzeParameterOptions(name, parameterType.target);
+    }
 
-    default:
+    default: {
       return [];
+    }
   }
 }
 
@@ -200,13 +204,14 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
       return isComplexType ? `Array<${text}>` : `${text}[]`;
     }
 
-    case 'union':
+    case 'union': {
       return (await Promise.all(type.types.map((t) => typeToText(t, short))))
         .map((t) => (t.includes('=>') ? `(${t})` : t))
         .sort()
         .join(' | ');
+    }
 
-    case 'reference':
+    case 'reference': {
       if (!type.typeArguments || type.typeArguments.length === 0) {
         const reflection = type.reflection as DeclarationReflection | undefined;
         const reflectionType = reflection?.type;
@@ -229,18 +234,22 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
       return `${type.name}<${(
         await Promise.all(type.typeArguments.map((t) => typeToText(t, short)))
       ).join(', ')}>`;
+    }
 
-    case 'reflection':
+    case 'reflection': {
       return declarationTypeToText(type.declaration, short);
+    }
 
-    case 'indexedAccess':
+    case 'indexedAccess': {
       return `${await typeToText(type.objectType, short)}[${await typeToText(
         type.indexType,
         short
       )}]`;
+    }
 
-    case 'literal':
+    case 'literal': {
       return (await formatTypescript(type.toString())).replace(/;\n$/, '');
+    }
 
     case 'typeOperator': {
       const text = await typeToText(type.target, short);
@@ -251,8 +260,9 @@ async function typeToText(type_?: Type, short = false): Promise<string> {
       return `${type.operator} ${text}`;
     }
 
-    default:
+    default: {
       return type.toString();
+    }
   }
 }
 
@@ -261,13 +271,15 @@ async function declarationTypeToText(
   short = false
 ): Promise<string> {
   switch (declaration.kind) {
-    case ReflectionKind.Method:
+    case ReflectionKind.Method: {
       return signatureTypeToText(declaration.signatures?.[0]);
+    }
 
-    case ReflectionKind.Property:
+    case ReflectionKind.Property: {
       return typeToText(declaration.type);
+    }
 
-    case ReflectionKind.TypeLiteral:
+    case ReflectionKind.TypeLiteral: {
       if (declaration.children?.length) {
         if (short) {
           // This is too long for the parameter table, thus we abbreviate this.
@@ -288,9 +300,11 @@ async function declarationTypeToText(
       }
 
       return declaration.toString();
+    }
 
-    default:
+    default: {
       return declaration.toString();
+    }
   }
 }
 

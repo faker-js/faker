@@ -98,18 +98,20 @@ function assertNestedParameterDefault(
   }
 
   switch (parameterType.type) {
-    case 'array':
+    case 'array': {
       return assertNestedParameterDefault(
         `${name}[]`,
         parameterType.elementType
       );
+    }
 
-    case 'union':
+    case 'union': {
       for (const type of parameterType.types) {
         assertNestedParameterDefault(name, type);
       }
 
       return;
+    }
 
     case 'reflection': {
       for (const property of parameterType.declaration.children ?? []) {
@@ -131,11 +133,13 @@ function assertNestedParameterDefault(
       return;
     }
 
-    case 'typeOperator':
+    case 'typeOperator': {
       return assertNestedParameterDefault(name, parameterType.target);
+    }
 
-    default:
+    default: {
       return;
+    }
   }
 }
 
