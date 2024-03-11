@@ -90,6 +90,7 @@ describe('number', () => {
         ].sort();
         expect(results).toEqual([20, 30]);
       });
+
       it('provides numbers with a given multipleOf of 10 with inclusive ends', () => {
         const results = [
           ...new Set(
@@ -104,6 +105,7 @@ describe('number', () => {
         ].sort();
         expect(results).toEqual([10, 20, 30, 40, 50]);
       });
+
       it('throws for float multipleOf', () => {
         const input = {
           min: 0,
@@ -115,6 +117,7 @@ describe('number', () => {
           new FakerError('multipleOf should be an integer.')
         );
       });
+
       it('throws for negative multipleOf', () => {
         const input = {
           min: -10,
@@ -126,6 +129,7 @@ describe('number', () => {
           new FakerError('multipleOf should be greater than 0.')
         );
       });
+
       it('throws for impossible multipleOf', () => {
         const input = {
           min: 11,
