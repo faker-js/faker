@@ -252,7 +252,9 @@ describe('date', () => {
               from: '1990-01-01',
               to: 'not-a-date',
             })
-          ).toThrow(new FakerError('Both `from` and `to` must be valid dates.'));
+          ).toThrow(
+            new FakerError('Both `from` and `to` must be valid dates.')
+          );
         });
       });
 
@@ -341,7 +343,9 @@ describe('date', () => {
               to: 'not-a-date',
               count: 3,
             })
-          ).toThrow(new FakerError('Both `from` and `to` must be valid dates.'));
+          ).toThrow(
+            new FakerError('Both `from` and `to` must be valid dates.')
+          );
         });
       });
 

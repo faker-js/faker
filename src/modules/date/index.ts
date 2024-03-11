@@ -194,7 +194,9 @@ export class SimpleDateModule extends SimpleModuleBase {
     to: string | Date | number;
   }): Date {
     if (!options) {
-      throw new FakerError('Must pass an options object with `from` and `to` values.');
+      throw new FakerError(
+        'Must pass an options object with `from` and `to` values.'
+      );
     }
 
     const { from, to } = options;
@@ -269,7 +271,9 @@ export class SimpleDateModule extends SimpleModuleBase {
         };
   }): Date[] {
     if (!options) {
-      throw new FakerError('Must pass an options object with `from` and `to` values.');
+      throw new FakerError(
+        'Must pass an options object with `from` and `to` values.'
+      );
     }
 
     const { from, to, count = 3 } = options;
