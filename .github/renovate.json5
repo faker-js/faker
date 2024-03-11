@@ -34,12 +34,16 @@
       "rangeStrategy": "replace"
     },
     {
-      "groupName": "typescript-eslint",
-      "matchPackagePrefixes": ["@typescript-eslint/"]
+      "groupName": "eslint",
+      "matchPackagePrefixes": [
+        "@typescript-eslint/",
+        "@eslint-types/",
+        "eslint"
+      ]
     },
     {
       "groupName": "vitest",
-      "matchPackageNames": ["@vitest/coverage-v8", "@vitest/ui", "vitest"]
+      "matchPackagePrefixes": ["@vitest/", "vitest"]
     },
     {
       "groupName": "prettier",
