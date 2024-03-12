@@ -9,7 +9,7 @@ devDependencies:
     specifier: 6.0.0
     version: 6.0.0
   '@algolia/client-search':
-    specifier: ~4.22.1
+    specifier: 4.22.1
     version: 4.22.1
   '@eslint-types/deprecation':
     specifier: 2.0.0-1
@@ -120,7 +120,7 @@ devDependencies:
     specifier: 4.7.1
     version: 4.7.1
   typedoc:
-    specifier: ~0.25.12
+    specifier: 0.25.12
     version: 0.25.12(typescript@5.4.2)
   typescript:
     specifier: ~5.4.2
