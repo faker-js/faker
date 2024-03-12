@@ -18,9 +18,8 @@ describe('internal', () => {
 
       const someMethodWithoutBind = someModule.someMethod;
 
-      // The second error message is for NodeJS v14 support
       expect(() => someMethodWithoutBind()).toThrow(
-        /^(Cannot read properties of undefined \(reading 'faker'\)|Cannot read property 'faker' of undefined)$/
+        new Error("Cannot read properties of undefined (reading 'faker')")
       );
 
       bindThisToMemberFunctions(someModule);
