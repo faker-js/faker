@@ -16,18 +16,7 @@ exports[`company > 42 > catchPhraseDescriptor 1`] = `"explicit"`;
 
 exports[`company > 42 > catchPhraseNoun 1`] = `"framework"`;
 
-exports[`company > 42 > companySuffix 1`] = `"and Sons"`;
-
 exports[`company > 42 > name 1`] = `"Wiegand - Reynolds"`;
-
-exports[`company > 42 > suffixes 1`] = `
-[
-  "Inc",
-  "and Sons",
-  "LLC",
-  "Group",
-]
-`;
 
 exports[`company > 1211 > buzzAdjective 1`] = `"plug-and-play"`;
 
@@ -45,18 +34,7 @@ exports[`company > 1211 > catchPhraseDescriptor 1`] = `"upward-trending"`;
 
 exports[`company > 1211 > catchPhraseNoun 1`] = `"system engine"`;
 
-exports[`company > 1211 > companySuffix 1`] = `"Group"`;
-
 exports[`company > 1211 > name 1`] = `"Trantow, Fahey and Zieme"`;
-
-exports[`company > 1211 > suffixes 1`] = `
-[
-  "Inc",
-  "and Sons",
-  "LLC",
-  "Group",
-]
-`;
 
 exports[`company > 1337 > buzzAdjective 1`] = `"global"`;
 
@@ -74,15 +52,4 @@ exports[`company > 1337 > catchPhraseDescriptor 1`] = `"demand-driven"`;
 
 exports[`company > 1337 > catchPhraseNoun 1`] = `"data-warehouse"`;
 
-exports[`company > 1337 > companySuffix 1`] = `"and Sons"`;
-
 exports[`company > 1337 > name 1`] = `"Cronin and Sons"`;
-
-exports[`company > 1337 > suffixes 1`] = `
-[
-  "Inc",
-  "and Sons",
-  "LLC",
-  "Group",
-]
-`;
