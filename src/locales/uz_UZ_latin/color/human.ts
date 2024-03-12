@@ -1,6 +1,5 @@
 export default [
   'binofsha',
-  'buniq',
   'fayruz rang',
   "ko'k",
   "ko'k-binofsha rang",
@@ -11,6 +10,7 @@ export default [
   'moviy',
   'oq',
   'osmon rang',
+  'olov rang',
   'oltin rang',
   'pushti',
   'qizil',
@@ -21,7 +21,6 @@ export default [
   'sariq',
   'sariq-kulrang',
   'siyoh binofsha',
-  'siyoh binofsha rang',
   "to'q sariq",
   'yashil',
   'zaytun rang',
