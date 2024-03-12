@@ -123,7 +123,7 @@ devDependencies:
     specifier: 0.25.12
     version: 0.25.12(typescript@5.4.2)
   typescript:
-    specifier: ~5.4.2
+    specifier: 5.4.2
     version: 5.4.2
   validator:
     specifier: 13.11.0
