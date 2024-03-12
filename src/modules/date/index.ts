@@ -171,7 +171,7 @@ export class SimpleDateModule extends SimpleModuleBase {
   /**
    * Generates a random date between the given boundaries.
    *
-   * @param options The optional options object.
+   * @param options The options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    *
@@ -217,7 +217,7 @@ export class SimpleDateModule extends SimpleModuleBase {
   /**
    * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
    *
-   * @param options The optional options object.
+   * @param options The options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
