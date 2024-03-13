@@ -64,7 +64,6 @@
     "docs:build:run": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
     "docs:dev": "run-s generate:api-docs docs:dev:run",
-    "docs:dev:api-docs": "run-p generate:api-docs:watch docs:dev:run",
     "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs --port 5173",
     "docs:diff": "tsx ./scripts/diff.ts",
