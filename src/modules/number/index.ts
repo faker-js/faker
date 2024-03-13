@@ -1,5 +1,4 @@
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
@@ -24,9 +23,11 @@ export class NumberModule extends SimpleModuleBase {
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
+   * @param options.multipleOf Generated number will be a multiple of the given integer. Defaults to `1`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When there are no integers between `min` and `max`.
+   * @throws When there are no suitable integers between `min` and `max`.
+   * @throws When `multipleOf` is not a positive integer.
    *
    * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
@@ -36,6 +37,7 @@ export class NumberModule extends SimpleModuleBase {
    * faker.number.int({ min: 1000000 }) // 2900970162509863
    * faker.number.int({ max: 100 }) // 42
    * faker.number.int({ min: 10, max: 100 }) // 57
+   * faker.number.int({ min: 10, max: 100, multipleOf: 10 }) // 50
    *
    * @since 8.0.0
    */
@@ -55,24 +57,39 @@ export class NumberModule extends SimpleModuleBase {
            * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
+          /**
+           * Generated number will be a multiple of the given integer.
+           *
+           * @default 1
+           */
+          multipleOf?: number;
         } = {}
   ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
 
-    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
-    const effectiveMin = Math.ceil(min);
-    const effectiveMax = Math.floor(max);
+    const { min = 0, max = Number.MAX_SAFE_INTEGER, multipleOf = 1 } = options;
+
+    if (!Number.isInteger(multipleOf)) {
+      throw new FakerError(`multipleOf should be an integer.`);
+    }
+
+    if (multipleOf <= 0) {
+      throw new FakerError(`multipleOf should be greater than 0.`);
+    }
+
+    const effectiveMin = Math.ceil(min / multipleOf);
+    const effectiveMax = Math.floor(max / multipleOf);
 
     if (effectiveMin === effectiveMax) {
-      return effectiveMin;
+      return effectiveMin * multipleOf;
     }
 
     if (effectiveMax < effectiveMin) {
       if (max >= min) {
         throw new FakerError(
-          `No integer value between ${min} and ${max} found.`
+          `No suitable integer value between ${min} and ${max} found.`
         );
       }
 
@@ -82,7 +99,8 @@ export class NumberModule extends SimpleModuleBase {
     // @ts-expect-error: access private member field
     const randomizer = this.faker._randomizer;
     const real = randomizer.next();
-    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
+    const delta = effectiveMax - effectiveMin + 1; // +1 for inclusive max bounds and even distribution
+    return Math.floor(real * delta + effectiveMin) * multipleOf;
   }
 
   /**
@@ -90,13 +108,11 @@ export class NumberModule extends SimpleModuleBase {
    *
    * @param options Upper bound or options object.
    * @param options.min Lower bound for generated number, inclusive. Defaults to `0.0`.
-   * @param options.max Upper bound for generated number, exclusive, unless `multipleOf`, `precision` or `fractionDigits` are passed. Defaults to `1.0`.
-   * @param options.precision Deprecated alias for `multipleOf`. Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
-   * @param options.multipleOf The generated number will be a multiple of this parameter. Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
-   * @param options.fractionDigits The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
+   * @param options.max Upper bound for generated number, exclusive, unless `multipleOf` or `fractionDigits` are passed. Defaults to `1.0`.
+   * @param options.multipleOf The generated number will be a multiple of this parameter. Only one of `multipleOf` or `fractionDigits` should be passed.
+   * @param options.fractionDigits The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf` or `fractionDigits` should be passed.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `precision` is negative.
    * @throws When `multipleOf` is negative.
    * @throws When `fractionDigits` is negative.
    * @throws When `fractionDigits` and `multipleOf` is passed in the same options object.
@@ -125,23 +141,17 @@ export class NumberModule extends SimpleModuleBase {
            */
           min?: number;
           /**
-           * Upper bound for generated number, exclusive, unless `multipleOf`, `precision` or `fractionDigits` are passed.
+           * Upper bound for generated number, exclusive, unless `multipleOf` or `fractionDigits` are passed.
            *
            * @default 1.0
            */
           max?: number;
           /**
-           * The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
+           * The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf` or `fractionDigits` should be passed.
            */
           fractionDigits?: number;
           /**
-           * Deprecated alias for `multipleOf`. Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
-           *
-           * @deprecated Use `multipleOf` instead.
-           */
-          precision?: number;
-          /**
-           * The generated number will be a multiple of this parameter. Only one of `multipleOf`, `precision` or `fractionDigits` should be passed.
+           * The generated number will be a multiple of this parameter. Only one of `multipleOf` or `fractionDigits` should be passed.
            */
           multipleOf?: number;
         } = {}
@@ -156,22 +166,9 @@ export class NumberModule extends SimpleModuleBase {
       min = 0,
       max = 1,
       fractionDigits,
-      // eslint-disable-next-line deprecation/deprecation
-      precision,
-      // eslint-disable-next-line deprecation/deprecation
-      multipleOf: originalMultipleOf = precision,
-      multipleOf = precision ??
-        (fractionDigits == null ? undefined : 10 ** -fractionDigits),
+      multipleOf: originalMultipleOf,
+      multipleOf = fractionDigits == null ? undefined : 10 ** -fractionDigits,
     } = options;
-
-    if (precision != null) {
-      deprecated({
-        deprecated: 'faker.number.float({ precision })',
-        proposed: 'faker.number.float({ multipleOf })',
-        since: '8.4',
-        until: '9.0',
-      });
-    }
 
     if (max === min) {
       return min;
@@ -201,8 +198,7 @@ export class NumberModule extends SimpleModuleBase {
 
     if (multipleOf != null) {
       if (multipleOf <= 0) {
-        // TODO @xDivisionByZerox: Clean up in v9.0
-        throw new FakerError(`multipleOf/precision should be greater than 0.`);
+        throw new FakerError(`multipleOf should be greater than 0.`);
       }
 
       const logPrecision = Math.log10(multipleOf);
