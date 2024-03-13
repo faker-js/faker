@@ -1,6 +1,5 @@
 import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
@@ -225,36 +224,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   }
 
   /**
-   * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
-   * `!` will be replaced by digits >=2 (`2` - `9`).
-   *
-   * @param string The template string to parse. Defaults to `''`.
-   * @param symbol The symbol to replace with digits. Defaults to `'#'`.
-   *
-   * @see faker.string.numeric(): For the replacement method.
-   *
-   * @example
-   * faker.helpers.replaceSymbolWithNumber() // ''
-   * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
-   * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
-   * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.string.numeric()` instead. Example: `value.replace(/#+/g, (m) => faker.string.numeric(m.length));`
-   */
-  replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    deprecated({
-      deprecated: 'faker.helpers.replaceSymbolWithNumber',
-      proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
-      since: '8.4',
-      until: '9.0',
-    });
-
-    return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
-  }
-
-  /**
    * Parses the given string symbol by symbols and replaces the placeholder appropriately.
    *
    * - `#` will be replaced with a digit (`0` - `9`).
@@ -346,40 +315,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
-  }
-
-  /**
-   * Replaces the regex like expressions in the given string with matching values.
-   *
-   * Supported patterns:
-   * - `.{times}` => Repeat the character exactly `times` times.
-   * - `.{min,max}` => Repeat the character `min` to `max` times.
-   * - `[min-max]` => Generate a number between min and max (inclusive).
-   *
-   * @param string The template string to parse. Defaults to `''`.
-   *
-   * @see faker.helpers.fromRegExp(): For generating a string matching the given regex-like expressions.
-   *
-   * @example
-   * faker.helpers.regexpStyleStringParse() // ''
-   * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
-   * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
-   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
-   * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use `faker.helpers.fromRegExp()` instead.
-   */
-  regexpStyleStringParse(string: string = ''): string {
-    deprecated({
-      deprecated: 'faker.helpers.regexpStyleStringParse',
-      proposed: 'faker.helpers.fromRegExp',
-      since: '8.1',
-      until: '9.0',
-    });
-
-    return legacyRegexpStringParse(this.faker, string);
   }
 
   /**
@@ -1183,7 +1118,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
  *
  * There are alternatives of this method for objects ([`objectKey()`](https://fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://fakerjs.dev/api/helpers.html#weightedarrayelement)).
  *
- * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols) and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule extends SimpleHelpersModule {
   constructor(protected readonly faker: Faker) {
