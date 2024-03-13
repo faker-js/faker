@@ -14,7 +14,6 @@ import {
 } from './jsdocs';
 import type { RawApiDocsParameter } from './parameter';
 import { processParameters, processTypeParameters } from './parameter';
-import { shouldProcessSignature } from './select';
 import type { SourceableNode } from './source';
 import type { RawApiDocsType } from './type';
 import { getTypeText } from './type';
@@ -73,20 +72,18 @@ export function processSignatures(
   signatures: SignatureLikeDeclaration[],
   implementation: SignatureLikeDeclaration
 ): RawApiDocsSignature[] {
-  return signatures
-    .filter((_, i) => shouldProcessSignature(name, i))
-    .map((signature, i) => {
-      try {
-        return processSignature(signature, implementation);
-      } catch (error) {
-        throw newProcessingError({
-          type: 'signature',
-          name: `${name}/${i}`,
-          source: signature,
-          cause: error,
-        });
-      }
-    });
+  return signatures.map((signature, i) => {
+    try {
+      return processSignature(signature, implementation);
+    } catch (error) {
+      throw newProcessingError({
+        type: 'signature',
+        name: `${name}/${i}`,
+        source: signature,
+        cause: error,
+      });
+    }
+  });
 }
 
 function processSignature(

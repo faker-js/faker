@@ -14,7 +14,6 @@ import { groupBy } from '../../../src/internal/group-by';
 import { getAll } from '../project';
 import { valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
-import { shouldProcessMethod } from './select';
 import type {
   RawApiDocsSignature,
   SignatureLikeDeclaration,
@@ -164,7 +163,6 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
 ): RawApiDocsMethod[] {
   return methods
     .filter((method) => !method.hasModifier(SyntaxKind.PrivateKeyword))
-    .filter((method) => shouldProcessMethod(nameResolver(method)))
     .map((method) => {
       const name = nameResolver(method);
       try {

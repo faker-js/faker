@@ -21,7 +21,6 @@ import {
   DOC_INTERFACE_NAMES,
   DOC_MODULE_FILTER,
   DOC_UTILITY_NAMES,
-  shouldProcessType,
 } from './select';
 
 /**
@@ -77,20 +76,18 @@ export function processProjectClasses(project: Project): RawApiDocsPage[] {
 }
 
 function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
-  return classes
-    .filter((clazz) => shouldProcessType(clazz.getNameOrThrow()))
-    .map((clazz) => {
-      try {
-        return processClass(clazz);
-      } catch (error) {
-        throw newProcessingError({
-          type: 'class',
-          name: clazz.getNameOrThrow(),
-          source: clazz,
-          cause: error,
-        });
-      }
-    });
+  return classes.map((clazz) => {
+    try {
+      return processClass(clazz);
+    } catch (error) {
+      throw newProcessingError({
+        type: 'class',
+        name: clazz.getNameOrThrow(),
+        source: clazz,
+        cause: error,
+      });
+    }
+  });
 }
 
 export function processClass(clazz: ClassDeclaration): RawApiDocsPage {
@@ -110,20 +107,18 @@ export function processModuleClasses(project: Project): RawApiDocsPage[] {
 }
 
 function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
-  return modules
-    .filter((module) => shouldProcessType(getModuleName(module)))
-    .map((module) => {
-      try {
-        return processModule(module, 'Modules');
-      } catch (error: unknown) {
-        throw newProcessingError({
-          type: 'module',
-          name: getModuleName(module),
-          source: module,
-          cause: error,
-        });
-      }
-    });
+  return modules.map((module) => {
+    try {
+      return processModule(module, 'Modules');
+    } catch (error: unknown) {
+      throw newProcessingError({
+        type: 'module',
+        name: getModuleName(module),
+        source: module,
+        cause: error,
+      });
+    }
+  });
 }
 
 function processModule(
@@ -163,20 +158,18 @@ export function processProjectInterfaces(project: Project): RawApiDocsPage[] {
 function processInterfaces(
   interfaces: InterfaceDeclaration[]
 ): RawApiDocsPage[] {
-  return interfaces
-    .filter((iface) => shouldProcessType(iface.getName()))
-    .map((iface) => {
-      try {
-        return processInterface(iface);
-      } catch (error) {
-        throw newProcessingError({
-          type: 'interface',
-          name: iface.getName(),
-          source: iface,
-          cause: error,
-        });
-      }
-    });
+  return interfaces.map((iface) => {
+    try {
+      return processInterface(iface);
+    } catch (error) {
+      throw newProcessingError({
+        type: 'interface',
+        name: iface.getName(),
+        source: iface,
+        cause: error,
+      });
+    }
+  });
 }
 
 function processInterface(iface: InterfaceDeclaration): RawApiDocsPage {
@@ -198,9 +191,7 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
     deprecated: undefined,
     description: 'A list of all the utilities available in Faker.js.',
     examples: [],
-    methods: shouldProcessType('Utilities')
-      ? processProjectFunctions(project, ...DOC_UTILITY_NAMES)
-      : [],
+    methods: processProjectFunctions(project, ...DOC_UTILITY_NAMES),
   };
 }
 

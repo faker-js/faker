@@ -14,7 +14,6 @@ import {
   getParameterTags,
   getTypeParameterTags,
 } from './jsdocs';
-import { shouldProcessParameter } from './select';
 import type { RawApiDocsType } from './type';
 import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
 
@@ -46,20 +45,18 @@ export function processTypeParameters(
 ): RawApiDocsParameter[] {
   const paramTags = getTypeParameterTags(jsdocs);
 
-  return parameters
-    .filter((parameter) => shouldProcessParameter(`<${parameter.getName()}>`))
-    .flatMap((parameter) => {
-      try {
-        return processTypeParameterEntry(parameter, paramTags);
-      } catch (error) {
-        throw newProcessingError({
-          type: 'type parameter',
-          name: parameter.getName(),
-          source: parameter,
-          cause: error,
-        });
-      }
-    });
+  return parameters.flatMap((parameter) => {
+    try {
+      return processTypeParameterEntry(parameter, paramTags);
+    } catch (error) {
+      throw newProcessingError({
+        type: 'type parameter',
+        name: parameter.getName(),
+        source: parameter,
+        cause: error,
+      });
+    }
+  });
 }
 
 function processTypeParameterEntry(
@@ -87,24 +84,22 @@ export function processParameters(
     ])
   );
 
-  return signatureParameters
-    .filter((parameter) => shouldProcessParameter(parameter.getName()))
-    .flatMap((parameter) => {
-      try {
-        return processParameter(
-          parameter,
-          paramTags,
-          implParameterDefaults[parameter.getName()]
-        );
-      } catch (error) {
-        throw newProcessingError({
-          type: 'parameter',
-          name: parameter.getName(),
-          source: parameter,
-          cause: error,
-        });
-      }
-    });
+  return signatureParameters.flatMap((parameter) => {
+    try {
+      return processParameter(
+        parameter,
+        paramTags,
+        implParameterDefaults[parameter.getName()]
+      );
+    } catch (error) {
+      throw newProcessingError({
+        type: 'parameter',
+        name: parameter.getName(),
+        source: parameter,
+        cause: error,
+      });
+    }
+  });
 }
 
 function processParameter(
@@ -178,9 +173,6 @@ function processComplexParameter(
 
     return type
       .getApparentProperties()
-      .filter((parameter) =>
-        shouldProcessParameter(`${name}.${parameter.getName()}`)
-      )
       .flatMap((parameter) => {
         const declaration = exactlyOne(
           parameter.getDeclarations(),
