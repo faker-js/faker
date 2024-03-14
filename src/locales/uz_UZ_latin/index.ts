@@ -3,14 +3,14 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import commerce from './commerce';
 import metadata from './metadata';
 import person from './person';
-import commerce from './commerce';
 
 const uz_UZ_latin: LocaleDefinition = {
+  commerce,
   metadata,
   person,
-  commerce,
 };
 
 export default uz_UZ_latin;
