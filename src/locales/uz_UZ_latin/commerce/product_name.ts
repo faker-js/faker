@@ -15,7 +15,7 @@ export default {
     'Lyuks',
     'Mayin',
     'Qayta ishlangan',
-    "Qimmat",
+    'Qimmat',
     "Qishloq xo'jaligi",
     "Qo'l bilan ishlangan",
     'Qattiq',
