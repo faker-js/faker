@@ -4,9 +4,13 @@ If you want to make `Faker` a better place, please read the following contributi
 
 ## Before you start
 
-- If you would like to propose a new feature, create an issue first.
-- Bug fixes or locale changes don't need an issue.
-- Issues with precise reproduction steps are a valuable contribution by itself.
+It's generally helpful to create an issue first:
+
+- If you are proposing a new feature, this allows other users to "upvote" the issue and discuss solutions to possible problems.
+  Once an issue has enough upvotes (usually 10+) it will be reviewed for development.
+- If you notice a bug, this allows you to provide steps to reproduce, and allows other users to confirm this is actually a bug.
+- It's not required to create an issue in all cases.
+  For example for fixing a typo in documentation, or adding some new data for a locale, you could immediately create a pull request without an issue.
 
 ## Important
 
