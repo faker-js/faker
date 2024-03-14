@@ -5,10 +5,12 @@
 import type { LocaleDefinition } from '../..';
 import metadata from './metadata';
 import person from './person';
+import commerce from './commerce';
 
 const uz_UZ_latin: LocaleDefinition = {
   metadata,
   person,
+  commerce,
 };
 
 export default uz_UZ_latin;
