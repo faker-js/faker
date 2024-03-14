@@ -79,8 +79,6 @@ export type NumericChar =
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
 
-const SAMPLE_MAX_LENGTH = 2 ** 20;
-
 /**
  * Module to generate string related entries.
  *
@@ -225,16 +223,20 @@ export class StringModule extends SimpleModuleBase {
 
     let charsArray: string[];
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray = [...UPPER_CHARS];
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray = [...LOWER_CHARS];
         break;
-      case 'mixed':
-      default:
+      }
+
+      case 'mixed': {
         charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
         break;
+      }
     }
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
@@ -316,16 +318,20 @@ export class StringModule extends SimpleModuleBase {
     let charsArray = [...DIGIT_CHARS];
 
     switch (casing) {
-      case 'upper':
+      case 'upper': {
         charsArray.push(...UPPER_CHARS);
         break;
-      case 'lower':
+      }
+
+      case 'lower': {
         charsArray.push(...LOWER_CHARS);
         break;
-      case 'mixed':
-      default:
+      }
+
+      case 'mixed': {
         charsArray.push(...LOWER_CHARS, ...UPPER_CHARS);
         break;
+      }
     }
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
@@ -340,7 +346,7 @@ export class StringModule extends SimpleModuleBase {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
    *
-   * @see faker.number.binary() If you would like to generate a `binary number` (within a range).
+   * @see faker.number.binary(): For generating a binary number (within a range).
    *
    * @example
    * faker.string.binary() // '0b1'
@@ -353,6 +359,11 @@ export class StringModule extends SimpleModuleBase {
    */
   binary(
     options: {
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
       length?:
         | number
         | {
@@ -365,6 +376,11 @@ export class StringModule extends SimpleModuleBase {
              */
             max: number;
           };
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0b'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -382,7 +398,7 @@ export class StringModule extends SimpleModuleBase {
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
    *
-   * @see faker.number.octal() If you would like to generate an `octal number` (within a range).
+   * @see faker.number.octal(): For generating an octal number (within a range).
    *
    * @example
    * faker.string.octal() // '0o3'
@@ -395,6 +411,11 @@ export class StringModule extends SimpleModuleBase {
    */
   octal(
     options: {
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
       length?:
         | number
         | {
@@ -407,6 +428,11 @@ export class StringModule extends SimpleModuleBase {
              */
             max: number;
           };
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0o'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -525,7 +551,7 @@ export class StringModule extends SimpleModuleBase {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
-   * @see faker.number.int() If you would like to generate a `number` (within a range).
+   * @see faker.number.int(): For generating a number (within a range).
    *
    * @example
    * faker.string.numeric() // '2'
@@ -621,7 +647,7 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param length Length of the generated string. Defaults to `10`.
    * @param length.min The minimum number of characters to generate.
    * @param length.max The maximum number of characters to generate.
    *
@@ -647,9 +673,6 @@ export class StringModule extends SimpleModuleBase {
         } = 10
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
-    if (length >= SAMPLE_MAX_LENGTH) {
-      length = SAMPLE_MAX_LENGTH;
-    }
 
     const charCodeOption = {
       min: 33,
@@ -659,7 +682,7 @@ export class StringModule extends SimpleModuleBase {
     let returnString = '';
 
     while (returnString.length < length) {
-      returnString += String.fromCharCode(
+      returnString += String.fromCodePoint(
         this.faker.number.int(charCodeOption)
       );
     }
@@ -677,8 +700,8 @@ export class StringModule extends SimpleModuleBase {
    */
   uuid(): string {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-      .replace(/x/g, () => this.faker.number.hex({ min: 0x0, max: 0xf }))
-      .replace(/y/g, () => this.faker.number.hex({ min: 0x8, max: 0xb }));
+      .replaceAll('x', () => this.faker.number.hex({ min: 0x0, max: 0xf }))
+      .replaceAll('y', () => this.faker.number.hex({ min: 0x8, max: 0xb }));
   }
 
   /**

@@ -1,10 +1,11 @@
 import { createHash } from 'node:crypto';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 
 // Types
 
-export type Page = { text: string; link: string };
+export type Page = { text: string; link: string; category: string };
 
 export type ModuleSummary = Page & {
   methods: Method[];
@@ -31,7 +32,7 @@ export interface DocsApiDiff {
 
 // Paths
 
-const pathRoot = resolve(__dirname, '..', '..');
+const pathRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const pathDocsDir = resolve(pathRoot, 'docs');
 const pathPublicDir = resolve(pathDocsDir, 'public');
 export const nameDocsDiffIndexFile = 'api-diff-index.json';
@@ -44,7 +45,7 @@ export const pathOutputDir = resolve(pathDocsDir, 'api');
 // Functions
 
 export function adjustUrls(description: string): string {
-  return description.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
+  return description.replaceAll(/https:\/\/(next.)?fakerjs.dev\//g, '/');
 }
 
 export function mapByName<TInput extends { name: string }, TValue>(
@@ -64,7 +65,7 @@ export function mapByName<TInput extends { name: string }, TValue>(
 export function methodDiffHash(method: Method): string {
   return diffHash({
     ...method,
-    sourcePath: method.sourcePath.replace(/#.*/g, ''),
+    sourcePath: method.sourcePath.replaceAll(/#.*/g, ''),
   });
 }
 

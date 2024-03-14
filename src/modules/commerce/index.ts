@@ -1,3 +1,4 @@
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
@@ -115,16 +116,23 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options An options object. Defaults to `{}`.
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
+   *
+   * @param options An options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
    * @param options.symbol The currency value to use. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price({ min: 100 }) // 904.00
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price({ min: 100 }) // 904.19
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -159,15 +167,22 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
+   *
    * @param min The minimum price. Defaults to `1`.
    * @param max The maximum price. Defaults to `1000`.
    * @param dec The number of decimal places. Defaults to `2`.
    * @param symbol The currency value to use. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price(100) // 904.00
-   * faker.commerce.price(100, 200) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price(100) // 904.19
+   * faker.commerce.price(100, 200) // 154.55
    * faker.commerce.price(100, 200, 0) // 133
    * faker.commerce.price(100, 200, 0, '$') // $114
    *
@@ -179,7 +194,14 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
+   *
+   * @param options The minimum price or an options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -189,9 +211,9 @@ export class CommerceModule extends ModuleBase {
    * @param legacySymbol The currency value to use. This argument is deprecated. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price({ min: 100 }) // 904.00
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price({ min: 100 }) // 904.19
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -201,9 +223,29 @@ export class CommerceModule extends ModuleBase {
     options?:
       | number
       | {
+          /**
+           * The minimum price.
+           *
+           * @default 1
+           */
           min?: number;
+          /**
+           * The maximum price.
+           *
+           * @default 1000
+           */
           max?: number;
+          /**
+           * The number of decimal places.
+           *
+           * @default 2
+           */
           dec?: number;
+          /**
+           * The currency value to use.
+           *
+           * @default ''
+           */
           symbol?: string;
         },
     legacyMax?: number,
@@ -213,7 +255,14 @@ export class CommerceModule extends ModuleBase {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @param options The minimum price or on options object. Defaults to `{}`.
+   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
+   *
+   * - 50% of the time: `9`
+   * - 30% of the time: `5`
+   * - 10% of the time: `0`
+   * - 10% of the time: a random digit from `0` to `9`
+   *
+   * @param options The minimum price or an options object.
    * @param options.min The minimum price. Defaults to `1`.
    * @param options.max The maximum price. Defaults to `1000`.
    * @param options.dec The number of decimal places. Defaults to `2`.
@@ -223,9 +272,9 @@ export class CommerceModule extends ModuleBase {
    * @param legacySymbol The currency value to use. This argument is deprecated. Defaults to `''`.
    *
    * @example
-   * faker.commerce.price() // 828.00
-   * faker.commerce.price({ min: 100 }) // 904.00
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.00
+   * faker.commerce.price() // 828.07
+   * faker.commerce.price({ min: 100 }) // 904.19
+   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
    * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
    * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
    *
@@ -262,13 +311,44 @@ export class CommerceModule extends ModuleBase {
     const { dec = 2, max = 1000, min = 1, symbol = '' } = options;
 
     if (min < 0 || max < 0) {
-      return `${symbol}${0.0}`;
+      return `${symbol}0`;
     }
 
-    // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/350
-    const randValue = this.faker.number.int({ min, max });
+    if (min === max) {
+      return `${symbol}${min.toFixed(dec)}`;
+    }
 
-    return symbol + randValue.toFixed(dec);
+    const generated = this.faker.number.float({
+      min,
+      max,
+      fractionDigits: dec,
+    });
+
+    if (dec === 0) {
+      return `${symbol}${generated.toFixed(dec)}`;
+    }
+
+    const oldLastDigit = (generated * 10 ** dec) % 10;
+    const newLastDigit = this.faker.helpers.weightedArrayElement([
+      { weight: 5, value: 9 },
+      { weight: 3, value: 5 },
+      { weight: 1, value: 0 },
+      {
+        weight: 1,
+        value: this.faker.number.int({ min: 0, max: 9 }),
+      },
+    ]);
+
+    const fraction = (1 / 10) ** dec;
+    const oldLastDigitValue = oldLastDigit * fraction;
+    const newLastDigitValue = newLastDigit * fraction;
+    const combined = generated - oldLastDigitValue + newLastDigitValue;
+
+    if (min <= combined && combined <= max) {
+      return `${symbol}${combined.toFixed(dec)}`;
+    }
+
+    return `${symbol}${generated.toFixed(dec)}`;
   }
 
   /**
@@ -330,7 +410,7 @@ export class CommerceModule extends ModuleBase {
   /**
    * Returns a random [ISBN](https://en.wikipedia.org/wiki/ISBN) identifier.
    *
-   * @param options The variant to return or an options object. Defaults to `{}`.
+   * @param options The variant to return or an options object.
    * @param options.variant The variant to return. Can be either `10` (10-digit format)
    * or `13` (13-digit format). Defaults to `13`.
    * @param options.separator The separator to use in the format. Defaults to `'-'`.
@@ -381,7 +461,14 @@ export class CommerceModule extends ModuleBase {
 
     const registrantLength = groupRules.find(
       ([rangeMaximum]) => elementValue <= rangeMaximum
-    )[1];
+    )?.[1];
+
+    if (!registrantLength) {
+      // This can only happen if the ISBN_LENGTH_RULES are corrupted
+      throw new FakerError(
+        `Unable to find a registrant length for the group ${group}`
+      );
+    }
 
     const registrant = element.slice(0, registrantLength);
     const publication = element.slice(registrantLength);

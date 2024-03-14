@@ -1,16 +1,15 @@
-import type { SpyInstance } from 'vitest';
+import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { SimpleFaker, simpleFaker } from '../src';
+import { keys } from '../src/internal/keys';
 
 describe('simpleFaker', () => {
   it('should not log anything on startup', () => {
-    const spies: SpyInstance[] = Object.keys(console)
+    const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
-      .map((methodName) =>
-        vi.spyOn(console, methodName as keyof typeof console)
-      );
+      .map((methodName) => vi.spyOn(console, methodName));
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
     require('..').simpleFaker;
 
     new SimpleFaker();
@@ -50,14 +49,18 @@ describe('simpleFaker', () => {
       simpleFaker.seed(1);
 
       const actual = simpleFaker.string.uuid();
-      expect(actual).toBe('6fbe024f-2316-4265-aa6e-8d65a837e308');
+      expect(actual).toMatchInlineSnapshot(
+        '"6b042125-686a-43e0-8a68-23cf5bee102e"'
+      );
     });
 
     it('seed(number[])', () => {
       simpleFaker.seed([1, 2, 3]);
 
       const actual = simpleFaker.string.uuid();
-      expect(actual).toBe('95e97ae6-08ee-492f-9895-ec8be3410e88');
+      expect(actual).toMatchInlineSnapshot(
+        '"9e7e0e9f-9e8e-4408-b5b1-8002907d7dd6"'
+      );
     });
   });
 

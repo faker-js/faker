@@ -33,7 +33,7 @@ export const parameterDefaultReader: EventCallback = (
     reflection.kindOf(reflectionKindFunctionOrMethod) &&
     symbol.declarations?.length
   ) {
-    const lastDeclaration = symbol.declarations[symbol.declarations.length - 1];
+    const lastDeclaration = symbol.declarations.at(-1);
     if (TypeScript.isFunctionLike(lastDeclaration)) {
       (reflection as ParameterDefaultsAware).implementationDefaultParameters =
         lastDeclaration.parameters.map((param) =>
@@ -58,7 +58,7 @@ function cleanParameterDefault(value?: string): string | undefined {
   }
 
   // Strip type casts: "'foobar' as unknown as T" => "'foobar'"
-  return value.replace(/ as unknown as [A-Za-z<>]+/, '');
+  return value.replace(/( as unknown)? as [A-Za-z<>]+/, '');
 }
 
 /**

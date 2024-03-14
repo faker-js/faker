@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generateMersenne32Randomizer() > seed: [42,1,2] > should return deterministic value for next() 1`] = `0.8562037434894592`;
+
+exports[`generateMersenne32Randomizer() > seed: [1211,1,2] > should return deterministic value for next() 1`] = `0.8916433283593506`;
+
+exports[`generateMersenne32Randomizer() > seed: [1337,1,2] > should return deterministic value for next() 1`] = `0.17990487208589911`;
+
+exports[`generateMersenne32Randomizer() > seed: 42 > should return deterministic value for next() 1`] = `0.37454011430963874`;
+
+exports[`generateMersenne32Randomizer() > seed: 1211 > should return deterministic value for next() 1`] = `0.9285201537422836`;
+
+exports[`generateMersenne32Randomizer() > seed: 1337 > should return deterministic value for next() 1`] = `0.2620246761944145`;
+
+exports[`generateMersenne53Randomizer() > seed: [42,1,2] > should return deterministic value for next() 1`] = `0.8562037477947296`;
+
+exports[`generateMersenne53Randomizer() > seed: [1211,1,2] > should return deterministic value for next() 1`] = `0.8916433279801969`;
+
+exports[`generateMersenne53Randomizer() > seed: [1337,1,2] > should return deterministic value for next() 1`] = `0.17990487224060836`;
+
+exports[`generateMersenne53Randomizer() > seed: 42 > should return deterministic value for next() 1`] = `0.3745401188473625`;
+
+exports[`generateMersenne53Randomizer() > seed: 1211 > should return deterministic value for next() 1`] = `0.9285201539025842`;
+
+exports[`generateMersenne53Randomizer() > seed: 1337 > should return deterministic value for next() 1`] = `0.2620246750155817`;
