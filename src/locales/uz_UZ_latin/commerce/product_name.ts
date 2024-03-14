@@ -28,7 +28,7 @@ export default {
     'Yengil',
     'Yumshoq',
     'Zamonaviy',
-    'Ziyoli'
+    'Ziyoli',
   ],
   material: [
     'Beton',
