@@ -1,5 +1,4 @@
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
@@ -138,176 +137,34 @@ export class CommerceModule extends ModuleBase {
    *
    * @since 3.0.0
    */
-  price(options?: {
-    /**
-     * The minimum price.
-     *
-     * @default 1
-     */
-    min?: number;
-    /**
-     * The maximum price.
-     *
-     * @default 1000
-     */
-    max?: number;
-    /**
-     * The number of decimal places.
-     *
-     * @default 2
-     */
-    dec?: number;
-    /**
-     * The currency value to use.
-     *
-     * @default ''
-     */
-    symbol?: string;
-  }): string;
-  /**
-   * Generates a price between min and max (inclusive).
-   *
-   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
-   *
-   * - 50% of the time: `9`
-   * - 30% of the time: `5`
-   * - 10% of the time: `0`
-   * - 10% of the time: a random digit from `0` to `9`
-   *
-   * @param min The minimum price. Defaults to `1`.
-   * @param max The maximum price. Defaults to `1000`.
-   * @param dec The number of decimal places. Defaults to `2`.
-   * @param symbol The currency value to use. Defaults to `''`.
-   *
-   * @example
-   * faker.commerce.price() // 828.07
-   * faker.commerce.price(100) // 904.19
-   * faker.commerce.price(100, 200) // 154.55
-   * faker.commerce.price(100, 200, 0) // 133
-   * faker.commerce.price(100, 200, 0, '$') // $114
-   *
-   * @since 3.0.0
-   *
-   * @deprecated Use `faker.commerce.price({ min, max, dec, symbol })` instead.
-   */
-  price(min?: number, max?: number, dec?: number, symbol?: string): string;
-  /**
-   * Generates a price between min and max (inclusive).
-   *
-   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
-   *
-   * - 50% of the time: `9`
-   * - 30% of the time: `5`
-   * - 10% of the time: `0`
-   * - 10% of the time: a random digit from `0` to `9`
-   *
-   * @param options The minimum price or an options object.
-   * @param options.min The minimum price. Defaults to `1`.
-   * @param options.max The maximum price. Defaults to `1000`.
-   * @param options.dec The number of decimal places. Defaults to `2`.
-   * @param options.symbol The currency value to use. Defaults to `''`.
-   * @param legacyMax The maximum price. This argument is deprecated. Defaults to `1000`.
-   * @param legacyDec The number of decimal places. This argument is deprecated. Defaults to `2`.
-   * @param legacySymbol The currency value to use. This argument is deprecated. Defaults to `''`.
-   *
-   * @example
-   * faker.commerce.price() // 828.07
-   * faker.commerce.price({ min: 100 }) // 904.19
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
-   * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
-   * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
-   *
-   * @since 3.0.0
-   */
   price(
-    options?:
-      | number
-      | {
-          /**
-           * The minimum price.
-           *
-           * @default 1
-           */
-          min?: number;
-          /**
-           * The maximum price.
-           *
-           * @default 1000
-           */
-          max?: number;
-          /**
-           * The number of decimal places.
-           *
-           * @default 2
-           */
-          dec?: number;
-          /**
-           * The currency value to use.
-           *
-           * @default ''
-           */
-          symbol?: string;
-        },
-    legacyMax?: number,
-    legacyDec?: number,
-    legacySymbol?: string
-  ): string;
-  /**
-   * Generates a price between min and max (inclusive).
-   *
-   * To better represent real-world prices, when `options.dec` is greater than `0`, the final decimal digit in the returned string will be generated as follows:
-   *
-   * - 50% of the time: `9`
-   * - 30% of the time: `5`
-   * - 10% of the time: `0`
-   * - 10% of the time: a random digit from `0` to `9`
-   *
-   * @param options The minimum price or an options object.
-   * @param options.min The minimum price. Defaults to `1`.
-   * @param options.max The maximum price. Defaults to `1000`.
-   * @param options.dec The number of decimal places. Defaults to `2`.
-   * @param options.symbol The currency value to use. Defaults to `''`.
-   * @param legacyMax The maximum price. This argument is deprecated. Defaults to `1000`.
-   * @param legacyDec The number of decimal places. This argument is deprecated. Defaults to `2`.
-   * @param legacySymbol The currency value to use. This argument is deprecated. Defaults to `''`.
-   *
-   * @example
-   * faker.commerce.price() // 828.07
-   * faker.commerce.price({ min: 100 }) // 904.19
-   * faker.commerce.price({ min: 100, max: 200 }) // 154.55
-   * faker.commerce.price({ min: 100, max: 200, dec: 0 }) // 133
-   * faker.commerce.price({ min: 100, max: 200, dec: 0, symbol: '$' }) // $114
-   *
-   * @since 3.0.0
-   */
-  price(
-    options:
-      | number
-      | {
-          min?: number;
-          max?: number;
-          dec?: number;
-          symbol?: string;
-        } = {},
-    legacyMax: number = 1000,
-    legacyDec: number = 2,
-    legacySymbol: string = ''
+    options: {
+      /**
+       * The minimum price.
+       *
+       * @default 1
+       */
+      min?: number;
+      /**
+       * The maximum price.
+       *
+       * @default 1000
+       */
+      max?: number;
+      /**
+       * The number of decimal places.
+       *
+       * @default 2
+       */
+      dec?: number;
+      /**
+       * The currency value to use.
+       *
+       * @default ''
+       */
+      symbol?: string;
+    } = {}
   ): string {
-    if (typeof options === 'number') {
-      deprecated({
-        deprecated: 'faker.commerce.price(min, max, dec, symbol)',
-        proposed: 'faker.commerce.price({ min, max, dec, symbol })',
-        since: '8.0',
-        until: '9.0',
-      });
-      options = {
-        min: options,
-        dec: legacyDec,
-        max: legacyMax,
-        symbol: legacySymbol,
-      };
-    }
-
     const { dec = 2, max = 1000, min = 1, symbol = '' } = options;
 
     if (min < 0 || max < 0) {

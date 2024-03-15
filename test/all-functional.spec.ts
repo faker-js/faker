@@ -45,10 +45,6 @@ type SkipConfig<TModule> = Partial<
 
 const BROKEN_LOCALE_METHODS = {
   // TODO @ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
-  company: {
-    suffixes: ['az'],
-    companySuffix: ['az'],
-  },
   date: {
     between: '*',
     betweens: '*',

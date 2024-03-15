@@ -38,11 +38,4 @@ export type CompanyDefinition = LocaleEntry<{
    * Catchphrase nouns that can be displayed to an end user.
    */
   noun: string[];
-
-  /**
-   * Company/Business entity types.
-   *
-   * @deprecated Use `faker.company.name` instead.
-   */
-  suffix: string[];
 }>;
