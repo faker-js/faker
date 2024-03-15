@@ -4,7 +4,7 @@ If you want to make `Faker` a better place, please read the following contributi
 
 ## Before you start
 
-It's generally helpful to create an issue first:
+It's generally helpful to [create an issue](https://github.com/faker-js/faker/issues/new/choose) first:
 
 - If you are proposing a new feature, this allows other users to "upvote" the issue and discuss solutions to possible problems.
   Once an issue has enough upvotes (usually 10+) it will be reviewed for development.
