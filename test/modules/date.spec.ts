@@ -145,19 +145,23 @@ describe('date', () => {
     'random seeded tests for seed %i',
     () => {
       describe('toDate()', () => {
-        describe.each(['anytime', 'past', 'future', 'recent', 'soon'] as const)(
-          '%s',
-          (method) => {
-            it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
-              'should reject invalid refDates %s',
-              (refDate) => {
-                expect(() => faker.date[method]({ refDate })).toThrow(
-                  new FakerError(`Invalid refDate date: ${refDate.toString()}`)
-                );
-              }
-            );
-          }
-        );
+        describe.each([
+          'anytime',
+          'past',
+          'future',
+          'recent',
+          'soon',
+          'birthdate',
+        ] as const)('%s', (method) => {
+          it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
+            'should reject invalid refDates %s',
+            (refDate) => {
+              expect(() => faker.date[method]({ refDate })).toThrow(
+                new FakerError(`Invalid refDate date: ${refDate.toString()}`)
+              );
+            }
+          );
+        });
       });
 
       describe('anytime()', () => {
