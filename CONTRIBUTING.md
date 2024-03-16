@@ -1,8 +1,18 @@
 A lot of effort has been put into `Faker` to create a useful and handy library.
 There are still a lot of things to be done, so all contributions are welcome!
-If you want to make `Faker` a better, please read the following contribution guide.
+If you want to make `Faker` a better place, please read the following contribution guide.
 
-# Important
+## Before you start
+
+It's generally helpful to [create an issue](https://github.com/faker-js/faker/issues/new/choose) first:
+
+- If you are proposing a new feature, this allows other users to "upvote" the issue and discuss solutions to possible problems.
+  Once an issue has enough upvotes (usually 10+) it will be reviewed for development.
+- If you notice a bug, this allows you to provide steps to reproduce, and allows other users to confirm this is actually a bug.
+- It's not required to create an issue in all cases.
+  For example for fixing a typo in documentation, or adding some new data for a locale, you could immediately create a pull request without an issue.
+
+## Important
 
 Please make sure that you run `pnpm run preflight` before making a PR to ensure that everything is working from the start.  
 This is a shorthand for running the following scripts in order:
@@ -218,7 +228,7 @@ Not every change needs to be in the migration guide. If it is too long, it becom
 
 - New locales
 - Changes to locale data in existing locales
-- Bugfixes where it's unlikely anyone was relying on the old behavior (eg broken values in locale files)
+- Bugfixes where it's unlikely anyone was relying on the old behavior (e.g. broken values in locale files)
 - New methods and parameters
 - Straightforward method aliases, e.g. where a method or parameter is renamed but the old name still works identically. (Runtime warnings will already guide the user in this case)
 - Changes to locale definition files which only affect usage via `faker.helpers.fake`, e.g. if a definition file is renamed, but the public API for the method stays the same
