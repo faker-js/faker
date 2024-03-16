@@ -374,7 +374,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
    * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
    *
-   * Defaults to `year`.
+   * Defaults to `age`.
    *
    * @example
    * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
@@ -388,13 +388,13 @@ export class SimpleDateModule extends SimpleModuleBase {
       /**
        * The minimum age or year to generate a birthdate.
        *
-       * @default 18
+       * @default 18 (age)
        */
       min?: number;
       /**
        * The maximum age or year to generate a birthdate.
        *
-       * @default 80
+       * @default 80 (age)
        */
       max?: number;
       /**
@@ -404,7 +404,7 @@ export class SimpleDateModule extends SimpleModuleBase {
        * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
        * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
        *
-       * @default 'year'
+       * @default 'age'
        */
       mode?: 'age' | 'year';
       /**
@@ -415,7 +415,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { min, max, mode = 'year' } = options;
+    const { min, max, mode = 'age' } = options;
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
 
