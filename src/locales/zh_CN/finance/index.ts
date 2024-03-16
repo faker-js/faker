@@ -4,13 +4,13 @@
  */
 import type { FinanceDefinition } from '../../..';
 import account_type from './account_type';
-import credit_card from './credit_card';
+import common_credit_card_issuer from './common_credit_card_issuer';
 import currency from './currency';
 import transaction_type from './transaction_type';
 
 const finance: FinanceDefinition = {
   account_type,
-  credit_card,
+  common_credit_card_issuer,
   currency,
   transaction_type,
 };

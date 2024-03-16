@@ -3,14 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { FinanceDefinition } from '../../..';
-import account_type from './account_type';
-import currency from './currency';
-import transaction_type from './transaction_type';
+import common_credit_card_issuer from './common_credit_card_issuer';
 
 const finance: FinanceDefinition = {
-  account_type,
-  currency,
-  transaction_type,
+  common_credit_card_issuer,
 };
 
 export default finance;

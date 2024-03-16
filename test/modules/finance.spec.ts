@@ -1,8 +1,9 @@
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
-import { faker, fakerZH_CN } from '../../src';
+import { CreditCardIssuer, faker, fakerBASE, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
+import type { CreditCardIssuerType } from '../../src/modules/finance';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
@@ -76,8 +77,13 @@ describe('finance', () => {
     t.describe('creditCardNumber', (t) => {
       t.it('noArgs')
         .it('with issuer', 'visa')
-        .it('with issuer option visa', { issuer: 'visa' })
-        .it('with issuer option mastercard', { issuer: 'mastercard' });
+        // Deprecated
+        .it('with issuer option visa', {
+          issuer: 'visa',
+        } as unknown as CreditCardIssuerType)
+        .it('with issuer option mastercard', {
+          issuer: 'mastercard',
+        } as unknown as CreditCardIssuerType);
     });
 
     t.describe('maskedNumber', (t) => {
@@ -349,7 +355,10 @@ describe('finance', () => {
         });
 
         it('should return a valid credit card number', () => {
-          expect(faker.finance.creditCardNumber('')).toSatisfy(luhnCheck);
+          // Deprecated
+          expect(
+            faker.finance.creditCardNumber('' as CreditCardIssuerType)
+          ).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber()).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber('visa')).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber('mastercard')).toSatisfy(
@@ -364,7 +373,10 @@ describe('finance', () => {
 
         it('should ignore case for issuer', () => {
           const seed = faker.seed();
-          const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
+          // Deprecated
+          const actualNonLowerCase = faker.finance.creditCardNumber(
+            'ViSa' as unknown as CreditCardIssuerType
+          );
 
           faker.seed(seed);
           const actualLowerCase = faker.finance.creditCardNumber('visa');
@@ -408,11 +420,16 @@ describe('finance', () => {
         });
 
         it('should return custom formatted strings', () => {
-          let number = faker.finance.creditCardNumber('###-###-##L');
+          // Deprecated
+          let number = faker.finance.creditCardNumber(
+            '###-###-##L' as unknown as CreditCardIssuerType
+          );
           expect(number).toMatch(/^\d{3}-\d{3}-\d{3}$/);
           expect(number).toSatisfy(luhnCheck);
 
-          number = faker.finance.creditCardNumber('234[5-9]#{999}L');
+          number = faker.finance.creditCardNumber(
+            '234[5-9]#{999}L' as unknown as CreditCardIssuerType
+          );
           expect(number).toMatch(/^234[5-9]\d{1000}$/);
           expect(number).toSatisfy(luhnCheck);
         });
@@ -422,9 +439,15 @@ describe('finance', () => {
         it('should return a string', () => {
           const issuer = faker.finance.creditCardIssuer();
           expect(issuer).toBeTypeOf('string');
-          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
+          expect(faker.definitions.finance.common_credit_card_issuer).toContain(
             issuer
           );
+        });
+
+        it('base should return all variants', () => {
+          expect(
+            fakerBASE.definitions.finance.common_credit_card_issuer
+          ).toEqual(Object.values(CreditCardIssuer));
         });
       });
 
