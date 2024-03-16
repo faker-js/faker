@@ -425,20 +425,36 @@ export class SimpleDateModule extends SimpleModuleBase {
     // Convert to epoch timestamps
     let from: number;
     let to: number;
-    if (mode === 'age') {
-      from = new Date(refDate).setUTCFullYear(refYear - (max ?? 80) - 1);
-      to = new Date(refDate).setUTCFullYear(refYear - (min ?? 18));
-    } else {
-      // Avoid generating dates on the first and last date of the year
-      // to avoid running into other years depending on the timezone.
-      from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min ?? refYear - 80);
-      to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(max ?? refYear - 19);
+    switch (mode) {
+      case 'age': {
+        from = new Date(refDate).setUTCFullYear(refYear - (max ?? 80) - 1);
+        to = new Date(refDate).setUTCFullYear(refYear - (min ?? 18));
+        break;
+      }
+
+      case 'year': {
+        // Avoid generating dates on the first and last date of the year
+        // to avoid running into other years depending on the timezone.
+        from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min ?? refYear - 80);
+        to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(max ?? refYear - 19);
+        break;
+      }
     }
 
     if (from > to) {
-      throw new FakerError(
-        `Max ${mode} ${max} (${to}) should be greater than or equal to min ${mode} ${min} (${from}).`
-      );
+      switch (mode) {
+        case 'age': {
+          throw new FakerError(
+            `Max age ${max ?? 80} should be greater than or equal to min age ${min ?? 18}.`
+          );
+        }
+
+        case 'year': {
+          throw new FakerError(
+            `Max year ${max ?? refYear - 19} should be greater than or equal to min year ${min ?? refYear - 80}.`
+          );
+        }
+      }
     }
 
     return this.between({ from, to });
