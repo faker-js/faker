@@ -396,14 +396,10 @@ export class SimpleDateModule extends SimpleModuleBase {
       | {
           /**
            * The minimum age or year to generate a birthdate.
-           *
-           * @default 18 (age) / refDate - 80 years (year)
            */
           min: number;
           /**
            * The maximum age or year to generate a birthdate.
-           *
-           * @default 80 (age) / refDate - 19 years (year)
            */
           max: number;
           /**
