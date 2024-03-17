@@ -375,8 +375,6 @@ export class SimpleDateModule extends SimpleModuleBase {
    * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
    * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
    *
-   * Defaults to `age`.
-   *
    * @example
    * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
    * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }) // 2003-11-02T20:03:20.116Z
