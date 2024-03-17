@@ -415,9 +415,16 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { min, max, mode = 'age' } = options;
+    const { min, max, mode = 'age', mode: originalMode } = options;
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
+
+    // TODO @ST-DDT 2024-03-17: Remove this check in v10
+    if (originalMode == null && min != null && min >= 1000) {
+      throw new FakerError(
+        `The min option is greater than 1000, which likely refers to a 'year'. The new default mode is 'age'. To prevent this error, set the mode option explicitly.`
+      );
+    }
 
     // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
     // So that people can still be considered as adults in most cases
