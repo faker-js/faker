@@ -1,6 +1,7 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
 
@@ -408,8 +409,6 @@ export class SimpleDateModule extends SimpleModuleBase {
            * There are two modes available `'age'` and `'year'`:
            * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
            * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
-           *
-           * @default 'age'
            */
           mode: 'age' | 'year';
           /**
@@ -431,16 +430,19 @@ export class SimpleDateModule extends SimpleModuleBase {
     const { min, max, mode = 'age', mode: originalMode } = options;
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
+    const optionsSet = [min, max, originalMode].filter((x) => x != null).length;
+    if (optionsSet % 3 !== 0) {
+      deprecated({
+        deprecated:
+          "faker.date.birthdate({ min: 18, max: 80 }) or faker.date.birthdate({ mode: 'age' })",
+        proposed: "faker.date.birthdate({ min: 18, max: 80, mode: 'age' })",
+        since: '9.0',
+        until: '10.0',
+      });
+    }
 
     switch (mode) {
       case 'age': {
-        // TODO @ST-DDT 2024-03-17: Remove this check in v10
-        if (originalMode == null && min != null && min >= 1000) {
-          throw new FakerError(
-            `The min option is greater than 1000, which likely refers to a 'year'. The new default mode is 'age'. To prevent this error, set the mode option explicitly.`
-          );
-        }
-
         const from = new Date(refDate).setUTCFullYear(
           refYear - (max ?? 80) - 1
         );

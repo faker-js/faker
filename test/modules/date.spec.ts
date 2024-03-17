@@ -636,42 +636,6 @@ describe('date', () => {
             )
           );
         });
-
-        // TODO @ST-DDT 2024-03-17: Remove these in v10
-        it('should throw an error when the min is very high with default mode', () => {
-          const min = 2000;
-          const max = 5000;
-
-          expect(() =>
-            faker.date.birthdate({
-              min,
-              max,
-              mode: undefined as unknown as 'age',
-            })
-          ).toThrow(
-            new FakerError(
-              `The min option is greater than 1000, which likely refers to a 'year'. The new default mode is 'age'. To prevent this error, set the mode option explicitly.`
-            )
-          );
-        });
-
-        it('should not throw an error when the min is very high with age mode', () => {
-          const min = 2000;
-          const max = 5000;
-
-          const actual = faker.date.birthdate({ min, max, mode: 'age' });
-
-          expect(actual).toBeInstanceOf(Date);
-        });
-
-        it('should not throw an error when the min is very high with year mode', () => {
-          const min = 2000;
-          const max = 5000;
-
-          const actual = faker.date.birthdate({ min, max, mode: 'year' });
-
-          expect(actual).toBeInstanceOf(Date);
-        });
       });
     }
   );
