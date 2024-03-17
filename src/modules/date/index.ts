@@ -428,6 +428,7 @@ export class SimpleDateModule extends SimpleModuleBase {
     const { min, max, mode = 'age', mode: originalMode } = options;
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
+    // TODO @ST-DDT 2024-03-17: Remove check in v10
     const optionsSet = [min, max, originalMode].filter((x) => x != null).length;
     if (optionsSet % 3 !== 0) {
       deprecated({
