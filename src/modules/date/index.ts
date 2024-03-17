@@ -384,34 +384,51 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @since 7.0.0
    */
   birthdate(
+    options?:
+      | {
+          /**
+           * The date to use as reference point for the newly generated date.
+           *
+           * @default faker.defaultRefDate()
+           */
+          refDate?: string | Date | number;
+        }
+      | {
+          /**
+           * The minimum age or year to generate a birthdate.
+           *
+           * @default 18 (age) / refDate - 80 years (year)
+           */
+          min: number;
+          /**
+           * The maximum age or year to generate a birthdate.
+           *
+           * @default 80 (age) / refDate - 19 years (year)
+           */
+          max: number;
+          /**
+           * The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
+           *
+           * There are two modes available `'age'` and `'year'`:
+           * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
+           * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
+           *
+           * @default 'age'
+           */
+          mode: 'age' | 'year';
+          /**
+           * The date to use as reference point for the newly generated date.
+           *
+           * @default faker.defaultRefDate()
+           */
+          refDate?: string | Date | number;
+        }
+  ): Date;
+  birthdate(
     options: {
-      /**
-       * The minimum age or year to generate a birthdate.
-       *
-       * @default 18 (age)
-       */
       min?: number;
-      /**
-       * The maximum age or year to generate a birthdate.
-       *
-       * @default 80 (age)
-       */
       max?: number;
-      /**
-       * The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
-       *
-       * There are two modes available `'age'` and `'year'`:
-       * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
-       * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
-       *
-       * @default 'age'
-       */
       mode?: 'age' | 'year';
-      /**
-       * The date to use as reference point for the newly generated date.
-       *
-       * @default faker.defaultRefDate()
-       */
       refDate?: string | Date | number;
     } = {}
   ): Date {
@@ -419,52 +436,48 @@ export class SimpleDateModule extends SimpleModuleBase {
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
 
-    // TODO @ST-DDT 2024-03-17: Remove this check in v10
-    if (originalMode == null && min != null && min >= 1000) {
-      throw new FakerError(
-        `The min option is greater than 1000, which likely refers to a 'year'. The new default mode is 'age'. To prevent this error, set the mode option explicitly.`
-      );
-    }
-
-    // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
-    // So that people can still be considered as adults in most cases
-
-    // Convert to epoch timestamps
-    let from: number;
-    let to: number;
     switch (mode) {
       case 'age': {
-        from = new Date(refDate).setUTCFullYear(refYear - (max ?? 80) - 1);
-        to = new Date(refDate).setUTCFullYear(refYear - (min ?? 18));
-        break;
-      }
+        // TODO @ST-DDT 2024-03-17: Remove this check in v10
+        if (originalMode == null && min != null && min >= 1000) {
+          throw new FakerError(
+            `The min option is greater than 1000, which likely refers to a 'year'. The new default mode is 'age'. To prevent this error, set the mode option explicitly.`
+          );
+        }
 
-      case 'year': {
-        // Avoid generating dates on the first and last date of the year
-        // to avoid running into other years depending on the timezone.
-        from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min ?? refYear - 80);
-        to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(max ?? refYear - 19);
-        break;
-      }
-    }
+        const from = new Date(refDate).setUTCFullYear(
+          refYear - (max ?? 80) - 1
+        );
+        const to = new Date(refDate).setUTCFullYear(refYear - (min ?? 18));
 
-    if (from > to) {
-      switch (mode) {
-        case 'age': {
+        if (from > to) {
           throw new FakerError(
             `Max age ${max ?? 80} should be greater than or equal to min age ${min ?? 18}.`
           );
         }
 
-        case 'year': {
+        return this.between({ from, to });
+      }
+
+      case 'year': {
+        // Avoid generating dates on the first and last date of the year
+        // to avoid running into other years depending on the timezone.
+        const from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
+          min ?? refYear - 80
+        );
+        const to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
+          max ?? refYear - 19
+        );
+
+        if (from > to) {
           throw new FakerError(
             `Max year ${max ?? refYear - 19} should be greater than or equal to min year ${min ?? refYear - 80}.`
           );
         }
+
+        return this.between({ from, to });
       }
     }
-
-    return this.between({ from, to });
   }
 }
 

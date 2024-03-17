@@ -642,7 +642,13 @@ describe('date', () => {
           const min = 2000;
           const max = 5000;
 
-          expect(() => faker.date.birthdate({ min, max })).toThrow(
+          expect(() =>
+            faker.date.birthdate({
+              min,
+              max,
+              mode: undefined as unknown as 'age',
+            })
+          ).toThrow(
             new FakerError(
               `The min option is greater than 1000, which likely refers to a 'year'. The new default mode is 'age'. To prevent this error, set the mode option explicitly.`
             )
