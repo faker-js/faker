@@ -1038,6 +1038,9 @@ describe('helpers', () => {
         });
 
         it('should support deprecated module aliases', () => {
+          expect(faker.definitions.location.state).toContain(
+            faker.helpers.fake('{{address.state}}')
+          );
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
           );
