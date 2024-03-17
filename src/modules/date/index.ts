@@ -1,4 +1,4 @@
-import { type Faker } from '../..';
+import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
 import { SimpleModuleBase } from '../../internal/module-base';
