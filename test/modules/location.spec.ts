@@ -55,9 +55,6 @@ describe('location', () => {
   seededTests(faker, 'location', (t) => {
     t.it('street');
 
-    // TODO @xDivisionByZerox 2023-04-16: add street name locale data to `en`
-    t.skip('streetName');
-
     t.it('buildingNumber');
 
     t.it('secondaryAddress');
@@ -68,7 +65,7 @@ describe('location', () => {
         .it('with useFullAddress options', { useFullAddress: true });
     });
 
-    t.itEach('city', 'cityName');
+    t.itEach('city');
 
     t.it('county');
 
@@ -89,9 +86,6 @@ describe('location', () => {
       'longitude'
     )((t) => {
       t.it('noArgs')
-        .it('with max', 10)
-        .it('with min', undefined, -10)
-        .it('with precision', undefined, undefined, 10)
         .it('with max option', { max: 10 })
         .it('with min option', { min: -10 })
         .it('with precision option', { precision: 10 })
@@ -122,8 +116,6 @@ describe('location', () => {
       t.it('noArgs').it('with options', { abbreviated: true });
     });
 
-    t.it('stateAbbr');
-
     t.it('timeZone');
 
     t.describeEach(
@@ -131,26 +123,16 @@ describe('location', () => {
       'cardinalDirection',
       'ordinalDirection'
     )((t) => {
-      t.it('noArgs')
-        .it('with boolean', false)
-        .it('with abbreviated option', { abbreviated: true });
+      t.it('noArgs').it('with abbreviated option', { abbreviated: true });
     });
 
     t.describe('zipCode', (t) => {
       t.it('noArgs')
         .it('with string', '###')
         .it('with format option', { format: '###-###' });
-      // These are currently commented out because non-default locales are currently not supported
+      // TODO @Shinigami92 2024-03-15: These are currently commented out because non-default locales are currently not supported
       // .it('with state option', { state: 'CA' })
       // .it('with options', { state: 'CA', format: '###-###' });
-    });
-
-    t.describe('zipCodeByState', (t) => {
-      t.it('noArgs');
-      // These are currently commented out because non-default locales are currently not supported
-      // .it('with string 1', 'CA')
-      // .it('with string 2', 'WA')
-      // .it('with state options', { state: 'WA' });
     });
   });
 
@@ -228,24 +210,6 @@ describe('location', () => {
           expect(() => fakerEN_US.location.zipCode({ state: 'XX' })).toThrow(
             new FakerError('No zip code definition found for state "XX"')
           );
-        });
-      });
-
-      describe('zipCodeByState()', () => {
-        it('returns zipCode valid for specified State', () => {
-          const states = ['IL', 'GA', 'WA'];
-
-          const zipCode1 = +fakerEN_US.location.zipCodeByState(states[0]);
-          expect(zipCode1).toBeGreaterThanOrEqual(60001);
-          expect(zipCode1).toBeLessThanOrEqual(62999);
-
-          const zipCode2 = +fakerEN_US.location.zipCodeByState(states[1]);
-          expect(zipCode2).toBeGreaterThanOrEqual(30001);
-          expect(zipCode2).toBeLessThanOrEqual(31999);
-
-          const zipCode3 = +fakerEN_US.location.zipCodeByState(states[2]);
-          expect(zipCode3).toBeGreaterThanOrEqual(98001);
-          expect(zipCode3).toBeLessThanOrEqual(99403);
         });
       });
 

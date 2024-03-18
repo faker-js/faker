@@ -263,7 +263,7 @@ exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`
 
 exports[`helpers > 1211 > fake > with empty string 1`] = `""`;
 
-exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"The Villages"`;
+exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"396 St George's Road"`;
 
 exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
