@@ -164,15 +164,15 @@ exports[`string > 42 > symbol > with length parameter 5`] = `">%*,/"`;
 
 exports[`string > 42 > symbol > with length range 1`] = `"}\\>%%"\`>[!~_'&"`;
 
-exports[`string > 42 > ulid 1`] = `"1SY5QRKK4E431EVAK4PM01ZQTY"`;
+exports[`string > 42 > ulid 1`] = `"1YQK441VKP0ZT6559GD9K49BES"`;
 
-exports[`string > 42 > ulid 2`] = `"005Z5K9KG0D09GKC419ZB7E2SK"`;
+exports[`string > 42 > ulid 2`] = `"0GJ1K52YYS93NE3F1X8N9GH5ZR"`;
 
-exports[`string > 42 > ulid 3`] = `"0CGZJE1VKN5E20YYYJSC9037N7"`;
+exports[`string > 42 > ulid 3`] = `"2WKX261AC8TB8H4S2ZR60TPQR2"`;
 
-exports[`string > 42 > ulid 4`] = `"1N3KFT15XC85NR9DG6HJ51ZTRE"`;
+exports[`string > 42 > ulid 4`] = `"13VKA29AQMWF3PRHRFGD031MAG"`;
 
-exports[`string > 42 > ulid 5`] = `"2CWXKQXA2J6G1YAVCQ8HTJBY8K"`;
+exports[`string > 42 > ulid 5`] = `"27DR7295XSMVS5WHSWA37DTV0G"`;
 
 exports[`string > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
@@ -348,15 +348,15 @@ exports[`string > 1211 > symbol > with length parameter 5`] = `"~]-|<"`;
 
 exports[`string > 1211 > symbol > with length range 1`] = `"{(~@@],[_]?_.\`\`'=',~"`;
 
-exports[`string > 1211 > ulid 1`] = `"2EWR74Z1N5N6RDB5PQT0RNMQTX"`;
+exports[`string > 1211 > ulid 1`] = `"2W7ZNNRBPTRMTDVV6J6BZRCXHZ"`;
 
-exports[`string > 1211 > ulid 2`] = `"19VZVZ6EJW64BKZER0C9X0HDZ5"`;
+exports[`string > 1211 > ulid 2`] = `"09PGBVC895HP4PF7D6VJF1P5P8"`;
 
-exports[`string > 1211 > ulid 3`] = `"0J95PCGXBZV9CJ8C9J52H7P741"`;
+exports[`string > 1211 > ulid 3`] = `"2GE6KV3VECFJSHXZTV7PTAW0HR"`;
 
-exports[`string > 1211 > ulid 4`] = `"2VFM76DD6KVDJJF21MPH5KPF84"`;
+exports[`string > 1211 > ulid 4`] = `"128486XZD6KJJKTMTRVXHAHEBT"`;
 
-exports[`string > 1211 > ulid 5`] = `"2NGPEF64KHVE3GVEE1CJFPJ2SW"`;
+exports[`string > 1211 > ulid 5`] = `"0Y371XDXKYZBKRW4GPQ8TX4P2D"`;
 
 exports[`string > 1211 > uuid 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
 
@@ -532,15 +532,15 @@ exports[`string > 1337 > symbol > with length parameter 5`] = `"]'*@:"`;
 
 exports[`string > 1337 > symbol > with length range 1`] = `"&)/+;)~\\$-?%"`;
 
-exports[`string > 1337 > ulid 1`] = `"0H568HE1A7GJ8AZ8Q93SC3MB4Q"`;
+exports[`string > 1337 > ulid 1`] = `"058EAG8ZQ3CM4ZESSBDJR69NF5"`;
 
-exports[`string > 1337 > ulid 2`] = `"25EVSSS0BEDCJGRB6F9VNCFE54"`;
+exports[`string > 1337 > ulid 2`] = `"16HT5YDGG0QZ54BP0B1SBPFZTK"`;
 
-exports[`string > 1337 > ulid 3`] = `"1T6WHXTK5YYWDTGPGP0TQKZN5E"`;
+exports[`string > 1337 > ulid 3`] = `"1Z802YZFAQ0RN6NX5XAP8G5EEC"`;
 
-exports[`string > 1337 > ulid 4`] = `"0DBMPS0NBV1RSYB1PGFNZQTHK8"`;
+exports[`string > 1337 > ulid 4`] = `"2FQSBXPWDEWMH7YHR7DCG4N07Q"`;
 
-exports[`string > 1337 > ulid 5`] = `"1TZQ8V092KY8ZWF9AGQ40PRWNH"`;
+exports[`string > 1337 > ulid 5`] = `"2KDVZ9CPB1BF1XQR31847NFXJ5"`;
 
 exports[`string > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 
