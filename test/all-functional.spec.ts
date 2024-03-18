@@ -51,9 +51,7 @@ const BROKEN_LOCALE_METHODS = {
   },
   location: {
     state: ['az', 'nb_NO', 'ro_MD', 'sk'],
-    stateAbbr: ['cs_CZ', 'ro_MD', 'sk'],
     zipCode: ['en_HK'],
-    zipCodeByState: ['en_HK'],
   },
   string: {
     fromCharacters: '*',
