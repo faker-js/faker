@@ -164,15 +164,21 @@ exports[`string > 42 > symbol > with length parameter 5`] = `">%*,/"`;
 
 exports[`string > 42 > symbol > with length range 1`] = `"}\\>%%"\`>[!~_'&"`;
 
-exports[`string > 42 > ulid 1`] = `"1YQK441VKP0ZT6559GD9K49BES"`;
+exports[`string > 42 > ulid > noArgs 1`] = `"01HSCFQK6RBYQK441VKP0ZT655"`;
 
-exports[`string > 42 > ulid 2`] = `"0GJ1K52YYS93NE3F1X8N9GH5ZR"`;
+exports[`string > 42 > ulid > noArgs 2`] = `"01HSCFQK6R9GD9K49BES6GJ1K5"`;
 
-exports[`string > 42 > ulid 3`] = `"2WKX261AC8TB8H4S2ZR60TPQR2"`;
+exports[`string > 42 > ulid > noArgs 3`] = `"01HSCFQK6S2YYS93NE3F1X8N9G"`;
 
-exports[`string > 42 > ulid 4`] = `"13VKA29AQMWF3PRHRFGD031MAG"`;
+exports[`string > 42 > ulid > noArgs 4`] = `"01HSCFQK6SH5ZRYWKX261AC8TB"`;
 
-exports[`string > 42 > ulid 5`] = `"27DR7295XSMVS5WHSWA37DTV0G"`;
+exports[`string > 42 > ulid > noArgs 5`] = `"01HSCFQK6S8H4S2ZR60TPQR2B3"`;
+
+exports[`string > 42 > ulid > with only Date refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
+
+exports[`string > 42 > ulid > with only number refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
+
+exports[`string > 42 > ulid > with only string refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
 
 exports[`string > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
@@ -348,15 +354,21 @@ exports[`string > 1211 > symbol > with length parameter 5`] = `"~]-|<"`;
 
 exports[`string > 1211 > symbol > with length range 1`] = `"{(~@@],[_]?_.\`\`'=',~"`;
 
-exports[`string > 1211 > ulid 1`] = `"2W7ZNNRBPTRMTDVV6J6BZRCXHZ"`;
+exports[`string > 1211 > ulid > noArgs 1`] = `"01HSCFQK7SXW7ZNNRBPTRMTDVV"`;
 
-exports[`string > 1211 > ulid 2`] = `"09PGBVC895HP4PF7D6VJF1P5P8"`;
+exports[`string > 1211 > ulid > noArgs 2`] = `"01HSCFQK7S6J6BZRCXHZ79PGBV"`;
 
-exports[`string > 1211 > ulid 3`] = `"2GE6KV3VECFJSHXZTV7PTAW0HR"`;
+exports[`string > 1211 > ulid > noArgs 3`] = `"01HSCFQK7SC895HP4PF7D6VJF1"`;
 
-exports[`string > 1211 > ulid 4`] = `"128486XZD6KJJKTMTRVXHAHEBT"`;
+exports[`string > 1211 > ulid > noArgs 4`] = `"01HSCFQK7SP5P8RGE6KV3VECFJ"`;
 
-exports[`string > 1211 > ulid 5`] = `"0Y371XDXKYZBKRW4GPQ8TX4P2D"`;
+exports[`string > 1211 > ulid > noArgs 5`] = `"01HSCFQK7SSHXZTV7PTAW0HRE2"`;
+
+exports[`string > 1211 > ulid > with only Date refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
+
+exports[`string > 1211 > ulid > with only number refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
+
+exports[`string > 1211 > ulid > with only string refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
 
 exports[`string > 1211 > uuid 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
 
@@ -532,15 +544,21 @@ exports[`string > 1337 > symbol > with length parameter 5`] = `"]'*@:"`;
 
 exports[`string > 1337 > symbol > with length range 1`] = `"&)/+;)~\\$-?%"`;
 
-exports[`string > 1337 > ulid 1`] = `"058EAG8ZQ3CM4ZESSBDJR69NF5"`;
+exports[`string > 1337 > ulid > noArgs 1`] = `"01HSCFQK89858EAG8ZQ3CM4ZES"`;
 
-exports[`string > 1337 > ulid 2`] = `"16HT5YDGG0QZ54BP0B1SBPFZTK"`;
+exports[`string > 1337 > ulid > noArgs 2`] = `"01HSCFQK89SBDJR69NF5D6HT5Y"`;
 
-exports[`string > 1337 > ulid 3`] = `"1Z802YZFAQ0RN6NX5XAP8G5EEC"`;
+exports[`string > 1337 > ulid > noArgs 3`] = `"01HSCFQK89DGG0QZ54BP0B1SBP"`;
 
-exports[`string > 1337 > ulid 4`] = `"2FQSBXPWDEWMH7YHR7DCG4N07Q"`;
+exports[`string > 1337 > ulid > noArgs 4`] = `"01HSCFQK89FZTKJZ802YZFAQ0R"`;
 
-exports[`string > 1337 > ulid 5`] = `"2KDVZ9CPB1BF1XQR31847NFXJ5"`;
+exports[`string > 1337 > ulid > noArgs 5`] = `"01HSCFQK89N6NX5XAP8G5EECSF"`;
+
+exports[`string > 1337 > ulid > with only Date refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
+
+exports[`string > 1337 > ulid > with only number refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
+
+exports[`string > 1337 > ulid > with only string refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
 
 exports[`string > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 

@@ -113,7 +113,16 @@ describe('string', () => {
 
     t.itRepeated('uuid', 5);
 
-    t.itRepeated('ulid', 5);
+    t.describe('ulid', (t) => {
+      const ulidRefDate = '2021-02-21T17:09:15.711Z';
+
+      t.itRepeated('noArgs', 5)
+        .it('with only string refDate', { refDate: ulidRefDate })
+        .it('with only Date refDate', { refDate: new Date(ulidRefDate) })
+        .it('with only number refDate', {
+          refDate: new Date(ulidRefDate).getTime(),
+        });
+    });
 
     t.describe('nanoid', (t) => {
       t.itRepeated('noArgs', 5)
