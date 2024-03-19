@@ -5,6 +5,15 @@
 [build]
   publish = "docs/.vitepress/dist"
   command = "pnpm docs:build:ci"
+  ignore = '''
+    if [ "$CONTEXT" != "deploy-preview" ]; then
+      # Always build when not a PR preview
+      exit 1;
+    else
+      # Otherwise check if something doc related changed.
+      git diff --quiet origin/next...$COMMIT_REF -- . \':!src/locale/\' \':!src/locales/\' \':!test/\' \':!package.json\' \':!pnpm-lock.yaml\' \':!.github/\'
+    fi
+  '''
 
 # Alias for the main page
 [[redirects]]
