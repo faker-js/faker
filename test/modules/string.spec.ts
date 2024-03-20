@@ -764,7 +764,7 @@ describe('string', () => {
       describe(`ulid`, () => {
         it('generates a valid ULID', () => {
           const ulid = faker.string.ulid();
-          const regex = /^[0-2][0-9A-HJKMNP-TV-Z]{25}$/;
+          const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
           expect(ulid).toMatch(regex);
         });
       });
