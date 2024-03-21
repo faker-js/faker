@@ -26,11 +26,11 @@ exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane59"`;
 
 exports[`internet > 42 > displayName > with lastName option 1`] = `"Garnet_Doe"`;
 
-exports[`internet > 42 > domainName 1`] = `"hasty-vegetable.net"`;
+exports[`internet > 42 > domainName 1`] = `"hospitable-unit.net"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
-exports[`internet > 42 > domainWord 1`] = `"hasty-vegetable"`;
+exports[`internet > 42 > domainWord 1`] = `"hospitable-unit"`;
 
 exports[`internet > 42 > email > noArgs 1`] = `"Valentine.Miller15@yahoo.com"`;
 
@@ -92,11 +92,11 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url > noArgs 1`] = `"https://wee-refrigerator.name/"`;
+exports[`internet > 42 > url > noArgs 1`] = `"https://weird-rawhide.name/"`;
 
-exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-vegetable.net/"`;
+exports[`internet > 42 > url > with slash appended 1`] = `"https://hospitable-unit.net/"`;
 
-exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-vegetable.net"`;
+exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hospitable-unit.net"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux i686; rv:13.5) Gecko/20100101 Firefox/13.5.1"`;
 
@@ -142,11 +142,11 @@ exports[`internet > 1211 > displayName > with firstName option 1`] = `"Jane.Tran
 
 exports[`internet > 1211 > displayName > with lastName option 1`] = `"Tito_Doe22"`;
 
-exports[`internet > 1211 > domainName 1`] = `"vicious-teletype.biz"`;
+exports[`internet > 1211 > domainName 1`] = `"velvety-tarragon.biz"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
-exports[`internet > 1211 > domainWord 1`] = `"vicious-teletype"`;
+exports[`internet > 1211 > domainWord 1`] = `"velvety-tarragon"`;
 
 exports[`internet > 1211 > email > noArgs 1`] = `"Skye68@hotmail.com"`;
 
@@ -208,11 +208,11 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url > noArgs 1`] = `"https://unknown-cruise.org"`;
+exports[`internet > 1211 > url > noArgs 1`] = `"https://unknown-decongestant.org"`;
 
-exports[`internet > 1211 > url > with slash appended 1`] = `"https://vicious-teletype.biz/"`;
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://velvety-tarragon.biz/"`;
 
-exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vicious-teletype.biz"`;
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://velvety-tarragon.biz"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko"`;
 
@@ -258,11 +258,11 @@ exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane45"`;
 
 exports[`internet > 1337 > displayName > with lastName option 1`] = `"Devyn.Doe"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fair-chow.biz"`;
+exports[`internet > 1337 > domainName 1`] = `"fatal-co-producer.biz"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
-exports[`internet > 1337 > domainWord 1`] = `"fair-chow"`;
+exports[`internet > 1337 > domainWord 1`] = `"fatal-co-producer"`;
 
 exports[`internet > 1337 > email > noArgs 1`] = `"Carmella.Koelpin51@gmail.com"`;
 
@@ -324,11 +324,11 @@ exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url > noArgs 1`] = `"https://crushing-dough.info/"`;
+exports[`internet > 1337 > url > noArgs 1`] = `"https://cumbersome-duster.info/"`;
 
-exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-chow.biz/"`;
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://fatal-co-producer.biz/"`;
 
-exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-chow.biz"`;
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fatal-co-producer.biz"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows NT 5.3; WOW64; rv:8.4) Gecko/20100101 Firefox/8.4.3"`;
 
