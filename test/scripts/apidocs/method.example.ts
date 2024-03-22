@@ -333,7 +333,7 @@ export class SignatureTest {
    * Test with example marker.
    *
    * @example
-   * test.apidoc.methodWithExample() // 0
+   * test.apidocs.methodWithExample() // 0
    *
    * @since 1.0.0
    */
@@ -344,7 +344,7 @@ export class SignatureTest {
   /**
    * Test with deprecated and see marker.
    *
-   * @see test.apidoc.methodWithExample()
+   * @see test.apidocs.methodWithExample()
    *
    * @since 1.0.0
    *
@@ -411,8 +411,8 @@ export class SignatureTest {
   /**
    * Test with multiple see markers.
    *
-   * @see test.apidoc.methodWithExample()
-   * @see test.apidoc.methodWithDeprecated()
+   * @see test.apidocsmethodWithExample()
+   * @see test.apidocsmethodWithDeprecated()
    *
    * @since 1.0.0
    */
@@ -423,8 +423,8 @@ export class SignatureTest {
   /**
    * Test with multiple see markers and backticks.
    *
-   * @see test.apidoc.methodWithExample() with parameter `foo`.
-   * @see test.apidoc.methodWithDeprecated() with parameter `bar` and `baz`.
+   * @see test.apidocsmethodWithExample() with parameter `foo`.
+   * @see test.apidocsmethodWithDeprecated() with parameter `bar` and `baz`.
    *
    * @since 1.0.0
    */

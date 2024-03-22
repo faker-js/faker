@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { processMethodLike } from '../../../scripts/apidoc/processing/method';
+import { processMethodLike } from '../../../scripts/apidocs/processing/method';
 import { SignatureTest } from './method.example';
 import { loadExampleMethods } from './utils';
 

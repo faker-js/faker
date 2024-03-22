@@ -2,7 +2,7 @@ import { FakerError } from '../../../src/errors/faker-error';
 import type { SourceableNode } from './source';
 import { getSourcePath } from './source';
 
-export class FakerApiDocProcessingError extends FakerError {
+export class FakerApiDocsProcessingError extends FakerError {
   constructor(options: {
     type: string;
     name: string;
@@ -24,12 +24,12 @@ export function newProcessingError(options: {
   name: string;
   source: string | SourceableNode;
   cause: unknown;
-}): FakerApiDocProcessingError {
+}): FakerApiDocsProcessingError {
   const { cause } = options;
 
-  if (cause instanceof FakerApiDocProcessingError) {
+  if (cause instanceof FakerApiDocsProcessingError) {
     return cause;
   }
 
-  return new FakerApiDocProcessingError(options);
+  return new FakerApiDocsProcessingError(options);
 }

@@ -17,9 +17,9 @@ export async function generate(): Promise<void> {
   console.log('Reading project');
   const project = getProject();
   console.log('Processing components');
-  const apiDocPages = processComponents(project);
+  const apiDocsPages = processComponents(project);
   console.log('Writing files');
-  await writeFiles(apiDocPages);
+  await writeFiles(apiDocsPages);
 }
 
 export function processComponents(project: Project): RawApiDocsPage[] {
@@ -31,15 +31,15 @@ export function processComponents(project: Project): RawApiDocsPage[] {
   ];
 }
 
-async function writeFiles(apiDocPages: RawApiDocsPage[]): Promise<void> {
+async function writeFiles(apiDocsPages: RawApiDocsPage[]): Promise<void> {
   console.log('- diff index');
-  writeDiffIndex(apiDocPages);
+  writeDiffIndex(apiDocsPages);
   console.log('- page index');
-  await writePageIndex(apiDocPages);
+  await writePageIndex(apiDocsPages);
   console.log('- pages');
-  await writePages(apiDocPages);
+  await writePages(apiDocsPages);
   console.log('- search index');
-  writeSearchIndex(apiDocPages);
+  writeSearchIndex(apiDocsPages);
   console.log('- source base url');
   await writeSourceBaseUrl();
 }

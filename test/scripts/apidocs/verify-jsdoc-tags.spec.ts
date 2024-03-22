@@ -3,9 +3,9 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
-import { processComponents } from '../../../scripts/apidoc/generate';
-import { extractSummaryDefault } from '../../../scripts/apidoc/output/page';
-import { getProject } from '../../../scripts/apidoc/project';
+import { processComponents } from '../../../scripts/apidocs/generate';
+import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
+import { getProject } from '../../../scripts/apidocs/project';
 
 // This test suite ensures, that every method
 // - has working examples

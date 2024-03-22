@@ -17,6 +17,6 @@
     "node_modules",
     "dist",
     // required for the typedoc related tests on macOS #2280
-    "test/scripts/apidoc/temp"
+    "test/scripts/apidocs/temp"
   ]
 }

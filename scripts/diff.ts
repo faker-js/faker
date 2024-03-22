@@ -2,8 +2,8 @@
 
 import { existsSync } from 'node:fs';
 import { argv } from 'node:process';
-import { diff } from './apidoc/diff';
-import { FILE_PATH_DOCS_DIFF_INDEX } from './apidoc/output/diff-index';
+import { diff } from './apidocs/diff';
+import { FILE_PATH_DOCS_DIFF_INDEX } from './apidocs/output/diff-index';
 
 const [target, source] = argv.slice(2);
 

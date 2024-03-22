@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { processClass } from '../../../scripts/apidoc/processing/class';
+import { processClass } from '../../../scripts/apidocs/processing/class';
 import * as ModuleTests from './class.example';
 import { loadExampleClasses } from './utils';
 
