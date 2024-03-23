@@ -152,7 +152,7 @@ describe('helpers', () => {
         .it('with multiple dynamic templates', [
           '{{string.sample}}',
           '{{location.city_name}}',
-          '{{location.cityName}}',
+          '{{location.streetAddress}}',
         ]);
     });
 
@@ -989,10 +989,10 @@ describe('helpers', () => {
         });
 
         it('should be able to pass multiple dynamic templates', () => {
-          expect(faker.definitions.location.city_name).toContain(
+          expect(faker.definitions.company.buzz_noun).toContain(
             faker.helpers.fake([
-              '{{location.city_name}}',
-              '{{location.cityName}}',
+              '{{company.buzz_noun}}',
+              '{{company.buzzNoun}}',
             ])
           );
         });
@@ -1038,8 +1038,8 @@ describe('helpers', () => {
         });
 
         it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{address.cityName}}')
+          expect(faker.definitions.location.state).toContain(
+            faker.helpers.fake('{{address.state}}')
           );
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
