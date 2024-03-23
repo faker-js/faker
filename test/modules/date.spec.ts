@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -603,10 +603,10 @@ describe('date', () => {
     });
 
     it('should not use the refDateSource when refDate is provided (with function)', () => {
-      faker.setDefaultRefDate(() => {
-        throw new Error('Should not be called');
-      });
+      const spy: () => Date = vi.fn();
+      faker.setDefaultRefDate(spy);
       faker.seed(20200101);
+
       const date = faker.date.past({ refDate: Date.UTC(2020, 0, 1) });
       expect(date).toBeInstanceOf(Date);
       expect(date).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
@@ -614,6 +614,8 @@ describe('date', () => {
       faker.seed(20200101);
       const date2 = faker.date.past({ refDate: Date.UTC(2020, 0, 1) });
       expect(date2).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
+
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 });
