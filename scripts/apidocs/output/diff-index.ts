@@ -52,7 +52,7 @@ function pageDiffHashes(page: RawApiDocsPage): ApiPageDiffHashes {
     pageHash: diffHash({
       ...page,
       methods: undefined,
-    }),
+    } satisfies Partial<RawApiDocsPage>),
     ...Object.fromEntries(
       page.methods.map((method) => [method.name, methodDiffHash(method)])
     ),
@@ -67,8 +67,8 @@ function pageDiffHashes(page: RawApiDocsPage): ApiPageDiffHashes {
 function methodDiffHash(method: RawApiDocsMethod): string {
   return diffHash({
     ...method,
-    sourcePath: method.sourcePath.replaceAll(/:.*/g, ''),
-  });
+    source: method.source.filePath,
+  } satisfies Record<keyof RawApiDocsMethod, unknown>);
 }
 
 /**

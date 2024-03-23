@@ -19,7 +19,8 @@ import type {
   SignatureLikeDeclaration,
 } from './signature';
 import { processSignatures } from './signature';
-import { getSourcePath } from './source';
+import type { RawApiDocsSource } from './source';
+import { getSourcePath as getSource } from './source';
 
 /**
  * Represents a  method in the raw API docs.
@@ -34,12 +35,9 @@ export interface RawApiDocsMethod {
    */
   signatures: RawApiDocsSignature[];
   /**
-   * The relative path to the source file followed by the line number and column.
-   *
-   * @example
-   * `src/faker.ts:123:45`
+   * The source of the method.
    */
-  sourcePath: string;
+  source: RawApiDocsSource;
 }
 
 // Constructors
@@ -189,11 +187,11 @@ export function processMethodLike(
     overloads.length > 0 ? overloads : [method];
 
   const signatures = processSignatures(name, signatureData, method);
-  const sourcePath = getSourcePath(method);
+  const source = getSource(method);
 
   return {
     name,
     signatures,
-    sourcePath,
+    source,
   };
 }

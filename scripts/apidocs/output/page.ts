@@ -111,7 +111,7 @@ function writePageJsonData(page: RawApiDocsPage): void {
 const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
 
 function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
-  const { name, signatures, sourcePath } = method;
+  const { name, signatures, source } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
   const {
     deprecated,
@@ -124,6 +124,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     examples,
     seeAlsos,
   } = signatureData;
+  const { filePath, line } = source;
 
   /* Target order, omitted to improve diff to old files
   return {
@@ -157,7 +158,7 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
       description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
     })),
     since,
-    sourcePath: sourcePath.replaceAll(/:(\d+):\d+/g, '#L$1'),
+    sourcePath: `${filePath}#L${line}`,
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     examples: codeToHtml([signature, ...examples].join('\n')),

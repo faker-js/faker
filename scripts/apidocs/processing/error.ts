@@ -11,7 +11,7 @@ export class FakerApiDocsProcessingError extends FakerError {
   }) {
     const { type, name, source, cause } = options;
     const sourceText =
-      typeof source === 'string' ? source : getSourcePath(source);
+      typeof source === 'string' ? source : getSourcePathText(source);
     const causeText = cause instanceof Error ? cause.message : '';
     super(`Failed to process ${type} ${name} at ${sourceText} : ${causeText}`, {
       cause,
@@ -32,4 +32,9 @@ export function newProcessingError(options: {
   }
 
   return new FakerApiDocsProcessingError(options);
+}
+
+function getSourcePathText(source: SourceableNode): string {
+  const { filePath, line, column } = getSourcePath(source);
+  return `${filePath}:${line}:${column}`;
 }
