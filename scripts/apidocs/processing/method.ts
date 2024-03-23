@@ -11,7 +11,6 @@ import {
   type MethodDeclaration,
 } from 'ts-morph';
 import { groupBy } from '../../../src/internal/group-by';
-import { getAll } from '../project';
 import { valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type {
@@ -131,10 +130,11 @@ function processMethodSignatures(
 function getAllFunctions(
   project: Project
 ): Record<string, FunctionDeclaration> {
-  return getAll(
-    project,
-    (sourceFile) => sourceFile.getFunctions(),
-    (v) => v.getNameOrThrow()
+  return Object.fromEntries(
+    project
+      .getSourceFiles()
+      .flatMap((file) => file.getFunctions())
+      .map((fn) => [fn.getNameOrThrow(), fn] as const)
   );
 }
 

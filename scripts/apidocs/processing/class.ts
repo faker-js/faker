@@ -1,5 +1,4 @@
 import type { ClassDeclaration, InterfaceDeclaration, Project } from 'ts-morph';
-import { getAll } from '../project';
 import { required, valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';
@@ -16,12 +15,6 @@ import {
   processInterfaceMethods,
   processProjectFunctions,
 } from './method';
-import {
-  DOC_CLASS_NAMES,
-  DOC_INTERFACE_NAMES,
-  DOC_MODULE_FILTER,
-  DOC_UTILITY_NAMES,
-} from './select';
 
 /**
  * Represents a raw page in the API docs.
@@ -63,16 +56,19 @@ function getAllClasses(
   project: Project,
   filter: (name: string) => boolean = () => true
 ): Record<string, ClassDeclaration> {
-  return getAll(
-    project,
-    (file) => file.getClasses(),
-    (clazz) => clazz.getNameOrThrow(),
-    filter
+  return Object.fromEntries(
+    project
+      .getSourceFiles()
+      .flatMap((file) => file.getClasses())
+      .map((clazz) => [clazz.getNameOrThrow(), clazz] as const)
+      .filter(([name]) => filter(name))
   );
 }
 
 export function processProjectClasses(project: Project): RawApiDocsPage[] {
-  return processClasses(valuesForKeys(getAllClasses(project), DOC_CLASS_NAMES));
+  return processClasses(
+    valuesForKeys(getAllClasses(project), ['Faker', 'SimpleFaker'])
+  );
 }
 
 function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
@@ -101,7 +97,11 @@ export function processClass(clazz: ClassDeclaration): RawApiDocsPage {
 export function processModuleClasses(project: Project): RawApiDocsPage[] {
   return processModules(
     Object.values(
-      getAllClasses(project, (name) => DOC_MODULE_FILTER(name))
+      getAllClasses(
+        project,
+        (module: string): boolean =>
+          module.endsWith('Module') && !module.startsWith('Simple')
+      )
     ).sort((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
 }
@@ -142,16 +142,17 @@ function getModuleName(module: ClassDeclaration): string {
 function getAllInterfaces(
   project: Project
 ): Record<string, InterfaceDeclaration> {
-  return getAll(
-    project,
-    (file) => file.getInterfaces(),
-    (iface) => iface.getName()
+  return Object.fromEntries(
+    project
+      .getSourceFiles()
+      .flatMap((file) => file.getInterfaces())
+      .map((iface) => [iface.getName(), iface] as const)
   );
 }
 
 export function processProjectInterfaces(project: Project): RawApiDocsPage[] {
   return processInterfaces(
-    valuesForKeys(getAllInterfaces(project), DOC_INTERFACE_NAMES)
+    valuesForKeys(getAllInterfaces(project), ['Randomizer'])
   );
 }
 
@@ -191,7 +192,7 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
     deprecated: undefined,
     description: 'A list of all the utilities available in Faker.js.',
     examples: [],
-    methods: processProjectFunctions(project, ...DOC_UTILITY_NAMES),
+    methods: processProjectFunctions(project, 'mergeLocales'),
   };
 }
 
