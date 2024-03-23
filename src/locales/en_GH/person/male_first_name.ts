@@ -123,8 +123,6 @@ export default [
   'Terence',
   'Thomas',
   'Timothy',
-  'Thank God',
-  'Thy Will Be Done',
   'Tom',
   'Tony',
   'Victor',
