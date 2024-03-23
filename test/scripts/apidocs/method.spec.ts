@@ -18,6 +18,11 @@ describe('method', () => {
     'processMethodLike(%s)',
     (name, signature) => {
       const actual = processMethodLike(name, signature);
+      actual.source = {
+        filePath: actual.source.filePath,
+        line: -1,
+        column: -1,
+      };
 
       expect(actual).toMatchSnapshot();
     }

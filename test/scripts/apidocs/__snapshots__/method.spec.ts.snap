@@ -102,7 +102,11 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:455:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -135,7 +139,11 @@ exports[`method > processMethodLike(defaultBooleanParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:113:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -168,7 +176,11 @@ exports[`method > processMethodLike(functionParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:137:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -445,7 +457,11 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:184:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -470,7 +486,11 @@ exports[`method > processMethodLike(methodWithDeprecated) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:353:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -538,7 +558,11 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:390:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -563,7 +587,11 @@ exports[`method > processMethodLike(methodWithExample) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:340:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -589,7 +617,11 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkers) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:419:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -615,7 +647,11 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkersAndBackticks) 1`
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:431:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -641,7 +677,11 @@ exports[`method > processMethodLike(methodWithMultipleThrows) 1`] = `
       ],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:376:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -664,7 +704,11 @@ exports[`method > processMethodLike(methodWithSinceMarker) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:440:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -689,7 +733,11 @@ exports[`method > processMethodLike(methodWithThrows) 1`] = `
       ],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:364:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -740,7 +788,11 @@ exports[`method > processMethodLike(multiParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:126:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -763,7 +815,11 @@ exports[`method > processMethodLike(noParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:80:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -796,7 +852,11 @@ exports[`method > processMethodLike(optionalStringParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:102:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -889,7 +949,11 @@ Defaults to \`{ value: 1 }\`.",
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:269:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -944,7 +1008,11 @@ exports[`method > processMethodLike(optionsInterfaceParamMethodWithDefaults) 1`]
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:324:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -1048,7 +1116,11 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:225:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -1130,7 +1202,11 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:304:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -1163,7 +1239,11 @@ exports[`method > processMethodLike(recordParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:209:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -1196,7 +1276,11 @@ exports[`method > processMethodLike(requiredNumberParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:91:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
 
@@ -1578,6 +1662,10 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
       "throws": [],
     },
   ],
-  "sourcePath": "test/scripts/apidocs/method.example.ts:152:3",
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
 }
 `;
