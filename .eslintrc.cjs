@@ -33,6 +33,7 @@ module.exports = defineConfig({
   },
   rules: {
     eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'logical-assignment-operators': 'error',
     'no-else-return': 'error',
     'no-restricted-globals': ['error', 'Intl'],
     'prefer-exponentiation-operator': 'error',

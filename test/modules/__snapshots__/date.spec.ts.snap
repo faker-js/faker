@@ -95,21 +95,21 @@ exports[`date > 42 > month > with abbreviated = true and context = true 1`] = `"
 
 exports[`date > 42 > month > with context = true 1`] = `"May"`;
 
-exports[`date > 42 > past > with only Date refDate 1`] = `2020-10-08T00:10:57.898Z`;
+exports[`date > 42 > past > with only Date refDate 1`] = `2020-07-08T10:07:32.524Z`;
 
-exports[`date > 42 > past > with only number refDate 1`] = `2020-10-08T00:10:57.898Z`;
+exports[`date > 42 > past > with only number refDate 1`] = `2020-07-08T10:07:32.524Z`;
 
-exports[`date > 42 > past > with only string refDate 1`] = `2020-10-08T00:10:57.898Z`;
+exports[`date > 42 > past > with only string refDate 1`] = `2020-07-08T10:07:32.524Z`;
 
-exports[`date > 42 > past > with value 1`] = `2017-05-26T15:26:23.206Z`;
+exports[`date > 42 > past > with value 1`] = `2014-11-22T18:52:07.216Z`;
 
-exports[`date > 42 > recent > with only Date refDate 1`] = `2021-02-21T08:09:54.819Z`;
+exports[`date > 42 > recent > with only Date refDate 1`] = `2021-02-21T02:08:35.603Z`;
 
-exports[`date > 42 > recent > with only number refDate 1`] = `2021-02-21T08:09:54.819Z`;
+exports[`date > 42 > recent > with only number refDate 1`] = `2021-02-21T02:08:35.603Z`;
 
-exports[`date > 42 > recent > with only string refDate 1`] = `2021-02-21T08:09:54.819Z`;
+exports[`date > 42 > recent > with only string refDate 1`] = `2021-02-21T02:08:35.603Z`;
 
-exports[`date > 42 > recent > with value 1`] = `2021-02-17T23:15:52.423Z`;
+exports[`date > 42 > recent > with value 1`] = `2021-02-15T11:02:37.999Z`;
 
 exports[`date > 42 > soon > with only Date refDate 1`] = `2021-02-22T02:08:36.603Z`;
 
@@ -223,21 +223,21 @@ exports[`date > 1211 > month > with abbreviated = true and context = true 1`] = 
 
 exports[`date > 1211 > month > with context = true 1`] = `"December"`;
 
-exports[`date > 1211 > past > with only Date refDate 1`] = `2020-03-19T19:19:04.066Z`;
+exports[`date > 1211 > past > with only Date refDate 1`] = `2021-01-26T14:59:26.356Z`;
 
-exports[`date > 1211 > past > with only number refDate 1`] = `2020-03-19T19:19:04.066Z`;
+exports[`date > 1211 > past > with only number refDate 1`] = `2021-01-26T14:59:26.356Z`;
 
-exports[`date > 1211 > past > with only string refDate 1`] = `2020-03-19T19:19:04.066Z`;
+exports[`date > 1211 > past > with only string refDate 1`] = `2021-01-26T14:59:26.356Z`;
 
-exports[`date > 1211 > past > with value 1`] = `2011-11-12T14:47:19.904Z`;
+exports[`date > 1211 > past > with value 1`] = `2020-06-05T19:31:10.518Z`;
 
-exports[`date > 1211 > recent > with only Date refDate 1`] = `2021-02-20T18:52:11.498Z`;
+exports[`date > 1211 > recent > with only Date refDate 1`] = `2021-02-21T15:26:18.924Z`;
 
-exports[`date > 1211 > recent > with only number refDate 1`] = `2021-02-20T18:52:11.498Z`;
+exports[`date > 1211 > recent > with only number refDate 1`] = `2021-02-21T15:26:18.924Z`;
 
-exports[`date > 1211 > recent > with only string refDate 1`] = `2021-02-20T18:52:11.498Z`;
+exports[`date > 1211 > recent > with only string refDate 1`] = `2021-02-21T15:26:18.924Z`;
 
-exports[`date > 1211 > recent > with value 1`] = `2021-02-12T10:18:34.226Z`;
+exports[`date > 1211 > recent > with value 1`] = `2021-02-20T23:59:56.196Z`;
 
 exports[`date > 1211 > soon > with only Date refDate 1`] = `2021-02-22T15:26:19.924Z`;
 
@@ -349,21 +349,21 @@ exports[`date > 1337 > month > with abbreviated = true and context = true 1`] = 
 
 exports[`date > 1337 > month > with context = true 1`] = `"April"`;
 
-exports[`date > 1337 > past > with only Date refDate 1`] = `2020-11-18T01:49:04.822Z`;
+exports[`date > 1337 > past > with only Date refDate 1`] = `2020-05-28T08:29:25.600Z`;
 
-exports[`date > 1337 > past > with only number refDate 1`] = `2020-11-18T01:49:04.822Z`;
+exports[`date > 1337 > past > with only number refDate 1`] = `2020-05-28T08:29:25.600Z`;
 
-exports[`date > 1337 > past > with only string refDate 1`] = `2020-11-18T01:49:04.822Z`;
+exports[`date > 1337 > past > with only string refDate 1`] = `2020-05-28T08:29:25.600Z`;
 
-exports[`date > 1337 > past > with value 1`] = `2018-07-11T07:47:33.460Z`;
+exports[`date > 1337 > past > with value 1`] = `2013-10-08T02:30:56.962Z`;
 
-exports[`date > 1337 > recent > with only Date refDate 1`] = `2021-02-21T10:51:56.041Z`;
+exports[`date > 1337 > recent > with only Date refDate 1`] = `2021-02-20T23:26:34.381Z`;
 
-exports[`date > 1337 > recent > with only number refDate 1`] = `2021-02-21T10:51:56.041Z`;
+exports[`date > 1337 > recent > with only number refDate 1`] = `2021-02-20T23:26:34.381Z`;
 
-exports[`date > 1337 > recent > with only string refDate 1`] = `2021-02-21T10:51:56.041Z`;
+exports[`date > 1337 > recent > with only string refDate 1`] = `2021-02-20T23:26:34.381Z`;
 
-exports[`date > 1337 > recent > with value 1`] = `2021-02-19T02:16:05.654Z`;
+exports[`date > 1337 > recent > with value 1`] = `2021-02-14T08:02:24.768Z`;
 
 exports[`date > 1337 > soon > with only Date refDate 1`] = `2021-02-21T23:26:35.381Z`;
 

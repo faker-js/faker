@@ -6,26 +6,21 @@ import { SimpleModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
 
 /**
- * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non-parsable value is passed, then it will take the value from the given fallback.
+ * Converts a date passed as a `string`, `number` or `Date` to a valid `Date` object.
  *
  * @param date The date to convert.
- * @param fallback The fallback date to use if the passed date is not valid.
+ * @param name The reference name used for error messages. Defaults to `'refDate'`.
+ *
+ * @throws If the given date is invalid.
  */
-function toDate(
-  date: string | Date | number | undefined,
-  fallback: () => Date
-): Date {
-  if (date == null) {
-    return fallback();
+function toDate(date: string | Date | number, name: string = 'refDate'): Date {
+  const converted = new Date(date);
+
+  if (Number.isNaN(converted.valueOf())) {
+    throw new FakerError(`Invalid ${name} date: ${date.toString()}`);
   }
 
-  date = new Date(date);
-  if (Number.isNaN(date.valueOf())) {
-    date = fallback();
-  }
-
-  return date;
+  return converted;
 }
 
 /**
@@ -57,13 +52,12 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { refDate } = options;
-
-    const date = toDate(refDate, this.faker.defaultRefDate);
+    const { refDate = this.faker.defaultRefDate() } = options;
+    const time = toDate(refDate).getTime();
 
     return this.between({
-      from: new Date(date.getTime() - 1000 * 60 * 60 * 24 * 365),
-      to: new Date(date.getTime() + 1000 * 60 * 60 * 24 * 365),
+      from: time - 1000 * 60 * 60 * 24 * 365,
+      to: time + 1000 * 60 * 60 * 24 * 365,
     });
   }
 
@@ -99,23 +93,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: years * 365 * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let past = date.getTime();
-    past -= this.faker.number.int(range); // some time from now to N years ago, in milliseconds
-    date.setTime(past);
-
-    return date;
+    return this.between({
+      from: time - years * 365 * 24 * 3600 * 1000,
+      to: time - 1000,
+    });
   }
 
   /**
@@ -150,23 +139,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: years * 365 * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future += this.faker.number.int(range); // some time from now to N years later, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time + 1000,
+      to: time + years * 365 * 24 * 3600 * 1000,
+    });
   }
 
   /**
@@ -193,11 +177,10 @@ export class SimpleDateModule extends SimpleModuleBase {
   }): Date {
     const { from, to } = options;
 
-    const fromMs = toDate(from, this.faker.defaultRefDate).getTime();
-    const toMs = toDate(to, this.faker.defaultRefDate).getTime();
-    const dateOffset = this.faker.number.int(toMs - fromMs);
+    const fromMs = toDate(from, 'from').getTime();
+    const toMs = toDate(to, 'to').getTime();
 
-    return new Date(fromMs + dateOffset);
+    return new Date(this.faker.number.int({ min: fromMs, max: toMs }));
   }
 
   /**
@@ -292,23 +275,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate } = options;
+    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: days * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future -= this.faker.number.int(range); // some time from now to N days ago, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time - days * 24 * 3600 * 1000,
+      to: time - 1000,
+    });
   }
 
   /**
@@ -343,23 +321,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate } = options;
+    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: days * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future += this.faker.number.int(range); // some time from now to N days later, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time + 1000,
+      to: time + days * 24 * 3600 * 1000,
+    });
   }
 
   /**
@@ -425,11 +398,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { min, max, mode = 'age', mode: originalMode } = options;
-    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
-    const refYear = refDate.getUTCFullYear();
+    const {
+      mode = 'age',
+      refDate = this.faker.defaultRefDate(),
+      min: originalMin,
+      max: originalMax,
+      mode: originalMode,
+    } = options;
+
     // TODO @ST-DDT 2024-03-17: Remove check in v10
-    const optionsSet = [min, max, originalMode].filter((x) => x != null).length;
+    const optionsSet = [originalMin, originalMax, originalMode].filter(
+      (x) => x != null
+    ).length;
     if (optionsSet % 3 !== 0) {
       deprecated({
         deprecated:
@@ -440,16 +420,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       });
     }
 
+    const date = toDate(refDate);
+    const refYear = date.getUTCFullYear();
+
     switch (mode) {
       case 'age': {
-        const from = new Date(refDate).setUTCFullYear(
-          refYear - (max ?? 80) - 1
-        );
-        const to = new Date(refDate).setUTCFullYear(refYear - (min ?? 18));
+        const { min = 18, max = 80 } = options;
+        const from = new Date(refDate).setUTCFullYear(refYear - max - 1);
+        const to = new Date(refDate).setUTCFullYear(refYear - min);
 
         if (from > to) {
           throw new FakerError(
-            `Max age ${max ?? 80} should be greater than or equal to min age ${min ?? 18}.`
+            `Max age ${max} should be greater than or equal to min age ${min}.`
           );
         }
 
@@ -457,14 +439,11 @@ export class SimpleDateModule extends SimpleModuleBase {
       }
 
       case 'year': {
+        const { min = refYear - 80, max = refYear - 19 } = options;
         // Avoid generating dates on the first and last date of the year
         // to avoid running into other years depending on the timezone.
-        const from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
-          min ?? refYear - 80
-        );
-        const to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-          max ?? refYear - 19
-        );
+        const from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min);
+        const to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(max);
 
         if (from > to) {
           throw new FakerError(
