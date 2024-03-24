@@ -11,7 +11,7 @@
       exit 1;
     else
       # Otherwise check if something doc related changed.
-      git diff --quiet origin/next...$COMMIT_REF -- . \':!src/locale/\' \':!src/locales/\' \':!test/\' \':!package.json\' \':!pnpm-lock.yaml\' \':!.github/\'
+      git diff --quiet origin/next...$COMMIT_REF -- . ":!src/locale/" ":!src/locales/" ":!test/" ":!package.json" ":!pnpm-lock.yaml" ":!.github/"
     fi
   '''
 
