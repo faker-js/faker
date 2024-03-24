@@ -106,10 +106,6 @@ describe('date', () => {
 
     t.describe('birthdate', (t) => {
       t.it('with only refDate', { refDate })
-        .it('with age mode and refDate', {
-          mode: 'age',
-          refDate,
-        })
         .it('with age and refDate', {
           min: 40,
           max: 40,
@@ -120,10 +116,6 @@ describe('date', () => {
           min: 20,
           max: 80,
           mode: 'age',
-          refDate,
-        })
-        .it('with year mode and refDate', {
-          mode: 'year',
           refDate,
         })
         .it('with year and refDate', {
@@ -497,23 +489,6 @@ describe('date', () => {
           expect(birthdate).toBeInstanceOf(Date);
         });
 
-        it.each(['year', 'age', undefined] as const)(
-          'returns a random birthdate that is 18+ by default (%s mode)',
-          (mode) => {
-            // Generate the latest possible value => youngest
-            faker.seed(2855577693);
-
-            const refDate = new Date();
-            const birthdate = faker.date.birthdate({ refDate, mode });
-            expect(birthdate).toBeInstanceOf(Date);
-            const value = birthdate.valueOf();
-            const refDateValue = refDate.valueOf();
-            expect(value).toBeLessThanOrEqual(refDateValue);
-            const deltaDate = new Date(refDateValue - value);
-            expect(deltaDate.getUTCFullYear() - 1970).toBe(18);
-          }
-        );
-
         it('returns a random birthdate in one year', () => {
           const min = 1990;
           const max = 1990;
@@ -578,6 +553,22 @@ describe('date', () => {
           expect(deltaDate.getUTCFullYear() - 1970).toBeLessThanOrEqual(22);
         });
 
+        it.each(['min', 'max', 'mode'] as const)(
+          "should throw an error when '%s' is not provided",
+          (key) => {
+            const options = { min: 18, max: 80, mode: 'age' } as const;
+
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+            delete options[key];
+
+            expect(() => faker.date.birthdate(options)).toThrow(
+              new FakerError(
+                `The 'min', 'max', and 'mode' options must be set together.`
+              )
+            );
+          }
+        );
+
         it('should throw an error when the min > max year', () => {
           const min = 2000;
           const max = 1990;
@@ -587,32 +578,6 @@ describe('date', () => {
           ).toThrow(
             new FakerError(
               `Max year 1990 should be greater than or equal to min year 2000.`
-            )
-          );
-        });
-
-        it('should throw an error when the min > undefined max year', () => {
-          const min = 2010;
-          const refDate = Date.UTC(2020, 0, 1);
-
-          expect(() =>
-            faker.date.birthdate({ min, refDate, mode: 'year' })
-          ).toThrow(
-            new FakerError(
-              `Max year 2001 should be greater than or equal to min year 2010.`
-            )
-          );
-        });
-
-        it('should throw an error when the undefined min > max year', () => {
-          const max = 1900;
-          const refDate = Date.UTC(2020, 0, 1);
-
-          expect(() =>
-            faker.date.birthdate({ max, refDate, mode: 'year' })
-          ).toThrow(
-            new FakerError(
-              `Max year 1900 should be greater than or equal to min year 1940.`
             )
           );
         });
@@ -627,32 +592,6 @@ describe('date', () => {
           ).toThrow(
             new FakerError(
               `Max age 25 should be greater than or equal to min age 31.`
-            )
-          );
-        });
-
-        it('should throw an error when the min > undefined max age', () => {
-          const min = 100;
-          const refDate = Date.UTC(2020, 0, 1);
-
-          expect(() =>
-            faker.date.birthdate({ min, refDate, mode: 'age' })
-          ).toThrow(
-            new FakerError(
-              `Max age 80 should be greater than or equal to min age 100.`
-            )
-          );
-        });
-
-        it('should throw an error when the undefined min > max age', () => {
-          const max = 10;
-          const refDate = Date.UTC(2020, 0, 1);
-
-          expect(() =>
-            faker.date.birthdate({ max, refDate, mode: 'age' })
-          ).toThrow(
-            new FakerError(
-              `Max age 10 should be greater than or equal to min age 18.`
             )
           );
         });
