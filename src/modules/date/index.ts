@@ -5,26 +5,21 @@ import { SimpleModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
 
 /**
- * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non-parsable value is passed, then it will take the value from the given fallback.
+ * Converts a date passed as a `string`, `number` or `Date` to a valid `Date` object.
  *
  * @param date The date to convert.
- * @param fallback The fallback date to use if the passed date is not valid.
+ * @param name The reference name used for error messages. Defaults to `'refDate'`.
+ *
+ * @throws If the given date is invalid.
  */
-function toDate(
-  date: string | Date | number | undefined,
-  fallback: () => Date
-): Date {
-  if (date == null) {
-    return fallback();
+function toDate(date: string | Date | number, name: string = 'refDate'): Date {
+  const converted = new Date(date);
+
+  if (Number.isNaN(converted.valueOf())) {
+    throw new FakerError(`Invalid ${name} date: ${date.toString()}`);
   }
 
-  date = new Date(date);
-  if (Number.isNaN(date.valueOf())) {
-    date = fallback();
-  }
-
-  return date;
+  return converted;
 }
 
 /**
@@ -56,13 +51,12 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { refDate } = options;
-
-    const date = toDate(refDate, this.faker.defaultRefDate);
+    const { refDate = this.faker.defaultRefDate() } = options;
+    const time = toDate(refDate).getTime();
 
     return this.between({
-      from: new Date(date.getTime() - 1000 * 60 * 60 * 24 * 365),
-      to: new Date(date.getTime() + 1000 * 60 * 60 * 24 * 365),
+      from: time - 1000 * 60 * 60 * 24 * 365,
+      to: time + 1000 * 60 * 60 * 24 * 365,
     });
   }
 
@@ -98,23 +92,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: years * 365 * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let past = date.getTime();
-    past -= this.faker.number.int(range); // some time from now to N years ago, in milliseconds
-    date.setTime(past);
-
-    return date;
+    return this.between({
+      from: time - years * 365 * 24 * 3600 * 1000,
+      to: time - 1000,
+    });
   }
 
   /**
@@ -149,23 +138,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: years * 365 * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future += this.faker.number.int(range); // some time from now to N years later, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time + 1000,
+      to: time + years * 365 * 24 * 3600 * 1000,
+    });
   }
 
   /**
@@ -200,13 +184,9 @@ export class SimpleDateModule extends SimpleModuleBase {
     }
 
     const { from, to } = options;
-    const fromMs = new Date(from).getTime();
-    const toMs = new Date(to).getTime();
 
-    if (Number.isNaN(fromMs) || Number.isNaN(toMs)) {
-      throw new FakerError('Both `from` and `to` must be valid dates.');
-    }
-
+    const fromMs = toDate(from, 'from').getTime();
+    const toMs = toDate(to, 'to').getTime();
     if (fromMs > toMs) {
       throw new FakerError('`from` date must be before `to` date.');
     }
@@ -314,23 +294,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate } = options;
+    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: days * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future -= this.faker.number.int(range); // some time from now to N days ago, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time - days * 24 * 3600 * 1000,
+      to: time - 1000,
+    });
   }
 
   /**
@@ -365,23 +340,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate } = options;
+    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: days * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future += this.faker.number.int(range); // some time from now to N days later, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time + 1000,
+      to: time + days * 24 * 3600 * 1000,
+    });
   }
 
   /**
@@ -438,9 +408,9 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const mode = options.mode === 'age' ? 'age' : 'year';
-    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
-    const refYear = refDate.getUTCFullYear();
+    const { mode = 'year', refDate = this.faker.defaultRefDate() } = options;
+    const date = toDate(refDate);
+    const refYear = date.getUTCFullYear();
 
     // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
     // So that people can still be considered as adults in most cases
@@ -449,8 +419,8 @@ export class SimpleDateModule extends SimpleModuleBase {
     let min: number;
     let max: number;
     if (mode === 'age') {
-      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
-      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
+      min = new Date(date).setUTCFullYear(refYear - (options.max ?? 80) - 1);
+      max = new Date(date).setUTCFullYear(refYear - (options.min ?? 18));
     } else {
       // Avoid generating dates the first and last date of the year
       // to avoid running into other years depending on the timezone.
