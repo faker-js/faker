@@ -266,6 +266,14 @@ describe('date', () => {
           ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
+        it('should allow date 0 (start of UNIX epoch)', () => {
+          const date = faker.date.between({
+            from: 0,
+            to: '1970-12-31',
+          });
+          expect(date).greaterThan(new Date(0));
+        });
+
         it('should throw an error if to is invalid', () => {
           expect(() =>
             faker.date.between({
