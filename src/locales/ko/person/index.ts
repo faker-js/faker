@@ -11,10 +11,10 @@ import male_first_name from './male_first_name';
 import name_ from './name';
 
 const person: PersonDefinition = {
+  female_first_name,
   first_name,
   last_name,
   last_name_pattern,
-  female_first_name,
   male_first_name,
   name: name_,
 };
