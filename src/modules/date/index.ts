@@ -472,9 +472,9 @@ export class SimpleDateModule extends SimpleModuleBase {
   ): Date;
   birthdate(
     options: {
+      mode?: 'age' | 'year';
       min?: number;
       max?: number;
-      mode?: 'age' | 'year';
       refDate?: string | Date | number;
     } = {}
   ): Date {
