@@ -109,7 +109,6 @@ export default [
   'Suriya',
   'Surmaniya',
   'Svazilend',
-  'Shvetsiya',
   'Shveytsariya',
   'Tailand',
   'Tanzaniya',
