@@ -119,12 +119,15 @@ function evalProcessFunction(
   switch (nextChar) {
     case '.':
     case '(':
-    case undefined:
+    case undefined: {
       break; // valid
-    default:
+    }
+
+    default: {
       throw new FakerError(
         `Expected dot ('.'), open parenthesis ('('), or nothing after function call but got '${nextChar}'`
       );
+    }
   }
 
   return [
@@ -223,7 +226,8 @@ function resolveProperty(entrypoint: unknown, key: string): unknown {
       return entrypoint?.[key as keyof typeof entrypoint];
     }
 
-    default:
+    default: {
       return undefined;
+    }
   }
 }

@@ -39,15 +39,15 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
 
 function comparableSanitizedHtml(html: string): string {
   return html
-    .replace(/&#x[0-9A-F]{2};/g, (x) =>
+    .replaceAll(/&#x[0-9A-F]{2};/g, (x) =>
       String.fromCodePoint(Number.parseInt(x.slice(3, -1), 16))
     )
-    .replace(/&gt;/g, '>')
-    .replace(/&lt;/g, '<')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/=""/g, '')
-    .replace(/ /g, '');
+    .replaceAll('&gt;', '>')
+    .replaceAll('&lt;', '<')
+    .replaceAll('&amp;', '&')
+    .replaceAll('&quot;', '"')
+    .replaceAll('=""', '')
+    .replaceAll(' ', '');
 }
 
 /**

@@ -11,7 +11,10 @@ describe('phone', () => {
     t.it('imei');
 
     t.describe('number', (t) => {
-      t.it('noArgs').it('format', '###-###-####');
+      t.it('noArgs')
+        .it('with human style', { style: 'human' })
+        .it('with national style', { style: 'national' })
+        .it('with international style', { style: 'international' });
     });
   });
 
