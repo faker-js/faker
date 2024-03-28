@@ -358,7 +358,7 @@ export class SimpleDateModule extends SimpleModuleBase {
 
   /**
    * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
-   * But you can customize the `'age'` range or the `'year'` range to generate a birthdate.
+   * But you can customize the `'age'` range or the `'year'` range to generate a more specific birthdate.
    *
    * @param options The options to use to generate the birthdate.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
@@ -427,7 +427,8 @@ export class SimpleDateModule extends SimpleModuleBase {
    */
   birthdate(options: {
     /**
-     * `'year'` to generate a birthdate based on the year range. It is also possible to generate a birthdate based on an `'age'` range.
+     * `'year'` to generate a birthdate based on the year range.
+     * It is also possible to generate a birthdate based on an `'age'` range.
      */
     mode: 'year';
     /**
@@ -446,7 +447,8 @@ export class SimpleDateModule extends SimpleModuleBase {
     refDate?: string | Date | number;
   }): Date;
   /**
-   * Returns a random birthdate in the given range of years.
+   * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
+   * But you can customize the `'age'` range or the `'year'` range to generate a more specific birthdate.
    *
    * @param options The options to use to generate the birthdate.
    * @param options.mode Either `'age'` or `'year'` to generate a birthdate based on the age or year range.
@@ -477,11 +479,11 @@ export class SimpleDateModule extends SimpleModuleBase {
            */
           mode: 'age' | 'year';
           /**
-           * The minimum year to generate a birthdate in.
+           * The minimum age/year to generate a birthdate for/in.
            */
           min: number;
           /**
-           * The maximum year to generate a birthdate in.
+           * The maximum age/year to generate a birthdate for/in.
            */
           max: number;
           /**
