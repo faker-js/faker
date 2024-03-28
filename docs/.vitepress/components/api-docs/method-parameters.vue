@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { MethodParameter } from './method';
+import type { ApiDocsMethodParameter } from './method';
 
-const props = defineProps<{ parameters: MethodParameter[] }>();
+const props = defineProps<{ parameters: ApiDocsMethodParameter[] }>();
 </script>
 
 <template>

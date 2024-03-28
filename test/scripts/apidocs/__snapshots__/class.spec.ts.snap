@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`class > expected and actual modules are equal 1`] = `
+[
+  "ModuleDeprecationTest",
+  "ModuleExampleTest",
+  "ModuleFakerJsLinkTest",
+  "ModuleNextFakerJsLinkTest",
+  "ModuleSimpleTest",
+]
+`;
+
+exports[`class > processClass(ModuleDeprecationTest) 1`] = `
+{
+  "camelTitle": "moduleDeprecationTest",
+  "category": undefined,
+  "deprecated": "Well, this is deprecated.",
+  "description": "This is a description for a module with a code example.",
+  "examples": [],
+  "methods": [],
+  "title": "ModuleDeprecationTest",
+}
+`;
+
+exports[`class > processClass(ModuleExampleTest) 1`] = `
+{
+  "camelTitle": "moduleExampleTest",
+  "category": undefined,
+  "deprecated": undefined,
+  "description": "This is a description for a module with a code example.",
+  "examples": [
+    "new ModuleExampleTest()",
+  ],
+  "methods": [],
+  "title": "ModuleExampleTest",
+}
+`;
+
+exports[`class > processClass(ModuleFakerJsLinkTest) 1`] = `
+{
+  "camelTitle": "moduleFakerJsLinkTest",
+  "category": undefined,
+  "deprecated": undefined,
+  "description": "Description with a link to our [website](https://fakerjs.dev/)
+and [api docs](https://fakerjs.dev/api/).",
+  "examples": [],
+  "methods": [],
+  "title": "ModuleFakerJsLinkTest",
+}
+`;
+
+exports[`class > processClass(ModuleNextFakerJsLinkTest) 1`] = `
+{
+  "camelTitle": "moduleNextFakerJsLinkTest",
+  "category": undefined,
+  "deprecated": undefined,
+  "description": "Description with a link to our [website](https://next.fakerjs.dev/)
+and [api docs](https://next.fakerjs.dev/api/).",
+  "examples": [],
+  "methods": [],
+  "title": "ModuleNextFakerJsLinkTest",
+}
+`;
+
+exports[`class > processClass(ModuleSimpleTest) 1`] = `
+{
+  "camelTitle": "moduleSimpleTest",
+  "category": undefined,
+  "deprecated": undefined,
+  "description": "A simple module without anything special.",
+  "examples": [],
+  "methods": [],
+  "title": "ModuleSimpleTest",
+}
+`;

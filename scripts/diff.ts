@@ -2,14 +2,14 @@
 
 import { existsSync } from 'node:fs';
 import { argv } from 'node:process';
-import { diff } from './apidoc/diff';
-import { pathDocsDiffIndexFile } from './apidoc/utils';
+import { diff } from './apidocs/diff';
+import { FILE_PATH_DOCS_DIFF_INDEX } from './apidocs/output/diff-index';
 
 const [target, source] = argv.slice(2);
 
-if (!source && !existsSync(pathDocsDiffIndexFile)) {
+if (!source && !existsSync(FILE_PATH_DOCS_DIFF_INDEX)) {
   throw new Error(
-    `Unable to find local diff index file at: ${pathDocsDiffIndexFile}\n
+    `Unable to find local diff index file at: ${FILE_PATH_DOCS_DIFF_INDEX}\n
     You can run \`pnpm run generate:api-docs\` to generate it.`
   );
 }

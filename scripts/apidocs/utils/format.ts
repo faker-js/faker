@@ -1,6 +1,6 @@
 import type { Options } from 'prettier';
 import { format } from 'prettier';
-import prettierConfig from '../../.prettierrc.js';
+import prettierConfig from '../../../.prettierrc.js';
 
 /**
  * Formats markdown contents.
