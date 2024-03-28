@@ -113,6 +113,17 @@ describe('string', () => {
 
     t.itRepeated('uuid', 5);
 
+    t.describe('ulid', (t) => {
+      const ulidRefDate = '2021-02-21T17:09:15.711Z';
+
+      t.itRepeated('noArgs', 5)
+        .it('with only string refDate', { refDate: ulidRefDate })
+        .it('with only Date refDate', { refDate: new Date(ulidRefDate) })
+        .it('with only number refDate', {
+          refDate: new Date(ulidRefDate).getTime(),
+        });
+    });
+
     t.describe('nanoid', (t) => {
       t.itRepeated('noArgs', 5)
         .it('with length parameter', 30)
@@ -747,6 +758,14 @@ describe('string', () => {
           const RFC4122 =
             /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
+        });
+      });
+
+      describe(`ulid`, () => {
+        it('generates a valid ULID', () => {
+          const ulid = faker.string.ulid();
+          const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
+          expect(ulid).toMatch(regex);
         });
       });
 

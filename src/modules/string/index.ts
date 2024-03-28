@@ -705,6 +705,59 @@ export class StringModule extends SimpleModuleBase {
   }
 
   /**
+   * Returns a ULID ([Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec)).
+   *
+   * @param options The optional options object.
+   * @param options.refDate The date to use as reference point for the newly generated ULID encoded timestamp. Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+   *
+   * @since 8.2.0
+   */
+  ulid(
+    options: {
+      /**
+       * The date to use as reference point for the newly generated ULID encoded timestamp.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const encodingCharacters = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // Crockford's Base32 - Excludes I, L, O, and U which may be confused with numbers
+    const encodingLength = encodingCharacters.length;
+    const encodeTime = (now: number) => {
+      let mod;
+      let len = 10;
+      let str = '';
+      for (; len > 0; len--) {
+        mod = now % encodingLength;
+        str = encodingCharacters.charAt(mod) + str;
+        now = (now - mod) / encodingLength;
+      }
+
+      return str;
+    };
+
+    const { refDate } = options;
+    let date = refDate;
+
+    if (date == null) {
+      date = this.faker.defaultRefDate();
+    }
+
+    date = new Date(date);
+    if (Number.isNaN(date.valueOf())) {
+      date = this.faker.defaultRefDate();
+    }
+
+    return (
+      encodeTime(date.getTime()) + this.fromCharacters(encodingCharacters, 16)
+    );
+  }
+
+  /**
    * Generates a [Nano ID](https://github.com/ai/nanoid).
    *
    * @param length Length of the generated string. Defaults to `21`.
