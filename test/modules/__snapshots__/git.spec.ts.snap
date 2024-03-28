@@ -2,16 +2,16 @@
 
 exports[`git > 42 > branch 1`] = `"array-parse"`;
 
-exports[`git > 42 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 15:00:39 2019 +1100"`;
+exports[`git > 42 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 08:59:19 2019 +1100"`;
 
-exports[`git > 42 > commitDate > with only number refDate 1`] = `"Tue Dec 31 15:00:39 2019 +1100"`;
+exports[`git > 42 > commitDate > with only number refDate 1`] = `"Tue Dec 31 08:59:19 2019 +1100"`;
 
-exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 15:00:39 2019 +1100"`;
+exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 08:59:19 2019 +1100"`;
 
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
 Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
-Date: Tue Dec 31 09:39:01 2019 +1100
+Date: Tue Dec 31 14:20:57 2019 +1100
 
     bypass digital protocol
 "
@@ -20,7 +20,7 @@ Date: Tue Dec 31 09:39:01 2019 +1100
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
 Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
-Date: Tue Dec 31 09:39:01 2019 +1100
+Date: Tue Dec 31 14:20:57 2019 +1100
 
     bypass digital protocol
 "
@@ -29,7 +29,7 @@ Date: Tue Dec 31 09:39:01 2019 +1100
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
 Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
-Date: Tue Dec 31 09:39:01 2019 +1100
+Date: Tue Dec 31 14:20:57 2019 +1100
 
     bypass digital protocol
 "
@@ -45,16 +45,16 @@ exports[`git > 42 > commitSha > with length 8 1`] = `"8ead331d"`;
 
 exports[`git > 1211 > branch 1`] = `"capacitor-reboot"`;
 
-exports[`git > 1211 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 01:42:55 2019 +1000"`;
+exports[`git > 1211 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 22:17:03 2019 +1000"`;
 
-exports[`git > 1211 > commitDate > with only number refDate 1`] = `"Tue Dec 31 01:42:55 2019 +1000"`;
+exports[`git > 1211 > commitDate > with only number refDate 1`] = `"Tue Dec 31 22:17:03 2019 +1000"`;
 
-exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 01:42:55 2019 +1000"`;
+exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 22:17:03 2019 +1000"`;
 
 exports[`git > 1211 > commitEntry > with only Date refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
 Author: Deion Durgan <Deion.Durgan@hotmail.com>
-Date: Tue Dec 31 12:51:43 2019 -0600
+Date: Tue Dec 31 11:08:15 2019 -0600
 
     calculate optical bandwidth
 "
@@ -63,7 +63,7 @@ Date: Tue Dec 31 12:51:43 2019 -0600
 exports[`git > 1211 > commitEntry > with only number refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
 Author: Deion Durgan <Deion.Durgan@hotmail.com>
-Date: Tue Dec 31 12:51:43 2019 -0600
+Date: Tue Dec 31 11:08:15 2019 -0600
 
     calculate optical bandwidth
 "
@@ -72,7 +72,7 @@ Date: Tue Dec 31 12:51:43 2019 -0600
 exports[`git > 1211 > commitEntry > with only string refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
 Author: Deion Durgan <Deion.Durgan@hotmail.com>
-Date: Tue Dec 31 12:51:43 2019 -0600
+Date: Tue Dec 31 11:08:15 2019 -0600
 
     calculate optical bandwidth
 "
@@ -88,16 +88,16 @@ exports[`git > 1211 > commitSha > with length 8 1`] = `"ed4fefa7"`;
 
 exports[`git > 1337 > branch 1`] = `"port-hack"`;
 
-exports[`git > 1337 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 17:42:40 2019 -0800"`;
+exports[`git > 1337 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 06:17:18 2019 -0800"`;
 
-exports[`git > 1337 > commitDate > with only number refDate 1`] = `"Tue Dec 31 17:42:40 2019 -0800"`;
+exports[`git > 1337 > commitDate > with only number refDate 1`] = `"Tue Dec 31 06:17:18 2019 -0800"`;
 
-exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 17:42:40 2019 -0800"`;
+exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 06:17:18 2019 -0800"`;
 
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
 Author: Matt_Hills <Matt_Hills99@yahoo.com>
-Date: Tue Dec 31 23:39:16 2019 -0900
+Date: Tue Dec 31 00:20:42 2019 -0900
 
     reboot mobile sensor
 "
@@ -106,7 +106,7 @@ Date: Tue Dec 31 23:39:16 2019 -0900
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
 Author: Matt_Hills <Matt_Hills99@yahoo.com>
-Date: Tue Dec 31 23:39:16 2019 -0900
+Date: Tue Dec 31 00:20:42 2019 -0900
 
     reboot mobile sensor
 "
@@ -115,7 +115,7 @@ Date: Tue Dec 31 23:39:16 2019 -0900
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
 Author: Matt_Hills <Matt_Hills99@yahoo.com>
-Date: Tue Dec 31 23:39:16 2019 -0900
+Date: Tue Dec 31 00:20:42 2019 -0900
 
     reboot mobile sensor
 "
