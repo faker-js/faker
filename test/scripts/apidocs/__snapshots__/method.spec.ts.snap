@@ -198,7 +198,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
           "description": "\`'a'\` or \`'b'\`.",
           "name": "value",
           "type": {
-            "text": "('a' | 'b') | string",
+            "text": "'a' | 'b' | string",
             "type": "union",
             "types": [
               {
@@ -260,11 +260,11 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
           "description": "Array of \`'a'\` or \`'b'\`.",
           "name": "array",
           "type": {
-            "text": "Array<('a' | 'b') | string>",
+            "text": "Array<'a' | 'b' | string>",
             "type": "generic",
             "typeParameters": [
               {
-                "text": "('a' | 'b') | string",
+                "text": "'a' | 'b' | string",
                 "type": "union",
                 "types": [
                   {
@@ -334,7 +334,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
           "description": "Value \`'a'\` or \`'b'\` or an array thereof.",
           "name": "mixed",
           "type": {
-            "text": "'a' | 'b' | string & { zz_IGNORE_ME?: undefined; } | Array<('a' | 'b') | string>",
+            "text": "'a' | 'b' | string | Array<'a' | 'b' | string>",
             "type": "union",
             "types": [
               {
@@ -350,11 +350,11 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
                 "type": "simple",
               },
               {
-                "text": "Array<('a' | 'b') | string>",
+                "text": "Array<'a' | 'b' | string>",
                 "type": "generic",
                 "typeParameters": [
                   {
-                    "text": "('a' | 'b') | string",
+                    "text": "'a' | 'b' | string",
                     "type": "union",
                     "types": [
                       {
@@ -387,7 +387,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
           "description": "Value \`'a'\` or \`'b'\` or an array thereof.",
           "name": "namedMixed",
           "type": {
-            "text": "'a' | 'b' | string & { zz_IGNORE_ME?: undefined; } | Array<AB | string>",
+            "text": "'a' | 'b' | string | Array<AB | string>",
             "type": "union",
             "types": [
               {
@@ -1075,7 +1075,7 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
           "description": "A parameter with inline documentation.",
           "name": "options.e",
           "type": {
-            "text": "('a' | 'b') | string",
+            "text": "'a' | 'b' | string",
             "type": "union",
             "types": [
               {
