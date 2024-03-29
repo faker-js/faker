@@ -107,28 +107,26 @@ describe('date', () => {
     t.describe('birthdate', (t) => {
       t.it('with only refDate', { refDate })
         .it('with age and refDate', {
+          mode: 'age',
           min: 40,
           max: 40,
-          mode: 'age',
           refDate,
         })
         .it('with age range and refDate', {
+          mode: 'age',
           min: 20,
           max: 80,
-          mode: 'age',
           refDate,
         })
-        .it('with year and refDate', {
+        .it('with year', {
+          mode: 'year',
           min: 2000,
           max: 2000,
-          mode: 'age',
-          refDate,
         })
-        .it('with year range and refDate', {
+        .it('with year range', {
+          mode: 'year',
           min: 1900,
           max: 2000,
-          mode: 'age',
-          refDate,
         });
     });
   });
