@@ -418,7 +418,6 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.mode `'year'` to generate a birthdate based on the year range. It is also possible to generate a birthdate based on a `'age'` range.
    * @param options.min The minimum year to generate a birthdate in.
    * @param options.max The maximum year to generate a birthdate in.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @example
    * faker.date.birthdate({ mode: 'year', min: 1900, max: 2000 }) // 1940-08-20T08:53:07.538Z
@@ -439,12 +438,6 @@ export class SimpleDateModule extends SimpleModuleBase {
      * The maximum year to generate a birthdate in.
      */
     max: number;
-    /**
-     * The date to use as reference point for the newly generated date.
-     *
-     * @default faker.defaultRefDate()
-     */
-    refDate?: string | Date | number;
   }): Date;
   /**
    * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
@@ -504,7 +497,7 @@ export class SimpleDateModule extends SimpleModuleBase {
   ): Date {
     const {
       mode = 'age',
-      refDate = this.faker.defaultRefDate(),
+      refDate: rawRefDate = this.faker.defaultRefDate(),
       min: originalMin,
       max: originalMax,
       mode: originalMode,
@@ -520,8 +513,8 @@ export class SimpleDateModule extends SimpleModuleBase {
       );
     }
 
-    const date = toDate(refDate);
-    const refYear = date.getUTCFullYear();
+    const refDate = toDate(rawRefDate);
+    const refYear = refDate.getUTCFullYear();
 
     switch (mode) {
       case 'age': {
@@ -547,7 +540,7 @@ export class SimpleDateModule extends SimpleModuleBase {
 
         if (from > to) {
           throw new FakerError(
-            `Max year ${max ?? refYear - 19} should be greater than or equal to min year ${min ?? refYear - 80}.`
+            `Max year ${max} should be greater than or equal to min year ${min}.`
           );
         }
 
