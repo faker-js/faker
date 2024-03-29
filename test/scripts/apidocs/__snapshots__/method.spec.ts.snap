@@ -334,7 +334,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
           "description": "Value \`'a'\` or \`'b'\` or an array thereof.",
           "name": "mixed",
           "type": {
-            "text": "'a' | 'b' | string & { zz_IGNORE_ME?: undefined; } | (Array<('a' | 'b') | string>)",
+            "text": "'a' | 'b' | string & { zz_IGNORE_ME?: undefined; } | Array<('a' | 'b') | string>",
             "type": "union",
             "types": [
               {

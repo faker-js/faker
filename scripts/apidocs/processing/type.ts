@@ -202,16 +202,21 @@ function newUnionType(types: RawApiDocsType[]): RawApiDocsUnionType {
     types,
     text: types
       .map((t) => t.text)
-      .map((t) =>
-        // T | U -> (T | U)
-        // But NOT Array<T | U> -> (Array<T | U>)
-        // () => T -> (() => T)
-        (t.includes('|') && !/^[A-Z]+<[^>]+>$/i.test(t)) || t.includes('(')
-          ? `(${t})`
-          : t
-      )
+      .map((t) => (shouldWrapInParensForUnion(t) ? `(${t})` : t))
       .join(' | '),
   };
+}
+
+function shouldWrapInParensForUnion(text: string): boolean {
+  // T | U -> (T | U)
+  // But NOT Array<T | U> -> (Array<T | U>)
+  const isUnionish = text.includes('|');
+  const isGenericType = /^[A-Z]+<[^>]+>$/i.test(text);
+
+  // () => T -> (() => T)
+  const isFunctionSignature = text.startsWith('(');
+
+  return (isUnionish && !isGenericType) || isFunctionSignature;
 }
 
 function newShadowType(
