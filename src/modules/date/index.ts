@@ -447,7 +447,9 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.mode Either `'age'` or `'year'` to generate a birthdate based on the age or year range.
    * @param options.min The minimum age or year to generate a birthdate in.
    * @param options.max The maximum age or year to generate a birthdate in.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   * @param options.refDate The date to use as reference point for the newly generated date.
+   * Only used when `mode` is `'age'`.
+   * Defaults to `faker.defaultRefDate()`.
    *
    * @example
    * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
@@ -481,6 +483,7 @@ export class SimpleDateModule extends SimpleModuleBase {
           max: number;
           /**
            * The date to use as reference point for the newly generated date.
+           * Only used when `mode` is `'age'`.
            *
            * @default faker.defaultRefDate()
            */
@@ -497,10 +500,12 @@ export class SimpleDateModule extends SimpleModuleBase {
   ): Date {
     const {
       mode = 'age',
+      min = 18,
+      max = 80,
       refDate: rawRefDate = this.faker.defaultRefDate(),
+      mode: originalMode,
       min: originalMin,
       max: originalMax,
-      mode: originalMode,
     } = options;
 
     // TODO @ST-DDT 2024-03-17: Remove check in v10
@@ -518,7 +523,6 @@ export class SimpleDateModule extends SimpleModuleBase {
 
     switch (mode) {
       case 'age': {
-        const { min = 18, max = 80 } = options;
         const from = new Date(refDate).setUTCFullYear(refYear - max - 1);
         const to = new Date(refDate).setUTCFullYear(refYear - min);
 
@@ -532,7 +536,6 @@ export class SimpleDateModule extends SimpleModuleBase {
       }
 
       case 'year': {
-        const { min = refYear - 80, max = refYear - 19 } = options;
         // Avoid generating dates on the first and last date of the year
         // to avoid running into other years depending on the timezone.
         const from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min);
