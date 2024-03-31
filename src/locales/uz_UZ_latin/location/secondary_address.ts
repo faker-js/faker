@@ -1,1 +1,1 @@
-export default ['### uy'];
+export default ['### uy', '### xonadon'];

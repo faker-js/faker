@@ -1,1 +1,8 @@
-export default ['bulvari', "ko'chasi", "qirg'oqi", 'xiyoboni', "qishlog'i"];
+export default [
+  'bulvari',
+  'daxasi',
+  "ko'chasi",
+  "qirg'oqi",
+  "qishlog'i",
+  'xiyoboni',
+];
