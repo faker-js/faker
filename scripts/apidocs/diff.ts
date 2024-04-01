@@ -1,12 +1,15 @@
-import type { DocsApiDiffIndex } from './utils';
-import { nameDocsDiffIndexFile, pathDocsDiffIndexFile } from './utils';
+import type { ApiDiffHashes } from './output/diff-index';
+import {
+  FILE_NAME_DOCS_DIFF_INDEX,
+  FILE_PATH_DOCS_DIFF_INDEX,
+} from './output/diff-index';
 
 /**
  * Loads the diff index from the given source url.
  *
  * @param url The url to load the diff index from.
  */
-async function loadRemote(url: string): Promise<DocsApiDiffIndex> {
+async function loadRemote(url: string): Promise<ApiDiffHashes> {
   return fetch(url).then((res) => {
     if (!res.ok) {
       throw new Error(
@@ -14,7 +17,7 @@ async function loadRemote(url: string): Promise<DocsApiDiffIndex> {
       );
     }
 
-    return res.json() as Promise<DocsApiDiffIndex>;
+    return res.json() as Promise<ApiDiffHashes>;
   });
 }
 
@@ -23,8 +26,8 @@ async function loadRemote(url: string): Promise<DocsApiDiffIndex> {
  *
  * @param path The path to load the diff index from. Should start with `file://` for cross platform compatibility.
  */
-async function loadLocal(path: string): Promise<DocsApiDiffIndex> {
-  return import(path).then((imp) => imp.default as DocsApiDiffIndex);
+async function loadLocal(path: string): Promise<ApiDiffHashes> {
+  return import(path).then((imp) => imp.default as ApiDiffHashes);
 }
 
 /**
@@ -34,7 +37,7 @@ async function loadLocal(path: string): Promise<DocsApiDiffIndex> {
  *
  * @param source The source to load the diff index from.
  */
-async function load(source: string): Promise<DocsApiDiffIndex> {
+async function load(source: string): Promise<ApiDiffHashes> {
   return source.startsWith('https://') ? loadRemote(source) : loadLocal(source);
 }
 
@@ -58,8 +61,8 @@ function allKeys(
  * @param sourceDiffIndex The path to the source (changed) index. Defaults to the local diff index.
  */
 export async function diff(
-  targetDiffIndex = `https://next.fakerjs.dev/${nameDocsDiffIndexFile}`,
-  sourceDiffIndex = `file://${pathDocsDiffIndexFile}`
+  targetDiffIndex = `https://next.fakerjs.dev/${FILE_NAME_DOCS_DIFF_INDEX}`,
+  sourceDiffIndex = `file://${FILE_PATH_DOCS_DIFF_INDEX}`
 ): Promise<Record<string, ['ADDED'] | ['REMOVED'] | string[]>> {
   const target = await load(targetDiffIndex);
   const source = await load(sourceDiffIndex);
