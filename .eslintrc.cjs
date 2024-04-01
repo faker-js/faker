@@ -95,6 +95,16 @@ module.exports = defineConfig({
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
     '@typescript-eslint/prefer-regexp-exec': 'error',
+    '@typescript-eslint/restrict-plus-operands': [
+      'error',
+      {
+        allowAny: false,
+        allowBoolean: false,
+        allowNullish: false,
+        allowNumberAndString: true,
+        allowRegExp: false,
+      },
+    ],
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
