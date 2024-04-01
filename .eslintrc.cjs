@@ -106,6 +106,13 @@ module.exports = defineConfig({
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
 
+    '@typescript-eslint/restrict-plus-operands': [
+      'error',
+      {
+        allowNumberAndString: true
+      },
+    ],
+
     // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     '@typescript-eslint/no-confusing-void-expression': 'off',
