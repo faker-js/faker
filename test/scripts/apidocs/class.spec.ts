@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { processClass } from '../../../scripts/apidocs/processing/class';
 import * as ModuleTests from './class.example';
-import { loadExampleClasses } from './utils';
+import { TASK_MOCK, loadExampleClasses } from './utils';
 
 const modules = loadExampleClasses();
 
@@ -15,7 +15,7 @@ describe('class', () => {
   });
 
   it.each(Object.entries(modules))('processClass(%s)', (_, module) => {
-    const actual = processClass(module);
+    const actual = processClass(TASK_MOCK, module);
 
     expect(actual).toMatchSnapshot();
   });

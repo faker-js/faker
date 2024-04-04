@@ -11,6 +11,7 @@ import {
   type MethodDeclaration,
 } from 'ts-morph';
 import { groupBy } from '../../../src/internal/group-by';
+import type { Task } from '../../logger';
 import { valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type {
@@ -42,23 +43,26 @@ export interface RawApiDocsMethod {
 // Constructors
 
 export function processClassConstructors(
+  task: Task,
   clazz: ClassDeclaration
 ): RawApiDocsMethod[] {
-  return processConstructors(clazz.getConstructors());
+  return processConstructors(task, clazz.getConstructors());
 }
 
 function processConstructors(
+  task: Task,
   constructors: ConstructorDeclaration[]
 ): RawApiDocsMethod[] {
-  return processMethodLikes(constructors, () => 'constructor');
+  return processMethodLikes(task, constructors, () => 'constructor');
 }
 
 // Class Methods
 
 export function processClassMethods(
+  task: Task,
   clazz: ClassDeclaration
 ): RawApiDocsMethod[] {
-  return processMethods(getAllMethods(clazz));
+  return processMethods(task, getAllMethods(clazz));
 }
 
 function getAllMethods(clazz: ClassDeclaration): MethodDeclaration[] {
@@ -85,20 +89,23 @@ type NamedMethodLikeDeclaration = MethodLikeDeclaration &
   Pick<MethodDeclaration, 'getName'>;
 
 function processMethods(
+  task: Task,
   methods: NamedMethodLikeDeclaration[]
 ): RawApiDocsMethod[] {
-  return processMethodLikes(methods, (v) => v.getName());
+  return processMethodLikes(task, methods, (v) => v.getName());
 }
 
 // Interface Methods
 
 export function processInterfaceMethods(
+  task: Task,
   iface: InterfaceDeclaration
 ): RawApiDocsMethod[] {
-  return processMethodSignatures(iface.getMethods());
+  return processMethodSignatures(task, iface.getMethods());
 }
 
 function processMethodSignatures(
+  task: Task,
   methods: MethodSignature[]
 ): RawApiDocsMethod[] {
   const groupedSignatures = groupBy(methods, (v) => v.getName());
@@ -122,7 +129,7 @@ function processMethodSignatures(
     };
   });
 
-  return processMethods(methodLikes);
+  return processMethods(task, methodLikes);
 }
 
 // Functions
@@ -139,10 +146,12 @@ function getAllFunctions(
 }
 
 export function processProjectFunctions(
+  task: Task,
   project: Project,
   ...names: string[]
 ): RawApiDocsMethod[] {
   return processMethodLikes(
+    task,
     valuesForKeys(getAllFunctions(project), names),
     (f) => f.getNameOrThrow()
   );
@@ -156,6 +165,7 @@ type MethodLikeDeclaration = SignatureLikeDeclaration &
   };
 
 function processMethodLikes<T extends MethodLikeDeclaration>(
+  task: Task,
   methods: T[],
   nameResolver: (value: T) => string
 ): RawApiDocsMethod[] {
@@ -164,7 +174,7 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
     .map((method) => {
       const name = nameResolver(method);
       try {
-        return processMethodLike(name, method);
+        return processMethodLike(task, name, method);
       } catch (error) {
         throw newProcessingError({
           type: 'method',
@@ -178,10 +188,11 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
 }
 
 export function processMethodLike(
+  task: Task,
   name: string,
   method: MethodLikeDeclaration
 ): RawApiDocsMethod {
-  console.log(`  - ${name}`);
+  task.update(`  - ${name}`);
   const overloads = method.getOverloads();
   const signatureData: SignatureLikeDeclaration[] =
     overloads.length > 0 ? overloads : [method];

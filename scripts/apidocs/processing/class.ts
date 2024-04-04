@@ -1,4 +1,5 @@
 import type { ClassDeclaration, InterfaceDeclaration, Project } from 'ts-morph';
+import type { Task } from '../../logger';
 import { required, valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';
@@ -65,16 +66,23 @@ function getAllClasses(
   );
 }
 
-export function processProjectClasses(project: Project): RawApiDocsPage[] {
+export function processProjectClasses(
+  task: Task,
+  project: Project
+): RawApiDocsPage[] {
   return processClasses(
+    task,
     valuesForKeys(getAllClasses(project), ['Faker', 'SimpleFaker'])
   );
 }
 
-function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
+function processClasses(
+  task: Task,
+  classes: ClassDeclaration[]
+): RawApiDocsPage[] {
   return classes.map((clazz) => {
     try {
-      return processClass(clazz);
+      return processClass(task, clazz);
     } catch (error) {
       throw newProcessingError({
         type: 'class',
@@ -86,16 +94,23 @@ function processClasses(classes: ClassDeclaration[]): RawApiDocsPage[] {
   });
 }
 
-export function processClass(clazz: ClassDeclaration): RawApiDocsPage {
-  const result = processModule(clazz);
-  result.methods.unshift(...processClassConstructors(clazz));
+export function processClass(
+  task: Task,
+  clazz: ClassDeclaration
+): RawApiDocsPage {
+  const result = processModule(task, clazz);
+  result.methods.unshift(...processClassConstructors(task, clazz));
   return result;
 }
 
 // Modules
 
-export function processModuleClasses(project: Project): RawApiDocsPage[] {
+export function processModuleClasses(
+  task: Task,
+  project: Project
+): RawApiDocsPage[] {
   return processModules(
+    task,
     Object.values(
       getAllClasses(
         project,
@@ -106,10 +121,13 @@ export function processModuleClasses(project: Project): RawApiDocsPage[] {
   );
 }
 
-function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
+function processModules(
+  task: Task,
+  modules: ClassDeclaration[]
+): RawApiDocsPage[] {
   return modules.map((module) => {
     try {
-      return processModule(module, 'Modules');
+      return processModule(task, module, 'Modules');
     } catch (error: unknown) {
       throw newProcessingError({
         type: 'module',
@@ -122,14 +140,15 @@ function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
 }
 
 function processModule(
+  task: Task,
   module: ClassDeclaration,
   category: string | undefined = undefined
 ): RawApiDocsPage {
   const title = getModuleName(module);
 
   return {
-    ...preparePage(module, title, category),
-    methods: processClassMethods(module),
+    ...preparePage(task, module, title, category),
+    methods: processClassMethods(task, module),
   };
 }
 
@@ -150,18 +169,23 @@ function getAllInterfaces(
   );
 }
 
-export function processProjectInterfaces(project: Project): RawApiDocsPage[] {
+export function processProjectInterfaces(
+  task: Task,
+  project: Project
+): RawApiDocsPage[] {
   return processInterfaces(
+    task,
     valuesForKeys(getAllInterfaces(project), ['Randomizer'])
   );
 }
 
 function processInterfaces(
+  task: Task,
   interfaces: InterfaceDeclaration[]
 ): RawApiDocsPage[] {
   return interfaces.map((iface) => {
     try {
-      return processInterface(iface);
+      return processInterface(task, iface);
     } catch (error) {
       throw newProcessingError({
         type: 'interface',
@@ -173,17 +197,23 @@ function processInterfaces(
   });
 }
 
-function processInterface(iface: InterfaceDeclaration): RawApiDocsPage {
+function processInterface(
+  task: Task,
+  iface: InterfaceDeclaration
+): RawApiDocsPage {
   return {
-    ...preparePage(iface, iface.getName()),
-    methods: processInterfaceMethods(iface),
+    ...preparePage(task, iface, iface.getName()),
+    methods: processInterfaceMethods(task, iface),
   };
 }
 
 // Utilities
 
-export function processProjectUtilities(project: Project): RawApiDocsPage {
-  console.log(`- Utilities`);
+export function processProjectUtilities(
+  task: Task,
+  project: Project
+): RawApiDocsPage {
+  task.update(`- Utilities`);
 
   return {
     title: 'Utilities',
@@ -192,18 +222,19 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
     deprecated: undefined,
     description: 'A list of all the utilities available in Faker.js.',
     examples: [],
-    methods: processProjectFunctions(project, 'mergeLocales'),
+    methods: processProjectFunctions(task, project, 'mergeLocales'),
   };
 }
 
 // Helpers
 
 function preparePage(
+  task: Task,
   module: JSDocableLikeNode,
   title: string,
   category: string | undefined = undefined
 ): RawApiDocsPage {
-  console.log(`- ${title}`);
+  task.update(`- ${title}`);
 
   const jsdocs = getJsDocs(module);
 

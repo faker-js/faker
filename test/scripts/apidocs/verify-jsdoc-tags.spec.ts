@@ -6,6 +6,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
 import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
 import { getProject } from '../../../scripts/apidocs/project';
+import { TASK_MOCK } from './utils';
 
 // This test suite ensures, that every method
 // - has working examples
@@ -24,7 +25,7 @@ afterAll(() => {
   }
 });
 
-const modules = processComponents(getProject());
+const modules = processComponents(TASK_MOCK, getProject());
 
 function resolveDirToModule(moduleName: string): string {
   return resolve(tempDir, moduleName);

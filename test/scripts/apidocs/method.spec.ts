@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { processMethodLike } from '../../../scripts/apidocs/processing/method';
 import { SignatureTest } from './method.example';
-import { loadExampleMethods } from './utils';
+import { TASK_MOCK, loadExampleMethods } from './utils';
 
 const methods = loadExampleMethods();
 
@@ -17,7 +17,7 @@ describe('method', () => {
   it.each(Object.entries(methods))(
     'processMethodLike(%s)',
     (name, signature) => {
-      const actual = processMethodLike(name, signature);
+      const actual = processMethodLike(TASK_MOCK, name, signature);
       actual.source = {
         filePath: actual.source.filePath,
         line: -1,

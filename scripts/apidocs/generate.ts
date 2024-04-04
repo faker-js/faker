@@ -1,4 +1,6 @@
 import type { Project } from 'ts-morph';
+import type { Task } from '../logger';
+import { ui } from '../logger';
 import { writeDiffIndex } from './output/diff-index';
 import { writePages } from './output/page';
 import { writePageIndex } from './output/page-index';
@@ -14,32 +16,49 @@ import {
 import { getProject } from './project';
 
 export async function generate(): Promise<void> {
-  console.log('Reading project');
-  const project = getProject();
-  console.log('Processing components');
-  const apiDocsPages = processComponents(project);
-  console.log('Writing files');
-  await writeFiles(apiDocsPages);
+  let project: Project;
+  let apiDocsPages: RawApiDocsPage[];
+  await ui
+    .tasks()
+    .add('Reading project', () => {
+      project = getProject();
+      return 'Project read successfully';
+    })
+    .add('Processing components', (task) => {
+      apiDocsPages = processComponents(task, project);
+      return 'Components processed successfully';
+    })
+    .add('Writing files', async (task) => {
+      await writeFiles(task, apiDocsPages);
+      return 'Files written successfully';
+    })
+    .run();
 }
 
-export function processComponents(project: Project): RawApiDocsPage[] {
+export function processComponents(
+  task: Task,
+  project: Project
+): RawApiDocsPage[] {
   return [
-    ...processProjectClasses(project),
-    ...processProjectInterfaces(project),
-    processProjectUtilities(project),
-    ...processModuleClasses(project),
+    ...processProjectClasses(task, project),
+    ...processProjectInterfaces(task, project),
+    processProjectUtilities(task, project),
+    ...processModuleClasses(task, project),
   ];
 }
 
-async function writeFiles(apiDocsPages: RawApiDocsPage[]): Promise<void> {
-  console.log('- diff index');
+async function writeFiles(
+  task: Task,
+  apiDocsPages: RawApiDocsPage[]
+): Promise<void> {
+  task.update('diff index');
   writeDiffIndex(apiDocsPages);
-  console.log('- page index');
+  task.update('page index');
   await writePageIndex(apiDocsPages);
-  console.log('- pages');
+  task.update('pages');
   await writePages(apiDocsPages);
-  console.log('- search index');
+  task.update('search index');
   writeSearchIndex(apiDocsPages);
-  console.log('- source base url');
+  task.update('source base url');
   await writeSourceBaseUrl();
 }

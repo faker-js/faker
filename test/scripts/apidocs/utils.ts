@@ -1,5 +1,6 @@
 import type { ClassDeclaration, MethodDeclaration, SourceFile } from 'ts-morph';
 import { getProject } from '../../../scripts/apidocs/project';
+import type { Task } from '../../../scripts/logger';
 
 /**
  * Loads the example methods.
@@ -36,3 +37,17 @@ function loadProjectFile(sourceFile: string): SourceFile {
 
   return project.addSourceFileAtPath(sourceFile);
 }
+
+export const TASK_MOCK: Task = {
+  update: (logMessage) => {
+    console.log(logMessage);
+  },
+
+  error: (error) => {
+    if (error instanceof Error) {
+      throw error;
+    }
+
+    throw new Error(error);
+  },
+};
