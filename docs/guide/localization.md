@@ -108,6 +108,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
+| `fr_SN`       | French (Senegal)          | `fakerFR_SN`       |
 | `he`          | Hebrew                    | `fakerHE`          |
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
@@ -136,6 +137,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
+| `uz_UZ_latin` | Uzbek (Uzbekistan, Latin) | `fakerUZ_UZ_latin` |
 | `vi`          | Vietnamese                | `fakerVI`          |
 | `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
 | `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |

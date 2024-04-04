@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerSK } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -271,7 +271,7 @@ describe('system', () => {
             'generated filePath should start with /'
           ).toBeTruthy();
           expect(
-            parts[parts.length - 1],
+            parts.at(-1),
             'generated filePath should have a file extension'
           ).toMatch(/^\w+\.\w+$/);
         });
@@ -384,7 +384,7 @@ describe('system', () => {
         const regex =
           /^([0-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
 
-        const regexElements = regex.toString().replace(/\//g, '').split(' ');
+        const regexElements = regex.toString().replaceAll('/', '').split(' ');
 
         it.each([
           [{}, 5],
@@ -395,23 +395,21 @@ describe('system', () => {
           (options, count: number) => {
             const cron = faker.system.cron(options).split(' ');
             expect(cron).toHaveLength(count);
-            cron.forEach((cronElement, i) =>
+            for (const [index, cronElement] of cron.entries()) {
               expect(
                 cronElement,
-                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
-              ).toMatch(new RegExp(regexElements[i]))
-            );
+                `generated cron, ${cronElement} should match regex ${regexElements[index]}`
+              ).toMatch(new RegExp(regexElements[index]));
+            }
           }
         );
 
         it('should be able to return non-standard cron expressions', () => {
-          const validResults = [...'0123456789'.split(''), '*', '@'];
+          const validResults = new Set('0123456789*@');
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
             'generated cron, string should contain standard or non-standard cron labels'
-          ).toSatisfy(
-            (value) => !!validResults.find((result) => value === result)
-          );
+          ).toSatisfy((value: string) => validResults.has(value));
         });
       });
     }

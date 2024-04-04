@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -8,9 +8,7 @@ const NON_SEEDED_BASED_RUN = 5;
 describe('company', () => {
   seededTests(faker, 'company', (t) => {
     t.itEach(
-      'suffixes',
       'name',
-      'companySuffix',
       'catchPhrase',
       'buzzPhrase',
       'catchPhraseAdjective',
@@ -20,38 +18,17 @@ describe('company', () => {
       'buzzVerb',
       'buzzNoun'
     );
-
-    t.skip('bs').skip('bsAdjective').skip('bsBuzz').skip('bsNoun');
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
-      describe('suffixes()', () => {
-        it('should return all suffixes', () => {
-          const actual = faker.company.suffixes();
-
-          expect(actual).toBeTruthy();
-          expect(faker.definitions.company.suffix).toEqual(actual);
-        });
-      });
-
       describe('name()', () => {
         it('should return a random company name', () => {
           const actual = faker.company.name();
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-        });
-      });
-
-      describe('companySuffix()', () => {
-        it('should return random value from company.suffixes array', () => {
-          const actual = faker.company.companySuffix();
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.suffix).toContain(actual);
         });
       });
 

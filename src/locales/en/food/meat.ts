@@ -1,0 +1,18 @@
+export default [
+  'beef',
+  'chicken',
+  'crocodile',
+  'duck',
+  'emu',
+  'goose',
+  'kangaroo',
+  'lamb',
+  'ostrich',
+  'pigeon',
+  'pork',
+  'quail',
+  'rabbit',
+  'salmon',
+  'turkey',
+  'venison',
+];

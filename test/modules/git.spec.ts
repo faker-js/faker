@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -17,8 +17,6 @@ describe('git', () => {
         .it('with length 7', { length: 7 })
         .it('with length 8', { length: 8 });
     });
-
-    t.skip('shortSha');
 
     t.describeEach(
       'commitEntry',

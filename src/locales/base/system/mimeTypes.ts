@@ -1,4 +1,4 @@
-import type { SystemDefinitions } from '../../..';
+import type { SystemDefinition } from '../../..';
 
 export default {
   'application/epub+zip': {
@@ -240,4 +240,4 @@ export default {
   'video/x-msvideo': {
     extensions: ['avi'],
   },
-} satisfies SystemDefinitions['mimeTypes'];
+} satisfies SystemDefinition['mimeTypes'];

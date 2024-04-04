@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Aircraft, faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -95,8 +95,8 @@ describe('airline', () => {
         const seatRegex = /^(\d{1,2})([A-K])$/;
         it('should return a random narrowbody seat when not passing an argument', () => {
           const seat = faker.airline.seat();
-          const matchResult = seat.match(seatRegex);
-          expect(matchResult).not.toBeNull();
+          const matchResult = seatRegex.exec(seat);
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 35);
@@ -106,8 +106,8 @@ describe('airline', () => {
           const seat = faker.airline.seat({
             aircraftType: Aircraft.Narrowbody,
           });
-          const matchResult = seat.match(seatRegex);
-          expect(matchResult).not.toBeNull();
+          const matchResult = seatRegex.exec(seat);
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 35);
@@ -115,8 +115,8 @@ describe('airline', () => {
         });
         it('should return a random regional seat', () => {
           const seat = faker.airline.seat({ aircraftType: Aircraft.Regional });
-          const matchResult = seat.match(seatRegex);
-          expect(matchResult).not.toBeNull();
+          const matchResult = seatRegex.exec(seat);
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 20);
@@ -124,8 +124,8 @@ describe('airline', () => {
         });
         it('should return a random widebody seat', () => {
           const seat = faker.airline.seat({ aircraftType: Aircraft.Widebody });
-          const matchResult = seat.match(seatRegex);
-          expect(matchResult).not.toBeNull();
+          const matchResult = seatRegex.exec(seat);
+          expectNotNull(matchResult);
           const row = matchResult[1];
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 60);
@@ -179,3 +179,7 @@ describe('airline', () => {
     }
   );
 });
+
+function expectNotNull<T>(value: T): asserts value is NonNullable<T> {
+  expect(value).not.toBeNull();
+}

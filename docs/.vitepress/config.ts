@@ -1,7 +1,12 @@
-import { defineConfig } from 'vitepress';
-import { DefaultTheme } from 'vitepress/theme';
+import type { UserConfig } from 'vitepress';
+import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
-import { currentVersion, oldVersions, versionBannerInfix } from './versions';
+import {
+  algoliaIndex,
+  currentVersion,
+  oldVersions,
+  versionBannerInfix,
+} from './versions';
 
 type SidebarItem = DefaultTheme.SidebarItem;
 
@@ -55,7 +60,8 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
   return links;
 }
 
-const config = defineConfig({
+// TODO @Shinigami92 2023-12-28: reuse `defineConfig` from vitepress, when we can go esm-only
+const config: UserConfig<DefaultTheme.Config> = {
   title: 'Faker',
   description,
 
@@ -121,11 +127,14 @@ const config = defineConfig({
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
-    algolia: {
-      apiKey: process.env.API_KEY,
-      appId: process.env.APP_ID,
-      indexName: 'fakerjs',
-    },
+    algolia:
+      process.env.API_KEY == null || process.env.APP_ID == null
+        ? undefined
+        : {
+            apiKey: process.env.API_KEY,
+            appId: process.env.APP_ID,
+            indexName: algoliaIndex,
+          },
 
     footer: {
       message: 'Released under the MIT License.',
@@ -140,7 +149,7 @@ const config = defineConfig({
         link: '/api/',
       },
       {
-        text: 'Ecosystem',
+        text: 'Try it',
         items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
       },
       {
@@ -205,7 +214,11 @@ const config = defineConfig({
             link: '/guide/randomizer',
           },
           {
-            text: 'Upgrading to v8',
+            text: 'Unique Values',
+            link: '/guide/unique',
+          },
+          {
+            text: 'Upgrading to v9',
             link: '/guide/upgrading',
           },
         ],
@@ -256,7 +269,7 @@ const config = defineConfig({
       __BANNER__: versionBannerInfix ?? false,
     },
   },
-});
+};
 
 if (versionBannerInfix) {
   config.head?.push([

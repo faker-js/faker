@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
@@ -11,7 +11,10 @@ describe('phone', () => {
     t.it('imei');
 
     t.describe('number', (t) => {
-      t.it('noArgs').it('format', '###-###-####');
+      t.it('noArgs')
+        .it('with human style', { style: 'human' })
+        .it('with national style', { style: 'national' })
+        .it('with international style', { style: 'international' });
     });
   });
 

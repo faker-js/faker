@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { allFakers, faker } from '../../src';
-import { seededTests } from './../support/seededRuns';
+import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -9,7 +9,6 @@ const NON_SEEDED_BASED_RUN = 5;
 describe('internet', () => {
   seededTests(faker, 'internet', (t) => {
     t.itEach(
-      'avatar',
       'protocol',
       'httpMethod',
       'domainName',
@@ -35,10 +34,7 @@ describe('internet', () => {
           firstName: 'Jane',
           lastName: 'Doe',
           provider: 'fakerjs.dev',
-        })
-        .it('with legacy names', 'Jane', 'Doe')
-        .it('with legacy provider', undefined, undefined, 'fakerjs.dev')
-        .it('with legacy names and provider', 'Jane', 'Doe', 'fakerjs.dev');
+        });
     });
 
     t.describe('exampleEmail', (t) => {
@@ -52,10 +48,6 @@ describe('internet', () => {
           allowSpecialCharacters: true,
           firstName: 'Jane',
           lastName: 'Doe',
-        })
-        .it('with legacy names', 'Jane', 'Doe')
-        .it('with legacy names and options', 'Jane', 'Doe', {
-          allowSpecialCharacters: true,
         });
     });
 
@@ -64,7 +56,6 @@ describe('internet', () => {
         .it('with firstName option', { firstName: 'Jane' })
         .it('with lastName option', { lastName: 'Doe' })
         .it('with all option', { firstName: 'Jane', lastName: 'Doe' })
-        .it('with legacy names', 'Jane', 'Doe')
         .it('with Latin names', { firstName: 'Jane', lastName: 'Doe' })
         .it('with accented names', { firstName: 'Hélene', lastName: 'Müller' })
         .it('with Cyrillic names', {
@@ -79,7 +70,6 @@ describe('internet', () => {
         .it('with firstName option', { firstName: 'Jane' })
         .it('with lastName option', { lastName: 'Doe' })
         .it('with all option', { firstName: 'Jane', lastName: 'Doe' })
-        .it('with legacy names', 'Jane', 'Doe')
         .it('with Latin names', { firstName: 'Jane', lastName: 'Doe' })
         .it('with accented names', { firstName: 'Hélene', lastName: 'Müller' })
         .it('with Cyrillic names', {
@@ -106,17 +96,7 @@ describe('internet', () => {
           memorable: false,
           pattern: /[0-9]/,
           prefix: 'test',
-        })
-        .it('with legacy length', 10)
-        .it('with legacy length and memorable', 10, false)
-        .it('with legacy length, memorable and pattern', 10, false, /[0-9]/)
-        .it(
-          'with legacy length, memorable, pattern and prefix',
-          10,
-          false,
-          /[0-9]/,
-          'test'
-        );
+        });
     });
 
     t.describe('httpStatusCode', (t) => {
@@ -132,8 +112,7 @@ describe('internet', () => {
           redBase: 100,
           blueBase: 100,
           greenBase: 100,
-        })
-        .it('with legacy color base', 100, 100, 100);
+        });
     });
 
     t.describe('mac', (t) => {
@@ -159,19 +138,6 @@ describe('internet', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
-      describe('avatar', () => {
-        it('should return a random avatar url', () => {
-          const avatar = faker.internet.avatar();
-
-          expect(avatar).toBeTruthy();
-          expect(avatar).toBeTypeOf('string');
-          expect(avatar).toSatisfy(validator.isURL);
-          expect(avatar).toMatch(
-            /^https:\/\/cloudflare-ipfs.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d+.jpg$/
-          );
-        });
-      });
-
       describe('email()', () => {
         it('should return an email', () => {
           const email = faker.internet.email();
@@ -216,7 +182,10 @@ describe('internet', () => {
         });
 
         it('should not allow an email that starts or ends with a .', () => {
-          const email = faker.internet.email('...Aiden...', '...Doe...');
+          const email = faker.internet.email({
+            firstName: '...Aiden...',
+            lastName: '...Doe...',
+          });
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
@@ -228,7 +197,7 @@ describe('internet', () => {
         });
 
         it('should not allow an email with multiple dots', () => {
-          const email = faker.internet.email('Ai....den');
+          const email = faker.internet.email({ firstName: 'Ai....den' });
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
@@ -252,9 +221,8 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(prefix).includes('Aiden');
-          expect(prefix).toMatch(
-            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
-          );
+          expect(prefix).includes('Harann');
+          expect(prefix).toMatch(/^Aiden[._]Harann\d*/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
@@ -296,9 +264,7 @@ describe('internet', () => {
 
           const [prefix, suffix] = email.split('@');
 
-          expect(prefix).toMatch(
-            /^Mike((\d{1,2})|([.!#$%&'*+-/=?^_`{|}~]Smith\d{1,2})|([.!#$%&'*+-/=?^_`{|}~]Smith))/
-          );
+          expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
       });
@@ -344,10 +310,12 @@ describe('internet', () => {
           expect(email).toSatisfy(validator.isEmail);
 
           const [prefix, suffix] = email.split('@');
+          expect(email).includes('Aiden');
+          expect(email).includes('Harann');
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^Aiden([._]Harann)?\d*/);
+          expect(prefix).toMatch(/^Aiden[._]Harann\d*/);
         });
 
         it('should return an email with special characters', () => {
@@ -365,7 +333,9 @@ describe('internet', () => {
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
+          expect(prefix).includes('Mike');
+          expect(prefix).includes('Smith');
+          expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
         });
       });
 
@@ -396,9 +366,8 @@ describe('internet', () => {
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
           expect(username).includes('Aiden');
-          expect(username).toMatch(
-            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
-          );
+          expect(username).includes('Harann');
+          expect(username).toMatch(/^Aiden[._]Harann\d*/);
         });
 
         it('should strip accents', () => {
@@ -407,6 +376,7 @@ describe('internet', () => {
             lastName: 'Smith',
           });
           expect(username).includes('Adele');
+          expect(username).includes('Smith');
         });
 
         it('should transliterate Cyrillic', () => {
@@ -418,8 +388,19 @@ describe('internet', () => {
         });
 
         it('should provide a fallback for Chinese etc', () => {
-          const username = faker.internet.userName('大羽', '陳');
+          const username = faker.internet.userName({
+            firstName: '大羽',
+            lastName: '陳',
+          });
           expect(username).includes('hlzp8d');
+        });
+
+        it('should provide a fallback special unicode characters', () => {
+          const username = faker.internet.userName({
+            firstName: '🐼',
+            lastName: '❤️',
+          });
+          expect(username).includes('2qt8');
         });
       });
 

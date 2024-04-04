@@ -2,6 +2,81 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.1](https://github.com/faker-js/faker/compare/v8.4.0...v8.4.1) (2024-02-06)
+
+* JSDocs improvements
+
+## [8.4.0](https://github.com/faker-js/faker/compare/v8.3.1...v8.4.0) (2024-01-24)
+
+
+### Features
+
+* **helpers:** add support for complex intermediate types ([#2550](https://github.com/faker-js/faker/issues/2550)) ([24482a3](https://github.com/faker-js/faker/commit/24482a30042eec5b553b30d60985e89fd69a8660))
+* **number:** add parameter `fractionDigits` in float ([#1855](https://github.com/faker-js/faker/issues/1855)) ([41d8778](https://github.com/faker-js/faker/commit/41d87789c7ff353acfd0f5ca88a99c0d1fd3b500))
+* **person:** add job titles for fr ([#2531](https://github.com/faker-js/faker/issues/2531)) ([ba28ab6](https://github.com/faker-js/faker/commit/ba28ab6e59009cceb5b691ddd212e09df22b586e))
+
+
+### Bug Fixes
+
+* **finance:** correct VG IBAN format ([#2552](https://github.com/faker-js/faker/issues/2552)) ([b8049d1](https://github.com/faker-js/faker/commit/b8049d171086bce7b46eb617c88f44cfdd019e00))
+* **internet:** username method to return value that always includes… ([#2506](https://github.com/faker-js/faker/issues/2506)) ([0ee1c67](https://github.com/faker-js/faker/commit/0ee1c6751ec97e10ca1436d2b100b4acb1ac90ec))
+* **locale:** incomplete airline names in zh_CN ([#2558](https://github.com/faker-js/faker/issues/2558)) ([5525b55](https://github.com/faker-js/faker/commit/5525b55cc47fa97b55de52fccff7ab51633e639a))
+* **number:** improve float generation for precisions of form 10^-n ([#2581](https://github.com/faker-js/faker/issues/2581)) ([39c715d](https://github.com/faker-js/faker/commit/39c715d916d69e83795932260f1681df3241db91))
+
+### [8.3.1](https://github.com/faker-js/faker/compare/v8.3.0...v8.3.1) (2023-11-14)
+
+
+### Bug Fixes
+
+* remove `[@internal](https://github.com/internal)` from module parent classes ([#2548](https://github.com/faker-js/faker/issues/2548)) ([77f54ad](https://github.com/faker-js/faker/commit/77f54ad78f9d7952b3b315f72878267f18ed1e69))
+
+## [8.3.0](https://github.com/faker-js/faker/compare/v8.2.0...v8.3.0) (2023-11-14)
+
+
+### Features
+
+* **person:** use fake patterns for jobTitle ([#2528](https://github.com/faker-js/faker/issues/2528)) ([b40ad45](https://github.com/faker-js/faker/commit/b40ad45ad3cca6769968a63264e6d925bf4b328a))
+
+
+### Bug Fixes
+
+* **date:** ensures correct range for birthdate ([#2535](https://github.com/faker-js/faker/issues/2535)) ([7ce8c28](https://github.com/faker-js/faker/commit/7ce8c285cb5b2d13e95a17be78ecbd52f3c7d9db))
+* **finance:** maskedNumber has incorrect defaults ([#2494](https://github.com/faker-js/faker/issues/2494)) ([e0ba50b](https://github.com/faker-js/faker/commit/e0ba50b37e438503ed1899bff35afc92b4f8f49c))
+* **locale:** improve Swedish phone numbers format ([#2520](https://github.com/faker-js/faker/issues/2520)) ([e4865df](https://github.com/faker-js/faker/commit/e4865df199359797397cc3c5455f3a1a9c179f93))
+
+
+### Changed Locales
+
+* **locale:** remove fr_CH data which is identical to fr ([#2526](https://github.com/faker-js/faker/issues/2526)) ([fafcba4](https://github.com/faker-js/faker/commit/fafcba473f8a91eeb8230ebdc1ad5039b25091e1))
+
+
+### New Locales
+
+* **locale:** add person to fr_SN ([#2537](https://github.com/faker-js/faker/issues/2537)) ([ef965da](https://github.com/faker-js/faker/commit/ef965da48a8089e6bb19bcf260bfcd8af1a43799))
+* **locale:** add Senegal locale ([#2525](https://github.com/faker-js/faker/issues/2525)) ([6df70bc](https://github.com/faker-js/faker/commit/6df70bce16500ab74a37f932f2e17a08f297430b))
+* **locale:** add streets to location fr_SN ([#2536](https://github.com/faker-js/faker/issues/2536)) ([36fc517](https://github.com/faker-js/faker/commit/36fc517d17591c8ea1d5135d9a93c7591e3d1f74))
+* **locale:** and location to fr_SN ([#2533](https://github.com/faker-js/faker/issues/2533)) ([f730125](https://github.com/faker-js/faker/commit/f730125ffb941fe936d6a18c775cbe3a99b312dc))
+
+## [8.2.0](https://github.com/faker-js/faker/compare/v8.1.0...v8.2.0) (2023-10-14)
+
+
+### Features
+
+* support custom randomizer ([#2284](https://github.com/faker-js/faker/issues/2284)) ([5410239](https://github.com/faker-js/faker/commit/5410239245b4a6fe8c1976f8aa33c970923f9f40))
+
+
+### Bug Fixes
+
+* **docs:** revert filter code that breaks search in docs ([#2425](https://github.com/faker-js/faker/issues/2425)) ([c498c09](https://github.com/faker-js/faker/commit/c498c091f488db287684690ab4ff109b1589523f))
+* **locale:** Dutch phone number ([#2400](https://github.com/faker-js/faker/issues/2400)) ([005369b](https://github.com/faker-js/faker/commit/005369b29c7ee290a870396ff0acc85e3f715e10))
+
+
+### New Locales
+
+* **locale:** add airline database science commerce and vehicle for zh_CN ([#2395](https://github.com/faker-js/faker/issues/2395)) ([9c96c0a](https://github.com/faker-js/faker/commit/9c96c0a131e0609a21dc5ee110cc407e76852373))
+* **locale:** add street_name to `en_US`, `en_GB` and `en` ([#2371](https://github.com/faker-js/faker/issues/2371)) ([491d319](https://github.com/faker-js/faker/commit/491d3191213e2ceaaee46dcc50ac25c3995ba2d5))
+* **locale:** add unionpay credit card for zh_CN ([#2338](https://github.com/faker-js/faker/issues/2338)) ([74eeccc](https://github.com/faker-js/faker/commit/74eecccd3af702d8a1d8072f94032ccb54293cb1))
+
 ## [8.1.0](https://github.com/faker-js/faker/compare/v8.0.2...v8.1.0) (2023-09-19)
 
 
