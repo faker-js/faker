@@ -28,7 +28,7 @@ exports[`animal > 42 > rodent 1`] = `"Famatina chinchilla rat"`;
 
 exports[`animal > 42 > snake 1`] = `"Grey-banded kingsnake"`;
 
-exports[`animal > 42 > type 1`] = `"lion"`;
+exports[`animal > 42 > type 1`] = `"frog"`;
 
 exports[`animal > 1211 > bear 1`] = `"Polar bear"`;
 
@@ -58,7 +58,7 @@ exports[`animal > 1211 > rodent 1`] = `"Strong tuco-tuco"`;
 
 exports[`animal > 1211 > snake 1`] = `"Tiger pit viper"`;
 
-exports[`animal > 1211 > type 1`] = `"horse"`;
+exports[`animal > 1211 > type 1`] = `"turtle"`;
 
 exports[`animal > 1337 > bear 1`] = `"Sun bear"`;
 
@@ -88,4 +88,4 @@ exports[`animal > 1337 > rodent 1`] = `"Crested porcupine"`;
 
 exports[`animal > 1337 > snake 1`] = `"Eastern coral snake"`;
 
-exports[`animal > 1337 > type 1`] = `"bear"`;
+exports[`animal > 1337 > type 1`] = `"eagle"`;
