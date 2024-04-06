@@ -1,11 +1,8 @@
 import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
-import type { RecordKey } from './unique';
-import * as uniqueExec from './unique';
 
 /**
  * Returns a number based on given RegEx-based quantifier symbol or quantifier values.
@@ -58,8 +55,9 @@ function getRepetitionsBasedOnQuantifierParameters(
         break;
       }
 
-      default:
+      default: {
         throw new FakerError('Unknown quantifier symbol provided.');
+      }
     }
   } else if (quantifierMin != null && quantifierMax != null) {
     repetitions = faker.number.int({
@@ -205,14 +203,6 @@ export function legacyReplaceSymbolWithNumber(
  */
 export class SimpleHelpersModule extends SimpleModuleBase {
   /**
-   * Global store of unique values.
-   * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
-   *
-   * @internal
-   */
-  private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
-
-  /**
    * Slugifies the given string.
    * For that all spaces (` `) are replaced by hyphens (`-`)
    * and most non word characters except for dots and hyphens will be removed.
@@ -228,39 +218,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   slugify(string: string = ''): string {
     return string
       .normalize('NFKD') //for example è decomposes to as e +  ̀
-      .replace(/[\u0300-\u036F]/g, '') // removes combining marks
-      .replace(/ /g, '-') // replaces spaces with hyphens
-      .replace(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
-  }
-
-  /**
-   * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
-   * `!` will be replaced by digits >=2 (`2` - `9`).
-   *
-   * @param string The template string to parse. Defaults to `''`.
-   * @param symbol The symbol to replace with digits. Defaults to `'#'`.
-   *
-   * @see faker.string.numeric(): For the replacement method.
-   *
-   * @example
-   * faker.helpers.replaceSymbolWithNumber() // ''
-   * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
-   * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
-   * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.string.numeric()` instead. Example: `value.replace(/#+/g, (m) => faker.string.numeric(m.length));`
-   */
-  replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
-    deprecated({
-      deprecated: 'faker.helpers.replaceSymbolWithNumber',
-      proposed: 'string.replace(/#+/g, (m) => faker.string.numeric(m.length))',
-      since: '8.4',
-      until: '9.0',
-    });
-
-    return legacyReplaceSymbolWithNumber(this.faker, string, symbol);
+      .replaceAll(/[\u0300-\u036F]/g, '') // removes combining marks
+      .replaceAll(' ', '-') // replaces spaces with hyphens
+      .replaceAll(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
@@ -355,40 +315,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
-  }
-
-  /**
-   * Replaces the regex like expressions in the given string with matching values.
-   *
-   * Supported patterns:
-   * - `.{times}` => Repeat the character exactly `times` times.
-   * - `.{min,max}` => Repeat the character `min` to `max` times.
-   * - `[min-max]` => Generate a number between min and max (inclusive).
-   *
-   * @param string The template string to parse. Defaults to `''`.
-   *
-   * @see faker.helpers.fromRegExp(): For generating a string matching the given regex-like expressions.
-   *
-   * @example
-   * faker.helpers.regexpStyleStringParse() // ''
-   * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
-   * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
-   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
-   * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use `faker.helpers.fromRegExp()` instead.
-   */
-  regexpStyleStringParse(string: string = ''): string {
-    deprecated({
-      deprecated: 'faker.helpers.regexpStyleStringParse',
-      proposed: 'faker.helpers.fromRegExp',
-      since: '8.1',
-      until: '9.0',
-    });
-
-    return legacyRegexpStringParse(this.faker, string);
   }
 
   /**
@@ -643,7 +569,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: T[],
     options: {
       /**
@@ -669,7 +595,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: ReadonlyArray<T>,
     options?: {
       /**
@@ -696,7 +622,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 2.0.1
    */
-  shuffle<T>(
+  shuffle<const T>(
     list: T[],
     options?: {
       /**
@@ -707,7 +633,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       inplace?: boolean;
     }
   ): T[];
-  shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
+  shuffle<const T>(list: T[], options: { inplace?: boolean } = {}): T[] {
     const { inplace = false } = options;
 
     if (!inplace) {
@@ -744,7 +670,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.0.0
    */
-  uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
+  uniqueArray<const T>(
+    source: ReadonlyArray<T> | (() => T),
+    length: number
+  ): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = [...set];
@@ -797,7 +726,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       let value = data[p];
       if (typeof value === 'string') {
         // escape $, source: https://stackoverflow.com/a/6969486/6897682
-        value = value.replace(/\$/g, '$$$$');
+        value = value.replaceAll('$', '$$$$');
         str = str.replace(re, value);
       } else {
         str = str.replace(re, value);
@@ -823,7 +752,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  maybe<TResult>(
+  maybe<const TResult>(
     callback: () => TResult,
     options: {
       /**
@@ -855,7 +784,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  objectKey<T extends Record<string, unknown>>(object: T): keyof T {
+  objectKey<const T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
     return this.arrayElement(array);
   }
@@ -874,7 +803,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
+  objectValue<const T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.helpers.objectKey(object);
     return object[key];
   }
@@ -893,7 +822,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  objectEntry<T extends Record<string, unknown>>(
+  objectEntry<const T extends Record<string, unknown>>(
     object: T
   ): [keyof T, T[keyof T]] {
     const key = this.faker.helpers.objectKey(object);
@@ -914,7 +843,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElement<T>(array: ReadonlyArray<T>): T {
+  arrayElement<const T>(array: ReadonlyArray<T>): T {
     // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
       throw new FakerError(
@@ -951,7 +880,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  weightedArrayElement<T>(
+  weightedArrayElement<const T>(
     array: ReadonlyArray<{
       /**
        * The weight of the value.
@@ -989,7 +918,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     }
 
     // In case of rounding errors, return the last element
-    return array[array.length - 1].value;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return array.at(-1)!.value;
   }
 
   /**
@@ -1009,7 +939,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElements<T>(
+  arrayElements<const T>(
     array: ReadonlyArray<T>,
     count?:
       | number
@@ -1083,6 +1013,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
+  // This does not use `const T` because enums shouldn't be created on the spot.
   enumValue<T extends Record<string | number, string | number>>(
     enumObject: T
   ): T[keyof T] {
@@ -1129,130 +1060,24 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   }
 
   /**
-   * Generates a unique result using the results of the given method.
-   * Used unique entries will be stored internally and filtered from subsequent calls.
-   *
-   * @template TMethod The type of the method to execute.
-   *
-   * @param method The method used to generate the values.
-   * @param args The arguments used to call the method. Defaults to `[]`.
-   * @param options The optional options used to configure this method.
-   * @param options.startTime This parameter does nothing.
-   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
-   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
-   * @param options.currentIterations This parameter does nothing.
-   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
-   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
-   * @param options.store The store of unique entries. Defaults to a global store.
-   *
-   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
-   *
-   * @example
-   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
-   *
-   * @since 7.5.0
-   *
-   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
-   * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
-   */
-  unique<
-    TMethod extends (
-      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ...parameters: any[]
-    ) => RecordKey,
-  >(
-    method: TMethod,
-    args: Parameters<TMethod> = [] as unknown as Parameters<TMethod>,
-    options: {
-      /**
-       * This parameter does nothing.
-       *
-       * @default new Date().getTime()
-       */
-      startTime?: number;
-      /**
-       * The time in milliseconds this method may take before throwing an error.
-       *
-       * @default 50
-       */
-      maxTime?: number;
-      /**
-       * The total number of attempts to try before throwing an error.
-       *
-       * @default 50
-       */
-      maxRetries?: number;
-      /**
-       * This parameter does nothing.
-       *
-       * @default 0
-       */
-      currentIterations?: number;
-      /**
-       * The value or values that should be excluded/skipped.
-       *
-       * @default []
-       */
-      exclude?: RecordKey | RecordKey[];
-      /**
-       * The function used to determine whether a value was already returned.
-       *
-       * Defaults to check the existence of the key.
-       *
-       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
-       */
-      compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
-      /**
-       * The store of unique entries.
-       *
-       * Defaults to a global store.
-       */
-      store?: Record<RecordKey, RecordKey>;
-    } = {}
-  ): ReturnType<TMethod> {
-    deprecated({
-      deprecated: 'faker.helpers.unique',
-      proposed:
-        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
-      since: '8.0',
-      until: '9.0',
-    });
-
-    const {
-      maxTime = 50,
-      maxRetries = 50,
-      exclude = [],
-      store = this.uniqueStore,
-    } = options;
-    return uniqueExec.exec(method, args, {
-      ...options,
-      startTime: Date.now(),
-      maxTime,
-      maxRetries,
-      currentIterations: 0,
-      exclude,
-      store,
-    });
-  }
-
-  /**
    * Generates an array containing values returned by the given method.
    *
    * @template TResult The type of elements.
    *
    * @param method The method used to generate the values.
+   * The method will be called with `(_, index)`, to allow using the index in the generated value e.g. as id.
    * @param options The optional options object.
    * @param options.count The number or range of elements to generate. Defaults to `3`.
    *
    * @example
-   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
-   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   * faker.helpers.multiple(() => faker.person.firstName()) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(() => faker.person.firstName(), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   * faker.helpers.multiple((_, i) => `${faker.color.human()}-${i + 1}`) // [ 'orange-1', 'orchid-2', 'sky blue-3' ]
    *
    * @since 8.0.0
    */
-  multiple<TResult>(
-    method: () => TResult,
+  multiple<const TResult>(
+    method: (v: unknown, index: number) => TResult,
     options: {
       /**
        * The number or range of elements to generate.
@@ -1293,7 +1118,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
  *
  * There are alternatives of this method for objects ([`objectKey()`](https://fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://fakerjs.dev/api/helpers.html#weightedarrayelement)).
  *
- * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols) and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule extends SimpleHelpersModule {
   constructor(protected readonly faker: Faker) {
@@ -1342,7 +1167,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
    * faker.helpers.fake('This is static test.') // 'This is static test.'
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
-   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
    *

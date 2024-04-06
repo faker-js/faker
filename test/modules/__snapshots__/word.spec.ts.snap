@@ -1,12 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`word > 42 > adjective > noArgs 1`] = `"hasty"`;
+exports[`word > 42 > adjective > noArgs 1`] = `"hospitable"`;
 
-exports[`word > 42 > adjective > with length = 10 1`] = `"gregarious"`;
+exports[`word > 42 > adjective > with length = 10 1`] = `"idealistic"`;
 
-exports[`word > 42 > adjective > with length = 20 1`] = `"hasty"`;
+exports[`word > 42 > adjective > with length = 20 1`] = `"hospitable"`;
 
-exports[`word > 42 > adjective > with options.length 1`] = `"gregarious"`;
+exports[`word > 42 > adjective > with options.length 1`] = `"idealistic"`;
 
 exports[`word > 42 > adjective > with options.length and options.strategy 1`] = `"inconsequential"`;
 
@@ -48,17 +48,17 @@ exports[`word > 42 > interjection > with options.length and options.strategy 1`]
 
 exports[`word > 42 > interjection > with options.strategy 1`] = `"ah"`;
 
-exports[`word > 42 > noun > noArgs 1`] = `"gamma-ray"`;
+exports[`word > 42 > noun > noArgs 1`] = `"gerbil"`;
 
-exports[`word > 42 > noun > with length = 10 1`] = `"extinction"`;
+exports[`word > 42 > noun > with length = 10 1`] = `"hippodrome"`;
 
-exports[`word > 42 > noun > with length = 20 1`] = `"gamma-ray"`;
+exports[`word > 42 > noun > with length = 20 1`] = `"gerbil"`;
 
-exports[`word > 42 > noun > with options.length 1`] = `"extinction"`;
+exports[`word > 42 > noun > with options.length 1`] = `"hippodrome"`;
 
 exports[`word > 42 > noun > with options.length and options.strategy 1`] = `"cross-contamination"`;
 
-exports[`word > 42 > noun > with options.strategy 1`] = `"TV"`;
+exports[`word > 42 > noun > with options.strategy 1`] = `"CD"`;
 
 exports[`word > 42 > preposition > noArgs 1`] = `"concerning"`;
 
@@ -72,45 +72,45 @@ exports[`word > 42 > preposition > with options.length and options.strategy 1`] 
 
 exports[`word > 42 > preposition > with options.strategy 1`] = `"a"`;
 
-exports[`word > 42 > sample > noArgs 1`] = `"eek"`;
+exports[`word > 42 > sample > noArgs 1`] = `"bleakly"`;
 
-exports[`word > 42 > sample > with length = 10 1`] = `"eek"`;
+exports[`word > 42 > sample > with length = 10 1`] = `"arrogantly"`;
 
-exports[`word > 42 > sample > with length = 20 1`] = `"eek"`;
+exports[`word > 42 > sample > with length = 20 1`] = `"bleakly"`;
 
-exports[`word > 42 > sample > with options.length 1`] = `"eek"`;
+exports[`word > 42 > sample > with options.length 1`] = `"arrogantly"`;
 
-exports[`word > 42 > sample > with options.length and options.strategy 1`] = `"gadzooks"`;
+exports[`word > 42 > sample > with options.length and options.strategy 1`] = `"enthusiastically"`;
 
-exports[`word > 42 > sample > with options.strategy 1`] = `"aw"`;
+exports[`word > 42 > sample > with options.strategy 1`] = `"far"`;
 
-exports[`word > 42 > verb > noArgs 1`] = `"furrow"`;
+exports[`word > 42 > verb > noArgs 1`] = `"glow"`;
 
-exports[`word > 42 > verb > with length = 10 1`] = `"exhilarate"`;
+exports[`word > 42 > verb > with length = 10 1`] = `"exacerbate"`;
 
-exports[`word > 42 > verb > with length = 20 1`] = `"furrow"`;
+exports[`word > 42 > verb > with length = 20 1`] = `"glow"`;
 
-exports[`word > 42 > verb > with options.length 1`] = `"exhilarate"`;
+exports[`word > 42 > verb > with options.length 1`] = `"exacerbate"`;
 
-exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"institutionalise"`;
+exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"institutionalize"`;
 
-exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
+exports[`word > 42 > verb > with options.strategy 1`] = `"jot"`;
 
-exports[`word > 42 > words > noArgs 1`] = `"nondisclosure stud"`;
+exports[`word > 42 > words > noArgs 1`] = `"unnaturally dreamily"`;
 
-exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind"`;
+exports[`word > 42 > words > with count = 10 1`] = `"bleakly custody gee psst why meh ugh utilized wherever without"`;
 
-exports[`word > 42 > words > with count = 20 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind power till gadzooks yippee unban generous between old-fashioned yowza hoof"`;
+exports[`word > 42 > words > with count = 20 1`] = `"bleakly custody gee psst why meh ugh utilized wherever without safe across amidst intent zowie confirm usefully impanel whoa vista"`;
 
-exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnormally aw grenade nor without connote mind"`;
+exports[`word > 42 > words > with options.count 1`] = `"bleakly custody gee psst why meh ugh utilized wherever without"`;
 
-exports[`word > 42 > words > with options.count range 1`] = `"nondisclosure stud across dreamily accurate circumvent boo news loftily through devoice about when boohoo graze busily to grouchy beneath"`;
+exports[`word > 42 > words > with options.count range 1`] = `"unnaturally dreamily chapel mozzarella through amendment dependable brilliant indeed whenever after happily relieve although atop upon provided skyline brr"`;
 
-exports[`word > 1211 > adjective > noArgs 1`] = `"vicious"`;
+exports[`word > 1211 > adjective > noArgs 1`] = `"velvety"`;
 
 exports[`word > 1211 > adjective > with length = 10 1`] = `"unpleasant"`;
 
-exports[`word > 1211 > adjective > with length = 20 1`] = `"vicious"`;
+exports[`word > 1211 > adjective > with length = 20 1`] = `"velvety"`;
 
 exports[`word > 1211 > adjective > with options.length 1`] = `"unpleasant"`;
 
@@ -154,17 +154,17 @@ exports[`word > 1211 > interjection > with options.length and options.strategy 1
 
 exports[`word > 1211 > interjection > with options.strategy 1`] = `"um"`;
 
-exports[`word > 1211 > noun > noArgs 1`] = `"tribe"`;
+exports[`word > 1211 > noun > noArgs 1`] = `"trash"`;
 
-exports[`word > 1211 > noun > with length = 10 1`] = `"trafficker"`;
+exports[`word > 1211 > noun > with length = 10 1`] = `"underpants"`;
 
-exports[`word > 1211 > noun > with length = 20 1`] = `"tribe"`;
+exports[`word > 1211 > noun > with length = 20 1`] = `"trash"`;
 
-exports[`word > 1211 > noun > with options.length 1`] = `"trafficker"`;
+exports[`word > 1211 > noun > with options.length 1`] = `"underpants"`;
 
 exports[`word > 1211 > noun > with options.length and options.strategy 1`] = `"cross-contamination"`;
 
-exports[`word > 1211 > noun > with options.strategy 1`] = `"ox"`;
+exports[`word > 1211 > noun > with options.strategy 1`] = `"ad"`;
 
 exports[`word > 1211 > preposition > noArgs 1`] = `"upon"`;
 
@@ -178,47 +178,47 @@ exports[`word > 1211 > preposition > with options.length and options.strategy 1`
 
 exports[`word > 1211 > preposition > with options.strategy 1`] = `"a"`;
 
-exports[`word > 1211 > sample > noArgs 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > noArgs 1`] = `"sneaky"`;
 
-exports[`word > 1211 > sample > with length = 10 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > with length = 10 1`] = `"remorseful"`;
 
-exports[`word > 1211 > sample > with length = 20 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > with length = 20 1`] = `"sneaky"`;
 
-exports[`word > 1211 > sample > with options.length 1`] = `"youthfully"`;
+exports[`word > 1211 > sample > with options.length 1`] = `"remorseful"`;
 
-exports[`word > 1211 > sample > with options.length and options.strategy 1`] = `"enthusiastically"`;
+exports[`word > 1211 > sample > with options.length and options.strategy 1`] = `"well-documented"`;
 
-exports[`word > 1211 > sample > with options.strategy 1`] = `"too"`;
+exports[`word > 1211 > sample > with options.strategy 1`] = `"raw"`;
 
-exports[`word > 1211 > verb > noArgs 1`] = `"trick"`;
+exports[`word > 1211 > verb > noArgs 1`] = `"transplant"`;
 
-exports[`word > 1211 > verb > with length = 10 1`] = `"trampoline"`;
+exports[`word > 1211 > verb > with length = 10 1`] = `"transplant"`;
 
-exports[`word > 1211 > verb > with length = 20 1`] = `"trick"`;
+exports[`word > 1211 > verb > with length = 20 1`] = `"transplant"`;
 
-exports[`word > 1211 > verb > with options.length 1`] = `"trampoline"`;
+exports[`word > 1211 > verb > with options.length 1`] = `"transplant"`;
 
 exports[`word > 1211 > verb > with options.length and options.strategy 1`] = `"internationalize"`;
 
-exports[`word > 1211 > verb > with options.strategy 1`] = `"up"`;
+exports[`word > 1211 > verb > with options.strategy 1`] = `"tut"`;
 
-exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
+exports[`word > 1211 > words > noArgs 1`] = `"happy unnaturally phew"`;
 
-exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument"`;
+exports[`word > 1211 > words > with count = 10 1`] = `"sneaky jam-packed willow gracefully if disarm ha furthermore nor trustworthy"`;
 
-exports[`word > 1211 > words > with count = 20 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument civilize for moose moult schoolhouse consequently whether per upon but"`;
+exports[`word > 1211 > words > with count = 20 1`] = `"sneaky jam-packed willow gracefully if disarm ha furthermore nor trustworthy ugh fooey yippee untrue discrete tool untidy trench although radiant"`;
 
-exports[`word > 1211 > words > with options.count 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third monument"`;
+exports[`word > 1211 > words > with options.count 1`] = `"sneaky jam-packed willow gracefully if disarm ha furthermore nor trustworthy"`;
 
-exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie salesman except pumpernickel friendly contest arena kindheartedly nifty combination out pencil interpenetrate minus upchange excitedly"`;
+exports[`word > 1211 > words > with options.count range 1`] = `"happy unnaturally phew sedately converse horn consistency pinion so elderly when thorn object muted via mythology compassionate crushing fairly parched"`;
 
-exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
+exports[`word > 1337 > adjective > noArgs 1`] = `"fatal"`;
 
-exports[`word > 1337 > adjective > with length = 10 1`] = `"equatorial"`;
+exports[`word > 1337 > adjective > with length = 10 1`] = `"elliptical"`;
 
-exports[`word > 1337 > adjective > with length = 20 1`] = `"fair"`;
+exports[`word > 1337 > adjective > with length = 20 1`] = `"fatal"`;
 
-exports[`word > 1337 > adjective > with options.length 1`] = `"equatorial"`;
+exports[`word > 1337 > adjective > with options.length 1`] = `"elliptical"`;
 
 exports[`word > 1337 > adjective > with options.length and options.strategy 1`] = `"black-and-white"`;
 
@@ -260,17 +260,17 @@ exports[`word > 1337 > interjection > with options.length and options.strategy 1
 
 exports[`word > 1337 > interjection > with options.strategy 1`] = `"ah"`;
 
-exports[`word > 1337 > noun > noArgs 1`] = `"dining"`;
+exports[`word > 1337 > noun > noArgs 1`] = `"diversity"`;
 
-exports[`word > 1337 > noun > with length = 10 1`] = `"deposition"`;
+exports[`word > 1337 > noun > with length = 10 1`] = `"deployment"`;
 
-exports[`word > 1337 > noun > with length = 20 1`] = `"dining"`;
+exports[`word > 1337 > noun > with length = 20 1`] = `"diversity"`;
 
-exports[`word > 1337 > noun > with options.length 1`] = `"deposition"`;
+exports[`word > 1337 > noun > with options.length 1`] = `"deployment"`;
 
 exports[`word > 1337 > noun > with options.length and options.strategy 1`] = `"cross-contamination"`;
 
-exports[`word > 1337 > noun > with options.strategy 1`] = `"TV"`;
+exports[`word > 1337 > noun > with options.strategy 1`] = `"CD"`;
 
 exports[`word > 1337 > preposition > noArgs 1`] = `"barring"`;
 
@@ -284,36 +284,36 @@ exports[`word > 1337 > preposition > with options.length and options.strategy 1`
 
 exports[`word > 1337 > preposition > with options.strategy 1`] = `"a"`;
 
-exports[`word > 1337 > sample > noArgs 1`] = `"nor"`;
+exports[`word > 1337 > sample > noArgs 1`] = `"how"`;
 
-exports[`word > 1337 > sample > with length = 10 1`] = `"nor"`;
+exports[`word > 1337 > sample > with length = 10 1`] = `"how"`;
 
-exports[`word > 1337 > sample > with length = 20 1`] = `"nor"`;
+exports[`word > 1337 > sample > with length = 20 1`] = `"how"`;
 
-exports[`word > 1337 > sample > with options.length 1`] = `"nor"`;
+exports[`word > 1337 > sample > with options.length 1`] = `"how"`;
 
 exports[`word > 1337 > sample > with options.length and options.strategy 1`] = `"consequently"`;
 
 exports[`word > 1337 > sample > with options.strategy 1`] = `"if"`;
 
-exports[`word > 1337 > verb > noArgs 1`] = `"dispossess"`;
+exports[`word > 1337 > verb > noArgs 1`] = `"downshift"`;
 
-exports[`word > 1337 > verb > with length = 10 1`] = `"denominate"`;
+exports[`word > 1337 > verb > with length = 10 1`] = `"degenerate"`;
 
-exports[`word > 1337 > verb > with length = 20 1`] = `"dispossess"`;
+exports[`word > 1337 > verb > with length = 20 1`] = `"downshift"`;
 
-exports[`word > 1337 > verb > with options.length 1`] = `"denominate"`;
+exports[`word > 1337 > verb > with options.length 1`] = `"degenerate"`;
 
-exports[`word > 1337 > verb > with options.length and options.strategy 1`] = `"compartmentalize"`;
+exports[`word > 1337 > verb > with options.length and options.strategy 1`] = `"institutionalize"`;
 
-exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
+exports[`word > 1337 > verb > with options.strategy 1`] = `"gad"`;
 
-exports[`word > 1337 > words > noArgs 1`] = `"although"`;
+exports[`word > 1337 > words > noArgs 1`] = `"wallaby"`;
 
-exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful"`;
+exports[`word > 1337 > words > with count = 10 1`] = `"how yet smooth councilman including safely junior actually accredit vaguely"`;
 
-exports[`word > 1337 > words > with count = 20 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful conceal the where duh ugh emotion lavish rudely planet servant"`;
+exports[`word > 1337 > words > with count = 20 1`] = `"how yet smooth councilman including safely junior actually accredit vaguely failing vaguely mundane hassle whoever scarily requite duh lazily sans"`;
 
-exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful"`;
+exports[`word > 1337 > words > with options.count 1`] = `"how yet smooth councilman including safely junior actually accredit vaguely"`;
 
-exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply lovingly elegantly imply maid underneath advanced nor abrogate oof within gosh against egg rush"`;
+exports[`word > 1337 > words > with options.count range 1`] = `"wallaby drat deserted into aggravating yuck vol busily ouch inasmuch haze scientific everlasting or gee harmful phew now"`;

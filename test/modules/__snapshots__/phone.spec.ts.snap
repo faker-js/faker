@@ -1,19 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`phone > 42 > imei 1`] = `"37-917755-141004-5"`;
+exports[`phone > 42 > imei 1`] = `"39-751108-670982-8"`;
 
-exports[`phone > 42 > number > format 1`] = `"379-177-5514"`;
+exports[`phone > 42 > number > noArgs 1`] = `"(975) 310-8670 x982"`;
 
-exports[`phone > 42 > number > noArgs 1`] = `"(891) 775-5141 x004"`;
+exports[`phone > 42 > number > with human style 1`] = `"(975) 310-8670 x982"`;
 
-exports[`phone > 1211 > imei 1`] = `"94-872190-616274-4"`;
+exports[`phone > 42 > number > with international style 1`] = `"+14976110867"`;
 
-exports[`phone > 1211 > number > format 1`] = `"948-721-9061"`;
+exports[`phone > 42 > number > with national style 1`] = `"(497) 611-0867"`;
 
-exports[`phone > 1211 > number > noArgs 1`] = `"1-587-319-0616 x27431"`;
+exports[`phone > 1211 > imei 1`] = `"98-296673-687684-2"`;
 
-exports[`phone > 1337 > imei 1`] = `"25-122540-325523-4"`;
+exports[`phone > 1211 > number > noArgs 1`] = `"1-929-767-3687 x68488"`;
 
-exports[`phone > 1337 > number > format 1`] = `"251-225-4032"`;
+exports[`phone > 1211 > number > with human style 1`] = `"1-929-767-3687 x68488"`;
 
-exports[`phone > 1337 > number > noArgs 1`] = `"612-454-0325 x523"`;
+exports[`phone > 1211 > number > with international style 1`] = `"+19829667368"`;
+
+exports[`phone > 1211 > number > with national style 1`] = `"(982) 966-7368"`;
+
+exports[`phone > 1337 > imei 1`] = `"21-243529-713619-6"`;
+
+exports[`phone > 1337 > number > noArgs 1`] = `"324-452-9713 x619"`;
+
+exports[`phone > 1337 > number > with human style 1`] = `"324-452-9713 x619"`;
+
+exports[`phone > 1337 > number > with international style 1`] = `"+14125352971"`;
+
+exports[`phone > 1337 > number > with national style 1`] = `"(412) 535-2971"`;

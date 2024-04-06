@@ -72,7 +72,10 @@ export class SystemModule extends ModuleBase {
   ): string {
     const { extensionCount = 1 } = options;
 
-    const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
+    const baseName = this.faker.word
+      .words()
+      .toLowerCase()
+      .replaceAll(/\W/g, '_');
 
     const extensionsStr = this.faker.helpers
       .multiple(() => this.fileExt(), { count: extensionCount })
@@ -263,23 +266,30 @@ export class SystemModule extends ModuleBase {
     let prefix = '';
     const digit = () => this.faker.string.numeric({ allowLeadingZeros: true });
     switch (interfaceSchema) {
-      case 'index':
+      case 'index': {
         suffix = digit();
         break;
-      case 'slot':
+      }
+
+      case 'slot': {
         suffix = `${digit()}${
           this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
         }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
-      case 'mac':
+      }
+
+      case 'mac': {
         suffix = this.faker.internet.mac('');
         break;
-      case 'pci':
+      }
+
+      case 'pci': {
         prefix = this.faker.helpers.maybe(() => `P${digit()}`) ?? '';
         suffix = `${digit()}s${digit()}${
           this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
         }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
+      }
     }
 
     return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
@@ -290,7 +300,7 @@ export class SystemModule extends ModuleBase {
    *
    * @param options The optional options to use.
    * @param options.includeYear Whether to include a year in the generated expression. Defaults to `false`.
-   * @param options.includeNonStandard Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression. Defaults to `false`.
+   * @param options.includeNonStandard Whether to include a `@yearly`, `@monthly`, `@daily`, etc text labels in the generated expression. Defaults to `false`.
    *
    * @example
    * faker.system.cron() // '45 23 * * 6'
@@ -310,7 +320,7 @@ export class SystemModule extends ModuleBase {
        */
       includeYear?: boolean;
       /**
-       * Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression.
+       * Whether to include a `@yearly`, `@monthly`, `@daily`, etc text labels in the generated expression.
        *
        * @default false
        */
