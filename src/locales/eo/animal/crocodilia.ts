@@ -1,7 +1,6 @@
 export default [
   'amerika krokodilo',
   'aŭstralia krokodilo',
-  'ĉina aligatoro',
   'filipina krokodilo',
   'gavialo',
   'kuba krokodilo',
@@ -15,4 +14,5 @@ export default [
   'okcidentafrika krokodilo',
   'orinoka krokodilo',
   'siama krokodilo',
+  'ĉina aligatoro',
 ];
