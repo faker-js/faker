@@ -194,7 +194,7 @@ export class AnimalModule extends ModuleBase {
    * Returns a random animal type.
    *
    * @example
-   * faker.animal.type() // 'crocodilia'
+   * faker.animal.type() // 'crocodile'
    *
    * @since 5.5.0
    */
