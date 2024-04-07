@@ -10,4 +10,8 @@ This is the migration guide for upgrading from v8 to v9.
 
 :::
 
-v9 has not yet been released. This page will contain a work-in-progress list of breaking changes in v9.
+v9 has not yet been released. In the future, this document will contain a detailed upgrading guide.
+
+In the meantime you can read the individual snippets here:
+
+- https://github.com/faker-js/faker/tree/next/docs/guide/upgrading_v9
