@@ -24,8 +24,8 @@ devDependencies:
     specifier: 7.5.0
     version: 7.5.0
   '@eslint-types/unicorn':
-    specifier: 51.0.1
-    version: 51.0.1
+    specifier: 52.0.0
+    version: 52.0.0
   '@types/node':
     specifier: 20.12.5
     version: 20.12.5
@@ -81,8 +81,8 @@ devDependencies:
     specifier: 5.1.3
     version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
   eslint-plugin-unicorn:
-    specifier: 51.0.1
-    version: 51.0.1(eslint@8.57.0)
+    specifier: 52.0.0
+    version: 52.0.0(eslint@8.57.0)
   eslint-plugin-vitest:
     specifier: 0.4.1
     version: 0.4.1(@typescript-eslint/eslint-plugin@7.5.0)(eslint@8.57.0)(typescript@5.4.4)(vitest@1.4.0)
@@ -905,8 +905,8 @@ packages:
     resolution: {integrity: sha512-zKvsPBDq6o0L4p2sRtq8fxOtGc+mm37aZSXLsiD4DIRl2kYUxKNO9CKDTAgmuMYUzih9J7lbLxAomreLrdAiVQ==}
     dev: true
 
-  /@eslint-types/unicorn@51.0.1:
-    resolution: {integrity: sha512-RuuEK+dBISEikf7a8lrWOrDCUYv09sZfqLoG/kozH+5UqEvot1xMmGHXomGkTyB68rzjgJe0N4uESVyL62obJw==}
+  /@eslint-types/unicorn@52.0.0:
+    resolution: {integrity: sha512-1+Om/IekT0AwlPiARvhbtKsSgVMu3ZAtP99YCzhHkDSnF5f8sQegh8/3ZmMhlCnKipa7/x8qEC7Bn4rbaagnSA==}
     dev: true
 
   /@eslint/eslintrc@2.1.4:
@@ -3274,8 +3274,8 @@ packages:
       synckit: 0.8.8
     dev: true
 
-  /eslint-plugin-unicorn@51.0.1(eslint@8.57.0):
-    resolution: {integrity: sha512-MuR/+9VuB0fydoI0nIn2RDA5WISRn4AsJyNSaNKLVwie9/ONvQhxOBbkfSICBPnzKrB77Fh6CZZXjgTt/4Latw==}
+  /eslint-plugin-unicorn@52.0.0(eslint@8.57.0):
+    resolution: {integrity: sha512-1Yzm7/m+0R4djH0tjDjfVei/ju2w3AzUGjG6q8JnuNIL5xIwsflyCooW5sfBvQp2pMYQFSWWCFONsjCax1EHng==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: '>=8.56.0'
