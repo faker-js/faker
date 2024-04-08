@@ -26,9 +26,6 @@ devDependencies:
   '@eslint-types/unicorn':
     specifier: 51.0.1
     version: 51.0.1
-  '@types/markdown-it':
-    specifier: 13.0.7
-    version: 13.0.7
   '@types/node':
     specifier: 20.12.5
     version: 20.12.5
