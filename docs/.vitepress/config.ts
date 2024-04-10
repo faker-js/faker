@@ -246,6 +246,10 @@ const config: UserConfig<DefaultTheme.Config> = {
             text: 'Roadmap',
             link: '/about/roadmap/',
             items: [
+              {
+                text: 'v9 - Tree-Shakeable Module-Functions',
+                link: '/about/roadmap/v9',
+              },
               { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
               {
                 text: 'v7 - Cleanup & Improvements',
