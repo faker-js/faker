@@ -38,7 +38,7 @@ exports[`food > 1211 > vegetable 1`] = `"sun dried tomatoes"`;
 
 exports[`food > 1337 > adjective 1`] = `"fluffy"`;
 
-exports[`food > 1337 > description 1`] = `"A slow-roasted Black Oystercatcher with a fresh, fluffy exterior. Stuffed with orange and covered in fingerlime sauce. Sides with bok choy puree and wild english spinach."`;
+exports[`food > 1337 > description 1`] = `"A slow-roasted Cory's Shearwater with a fresh, fluffy exterior. Stuffed with orange and covered in fingerlime sauce. Sides with bok choy puree and wild english spinach."`;
 
 exports[`food > 1337 > dish 1`] = `"Egyptian Dates Soup"`;
 
