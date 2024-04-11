@@ -137,7 +137,8 @@ const config: UserConfig<DefaultTheme.Config> = {
           },
 
     footer: {
-      message: 'Released under the MIT License.',
+      message:
+        'Released under the MIT License. <br/><a target="_blank" href="https://opencollective.com/fakerjs">❤️ Support Faker on OpenCollective.</a>',
       copyright: 'Copyright © 2022-present Faker.',
     },
 
@@ -173,6 +174,10 @@ const config: UserConfig<DefaultTheme.Config> = {
             link: '/about/contributing',
           },
         ],
+      },
+      {
+        text: 'Donate',
+        link: 'https://opencollective.com/fakerjs',
       },
       {
         text: currentVersion,
