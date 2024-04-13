@@ -128,7 +128,6 @@ export default [
   'balra',
   'balról',
   'barátságosan',
-  'bazi',
   'be',
   'befele',
   'befelé',
