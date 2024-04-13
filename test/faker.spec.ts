@@ -18,7 +18,8 @@ describe('faker', () => {
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
 
-    (await import('..')).default;
+    const file = await import('../src');
+    expect(Object.keys(file)).toContain('Faker');
 
     new Faker({ locale: { metadata: { title: '' } } });
 
