@@ -152,7 +152,7 @@ function findParams(input: string): [continueIndex: number, params: unknown[]] {
   }
 
   while (index !== -1) {
-    const params = input.substring(1, index);
+    const params = input.slice(1, index);
     try {
       // assuming that the params are valid JSON
       return [index, JSON.parse(`[${params}]`) as unknown[]];
@@ -171,7 +171,7 @@ function findParams(input: string): [continueIndex: number, params: unknown[]] {
   }
 
   index = input.lastIndexOf(')');
-  const params = input.substring(1, index);
+  const params = input.slice(1, index);
   return [index, [params]];
 }
 

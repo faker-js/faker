@@ -1284,7 +1284,7 @@ export class HelpersModule extends SimpleHelpersModule {
 
     // extract method name from between the {{ }} that we found
     // for example: {{person.firstName}}
-    const token = pattern.substring(start + 2, end + 2);
+    const token = pattern.slice(start + 2, end + 2);
     const method = token.replace('}}', '').replace('{{', '');
 
     const result = fakeEval(method, this.faker);

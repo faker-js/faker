@@ -32,7 +32,7 @@ export interface Currency {
 export function prettyPrintIban(iban: string): string {
   let pretty = '';
   for (let i = 0; i < iban.length; i += 4) {
-    pretty += `${iban.substring(i, i + 4)} `;
+    pretty += `${iban.slice(i, i + 4)} `;
   }
 
   return pretty.trimEnd();
