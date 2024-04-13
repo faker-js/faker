@@ -219,5 +219,5 @@ function preparePage(
 }
 
 function toCamelCase(value: string): string {
-  return value.substring(0, 1).toLowerCase() + value.substring(1);
+  return value.slice(0, 1).toLowerCase() + value.slice(1);
 }

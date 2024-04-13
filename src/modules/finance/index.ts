@@ -856,7 +856,7 @@ export class FinanceModule extends ModuleBase {
         c--;
       }
 
-      s = s.substring(0, count);
+      s = s.slice(0, Math.max(0, count));
     }
 
     let checksum: string | number =

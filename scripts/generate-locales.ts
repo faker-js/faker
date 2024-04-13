@@ -337,7 +337,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   const fileContent = readFileSync(filePath).toString();
   const searchString = 'export default ';
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
-  const compareString = fileContent.substring(compareIndex);
+  const compareString = fileContent.slice(Math.max(0, compareIndex));
 
   const isDynamicFile = compareString.startsWith('mergeArrays');
   const isNonApplicable = compareString.startsWith('null');
@@ -355,7 +355,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     return;
   }
 
-  const fileContentPreData = fileContent.substring(0, compareIndex);
+  const fileContentPreData = fileContent.slice(0, Math.max(0, compareIndex));
   const fileImport = await import(`file:${filePath}`);
   const localeData = normalizeDataRecursive(fileImport.default);
 

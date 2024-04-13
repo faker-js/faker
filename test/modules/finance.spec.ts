@@ -477,7 +477,7 @@ describe('finance', () => {
       describe('iban()', () => {
         it('should return a random yet formally correct IBAN number', () => {
           const iban = faker.finance.iban();
-          const bban = iban.substring(4) + iban.substring(0, 4);
+          const bban = iban.slice(4) + iban.slice(0, 4);
 
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -490,8 +490,8 @@ describe('finance', () => {
             formatted: false,
             countryCode: 'DE',
           });
-          const bban = iban.substring(4) + iban.substring(0, 4);
-          const countryCode = iban.substring(0, 2);
+          const bban = iban.slice(4) + iban.slice(0, 4);
+          const countryCode = iban.slice(0, 2);
 
           expect(countryCode).toBe('DE');
           expect(
@@ -522,7 +522,7 @@ describe('finance', () => {
 
           expect(bic).toBeTypeOf('string');
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
-          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+          expect(ibanLib.iso3166).toContain(bic.slice(4, 6));
         });
 
         it('should return a BIC number with branch code', () => {
@@ -530,7 +530,7 @@ describe('finance', () => {
 
           expect(bic).toBeTypeOf('string');
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
-          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+          expect(ibanLib.iso3166).toContain(bic.slice(4, 6));
         });
       });
 

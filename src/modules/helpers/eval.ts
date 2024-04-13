@@ -86,7 +86,7 @@ export function fakeEval(
       [index, current] = evalProcessExpression(remaining, current);
     }
 
-    remaining = remaining.substring(index);
+    remaining = remaining.slice(Math.max(0, index));
 
     // Remove garbage and resolve array values
     current = current
@@ -188,7 +188,7 @@ function evalProcessExpression(
   const result = REGEX_DOT_OR_BRACKET.exec(input);
   const dotMatch = (result?.[0] ?? '') === '.';
   const index = result?.index ?? input.length;
-  const key = input.substring(0, index);
+  const key = input.slice(0, Math.max(0, index));
   if (key.length === 0) {
     throw new FakerError(`Expression parts cannot be empty in '${input}'`);
   }

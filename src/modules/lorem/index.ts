@@ -146,7 +146,7 @@ export class LoremModule extends ModuleBase {
         } = { min: 3, max: 10 }
   ): string {
     const sentence = this.words(wordCount);
-    return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
+    return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`;
   }
 
   /**

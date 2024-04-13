@@ -55,7 +55,6 @@ module.exports = defineConfig({
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
-    'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/require-array-join-separator': 'off',
 

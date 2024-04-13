@@ -462,7 +462,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           }
         }
 
-        ranges = ranges.substring(range[0].length);
+        ranges = ranges.slice(range[0].length);
         range = SINGLE_RANGE_REG.exec(ranges);
       }
 
@@ -1293,7 +1293,9 @@ export class HelpersModule extends SimpleHelpersModule {
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
     const res =
-      pattern.substring(0, start) + stringified + pattern.substring(end + 2);
+      pattern.slice(0, Math.max(0, start)) +
+      stringified +
+      pattern.slice(Math.max(0, end + 2));
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);

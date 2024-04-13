@@ -25,7 +25,7 @@ export function getSourcePath(node: SourceableNode): RawApiDocsSource {
   const sourceFile = node.getSourceFile();
   const filePath = sourceFile
     .getFilePath()
-    .substring(FILE_PATH_PROJECT.length + 1);
+    .slice(Math.max(0, FILE_PATH_PROJECT.length + 1));
   const startPosition = node.getStart();
   const { line, column } = sourceFile.getLineAndColumnAtPos(startPosition);
 
