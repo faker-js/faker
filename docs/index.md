@@ -39,3 +39,7 @@ features:
     title: Localization
     details: Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 ---
+
+<div class="opencollective">
+  <a target="_blank" href="https://opencollective.com/fakerjs">Support Faker on OpenCollective</a>
+</div>
