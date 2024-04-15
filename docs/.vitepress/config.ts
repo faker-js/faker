@@ -123,7 +123,7 @@ const config: UserConfig<DefaultTheme.Config> = {
     socialLinks: [
       { icon: 'discord', link: 'https://chat.fakerjs.dev' },
       { icon: 'mastodon', link: 'https://fosstodon.org/@faker_js' },
-      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
+      { icon: 'x', link: 'https://twitter.com/faker_js' },
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
@@ -243,6 +243,10 @@ const config: UserConfig<DefaultTheme.Config> = {
             text: 'Roadmap',
             link: '/about/roadmap/',
             items: [
+              {
+                text: 'v9 - Tree-Shakeable Module-Functions',
+                link: '/about/roadmap/v9',
+              },
               { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
               {
                 text: 'v7 - Cleanup & Improvements',

@@ -16,7 +16,7 @@ export default [
   'Baby',
   'Clothing',
   'Shoes',
-  'Jewelery',
+  'Jewelry',
   'Sports',
   'Outdoors',
   'Automotive',
