@@ -78,10 +78,14 @@ table td ul li {
 .opencollective {
   margin-top: 48px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .opencollective a {
+  margin-top: 24px;
   border-radius: 20px;
   padding: 0 20px;
   line-height: 38px;
