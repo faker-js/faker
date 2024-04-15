@@ -58,7 +58,7 @@ import { fakerDE, fakerES, fakerFR } from '@faker-js/faker';
 
 The dedicated import paths are kept in v9, to allow a gradual migration for our users.
 
-While the implementation of this change does not constitute as breaking according to semantic versioning guidelines, it does impact the behavior of users' bundlers.
+While this is not a breaking change according to semantic versioning guidelines, it does impact the behavior of users' bundlers.
 
 ### Use High Precision RNG by Default
 
