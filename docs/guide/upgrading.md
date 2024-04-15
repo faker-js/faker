@@ -40,8 +40,6 @@ faker.helpers.arrayElement([1, 2, 3] as const); // 1 | 2 | 3
 faker.helpers.arrayElement([1, 2, 3]); // 1 | 2 | 3
 ```
 
-If you are unable to upgrade to TS5, you have to keep using Faker v8.
-
 ### Fix Tree Shaking
 
 Prior to this version, there was an issue where all locales would be bundled even if only one was used. Users had to resort to a workaround by importing specific faker instances from dedicated paths.
