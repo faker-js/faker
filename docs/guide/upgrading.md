@@ -44,7 +44,7 @@ If you are unable to upgrade to TS5, you have to keep using Faker v8.
 
 ### Fix Tree Shaking
 
-Prior to this version, users had to resort to a workaround by importing specific faker instances from dedicated paths to overcome an issue which caused all locales to be bundled even if only one was used.
+Prior to this version, there was an issue where all locales would be bundled even if only one was used. Users had to resort to a workaround by importing specific faker instances from dedicated paths.
 
 ```ts
 import { faker } from '@faker-js/faker/locale/de';
