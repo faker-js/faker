@@ -563,7 +563,7 @@ We plan to rethink this method some more in the future: [#2579](https://github.c
 
 ### Require `from` and `to` in `faker.date.between` and `betweens`
 
-Previously, in `faker.date.between()` and `faker.date.betweens()` if the `from` or `to` parameter was omitted (in Javascript) or an invalid date (in Javascript or Typescript), they would default to the current date or reference date. Now, both boundaries must now be given explicitly. If you still need the old behavior, you can pass `Date.now()` or the reference date for `from` or `to`.
+Previously, in `faker.date.between()` and `faker.date.betweens()` if the `from` or `to` parameter was omitted (in Javascript) or an invalid date (in Javascript or Typescript), they would default to the current date or reference date. Now, both boundaries must be given explicitly. If you still need the old behavior, you can pass `Date.now()` or the reference date for `from` or `to`.
 
 ### Stricter Checking for Function Signature Passed to `faker.helpers.multiple` Method
 
