@@ -627,7 +627,7 @@ This affects:
 
 ### Phone Number `style` Replaces Explicit `format`
 
-`faker.phone.number()` generates a phone number for the current locale. Previously there was little control over the generated number, which might or might not include country codes, extensions, white space and punctuation.
+`faker.phone.number()` generates a phone number for the current locale. Previously, there was little control over the generated number, which may or may not have included country codes, extensions, white space, and punctuation.
 
 If you wanted more control over the number, it was previously necessary to pass an explicit `format` parameter. This has now been removed. Instead, you can consider one of two options:
 
