@@ -107,11 +107,9 @@ diff(r32, r53);
 
 #### Adoption
 
-If you don't have any seeded tests and just want some random values, then you don't have to change anything.
-
-If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
-
-If you are using [vitest](https://vitest.dev), you can do that using `pnpm vitest run -u`.
+- If you don't have any seeded tests and just want some random values, then you don't have to change anything.
+- If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
+- If you are using [vitest](https://vitest.dev), you can do that using `pnpm vitest run -u`.
 
 #### Keeping the Old Behavior
 
