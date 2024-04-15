@@ -475,7 +475,7 @@ Removed deprecated random module
 
 ### Locale Aliases
 
-Removed deprecated locale aliases `cz`, `en_IND`, `ge` and `global`.
+Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 | old                                                     | replacement                                            |
 | ------------------------------------------------------- | ------------------------------------------------------ |
