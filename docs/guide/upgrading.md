@@ -135,7 +135,7 @@ const faker = new Faker({
 
 ### Using `tsup` for the Build Process
 
-After the switch to `tsup`, the dist folder now contains minified and chunked files for CJS. However, as we support exports defined via `package.json`, this should not affect your code.
+After the switch to [tsup](https://tsup.egoist.dev), the `dist` folder now contains minified and chunked files for CJS. However, as we officially support only `exports` defined via `package.json`, this should not affect your code.
 
 ## Removals of Deprecated Code
 
