@@ -18,7 +18,7 @@ v9 has not yet been released. This page contains a work-in-progress list of brea
 
 ## General Breaking Changes
 
-### Requires Node 18+
+### Requires Node v18+
 
 Support for Node.js v14 and v16 has been discontinued as these versions have reached their [end-of-life](https://github.com/nodejs/Release). Faker.js v9 requires a minimum of Node.js v18.
 
@@ -249,7 +249,7 @@ Note these are not exact replacements:
 
 #### `faker.helpers.replaceSymbolWithNumber`
 
-The `replaceSymbolWithNumber` method was deprecated in Faker 8.4 and removed in 9.0. The method parsed the given string symbol by symbol and replaces the `#` symbol with digits (`0` - `9`) and the `!` symbol with digits >=2 (`2` - `9`). This was primarily used internally by Faker for generating phone numbers. If needed, you can use a simple string replace combined with `faker.string.numeric` to replace this
+The `replaceSymbolWithNumber` method was deprecated in Faker v8.4 and removed in v9.0. The method parsed the given string symbol by symbol and replaces the `#` symbol with digits (`0` - `9`) and the `!` symbol with digits >=2 (`2` - `9`). This was primarily used internally by Faker for generating phone numbers. If needed, you can use a simple string replace combined with `faker.string.numeric` to replace this
 
 ```ts
 // old
@@ -271,7 +271,7 @@ faker.helpers.replaceSymbolWithNumber('!#####'); // '123152'
 
 #### `faker.helpers.regexpStyleStringParse`
 
-The `regexpStyleStringParse` method in `faker.helpers` was deprecated in Faker 8.1 and removed in 9.0. A likely replacement is the more powerful `faker.helpers.fromRegExp`.
+The `regexpStyleStringParse` method in `faker.helpers` was deprecated in Faker v8.1 and removed in v9.0. A likely replacement is the more powerful `faker.helpers.fromRegExp`.
 
 ```ts
 faker.helpers.regexpStyleStringParse('a{3,6}'); // aaaaa
