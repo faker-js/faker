@@ -113,7 +113,7 @@ If you don't have any seeded tests and just want some random values, then you do
 
 If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
 
-If you are using vitest, you can do that using `pnpm vitest run -u`.
+If you are using [vitest](https://vitest.dev), you can do that using `pnpm vitest run -u`.
 
 #### Keeping the Old Behavior
 
