@@ -20,7 +20,7 @@ v9 has not yet been released. This page contains a work-in-progress list of brea
 
 ### Requires Node 18+
 
-Support for Node.js versions 14 and 16 has been discontinued as these versions have reached their [end-of-life](https://github.com/nodejs/Release). Faker.js 9.0 requires a minimum of Node.js version 18.
+Support for Node.js v14 and v16 has been discontinued as these versions have reached their [end-of-life](https://github.com/nodejs/Release). Faker.js v9 requires a minimum of Node.js v18.
 
 ### Upgrade to TypeScript v5
 
