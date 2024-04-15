@@ -50,7 +50,7 @@ Prior to this version, there was an issue where all locales would be bundled eve
 import { faker } from '@faker-js/faker/locale/de';
 ```
 
-With the implementation of this fix, this workaround should no longer be necessary. You should be able to import different localized faker instances from the root of your package, and the bundle will only include the specific locales.
+With this fix, the workaround should no longer be necessary. You will be able to import different localized faker instances from the root of your package with the bundle only including those specific locales.
 
 ```ts
 import { fakerDE, fakerES, fakerFR } from '@faker-js/faker';
