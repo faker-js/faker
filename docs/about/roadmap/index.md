@@ -9,6 +9,10 @@ Click on the specific versions for more details.
 
 ## Upcoming Versions
 
+- [v9 - Tree Shaking](v9.md)
+
+## Current Versions
+
 - [v8 - Make Faker Handier](v8.html)
 
 ## Previous Versions

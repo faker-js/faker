@@ -125,7 +125,7 @@ export default [
   'Willow shoot sawfly',
   'Woodwasp',
   'Wool sower gall maker',
-  'Yellow and black potter wasp',
   'Yellow Crazy Ant',
+  'Yellow and black potter wasp',
   'Yellow-horned horntail',
 ];
