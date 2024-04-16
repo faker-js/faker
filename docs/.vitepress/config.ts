@@ -123,7 +123,7 @@ const config: UserConfig<DefaultTheme.Config> = {
     socialLinks: [
       { icon: 'discord', link: 'https://chat.fakerjs.dev' },
       { icon: 'mastodon', link: 'https://fosstodon.org/@faker_js' },
-      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
+      { icon: 'x', link: 'https://twitter.com/faker_js' },
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
