@@ -363,11 +363,18 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const fileContentPreData = fileContent.substring(0, compareIndex);
   const fileImport = await import(`file:${filePath}`);
-  const localeData = normalizeDataRecursive(fileImport.default);
+  const oldData = fileImport.default;
+  const localeData = normalizeDataRecursive(oldData);
 
   // We reattach the content before the actual data implementation to keep stuff like comments.
   // In the long term we should probably define a whether we want those in the files at all.
-  const newContent = fileContentPreData + JSON.stringify(localeData);
+  const newDataJson = JSON.stringify(localeData);
+  const newContent = fileContentPreData + newDataJson;
+
+  // Exit early if unchanged for performance reasons
+  if (JSON.stringify(oldData) === newDataJson) {
+    return;
+  }
 
   return writeFile(filePath, await formatTypescript(newContent));
 }
