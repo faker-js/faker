@@ -523,7 +523,10 @@ export class SimpleDateModule extends SimpleModuleBase {
 
     switch (mode) {
       case 'age': {
-        const from = new Date(refDate).setUTCFullYear(refYear - max - 1);
+        // Add one day to the `from` date to avoid generating the same date as the reference date.
+        const oneDay = 24 * 60 * 60 * 1000;
+        const from =
+          new Date(refDate).setUTCFullYear(refYear - max - 1) + oneDay;
         const to = new Date(refDate).setUTCFullYear(refYear - min);
 
         if (from > to) {

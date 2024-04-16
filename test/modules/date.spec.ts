@@ -528,6 +528,19 @@ describe('date', () => {
       });
 
       describe('birthdate', () => {
+        function calculateAge(birthdate: Date, refDate: Date): number {
+          let age = refDate.getFullYear() - birthdate.getFullYear();
+          if (
+            refDate.getMonth() < birthdate.getMonth() ||
+            (refDate.getMonth() === birthdate.getMonth() &&
+              refDate.getDate() < birthdate.getDate())
+          ) {
+            age--;
+          }
+
+          return age;
+        }
+
         it('returns a random birthdate', () => {
           const birthdate = faker.date.birthdate();
           expect(birthdate).toBeInstanceOf(Date);
@@ -577,8 +590,8 @@ describe('date', () => {
           const value = birthdate.valueOf();
           const refDateValue = refDate.valueOf();
           expect(value).toBeLessThanOrEqual(refDateValue);
-          const deltaDate = new Date(refDateValue - value);
-          expect(deltaDate.getUTCFullYear() - 1970).toBe(21);
+          const age = calculateAge(birthdate, refDate);
+          expect(age).toBe(21);
         });
 
         it('returns a random birthdate between two ages', () => {
@@ -592,9 +605,9 @@ describe('date', () => {
           const value = birthdate.valueOf();
           const refDateValue = refDate.valueOf();
           expect(value).toBeLessThanOrEqual(refDateValue);
-          const deltaDate = new Date(refDateValue - value);
-          expect(deltaDate.getUTCFullYear() - 1970).toBeGreaterThanOrEqual(21);
-          expect(deltaDate.getUTCFullYear() - 1970).toBeLessThanOrEqual(22);
+          const age = calculateAge(birthdate, refDate);
+          expect(age).toBeGreaterThanOrEqual(21);
+          expect(age).toBeLessThanOrEqual(22);
         });
 
         it.each(['min', 'max', 'mode'] as const)(
