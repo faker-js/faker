@@ -14,13 +14,8 @@
  *
  * Run this script using `pnpm run generate:locales`
  */
-import {
-  existsSync,
-  lstatSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from 'node:fs';
+import { constants } from 'node:fs';
+import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
@@ -122,8 +117,11 @@ async function generateLocaleFile(locale: string): Promise<void> {
 
   for (let i = parts.length - 1; i > 0; i--) {
     const fallback = parts.slice(0, i).join('_');
-    if (existsSync(resolve(pathLocales, fallback))) {
+    try {
+      await access(resolve(pathLocales, fallback), constants.R_OK);
       locales.push(fallback);
+    } catch {
+      // file is missing
     }
   }
 
@@ -152,7 +150,7 @@ async function generateLocaleFile(locale: string): Promise<void> {
       `;
 
   content = await formatTypescript(content);
-  writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
+  return writeFile(resolve(pathLocale, `${locale}.ts`), content);
 }
 
 async function generateLocalesIndexFile(
@@ -161,7 +159,7 @@ async function generateLocalesIndexFile(
   type: string,
   depth: number
 ): Promise<void> {
-  let modules = readdirSync(path);
+  let modules = await readdir(path);
   modules = modules.filter((file) => !file.startsWith('.'));
   modules = removeIndexTs(modules);
   modules = removeTsSuffix(modules);
@@ -190,7 +188,7 @@ async function generateLocalesIndexFile(
     `export default ${name};`
   );
 
-  writeFileSync(
+  return writeFile(
     resolve(path, 'index.ts'),
     await formatTypescript(content.join('\n'))
   );
@@ -201,16 +199,18 @@ async function generateRecursiveModuleIndexes(
   name: string,
   definition: string,
   depth: number
-): Promise<void> {
+): Promise<unknown> {
   await generateLocalesIndexFile(path, name, definition, depth);
+  const promises: Array<Promise<unknown>> = [];
 
-  let submodules = readdirSync(path);
+  let submodules = await readdir(path);
   submodules = removeIndexTs(submodules);
   for (const submodule of submodules) {
     const pathModule = resolve(path, submodule);
     await updateLocaleFile(pathModule);
     // Only process sub folders recursively
-    if (lstatSync(pathModule).isDirectory()) {
+    const moduleStat = await stat(pathModule);
+    if (moduleStat.isDirectory()) {
       let moduleDefinition =
         definition === 'any' ? 'any' : `${definition}['${submodule}']`;
 
@@ -220,14 +220,18 @@ async function generateRecursiveModuleIndexes(
       }
 
       // Recursive
-      await generateRecursiveModuleIndexes(
-        pathModule,
-        submodule,
-        moduleDefinition,
-        depth + 1
+      promises.push(
+        generateRecursiveModuleIndexes(
+          pathModule,
+          submodule,
+          moduleDefinition,
+          depth + 1
+        )
       );
     }
   }
+
+  return Promise.all(promises);
 }
 
 /**
@@ -237,11 +241,12 @@ async function generateRecursiveModuleIndexes(
  * @param filePath The full file path to the file.
  */
 async function updateLocaleFile(filePath: string): Promise<void> {
-  if (lstatSync(filePath).isFile()) {
+  const fileStat = await stat(filePath);
+  if (fileStat.isFile()) {
     const [locale, moduleKey, entryKey] = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
       .split(/[\\/]/);
-    await updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
+    return updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }
 
@@ -265,7 +270,7 @@ async function updateLocaleFileHook(
     console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
 
-  await normalizeLocaleFile(filePath, definitionKey);
+  return normalizeLocaleFile(filePath, definitionKey);
 }
 
 /**
@@ -333,7 +338,9 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   console.log(`Running data normalization for:`, filePath);
 
-  const fileContent = readFileSync(filePath).toString();
+  const fileContent = (
+    await readFile(filePath, { encoding: 'utf8' })
+  ).toString();
   const searchString = 'export default ';
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
   const compareString = fileContent.substring(compareIndex);
@@ -356,18 +363,25 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const fileContentPreData = fileContent.substring(0, compareIndex);
   const fileImport = await import(`file:${filePath}`);
-  const localeData = normalizeDataRecursive(fileImport.default);
+  const oldData = fileImport.default;
+  const localeData = normalizeDataRecursive(oldData);
 
   // We reattach the content before the actual data implementation to keep stuff like comments.
   // In the long term we should probably define a whether we want those in the files at all.
-  const newContent = fileContentPreData + JSON.stringify(localeData);
+  const newDataJson = JSON.stringify(localeData);
+  const newContent = fileContentPreData + newDataJson;
 
-  writeFileSync(filePath, await formatTypescript(newContent));
+  // Exit early if unchanged for performance reasons
+  if (JSON.stringify(oldData) === newDataJson) {
+    return;
+  }
+
+  return writeFile(filePath, await formatTypescript(newContent));
 }
 
 // Start of actual logic
 
-const locales = readdirSync(pathLocales);
+const locales = await readdir(pathLocales);
 removeIndexTs(locales);
 
 let localeIndexImports = '';
@@ -376,6 +390,7 @@ let localeIndexExportsGrouped = '';
 let localesIndexImports = '';
 
 let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
+const promises: Array<Promise<unknown>> = [];
 
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
@@ -407,17 +422,18 @@ for (const locale of locales) {
   localesIndexImports += `import { default as ${locale} } from './${locale}';\n`;
   localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
 
-  // src/locale/<locale>.ts
-  await generateLocaleFile(locale);
+  promises.push(
+    // src/locale/<locale>.ts
+    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    generateLocaleFile(locale),
 
-  // src/locales/**/index.ts
-  await generateRecursiveModuleIndexes(
-    pathModules,
-    locale,
-    'LocaleDefinition',
-    1
+    // src/locales/**/index.ts
+    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    generateRecursiveModuleIndexes(pathModules, locale, 'LocaleDefinition', 1)
   );
 }
+
+await Promise.all(promises);
 
 // src/locale/index.ts
 
@@ -436,7 +452,7 @@ let localeIndexContent = `
   `;
 
 localeIndexContent = await formatTypescript(localeIndexContent);
-writeFileSync(pathLocaleIndex, localeIndexContent);
+await writeFile(pathLocaleIndex, localeIndexContent);
 
 // src/locales/index.ts
 
@@ -451,15 +467,15 @@ let localesIndexContent = `
   `;
 
 localesIndexContent = await formatTypescript(localesIndexContent);
-writeFileSync(pathLocalesIndex, localesIndexContent);
+await writeFile(pathLocalesIndex, localesIndexContent);
 
 // docs/guide/localization.md
 
 localizationLocales = await formatMarkdown(localizationLocales);
 
-let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf8');
+let localizationContent = await readFile(pathDocsGuideLocalization, 'utf8');
 localizationContent = localizationContent.replaceAll(
   /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
   `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
 );
-writeFileSync(pathDocsGuideLocalization, localizationContent);
+await writeFile(pathDocsGuideLocalization, localizationContent);
