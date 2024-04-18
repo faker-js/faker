@@ -338,8 +338,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   console.log(`Running data normalization for:`, filePath);
 
-  const fileBuffer = await readFile(filePath, { encoding: 'utf8' });
-  const fileContent = fileBuffer.toString();
+  const fileContent = await readFile(filePath, { encoding: 'utf8' });
   const searchString = 'export default ';
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
   const compareString = fileContent.substring(compareIndex);
