@@ -65,13 +65,31 @@ export type LocationDefinition = LocaleEntry<{
    * The names of the compass directions.
    * First the 4 cardinal directions, then the 4 ordinal directions.
    */
-  direction: string[];
+  direction: {
+    /**
+     * The names of the cardinal compass directions.
+     * Cardinal directions are the four main points of a compass.
+     */
+    cardinal: string[];
 
-  /**
-   * The abbreviated names of the compass directions.
-   * First the 4 cardinal directions, then the 4 ordinal directions.
-   */
-  direction_abbr: string[];
+    /**
+     * The abbreviated names of the cardinal compass directions.
+     * Cardinal directions are the four main points of a compass.
+     */
+    cardinal_abbr: string[];
+
+    /**
+     * The names of ordinal compass directions.
+     * Ordinal directions are combinations of cardinal directions.
+     */
+    ordinal: string[];
+
+    /**
+     * The abbreviated names of ordinal compass directions.
+     * Ordinal directions are combinations of cardinal directions.
+     */
+    ordinal_abbr: string[];
+  };
 
   /**
    * The pattern used to generate building numbers. Since building numbers rarely start with 0, any consecutive # characters will be replaced by a number without a leading zero.
