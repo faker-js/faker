@@ -17,6 +17,7 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import team from './team';
+import word from './word';
 
 const el: LocaleDefinition = {
   app,
@@ -33,6 +34,7 @@ const el: LocaleDefinition = {
   person,
   phone_number,
   team,
+  word,
 };
 
 export default el;

@@ -1,3 +1,4 @@
+import type { Letter } from '../modules/word';
 import type { LocaleEntry } from './definitions';
 
 /**
@@ -11,4 +12,5 @@ export type WordDefinition = LocaleEntry<{
   noun: string[];
   preposition: string[];
   verb: string[];
+  letter: Letter[];
 }>;

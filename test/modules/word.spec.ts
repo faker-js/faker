@@ -36,6 +36,10 @@ describe('word', () => {
         .it('with options.count', { count: 10 })
         .it('with options.count range', { count: { min: 18, max: 20 } });
     });
+
+    t.describe('letter', (t) => {
+      t.it('noArgs');
+    });
   });
 
   describe('filterWordListByLength', () => {
@@ -189,6 +193,16 @@ describe('word', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.verb).toContain(actual);
+        });
+      });
+
+      describe('letter', () => {
+        it('should return letter from letter array', () => {
+          const actual = faker.word.letter();
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('object');
+          expect(faker.definitions.word.letter).toContainEqual(actual);
         });
       });
     }

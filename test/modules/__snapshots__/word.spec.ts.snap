@@ -48,6 +48,13 @@ exports[`word > 42 > interjection > with options.length and options.strategy 1`]
 
 exports[`word > 42 > interjection > with options.strategy 1`] = `"ah"`;
 
+exports[`word > 42 > letter > noArgs 1`] = `
+{
+  "lowercase": "j",
+  "uppercase": "J",
+}
+`;
+
 exports[`word > 42 > noun > noArgs 1`] = `"gerbil"`;
 
 exports[`word > 42 > noun > with length = 10 1`] = `"hippodrome"`;
@@ -154,6 +161,13 @@ exports[`word > 1211 > interjection > with options.length and options.strategy 1
 
 exports[`word > 1211 > interjection > with options.strategy 1`] = `"um"`;
 
+exports[`word > 1211 > letter > noArgs 1`] = `
+{
+  "lowercase": "y",
+  "uppercase": "Y",
+}
+`;
+
 exports[`word > 1211 > noun > noArgs 1`] = `"trash"`;
 
 exports[`word > 1211 > noun > with length = 10 1`] = `"underpants"`;
@@ -259,6 +273,13 @@ exports[`word > 1337 > interjection > with options.length 1`] = `"ew"`;
 exports[`word > 1337 > interjection > with options.length and options.strategy 1`] = `"gadzooks"`;
 
 exports[`word > 1337 > interjection > with options.strategy 1`] = `"ah"`;
+
+exports[`word > 1337 > letter > noArgs 1`] = `
+{
+  "lowercase": "g",
+  "uppercase": "G",
+}
+`;
 
 exports[`word > 1337 > noun > noArgs 1`] = `"diversity"`;
 

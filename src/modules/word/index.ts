@@ -2,6 +2,17 @@ import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 import { filterWordListByLength } from './filter-word-list-by-length';
 
+export interface Letter {
+  /**
+   * The uppercase letter.
+   */
+  readonly lowercase: string;
+  /**
+   * The lowercase letter.
+   */
+  readonly uppercase: string;
+}
+
 /**
  * Module to return various types of words.
  */
@@ -624,5 +635,19 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers
       .multiple(() => this.sample(), { count })
       .join(' ');
+  }
+
+  /**
+   * Returns a random letter.
+   *
+   * It can also return diacritic letters in some locales, like german `ä`.
+   *
+   * @example
+   * faker.word.letter() // { uppercase: 'J', lowercase: 'j' }
+   *
+   * @since 9.0.0
+   */
+  letter(): Letter {
+    return this.faker.helpers.arrayElement(this.faker.definitions.word.letter);
   }
 }

@@ -3,20 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { WordDefinition } from '../../..';
-import adjective from './adjective';
-import adverb from './adverb';
 import letter from './letter';
-import noun from './noun';
-import preposition from './preposition';
-import verb from './verb';
 
 const word: WordDefinition = {
-  adjective,
-  adverb,
   letter,
-  noun,
-  preposition,
-  verb,
 };
 
 export default word;
