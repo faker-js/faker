@@ -289,7 +289,7 @@ Prior to v9, Faker provided a [`faker.helpers.unique()`](https://v8.fakerjs.dev/
 
 Please see the [unique values guide](/guide/unique) for alternatives.
 
-For example, many simple use cases can use [`faker.helpers.uniqueArray`](https://v8.fakerjs.dev/api/helpers.html#uniqueArray). Or you can migrate to a third party package such as [`enforce-unique`](https://www.npmjs.com/package/enforce-unique):
+For example, many simple use cases can use [`faker.helpers.uniqueArray`](https://v8.fakerjs.dev/api/helpers.html#uniqueArray). Or you can migrate to a recommended third party package such as [`enforce-unique`](https://www.npmjs.com/package/enforce-unique):
 
 Basic example:
 
