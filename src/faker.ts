@@ -1,6 +1,8 @@
+import type { FakerCore } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
+import { generateMersenne53Randomizer } from './internal/mersenne';
 import type { LocaleProxy } from './locale-proxy';
 import { createLocaleProxy } from './locale-proxy';
 import { AirlineModule } from './modules/airline';
@@ -58,7 +60,6 @@ import { mergeLocales } from './utils/merge-locales';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker extends SimpleFaker {
-  readonly rawDefinitions: LocaleDefinition;
   readonly definitions: LocaleProxy;
 
   readonly airline: AirlineModule = new AirlineModule(this);
@@ -84,6 +85,10 @@ export class Faker extends SimpleFaker {
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
+
+  get rawDefinitions(): LocaleDefinition {
+    return this.fakerCore.locale;
+  }
 
   // Aliases
   /** @deprecated Use {@link Faker#location} instead */
@@ -138,27 +143,40 @@ export class Faker extends SimpleFaker {
    *
    * @since 8.0.0
    */
+  constructor(
+    options:
+      | {
+          /**
+           * The locale data to use for this instance.
+           * If an array is provided, the first locale that has a definition for a given property will be used.
+           *
+           * @see mergeLocales(): For more information about how the locales are merged.
+           */
+          locale: LocaleDefinition | LocaleDefinition[];
+
+          /**
+           * The Randomizer to use.
+           * Specify this only if you want to use it to achieve a specific goal,
+           * such as sharing the same random generator with other instances/tools.
+           *
+           * @default generateMersenne53Randomizer()
+           */
+          randomizer?: Randomizer;
+        }
+      | {
+          /**
+           * The faker core with the randomizer, locale data and config to use.
+           */
+          fakerCore: FakerCore;
+        }
+  );
   constructor(options: {
-    /**
-     * The locale data to use for this instance.
-     * If an array is provided, the first locale that has a definition for a given property will be used.
-     *
-     * @see mergeLocales(): For more information about how the locales are merged.
-     */
-    locale: LocaleDefinition | LocaleDefinition[];
-
-    /**
-     * The Randomizer to use.
-     * Specify this only if you want to use it to achieve a specific goal,
-     * such as sharing the same random generator with other instances/tools.
-     *
-     * @default generateMersenne53Randomizer()
-     */
+    locale?: LocaleDefinition | LocaleDefinition[];
     randomizer?: Randomizer;
+    fakerCore?: FakerCore;
   }) {
-    super({ randomizer: options.randomizer });
-
-    let { locale } = options;
+    const { randomizer = generateMersenne53Randomizer(), fakerCore } = options;
+    let { locale = {} } = options;
 
     if (Array.isArray(locale)) {
       if (locale.length === 0) {
@@ -170,7 +188,8 @@ export class Faker extends SimpleFaker {
       locale = mergeLocales(locale);
     }
 
-    this.rawDefinitions = locale;
+    super({ fakerCore: fakerCore ?? { locale, randomizer, config: {} } });
+
     this.definitions = createLocaleProxy(this.rawDefinitions);
   }
 
@@ -186,7 +205,7 @@ export class Faker extends SimpleFaker {
    * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
-    return this.rawDefinitions.metadata ?? {};
+    return this.fakerCore.locale.metadata ?? {};
   }
 }
 
