@@ -346,7 +346,7 @@ const city = enforcer.enforce(faker.location.city, {
 ```
 
 ::: tip Note
-`enforce-unique` does not support the `store` option. If you were previously using this, you may wish to build your own unique logic instead.
+`enforce-unique` does not directly support the `store` option previously available in `faker.helpers.unique`. If you were previously using this parameter, check the [documentation](https://www.npmjs.com/package/enforce-unique). If you need to reset the store, you can call the `reset()` method on the `UniqueEnforcer` instance.
 :::
 
 ### Image Module
