@@ -39,3 +39,8 @@ features:
     title: Localization
     details: Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 ---
+
+<div class="opencollective">
+  Faker is freely available to use for commercial and non-commercial purposes under the MIT license. The development of Faker is guided by an international team of volunteer maintainers. If you use Faker in your project, please consider making a one-off or recurring donation via Open Collective. 
+  <a target="_blank" href="https://opencollective.com/fakerjs">Support Faker on OpenCollective</a>
+</div>

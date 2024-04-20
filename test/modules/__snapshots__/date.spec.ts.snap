@@ -65,11 +65,11 @@ exports[`date > 42 > betweens > with string dates and count 1`] = `
 ]
 `;
 
-exports[`date > 42 > birthdate > with age and refDate 1`] = `1980-07-07T19:06:53.165Z`;
+exports[`date > 42 > birthdate > with age and refDate 1`] = `1980-07-08T10:07:32.899Z`;
 
-exports[`date > 42 > birthdate > with age range and refDate 1`] = `1962-12-27T20:14:08.437Z`;
+exports[`date > 42 > birthdate > with age range and refDate 1`] = `1962-12-28T11:14:48.171Z`;
 
-exports[`date > 42 > birthdate > with only refDate 1`] = `1963-09-27T06:10:42.813Z`;
+exports[`date > 42 > birthdate > with only refDate 1`] = `1963-09-27T21:11:22.547Z`;
 
 exports[`date > 42 > birthdate > with year 1`] = `2000-05-16T22:59:36.655Z`;
 
@@ -189,11 +189,11 @@ exports[`date > 1211 > betweens > with string dates and count 1`] = `
 ]
 `;
 
-exports[`date > 1211 > birthdate > with age and refDate 1`] = `1981-01-26T13:16:31.426Z`;
+exports[`date > 1211 > birthdate > with age and refDate 1`] = `1981-01-26T14:59:27.285Z`;
 
-exports[`date > 1211 > birthdate > with age range and refDate 1`] = `1996-10-13T01:44:07.954Z`;
+exports[`date > 1211 > birthdate > with age range and refDate 1`] = `1996-10-13T03:27:03.813Z`;
 
-exports[`date > 1211 > birthdate > with only refDate 1`] = `1998-08-21T21:24:31.101Z`;
+exports[`date > 1211 > birthdate > with only refDate 1`] = `1998-08-21T23:07:26.960Z`;
 
 exports[`date > 1211 > birthdate > with year 1`] = `2000-12-04T01:16:03.291Z`;
 
@@ -311,11 +311,11 @@ exports[`date > 1337 > betweens > with string dates and count 1`] = `
 ]
 `;
 
-exports[`date > 1337 > birthdate > with age and refDate 1`] = `1980-05-27T14:46:44.794Z`;
+exports[`date > 1337 > birthdate > with age and refDate 1`] = `1980-05-28T08:29:25.862Z`;
 
-exports[`date > 1337 > birthdate > with age range and refDate 1`] = `1956-02-15T21:16:37.850Z`;
+exports[`date > 1337 > birthdate > with age range and refDate 1`] = `1956-02-16T14:59:18.918Z`;
 
-exports[`date > 1337 > birthdate > with only refDate 1`] = `1956-08-25T03:56:58.153Z`;
+exports[`date > 1337 > birthdate > with only refDate 1`] = `1956-08-25T21:39:39.221Z`;
 
 exports[`date > 1337 > birthdate > with year 1`] = `2000-04-06T02:45:32.287Z`;
 
