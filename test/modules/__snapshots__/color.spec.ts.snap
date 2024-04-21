@@ -29,7 +29,7 @@ exports[`color > 42 > hsl 1`] = `
 ]
 `;
 
-exports[`color > 42 > human 1`] = `"grey"`;
+exports[`color > 42 > human 1`] = `"lime"`;
 
 exports[`color > 42 > hwb 1`] = `
 [
@@ -57,7 +57,7 @@ exports[`color > 42 > lch 1`] = `
 
 exports[`color > 42 > rgb 1`] = `"#8ead33"`;
 
-exports[`color > 42 > space 1`] = `"Rec. 709"`;
+exports[`color > 42 > space 1`] = `"HSLA"`;
 
 exports[`color > 1211 > cmyk 1`] = `
 [
@@ -88,7 +88,7 @@ exports[`color > 1211 > hsl 1`] = `
 ]
 `;
 
-exports[`color > 1211 > human 1`] = `"azure"`;
+exports[`color > 1211 > human 1`] = `"violet"`;
 
 exports[`color > 1211 > hwb 1`] = `
 [
@@ -116,7 +116,7 @@ exports[`color > 1211 > lch 1`] = `
 
 exports[`color > 1211 > rgb 1`] = `"#ed4fef"`;
 
-exports[`color > 1211 > space 1`] = `"LMS"`;
+exports[`color > 1211 > space 1`] = `"sYCC"`;
 
 exports[`color > 1337 > cmyk 1`] = `
 [
@@ -147,7 +147,7 @@ exports[`color > 1337 > hsl 1`] = `
 ]
 `;
 
-exports[`color > 1337 > human 1`] = `"black"`;
+exports[`color > 1337 > human 1`] = `"indigo"`;
 
 exports[`color > 1337 > hwb 1`] = `
 [
@@ -175,4 +175,4 @@ exports[`color > 1337 > lch 1`] = `
 
 exports[`color > 1337 > rgb 1`] = `"#536a7b"`;
 
-exports[`color > 1337 > space 1`] = `"ProPhoto RGB Color Space"`;
+exports[`color > 1337 > space 1`] = `"DCI-P3"`;
