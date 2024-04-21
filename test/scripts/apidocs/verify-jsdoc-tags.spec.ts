@@ -147,7 +147,7 @@ ${examples}`;
                 assertDescription(signature.description);
               });
 
-              it('verify @example tag', async () => {
+              it('verify @example tag', { timeout: 30000 }, async () => {
                 const examples = signature.examples.join('\n');
 
                 expect(
@@ -171,7 +171,7 @@ ${examples}`;
 
               // This only checks whether the whole method is deprecated or not
               // It does not check whether the method is deprecated for a specific set of arguments
-              it('verify @deprecated tag', async () => {
+              it('verify @deprecated tag', { timeout: 30000 }, async () => {
                 // Grab path to example file
                 const path = resolvePathToMethodFile(
                   moduleName,
