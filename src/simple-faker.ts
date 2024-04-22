@@ -33,7 +33,7 @@ export class SimpleFaker {
    * Gets a new reference date used to generate relative dates.
    */
   get defaultRefDate(): () => Date {
-    return this.fakerCore.config.refDate ?? (() => new Date());
+    return this.fakerCore.config.defaultRefDate ?? (() => new Date());
   }
 
   /**
@@ -73,9 +73,9 @@ export class SimpleFaker {
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
   ): void {
     if (typeof dateOrSource === 'function') {
-      this.fakerCore.config.refDate = dateOrSource;
+      this.fakerCore.config.defaultRefDate = dateOrSource;
     } else {
-      this.fakerCore.config.refDate = () => new Date(dateOrSource);
+      this.fakerCore.config.defaultRefDate = () => new Date(dateOrSource);
     }
   }
 

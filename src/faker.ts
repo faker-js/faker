@@ -175,7 +175,6 @@ export class Faker extends SimpleFaker {
     randomizer?: Randomizer;
     fakerCore?: FakerCore;
   }) {
-    const { randomizer = generateMersenne53Randomizer(), fakerCore } = options;
     let { locale = {} } = options;
 
     if (Array.isArray(locale)) {
@@ -188,7 +187,12 @@ export class Faker extends SimpleFaker {
       locale = mergeLocales(locale);
     }
 
-    super({ fakerCore: fakerCore ?? { locale, randomizer, config: {} } });
+    const {
+      randomizer = generateMersenne53Randomizer(),
+      fakerCore = { locale, randomizer, config: {} },
+    } = options;
+
+    super({ fakerCore });
 
     this.definitions = createLocaleProxy(this.rawDefinitions);
   }

@@ -16,5 +16,5 @@ export interface FakerConfig {
    *
    * @default () => new Date()
    */
-  refDate?: () => Date;
+  defaultRefDate?: () => Date;
 }
