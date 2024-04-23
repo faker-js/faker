@@ -2,7 +2,7 @@
 
 exports[`vehicle > 42 > bicycle 1`] = `"Fitness Bicycle"`;
 
-exports[`vehicle > 42 > color 1`] = `"grey"`;
+exports[`vehicle > 42 > color 1`] = `"lime"`;
 
 exports[`vehicle > 42 > fuel 1`] = `"Electric"`;
 
@@ -20,7 +20,7 @@ exports[`vehicle > 42 > vrm 1`] = `"JY75EEB"`;
 
 exports[`vehicle > 1211 > bicycle 1`] = `"Triathlon/Time Trial Bicycle"`;
 
-exports[`vehicle > 1211 > color 1`] = `"azure"`;
+exports[`vehicle > 1211 > color 1`] = `"violet"`;
 
 exports[`vehicle > 1211 > fuel 1`] = `"Hybrid"`;
 
@@ -38,7 +38,7 @@ exports[`vehicle > 1211 > vrm 1`] = `"YX29RRT"`;
 
 exports[`vehicle > 1337 > bicycle 1`] = `"Cyclocross Bicycle"`;
 
-exports[`vehicle > 1337 > color 1`] = `"black"`;
+exports[`vehicle > 1337 > color 1`] = `"indigo"`;
 
 exports[`vehicle > 1337 > fuel 1`] = `"Electric"`;
 

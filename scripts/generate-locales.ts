@@ -312,7 +312,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'color',
     'commerce',
     'company',
     'database',
@@ -338,9 +337,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   console.log(`Running data normalization for:`, filePath);
 
-  const fileContent = (
-    await readFile(filePath, { encoding: 'utf8' })
-  ).toString();
+  const fileContent = await readFile(filePath, { encoding: 'utf8' });
   const searchString = 'export default ';
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
   const compareString = fileContent.substring(compareIndex);
