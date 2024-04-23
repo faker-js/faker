@@ -14,32 +14,6 @@
       "sponsor": "https://github.com/sponsors/Shinigami92"
     },
     {
-      "avatar": "https://github.com/damienwebdev.png",
-      "name": "Damien Retzinger",
-      "title": "Advisor",
-      "org": "",
-      "orgLink": "",
-      "desc": "",
-      "links": [
-        { "icon": "github", "link": "https://github.com/damienwebdev" },
-        { "icon": "twitter", "link": "https://twitter.com/damienwebdev" }
-      ],
-      "sponsor": "https://github.com/sponsors/damienwebdev"
-    },
-    {
-      "avatar": "https://github.com/prisis.png",
-      "name": "Daniel Bannert",
-      "title": "Organization Owner",
-      "org": "",
-      "orgLink": "",
-      "desc": "",
-      "links": [
-        { "icon": "github", "link": "https://github.com/prisis" },
-        { "icon": "twitter", "link": "https://twitter.com/_prisis_" }
-      ],
-      "sponsor": "https://github.com/sponsors/prisis"
-    },
-    {
       "avatar": "https://github.com/ST-DDT.png",
       "name": "Daniel Theuke",
       "title": "Code Maintainer | Docs Automation",
@@ -48,19 +22,6 @@
       "desc": "",
       "links": [{ "icon": "github", "link": "https://github.com/ST-DDT" }],
       "sponsor": "https://github.com/sponsors/ST-DDT"
-    },
-    {
-      "avatar": "https://github.com/JessicaSachs.png",
-      "name": "Jessica Sachs",
-      "title": "Press Officer",
-      "org": "",
-      "orgLink": "",
-      "desc": "",
-      "links": [
-        { "icon": "github", "link": "https://github.com/JessicaSachs" },
-        { "icon": "twitter", "link": "https://twitter.com/_JessicaSachs" }
-      ],
-      "sponsor": "https://github.com/sponsors/JessicaSachs"
     },
     {
       "avatar": "https://github.com/xDivisionByZerox.png",
@@ -111,6 +72,45 @@
         { "icon": "twitter", "link": "https://twitter.com/PiotrKuczynski" }
       ],
       "sponsor": "https://github.com/sponsors/pkuczynski"
+    },
+    {
+      "avatar": "https://github.com/damienwebdev.png",
+      "name": "Damien Retzinger",
+      "title": "Advisor",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/damienwebdev" },
+        { "icon": "twitter", "link": "https://twitter.com/damienwebdev" }
+      ],
+      "sponsor": "https://github.com/sponsors/damienwebdev"
+    },
+    {
+      "avatar": "https://github.com/prisis.png",
+      "name": "Daniel Bannert",
+      "title": "Organization Owner",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/prisis" },
+        { "icon": "twitter", "link": "https://twitter.com/_prisis_" }
+      ],
+      "sponsor": "https://github.com/sponsors/prisis"
+    },
+    {
+      "avatar": "https://github.com/JessicaSachs.png",
+      "name": "Jessica Sachs",
+      "title": "Press Officer",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/JessicaSachs" },
+        { "icon": "twitter", "link": "https://twitter.com/_JessicaSachs" }
+      ],
+      "sponsor": "https://github.com/sponsors/JessicaSachs"
     }
   ],
   "emeriti": [
