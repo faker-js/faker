@@ -1,19 +1,19 @@
-export interface Method {
+export interface ApiDocsMethod {
   readonly name: string;
+  readonly deprecated: string | undefined; // HTML
   readonly description: string; // HTML
-  readonly parameters: MethodParameter[];
-  readonly returns: string;
-  readonly examples: string; // HTML
-  readonly deprecated?: string; // HTML
   readonly since: string;
-  readonly sourcePath: string; // URL-Suffix
+  readonly parameters: ApiDocsMethodParameter[];
+  readonly returns: string;
+  readonly throws: string | undefined; // HTML
+  readonly examples: string; // HTML
   readonly seeAlsos: string[];
-  readonly throws?: string; // HTML
+  readonly sourcePath: string; // URL-Suffix
 }
 
-export interface MethodParameter {
+export interface ApiDocsMethodParameter {
   readonly name: string;
-  readonly type?: string;
-  readonly default?: string;
+  readonly type: string | undefined;
+  readonly default: string | undefined;
   readonly description: string; // HTML
 }

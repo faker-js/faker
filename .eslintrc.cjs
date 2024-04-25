@@ -51,13 +51,11 @@ module.exports = defineConfig({
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/import-style': 'off',
-    'unicorn/no-await-expression-member': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
-    'unicorn/require-array-join-separator': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
@@ -95,6 +93,16 @@ module.exports = defineConfig({
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
     '@typescript-eslint/prefer-regexp-exec': 'error',
+    '@typescript-eslint/restrict-plus-operands': [
+      'error',
+      {
+        allowAny: false,
+        allowBoolean: false,
+        allowNullish: false,
+        allowNumberAndString: true,
+        allowRegExp: false,
+      },
+    ],
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
