@@ -1,4 +1,4 @@
-import { BioType } from '../modules/person';
+import type { BioType } from '../modules/person';
 import type { LocaleEntry } from './definitions';
 
 /**

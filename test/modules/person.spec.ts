@@ -13,8 +13,7 @@ describe('person', () => {
       'jobTitle',
       'jobDescriptor',
       'jobArea',
-      'jobType',
-      'bio'
+      'jobType'
     );
 
     t.describeEach(
@@ -39,6 +38,10 @@ describe('person', () => {
     });
 
     t.it('zodiacSign');
+
+    t.describe('bio', (t) => {
+      t.it('noArgs').it('with options', { types: ['emoji'] });
+    });
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(

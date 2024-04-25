@@ -9,9 +9,7 @@ export enum Sex {
 
 export type SexType = `${Sex}`;
 
-export type BioType =
-  | 'default'
-  | 'text';
+export type BioType = 'emoji' | 'text';
 
 /**
  * Select a definition based on given sex.
@@ -316,18 +314,29 @@ export class PersonModule extends ModuleBase {
   /**
    * Returns a random short biography
    *
+   * @param options Options object.
+   * @param options.types A list of pattern types that can be generated. Possible values are `'emoji'`, `'text'`. By default, any pattern will be included.
+   *
    * @example
    * faker.person.bio() // 'oatmeal advocate, veteran 🐠'
+   * faker.person.bio({ types: ['text'] }) // 'oatmeal advocate, veteran'
    *
    * @since 8.0.0
    */
   bio(
     options: {
+      /**
+       * A list of the bio pattern types that should be used.
+       *
+       * @default Object.keys(faker.definitions.person.bio_pattern)
+       */
       types?: ReadonlyArray<BioType>;
     } = {}
   ): string {
     const {
-      types = Object.keys(this.faker.definitions.person) as BioType[],
+      types = Object.keys(
+        this.faker.definitions.person.bio_pattern
+      ) as BioType[],
     } = options;
     const bioType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(

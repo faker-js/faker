@@ -1,6 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`person > 42 > bio 1`] = `"traveler, philosopher, model"`;
+exports[`person > 42 > bio > noArgs 1`] = `"{{word.noun}} {{person.bio_supporter}}, {{person.bio_part}} {{internet.emoji}}"`;
+
+exports[`person > 42 > bio > with options 1`] = `"{{person.bio_part}}, {{person.bio_part}}, {{internet.emoji}}"`;
 
 exports[`person > 42 > firstName > noArgs 1`] = `"Garnet"`;
 
@@ -50,7 +52,9 @@ exports[`person > 42 > suffix > with sex 1`] = `"III"`;
 
 exports[`person > 42 > zodiacSign 1`] = `"Gemini"`;
 
-exports[`person > 1211 > bio 1`] = `"decongestant supporter, parent 🎲"`;
+exports[`person > 1211 > bio > noArgs 1`] = `"{{word.noun}} {{person.bio_supporter}}, {{person.bio_part}}"`;
+
+exports[`person > 1211 > bio > with options 1`] = `"{{word.noun}} {{person.bio_supporter}}, {{person.bio_part}} {{internet.emoji}}"`;
 
 exports[`person > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
@@ -100,7 +104,9 @@ exports[`person > 1211 > suffix > with sex 1`] = `"DVM"`;
 
 exports[`person > 1211 > zodiacSign 1`] = `"Capricorn"`;
 
-exports[`person > 1337 > bio 1`] = `"creator, engineer, friend"`;
+exports[`person > 1337 > bio > noArgs 1`] = `"{{person.bio_part}}, {{internet.emoji}}"`;
+
+exports[`person > 1337 > bio > with options 1`] = `"{{person.bio_part}}, {{person.bio_part}}, {{internet.emoji}}"`;
 
 exports[`person > 1337 > firstName > noArgs 1`] = `"Devyn"`;
 
