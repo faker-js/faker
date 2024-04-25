@@ -30,7 +30,7 @@ exports[`system > 42 > fileName > with extensionCount 1`] = `"unnaturally_dreami
 
 exports[`system > 42 > fileName > with extensionCount range 1`] = `"unnaturally_dreamily"`;
 
-exports[`system > 42 > filePath 1`] = `"/opt/bin/supposing_dreamily_easel.xlsx"`;
+exports[`system > 42 > filePath 1`] = `"/opt/bin/supposing_dreamily_embarrassment.xlsx"`;
 
 exports[`system > 42 > fileType 1`] = `"font"`;
 
@@ -82,9 +82,9 @@ exports[`system > 42 > semver 1`] = `"3.9.7"`;
 
 exports[`system > 1211 > commonFileExt 1`] = `"shtml"`;
 
-exports[`system > 1211 > commonFileName > noArgs 1`] = `"gripping_unnaturally_phew.png"`;
+exports[`system > 1211 > commonFileName > noArgs 1`] = `"happy_unnaturally_phew.png"`;
 
-exports[`system > 1211 > commonFileName > with extension 1`] = `"gripping_unnaturally_phew.ext"`;
+exports[`system > 1211 > commonFileName > with extension 1`] = `"happy_unnaturally_phew.ext"`;
 
 exports[`system > 1211 > commonFileType 1`] = `"application"`;
 
@@ -104,13 +104,13 @@ exports[`system > 1211 > fileExt > noArgs 1`] = `"mp4"`;
 
 exports[`system > 1211 > fileExt > with mimeType 1`] = `"map"`;
 
-exports[`system > 1211 > fileName > noArgs 1`] = `"gripping_unnaturally_phew.vst"`;
+exports[`system > 1211 > fileName > noArgs 1`] = `"happy_unnaturally_phew.vst"`;
 
-exports[`system > 1211 > fileName > with extensionCount 1`] = `"gripping_unnaturally_phew.vst.mpg4"`;
+exports[`system > 1211 > fileName > with extensionCount 1`] = `"happy_unnaturally_phew.vst.mpg4"`;
 
-exports[`system > 1211 > fileName > with extensionCount range 1`] = `"gripping_unnaturally_phew.mpg4"`;
+exports[`system > 1211 > fileName > with extensionCount range 1`] = `"happy_unnaturally_phew.mpg4"`;
 
-exports[`system > 1211 > filePath 1`] = `"/var/log/recess_tinted_grant.mpg4"`;
+exports[`system > 1211 > filePath 1`] = `"/var/log/record_tired_gripper.mpg4"`;
 
 exports[`system > 1211 > fileType 1`] = `"video"`;
 
@@ -162,9 +162,9 @@ exports[`system > 1211 > semver 1`] = `"9.8.2"`;
 
 exports[`system > 1337 > commonFileExt 1`] = `"wav"`;
 
-exports[`system > 1337 > commonFileName > noArgs 1`] = `"weedkiller.mp4"`;
+exports[`system > 1337 > commonFileName > noArgs 1`] = `"wallaby.mp4"`;
 
-exports[`system > 1337 > commonFileName > with extension 1`] = `"weedkiller.ext"`;
+exports[`system > 1337 > commonFileName > with extension 1`] = `"wallaby.ext"`;
 
 exports[`system > 1337 > commonFileType 1`] = `"audio"`;
 
@@ -184,11 +184,11 @@ exports[`system > 1337 > fileExt > noArgs 1`] = `"xul"`;
 
 exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 1337 > fileName > noArgs 1`] = `"weedkiller.jpe"`;
+exports[`system > 1337 > fileName > noArgs 1`] = `"wallaby.jpe"`;
 
-exports[`system > 1337 > fileName > with extensionCount 1`] = `"weedkiller.jpe.distz"`;
+exports[`system > 1337 > fileName > with extensionCount 1`] = `"wallaby.jpe.distz"`;
 
-exports[`system > 1337 > fileName > with extensionCount range 1`] = `"weedkiller.distz.rar"`;
+exports[`system > 1337 > fileName > with extensionCount range 1`] = `"wallaby.distz.rar"`;
 
 exports[`system > 1337 > filePath 1`] = `"/Library/mmm.distz"`;
 

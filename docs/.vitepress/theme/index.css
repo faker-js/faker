@@ -74,3 +74,33 @@ table td ul li {
 .dark .VPHero .action:not(:last-child) a.VPButton.alt {
   color: var(--vp-button-brand-text) !important;
 }
+
+.opencollective {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.opencollective a {
+  margin-top: 24px;
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 38px;
+  font-size: 14px;
+  display: inline-block;
+  border: 1px solid transparent;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+
+  color: var(--vp-button-alt-text);
+  border-color: var(--vp-button-brand-bg) !important;
+  transition:
+    color 0.25s,
+    border-color 0.25s,
+    background-color 0.25s;
+}

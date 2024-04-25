@@ -53,7 +53,7 @@ string, // Parameters<filterWordListByLength>[0]['strategy']
  * @param options The options to provide.
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
- * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+ * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'any-length'`.
  *
  * Available error handling strategies:
  *

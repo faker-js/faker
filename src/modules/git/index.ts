@@ -1,4 +1,3 @@
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
 const nbsp = '\u00A0';
@@ -29,8 +28,8 @@ export class GitModule extends ModuleBase {
    * Generates a random commit entry as printed by `git log`.
    *
    * @param options Options for the commit entry.
-   * @param options.merge Set to `true` to generate a merge message line.
-   * @param options.eol Choose the end of line character to use. Defaults to 'CRLF'.
+   * @param options.merge Whether to generate a merge message line. Defaults to 20% `true` and 80% `false`.
+   * @param options.eol Choose the end of line character to use. Defaults to `'CRLF'`.
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
@@ -192,10 +191,12 @@ export class GitModule extends ModuleBase {
    * - 8 for GitLab
    *
    * @param options Options for the commit sha.
-   * @param options.length The length of the commit sha. Defaults to 40.
+   * @param options.length The length of the commit sha. Defaults to `40`.
    *
    * @example
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
+   * faker.git.commitSha({ length: 7 }) // 'dbee57b'
+   * faker.git.commitSha({ length: 8 }) // '0e52376a'
    *
    * @since 5.0.0
    */
@@ -215,25 +216,5 @@ export class GitModule extends ModuleBase {
       casing: 'lower',
       prefix: '',
     });
-  }
-
-  /**
-   * Generates a random commit sha (short).
-   *
-   * @example
-   * faker.git.shortSha() // '6155732'
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use `faker.git.commitSha({ length: 7 })` instead.
-   */
-  shortSha(): string {
-    deprecated({
-      deprecated: 'faker.git.shortSha()',
-      proposed: 'faker.git.commitSha({ length: 7 })',
-      since: '8.0',
-      until: '9.0',
-    });
-    return this.commitSha({ length: 7 });
   }
 }

@@ -12,5 +12,18 @@ export type PhoneNumberDefinition = LocaleEntry<{
    *
    * @see faker.helpers.replaceSymbolWithNumber(format): For more information about how the patterns are used.
    */
-  formats: string[];
+  format: {
+    /**
+     * Formats for a human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
+     */
+    human: string[];
+    /**
+     * Formats for a phone number in a standardized national format, e.g. `(555) 123-4567`.
+     */
+    national: string[];
+    /**
+     * Formats for a phone number in the standardised E.123 format, e.g. `+15551234567`
+     */
+    international: string[];
+  };
 }>;
