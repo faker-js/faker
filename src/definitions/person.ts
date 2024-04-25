@@ -1,3 +1,4 @@
+import { BioType } from '../modules/person';
 import type { LocaleEntry } from './definitions';
 
 /**
@@ -37,7 +38,7 @@ export type PersonDefinition = LocaleEntry<{
   male_last_name_pattern: Array<{ value: string; weight: number }>;
   female_last_name_pattern: Array<{ value: string; weight: number }>;
 
-  bio_pattern: string[];
+  bio_pattern: Record<BioType, string[]>;
 
   job_descriptor: string[];
   job_area: string[];

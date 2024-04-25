@@ -9,6 +9,10 @@ export enum Sex {
 
 export type SexType = `${Sex}`;
 
+export type BioType =
+  | 'default'
+  | 'text';
+
 /**
  * Select a definition based on given sex.
  *
@@ -317,10 +321,18 @@ export class PersonModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  bio(): string {
-    const { bio_pattern } = this.faker.definitions.person;
-
-    return this.faker.helpers.fake(bio_pattern);
+  bio(
+    options: {
+      types?: ReadonlyArray<BioType>;
+    } = {}
+  ): string {
+    const {
+      types = Object.keys(this.faker.definitions.person) as BioType[],
+    } = options;
+    const bioType = this.faker.helpers.arrayElement(types);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.person.bio_pattern[bioType]
+    );
   }
 
   /**
