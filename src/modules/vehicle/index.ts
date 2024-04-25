@@ -96,7 +96,7 @@ export class VehicleModule extends ModuleBase {
       length: 1,
       casing: 'upper',
       exclude,
-    })}${this.faker.number.int({ min: 0, max: 99999 }).toString().padStart(5, '0')}`; // return five digit # with leading zeros
+    })}${this.faker.string.numeric({ length: 5, allowLeadingZeros: true })}`;
   }
 
   /**
