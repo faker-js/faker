@@ -339,7 +339,7 @@ export class PersonModule extends ModuleBase {
       ) as BioType[],
     } = options;
     const bioType = this.faker.helpers.arrayElement(types);
-    return this.faker.helpers.arrayElement(
+    return this.faker.helpers.fake(
       this.faker.definitions.person.bio_pattern[bioType]
     );
   }
