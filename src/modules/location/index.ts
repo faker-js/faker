@@ -608,4 +608,10 @@ export class LocationModule extends ModuleBase {
       this.faker.definitions.location.time_zone
     );
   }
+
+  fullAddress(): string {
+    const { full_address } = this.faker.definitions.location;
+
+    return this.faker.helpers.fake(full_address);
+  }
 }

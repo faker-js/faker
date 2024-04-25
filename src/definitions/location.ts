@@ -140,4 +140,9 @@ export type LocationDefinition = LocaleEntry<{
    * A list of timezones names.
    */
   time_zone: string[];
+
+  /**
+   * The fake pattern to generate the full address.
+   */
+  full_address: string[];
 }>;
