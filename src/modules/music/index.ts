@@ -7,13 +7,13 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * Generate random music content.
  *
- * For a random album name, use [`albumName()`](https://fakerjs.dev/api/music.html#album).
+ * For a random album name, use [`album()`](https://fakerjs.dev/api/music.html#album).
  *
  * For a random artist, use [`artist()`](https://fakerjs.dev/api/music.html#artist).
  *
  * For a random genre, use [`genre()`](https://fakerjs.dev/api/music.html#genre).
  *
- * For a random song name, [`songName()`](https://fakerjs.dev/api/music.html#song).
+ * For a random song name, [`song()`](https://fakerjs.dev/api/music.html#song).
  *
  * All data types may be localized.
  */
