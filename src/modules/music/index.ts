@@ -24,7 +24,7 @@ export class MusicModule extends ModuleBase {
    * @example
    * faker.music.albumName() // '1989'
    *
-   * @since 8.5.0
+   * @since 9.0.0
    */
   albumName(): string {
     return this.faker.helpers.arrayElement(
@@ -38,7 +38,7 @@ export class MusicModule extends ModuleBase {
    * @example
    * faker.music.artist() // 'The Beatles'
    *
-   * @since 8.5.0
+   * @since 9.0.0
    */
   artist(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.music.artist);
