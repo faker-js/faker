@@ -22,11 +22,11 @@ export class MusicModule extends ModuleBase {
    * Returns a random album name.
    *
    * @example
-   * faker.music.albumName() // '1989'
+   * faker.music.album() // '1989'
    *
    * @since 9.0.0
    */
-  albumName(): string {
+  album(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.music.album_name
     );
@@ -60,11 +60,11 @@ export class MusicModule extends ModuleBase {
    * Returns a random song name.
    *
    * @example
-   * faker.music.songName() // 'White Christmas'
+   * faker.music.song() // 'White Christmas'
    *
    * @since 7.1.0
    */
-  songName(): string {
+  song(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.music.song_name
     );

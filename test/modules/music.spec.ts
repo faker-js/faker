@@ -7,7 +7,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('music', () => {
   seededTests(faker, 'music', (t) => {
-    t.itEach('albumName', 'artist', 'genre', 'songName');
+    t.itEach('album', 'artist', 'genre', 'song');
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
@@ -15,7 +15,7 @@ describe('music', () => {
     () => {
       describe('albumName()', () => {
         it('should return an album name', () => {
-          const albumName = faker.music.albumName();
+          const albumName = faker.music.album();
 
           expect(albumName).toBeTruthy();
           expect(albumName).toBeTypeOf('string');
@@ -45,7 +45,7 @@ describe('music', () => {
 
       describe('songName()', () => {
         it('returns a random song name', () => {
-          const songName = faker.music.songName();
+          const songName = faker.music.song();
 
           expect(songName).toBeTruthy();
           expect(songName).toBeTypeOf('string');
