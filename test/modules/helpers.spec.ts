@@ -13,12 +13,6 @@ describe('helpers', () => {
       t.it('noArgs').it('some string', 'hello world');
     });
 
-    t.describe('replaceSymbolWithNumber', (t) => {
-      t.it('noArgs')
-        .it('only symbols', '!####')
-        .it('some string', '^1234567890ß´°!"§$%&/()=?`+#*,..-;:_');
-    });
-
     t.describe('replaceSymbols', (t) => {
       t.it('noArgs')
         .it('only symbols', '#?*#?*')
@@ -29,12 +23,6 @@ describe('helpers', () => {
       t.it('noArgs')
         .it('only symbols', '####-[4-9]-##!!-L')
         .it('some string', '^1234567890ß´°!"§$%&/()=?`+#*,..-;:_L');
-    });
-
-    t.describe('regexpStyleStringParse', (t) => {
-      t.it('noArgs')
-        .it('only symbols', '#{3}test[1-5]')
-        .it('some string', 'Hello !#{3}test[1-5]');
     });
 
     t.describe('fromRegExp', (t) => {
@@ -164,7 +152,7 @@ describe('helpers', () => {
         .it('with multiple dynamic templates', [
           '{{string.sample}}',
           '{{location.city_name}}',
-          '{{location.cityName}}',
+          '{{location.streetAddress}}',
         ]);
     });
 
@@ -518,22 +506,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('replaceSymbolWithNumber()', () => {
-        describe('when no symbol passed in', () => {
-          it("uses '#' by default", () => {
-            const num = faker.helpers.replaceSymbolWithNumber('#AB');
-            expect(num).toMatch(/\dAB/);
-          });
-        });
-
-        describe('when symbol passed in', () => {
-          it('replaces that symbol with integers', () => {
-            const num = faker.helpers.replaceSymbolWithNumber('#AB', 'A');
-            expect(num).toMatch(/#\dB/);
-          });
-        });
-      });
-
       describe('replaceSymbols()', () => {
         it('returns empty string with no arguments', () => {
           expect(faker.helpers.replaceSymbols()).toBe('');
@@ -585,50 +557,6 @@ describe('helpers', () => {
             /^645[5-9]-([0-9]){4,6}-([0-9]){1,2}-([0-9]){4,6}-([0-9]){4}$/
           );
           expect(number).toSatisfy(luhnCheck);
-        });
-      });
-
-      describe('regexpStyleStringParse()', () => {
-        it('returns an empty string when called without param', () => {
-          expect(faker.helpers.regexpStyleStringParse()).toBe('');
-        });
-
-        it('deals with range repeat', () => {
-          const string = faker.helpers.regexpStyleStringParse('#{5,10}');
-          expect(string.length).toBeLessThanOrEqual(10);
-          expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^#{5,10}$/);
-        });
-
-        it('flips the range when min > max', () => {
-          const string = faker.helpers.regexpStyleStringParse('#{10,5}');
-          expect(string.length).toBeLessThanOrEqual(10);
-          expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^#{5,10}$/);
-        });
-
-        it('repeats string {n} number of times', () => {
-          expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            '%'.repeat(10)
-          );
-          expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            '%'.repeat(30)
-          );
-          expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            '%'.repeat(5)
-          );
-        });
-
-        it('creates a numerical range', () => {
-          const string = faker.helpers.regexpStyleStringParse('Hello[0-9]');
-          expect(string).toMatch(/^Hello[0-9]$/);
-        });
-
-        it('deals with multiple tokens in one string', () => {
-          const string = faker.helpers.regexpStyleStringParse(
-            'Test#{5}%{2,5}Testing**[1-5]**{10}END'
-          );
-          expect(string).toMatch(/^Test#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/);
         });
       });
 
@@ -1061,10 +989,10 @@ describe('helpers', () => {
         });
 
         it('should be able to pass multiple dynamic templates', () => {
-          expect(faker.definitions.location.city_name).toContain(
+          expect(faker.definitions.company.buzz_noun).toContain(
             faker.helpers.fake([
-              '{{location.city_name}}',
-              '{{location.cityName}}',
+              '{{company.buzz_noun}}',
+              '{{company.buzzNoun}}',
             ])
           );
         });
@@ -1110,8 +1038,8 @@ describe('helpers', () => {
         });
 
         it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{address.cityName}}')
+          expect(faker.definitions.location.state).toContain(
+            faker.helpers.fake('{{address.state}}')
           );
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')

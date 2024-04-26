@@ -1,1 +1,0 @@
-export default ['Hong Kong'];

@@ -1,9 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`finance > 42 > account > noArgs 1`] = `"39751108"`;
-
-exports[`finance > 42 > account > with length 1`] = `"3975110867"`;
-
 exports[`finance > 42 > accountName 1`] = `"Money Market Account"`;
 
 exports[`finance > 42 > accountNumber > noArgs 1`] = `"39751108"`;
@@ -14,17 +10,9 @@ exports[`finance > 42 > accountNumber > with length option 1`] = `"3975110867"`;
 
 exports[`finance > 42 > amount > noArgs 1`] = `"374.54"`;
 
-exports[`finance > 42 > amount > with leagcy dec 1`] = `"374.54012"`;
-
-exports[`finance > 42 > amount > with leagcy max 1`] = `"18.73"`;
-
-exports[`finance > 42 > amount > with min 1`] = `"380.79"`;
-
 exports[`finance > 42 > amount > with min and max option 1`] = `"24.98"`;
 
 exports[`finance > 42 > amount > with min option 1`] = `"380.79"`;
-
-exports[`finance > 42 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$24.98160"`;
 
 exports[`finance > 42 > amount > with min, max and dec option 1`] = `"24.98160"`;
 
@@ -68,25 +56,11 @@ exports[`finance > 42 > ethereumAddress 1`] = `"0x8ead331ddf0fc4446b96d368ab4bd1
 
 exports[`finance > 42 > iban > noArgs 1`] = `"GT69T10P0V1346241560ZH610G35"`;
 
-exports[`finance > 42 > iban > with formatted 1`] = `"GT69 T10P 0V13 4624 1560 ZH61 0G35"`;
-
-exports[`finance > 42 > iban > with formatted and countryCode 1`] = `"DE69 9500 1670 8002 5210 05"`;
-
 exports[`finance > 42 > iban > with formatted and countryCode option 1`] = `"DE69 9500 1670 8002 5210 05"`;
 
 exports[`finance > 42 > iban > with formatted option 1`] = `"GT69 T10P 0V13 4624 1560 ZH61 0G35"`;
 
 exports[`finance > 42 > litecoinAddress 1`] = `"3JAaa4SAH2YQdbbiwrhB9hnsMcvA"`;
-
-exports[`finance > 42 > mask > noArgs 1`] = `"(...3975)"`;
-
-exports[`finance > 42 > mask > with ellipsis 1`] = `"(...3975)"`;
-
-exports[`finance > 42 > mask > with length 1`] = `"(...39751)"`;
-
-exports[`finance > 42 > mask > with length, parenthesis and ellipsis 1`] = `"(...39751)"`;
-
-exports[`finance > 42 > mask > with parenthesis 1`] = `"(...3975)"`;
 
 exports[`finance > 42 > maskedNumber > noArgs 1`] = `"(...3975)"`;
 
@@ -110,10 +84,6 @@ exports[`finance > 42 > transactionDescription 1`] = `"deposit transaction at Re
 
 exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
 
-exports[`finance > 1211 > account > noArgs 1`] = `"98296673"`;
-
-exports[`finance > 1211 > account > with length 1`] = `"9829667368"`;
-
 exports[`finance > 1211 > accountName 1`] = `"Personal Loan Account"`;
 
 exports[`finance > 1211 > accountNumber > noArgs 1`] = `"98296673"`;
@@ -124,17 +94,9 @@ exports[`finance > 1211 > accountNumber > with length option 1`] = `"9829667368"
 
 exports[`finance > 1211 > amount > noArgs 1`] = `"928.52"`;
 
-exports[`finance > 1211 > amount > with leagcy dec 1`] = `"928.52016"`;
-
-exports[`finance > 1211 > amount > with leagcy max 1`] = `"46.43"`;
-
-exports[`finance > 1211 > amount > with min 1`] = `"929.24"`;
-
 exports[`finance > 1211 > amount > with min and max option 1`] = `"47.15"`;
 
 exports[`finance > 1211 > amount > with min option 1`] = `"929.24"`;
-
-exports[`finance > 1211 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$47.14081"`;
 
 exports[`finance > 1211 > amount > with min, max and dec option 1`] = `"47.14081"`;
 
@@ -178,25 +140,11 @@ exports[`finance > 1211 > ethereumAddress 1`] = `"0xed4fefa7fbaec9dc4c48fa8ebf46
 
 exports[`finance > 1211 > iban > noArgs 1`] = `"TN8326736788219352058231"`;
 
-exports[`finance > 1211 > iban > with formatted 1`] = `"TN83 2673 6788 2193 5205 8231"`;
-
-exports[`finance > 1211 > iban > with formatted and countryCode 1`] = `"DE13 8077 6768 8219 3520 53"`;
-
 exports[`finance > 1211 > iban > with formatted and countryCode option 1`] = `"DE13 8077 6768 8219 3520 53"`;
 
 exports[`finance > 1211 > iban > with formatted option 1`] = `"TN83 2673 6788 2193 5205 8231"`;
 
 exports[`finance > 1211 > litecoinAddress 1`] = `"3eZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog"`;
-
-exports[`finance > 1211 > mask > noArgs 1`] = `"(...9829)"`;
-
-exports[`finance > 1211 > mask > with ellipsis 1`] = `"(...9829)"`;
-
-exports[`finance > 1211 > mask > with length 1`] = `"(...98296)"`;
-
-exports[`finance > 1211 > mask > with length, parenthesis and ellipsis 1`] = `"(...98296)"`;
-
-exports[`finance > 1211 > mask > with parenthesis 1`] = `"(...9829)"`;
 
 exports[`finance > 1211 > maskedNumber > noArgs 1`] = `"(...9829)"`;
 
@@ -220,10 +168,6 @@ exports[`finance > 1211 > transactionDescription 1`] = `"payment transaction at 
 
 exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
 
-exports[`finance > 1337 > account > noArgs 1`] = `"21243529"`;
-
-exports[`finance > 1337 > account > with length 1`] = `"2124352971"`;
-
 exports[`finance > 1337 > accountName 1`] = `"Money Market Account"`;
 
 exports[`finance > 1337 > accountNumber > noArgs 1`] = `"21243529"`;
@@ -234,17 +178,9 @@ exports[`finance > 1337 > accountNumber > with length option 1`] = `"2124352971"
 
 exports[`finance > 1337 > amount > noArgs 1`] = `"262.02"`;
 
-exports[`finance > 1337 > amount > with leagcy dec 1`] = `"262.02467"`;
-
-exports[`finance > 1337 > amount > with leagcy max 1`] = `"13.10"`;
-
-exports[`finance > 1337 > amount > with min 1`] = `"269.40"`;
-
 exports[`finance > 1337 > amount > with min and max option 1`] = `"20.48"`;
 
 exports[`finance > 1337 > amount > with min option 1`] = `"269.40"`;
-
-exports[`finance > 1337 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$20.48098"`;
 
 exports[`finance > 1337 > amount > with min, max and dec option 1`] = `"20.48098"`;
 
@@ -288,25 +224,11 @@ exports[`finance > 1337 > ethereumAddress 1`] = `"0x536a7b5fa28d2f9bb79ca46ea394
 
 exports[`finance > 1337 > iban > noArgs 1`] = `"FO2200532700604734"`;
 
-exports[`finance > 1337 > iban > with formatted 1`] = `"FO22 0053 2700 6047 34"`;
-
-exports[`finance > 1337 > iban > with formatted and countryCode 1`] = `"DE04 0033 2713 1474 7007 41"`;
-
 exports[`finance > 1337 > iban > with formatted and countryCode option 1`] = `"DE04 0033 2713 1474 7007 41"`;
 
 exports[`finance > 1337 > iban > with formatted option 1`] = `"FO22 0053 2700 6047 34"`;
 
 exports[`finance > 1337 > litecoinAddress 1`] = `"LhsjwgYJ7oC8ZrMNmqzLbhEubpcw"`;
-
-exports[`finance > 1337 > mask > noArgs 1`] = `"(...2124)"`;
-
-exports[`finance > 1337 > mask > with ellipsis 1`] = `"(...2124)"`;
-
-exports[`finance > 1337 > mask > with length 1`] = `"(...21243)"`;
-
-exports[`finance > 1337 > mask > with length, parenthesis and ellipsis 1`] = `"(...21243)"`;
-
-exports[`finance > 1337 > mask > with parenthesis 1`] = `"(...2124)"`;
 
 exports[`finance > 1337 > maskedNumber > noArgs 1`] = `"(...2124)"`;
 
