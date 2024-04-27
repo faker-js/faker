@@ -1,0 +1,16 @@
+export default [
+  'Dakar',
+  'Diourbel',
+  'Fatick',
+  'Kaffrine',
+  'Kaolack',
+  'Kolda',
+  'Kédougou',
+  'Louga',
+  'Matam',
+  'Saint-Louis',
+  'Sédhiou',
+  'Tambacounda',
+  'Thiès',
+  'Ziguinchor',
+];

@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { groupBy } from '../../internal/group-by';
 
 /**
  * The error handling strategies for the `filterWordListByLength` function.
@@ -13,14 +14,7 @@ const STRATEGIES = {
     wordList: ReadonlyArray<string>,
     length: { min: number; max: number }
   ): string[] => {
-    const wordsByLength = wordList.reduce(
-      (data, word) => {
-        (data[word.length] = data[word.length] ?? []).push(word);
-        return data;
-      },
-      {} as Record<number, string[]>
-    );
-
+    const wordsByLength = groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
     const min = Math.min(...lengths);
     const max = Math.max(...lengths);
@@ -59,7 +53,7 @@ string, // Parameters<filterWordListByLength>[0]['strategy']
  * @param options The options to provide.
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
- * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+ * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'any-length'`.
  *
  * Available error handling strategies:
  *

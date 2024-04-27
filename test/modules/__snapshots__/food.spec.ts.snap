@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`food > 42 > adjective 1`] = `"golden"`;
+
+exports[`food > 42 > description 1`] = `"A succulent quail steak, encased in a crunchy anise crust, served with a side of liquorice root mashed arugula."`;
+
+exports[`food > 42 > dish 1`] = `"Moses's Special Buckwheat Flour"`;
+
+exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
+
+exports[`food > 42 > fruit 1`] = `"fig"`;
+
+exports[`food > 42 > ingredient 1`] = `"flathead"`;
+
+exports[`food > 42 > meat 1`] = `"goose"`;
+
+exports[`food > 42 > spice 1`] = `"dhansak"`;
+
+exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
+
+exports[`food > 1211 > adjective 1`] = `"tender"`;
+
+exports[`food > 1211 > description 1`] = `"Three cherries with onion, pumpkin, parsnip, purple carrot and soy beans. With a side of baked prune, and your choice of celery or capsicum."`;
+
+exports[`food > 1211 > dish 1`] = `"Sushi"`;
+
+exports[`food > 1211 > ethnicCategory 1`] = `"Texan"`;
+
+exports[`food > 1211 > fruit 1`] = `"strawberry"`;
+
+exports[`food > 1211 > ingredient 1`] = `"turmeric"`;
+
+exports[`food > 1211 > meat 1`] = `"turkey"`;
+
+exports[`food > 1211 > spice 1`] = `"tagine"`;
+
+exports[`food > 1211 > vegetable 1`] = `"sun dried tomatoes"`;
+
+exports[`food > 1337 > adjective 1`] = `"fluffy"`;
+
+exports[`food > 1337 > description 1`] = `"A slow-roasted Cory's Shearwater with a fresh, fluffy exterior. Stuffed with orange and covered in fingerlime sauce. Sides with bok choy puree and wild english spinach."`;
+
+exports[`food > 1337 > dish 1`] = `"Egyptian Dill Soup"`;
+
+exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
+
+exports[`food > 1337 > fruit 1`] = `"custard apple"`;
+
+exports[`food > 1337 > ingredient 1`] = `"coconut water"`;
+
+exports[`food > 1337 > meat 1`] = `"emu"`;
+
+exports[`food > 1337 > spice 1`] = `"chilli pepper"`;
+
+exports[`food > 1337 > vegetable 1`] = `"carrot"`;

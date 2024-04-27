@@ -1,3 +1,56 @@
+:root {
+  --fkr-hue: 160;
+  --fkr-saturation: 84%;
+  --fkr-lightness: 39%;
+  --fkr-alpha: 14%;
+  --fkr-step: 2%;
+  --vp-c-brand-1: hsl(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    var(--fkr-lightness)
+  );
+  --vp-c-brand-2: hsl(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    calc(var(--fkr-lightness) + var(--fkr-step))
+  );
+  --vp-c-brand-3: hsl(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    calc(var(--fkr-lightness) + 2 * var(--fkr-step))
+  );
+  --vp-c-brand-soft: hsla(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    var(--fkr-lightness),
+    var(--fkr-alpha)
+  );
+}
+
+.dark {
+  --vp-c-brand-1: hsl(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    var(--fkr-lightness)
+  );
+  --vp-c-brand-2: hsl(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    calc(var(--fkr-lightness) - var(--fkr-step))
+  );
+  --vp-c-brand-3: hsl(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    calc(var(--fkr-lightness) - 2 * var(--fkr-step))
+  );
+  --vp-c-brand-soft: hsla(
+    var(--fkr-hue),
+    var(--fkr-saturation),
+    var(--fkr-lightness),
+    var(--fkr-alpha)
+  );
+}
+
 table td * {
   display: inline;
 }
@@ -15,6 +68,39 @@ table td ul li {
 }
 
 .VPHero .action:not(:last-child) a.VPButton.alt {
-  border-color: var(--vp-button-brand-border) !important;
-  color: var(--vp-button-brand-border) !important;
+  border-color: var(--vp-button-brand-bg) !important;
+}
+
+.dark .VPHero .action:not(:last-child) a.VPButton.alt {
+  color: var(--vp-button-brand-text) !important;
+}
+
+.opencollective {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.opencollective a {
+  margin-top: 24px;
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 38px;
+  font-size: 14px;
+  display: inline-block;
+  border: 1px solid transparent;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+
+  color: var(--vp-button-alt-text);
+  border-color: var(--vp-button-brand-bg) !important;
+  transition:
+    color 0.25s,
+    border-color 0.25s,
+    background-color 0.25s;
 }

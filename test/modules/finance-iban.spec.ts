@@ -1,6 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
+import { prettyPrintIban } from '../../src/modules/finance';
 import ibanLib from '../../src/modules/finance/iban';
 import { times } from '../support/times';
 
@@ -10,7 +11,10 @@ describe('finance_iban', () => {
   describe('generic IBAN country checks', () => {
     it.each(ibanLib.formats.map((entry) => entry.country))('%s', (country) => {
       expect(country).toMatch(/^[A-Z]{2}$/);
-      const actual = faker.finance.iban(true, country);
+      const actual = faker.finance.iban({
+        formatted: true,
+        countryCode: country,
+      });
 
       expect(actual).toMatch(new RegExp(`^${country}`));
       expect(actual).toSatisfy(validator.isIBAN);
@@ -32,11 +36,14 @@ describe('finance_iban', () => {
 
           // example IBAN GE29 NB00 0000 0101 9049 17
 
-          const iban = faker.finance.iban(false, 'GE');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'GE',
+          });
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormatted = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormatted = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -92,11 +99,14 @@ describe('finance_iban', () => {
           // Account Code 16 digits
           // Total Length 24 chars
 
-          const iban = faker.finance.iban(false, 'PK');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'PK',
+          });
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -158,11 +168,14 @@ describe('finance_iban', () => {
           //   Chiffre d'indicatif national	0
           //   Numéro de compte bancaire	0519786457841326
 
-          const iban = faker.finance.iban(false, 'TR');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'TR',
+          });
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -228,11 +241,14 @@ describe('finance_iban', () => {
 
           // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
 
-          const iban = faker.finance.iban(false, 'AZ');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'AZ',
+          });
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -287,11 +303,14 @@ describe('finance_iban', () => {
 
           // example IBAN CR05 0152 0200 1026 2840 66
 
-          const iban = faker.finance.iban(false, 'CR');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'CR',
+          });
 
           expect(iban).toSatisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormated = prettyPrintIban(iban);
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -335,8 +354,11 @@ describe('finance_iban', () => {
           // National check digit   1 digit
           // Bank account number    16 digit
 
-          const iban = faker.finance.iban(false, 'AL');
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'AL',
+          });
+          const ibanFormated = prettyPrintIban(iban);
 
           expect(iban).toSatisfy(validator.isIBAN);
 

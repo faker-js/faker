@@ -14,22 +14,17 @@
  *
  * Run this script using `pnpm run generate:locales`
  */
-import {
-  existsSync,
-  lstatSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from 'node:fs';
-import { resolve } from 'node:path';
-import type { Options } from 'prettier';
-import { format } from 'prettier';
-import options from '../.prettierrc.js';
+import { constants } from 'node:fs';
+import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
+import { keys } from '../src/internal/keys';
+import { formatMarkdown, formatTypescript } from './apidocs/utils/format';
 
 // Constants
 
-const pathRoot = resolve(__dirname, '..');
+const pathRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
@@ -63,6 +58,7 @@ const definitionsTypes: DefinitionType = {
   database: 'DatabaseDefinition',
   date: 'DateDefinition',
   finance: 'FinanceDefinition',
+  food: 'FoodDefinition',
   hacker: 'HackerDefinition',
   internet: 'InternetDefinition',
   location: 'LocationDefinition',
@@ -76,9 +72,6 @@ const definitionsTypes: DefinitionType = {
   vehicle: 'VehicleDefinition',
   word: 'WordDefinition',
 };
-
-const prettierTsOptions: Options = { ...options, parser: 'typescript' };
-const prettierMdOptions: Options = { ...options, parser: 'markdown' };
 
 const scriptCommand = 'pnpm run generate:locales';
 
@@ -124,17 +117,20 @@ async function generateLocaleFile(locale: string): Promise<void> {
 
   for (let i = parts.length - 1; i > 0; i--) {
     const fallback = parts.slice(0, i).join('_');
-    if (existsSync(resolve(pathLocales, fallback))) {
+    try {
+      await access(resolve(pathLocales, fallback), constants.R_OK);
       locales.push(fallback);
+    } catch {
+      // file is missing
     }
   }
 
   // TODO @Shinigami92 2023-03-07: Remove 'en' fallback in a separate PR
-  if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
+  if (locales.at(-1) !== 'en' && locale !== 'base') {
     locales.push('en');
   }
 
-  if (locales[locales.length - 1] !== 'base') {
+  if (locales.at(-1) !== 'base') {
     locales.push('base');
   }
 
@@ -153,8 +149,8 @@ async function generateLocaleFile(locale: string): Promise<void> {
       });
       `;
 
-  content = await format(content, prettierTsOptions);
-  writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
+  content = await formatTypescript(content);
+  return writeFile(resolve(pathLocale, `${locale}.ts`), content);
 }
 
 async function generateLocalesIndexFile(
@@ -163,7 +159,7 @@ async function generateLocalesIndexFile(
   type: string,
   depth: number
 ): Promise<void> {
-  let modules = readdirSync(path);
+  let modules = await readdir(path);
   modules = modules.filter((file) => !file.startsWith('.'));
   modules = removeIndexTs(modules);
   modules = removeTsSuffix(modules);
@@ -192,9 +188,9 @@ async function generateLocalesIndexFile(
     `export default ${name};`
   );
 
-  writeFileSync(
+  return writeFile(
     resolve(path, 'index.ts'),
-    await format(content.join('\n'), prettierTsOptions)
+    await formatTypescript(content.join('\n'))
   );
 }
 
@@ -203,16 +199,18 @@ async function generateRecursiveModuleIndexes(
   name: string,
   definition: string,
   depth: number
-): Promise<void> {
+): Promise<unknown> {
   await generateLocalesIndexFile(path, name, definition, depth);
+  const promises: Array<Promise<unknown>> = [];
 
-  let submodules = readdirSync(path);
+  let submodules = await readdir(path);
   submodules = removeIndexTs(submodules);
   for (const submodule of submodules) {
     const pathModule = resolve(path, submodule);
     await updateLocaleFile(pathModule);
     // Only process sub folders recursively
-    if (lstatSync(pathModule).isDirectory()) {
+    const moduleStat = await stat(pathModule);
+    if (moduleStat.isDirectory()) {
       let moduleDefinition =
         definition === 'any' ? 'any' : `${definition}['${submodule}']`;
 
@@ -222,14 +220,18 @@ async function generateRecursiveModuleIndexes(
       }
 
       // Recursive
-      await generateRecursiveModuleIndexes(
-        pathModule,
-        submodule,
-        moduleDefinition,
-        depth + 1
+      promises.push(
+        generateRecursiveModuleIndexes(
+          pathModule,
+          submodule,
+          moduleDefinition,
+          depth + 1
+        )
       );
     }
   }
+
+  return Promise.all(promises);
 }
 
 /**
@@ -239,11 +241,12 @@ async function generateRecursiveModuleIndexes(
  * @param filePath The full file path to the file.
  */
 async function updateLocaleFile(filePath: string): Promise<void> {
-  if (lstatSync(filePath).isFile()) {
+  const fileStat = await stat(filePath);
+  if (fileStat.isFile()) {
     const [locale, moduleKey, entryKey] = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
       .split(/[\\/]/);
-    await updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
+    return updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }
 
@@ -267,7 +270,7 @@ async function updateLocaleFileHook(
     console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
 
-  await normalizeLocaleFile(filePath, definitionKey);
+  return normalizeLocaleFile(filePath, definitionKey);
 }
 
 /**
@@ -300,7 +303,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     }
 
     const result = {} as T;
-    for (const key of Object.keys(localeData)) {
+    for (const key of keys(localeData)) {
       result[key] = normalizeDataRecursive(localeData[key]);
     }
 
@@ -309,9 +312,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'airline',
-    'animal',
-    'color',
     'commerce',
     'company',
     'database',
@@ -337,7 +337,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   console.log(`Running data normalization for:`, filePath);
 
-  const fileContent = readFileSync(filePath).toString();
+  const fileContent = await readFile(filePath, { encoding: 'utf8' });
   const searchString = 'export default ';
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
   const compareString = fileContent.substring(compareIndex);
@@ -359,77 +359,82 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   }
 
   const fileContentPreData = fileContent.substring(0, compareIndex);
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const localeData = normalizeDataRecursive(require(filePath).default);
+  const fileImport = await import(`file:${filePath}`);
+  const oldData = fileImport.default;
+  const localeData = normalizeDataRecursive(oldData);
 
   // We reattach the content before the actual data implementation to keep stuff like comments.
   // In the long term we should probably define a whether we want those in the files at all.
-  const newContent = fileContentPreData + JSON.stringify(localeData);
+  const newDataJson = JSON.stringify(localeData);
+  const newContent = fileContentPreData + newDataJson;
 
-  writeFileSync(filePath, await format(newContent, prettierTsOptions));
+  // Exit early if unchanged for performance reasons
+  if (JSON.stringify(oldData) === newDataJson) {
+    return;
+  }
+
+  return writeFile(filePath, await formatTypescript(newContent));
 }
 
 // Start of actual logic
 
-async function main(): Promise<void> {
-  const locales = readdirSync(pathLocales);
-  removeIndexTs(locales);
+const locales = await readdir(pathLocales);
+removeIndexTs(locales);
 
-  let localeIndexImports = '';
-  let localeIndexExportsIndividual = '';
-  let localeIndexExportsGrouped = '';
-  let localesIndexExports = '';
+let localeIndexImports = '';
+let localeIndexExportsIndividual = '';
+let localeIndexExportsGrouped = '';
+let localesIndexImports = '';
 
-  let localizationLocales =
-    '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
+let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
+const promises: Array<Promise<unknown>> = [];
 
-  for (const locale of locales) {
-    const pathModules = resolve(pathLocales, locale);
-    const pathMetadata = resolve(pathModules, 'metadata.ts');
-    let localeTitle = 'No title found';
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const metadata: MetadataDefinition = require(pathMetadata).default;
-      const { title } = metadata;
-      if (!title) {
-        throw new Error(
-          `No title property found on ${JSON.stringify(metadata)}`
-        );
-      }
-
-      localeTitle = title;
-    } catch (error) {
-      console.error(
-        `Failed to load ${pathMetadata}. Please make sure the file exists and exports a MetadataDefinition.`
-      );
-      console.error(error);
+for (const locale of locales) {
+  const pathModules = resolve(pathLocales, locale);
+  const pathMetadata = resolve(pathModules, 'metadata.ts');
+  let localeTitle = 'No title found';
+  try {
+    const metadataImport = await import(`file:${pathMetadata}`);
+    const metadata: MetadataDefinition = metadataImport.default;
+    const { title } = metadata;
+    if (!title) {
+      throw new Error(`No title property found on ${JSON.stringify(metadata)}`);
     }
 
-    const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
-      part.toUpperCase()
-    )}`;
-
-    localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
-    localeIndexExportsIndividual += `  ${localizedFaker},\n`;
-    localeIndexExportsGrouped += `  ${locale}: ${localizedFaker},\n`;
-    localesIndexExports += `export { default as ${locale} } from './${locale}';\n`;
-    localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
-
-    // src/locale/<locale>.ts
-    await generateLocaleFile(locale);
-
-    // src/locales/**/index.ts
-    await generateRecursiveModuleIndexes(
-      pathModules,
-      locale,
-      'LocaleDefinition',
-      1
+    localeTitle = title;
+  } catch (error) {
+    console.error(
+      `Failed to load ${pathMetadata}. Please make sure the file exists and exports a MetadataDefinition.`
     );
+    console.error(error);
   }
 
-  // src/locale/index.ts
+  const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
+    part.toUpperCase()
+  )}`;
 
-  let localeIndexContent = `
+  localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
+  localeIndexExportsIndividual += `  ${localizedFaker},\n`;
+  localeIndexExportsGrouped += `  ${locale}: ${localizedFaker},\n`;
+  localesIndexImports += `import { default as ${locale} } from './${locale}';\n`;
+  localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
+
+  promises.push(
+    // src/locale/<locale>.ts
+    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    generateLocaleFile(locale),
+
+    // src/locales/**/index.ts
+    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    generateRecursiveModuleIndexes(pathModules, locale, 'LocaleDefinition', 1)
+  );
+}
+
+await Promise.all(promises);
+
+// src/locale/index.ts
+
+let localeIndexContent = `
   ${autoGeneratedCommentHeader}
 
   ${localeIndexImports}
@@ -443,34 +448,31 @@ async function main(): Promise<void> {
   } as const;
   `;
 
-  localeIndexContent = await format(localeIndexContent, prettierTsOptions);
-  writeFileSync(pathLocaleIndex, localeIndexContent);
+localeIndexContent = await formatTypescript(localeIndexContent);
+await writeFile(pathLocaleIndex, localeIndexContent);
 
-  // src/locales/index.ts
+// src/locales/index.ts
 
-  let localesIndexContent = `
+let localesIndexContent = `
   ${autoGeneratedCommentHeader}
 
-  ${localesIndexExports}
+  ${localesIndexImports}
+
+  export { ${locales.join(',')} };
+
+  export const allLocales = { ${locales.join(',')} };
   `;
 
-  localesIndexContent = await format(localesIndexContent, prettierTsOptions);
-  writeFileSync(pathLocalesIndex, localesIndexContent);
+localesIndexContent = await formatTypescript(localesIndexContent);
+await writeFile(pathLocalesIndex, localesIndexContent);
 
-  // docs/guide/localization.md
+// docs/guide/localization.md
 
-  localizationLocales = await format(localizationLocales, prettierMdOptions);
+localizationLocales = await formatMarkdown(localizationLocales);
 
-  let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf8');
-  localizationContent = localizationContent.replace(
-    /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
-    `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
-  );
-  writeFileSync(pathDocsGuideLocalization, localizationContent);
-}
-
-main().catch((error) => {
-  // Workaround until top level await is available
-  console.error(error);
-  process.exit(1);
-});
+let localizationContent = await readFile(pathDocsGuideLocalization, 'utf8');
+localizationContent = localizationContent.replaceAll(
+  /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
+  `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
+);
+await writeFile(pathDocsGuideLocalization, localizationContent);

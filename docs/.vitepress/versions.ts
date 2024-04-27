@@ -14,18 +14,23 @@ function readOtherLatestReleaseTagNames(): string[] {
     .toString('utf8')
     .split('\n')
     .filter((tag) => semver.valid(tag))
-    .reduce<Record<number, string[]>>((acc, tag) => {
-      const majorVersion = semver.major(tag);
+    .filter((tag) => {
       // Only consider tags for our deployed website versions,
       // excluding the current major version.
-      if (majorVersion >= 6 && majorVersion !== currentMajorVersion) {
-        (acc[majorVersion] = acc[majorVersion] ?? []).push(tag);
+      const majorVersion = semver.major(tag);
+      return majorVersion >= 6 && majorVersion !== currentMajorVersion;
+    })
+    .reduce<Record<number, string>>((latestTagByMajor, tag) => {
+      const majorVersion = semver.major(tag);
+
+      const latestTag = latestTagByMajor[majorVersion];
+      if (latestTag == null || semver.lt(latestTag, tag)) {
+        latestTagByMajor[majorVersion] = tag;
       }
-      return acc;
+
+      return latestTagByMajor;
     }, {});
-  return Object.entries(latestReleaseTagNames)
-    .map(([major, tags]) => semver.maxSatisfying(tags, `^${major}`))
-    .sort(semver.rcompare);
+  return Object.values(latestReleaseTagNames).sort(semver.rcompare);
 }
 
 // Set by netlify
@@ -69,3 +74,7 @@ export const oldVersions = [
     link: `https://v${semver.major(version)}.fakerjs.dev/`,
   })),
 ].filter(({ link }) => link !== hiddenLink);
+
+export const algoliaIndex = isReleaseBranch
+  ? `fakerjs-v${semver.major(version)}`
+  : 'fakerjs-next';

@@ -1,9 +1,9 @@
 export default [
-  'Ours à collier',
-  'Ours lippu',
-  'Ours à lunettes',
-  'Ours noir',
-  'Ours brun',
   'Ours blanc',
+  'Ours brun',
+  'Ours lippu',
+  'Ours noir',
+  'Ours à collier',
+  'Ours à lunettes',
   'Panda géant',
 ];

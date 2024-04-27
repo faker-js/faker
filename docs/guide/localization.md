@@ -14,30 +14,6 @@ For example, you can import the German locale:
 You can also build your own Faker instances, with custom locales/overwrites.
 :::
 
-## Individual localized packages
-
-Currently, the imports from the main package have a [bug](https://github.com/faker-js/faker/issues/1791) and always cause the entire Faker lib to be imported.
-This might result in loading around 5 MB of data into memory and slow down startup times.
-
-_But we got your back!_  
-When encountering such a problem in a test or production environment, you can use the individual localized packages.
-
-```ts
-import { faker } from '@faker-js/faker/locale/de';
-```
-
-This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales containing data for all features. If you encounter a missing locale entry in your selected language, feel free to open a Pull Request fixing that issue.
-
-::: info Info
-The English locales are around 600 KB in size.  
-All locales together are around 5 MB in size.
-:::
-
-::: tip Note
-Some locales have limited coverage and rely more heavily on the English locale as the source for features they currently do not have.
-However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution.
-:::
-
 ## Custom locales and fallbacks
 
 If our built-in faker instances don't satisfy your needs, you can build your own:
@@ -108,6 +84,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
+| `fr_SN`       | French (Senegal)          | `fakerFR_SN`       |
 | `he`          | Hebrew                    | `fakerHE`          |
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
@@ -136,6 +113,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
+| `uz_UZ_latin` | Uzbek (Uzbekistan, Latin) | `fakerUZ_UZ_latin` |
 | `vi`          | Vietnamese                | `fakerVI`          |
 | `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
 | `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
@@ -149,6 +127,11 @@ The `Locale` (data) and `Faker` columns refer to the respective `import` names:
 ```ts
 import { de, fakerDE } from '@faker-js/faker';
 ```
+
+::: tip Note
+Some locales have limited coverage and rely more heavily on the English locale as the source for features they currently do not have.
+However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution.
+:::
 
 ## Locale codes
 

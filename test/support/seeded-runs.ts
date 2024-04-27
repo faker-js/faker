@@ -1,4 +1,4 @@
-import { describe, describe as vi_describe, expect, it as vi_it } from 'vitest';
+import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
 import type { Callable, MethodOf } from '../../src/utils/types';
 
@@ -11,8 +11,8 @@ type FakerModule = {
   [Key in keyof Faker]: Faker[Key] extends Callable | string | number | number[]
     ? never
     : Key extends 'definitions' | 'locales'
-    ? never
-    : Key;
+      ? never
+      : Key;
 }[keyof Faker];
 
 /**

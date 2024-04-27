@@ -8,7 +8,6 @@ import city_name from './city_name';
 import city_pattern from './city_pattern';
 import city_suffix from './city_suffix';
 import common_street_suffix from './common_street_suffix';
-import default_country from './default_country';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
@@ -24,7 +23,6 @@ const location: LocationDefinition = {
   city_pattern,
   city_suffix,
   common_street_suffix,
-  default_country,
   postcode,
   secondary_address,
   state,
