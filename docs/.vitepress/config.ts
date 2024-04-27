@@ -35,6 +35,31 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
       ],
     },
     {
+      text: 'Contributing',
+      items: [
+        {
+          text: 'Code of Conduct',
+          link: '/contributing/code-of-conduct',
+        },
+        {
+          text: 'Report Bugs',
+          link: '/contributing/report-bugs',
+        },
+        {
+          text: 'Propose a Feature',
+          link: '/contributing/propose-a-feature',
+        },
+        {
+          text: 'Set up a Development Environment',
+          link: '/contributing/set-up-a-development-environment',
+        },
+        {
+          text: 'Submit a Pull Request',
+          link: '/contributing/submit-a-pull-request',
+        },
+      ],
+    },
+    {
       text: 'About',
       items: [
         {
@@ -48,10 +73,6 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
         {
           text: 'Team',
           link: '/about/team',
-        },
-        {
-          text: 'Contributing',
-          link: '/about/contributing',
         },
       ],
     },
@@ -175,10 +196,6 @@ const config: UserConfig<DefaultTheme.Config> = {
             text: 'Team',
             link: '/about/team',
           },
-          {
-            text: 'Contributing',
-            link: '/about/contributing',
-          },
         ],
       },
       {
@@ -230,9 +247,36 @@ const config: UserConfig<DefaultTheme.Config> = {
           },
         ],
       }),
+
       '/api/': extendSideNav({
         text: 'API',
         items: apiPages,
+      }),
+
+      '/contributing/': extendSideNav({
+        text: 'Contributing',
+        items: [
+          {
+            text: 'Code of Conduct',
+            link: '/contributing/code-of-conduct',
+          },
+          {
+            text: 'Report Bugs',
+            link: '/contributing/report-bugs',
+          },
+          {
+            text: 'Propose a Feature',
+            link: '/contributing/propose-a-feature',
+          },
+          {
+            text: 'Set up a Development Environment',
+            link: '/contributing/set-up-a-development-environment',
+          },
+          {
+            text: 'Submit a Pull Request',
+            link: '/contributing/submit-a-pull-request',
+          },
+        ],
       }),
 
       '/about/': extendSideNav({
