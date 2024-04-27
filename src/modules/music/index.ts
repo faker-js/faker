@@ -13,7 +13,7 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * For a random genre, use [`genre()`](https://fakerjs.dev/api/music.html#genre).
  *
- * For a random song name, [`song()`](https://fakerjs.dev/api/music.html#song).
+ * For a random song name, [`songName()`](https://fakerjs.dev/api/music.html#songname).
  *
  * All data types may be localized.
  */
@@ -58,11 +58,11 @@ export class MusicModule extends ModuleBase {
    * Returns a random song name.
    *
    * @example
-   * faker.music.song() // 'White Christmas'
+   * faker.music.songName() // 'White Christmas'
    *
    * @since 7.1.0
    */
-  song(): string {
+  songName(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.music.song_name
     );
