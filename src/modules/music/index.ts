@@ -27,9 +27,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.music.album_name
-    );
+    return this.faker.helpers.arrayElement(this.faker.definitions.music.album);
   }
 
   /**

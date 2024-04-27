@@ -3,13 +3,13 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { MusicDefinition } from '../../..';
-import album_name from './album_name';
+import album from './album';
 import artist from './artist';
 import genre from './genre';
 import song_name from './song_name';
 
 const music: MusicDefinition = {
-  album_name,
+  album,
   artist,
   genre,
   song_name,

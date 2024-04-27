@@ -7,7 +7,7 @@ export type MusicDefinition = LocaleEntry<{
   /**
    * The names of some albums.
    */
-  album_name: string[];
+  album: string[];
 
   /**
    * The names of some artists.

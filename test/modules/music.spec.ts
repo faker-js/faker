@@ -13,13 +13,13 @@ describe('music', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
-      describe('albumName()', () => {
+      describe('album()', () => {
         it('should return an album name', () => {
-          const albumName = faker.music.album();
+          const album = faker.music.album();
 
-          expect(albumName).toBeTruthy();
-          expect(albumName).toBeTypeOf('string');
-          expect(faker.definitions.music.album_name).toContain(albumName);
+          expect(album).toBeTruthy();
+          expect(album).toBeTypeOf('string');
+          expect(faker.definitions.music.album).toContain(album);
         });
       });
 
