@@ -66,7 +66,7 @@ const config: UserConfig<DefaultTheme.Config> = {
   description,
 
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
     [
       'meta',
