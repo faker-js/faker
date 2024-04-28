@@ -14,7 +14,7 @@ exports[`vehicle > 42 > type 1`] = `"Extended Cab Pickup"`;
 
 exports[`vehicle > 42 > vehicle 1`] = `"Ford V90"`;
 
-exports[`vehicle > 42 > vin 1`] = `"CYRK551VKPAZ84919"`;
+exports[`vehicle > 42 > vin 1`] = `"CYRK551VKPAZ82113"`;
 
 exports[`vehicle > 42 > vrm 1`] = `"JY75EEB"`;
 
@@ -32,7 +32,7 @@ exports[`vehicle > 1211 > type 1`] = `"Wagon"`;
 
 exports[`vehicle > 1211 > vehicle 1`] = `"Toyota Aventador"`;
 
-exports[`vehicle > 1211 > vin 1`] = `"XW7ZNNSBNTUM84790"`;
+exports[`vehicle > 1211 > vin 1`] = `"XW7ZNNSBNTUM84882"`;
 
 exports[`vehicle > 1211 > vrm 1`] = `"YX29RRT"`;
 
@@ -50,6 +50,6 @@ exports[`vehicle > 1337 > type 1`] = `"Coupe"`;
 
 exports[`vehicle > 1337 > vehicle 1`] = `"Dodge Volt"`;
 
-exports[`vehicle > 1337 > vin 1`] = `"859FAH8ZR3JL21255"`;
+exports[`vehicle > 1337 > vin 1`] = `"859FAH8ZR3JL19477"`;
 
 exports[`vehicle > 1337 > vrm 1`] = `"GE24ING"`;
