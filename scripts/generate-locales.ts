@@ -317,7 +317,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     'database',
     'date',
     'finance',
-    'hacker',
     'internet',
     'location',
     'lorem',
