@@ -1,7 +1,6 @@
 ---
 layout: page
 title: API Reference
-sidebar: false
 footer: false
 ---
 
