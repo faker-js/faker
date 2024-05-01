@@ -116,7 +116,7 @@
     "eslint-plugin-jsdoc": "48.2.3",
     "eslint-plugin-prettier": "5.1.3",
     "eslint-plugin-unicorn": "52.0.0",
-    "eslint-plugin-vitest": "0.5.4",
+    "eslint-plugin-vitest": "0.4.1",
     "glob": "10.3.12",
     "npm-run-all2": "6.1.2",
     "prettier": "3.2.5",
