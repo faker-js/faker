@@ -4,8 +4,8 @@ import { apiPages } from './api-pages';
 import {
   algoliaIndex,
   currentVersion,
-  oldVersions,
   versionBannerInfix,
+  versionLinks,
 } from './versions';
 
 type SidebarItem = DefaultTheme.SidebarItem;
@@ -225,7 +225,7 @@ const config: UserConfig<DefaultTheme.Config> = {
             text: 'Release Notes',
             link: 'https://github.com/faker-js/faker/releases',
           },
-          ...oldVersions.map(({ version, link }) => ({
+          ...versionLinks.map(({ version, link }) => ({
             text: version,
             link,
           })),
