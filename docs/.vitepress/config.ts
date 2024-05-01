@@ -4,8 +4,8 @@ import { apiPages } from './api-pages';
 import {
   algoliaIndex,
   currentVersion,
-  oldVersions,
   versionBannerInfix,
+  versionLinks,
 } from './versions';
 
 type SidebarItem = DefaultTheme.SidebarItem;
@@ -14,25 +14,44 @@ const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
 const image = 'https://fakerjs.dev/social-image.png';
 
-function extendSideNav(current: SidebarItem): SidebarItem[] {
+function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   const links: SidebarItem[] = [
     {
       text: 'Guide',
       items: [
         {
-          text: 'Usage Guide',
+          text: 'Getting Started',
           link: '/guide/',
+        },
+        {
+          text: 'Usage',
+          link: '/guide/usage',
+        },
+        {
+          text: 'Localization',
+          link: '/guide/localization',
+        },
+        {
+          text: 'Frameworks',
+          link: '/guide/frameworks',
+        },
+        {
+          text: 'Randomizer',
+          link: '/guide/randomizer',
+        },
+        {
+          text: 'Unique Values',
+          link: '/guide/unique',
+        },
+        {
+          text: 'Upgrading to v9',
+          link: '/guide/upgrading',
         },
       ],
     },
     {
       text: 'API',
-      items: [
-        {
-          text: 'API Reference',
-          link: '/api/',
-        },
-      ],
+      items: apiPages,
     },
     {
       text: 'Contributing',
@@ -65,10 +84,26 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
         {
           text: 'Announcements',
           link: '/about/announcements',
+          items: [
+            { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
+            { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+          ],
         },
         {
           text: 'Roadmap',
           link: '/about/roadmap/',
+          items: [
+            {
+              text: 'v9 - Tree-Shakeable Module-Functions',
+              link: '/about/roadmap/v9',
+            },
+            { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
+            {
+              text: 'v7 - Cleanup & Improvements',
+              link: '/about/roadmap/v7',
+            },
+            { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
+          ],
         },
         {
           text: 'Team',
@@ -77,7 +112,9 @@ function extendSideNav(current: SidebarItem): SidebarItem[] {
       ],
     },
   ];
-  links[links.findIndex((group) => group.text === current.text)] = current;
+  for (const entry of links) {
+    entry.collapsed = entry.text !== entryToExpand;
+  }
   return links;
 }
 
@@ -205,7 +242,7 @@ const config: UserConfig<DefaultTheme.Config> = {
             text: 'Release Notes',
             link: 'https://github.com/faker-js/faker/releases',
           },
-          ...oldVersions.map(({ version, link }) => ({
+          ...versionLinks.map(({ version, link }) => ({
             text: version,
             link,
           })),
@@ -214,108 +251,10 @@ const config: UserConfig<DefaultTheme.Config> = {
     ],
 
     sidebar: {
-      '/guide/': extendSideNav({
-        text: 'Guide',
-        items: [
-          {
-            text: 'Getting Started',
-            link: '/guide/',
-          },
-          {
-            text: 'Usage',
-            link: '/guide/usage',
-          },
-          {
-            text: 'Localization',
-            link: '/guide/localization',
-          },
-          {
-            text: 'Frameworks',
-            link: '/guide/frameworks',
-          },
-          {
-            text: 'Randomizer',
-            link: '/guide/randomizer',
-          },
-          {
-            text: 'Unique Values',
-            link: '/guide/unique',
-          },
-          {
-            text: 'Upgrading to v9',
-            link: '/guide/upgrading',
-          },
-        ],
-      }),
-
-      '/api/': extendSideNav({
-        text: 'API',
-        items: apiPages,
-      }),
-
-      '/contributing/': extendSideNav({
-        text: 'Contributing',
-        items: [
-          {
-            text: 'Code of Conduct',
-            link: '/contributing/code-of-conduct',
-          },
-          {
-            text: 'Report Bugs',
-            link: '/contributing/report-bugs',
-          },
-          {
-            text: 'Propose a Feature',
-            link: '/contributing/propose-a-feature',
-          },
-          {
-            text: 'Set up a Development Environment',
-            link: '/contributing/set-up-a-development-environment',
-          },
-          {
-            text: 'Submit a Pull Request',
-            link: '/contributing/submit-a-pull-request',
-          },
-        ],
-      }),
-
-      '/about/': extendSideNav({
-        text: 'About',
-        items: [
-          {
-            text: 'Announcements',
-            link: '/about/announcements',
-            items: [
-              { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
-              { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
-            ],
-          },
-          {
-            text: 'Roadmap',
-            link: '/about/roadmap/',
-            items: [
-              {
-                text: 'v9 - Tree-Shakeable Module-Functions',
-                link: '/about/roadmap/v9',
-              },
-              { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
-              {
-                text: 'v7 - Cleanup & Improvements',
-                link: '/about/roadmap/v7',
-              },
-              { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
-            ],
-          },
-          {
-            text: 'Team',
-            link: '/about/team',
-          },
-          {
-            text: 'Contributing',
-            link: '/about/contributing',
-          },
-        ],
-      }),
+      '/guide/': getSideBarWithExpandedEntry('Guide'),
+      '/api/': getSideBarWithExpandedEntry('API'),
+      '/contributing/': getSideBarWithExpandedEntry('Contributing'),
+      '/about/': getSideBarWithExpandedEntry('About'),
     },
   },
 

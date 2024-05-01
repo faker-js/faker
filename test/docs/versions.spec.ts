@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import * as semver from 'semver';
 import { describe, expect, it } from 'vitest';
-import { oldVersions } from '../../docs/.vitepress/versions';
+import { versionLinks } from '../../docs/.vitepress/versions';
 
 function isFakerOrigin(): boolean {
   try {
@@ -22,19 +22,14 @@ function isFakerOrigin(): boolean {
 describe.runIf(isFakerOrigin())('docs versions', () => {
   describe('oldVersions', () => {
     it('should have a complete set of oldVersions', () => {
-      expect(oldVersions.length).toBeGreaterThanOrEqual(2);
+      expect(versionLinks.length).toBeGreaterThanOrEqual(1);
 
-      expect(oldVersions[0]).toEqual({
-        version: 'latest',
-        link: 'https://fakerjs.dev/',
-      });
-
-      const versionEntry = oldVersions[1];
+      const versionEntry = versionLinks[0];
       if (versionEntry.version === 'next') {
         expect(versionEntry.link).toBe('https://next.fakerjs.dev/');
       }
 
-      const releaseVersions = oldVersions.filter(({ version }) =>
+      const releaseVersions = versionLinks.filter(({ version }) =>
         semver.valid(version)
       );
       const latestMajorRelease = semver.major(releaseVersions[0].version);

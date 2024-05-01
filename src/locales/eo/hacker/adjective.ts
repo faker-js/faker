@@ -3,7 +3,6 @@ export default [
   'aŭtomata',
   'bludenta',
   'cifereca',
-  'ĉefa',
   'defaŭlta',
   'enreta',
   'helpa',
@@ -24,4 +23,5 @@ export default [
   'solidstata',
   'universala',
   'virtuala',
+  'ĉefa',
 ];
