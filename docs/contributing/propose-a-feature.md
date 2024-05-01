@@ -18,7 +18,7 @@ General criteria for new features are as follows:
 
 ## Accepting a Feature
 
-In order for a rule to be accepted in Faker, it must fulfill all the criteria listed in [General Feature Guideline](#general-feature-guideline).
+In order for a feature to be accepted in Faker, it must fulfill all the criteria listed in [General Feature Guideline](#general-feature-guideline).
 Additionally, depending on the type of feature, there might be additionally requirements.
 
 ::: tip Note
@@ -33,7 +33,7 @@ Faker already contains [over 60 different locales](/guide/localization#available
 
 If you want to propose a new locale that does not already exist, make sure to read our guide on [locale code names](/guide/localization#locale-codes).
 You should be able to name your locale using the provided systematic way.
-Ideally you use this name in the issues title and description.
+Ideally, you use this name in the issues title and description.
 
 ## Considerations
 
@@ -41,7 +41,6 @@ Our goal is to maintain the library efficiently, ensuring that new features are 
 Each addition to Faker comes with associated costs.
 This encompasses initial expenses like design, implementation, review, and documentation of the feature.
 Ideally, these tasks can be delegated to the requester or another member of the community.
-Hopefully, these can be outsourced to the person requesting the feature or another person from the community.
 
 Moreover, ongoing maintenance of Faker incurs further costs, including awareness of the feature, a more intricate module structure, increased bundle size, and additional effort during refactoring. 
 
