@@ -1,1 +1,1 @@
-export default ['InnoDB', 'MyISAM', 'MEMORY', 'CSV', 'BLACKHOLE', 'ARCHIVE'];
+export default ['ARCHIVE', 'BLACKHOLE', 'CSV', 'InnoDB', 'MEMORY', 'MyISAM'];
