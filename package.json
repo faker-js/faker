@@ -106,7 +106,6 @@
     "@vitest/coverage-v8": "1.6.0",
     "@vitest/ui": "1.6.0",
     "@vueuse/core": "10.9.0",
-    "conventional-changelog-cli": "5.0.0",
     "cypress": "13.8.1",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
