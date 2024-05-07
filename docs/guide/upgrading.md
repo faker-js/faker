@@ -18,9 +18,9 @@ v9 has not yet been released. This page contains a work-in-progress list of brea
 
 ## General Breaking Changes
 
-### Node 14 and 16 No Longer Supported
+### Requires Node v18+
 
-Support for Node.js versions 14 and 16 has been discontinued as these versions have reached their [end-of-life](https://github.com/nodejs/Release). Faker.js 9.0 requires a minimum of Node.js version 18.
+Support for Node.js v14 and v16 has been discontinued as these versions have reached their [end-of-life](https://github.com/nodejs/Release). Faker.js v9 requires a minimum of Node.js v18.
 
 ### Upgrade to TypeScript v5
 
@@ -40,30 +40,27 @@ faker.helpers.arrayElement([1, 2, 3] as const); // 1 | 2 | 3
 faker.helpers.arrayElement([1, 2, 3]); // 1 | 2 | 3
 ```
 
-If you are unable to upgrade to TS5, you have to keep using Faker v8.
-
 ### Fix Tree Shaking
 
-Prior to this version, users had to resort to workarounds by importing specific faker instances from dedicated paths to overcome tree shaking issues.
+Prior to this version, there was an issue where all locales would be bundled even if only one was used. Users had to resort to a workaround by importing specific faker instances from dedicated paths.
 
 ```ts
 import { faker } from '@faker-js/faker/locale/de';
 ```
 
-With the implementation of this fix, such workarounds should no longer be necessary.
-That means that you should be able to import different localized faker instances from the root of your package.
+With this fix, the workaround should no longer be necessary. You will be able to import different localized faker instances from the root of your package with the bundle only including those specific locales.
 
 ```ts
 import { fakerDE, fakerES, fakerFR } from '@faker-js/faker';
 ```
 
-The dedicated import paths will still stay for now, to allow a gradual migration for our users.
+The dedicated import paths are kept in v9, to allow a gradual migration for our users.
 
-While the implementation of this change does not constitute as breaking according to semantic versioning guidelines, it does impact the behavior of users bundlers.
+While this is not a breaking change according to semantic versioning guidelines, it does impact the behavior of users' bundlers.
 
-### Use High Precision RNG by default
+### Use High Precision RNG by Default
 
-TLDR: Many Faker methods will return a different result in v9 compared to v8 for the same seed.
+TLDR: Many Faker methods return a different result in v9 compared to v8 for the same seed.
 
 In v9 we switch from a 32 bit random value to a 53 bit random value.
 We don't change the underlying algorithm much, but we now consume two seed values each step instead of one.
@@ -110,13 +107,11 @@ diff(r32, r53);
 
 #### Adoption
 
-If you don't have any seeded tests and just want some random values, then you don't have to change anything.
+- If you don't have any seeded tests and just want some random values, then you don't have to change anything.
+- If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
+- If you are using [vitest](https://vitest.dev), you can do that using `pnpm vitest run -u`.
 
-If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
-
-If you are using vitest, you can do that using `pnpm vitest run -u`.
-
-#### Keeping the old behavior
+#### Keeping the Old Behavior
 
 You can keep the old behavior, if you create your own `Faker` instance
 and pass a `Randomizer` instance from the `generateMersenne32Randomizer()` function to it.
@@ -134,19 +129,19 @@ const faker = new Faker({
 });
 ```
 
-### Using `tsup` for the build process
+### Using `tsup` for the Build Process
 
-We only support exports defined via `package.json` but after the switch to `tsup`, there are now complete restructures in the dist folder resulting it minified and chunked files for cjs.
+After the switch to [tsup](https://tsup.egoist.dev), the `dist` folder now contains minified and chunked files for CJS. However, as we officially support only `exports` defined via `package.json`, this should not affect your code.
 
 ## Removals of Deprecated Code
 
 A large number of methods which were deprecated in v8 are completely removed in v9. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v8 (e.g. `npm install --save-dev faker@8`) and fix any deprecation warnings issued by your code.
 
-The following sections will contain more information about these changes.
+The following sections contain more information about these changes.
 
 ### Constructor and JS Backwards-Compatibility Methods
 
-Removed deprecated faker constructor, so it is not possible anymore to just pass a locale string identifier.
+Removed deprecated faker constructor, so you can no longer just pass a locale string identifier.
 
 Also removed the accessors and method that were only for JS backwards compatibility.
 
@@ -252,7 +247,7 @@ Note these are not exact replacements:
 
 #### `faker.helpers.replaceSymbolWithNumber`
 
-The `replaceSymbolWithNumber` method was deprecated in Faker 8.4 and removed in 9.0. The method parsed the given string symbol by symbol and replaces the `#` symbol with digits (`0` - `9`) and the `!` symbol with digits >=2 (`2` - `9`). This was primarily used internally by Faker for generating phone numbers. If needed, you can use a simple string replace combined with `faker.string.numeric` to replace this
+The `replaceSymbolWithNumber` method was deprecated in Faker v8.4 and removed in v9.0. The method parsed the given string symbol by symbol and replaces the `#` symbol with digits (`0` - `9`) and the `!` symbol with digits >=2 (`2` - `9`). This was primarily used internally by Faker for generating phone numbers. If needed, you can use a simple string replace combined with `faker.string.numeric` to replace this
 
 ```ts
 // old
@@ -274,14 +269,14 @@ faker.helpers.replaceSymbolWithNumber('!#####'); // '123152'
 
 #### `faker.helpers.regexpStyleStringParse`
 
-The `regexpStyleStringParse` method in `faker.helpers` was deprecated in Faker 8.1 and removed in 9.0. A likely replacement is the more powerful `faker.helpers.fromRegExp`.
+The `regexpStyleStringParse` method in `faker.helpers` was deprecated in Faker v8.1 and removed in v9.0. A likely replacement is the more powerful `faker.helpers.fromRegExp`.
 
 ```ts
 faker.helpers.regexpStyleStringParse('a{3,6}'); // aaaaa
 faker.helpers.fromRegExp('a{3,6}'); // aaaaa
 ```
 
-However, please note that `faker.helpers.fromRegExp` is not an exact replacement for `faker.helpers.regexpStyleStringParse` as `fromRegExp` cannot handle numeric ranges. This will now need to be handled separately.
+However, please note that `faker.helpers.fromRegExp` is not an exact replacement for `faker.helpers.regexpStyleStringParse` as `fromRegExp` cannot handle numeric ranges. This now needs to be handled separately.
 
 ```ts
 faker.helpers.regexpStyleStringParse('a{3,6}[1-100]'); // "aaaa53", etc.
@@ -294,7 +289,7 @@ Prior to v9, Faker provided a [`faker.helpers.unique()`](https://v8.fakerjs.dev/
 
 Please see the [unique values guide](/guide/unique) for alternatives.
 
-For example, many simple use cases can use [`faker.helpers.uniqueArray`](https://v8.fakerjs.dev/api/helpers.html#uniqueArray). Or you can migrate to a third party package such as `enforce-unique`:
+For example, many simple use cases can use [`faker.helpers.uniqueArray`](https://v8.fakerjs.dev/api/helpers.html#uniqueArray). Or you can migrate to a recommended third party package such as [`enforce-unique`](https://www.npmjs.com/package/enforce-unique):
 
 Basic example:
 
@@ -351,7 +346,7 @@ const city = enforcer.enforce(faker.location.city, {
 ```
 
 ::: tip Note
-`enforce-unique` does not support the `exclude` or `store` options. If you were previously using these, you may wish to build your own unique logic instead.
+`enforce-unique` does not directly support the `store` option previously available in `faker.helpers.unique`. If you were previously using this parameter, check the [documentation](https://www.npmjs.com/package/enforce-unique). If you need to reset the store, you can call the `reset()` method on the `UniqueEnforcer` instance.
 :::
 
 ### Image Module
@@ -376,9 +371,9 @@ Removed deprecated image methods
 | `faker.image.technics()`  | `faker.image.urlLoremFlickr({ category: 'technics' })` or `faker.image.url()`  |
 | `faker.image.transport()` | `faker.image.urlLoremFlickr({ category: 'transport' })` or `faker.image.url()` |
 
-#### image providers
+#### Image Providers
 
-Removed deprecated image providers from `faker.image`. They already returned broken image URLs anyways.
+Removed deprecated image providers from `faker.image`. They already returned broken image URLs anyway.
 
 | old                                         | replacement                                              |
 | ------------------------------------------- | -------------------------------------------------------- |
@@ -476,7 +471,7 @@ Removed deprecated random module
 
 ### Locale Aliases
 
-Removed deprecated locale aliases
+Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 | old                                                     | replacement                                            |
 | ------------------------------------------------------- | ------------------------------------------------------ |
@@ -519,9 +514,9 @@ Removed deprecated type aliases
 
 ## Breaking Changes to Specific Methods
 
-### Changed Default Mode from Birthdate
+### Birthdate New Default Mode
 
-Previously, the method had defaults that were unclear in their specific impact.
+Previously, the `faker.date.birthdate()` method had defaults that were unclear in their specific impact.
 Now, the method requires either none or all of the `min`, `max` and `mode` options.
 
 We also improved the error messages in case of invalid min/max age/year ranges.
@@ -536,14 +531,14 @@ Now, this throws an error raising awareness of that bad value.
 
 This affects the `refDate` parameter of the `anytime()`, `birthdate()`, `past()`, `future()`, `recent()` and `soon()`, methods as well as the `from` and `to` parameters of `between()` and `betweens()`.
 
-### Prices now return more price-like values
+### Prices Now Return More Price-Like Values
 
-The `faker.commerce.price` method now produces values, that also return fractional values.
+The `faker.commerce.price()` method now produces values that also return fractional values.
 
 Old price: 828.00
 New price: 828.59
 
-The last digit of the price will adjusted to be more price-like:
+The last digit of the price is adjusted to be more price-like:
 
 - 50% of the time: `9`
 - 30% of the time: `5`
@@ -552,7 +547,7 @@ The last digit of the price will adjusted to be more price-like:
 
 We plan to rethink this method some more in the future: [#2579](https://github.com/faker-js/faker/issues/2579)
 
-### Randomized Image Option Defaults
+### Images Have Random Options by Default
 
 `faker.image.url()` now returns an image url with a random width and height by default. To obtain the previous behavior, pass `{width: 640, height: 480}`.
 
@@ -562,11 +557,11 @@ We plan to rethink this method some more in the future: [#2579](https://github.c
 
 `faker.image.dataUri()` now returns an image url with a random width and height by default, additionally the type of the image is now random. To obtain the previous behavior, pass `{width: 640, height: 480, type: 'svg-uri'}`.
 
-### Require `from` and `to` in `faker.date.between()` and `betweens()`
+### Require `from` and `to` in `faker.date.between` and `betweens`
 
-Previously, in `faker.date.between()` and `faker.date.betweens()` if the `from` or `to` parameter was omitted (in Javascript) or an invalid date (in Javascript or Typescript), they would default to the current date or reference date. Now, both boundaries must now be given explictly. If you still need the old behavior, you can pass `Date.now()` or the reference date for `from` or `to`.
+Previously, in `faker.date.between()` and `faker.date.betweens()` if the `from` or `to` parameter was omitted (in Javascript) or an invalid date (in Javascript or Typescript), they would default to the current date or reference date. Now, both boundaries must be given explicitly. If you still need the old behavior, you can pass `Date.now()` or the reference date for `from` or `to`.
 
-### Stricter Checking for Function Signature passed to `faker.helpers.multiple` Method
+### Stricter Checking for Function Signature Passed to `faker.helpers.multiple` Method
 
 The `faker.helpers.multiple` method takes a function reference as its first parameter. Previously you may have written code like this to generate multiple values.
 
@@ -608,7 +603,7 @@ faker.helpers.multiple((_, index) => ({ id: index, ...}), ...); // [{id: 0, ...}
 ### Stricter Enum Value Usage
 
 Some methods would previously fallback to a default value for an option when an unknown value was passed for a enum parameter.
-Now, these methods will return undefined instead.
+Now, these methods return undefined instead.
 This only affects usage in Javascript, as in Typescript this usage would already throw a compile-time error.
 
 For example:
@@ -626,9 +621,9 @@ This affects:
 - The `variant` property of `faker.location.countryCode()` must be one of `alpha-2`, `alpha-3`, `numeric` if provided
 - The `casing` property of `faker.string.alpha()` and `faker.string.alphanumeric()` must be one of `'upper' | 'lower' | 'mixed'` if provided
 
-### faker.phone.number `style` replaces explicit `format`
+### Phone Number `style` Replaces Explicit `format`
 
-`faker.phone.number()` generates a phone number for the current locale. However, previously there was little control over the generated number, which might or might not include country codes, extensions, white space and punctuation.
+`faker.phone.number()` generates a phone number for the current locale. Previously, there was little control over the generated number, which may or may not have included country codes, extensions, white space, and punctuation.
 
 If you wanted more control over the number, it was previously necessary to pass an explicit `format` parameter. This has now been removed. Instead, you can consider one of two options:
 

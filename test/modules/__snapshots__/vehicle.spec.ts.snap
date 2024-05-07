@@ -2,7 +2,7 @@
 
 exports[`vehicle > 42 > bicycle 1`] = `"Fitness Bicycle"`;
 
-exports[`vehicle > 42 > color 1`] = `"grey"`;
+exports[`vehicle > 42 > color 1`] = `"lime"`;
 
 exports[`vehicle > 42 > fuel 1`] = `"Electric"`;
 
@@ -14,13 +14,13 @@ exports[`vehicle > 42 > type 1`] = `"Extended Cab Pickup"`;
 
 exports[`vehicle > 42 > vehicle 1`] = `"Ford V90"`;
 
-exports[`vehicle > 42 > vin 1`] = `"CYRK551VKPAZ84919"`;
+exports[`vehicle > 42 > vin 1`] = `"CYRK551VKPAZ82113"`;
 
 exports[`vehicle > 42 > vrm 1`] = `"JY75EEB"`;
 
 exports[`vehicle > 1211 > bicycle 1`] = `"Triathlon/Time Trial Bicycle"`;
 
-exports[`vehicle > 1211 > color 1`] = `"azure"`;
+exports[`vehicle > 1211 > color 1`] = `"violet"`;
 
 exports[`vehicle > 1211 > fuel 1`] = `"Hybrid"`;
 
@@ -32,13 +32,13 @@ exports[`vehicle > 1211 > type 1`] = `"Wagon"`;
 
 exports[`vehicle > 1211 > vehicle 1`] = `"Toyota Aventador"`;
 
-exports[`vehicle > 1211 > vin 1`] = `"XW7ZNNSBNTUM84790"`;
+exports[`vehicle > 1211 > vin 1`] = `"XW7ZNNSBNTUM84882"`;
 
 exports[`vehicle > 1211 > vrm 1`] = `"YX29RRT"`;
 
 exports[`vehicle > 1337 > bicycle 1`] = `"Cyclocross Bicycle"`;
 
-exports[`vehicle > 1337 > color 1`] = `"black"`;
+exports[`vehicle > 1337 > color 1`] = `"indigo"`;
 
 exports[`vehicle > 1337 > fuel 1`] = `"Electric"`;
 
@@ -50,6 +50,6 @@ exports[`vehicle > 1337 > type 1`] = `"Coupe"`;
 
 exports[`vehicle > 1337 > vehicle 1`] = `"Dodge Volt"`;
 
-exports[`vehicle > 1337 > vin 1`] = `"859FAH8ZR3JL21255"`;
+exports[`vehicle > 1337 > vin 1`] = `"859FAH8ZR3JL19477"`;
 
 exports[`vehicle > 1337 > vrm 1`] = `"GE24ING"`;
