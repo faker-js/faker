@@ -323,7 +323,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     'phone_number',
     'science',
     'system',
-    'vehicle',
     'word',
     ...legacyDefinitions,
   ];
