@@ -1,9 +1,9 @@
 export default [
   '24/365',
   '24/7',
-  'allestedsnærværende',
   'B2B',
   'B2C',
+  'allestedsnærværende',
   'back-end',
   'bedst-i-klassen',
   'brugercentrerede',
