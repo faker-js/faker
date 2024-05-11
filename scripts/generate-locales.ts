@@ -320,7 +320,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     'metadata',
     'person',
     'phone_number',
-    'science',
     'system',
     'word',
     ...legacyDefinitions,
