@@ -39,6 +39,7 @@ module.exports = defineConfig({
     'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
 
+    'unicorn/import-style': 'off', // subjective & doesn't do anything for us
     'unicorn/no-array-callback-reference': 'off', // reduces readability
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
@@ -137,17 +138,6 @@ module.exports = defineConfig({
       },
     ],
     'jsdoc/tag-lines': 'off',
-
-    'unicorn/import-style': [
-      'error',
-      {
-        styles: {
-          'node:path': {
-            named: true,
-          },
-        },
-      },
-    ],
   },
   settings: {
     jsdoc: {
