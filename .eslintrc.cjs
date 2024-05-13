@@ -50,7 +50,6 @@ module.exports = defineConfig({
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/import-style': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
@@ -138,6 +137,17 @@ module.exports = defineConfig({
       },
     ],
     'jsdoc/tag-lines': 'off',
+
+    'unicorn/import-style': [
+      'error',
+      {
+        styles: {
+          'node:path': {
+            named: true,
+          },
+        },
+      },
+    ],
   },
   settings: {
     jsdoc: {
