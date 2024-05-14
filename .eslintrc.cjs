@@ -192,6 +192,7 @@ module.exports = defineConfig({
 
         'vitest/expect-expect': 'off',
         'vitest/prefer-each': 'error',
+        'vitest/prefer-to-have-length': 'error',
         'vitest/valid-expect': ['error', { maxArgs: 2 }],
       },
     },

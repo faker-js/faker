@@ -5,6 +5,16 @@ import type { LocaleEntry } from './definitions';
  */
 export type MusicDefinition = LocaleEntry<{
   /**
+   * The names of some albums.
+   */
+  album: string[];
+
+  /**
+   * The names of some artists.
+   */
+  artist: string[];
+
+  /**
    * The names of some music genres.
    */
   genre: string[];

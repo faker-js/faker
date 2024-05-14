@@ -9,17 +9,13 @@ function readBranchName(): string {
 }
 
 function readOtherLatestReleaseTagNames(): string[] {
-  const currentMajorVersion = semver.major(version);
   const latestReleaseTagNames = execSync('git tag -l')
     .toString('utf8')
     .split('\n')
     .filter((tag) => semver.valid(tag))
-    .filter((tag) => {
-      // Only consider tags for our deployed website versions,
-      // excluding the current major version.
-      const majorVersion = semver.major(tag);
-      return majorVersion >= 6 && majorVersion !== currentMajorVersion;
-    })
+    // Only consider tags for our deployed website versions
+    .filter((tag) => semver.major(tag) >= 6)
+    // Find the latest tag for each major version
     .reduce<Record<number, string>>((latestTagByMajor, tag) => {
       const majorVersion = semver.major(tag);
 
@@ -39,10 +35,6 @@ const {
   BRANCH: branchName = readBranchName(),
 } = process.env;
 
-const hiddenLink =
-  deployContext === 'production'
-    ? 'https://fakerjs.dev/'
-    : `https://${branchName}.fakerjs.dev/`;
 const otherVersions = readOtherLatestReleaseTagNames();
 const isReleaseBranch = /^v\d+$/.test(branchName);
 
@@ -60,11 +52,7 @@ export const versionBannerInfix: string | null = (() => {
 })();
 
 export const currentVersion = isReleaseBranch ? `v${version}` : branchName;
-export const oldVersions = [
-  {
-    version: 'latest',
-    link: 'https://fakerjs.dev/',
-  },
+export const versionLinks = [
   {
     version: 'next',
     link: 'https://next.fakerjs.dev/',
@@ -73,7 +61,9 @@ export const oldVersions = [
     version,
     link: `https://v${semver.major(version)}.fakerjs.dev/`,
   })),
-].filter(({ link }) => link !== hiddenLink);
+]
+  // Don't link to the current branch's version.
+  .filter(({ link }) => link !== `https://${branchName}.fakerjs.dev/`);
 
 export const algoliaIndex = isReleaseBranch
   ? `fakerjs-v${semver.major(version)}`

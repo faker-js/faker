@@ -1,1 +1,1 @@
-export default ['S.A.', 'z o.o', 'Sp. j.', 'Sp. p.', 'Sp. k.', 'SKA', 's.c.'];
+export default ['S.A.', 'SKA', 'Sp. j.', 'Sp. k.', 'Sp. p.', 's.c.', 'z o.o'];

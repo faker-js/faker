@@ -1,1 +1,1 @@
-export default ['Kft.', 'Bt.', 'Zrt.', 'Nyrt.', 'Kv.', 'Kkt.'];
+export default ['Bt.', 'Kft.', 'Kkt.', 'Kv.', 'Nyrt.', 'Zrt.'];
