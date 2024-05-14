@@ -87,6 +87,7 @@ export class Faker extends SimpleFaker {
   readonly word: WordModule = new WordModule(this);
 
   get rawDefinitions(): LocaleDefinition {
+    // TODO @ST-DDT 2024-05-14: Should we deprecate this?
     return this.fakerCore.locale;
   }
 
