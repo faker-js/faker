@@ -176,6 +176,8 @@ export class Faker extends SimpleFaker {
     randomizer?: Randomizer;
     fakerCore?: FakerCore;
   }) {
+    super(options);
+
     let { locale = {} } = options;
 
     if (Array.isArray(locale)) {
@@ -193,7 +195,10 @@ export class Faker extends SimpleFaker {
       fakerCore = { locale, randomizer, config: {} },
     } = options;
 
-    super({ fakerCore });
+    // TODO @ST-DDT 2024-05-14: Workaround for https://github.com/egoist/tsup/issues/1124
+    // @ts-expect-error: fakerCore is not writable
+    this.fakerCore = fakerCore;
+    // super({ fakerCore });
 
     this.definitions = createLocaleProxy(this.rawDefinitions);
   }
