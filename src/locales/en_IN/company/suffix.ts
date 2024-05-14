@@ -1,9 +1,9 @@
 export default [
-  'Pvt Ltd',
-  'Limited',
-  'Ltd',
-  'and Sons',
+  'Brothers',
   'Corp',
   'Group',
-  'Brothers',
+  'Limited',
+  'Ltd',
+  'Pvt Ltd',
+  'and Sons',
 ];
