@@ -1,5 +1,4 @@
 export default {
-  wide: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-
-  abbr: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+  wide: ['Domingo', 'Quarta', 'Quinta', 'Segunda', 'Sexta', 'Sábado', 'Terça'],
+  abbr: ['Dom', 'Qua', 'Qui', 'Seg', 'Sex', 'Sáb', 'Ter'],
 };
