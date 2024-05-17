@@ -302,11 +302,12 @@ async function normalizeLocaleFile(
       // eslint-disable-next-line no-restricted-globals
       collator = new Intl.Collator(locale.replaceAll('_', '-'));
     } catch {
-      console.warn(
-        `Failed to create collator for locale ${locale}. Using default collator.`
-      );
-      // eslint-disable-next-line no-restricted-globals
-      collator = new Intl.Collator('en');
+      if (locale == 'base') {
+        // eslint-disable-next-line no-restricted-globals
+        collator = new Intl.Collator('en');
+      } else {
+        throw(`Failed to create collator for locale ${locale}. Using default collator.`);
+      }
     }
 
     if (Array.isArray(localeData)) {
