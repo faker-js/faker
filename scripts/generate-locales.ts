@@ -300,7 +300,7 @@ async function normalizeLocaleFile(
     let collator = null;
     try {
       // eslint-disable-next-line no-restricted-globals
-      collator = new Intl.Collator(locale.replace('_', '-'));
+      collator = new Intl.Collator(locale.replace(/_/g, '-'));
     } catch {
       console.warn(
         `Failed to create collator for locale ${locale}. Using default collator.`
