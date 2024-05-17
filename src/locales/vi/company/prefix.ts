@@ -1,8 +1,8 @@
 export default [
   'Chi nhánh',
+  'Công ty',
   'Cty',
   'Cty TNHH',
-  'Công ty',
   'Cửa hàng',
   'Trung tâm',
 ];

@@ -1,11 +1,12 @@
 export default [
+  'Açık Hava',
   'Aletler',
   'Ayakkabı',
-  'Açık Hava',
   'Bahçe',
   'Bakkal',
   'Bebek',
   'Bilgisayarlar',
+  'Çocuklar',
   'Elektronik',
   'Ev',
   'Filmler',
@@ -17,8 +18,7 @@ export default [
   'Otomotiv',
   'Oyuncaklar',
   'Oyunlar',
-  'Sanayi',
   'Sağlık',
+  'Sanayi',
   'Spor Dalları',
-  'Çocuklar',
 ];

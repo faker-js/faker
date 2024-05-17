@@ -7,7 +7,7 @@ export default [
   'Hatchback',
   'Minivan',
   'Passenger Van',
-  'SUV',
   'Sedan',
+  'SUV',
   'Wagon',
 ];

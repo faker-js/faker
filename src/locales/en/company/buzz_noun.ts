@@ -1,5 +1,4 @@
 export default [
-  'ROI',
   'action-items',
   'applications',
   'architectures',
@@ -32,6 +31,7 @@ export default [
   'platforms',
   'portals',
   'relationships',
+  'ROI',
   'schemas',
   'solutions',
   'supply-chains',

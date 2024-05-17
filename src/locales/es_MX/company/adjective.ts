@@ -18,6 +18,7 @@ export default [
   'Digitalizado',
   'Distribuido',
   'Diverso',
+  'en fases',
   'En red',
   'Enfocado',
   'Enfocado a benficios',
@@ -27,8 +28,8 @@ export default [
   'Exclusivo',
   'Expandido',
   'Extendido',
-  'Fundamental',
   'Fácil',
+  'Fundamental',
   'Gestionado',
   'Horizontal',
   'Implementado',
@@ -79,5 +80,4 @@ export default [
   'Versatil',
   'Virtual',
   'Visionario',
-  'en fases',
 ];

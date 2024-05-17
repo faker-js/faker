@@ -19,8 +19,8 @@ export default {
     'Sem Marca',
   ],
   material: [
-    'Algodão',
     'Aço',
+    'Algodão',
     'Betão',
     'Borracha',
     'Congelado',

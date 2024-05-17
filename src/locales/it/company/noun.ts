@@ -33,6 +33,7 @@ export default [
   'Flessibilità',
   'Forza lavoro',
   'Frame',
+  'framework',
   'Funzionalità',
   'Funzione',
   'Gerarchia',
@@ -87,5 +88,4 @@ export default [
   'Supporto',
   'Task-force',
   'Utilizzazione',
-  'framework',
 ];

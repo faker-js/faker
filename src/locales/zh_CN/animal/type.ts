@@ -1,1 +1,1 @@
-export default ['熊', '狗', '猫', '马', '鱼'];
+export default ['狗', '马', '猫', '熊', '鱼'];

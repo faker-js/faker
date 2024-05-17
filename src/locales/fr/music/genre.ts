@@ -2,6 +2,7 @@ export default [
   'Blues',
   'Classique',
   'Country',
+  'Électronique',
   'Folk',
   'Funk',
   'Hip Hop',
@@ -16,5 +17,4 @@ export default [
   'Soul',
   'Variété',
   'World',
-  'Électronique',
 ];

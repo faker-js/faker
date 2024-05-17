@@ -1,9 +1,9 @@
 export default [
   'A Dev Byte vékony és egyszerű Maple Gaming billentyűzete elegáns testtel és 7 színű RGB LED-es háttérvilágítással rendelkezik az intelligens funkcionalitás érdekében',
-  'A Nagasaki Lander több Nagasaki sportkerékpár-sorozat védjegyzett neve, amelyek az 1984-es ABC800J-vel indultak',
   'A formális ingek új sorozatát Önt szem előtt tartva terveztük. Illeszkedéssel és stílussal, amellyel kitűnik a tömegből',
   'A futball edzésre és szabadidős célokra is jó',
   'A karbonithálós kapuskesztyűk ergonomikus kialakításúak, hogy könnyen illeszkedjenek',
+  'A Nagasaki Lander több Nagasaki sportkerékpár-sorozat védjegyzett neve, amelyek az 1984-es ABC800J-vel indultak',
   'Az Andy cipőket a tartósságot és a trendeket szem előtt tartva tervezték, a cipők és szandálok legstílusosabb választéka',
   'Az Apollotech B340 egy megfizethető vezetékmentes egér, megbízható kapcsolattal, 12 hónapos akkumulátoridővel és modern dizájnnal',
   'Az Apple Naturalé termékcsaládja, amely természetes összetevők izgalmas keverékét tartalmazza. 100%-ban természetes összetevőkkel',

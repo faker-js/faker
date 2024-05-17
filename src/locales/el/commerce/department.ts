@@ -1,6 +1,4 @@
 export default [
-  'Grocery',
-  'Sports',
   'Αυτοκίνητο',
   'Βιβλία',
   'Βιομηχανικά',
@@ -20,4 +18,6 @@ export default [
   'Ταινίες',
   'Υγεία',
   'Υπολογιστές',
+  'Grocery',
+  'Sports',
 ];

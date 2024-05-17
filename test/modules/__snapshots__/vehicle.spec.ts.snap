@@ -44,7 +44,7 @@ exports[`vehicle > 1337 > fuel 1`] = `"Electric"`;
 
 exports[`vehicle > 1337 > manufacturer 1`] = `"Dodge"`;
 
-exports[`vehicle > 1337 > model 1`] = `"Challenger"`;
+exports[`vehicle > 1337 > model 1`] = `"Civic"`;
 
 exports[`vehicle > 1337 > type 1`] = `"Coupe"`;
 

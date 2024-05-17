@@ -1,9 +1,9 @@
 export default [
+  'cétacé',
   'chat',
   'cheval',
   'chien',
   'crocodilien',
-  'cétacé',
   'insecte',
   'lapin',
   'lion',

@@ -1,5 +1,4 @@
 export default [
-  'Envisioneer',
   'abrazar',
   'acelerar',
   'agregado',
@@ -17,6 +16,7 @@ export default [
   'empoderar',
   'enganchar',
   'entregue',
+  'Envisioneer',
   'escala',
   'estrategias',
   'evolucionar',

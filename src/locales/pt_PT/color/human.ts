@@ -9,6 +9,7 @@ export default [
   'ciano',
   'cinzento',
   'fúcsia',
+  'índigo',
   'laranja',
   'lavanda',
   'lima',
@@ -25,5 +26,4 @@ export default [
   'verde',
   'vermelho',
   'violeta',
-  'índigo',
 ];

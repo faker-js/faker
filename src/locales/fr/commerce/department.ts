@@ -1,11 +1,12 @@
 export default [
   'Automobile',
   'Beauté',
-  'Bijoux',
   'Bébé',
+  'Bijoux',
   'Chaussures',
   'Electronique',
   'Enfants',
+  'Épicerie',
   'Films',
   'Industrie',
   'Jardin',
@@ -20,5 +21,4 @@ export default [
   'Santé',
   'Sports',
   'Vêtements',
-  'Épicerie',
 ];

@@ -1,1 +1,1 @@
-export default ['AS', 'ASA', 'BA', 'Gruppen', 'RFH', 'og Sønner'];
+export default ['AS', 'ASA', 'BA', 'Gruppen', 'og Sønner', 'RFH'];

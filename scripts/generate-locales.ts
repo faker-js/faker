@@ -270,7 +270,7 @@ async function updateLocaleFileHook(
     console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
 
-  return normalizeLocaleFile(filePath, definitionKey);
+  return normalizeLocaleFile(filePath, definitionKey, locale);
 }
 
 /**
@@ -284,12 +284,29 @@ async function updateLocaleFileHook(
  *
  * @param filePath The full file path to the file.
  * @param definitionKey The definition key of the current file (ex. 'location').
+ * @param locale The locale for that file.
  */
-async function normalizeLocaleFile(filePath: string, definitionKey: string) {
+async function normalizeLocaleFile(
+  filePath: string,
+  definitionKey: string,
+  locale: string
+) {
   function normalizeDataRecursive<T>(localeData: T): T {
     if (typeof localeData !== 'object' || localeData === null) {
       // we can only traverse object-like structs
       return localeData;
+    }
+
+    let collator = null;
+    try {
+      // eslint-disable-next-line no-restricted-globals
+      collator = new Intl.Collator(locale.replace('_', '-'));
+    } catch {
+      console.warn(
+        `Failed to create collator for locale ${locale}. Using default collator.`
+      );
+      // eslint-disable-next-line no-restricted-globals
+      collator = new Intl.Collator('en');
     }
 
     if (Array.isArray(localeData)) {
@@ -298,7 +315,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
           // limit entries to 1k
           .slice(0, 1000)
           // sort entries alphabetically
-          .sort() as T
+          .sort(collator.compare) as T
       );
     }
 

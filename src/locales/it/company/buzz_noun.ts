@@ -1,5 +1,4 @@
 export default [
-  'ROI',
   'applicazioni',
   'architetture',
   'comunità',
@@ -19,6 +18,7 @@ export default [
   'partnerships',
   'relazioni',
   'reti',
+  'ROI',
   'schemi',
   'sistemi',
   'soluzioni',

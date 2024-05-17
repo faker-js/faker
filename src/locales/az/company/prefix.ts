@@ -1,1 +1,1 @@
-export default ['ASC', 'MMC', 'QSC'];
+export default ['ASC', 'QSC', 'MMC'];

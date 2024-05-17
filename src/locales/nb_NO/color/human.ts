@@ -1,8 +1,8 @@
 export default [
   'beige',
   'blå',
-  'grå',
   'grønn',
+  'grå',
   'gul',
   'hvit',
   'indigo',

@@ -2,9 +2,9 @@
 
 exports[`company > 42 > buzzAdjective 1`] = `"front-end"`;
 
-exports[`company > 42 > buzzNoun 1`] = `"eyeballs"`;
+exports[`company > 42 > buzzNoun 1`] = `"functionalities"`;
 
-exports[`company > 42 > buzzPhrase 1`] = `"generate visionary platforms"`;
+exports[`company > 42 > buzzPhrase 1`] = `"generate visionary portals"`;
 
 exports[`company > 42 > buzzVerb 1`] = `"generate"`;
 
@@ -14,19 +14,19 @@ exports[`company > 42 > catchPhraseAdjective 1`] = `"Implemented"`;
 
 exports[`company > 42 > catchPhraseDescriptor 1`] = `"explicit"`;
 
-exports[`company > 42 > catchPhraseNoun 1`] = `"forecast"`;
+exports[`company > 42 > catchPhraseNoun 1`] = `"framework"`;
 
-exports[`company > 42 > name 1`] = `"Wiegand LLC"`;
+exports[`company > 42 > name 1`] = `"Wiegand Inc"`;
 
 exports[`company > 1211 > buzzAdjective 1`] = `"virtual"`;
 
 exports[`company > 1211 > buzzNoun 1`] = `"technologies"`;
 
-exports[`company > 1211 > buzzPhrase 1`] = `"transition vertical convergence"`;
+exports[`company > 1211 > buzzPhrase 1`] = `"transition vertical deliverables"`;
 
 exports[`company > 1211 > buzzVerb 1`] = `"transition"`;
 
-exports[`company > 1211 > catchPhrase 1`] = `"Up-sized tertiary concept"`;
+exports[`company > 1211 > catchPhrase 1`] = `"Up-sized tertiary contingency"`;
 
 exports[`company > 1211 > catchPhraseAdjective 1`] = `"Up-sized"`;
 
@@ -38,18 +38,18 @@ exports[`company > 1211 > name 1`] = `"Trantow, Fahey and Zieme"`;
 
 exports[`company > 1337 > buzzAdjective 1`] = `"dynamic"`;
 
-exports[`company > 1337 > buzzNoun 1`] = `"deliverables"`;
+exports[`company > 1337 > buzzNoun 1`] = `"e-business"`;
 
-exports[`company > 1337 > buzzPhrase 1`] = `"enhance compelling e-business"`;
+exports[`company > 1337 > buzzPhrase 1`] = `"enhance compelling e-commerce"`;
 
 exports[`company > 1337 > buzzVerb 1`] = `"enhance"`;
 
-exports[`company > 1337 > catchPhrase 1`] = `"Expanded clear-thinking data-warehouse"`;
+exports[`company > 1337 > catchPhrase 1`] = `"Expanded clear-thinking definition"`;
 
 exports[`company > 1337 > catchPhraseAdjective 1`] = `"Expanded"`;
 
 exports[`company > 1337 > catchPhraseDescriptor 1`] = `"demand-driven"`;
 
-exports[`company > 1337 > catchPhraseNoun 1`] = `"customer loyalty"`;
+exports[`company > 1337 > catchPhraseNoun 1`] = `"database"`;
 
 exports[`company > 1337 > name 1`] = `"Cronin - Gottlieb"`;

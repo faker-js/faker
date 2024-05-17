@@ -1,6 +1,4 @@
 export default [
-  'Graphic Interface',
-  'Graphical User Interface',
   'ability',
   'access',
   'adapter',
@@ -42,6 +40,8 @@ export default [
   'framework',
   'function',
   'functionalities',
+  'Graphic Interface',
+  'Graphical User Interface',
   'groupware',
   'hardware',
   'help-desk',
