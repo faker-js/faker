@@ -8,6 +8,13 @@ exports[`science > 42 > chemicalElement 1`] = `
 }
 `;
 
+exports[`science > 42 > notation 1`] = `
+{
+  "name": "pressure",
+  "symbol": "P",
+}
+`;
+
 exports[`science > 42 > unit 1`] = `
 {
   "name": "pascal",
@@ -23,6 +30,13 @@ exports[`science > 1211 > chemicalElement 1`] = `
 }
 `;
 
+exports[`science > 1211 > notation 1`] = `
+{
+  "name": "mass",
+  "symbol": "m",
+}
+`;
+
 exports[`science > 1211 > unit 1`] = `
 {
   "name": "henry",
@@ -35,6 +49,13 @@ exports[`science > 1337 > chemicalElement 1`] = `
   "atomicNumber": 31,
   "name": "Gallium",
   "symbol": "Ga",
+}
+`;
+
+exports[`science > 1337 > notation 1`] = `
+{
+  "name": "friction force",
+  "symbol": "f",
 }
 `;
 

@@ -29,6 +29,16 @@ export interface Unit {
   symbol: string;
 }
 
+export interface Notation {
+  /**
+   * The long version of the notations (e.g. `work`).
+   */
+  name: string;
+  /**
+   * The short version/abbreviation of the notations (e.g. `w`)
+   */
+  symbol: string;
+}
 /**
  * Module to generate science related entries.
  *
@@ -65,5 +75,21 @@ export class ScienceModule extends ModuleBase {
    */
   unit(): Unit {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
+  }
+
+  /**
+   * Retunrs a ransom scientific notation.
+   *
+   * @example
+   * faker.science.notation() // { name: 'work', symbol: 'w' }
+   * faker.science.notation() // { name: 'force', symbol: 'F' }
+   * faker.science.notation() // { name: 'work', symbol: 'W'}
+   *
+   * @since 8.2.0
+   */
+  notation(): Notation {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.science.notation
+    );
   }
 }
