@@ -164,12 +164,6 @@ module.exports = defineConfig({
           'error',
           {
             case: 'snakeCase',
-            // TODO @ST-DDT 2023-10-21: rename the definitions in v9
-            ignore: [
-              /chemicalElement\.ts$/,
-              /directoryPaths\.ts$/,
-              /mimeTypes\.ts$/,
-            ],
           },
         ],
         'unicorn/text-encoding-identifier-case': 'off',
