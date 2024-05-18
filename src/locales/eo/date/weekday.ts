@@ -4,10 +4,9 @@ export default {
     'lundo',
     'mardo',
     'merkredo',
-    'ĵaŭdo',
-    'vendredo',
     'sabato',
+    'vendredo',
+    'ĵaŭdo',
   ],
-
-  abbr: ['di', 'lu', 'ma', 'me', 'ĵa', 've', 'sa'],
+  abbr: ['di', 'lu', 'ma', 'me', 'sa', 've', 'ĵa'],
 };
