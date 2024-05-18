@@ -1,1 +1,1 @@
-export default ['SARL', 'SA', 'EURL', 'SAS', 'SEM', 'SCOP', 'GIE', 'EI'];
+export default ['EI', 'EURL', 'GIE', 'SA', 'SARL', 'SAS', 'SCOP', 'SEM'];

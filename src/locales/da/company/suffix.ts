@@ -1,1 +1,1 @@
-export default ['ApS', 'A/S'];
+export default ['A/S', 'ApS'];

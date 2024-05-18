@@ -312,22 +312,15 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'commerce',
-    'company',
-    'database',
     'date',
     'finance',
-    'hacker',
     'internet',
     'location',
     'lorem',
     'metadata',
-    'music',
     'person',
     'phone_number',
-    'science',
     'system',
-    'vehicle',
     'word',
     ...legacyDefinitions,
   ];

@@ -1,1 +1,1 @@
-export default ['PT', 'CV', 'UD', 'PD', 'Perum', 'Fa', 'Yayasan', 'KKB'];
+export default ['CV', 'Fa', 'KKB', 'PD', 'PT', 'Perum', 'UD', 'Yayasan'];
