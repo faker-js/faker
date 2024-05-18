@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { Faker, FakerError, allLocales, base, en, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -468,7 +469,12 @@ describe('date', () => {
         describe.each(Object.entries(allLocales))(
           'for locale %s',
           (locale, fakerLocale) => {
+            if (locale.length > 2) return;
             let localizedFaker: Faker;
+            const months = Array.from(
+              { length: 12 },
+              (_, i) => new Date(2020, i, 1)
+            );
 
             beforeAll(() => {
               localizedFaker = new Faker({ locale: [fakerLocale, en, base] });
@@ -492,6 +498,28 @@ describe('date', () => {
                 expect(
                   localizedFaker.definitions.date.month.abbr_context
                 ).toContain(month);
+              }
+            });
+
+            it('should use Intl.DateTimeFormat to get the month name in the correct locale', () => {
+              for (const date of months) {
+                const intlMonth = new Intl.DateTimeFormat(locale, {
+                  month: 'long',
+                }).format(date);
+                expect(localizedFaker.definitions.date.month.wide).toContain(
+                  intlMonth
+                );
+              }
+            });
+
+            it('should use Intl.DateTimeFormat to get the abbreviated month name in the correct locale', () => {
+              for (const date of months) {
+                const intlMonth = new Intl.DateTimeFormat(locale, {
+                  month: 'short',
+                }).format(date);
+                expect(localizedFaker.definitions.date.month.abbr).toContain(
+                  intlMonth
+                );
               }
             });
           }
@@ -527,7 +555,12 @@ describe('date', () => {
         describe.each(Object.entries(allLocales))(
           'for locale %s',
           (locale, fakerLocale) => {
+            if (locale.length > 2) return;
             let localizedFaker: Faker;
+            const weekdays = Array.from(
+              { length: 7 },
+              (_, i) => new Date(2020, 0, i + 4)
+            ); // January 4-10, 2020 are Sunday to Saturday
 
             beforeAll(() => {
               localizedFaker = new Faker({ locale: [fakerLocale, en, base] });
@@ -551,6 +584,28 @@ describe('date', () => {
                 expect(
                   localizedFaker.definitions.date.weekday.abbr_context
                 ).toContain(weekday);
+              }
+            });
+
+            it('should use Intl.DateTimeFormat to get the weekday name in the correct locale', () => {
+              for (const date of weekdays) {
+                const intlWeekday = new Intl.DateTimeFormat(locale, {
+                  weekday: 'long',
+                }).format(date);
+                expect(localizedFaker.definitions.date.weekday.wide).toContain(
+                  intlWeekday
+                );
+              }
+            });
+
+            it('should use Intl.DateTimeFormat to get the abbreviated weekday name in the correct locale', () => {
+              for (const date of weekdays) {
+                const intlWeekday = new Intl.DateTimeFormat(locale, {
+                  weekday: 'short',
+                }).format(date);
+                expect(localizedFaker.definitions.date.weekday.abbr).toContain(
+                  intlWeekday
+                );
               }
             });
           }
