@@ -641,7 +641,7 @@ The styles are locale-aware, so for example if you use pt_PT, phone numbers suit
 Previously, function calls on non-functions were silently ignored.
 
 ```ts
-faker.helpers.fake('{{person.first_name()}}''); // 'Jenny'
+faker.helpers.fake('{{person.first_name()}}'); // 'Jenny'
 ```
 
 Now, it fails with an exception:
