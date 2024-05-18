@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, faker, fakerAZ } from '../../src';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+import { Faker, FakerError, allLocales, base, en, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -448,24 +448,9 @@ describe('date', () => {
           expect(faker.definitions.date.month.wide).toContain(month);
         });
 
-        it('should return random value from date.month.wide_context array for context option', () => {
-          // Use a locale which has a wide_context array
-          const month = fakerAZ.date.month({ context: true });
-          expect(fakerAZ.definitions.date.month.wide_context).toContain(month);
-        });
-
         it('should return random value from date.month.abbr array for abbreviated option', () => {
           const month = faker.date.month({ abbreviated: true });
           expect(faker.definitions.date.month.abbr).toContain(month);
-        });
-
-        it('should return random value from date.month.abbr_context array for abbreviated and context option', () => {
-          // Use a locale (e.g. az) which has a wide_context array
-          const month = fakerAZ.date.month({
-            abbreviated: true,
-            context: true,
-          });
-          expect(fakerAZ.definitions.date.month.abbr_context).toContain(month);
         });
 
         it('should return random value from date.month.wide array for context option when date.month.wide_context array is missing', () => {
@@ -479,6 +464,38 @@ describe('date', () => {
           const month = faker.date.month({ abbreviated: true, context: true });
           expect(faker.definitions.date.month.abbr).toContain(month);
         });
+
+        describe.each(Object.entries(allLocales))(
+          'for locale %s',
+          (locale, fakerLocale) => {
+            let localizedFaker: Faker;
+
+            beforeAll(() => {
+              localizedFaker = new Faker({ locale: [fakerLocale, en, base] });
+            });
+
+            it(`should return random value from date.month.wide_context array for context option in ${locale}`, () => {
+              if (localizedFaker.definitions.date.month.wide_context) {
+                const month = localizedFaker.date.month({ context: true });
+                expect(
+                  localizedFaker.definitions.date.month.wide_context
+                ).toContain(month);
+              }
+            });
+
+            it(`should return random value from date.month.abbr_context array for abbreviated and context option in ${locale}`, () => {
+              if (localizedFaker.definitions.date.month.abbr_context) {
+                const month = localizedFaker.date.month({
+                  abbreviated: true,
+                  context: true,
+                });
+                expect(
+                  localizedFaker.definitions.date.month.abbr_context
+                ).toContain(month);
+              }
+            });
+          }
+        );
       });
 
       describe('weekday()', () => {
@@ -487,28 +504,9 @@ describe('date', () => {
           expect(faker.definitions.date.weekday.wide).toContain(weekday);
         });
 
-        it('should return random value from date.weekday.wide_context array for context option', () => {
-          // Use a locale (e.g. az) which has a wide_context array
-          const weekday = fakerAZ.date.weekday({ context: true });
-          expect(fakerAZ.definitions.date.weekday.wide_context).toContain(
-            weekday
-          );
-        });
-
         it('should return random value from date.weekday.abbr array for abbreviated option', () => {
           const weekday = faker.date.weekday({ abbreviated: true });
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
-        });
-
-        it('should return random value from date.weekday.abbr_context array for abbreviated and context option', () => {
-          // Use a locale (e.g. az) which has a abbr_context array
-          const weekday = fakerAZ.date.weekday({
-            abbreviated: true,
-            context: true,
-          });
-          expect(fakerAZ.definitions.date.weekday.abbr_context).toContain(
-            weekday
-          );
         });
 
         it('should return random value from date.weekday.wide array for context option when date.weekday.wide_context array is missing', () => {
@@ -525,6 +523,38 @@ describe('date', () => {
           });
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
         });
+
+        describe.each(Object.entries(allLocales))(
+          'for locale %s',
+          (locale, fakerLocale) => {
+            let localizedFaker: Faker;
+
+            beforeAll(() => {
+              localizedFaker = new Faker({ locale: [fakerLocale, en, base] });
+            });
+
+            it(`should return random value from date.weekday.wide_context array for context option in ${locale}`, () => {
+              if (localizedFaker.definitions.date.month.wide_context) {
+                const weekday = localizedFaker.date.weekday({ context: true });
+                expect(
+                  localizedFaker.definitions.date.weekday.wide_context
+                ).toContain(weekday);
+              }
+            });
+
+            it(`should return random value from date.weekday.abbr_context array for abbreviated and context option in ${locale}`, () => {
+              if (localizedFaker.definitions.date.month.abbr_context) {
+                const weekday = localizedFaker.date.weekday({
+                  abbreviated: true,
+                  context: true,
+                });
+                expect(
+                  localizedFaker.definitions.date.weekday.abbr_context
+                ).toContain(weekday);
+              }
+            });
+          }
+        );
       });
 
       describe('birthdate', () => {
