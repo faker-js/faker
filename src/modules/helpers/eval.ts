@@ -133,9 +133,7 @@ function evalProcessFunction(
   return [
     index + (nextChar === '.' ? 2 : 1), // one for the closing bracket, one for the dot
     entrypoints.map((entrypoint): unknown =>
-      // TODO @ST-DDT 2023-12-11: Replace in v9
-      // typeof entrypoint === 'function' ? entrypoint(...params) : undefined
-      typeof entrypoint === 'function' ? entrypoint(...params) : entrypoint
+      typeof entrypoint === 'function' ? entrypoint(...params) : undefined
     ),
   ];
 }
