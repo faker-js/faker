@@ -51,7 +51,6 @@ module.exports = defineConfig({
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/import-style': 'off',
-    'unicorn/no-await-expression-member': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
@@ -191,7 +190,9 @@ module.exports = defineConfig({
         ],
 
         'vitest/expect-expect': 'off',
+        'vitest/no-alias-methods': 'error',
         'vitest/prefer-each': 'error',
+        'vitest/prefer-to-have-length': 'error',
         'vitest/valid-expect': ['error', { maxArgs: 2 }],
       },
     },

@@ -134,7 +134,7 @@ describe('git', () => {
           expect(commitDate).toBeTypeOf('string');
 
           const parts = commitDate.split(' ');
-          expect(parts.length).toBe(6);
+          expect(parts).toHaveLength(6);
         });
       });
 

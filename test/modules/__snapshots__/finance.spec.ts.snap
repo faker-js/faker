@@ -248,6 +248,6 @@ exports[`finance > 1337 > pin > with length option 1`] = `"2124352971"`;
 
 exports[`finance > 1337 > routingNumber 1`] = `"212435298"`;
 
-exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Gottlieb and Sons using card ending with ***(...9477) for HUF 262.02 in account ***52971361"`;
+exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Gottlieb - Koelpin using card ending with ***(...9477) for HUF 262.02 in account ***52971361"`;
 
 exports[`finance > 1337 > transactionType 1`] = `"withdrawal"`;

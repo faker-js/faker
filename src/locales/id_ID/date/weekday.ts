@@ -1,5 +1,4 @@
 export default {
-  wide: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
-
-  abbr: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+  wide: ['Jumat', 'Kamis', 'Minggu', 'Rabu', 'Sabtu', 'Selasa', 'Senin'],
+  abbr: ['Jum', 'Kam', 'Min', 'Rab', 'Sab', 'Sel', 'Sen'],
 };

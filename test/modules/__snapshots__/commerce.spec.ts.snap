@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`commerce > 42 > department 1`] = `"Tools"`;
+exports[`commerce > 42 > department 1`] = `"Garden"`;
 
 exports[`commerce > 42 > isbn > noArgs 1`] = `"978-0-9751108-6-7"`;
 
@@ -26,17 +26,17 @@ exports[`commerce > 42 > price > with min and max option 1`] = `"68.75"`;
 
 exports[`commerce > 42 > price > with min option 1`] = `"400.85"`;
 
-exports[`commerce > 42 > product 1`] = `"Pants"`;
+exports[`commerce > 42 > product 1`] = `"Computer"`;
 
-exports[`commerce > 42 > productAdjective 1`] = `"Fantastic"`;
+exports[`commerce > 42 > productAdjective 1`] = `"Handcrafted"`;
 
-exports[`commerce > 42 > productDescription 1`] = `"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"`;
+exports[`commerce > 42 > productDescription 1`] = `"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016"`;
 
-exports[`commerce > 42 > productMaterial 1`] = `"Plastic"`;
+exports[`commerce > 42 > productMaterial 1`] = `"Frozen"`;
 
-exports[`commerce > 42 > productName 1`] = `"Fantastic Frozen Fish"`;
+exports[`commerce > 42 > productName 1`] = `"Handcrafted Wooden Sausages"`;
 
-exports[`commerce > 1211 > department 1`] = `"Automotive"`;
+exports[`commerce > 1211 > department 1`] = `"Tools"`;
 
 exports[`commerce > 1211 > isbn > noArgs 1`] = `"978-1-82966-736-0"`;
 
@@ -62,15 +62,15 @@ exports[`commerce > 1211 > price > with min and max option 1`] = `"96.49"`;
 
 exports[`commerce > 1211 > price > with min option 1`] = `"931.59"`;
 
-exports[`commerce > 1211 > product 1`] = `"Sausages"`;
+exports[`commerce > 1211 > product 1`] = `"Towels"`;
 
-exports[`commerce > 1211 > productAdjective 1`] = `"Unbranded"`;
+exports[`commerce > 1211 > productAdjective 1`] = `"Tasty"`;
 
-exports[`commerce > 1211 > productDescription 1`] = `"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals"`;
+exports[`commerce > 1211 > productDescription 1`] = `"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality"`;
 
-exports[`commerce > 1211 > productMaterial 1`] = `"Frozen"`;
+exports[`commerce > 1211 > productMaterial 1`] = `"Wooden"`;
 
-exports[`commerce > 1211 > productName 1`] = `"Unbranded Fresh Bike"`;
+exports[`commerce > 1211 > productName 1`] = `"Tasty Steel Cheese"`;
 
 exports[`commerce > 1337 > department 1`] = `"Computers"`;
 
@@ -98,12 +98,12 @@ exports[`commerce > 1337 > price > with min and max option 1`] = `"63.19"`;
 
 exports[`commerce > 1337 > price > with min option 1`] = `"293.09"`;
 
-exports[`commerce > 1337 > product 1`] = `"Ball"`;
+exports[`commerce > 1337 > product 1`] = `"Chicken"`;
 
-exports[`commerce > 1337 > productAdjective 1`] = `"Incredible"`;
+exports[`commerce > 1337 > productAdjective 1`] = `"Generic"`;
 
-exports[`commerce > 1337 > productDescription 1`] = `"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality"`;
+exports[`commerce > 1337 > productDescription 1`] = `"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support"`;
 
-exports[`commerce > 1337 > productMaterial 1`] = `"Concrete"`;
+exports[`commerce > 1337 > productMaterial 1`] = `"Fresh"`;
 
-exports[`commerce > 1337 > productName 1`] = `"Incredible Bronze Ball"`;
+exports[`commerce > 1337 > productName 1`] = `"Generic Concrete Chicken"`;
