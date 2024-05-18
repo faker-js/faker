@@ -1,4 +1,7 @@
 {
+  "skip": {
+    "tag": true
+  },
   "types": [
     { "type": "feat", "scope": "locale", "section": "New Locales" },
     { "type": "feat", "section": "Features" },

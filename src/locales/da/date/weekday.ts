@@ -1,13 +1,12 @@
 export default {
   wide: [
-    'søndag',
-    'mandag',
-    'tirsdag',
-    'onsdag',
-    'torsdag',
     'fredag',
     'lørdag',
+    'mandag',
+    'onsdag',
+    'søndag',
+    'tirsdag',
+    'torsdag',
   ],
-
-  abbr: ['søn.', 'man.', 'tir.', 'ons.', 'tor.', 'fre.', 'lør.'],
+  abbr: ['fre.', 'lør.', 'man.', 'ons.', 'søn.', 'tir.', 'tor.'],
 };

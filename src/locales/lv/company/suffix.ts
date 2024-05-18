@@ -1,1 +1,1 @@
-export default ['un partneri', 'holdings', 'grupa', 'aģentūra'];
+export default ['aģentūra', 'grupa', 'holdings', 'un partneri'];

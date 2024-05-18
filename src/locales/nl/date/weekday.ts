@@ -1,13 +1,12 @@
 export default {
   wide: [
-    'zondag',
-    'maandag',
     'dinsdag',
-    'woensdag',
     'donderdag',
+    'maandag',
     'vrijdag',
+    'woensdag',
     'zaterdag',
+    'zondag',
   ],
-
-  abbr: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+  abbr: ['di', 'do', 'ma', 'vr', 'wo', 'za', 'zo'],
 };

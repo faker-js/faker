@@ -53,7 +53,7 @@ export default [
   'papaw',
   'papaya',
   'passionfruit',
-  'peache',
+  'peach',
   'pear',
   'pineapple',
   'plum',

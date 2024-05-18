@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
   "name": "FakerJs",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20@sha256:173debabac3a927225aac3fa451dfd1baa780d5fb8f8e513b1efc615e3221225",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},

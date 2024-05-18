@@ -7,6 +7,7 @@
     "noEmit": true,
     "declaration": true,
     "stripInternal": true,
+    "verbatimModuleSyntax": true,
 
     // These are configs specifically for !build and have to be reverted in the tsconfig.build.json
     "skipLibCheck": true,
@@ -17,6 +18,6 @@
     "node_modules",
     "dist",
     // required for the typedoc related tests on macOS #2280
-    "test/scripts/apidoc/temp"
+    "test/scripts/apidocs/temp"
   ]
 }

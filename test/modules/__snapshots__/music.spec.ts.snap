@@ -1,13 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`music > 42 > genre 1`] = `"Country"`;
+exports[`music > 42 > album 1`] = `"Heard It In A Past Life"`;
 
-exports[`music > 42 > songName 1`] = `"God Bless the Child"`;
+exports[`music > 42 > artist 1`] = `"James TW"`;
 
-exports[`music > 1211 > genre 1`] = `"Non Music"`;
+exports[`music > 42 > genre 1`] = `"German Folk"`;
 
-exports[`music > 1211 > songName 1`] = `"The End of the World"`;
+exports[`music > 42 > songName 1`] = `"I Honestly Love You"`;
 
-exports[`music > 1337 > genre 1`] = `"Folk"`;
+exports[`music > 1211 > album 1`] = `"Tu Veneno Mortal"`;
 
-exports[`music > 1337 > songName 1`] = `"That'll Be the Day"`;
+exports[`music > 1211 > artist 1`] = `"Tove Lo"`;
+
+exports[`music > 1211 > genre 1`] = `"Swing"`;
+
+exports[`music > 1211 > songName 1`] = `"Wedding Bell Blues"`;
+
+exports[`music > 1337 > album 1`] = `"Dulce Beat"`;
+
+exports[`music > 1337 > artist 1`] = `"Evanescence"`;
+
+exports[`music > 1337 > genre 1`] = `"Drinking Songs"`;
+
+exports[`music > 1337 > songName 1`] = `"Frankenstein"`;

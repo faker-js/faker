@@ -152,7 +152,7 @@ describe('helpers', () => {
         .it('with multiple dynamic templates', [
           '{{string.sample}}',
           '{{location.city_name}}',
-          '{{location.cityName}}',
+          '{{location.streetAddress}}',
         ]);
     });
 
@@ -402,7 +402,7 @@ describe('helpers', () => {
           const subset = faker.helpers.arrayElements(testArray, 6);
 
           // Check length
-          expect(subset.length).toBe(5);
+          expect(subset).toHaveLength(5);
 
           // Check elements
           for (const element of subset) {
@@ -989,10 +989,10 @@ describe('helpers', () => {
         });
 
         it('should be able to pass multiple dynamic templates', () => {
-          expect(faker.definitions.location.city_name).toContain(
+          expect(faker.definitions.company.buzz_noun).toContain(
             faker.helpers.fake([
-              '{{location.city_name}}',
-              '{{location.cityName}}',
+              '{{company.buzz_noun}}',
+              '{{company.buzzNoun}}',
             ])
           );
         });
@@ -1038,8 +1038,8 @@ describe('helpers', () => {
         });
 
         it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{address.cityName}}')
+          expect(faker.definitions.location.state).toContain(
+            faker.helpers.fake('{{address.state}}')
           );
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
@@ -1078,7 +1078,7 @@ describe('helpers', () => {
           const result = faker.helpers.multiple(() => faker.person.firstName());
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(3);
+          expect(result).toHaveLength(3);
         });
 
         it('should generate the given amount of values from the function', () => {
@@ -1090,7 +1090,7 @@ describe('helpers', () => {
           );
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(5);
+          expect(result).toHaveLength(5);
         });
 
         it('should generate a ranged number of values from the function', () => {
@@ -1112,7 +1112,7 @@ describe('helpers', () => {
           });
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(3);
+          expect(result).toHaveLength(3);
           expect(result).toStrictEqual([0, 2, 4]);
         });
       });

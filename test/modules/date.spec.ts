@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -106,37 +106,27 @@ describe('date', () => {
 
     t.describe('birthdate', (t) => {
       t.it('with only refDate', { refDate })
-        .it('with age mode and refDate', {
-          mode: 'age',
-          refDate,
-        })
         .it('with age and refDate', {
+          mode: 'age',
           min: 40,
           max: 40,
-          mode: 'age',
           refDate,
         })
         .it('with age range and refDate', {
+          mode: 'age',
           min: 20,
           max: 80,
-          mode: 'age',
           refDate,
         })
-        .it('with year mode and refDate', {
+        .it('with year', {
           mode: 'year',
-          refDate,
-        })
-        .it('with year and refDate', {
           min: 2000,
           max: 2000,
-          mode: 'age',
-          refDate,
         })
-        .it('with year range and refDate', {
+        .it('with year range', {
+          mode: 'year',
           min: 1900,
           max: 2000,
-          mode: 'age',
-          refDate,
         });
     });
   });
@@ -144,6 +134,26 @@ describe('date', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
+      describe('toDate()', () => {
+        describe.each([
+          'anytime',
+          'past',
+          'future',
+          'recent',
+          'soon',
+          'birthdate',
+        ] as const)('%s', (method) => {
+          it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
+            'should reject invalid refDates %s',
+            (refDate) => {
+              expect(() => faker.date[method]({ refDate })).toThrow(
+                new FakerError(`Invalid refDate date: ${refDate.toString()}`)
+              );
+            }
+          );
+        });
+      });
+
       describe('anytime()', () => {
         it('should return a date', () => {
           const actual = faker.date.anytime();
@@ -236,6 +246,32 @@ describe('date', () => {
             expect(date).lessThan(to);
           }
         );
+
+        it('should throw an error when from is after to', () => {
+          expect(() =>
+            faker.date.between({
+              from: '2000-01-01',
+              to: '1990-01-01',
+            })
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
+        });
+
+        it('should allow date 0 (start of UNIX epoch)', () => {
+          const date = faker.date.between({
+            from: 0,
+            to: '1970-12-31',
+          });
+          expect(date).greaterThan(new Date(0));
+        });
+
+        it('should throw an error if to is invalid', () => {
+          expect(() =>
+            faker.date.between({
+              from: '1990-01-01',
+              to: 'not-a-date',
+            })
+          ).toThrow(new FakerError('Invalid to date: not-a-date'));
+        });
       });
 
       describe('betweens()', () => {
@@ -305,6 +341,26 @@ describe('date', () => {
             expect(dates.at(-1)).lessThan(to);
           }
         );
+
+        it('should throw an error when from is after to', () => {
+          expect(() =>
+            faker.date.betweens({
+              from: '2000-01-01',
+              to: '1990-01-01',
+              count: 3,
+            })
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
+        });
+
+        it('should throw an error if to is invalid', () => {
+          expect(() =>
+            faker.date.betweens({
+              from: '1990-01-01',
+              to: 'not-a-date',
+              count: 3,
+            })
+          ).toThrow(new FakerError('Invalid to date: not-a-date'));
+        });
       });
 
       describe('recent()', () => {
@@ -472,9 +528,36 @@ describe('date', () => {
       });
 
       describe('birthdate', () => {
+        function calculateAge(birthdate: Date, refDate: Date): number {
+          let age = refDate.getFullYear() - birthdate.getFullYear();
+          if (
+            refDate.getMonth() < birthdate.getMonth() ||
+            (refDate.getMonth() === birthdate.getMonth() &&
+              refDate.getDate() < birthdate.getDate())
+          ) {
+            age--;
+          }
+
+          return age;
+        }
+
         it('returns a random birthdate', () => {
           const birthdate = faker.date.birthdate();
           expect(birthdate).toBeInstanceOf(Date);
+        });
+
+        it('returns a random birthdate in one year', () => {
+          const min = 1990;
+          const max = 1990;
+
+          const birthdate = faker.date.birthdate({ min, max, mode: 'year' });
+
+          // birthdate is a date object
+          expect(birthdate).toBeInstanceOf(Date);
+
+          // Generated date is between min and max
+          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(min);
+          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
         });
 
         it('returns a random birthdate between two years', () => {
@@ -491,52 +574,57 @@ describe('date', () => {
           expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
         });
 
-        it('returns a random birthdate that is 18+ by default', () => {
-          // Generate the latest possible value => youngest
-          faker.seed(2855577693);
-
+        it('returns a random birthdate for specific age', () => {
+          const min = 21;
+          const max = 21;
           const refDate = new Date();
-          const birthdate = faker.date.birthdate({ refDate });
+
+          const birthdate = faker.date.birthdate({
+            min,
+            max,
+            refDate,
+            mode: 'age',
+          });
+
           expect(birthdate).toBeInstanceOf(Date);
           const value = birthdate.valueOf();
           const refDateValue = refDate.valueOf();
           expect(value).toBeLessThanOrEqual(refDateValue);
-          const deltaDate = new Date(refDateValue - value);
-          expect(deltaDate.getUTCFullYear() - 1970).toBeGreaterThanOrEqual(18);
-        });
-
-        it('returns a random birthdate in one year', () => {
-          const min = 1990;
-          const max = 1990;
-
-          const birthdate = faker.date.birthdate({ min, max, mode: 'year' });
-
-          // birthdate is a date object
-          expect(birthdate).toBeInstanceOf(Date);
-          expect(birthdate.toISOString()).not.toMatch(/T00:00:00.000Z/);
-
-          // Generated date is between min and max
-          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(min);
-          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
+          const age = calculateAge(birthdate, refDate);
+          expect(age).toBe(21);
         });
 
         it('returns a random birthdate between two ages', () => {
-          const min = 4;
-          const max = 5;
+          const min = 21;
+          const max = 22;
+          const refDate = new Date();
 
           const birthdate = faker.date.birthdate({ min, max, mode: 'age' });
 
-          // birthdate is a date object
           expect(birthdate).toBeInstanceOf(Date);
-
-          // Generated date is between min and max
-          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(
-            new Date().getUTCFullYear() - max - 1
-          );
-          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(
-            new Date().getUTCFullYear() - min
-          );
+          const value = birthdate.valueOf();
+          const refDateValue = refDate.valueOf();
+          expect(value).toBeLessThanOrEqual(refDateValue);
+          const age = calculateAge(birthdate, refDate);
+          expect(age).toBeGreaterThanOrEqual(21);
+          expect(age).toBeLessThanOrEqual(22);
         });
+
+        it.each(['min', 'max', 'mode'] as const)(
+          "should throw an error when '%s' is not provided",
+          (key) => {
+            const options = { min: 18, max: 80, mode: 'age' } as const;
+
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+            delete options[key];
+
+            expect(() => faker.date.birthdate(options)).toThrow(
+              new FakerError(
+                `The 'min', 'max', and 'mode' options must be set together.`
+              )
+            );
+          }
+        );
 
         it('should throw an error when the min > max year', () => {
           const min = 2000;
@@ -546,7 +634,21 @@ describe('date', () => {
             faker.date.birthdate({ min, max, mode: 'year' })
           ).toThrow(
             new FakerError(
-              `Max 1990 should be larger than or equal to min 2000.`
+              `Max year 1990 should be greater than or equal to min year 2000.`
+            )
+          );
+        });
+
+        it('should throw an error when the min > max age', () => {
+          const min = 31;
+          const max = 25;
+          const refDate = Date.UTC(2020, 0, 1);
+
+          expect(() =>
+            faker.date.birthdate({ min, max, refDate, mode: 'age' })
+          ).toThrow(
+            new FakerError(
+              `Max age 25 should be greater than or equal to min age 31.`
             )
           );
         });
@@ -564,22 +666,38 @@ describe('date', () => {
       faker.seed(20200101);
       const date = faker.date.past();
       expect(date).toBeInstanceOf(Date);
-      expect(date).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
+      expect(date).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
 
       faker.seed(20200101);
       const date2 = faker.date.past();
-      expect(date2).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
+      expect(date2).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
     });
 
     it('should use the refDateSource when refDate is not provided (with value)', () => {
       faker.setDefaultRefDate(Date.UTC(2020, 0, 1));
       faker.seed(20200101);
       const date = faker.date.past();
-      expect(date).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
+      expect(date).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
 
       faker.seed(20200101);
       const date2 = faker.date.past();
-      expect(date2).toMatchInlineSnapshot('2019-02-25T21:52:41.819Z');
+      expect(date2).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
+    });
+
+    it('should not use the refDateSource when refDate is provided (with function)', () => {
+      const spy: () => Date = vi.fn();
+      faker.setDefaultRefDate(spy);
+      faker.seed(20200101);
+
+      const date = faker.date.past({ refDate: Date.UTC(2020, 0, 1) });
+      expect(date).toBeInstanceOf(Date);
+      expect(date).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
+
+      faker.seed(20200101);
+      const date2 = faker.date.past({ refDate: Date.UTC(2020, 0, 1) });
+      expect(date2).toMatchInlineSnapshot(`2019-11-06T02:07:17.181Z`);
+
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 });
