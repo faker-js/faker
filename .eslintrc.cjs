@@ -80,7 +80,12 @@ module.exports = defineConfig({
         trailingUnderscore: 'forbid',
       },
     ],
-    '@typescript-eslint/no-confusing-void-expression': 'off', // reduces code readability
+    '@typescript-eslint/no-confusing-void-expression': [
+      'error',
+      {
+        ignoreArrowShorthand: true,
+      },
+    ],
     '@typescript-eslint/no-inferrable-types': [
       'error',
       { ignoreParameters: true },
