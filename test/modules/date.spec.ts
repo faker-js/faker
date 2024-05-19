@@ -11,6 +11,7 @@ const converterMap = [
 ];
 
 const validIntlLocales = Object.entries(allFakers).filter(([locale]) => {
+  // 'dv' (Dhivehi) locale is excluded because it may not be fully supported
   if (locale === 'dv') return false;
   try {
     new Intl.DateTimeFormat(locale);

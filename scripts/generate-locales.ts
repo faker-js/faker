@@ -115,6 +115,7 @@ function escapeField(parent: string, module: string): string {
 }
 
 function isValidLocale(locale: string): boolean {
+  // 'dv' (Dhivehi) locale is excluded because it may not be fully supported
   if (locale === 'dv') return false;
   try {
     // eslint-disable-next-line no-restricted-globals
