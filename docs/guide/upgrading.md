@@ -490,7 +490,17 @@ The following locale definitions have been renamed
 | `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_paths`   |
 | `faker.definitions.system.mimeTypes`        | `faker.definitions.system.mime_types`        |
 
-All our locale data now use the `snake_case` naming scheme.
+With that now all our locale data use the following naming scheme:
+
+```txt
+faker.definitions.category_name.entry_name
+```
+
+Please keep in mind that property keys of complex objects remain in camel-case.
+
+```txt
+faker.definitions.science.chemical_element.atomicNumber
+```
 
 ### Type Aliases
 
