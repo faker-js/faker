@@ -10,6 +10,15 @@ const converterMap = [
   (d: Date) => d.valueOf(),
 ];
 
+const validIntlLocales = Object.entries(allLocales).filter(([locale]) => {
+  try {
+    new Intl.DateTimeFormat(locale);
+    return true;
+  } catch {
+    return false;
+  }
+});
+
 const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2021-02-21T17:09:15.711Z';
 
@@ -466,10 +475,9 @@ describe('date', () => {
           expect(faker.definitions.date.month.abbr).toContain(month);
         });
 
-        describe.each(Object.entries(allLocales))(
+        describe.each(validIntlLocales)(
           'for locale %s',
           (locale, fakerLocale) => {
-            if (locale.length > 2) return;
             let localizedFaker: Faker;
             const months = Array.from(
               { length: 12 },
@@ -552,10 +560,9 @@ describe('date', () => {
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
         });
 
-        describe.each(Object.entries(allLocales))(
+        describe.each(validIntlLocales)(
           'for locale %s',
           (locale, fakerLocale) => {
-            if (locale.length > 2) return;
             let localizedFaker: Faker;
             const weekdays = Array.from(
               { length: 7 },
