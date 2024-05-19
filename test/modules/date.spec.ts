@@ -1,14 +1,6 @@
 /* eslint-disable no-restricted-globals */
-import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import {
-  Faker,
-  FakerError,
-  allLocales,
-  base,
-  en,
-  faker,
-  fakerAZ,
-} from '../../src';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { FakerError, allFakers, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -18,7 +10,7 @@ const converterMap = [
   (d: Date) => d.valueOf(),
 ];
 
-const validIntlLocales = Object.entries(allLocales).filter(([locale]) => {
+const validIntlLocales = Object.entries(allFakers).filter(([locale]) => {
   if (locale === 'dv') return false;
   try {
     new Intl.DateTimeFormat(locale);
@@ -501,16 +493,11 @@ describe('date', () => {
 
         describe.each(validIntlLocales)(
           'for locale %s',
-          (locale, fakerLocale) => {
-            let localizedFaker: Faker;
+          (locale, localizedFaker) => {
             const months = Array.from(
               { length: 12 },
               (_, i) => new Date(2020, i, 1)
             );
-
-            beforeAll(() => {
-              localizedFaker = new Faker({ locale: [fakerLocale, en, base] });
-            });
 
             it('should use Intl.DateTimeFormat to get the month name in the correct locale', () => {
               for (const date of months) {
@@ -584,16 +571,11 @@ describe('date', () => {
 
         describe.each(validIntlLocales)(
           'for locale %s',
-          (locale, fakerLocale) => {
-            let localizedFaker: Faker;
+          (locale, localizedFaker) => {
             const weekdays = Array.from(
               { length: 7 },
               (_, i) => new Date(2020, 0, i + 4)
             ); // January 4-10, 2020 are Sunday to Saturday
-
-            beforeAll(() => {
-              localizedFaker = new Faker({ locale: [fakerLocale, en, base] });
-            });
 
             it('should use Intl.DateTimeFormat to get the weekday name in the correct locale', () => {
               for (const date of weekdays) {
