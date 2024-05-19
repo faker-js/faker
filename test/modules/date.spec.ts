@@ -11,6 +11,7 @@ const converterMap = [
 ];
 
 const validIntlLocales = Object.entries(allLocales).filter(([locale]) => {
+  if (locale === 'dv') return false;
   try {
     new Intl.DateTimeFormat(locale);
     return true;

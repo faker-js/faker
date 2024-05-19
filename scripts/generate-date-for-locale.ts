@@ -35,6 +35,8 @@ function isValidLocale(locale: string): boolean {
 
 // Function to update weekday values for a given locale
 async function updateWeekdaysForLocale(locale: string): Promise<void> {
+  if (locale === 'dv') return;
+
   const dateFolderPath: string = resolve(pathLocales, locale, 'date');
   const weekdayPath: string = resolve(dateFolderPath, 'weekday.ts');
 
@@ -89,6 +91,8 @@ export default ${JSON.stringify(storedWeekdays, null, 2)};`;
 
 // Function to update month values for a given locale
 async function updateMonthForLocale(locale: string): Promise<void> {
+  if (locale === 'dv') return;
+
   const dateFolderPath: string = resolve(pathLocales, locale, 'date');
   const monthPath: string = resolve(dateFolderPath, 'month.ts');
 
