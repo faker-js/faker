@@ -416,12 +416,18 @@ async function generateDateModule(locale: string) {
     // Generate correct weekday values
     const wide: string[] = [];
     const abbr: string[] = [];
-    const intlWeekdayLong = new Intl.DateTimeFormat(locale, {
-      weekday: 'long',
-    });
-    const intlWeekdayShort = new Intl.DateTimeFormat(locale, {
-      weekday: 'short',
-    });
+    const intlWeekdayLong = new Intl.DateTimeFormat(
+      locale.replaceAll('_', '-'),
+      {
+        weekday: 'long',
+      }
+    );
+    const intlWeekdayShort = new Intl.DateTimeFormat(
+      locale.replaceAll('_', '-'),
+      {
+        weekday: 'short',
+      }
+    );
     for (let i = 0; i < 7; i++) {
       const date: Date = new Date(2020, 0, i + 4);
       // January 4-10, 2020 are Sunday to Saturday
@@ -457,8 +463,13 @@ async function generateDateModule(locale: string) {
     // Generate correct month values
     const wide: string[] = [];
     const abbr: string[] = [];
-    const intlMonthLong = new Intl.DateTimeFormat(locale, { month: 'long' });
-    const intlMonthShort = new Intl.DateTimeFormat(locale, { month: 'short' });
+    const intlMonthLong = new Intl.DateTimeFormat(locale.replaceAll('_', '-'), {
+      month: 'long',
+    });
+    const intlMonthShort = new Intl.DateTimeFormat(
+      locale.replaceAll('_', '-'),
+      { month: 'short' }
+    );
     for (let i = 0; i < 12; i++) {
       const date: Date = new Date(2020, i, 1);
       wide.push(intlMonthLong.format(date));
