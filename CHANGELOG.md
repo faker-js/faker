@@ -968,4 +968,4 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## 6.0.0-alpha.0 (2022-01-07)
 
-For changes prior to version v6.0.0-alpha.1, see [the old changelog](./CHANGELOG_old.md).
+For changes prior to version `v6`, see [the old changelog](https://github.com/faker-js/faker/blob/v6/CHANGELOG_old.md).
