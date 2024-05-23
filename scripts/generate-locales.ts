@@ -400,10 +400,41 @@ async function generateDateModule(locale: string) {
 
   const pathDate = resolve(pathLocales, locale, 'date');
 
+  // Function to check if it has the same data as the parent locale
+  async function isParentLocaleSame(
+    locale: string,
+    fileName: string
+  ): Promise<boolean> {
+    const parentLocale = locale.split('_').slice(0, -1).join('_');
+    if (!parentLocale) return false;
+
+    const parentFilePath = resolve(pathLocales, parentLocale, 'date', fileName);
+    const currentFilePath = resolve(pathDate, fileName);
+
+    try {
+      const [parentFileContent, currentFileContent] = await Promise.all([
+        readFile(parentFilePath, 'utf8'),
+        readFile(currentFilePath, 'utf8'),
+      ]);
+
+      return parentFileContent === currentFileContent;
+    } catch {
+      return false;
+    }
+  }
+
   // `src/locales/<locale>/date/weekday.ts`
   async function generateWeekdayFile(): Promise<void> {
     const weekdayPath = resolve(pathDate, 'weekday.ts');
     let storedWeekdays: Partial<DateEntryDefinition> = {};
+
+    // Skip creation if it has the same data as the parent locale
+    if (await isParentLocaleSame(locale, 'weekday.ts')) {
+      console.log(
+        `Skipping weekday file generation for locale ${locale} as it is identical to its parent.`
+      );
+      return;
+    }
 
     // Import the current weekday values
     try {
@@ -451,6 +482,14 @@ async function generateDateModule(locale: string) {
   async function generateMonthFile(): Promise<void> {
     const monthPath = resolve(pathDate, 'month.ts');
     let storedMonths: Partial<DateEntryDefinition> = {};
+
+    // Skip creation if it has the same data as the parent locale
+    if (await isParentLocaleSame(locale, 'month.ts')) {
+      console.log(
+        `Skipping month file generation for locale ${locale} as it is identical to its parent.`
+      );
+      return;
+    }
 
     // Import the current month values
     try {
