@@ -126,17 +126,6 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
-function isValidLocale(locale: string): boolean {
-  // 'dv' (Dhivehi) locale is excluded because it may not be fully supported
-  if (locale === 'dv') return false;
-  try {
-    new Intl.DateTimeFormat(locale);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function normalizeDataRecursive<T>(localeData: T): T {
   if (typeof localeData !== 'object' || localeData === null) {
     // we can only traverse object-like structs
@@ -396,6 +385,17 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
 // `src/locales/<locale>/date/*
 async function generateDateModule(locale: string) {
+  function isValidLocale(locale: string): boolean {
+    // 'dv' (Dhivehi) locale is excluded because it may not be fully supported
+    if (locale === 'dv') return false;
+    try {
+      new Intl.DateTimeFormat(locale.replaceAll('_', '-'));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   if (!isValidLocale(locale)) return;
 
   const pathDate = resolve(pathLocales, locale, 'date');
