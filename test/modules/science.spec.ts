@@ -28,7 +28,7 @@ describe('science', () => {
 
           expect(name).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.chemicalElement.find(
+            faker.definitions.science.chemical_element.find(
               (element) => element.name === name
             );
           }).toBeTruthy();
@@ -39,7 +39,7 @@ describe('science', () => {
 
           expect(symbol).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.chemicalElement.find(
+            faker.definitions.science.chemical_element.find(
               (element) => element.symbol === symbol
             );
           }).toBeTruthy();
@@ -50,7 +50,7 @@ describe('science', () => {
 
           expect(atomicNumber).toBeTypeOf('number');
           expect(() => {
-            faker.definitions.science.chemicalElement.find(
+            faker.definitions.science.chemical_element.find(
               (element) => element.atomicNumber === atomicNumber
             );
           }).toBeTruthy();
