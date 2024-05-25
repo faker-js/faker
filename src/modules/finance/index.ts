@@ -514,8 +514,8 @@ export class FinanceModule extends ModuleBase {
      * @default 'mainnet'
      */
     network?: BitcoinNetwork;
-  }): string {
-    const { type = 'legacy', network = 'mainnet' } = options || {};
+  } = {}): string {
+    const { type = 'legacy', network = 'mainnet' } = options;
     const addressSpec =
       this.faker.definitions.finance.bitcoin_address_specs[type];
     const addressPrefix = addressSpec.prefix[network];
