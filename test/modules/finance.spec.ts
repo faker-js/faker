@@ -21,7 +21,6 @@ describe('finance', () => {
       'currencyCode',
       'currencyName',
       'currencySymbol',
-      'bitcoinAddress',
       'litecoinAddress',
       'creditCardCVV',
       'ethereumAddress',
@@ -89,6 +88,15 @@ describe('finance', () => {
           length: 5,
           parens: false,
           ellipsis: true,
+        });
+    });
+
+    t.describe('bitcoinAddress', (t) => {
+      t.it('noArgs')
+        .it('with type option', { type: 'legacy' })
+        .it('with type and network option', {
+          type: 'legacy',
+          network: 'mainnet',
         });
     });
   });
