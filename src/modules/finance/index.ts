@@ -511,7 +511,7 @@ export class FinanceModule extends ModuleBase {
     /**
      * The bitcoin network (`'mainnet'` or `'testnet'`).
      *
-     * @default 0
+     * @default 'mainnet'
      */
     network?: BitcoinNetwork;
   }): string {
