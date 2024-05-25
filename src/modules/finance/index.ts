@@ -509,7 +509,7 @@ export class FinanceModule extends ModuleBase {
      */
     type?: BitcoinAddressType;
     /**
-     * The bitcoin network (mainnet or testnet). Defaults to `mainnet`.
+     * The bitcoin network (`'mainnet'` or `'testnet'`).
      *
      * @default 0
      */
