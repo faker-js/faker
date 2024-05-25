@@ -503,7 +503,7 @@ export class FinanceModule extends ModuleBase {
    */
   bitcoinAddress(options?: {
     /**
-     * The bitcoin address type (legacy, sewgit, bech32 or taproot). Defaults to `legacy`.
+     * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
      *
      * @default 'legacy'
      */
