@@ -506,7 +506,7 @@ export class FinanceModule extends ModuleBase {
       /**
        * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
        *
-       * @default 'legacy'
+       * @default faker.helpers.arrayElement(['legacy', 'segwit', 'bech32', 'taproot'])
        */
       type?: BitcoinAddressType;
       /**
@@ -517,7 +517,15 @@ export class FinanceModule extends ModuleBase {
       network?: BitcoinNetwork;
     } = {}
   ): string {
-    const { type = 'legacy', network = 'mainnet' } = options;
+    const {
+      type = this.faker.helpers.arrayElement([
+        'legacy',
+        'segwit',
+        'bech32',
+        'taproot',
+      ]),
+      network = 'mainnet',
+    } = options;
     const addressSpec =
       this.faker.definitions.finance.bitcoin_address_specs[type];
     const addressPrefix = addressSpec.prefix[network];

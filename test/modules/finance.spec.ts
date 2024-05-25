@@ -1,8 +1,11 @@
-import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
+import type {
+  BitcoinAddressType,
+  BitcoinNetwork,
+} from '../../src/modules/finance';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
@@ -321,17 +324,103 @@ describe('finance', () => {
       });
 
       describe('bitcoinAddress()', () => {
+        // Utility for validating Bitcoin addresses (validator lib doesn't support taproot and testnets yet)
+        const bech32 = /^(bc1|tb1|bc1p|tb1p)[a-z0-9]{39,58}$/;
+        const base58 = /^(1|2|3|m)[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const isBtcAddress = (address: string) =>
+          bech32.test(address) || base58.test(address);
+
         it('should return a valid bitcoin address', () => {
           const bitcoinAddress = faker.finance.bitcoinAddress();
-          /**
-           *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
-           *  Therefore we take one from the total length of the address not including the first character ([13])
-           */
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).toSatisfy(isValidBtcAddress);
+          expect(bitcoinAddress).toSatisfy(isBtcAddress);
         });
+        it.each`
+          type         | expectedPrefix
+          ${'legacy'}  | ${'1'}
+          ${'segwit'}  | ${'3'}
+          ${'bech32'}  | ${'bc1'}
+          ${'taproot'} | ${'bc1p'}
+        `(
+          'should handle the type = $type argument',
+          ({
+            type,
+            expectedPrefix,
+          }: {
+            type: BitcoinAddressType;
+            expectedPrefix: string;
+          }) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              type,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress.startsWith(expectedPrefix)).toBe(true);
+          }
+        );
+
+        it.each`
+          network      | expectedPrefixes
+          ${'mainnet'} | ${['1', '3', 'bc1', 'bc1p']}
+          ${'testnet'} | ${['2', 'm', 'tb1', 'tb1p']}
+        `(
+          'should handle the network = $network argument',
+          ({
+            network,
+            expectedPrefixes,
+          }: {
+            network: BitcoinNetwork;
+            expectedPrefixes: string[];
+          }) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              network,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(
+              expectedPrefixes.some((p: string) => bitcoinAddress.startsWith(p))
+            ).toBe(true);
+          }
+        );
+
+        it.each`
+          type         | network      | expectedPrefix
+          ${'legacy'}  | ${'mainnet'} | ${'1'}
+          ${'legacy'}  | ${'testnet'} | ${'m'}
+          ${'segwit'}  | ${'mainnet'} | ${'3'}
+          ${'segwit'}  | ${'testnet'} | ${'2'}
+          ${'bech32'}  | ${'mainnet'} | ${'bc1'}
+          ${'bech32'}  | ${'testnet'} | ${'tb1'}
+          ${'taproot'} | ${'mainnet'} | ${'bc1p'}
+          ${'taproot'} | ${'testnet'} | ${'tb1p'}
+        `(
+          'should handle the type = $type and network = $network arguments',
+          ({
+            type,
+            network,
+            expectedPrefix,
+          }: {
+            type: BitcoinAddressType;
+            network: BitcoinNetwork;
+            expectedPrefix: string;
+          }) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              type,
+              network,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress.startsWith(expectedPrefix)).toBe(true);
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+          }
+        );
       });
 
       describe('litecoinAddress()', () => {
