@@ -501,20 +501,22 @@ export class FinanceModule extends ModuleBase {
    *
    * @since 3.1.0
    */
-  bitcoinAddress(options?: {
-    /**
-     * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
-     *
-     * @default 'legacy'
-     */
-    type?: BitcoinAddressType;
-    /**
-     * The bitcoin network (`'mainnet'` or `'testnet'`).
-     *
-     * @default 'mainnet'
-     */
-    network?: BitcoinNetwork;
-  } = {}): string {
+  bitcoinAddress(
+    options: {
+      /**
+       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
+       *
+       * @default 'legacy'
+       */
+      type?: BitcoinAddressType;
+      /**
+       * The bitcoin network (`'mainnet'` or `'testnet'`).
+       *
+       * @default 'mainnet'
+       */
+      network?: BitcoinNetwork;
+    } = {}
+  ): string {
     const { type = 'legacy', network = 'mainnet' } = options;
     const addressSpec =
       this.faker.definitions.finance.bitcoin_address_specs[type];
