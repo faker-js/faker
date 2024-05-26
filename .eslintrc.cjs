@@ -80,6 +80,12 @@ module.exports = defineConfig({
         trailingUnderscore: 'forbid',
       },
     ],
+    '@typescript-eslint/no-confusing-void-expression': [
+      'error',
+      {
+        ignoreArrowShorthand: true,
+      },
+    ],
     '@typescript-eslint/no-inferrable-types': [
       'error',
       { ignoreParameters: true },
@@ -113,10 +119,6 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
-
-    // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
-    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
-    '@typescript-eslint/no-confusing-void-expression': 'off',
 
     'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
@@ -164,12 +166,6 @@ module.exports = defineConfig({
           'error',
           {
             case: 'snakeCase',
-            // TODO @ST-DDT 2023-10-21: rename the definitions in v9
-            ignore: [
-              /chemicalElement\.ts$/,
-              /directoryPaths\.ts$/,
-              /mimeTypes\.ts$/,
-            ],
           },
         ],
         'unicorn/text-encoding-identifier-case': 'off',

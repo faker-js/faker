@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`finance > 42 > accountName 1`] = `"Money Market Account"`;
+exports[`finance > 42 > accountName 1`] = `"Credit Card Account"`;
 
 exports[`finance > 42 > accountNumber > noArgs 1`] = `"39751108"`;
 
@@ -34,11 +34,11 @@ exports[`finance > 42 > creditCardCVV 1`] = `"397"`;
 
 exports[`finance > 42 > creditCardIssuer 1`] = `"discover"`;
 
-exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6485-6211-0867-0982-1138"`;
+exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6575-6211-0867-0982-1139"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4975110867099"`;
 
-exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"5575-1108-6709-8213"`;
+exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"2696-7511-0867-0988"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer option visa 1`] = `"4975110867099"`;
 
@@ -86,9 +86,9 @@ exports[`finance > 42 > routingNumber 1`] = `"397511082"`;
 
 exports[`finance > 42 > transactionDescription 1`] = `"deposit transaction at Reynolds, Miller and Crist using card ending with ***(...1135) for KES 374.54 in account ***08670982"`;
 
-exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
+exports[`finance > 42 > transactionType 1`] = `"invoice"`;
 
-exports[`finance > 1211 > accountName 1`] = `"Personal Loan Account"`;
+exports[`finance > 1211 > accountName 1`] = `"Savings Account"`;
 
 exports[`finance > 1211 > accountNumber > noArgs 1`] = `"98296673"`;
 
@@ -126,7 +126,7 @@ exports[`finance > 1211 > creditCardNumber > noArgs 1`] = `"4296-6736-8768-4885"
 
 exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4829-6673-6876-8484"`;
 
-exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"2667-2966-7368-7681"`;
+exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"5529-6673-6876-8484"`;
 
 exports[`finance > 1211 > creditCardNumber > with issuer option visa 1`] = `"4829-6673-6876-8484"`;
 
@@ -174,9 +174,9 @@ exports[`finance > 1211 > routingNumber 1`] = `"982966738"`;
 
 exports[`finance > 1211 > transactionDescription 1`] = `"payment transaction at Fahey, Zieme and Osinski using card ending with ***(...8825) for CRC 928.52 in account ***73687684"`;
 
-exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
+exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
 
-exports[`finance > 1337 > accountName 1`] = `"Money Market Account"`;
+exports[`finance > 1337 > accountName 1`] = `"Credit Card Account"`;
 
 exports[`finance > 1337 > accountNumber > noArgs 1`] = `"21243529"`;
 
@@ -214,7 +214,7 @@ exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"3014-352971-3614"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4124352971364"`;
 
-exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"5124-3529-7136-1949"`;
+exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"2300-2435-2971-3611"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer option visa 1`] = `"4124352971364"`;
 
@@ -260,6 +260,6 @@ exports[`finance > 1337 > pin > with length option 1`] = `"2124352971"`;
 
 exports[`finance > 1337 > routingNumber 1`] = `"212435298"`;
 
-exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Gottlieb - Koelpin using card ending with ***(...9477) for HUF 262.02 in account ***52971361"`;
+exports[`finance > 1337 > transactionDescription 1`] = `"invoice transaction at Gottlieb - Koelpin using card ending with ***(...9477) for HUF 262.02 in account ***52971361"`;
 
-exports[`finance > 1337 > transactionType 1`] = `"withdrawal"`;
+exports[`finance > 1337 > transactionType 1`] = `"invoice"`;
