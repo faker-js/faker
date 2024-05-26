@@ -418,7 +418,7 @@ describe('finance', () => {
 
             expect(bitcoinAddress).toBeTruthy();
             expect(bitcoinAddress).toBeTypeOf('string');
-            expect(bitcoinAddress.startsWith(expectedPrefix)).toBe(true);
+            expect(bitcoinAddress).toSatisfy((v) -> v.startsWith(expectedPrefix));
             expect(bitcoinAddress).toSatisfy(isBtcAddress);
           }
         );
