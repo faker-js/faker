@@ -1,5 +1,10 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import {
+  BitcoinAddressSpecs,
+  BitcoinAddressType,
+  BitcoinNetwork,
+} from './bitcoin';
 import iban from './iban';
 
 /**
@@ -21,10 +26,6 @@ export interface Currency {
    */
   symbol: string;
 }
-
-export type BitcoinAddressType = 'legacy' | 'segwit' | 'bech32' | 'taproot';
-
-export type BitcoinNetwork = 'mainnet' | 'testnet';
 
 /**
  * Puts a space after every 4 characters.
@@ -496,21 +497,26 @@ export class FinanceModule extends ModuleBase {
    *
    * @example
    * faker.finance.bitcoinAddress() // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
-   * faker.finance.bitcoinAddress({ type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
-   * faker.finance.bitcoinAddress({ type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
+   *
+   * enum BitcoinAddressType { Legacy, Segwit, Bech32, Taproot }
+   * faker.finance.bitcoinAddress({ type: BitcoinAddressType.Bech32 }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
+   *
+   * enum BitcoinAddressType { Legacy, Segwit, Bech32, Taproot }
+   * enum BitcoinNetwork { Mainnet, Testnet }
+   * faker.finance.bitcoinAddress({ type: BitcoinAddressType.Bech32, network: BitcoinNetwork.Testnet }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
    *
    * @since 3.1.0
    */
   bitcoinAddress(
     options: {
       /**
-       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
+       * The bitcoin address type (`'Legacy'`, `'Sewgit'`, `'Bech32'` or `'Taproot'`).
        *
-       * @default faker.helpers.arrayElement(['legacy', 'segwit', 'bech32', 'taproot'])
+       * @default faker.helpers.enumValue(BitcoinAddressType)
        */
       type?: BitcoinAddressType;
       /**
-       * The bitcoin network (`'mainnet'` or `'testnet'`).
+       * The bitcoin network (`'Mainnet'` or `'Testnet'`).
        *
        * @default 'mainnet'
        */
@@ -518,19 +524,16 @@ export class FinanceModule extends ModuleBase {
     } = {}
   ): string {
     const {
-      type = this.faker.helpers.arrayElement([
-        'legacy',
-        'segwit',
-        'bech32',
-        'taproot',
-      ]),
-      network = 'mainnet',
-    } = options;
-    const addressSpec =
-      this.faker.definitions.finance.bitcoin_address_specs[type];
+      type = this.faker.helpers.enumValue(BitcoinAddressType),
+      network = BitcoinNetwork.Mainnet,
+    } = options || {};
+    const addressSpec = BitcoinAddressSpecs[type];
     const addressPrefix = addressSpec.prefix[network];
     const addressLength = this.faker.number.int(addressSpec.length);
 
+    const keys = Object.keys(BitcoinAddressSpecs);
+
+    console.log(keys);
     const address = this.faker.string.alphanumeric({
       length: addressLength - addressPrefix.length,
       casing: addressSpec.casing,

@@ -2,10 +2,10 @@ import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
-import type {
+import {
   BitcoinAddressType,
   BitcoinNetwork,
-} from '../../src/modules/finance';
+} from '../../src/modules/finance/bitcoin';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
@@ -96,10 +96,10 @@ describe('finance', () => {
 
     t.describe('bitcoinAddress', (t) => {
       t.it('noArgs')
-        .it('with type option', { type: 'legacy' })
+        .it('with type option', { type: BitcoinAddressType.Legacy })
         .it('with type and network option', {
-          type: 'legacy',
-          network: 'mainnet',
+          type: BitcoinAddressType.Legacy,
+          network: BitcoinNetwork.Mainnet,
         });
     });
   });
@@ -339,11 +339,11 @@ describe('finance', () => {
         });
 
         it.each`
-          type         | expectedPrefix
-          ${'legacy'}  | ${'1'}
-          ${'segwit'}  | ${'3'}
-          ${'bech32'}  | ${'bc1'}
-          ${'taproot'} | ${'bc1p'}
+          type                          | expectedPrefix
+          ${BitcoinAddressType.Legacy}  | ${'1'}
+          ${BitcoinAddressType.Segwit}  | ${'3'}
+          ${BitcoinAddressType.Bech32}  | ${'bc1'}
+          ${BitcoinAddressType.Taproot} | ${'bc1p'}
         `(
           'should handle the type = $type argument',
           ({
@@ -360,14 +360,16 @@ describe('finance', () => {
             expect(bitcoinAddress).toBeTruthy();
             expect(bitcoinAddress).toBeTypeOf('string');
             expect(bitcoinAddress).toSatisfy(isBtcAddress);
-            expect(bitcoinAddress.startsWith(expectedPrefix)).toBe(true);
+            expect(bitcoinAddress).toSatisfy((v: string) =>
+              v.startsWith(expectedPrefix)
+            );
           }
         );
 
         it.each`
-          network      | expectedPrefixes
-          ${'mainnet'} | ${['1', '3', 'bc1', 'bc1p']}
-          ${'testnet'} | ${['2', 'm', 'tb1', 'tb1p']}
+          network                   | expectedPrefixes
+          ${BitcoinNetwork.Mainnet} | ${['1', '3', 'bc1', 'bc1p']}
+          ${BitcoinNetwork.Testnet} | ${['2', 'm', 'tb1', 'tb1p']}
         `(
           'should handle the network = $network argument',
           ({
@@ -384,22 +386,22 @@ describe('finance', () => {
             expect(bitcoinAddress).toBeTruthy();
             expect(bitcoinAddress).toBeTypeOf('string');
             expect(bitcoinAddress).toSatisfy(isBtcAddress);
-            expect(
-              expectedPrefixes.some((p: string) => bitcoinAddress.startsWith(p))
-            ).toBe(true);
+            expect(bitcoinAddress).toSatisfy((v: string) =>
+              expectedPrefixes.some((p: string) => v.startsWith(p))
+            );
           }
         );
 
         it.each`
-          type         | network      | expectedPrefix
-          ${'legacy'}  | ${'mainnet'} | ${'1'}
-          ${'legacy'}  | ${'testnet'} | ${'m'}
-          ${'segwit'}  | ${'mainnet'} | ${'3'}
-          ${'segwit'}  | ${'testnet'} | ${'2'}
-          ${'bech32'}  | ${'mainnet'} | ${'bc1'}
-          ${'bech32'}  | ${'testnet'} | ${'tb1'}
-          ${'taproot'} | ${'mainnet'} | ${'bc1p'}
-          ${'taproot'} | ${'testnet'} | ${'tb1p'}
+          type                          | network                   | expectedPrefix
+          ${BitcoinAddressType.Legacy}  | ${BitcoinNetwork.Mainnet} | ${'1'}
+          ${BitcoinAddressType.Legacy}  | ${BitcoinNetwork.Testnet} | ${'m'}
+          ${BitcoinAddressType.Segwit}  | ${BitcoinNetwork.Mainnet} | ${'3'}
+          ${BitcoinAddressType.Segwit}  | ${BitcoinNetwork.Testnet} | ${'2'}
+          ${BitcoinAddressType.Bech32}  | ${BitcoinNetwork.Mainnet} | ${'bc1'}
+          ${BitcoinAddressType.Bech32}  | ${BitcoinNetwork.Testnet} | ${'tb1'}
+          ${BitcoinAddressType.Taproot} | ${BitcoinNetwork.Mainnet} | ${'bc1p'}
+          ${BitcoinAddressType.Taproot} | ${BitcoinNetwork.Testnet} | ${'tb1p'}
         `(
           'should handle the type = $type and network = $network arguments',
           ({
@@ -418,8 +420,10 @@ describe('finance', () => {
 
             expect(bitcoinAddress).toBeTruthy();
             expect(bitcoinAddress).toBeTypeOf('string');
-            expect(bitcoinAddress).toSatisfy((v) -> v.startsWith(expectedPrefix));
             expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toSatisfy((v: string) =>
+              v.startsWith(expectedPrefix)
+            );
           }
         );
       });

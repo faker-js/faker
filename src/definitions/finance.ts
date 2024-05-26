@@ -1,9 +1,4 @@
-import type {
-  BitcoinAddressType,
-  BitcoinNetwork,
-  Currency,
-} from '../modules/finance';
-import type { Casing } from '../modules/string';
+import type { Currency } from '../modules/finance';
 import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to finance.
@@ -31,17 +26,4 @@ export type FinanceDefinition = LocaleEntry<{
    * Types of transactions (e.g. `deposit`).
    */
   transaction_type: string[];
-
-  /**
-   * Specifications for generating different types of bitcoin addresses (e.g. `bech32`).
-   */
-  bitcoin_address_specs: Record<
-    BitcoinAddressType,
-    {
-      prefix: Record<BitcoinNetwork, string>;
-      length: { min: number; max: number };
-      casing: Casing;
-      exclude: string;
-    }
-  >;
 }>;
