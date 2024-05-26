@@ -325,7 +325,7 @@ describe('finance', () => {
 
       describe('bitcoinAddress()', () => {
         // Utility for validating Bitcoin addresses (validator lib doesn't support taproot and testnets yet)
-        const bech32 = /^(bc1|tb1|bc1p|tb1p)[a-z0-9]{39,58}$/;
+        const bech32 = /^(bc1|tb1|bc1p|tb1p)[ac-hj-np-z02-9]{39,58}$/;
         const base58 = /^(1|2|3|m)[A-HJ-NP-Za-km-z1-9]{25,39}$/;
         const isBtcAddress = (address: string) =>
           bech32.test(address) || base58.test(address);
