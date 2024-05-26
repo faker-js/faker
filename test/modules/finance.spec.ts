@@ -337,6 +337,7 @@ describe('finance', () => {
           expect(bitcoinAddress).toBeTypeOf('string');
           expect(bitcoinAddress).toSatisfy(isBtcAddress);
         });
+
         it.each`
           type         | expectedPrefix
           ${'legacy'}  | ${'1'}
