@@ -31,7 +31,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
     div: ['class'],
-    pre: ['class', 'v-pre'],
+    pre: ['class', 'v-pre', 'tabindex'],
     span: ['class', 'style'],
   },
   selfClosing: [],

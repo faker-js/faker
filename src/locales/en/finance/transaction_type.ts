@@ -1,1 +1,1 @@
-export default ['deposit', 'withdrawal', 'payment', 'invoice'];
+export default ['deposit', 'invoice', 'payment', 'withdrawal'];

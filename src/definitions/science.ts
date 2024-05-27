@@ -13,5 +13,5 @@ export type ScienceDefinition = LocaleEntry<{
   /**
    * Some periodic table element information.
    */
-  chemicalElement: ReadonlyArray<ChemicalElement>;
+  chemical_element: ReadonlyArray<ChemicalElement>;
 }>;
