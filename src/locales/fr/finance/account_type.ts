@@ -1,9 +1,9 @@
 export default [
+  'Carte de crédit',
   'Chèque',
   'Epargne',
-  'Marché monétaire',
   'Investissement',
+  'Marché monétaire',
   'Prêt immobilier',
-  'Carte de crédit',
   'Prêt personnel',
 ];
