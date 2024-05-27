@@ -106,13 +106,13 @@ export class FinanceModule extends ModuleBase {
     optionsOrLength?:
       | number
       | {
-          /**
-           * The length of the account number.
-           *
-           * @default 8
-           */
-          length?: number;
-        }
+        /**
+         * The length of the account number.
+         *
+         * @default 8
+         */
+        length?: number;
+      }
   ): string;
   /**
    * Generates a random account number.
@@ -131,13 +131,13 @@ export class FinanceModule extends ModuleBase {
     options:
       | number
       | {
-          /**
-           * The length of the account number.
-           *
-           * @default 8
-           */
-          length?: number;
-        } = {}
+        /**
+         * The length of the account number.
+         *
+         * @default 8
+         */
+        length?: number;
+      } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
@@ -260,25 +260,25 @@ export class FinanceModule extends ModuleBase {
     optionsOrLength?:
       | number
       | {
-          /**
-           * The length of the unmasked number.
-           *
-           * @default 4
-           */
-          length?: number;
-          /**
-           * Whether to use surrounding parenthesis.
-           *
-           * @default true
-           */
-          parens?: boolean;
-          /**
-           * Whether to prefix the numbers with an ellipsis.
-           *
-           * @default true
-           */
-          ellipsis?: boolean;
-        }
+        /**
+         * The length of the unmasked number.
+         *
+         * @default 4
+         */
+        length?: number;
+        /**
+         * Whether to use surrounding parenthesis.
+         *
+         * @default true
+         */
+        parens?: boolean;
+        /**
+         * Whether to prefix the numbers with an ellipsis.
+         *
+         * @default true
+         */
+        ellipsis?: boolean;
+      }
   ): string;
   /**
    * Generates a random masked number.
@@ -301,25 +301,25 @@ export class FinanceModule extends ModuleBase {
     options:
       | number
       | {
-          /**
-           * The length of the unmasked number.
-           *
-           * @default 4
-           */
-          length?: number;
-          /**
-           * Whether to use surrounding parenthesis.
-           *
-           * @default true
-           */
-          parens?: boolean;
-          /**
-           * Whether to prefix the numbers with an ellipsis.
-           *
-           * @default true
-           */
-          ellipsis?: boolean;
-        } = {}
+        /**
+         * The length of the unmasked number.
+         *
+         * @default 4
+         */
+        length?: number;
+        /**
+         * Whether to use surrounding parenthesis.
+         *
+         * @default true
+         */
+        parens?: boolean;
+        /**
+         * Whether to prefix the numbers with an ellipsis.
+         *
+         * @default true
+         */
+        ellipsis?: boolean;
+      } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
@@ -531,9 +531,6 @@ export class FinanceModule extends ModuleBase {
     const addressPrefix = addressSpec.prefix[network];
     const addressLength = this.faker.number.int(addressSpec.length);
 
-    const keys = Object.keys(BitcoinAddressSpecs);
-
-    console.log(keys);
     const address = this.faker.string.alphanumeric({
       length: addressLength - addressPrefix.length,
       casing: addressSpec.casing,
@@ -616,13 +613,13 @@ export class FinanceModule extends ModuleBase {
     options?:
       | string
       | {
-          /**
-           * The name of the issuer (case-insensitive) or the format used to generate one.
-           *
-           * @default ''
-           */
-          issuer?: string;
-        }
+        /**
+         * The name of the issuer (case-insensitive) or the format used to generate one.
+         *
+         * @default ''
+         */
+        issuer?: string;
+      }
   ): string;
   /**
    * Generates a random credit card number.
@@ -642,13 +639,13 @@ export class FinanceModule extends ModuleBase {
     options:
       | string
       | {
-          /**
-           * The name of the issuer (case-insensitive) or the format used to generate one.
-           *
-           * @default ''
-           */
-          issuer?: string;
-        } = {}
+        /**
+         * The name of the issuer (case-insensitive) or the format used to generate one.
+         *
+         * @default ''
+         */
+        issuer?: string;
+      } = {}
   ): string {
     if (typeof options === 'string') {
       options = { issuer: options };
@@ -756,13 +753,13 @@ export class FinanceModule extends ModuleBase {
     options?:
       | number
       | {
-          /**
-           * The length of the PIN to generate.
-           *
-           * @default 4
-           */
-          length?: number;
-        }
+        /**
+         * The length of the PIN to generate.
+         *
+         * @default 4
+         */
+        length?: number;
+      }
   ): string;
   /**
    * Generates a random PIN number.
@@ -783,13 +780,13 @@ export class FinanceModule extends ModuleBase {
     options:
       | number
       | {
-          /**
-           * The length of the PIN to generate.
-           *
-           * @default 4
-           */
-          length?: number;
-        } = {}
+        /**
+         * The length of the PIN to generate.
+         *
+         * @default 4
+         */
+        length?: number;
+      } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
