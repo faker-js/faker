@@ -3,12 +3,12 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { SystemDefinition } from '../../..';
-import directoryPaths from './directoryPaths';
-import mimeTypes from './mimeTypes';
+import directory_paths from './directory_paths';
+import mime_types from './mime_types';
 
 const system: SystemDefinition = {
-  directoryPaths,
-  mimeTypes,
+  directory_paths,
+  mime_types,
 };
 
 export default system;

@@ -3,11 +3,11 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { ScienceDefinition } from '../../..';
-import chemicalElement from './chemicalElement';
+import chemical_element from './chemical_element';
 import unit from './unit';
 
 const science: ScienceDefinition = {
-  chemicalElement,
+  chemical_element,
   unit,
 };
 
