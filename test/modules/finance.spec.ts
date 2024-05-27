@@ -338,21 +338,14 @@ describe('finance', () => {
           expect(bitcoinAddress).toSatisfy(isBtcAddress);
         });
 
-        it.each`
-          type                          | expectedPrefix
-          ${BitcoinAddressType.Legacy}  | ${'1'}
-          ${BitcoinAddressType.Segwit}  | ${'3'}
-          ${BitcoinAddressType.Bech32}  | ${'bc1'}
-          ${BitcoinAddressType.Taproot} | ${'bc1p'}
-        `(
+        it.each([
+          [BitcoinAddressType.Legacy, '1'],
+          [BitcoinAddressType.Segwit, '3'],
+          [BitcoinAddressType.Bech32, 'bc1'],
+          [BitcoinAddressType.Taproot, 'bc1p'],
+        ])(
           'should handle the type = $type argument',
-          ({
-            type,
-            expectedPrefix,
-          }: {
-            type: BitcoinAddressType;
-            expectedPrefix: string;
-          }) => {
+          (type: BitcoinAddressType, expectedPrefix: string) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               type,
             });
@@ -366,19 +359,12 @@ describe('finance', () => {
           }
         );
 
-        it.each`
-          network                   | expectedPrefixes
-          ${BitcoinNetwork.Mainnet} | ${['1', '3', 'bc1', 'bc1p']}
-          ${BitcoinNetwork.Testnet} | ${['2', 'm', 'tb1', 'tb1p']}
-        `(
+        it.each([
+          [BitcoinNetwork.Mainnet, ['1', '3', 'bc1', 'bc1p']],
+          [BitcoinNetwork.Testnet, ['2', 'm', 'tb1', 'tb1p']],
+        ])(
           'should handle the network = $network argument',
-          ({
-            network,
-            expectedPrefixes,
-          }: {
-            network: BitcoinNetwork;
-            expectedPrefixes: string[];
-          }) => {
+          (network: BitcoinNetwork, expectedPrefixes: string[]) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               network,
             });
@@ -392,27 +378,22 @@ describe('finance', () => {
           }
         );
 
-        it.each`
-          type                          | network                   | expectedPrefix
-          ${BitcoinAddressType.Legacy}  | ${BitcoinNetwork.Mainnet} | ${'1'}
-          ${BitcoinAddressType.Legacy}  | ${BitcoinNetwork.Testnet} | ${'m'}
-          ${BitcoinAddressType.Segwit}  | ${BitcoinNetwork.Mainnet} | ${'3'}
-          ${BitcoinAddressType.Segwit}  | ${BitcoinNetwork.Testnet} | ${'2'}
-          ${BitcoinAddressType.Bech32}  | ${BitcoinNetwork.Mainnet} | ${'bc1'}
-          ${BitcoinAddressType.Bech32}  | ${BitcoinNetwork.Testnet} | ${'tb1'}
-          ${BitcoinAddressType.Taproot} | ${BitcoinNetwork.Mainnet} | ${'bc1p'}
-          ${BitcoinAddressType.Taproot} | ${BitcoinNetwork.Testnet} | ${'tb1p'}
-        `(
+        it.each([
+          [BitcoinAddressType.Legacy, BitcoinNetwork.Mainnet, '1'],
+          [BitcoinAddressType.Legacy, BitcoinNetwork.Testnet, 'm'],
+          [BitcoinAddressType.Segwit, BitcoinNetwork.Mainnet, '3'],
+          [BitcoinAddressType.Segwit, BitcoinNetwork.Testnet, '2'],
+          [BitcoinAddressType.Bech32, BitcoinNetwork.Mainnet, 'bc1'],
+          [BitcoinAddressType.Bech32, BitcoinNetwork.Testnet, 'tb1'],
+          [BitcoinAddressType.Taproot, BitcoinNetwork.Mainnet, 'bc1p'],
+          [BitcoinAddressType.Taproot, BitcoinNetwork.Testnet, 'tb1p'],
+        ])(
           'should handle the type = $type and network = $network arguments',
-          ({
-            type,
-            network,
-            expectedPrefix,
-          }: {
-            type: BitcoinAddressType;
-            network: BitcoinNetwork;
-            expectedPrefix: string;
-          }) => {
+          (
+            type: BitcoinAddressType,
+            network: BitcoinNetwork,
+            expectedPrefix: string
+          ) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               type,
               network,
