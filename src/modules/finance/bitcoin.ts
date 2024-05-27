@@ -14,12 +14,15 @@ export enum BitcoinNetwork {
 
 type BitcoinAddressOptions = {
   prefix: Record<BitcoinNetwork, string>;
-  length: { min: number; max: number; };
+  length: { min: number; max: number };
   casing: Casing;
   exclude: string;
 };
 
-export const BitcoinAddressSpecs: Record<BitcoinAddressType, BitcoinAddressOptions> = {
+export const BitcoinAddressSpecs: Record<
+  BitcoinAddressType,
+  BitcoinAddressOptions
+> = {
   [BitcoinAddressType.Legacy]: {
     prefix: { [BitcoinNetwork.Mainnet]: '1', [BitcoinNetwork.Testnet]: 'm' },
     length: { min: 26, max: 34 },
