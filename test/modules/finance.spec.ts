@@ -325,10 +325,15 @@ describe('finance', () => {
 
       describe('bitcoinAddress()', () => {
         // Utility for validating Bitcoin addresses (validator lib doesn't support taproot and testnets yet)
-        const bech32 = /^(bc1|tb1|bc1p|tb1p)[ac-hj-np-z02-9]{39,58}$/;
-        const base58 = /^(1|2|3|m)[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const taproot = /^(bc1p|tb1p)[ac-hj-np-z02-9]{58,58}$/;
+        const bech32 = /^(bc1|tb1)[ac-hj-np-z02-9]{39,39}$/;
+        const segwit = /^(2|3)[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const legacy = /^(1|m)[A-HJ-NP-Za-km-z1-9]{25,39}$/;
         const isBtcAddress = (address: string) =>
-          bech32.test(address) || base58.test(address);
+          bech32.test(address) ||
+          taproot.test(address) ||
+          segwit.test(address) ||
+          legacy.test(address);
 
         it('should return a valid bitcoin address', () => {
           const bitcoinAddress = faker.finance.bitcoinAddress();
@@ -339,13 +344,13 @@ describe('finance', () => {
         });
 
         it.each([
-          [BitcoinAddressType.Legacy, '1'],
-          [BitcoinAddressType.Segwit, '3'],
-          [BitcoinAddressType.Bech32, 'bc1'],
-          [BitcoinAddressType.Taproot, 'bc1p'],
+          [BitcoinAddressType.Legacy, legacy],
+          [BitcoinAddressType.Segwit, segwit],
+          [BitcoinAddressType.Bech32, bech32],
+          [BitcoinAddressType.Taproot, taproot],
         ])(
           'should handle the type = $type argument',
-          (type: BitcoinAddressType, expectedPrefix: string) => {
+          (type: BitcoinAddressType, regex: RegExp) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               type,
             });
@@ -353,9 +358,7 @@ describe('finance', () => {
             expect(bitcoinAddress).toBeTruthy();
             expect(bitcoinAddress).toBeTypeOf('string');
             expect(bitcoinAddress).toSatisfy(isBtcAddress);
-            expect(bitcoinAddress).toSatisfy((v: string) =>
-              v.startsWith(expectedPrefix)
-            );
+            expect(bitcoinAddress).toSatisfy((v: string) => regex.test(v));
           }
         );
 
