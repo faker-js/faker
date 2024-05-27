@@ -327,7 +327,6 @@ async function updateLocaleFileHook(
 async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'finance',
     'internet',
     'location',
     'lorem',
