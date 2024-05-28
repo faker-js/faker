@@ -61,7 +61,7 @@ As an alternative, you can create a simple html file and open it with your brows
 ```
 
 ::: info Note
-Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker in your web app.**
+Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker package in your web app.**
 :::
 
 ## CDN/Deno
