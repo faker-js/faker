@@ -1,9 +1,11 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 import {
+  BitcoinAddressFamily,
   BitcoinAddressSpecs,
-  BitcoinAddressType,
   BitcoinNetwork,
+  type BitcoinAddressFamilyType,
+  type BitcoinNetworkType,
 } from './bitcoin';
 import iban from './iban';
 
@@ -106,13 +108,13 @@ export class FinanceModule extends ModuleBase {
     optionsOrLength?:
       | number
       | {
-        /**
-         * The length of the account number.
-         *
-         * @default 8
-         */
-        length?: number;
-      }
+          /**
+           * The length of the account number.
+           *
+           * @default 8
+           */
+          length?: number;
+        }
   ): string;
   /**
    * Generates a random account number.
@@ -131,13 +133,13 @@ export class FinanceModule extends ModuleBase {
     options:
       | number
       | {
-        /**
-         * The length of the account number.
-         *
-         * @default 8
-         */
-        length?: number;
-      } = {}
+          /**
+           * The length of the account number.
+           *
+           * @default 8
+           */
+          length?: number;
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
@@ -260,25 +262,25 @@ export class FinanceModule extends ModuleBase {
     optionsOrLength?:
       | number
       | {
-        /**
-         * The length of the unmasked number.
-         *
-         * @default 4
-         */
-        length?: number;
-        /**
-         * Whether to use surrounding parenthesis.
-         *
-         * @default true
-         */
-        parens?: boolean;
-        /**
-         * Whether to prefix the numbers with an ellipsis.
-         *
-         * @default true
-         */
-        ellipsis?: boolean;
-      }
+          /**
+           * The length of the unmasked number.
+           *
+           * @default 4
+           */
+          length?: number;
+          /**
+           * Whether to use surrounding parenthesis.
+           *
+           * @default true
+           */
+          parens?: boolean;
+          /**
+           * Whether to prefix the numbers with an ellipsis.
+           *
+           * @default true
+           */
+          ellipsis?: boolean;
+        }
   ): string;
   /**
    * Generates a random masked number.
@@ -301,25 +303,25 @@ export class FinanceModule extends ModuleBase {
     options:
       | number
       | {
-        /**
-         * The length of the unmasked number.
-         *
-         * @default 4
-         */
-        length?: number;
-        /**
-         * Whether to use surrounding parenthesis.
-         *
-         * @default true
-         */
-        parens?: boolean;
-        /**
-         * Whether to prefix the numbers with an ellipsis.
-         *
-         * @default true
-         */
-        ellipsis?: boolean;
-      } = {}
+          /**
+           * The length of the unmasked number.
+           *
+           * @default 4
+           */
+          length?: number;
+          /**
+           * Whether to use surrounding parenthesis.
+           *
+           * @default true
+           */
+          parens?: boolean;
+          /**
+           * Whether to prefix the numbers with an ellipsis.
+           *
+           * @default true
+           */
+          ellipsis?: boolean;
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
@@ -493,38 +495,35 @@ export class FinanceModule extends ModuleBase {
    *
    * @param options An optional options object.
    * @param options.type The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
-   * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
+   * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'Mainnet'`.
    *
    * @example
    * faker.finance.bitcoinAddress() // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
    *
-   * enum BitcoinAddressType { Legacy, Segwit, Bech32, Taproot }
-   * faker.finance.bitcoinAddress({ type: BitcoinAddressType.Bech32 }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
+   * faker.finance.bitcoinAddress({ type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
    *
-   * enum BitcoinAddressType { Legacy, Segwit, Bech32, Taproot }
-   * enum BitcoinNetwork { Mainnet, Testnet }
-   * faker.finance.bitcoinAddress({ type: BitcoinAddressType.Bech32, network: BitcoinNetwork.Testnet }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
+   * faker.finance.bitcoinAddress({ type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
    *
    * @since 3.1.0
    */
   bitcoinAddress(
     options: {
       /**
-       * The bitcoin address type (`'Legacy'`, `'Sewgit'`, `'Bech32'` or `'Taproot'`).
+       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
        *
-       * @default faker.helpers.enumValue(BitcoinAddressType)
+       * @default faker.helpers.arrayElement(['legacy','sewgit','bech32','taproot'])
        */
-      type?: BitcoinAddressType;
+      type?: BitcoinAddressFamilyType;
       /**
-       * The bitcoin network (`'Mainnet'` or `'Testnet'`).
+       * The bitcoin network (`'mainnet'` or `'testnet'`).
        *
        * @default 'mainnet'
        */
-      network?: BitcoinNetwork;
+      network?: BitcoinNetworkType;
     } = {}
   ): string {
     const {
-      type = this.faker.helpers.enumValue(BitcoinAddressType),
+      type = this.faker.helpers.enumValue(BitcoinAddressFamily),
       network = BitcoinNetwork.Mainnet,
     } = options || {};
     const addressSpec = BitcoinAddressSpecs[type];
@@ -613,13 +612,13 @@ export class FinanceModule extends ModuleBase {
     options?:
       | string
       | {
-        /**
-         * The name of the issuer (case-insensitive) or the format used to generate one.
-         *
-         * @default ''
-         */
-        issuer?: string;
-      }
+          /**
+           * The name of the issuer (case-insensitive) or the format used to generate one.
+           *
+           * @default ''
+           */
+          issuer?: string;
+        }
   ): string;
   /**
    * Generates a random credit card number.
@@ -639,13 +638,13 @@ export class FinanceModule extends ModuleBase {
     options:
       | string
       | {
-        /**
-         * The name of the issuer (case-insensitive) or the format used to generate one.
-         *
-         * @default ''
-         */
-        issuer?: string;
-      } = {}
+          /**
+           * The name of the issuer (case-insensitive) or the format used to generate one.
+           *
+           * @default ''
+           */
+          issuer?: string;
+        } = {}
   ): string {
     if (typeof options === 'string') {
       options = { issuer: options };
@@ -753,13 +752,13 @@ export class FinanceModule extends ModuleBase {
     options?:
       | number
       | {
-        /**
-         * The length of the PIN to generate.
-         *
-         * @default 4
-         */
-        length?: number;
-      }
+          /**
+           * The length of the PIN to generate.
+           *
+           * @default 4
+           */
+          length?: number;
+        }
   ): string;
   /**
    * Generates a random PIN number.
@@ -780,13 +779,13 @@ export class FinanceModule extends ModuleBase {
     options:
       | number
       | {
-        /**
-         * The length of the PIN to generate.
-         *
-         * @default 4
-         */
-        length?: number;
-      } = {}
+          /**
+           * The length of the PIN to generate.
+           *
+           * @default 4
+           */
+          length?: number;
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };

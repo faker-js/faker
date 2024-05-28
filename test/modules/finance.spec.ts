@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import {
-  BitcoinAddressType,
+  BitcoinAddressFamily,
   BitcoinNetwork,
 } from '../../src/modules/finance/bitcoin';
 import ibanLib from '../../src/modules/finance/iban';
@@ -96,9 +96,9 @@ describe('finance', () => {
 
     t.describe('bitcoinAddress', (t) => {
       t.it('noArgs')
-        .it('with type option', { type: BitcoinAddressType.Legacy })
+        .it('with type option', { type: BitcoinAddressFamily.Legacy })
         .it('with type and network option', {
-          type: BitcoinAddressType.Legacy,
+          type: BitcoinAddressFamily.Legacy,
           network: BitcoinNetwork.Mainnet,
         });
     });
@@ -344,13 +344,13 @@ describe('finance', () => {
         });
 
         it.each([
-          [BitcoinAddressType.Legacy, legacy],
-          [BitcoinAddressType.Segwit, segwit],
-          [BitcoinAddressType.Bech32, bech32],
-          [BitcoinAddressType.Taproot, taproot],
+          [BitcoinAddressFamily.Legacy, legacy],
+          [BitcoinAddressFamily.Segwit, segwit],
+          [BitcoinAddressFamily.Bech32, bech32],
+          [BitcoinAddressFamily.Taproot, taproot],
         ])(
           'should handle the type = $type argument',
-          (type: BitcoinAddressType, regex: RegExp) => {
+          (type: BitcoinAddressFamily, regex: RegExp) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               type,
             });
@@ -382,18 +382,18 @@ describe('finance', () => {
         );
 
         it.each([
-          [BitcoinAddressType.Legacy, BitcoinNetwork.Mainnet, '1'],
-          [BitcoinAddressType.Legacy, BitcoinNetwork.Testnet, 'm'],
-          [BitcoinAddressType.Segwit, BitcoinNetwork.Mainnet, '3'],
-          [BitcoinAddressType.Segwit, BitcoinNetwork.Testnet, '2'],
-          [BitcoinAddressType.Bech32, BitcoinNetwork.Mainnet, 'bc1'],
-          [BitcoinAddressType.Bech32, BitcoinNetwork.Testnet, 'tb1'],
-          [BitcoinAddressType.Taproot, BitcoinNetwork.Mainnet, 'bc1p'],
-          [BitcoinAddressType.Taproot, BitcoinNetwork.Testnet, 'tb1p'],
+          [BitcoinAddressFamily.Legacy, BitcoinNetwork.Mainnet, '1'],
+          [BitcoinAddressFamily.Legacy, BitcoinNetwork.Testnet, 'm'],
+          [BitcoinAddressFamily.Segwit, BitcoinNetwork.Mainnet, '3'],
+          [BitcoinAddressFamily.Segwit, BitcoinNetwork.Testnet, '2'],
+          [BitcoinAddressFamily.Bech32, BitcoinNetwork.Mainnet, 'bc1'],
+          [BitcoinAddressFamily.Bech32, BitcoinNetwork.Testnet, 'tb1'],
+          [BitcoinAddressFamily.Taproot, BitcoinNetwork.Mainnet, 'bc1p'],
+          [BitcoinAddressFamily.Taproot, BitcoinNetwork.Testnet, 'tb1p'],
         ])(
           'should handle the type = $type and network = $network arguments',
           (
-            type: BitcoinAddressType,
+            type: BitcoinAddressFamily,
             network: BitcoinNetwork,
             expectedPrefix: string
           ) => {
