@@ -30,6 +30,18 @@ For more information on selecting and customizing a locale, please refer to our 
 
 ## Browser
 
+If you want to try it yourself, you can open your browser console via `Ctrl + Shift + J` / `F12`.
+
+```js
+const { faker } = await import('https://esm.sh/@faker-js/faker');
+
+const randomName = faker.person.fullName(); // Amber Keebler
+const randomEmail = faker.internet.email(); // Norma13@hotmail.com
+```
+
+Some websites may have protections against downloading external code, dev servers usually work fine.
+As an alternative, you can create a simple html file and open it with your browser:
+
 ```html
 <script type="module">
   import { faker } from 'https://esm.sh/@faker-js/faker';
@@ -39,23 +51,18 @@ For more information on selecting and customizing a locale, please refer to our 
 
   // Rusty@arne.info
   const randomEmail = faker.internet.email();
+
+  document.getElementById('name').value = randomName;
+  document.getElementById('email').value = randomEmail;
 </script>
+
+<input id="name" />
+<input id="email" />
 ```
 
 ::: info Note
 Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker in your web app.**
 :::
-
-## Browser Console
-
-If you want to try it yourself, you can open your browser console via `Ctrl + Shift + J` / `F12`.
-
-```js
-const { faker } = await import('https://esm.sh/@faker-js/faker');
-
-const randomName = faker.person.fullName(); // Amber Keebler
-const randomEmail = faker.internet.email(); // Norma13@hotmail.com
-```
 
 ## CDN/Deno
 
