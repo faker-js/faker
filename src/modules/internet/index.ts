@@ -101,6 +101,12 @@ const ipv4Networks: Record<IPv4Network, string> = {
   [IPv4Network.Multicast]: '224.0.0.0/4',
 };
 
+export type JwtAlgorithmType =
+  | 'HS256' | 'HS384' | 'HS512'
+  | 'RS256' | 'RS384' | 'RS512'
+  | 'ES256' | 'ES384' | 'ES512'
+  | 'PS256' | 'PS384' | 'PS512'
+
 /**
  * Module to generate internet related entries.
  *
@@ -1018,5 +1024,55 @@ export class InternetModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.emoji[emojiType]
     );
+  }
+
+  jwt(
+    options?: {
+      header?: {
+        alg: JwtAlgorithmType
+      },
+      payload?: {
+        iss?: string,
+        sub?: string,
+        aud?: string,
+        nbf?: number,
+        jti?: string,
+      },
+      refDate?: string | Date | number,
+    }
+  ): string {
+    const refDate = options?.refDate ?? this.faker.defaultRefDate();
+
+    const header = {
+      alg: (options && options.header && options.header.alg)
+        ? options.header.alg
+        : this.faker.helpers.arrayElement([
+          'HS256', 'HS384', 'HS512',
+          'RS256', 'RS384', 'RS512',
+          'ES256', 'ES384', 'ES512',
+          'PS256', 'PS384', 'PS512',
+        ]),
+      typ: 'JWT',
+    }
+
+    const iat = this.faker.date.recent({ refDate });
+    const exp = this.faker.date.soon({ refDate: iat })
+    // const nbf = options.payload?.nbf ?? this.faker.date.anytime({ refDate })
+
+    const payload = {
+      iat: Math.round(iat.valueOf() / 1000),
+      exp: Math.round(exp.valueOf() / 1000),
+      // nbf: Math.round(nbf.valueOf() / 1000),
+      iss: options?.payload?.iss ?? this.faker.company.name(),
+      sub: options?.payload?.sub ?? this.faker.string.uuid(),
+      aud: options?.payload?.aud ?? this.faker.string.uuid(),
+      jti: options?.payload?.jti ?? this.faker.string.uuid(),
+    }
+
+    const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64url');
+    const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64url');
+    const signature = this.faker.string.alphanumeric(64);
+
+    return `${encodedHeader}.${encodedPayload}.${signature}`;
   }
 }

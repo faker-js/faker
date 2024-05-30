@@ -8,6 +8,8 @@ import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
+const refDate = '2020-01-01T00:00:00.000Z';
+
 describe('internet', () => {
   seededTests(faker, 'internet', (t) => {
     t.itEach(
@@ -19,7 +21,7 @@ describe('internet', () => {
       'ip',
       'ipv6',
       'port',
-      'userAgent'
+      'userAgent',
     );
 
     t.describe('email', (t) => {
@@ -154,6 +156,15 @@ describe('internet', () => {
         .it('with cidrBlock', { cidrBlock: '192.168.13.37/24' })
         .it('with network', { network: IPv4Network.Multicast });
     });
+
+    t.describe('jwt', (t) => {
+      t.it('noArgs', { refDate })
+        .it('with header.alg', { header: { alg: 'ES256' }, refDate })
+        .it('with payload.iss', { payload: { iss: 'Acme' }, refDate })
+        .it('with payload.sub', { payload: { sub: 'subject' }, refDate })
+        .it('with payload.aud', { payload: { aud: 'audience' }, refDate })
+        .it('with payload.jti', { payload: { jti: 'jwt id' }, refDate })
+    })
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
@@ -971,6 +982,29 @@ describe('internet', () => {
           expect(emoji.length).toBeGreaterThanOrEqual(1);
         });
       });
+
+      describe('jwt', () => {
+        it('should return a random jwt', () => {
+          const jwt = faker.internet.jwt()
+
+          expect(jwt).toBeTruthy()
+          expect(jwt).toBeTypeOf('string')
+        })
+
+        it('should return a valid jwt', () => {
+          const jwt = faker.internet.jwt()
+
+          expect(jwt).toSatisfy(validator.isJWT)
+        })
+
+        it('should have 3 parts', () => {
+          const jwt = faker.internet.jwt()
+
+          const parts = jwt.split('.')
+
+          expect(parts.length).toBe(3)
+        })
+      })
     }
   );
 });
