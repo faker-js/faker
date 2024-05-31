@@ -74,6 +74,18 @@ exports[`internet > 42 > ipv4 > with network 1`] = `"229.254.29.199"`;
 
 exports[`internet > 42 > ipv6 1`] = `"8ead:331d:df0f:c444:6b96:d368:ab4b:d1d3"`;
 
+exports[`internet > 42 > jwt > noArgs 1`] = `"eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3Njc5NzgsImV4cCI6MTU3Nzg1MDEyMCwiaXNzIjoiUmV5bm9sZHMgR3JvdXAiLCJzdWIiOiI5OTI3MjEwNy1kNTkyLTRiYTAtOTBmYi1kZjMwMmYyOTQ5ODAiLCJhdWQiOiIwNDg5NjIwNC1mNTM3LTQxYzktYjM2OC1mOTcwZDlhMjcxMGYiLCJqdGkiOiJmOWM2NDAxMy1hMzdhLTQxOTctOGQwMi1lNjQyYWM0NjgzODkifQ.1YQMrWoTVBJVk5zcw2XkQoKgxPAmXhBxh8iNa40ZqLoci00OcHIJMLB4VmE7URQC"`;
+
+exports[`internet > 42 > jwt > with header.alg 1`] = `"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MDQ0MzksImV4cCI6MTU3Nzg3MzI2MSwiaXNzIjoiRGVja293LCBSZXlub2xkcyBhbmQgU2F0dGVyZmllbGQiLCJzdWIiOiI5OTI3MjEwNy1kNTkyLTRiYTAtOTBmYi1kZjMwMmYyOTQ5ODAiLCJhdWQiOiIwNDg5NjIwNC1mNTM3LTQxYzktYjM2OC1mOTcwZDlhMjcxMGYiLCJqdGkiOiJmOWM2NDAxMy1hMzdhLTQxOTctOGQwMi1lNjQyYWM0NjgzODkifQ.1YQMrWoTVBJVk5zcw2XkQoKgxPAmXhBxh8iNa40ZqLoci00OcHIJMLB4VmE7URQC"`;
+
+exports[`internet > 42 > jwt > with payload.aud 1`] = `"eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3Njc5NzgsImV4cCI6MTU3Nzg1MDEyMCwiaXNzIjoiUmV5bm9sZHMgR3JvdXAiLCJzdWIiOiI5OTI3MjEwNy1kNTkyLTRiYTAtOTBmYi1kZjMwMmYyOTQ5ODAiLCJhdWQiOiJhdWRpZW5jZSIsImp0aSI6IjA0ODk2MjA0LWY1MzctNDFjOS1iMzY4LWY5NzBkOWEyNzEwZiJ9.XyOni06eGerG7BuP2aUogbFKjqwcxzb1YQMrWoTVBJVk5zcw2XkQoKgxPAmXhBxh"`;
+
+exports[`internet > 42 > jwt > with payload.iss 1`] = `"eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3Njc5NzgsImV4cCI6MTU3Nzg1MDEyMCwiaXNzIjoiQWNtZSIsInN1YiI6IjJiYzk5MjcyLTEwN2QtNDU5Mi1hYmEwLTBmYmRmMzAyZjI5NCIsImF1ZCI6IjgwNjA0ODk2LTIwNGYtNDUzNy04MWM5LTM2OGY5NzBkOWEyNyIsImp0aSI6IjBmZmY5YzY0LTAxM2EtNDM3YS04MTk3LWQwMmU2NDJhYzQ2OCJ9.xzb1YQMrWoTVBJVk5zcw2XkQoKgxPAmXhBxh8iNa40ZqLoci00OcHIJMLB4VmE7U"`;
+
+exports[`internet > 42 > jwt > with payload.jti 1`] = `"eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3Njc5NzgsImV4cCI6MTU3Nzg1MDEyMCwiaXNzIjoiUmV5bm9sZHMgR3JvdXAiLCJzdWIiOiI5OTI3MjEwNy1kNTkyLTRiYTAtOTBmYi1kZjMwMmYyOTQ5ODAiLCJhdWQiOiIwNDg5NjIwNC1mNTM3LTQxYzktYjM2OC1mOTcwZDlhMjcxMGYiLCJqdGkiOiJqd3QgaWQifQ.XyOni06eGerG7BuP2aUogbFKjqwcxzb1YQMrWoTVBJVk5zcw2XkQoKgxPAmXhBxh"`;
+
+exports[`internet > 42 > jwt > with payload.sub 1`] = `"eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3Njc5NzgsImV4cCI6MTU3Nzg1MDEyMCwiaXNzIjoiUmV5bm9sZHMgR3JvdXAiLCJzdWIiOiJzdWJqZWN0IiwiYXVkIjoiOTkyNzIxMDctZDU5Mi00YmEwLTkwZmItZGYzMDJmMjk0OTgwIiwianRpIjoiMDQ4OTYyMDQtZjUzNy00MWM5LWIzNjgtZjk3MGQ5YTI3MTBmIn0.XyOni06eGerG7BuP2aUogbFKjqwcxzb1YQMrWoTVBJVk5zcw2XkQoKgxPAmXhBxh"`;
+
 exports[`internet > 42 > mac > noArgs 1`] = `"5f:b9:22:0d:9b:0f"`;
 
 exports[`internet > 42 > mac > with separator 1`] = `"5f:b9:22:0d:9b:0f"`;
@@ -210,6 +222,18 @@ exports[`internet > 1211 > ipv4 > with network 1`] = `"238.219.55.242"`;
 
 exports[`internet > 1211 > ipv6 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
 
+exports[`internet > 1211 > jwt > noArgs 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3OTcxNDEsImV4cCI6MTU3Nzg3NDMzNywiaXNzIjoiRmFoZXksIENocmlzdGlhbnNlbiBhbmQgWmllbWUiLCJzdWIiOiIwYTJhM2M2NS0yYmJkLTQwY2EtOGFiZC1lNjRkZmRmMzc5ZTMiLCJhdWQiOiI1OWY3YzA2NC1lMDg2LTRmMjMtOTk0Mi1iNjhlNWZkNDY5NDYiLCJqdGkiOiI5MjE4M2IzMi0wYmQ3LTRhMzMtYTY2My05ZDY5OTcxMGFiODIifQ.Huh9MFvHstd9BxSr6wQss3nAtIz5OSxxVXYJO5S7dHIFPulAT01KxnLZtg4RgA8y"`;
+
+exports[`internet > 1211 > jwt > with header.alg 1`] = `"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3NTY1NzYsImV4cCI6MTU3Nzc5NjIzNSwiaXNzIjoiU2F0dGVyZmllbGQsIEZhaGV5IGFuZCBDaHJpc3RpYW5zZW4iLCJzdWIiOiJmMGEyYTNjNi01MmJiLTRkMGMtOGFhYi1kZTY0ZGZkZjM3OWUiLCJhdWQiOiIyNTlmN2MwNi00ZTA4LTQ2ZjItOTM5NC0yYjY4ZTVmZDQ2OTQiLCJqdGkiOiI0OTIxODNiMy0yMGJkLTQ3YTMtODM2Ni0zOWQ2OTk3MTBhYjgifQ.CHuh9MFvHstd9BxSr6wQss3nAtIz5OSxxVXYJO5S7dHIFPulAT01KxnLZtg4RgA8"`;
+
+exports[`internet > 1211 > jwt > with payload.aud 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3OTcxNDEsImV4cCI6MTU3Nzg3NDMzNywiaXNzIjoiRmFoZXksIENocmlzdGlhbnNlbiBhbmQgWmllbWUiLCJzdWIiOiIwYTJhM2M2NS0yYmJkLTQwY2EtOGFiZC1lNjRkZmRmMzc5ZTMiLCJhdWQiOiJhdWRpZW5jZSIsImp0aSI6IjU5ZjdjMDY0LWUwODYtNGYyMy05OTQyLWI2OGU1ZmQ0Njk0NiJ9.za4yeHe82HQuDfcpqcAQpzzt42EHybCHuh9MFvHstd9BxSr6wQss3nAtIz5OSxxV"`;
+
+exports[`internet > 1211 > jwt > with payload.iss 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3OTcxNDEsImV4cCI6MTU3Nzg3NDMzNywiaXNzIjoiQWNtZSIsInN1YiI6ImMzMmYwYTJhLTNjNjUtNDJiYi05ZDBjLWFhYmRlNjRkZmRmMyIsImF1ZCI6IjllMzI1OWY3LWMwNjQtNGUwOC05NmYyLTM5NDJiNjhlNWZkNCIsImp0aSI6Ijk0NjQ5MjE4LTNiMzItNDBiZC1hN2EzLTM2NjM5ZDY5OTcxMCJ9.HybCHuh9MFvHstd9BxSr6wQss3nAtIz5OSxxVXYJO5S7dHIFPulAT01KxnLZtg4R"`;
+
+exports[`internet > 1211 > jwt > with payload.jti 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3OTcxNDEsImV4cCI6MTU3Nzg3NDMzNywiaXNzIjoiRmFoZXksIENocmlzdGlhbnNlbiBhbmQgWmllbWUiLCJzdWIiOiIwYTJhM2M2NS0yYmJkLTQwY2EtOGFiZC1lNjRkZmRmMzc5ZTMiLCJhdWQiOiI1OWY3YzA2NC1lMDg2LTRmMjMtOTk0Mi1iNjhlNWZkNDY5NDYiLCJqdGkiOiJqd3QgaWQifQ.za4yeHe82HQuDfcpqcAQpzzt42EHybCHuh9MFvHstd9BxSr6wQss3nAtIz5OSxxV"`;
+
+exports[`internet > 1211 > jwt > with payload.sub 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3OTcxNDEsImV4cCI6MTU3Nzg3NDMzNywiaXNzIjoiRmFoZXksIENocmlzdGlhbnNlbiBhbmQgWmllbWUiLCJzdWIiOiJzdWJqZWN0IiwiYXVkIjoiMGEyYTNjNjUtMmJiZC00MGNhLThhYmQtZTY0ZGZkZjM3OWUzIiwianRpIjoiNTlmN2MwNjQtZTA4Ni00ZjIzLTk5NDItYjY4ZTVmZDQ2OTQ2In0.za4yeHe82HQuDfcpqcAQpzzt42EHybCHuh9MFvHstd9BxSr6wQss3nAtIz5OSxxV"`;
+
 exports[`internet > 1211 > mac > noArgs 1`] = `"ee:3f:aa:c5:bd:ca"`;
 
 exports[`internet > 1211 > mac > with separator 1`] = `"ee:3f:aa:c5:bd:ca"`;
@@ -345,6 +369,18 @@ exports[`internet > 1337 > ipv4 > with cidrBlock 1`] = `"192.168.13.67"`;
 exports[`internet > 1337 > ipv4 > with network 1`] = `"228.49.64.201"`;
 
 exports[`internet > 1337 > ipv6 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
+
+exports[`internet > 1337 > jwt > noArgs 1`] = `"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3ODgzNzAsImV4cCI6MTU3NzgwMjA4MSwiaXNzIjoiR290dGxpZWIgTExDIiwic3ViIjoiNzA1Mzg5NDUtZjRiNC00MWM2LTkxYTUtMmJmMjdkY2NjMDU3IiwiYXVkIjoiNjk4YzUzNzQtZGE2Ny00NzIyLWE2ZDMtZThlZDkyZmZlNmQ4IiwianRpIjoiOGIwZGI5ZmEtMjcyNi00NWFiLWJjMGEtNWQwY2NmNTBiODdhIn0.KPxBgzPZJfR0i5BWhYSuhlvI90GLTFxbLFsUFayUNkSHRgiwYbItsrFoSNtupI3N"`;
+
+exports[`internet > 1337 > jwt > with header.alg 1`] = `"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MTQxNjAsImV4cCI6MTU3Nzg2MjU5MSwiaXNzIjoiRWZmZXJ0eiBhbmQgU29ucyIsInN1YiI6Ijg3MDUzODk0LTVmNGItNDQxYy05NjFhLTUyYmYyN2RjY2MwNSIsImF1ZCI6IjY2OThjNTM3LTRkYTYtNDc3Mi1hMjZkLTNlOGVkOTJmZmU2ZCIsImp0aSI6ImI4YjBkYjlmLWEyNzItNDY1YS1hYmMwLWE1ZDBjY2Y1MGI4NyJ9.YKPxBgzPZJfR0i5BWhYSuhlvI90GLTFxbLFsUFayUNkSHRgiwYbItsrFoSNtupI3"`;
+
+exports[`internet > 1337 > jwt > with payload.aud 1`] = `"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3ODgzNzAsImV4cCI6MTU3NzgwMjA4MSwiaXNzIjoiR290dGxpZWIgTExDIiwic3ViIjoiNzA1Mzg5NDUtZjRiNC00MWM2LTkxYTUtMmJmMjdkY2NjMDU3IiwiYXVkIjoiYXVkaWVuY2UiLCJqdGkiOiI2OThjNTM3NC1kYTY3LTQ3MjItYTZkMy1lOGVkOTJmZmU2ZDgifQ.vG0PJCZFas7pnDGN0GmQ3LMXl3HwuGYKPxBgzPZJfR0i5BWhYSuhlvI90GLTFxbL"`;
+
+exports[`internet > 1337 > jwt > with payload.iss 1`] = `"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3ODgzNzAsImV4cCI6MTU3NzgwMjA4MSwiaXNzIjoiQWNtZSIsInN1YiI6IjM0ODcwNTM4LTk0NWYtNDRiNC04MWM2LTFhNTJiZjI3ZGNjYyIsImF1ZCI6IjU3NjY5OGM1LTM3NGQtNGE2Ny05NzIyLTZkM2U4ZWQ5MmZmZSIsImp0aSI6ImQ4YjhiMGRiLTlmYTItNDcyNi1hNWFiLWMwYTVkMGNjZjUwYiJ9.uGYKPxBgzPZJfR0i5BWhYSuhlvI90GLTFxbLFsUFayUNkSHRgiwYbItsrFoSNtup"`;
+
+exports[`internet > 1337 > jwt > with payload.jti 1`] = `"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3ODgzNzAsImV4cCI6MTU3NzgwMjA4MSwiaXNzIjoiR290dGxpZWIgTExDIiwic3ViIjoiNzA1Mzg5NDUtZjRiNC00MWM2LTkxYTUtMmJmMjdkY2NjMDU3IiwiYXVkIjoiNjk4YzUzNzQtZGE2Ny00NzIyLWE2ZDMtZThlZDkyZmZlNmQ4IiwianRpIjoiand0IGlkIn0.vG0PJCZFas7pnDGN0GmQ3LMXl3HwuGYKPxBgzPZJfR0i5BWhYSuhlvI90GLTFxbL"`;
+
+exports[`internet > 1337 > jwt > with payload.sub 1`] = `"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3ODgzNzAsImV4cCI6MTU3NzgwMjA4MSwiaXNzIjoiR290dGxpZWIgTExDIiwic3ViIjoic3ViamVjdCIsImF1ZCI6IjcwNTM4OTQ1LWY0YjQtNDFjNi05MWE1LTJiZjI3ZGNjYzA1NyIsImp0aSI6IjY5OGM1Mzc0LWRhNjctNDcyMi1hNmQzLWU4ZWQ5MmZmZTZkOCJ9.vG0PJCZFas7pnDGN0GmQ3LMXl3HwuGYKPxBgzPZJfR0i5BWhYSuhlvI90GLTFxbL"`;
 
 exports[`internet > 1337 > mac > noArgs 1`] = `"42:47:58:4f:b1:6a"`;
 
