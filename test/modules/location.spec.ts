@@ -193,7 +193,7 @@ describe('location', () => {
 
         it('should return a zip code with length 5 for ZIP codes that start with 0', () => {
           const zipCode = fakerEN_US.location.zipCode({ state: 'NH' });
-          expect(zipCode.length).toBe(5);
+          expect(zipCode).toHaveLength(5);
         });
 
         it('should throw when definitions.location.postcode_by_state not set', () => {
@@ -367,7 +367,7 @@ describe('location', () => {
               isMetric,
             });
 
-            expect(coordinate.length).toBe(2);
+            expect(coordinate).toHaveLength(2);
             expect(coordinate[0]).toBeTypeOf('number');
             expect(coordinate[1]).toBeTypeOf('number');
 

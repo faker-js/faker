@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
 ## [9.0.0-alpha.0](https://github.com/faker-js/faker/compare/v8.4.1...v9.0.0-alpha.0) (2024-04-12)
 
@@ -968,4 +968,4 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## 6.0.0-alpha.0 (2022-01-07)
 
-For changes prior to version v6.0.0-alpha.1, see [the old changelog](./CHANGELOG_old.md).
+For changes prior to version `v6`, see [the old changelog](https://github.com/faker-js/faker/blob/v6/CHANGELOG_old.md).

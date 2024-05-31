@@ -1,1 +1,1 @@
-export default ['S.A.', 'LTDA', 'EIRELI', 'e Associados', 'Comércio'];
+export default ['Comércio', 'EIRELI', 'LTDA', 'S.A.', 'e Associados'];
