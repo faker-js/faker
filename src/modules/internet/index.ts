@@ -101,11 +101,7 @@ const ipv4Networks: Record<IPv4Network, string> = {
   [IPv4Network.Multicast]: '224.0.0.0/4',
 };
 
-export type JwtAlgorithmType =
-  | 'HS256' | 'HS384' | 'HS512'
-  | 'RS256' | 'RS384' | 'RS512'
-  | 'ES256' | 'ES384' | 'ES512'
-  | 'PS256' | 'PS384' | 'PS512'
+export type JwtAlgorithmType = 'alg'
 
 /**
  * Module to generate internet related entries.
@@ -1026,18 +1022,69 @@ export class InternetModule extends ModuleBase {
     );
   }
 
+  /**
+   * Generates a random JWT (JSON Web Token).
+   *
+   * @param options Options object.
+   * @param options.header Header part of the token.
+   * @param options.header.alg Algorithm header parameter.
+   * @param options.payload Payload part of the token.
+   * @param options.payload.iss Issuer claim.
+   * @param options.payload.sub Subject claim.
+   *
+   * @see {@link https://datatracker.ietf.org/doc/html/rfc7519}
+   *
+   * @example
+   * faker.internet.jwt()
+   * faker.internet.jwt({ header: { alg: 'HS256' }})
+   * faker.internet.jwt({ payload: { iss: 'Acme' }})
+   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject' }})
+   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience' }})
+   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID' }})
+   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID', nbf: new Date() }})
+   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID', nbf: 1717132091 }})
+   *
+   * @since 8.0.0
+   */
   jwt(
     options?: {
       header?: {
-        alg: JwtAlgorithmType
+        /**
+         * Algorithms to use.
+         *
+         * @default Object.values(faker.definitions.internet.jwt.alg)
+         */
+        alg: string
       },
+      /**
+       * Payload part of the token.
+       */
       payload?: {
+        /**
+         * Issuer claim.
+         *
+         * @default faker.company.name()
+         */
         iss?: string,
+        /**
+         * @default faker.string.uuid()
+         */
         sub?: string,
+        /**
+         * @default faker.string.uuid()
+         */
         aud?: string,
         nbf?: number,
+        /**
+         * @default faker.string.uuid()
+         */
         jti?: string,
       },
+      /**
+       * The date to use as reference point for the newly generated date.
+       *
+       * @default faker.defaultRefDate()
+       */
       refDate?: string | Date | number,
     }
   ): string {
@@ -1046,12 +1093,9 @@ export class InternetModule extends ModuleBase {
     const header = {
       alg: (options && options.header && options.header.alg)
         ? options.header.alg
-        : this.faker.helpers.arrayElement([
-          'HS256', 'HS384', 'HS512',
-          'RS256', 'RS384', 'RS512',
-          'ES256', 'ES384', 'ES512',
-          'PS256', 'PS384', 'PS512',
-        ]),
+        : this.faker.helpers.arrayElement(
+          this.faker.definitions.internet.jwt.alg
+        ),
       typ: 'JWT',
     }
 

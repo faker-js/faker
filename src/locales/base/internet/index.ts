@@ -5,10 +5,12 @@
 import type { InternetDefinition } from '../../..';
 import emoji from './emoji';
 import http_status_code from './http_status_code';
+import jwt from './jwt';
 
 const internet: InternetDefinition = {
   emoji,
   http_status_code,
+  jwt,
 };
 
 export default internet;
