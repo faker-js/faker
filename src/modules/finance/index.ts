@@ -495,7 +495,7 @@ export class FinanceModule extends ModuleBase {
    *
    * @param options An optional options object.
    * @param options.type The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
-   * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'Mainnet'`.
+   * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
    *
    * @example
    * faker.finance.bitcoinAddress() // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
