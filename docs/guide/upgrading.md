@@ -480,6 +480,28 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 | `import { faker } from '@faker-js/faker/locale/ge'`     | `import { faker } from '@faker-js/faker/locale/ka_GE'` |
 | `import { faker } from '@faker-js/faker/locale/global'` | `import { faker } from '@faker-js/faker/locale/base'`  |
 
+### Renamed Locale Definitions
+
+The following locale definitions have been renamed
+
+| old                                         | replacement                                  |
+| ------------------------------------------- | -------------------------------------------- |
+| `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
+| `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_paths`   |
+| `faker.definitions.system.mimeTypes`        | `faker.definitions.system.mime_types`        |
+
+With that now all our locale data use the following naming scheme:
+
+```txt
+faker.definitions.category_name.entry_name
+```
+
+Please keep in mind that property keys of complex objects remain in camel-case.
+
+```txt
+faker.definitions.science.chemical_element.atomicNumber
+```
+
 ### Type Aliases
 
 Removed deprecated type aliases
