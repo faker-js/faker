@@ -524,7 +524,7 @@ export class FinanceModule extends ModuleBase {
     const {
       type = this.faker.helpers.enumValue(BitcoinAddressFamily),
       network = BitcoinNetwork.Mainnet,
-    } = options || {};
+    } = options;
     const addressSpec = BitcoinAddressSpecs[type];
     const addressPrefix = addressSpec.prefix[network];
     const addressLength = this.faker.number.int(addressSpec.length);
