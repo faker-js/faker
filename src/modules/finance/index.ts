@@ -1,11 +1,13 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import type {
+  BitcoinAddressFamilyType,
+  BitcoinNetworkType,
+} from './bitcoin';
 import {
   BitcoinAddressFamily,
   BitcoinAddressSpecs,
   BitcoinNetwork,
-  type BitcoinAddressFamilyType,
-  type BitcoinNetworkType,
 } from './bitcoin';
 import iban from './iban';
 
