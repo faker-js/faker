@@ -16,7 +16,7 @@ export enum BitcoinAddressFamily {
 export type BitcoinAddressFamilyType = `${BitcoinAddressFamily}`;
 
 /**
- * The different bitcoin networks
+ * The different bitcoin networks.
  */
 export enum BitcoinNetwork {
   Mainnet = 'mainnet',
