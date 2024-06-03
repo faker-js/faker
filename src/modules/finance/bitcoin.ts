@@ -24,7 +24,7 @@ export enum BitcoinNetwork {
 }
 
 /**
- * The different bitcoin networks
+ * The different bitcoin networks.
  */
 export type BitcoinNetworkType = `${BitcoinNetwork}`;
 
