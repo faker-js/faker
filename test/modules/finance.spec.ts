@@ -358,9 +358,9 @@ describe('finance', () => {
           [BitcoinAddressFamily.Segwit, m_segwit],
           [BitcoinAddressFamily.Bech32, m_bech32],
           [BitcoinAddressFamily.Taproot, m_taproot],
-        ])(
+        ] as const)(
           'should handle the type = $type argument',
-          (type: BitcoinAddressFamily, regex: RegExp) => {
+          (type, regex) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               type,
             });
