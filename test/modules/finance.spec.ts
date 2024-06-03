@@ -400,13 +400,9 @@ describe('finance', () => {
           [BitcoinAddressFamily.Bech32, BitcoinNetwork.Testnet, t_bech32],
           [BitcoinAddressFamily.Taproot, BitcoinNetwork.Mainnet, m_taproot],
           [BitcoinAddressFamily.Taproot, BitcoinNetwork.Testnet, t_taproot],
-        ])(
+        ] as const)(
           'should handle the type = $type and network = $network arguments',
-          (
-            type: BitcoinAddressFamily,
-            network: BitcoinNetwork,
-            regex: RegExp
-          ) => {
+          (type, network, regex) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               type,
               network,
