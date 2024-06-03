@@ -385,7 +385,7 @@ describe('finance', () => {
             expect(bitcoinAddress).toBeTruthy();
             expect(bitcoinAddress).toBeTypeOf('string');
             expect(bitcoinAddress).toSatisfy(isBtcAddress);
-            expect(bitcoinAddress).toSatisfy((v) =>
+            expect(bitcoinAddress).toSatisfy<string>((v) =>
               regexes.some((r) => r.test(v))
             );
           }
