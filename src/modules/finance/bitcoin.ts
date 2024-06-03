@@ -1,7 +1,7 @@
 import type { Casing } from '../string';
 
 /**
- * The bitcoin address families
+ * The bitcoin address families.
  */
 export enum BitcoinAddressFamily {
   Legacy = 'legacy',
