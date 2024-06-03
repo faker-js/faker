@@ -375,9 +375,9 @@ describe('finance', () => {
         it.each([
           [BitcoinNetwork.Mainnet, [m_legacy, m_segwit, m_bech32, m_taproot]],
           [BitcoinNetwork.Testnet, [t_legacy, t_segwit, t_bech32, t_taproot]],
-        ])(
+        ] as const)(
           'should handle the network = $network argument',
-          (network: BitcoinNetwork, regexes: RegExp[]) => {
+          (network, regexes) => {
             const bitcoinAddress = faker.finance.bitcoinAddress({
               network,
             });
