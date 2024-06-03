@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   {
     name: 'metr',
     symbol: 'm',
@@ -87,4 +87,4 @@ export default Object.freeze([
     name: 'siwert',
     symbol: 'Sv',
   },
-]);
+];
