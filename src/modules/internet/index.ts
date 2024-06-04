@@ -1032,7 +1032,6 @@ export class InternetModule extends ModuleBase {
    * @param options.payload.iss Issuer claim.
    * @param options.payload.sub Subject claim.
    * @param options.payload.aud Audience claim.
-   * @param options.payload.nbf Not before claim.
    * @param options.payload.jti JWT ID claim.
    * @param options.refDate The date to use as reference point for the newly generated date.
    *
@@ -1045,8 +1044,6 @@ export class InternetModule extends ModuleBase {
    * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject' }})
    * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience' }})
    * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID' }})
-   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID', nbf: new Date() }})
-   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID', nbf: 1717132091 }})
    *
    * @since 8.0.0
    */
@@ -1081,11 +1078,6 @@ export class InternetModule extends ModuleBase {
        * @default faker.string.uuid()
        */
       aud?: string;
-
-      /**
-       * Not before claim
-       */
-      nbf?: Date | string;
       /**
        * JWT ID claim
        *
@@ -1114,14 +1106,12 @@ export class InternetModule extends ModuleBase {
 
     const iat = this.faker.date.recent({ refDate });
     const exp = this.faker.date.soon({ refDate: iat });
-    const nbf = options?.payload?.nbf ?? this.faker.date.anytime({ refDate });
+    const nbf = this.faker.date.anytime({ refDate });
 
     const payload = {
       iat: Math.round(iat.valueOf() / 1000),
       exp: Math.round(exp.valueOf() / 1000),
-      nbf: nbf instanceof Date
-        ? Math.round(nbf.valueOf() / 1000)
-        : Math.round(new Date(nbf).valueOf() / 1000),
+      nbf: Math.round(nbf.valueOf() / 1000),
       iss: options?.payload?.iss ?? this.faker.company.name(),
       sub: options?.payload?.sub ?? this.faker.string.uuid(),
       aud: options?.payload?.aud ?? this.faker.string.uuid(),
