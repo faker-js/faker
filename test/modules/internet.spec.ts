@@ -21,7 +21,7 @@ describe('internet', () => {
       'ip',
       'ipv6',
       'port',
-      'userAgent',
+      'userAgent'
     );
 
     t.describe('email', (t) => {
@@ -164,8 +164,8 @@ describe('internet', () => {
         .it('with payload.sub', { payload: { sub: 'subject' }, refDate })
         .it('with payload.aud', { payload: { aud: 'audience' }, refDate })
         .it('with payload.jti', { payload: { jti: 'jwt id' }, refDate })
-        .it('with payload.nbf', { payload: { nbf: new Date() }, refDate })
-    })
+        .it('with payload.nbf', { payload: { nbf: new Date() }, refDate });
+    });
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
@@ -986,26 +986,26 @@ describe('internet', () => {
 
       describe('jwt', () => {
         it('should return a random jwt', () => {
-          const jwt = faker.internet.jwt()
+          const jwt = faker.internet.jwt();
 
-          expect(jwt).toBeTruthy()
-          expect(jwt).toBeTypeOf('string')
-        })
+          expect(jwt).toBeTruthy();
+          expect(jwt).toBeTypeOf('string');
+        });
 
         it('should return a valid jwt', () => {
-          const jwt = faker.internet.jwt()
+          const jwt = faker.internet.jwt();
 
-          expect(jwt).toSatisfy(validator.isJWT)
-        })
+          expect(jwt).toSatisfy(validator.isJWT);
+        });
 
         it('should have 3 parts', () => {
-          const jwt = faker.internet.jwt()
+          const jwt = faker.internet.jwt();
 
-          const parts = jwt.split('.')
+          const parts = jwt.split('.');
 
-          expect(parts.length).toBe(3)
-        })
-      })
+          expect(parts.length).toBe(3);
+        });
+      });
     }
   );
 });

@@ -101,7 +101,7 @@ const ipv4Networks: Record<IPv4Network, string> = {
   [IPv4Network.Multicast]: '224.0.0.0/4',
 };
 
-export type JwtAlgorithmType = 'alg'
+export type JwtAlgorithmType = 'alg';
 
 /**
  * Module to generate internet related entries.
@@ -1050,72 +1050,71 @@ export class InternetModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  jwt(
-    options?: {
-      header?: {
-        /**
-         * Algorithms to use.
-         *
-         * @default Object.values(faker.definitions.internet.jwt.alg)
-         */
-        alg: string
-      },
+  jwt(options?: {
+    header?: {
       /**
-       * Payload part of the token.
-       */
-      payload?: {
-        /**
-         * Issuer claim.
-         *
-         * @default faker.company.name()
-         */
-        iss?: string,
-        /**
-         * Subject claim
-         *
-         * @default faker.string.uuid()
-         */
-        sub?: string,
-        /**
-         * Audience claim
-         *
-         * @default faker.string.uuid()
-         */
-        aud?: string,
-
-        /**
-         * Not before claim
-         */
-        nbf?: Date,
-        /**
-         * JWT ID claim
-         *
-         * @default faker.string.uuid()
-         */
-        jti?: string,
-      },
-      /**
-       * The date to use as reference point for the newly generated date.
+       * Algorithms to use.
        *
-       * @default faker.defaultRefDate()
+       * @default Object.values(faker.definitions.internet.jwt.alg)
        */
-      refDate?: string | Date | number,
-    }
-  ): string {
+      alg: string;
+    };
+    /**
+     * Payload part of the token.
+     */
+    payload?: {
+      /**
+       * Issuer claim.
+       *
+       * @default faker.company.name()
+       */
+      iss?: string;
+      /**
+       * Subject claim
+       *
+       * @default faker.string.uuid()
+       */
+      sub?: string;
+      /**
+       * Audience claim
+       *
+       * @default faker.string.uuid()
+       */
+      aud?: string;
+
+      /**
+       * Not before claim
+       */
+      nbf?: Date;
+      /**
+       * JWT ID claim
+       *
+       * @default faker.string.uuid()
+       */
+      jti?: string;
+    };
+    /**
+     * The date to use as reference point for the newly generated date.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate?: string | Date | number;
+  }): string {
     const refDate = options?.refDate ?? this.faker.defaultRefDate();
 
     const header = {
-      alg: (options && options.header && options.header.alg)
-        ? options.header.alg
-        : this.faker.helpers.arrayElement(
-          this.faker.definitions.internet.jwt.alg
-        ),
+      alg:
+        options && options.header && options.header.alg
+          ? options.header.alg
+          : this.faker.helpers.arrayElement(
+              this.faker.definitions.internet.jwt.alg
+            ),
       typ: 'JWT',
-    }
+    };
 
     const iat = this.faker.date.recent({ refDate });
-    const exp = this.faker.date.soon({ refDate: iat })
-    const nbf = options?.payload?.nbf ?? this.faker.date.anytime({ refDate })
+    const exp = this.faker.date.soon({ refDate: iat });
+    const nbf = options?.payload?.nbf ?? this.faker.date.anytime({ refDate });
 
     const payload = {
       iat: Math.round(iat.valueOf() / 1000),
@@ -1125,10 +1124,14 @@ export class InternetModule extends ModuleBase {
       sub: options?.payload?.sub ?? this.faker.string.uuid(),
       aud: options?.payload?.aud ?? this.faker.string.uuid(),
       jti: options?.payload?.jti ?? this.faker.string.uuid(),
-    }
+    };
 
-    const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64url');
-    const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64url');
+    const encodedHeader = Buffer.from(JSON.stringify(header)).toString(
+      'base64url'
+    );
+    const encodedPayload = Buffer.from(JSON.stringify(payload)).toString(
+      'base64url'
+    );
     const signature = this.faker.string.alphanumeric(64);
 
     return `${encodedHeader}.${encodedPayload}.${signature}`;
