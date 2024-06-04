@@ -164,6 +164,7 @@ describe('internet', () => {
         .it('with payload.sub', { payload: { sub: 'subject' }, refDate })
         .it('with payload.aud', { payload: { aud: 'audience' }, refDate })
         .it('with payload.jti', { payload: { jti: 'jwt id' }, refDate })
+        .it('with payload.nbf', { payload: { nbf: new Date() }, refDate })
     })
   });
 

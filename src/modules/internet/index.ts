@@ -1031,6 +1031,10 @@ export class InternetModule extends ModuleBase {
    * @param options.payload Payload part of the token.
    * @param options.payload.iss Issuer claim.
    * @param options.payload.sub Subject claim.
+   * @param options.payload.aud Audience claim.
+   * @param options.payload.nbf Not before claim.
+   * @param options.payload.jti JWT ID claim.
+   * @param options.refDate The date to use as reference point for the newly generated date.
    *
    * @see {@link https://datatracker.ietf.org/doc/html/rfc7519}
    *
@@ -1067,15 +1071,25 @@ export class InternetModule extends ModuleBase {
          */
         iss?: string,
         /**
+         * Subject claim
+         *
          * @default faker.string.uuid()
          */
         sub?: string,
         /**
+         * Audience claim
+         *
          * @default faker.string.uuid()
          */
         aud?: string,
-        nbf?: number,
+
         /**
+         * Not before claim
+         */
+        nbf?: Date,
+        /**
+         * JWT ID claim
+         *
          * @default faker.string.uuid()
          */
         jti?: string,
@@ -1101,12 +1115,12 @@ export class InternetModule extends ModuleBase {
 
     const iat = this.faker.date.recent({ refDate });
     const exp = this.faker.date.soon({ refDate: iat })
-    // const nbf = options.payload?.nbf ?? this.faker.date.anytime({ refDate })
+    const nbf = options?.payload?.nbf ?? this.faker.date.anytime({ refDate })
 
     const payload = {
       iat: Math.round(iat.valueOf() / 1000),
       exp: Math.round(exp.valueOf() / 1000),
-      // nbf: Math.round(nbf.valueOf() / 1000),
+      nbf: Math.round(nbf.valueOf() / 1000),
       iss: options?.payload?.iss ?? this.faker.company.name(),
       sub: options?.payload?.sub ?? this.faker.string.uuid(),
       aud: options?.payload?.aud ?? this.faker.string.uuid(),
