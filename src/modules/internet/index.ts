@@ -1085,7 +1085,7 @@ export class InternetModule extends ModuleBase {
       /**
        * Not before claim
        */
-      nbf?: Date;
+      nbf?: Date | string;
       /**
        * JWT ID claim
        *
@@ -1119,7 +1119,9 @@ export class InternetModule extends ModuleBase {
     const payload = {
       iat: Math.round(iat.valueOf() / 1000),
       exp: Math.round(exp.valueOf() / 1000),
-      nbf: Math.round(nbf.valueOf() / 1000),
+      nbf: nbf instanceof Date
+        ? Math.round(nbf.valueOf() / 1000)
+        : Math.round(new Date(nbf).valueOf() / 1000),
       iss: options?.payload?.iss ?? this.faker.company.name(),
       sub: options?.payload?.sub ?? this.faker.string.uuid(),
       aud: options?.payload?.aud ?? this.faker.string.uuid(),
