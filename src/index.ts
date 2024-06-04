@@ -55,13 +55,13 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type { Currency, FinanceModule } from './modules/finance';
-export type {
-  BitcoinAddressFamilyType,
-  BitcoinNetworkType,
-} from './modules/finance/bitcoin';
 export {
   BitcoinAddressFamily,
   BitcoinNetwork,
+} from './modules/finance/bitcoin';
+export type {
+  BitcoinAddressFamilyType,
+  BitcoinNetworkType,
 } from './modules/finance/bitcoin';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
