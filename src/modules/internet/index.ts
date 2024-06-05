@@ -1034,7 +1034,7 @@ export class InternetModule extends ModuleBase {
   jwtAlgorithm(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.jwt.alg
-    )
+    );
   }
 
   /**
@@ -1050,7 +1050,7 @@ export class InternetModule extends ModuleBase {
    * @param options.payload.jti JWT ID claim.
    * @param options.refDate The date to use as reference point for the newly generated date.
    *
-   * @see {@link https://datatracker.ietf.org/doc/html/rfc7519}
+   * @see https://datatracker.ietf.org/doc/html/rfc7519
    *
    * @example
    * faker.internet.jwt()
@@ -1062,76 +1062,77 @@ export class InternetModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  jwt(options: {
-    header?: {
+  jwt(
+    options: {
       /**
-       * Algorithms to use.
-       *
-       * @default faker.internet.jwtAlgorithm()
+       * Header part of the token
        */
-      alg?: string;
-    };
-    /**
-     * Payload part of the token.
-     */
-    payload?: {
+      header?: {
+        /**
+         * Algorithms to use.
+         *
+         * @default faker.internet.jwtAlgorithm()
+         */
+        alg?: string;
+      };
       /**
-       * Issuer claim.
-       *
-       * @default faker.company.name()
+       * Payload part of the token.
        */
-      iss?: string;
+      payload?: {
+        /**
+         * Issuer claim.
+         *
+         * @default faker.company.name()
+         */
+        iss?: string;
+        /**
+         * Subject claim
+         *
+         * @default faker.string.uuid()
+         */
+        sub?: string;
+        /**
+         * Audience claim
+         *
+         * @default faker.string.uuid()
+         */
+        aud?: string;
+        /**
+         * JWT ID claim
+         *
+         * @default faker.string.uuid()
+         */
+        jti?: string;
+      };
       /**
-       * Subject claim
+       * The date to use as reference point for the newly generated date.
        *
-       * @default faker.string.uuid()
+       * @default faker.defaultRefDate()
        */
-      sub?: string;
-      /**
-       * Audience claim
-       *
-       * @default faker.string.uuid()
-       */
-      aud?: string;
-      /**
-       * JWT ID claim
-       *
-       * @default faker.string.uuid()
-       */
-      jti?: string;
-    };
-    /**
-     * The date to use as reference point for the newly generated date.
-     *
-     * @default faker.defaultRefDate()
-     */
-    refDate?: string | Date | number;
-  } = {}): string {
-    const refDate = options?.refDate ?? this.faker.defaultRefDate();
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const { refDate = this.faker.defaultRefDate() } = options;
 
     const iatDefault = this.faker.date.recent({ refDate });
 
     const {
       header = {
         alg: this.jwtAlgorithm(),
-        type: 'JWT'
+        type: 'JWT',
       },
       payload = {
-        iat: Math.round(
-          iatDefault.valueOf() / 1000
-        ),
+        iat: Math.round(iatDefault.valueOf() / 1000),
         exp: Math.round(
           this.faker.date.soon({ refDate: iatDefault }).valueOf() / 1000
         ),
-        nbf: Math.round(
-          this.faker.date.anytime({ refDate }).valueOf() / 1000
-        ),
+        nbf: Math.round(this.faker.date.anytime({ refDate }).valueOf() / 1000),
         iss: this.faker.company.name(),
         sub: this.faker.string.uuid(),
         aud: this.faker.string.uuid(),
         jti: this.faker.string.uuid(),
-      }
-    } = options
+      },
+    } = options;
 
     const encodedHeader = Buffer.from(JSON.stringify(header)).toString(
       'base64url'
