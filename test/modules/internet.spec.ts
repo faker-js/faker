@@ -20,6 +20,7 @@ describe('internet', () => {
       'domainWord',
       'ip',
       'ipv6',
+      'jwtAlgorithm',
       'port',
       'userAgent'
     );

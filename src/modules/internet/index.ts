@@ -1023,6 +1023,21 @@ export class InternetModule extends ModuleBase {
   }
 
   /**
+   * Generates a random JWT Algorithm
+   *
+   * @example
+   * faker.internet.jwtAlgorithm() // 'HS256'
+   * faker.internet.jwtAlgorithm() // 'RS512'
+   *
+   * @since 8.0.0
+   */
+  jwtAlgorithm(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.internet.jwt.alg
+    )
+  }
+
+  /**
    * Generates a random JWT (JSON Web Token).
    *
    * @param options Options object.
@@ -1047,14 +1062,14 @@ export class InternetModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  jwt(options?: {
+  jwt(options: {
     header?: {
       /**
        * Algorithms to use.
        *
-       * @default Object.values(faker.definitions.internet.jwt.alg)
+       * @default faker.internet.jwtAlgorithm()
        */
-      alg: string;
+      alg?: string;
     };
     /**
      * Payload part of the token.
@@ -1091,32 +1106,32 @@ export class InternetModule extends ModuleBase {
      * @default faker.defaultRefDate()
      */
     refDate?: string | Date | number;
-  }): string {
+  } = {}): string {
     const refDate = options?.refDate ?? this.faker.defaultRefDate();
 
-    const header = {
-      alg:
-        options && options.header && options.header.alg
-          ? options.header.alg
-          : this.faker.helpers.arrayElement(
-              this.faker.definitions.internet.jwt.alg
-            ),
-      typ: 'JWT',
-    };
+    const iatDefault = this.faker.date.recent({ refDate });
 
-    const iat = this.faker.date.recent({ refDate });
-    const exp = this.faker.date.soon({ refDate: iat });
-    const nbf = this.faker.date.anytime({ refDate });
-
-    const payload = {
-      iat: Math.round(iat.valueOf() / 1000),
-      exp: Math.round(exp.valueOf() / 1000),
-      nbf: Math.round(nbf.valueOf() / 1000),
-      iss: options?.payload?.iss ?? this.faker.company.name(),
-      sub: options?.payload?.sub ?? this.faker.string.uuid(),
-      aud: options?.payload?.aud ?? this.faker.string.uuid(),
-      jti: options?.payload?.jti ?? this.faker.string.uuid(),
-    };
+    const {
+      header = {
+        alg: this.jwtAlgorithm(),
+        type: 'JWT'
+      },
+      payload = {
+        iat: Math.round(
+          iatDefault.valueOf() / 1000
+        ),
+        exp: Math.round(
+          this.faker.date.soon({ refDate: iatDefault }).valueOf() / 1000
+        ),
+        nbf: Math.round(
+          this.faker.date.anytime({ refDate }).valueOf() / 1000
+        ),
+        iss: this.faker.company.name(),
+        sub: this.faker.string.uuid(),
+        aud: this.faker.string.uuid(),
+        jti: this.faker.string.uuid(),
+      }
+    } = options
 
     const encodedHeader = Buffer.from(JSON.stringify(header)).toString(
       'base64url'
