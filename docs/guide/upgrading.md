@@ -484,12 +484,12 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 The following locale definitions have been renamed to use singular keys and file names:
 
-| Old                                       | Replacement                                 |
-| ----------------------------------------- | ------------------------------------------- |
+| Old                                         | Replacement                                  |
+| ------------------------------------------- | -------------------------------------------- |
 | `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
-| `faker.definitions.system.directoryPaths` | `faker.definitions.system.directory_path`   |
-| `faker.definitions.system.mimeTypes`      | `faker.definitions.system.mime_type`        |
-| `faker.definitions.lorem.words`           | `faker.definitions.lorem.word`              |
+| `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_path`    |
+| `faker.definitions.system.mimeTypes`        | `faker.definitions.system.mime_type`         |
+| `faker.definitions.lorem.words`             | `faker.definitions.lorem.word`               |
 
 With that now all our locale data use the following naming scheme:
 
