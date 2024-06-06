@@ -106,7 +106,7 @@ describe('lorem', () => {
           expect(words.length).toBeLessThanOrEqual(20);
 
           for (const word of words) {
-            expect(faker.definitions.lorem.words).toContain(word);
+            expect(faker.definitions.lorem.word).toContain(word);
           }
         });
       });
