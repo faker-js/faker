@@ -482,7 +482,7 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 ### Renamed Locale Definitions
 
-The following locale definitions have been renamed to use singular keys and file names:
+The following locale definitions have been adjusted to align with fakers locale definition naming standard:
 
 | Old                                         | Replacement                                  |
 | ------------------------------------------- | -------------------------------------------- |
