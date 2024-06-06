@@ -332,8 +332,6 @@ async function normalizeLocaleFile(
 
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'date',
-    'finance',
     'internet',
     'location',
     'lorem',
@@ -357,8 +355,7 @@ async function normalizeLocaleFile(
 
   const isDynamicFile = compareString.startsWith('mergeArrays');
   const isNonApplicable = compareString.startsWith('null');
-  const isFrozenData = compareString.startsWith('Object.freeze');
-  if (isDynamicFile || isNonApplicable || isFrozenData) {
+  if (isDynamicFile || isNonApplicable) {
     return;
   }
 

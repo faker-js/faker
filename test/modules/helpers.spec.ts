@@ -799,7 +799,8 @@ describe('helpers', () => {
         });
 
         it('should never return the callback result when probability is 0', () => {
-          const actual = faker.helpers.maybe(() => expect.fail(), {
+          const method: () => unknown = expect.fail;
+          const actual = faker.helpers.maybe(method, {
             probability: 0,
           });
 

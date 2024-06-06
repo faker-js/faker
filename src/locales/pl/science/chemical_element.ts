@@ -1,22 +1,22 @@
-export default Object.freeze([
+export default [
   {
     symbol: 'H',
-    name: 'Hydrogen',
+    name: 'Wodór',
     atomicNumber: 1,
   },
   {
     symbol: 'He',
-    name: 'Helium',
+    name: 'Hel',
     atomicNumber: 2,
   },
   {
     symbol: 'Li',
-    name: 'Litium',
+    name: 'Lit',
     atomicNumber: 3,
   },
   {
     symbol: 'Be',
-    name: 'Beryllium',
+    name: 'Beryl',
     atomicNumber: 4,
   },
   {
@@ -26,17 +26,17 @@ export default Object.freeze([
   },
   {
     symbol: 'C',
-    name: 'Karbon',
+    name: 'Węgiel',
     atomicNumber: 6,
   },
   {
     symbol: 'N',
-    name: 'Nitrogen',
+    name: 'Azot',
     atomicNumber: 7,
   },
   {
     symbol: 'O',
-    name: 'Oksygen',
+    name: 'Tlen',
     atomicNumber: 8,
   },
   {
@@ -51,22 +51,22 @@ export default Object.freeze([
   },
   {
     symbol: 'Na',
-    name: 'Natrium',
+    name: 'Sód',
     atomicNumber: 11,
   },
   {
     symbol: 'Mg',
-    name: 'Magnesium',
+    name: 'Magnez',
     atomicNumber: 12,
   },
   {
     symbol: 'Al',
-    name: 'Aluminium',
+    name: 'Glin',
     atomicNumber: 13,
   },
   {
     symbol: 'Si',
-    name: 'Silisium',
+    name: 'Krzem',
     atomicNumber: 14,
   },
   {
@@ -76,12 +76,12 @@ export default Object.freeze([
   },
   {
     symbol: 'S',
-    name: 'Svovel',
+    name: 'Siarka',
     atomicNumber: 16,
   },
   {
     symbol: 'Cl',
-    name: 'Klor',
+    name: 'Chlor',
     atomicNumber: 17,
   },
   {
@@ -91,32 +91,32 @@ export default Object.freeze([
   },
   {
     symbol: 'K',
-    name: 'Kalium',
+    name: 'Potas',
     atomicNumber: 19,
   },
   {
     symbol: 'Ca',
-    name: 'Kalsium',
+    name: 'Wapń',
     atomicNumber: 20,
   },
   {
     symbol: 'Sc',
-    name: 'Scandium',
+    name: 'Skand',
     atomicNumber: 21,
   },
   {
     symbol: 'Ti',
-    name: 'Titan',
+    name: 'Tytan',
     atomicNumber: 22,
   },
   {
     symbol: 'V',
-    name: 'Vanadium',
+    name: 'Wanad',
     atomicNumber: 23,
   },
   {
     symbol: 'Cr',
-    name: 'Krom',
+    name: 'Chrom',
     atomicNumber: 24,
   },
   {
@@ -126,37 +126,37 @@ export default Object.freeze([
   },
   {
     symbol: 'Fe',
-    name: 'Jern',
+    name: 'Żelazo',
     atomicNumber: 26,
   },
   {
     symbol: 'Co',
-    name: 'Kobolt',
+    name: 'Kobalt',
     atomicNumber: 27,
   },
   {
     symbol: 'Ni',
-    name: 'Nikkel',
+    name: 'Nikiel',
     atomicNumber: 28,
   },
   {
     symbol: 'Cu',
-    name: 'Kobber',
+    name: 'Miedź',
     atomicNumber: 29,
   },
   {
     symbol: 'Zn',
-    name: 'Sink',
+    name: 'Cynk',
     atomicNumber: 30,
   },
   {
     symbol: 'Ga',
-    name: 'Gallium',
+    name: 'Gal',
     atomicNumber: 31,
   },
   {
     symbol: 'Ge',
-    name: 'Germanium',
+    name: 'German',
     atomicNumber: 32,
   },
   {
@@ -181,22 +181,22 @@ export default Object.freeze([
   },
   {
     symbol: 'Rb',
-    name: 'Rubidium',
+    name: 'Rubid',
     atomicNumber: 37,
   },
   {
     symbol: 'Sr',
-    name: 'Strontium',
+    name: 'Stront',
     atomicNumber: 38,
   },
   {
     symbol: 'Y',
-    name: 'Yttrium',
+    name: 'Itr',
     atomicNumber: 39,
   },
   {
     symbol: 'Zr',
-    name: 'Zirkonium',
+    name: 'Cyrkon',
     atomicNumber: 40,
   },
   {
@@ -206,52 +206,52 @@ export default Object.freeze([
   },
   {
     symbol: 'Mo',
-    name: 'Molybden',
+    name: 'Molibden',
     atomicNumber: 42,
   },
   {
     symbol: 'Tc',
-    name: 'Technetium',
+    name: 'Technet',
     atomicNumber: 43,
   },
   {
     symbol: 'Ru',
-    name: 'Ruthenium',
+    name: 'Ruten',
     atomicNumber: 44,
   },
   {
     symbol: 'Rh',
-    name: 'Rhodium',
+    name: 'Rod',
     atomicNumber: 45,
   },
   {
     symbol: 'Pd',
-    name: 'Palladium',
+    name: 'Pallad',
     atomicNumber: 46,
   },
   {
     symbol: 'Ag',
-    name: 'Sølv',
+    name: 'Srebro',
     atomicNumber: 47,
   },
   {
     symbol: 'Cd',
-    name: 'Kadmium',
+    name: 'Kadm',
     atomicNumber: 48,
   },
   {
     symbol: 'In',
-    name: 'Indium',
+    name: 'Ind',
     atomicNumber: 49,
   },
   {
     symbol: 'Sn',
-    name: 'Tinn',
+    name: 'Cyna',
     atomicNumber: 50,
   },
   {
     symbol: 'Sb',
-    name: 'Antimon',
+    name: 'Antymon',
     atomicNumber: 51,
   },
   {
@@ -266,17 +266,17 @@ export default Object.freeze([
   },
   {
     symbol: 'Xe',
-    name: 'Xenon',
+    name: 'Ksenon',
     atomicNumber: 54,
   },
   {
     symbol: 'Cs',
-    name: 'Cesium',
+    name: 'Cez',
     atomicNumber: 55,
   },
   {
     symbol: 'Ba',
-    name: 'Barium',
+    name: 'Bar',
     atomicNumber: 56,
   },
   {
@@ -286,12 +286,12 @@ export default Object.freeze([
   },
   {
     symbol: 'Ce',
-    name: 'Cerium',
+    name: 'Cer',
     atomicNumber: 58,
   },
   {
     symbol: 'Pr',
-    name: 'Praseodym',
+    name: 'Prazeodym',
     atomicNumber: 59,
   },
   {
@@ -301,62 +301,62 @@ export default Object.freeze([
   },
   {
     symbol: 'Pm',
-    name: 'Promethium',
+    name: 'Promet',
     atomicNumber: 61,
   },
   {
     symbol: 'Sm',
-    name: 'Samarium',
+    name: 'Samar',
     atomicNumber: 62,
   },
   {
     symbol: 'Eu',
-    name: 'Europium',
+    name: 'Europ',
     atomicNumber: 63,
   },
   {
     symbol: 'Gd',
-    name: 'Gadolinium',
+    name: 'Gadolin',
     atomicNumber: 64,
   },
   {
     symbol: 'Tb',
-    name: 'Terbium',
+    name: 'Terb',
     atomicNumber: 65,
   },
   {
     symbol: 'Dy',
-    name: 'Dysprosium',
+    name: 'Dysproz',
     atomicNumber: 66,
   },
   {
     symbol: 'Ho',
-    name: 'Holmium',
+    name: 'Holm',
     atomicNumber: 67,
   },
   {
     symbol: 'Er',
-    name: 'Erbium',
+    name: 'Erb',
     atomicNumber: 68,
   },
   {
     symbol: 'Tm',
-    name: 'Thulium',
+    name: 'Tul',
     atomicNumber: 69,
   },
   {
     symbol: 'Yb',
-    name: 'Ytterbium',
+    name: 'Iterb',
     atomicNumber: 70,
   },
   {
     symbol: 'Lu',
-    name: 'Lutetium',
+    name: 'Lutet',
     atomicNumber: 71,
   },
   {
     symbol: 'Hf',
-    name: 'Hafnium',
+    name: 'Hafn',
     atomicNumber: 72,
   },
   {
@@ -371,52 +371,52 @@ export default Object.freeze([
   },
   {
     symbol: 'Re',
-    name: 'Rhenium',
+    name: 'Ren',
     atomicNumber: 75,
   },
   {
     symbol: 'Os',
-    name: 'Osmium',
+    name: 'Osm',
     atomicNumber: 76,
   },
   {
     symbol: 'Ir',
-    name: 'Iridium',
+    name: 'Iryd',
     atomicNumber: 77,
   },
   {
     symbol: 'Pt',
-    name: 'Platina',
+    name: 'Platyna',
     atomicNumber: 78,
   },
   {
     symbol: 'Au',
-    name: 'Gull',
+    name: 'Złoto',
     atomicNumber: 79,
   },
   {
     symbol: 'Hg',
-    name: 'Kvikksølv',
+    name: 'Rtęć',
     atomicNumber: 80,
   },
   {
     symbol: 'Tl',
-    name: 'Thallium',
+    name: 'Tal',
     atomicNumber: 81,
   },
   {
     symbol: 'Pb',
-    name: 'Bly',
+    name: 'Ołów',
     atomicNumber: 82,
   },
   {
     symbol: 'Bi',
-    name: 'Vismut',
+    name: 'Bizmut',
     atomicNumber: 83,
   },
   {
     symbol: 'Po',
-    name: 'Polonium',
+    name: 'Polon',
     atomicNumber: 84,
   },
   {
@@ -431,27 +431,27 @@ export default Object.freeze([
   },
   {
     symbol: 'Fr',
-    name: 'Francium',
+    name: 'Frans',
     atomicNumber: 87,
   },
   {
     symbol: 'Ra',
-    name: 'Radium',
+    name: 'Rad',
     atomicNumber: 88,
   },
   {
     symbol: 'Ac',
-    name: 'Actinium',
+    name: 'Aktyn',
     atomicNumber: 89,
   },
   {
     symbol: 'Th',
-    name: 'Thorium',
+    name: 'Tor',
     atomicNumber: 90,
   },
   {
     symbol: 'Pa',
-    name: 'Protactinium',
+    name: 'Protaktyn',
     atomicNumber: 91,
   },
   {
@@ -461,132 +461,132 @@ export default Object.freeze([
   },
   {
     symbol: 'Np',
-    name: 'Neptunium',
+    name: 'Neptun',
     atomicNumber: 93,
   },
   {
     symbol: 'Pu',
-    name: 'Plutonium',
+    name: 'Pluton',
     atomicNumber: 94,
   },
   {
     symbol: 'Am',
-    name: 'Americium',
+    name: 'Ameryk',
     atomicNumber: 95,
   },
   {
     symbol: 'Cm',
-    name: 'Curium',
+    name: 'Kiur',
     atomicNumber: 96,
   },
   {
     symbol: 'Bk',
-    name: 'Berkelium',
+    name: 'Berkel',
     atomicNumber: 97,
   },
   {
     symbol: 'Cf',
-    name: 'Californium',
+    name: 'Kaliforn',
     atomicNumber: 98,
   },
   {
     symbol: 'Es',
-    name: 'Einsteinium',
+    name: 'Einstein',
     atomicNumber: 99,
   },
   {
     symbol: 'Fm',
-    name: 'Fermium',
+    name: 'Ferm',
     atomicNumber: 100,
   },
   {
     symbol: 'Md',
-    name: 'Mendelevium',
+    name: 'Mendelew',
     atomicNumber: 101,
   },
   {
     symbol: 'No',
-    name: 'Nobelium',
+    name: 'Nobel',
     atomicNumber: 102,
   },
   {
     symbol: 'Lr',
-    name: 'Lawrencium',
+    name: 'Lorens',
     atomicNumber: 103,
   },
   {
     symbol: 'Rf',
-    name: 'Rutherfordium',
+    name: 'Rutherford',
     atomicNumber: 104,
   },
   {
     symbol: 'Db',
-    name: 'Dubnium',
+    name: 'Dubn',
     atomicNumber: 105,
   },
   {
     symbol: 'Sg',
-    name: 'Seaborgium',
+    name: 'Seaborg',
     atomicNumber: 106,
   },
   {
     symbol: 'Bh',
-    name: 'Bohrium',
+    name: 'Bohr',
     atomicNumber: 107,
   },
   {
     symbol: 'Hs',
-    name: 'Hassium',
+    name: 'Has',
     atomicNumber: 108,
   },
   {
     symbol: 'Mt',
-    name: 'Meitnerium',
+    name: 'Meitner',
     atomicNumber: 109,
   },
   {
     symbol: 'Ds',
-    name: 'Darmstadtium',
+    name: 'Darmsztadt',
     atomicNumber: 110,
   },
   {
     symbol: 'Rg',
-    name: 'Røntgenium',
+    name: 'Roentgen',
     atomicNumber: 111,
   },
   {
     symbol: 'Cn',
-    name: 'Copernicium',
+    name: 'Kopernik',
     atomicNumber: 112,
   },
   {
     symbol: 'Nh',
-    name: 'Nihonium',
+    name: 'Nihon',
     atomicNumber: 113,
   },
   {
     symbol: 'Fl',
-    name: 'Flerovium',
+    name: 'Flerow',
     atomicNumber: 114,
   },
   {
     symbol: 'Mc',
-    name: 'Moscovium',
+    name: 'Moskow',
     atomicNumber: 115,
   },
   {
     symbol: 'Lv',
-    name: 'Livermorium',
+    name: 'Liwermor',
     atomicNumber: 116,
   },
   {
     symbol: 'Ts',
-    name: 'Tenness',
+    name: 'Tenes',
     atomicNumber: 117,
   },
   {
     symbol: 'Og',
-    name: 'Oganesson',
+    name: 'Oganeson',
     atomicNumber: 118,
   },
-]);
+];

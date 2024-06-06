@@ -39,6 +39,7 @@ module.exports = defineConfig({
     'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
 
+    'unicorn/import-style': 'off', // subjective & doesn't do anything for us
     'unicorn/no-array-callback-reference': 'off', // reduces readability
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
@@ -50,7 +51,6 @@ module.exports = defineConfig({
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/import-style': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
@@ -78,6 +78,12 @@ module.exports = defineConfig({
         prefix: ['T'],
         leadingUnderscore: 'forbid',
         trailingUnderscore: 'forbid',
+      },
+    ],
+    '@typescript-eslint/no-confusing-void-expression': [
+      'error',
+      {
+        ignoreArrowShorthand: true,
       },
     ],
     '@typescript-eslint/no-inferrable-types': [
@@ -113,10 +119,6 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
-
-    // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
-    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
-    '@typescript-eslint/no-confusing-void-expression': 'off',
 
     'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
@@ -164,12 +166,6 @@ module.exports = defineConfig({
           'error',
           {
             case: 'snakeCase',
-            // TODO @ST-DDT 2023-10-21: rename the definitions in v9
-            ignore: [
-              /chemicalElement\.ts$/,
-              /directoryPaths\.ts$/,
-              /mimeTypes\.ts$/,
-            ],
           },
         ],
         'unicorn/text-encoding-identifier-case': 'off',
@@ -191,6 +187,7 @@ module.exports = defineConfig({
         ],
 
         'vitest/expect-expect': 'off',
+        'vitest/no-alias-methods': 'error',
         'vitest/prefer-each': 'error',
         'vitest/prefer-to-have-length': 'error',
         'vitest/valid-expect': ['error', { maxArgs: 2 }],
