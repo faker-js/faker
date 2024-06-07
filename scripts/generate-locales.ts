@@ -270,7 +270,7 @@ async function updateLocaleFileHook(
     console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
 
-  return normalizeLocaleFile(filePath, definitionKey, locale);
+  return normalizeLocaleFile(filePath, locale, definitionKey);
 }
 
 /**
@@ -283,13 +283,13 @@ async function updateLocaleFileHook(
  * This function mutates the file by reading and writing to it!
  *
  * @param filePath The full file path to the file.
- * @param definitionKey The definition key of the current file (ex. 'location').
  * @param locale The locale for that file.
+ * @param definitionKey The definition key of the current file (ex. 'location').
  */
 async function normalizeLocaleFile(
   filePath: string,
-  definitionKey: string,
-  locale: string
+  locale: string,
+  definitionKey: string
 ) {
   function normalizeDataRecursive<T>(localeData: T): T {
     if (typeof localeData !== 'object' || localeData === null) {
