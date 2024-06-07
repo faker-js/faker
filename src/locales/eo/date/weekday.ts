@@ -1,12 +1,12 @@
 export default {
   wide: [
     'dimanĉo',
+    'ĵaŭdo',
     'lundo',
     'mardo',
     'merkredo',
     'sabato',
     'vendredo',
-    'ĵaŭdo',
   ],
-  abbr: ['di', 'lu', 'ma', 'me', 'sa', 've', 'ĵa'],
+  abbr: ['di', 'ĵa', 'lu', 'ma', 'me', 'sa', 've'],
 };

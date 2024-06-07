@@ -1,4 +1,4 @@
 export default {
-  wide: ['Neděle', 'Pondělí', 'Pátek', 'Sobota', 'Středa', 'Úterý', 'čtvrtek'],
-  abbr: ['Ne', 'Po', 'Pá', 'So', 'St', 'Út', 'čt'],
+  wide: ['čtvrtek', 'Neděle', 'Pátek', 'Pondělí', 'Sobota', 'Středa', 'Úterý'],
+  abbr: ['čt', 'Ne', 'Pá', 'Po', 'So', 'St', 'Út'],
 };

@@ -1,5 +1,6 @@
 export default {
   wide: [
+    'április',
     'augusztus',
     'december',
     'február',
@@ -11,9 +12,9 @@ export default {
     'november',
     'október',
     'szeptember',
-    'április',
   ],
   abbr: [
+    'ápr.',
     'aug.',
     'dec.',
     'febr.',
@@ -25,6 +26,5 @@ export default {
     'nov.',
     'okt.',
     'szept.',
-    'ápr.',
   ],
 };
