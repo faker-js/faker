@@ -36,11 +36,11 @@ exports[`finance > 42 > creditCardIssuer 1`] = `"discover"`;
 
 exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"6575-6211-0867-0982-1139"`;
 
-exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4975110867099"`;
+exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4975-1108-6709-8212"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer option mastercard 1`] = `"2696-7511-0867-0988"`;
 
-exports[`finance > 42 > creditCardNumber > with issuer option visa 1`] = `"4975110867099"`;
+exports[`finance > 42 > creditCardNumber > with issuer option visa 1`] = `"4975-1108-6709-8212"`;
 
 exports[`finance > 42 > currency 1`] = `
 {
@@ -122,13 +122,13 @@ exports[`finance > 1211 > creditCardCVV 1`] = `"982"`;
 
 exports[`finance > 1211 > creditCardIssuer 1`] = `"visa"`;
 
-exports[`finance > 1211 > creditCardNumber > noArgs 1`] = `"4296-6736-8768-4885"`;
+exports[`finance > 1211 > creditCardNumber > noArgs 1`] = `"4296673687687"`;
 
-exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4829-6673-6876-8484"`;
+exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4829667368763"`;
 
 exports[`finance > 1211 > creditCardNumber > with issuer option mastercard 1`] = `"5529-6673-6876-8484"`;
 
-exports[`finance > 1211 > creditCardNumber > with issuer option visa 1`] = `"4829-6673-6876-8484"`;
+exports[`finance > 1211 > creditCardNumber > with issuer option visa 1`] = `"4829667368763"`;
 
 exports[`finance > 1211 > currency 1`] = `
 {
@@ -212,11 +212,11 @@ exports[`finance > 1337 > creditCardIssuer 1`] = `"diners_club"`;
 
 exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"3014-352971-3614"`;
 
-exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4124352971364"`;
+exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4124-3529-7136-1942"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer option mastercard 1`] = `"2300-2435-2971-3611"`;
 
-exports[`finance > 1337 > creditCardNumber > with issuer option visa 1`] = `"4124352971364"`;
+exports[`finance > 1337 > creditCardNumber > with issuer option visa 1`] = `"4124-3529-7136-1942"`;
 
 exports[`finance > 1337 > currency 1`] = `
 {
