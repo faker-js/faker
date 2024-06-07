@@ -297,20 +297,10 @@ async function normalizeLocaleFile(
       return localeData;
     }
 
-    let collator = null;
-    try {
-      // eslint-disable-next-line no-restricted-globals
-      collator = new Intl.Collator(locale.replaceAll('_', '-'));
-    } catch {
-      if (locale === 'base') {
-        // eslint-disable-next-line no-restricted-globals
-        collator = new Intl.Collator('en');
-      } else {
-        throw new Error(
-          `Failed to create collator for locale ${locale}. Using default collator.`
-        );
-      }
-    }
+    // eslint-disable-next-line no-restricted-globals
+    const collator = new Intl.Collator(
+      locale === 'base' ? 'en' : locale.replaceAll('_', '-')
+    );
 
     if (Array.isArray(localeData)) {
       return (
