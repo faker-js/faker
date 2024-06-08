@@ -45,6 +45,7 @@ module.exports = defineConfig({
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
     'unicorn/number-literal-case': 'off', // incompatible with prettier
+    'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
     'unicorn/prefer-ternary': 'off', // ternaries aren't always better
 
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
@@ -52,7 +53,6 @@ module.exports = defineConfig({
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
-    'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
