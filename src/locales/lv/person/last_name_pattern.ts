@@ -1,8 +1,8 @@
 export default {
   female: [
-    { value: '{{person.female_last_name}}', weight: 8 },
+    { value: '{{person.last_name.female}}', weight: 8 },
     {
-      value: '{{person.female_last_name}}-{{person.female_last_name}}',
+      value: '{{person.last_name.female}}-{{person.last_name.female}}',
       weight: 2,
     },
   ],

@@ -4,7 +4,7 @@ export default [
   '{{company.prefix}} {{location.city_name}}{{company.suffix}}',
   '{{company.prefix}} {{location.city_name}}{{company.suffix}}{{company.suffix}}',
   '{{company.prefix}} {{location.city_name}}{{company.suffix}}{{company.suffix}}{{company.suffix}}',
-  '{{company.prefix}} {{person.female_first_name}}',
-  '{{company.prefix}} {{person.male_first_name}}',
+  '{{company.prefix}} {{person.first_name.female}}',
+  '{{company.prefix}} {{person.first_name.male}}',
   '{{company.prefix}} {{person.male_last_name}}',
 ];
