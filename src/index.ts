@@ -18,6 +18,7 @@ export type {
   LoremDefinition,
   MetadataDefinition,
   MusicDefinition,
+  NameEntry,
   PersonDefinition,
   PhoneNumberDefinition,
   ScienceDefinition,
