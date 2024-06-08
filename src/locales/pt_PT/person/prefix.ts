@@ -1,5 +1,5 @@
-import { mergeArrays } from './../../../internal/merge';
-import female_prefix from './female_prefix';
-import male_prefix from './male_prefix';
-
-export default mergeArrays(female_prefix, male_prefix);
+export default {
+  generic: ['Dr.', 'Dra.', 'Eng.ª', 'Eng.º', 'Prof.', 'Prof.ª', 'Sr.', 'Sra.'],
+  female: ['Sra.', 'Dra.', 'Prof.ª', 'Eng.ª'],
+  male: ['Sr.', 'Dr.', 'Prof.', 'Eng.º'],
+};
