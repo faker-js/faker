@@ -7,7 +7,7 @@ export default {
     },
   ],
   male: [
-    { value: '{{person.male_last_name}}', weight: 8 },
-    { value: '{{person.male_last_name}}-{{person.male_last_name}}', weight: 2 },
+    { value: '{{person.last_name.male}}', weight: 8 },
+    { value: '{{person.last_name.male}}-{{person.last_name.male}}', weight: 2 },
   ],
 };
