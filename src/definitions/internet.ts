@@ -1,8 +1,4 @@
-import type {
-  EmojiType,
-  HTTPStatusCodeType,
-  JwtAlgorithmType,
-} from '../modules/internet';
+import type { EmojiType, HTTPStatusCodeType } from '../modules/internet';
 import type { LocaleEntry } from './definitions';
 
 /**
@@ -34,5 +30,5 @@ export type InternetDefinition = LocaleEntry<{
    */
   http_status_code: Record<HTTPStatusCodeType, number[]>;
 
-  jwt: Record<JwtAlgorithmType, string[]>;
+  jwt: Record<'alg', string[]>;
 }>;

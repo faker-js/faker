@@ -101,8 +101,6 @@ const ipv4Networks: Record<IPv4Network, string> = {
   [IPv4Network.Multicast]: '224.0.0.0/4',
 };
 
-export type JwtAlgorithmType = 'alg';
-
 /**
  * Module to generate internet related entries.
  *
