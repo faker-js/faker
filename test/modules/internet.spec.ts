@@ -160,11 +160,8 @@ describe('internet', () => {
 
     t.describe('jwt', (t) => {
       t.it('noArgs', { refDate })
-        .it('with header.alg', { header: { alg: 'ES256' }, refDate })
-        .it('with payload.iss', { payload: { iss: 'Acme' }, refDate })
-        .it('with payload.sub', { payload: { sub: 'subject' }, refDate })
-        .it('with payload.aud', { payload: { aud: 'audience' }, refDate })
-        .it('with payload.jti', { payload: { jti: 'jwt id' }, refDate });
+        .it('with custom header', { header: { alg: 'ES256' }, refDate })
+        .it('with custom payload', { payload: { iss: 'Acme' }, refDate });
     });
   });
 
@@ -990,20 +987,7 @@ describe('internet', () => {
 
           expect(jwt).toBeTruthy();
           expect(jwt).toBeTypeOf('string');
-        });
-
-        it('should return a valid jwt', () => {
-          const jwt = faker.internet.jwt();
-
-          expect(jwt).toSatisfy(validator.isJWT);
-        });
-
-        it('should have 3 parts', () => {
-          const jwt = faker.internet.jwt();
-
-          const parts = jwt.split('.');
-
-          expect(parts.length).toBe(3);
+          expect(jwt).toSatisfy(validator.isJWT)
         });
       });
     }

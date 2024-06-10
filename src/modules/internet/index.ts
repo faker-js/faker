@@ -1023,13 +1023,15 @@ export class InternetModule extends ModuleBase {
   }
 
   /**
-   * Generates a random JWT Algorithm
+   * Generates a random (JSON Web Token) Algorithm.
+   *
+   * @see faker.internet.jwt(): For generating random JWT (JSON Web Token).
    *
    * @example
    * faker.internet.jwtAlgorithm() // 'HS256'
    * faker.internet.jwtAlgorithm() // 'RS512'
    *
-   * @since 8.0.0
+   * @since 9.0.0
    */
   jwtAlgorithm(): string {
     return this.faker.helpers.arrayElement(
@@ -1040,10 +1042,10 @@ export class InternetModule extends ModuleBase {
   /**
    * Generates a random JWT (JSON Web Token).
    *
-   * @param options Options object.
-   * @param options.header Header part of the token.
+   * @param options The optional options object.
+   * @param options.header The Header to use for the token. Defaults to a random object with the following fields: ...
    * @param options.header.alg Algorithm header parameter.
-   * @param options.payload Payload part of the token.
+   * @param options.payload The Payload to use for the token. Defaults to a random object with the following fields: ...
    * @param options.payload.iss Issuer claim.
    * @param options.payload.sub Subject claim.
    * @param options.payload.aud Audience claim.
@@ -1051,21 +1053,20 @@ export class InternetModule extends ModuleBase {
    * @param options.refDate The date to use as reference point for the newly generated date.
    *
    * @see https://datatracker.ietf.org/doc/html/rfc7519
+   * @see faker.internet.jwtAlgorithm(): For generating random JWT (JSON Web Token) Algorithm
    *
    * @example
    * faker.internet.jwt()
    * faker.internet.jwt({ header: { alg: 'HS256' }})
    * faker.internet.jwt({ payload: { iss: 'Acme' }})
-   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject' }})
-   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience' }})
-   * faker.internet.jwt({ payload: { iss: 'Acme', sub: 'Subject', aud: 'Audience', jti: 'JWT ID' }})
+   * faker.internet.jwt({ refDate: '2020-01-01T00:00:00.000Z' })
    *
-   * @since 8.0.0
+   * @since 9.0.0
    */
   jwt(
     options: {
       /**
-       * Header part of the token
+       * The Header to use for the token. If present, it will replace any default values.
        */
       header?: {
         /**
@@ -1076,7 +1077,7 @@ export class InternetModule extends ModuleBase {
         alg?: string;
       };
       /**
-       * Payload part of the token.
+       * The Payload to use for the token. If present, it will replace any default values.
        */
       payload?: {
         /**
@@ -1119,7 +1120,7 @@ export class InternetModule extends ModuleBase {
     const {
       header = {
         alg: this.jwtAlgorithm(),
-        type: 'JWT',
+        typ: 'JWT',
       },
       payload = {
         iat: Math.round(iatDefault.valueOf() / 1000),
