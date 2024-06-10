@@ -484,7 +484,7 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 The following locale definitions have been adjusted to align with Faker's locale definition naming standard:
 
-| Old                                         | Replacement                                  |
+| old                                         | replacement                                  |
 | ------------------------------------------- | -------------------------------------------- |
 | `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
 | `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_path`    |
