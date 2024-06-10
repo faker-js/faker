@@ -987,8 +987,28 @@ describe('internet', () => {
 
           expect(jwt).toBeTruthy();
           expect(jwt).toBeTypeOf('string');
-          expect(jwt).toSatisfy(validator.isJWT)
+          expect(jwt).toSatisfy(validator.isJWT);
         });
+
+        it('should return the header and payload values from the token', () => {
+          const header = {
+            alg: faker.internet.jwtAlgorithm()
+          }
+
+          const payload = {
+            iss: faker.string.alphanumeric()
+          }
+
+          const actual = faker.internet.jwt({ header, payload });
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toSatisfy(validator.isJWT);
+
+          const parts = actual.split('.');
+
+          expect(JSON.parse(Buffer.from(parts[0], 'base64url').toString('ascii'))).toMatchObject(header);
+          expect(JSON.parse(Buffer.from(parts[1], 'base64url').toString('ascii'))).toMatchObject(payload);
+        })
       });
     }
   );
