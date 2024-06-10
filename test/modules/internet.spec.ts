@@ -992,12 +992,12 @@ describe('internet', () => {
 
         it('should return the header and payload values from the token', () => {
           const header = {
-            kid: faker.string.alphanumeric()
-          }
+            kid: faker.string.alphanumeric(),
+          };
 
           const payload = {
-            nonce: faker.string.alphanumeric()
-          }
+            nonce: faker.string.alphanumeric(),
+          };
 
           const actual = faker.internet.jwt({ header, payload });
 
@@ -1006,9 +1006,13 @@ describe('internet', () => {
 
           const parts = actual.split('.');
 
-          expect(JSON.parse(Buffer.from(parts[0], 'base64url').toString('ascii'))).toMatchObject(header);
-          expect(JSON.parse(Buffer.from(parts[1], 'base64url').toString('ascii'))).toMatchObject(payload);
-        })
+          expect(
+            JSON.parse(Buffer.from(parts[0], 'base64url').toString('ascii'))
+          ).toMatchObject(header);
+          expect(
+            JSON.parse(Buffer.from(parts[1], 'base64url').toString('ascii'))
+          ).toMatchObject(payload);
+        });
       });
     }
   );
