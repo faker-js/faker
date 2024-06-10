@@ -992,11 +992,11 @@ describe('internet', () => {
 
         it('should return the header and payload values from the token', () => {
           const header = {
-            alg: faker.internet.jwtAlgorithm()
+            kid: faker.string.alphanumeric()
           }
 
           const payload = {
-            iss: faker.string.alphanumeric()
+            nonce: faker.string.alphanumeric()
           }
 
           const actual = faker.internet.jwt({ header, payload });
