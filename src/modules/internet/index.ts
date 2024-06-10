@@ -1023,7 +1023,7 @@ export class InternetModule extends ModuleBase {
   }
 
   /**
-   * Generates a random (JSON Web Token) Algorithm.
+   * Generates a random JWT (JSON Web Token) Algorithm.
    *
    * @see faker.internet.jwt(): For generating random JWT (JSON Web Token).
    *
@@ -1043,17 +1043,12 @@ export class InternetModule extends ModuleBase {
    * Generates a random JWT (JSON Web Token).
    *
    * @param options The optional options object.
-   * @param options.header The Header to use for the token. Defaults to a random object with the following fields: ...
-   * @param options.header.alg Algorithm header parameter.
-   * @param options.payload The Payload to use for the token. Defaults to a random object with the following fields: ...
-   * @param options.payload.iss Issuer claim.
-   * @param options.payload.sub Subject claim.
-   * @param options.payload.aud Audience claim.
-   * @param options.payload.jti JWT ID claim.
+   * @param options.header The Header to use for the token. Defaults to a random object with the following fields: `alg` and `typ`.
+   * @param options.payload The Payload to use for the token. Defaults to a random object with the following fields: `iat`, `exp`, `nbf`, `iss`, `sub`, `aud`, and `jti`.
    * @param options.refDate The date to use as reference point for the newly generated date.
    *
    * @see https://datatracker.ietf.org/doc/html/rfc7519
-   * @see faker.internet.jwtAlgorithm(): For generating random JWT (JSON Web Token) Algorithm
+   * @see faker.internet.jwtAlgorithm(): For generating random JWT (JSON Web Token) Algorithm.
    *
    * @example
    * faker.internet.jwt()
@@ -1067,44 +1062,27 @@ export class InternetModule extends ModuleBase {
     options: {
       /**
        * The Header to use for the token. If present, it will replace any default values.
+       * @default
+       * {
+       *    alg = faker.internet.jwtAlgorithm();
+       *    typ = 'JWT'
+       * };
        */
-      header?: {
-        /**
-         * Algorithms to use.
-         *
-         * @default faker.internet.jwtAlgorithm()
-         */
-        alg?: string;
-      };
+      header?: Record<string, unknown>;
       /**
        * The Payload to use for the token. If present, it will replace any default values.
+       * @default
+       * {
+       *    iat = faker.date.recent();
+       *    exp = faker.date.soon();
+       *    nbf = faker.date.anytime();
+       *    iss = faker.company.name();
+       *    sub = faker.string.uuid();
+       *    aud = faker.string.uuid();
+       *    jti = faker.string.uuid();
+       * };
        */
-      payload?: {
-        /**
-         * Issuer claim.
-         *
-         * @default faker.company.name()
-         */
-        iss?: string;
-        /**
-         * Subject claim
-         *
-         * @default faker.string.uuid()
-         */
-        sub?: string;
-        /**
-         * Audience claim
-         *
-         * @default faker.string.uuid()
-         */
-        aud?: string;
-        /**
-         * JWT ID claim
-         *
-         * @default faker.string.uuid()
-         */
-        jti?: string;
-      };
+      payload?: Record<string, unknown>;
       /**
        * The date to use as reference point for the newly generated date.
        *
