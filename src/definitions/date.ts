@@ -15,7 +15,7 @@ export type DateDefinition = LocaleEntry<{
   weekday: DateEntryDefinition;
 
   /**
-   * The names of the IANA timezones. Not tied to the current locale.
+   * The names of the IANA time zones. Not tied to the current locale.
    *
    * Since this is the same for all locales, it is only defined in the `base` locale.
    *

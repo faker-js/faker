@@ -598,6 +598,8 @@ export class LocationModule extends ModuleBase {
   /**
    * Returns a random IANA time zone relevant to this locale.
    *
+   * The returned time zone is tied to the current locale.
+   *
    * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
    * @see faker.date.timeZone(): For generating a random time zone from all available time zones.
    *

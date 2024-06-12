@@ -689,7 +689,7 @@ export class DateModule extends SimpleDateModule {
   /**
    * Returns a random IANA time zone name.
    *
-   * This timezone is not tied to the current locale.
+   * The returned time zone is not tied to the current locale.
    *
    * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
    * @see faker.location.timeZone(): For generating a timezone based on the current locale.
