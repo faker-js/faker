@@ -4,7 +4,7 @@
 import { computed, ref } from 'vue';
 import { slugify } from '../.vitepress/shared/utils/slugify';
 import apiSearchIndex from './api-search-index.json';
-import { APIGroup } from './api-types';
+import type { APIGroup } from './api-types';
 
 const query = ref('');
 const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ');
