@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
+import { deprecated } from '../../internal/deprecated';
 
 const REGEX_DOT_OR_BRACKET = /\.|\(/;
 
@@ -133,7 +134,21 @@ function evalProcessFunction(
   return [
     index + (nextChar === '.' ? 2 : 1), // one for the closing bracket, one for the dot
     entrypoints.map((entrypoint): unknown =>
-      typeof entrypoint === 'function' ? entrypoint(...params) : undefined
+      // TODO @ST-DDT 2023-12-11: Replace in v10
+      // typeof entrypoint === 'function' ? entrypoint(...params) : undefined
+      {
+        if (typeof entrypoint === 'function') {
+          return entrypoint(...params);
+        }
+
+        deprecated({
+          deprecated: 'Calling functions on non-functions',
+          proposed: 'parentheses only on functions',
+          since: '9.0',
+          until: '10.0',
+        });
+        return entrypoint;
+      }
     ),
   ];
 }

@@ -657,19 +657,3 @@ If you wanted more control over the number, it was previously necessary to pass 
 The styles are locale-aware, so for example if you use pt_PT, phone numbers suitable for Portugal would be generated.
 
 2. If none of the `style`s match your needs, you can use `faker.string.numeric()` or `faker.helpers.fromRegExp()` to create a custom pattern.
-
-### Fake now Fails for Invoking Functions on Non-Functions
-
-Previously, function calls on non-functions were silently ignored.
-
-```ts
-faker.helpers.fake('{{person.first_name()}}'); // 'Jenny'
-```
-
-Now, it fails with an exception:
-
-```txt
-FakerError: Cannot resolve expression 'person.first_name()'
-```
-
-This makes the fake method more consistent with standard JavaScript behavior.
