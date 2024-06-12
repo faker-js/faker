@@ -59,6 +59,8 @@ describe('date', () => {
         });
     });
 
+    t.it('timeZone');
+
     t.describe('between', (t) => {
       t.it('with string dates', {
         from: '2021-02-21T17:09:15.711Z',
@@ -651,6 +653,13 @@ describe('date', () => {
               `Max age 25 should be greater than or equal to min age 31.`
             )
           );
+        });
+      });
+
+      describe('timeZone', () => {
+        it('should return a random timezone', () => {
+          const actual = faker.date.timeZone();
+          expect(faker.definitions.date.time_zone).toContain(actual);
         });
       });
     }

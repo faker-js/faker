@@ -596,7 +596,10 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
-   * Returns a random time zone.
+   * Returns a random IANA time zone relevant to this locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.date.timeZone(): For generating a random time zone from all available time zones.
    *
    * @example
    * faker.location.timeZone() // 'Pacific/Guam'
