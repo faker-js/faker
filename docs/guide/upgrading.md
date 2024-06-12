@@ -553,6 +553,15 @@ Now, this throws an error raising awareness of that bad value.
 
 This affects the `refDate` parameter of the `anytime()`, `birthdate()`, `past()`, `future()`, `recent()` and `soon()`, methods as well as the `from` and `to` parameters of `between()` and `betweens()`.
 
+### Separate Timezone Methods
+
+We split the `timeZone` method into two.
+
+- `faker.date.timeZone()` for a random global time zone.
+- `faker.location.timeZone()` for a random locale specific time zone.
+
+We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please create a new issue.
+
 ### Prices Now Return More Price-Like Values
 
 The `faker.commerce.price()` method now produces values that also return fractional values.
