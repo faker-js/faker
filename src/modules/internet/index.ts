@@ -3,6 +3,7 @@ import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
+import { toBase64Url } from './util';
 
 export type EmojiType =
   | 'smiley'
@@ -1113,12 +1114,8 @@ export class InternetModule extends ModuleBase {
       },
     } = options;
 
-    const encodedHeader = Buffer.from(JSON.stringify(header)).toString(
-      'base64url'
-    );
-    const encodedPayload = Buffer.from(JSON.stringify(payload)).toString(
-      'base64url'
-    );
+    const encodedHeader = toBase64Url(JSON.stringify(header));
+    const encodedPayload = toBase64Url(JSON.stringify(payload));
     const signature = this.faker.string.alphanumeric(64);
 
     return `${encodedHeader}.${encodedPayload}.${signature}`;
