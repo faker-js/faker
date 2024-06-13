@@ -1,6 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
-import { deprecated } from '../../internal/deprecated';
 
 const REGEX_DOT_OR_BRACKET = /\.|\(/;
 
@@ -82,7 +81,7 @@ export function fakeEval(
   do {
     let index: number;
     if (remaining.startsWith('(')) {
-      [index, current] = evalProcessFunction(remaining, current);
+      [index, current] = evalProcessFunction(remaining, current, expression);
     } else {
       [index, current] = evalProcessExpression(remaining, current);
     }
@@ -110,10 +109,12 @@ export function fakeEval(
  *
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to attempt the call on.
+ * @param expression The full expression to use in errors.
  */
 function evalProcessFunction(
   input: string,
-  entrypoints: ReadonlyArray<unknown>
+  entrypoints: ReadonlyArray<unknown>,
+  expression: string
 ): [continueIndex: number, mapped: unknown[]] {
   const [index, params] = findParams(input);
   const nextChar = input[index + 1];
@@ -141,12 +142,13 @@ function evalProcessFunction(
           return entrypoint(...params);
         }
 
-        deprecated({
-          deprecated: 'Calling functions on non-functions',
-          proposed: 'parentheses only on functions',
-          since: '9.0',
-          until: '10.0',
-        });
+        console.warn(
+          `[@faker-js/faker]: Invoking expressions which are not functions is deprecated since v9.0 and will be removed in v10.0.
+Please remove the parenthesis or replace the expression with an actual function.
+${expression}
+${' '.repeat(expression.length - input.length)}^`
+        );
+
         return entrypoint;
       }
     ),
