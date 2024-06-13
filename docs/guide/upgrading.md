@@ -555,10 +555,10 @@ This affects the `refDate` parameter of the `anytime()`, `birthdate()`, `past()`
 
 ### Separate Timezone Methods
 
-We split the `timeZone` method into two.
+The `timeZone` functionality has been divided to enhance specificity:
 
-- `faker.date.timeZone()` for a random global time zone.
-- `faker.location.timeZone()` for a random locale specific time zone.
+- Use `faker.date.timeZone()` to generate a random global time zone.
+- Use `faker.location.timeZone()` to obtain time zone specific to the current locale.
 
 We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please create a new issue.
 
