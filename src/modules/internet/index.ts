@@ -1033,7 +1033,7 @@ export class InternetModule extends ModuleBase {
    */
   jwtAlgorithm(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.jwt.alg
+      this.faker.definitions.internet.jwt_algorithm
     );
   }
 
@@ -1060,6 +1060,7 @@ export class InternetModule extends ModuleBase {
     options: {
       /**
        * The Header to use for the token. If present, it will replace any default values.
+       *
        * @default
        * {
        *    alg = faker.internet.jwtAlgorithm();
@@ -1069,6 +1070,7 @@ export class InternetModule extends ModuleBase {
       header?: Record<string, unknown>;
       /**
        * The Payload to use for the token. If present, it will replace any default values.
+       *
        * @default
        * {
        *    iat = faker.date.recent();
