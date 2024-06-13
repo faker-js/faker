@@ -79,7 +79,7 @@ export class LoremModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.lorem.words,
+        wordList: this.faker.definitions.lorem.word,
       })
     );
   }
