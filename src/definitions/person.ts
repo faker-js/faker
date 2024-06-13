@@ -1,10 +1,16 @@
 import type { LocaleEntry } from './definitions';
 
-export type NameEntry<T extends string | { value: string; weight: number }> = {
-  female?: T[];
-  generic?: T[];
-  male?: T[];
-};
+export type NameEntry<T extends string | { value: string; weight: number }> =
+  | {
+      male: T[];
+      female: T[];
+      generic?: T[];
+    }
+  | {
+      male?: never;
+      female?: never;
+      generic: T[];
+    };
 
 /**
  * The possible definitions related to people's names.

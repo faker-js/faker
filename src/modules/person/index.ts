@@ -15,10 +15,7 @@ export type SexType = `${Sex}`;
  * @param faker Faker instance.
  * @param elementSelectorFn The method used to select the actual element.
  * @param sex Sex.
- * @param param2 Definitions.
- * @param param2.generic Non-sex definitions.
- * @param param2.female Female definitions.
- * @param param2.male Male definitions.
+ * @param nameEntry Definitions.
  * @param type Type of the definition.
  *
  * @returns Definition based on given sex.
@@ -27,9 +24,10 @@ function selectDefinition<T extends string | { value: string; weight: number }>(
   faker: Faker,
   elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
-  { generic, female, male }: NameEntry<T>,
+  nameEntry: NameEntry<T> | null | undefined,
   type: string
 ): string {
+  const { generic, female, male } = nameEntry ?? {};
   let values: T[] | undefined | null;
 
   switch (sex) {
@@ -55,10 +53,9 @@ function selectDefinition<T extends string | { value: string; weight: number }>(
     } else {
       values = generic;
     }
-
-    assertLocaleData(values, `person.{${type}, female_${type}, male_${type}}`);
   }
 
+  assertLocaleData(values, `person.${type}`);
   return elementSelectorFn(values);
 }
 
@@ -100,7 +97,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.first_name ?? {},
+      this.faker.rawDefinitions.person?.first_name,
       'first_name'
     );
   }
@@ -119,26 +116,12 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    const {
-      generic: last_name_pattern,
-      male: male_last_name_pattern,
-      female: female_last_name_pattern,
-    } = this.faker.rawDefinitions.person?.last_name_pattern ?? {};
-
-    if (
-      last_name_pattern != null ||
-      male_last_name_pattern != null ||
-      female_last_name_pattern != null
-    ) {
+    if (this.faker.rawDefinitions.person?.last_name_pattern != null) {
       const pattern = selectDefinition(
         this.faker,
         this.faker.helpers.weightedArrayElement,
         sex,
-        {
-          generic: last_name_pattern,
-          male: male_last_name_pattern,
-          female: female_last_name_pattern,
-        },
+        this.faker.rawDefinitions.person.last_name_pattern,
         'last_name_pattern'
       );
       return this.faker.helpers.fake(pattern);
@@ -148,7 +131,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.last_name ?? {},
+      this.faker.rawDefinitions.person?.last_name,
       'last_name'
     );
   }
@@ -171,7 +154,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.middle_name ?? {},
+      this.faker.rawDefinitions.person?.middle_name,
       'middle_name'
     );
   }
@@ -315,7 +298,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.prefix ?? {},
+      this.faker.rawDefinitions.person?.prefix,
       'prefix'
     );
   }
