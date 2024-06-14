@@ -144,7 +144,7 @@ function evalProcessFunction(
 
         console.warn(
           `[@faker-js/faker]: Invoking expressions which are not functions is deprecated since v9.0 and will be removed in v10.0.
-Please remove the parenthesis or replace the expression with an actual function.
+Please remove the parentheses or replace the expression with an actual function.
 ${expression}
 ${' '.repeat(expression.length - input.length)}^`
         );
