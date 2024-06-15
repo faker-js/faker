@@ -1,1 +1,1 @@
-export default ['Miękka okładka', 'Twarda okładka', 'Ebook', 'Audiobook'];
+export default ['Audiobook', 'Ebook', 'Miękka okładka', 'Twarda okładka'];

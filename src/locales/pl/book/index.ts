@@ -10,7 +10,7 @@ import publisher from './publisher';
 import series from './series';
 import title from './title';
 
-const music: BookDefinition = {
+const book: BookDefinition = {
   author,
   format,
   genre,
@@ -19,4 +19,4 @@ const music: BookDefinition = {
   title,
 };
 
-export default music;
+export default book;

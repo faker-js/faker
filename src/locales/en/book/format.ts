@@ -1,1 +1,1 @@
-export default ['Paperback', 'Hardcover', 'Ebook', 'Audiobook'];
+export default ['Audiobook', 'Ebook', 'Hardcover', 'Paperback'];
