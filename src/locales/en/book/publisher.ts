@@ -45,7 +45,6 @@ export default [
   'Boydell & Brewer',
   'Breslov Research Institute',
   'Brill',
-  'Brill Publishers',
   'Brimstone Press',
   'Broadview Press',
   'Burns & Oates',

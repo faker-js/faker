@@ -6,7 +6,7 @@ exports[`book > 42 > format 1`] = `"Ebook"`;
 
 exports[`book > 42 > genre 1`] = `"Folklore"`;
 
-exports[`book > 42 > publisher 1`] = `"Firebrand Books"`;
+exports[`book > 42 > publisher 1`] = `"Flame Tree Publishing"`;
 
 exports[`book > 42 > series 1`] = `"Percy Jackson"`;
 
@@ -30,7 +30,7 @@ exports[`book > 1337 > format 1`] = `"Ebook"`;
 
 exports[`book > 1337 > genre 1`] = `"Fanfiction"`;
 
-exports[`book > 1337 > publisher 1`] = `"Cisco Press"`;
+exports[`book > 1337 > publisher 1`] = `"City Lights Publishers"`;
 
 exports[`book > 1337 > series 1`] = `"Harry Potter"`;
 
