@@ -34,7 +34,7 @@ export class BookModule extends ModuleBase {
    *
    * @since 9.1.0
    */
-  album(): string {
+  author(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.book.author);
   }
 

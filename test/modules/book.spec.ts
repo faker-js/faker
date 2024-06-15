@@ -5,51 +5,71 @@ import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-describe('music', () => {
-  seededTests(faker, 'music', (t) => {
-    t.itEach('album', 'artist', 'genre', 'songName');
+describe('book', () => {
+  seededTests(faker, 'book', (t) => {
+    t.itEach('author', 'format', 'genre', 'publisher', 'series', 'title');
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
-      describe('album()', () => {
-        it('should return an album name', () => {
-          const album = faker.music.album();
+      describe('author()', () => {
+        it('should return an author name', () => {
+          const author = faker.book.author();
 
-          expect(album).toBeTruthy();
-          expect(album).toBeTypeOf('string');
-          expect(faker.definitions.music.album).toContain(album);
+          expect(author).toBeTruthy();
+          expect(author).toBeTypeOf('string');
+          expect(faker.definitions.book.author).toContain(author);
         });
       });
 
-      describe('artist()', () => {
-        it('should return an artist', () => {
-          const artist = faker.music.artist();
+      describe('format()', () => {
+        it('should return a book format', () => {
+          const format = faker.book.format();
 
-          expect(artist).toBeTruthy();
-          expect(artist).toBeTypeOf('string');
-          expect(faker.definitions.music.artist).toContain(artist);
+          expect(format).toBeTruthy();
+          expect(format).toBeTypeOf('string');
+          expect(faker.definitions.book.format).toContain(format);
         });
       });
 
       describe('genre()', () => {
         it('should return a genre', () => {
-          const genre = faker.music.genre();
+          const genre = faker.book.genre();
 
           expect(genre).toBeTruthy();
           expect(genre).toBeTypeOf('string');
-          expect(faker.definitions.music.genre).toContain(genre);
+          expect(faker.definitions.book.genre).toContain(genre);
         });
       });
 
-      describe('songName()', () => {
-        it('returns a random song name', () => {
-          const songName = faker.music.songName();
+      describe('publisher()', () => {
+        it('should return a publisher', () => {
+          const publisher = faker.book.publisher();
 
-          expect(songName).toBeTruthy();
-          expect(songName).toBeTypeOf('string');
-          expect(faker.definitions.music.song_name).toContain(songName);
+          expect(publisher).toBeTruthy();
+          expect(publisher).toBeTypeOf('string');
+          expect(faker.definitions.book.publisher).toContain(publisher);
+        });
+      });
+
+      describe('series()', () => {
+        it('should return a series', () => {
+          const series = faker.book.series();
+
+          expect(series).toBeTruthy();
+          expect(series).toBeTypeOf('string');
+          expect(faker.definitions.book.series).toContain(series);
+        });
+      });
+
+      describe('title()', () => {
+        it('should return a title', () => {
+          const title = faker.book.title();
+
+          expect(title).toBeTruthy();
+          expect(title).toBeTypeOf('string');
+          expect(faker.definitions.book.title).toContain(title);
         });
       });
     }
