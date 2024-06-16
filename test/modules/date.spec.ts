@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, faker, fakerAZ } from '../../src';
+import { FakerError, allLocales, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -664,6 +664,17 @@ describe('date', () => {
       });
     }
   );
+
+  describe('definitions', () => {
+    describe('timeZone', () => {
+      // date.timezone data should only be available in the base locale
+      it.each(
+        Object.entries(allLocales).filter(([locale]) => locale !== 'base')
+      )('should not have any timezones in %s', (_, data) => {
+        expect(data.date?.time_zone).toBeUndefined();
+      });
+    });
+  });
 
   describe('refDateSource', () => {
     afterEach(() => {
