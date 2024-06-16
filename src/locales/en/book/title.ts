@@ -45,7 +45,6 @@ export default [
   'Madame Bovary',
   'Meditations',
   'Metamorphosis',
-  'Middemarch',
   'Middlemarch',
   'Moby Dick',
   'Mrs. Dalloway',
