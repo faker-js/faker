@@ -2,7 +2,7 @@ export default [
   'Adventure',
   'Biography',
   'Business',
-  'Children Literature',
+  "Children's Literature",
   'Classic',
   'Comedy',
   'Comic',
