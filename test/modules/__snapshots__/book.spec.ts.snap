@@ -1,37 +1,37 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`book > 42 > author 1`] = `"Goethe, Johann Wolfgang von"`;
+exports[`book > 42 > author 1`] = `"Gustave Doré"`;
 
 exports[`book > 42 > format 1`] = `"Ebook"`;
 
-exports[`book > 42 > genre 1`] = `"Folklore"`;
+exports[`book > 42 > genre 1`] = `"Fantasy"`;
 
 exports[`book > 42 > publisher 1`] = `"Flame Tree Publishing"`;
 
-exports[`book > 42 > series 1`] = `"Percy Jackson"`;
+exports[`book > 42 > series 1`] = `"Sherlock Holmes"`;
 
-exports[`book > 42 > title 1`] = `"Middlemarch"`;
+exports[`book > 42 > title 1`] = `"Les Misérables"`;
 
-exports[`book > 1211 > author 1`] = `"Von Arnim, Elizabeth"`;
+exports[`book > 1211 > author 1`] = `"Toni Morrison"`;
 
 exports[`book > 1211 > format 1`] = `"Paperback"`;
 
-exports[`book > 1211 > genre 1`] = `"Tall tale"`;
+exports[`book > 1211 > genre 1`] = `"Western"`;
 
 exports[`book > 1211 > publisher 1`] = `"University of Akron Press"`;
 
-exports[`book > 1211 > series 1`] = `"The Maze Runner"`;
+exports[`book > 1211 > series 1`] = `"Thursday Next Series"`;
 
-exports[`book > 1211 > title 1`] = `"Travels in Kordofan"`;
+exports[`book > 1211 > title 1`] = `"The Wonderful Wizard of Oz"`;
 
-exports[`book > 1337 > author 1`] = `"Dostoyevsky, Fyodor"`;
+exports[`book > 1337 > author 1`] = `"Edgar Rice Burroughs"`;
 
 exports[`book > 1337 > format 1`] = `"Ebook"`;
 
-exports[`book > 1337 > genre 1`] = `"Fanfiction"`;
+exports[`book > 1337 > genre 1`] = `"Comic"`;
 
 exports[`book > 1337 > publisher 1`] = `"City Lights Publishers"`;
 
-exports[`book > 1337 > series 1`] = `"Harry Potter"`;
+exports[`book > 1337 > series 1`] = `"Jane Austen Murder Mysteries"`;
 
-exports[`book > 1337 > title 1`] = `"Great Expectations"`;
+exports[`book > 1337 > title 1`] = `"For Whom the Bell Tolls"`;

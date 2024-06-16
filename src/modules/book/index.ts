@@ -5,14 +5,14 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * ### Overview
  *
+ * - For a random title, use [`title()`](https://fakerjs.dev/api/book.html#title).
  * - For a random existing author name, use [`author()`](https://fakerjs.dev/api/book.html#author).
  * - For a random non-existing author name, use [`faker.person.fullName()`](https://fakerjs.dev/api/person.html#fullname).
- * - For a random book format, use [`format()`](https://fakerjs.dev/api/book.html#format).
  * - For a random genre, use [`genre()`](https://fakerjs.dev/api/book.html#genre).
- * - For a random isbn, use [`faker.commerce.isbn()`](https://fakerjs.dev/api/commerce.html#isbn)
- * - For a random publisher, use [`publisher()`](https://fakerjs.dev/api/book.html#publisher).
  * - For a random series, use [`series()`](https://fakerjs.dev/api/book.html#series).
- * - For a random title, use [`title()`](https://fakerjs.dev/api/book.html#title).
+ * - For a random publisher, use [`publisher()`](https://fakerjs.dev/api/book.html#publisher).
+ * - For a random book format, use [`format()`](https://fakerjs.dev/api/book.html#format).
+ * - For a random isbn, use [`faker.commerce.isbn()`](https://fakerjs.dev/api/commerce.html#isbn)
  *
  * All values may be localized.
  */
@@ -21,7 +21,7 @@ export class BookModule extends ModuleBase {
    * Returns a random author name.
    *
    * @example
-   * faker.book.author() // 'Shakespeare, William'
+   * faker.book.author() // 'William Shakespeare'
    *
    * @since 9.1.0
    */
