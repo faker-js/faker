@@ -1060,7 +1060,7 @@ export class InternetModule extends ModuleBase {
   jwt(
     options: {
       /**
-       * The Header to use for the token. If present, it will replace any default values.
+       * The header to use for the token. If present, it will replace any default values.
        *
        * @default
        * {
@@ -1070,7 +1070,7 @@ export class InternetModule extends ModuleBase {
        */
       header?: Record<string, unknown>;
       /**
-       * The Payload to use for the token. If present, it will replace any default values.
+       * The payload to use for the token. If present, it will replace any default values.
        *
        * @default
        * {
