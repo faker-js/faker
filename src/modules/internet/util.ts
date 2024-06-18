@@ -1,7 +1,9 @@
 /**
  *
  * @param input String to encode to Base64.
+ *
  * @returns Base64 URL encoded string.
+ *
  * @example const encodedHeader = toBase64Url(JSON.stringify(header));
  */
 export function toBase64Url(input: string): string {
@@ -11,7 +13,7 @@ export function toBase64Url(input: string): string {
   ).join('');
   const base64 = btoa(binaryString);
   return base64
-    .replaceAll(/\+/g, '-')
-    .replaceAll(/\//g, '_')
+    .replaceAll('+', '-')
+    .replaceAll('/', '_')
     .replaceAll(/=+$/g, '');
 }

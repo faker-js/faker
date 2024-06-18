@@ -11,5 +11,5 @@ export default [
   'PS256',
   'PS384',
   'PS512',
-  'none'
+  'none',
 ];
