@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import cell_phone from './cell_phone';
 import company from './company';
+import date from './date';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -14,6 +15,7 @@ import phone_number from './phone_number';
 const en_ZA: LocaleDefinition = {
   cell_phone,
   company,
+  date,
   internet,
   location,
   metadata,
