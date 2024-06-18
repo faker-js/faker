@@ -424,7 +424,20 @@ Removed deprecated location methods
 | `faker.location.ordinalDirection(abbreviated)`                     | `faker.location.ordinalDirection({ abbreviated })`                 |
 | `faker.location.nearbyGPSCoordinate(coordinate, radius, isMetric)` | `faker.location.nearbyGPSCoordinate({ origin, radius, isMetric })` |
 
-#### Removed Definitions
+#### Direction definitions reorganized
+
+The locale definitions used by `faker.location.direction()`, `faker.location.cardinalDirection()` and `faker.location.ordinalDirection()` have been reorganized.
+Previously, they were located under `definitions.location.direction` and `definitions.location.direction_abbr` and their values were required to be in a specific order.
+Now, all values are nested under `definitions.location.direction` with descriptive property names.
+If you are using the public methods, no changes are required.
+You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+
+| Before                    | After                                                                   |
+| ------------------------- | ----------------------------------------------------------------------- |
+| `location.direction`      | `location.direction.cardinal` or `location.direction.ordinal`           |
+| `location.direction_abbr` | `location.direction.cardinal_abbr` or `location.direction.ordinal_abbr` |
+
+#### Default country definitions removed
 
 The `faker.definitions.location.default_country` definition has been removed, as they were not used by any public method, and were not useful for locales which don't correspond directly to a single country, like `ar`.
 
@@ -482,13 +495,14 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 ### Renamed Locale Definitions
 
-The following locale definitions have been renamed
+The following locale definitions have been adjusted to align with Faker's locale definition naming standard:
 
 | old                                         | replacement                                  |
 | ------------------------------------------- | -------------------------------------------- |
 | `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
-| `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_paths`   |
-| `faker.definitions.system.mimeTypes`        | `faker.definitions.system.mime_types`        |
+| `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_path`    |
+| `faker.definitions.system.mimeTypes`        | `faker.definitions.system.mime_type`         |
+| `faker.definitions.lorem.words`             | `faker.definitions.lorem.word`               |
 
 With that now all our locale data use the following naming scheme:
 

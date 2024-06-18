@@ -1,5 +1,11 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
+import {
+  BitcoinAddressFamily,
+  BitcoinAddressSpecs,
+  BitcoinNetwork,
+} from './bitcoin';
 import iban from './iban';
 
 /**
@@ -486,23 +492,48 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random Bitcoin address.
    *
+   * @param options An optional options object.
+   * @param options.type The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
+   * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
+   *
    * @example
-   * faker.finance.bitcoinAddress() // '3ySdvCkTLVy7gKD4j6JfSaf5d'
+   * faker.finance.bitcoinAddress() // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
+   * faker.finance.bitcoinAddress({ type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
+   * faker.finance.bitcoinAddress({ type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
    *
    * @since 3.1.0
    */
-  bitcoinAddress(): string {
-    const addressLength = this.faker.number.int({ min: 25, max: 39 });
+  bitcoinAddress(
+    options: {
+      /**
+       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
+       *
+       * @default faker.helpers.arrayElement(['legacy','sewgit','bech32','taproot'])
+       */
+      type?: BitcoinAddressFamilyType;
+      /**
+       * The bitcoin network (`'mainnet'` or `'testnet'`).
+       *
+       * @default 'mainnet'
+       */
+      network?: BitcoinNetworkType;
+    } = {}
+  ): string {
+    const {
+      type = this.faker.helpers.enumValue(BitcoinAddressFamily),
+      network = BitcoinNetwork.Mainnet,
+    } = options;
+    const addressSpec = BitcoinAddressSpecs[type];
+    const addressPrefix = addressSpec.prefix[network];
+    const addressLength = this.faker.number.int(addressSpec.length);
 
-    let address = this.faker.helpers.arrayElement(['1', '3']);
-
-    address += this.faker.string.alphanumeric({
-      length: addressLength,
-      casing: 'mixed',
-      exclude: '0OIl',
+    const address = this.faker.string.alphanumeric({
+      length: addressLength - addressPrefix.length,
+      casing: addressSpec.casing,
+      exclude: addressSpec.exclude,
     });
 
-    return address;
+    return addressPrefix + address;
   }
 
   /**

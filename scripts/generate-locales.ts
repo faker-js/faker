@@ -350,8 +350,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const isDynamicFile = compareString.startsWith('mergeArrays');
   const isNonApplicable = compareString.startsWith('null');
-  const isFrozenData = compareString.startsWith('Object.freeze');
-  if (isDynamicFile || isNonApplicable || isFrozenData) {
+  if (isDynamicFile || isNonApplicable) {
     return;
   }
 

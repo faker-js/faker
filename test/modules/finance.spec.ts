@@ -1,8 +1,11 @@
-import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
+import {
+  BitcoinAddressFamily,
+  BitcoinNetwork,
+} from '../../src/modules/finance/bitcoin';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
@@ -21,7 +24,6 @@ describe('finance', () => {
       'currencyCode',
       'currencyName',
       'currencySymbol',
-      'bitcoinAddress',
       'litecoinAddress',
       'creditCardCVV',
       'ethereumAddress',
@@ -89,6 +91,15 @@ describe('finance', () => {
           length: 5,
           parens: false,
           ellipsis: true,
+        });
+    });
+
+    t.describe('bitcoinAddress', (t) => {
+      t.it('noArgs')
+        .it('with type option', { type: BitcoinAddressFamily.Legacy })
+        .it('with type and network option', {
+          type: BitcoinAddressFamily.Legacy,
+          network: BitcoinNetwork.Mainnet,
         });
     });
   });
@@ -313,17 +324,96 @@ describe('finance', () => {
       });
 
       describe('bitcoinAddress()', () => {
+        const m_legacy = /^1[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const t_legacy = /^m[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const m_segwit = /^3[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const t_segwit = /^2[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const m_bech32 = /^bc1[ac-hj-np-z02-9]{39,39}$/;
+        const t_bech32 = /^tb1[ac-hj-np-z02-9]{39,39}$/;
+        const m_taproot = /^bc1p[ac-hj-np-z02-9]{58,58}$/;
+        const t_taproot = /^tb1p[ac-hj-np-z02-9]{58,58}$/;
+
+        const isBtcAddress = (address: string) =>
+          [
+            m_legacy,
+            t_legacy,
+            m_segwit,
+            t_segwit,
+            m_bech32,
+            t_bech32,
+            m_taproot,
+            t_taproot,
+          ].some((r) => r.test(address));
+
         it('should return a valid bitcoin address', () => {
           const bitcoinAddress = faker.finance.bitcoinAddress();
-          /**
-           *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
-           *  Therefore we take one from the total length of the address not including the first character ([13])
-           */
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).toSatisfy(isValidBtcAddress);
+          expect(bitcoinAddress).toSatisfy(isBtcAddress);
         });
+
+        it.each([
+          [BitcoinAddressFamily.Legacy, m_legacy],
+          [BitcoinAddressFamily.Segwit, m_segwit],
+          [BitcoinAddressFamily.Bech32, m_bech32],
+          [BitcoinAddressFamily.Taproot, m_taproot],
+        ] as const)(
+          'should handle the type = $type argument',
+          (type, regex) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              type,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toMatch(regex);
+          }
+        );
+
+        it.each([
+          [BitcoinNetwork.Mainnet, [m_legacy, m_segwit, m_bech32, m_taproot]],
+          [BitcoinNetwork.Testnet, [t_legacy, t_segwit, t_bech32, t_taproot]],
+        ] as const)(
+          'should handle the network = $network argument',
+          (network, regexes) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              network,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toSatisfy<string>((v) =>
+              regexes.some((r) => r.test(v))
+            );
+          }
+        );
+
+        it.each([
+          [BitcoinAddressFamily.Legacy, BitcoinNetwork.Mainnet, m_legacy],
+          [BitcoinAddressFamily.Legacy, BitcoinNetwork.Testnet, t_legacy],
+          [BitcoinAddressFamily.Segwit, BitcoinNetwork.Mainnet, m_segwit],
+          [BitcoinAddressFamily.Segwit, BitcoinNetwork.Testnet, t_segwit],
+          [BitcoinAddressFamily.Bech32, BitcoinNetwork.Mainnet, m_bech32],
+          [BitcoinAddressFamily.Bech32, BitcoinNetwork.Testnet, t_bech32],
+          [BitcoinAddressFamily.Taproot, BitcoinNetwork.Mainnet, m_taproot],
+          [BitcoinAddressFamily.Taproot, BitcoinNetwork.Testnet, t_taproot],
+        ] as const)(
+          'should handle the type = $type and network = $network arguments',
+          (type, network, regex) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              type,
+              network,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toMatch(regex);
+          }
+        );
       });
 
       describe('litecoinAddress()', () => {
