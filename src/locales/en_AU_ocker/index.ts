@@ -4,7 +4,6 @@
  */
 import type { LocaleDefinition } from '../..';
 import company from './company';
-import date from './date';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -13,7 +12,6 @@ import phone_number from './phone_number';
 
 const en_AU_ocker: LocaleDefinition = {
   company,
-  date,
   internet,
   location,
   metadata,

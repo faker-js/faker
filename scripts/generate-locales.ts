@@ -411,10 +411,10 @@ async function generateDateModule(locale: string): Promise<unknown> {
 
   const pathDate = resolve(pathLocales, locale, 'date');
   const parentLocale = locale.substring(0, locale.lastIndexOf('_')) || 'base';
-  const pathParentLocale = resolve(pathLocales, parentLocale);
-  const parentExists = await exists(pathParentLocale);
   const parentIntlLocale = parentLocale.replaceAll('_', '-');
-  const parentUsable = isValidLocale(parentLocale) && parentExists;
+  const parentUsable =
+    isValidLocale(parentIntlLocale) &&
+    (await exists(resolve(pathLocales, parentLocale)));
 
   // `src/locales/<locale>/date/weekday.ts`
   async function generateWeekdayFile(): Promise<void> {
