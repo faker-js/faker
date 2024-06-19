@@ -1,8 +1,16 @@
 /**
+ * This is tailored for handling JSON Web Tokens (JWTs),
+ * as outlined in RFC 7515 - Appendix C.
+ * This works the same as `Buffer.from(input).toString('base64url')`
+ * to work on both Node.js and browser environment.
  *
- * @param input String to encode to Base64.
+ * @internal
+ *
+ * @param input JSON.stringified string to encode to Base64.
  *
  * @returns Base64 URL encoded string.
+ *
+ * @see https://datatracker.ietf.org/doc/html/rfc7515#appendix-C
  *
  * @example const encodedHeader = toBase64Url(JSON.stringify(header));
  */
