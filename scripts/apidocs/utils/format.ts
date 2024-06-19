@@ -3,7 +3,7 @@ import { format } from 'prettier';
 import prettierConfig from '../../../.prettierrc.js';
 
 /**
- * Formats markdown contents.
+ * Formats Markdown contents.
  *
  * @param text The text to format.
  */
@@ -12,7 +12,7 @@ export async function formatMarkdown(text: string): Promise<string> {
 }
 
 /**
- * Formats typedoc contents.
+ * Formats TypeScript contents.
  *
  * @param text The text to format.
  */
