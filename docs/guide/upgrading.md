@@ -349,6 +349,24 @@ const city = enforcer.enforce(faker.location.city, {
 `enforce-unique` does not directly support the `store` option previously available in `faker.helpers.unique`. If you were previously using this parameter, check the [documentation](https://www.npmjs.com/package/enforce-unique). If you need to reset the store, you can call the `reset()` method on the `UniqueEnforcer` instance.
 :::
 
+#### `faker.helpers.arrayElement` and `faker.helpers.arrayElements`
+
+The following only affects usage in Javascript, as in Typescript this usage would already throw a compile-time error.
+
+Previously, the `arrayElement` and `arrayElements` methods would throw a dedicated error, when called without arguments.
+
+```ts
+faker.helpers.arrayElement(undefined); // FakerError: Calling `faker.helpers.arrayElement()` without arguments is no longer supported.
+```
+
+Now, now it throws a JS native error:
+
+```ts
+faker.helpers.arrayElement(undefined); // TypeError: Cannot read properties of undefined (reading 'length')
+```
+
+Calling the methods with an empty array instead still behaves as before.
+
 ### Image Module
 
 Removed deprecated image methods
