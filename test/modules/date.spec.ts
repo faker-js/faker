@@ -667,7 +667,11 @@ describe('date', () => {
 
   describe('definitions', () => {
     describe('timeZone', () => {
-      // date.timezone data should only be available in the base locale
+      it('should have timezones in the base locale', () => {
+        expect(allLocales.base.date?.time_zone).toSatisfy(Array.isArray);
+        expect(allLocales.base.date?.time_zone?.length).toBeGreaterThan(0);
+      });
+
       it.each(
         Object.entries(allLocales).filter(([locale]) => locale !== 'base')
       )('should not have any timezones in %s', (_, data) => {

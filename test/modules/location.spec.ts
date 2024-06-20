@@ -413,13 +413,17 @@ describe('definitions', () => {
       'locale data for %s should be a subset of the base locale',
       (locale, data) => {
         if (locale === 'base') {
+          expect(data.location?.time_zone).toSatisfy(Array.isArray);
+          expect(data.location?.time_zone?.length).toBeGreaterThan(0);
           expect(data.location?.time_zone).toEqual(
             allLocales.base.date?.time_zone
           );
         } else if (data.location?.time_zone != null) {
+          expect(data.location.time_zone).toSatisfy(Array.isArray);
+          expect(data.location.time_zone.length).toBeGreaterThan(0);
           // expected and actual are flipped here
           expect(allLocales.base.date?.time_zone).toEqual(
-            expect.arrayContaining(data.location?.time_zone)
+            expect.arrayContaining(data.location.time_zone)
           );
         }
       }
