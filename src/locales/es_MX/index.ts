@@ -7,6 +7,7 @@ import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import date from './date';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -20,6 +21,7 @@ const es_MX: LocaleDefinition = {
   color,
   commerce,
   company,
+  date,
   internet,
   location,
   lorem,

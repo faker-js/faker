@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import company from './company';
+import date from './date';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -13,6 +14,7 @@ import phone_number from './phone_number';
 
 const sk: LocaleDefinition = {
   company,
+  date,
   internet,
   location,
   lorem,

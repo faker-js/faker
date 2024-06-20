@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import date from './date';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -10,6 +11,7 @@ import person from './person';
 import phone_number from './phone_number';
 
 const fr_CA: LocaleDefinition = {
+  date,
   internet,
   location,
   metadata,

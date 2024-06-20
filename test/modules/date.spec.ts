@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-globals */
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, faker, fakerAZ } from '../../src';
+import { FakerError, allFakers, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -8,6 +9,17 @@ const converterMap = [
   (d: Date) => d.toISOString(),
   (d: Date) => d.valueOf(),
 ];
+
+const validIntlLocales = Object.entries(allFakers).filter(([locale]) => {
+  // 'dv' (Dhivehi) locale is excluded because it may not be fully supported
+  if (locale === 'dv') return false;
+  try {
+    new Intl.DateTimeFormat(locale);
+    return true;
+  } catch {
+    return false;
+  }
+});
 
 const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2021-02-21T17:09:15.711Z';
@@ -479,6 +491,38 @@ describe('date', () => {
           const month = faker.date.month({ abbreviated: true, context: true });
           expect(faker.definitions.date.month.abbr).toContain(month);
         });
+
+        describe.each(validIntlLocales)(
+          'for locale %s',
+          (locale, localizedFaker) => {
+            const months = Array.from(
+              { length: 12 },
+              (_, i) => new Date(2020, i, 1)
+            );
+
+            it('should use Intl.DateTimeFormat to get the month name in the correct locale', () => {
+              for (const date of months) {
+                const intlMonth = new Intl.DateTimeFormat(locale, {
+                  month: 'long',
+                }).format(date);
+                expect(localizedFaker.definitions.date.month.wide).toContain(
+                  intlMonth
+                );
+              }
+            });
+
+            it('should use Intl.DateTimeFormat to get the abbreviated month name in the correct locale', () => {
+              for (const date of months) {
+                const intlMonth = new Intl.DateTimeFormat(locale, {
+                  month: 'short',
+                }).format(date);
+                expect(localizedFaker.definitions.date.month.abbr).toContain(
+                  intlMonth
+                );
+              }
+            });
+          }
+        );
       });
 
       describe('weekday()', () => {
@@ -525,6 +569,38 @@ describe('date', () => {
           });
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
         });
+
+        describe.each(validIntlLocales)(
+          'for locale %s',
+          (locale, localizedFaker) => {
+            const weekdays = Array.from(
+              { length: 7 },
+              (_, i) => new Date(2020, 0, i + 4)
+            ); // January 4-10, 2020 are Sunday to Saturday
+
+            it('should use Intl.DateTimeFormat to get the weekday name in the correct locale', () => {
+              for (const date of weekdays) {
+                const intlWeekday = new Intl.DateTimeFormat(locale, {
+                  weekday: 'long',
+                }).format(date);
+                expect(localizedFaker.definitions.date.weekday.wide).toContain(
+                  intlWeekday
+                );
+              }
+            });
+
+            it('should use Intl.DateTimeFormat to get the abbreviated weekday name in the correct locale', () => {
+              for (const date of weekdays) {
+                const intlWeekday = new Intl.DateTimeFormat(locale, {
+                  weekday: 'short',
+                }).format(date);
+                expect(localizedFaker.definitions.date.weekday.abbr).toContain(
+                  intlWeekday
+                );
+              }
+            });
+          }
+        );
       });
 
       describe('birthdate', () => {

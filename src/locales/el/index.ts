@@ -8,6 +8,7 @@ import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import date from './date';
 import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
@@ -24,6 +25,7 @@ const el: LocaleDefinition = {
   color,
   commerce,
   company,
+  date,
   finance,
   hacker,
   internet,

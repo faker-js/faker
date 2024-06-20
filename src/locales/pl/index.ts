@@ -7,6 +7,7 @@ import animal from './animal';
 import cell_phone from './cell_phone';
 import color from './color';
 import company from './company';
+import date from './date';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -22,6 +23,7 @@ const pl: LocaleDefinition = {
   cell_phone,
   color,
   company,
+  date,
   internet,
   location,
   lorem,

@@ -3,11 +3,13 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import date from './date';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
 
 const fi: LocaleDefinition = {
+  date,
   location,
   metadata,
   person,
