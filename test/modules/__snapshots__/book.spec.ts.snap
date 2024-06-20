@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`book > 42 > author 1`] = `"Gustave Doré"`;
+exports[`book > 42 > author 1`] = `"Henry David Thoreau"`;
 
 exports[`book > 42 > format 1`] = `"Ebook"`;
 
@@ -10,9 +10,9 @@ exports[`book > 42 > publisher 1`] = `"Flame Tree Publishing"`;
 
 exports[`book > 42 > series 1`] = `"Sherlock Holmes"`;
 
-exports[`book > 42 > title 1`] = `"Les Misérables"`;
+exports[`book > 42 > title 1`] = `"Lord Jim"`;
 
-exports[`book > 1211 > author 1`] = `"Toni Morrison"`;
+exports[`book > 1211 > author 1`] = `"Virgil"`;
 
 exports[`book > 1211 > format 1`] = `"Paperback"`;
 
@@ -22,9 +22,9 @@ exports[`book > 1211 > publisher 1`] = `"University of Akron Press"`;
 
 exports[`book > 1211 > series 1`] = `"Thursday Next Series"`;
 
-exports[`book > 1211 > title 1`] = `"The Wonderful Wizard of Oz"`;
+exports[`book > 1211 > title 1`] = `"Tinker, Tailor, Soldier, Spy"`;
 
-exports[`book > 1337 > author 1`] = `"Edgar Rice Burroughs"`;
+exports[`book > 1337 > author 1`] = `"Frances Hodgson Burnett"`;
 
 exports[`book > 1337 > format 1`] = `"Ebook"`;
 
@@ -34,4 +34,4 @@ exports[`book > 1337 > publisher 1`] = `"City Lights Publishers"`;
 
 exports[`book > 1337 > series 1`] = `"Jane Austen Murder Mysteries"`;
 
-exports[`book > 1337 > title 1`] = `"For Whom the Bell Tolls"`;
+exports[`book > 1337 > title 1`] = `"Gone with the Wind"`;
