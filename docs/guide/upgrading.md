@@ -359,7 +359,7 @@ Previously, the `arrayElement` and `arrayElements` methods would throw a dedicat
 faker.helpers.arrayElement(undefined); // FakerError: Calling `faker.helpers.arrayElement()` without arguments is no longer supported.
 ```
 
-Now, now it throws a JS native error:
+Now, it throws a JS native error:
 
 ```ts
 faker.helpers.arrayElement(undefined); // TypeError: Cannot read properties of undefined (reading 'length')
