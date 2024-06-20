@@ -25,7 +25,7 @@ This is a shorthand for running the following scripts in order:
 - `pnpm run build:clean` - removes artifacts from previous builds
 - `pnpm run build:code` - builds the code, both CommonJS and ESM versions
 - `pnpm run build:types` - builds the TypeScript type definitions
-- `pnpm run test:update-snapshots ` - runs all tests, and updates any snapshots if needed
+- `pnpm run test:update-snapshots` - runs all tests, and updates any snapshots if needed
 - `pnpm run ts-check` - checks that there are no TypeScript errors in any files
 
 ## Good to know
