@@ -572,7 +572,6 @@ export class LocationModule extends ModuleBase {
     /**
      * The distance in km per degree for earth.
      */
-    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
     const kmPerDegree = 40_000 / 360; // in km/°
 
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
