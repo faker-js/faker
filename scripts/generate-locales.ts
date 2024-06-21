@@ -298,6 +298,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
           // limit entries to 1k
           .slice(0, 1000)
           // sort entries alphabetically
+          // We cannot sort the entries locale aware as the sort order is not stable within node versions #2905
           .sort() as T
       );
     }
@@ -335,8 +336,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const isDynamicFile = compareString.startsWith('mergeArrays');
   const isNonApplicable = compareString.startsWith('null');
-  const isFrozenData = compareString.startsWith('Object.freeze');
-  if (isDynamicFile || isNonApplicable || isFrozenData) {
+  if (isDynamicFile || isNonApplicable) {
     return;
   }
 

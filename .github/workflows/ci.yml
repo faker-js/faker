@@ -22,7 +22,7 @@ jobs:
     name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           # Required for docs/versions tests
           fetch-depth: 0
@@ -70,7 +70,7 @@ jobs:
         run: date
 
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           # Required for docs/versions tests
           fetch-depth: 0
@@ -98,13 +98,13 @@ jobs:
   e2e-test:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-20.6.1-chrome-116.0.5845.187-1-ff-117.0-edge-116.0.1938.76-1@sha256:cd909915e1a0aa24dbd3eaf95feb2a7be6cf9961fa425ffa06cd5a44d211451c
+      image: cypress/browsers:node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1@sha256:02eaae11b7d3dc9f408a5f64c3990faea75943d612ea86b8b218d95b48f22ce8
       options: --user 1001
     timeout-minutes: 10
-    name: 'E2E Doc Test: node-20, ubuntu-latest'
+    name: 'E2E Doc Test: node-22, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Install pnpm
         uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
@@ -125,7 +125,7 @@ jobs:
     name: 'Lint: node-22, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
 
@@ -155,7 +155,7 @@ jobs:
     name: 'TS-Check: node-22, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
 
@@ -185,7 +185,7 @@ jobs:
     name: 'Codecov: node-22, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
 
@@ -210,7 +210,7 @@ jobs:
         run: pnpm vitest run --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@125fc84a9a348dbcf27191600683ec096ec9021c # v4.4.1
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
