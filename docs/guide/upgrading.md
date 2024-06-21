@@ -349,6 +349,24 @@ const city = enforcer.enforce(faker.location.city, {
 `enforce-unique` does not directly support the `store` option previously available in `faker.helpers.unique`. If you were previously using this parameter, check the [documentation](https://www.npmjs.com/package/enforce-unique). If you need to reset the store, you can call the `reset()` method on the `UniqueEnforcer` instance.
 :::
 
+#### `faker.helpers.arrayElement` and `faker.helpers.arrayElements`
+
+The following only affects usage in Javascript, as in Typescript this usage would already throw a compile-time error.
+
+Previously, the `arrayElement` and `arrayElements` methods would throw a dedicated error, when called without arguments.
+
+```ts
+faker.helpers.arrayElement(undefined); // FakerError: Calling `faker.helpers.arrayElement()` without arguments is no longer supported.
+```
+
+Now, it throws a JS native error:
+
+```ts
+faker.helpers.arrayElement(undefined); // TypeError: Cannot read properties of undefined (reading 'length')
+```
+
+Calling the methods with an empty array instead still behaves as before.
+
 ### Image Module
 
 Removed deprecated image methods
@@ -566,6 +584,15 @@ Previously, if you passed something which could not be parsed to a `Date`, it wo
 Now, this throws an error raising awareness of that bad value.
 
 This affects the `refDate` parameter of the `anytime()`, `birthdate()`, `past()`, `future()`, `recent()` and `soon()`, methods as well as the `from` and `to` parameters of `between()` and `betweens()`.
+
+### Separate Timezone Methods
+
+The `timeZone` functionality has been divided to enhance specificity:
+
+- Use `faker.date.timeZone()` to generate a random global time zone.
+- Use `faker.location.timeZone()` to obtain time zone specific to the current locale.
+
+We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please create a new issue.
 
 ### Prices Now Return More Price-Like Values
 

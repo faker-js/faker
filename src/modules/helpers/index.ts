@@ -844,13 +844,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @since 6.3.0
    */
   arrayElement<const T>(array: ReadonlyArray<T>): T {
-    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
-    if (array == null) {
-      throw new FakerError(
-        'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
-      );
-    }
-
     if (array.length === 0) {
       throw new FakerError('Cannot get value from empty dataset.');
     }
@@ -954,13 +947,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
           max: number;
         }
   ): T[] {
-    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
-    if (array == null) {
-      throw new FakerError(
-        'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
-      );
-    }
-
     if (array.length === 0) {
       return [];
     }

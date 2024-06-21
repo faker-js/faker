@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, faker, fakerAZ } from '../../src';
+import { FakerError, allLocales, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -58,6 +58,8 @@ describe('date', () => {
           context: true,
         });
     });
+
+    t.it('timeZone');
 
     t.describe('between', (t) => {
       t.it('with string dates', {
@@ -653,8 +655,30 @@ describe('date', () => {
           );
         });
       });
+
+      describe('timeZone', () => {
+        it('should return a random timezone', () => {
+          const actual = faker.date.timeZone();
+          expect(faker.definitions.date.time_zone).toContain(actual);
+        });
+      });
     }
   );
+
+  describe('definitions', () => {
+    describe('timeZone', () => {
+      it('should have timezones in the base locale', () => {
+        expect(allLocales.base.date?.time_zone).toSatisfy(Array.isArray);
+        expect(allLocales.base.date?.time_zone?.length).toBeGreaterThan(0);
+      });
+
+      it.each(
+        Object.entries(allLocales).filter(([locale]) => locale !== 'base')
+      )('should not have any timezones in %s', (_, data) => {
+        expect(data.date?.time_zone).toBeUndefined();
+      });
+    });
+  });
 
   describe('refDateSource', () => {
     afterEach(() => {
