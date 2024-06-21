@@ -1089,8 +1089,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       return [];
     }
 
-    // TODO @ST-DDT 2022-11-21: Add support for unique option
-
     return Array.from({ length: count }, method);
   }
 }

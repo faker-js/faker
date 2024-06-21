@@ -205,7 +205,6 @@ export class SystemModule extends ModuleBase {
    *
    * @since 3.1.0
    */
-  // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
   filePath(): string {
     return `${this.directoryPath()}/${this.fileName()}`;
   }
