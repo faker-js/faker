@@ -1,5 +1,5 @@
 /**
- * This works the same as `Buffer.from(input).toString('base64')`
+ * This works the same as `Buffer.from(input).toString('base64url')`
  * to work on both Node.js and browser environment.
  *
  * @internal

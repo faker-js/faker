@@ -3,7 +3,7 @@ import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
-import { toBase64Url } from './util';
+import { toBase64Url } from '../../internal/base64';
 
 export type EmojiType =
   | 'smiley'
