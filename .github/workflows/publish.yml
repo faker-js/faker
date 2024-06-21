@@ -3,6 +3,9 @@ name: Publish
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -26,9 +29,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Set publishing config
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Publish
         run: |
