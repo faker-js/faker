@@ -497,9 +497,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a random sample.
-   *
-   * A sample is a word that can be an adjective, adverb, conjunction, interjection, noun, preposition, or verb.
+   * Returns a random word, that can be an adjective, adverb, conjunction, interjection, noun, preposition, or verb.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
