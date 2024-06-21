@@ -137,7 +137,9 @@ export type LocationDefinition = LocaleEntry<{
   secondary_address: string[];
 
   /**
-   * A list of timezones names.
+   * A list of time zones names relevant to this locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
    */
   time_zone: string[];
 }>;
