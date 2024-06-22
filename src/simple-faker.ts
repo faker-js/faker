@@ -4,7 +4,7 @@ import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
-import type { Randomizer } from './randomizer';
+import type { Randomizer } from './utils/randomizer';
 
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.

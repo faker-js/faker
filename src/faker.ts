@@ -28,7 +28,7 @@ import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
-import type { Randomizer } from './randomizer';
+import type { Randomizer } from './utils/randomizer';
 import { SimpleFaker } from './simple-faker';
 import { mergeLocales } from './utils/merge-locales';
 

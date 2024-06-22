@@ -4,7 +4,7 @@ import {
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
 } from '../../src/internal/mersenne';
-import type { Randomizer } from '../../src/randomizer';
+import type { Randomizer } from '../../src/utils/randomizer';
 import { seededRuns } from '../support/seeded-runs';
 import { times } from '../support/times';
 import {

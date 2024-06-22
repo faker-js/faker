@@ -1,4 +1,4 @@
-import type { Randomizer } from '../randomizer';
+import type { Randomizer } from '../utils/randomizer';
 
 /**
  * Copyright (c) 2022-2023 Faker
