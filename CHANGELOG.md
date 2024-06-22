@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.0.0-alpha.1](https://github.com/faker-js/faker/compare/v9.0.0-alpha.0...v9.0.0-alpha.1) (2024-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **date:** separate timeZone method (#2947)
+* **locale:** use singular locale definition keys (#2932)
+* **locale:** use snake case for all locale data (#2910)
+* **locale:** remove location data index-value-binding (#2476)
+
+### New Locales
+
+* **locale:** add lorem for uz_UZ_latin  ([#2824](https://github.com/faker-js/faker/issues/2824)) ([6e6fa4c](https://github.com/faker-js/faker/commit/6e6fa4cd090e5d7dc60d2c0eed3a01013ab4a111))
+* **locale:** extend Hebrew (he) for company ([#2921](https://github.com/faker-js/faker/issues/2921)) ([29df384](https://github.com/faker-js/faker/commit/29df38468fc90efaaf749a5c39a1b2c1f2e6bf46))
+
+
+### Features
+
+* **bitcoinAddress:** multiple bitcoin address types and testnet ([#2922](https://github.com/faker-js/faker/issues/2922)) ([3ae9393](https://github.com/faker-js/faker/commit/3ae93934bc4cf5f6414acfa28ea727f758d18756))
+* **date:** separate timeZone method ([#2947](https://github.com/faker-js/faker/issues/2947)) ([d6924f7](https://github.com/faker-js/faker/commit/d6924f7fbb9403d106022f58a1bda3b159e88ae6))
+* **music:** add album and artist methods ([#2620](https://github.com/faker-js/faker/issues/2620)) ([f682750](https://github.com/faker-js/faker/commit/f6827505712f48e448d4d4ef2dc3198e6967bbad))
+
+
+### Changed Locales
+
+* **locale:** activate data normalization for airline ([#2828](https://github.com/faker-js/faker/issues/2828)) ([d71662e](https://github.com/faker-js/faker/commit/d71662e153f6915e95af750419e0042e5c2c49d4))
+* **locale:** activate data normalization for color ([#2837](https://github.com/faker-js/faker/issues/2837)) ([b754dc6](https://github.com/faker-js/faker/commit/b754dc6ac8be86a2b5c550d743899390997362a6))
+* **locale:** normalize commerce data ([#2868](https://github.com/faker-js/faker/issues/2868)) ([425997f](https://github.com/faker-js/faker/commit/425997fdb2c9f7d746c688b0a0c5ba1f884550d0))
+* **locale:** normalize company data ([#2889](https://github.com/faker-js/faker/issues/2889)) ([5ba44bc](https://github.com/faker-js/faker/commit/5ba44bc4a62b708b86cd50cda74977bc3b697240))
+* **locale:** normalize database data ([#2873](https://github.com/faker-js/faker/issues/2873)) ([1eea7fe](https://github.com/faker-js/faker/commit/1eea7fe7caa3a41d5651ead3c4604a0fc99f0aba))
+* **locale:** normalize date data ([#2902](https://github.com/faker-js/faker/issues/2902)) ([9226945](https://github.com/faker-js/faker/commit/922694553874beb312821c62c1c1fd3afc63a315))
+* **locale:** normalize finance data ([#2915](https://github.com/faker-js/faker/issues/2915)) ([353e85c](https://github.com/faker-js/faker/commit/353e85cda53919c97fe9d190633b4c9c1401f213))
+* **locale:** normalize hacker data ([#2866](https://github.com/faker-js/faker/issues/2866)) ([2d5fbe5](https://github.com/faker-js/faker/commit/2d5fbe5c559bbb086fb35f87209c3cebf9be89a2))
+* **locale:** normalize music data ([#2857](https://github.com/faker-js/faker/issues/2857)) ([425e10f](https://github.com/faker-js/faker/commit/425e10fe1cfeff74b04a7ed931241625e951f33c))
+* **locale:** normalize science data ([#2886](https://github.com/faker-js/faker/issues/2886)) ([bbdd998](https://github.com/faker-js/faker/commit/bbdd998787e40a96630d436f82aa86c67f76fb64))
+* **locale:** normalize vehicle data ([#2874](https://github.com/faker-js/faker/issues/2874)) ([737de3a](https://github.com/faker-js/faker/commit/737de3ab7cefe6d66ac1465807a2fa9a5017f930))
+* **locale:** remove discontinued credit card issuer "maestro" ([#2803](https://github.com/faker-js/faker/issues/2803)) ([cd5577c](https://github.com/faker-js/faker/commit/cd5577c546f17f6468b35c0c6164a666584ba67c))
+* **locale:** remove location data index-value-binding ([#2476](https://github.com/faker-js/faker/issues/2476)) ([453ea97](https://github.com/faker-js/faker/commit/453ea970a4c7ed19e9d41fd026923f42dbd4e768))
+* **locale:** unfreeze arrays ([#2928](https://github.com/faker-js/faker/issues/2928)) ([badaa6d](https://github.com/faker-js/faker/commit/badaa6d60593fe41a1afa0e9a8bef6ae5bb8a352))
+* **locale:** use singular locale definition keys ([#2932](https://github.com/faker-js/faker/issues/2932)) ([a5ffca1](https://github.com/faker-js/faker/commit/a5ffca1c7863531d459f67cbab7bd9ba34d16904))
+* **locale:** use snake case for all locale data ([#2910](https://github.com/faker-js/faker/issues/2910)) ([558b959](https://github.com/faker-js/faker/commit/558b959e0e2f791dab0ba2f500493ba7ddbd25e2))
+
+
+### Bug Fixes
+
+* **date:** fix birthdate ([#2829](https://github.com/faker-js/faker/issues/2829)) ([462c80e](https://github.com/faker-js/faker/commit/462c80e09703010709a52531b85d0d9c0bbd3448))
+* **locale:** clean up Hungarian words ([#2816](https://github.com/faker-js/faker/issues/2816)) ([16ba43a](https://github.com/faker-js/faker/commit/16ba43a6a4d1c93ac588c6b4c20b8c2a40213bdb))
+* **locale:** fix typo in Persian date data ([#2888](https://github.com/faker-js/faker/issues/2888)) ([042c871](https://github.com/faker-js/faker/commit/042c87162d85570ac722590c1f0c65f75421dbaf))
+* **locale:** misc spelling errors in commerce & food ([#2809](https://github.com/faker-js/faker/issues/2809)) ([734a7f3](https://github.com/faker-js/faker/commit/734a7f3d55d1233d8182585bb79d2013f0ce289e))
+* **locale:** remove Pizza from Greek words ([#2908](https://github.com/faker-js/faker/issues/2908)) ([80b4a23](https://github.com/faker-js/faker/commit/80b4a23b904db1abe1408480bbf56704d048b165))
+* **person:** workaround for inherited first- and lastNames ([#2834](https://github.com/faker-js/faker/issues/2834)) ([016a5b6](https://github.com/faker-js/faker/commit/016a5b62f678013a4f9a50bda10dcf20405a6e55))
+* **vehicle:** Make VIN number generation more accurate ([#2765](https://github.com/faker-js/faker/issues/2765)) ([1f7568a](https://github.com/faker-js/faker/commit/1f7568ab1a7010c7f9c713f4ac4c2d5e0cfb350b))
+
 ## [9.0.0-alpha.0](https://github.com/faker-js/faker/compare/v8.4.1...v9.0.0-alpha.0) (2024-04-12)
 
 
