@@ -1,9 +1,9 @@
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import { toBase64Url } from '../../internal/base64';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
-import { toBase64Url } from '../../internal/base64';
 
 export type EmojiType =
   | 'smiley'
