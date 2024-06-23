@@ -11,6 +11,7 @@ import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import middle_name from './middle_name';
 import name_ from './name';
+import prefix from './prefix';
 import suffix from './suffix';
 
 const person: PersonDefinition = {
@@ -22,6 +23,7 @@ const person: PersonDefinition = {
   last_name_pattern,
   middle_name,
   name: name_,
+  prefix,
   suffix,
 };
 

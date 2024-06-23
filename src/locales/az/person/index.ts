@@ -7,6 +7,7 @@ import first_name from './first_name';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import name_ from './name';
+import prefix from './prefix';
 import suffix from './suffix';
 
 const person: PersonDefinition = {
@@ -14,6 +15,7 @@ const person: PersonDefinition = {
   last_name,
   last_name_pattern,
   name: name_,
+  prefix,
   suffix,
 };
 

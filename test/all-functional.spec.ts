@@ -57,6 +57,7 @@ const BROKEN_LOCALE_METHODS = {
     fromCharacters: '*',
   },
   person: {
+    prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
   },
 } satisfies {
