@@ -1,6 +1,5 @@
 import type { Faker, NameEntry } from '../..';
 import { ModuleBase } from '../../internal/module-base';
-import { assertLocaleData } from '../../locale-proxy';
 
 export enum Sex {
   Female = 'female',
@@ -13,50 +12,37 @@ export type SexType = `${Sex}`;
  * Select a definition based on given sex.
  *
  * @param faker Faker instance.
- * @param elementSelectorFn The method used to select the actual element.
  * @param sex Sex.
  * @param nameEntry Definitions.
- * @param type Type of the definition.
  *
  * @returns Definition based on given sex.
  */
 function selectDefinition<T extends string | { value: string; weight: number }>(
   faker: Faker,
-  elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
-  nameEntry: NameEntry<T>,
-  type: string
-): string {
-  const { generic, female, male } = nameEntry ?? {};
-  let values: T[] | undefined | null;
-
+  nameEntry: NameEntry<T>
+): T[] {
+  const { generic, female, male } = nameEntry;
   switch (sex) {
     case Sex.Female: {
-      values = female;
-      break;
+      return female ?? generic;
     }
 
     case Sex.Male: {
-      values = male;
-      break;
+      return male ?? generic;
     }
 
     default: {
-      values = generic;
-      break;
+      return (
+        generic ??
+        faker.helpers.arrayElement([female, male]) ??
+        // The last statement should never happen at run time since at this point in time
+        // the name entry satisfies at least (generic || (female && male)).
+        // Sadly, TS is not able to infer the type correctly.
+        []
+      );
     }
   }
-
-  if (values == null) {
-    if (female != null && male != null) {
-      values = faker.helpers.arrayElement([female, male]);
-    } else {
-      values = generic;
-    }
-  }
-
-  assertLocaleData(values, `person.${type}`);
-  return elementSelectorFn(values);
 }
 
 /**
@@ -93,12 +79,12 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   firstName(sex?: SexType): string {
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      this.faker.definitions.person.first_name,
-      'first_name'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(
+        this.faker,
+        sex,
+        this.faker.definitions.person.first_name
+      )
     );
   }
 
@@ -117,22 +103,18 @@ export class PersonModule extends ModuleBase {
    */
   lastName(sex?: SexType): string {
     if (this.faker.rawDefinitions.person?.last_name_pattern != null) {
-      const pattern = selectDefinition(
-        this.faker,
-        this.faker.helpers.weightedArrayElement,
-        sex,
-        this.faker.rawDefinitions.person.last_name_pattern,
-        'last_name_pattern'
+      const pattern = this.faker.helpers.weightedArrayElement(
+        selectDefinition(
+          this.faker,
+          sex,
+          this.faker.rawDefinitions.person.last_name_pattern
+        )
       );
       return this.faker.helpers.fake(pattern);
     }
 
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      this.faker.definitions.person.last_name,
-      'last_name'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(this.faker, sex, this.faker.definitions.person.last_name)
     );
   }
 
@@ -150,12 +132,12 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   middleName(sex?: SexType): string {
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      this.faker.definitions.person.middle_name,
-      'middle_name'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(
+        this.faker,
+        sex,
+        this.faker.definitions.person.middle_name
+      )
     );
   }
 
@@ -294,12 +276,8 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   prefix(sex?: SexType): string {
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      this.faker.definitions.person.prefix,
-      'prefix'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(this.faker, sex, this.faker.definitions.person.prefix)
     );
   }
 
