@@ -114,7 +114,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   mimeType(): string {
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mime_types);
+    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mime_type);
 
     return this.faker.helpers.arrayElement(mimeTypeKeys);
   }
@@ -152,7 +152,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileType(): string {
-    const mimeTypes = this.faker.definitions.system.mime_types;
+    const mimeTypes = this.faker.definitions.system.mime_type;
 
     const typeSet = new Set(
       Object.keys(mimeTypes).map((key) => key.split('/')[0])
@@ -172,7 +172,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
-    const mimeTypes = this.faker.definitions.system.mime_types;
+    const mimeTypes = this.faker.definitions.system.mime_type;
 
     if (typeof mimeType === 'string') {
       return this.faker.helpers.arrayElement(mimeTypes[mimeType].extensions);
@@ -193,7 +193,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   directoryPath(): string {
-    const paths = this.faker.definitions.system.directory_paths;
+    const paths = this.faker.definitions.system.directory_path;
     return this.faker.helpers.arrayElement(paths);
   }
 
@@ -205,7 +205,6 @@ export class SystemModule extends ModuleBase {
    *
    * @since 3.1.0
    */
-  // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
   filePath(): string {
     return `${this.directoryPath()}/${this.fileName()}`;
   }

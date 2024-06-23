@@ -7,7 +7,7 @@ import { filterWordListByLength } from './filter-word-list-by-length';
  */
 export class WordModule extends ModuleBase {
   /**
-   * Returns an adjective of random or optionally specified length.
+   * Returns a random adjective.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -77,7 +77,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns an adverb of random or optionally specified length.
+   * Returns a random adverb.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -147,7 +147,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a conjunction of random or optionally specified length.
+   * Returns a random conjunction.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -217,7 +217,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns an interjection of random or optionally specified length.
+   * Returns a random interjection.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -287,7 +287,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a noun of random or optionally specified length.
+   * Returns a random noun.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -357,7 +357,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a preposition of random or optionally specified length.
+   * Returns a random preposition.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -427,7 +427,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a verb of random or optionally specified length.
+   * Returns a random verb.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -497,7 +497,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a random sample of random or optionally specified length.
+   * Returns a random word, that can be an adjective, adverb, conjunction, interjection, noun, preposition, or verb.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -579,7 +579,7 @@ export class WordModule extends ModuleBase {
   }
 
   /**
-   * Returns a string containing a number of space separated random words.
+   * Returns a random string containing some words separated by spaces.
    *
    * @param options The optional options object or the number of words to return.
    * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
