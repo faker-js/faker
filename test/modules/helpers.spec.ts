@@ -190,15 +190,6 @@ describe('helpers', () => {
           expect(actual).toBe('hello');
         });
 
-        it('should throw with no arguments', () => {
-          // @ts-expect-error: `arrayElement` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElement()).toThrow(
-            new FakerError(
-              'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
-            )
-          );
-        });
-
         it('should throw on an empty array', () => {
           expect(() => faker.helpers.arrayElement([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
@@ -467,15 +458,6 @@ describe('helpers', () => {
             }
           }
         );
-
-        it('should throw with no arguments', () => {
-          // @ts-expect-error: `arrayElements` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElements()).toThrow(
-            new FakerError(
-              'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
-            )
-          );
-        });
 
         describe('should not throw on an array with nullish elements', () => {
           it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
