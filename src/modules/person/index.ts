@@ -24,7 +24,7 @@ function selectDefinition<T extends string | { value: string; weight: number }>(
   faker: Faker,
   elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
-  nameEntry: NameEntry<T> | null | undefined,
+  nameEntry: NameEntry<T>,
   type: string
 ): string {
   const { generic, female, male } = nameEntry ?? {};
@@ -97,7 +97,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.first_name,
+      this.faker.definitions.person.first_name,
       'first_name'
     );
   }
@@ -131,7 +131,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.last_name,
+      this.faker.definitions.person.last_name,
       'last_name'
     );
   }
@@ -154,7 +154,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.middle_name,
+      this.faker.definitions.person.middle_name,
       'middle_name'
     );
   }
@@ -298,7 +298,7 @@ export class PersonModule extends ModuleBase {
       this.faker,
       this.faker.helpers.arrayElement,
       sex,
-      this.faker.rawDefinitions.person?.prefix,
+      this.faker.definitions.person.prefix,
       'prefix'
     );
   }
