@@ -37,3 +37,8 @@ jobs:
         run: |
           PACKAGE_DIST_TAG=$(node -e "console.log(/^\d+\.\d+\.\d+(\-(\w+)\.\d+)$/.exec(require('./package.json').version)?.[2] || 'latest')")
           pnpm publish --access public --tag $PACKAGE_DIST_TAG
+
+      - name: Set next dist-tag
+        run: |
+          PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version)")
+          pnpm dist-tag add @faker-js/faker@$PACKAGE_VERSION next
