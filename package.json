@@ -123,7 +123,7 @@
     "sanitize-html": "2.13.0",
     "semver": "7.6.2",
     "commit-and-tag-version": "12.4.1",
-    "ts-morph": "22.0.0",
+    "ts-morph": "23.0.0",
     "tsup": "8.1.0",
     "tsx": "4.15.7",
     "typescript": "5.5.2",
