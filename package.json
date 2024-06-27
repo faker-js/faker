@@ -60,7 +60,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist locale node_modules",
+    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
     "build:clean": "rimraf dist",
     "build:code": "tsup-node",
     "build:types": "tsc --project tsconfig.build.json",
