@@ -42,6 +42,25 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 - `en` is a generic `en` (English) locale definition. This is our most complete locale, so we add it to fill some gaps. Depending on your needs, you might want or not want to have it as a fallback.
 - `base` is the base locale definition which contains definitions that can be used in every language (e.g. emojis).
 
+If you only need person data, you can create a locale with only those and omit the fallback locales entirely.
+That way you can create a smaller bundle size, but you have to be careful to include the data for all methods you use.
+
+```ts
+import type { LocaleDefinition } from '@faker-js/faker';
+import { de, Faker } from '@faker-js/faker';
+
+const customLocale: LocaleDefinition = {
+  person: de.person,
+};
+
+export const customFaker = new Faker({
+  locale: customLocale,
+});
+```
+
+`customLocale` is already 90% smaller than just `de`.
+If you only need first names, the size gets cut in half once again.
+
 ## Available locales
 
 <!-- LOCALES-AUTO-GENERATED-START -->
