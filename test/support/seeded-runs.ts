@@ -161,19 +161,6 @@ class TestGenerator<
   }
 
   /**
-   * Temporarily ignores this method. Useful for testing purposes.
-   *
-   * @param method The name of the method.
-   *
-   * @deprecated Implement a proper test.
-   */
-  todo(method: MethodOf<TModule>): this {
-    this.expectNotTested(method);
-    vi_it.todo(method);
-    return this;
-  }
-
-  /**
    * Generates a test for a method without arguments.
    *
    * @param method The name of the method.
