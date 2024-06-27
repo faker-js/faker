@@ -183,6 +183,21 @@ Removed deprecated company methods
 | `faker.company.bsBuzz`        | `faker.company.buzzVerb`      |
 | `faker.company.bsNoun`        | `faker.company.buzzNoun`      |
 
+#### Company Name Affix files reorganized
+
+The company name affix files have been used inconsistently.
+Sometimes `suffix`es were used as prefixes in the patterns, because they contained legal entity types (and in English these were defined as `suffix`es).
+We renamed the files to match their actual content instead of their hypothetical position.
+If you are using the public methods, no changes are required.
+You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+
+| Before                    | After                                  |
+| ------------------------- | -------------------------------------- |
+| `location.company.prefix` | `location.company.category`            |
+| `location.company.suffix` | `location.direction.legal_entity_type` |
+
+Note: In some locales `prefix`es and `suffix`es might have been swapped, so the mapping might be wrong for those.
+
 ### Datatype Module
 
 Removed deprecated datatype methods
