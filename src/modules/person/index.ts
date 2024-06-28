@@ -39,7 +39,7 @@ function selectDefinition<T>(
         faker.helpers.arrayElement([female, male]) ??
         // The last statement should never happen at run time since at this point in time
         // the name entry satisfies at least (generic || (female && male)).
-        // Sadly, TS is not able to infer the type correctly.
+        // TS is not able to infer the type correctly.
         []
       );
     }
