@@ -14,16 +14,16 @@ export type SexType = `${Sex}`;
  *
  * @param faker Faker instance.
  * @param sex Sex.
- * @param nameEntry Definitions.
+ * @param personEntry Definitions.
  *
  * @returns Definition based on given sex.
  */
 function selectDefinition<T>(
   faker: Faker,
   sex: SexType | undefined,
-  nameEntry: PersonEntryDefinition<T>
+  personEntry: PersonEntryDefinition<T>
 ): T[] {
-  const { generic, female, male } = nameEntry;
+  const { generic, female, male } = personEntry;
   switch (sex) {
     case Sex.Female: {
       return female ?? generic;
@@ -37,8 +37,8 @@ function selectDefinition<T>(
       return (
         generic ??
         faker.helpers.arrayElement([female, male]) ??
-        // The last statement should never happen at run time since at this point in time
-        // the name entry satisfies at least (generic || (female && male)).
+        // The last statement should never happen at run time. At this point in time,
+        // the entry will satisfy at least (generic || (female && male)).
         // TS is not able to infer the type correctly.
         []
       );
