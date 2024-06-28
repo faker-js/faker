@@ -1,4 +1,5 @@
-import type { Faker, NameEntry } from '../..';
+import type { Faker } from '../..';
+import type { PersonEntryDefinition } from '../../definitions/person';
 import { ModuleBase } from '../../internal/module-base';
 
 export enum Sex {
@@ -17,10 +18,10 @@ export type SexType = `${Sex}`;
  *
  * @returns Definition based on given sex.
  */
-function selectDefinition<T extends string | { value: string; weight: number }>(
+function selectDefinition<T>(
   faker: Faker,
   sex: SexType | undefined,
-  nameEntry: NameEntry<T>
+  nameEntry: PersonEntryDefinition<T>
 ): T[] {
   const { generic, female, male } = nameEntry;
   switch (sex) {

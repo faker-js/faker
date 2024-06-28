@@ -1,16 +1,22 @@
 import type { LocaleEntry } from './definitions';
 
-export type NameEntry<T extends string | { value: string; weight: number }> =
+export type PersonEntryDefinition<T> =
   | {
+      generic?: T[];
       male: T[];
       female: T[];
-      generic?: T[];
     }
   | {
+      generic: T[];
       male?: never;
       female?: never;
-      generic: T[];
     };
+
+type SimplePersonEntryDefinition = PersonEntryDefinition<string>;
+type WeightedPersonEntryDefinition = PersonEntryDefinition<{
+  value: string;
+  weight: number;
+}>;
 
 /**
  * The possible definitions related to people's names.
@@ -19,10 +25,10 @@ export type PersonDefinition = LocaleEntry<{
   gender: string[];
   sex: string[];
 
-  prefix: NameEntry<string>;
-  first_name: NameEntry<string>;
-  middle_name: NameEntry<string>;
-  last_name: NameEntry<string>;
+  prefix: SimplePersonEntryDefinition;
+  first_name: SimplePersonEntryDefinition;
+  middle_name: SimplePersonEntryDefinition;
+  last_name: SimplePersonEntryDefinition;
 
   suffix: string[];
 
@@ -34,7 +40,7 @@ export type PersonDefinition = LocaleEntry<{
   /**
    * A weighted list of patterns used to generate last names.
    */
-  last_name_pattern: NameEntry<{ value: string; weight: number }>;
+  last_name_pattern: WeightedPersonEntryDefinition;
 
   bio_pattern: string[];
 
