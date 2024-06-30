@@ -29,10 +29,6 @@ export type {
 export { FakerError } from './errors/faker-error';
 export { Faker } from './faker';
 export type { FakerOptions } from './faker';
-export {
-  generateMersenne32Randomizer,
-  generateMersenne53Randomizer,
-} from './internal/mersenne';
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
@@ -81,6 +77,10 @@ export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
+export type { Randomizer } from './randomizer';
 export { SimpleFaker, simpleFaker } from './simple-faker';
 export { mergeLocales } from './utils/merge-locales';
-export type { Randomizer } from './utils/randomizer';
+export {
+  generateMersenne32Randomizer,
+  generateMersenne53Randomizer,
+} from './utils/mersenne';
