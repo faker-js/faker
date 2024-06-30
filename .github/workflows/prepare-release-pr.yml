@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       releaseType:
-        description: 'The type of release to prepare.'
+        description: 'The type of release to prepare a PR for.'
         required: true
         type: choice
         default: 'stable'
@@ -74,8 +74,7 @@ jobs:
             --body "
           Release for $RELEASE_VERSION
 
-          - [ ] Completed manual release tasks
-          - [ ] Link release checklist issue
+          - [ ] Completed manual changes/tasks for this release
 
           ---
 
