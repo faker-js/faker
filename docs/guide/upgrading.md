@@ -486,13 +486,28 @@ Removed deprecated number parameter
 
 #### Changed Definitions
 
-The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescriptor()`, `faker.person.jobArea()` and `faker.person.jobType()` have been reorganized and are no longer nested under `definitions.person.title`. If you are using the public methods, no changes are required. You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescriptor()`, `faker.person.jobArea()` and `faker.person.jobType()` have been reorganized and are no longer nested under `definitions.person.title`. Conversely, the gendered locale definitions used by `faker.person.firstName()`, `faker.person.lastName()`, `faker.person.middleName()` and `faker.person.prefix()` are now consolidated under a single definition property. If you are using the public methods, no changes are required. You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
 
-| Before                    | After                   |
-| ------------------------- | ----------------------- |
-| `person.title.descriptor` | `person.job_descriptor` |
-| `person.title.level`      | `person.job_area`       |
-| `person.title.job`        | `person.job_type`       |
+| Before                            | After                              |
+| --------------------------------- | ---------------------------------- |
+| `person.female_first_name`        | `person.first_name.female`         |
+| `person.female_last_name_pattern` | `person.last_name_pattern.female`  |
+| `person.female_last_name`         | `person.last_name.female`          |
+| `person.female_middle_name`       | `person.middle_name.female`        |
+| `person.female_prefix`            | `person.prefix.female`             |
+| `person.first_name`               | `person.first_name.generic`        |
+| `person.last_name_pattern`        | `person.last_name_pattern.generic` |
+| `person.last_name`                | `person.last_name.generic`         |
+| `person.male_first_name`          | `person.first_name.male`           |
+| `person.male_last_name_pattern`   | `person.last_name_pattern.male`    |
+| `person.male_last_name`           | `person.last_name.male`            |
+| `person.male_middle_name`         | `person.middle_name.male`          |
+| `person.male_prefix`              | `person.prefix.male`               |
+| `person.middle_name`              | `person.middle_name.generic`       |
+| `person.prefix`                   | `person.prefix.generic`            |
+| `person.title.descriptor`         | `person.job_descriptor`            |
+| `person.title.job`                | `person.job_type`                  |
+| `person.title.level`              | `person.job_area`                  |
 
 ### Phone Module
 
