@@ -56,7 +56,7 @@ jobs:
         env:
           RELEASE_TYPE: ${{ github.event.inputs.releaseType }}
 
-      - name: Switch to release branch
+      - name: Switch to and push release branch
         run: |
           RELEASE_BRANCH="chore/release/$RELEASE_VERSION"
           echo "RELEASE_BRANCH=$RELEASE_BRANCH"
