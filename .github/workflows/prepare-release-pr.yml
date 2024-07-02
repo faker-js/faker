@@ -53,7 +53,6 @@ jobs:
             pnpm run release --prerelease $RELEASE_TYPE
           fi
           RELEASE_VERSION=$(jq -r '.version' package.json)
-          echo "RELEASE_VERSION=$RELEASE_VERSION"
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
         env:
           RELEASE_TYPE: ${{ github.event.inputs.releaseType }}
@@ -61,7 +60,6 @@ jobs:
       - name: Switch to and push release branch
         run: |
           RELEASE_BRANCH="chore/release/$RELEASE_VERSION"
-          echo "RELEASE_BRANCH=$RELEASE_BRANCH"
           echo "RELEASE_BRANCH=$RELEASE_BRANCH" >> $GITHUB_ENV
           git switch -c $RELEASE_BRANCH
           git push origin $RELEASE_BRANCH -f
