@@ -1,0 +1,65 @@
+name: Publish Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write # to push the release branch
+
+jobs:
+  publish:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-depth: 0 # we want to push the release branch later
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node version to 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Prepare
+        run: pnpm install --frozen-lockfile
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Gather release info
+        run: |
+          RELEASE_VERSION=$(jq -r '.version' package.json)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          RELEASE_MAJOR=$(jq -r '.version | split(".")[0]' package.json)
+          echo "RELEASE_MAJOR=$RELEASE_MAJOR" >> $GITHUB_ENV
+          DIST_TAG=$(jq -r '.version | if split("-")[1] == null then "latest" else "next" end' package.json)
+          echo "DIST_TAG=$DIST_TAG" >> $GITHUB_ENV
+
+      - name: Prepare README
+        run: |
+          echo -e "$(grep -P '## 📙 API Documentation' -B 10000 README.md)\n\n- [Getting Started Guide](https://fakerjs.dev/guide/)\n- [API Reference](https://fakerjs.dev/api/)\n\n$(grep -P '## 🚀 Features' -A 10000 README.md)" > README.md
+          sed -i "s|/fakerjs.dev/|/v$RELEASE_MAJOR.fakerjs.dev/|g" README.md
+
+      - name: Set publishing config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Publish
+        run: |
+          pnpm publish --tag next --no-git-checks
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Set latest/next dist-tag
+        run: |
+          pnpm dist-tag add @faker-js/faker@$RELEASE_VERSION $DIST_TAG
+
+      - name: Push to Release Branch
+        run: |
+          git push origin $GITHUB_REF_NAME:v$RELEASE_MAJOR
