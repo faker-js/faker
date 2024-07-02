@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   check_release_pr:
+    name: Check Release PR
     if: startsWith(github.head_ref, 'chore/release/')
     runs-on: ubuntu-latest
     timeout-minutes: 10
