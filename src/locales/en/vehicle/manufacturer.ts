@@ -1,8 +1,8 @@
 export default [
   'Aston Martin',
   'Audi',
-  'Bentley',
   'BMW',
+  'Bentley',
   'Bugatti',
   'Cadillac',
   'Chevrolet',

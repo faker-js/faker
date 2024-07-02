@@ -1,13 +1,12 @@
 export default {
   wide: [
     'nedjelja',
-    'ponedjeljak',
-    'utorak',
-    'srijeda',
-    'četvrtak',
     'petak',
+    'ponedjeljak',
+    'srijeda',
     'subota',
+    'utorak',
+    'četvrtak',
   ],
-
-  abbr: ['ned', 'pon', 'uto', 'sri', 'čet', 'pet', 'sub'],
+  abbr: ['ned', 'pet', 'pon', 'sri', 'sub', 'uto', 'čet'],
 };

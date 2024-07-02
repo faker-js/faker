@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { FakerError, faker, fakerEN_CA, fakerEN_US } from '../../src';
+import {
+  FakerError,
+  allLocales,
+  faker,
+  fakerEN_CA,
+  fakerEN_US,
+} from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -193,7 +199,7 @@ describe('location', () => {
 
         it('should return a zip code with length 5 for ZIP codes that start with 0', () => {
           const zipCode = fakerEN_US.location.zipCode({ state: 'NH' });
-          expect(zipCode.length).toBe(5);
+          expect(zipCode).toHaveLength(5);
         });
 
         it('should throw when definitions.location.postcode_by_state not set', () => {
@@ -367,7 +373,7 @@ describe('location', () => {
               isMetric,
             });
 
-            expect(coordinate.length).toBe(2);
+            expect(coordinate).toHaveLength(2);
             expect(coordinate[0]).toBeTypeOf('number');
             expect(coordinate[1]).toBeTypeOf('number');
 
@@ -390,6 +396,37 @@ describe('location', () => {
           }
         );
       });
+
+      describe('timeZone', () => {
+        it('should return a random timezone', () => {
+          const actual = faker.location.timeZone();
+          expect(faker.definitions.location.time_zone).toContain(actual);
+        });
+      });
     }
   );
+});
+
+describe('definitions', () => {
+  describe('timeZone', () => {
+    it.each(Object.entries(allLocales))(
+      'locale data for %s should be a subset of the base locale',
+      (locale, data) => {
+        if (locale === 'base') {
+          expect(data.location?.time_zone).toSatisfy(Array.isArray);
+          expect(data.location?.time_zone?.length).toBeGreaterThan(0);
+          expect(data.location?.time_zone).toEqual(
+            allLocales.base.date?.time_zone
+          );
+        } else if (data.location?.time_zone != null) {
+          expect(data.location.time_zone).toSatisfy(Array.isArray);
+          expect(data.location.time_zone.length).toBeGreaterThan(0);
+          // expected and actual are flipped here
+          expect(allLocales.base.date?.time_zone).toEqual(
+            expect.arrayContaining(data.location.time_zone)
+          );
+        }
+      }
+    );
+  });
 });

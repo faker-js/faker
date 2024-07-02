@@ -1,13 +1,12 @@
 export default {
   wide: [
-    'Sonntag',
-    'Montag',
     'Dienstag',
-    'Mittwoch',
     'Donnerstag',
     'Freitag',
+    'Mittwoch',
+    'Montag',
     'Samstag',
+    'Sonntag',
   ],
-
-  abbr: ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'],
+  abbr: ['Di.', 'Do.', 'Fr.', 'Mi.', 'Mo.', 'Sa.', 'So.'],
 };

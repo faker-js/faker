@@ -1,1 +1,1 @@
-export default ['pénzbefizetés', 'pénzfelvétel', 'fizetés', 'számlázás'];
+export default ['fizetés', 'pénzbefizetés', 'pénzfelvétel', 'számlázás'];

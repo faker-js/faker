@@ -31,7 +31,6 @@ export function getTypeParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
       .getTags()
       .filter((tag) => tag.getTagName() === 'template')
       .filter((tag) => tag instanceof JSDocTemplateTag)
-      .map((tag) => tag as JSDocTemplateTag)
       .map((tag) => [tag.getTypeParameters()[0].getName(), tag] as const)
   );
 }
@@ -42,7 +41,6 @@ export function getParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
       .getTags()
       .filter((tag) => tag.getTagName() === 'param')
       .filter((tag) => tag instanceof JSDocParameterTag)
-      .map((tag) => tag as JSDocParameterTag)
       .map((tag) => [tag.getName(), tag] as const)
   );
 }

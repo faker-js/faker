@@ -11,10 +11,10 @@ export default [
   'Klær',
   'Leker',
   'Musikk',
-  'Sko',
   'Skjønnhet',
-  'Spill',
+  'Sko',
   'Smykker',
+  'Spill',
   'Sport',
   'Verktøy',
 ];

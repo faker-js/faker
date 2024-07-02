@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
-import { formatMarkdown } from '../utils/format';
+import { formatMarkdown, formatTypescript } from '../utils/format';
 import { adjustUrls, codeToHtml, mdToHtml } from '../utils/markdown';
 import { FILE_PATH_API_DOCS } from '../utils/paths';
 import { required } from '../utils/value-checks';
@@ -33,7 +33,7 @@ export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
 async function writePage(page: RawApiDocsPage): Promise<void> {
   try {
     await writePageMarkdown(page);
-    writePageJsonData(page);
+    await writePageJsonData(page);
   } catch (error) {
     throw new Error(`Error writing page ${page.title}`, { cause: error });
   }
@@ -98,10 +98,12 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
  *
  * @param page The page to write.
  */
-function writePageJsonData(page: RawApiDocsPage): void {
+async function writePageJsonData(page: RawApiDocsPage): Promise<void> {
   const { camelTitle, methods } = page;
   const pageData: Record<string, ApiDocsMethod> = Object.fromEntries(
-    methods.map((method) => [method.name, toMethodData(method)])
+    await Promise.all(
+      methods.map(async (method) => [method.name, await toMethodData(method)])
+    )
   );
   const content = JSON.stringify(pageData, null, 2);
 
@@ -110,7 +112,7 @@ function writePageJsonData(page: RawApiDocsPage): void {
 
 const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
 
-function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
+async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   const { name, signatures, source } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
   const {
@@ -125,6 +127,8 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     seeAlsos,
   } = signatureData;
   const { filePath, line } = source;
+  let formattedSignature = await formatTypescript(signature);
+  formattedSignature = formattedSignature.trim();
 
   /* Target order, omitted to improve diff to old files
   return {
@@ -161,7 +165,8 @@ function toMethodData(method: RawApiDocsMethod): ApiDocsMethod {
     sourcePath: `${filePath}#L${line}`,
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     returns: returns.text,
-    examples: codeToHtml([signature, ...examples].join('\n')),
+    signature: codeToHtml(formattedSignature),
+    examples: codeToHtml(examples.join('\n')),
     deprecated: mdToHtml(deprecated),
     seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
   };

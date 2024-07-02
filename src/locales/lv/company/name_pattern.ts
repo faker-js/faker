@@ -1,7 +1,7 @@
 export default [
-  '{{company.prefix}} {{person.male_last_name}}',
-  '{{company.prefix}} {{person.male_last_name}} {{company.suffix}}',
-  '{{company.prefix}} {{person.female_last_name}} {{company.suffix}}',
-  '{{person.male_last_name}} un {{person.male_last_name}}',
-  '{{person.male_last_name}}, {{person.male_last_name}} un {{person.male_last_name}}',
+  '{{company.prefix}} {{person.last_name.female}} {{company.legal_entity_type}}',
+  '{{company.prefix}} {{person.last_name.male}}',
+  '{{company.prefix}} {{person.last_name.male}} {{company.legal_entity_type}}',
+  '{{person.last_name.male}} un {{person.last_name.male}}',
+  '{{person.last_name.male}}, {{person.last_name.male}} un {{person.last_name.male}}',
 ];

@@ -183,6 +183,21 @@ Removed deprecated company methods
 | `faker.company.bsBuzz`        | `faker.company.buzzVerb`      |
 | `faker.company.bsNoun`        | `faker.company.buzzNoun`      |
 
+#### Company Name Affix files reorganized
+
+The company name affix files have been used inconsistently.
+Sometimes `suffix`es were used as prefixes in the patterns, because they contained legal entity types (and in English these were defined as `suffix`es).
+We renamed the files to match their actual content instead of their hypothetical position.
+If you are using the public methods, no changes are required.
+You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+
+| Before                    | After                                  |
+| ------------------------- | -------------------------------------- |
+| `location.company.prefix` | `location.company.category`            |
+| `location.company.suffix` | `location.direction.legal_entity_type` |
+
+Note: In some locales `prefix`es and `suffix`es might have been swapped, so the mapping might be wrong for those.
+
 ### Datatype Module
 
 Removed deprecated datatype methods
@@ -349,6 +364,24 @@ const city = enforcer.enforce(faker.location.city, {
 `enforce-unique` does not directly support the `store` option previously available in `faker.helpers.unique`. If you were previously using this parameter, check the [documentation](https://www.npmjs.com/package/enforce-unique). If you need to reset the store, you can call the `reset()` method on the `UniqueEnforcer` instance.
 :::
 
+#### `faker.helpers.arrayElement` and `faker.helpers.arrayElements`
+
+The following only affects usage in Javascript, as in Typescript this usage would already throw a compile-time error.
+
+Previously, the `arrayElement` and `arrayElements` methods would throw a dedicated error, when called without arguments.
+
+```ts
+faker.helpers.arrayElement(undefined); // FakerError: Calling `faker.helpers.arrayElement()` without arguments is no longer supported.
+```
+
+Now, it throws a JS native error:
+
+```ts
+faker.helpers.arrayElement(undefined); // TypeError: Cannot read properties of undefined (reading 'length')
+```
+
+Calling the methods with an empty array instead still behaves as before.
+
 ### Image Module
 
 Removed deprecated image methods
@@ -424,7 +457,20 @@ Removed deprecated location methods
 | `faker.location.ordinalDirection(abbreviated)`                     | `faker.location.ordinalDirection({ abbreviated })`                 |
 | `faker.location.nearbyGPSCoordinate(coordinate, radius, isMetric)` | `faker.location.nearbyGPSCoordinate({ origin, radius, isMetric })` |
 
-#### Removed Definitions
+#### Direction definitions reorganized
+
+The locale definitions used by `faker.location.direction()`, `faker.location.cardinalDirection()` and `faker.location.ordinalDirection()` have been reorganized.
+Previously, they were located under `definitions.location.direction` and `definitions.location.direction_abbr` and their values were required to be in a specific order.
+Now, all values are nested under `definitions.location.direction` with descriptive property names.
+If you are using the public methods, no changes are required.
+You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+
+| Before                    | After                                                                   |
+| ------------------------- | ----------------------------------------------------------------------- |
+| `location.direction`      | `location.direction.cardinal` or `location.direction.ordinal`           |
+| `location.direction_abbr` | `location.direction.cardinal_abbr` or `location.direction.ordinal_abbr` |
+
+#### Default country definitions removed
 
 The `faker.definitions.location.default_country` definition has been removed, as they were not used by any public method, and were not useful for locales which don't correspond directly to a single country, like `ar`.
 
@@ -440,13 +486,28 @@ Removed deprecated number parameter
 
 #### Changed Definitions
 
-The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescriptor()`, `faker.person.jobArea()` and `faker.person.jobType()` have been reorganized and are no longer nested under `definitions.person.title`. If you are using the public methods, no changes are required. You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescriptor()`, `faker.person.jobArea()` and `faker.person.jobType()` have been reorganized and are no longer nested under `definitions.person.title`. Conversely, the gendered locale definitions used by `faker.person.firstName()`, `faker.person.lastName()`, `faker.person.middleName()` and `faker.person.prefix()` are now consolidated under a single definition property. If you are using the public methods, no changes are required. You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
 
-| Before                    | After                   |
-| ------------------------- | ----------------------- |
-| `person.title.descriptor` | `person.job_descriptor` |
-| `person.title.level`      | `person.job_area`       |
-| `person.title.job`        | `person.job_type`       |
+| Before                            | After                              |
+| --------------------------------- | ---------------------------------- |
+| `person.female_first_name`        | `person.first_name.female`         |
+| `person.female_last_name_pattern` | `person.last_name_pattern.female`  |
+| `person.female_last_name`         | `person.last_name.female`          |
+| `person.female_middle_name`       | `person.middle_name.female`        |
+| `person.female_prefix`            | `person.prefix.female`             |
+| `person.first_name`               | `person.first_name.generic`        |
+| `person.last_name_pattern`        | `person.last_name_pattern.generic` |
+| `person.last_name`                | `person.last_name.generic`         |
+| `person.male_first_name`          | `person.first_name.male`           |
+| `person.male_last_name_pattern`   | `person.last_name_pattern.male`    |
+| `person.male_last_name`           | `person.last_name.male`            |
+| `person.male_middle_name`         | `person.middle_name.male`          |
+| `person.male_prefix`              | `person.prefix.male`               |
+| `person.middle_name`              | `person.middle_name.generic`       |
+| `person.prefix`                   | `person.prefix.generic`            |
+| `person.title.descriptor`         | `person.job_descriptor`            |
+| `person.title.job`                | `person.job_type`                  |
+| `person.title.level`              | `person.job_area`                  |
 
 ### Phone Module
 
@@ -479,6 +540,29 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 | `import { faker } from '@faker-js/faker/locale/en_IND'` | `import { faker } from '@faker-js/faker/locale/en_IN'` |
 | `import { faker } from '@faker-js/faker/locale/ge'`     | `import { faker } from '@faker-js/faker/locale/ka_GE'` |
 | `import { faker } from '@faker-js/faker/locale/global'` | `import { faker } from '@faker-js/faker/locale/base'`  |
+
+### Renamed Locale Definitions
+
+The following locale definitions have been adjusted to align with Faker's locale definition naming standard:
+
+| old                                         | replacement                                  |
+| ------------------------------------------- | -------------------------------------------- |
+| `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
+| `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_path`    |
+| `faker.definitions.system.mimeTypes`        | `faker.definitions.system.mime_type`         |
+| `faker.definitions.lorem.words`             | `faker.definitions.lorem.word`               |
+
+With that now all our locale data use the following naming scheme:
+
+```txt
+faker.definitions.category_name.entry_name
+```
+
+Please keep in mind that property keys of complex objects remain in camel-case.
+
+```txt
+faker.definitions.science.chemical_element.atomicNumber
+```
 
 ### Type Aliases
 
@@ -530,6 +614,15 @@ Previously, if you passed something which could not be parsed to a `Date`, it wo
 Now, this throws an error raising awareness of that bad value.
 
 This affects the `refDate` parameter of the `anytime()`, `birthdate()`, `past()`, `future()`, `recent()` and `soon()`, methods as well as the `from` and `to` parameters of `between()` and `betweens()`.
+
+### Separate Timezone Methods
+
+The `timeZone` functionality has been divided to enhance specificity:
+
+- Use `faker.date.timeZone()` to generate a random global time zone.
+- Use `faker.location.timeZone()` to obtain time zone specific to the current locale.
+
+We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please create a new issue.
 
 ### Prices Now Return More Price-Like Values
 

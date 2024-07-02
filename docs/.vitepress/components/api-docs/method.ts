@@ -6,6 +6,7 @@ export interface ApiDocsMethod {
   readonly parameters: ApiDocsMethodParameter[];
   readonly returns: string;
   readonly throws: string | undefined; // HTML
+  readonly signature: string; // HTML
   readonly examples: string; // HTML
   readonly seeAlsos: string[];
   readonly sourcePath: string; // URL-Suffix

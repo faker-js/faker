@@ -298,6 +298,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
           // limit entries to 1k
           .slice(0, 1000)
           // sort entries alphabetically
+          // We cannot sort the entries locale aware as the sort order is not stable within node versions #2905
           .sort() as T
       );
     }
@@ -312,20 +313,13 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'commerce',
-    'company',
-    'database',
-    'date',
-    'finance',
     'internet',
     'location',
     'lorem',
     'metadata',
     'person',
     'phone_number',
-    'science',
     'system',
-    'vehicle',
     'word',
     ...legacyDefinitions,
   ];
@@ -340,10 +334,8 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
   const compareString = fileContent.substring(compareIndex);
 
-  const isDynamicFile = compareString.startsWith('mergeArrays');
   const isNonApplicable = compareString.startsWith('null');
-  const isFrozenData = compareString.startsWith('Object.freeze');
-  if (isDynamicFile || isNonApplicable || isFrozenData) {
+  if (isNonApplicable) {
     return;
   }
 

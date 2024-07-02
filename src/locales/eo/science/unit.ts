@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   {
     name: 'metro',
     symbol: 'm',
@@ -115,4 +115,4 @@ export default Object.freeze([
     name: 'katalo',
     symbol: 'kat',
   },
-]);
+];

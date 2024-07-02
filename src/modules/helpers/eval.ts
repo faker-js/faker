@@ -81,7 +81,7 @@ export function fakeEval(
   do {
     let index: number;
     if (remaining.startsWith('(')) {
-      [index, current] = evalProcessFunction(remaining, current);
+      [index, current] = evalProcessFunction(remaining, current, expression);
     } else {
       [index, current] = evalProcessExpression(remaining, current);
     }
@@ -109,10 +109,12 @@ export function fakeEval(
  *
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to attempt the call on.
+ * @param expression The full expression to use in errors.
  */
 function evalProcessFunction(
   input: string,
-  entrypoints: ReadonlyArray<unknown>
+  entrypoints: ReadonlyArray<unknown>,
+  expression: string
 ): [continueIndex: number, mapped: unknown[]] {
   const [index, params] = findParams(input);
   const nextChar = input[index + 1];
@@ -133,9 +135,22 @@ function evalProcessFunction(
   return [
     index + (nextChar === '.' ? 2 : 1), // one for the closing bracket, one for the dot
     entrypoints.map((entrypoint): unknown =>
-      // TODO @ST-DDT 2023-12-11: Replace in v9
+      // TODO @ST-DDT 2023-12-11: Replace in v10
       // typeof entrypoint === 'function' ? entrypoint(...params) : undefined
-      typeof entrypoint === 'function' ? entrypoint(...params) : entrypoint
+      {
+        if (typeof entrypoint === 'function') {
+          return entrypoint(...params);
+        }
+
+        console.warn(
+          `[@faker-js/faker]: Invoking expressions which are not functions is deprecated since v9.0 and will be removed in v10.0.
+Please remove the parentheses or replace the expression with an actual function.
+${expression}
+${' '.repeat(expression.length - input.length)}^`
+        );
+
+        return entrypoint;
+      }
     ),
   ];
 }

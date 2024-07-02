@@ -7,12 +7,12 @@ export type SystemDefinition = LocaleEntry<{
   /**
    * Returns some common file paths.
    */
-  directoryPaths: string[];
+  directory_path: string[];
 
   /**
    * The mime type definitions with some additional information.
    */
-  mimeTypes: { [mimeType: string]: SystemMimeTypeEntryDefinition };
+  mime_type: { [mimeType: string]: SystemMimeTypeEntryDefinition };
 }>;
 
 /**

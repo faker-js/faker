@@ -1,1 +1,1 @@
-export default ['Diesel', 'Électrique', 'Essence', 'Hybride'];
+export default ['Diesel', 'Essence', 'Hybride', 'Électrique'];
