@@ -18,15 +18,15 @@ jobs:
           fetch-depth: 0 # we want to push the release branch later
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
 
-      - name: Set node version to 20
-        uses: actions/setup-node@v4
+      - name: Set node version to 22
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
-      - name: Prepare
+      - name: Install deps
         run: pnpm install --frozen-lockfile
         env:
           CYPRESS_INSTALL_BINARY: 0
