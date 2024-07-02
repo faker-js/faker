@@ -20,6 +20,7 @@ permissions:
 
 jobs:
   prepare_release_pr:
+    name: Prepare Release PR
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
