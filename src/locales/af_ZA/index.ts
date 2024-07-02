@@ -14,9 +14,7 @@ import phone_number from './phone_number';
 const af_ZA: LocaleDefinition = {
   cell_phone,
   company,
-
   internet,
-
   location,
   metadata,
   person,
