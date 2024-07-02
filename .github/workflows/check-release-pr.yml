@@ -2,6 +2,8 @@ name: Check Release PR
 
 on:
   pull_request:
+    paths:
+      - 'CHANGELOG.md'
 
 permissions:
   contents: read # to fetch code (actions/checkout)
@@ -53,7 +55,7 @@ jobs:
       - name: Install deps - playground
         run: |
           cd playground
-          sed -i 's/overrides-for-release/overrides/g' package.json
+          sed -i 's/overrides-for-release/overrides/' package.json
           pnpm install --no-frozen-lockfile
 
       - name: Build - playground
