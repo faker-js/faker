@@ -80,7 +80,7 @@ jobs:
 
           ---
 
-          - Checklist: TODO
+          - Checklist: TODO add link to issue
           "
         env:
           GH_TOKEN: ${{ github.token }}
