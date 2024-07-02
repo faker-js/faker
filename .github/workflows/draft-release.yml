@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   draft_release:
+    name: Draft Release
     if: >
       startsWith(github.event.pull_request.title, 'chore(release):')
       && github.event.pull_request.merged
