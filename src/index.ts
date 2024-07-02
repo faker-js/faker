@@ -83,5 +83,5 @@ export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
 export type { Randomizer } from './randomizer';
-export { SimpleFaker, simpleFaker } from './simple-faker';
+export { SimpleFaker, simpleFaker } from './simple-faker';   
 export { mergeLocales } from './utils/merge-locales';
