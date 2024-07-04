@@ -5,26 +5,21 @@ import { SimpleModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
 
 /**
- * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non-parsable value is passed, then it will take the value from the given fallback.
+ * Converts a date passed as a `string`, `number` or `Date` to a valid `Date` object.
  *
  * @param date The date to convert.
- * @param fallback The fallback date to use if the passed date is not valid.
+ * @param name The reference name used for error messages. Defaults to `'refDate'`.
+ *
+ * @throws If the given date is invalid.
  */
-function toDate(
-  date: string | Date | number | undefined,
-  fallback: () => Date
-): Date {
-  if (date == null) {
-    return fallback();
+function toDate(date: string | Date | number, name: string = 'refDate'): Date {
+  const converted = new Date(date);
+
+  if (Number.isNaN(converted.valueOf())) {
+    throw new FakerError(`Invalid ${name} date: ${date.toString()}`);
   }
 
-  date = new Date(date);
-  if (Number.isNaN(date.valueOf())) {
-    date = fallback();
-  }
-
-  return date;
+  return converted;
 }
 
 /**
@@ -56,13 +51,12 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { refDate } = options;
-
-    const date = toDate(refDate, this.faker.defaultRefDate);
+    const { refDate = this.faker.defaultRefDate() } = options;
+    const time = toDate(refDate).getTime();
 
     return this.between({
-      from: new Date(date.getTime() - 1000 * 60 * 60 * 24 * 365),
-      to: new Date(date.getTime() + 1000 * 60 * 60 * 24 * 365),
+      from: time - 1000 * 60 * 60 * 24 * 365,
+      to: time + 1000 * 60 * 60 * 24 * 365,
     });
   }
 
@@ -98,23 +92,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: years * 365 * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let past = date.getTime();
-    past -= this.faker.number.int(range); // some time from now to N years ago, in milliseconds
-    date.setTime(past);
-
-    return date;
+    return this.between({
+      from: time - years * 365 * 24 * 3600 * 1000,
+      to: time - 1000,
+    });
   }
 
   /**
@@ -149,31 +138,29 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: years * 365 * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future += this.faker.number.int(range); // some time from now to N years later, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time + 1000,
+      to: time + years * 365 * 24 * 3600 * 1000,
+    });
   }
 
   /**
    * Generates a random date between the given boundaries.
    *
-   * @param options The optional options object.
+   * @param options The options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
+   *
+   * @throws If `from` or `to` are not provided.
+   * @throws If `from` is after `to`.
    *
    * @example
    * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
@@ -190,22 +177,34 @@ export class SimpleDateModule extends SimpleModuleBase {
      */
     to: string | Date | number;
   }): Date {
+    // TODO @matthewmayer 2023-03-27: Consider removing in v10 as this check is only needed in JS
+    if (options == null || options.from == null || options.to == null) {
+      throw new FakerError(
+        'Must pass an options object with `from` and `to` values.'
+      );
+    }
+
     const { from, to } = options;
 
-    const fromMs = toDate(from, this.faker.defaultRefDate).getTime();
-    const toMs = toDate(to, this.faker.defaultRefDate).getTime();
-    const dateOffset = this.faker.number.int(toMs - fromMs);
+    const fromMs = toDate(from, 'from').getTime();
+    const toMs = toDate(to, 'to').getTime();
+    if (fromMs > toMs) {
+      throw new FakerError('`from` date must be before `to` date.');
+    }
 
-    return new Date(fromMs + dateOffset);
+    return new Date(this.faker.number.int({ min: fromMs, max: toMs }));
   }
 
   /**
    * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
    *
-   * @param options The optional options object.
+   * @param options The options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
+   *
+   * @throws If `from` or `to` are not provided.
+   * @throws If `from` is after `to`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -252,8 +251,14 @@ export class SimpleDateModule extends SimpleModuleBase {
           max: number;
         };
   }): Date[] {
-    const { from, to, count = 3 } = options;
+    // TODO @matthewmayer 2023-03-27: Consider removing in v10 as this check is only needed in JS
+    if (options == null || options.from == null || options.to == null) {
+      throw new FakerError(
+        'Must pass an options object with `from` and `to` values.'
+      );
+    }
 
+    const { from, to, count = 3 } = options;
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
       .sort((a, b) => a.getTime() - b.getTime());
@@ -291,23 +296,18 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate } = options;
+    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: days * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future -= this.faker.number.int(range); // some time from now to N days ago, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time - days * 24 * 3600 * 1000,
+      to: time - 1000,
+    });
   }
 
   /**
@@ -342,110 +342,217 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate } = options;
+    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
 
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate, this.faker.defaultRefDate);
-    const range = {
-      min: 1000,
-      max: days * 24 * 3600 * 1000,
-    };
+    const time = toDate(refDate).getTime();
 
-    let future = date.getTime();
-    future += this.faker.number.int(range); // some time from now to N days later, in milliseconds
-    date.setTime(future);
-
-    return date;
+    return this.between({
+      from: time + 1000,
+      to: time + days * 24 * 3600 * 1000,
+    });
   }
 
   /**
-   * Returns a random birthdate.
+   * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
+   * But you can customize the `'age'` range or the `'year'` range to generate a more specific birthdate.
    *
-   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
-   * @param options.min The minimum age or year to generate a birthdate.
-   * @param options.max The maximum age or year to generate a birthdate.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `now`.
-   * @param options.mode The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
-   *
-   * There are two modes available `'age'` and `'year'`:
-   * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
-   * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
-   *
-   * Defaults to `year`.
+   * @param options The options to use to generate the birthdate.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @example
    * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
-   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }) // 2003-11-02T20:03:20.116Z
-   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }) // 1940-08-20T08:53:07.538Z
+   *
+   * @since 7.0.0
+   */
+  birthdate(options?: {
+    /**
+     * The date to use as reference point for the newly generated date.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate?: string | Date | number;
+  }): Date;
+  /**
+   * Returns a random birthdate for a given age range.
+   *
+   * @param options The options to use to generate the birthdate.
+   * @param options.mode `'age'` to generate a birthdate based on the age range. It is also possible to generate a birthdate based on a `'year'` range.
+   * @param options.min The minimum age to generate a birthdate for.
+   * @param options.max The maximum age to generate a birthdate for.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.date.birthdate({ mode: 'age', min: 18, max: 65 }) // 2003-11-02T20:03:20.116Z
+   *
+   * @since 7.0.0
+   */
+  birthdate(options: {
+    /**
+     * `'age'` to generate a birthdate based on the age range.
+     * It is also possible to generate a birthdate based on a `'year'` range.
+     */
+    mode: 'age';
+    /**
+     * The minimum age to generate a birthdate for.
+     */
+    min: number;
+    /**
+     * The maximum age to generate a birthdate for.
+     */
+    max: number;
+    /**
+     * The date to use as reference point for the newly generated date.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate?: string | Date | number;
+  }): Date;
+  /**
+   * Returns a random birthdate in the given range of years.
+   *
+   * @param options The options to use to generate the birthdate.
+   * @param options.mode `'year'` to generate a birthdate based on the year range. It is also possible to generate a birthdate based on a `'age'` range.
+   * @param options.min The minimum year to generate a birthdate in.
+   * @param options.max The maximum year to generate a birthdate in.
+   *
+   * @example
+   * faker.date.birthdate({ mode: 'year', min: 1900, max: 2000 }) // 1940-08-20T08:53:07.538Z
+   *
+   * @since 7.0.0
+   */
+  birthdate(options: {
+    /**
+     * `'year'` to generate a birthdate based on the year range.
+     * It is also possible to generate a birthdate based on an `'age'` range.
+     */
+    mode: 'year';
+    /**
+     * The minimum year to generate a birthdate in.
+     */
+    min: number;
+    /**
+     * The maximum year to generate a birthdate in.
+     */
+    max: number;
+  }): Date;
+  /**
+   * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
+   * But you can customize the `'age'` range or the `'year'` range to generate a more specific birthdate.
+   *
+   * @param options The options to use to generate the birthdate.
+   * @param options.mode Either `'age'` or `'year'` to generate a birthdate based on the age or year range.
+   * @param options.min The minimum age or year to generate a birthdate in.
+   * @param options.max The maximum age or year to generate a birthdate in.
+   * @param options.refDate The date to use as reference point for the newly generated date.
+   * Only used when `mode` is `'age'`.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
+   * faker.date.birthdate({ mode: 'age', min: 18, max: 65 }) // 2003-11-02T20:03:20.116Z
+   * faker.date.birthdate({ mode: 'year', min: 1900, max: 2000 }) // 1940-08-20T08:53:07.538Z
    *
    * @since 7.0.0
    */
   birthdate(
+    options?:
+      | {
+          /**
+           * The date to use as reference point for the newly generated date.
+           *
+           * @default faker.defaultRefDate()
+           */
+          refDate?: string | Date | number;
+        }
+      | {
+          /**
+           * Either `'age'` or `'year'` to generate a birthdate based on the age or year range.
+           */
+          mode: 'age' | 'year';
+          /**
+           * The minimum age/year to generate a birthdate for/in.
+           */
+          min: number;
+          /**
+           * The maximum age/year to generate a birthdate for/in.
+           */
+          max: number;
+          /**
+           * The date to use as reference point for the newly generated date.
+           * Only used when `mode` is `'age'`.
+           *
+           * @default faker.defaultRefDate()
+           */
+          refDate?: string | Date | number;
+        }
+  ): Date;
+  birthdate(
     options: {
-      /**
-       * The minimum age or year to generate a birthdate.
-       *
-       * @default 18
-       */
-      min?: number;
-      /**
-       * The maximum age or year to generate a birthdate.
-       *
-       * @default 80
-       */
-      max?: number;
-      /**
-       * The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
-       *
-       * There are two modes available `'age'` and `'year'`:
-       * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
-       * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
-       *
-       * @default 'year'
-       */
       mode?: 'age' | 'year';
-      /**
-       * The date to use as reference point for the newly generated date.
-       *
-       * @default faker.defaultRefDate()
-       */
+      min?: number;
+      max?: number;
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const mode = options.mode === 'age' ? 'age' : 'year';
-    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
+    const {
+      mode = 'age',
+      min = 18,
+      max = 80,
+      refDate: rawRefDate = this.faker.defaultRefDate(),
+      mode: originalMode,
+      min: originalMin,
+      max: originalMax,
+    } = options;
+
+    // TODO @ST-DDT 2024-03-17: Remove check in v10
+    const optionsSet = [originalMin, originalMax, originalMode].filter(
+      (x) => x != null
+    ).length;
+    if (optionsSet % 3 !== 0) {
+      throw new FakerError(
+        "The 'min', 'max', and 'mode' options must be set together."
+      );
+    }
+
+    const refDate = toDate(rawRefDate);
     const refYear = refDate.getUTCFullYear();
 
-    // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
-    // So that people can still be considered as adults in most cases
+    switch (mode) {
+      case 'age': {
+        // Add one day to the `from` date to avoid generating the same date as the reference date.
+        const oneDay = 24 * 60 * 60 * 1000;
+        const from =
+          new Date(refDate).setUTCFullYear(refYear - max - 1) + oneDay;
+        const to = new Date(refDate).setUTCFullYear(refYear - min);
 
-    // Convert to epoch timestamps
-    let min: number;
-    let max: number;
-    if (mode === 'age') {
-      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
-      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
-    } else {
-      // Avoid generating dates the first and last date of the year
-      // to avoid running into other years depending on the timezone.
-      min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
-        options.min ?? refYear - 80
-      );
-      max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
-        options.max ?? refYear - 19
-      );
+        if (from > to) {
+          throw new FakerError(
+            `Max age ${max} should be greater than or equal to min age ${min}.`
+          );
+        }
+
+        return this.between({ from, to });
+      }
+
+      case 'year': {
+        // Avoid generating dates on the first and last date of the year
+        // to avoid running into other years depending on the timezone.
+        const from = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(min);
+        const to = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(max);
+
+        if (from > to) {
+          throw new FakerError(
+            `Max year ${max} should be greater than or equal to min year ${min}.`
+          );
+        }
+
+        return this.between({ from, to });
+      }
     }
-
-    if (max < min) {
-      throw new FakerError(
-        `Max ${options.max} should be larger than or equal to min ${options.min}.`
-      );
-    }
-
-    return new Date(this.faker.number.int({ min, max }));
   }
 }
 
@@ -459,6 +566,12 @@ export class SimpleDateModule extends SimpleModuleBase {
  * For a realistic birthdate for an adult, use [`birthdate()`](https://fakerjs.dev/api/date.html#birthdate).
  *
  * For more control, any of these methods can be customized with further options, or use [`between()`](https://fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://fakerjs.dev/api/date.html#betweens) for multiple dates.
+ *
+ * Dates can be specified as Javascript Date objects, strings or UNIX timestamps.
+ * For example to generate a date between 1st January 2000 and now, use:
+ * ```ts
+ * faker.date.between({ from: '2000-01-01', to: Date.now() });
+ * ```
  *
  * You can generate random localized month and weekday names using [`month()`](https://fakerjs.dev/api/date.html#month) and [`weekday()`](https://fakerjs.dev/api/date.html#weekday).
  *
@@ -571,5 +684,24 @@ export class DateModule extends SimpleDateModule {
     const values = source[type];
     assertLocaleData(values, 'date.weekday', type);
     return this.faker.helpers.arrayElement(values);
+  }
+
+  /**
+   * Returns a random IANA time zone name.
+   *
+   * The returned time zone is not tied to the current locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.location.timeZone(): For generating a timezone based on the current locale.
+   *
+   * @example
+   * faker.location.timeZone() // 'Pacific/Guam'
+   *
+   * @since 9.0.0
+   */
+  timeZone(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.date.time_zone
+    );
   }
 }

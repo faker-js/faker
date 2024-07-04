@@ -1,12 +1,12 @@
 export default {
   wide: [
-    'Yakshanba',
-    'Dushanba',
-    'Seshanba',
     'Chorshanba',
-    'Payshanba',
+    'Dushanba',
     'Juma',
+    'Payshanba',
+    'Seshanba',
     'Shanba',
+    'Yakshanba',
   ],
-  abbr: ['Ya', 'Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'],
+  abbr: ['Ch', 'Du', 'Ju', 'Pa', 'Se', 'Sh', 'Ya'],
 };

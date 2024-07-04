@@ -62,7 +62,7 @@ import { faker } from '@faker-js/faker';
 // CJS
 const { faker } = require('@faker-js/faker');
 
-export function createRandomUser(): User {
+export function createRandomUser() {
   return {
     userId: faker.string.uuid(),
     username: faker.internet.userName(),
@@ -74,14 +74,14 @@ export function createRandomUser(): User {
   };
 }
 
-export const USERS: User[] = faker.helpers.multiple(createRandomUser, {
+export const users = faker.helpers.multiple(createRandomUser, {
   count: 5,
 });
 ```
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v8 (stable)](https://fakerjs.dev/api/) and [v8.\* (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v8 (stable)](https://fakerjs.dev/api/) and [v9.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 

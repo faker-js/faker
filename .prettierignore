@@ -1,7 +1,6 @@
 .pnpm-store/
 coverage/
 dist/
-test/scripts/apidoc/temp/
+test/scripts/apidocs/temp/
 CHANGELOG.md
-CHANGELOG_old.md
 pnpm-lock.yaml

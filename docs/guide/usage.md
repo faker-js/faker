@@ -26,9 +26,21 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 
 :::
 
-For more information about changing and customizing the locales, please refer to our [Localization Guide](localization).
+For more information on selecting and customizing a locale, please refer to our [Localization Guide](localization).
 
 ## Browser
+
+If you want to try it yourself, you can open your browser console via `Ctrl + Shift + J` / `F12`.
+
+```js
+const { faker } = await import('https://esm.sh/@faker-js/faker');
+
+const randomName = faker.person.fullName(); // Amber Keebler
+const randomEmail = faker.internet.email(); // Norma13@hotmail.com
+```
+
+Some websites may have protections against downloading external code, dev servers usually work fine.
+As an alternative, you can create a simple html file and open it with your browser:
 
 ```html
 <script type="module">
@@ -39,11 +51,17 @@ For more information about changing and customizing the locales, please refer to
 
   // Rusty@arne.info
   const randomEmail = faker.internet.email();
+
+  document.getElementById('name').value = randomName;
+  document.getElementById('email').value = randomEmail;
 </script>
+
+<input id="name" />
+<input id="email" />
 ```
 
 ::: info Note
-Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker in your web app.**
+Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker package in your web app.**
 :::
 
 ## CDN/Deno
@@ -56,7 +74,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v8.4.0"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v8.4.1"`.
 :::
 
 ### Alternative CDN links

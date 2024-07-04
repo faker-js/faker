@@ -55,14 +55,10 @@
     },
     {
       "groupName": "doc-dependencies",
-      "matchPackageNames": [
-        "@algolia/client-search",
-        "typedoc",
-        "typedoc-plugin-missing-exports",
-        "vitepress"
-      ]
+      "matchPackageNames": ["@algolia/client-search", "ts-morph", "vitepress"]
     }
   ],
+  "stopUpdatingLabel": "s: on hold",
   "vulnerabilityAlerts": {
     "labels": ["c: security", "p: 2-high"],
     "assignees": ["team:maintainers"]

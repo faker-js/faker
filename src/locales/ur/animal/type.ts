@@ -1,1 +1,1 @@
-export default ['bear', 'lion', 'insect', 'crocodilia', 'cow'];
+export default ['bear', 'cow', 'crocodilia', 'insect', 'lion'];

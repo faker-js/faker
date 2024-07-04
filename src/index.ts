@@ -19,6 +19,7 @@ export type {
   MetadataDefinition,
   MusicDefinition,
   PersonDefinition,
+  PersonEntryDefinition,
   PhoneNumberDefinition,
   ScienceDefinition,
   SystemDefinition,
@@ -36,7 +37,6 @@ export {
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
-export * as allLocales from './locales';
 export { Aircraft } from './modules/airline';
 export type { AircraftType, AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
@@ -56,6 +56,14 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type { Currency, FinanceModule } from './modules/finance';
+export {
+  BitcoinAddressFamily,
+  BitcoinNetwork,
+} from './modules/finance/bitcoin';
+export type {
+  BitcoinAddressFamilyType,
+  BitcoinNetworkType,
+} from './modules/finance/bitcoin';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';

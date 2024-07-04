@@ -33,30 +33,29 @@ module.exports = defineConfig({
   },
   rules: {
     eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'logical-assignment-operators': 'error',
     'no-else-return': 'error',
     'no-restricted-globals': ['error', 'Intl'],
     'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
 
+    'unicorn/import-style': 'off', // subjective & doesn't do anything for us
     'unicorn/no-array-callback-reference': 'off', // reduces readability
     'unicorn/no-nested-ternary': 'off', // incompatible with prettier
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
     'unicorn/number-literal-case': 'off', // incompatible with prettier
+    'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
     'unicorn/prefer-ternary': 'off', // ternaries aren't always better
 
     // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
     // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
     'unicorn/better-regex': 'off',
     'unicorn/consistent-function-scoping': 'off',
-    'unicorn/import-style': 'off',
-    'unicorn/no-await-expression-member': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
-    'unicorn/numeric-separators-style': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/prefer-string-slice': 'off',
     'unicorn/prevent-abbreviations': 'off',
-    'unicorn/require-array-join-separator': 'off',
 
     '@typescript-eslint/array-type': [
       'error',
@@ -81,6 +80,12 @@ module.exports = defineConfig({
         trailingUnderscore: 'forbid',
       },
     ],
+    '@typescript-eslint/no-confusing-void-expression': [
+      'error',
+      {
+        ignoreArrowShorthand: true,
+      },
+    ],
     '@typescript-eslint/no-inferrable-types': [
       'error',
       { ignoreParameters: true },
@@ -94,6 +99,16 @@ module.exports = defineConfig({
       { blankLine: 'always', prev: 'block-like', next: '*' },
     ],
     '@typescript-eslint/prefer-regexp-exec': 'error',
+    '@typescript-eslint/restrict-plus-operands': [
+      'error',
+      {
+        allowAny: false,
+        allowBoolean: false,
+        allowNullish: false,
+        allowNumberAndString: true,
+        allowRegExp: false,
+      },
+    ],
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true, allowBoolean: true },
@@ -104,10 +119,6 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/unified-signatures': 'off', // incompatible with our api docs generation
-
-    // TODO @ST-DDT 2023-10-10: The following rules currently conflict with our code.
-    // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
-    '@typescript-eslint/no-confusing-void-expression': 'off',
 
     'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
     'jsdoc/require-returns': 'off',
@@ -155,12 +166,6 @@ module.exports = defineConfig({
           'error',
           {
             case: 'snakeCase',
-            // TODO @ST-DDT 2023-10-21: rename the definitions in v9
-            ignore: [
-              /chemicalElement\.ts$/,
-              /directoryPaths\.ts$/,
-              /mimeTypes\.ts$/,
-            ],
           },
         ],
         'unicorn/text-encoding-identifier-case': 'off',
@@ -182,7 +187,9 @@ module.exports = defineConfig({
         ],
 
         'vitest/expect-expect': 'off',
+        'vitest/no-alias-methods': 'error',
         'vitest/prefer-each': 'error',
+        'vitest/prefer-to-have-length': 'error',
         'vitest/valid-expect': ['error', { maxArgs: 2 }],
       },
     },

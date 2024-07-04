@@ -1,26 +1,22 @@
 export default {
   wide: [
     'Dimanche',
+    'Jeudi',
     'Lundi',
     'Mardi',
     'Mercredi',
-    'Jeudi',
-    'Vendredi',
     'Samedi',
+    'Vendredi',
   ],
-  // Property "wide_context" is optional, if not set then "wide" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
   wide_context: [
     'dimanche',
+    'jeudi',
     'lundi',
     'mardi',
     'mercredi',
-    'jeudi',
-    'vendredi',
     'samedi',
+    'vendredi',
   ],
-  abbr: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  abbr_context: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+  abbr: ['Dim', 'Jeu', 'Lun', 'Mar', 'Mer', 'Sam', 'Ven'],
+  abbr_context: ['dim', 'jeu', 'lun', 'mar', 'mer', 'sam', 'ven'],
 };

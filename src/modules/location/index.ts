@@ -176,7 +176,7 @@ export class LocationModule extends ModuleBase {
    */
   secondaryAddress(): string {
     return this.faker.helpers
-      .arrayElement(this.faker.definitions.location.secondary_address)
+      .fake(this.faker.definitions.location.secondary_address)
       .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
@@ -427,14 +427,16 @@ export class LocationModule extends ModuleBase {
     const { abbreviated = false } = options;
 
     if (!abbreviated) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction
-      );
+      return this.faker.helpers.arrayElement([
+        ...this.faker.definitions.location.direction.cardinal,
+        ...this.faker.definitions.location.direction.ordinal,
+      ]);
     }
 
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction_abbr
-    );
+    return this.faker.helpers.arrayElement([
+      ...this.faker.definitions.location.direction.cardinal_abbr,
+      ...this.faker.definitions.location.direction.ordinal_abbr,
+    ]);
   }
 
   /**
@@ -465,12 +467,12 @@ export class LocationModule extends ModuleBase {
 
     if (!abbreviated) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.slice(0, 4)
+        this.faker.definitions.location.direction.cardinal
       );
     }
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction_abbr.slice(0, 4)
+      this.faker.definitions.location.direction.cardinal_abbr
     );
   }
 
@@ -502,12 +504,12 @@ export class LocationModule extends ModuleBase {
 
     if (!abbreviated) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.slice(4, 8)
+        this.faker.definitions.location.direction.ordinal
       );
     }
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction_abbr.slice(4, 8)
+      this.faker.definitions.location.direction.ordinal_abbr
     );
   }
 
@@ -570,7 +572,6 @@ export class LocationModule extends ModuleBase {
     /**
      * The distance in km per degree for earth.
      */
-    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
     const kmPerDegree = 40_000 / 360; // in km/°
 
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
@@ -594,7 +595,12 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
-   * Returns a random time zone.
+   * Returns a random IANA time zone relevant to this locale.
+   *
+   * The returned time zone is tied to the current locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.date.timeZone(): For generating a random time zone from all available time zones.
    *
    * @example
    * faker.location.timeZone() // 'Pacific/Guam'

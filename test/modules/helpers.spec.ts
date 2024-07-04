@@ -190,15 +190,6 @@ describe('helpers', () => {
           expect(actual).toBe('hello');
         });
 
-        it('should throw with no arguments', () => {
-          // @ts-expect-error: `arrayElement` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElement()).toThrow(
-            new FakerError(
-              'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
-            )
-          );
-        });
-
         it('should throw on an empty array', () => {
           expect(() => faker.helpers.arrayElement([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
@@ -402,7 +393,7 @@ describe('helpers', () => {
           const subset = faker.helpers.arrayElements(testArray, 6);
 
           // Check length
-          expect(subset.length).toBe(5);
+          expect(subset).toHaveLength(5);
 
           // Check elements
           for (const element of subset) {
@@ -467,15 +458,6 @@ describe('helpers', () => {
             }
           }
         );
-
-        it('should throw with no arguments', () => {
-          // @ts-expect-error: `arrayElements` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElements()).toThrow(
-            new FakerError(
-              'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
-            )
-          );
-        });
 
         describe('should not throw on an array with nullish elements', () => {
           it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
@@ -799,7 +781,8 @@ describe('helpers', () => {
         });
 
         it('should never return the callback result when probability is 0', () => {
-          const actual = faker.helpers.maybe(() => expect.fail(), {
+          const method: () => unknown = expect.fail;
+          const actual = faker.helpers.maybe(method, {
             probability: 0,
           });
 
@@ -1041,19 +1024,11 @@ describe('helpers', () => {
           expect(faker.definitions.location.state).toContain(
             faker.helpers.fake('{{address.state}}')
           );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.firstName}}')
-          );
-        });
-
-        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored: #893
-        it.todo('should support deprecated definition aliases', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{address.city_name}}')
-          );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
-          );
+          expect([
+            ...(faker.definitions.person.first_name.female ?? []),
+            ...(faker.definitions.person.first_name.generic ?? []),
+            ...(faker.definitions.person.first_name.male ?? []),
+          ]).toContain(faker.helpers.fake('{{name.firstName}}'));
         });
 
         it('should not trim whitespace', () => {
@@ -1078,7 +1053,7 @@ describe('helpers', () => {
           const result = faker.helpers.multiple(() => faker.person.firstName());
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(3);
+          expect(result).toHaveLength(3);
         });
 
         it('should generate the given amount of values from the function', () => {
@@ -1090,7 +1065,7 @@ describe('helpers', () => {
           );
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(5);
+          expect(result).toHaveLength(5);
         });
 
         it('should generate a ranged number of values from the function', () => {
@@ -1112,7 +1087,7 @@ describe('helpers', () => {
           });
           expect(result).toBeTypeOf('object');
           expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(3);
+          expect(result).toHaveLength(3);
           expect(result).toStrictEqual([0, 2, 4]);
         });
       });
