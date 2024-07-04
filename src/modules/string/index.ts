@@ -740,20 +740,15 @@ export class StringModule extends SimpleModuleBase {
       return str;
     };
 
-    const { refDate } = options;
-    let date = refDate;
-
-    if (date == null) {
-      date = this.faker.defaultRefDate();
-    }
-
-    date = new Date(date);
-    if (Number.isNaN(date.valueOf())) {
-      date = this.faker.defaultRefDate();
+    const { refDate = this.faker.defaultRefDate() } = options;
+    const converted = new Date(refDate);
+    if (Number.isNaN(converted.valueOf())) {
+      throw new FakerError(`Invalid ULID refDate: ${refDate.toString()}`);
     }
 
     return (
-      encodeTime(date.getTime()) + this.fromCharacters(encodingCharacters, 16)
+      encodeTime(converted.getTime()) +
+      this.fromCharacters(encodingCharacters, 16)
     );
   }
 

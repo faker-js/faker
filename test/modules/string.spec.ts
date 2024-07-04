@@ -116,10 +116,9 @@ describe('string', () => {
     t.describe('ulid', (t) => {
       const ulidRefDate = '2021-02-21T17:09:15.711Z';
 
-      t.itRepeated('noArgs', 5)
-        .it('with only string refDate', { refDate: ulidRefDate })
-        .it('with only Date refDate', { refDate: new Date(ulidRefDate) })
-        .it('with only number refDate', {
+      t.it('with string refDate', { refDate: ulidRefDate })
+        .it('with Date refDate', { refDate: new Date(ulidRefDate) })
+        .it('with number refDate', {
           refDate: new Date(ulidRefDate).getTime(),
         });
     });
@@ -762,6 +761,14 @@ describe('string', () => {
       });
 
       describe(`ulid`, () => {
+        it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
+          'should reject invalid refDates %s',
+          (refDate) => {
+            expect(() => faker.string.ulid({ refDate })).toThrow(
+              new FakerError(`Invalid ULID refDate: ${refDate.toString()}`)
+            );
+          }
+        );
         it('generates a valid ULID', () => {
           const ulid = faker.string.ulid();
           const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
