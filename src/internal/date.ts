@@ -1,4 +1,4 @@
-import { FakerError } from "../errors/faker-error";
+import { FakerError } from '../errors/faker-error';
 
 /**
  * Converts a date passed as a `string`, `number` or `Date` to a valid `Date` object.

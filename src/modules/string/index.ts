@@ -1,7 +1,8 @@
 import { FakerError } from '../../errors/faker-error';
+import { encodeDate, reducedBase32 } from '../../internal/base32';
+import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
-import { toDate } from "../../internal/date";
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
@@ -727,28 +728,10 @@ export class StringModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    const encodingCharacters = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // Crockford's Base32 - Excludes I, L, O, and U which may be confused with numbers
-    const encodingLength = encodingCharacters.length;
-    const encodeTime = (now: number) => {
-      let mod;
-      let len = 10;
-      let str = '';
-      for (; len > 0; len--) {
-        mod = now % encodingLength;
-        str = encodingCharacters.charAt(mod) + str;
-        now = (now - mod) / encodingLength;
-      }
-
-      return str;
-    };
-
     const { refDate = this.faker.defaultRefDate() } = options;
-    const converted = toDate(refDate);
+    const date = toDate(refDate);
 
-    return (
-      encodeTime(converted.getTime()) +
-      this.fromCharacters(encodingCharacters, 16)
-    );
+    return encodeDate(date) + this.fromCharacters(reducedBase32, 16);
   }
 
   /**
