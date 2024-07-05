@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { encodeDate } from '../../src/internal/base32';
+import { encodeDate, reducedBase32 } from '../../src/internal/base32';
 
 describe('encodeDate()', () => {
   it('encodes current date correctly', () => {
     const date = new Date('2023-04-01T00:00:00Z');
     const encoded = encodeDate(date);
     expect(encoded).toHaveLength(10);
+    expect(encoded).toMatchSnapshot();
+    for (const char of encoded)
+      expect(reducedBase32.includes(char)).toBeTruthy();
   });
 
   it('encodes epoch start date correctly', () => {
