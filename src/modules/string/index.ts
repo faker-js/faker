@@ -714,7 +714,7 @@ export class StringModule extends SimpleModuleBase {
    * @example
    * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
    *
-   * @since 8.2.0
+   * @since 9.1.0
    */
   ulid(
     options: {
