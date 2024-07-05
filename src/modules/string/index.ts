@@ -710,11 +710,11 @@ export class StringModule extends SimpleModuleBase {
    * Returns a ULID ([Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec)).
    *
    * @param options The optional options object.
-   * @param options.refDate The date to use as reference point for the newly generated ULID encoded timestamp. Defaults to `faker.defaultRefDate()`.
+   * @param options.refDate The date to use as reference point for the newly generated ULID encoded timestamp. Defaults to `faker.defaultRefDate()`. The first 10 characters will repeat for the same given date, as it represents encoded timestamp.
    *
    * @example
    * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
-   * faker.string.ulid({refDate: '2020-01-01T00:00:00.000Z'}) // '01DXF6DT00CX9QNNW7PNXQ3YR8' (first 10 characters will repeat for a same given date, as it represents encoded timestamp)
+   * faker.string.ulid({refDate: '2020-01-01T00:00:00.000Z'}) // '01DXF6DT00CX9QNNW7PNXQ3YR8'
    *
    * @since 9.1.0
    */
