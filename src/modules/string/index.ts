@@ -713,6 +713,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @example
    * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+   * faker.string.ulid({refDate: '2020-01-01T00:00:00.000Z'}) // '01DXF6DT00CX9QNNW7PNXQ3YR8' (first 10 digits will repeat for a same given date, as it represents encoded timestamp)
    *
    * @since 9.1.0
    */
