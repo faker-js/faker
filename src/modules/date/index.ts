@@ -1,9 +1,9 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import { assertLocaleData } from '../../locale-proxy';
-import { toDate } from "../../internal/date";
 
 /**
  * Module to generate dates (without methods requiring localized data).

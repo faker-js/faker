@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { encodeDate } from "../../src/internal/base32";
+import { encodeDate } from '../../src/internal/base32';
 
-describe('encodeDate()', ()=>{
+describe('encodeDate()', () => {
   it('encodes current date correctly', () => {
     const date = new Date('2023-04-01T00:00:00Z');
     const encoded = encodeDate(date);
@@ -28,4 +28,4 @@ describe('encodeDate()', ()=>{
     const encoded2 = encodeDate(date);
     expect(encoded1).toBe(encoded2);
   });
-})
+});
