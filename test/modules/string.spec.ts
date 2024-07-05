@@ -765,7 +765,7 @@ describe('string', () => {
           'should reject invalid refDates %s',
           (refDate) => {
             expect(() => faker.string.ulid({ refDate })).toThrow(
-              new FakerError(`Invalid ULID refDate: ${refDate.toString()}`)
+              new FakerError(`Invalid refDate date: ${refDate.toString()}`)
             );
           }
         );

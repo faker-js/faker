@@ -1,6 +1,7 @@
 import { FakerError } from '../../errors/faker-error';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
+import { toDate } from "../../internal/date";
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
@@ -741,10 +742,7 @@ export class StringModule extends SimpleModuleBase {
     };
 
     const { refDate = this.faker.defaultRefDate() } = options;
-    const converted = new Date(refDate);
-    if (Number.isNaN(converted.valueOf())) {
-      throw new FakerError(`Invalid ULID refDate: ${refDate.toString()}`);
-    }
+    const converted = toDate(refDate);
 
     return (
       encodeTime(converted.getTime()) +
