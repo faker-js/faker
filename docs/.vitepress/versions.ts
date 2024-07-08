@@ -16,6 +16,7 @@ function readOtherLatestReleaseTagNames(): string[] {
     // Only consider tags for our deployed website versions
     .filter((tag) => semver.major(tag) >= 6)
     // Find the latest tag for each major version
+    // eslint-disable-next-line unicorn/no-array-reduce
     .reduce<Record<number, string>>((latestTagByMajor, tag) => {
       const majorVersion = semver.major(tag);
 
@@ -42,12 +43,15 @@ export const versionBannerInfix: string | null = (() => {
   if (deployContext === 'production') {
     return null;
   }
+
   if (isReleaseBranch) {
     return '"an old version"';
   }
+
   if (branchName === 'next') {
     return '"the next (unreleased) version"';
   }
+
   return '"a development version"';
 })();
 
