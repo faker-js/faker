@@ -7,8 +7,9 @@ describe('encodeDate()', () => {
     const encoded = dateToBase32(date);
     expect(encoded).toHaveLength(10);
     expect(encoded).toMatchSnapshot();
-    for (const char of encoded)
-      expect(CROCKFORDS_BASE32.includes(char)).toBeTruthy();
+    for (const char of encoded) {
+      expect(CROCKFORDS_BASE32).toContain(char);
+    }
   });
 
   it('encodes epoch start date correctly', () => {
