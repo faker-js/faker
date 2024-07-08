@@ -5,17 +5,14 @@ export const reducedBase32 = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // Crockford's 
  *
  * @param date The Date to encode.
  */
-export const encodeDate = (date: Date): string => {
-  let now = date.getTime();
-
-  let mod;
-  let len = 10;
-  let str = '';
-  for (; len > 0; len--) {
-    mod = now % reducedBase32.length;
-    str = reducedBase32.charAt(mod) + str;
-    now = (now - mod) / reducedBase32.length;
+export function encodeDate(date: Date): string {
+  let value = date.valueOf();
+  let result = '';
+  for (let len = 10; len > 0; len--) {
+    const mod = value % 32;
+    result = reducedBase32[mod] + result;
+    value = (value - mod) / 32;
   }
 
-  return str;
-};
+  return result;
+}
