@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { FakerError } from '../../src';
 import { toDate } from '../../src/internal/date';
 
 describe('toDate()', () => {
