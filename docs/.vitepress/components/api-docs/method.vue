@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { sourceBaseUrl } from '../../../api/source-base-url';
+import { slugify } from '../../shared/utils/slugify';
 import type { ApiDocsMethod } from './method';
 import MethodParameters from './method-parameters.vue';
-import { slugify } from '../../shared/utils/slugify';
-import { sourceBaseUrl } from '../../../api/source-base-url';
 
 const props = defineProps<{ method: ApiDocsMethod }>();
 
