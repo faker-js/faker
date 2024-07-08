@@ -1,5 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
-import { encodeDate, reducedBase32 } from '../../internal/base32';
+import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../utils/types';
@@ -731,7 +731,7 @@ export class StringModule extends SimpleModuleBase {
     const { refDate = this.faker.defaultRefDate() } = options;
     const date = toDate(refDate);
 
-    return encodeDate(date) + this.fromCharacters(reducedBase32, 16);
+    return dateToBase32(date) + this.fromCharacters(CROCKFORDS_BASE32, 16);
   }
 
   /**
