@@ -3,7 +3,7 @@ export const reducedBase32 = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // Crockford's 
 /**
  * Encodes a Date into 10 characters base32 string.
  *
- * @param date the Date to encode
+ * @param date The Date to encode.
  */
 export const encodeDate = (date: Date): string => {
   let now = date.getTime();
