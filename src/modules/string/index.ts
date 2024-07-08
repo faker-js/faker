@@ -722,6 +722,7 @@ export class StringModule extends SimpleModuleBase {
     options: {
       /**
        * The date to use as reference point for the newly generated ULID encoded timestamp.
+       * The encoded timestamp is represented by the first 10 characters of the result.
        *
        * @default faker.defaultRefDate()
        */
