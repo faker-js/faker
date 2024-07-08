@@ -1,0 +1,52 @@
+name: Draft Release
+
+on:
+  pull_request_target:
+    types:
+      - closed
+    paths:
+      - 'CHANGELOG.md'
+
+permissions:
+  contents: write # to create releases
+
+jobs:
+  draft_release:
+    name: Draft Release
+    if: >
+      startsWith(github.event.pull_request.title, 'chore(release):')
+      && github.event.pull_request.merged
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-depth: 0 # we need the tags and the commit history for the gh release create command
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Gather release information
+        run: |
+          RELEASE_VERSION=$(jq -r '.version' package.json)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          PREVIOUS_VERSION=$(git describe --tags --abbrev=0)
+          echo "PREVIOUS_VERSION=$PREVIOUS_VERSION" >> $GITHUB_ENV
+          if [[ "$RELEASE_VERSION" == *"-"* ]]; then
+            RELEASE_ARGS="--prerelease"
+          else
+            RELEASE_ARGS="--latest"
+          fi
+          echo "RELEASE_ARGS=$RELEASE_ARGS" >> $GITHUB_ENV
+
+      - name: Create draft release
+        run: |
+          gh release create \
+            v$RELEASE_VERSION \
+            --draft \
+            $RELEASE_ARGS \
+            --generate-notes \
+            --notes-start-tag $PREVIOUS_VERSION \
+            --title v$RELEASE_VERSION
+        env:
+          GH_TOKEN: ${{ github.token }}
