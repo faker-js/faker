@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CROCKFORDS_BASE32, dateToBase32 } from '../../src/internal/base32';
 
-describe('encodeDate()', () => {
+describe('dateToBase32()', () => {
   it('encodes current date correctly', () => {
     const date = new Date('2023-04-01T00:00:00Z');
     const encoded = dateToBase32(date);
