@@ -769,6 +769,7 @@ describe('string', () => {
             );
           }
         );
+
         it('generates a valid ULID', () => {
           const ulid = faker.string.ulid();
           const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
