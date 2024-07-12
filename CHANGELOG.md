@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.0.0-rc.0](https://github.com/faker-js/faker/compare/v9.0.0-alpha.1...v9.0.0-rc.0) (2024-07-11)
+
+
+### Changed Locales
+
+* **locale:** group person entries by gender ([#2938](https://github.com/faker-js/faker/issues/2938)) ([e21fcaf](https://github.com/faker-js/faker/commit/e21fcaf2398dfd9aed54136524fabd39866dfca4))
+* **locale:** rename company affix files ([#2975](https://github.com/faker-js/faker/issues/2975)) ([49d7119](https://github.com/faker-js/faker/commit/49d7119025d252eecb043647b7d4465352938157))
+
 ## [9.0.0-alpha.1](https://github.com/faker-js/faker/compare/v9.0.0-alpha.0...v9.0.0-alpha.1) (2024-06-22)
 
 
