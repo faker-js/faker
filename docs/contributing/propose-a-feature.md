@@ -19,12 +19,12 @@ General criteria for new features are as follows:
 ## Accepting a Feature
 
 In order for a feature to be accepted in Faker, it must fulfill all the criteria listed in [General Feature Guideline](#general-feature-guideline).
-Additionally, depending on the type of feature, there might be additionally requirements.
+Additionally, depending on the type of feature, there might be additional requirements.
 
 ::: tip Note
-Using thumb-up emotes ( :+1: ) on issues gives the faker team a general idea of the community interest in a feature.
+Using thumb-up emotes ( :+1: ) on issues gives the Faker team a general idea of the community interest in a feature.
 If you see a feature request that you like, leave an up vote to increase interest.
-You can obviously also up vote you own feature requests.
+You can obviously also upvote your own feature requests.
 :::
 
 ### New Locale Criteria
@@ -32,8 +32,8 @@ You can obviously also up vote you own feature requests.
 Faker already contains [over 60 different locales](/guide/localization#available-locales).
 
 If you want to propose a new locale that does not already exist, make sure to read our guide on [locale code names](/guide/localization#locale-codes).
-You should be able to name your locale using the provided systematic way.
-Ideally, you use this name in the issues title and description.
+You should be able to name your locale using the provided naming standards.
+Ideally, you should also use this name in the issue's title and description.
 
 ## Considerations
 
