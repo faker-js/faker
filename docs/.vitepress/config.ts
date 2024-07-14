@@ -82,7 +82,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           link: '/contributing/set-up-a-development-environment',
         },
         {
-          text: 'Submiting a Pull Request',
+          text: 'Submitting a Pull Request',
           link: '/contributing/submit-a-pull-request',
         },
       ],
