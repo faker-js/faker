@@ -613,6 +613,24 @@ describe('internet', () => {
           expect(actual).toMatch(/^192\.168\.42\.\d{1,3}$/);
         });
 
+        it('should return a random IPv4 for a given CIDR block non-8ish network mask', () => {
+          const actual = faker.internet.ipv4({
+            cidrBlock: '192.168.0.255/20',
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toSatisfy((value: string) => validator.isIP(value, 4));
+
+          const [first, second, third, fourth] = actual.split('.').map(Number);
+          expect(first).toBe(192);
+          expect(second).toBe(168);
+          expect(third).toBeGreaterThanOrEqual(0);
+          expect(third).toBeLessThanOrEqual(15);
+          expect(fourth).toBeGreaterThanOrEqual(0);
+          expect(fourth).toBeLessThanOrEqual(255);
+        });
+
         it.each([
           [IPv4Network.Any, /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
           [IPv4Network.Loopback, /^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
