@@ -1,0 +1,85 @@
+name: Prepare Release PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseType:
+        description: 'The type of release to prepare a PR for.'
+        required: true
+        type: choice
+        default: 'stable'
+        options:
+          - stable
+          - alpha
+          - beta
+          - rc
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare_release_pr:
+    name: Prepare Release PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+
+      - name: Set node version to 22
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Run release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ $RELEASE_TYPE = 'stable' ]; then
+            pnpm run release
+          else
+            pnpm run release --prerelease $RELEASE_TYPE
+          fi
+          RELEASE_VERSION=$(jq -r '.version' package.json)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+        env:
+          RELEASE_TYPE: ${{ github.event.inputs.releaseType }}
+
+      - name: Switch to and push release branch
+        run: |
+          RELEASE_BRANCH="chore/release/$RELEASE_VERSION"
+          echo "RELEASE_BRANCH=$RELEASE_BRANCH" >> $GITHUB_ENV
+          git switch -c $RELEASE_BRANCH
+          git push origin $RELEASE_BRANCH -f
+
+      - name: Create draft PR
+        run: |
+          gh pr create \
+            --base $GITHUB_REF_NAME \
+            --head $RELEASE_BRANCH \
+            --draft \
+            --title "chore(release): $RELEASE_VERSION" \
+            --body "
+          Release for $RELEASE_VERSION
+
+          - [ ] Completed manual changes/tasks for this release
+
+          ---
+
+          - Checklist: TODO add link to issue
+          "
+        env:
+          GH_TOKEN: ${{ github.token }}

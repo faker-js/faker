@@ -91,9 +91,11 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
       ],
     },
   ];
+
   for (const entry of links) {
     entry.collapsed = entry.text !== entryToExpand;
   }
+
   return links;
 }
 
