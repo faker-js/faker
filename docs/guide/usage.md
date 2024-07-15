@@ -97,7 +97,7 @@ In order to have Faker working properly, you need to check if these `compilerOpt
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node10"
   }
 }
 ```
