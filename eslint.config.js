@@ -1,20 +1,25 @@
 // @ts-check
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
-import { readGitignoreFiles } from 'eslint-gitignore';
 import eslintPluginDeprecation from 'eslint-plugin-deprecation';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import vitest from 'eslint-plugin-vitest';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import tseslint from 'typescript-eslint';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const gitignorePath = resolve(__dirname, '.gitignore');
 
 export default tseslint.config(
   //#region global
+  includeIgnoreFile(gitignorePath),
   {
     ignores: [
-      ...readGitignoreFiles(),
-      // Skip self linting
-      'eslint.config.js',
       // Skip some files that don't need linting right now
       '.github/workflows/commentCodeGeneration.ts',
       '.prettierrc.js',
@@ -165,7 +170,6 @@ export default tseslint.config(
       'unicorn/consistent-function-scoping': 'off',
       'unicorn/no-object-as-default-parameter': 'off',
       'unicorn/prefer-export-from': 'off',
-      'unicorn/prefer-string-raw': 'off',
       'unicorn/prefer-string-slice': 'off',
       'unicorn/prevent-abbreviations': 'off',
     },
