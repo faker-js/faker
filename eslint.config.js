@@ -1,12 +1,12 @@
 // @ts-check
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { includeIgnoreFile } from '@eslint/compat';
+import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
 import eslintPluginDeprecation from 'eslint-plugin-deprecation';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import vitest from 'eslint-plugin-vitest';
+import eslintPluginVitest from 'eslint-plugin-vitest';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import tseslint from 'typescript-eslint';
@@ -132,7 +132,10 @@ export default tseslint.config(
   //#region deprecation
   {
     plugins: {
-      deprecation: eslintPluginDeprecation,
+      deprecation:
+        // https://github.com/gund/eslint-plugin-deprecation/issues/78
+        // @ts-expect-error: Just eat it!
+        fixupPluginRules(eslintPluginDeprecation),
     },
     languageOptions: {
       parser: tseslint.parser,
@@ -142,9 +145,7 @@ export default tseslint.config(
       },
     },
     rules: {
-      // TODO @Shinigami92 2024-04-08: Add eslint-plugin-deprecation later
-      // https://github.com/gund/eslint-plugin-deprecation/issues/78
-      // 'deprecation/deprecation': 'error',
+      'deprecation/deprecation': 'error',
     },
   },
   //#endregion
@@ -209,11 +210,6 @@ export default tseslint.config(
   },
   //#endregion
 
-  //#region vitest
-  // TODO @Shinigami92 2024-04-08: Add vitest later
-  // https://github.com/veritem/eslint-plugin-vitest/issues/413
-  //#endregion
-
   //#region prettier
   eslintPluginPrettierRecommended,
   //#endregion,
@@ -246,7 +242,7 @@ export default tseslint.config(
   {
     files: ['test/**/*.spec.ts', 'test/**/*.spec.d.ts'],
     plugins: {
-      vitest,
+      vitest: eslintPluginVitest,
     },
     rules: {
       'deprecation/deprecation': 'off',
@@ -260,7 +256,7 @@ export default tseslint.config(
         },
       ],
 
-      ...vitest.configs.recommended.rules,
+      ...eslintPluginVitest.configs.recommended.rules,
 
       'vitest/expect-expect': 'off',
       'vitest/no-alias-methods': 'error',
