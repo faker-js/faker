@@ -626,7 +626,7 @@ The `timeZone` functionality has been divided to enhance specificity:
 - Use `faker.date.timeZone()` to generate a random global time zone.
 - Use `faker.location.timeZone()` to obtain time zone specific to the current locale.
 
-We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please create a new issue.
+We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please [create a new issue](https://github.com/faker-js/faker/issues/new?template=bug_report.yml).
 
 ### Prices Now Return More Price-Like Values
 
