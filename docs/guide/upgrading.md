@@ -162,7 +162,7 @@ const customEsFakerWithFallback = new Faker({ locale: [es, base] });
 
 Removed deprecated commerce methods
 
-| old                                           | replacement                                       |
+| removed                                       | replacement                                       |
 | --------------------------------------------- | ------------------------------------------------- |
 | `faker.commerce.price(min, max, dec, symbol)` | `faker.commerce.price({ min, max, dec, symbol })` |
 
@@ -170,7 +170,7 @@ Removed deprecated commerce methods
 
 Removed deprecated company methods
 
-| old                           | replacement                   |
+| removed                       | replacement                   |
 | ----------------------------- | ----------------------------- |
 | `faker.company.suffixes`      | Part of `faker.company.name`  |
 | `faker.company.companySuffix` | Part of `faker.company.name`  |
@@ -198,7 +198,7 @@ Note: In some locales `prefix`es and `suffix`es might have been swapped, so the 
 
 Removed deprecated datatype methods
 
-| old                                     | replacement                                                  |
+| removed                                 | replacement                                                  |
 | --------------------------------------- | ------------------------------------------------------------ |
 | `faker.datatype.number()`               | `faker.number.int()` or `faker.number.float()`               |
 | `faker.datatype.float()`                | `faker.number.float()`                                       |
@@ -214,7 +214,7 @@ Removed deprecated datatype methods
 
 Removed deprecated date methods
 
-| old                                    | replacement                                |
+| removed                                | replacement                                |
 | -------------------------------------- | ------------------------------------------ |
 | `faker.date.past(years, refDate)`      | `faker.date.past({ years, refDate })`      |
 | `faker.date.future(years, refDate)`    | `faker.date.future({ years, refDate })`    |
@@ -229,7 +229,7 @@ Removed deprecated date methods
 
 Removed deprecated finance methods
 
-| old                                                       | replacement                                                   |
+| removed                                                   | replacement                                                   |
 | --------------------------------------------------------- | ------------------------------------------------------------- |
 | `faker.finance.account`                                   | `faker.finance.accountNumber`                                 |
 | `faker.finance.mask`                                      | `faker.finance.maskedNumber`                                  |
@@ -240,7 +240,7 @@ Removed deprecated finance methods
 
 Removed deprecated git methods
 
-| old                    | replacement                          |
+| removed                | replacement                          |
 | ---------------------- | ------------------------------------ |
 | `faker.git.shortSha()` | `faker.git.commitSha({ length: 7 })` |
 
@@ -248,7 +248,7 @@ Removed deprecated git methods
 
 Removed deprecated helpers methods
 
-| old                                     | replacement                                                    |
+| removed                                 | replacement                                                    |
 | --------------------------------------- | -------------------------------------------------------------- |
 | `faker.helpers.replaceSymbolWithNumber` | `string.replace(/#+/g, (m) => faker.string.numeric(m.length))` |
 | `faker.helpers.regexpStyleStringParse`  | `faker.helpers.fromRegExp`                                     |
@@ -382,7 +382,7 @@ Calling the methods with an empty array instead still behaves as before.
 
 Removed deprecated image methods
 
-| old                       | replacement                                                                    |
+| removed                   | replacement                                                                    |
 | ------------------------- | ------------------------------------------------------------------------------ |
 | `faker.image.image()`     | `faker.image.url()`                                                            |
 | `faker.image.imageUrl()`  | `faker.image.url()`                                                            |
@@ -404,7 +404,7 @@ Removed deprecated image methods
 
 Removed deprecated image providers from `faker.image`. They already returned broken image URLs anyway.
 
-| old                                         | replacement                                              |
+| removed                                     | replacement                                              |
 | ------------------------------------------- | -------------------------------------------------------- |
 | `faker.image.lorempicsum.image`             | `faker.image.urlPicsumPhotos`                            |
 | `faker.image.lorempicsum.imageGrayscale`    | `faker.image.urlPicsumPhotos({ grayscale: true })`       |
@@ -426,7 +426,7 @@ Removed deprecated image providers from `faker.image`. They already returned bro
 
 Removed deprecated internet methods
 
-| old                                                            | replacement                                                       |
+| removed                                                        | replacement                                                       |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `faker.internet.avatar()`                                      | `faker.image.avatarLegacy()` or `faker.image.avatar()`            |
 | `faker.internet.email(firstName, lastName, provider, options)` | `faker.internet.email({ firstName, lastName, provider, ... })`    |
@@ -440,7 +440,7 @@ Removed deprecated internet methods
 
 Removed deprecated location methods
 
-| old                                                                | replacement                                                        |
+| removed                                                            | replacement                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `faker.location.zipCodeByState`                                    | `faker.location.zipCode({ state })`                                |
 | `faker.location.cityName`                                          | `faker.location.city`                                              |
@@ -474,7 +474,7 @@ The `faker.definitions.location.default_country` definition has been removed, as
 
 Removed deprecated number parameter
 
-| old                                 | replacement                          |
+| removed                             | replacement                          |
 | ----------------------------------- | ------------------------------------ |
 | `faker.number.float({ precision })` | `faker.number.float({ multipleOf })` |
 
@@ -509,7 +509,7 @@ The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescr
 
 Removed deprecated phone methods
 
-| old                          | replacement                                                                      |
+| removed                      | replacement                                                                      |
 | ---------------------------- | -------------------------------------------------------------------------------- |
 | `faker.phone.number(format)` | `faker.phone.number()`, `faker.string.numeric()` or `faker.helpers.fromRegExp()` |
 
@@ -517,7 +517,7 @@ Removed deprecated phone methods
 
 Removed deprecated random module
 
-| old                           | replacement                                     |
+| removed                       | replacement                                     |
 | ----------------------------- | ----------------------------------------------- |
 | `faker.random.alpha()`        | `faker.string.alpha()`                          |
 | `faker.random.alphaNumeric()` | `faker.string.alphanumeric()`                   |
@@ -530,7 +530,7 @@ Removed deprecated random module
 
 Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
-| old                                                     | replacement                                            |
+| removed                                                 | replacement                                            |
 | ------------------------------------------------------- | ------------------------------------------------------ |
 | `import { faker } from '@faker-js/faker/locale/cz'`     | `import { faker } from '@faker-js/faker/locale/cs_CZ'` |
 | `import { faker } from '@faker-js/faker/locale/en_IND'` | `import { faker } from '@faker-js/faker/locale/en_IN'` |
@@ -541,7 +541,7 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 The following locale definitions have been adjusted to align with Faker's locale definition naming standard:
 
-| old                                         | replacement                                  |
+| removed                                     | replacement                                  |
 | ------------------------------------------- | -------------------------------------------- |
 | `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
 | `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_path`    |
@@ -564,7 +564,7 @@ faker.definitions.science.chemical_element.atomicNumber
 
 Removed deprecated type aliases
 
-| old                              | replacement                     |
+| removed                          | replacement                     |
 | -------------------------------- | ------------------------------- |
 | `AddressDefinitions`             | `LocationDefinition`            |
 | `AirlineDefinitions`             | `AirlineDefinition`             |
