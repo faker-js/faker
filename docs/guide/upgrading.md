@@ -517,9 +517,9 @@ The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescr
 
 Removed deprecated phone methods
 
-| removed                      | replacement                                                                      |
-| ---------------------------- | -------------------------------------------------------------------------------- |
-| `faker.phone.number(format)` | `faker.phone.number()`, `faker.string.numeric()` or `faker.helpers.fromRegExp()` |
+| removed                      | replacement                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------- |
+| `faker.phone.number(format)` | `faker.phone.number(style)`, `faker.string.numeric()` or `faker.helpers.fromRegExp()` |
 
 ### Random Module
 
@@ -717,18 +717,3 @@ This affects:
 - The `format` property of `faker.color.cmyk()`, `faker.color.hsl()`, `faker.color.hwb()`, `faker.color.lab()`, `faker.color.lch()` must be one of `'binary' | 'css' | 'decimal'` if provided
 - The `variant` property of `faker.location.countryCode()` must be one of `alpha-2`, `alpha-3`, `numeric` if provided
 - The `casing` property of `faker.string.alpha()` and `faker.string.alphanumeric()` must be one of `'upper' | 'lower' | 'mixed'` if provided
-
-### Phone Number `style` Replaces Explicit `format`
-
-`faker.phone.number()` generates a phone number for the current locale. Previously, there was little control over the generated number, which may or may not have included country codes, extensions, white space, and punctuation.
-
-If you wanted more control over the number, it was previously necessary to pass an explicit `format` parameter. This has now been removed. Instead, you can consider one of two options:
-
-1. The new `style` parameter has convenient options for common use cases. There are three possible values.
-   - `'human'`: (default, existing behavior) A human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
-   - `'national'`: A phone number in a standardized national format, e.g. `(555) 123-4567`.
-   - `'international'`: A phone number in a E.123 standard international format with country code, e.g. `+15551234567`
-
-The styles are locale-aware, so for example if you use pt_PT, phone numbers suitable for Portugal would be generated.
-
-2. If none of the `style`s match your needs, you can use `faker.string.numeric()` or `faker.helpers.fromRegExp()` to create a custom pattern.
