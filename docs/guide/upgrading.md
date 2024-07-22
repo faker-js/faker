@@ -607,7 +607,7 @@ Removed deprecated type aliases
 Previously, the `faker.date.birthdate()` method had defaults that were unclear in their specific impact.
 Now, the method requires either none or all of the `min`, `max` and `mode` options.
 
-We also improved the error messages in case of invalid min/max age/year ranges.
+We also improved the error messages to clearly indicate when the `min`, `max`, and `mode` options must be set together.
 
 ### Fail on Invalid Dates
 
