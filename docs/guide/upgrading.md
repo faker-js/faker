@@ -82,15 +82,23 @@ import {
 } from '@faker-js/faker';
 
 // < v9 default
-const f32 = new SimpleFaker({ randomizer: generateMersenne32Randomizer() });
-f32.seed(123);
-const r32 = f32.helpers.multiple(() => f32.number.int(10), { count: 10 });
+const oldFaker = new SimpleFaker({
+  randomizer: generateMersenne32Randomizer(),
+});
+oldFaker.seed(123);
+const oldRandomizer = oldFaker.helpers.multiple(() => oldFaker.number.int(10), {
+  count: 10,
+});
 // > v9 default
-const f53 = new SimpleFaker({ randomizer: generateMersenne53Randomizer() });
-f53.seed(123);
-const r53 = f53.helpers.multiple(() => f53.number.int(10), { count: 5 });
+const newFaker = new SimpleFaker({
+  randomizer: generateMersenne53Randomizer(),
+});
+newFaker.seed(123);
+const newRandomizer = newFaker.helpers.multiple(() => newFaker.number.int(10), {
+  count: 5,
+});
 
-diff(r32, r53);
+diff(oldRandomizer, newRandomizer);
 //[
 //  7,
 //  7, // [!code --]
