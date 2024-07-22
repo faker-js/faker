@@ -129,10 +129,6 @@ const faker = new Faker({
 });
 ```
 
-### Using `tsup` for the Build Process
-
-After the switch to [tsup](https://tsup.egoist.dev), the `dist` folder now contains minified and chunked files for CJS. However, as we officially support only `exports` defined via `package.json`, this should not affect your code.
-
 ## Removals of Deprecated Code
 
 A large number of methods which were deprecated in v8 are completely removed in v9. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v8 (e.g. `npm install --save-dev faker@8`) and fix any deprecation warnings issued by your code.
