@@ -117,7 +117,9 @@ diff(oldRandomizer, newRandomizer);
 
 - If you don't have any seeded tests and just want some random values, then you don't have to change anything.
 - If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
-- If you are using [vitest](https://vitest.dev), you can do that using `pnpm vitest run -u`.
+- For updating snapshots or similar comparisons in different testing frameworks, you can use the following commands:
+  - **Vitest**: `vitest run --update`
+  - **Jest**: `jest --updateSnapshot`
 
 #### Keeping the Old Behavior
 
