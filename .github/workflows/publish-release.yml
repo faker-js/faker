@@ -4,7 +4,7 @@ on:
   release:
     types: [published]
 
-permissions: {}
+permissions: {} # we use a personal access token to push the release branch
 
 jobs:
   publish:
