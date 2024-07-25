@@ -648,13 +648,16 @@ We plan to rethink this method some more in the future: [#2579](https://github.c
 
 ### Images Have Random Options by Default
 
-`faker.image.url()` now returns an image url with a random width and height by default. To obtain the previous behavior, pass `{width: 640, height: 480}`.
+Some of image methods had static default parameters, previously.
+These have been changed to return more divers urls.
+Following you can find a table with snippets to obtain the previous behavior:
 
-`faker.image.urlLoremFlickr()` now returns an image url with a random width and height by default. To obtain the previous behavior, pass `{width: 640, height: 480}`.
-
-`faker.image.urlPicsumPhotos()` now returns an image url with a random width and height by default, additionally images may be converted to grayscale and blurred at random. To obtain the previous behavior, pass `{width: 640, height: 480, blur: 0, grayscale: false}`
-
-`faker.image.dataUri()` now returns an image url with a random width and height by default, additionally the type of the image is now random. To obtain the previous behavior, pass `{width: 640, height: 480, type: 'svg-uri'}`.
+| Method                          | Old Defaults                                          |
+| ------------------------------- | ----------------------------------------------------- |
+| `faker.image.url()`             | `{width: 640, height: 480}`                           |
+| `faker.image.urlLoremFlickr()`  | `{width: 640, height: 480}`                           |
+| `faker.image.urlPicsumPhotos()` | `{width: 640,height: 480, blur: 0, grayscale: false}` |
+| `faker.image.dataUri()`         | `{width: 640, height: 480, type: 'svg-uri'}`          |
 
 ### Require `from` and `to` in `faker.date.between` and `betweens`
 
