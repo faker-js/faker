@@ -86,7 +86,7 @@ const oldFaker = new SimpleFaker({
   randomizer: generateMersenne32Randomizer(),
 });
 oldFaker.seed(123);
-const oldRandomizer = oldFaker.helpers.multiple(() => oldFaker.number.int(10), {
+const oldValue = oldFaker.helpers.multiple(() => oldFaker.number.int(10), {
   count: 10,
 });
 // > v9 default
@@ -94,11 +94,11 @@ const newFaker = new SimpleFaker({
   randomizer: generateMersenne53Randomizer(),
 });
 newFaker.seed(123);
-const newRandomizer = newFaker.helpers.multiple(() => newFaker.number.int(10), {
+const newValue = newFaker.helpers.multiple(() => newFaker.number.int(10), {
   count: 5,
 });
 
-diff(oldRandomizer, newRandomizer);
+diff(oldValue, newValue);
 //[
 //  7,
 //  7, // [!code --]
