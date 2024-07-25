@@ -204,7 +204,9 @@ You only need to change your code if you are accessing the raw definitions e.g. 
 | `location.company.prefix` | `location.company.category`            |
 | `location.company.suffix` | `location.direction.legal_entity_type` |
 
-Note: In some locales `prefix`es and `suffix`es might have been swapped, so the mapping might be wrong for those.
+::: info Note
+In some locales `prefix`es and `suffix`es might have been swapped, so the mapping might be wrong for those.
+:::
 
 ### Datatype Module
 
