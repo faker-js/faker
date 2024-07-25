@@ -135,6 +135,12 @@ const faker = new Faker({
 });
 ```
 
+### Restructured dist folder
+
+The `dist` folder now contains minified and chunked files for CJS, because we switched to [tsup](https://tsup.egoist.dev) for the bundling process.
+So it is no longer possible to use `@faker-js/faker/dist/cjs/...`.
+However, as we officially support only `exports` defined via `package.json`, this should not affect your code.
+
 ## Removals of Deprecated Code
 
 A large number of methods which were deprecated in v8 are completely removed in v9. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v8 (e.g. `npm install --save-dev faker@8`) and fix any deprecation warnings issued by your code.
