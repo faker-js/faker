@@ -24,8 +24,8 @@ Support for Node.js v14 and v16 has been discontinued as these versions have rea
 
 ### Upgrade to TypeScript v5
 
-We now use TypeScript v5 for our project (previously v4).
-The helpers module now uses TS5 features, so if you are using Faker with TypeScript, you must use TS5.
+Support for TypeScript v4 has been discontinued. Faker v9 requires a minimum of TypeScript v5.
+The helpers module now uses the [const generic type parameters](https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#const-type-parameters) feature.
 
 ```ts
 // v8
