@@ -25,10 +25,6 @@ Support for Node.js v14 and v16 has been discontinued as these versions have rea
 ### Upgrade to TypeScript v5
 
 We now use TypeScript v5 for our project (previously v4).
-While generally not breaking for users, this might have small side effects on our types.
-
-#### Usage of TypeScript 5 Features
-
 The helpers module now uses TS5 features, so if you are using Faker with TypeScript, you must use TS5.
 
 ```ts
