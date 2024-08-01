@@ -1024,19 +1024,11 @@ describe('helpers', () => {
           expect(faker.definitions.location.state).toContain(
             faker.helpers.fake('{{address.state}}')
           );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.firstName}}')
-          );
-        });
-
-        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored: #893
-        it.todo('should support deprecated definition aliases', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{address.city_name}}')
-          );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
-          );
+          expect([
+            ...(faker.definitions.person.first_name.female ?? []),
+            ...(faker.definitions.person.first_name.generic ?? []),
+            ...(faker.definitions.person.first_name.male ?? []),
+          ]).toContain(faker.helpers.fake('{{name.firstName}}'));
         });
 
         it('should not trim whitespace', () => {

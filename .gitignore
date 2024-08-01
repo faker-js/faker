@@ -78,7 +78,6 @@ versions.json
 /docs/.vitepress/cache
 /docs/.vitepress/dist
 /docs/public/api-diff-index.json
-/lib
 
 # Faker
 TAGS

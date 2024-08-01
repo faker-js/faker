@@ -3,10 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CompanyDefinition } from '../../..';
-import suffix from './suffix';
+import legal_entity_type from './legal_entity_type';
 
 const company: CompanyDefinition = {
-  suffix,
+  legal_entity_type,
 };
 
 export default company;
