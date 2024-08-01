@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { allFakers, faker } from '../../src';
+import { allFakers, faker, FakerError } from '../../src';
 import { IPv4Network } from '../../src/modules/internet';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -630,6 +630,35 @@ describe('internet', () => {
           expect(fourth).toBeGreaterThanOrEqual(0);
           expect(fourth).toBeLessThanOrEqual(255);
         });
+
+        it.each([
+          '',
+          '...',
+          '.../',
+          '.0.0.0/0',
+          '0..0.0/0',
+          '0.0..0/0',
+          '0.0.0./0',
+          '0.0.0.0/',
+          'a.0.0.0/0',
+          '0.b.0.0/0',
+          '0.0.c.0/0',
+          '0.0.0.d/0',
+          '0.0.0.0/e',
+        ])(
+          'should throw an error if not following the x.x.x.x/y format',
+          (cidrBlock) => {
+            expect(() =>
+              faker.internet.ipv4({
+                cidrBlock,
+              })
+            ).toThrow(
+              new FakerError(
+                `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
+              )
+            );
+          }
+        );
 
         it.each([
           [IPv4Network.Any, /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],

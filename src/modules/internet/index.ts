@@ -1,3 +1,4 @@
+import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -572,11 +573,11 @@ export class InternetModule extends ModuleBase {
    */
   ipv4(options?: {
     /**
-     * The optional CIDR block to use.
+     * The optional CIDR block to use. Should follow the format `x.x.x.x/y`.
      *
      * @default '0.0.0.0/0'
      */
-    cidrBlock?: `${number}.${number}.${number}.${number}/${number}`;
+    cidrBlock?: string;
   }): string;
   /**
    * Generates a random IPv4 address.
@@ -636,20 +637,25 @@ export class InternetModule extends ModuleBase {
   ): string {
     const { network = 'any', cidrBlock = ipv4Networks[network] } = options;
 
+    if (!/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/\d{1,2}$/.test(cidrBlock)) {
+      throw new FakerError(
+        `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
+      );
+    }
+
     const [ipText, subnet] = cidrBlock.split('/');
     const subnetMask = 0xffffffff >>> Number.parseInt(subnet);
-    const networkIp =
-      ipText
-        .split('.')
-        .map(Number)
-        .map((octet, index) => octet << (24 - 8 * index))
-        .reduce((acc, octet) => acc | octet, 0) & ~subnetMask;
+    const [rawIp1, rawIp2, rawIp3, rawIp4] = ipText.split('.').map(Number);
+    const rawIp = (rawIp1 << 24) | (rawIp2 << 16) | (rawIp3 << 8) | rawIp4;
+    const networkIp = rawIp & ~subnetMask;
     const hostOffset = this.faker.number.int(subnetMask);
     const ip = networkIp | hostOffset;
-
-    return Array.from({ length: 4 }, (_, index) =>
-      ((ip >> (24 - 8 * index)) & 0xff).toString()
-    ).join('.');
+    return [
+      (ip >>> 24) & 0xff,
+      (ip >>> 16) & 0xff,
+      (ip >>> 8) & 0xff,
+      ip & 0xff,
+    ].join('.');
   }
 
   /**
