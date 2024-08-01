@@ -13,6 +13,15 @@ export type DateDefinition = LocaleEntry<{
    * The translations for weekdays (Sunday - Saturday).
    */
   weekday: DateEntryDefinition;
+
+  /**
+   * The names of the IANA time zones. Not tied to the current locale.
+   *
+   * Since this is the same for all locales, it is only defined in the `base` locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   */
+  time_zone: string[];
 }>;
 
 /**

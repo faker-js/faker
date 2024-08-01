@@ -65,12 +65,12 @@ describe('mergeLocales', () => {
     const locale1: LocaleDefinition = {
       metadata: { title: 'a' },
       location: { city: ['a'] },
-      person: { first_name: ['a'] },
+      person: { suffix: ['a'] },
     };
     const locale2: LocaleDefinition = {
       metadata: { title: 'b' },
       animal: { cat: ['b'] },
-      person: { last_name: ['b'] },
+      person: { bio_pattern: ['b'] },
     };
     const locale3: LocaleDefinition = {
       metadata: { title: 'c' },
@@ -85,7 +85,7 @@ describe('mergeLocales', () => {
       animal: { cat: ['b'] },
       color: { human: ['c'] },
       location: { city: ['a'] },
-      person: { first_name: ['a'], last_name: ['b'] },
+      person: { suffix: ['a'], bio_pattern: ['b'] },
     });
   });
 });

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { sourceBaseUrl } from '../../../api/source-base-url';
+import { slugify } from '../../shared/utils/slugify';
 import type { ApiDocsMethod } from './method';
 import MethodParameters from './method-parameters.vue';
-import { slugify } from '../../shared/utils/slugify';
-import { sourceBaseUrl } from '../../../api/source-base-url';
 
 const props = defineProps<{ method: ApiDocsMethod }>();
 
@@ -40,6 +40,9 @@ function seeAlsoToUrl(see: string): string {
       <strong>Throws:</strong> <span v-html="props.method.throws" />
     </p>
 
+    <div v-html="props.method.signature" />
+
+    <h3>Examples</h3>
     <div v-html="props.method.examples" />
 
     <div v-if="props.method.seeAlsos.length > 0">

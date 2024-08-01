@@ -9,24 +9,25 @@ function readBranchName(): string {
 }
 
 function readOtherLatestReleaseTagNames(): string[] {
-  const latestReleaseTagNames = execSync('git tag -l')
-    .toString('utf8')
-    .split('\n')
-    .filter((tag) => semver.valid(tag))
-    // Only consider tags for our deployed website versions
-    .filter((tag) => semver.major(tag) >= 6)
-    // Find the latest tag for each major version
-    .reduce<Record<number, string>>((latestTagByMajor, tag) => {
-      const majorVersion = semver.major(tag);
+  const tags = execSync('git tag -l').toString('utf8').split('\n');
+  const latestTagByMajor: Record<string, string> = {};
+  for (const tag of tags) {
+    if (!semver.valid(tag)) {
+      continue;
+    }
 
-      const latestTag = latestTagByMajor[majorVersion];
-      if (latestTag == null || semver.lt(latestTag, tag)) {
-        latestTagByMajor[majorVersion] = tag;
-      }
+    const majorVersion = semver.major(tag);
+    if (majorVersion < 6) {
+      continue;
+    }
 
-      return latestTagByMajor;
-    }, {});
-  return Object.values(latestReleaseTagNames).sort(semver.rcompare);
+    const latestTag = latestTagByMajor[majorVersion];
+    if (latestTag == null || semver.lt(latestTag, tag)) {
+      latestTagByMajor[majorVersion] = tag;
+    }
+  }
+
+  return Object.values(latestTagByMajor).sort(semver.rcompare);
 }
 
 // Set by netlify
@@ -42,12 +43,15 @@ export const versionBannerInfix: string | null = (() => {
   if (deployContext === 'production') {
     return null;
   }
+
   if (isReleaseBranch) {
     return '"an old version"';
   }
+
   if (branchName === 'next') {
     return '"the next (unreleased) version"';
   }
+
   return '"a development version"';
 })();
 

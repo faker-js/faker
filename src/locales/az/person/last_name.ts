@@ -1,5 +1,48 @@
-import { mergeArrays } from './../../../internal/merge';
-import female_last_name from './female_last_name';
-import male_last_name from './male_last_name';
-
-export default mergeArrays(female_last_name, male_last_name);
+export default {
+  generic: [
+    'Abdullayeva',
+    'Məmmədov',
+    'Nəzərov',
+    'Qasımova',
+    'Quliyev',
+    'Rəhimov',
+    'Rəşidova',
+    'Seyidova',
+    'Soltanov',
+    'Soltanova',
+    'Tahirova',
+    'Vəliyev',
+    'Vəsiyeva',
+    'Xəlilov',
+    'Əfəndiyeva',
+    'Əhmədov',
+    'Əliyev',
+    'Əliyeva',
+    'Ələkbərov',
+    'Ələkbərova',
+  ],
+  female: [
+    'Qasımova',
+    'Əfəndiyeva',
+    'Soltanova',
+    'Abdullayeva',
+    'Rəşidova',
+    'Ələkbərova',
+    'Əliyeva',
+    'Tahirova',
+    'Seyidova',
+    'Vəsiyeva',
+  ],
+  male: [
+    'Əhmədov',
+    'Ələkbərov',
+    'Əliyev',
+    'Vəliyev',
+    'Soltanov',
+    'Quliyev',
+    'Məmmədov',
+    'Xəlilov',
+    'Nəzərov',
+    'Rəhimov',
+  ],
+};

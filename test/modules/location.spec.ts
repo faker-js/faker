@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { FakerError, faker, fakerEN_CA, fakerEN_US } from '../../src';
+import {
+  FakerError,
+  allLocales,
+  faker,
+  fakerEN_CA,
+  fakerEN_US,
+} from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -390,6 +396,37 @@ describe('location', () => {
           }
         );
       });
+
+      describe('timeZone', () => {
+        it('should return a random timezone', () => {
+          const actual = faker.location.timeZone();
+          expect(faker.definitions.location.time_zone).toContain(actual);
+        });
+      });
     }
   );
+});
+
+describe('definitions', () => {
+  describe('timeZone', () => {
+    it.each(Object.entries(allLocales))(
+      'locale data for %s should be a subset of the base locale',
+      (locale, data) => {
+        if (locale === 'base') {
+          expect(data.location?.time_zone).toSatisfy(Array.isArray);
+          expect(data.location?.time_zone?.length).toBeGreaterThan(0);
+          expect(data.location?.time_zone).toEqual(
+            allLocales.base.date?.time_zone
+          );
+        } else if (data.location?.time_zone != null) {
+          expect(data.location.time_zone).toSatisfy(Array.isArray);
+          expect(data.location.time_zone.length).toBeGreaterThan(0);
+          // expected and actual are flipped here
+          expect(allLocales.base.date?.time_zone).toEqual(
+            expect.arrayContaining(data.location.time_zone)
+          );
+        }
+      }
+    );
+  });
 });
