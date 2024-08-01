@@ -1,6 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { allFakers, faker, FakerError } from '../../src';
+import { allFakers, faker } from '../../src';
+import { FakerError } from '../../src/errors/faker-error';
 import { IPv4Network } from '../../src/modules/internet';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
