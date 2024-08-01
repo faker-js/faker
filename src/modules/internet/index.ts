@@ -563,7 +563,7 @@ export class InternetModule extends ModuleBase {
    * Generates a random IPv4 address.
    *
    * @param options The optional options object.
-   * @param options.cidrBlock The optional CIDR block to use. Defaults to `'0.0.0.0/0'`.
+   * @param options.cidrBlock The optional CIDR block to use. Must be in the format `x.x.x.x/y`. Defaults to `'0.0.0.0/0'`.
    *
    * @example
    * faker.internet.ipv4() // '245.108.222.0'
@@ -573,7 +573,7 @@ export class InternetModule extends ModuleBase {
    */
   ipv4(options?: {
     /**
-     * The optional CIDR block to use. Should follow the format `x.x.x.x/y`.
+     * The optional CIDR block to use. Must be in the format `x.x.x.x/y`.
      *
      * @default '0.0.0.0/0'
      */
@@ -603,7 +603,7 @@ export class InternetModule extends ModuleBase {
    * Generates a random IPv4 address.
    *
    * @param options The optional options object.
-   * @param options.cidrBlock The optional CIDR block to use. Defaults to `'0.0.0.0/0'`.
+   * @param options.cidrBlock The optional CIDR block to use. Must be in the format `x.x.x.x/y`. Defaults to `'0.0.0.0/0'`.
    * @param options.network The optional network to use. This is intended as an alias for well-known `cidrBlock`s. Defaults to `'any'`.
    *
    * @example
@@ -617,11 +617,11 @@ export class InternetModule extends ModuleBase {
     options?:
       | {
           /**
-           * The optional CIDR block to use.
+           * The optional CIDR block to use. Must be in the format `x.x.x.x/y`.
            *
            * @default '0.0.0.0/0'
            */
-          cidrBlock?: `${number}.${number}.${number}.${number}/${number}`;
+          cidrBlock?: string;
         }
       | {
           /**
