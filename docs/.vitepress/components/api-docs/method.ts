@@ -1,5 +1,10 @@
 export interface ApiDocsMethod {
   readonly name: string;
+  readonly signatures: ApiDocsSignature[];
+}
+
+export interface ApiDocsSignature {
+  readonly name: string;
   readonly deprecated: string | undefined; // HTML
   readonly description: string; // HTML
   readonly since: string;

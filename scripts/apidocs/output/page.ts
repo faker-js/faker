@@ -3,10 +3,11 @@ import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
+import type { RawApiDocsSignature } from '../processing/signature';
+import type { RawApiDocsSource } from '../processing/source';
 import { formatMarkdown, formatTypescript } from '../utils/format';
 import { adjustUrls, codeToHtml, mdToHtml } from '../utils/markdown';
 import { FILE_PATH_API_DOCS } from '../utils/paths';
-import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
 // Extracted to a constant because the contents must not be formatted by prettier
@@ -114,7 +115,19 @@ const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
 
 async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   const { name, signatures, source } = method;
-  const signatureData = required(signatures.at(-1), 'method signature');
+  return {
+    name,
+    signatures: await Promise.all(
+      signatures.map((v, i) => toSignatureData(v, i, source))
+    ),
+  };
+}
+
+async function toSignatureData(
+  signature: RawApiDocsSignature,
+  index: number,
+  source: RawApiDocsSource
+): Promise<ApiDocsMethod['signatures'][0]> {
   const {
     deprecated,
     description,
@@ -122,12 +135,12 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     parameters,
     returns,
     throws,
-    signature,
+    signature: signatureCode,
     examples,
     seeAlsos,
-  } = signatureData;
+  } = signature;
   const { filePath, line } = source;
-  let formattedSignature = await formatTypescript(signature);
+  let formattedSignature = await formatTypescript(signatureCode);
   formattedSignature = formattedSignature.trim();
 
   /* Target order, omitted to improve diff to old files
@@ -153,7 +166,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   */
 
   return {
-    name,
+    name: `${index}`, // TODO @ST-DDT 2024-08-05: Get or generate a name
     description: mdToHtml(description),
     parameters: parameters.map((param) => ({
       ...param,
