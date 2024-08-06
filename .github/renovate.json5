@@ -1,66 +1,66 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
     "config:best-practices",
     "schedule:earlyMondays",
     "group:allNonMajor",
-    ":prHourlyLimitNone"
+    ":prHourlyLimitNone",
   ],
-  "labels": ["c: dependencies", "p: 1-normal"],
-  "lockFileMaintenance": {
-    "enabled": true
+  labels: ["c: dependencies", "p: 1-normal"],
+  lockFileMaintenance: {
+    enabled: true,
   },
-  "milestone": 15,
-  "reviewersFromCodeOwners": true,
-  "rangeStrategy": "pin",
-  "packageRules": [
+  milestone: 15,
+  reviewersFromCodeOwners: true,
+  rangeStrategy: "pin",
+  packageRules: [
     {
-      "groupName": "devDependencies",
-      "matchDepTypes": ["devDependencies"]
+      groupName: "devDependencies",
+      matchDepTypes: ["devDependencies"],
     },
     {
-      "groupName": "dependencies",
-      "matchDepTypes": ["dependencies"],
-      "rangeStrategy": "replace"
+      groupName: "dependencies",
+      matchDepTypes: ["dependencies"],
+      rangeStrategy: "replace",
     },
     {
-      "groupName": "peerDependencies",
-      "matchDepTypes": ["peerDependencies"],
-      "rangeStrategy": "widen"
+      groupName: "peerDependencies",
+      matchDepTypes: ["peerDependencies"],
+      rangeStrategy: "widen",
     },
     {
-      "groupName": "engines",
-      "matchDepTypes": ["engines"],
-      "rangeStrategy": "replace"
+      groupName: "engines",
+      matchDepTypes: ["engines"],
+      rangeStrategy: "replace",
     },
     {
-      "groupName": "eslint",
-      "matchPackagePrefixes": [
-        "@typescript-eslint/",
-        "@eslint-types/",
-        "eslint"
-      ]
+      groupName: "eslint",
+      matchPackageNames: [
+        "@typescript-eslint/{/,}**",
+        "@eslint-types/{/,}**",
+        "eslint{/,}**",
+      ],
     },
     {
-      "groupName": "vitest",
-      "matchPackagePrefixes": ["@vitest/", "vitest"]
+      groupName: "vitest",
+      matchPackageNames: ["@vitest/{/,}**", "vitest{/,}**"],
     },
     {
-      "groupName": "prettier",
-      "matchPackageNames": ["@types/prettier", "prettier"]
+      groupName: "prettier",
+      matchPackageNames: ["@types/prettier", "prettier"],
     },
     {
-      "groupName": "typescript",
-      "matchPackageNames": ["typescript"]
+      groupName: "typescript",
+      matchPackageNames: ["typescript"],
     },
     {
-      "groupName": "doc-dependencies",
-      "matchPackageNames": ["@algolia/client-search", "ts-morph", "vitepress"]
-    }
+      groupName: "doc-dependencies",
+      matchPackageNames: ["@algolia/client-search", "ts-morph", "vitepress"],
+    },
   ],
-  "stopUpdatingLabel": "s: on hold",
-  "vulnerabilityAlerts": {
-    "labels": ["c: security", "p: 2-high"],
-    "assignees": ["team:maintainers"]
-  }
+  stopUpdatingLabel: "s: on hold",
+  vulnerabilityAlerts: {
+    labels: ["c: security", "p: 2-high"],
+    assignees: ["team:maintainers"],
+  },
 }
