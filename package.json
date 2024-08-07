@@ -4,10 +4,7 @@
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
-    "build:clean": "rimraf dist",
-    "build:code": "tsup-node",
-    "build:types": "tsc --project tsconfig.build.json",
-    "build": "run-s build:clean build:code build:types",
+    "build": "packem build",
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidocs.ts",
     "generate:locales": "tsx ./scripts/generate-locales.ts",
@@ -63,30 +60,31 @@
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
     },
     "./locale/*": {
-      "types": "./dist/types/locale/*.d.ts",
-      "import": "./dist/locale/*.js",
-      "require": "./dist/locale/*.cjs",
-      "default": "./dist/locale/*.js"
+      "require": {
+        "types": "./dist/locale/*.d.cts",
+        "default": "./dist/locale/*.cjs"
+      },
+      "import": {
+        "types": "./dist/locale/*.d.mts",
+        "default": "./dist/locale/*.mjs"
+      }
     },
     "./package.json": "./package.json"
-  },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "index.d.ts",
-  "typesVersions": {
-    ">=5.0": {
-      "*": [
-        "dist/types/*"
-      ]
-    }
   },
   "files": [
     "CHANGELOG.md",
@@ -124,10 +122,11 @@
     "prettier-plugin-organize-imports": "4.0.0",
     "prettier-plugin-packagejson": "2.5.2",
     "rimraf": "5.0.10",
+    "esbuild": "^0.23.1",
+    "@visulima/packem": "1.0.0-alpha.95",
     "sanitize-html": "2.13.0",
     "semver": "7.6.3",
     "ts-morph": "23.0.0",
-    "tsup": "8.2.4",
     "tsx": "4.19.0",
     "typescript": "5.5.4",
     "typescript-eslint": "8.3.0",
@@ -142,5 +141,82 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.ts",
+        "./dist/locale/af_ZA.d.ts",
+        "./dist/locale/ar.d.ts",
+        "./dist/locale/az.d.ts",
+        "./dist/locale/base.d.ts",
+        "./dist/locale/cs_CZ.d.ts",
+        "./dist/locale/da.d.ts",
+        "./dist/locale/de.d.ts",
+        "./dist/locale/de_AT.d.ts",
+        "./dist/locale/de_CH.d.ts",
+        "./dist/locale/dv.d.ts",
+        "./dist/locale/el.d.ts",
+        "./dist/locale/en.d.ts",
+        "./dist/locale/en_AU.d.ts",
+        "./dist/locale/en_AU_ocker.d.ts",
+        "./dist/locale/en_BORK.d.ts",
+        "./dist/locale/en_CA.d.ts",
+        "./dist/locale/en_GB.d.ts",
+        "./dist/locale/en_GH.d.ts",
+        "./dist/locale/en_HK.d.ts",
+        "./dist/locale/en_IE.d.ts",
+        "./dist/locale/en_IN.d.ts",
+        "./dist/locale/en_NG.d.ts",
+        "./dist/locale/en_US.d.ts",
+        "./dist/locale/en_ZA.d.ts",
+        "./dist/locale/eo.d.ts",
+        "./dist/locale/es.d.ts",
+        "./dist/locale/es_MX.d.ts",
+        "./dist/locale/fa.d.ts",
+        "./dist/locale/fi.d.ts",
+        "./dist/locale/fr.d.ts",
+        "./dist/locale/fr_BE.d.ts",
+        "./dist/locale/fr_CA.d.ts",
+        "./dist/locale/fr_CH.d.ts",
+        "./dist/locale/fr_LU.d.ts",
+        "./dist/locale/fr_SN.d.ts",
+        "./dist/locale/he.d.ts",
+        "./dist/locale/hr.d.ts",
+        "./dist/locale/hu.d.ts",
+        "./dist/locale/hy.d.ts",
+        "./dist/locale/id_ID.d.ts",
+        "./dist/locale/index.d.ts",
+        "./dist/locale/it.d.ts",
+        "./dist/locale/ja.d.ts",
+        "./dist/locale/ka_GE.d.ts",
+        "./dist/locale/ko.d.ts",
+        "./dist/locale/lv.d.ts",
+        "./dist/locale/mk.d.ts",
+        "./dist/locale/nb_NO.d.ts",
+        "./dist/locale/ne.d.ts",
+        "./dist/locale/nl.d.ts",
+        "./dist/locale/nl_BE.d.ts",
+        "./dist/locale/pl.d.ts",
+        "./dist/locale/pt_BR.d.ts",
+        "./dist/locale/pt_PT.d.ts",
+        "./dist/locale/ro.d.ts",
+        "./dist/locale/ro_MD.d.ts",
+        "./dist/locale/ru.d.ts",
+        "./dist/locale/sk.d.ts",
+        "./dist/locale/sr_RS_latin.d.ts",
+        "./dist/locale/sv.d.ts",
+        "./dist/locale/th.d.ts",
+        "./dist/locale/tr.d.ts",
+        "./dist/locale/uk.d.ts",
+        "./dist/locale/ur.d.ts",
+        "./dist/locale/uz_UZ_latin.d.ts",
+        "./dist/locale/vi.d.ts",
+        "./dist/locale/yo_NG.d.ts",
+        "./dist/locale/zh_CN.d.ts",
+        "./dist/locale/zh_TW.d.ts",
+        "./dist/locale/zu_ZA.d.ts"
+      ]
+    }
   }
 }
