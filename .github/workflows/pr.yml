@@ -65,3 +65,42 @@ jobs:
       - name: Status
         if: ${{ steps.generate.outcome == 'failure' || steps.diff.outcome == 'failure' }}
         run: exit 1
+
+  pr-preview:
+    runs-on: ubuntu-latest
+    name: 'PR Preview: node-18, ubuntu-latest'
+    timeout-minutes: 10
+    needs: check-code-generation
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+
+      - name: Set node version to 18
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Generate code
+        id: generate
+        run: |
+          pnpm run generate:locales
+          pnpm run build
+        continue-on-error: true
+        env:
+          CI_PREFLIGHT: true
+
+      - name: Publish a branch preview
+        run: pnpm exec pkg-pr-new publish

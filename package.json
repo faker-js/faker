@@ -117,6 +117,7 @@
     "eslint-plugin-unicorn": "54.0.0",
     "eslint-plugin-vitest": "0.5.4",
     "npm-run-all2": "6.2.2",
+    "pkg-pr-new": "^0.0.20",
     "prettier": "3.3.3",
     "prettier-plugin-organize-imports": "4.0.0",
     "rimraf": "5.0.10",
