@@ -103,4 +103,4 @@ jobs:
           CI_PREFLIGHT: true
 
       - name: Publish a branch preview
-        run: pnpm exec pkg-pr-new publish
+        run: pnpm exec pkg-pr-new publish --comment="update" --pnpm
