@@ -65,12 +65,12 @@ jobs:
         run: |
           git push origin $GITHUB_REF_NAME:v$RELEASE_MAJOR
 
-      - name: Notify closed PRs
+      - name: Notify merged PRs
         run: |
           VERSION_LINES=$(grep -n '^## ' CHANGELOG.md | head -n 2 | cut -d: -f1)
           LATEST_VERSION_LINE=$(echo "$VERSION_LINES" | head -n 1)
           PREVIOUS_VERSION_LINE=$(echo "$VERSION_LINES" | tail -n 1)
-          CHANGELOG_SECTION=$(sed -n "${LATEST_VERSION_LINE},$(($PREVIOUS_VERSION_LINE - 1))p" CHANGELOG.md)
+          CHANGELOG_SECTION=$(sed -n "$((LATEST_VERSION_LINE + 1)),$(($PREVIOUS_VERSION_LINE - 1))p" CHANGELOG.md)
           PR_REFERENCES=$(echo "$CHANGELOG_SECTION" | grep -oP '\[#\d+\]' | grep -oP '\d+' | sort -u)
           echo "$PR_REFERENCES" | while read -r pr_number; do
             gh pr comment $pr_number -b "This change has been released in v$RELEASE_VERSION 🎉"
