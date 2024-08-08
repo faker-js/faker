@@ -66,9 +66,9 @@ jobs:
         if: ${{ steps.generate.outcome == 'failure' || steps.diff.outcome == 'failure' }}
         run: exit 1
 
-  pr-preview:
+  continuous-releases:
     runs-on: ubuntu-latest
-    name: 'PR Preview: node-18, ubuntu-latest'
+    name: 'Continuous Releases: node-18, ubuntu-latest'
     timeout-minutes: 10
     needs: check-code-generation
     permissions:
