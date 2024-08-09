@@ -21,7 +21,7 @@ export async function script(
     issue_number: context.issue.number,
   });
 
-  const body = `GitHub Actions has detected that this PR is incomplete.
+  const body = `GitHub Actions has found some problems running the preflight checks.
 
 Please make sure to:
 
