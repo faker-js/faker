@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const gitignorePath = resolve(__dirname, '.gitignore');
 
-export const config: ReturnType<typeof tseslint.config> = tseslint.config(
+const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#region global
   includeIgnoreFile(gitignorePath),
   {
