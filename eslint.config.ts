@@ -1,4 +1,3 @@
-// @ts-check
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
