@@ -226,7 +226,7 @@ For these cases, we explicitly set the data to `null` to clarify, that we have t
 We could have used an empty array `[]`, but some locale data are stored as objects `{}`,
 so `null` works for both of them without custom downstream handling of missing data.
 
-:::tip Note
+::: tip Note
 We are by far no experts in all provided languages/countries/locales,
 so if you think this is an error for your locale, please create an issue and consider contributing the relevant data.
 :::
