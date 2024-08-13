@@ -36,14 +36,15 @@
     {
       "groupName": "eslint",
       "matchPackageNames": [
-        "@typescript-eslint/{/,}**",
-        "@eslint-types/{/,}**",
-        "eslint{/,}**"
+        "@eslint-types/**",
+        "@eslint/**",
+        "eslint",
+        "typescript-eslint"
       ]
     },
     {
       "groupName": "vitest",
-      "matchPackageNames": ["@vitest/{/,}**", "vitest{/,}**"]
+      "matchPackageNames": ["@vitest/**", "vitest"]
     },
     {
       "groupName": "prettier",
