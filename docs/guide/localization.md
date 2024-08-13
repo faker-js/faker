@@ -201,7 +201,11 @@ const faker = new Faker({
 console.log(faker.location.country()); // 'Ελλάδα'
 ```
 
-See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)
+::: tip Note
+
+Of course, you can use [Custom Locales and Fallbacks](#custom-locales-and-fallbacks) for this as well.
+
+:::
 
 ## Handling Not-Applicable Data Errors
 
@@ -212,7 +216,7 @@ If you think this is a bug, please report it at: https://github.com/faker-js/fak
 
 If you receive this error, this means the current locale is unable to provide reasonable values for that method.
 Let's say you have a imaginary locale for the planet `mars`, if you call `fakerMars.location.country()`,
-then you will get this error, because there aren't any countries' territories on mars.
+then you will get this error, because there aren't any countries' territories on mars, yet.
 The same applies to other locales and methods.
 
 ```ts
@@ -252,7 +256,7 @@ If you want to use other fallback data instead, you can define them like this:
 
 ```ts{5}
 import { Faker, en } from '@faker-js/faker';
-import { mars } from 'mars';
+import { mars } from './locales/mars';
 
 const faker = new Faker({
   locale: [{ location: { country: en.location.country } }, mars],
@@ -260,18 +264,21 @@ const faker = new Faker({
 console.log(faker.location.country()); // 'Belgium'
 ```
 
+::: warning Warning
+
 Since `null` is considered present data, it will not use any fallbacks for that.
 So the following code does **not** work:
 
 ```ts
 import { Faker, en } from '@faker-js/faker';
-
-const mars: LocaleDefinition = ...;
+import { mars } from './locales/mars';
 
 const faker = new Faker({
   locale: [mars, { location: { country: en.location.country } }],
 });
 console.log(faker.location.country()); // Error
 ```
+
+:::
 
 See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)
