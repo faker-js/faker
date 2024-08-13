@@ -233,7 +233,7 @@ export const mars: LocaleDefinition = {
 
 ```ts
 import { Faker } from '@faker-js/faker';
-import { mars } from 'mars';
+import { mars } from './locales/mars';
 
 const faker = new Faker({
   locale: mars,
