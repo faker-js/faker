@@ -37,7 +37,14 @@ export async function script(
     issue_number: pr_number,
   });
 
-  const body = `Uncommitted changes were detected after running <code>generate:*</code> commands.\nPlease run <code>pnpm run preflight</code> to generate/update the related files, and commit them.`;
+  const body = `GitHub Actions has found some problems running the preflight checks.
+
+Please make sure to:
+
+- run \`pnpm run preflight\` locally
+- fix all issues until the command completes without errors
+- commit and push the changes
+`;
 
   const botComment = comments.find(
     (comment) => comment.user?.type === 'Bot' && comment.body?.includes(body)
