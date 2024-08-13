@@ -219,7 +219,7 @@ The same applies to other locales and methods.
 ```ts
 import { fakerEN_HK } from '@faker-js/faker';
 
-console.log(fakerEN_HK.location.zipCode()); // Error
+console.log(fakerEN_HK.location.zipCode()); // Error // [!code error]
 ```
 
 For these cases, we explicitly set the data to `null` to clarify, that we have thought about it, but there are no valid values to put there.
@@ -252,7 +252,7 @@ import { Faker, en, en_HK } from '@faker-js/faker';
 const faker = new Faker({
   locale: [en_HK, { location: { postcode: en.location.postcode } }],
 });
-console.log(faker.location.zipCode()); // Error
+console.log(faker.location.zipCode()); // Error // [!code error]
 ```
 
 :::
