@@ -202,9 +202,7 @@ console.log(faker.location.country()); // 'Ελλάδα'
 ```
 
 ::: tip Note
-
 Of course, you can use [Custom Locales and Fallbacks](#custom-locales-and-fallbacks) for this as well.
-
 :::
 
 ## Handling Not-Applicable Data Errors
@@ -229,10 +227,8 @@ We could have used an empty array `[]`, but some locale data are stored as objec
 so `null` works for both of them without custom downstream handling of missing data.
 
 :::tip Note
-
 We are by far no experts in all provided languages/countries/locales,
 so if you think this is an error for your locale, please create an issue and consider contributing the relevant data.
-
 :::
 
 If you want to use other fallback data instead, you can define them like this:
@@ -247,7 +243,6 @@ console.log(faker.location.zipCode()); // '17551-0348'
 ```
 
 ::: warning Warning
-
 Since `null` is considered present data, it will not use any fallbacks for that.
 So the following code does **not** work:
 
