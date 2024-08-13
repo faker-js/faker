@@ -233,7 +233,7 @@ so if you think this is an error for your locale, please create an issue and con
 
 If you want to use other fallback data instead, you can define them like this:
 
-```ts{5}
+```ts{4}
 import { Faker, en, en_HK } from '@faker-js/faker';
 
 const faker = new Faker({
