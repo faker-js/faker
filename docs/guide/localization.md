@@ -250,7 +250,7 @@ So the following code does **not** work:
 import { Faker, en, en_HK } from '@faker-js/faker';
 
 const faker = new Faker({
-  locale: [en_HK, { location: { postcode: en.location.postcode } }],
+  locale: [en_HK, { location: { postcode: en.location.postcode } }], // [!code warning]
 });
 console.log(faker.location.zipCode()); // Error // [!code error]
 ```
