@@ -215,30 +215,13 @@ If you think this is a bug, please report it at: https://github.com/faker-js/fak
 ```
 
 If you receive this error, this means the current locale is unable to provide reasonable values for that method.
-Let's say you have a imaginary locale for the planet `mars`, if you call `fakerMars.location.country()`,
-then you will get this error, because there aren't any countries' territories on mars, yet.
+For example, there are no zip codes in Hongkong, so for that reason the `en_HK` locale is unable to provide these data.
 The same applies to other locales and methods.
 
 ```ts
-import type { LocaleDefinition } from '@faker-js/faker';
+import { fakerEN_HK } from '@faker-js/faker';
 
-export const mars: LocaleDefinition = {
-  location: {
-    country: null,
-    ...
-  },
-  ...
-};
-```
-
-```ts
-import { Faker } from '@faker-js/faker';
-import { mars } from './locales/mars';
-
-const faker = new Faker({
-  locale: mars,
-});
-console.log(faker.location.country()); // Error
+console.log(fakerEN_HK.location.zipCode()); // Error
 ```
 
 For these cases, we explicitly set the data to `null` to clarify, that we have thought about it, but there are no valid values to put there.
@@ -255,13 +238,12 @@ so if you think this is an error for your locale, please create an issue and con
 If you want to use other fallback data instead, you can define them like this:
 
 ```ts{5}
-import { Faker, en } from '@faker-js/faker';
-import { mars } from './locales/mars';
+import { Faker, en, en_HK } from '@faker-js/faker';
 
 const faker = new Faker({
-  locale: [{ location: { country: en.location.country } }, mars],
+  locale: [{ location: { postcode: en.location.postcode } }, en_HK],
 });
-console.log(faker.location.country()); // 'Belgium'
+console.log(faker.location.zipCode()); // '17551-0348'
 ```
 
 ::: warning Warning
@@ -270,13 +252,12 @@ Since `null` is considered present data, it will not use any fallbacks for that.
 So the following code does **not** work:
 
 ```ts
-import { Faker, en } from '@faker-js/faker';
-import { mars } from './locales/mars';
+import { Faker, en, en_HK } from '@faker-js/faker';
 
 const faker = new Faker({
-  locale: [mars, { location: { country: en.location.country } }],
+  locale: [en_HK, { location: { postcode: en.location.postcode } }],
 });
-console.log(faker.location.country()); // Error
+console.log(faker.location.zipCode()); // Error
 ```
 
 :::
