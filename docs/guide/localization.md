@@ -165,3 +165,113 @@ for (let key of Object.keys(allFakers)) {
   }
 }
 ```
+
+## Handling Missing Data Errors
+
+```txt
+[Error]: The locale data for 'category.entry' are missing in this locale.
+Please contribute the missing data to the project or use a locale/Faker instance that has these data.
+For more information see https://fakerjs.dev/guide/localization.html
+```
+
+If you receive this error, this means you are using a locale (`Faker` instance) that does not have the relevant data for that method yet.
+Please consider contributing the missing data, so that others can use them in the future as well.
+
+As a workaround, you can provide additional fallbacks to your `Faker` instance:
+
+```ts
+import { Faker, el } from '@faker-js/faker'; // [!code --]
+import { Faker, el, en } from '@faker-js/faker'; // [!code ++]
+
+const faker = new Faker({
+  locale: [el], // [!code --]
+  locale: [el, en], // [!code ++]
+});
+console.log(faker.location.country()); // 'Belgium'
+```
+
+If you want to use custom data instead, you can do it like this:
+
+```ts{4}
+import { Faker, el } from '@faker-js/faker';
+
+const faker = new Faker({
+  locale: [{ location: { country: ['Ελλάδα'] } }, el],
+});
+console.log(faker.location.country()); // 'Ελλάδα'
+```
+
+See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)
+
+## Handling Not-Applicable Data Errors
+
+```txt
+[Error]: The locale data for 'category.entry' aren't applicable to this locale.
+If you think this is a bug, please report it at: https://github.com/faker-js/faker
+```
+
+If you receive this error, this means the current locale is unable to provide reasonable values for that method.
+Let's say you have a imaginary locale for the planet `mars`, if you call `fakerMars.location.country()`,
+then you will get this error, because there aren't any countries' territories on mars.
+The same applies to other locales and methods.
+
+```ts
+import type { LocaleDefinition } from '@faker-js/faker';
+
+export const mars: LocaleDefinition = {
+  location: {
+    country: null,
+    ...
+  },
+  ...
+};
+```
+
+```ts
+import { Faker } from '@faker-js/faker';
+import { mars } from 'mars';
+
+const faker = new Faker({
+  locale: mars,
+});
+console.log(faker.location.country()); // Error
+```
+
+For these cases, we explicitly set the data to `null` to clarify, that we have thought about it, but there are no valid values to put there.
+We could have used an empty array `[]`, but some locale data are stored as objects `{}`,
+so `null` works for both of them without custom downstream handling of missing data.
+
+:::tip Note
+
+We are by far no experts in all provided languages/countries/locales,
+so if you think this is an error for your locale, please create an issue and consider contributing the relevant data.
+
+:::
+
+If you want to use other fallback data instead, you can define them like this:
+
+```ts{5}
+import { Faker, en } from '@faker-js/faker';
+import { mars } from 'mars';
+
+const faker = new Faker({
+  locale: [{ location: { country: en.location.country } }, mars],
+});
+console.log(faker.location.country()); // 'Belgium'
+```
+
+Since `null` is considered present data, it will not use any fallbacks for that.
+So the following code does **not** work:
+
+```ts
+import { Faker, en } from '@faker-js/faker';
+
+const mars: LocaleDefinition = ...;
+
+const faker = new Faker({
+  locale: [mars, { location: { state: en.location.state } }],
+});
+console.log(faker.location.state()); // Error
+```
+
+See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)
