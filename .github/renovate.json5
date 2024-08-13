@@ -39,6 +39,7 @@
         "@eslint-types/**",
         "@eslint/**",
         "eslint",
+        "eslint-**",
         "typescript-eslint"
       ]
     },
