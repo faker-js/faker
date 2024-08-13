@@ -269,9 +269,9 @@ import { Faker, en } from '@faker-js/faker';
 const mars: LocaleDefinition = ...;
 
 const faker = new Faker({
-  locale: [mars, { location: { state: en.location.state } }],
+  locale: [mars, { location: { country: en.location.country } }],
 });
-console.log(faker.location.state()); // Error
+console.log(faker.location.country()); // Error
 ```
 
 See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)
