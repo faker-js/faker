@@ -190,17 +190,6 @@ const faker = new Faker({
 console.log(faker.location.country()); // 'Belgium'
 ```
 
-If you want to use custom data instead, you can do it like this:
-
-```ts{4}
-import { Faker, el } from '@faker-js/faker';
-
-const faker = new Faker({
-  locale: [{ location: { country: ['Ελλάδα'] } }, el],
-});
-console.log(faker.location.country()); // 'Ελλάδα'
-```
-
 ::: tip Note
 Of course, you can use [Custom Locales and Fallbacks](#custom-locales-and-fallbacks) for this as well.
 :::
