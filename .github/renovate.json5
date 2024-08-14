@@ -35,16 +35,17 @@
     },
     {
       "groupName": "eslint",
-      "matchPackagePrefixes": [
-        "@eslint-types/",
-        "@eslint/",
+      "matchPackageNames": [
+        "@eslint-types/**",
+        "@eslint/**",
         "eslint",
+        "eslint-**",
         "typescript-eslint"
       ]
     },
     {
       "groupName": "vitest",
-      "matchPackagePrefixes": ["@vitest/", "vitest"]
+      "matchPackageNames": ["@vitest/**", "vitest"]
     },
     {
       "groupName": "prettier",
