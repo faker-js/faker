@@ -14,9 +14,7 @@ on:
           - beta
           - rc
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {} # we use a personal access token to push the branch and create the PR
 
 jobs:
   prepare_release_pr:
@@ -29,6 +27,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
@@ -46,8 +45,8 @@ jobs:
 
       - name: Run release
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "FakerJS Bot"
+          git config user.email "github-bot@fakerjs.dev"
           if [ $RELEASE_TYPE = 'stable' ]; then
             pnpm run release
           else
@@ -82,4 +81,4 @@ jobs:
           - Checklist: TODO add link to issue
           "
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

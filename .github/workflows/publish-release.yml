@@ -4,8 +4,7 @@ on:
   release:
     types: [published]
 
-permissions:
-  contents: write # to push the release branch
+permissions: {} # we use a personal access token to push the release branch
 
 jobs:
   publish:
@@ -17,6 +16,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0 # we want to push the release branch later
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
