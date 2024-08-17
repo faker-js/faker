@@ -2,7 +2,7 @@
 // The basic format is A1A 1A1
 // First letter is province/territory-specific
 // Other letters do not allow D, F, I, O, Q, U
-const suffix = '[0-9][A-HJ-NPRSTVW-Z] [0-9][A-HJ-NPRSTVW-Z][0-9]';
+const suffix = '[0-9][ABCEGHJ-NPRSTVW-Z] [0-9][ABCEGHJ-NPRSTVW-Z][0-9]';
 
 export default {
   AB: `{{helpers.fromRegExp(T${suffix})}}`, // Alberta
