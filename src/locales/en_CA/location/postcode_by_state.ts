@@ -15,7 +15,7 @@ export default {
   NU: `{{helpers.fromRegExp(X${suffix})}}`, // Nunavut
   ON: `{{helpers.fromRegExp([KLMNP]${suffix})}}`, // Ontario
   PE: `{{helpers.fromRegExp(C${suffix})}}`, // Prince Edward Island
-  QC: `{{helpers.fromRegExp([HJG]${suffix})}}`, // Quebec
+  QC: `{{helpers.fromRegExp([GHJ]${suffix})}}`, // Quebec
   SK: `{{helpers.fromRegExp(S${suffix})}}`, // Saskatchewan
   YT: `{{helpers.fromRegExp(Y${suffix})}}`, // Yukon
 };
