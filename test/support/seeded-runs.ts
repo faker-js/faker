@@ -176,17 +176,12 @@ class TestGenerator<
    * @param method The name of the method.
    * @param repetitions The number of repetitions to run.
    */
-  // TODO @ST-DDT 2024-08-19: https://github.com/typescript-eslint/typescript-eslint/issues/9828
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-  itRepeated<TMethodName extends NoArgsMethodOf<TModule>>(
-    method: TMethodName,
-    repetitions: number
-  ): this {
+  itRepeated(method: NoArgsMethodOf<TModule>, repetitions: number): this {
     this.expectNotTested(method);
     vi_it(method, () =>
       this.callAndVerify(
         method,
-        [] as unknown as Parameters<TModule[TMethodName]>,
+        [] as unknown as Parameters<TModule[NoArgsMethodOf<TModule>]>,
         repetitions
       )
     );
