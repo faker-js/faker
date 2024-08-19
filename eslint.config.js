@@ -27,6 +27,7 @@ export default tseslint.config(
       'docs/.vitepress/components/shims.d.ts',
       'docs/.vitepress/shared/utils/slugify.ts',
       'docs/.vitepress/theme/index.ts',
+      'eslint.config.js',
     ],
   },
   {
@@ -57,7 +58,6 @@ export default tseslint.config(
       '@typescript-eslint': tseslint.plugin,
     },
     languageOptions: {
-      parser: tseslint.parser,
       parserOptions: {
         project: true,
         warnOnUnsupportedTypeScriptVersion: false,
@@ -148,13 +148,6 @@ export default tseslint.config(
         // @ts-expect-error: Just eat it!
         fixupPluginRules(eslintPluginDeprecation),
     },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: true,
-        warnOnUnsupportedTypeScriptVersion: false,
-      },
-    },
     rules: {
       'deprecation/deprecation': 'error',
     },
@@ -162,7 +155,6 @@ export default tseslint.config(
   //#endregion
 
   //#region unicorn
-  // @ts-expect-error: Ignore for now
   eslintPluginUnicorn.configs['flat/recommended'],
   {
     rules: {

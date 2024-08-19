@@ -5,7 +5,7 @@ import { keys } from '../src/internal/keys';
 
 describe.each(keys(allLocales))('locale imports', (locale) => {
   it(`should be possible to directly require('@faker-js/faker/locale/${locale}')`, () => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, unicorn/prefer-module
     const { faker } = require(`../dist/locale/${locale}.cjs`) as {
       faker: Faker;
     };
