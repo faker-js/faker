@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.0.0-rc.1](https://github.com/faker-js/faker/compare/v9.0.0-rc.0...v9.0.0-rc.1) (2024-08-19)
+
+
+### New Locales
+
+* **locale:** implement company info on pt_PT locale ([#3022](https://github.com/faker-js/faker/issues/3022)) ([0fd0402](https://github.com/faker-js/faker/commit/0fd0402aa96818c8c3af1defc816ffcffadbb1fe))
+* **locale:** implement more colors to pt_PT locale ([#3021](https://github.com/faker-js/faker/issues/3021)) ([a210619](https://github.com/faker-js/faker/commit/a210619c3cd6d802f8a80e3db68c96b444d15a64))
+* **locale:** implement state info on sk locale ([#3054](https://github.com/faker-js/faker/issues/3054)) ([8c55493](https://github.com/faker-js/faker/commit/8c55493e73b1d09af781b1e14c21858e775b5d91))
+
+
+### Features
+
+* **location:** en_CA postcodes by state ([#3057](https://github.com/faker-js/faker/issues/3057)) ([b62c1b7](https://github.com/faker-js/faker/commit/b62c1b7a97fdb1ab5928d34b11bcad9e1158a60b))
+
 ## [9.0.0-rc.0](https://github.com/faker-js/faker/compare/v9.0.0-alpha.1...v9.0.0-rc.0) (2024-07-11)
 
 
