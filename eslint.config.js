@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 import eslintPluginDeprecation from 'eslint-plugin-deprecation';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -100,10 +101,6 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/padding-line-between-statements': [
-        'error',
-        { blankLine: 'always', prev: 'block-like', next: '*' },
-      ],
       '@typescript-eslint/prefer-regexp-exec': 'error',
       '@typescript-eslint/restrict-plus-operands': [
         'error',
@@ -128,6 +125,20 @@ export default tseslint.config(
     },
   },
   //#endregion
+
+  //#region stylistic
+  {
+    plugins: {
+      '@stylistic': stylistic,
+    },
+    rules: {
+      '@stylistic/semi': 'error',
+      '@stylistic/padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: 'block-like', next: '*' },
+      ],
+    },
+  },
 
   //#region deprecation
   {
