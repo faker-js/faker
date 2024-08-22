@@ -443,4 +443,113 @@ export class NumberModule extends SimpleModuleBase {
 
     return min + offset;
   }
+
+  /**
+   * Returns a Roman Numeral in [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) format.
+   * The bounds are inclusive.
+   *
+   * @param options Maximum value or options object.
+   * @param options.min Lower bound for generated roman numerals. Defaults to `1`.
+   * @param options.max Upper bound for generated roman numerals. Defaults to `4999`.
+   *
+   * @throws When `min` is greater than `max`.
+   * @throws When `min`,`max` is not a number.
+   * @throws When `min` is less than `1`.
+   * @throws When `max` is greater than `4999`.
+   *
+   * @example
+   * faker.number.romanNumeral() // "IV"
+   * faker.number.romanNumeral(5) // "V"
+   * faker.number.romanNumeral({ min: 10 }) // "XI"
+   * faker.number.romanNumeral({ max: 20 }) // "III"
+   * faker.number.romanNumeral({ min: 5, max: 10 }) // "VII"
+   *
+   */
+
+  romanNumeral(options: number | { min?: number; max?: number } = {}): string {
+    const DEFAULT_MIN = 1;
+    const DEFAULT_MAX = 4999;
+
+    if (typeof options === 'number') {
+      options = {
+        max: options,
+      };
+    }
+
+    let num = DEFAULT_MIN;
+
+    const min = Number(options.min ?? DEFAULT_MIN);
+    const max = Number(options.max ?? DEFAULT_MAX);
+
+    if (typeof min !== 'number' || isNaN(min)) {
+      throw new FakerError('Min value must be a valid number.');
+    }
+
+    if (typeof max !== 'number' || isNaN(max)) {
+      throw new FakerError('Max value must be a valid number.');
+    }
+
+    if (min < DEFAULT_MIN) {
+      throw new FakerError(`Min value ${min} should be 1 or greater.`);
+    }
+
+    if (max > DEFAULT_MAX) {
+      throw new FakerError(`Max value ${max} should be 4999 or lesser.`);
+    }
+
+    if (max < min) {
+      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
+    }
+
+    if (max === min) {
+      num = min;
+    } else {
+      num = this.int({ min, max });
+    }
+
+    // No need to check for NaN since num will always be a number
+    let digits: string[] = String(+num).split('');
+
+    const key = [
+      '',
+      'C',
+      'CC',
+      'CCC',
+      'CD',
+      'D',
+      'DC',
+      'DCC',
+      'DCCC',
+      'CM',
+      '',
+      'X',
+      'XX',
+      'XXX',
+      'XL',
+      'L',
+      'LX',
+      'LXX',
+      'LXXX',
+      'XC',
+      '',
+      'I',
+      'II',
+      'III',
+      'IV',
+      'V',
+      'VI',
+      'VII',
+      'VIII',
+      'IX',
+    ];
+
+    let roman = '';
+    let i = 3;
+
+    while (i--) {
+      roman = (key[+digits.pop()! + i * 10] || '') + roman;
+    }
+
+    return roman;
+  }
 }
