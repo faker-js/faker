@@ -445,30 +445,30 @@ export class NumberModule extends SimpleModuleBase {
   }
 
   /**
-   * Returns a Roman Numeral in [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) format.
+   * Returns a roman numeral in [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) format.
    * The bounds are inclusive.
    *
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated roman numerals. Defaults to `1`.
-   * @param options.max Upper bound for generated roman numerals. Defaults to `4999`.
+   * @param options.max Upper bound for generated roman numerals. Defaults to `3999`.
    *
    * @throws When `min` is greater than `max`.
    * @throws When `min`,`max` is not a number.
    * @throws When `min` is less than `1`.
-   * @throws When `max` is greater than `4999`.
+   * @throws When `max` is greater than `3999`.
    *
    * @example
-   * faker.number.romanNumeral() // "IV"
-   * faker.number.romanNumeral(5) // "V"
-   * faker.number.romanNumeral({ min: 10 }) // "XI"
-   * faker.number.romanNumeral({ max: 20 }) // "III"
+   * faker.number.romanNumeral() // "CMXCIII"
+   * faker.number.romanNumeral(5) // "III"
+   * faker.number.romanNumeral({ min: 10 }) // "XCIX"
+   * faker.number.romanNumeral({ max: 20 }) // "XVII"
    * faker.number.romanNumeral({ min: 5, max: 10 }) // "VII"
    *
    */
 
   romanNumeral(options: number | { min?: number; max?: number } = {}): string {
     const DEFAULT_MIN = 1;
-    const DEFAULT_MAX = 4999;
+    const DEFAULT_MAX = 3999;
 
     if (typeof options === 'number') {
       options = {
@@ -507,49 +507,29 @@ export class NumberModule extends SimpleModuleBase {
       num = this.int({ min, max });
     }
 
-    // No need to check for NaN since num will always be a number
-    let digits: string[] = String(+num).split('');
-
-    const key = [
-      '',
-      'C',
-      'CC',
-      'CCC',
-      'CD',
-      'D',
-      'DC',
-      'DCC',
-      'DCCC',
-      'CM',
-      '',
-      'X',
-      'XX',
-      'XXX',
-      'XL',
-      'L',
-      'LX',
-      'LXX',
-      'LXXX',
-      'XC',
-      '',
-      'I',
-      'II',
-      'III',
-      'IV',
-      'V',
-      'VI',
-      'VII',
-      'VIII',
-      'IX',
+    const lookup: [string, number][] = [
+      ['M', 1000],
+      ['CM', 900],
+      ['D', 500],
+      ['CD', 400],
+      ['C', 100],
+      ['XC', 90],
+      ['L', 50],
+      ['XL', 40],
+      ['X', 10],
+      ['IX', 9],
+      ['V', 5],
+      ['IV', 4],
+      ['I', 1],
     ];
 
-    let roman = '';
-    let i = 3;
+    const intToRomanNumeral = (num: number): string =>
+      lookup.reduce((acc: string, [k, v]: [string, number]) => {
+        acc += k.repeat(Math.floor(num / v));
+        num = num % v;
+        return acc;
+      }, '');
 
-    while (i--) {
-      roman = (key[+digits.pop()! + i * 10] || '') + roman;
-    }
-
-    return roman;
+    return intToRomanNumeral(num);
   }
 }
