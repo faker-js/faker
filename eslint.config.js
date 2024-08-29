@@ -132,7 +132,6 @@ export default tseslint.config(
       '@stylistic': stylistic,
     },
     rules: {
-      '@stylistic/semi': 'error',
       '@stylistic/padding-line-between-statements': [
         'error',
         { blankLine: 'always', prev: 'block-like', next: '*' },
