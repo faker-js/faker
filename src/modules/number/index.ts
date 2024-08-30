@@ -453,7 +453,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated roman numerals. Defaults to `3999`.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `min`,`max` is not a number.
+   * @throws When `min`, `max` is not a number.
    * @throws When `min` is less than `1`.
    * @throws When `max` is greater than `3999`.
    *
@@ -470,13 +470,14 @@ export class NumberModule extends SimpleModuleBase {
     const DEFAULT_MIN = 1;
     const DEFAULT_MAX = 3999;
 
+    let num;
+    let result = '';
+
     if (typeof options === 'number') {
       options = {
         max: options,
       };
     }
-
-    let num = DEFAULT_MIN;
 
     const min = Number(options.min ?? DEFAULT_MIN);
     const max = Number(options.max ?? DEFAULT_MAX);
@@ -494,18 +495,14 @@ export class NumberModule extends SimpleModuleBase {
     }
 
     if (max > DEFAULT_MAX) {
-      throw new FakerError(`Max value ${max} should be 4999 or lesser.`);
+      throw new FakerError(`Max value ${max} should be 3999 or lesser.`);
     }
 
     if (max < min) {
       throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
-    if (max === min) {
-      num = min;
-    } else {
-      num = this.int({ min, max });
-    }
+    num = this.int({ min, max });
 
     const lookup: [string, number][] = [
       ['M', 1000],
@@ -523,13 +520,11 @@ export class NumberModule extends SimpleModuleBase {
       ['I', 1],
     ];
 
-    const intToRomanNumeral = (num: number): string =>
-      lookup.reduce((acc: string, [k, v]: [string, number]) => {
-        acc += k.repeat(Math.floor(num / v));
-        num = num % v;
-        return acc;
-      }, '');
+    for (const [k, v] of lookup) {
+      result += k.repeat(Math.floor(num / v));
+      num = num % v;
+    }
 
-    return intToRomanNumeral(num);
+    return result;
   }
 }

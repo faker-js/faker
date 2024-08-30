@@ -47,6 +47,16 @@ describe('number', () => {
           max: 32465761264574654845432354n,
         });
     });
+
+    t.describe('romanNumeral', (t) => {
+      t.it('noArgs')
+        .it('with number value', 1000)
+        .it('with only min', { min: 5 })
+        .it('with only max', { max: 165 })
+        .it('with min as 1', { min: 1 })
+        .it('with max as 3999', { max: 3999 })
+        .it('with min and max', { min: 100, max: 502 });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -623,6 +633,80 @@ describe('number', () => {
         }).toThrow(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
+      });
+    });
+
+    describe('romanNumeral', () => {
+      it('should generate a Roman numeral within default range', () => {
+        const roman = faker.number.romanNumeral();
+        expect(roman).toBeTypeOf('string');
+        expect(roman).toMatch(/^[IVXLCDM]+$/);
+      });
+
+      it('should generate a Roman numeral with max value of 1000', () => {
+        const roman = faker.number.romanNumeral(1000);
+        expect(roman).toMatch(/^[IVXLCDM]+$/);
+      });
+
+      it('should generate a Roman numeral between 1 and 10', () => {
+        const values = {
+          1: 'I',
+          2: 'II',
+          3: 'III',
+          4: 'IV',
+          5: 'V',
+          6: 'VI',
+          7: 'VII',
+          8: 'VIII',
+          9: 'IX',
+          10: 'X',
+        };
+
+        const roman = faker.number.romanNumeral({ min: 1, max: 10 });
+
+        expect(Object.values(values)).toContain(roman);
+      });
+
+      it('should throw when min is not a number', () => {
+        expect(() => {
+          faker.number.romanNumeral({ min: '2q' as any });
+        }).toThrow(new FakerError('Min value must be a valid number.'));
+      });
+
+      it('should throw when min is NaN', () => {
+        expect(() => {
+          faker.number.romanNumeral({ min: NaN });
+        }).toThrow(new FakerError('Min value must be a valid number.'));
+      });
+
+      it('should throw when max is not a number', () => {
+        expect(() => {
+          faker.number.romanNumeral({ max: '2q' as any });
+        }).toThrow(new FakerError('Max value must be a valid number.'));
+      });
+
+      it('should throw when max is NaN', () => {
+        expect(() => {
+          faker.number.romanNumeral({ max: NaN });
+        }).toThrow(new FakerError('Max value must be a valid number.'));
+      });
+
+      it('should throw when min value is less than 1', () => {
+        expect(() => {
+          faker.number.romanNumeral({ min: 0 });
+        }).toThrow(new FakerError('Min value 0 should be 1 or greater.'));
+      });
+
+      it('should throw when max value is greater than 3999', () => {
+        expect(() => {
+          faker.number.romanNumeral({ max: 4000 });
+        }).toThrow(new FakerError('Max value 4000 should be 3999 or lesser.'));
+      });
+
+      it('should throw when max value is less than min value', () => {
+        expect(() => {
+          faker.number.romanNumeral({ min: 500, max: 100 });
+        }).toThrow(new FakerError('Max 100 should be larger then min 500.'));
       });
     });
   });
