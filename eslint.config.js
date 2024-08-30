@@ -1,9 +1,8 @@
 // @ts-check
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
+import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import eslintPluginDeprecation from 'eslint-plugin-deprecation';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
@@ -136,20 +135,6 @@ export default tseslint.config(
         'error',
         { blankLine: 'always', prev: 'block-like', next: '*' },
       ],
-    },
-  },
-  //#endregion
-
-  //#region deprecation
-  {
-    plugins: {
-      deprecation:
-        // https://github.com/gund/eslint-plugin-deprecation/issues/78
-        // @ts-expect-error: Just eat it!
-        fixupPluginRules(eslintPluginDeprecation),
-    },
-    rules: {
-      'deprecation/deprecation': 'error',
     },
   },
   //#endregion
