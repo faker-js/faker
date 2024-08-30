@@ -165,7 +165,7 @@ class TestGenerator<
    *
    * @param method The name of the method.
    */
-  it<TMethodName extends NoArgsMethodOf<TModule>>(method: TMethodName): this {
+  it(method: NoArgsMethodOf<TModule>): this {
     return this.itRepeated(method, 1);
   }
 
@@ -176,15 +176,12 @@ class TestGenerator<
    * @param method The name of the method.
    * @param repetitions The number of repetitions to run.
    */
-  itRepeated<TMethodName extends NoArgsMethodOf<TModule>>(
-    method: TMethodName,
-    repetitions: number
-  ): this {
+  itRepeated(method: NoArgsMethodOf<TModule>, repetitions: number): this {
     this.expectNotTested(method);
     vi_it(method, () =>
       this.callAndVerify(
         method,
-        [] as unknown as Parameters<TModule[TMethodName]>,
+        [] as unknown as Parameters<TModule[NoArgsMethodOf<TModule>]>,
         repetitions
       )
     );
