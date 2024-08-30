@@ -1,9 +1,8 @@
 // @ts-check
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
+import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import eslintPluginDeprecation from 'eslint-plugin-deprecation';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
@@ -27,6 +26,7 @@ export default tseslint.config(
       'docs/.vitepress/components/shims.d.ts',
       'docs/.vitepress/shared/utils/slugify.ts',
       'docs/.vitepress/theme/index.ts',
+      'eslint.config.js',
     ],
   },
   {
@@ -57,7 +57,6 @@ export default tseslint.config(
       '@typescript-eslint': tseslint.plugin,
     },
     languageOptions: {
-      parser: tseslint.parser,
       parserOptions: {
         project: true,
         warnOnUnsupportedTypeScriptVersion: false,
@@ -140,29 +139,7 @@ export default tseslint.config(
   },
   //#endregion
 
-  //#region deprecation
-  {
-    plugins: {
-      deprecation:
-        // https://github.com/gund/eslint-plugin-deprecation/issues/78
-        // @ts-expect-error: Just eat it!
-        fixupPluginRules(eslintPluginDeprecation),
-    },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: true,
-        warnOnUnsupportedTypeScriptVersion: false,
-      },
-    },
-    rules: {
-      'deprecation/deprecation': 'error',
-    },
-  },
-  //#endregion
-
   //#region unicorn
-  // @ts-expect-error: Ignore for now
   eslintPluginUnicorn.configs['flat/recommended'],
   {
     rules: {
