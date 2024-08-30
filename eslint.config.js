@@ -138,6 +138,7 @@ export default tseslint.config(
       ],
     },
   },
+  //#endregion
 
   //#region deprecation
   {
