@@ -91,7 +91,7 @@
   },
   "devDependencies": {
     "@actions/github": "6.0.0",
-    "@algolia/client-search": "5.0.2",
+    "@algolia/client-search": "5.2.3",
     "@eslint-types/deprecation": "2.0.0-1",
     "@eslint-types/jsdoc": "48.2.2",
     "@eslint-types/prettier": "5.1.3",
@@ -129,7 +129,7 @@
     "typescript-eslint": "8.3.0",
     "validator": "13.12.0",
     "vite": "5.4.2",
-    "vitepress": "1.3.3",
+    "vitepress": "1.3.4",
     "vitest": "2.0.5",
     "vue": "3.4.38",
     "vue-tsc": "2.1.2"
