@@ -6,13 +6,19 @@ export class FakerApiDocsProcessingError extends FakerError {
   constructor(options: {
     type: string;
     name: string;
-    source: string | SourceableNode;
+    source: SourceableNode;
     cause: unknown;
   }) {
     const { type, name, source, cause } = options;
-    const sourceText =
-      typeof source === 'string' ? source : getSourcePathText(source);
+    const sourceText = getSourcePathText(source);
     const causeText = cause instanceof Error ? cause.message : '';
+    if (process.env.CI_PREFLIGHT === 'true') {
+      const { filePath, line, column } = getSourcePath(source);
+      console.log(
+        `::error file=${filePath},line=${line},col=${column}::Failed to process ${type} '${name}': ${causeText}`
+      );
+    }
+
     super(
       `Failed to process ${type} '${name}' at ${sourceText} : ${causeText}`,
       {
@@ -25,7 +31,7 @@ export class FakerApiDocsProcessingError extends FakerError {
 export function newProcessingError(options: {
   type: string;
   name: string;
-  source: string | SourceableNode;
+  source: SourceableNode;
   cause: unknown;
 }): FakerApiDocsProcessingError {
   const { cause } = options;
