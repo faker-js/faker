@@ -1,3 +1,4 @@
+import { env } from 'node:process';
 import { defineConfig } from 'vitest/config';
 
 const VITEST_SEQUENCE_SEED = Date.now();
@@ -14,9 +15,7 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
-    reporters: process.env.CI_PREFLIGHT
-      ? ['basic', 'github-actions']
-      : ['basic'],
+    reporters: env.CI_PREFLIGHT ? ['basic', 'github-actions'] : ['basic'],
     sequence: {
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,

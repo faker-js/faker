@@ -1,3 +1,4 @@
+import { env } from 'node:process';
 import { FakerError } from '../../../src/errors/faker-error';
 import type { SourceableNode } from './source';
 import { getSourcePath } from './source';
@@ -12,7 +13,7 @@ export class FakerApiDocsProcessingError extends FakerError {
     const { type, name, source, cause } = options;
     const sourceText = getSourcePathText(source);
     const causeText = cause instanceof Error ? cause.message : '';
-    if (process.env.CI_PREFLIGHT === 'true') {
+    if (env.CI_PREFLIGHT === 'true') {
       const { filePath, line, column } = getSourcePath(source);
       console.log(
         `::error file=${filePath},line=${line},col=${column}::Failed to process ${type} '${name}': ${causeText}`
