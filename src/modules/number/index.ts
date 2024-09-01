@@ -134,11 +134,6 @@ export class NumberModule extends SimpleModuleBase {
     options:
       | number
       | {
-          /**
-           * Lower bound for generated number, inclusive.
-           *
-           * @default 0.0
-           */
           min?: number;
           /**
            * Upper bound for generated number, exclusive, unless `multipleOf` or `fractionDigits` are passed.
