@@ -13,9 +13,12 @@ export class FakerApiDocsProcessingError extends FakerError {
     const sourceText =
       typeof source === 'string' ? source : getSourcePathText(source);
     const causeText = cause instanceof Error ? cause.message : '';
-    super(`Failed to process ${type} ${name} at ${sourceText} : ${causeText}`, {
-      cause,
-    });
+    super(
+      `Failed to process ${type} '${name}' at ${sourceText} : ${causeText}`,
+      {
+        cause,
+      }
+    );
   }
 }
 
