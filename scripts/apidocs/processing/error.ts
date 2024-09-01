@@ -1,5 +1,5 @@
-import { env } from 'node:process';
 import { FakerError } from '../../../src/errors/faker-error';
+import { CI_PREFLIGHT } from '../../consts';
 import type { SourceableNode } from './source';
 import { getSourcePath } from './source';
 
@@ -11,21 +11,20 @@ export class FakerApiDocsProcessingError extends FakerError {
     cause: unknown;
   }) {
     const { type, name, source, cause } = options;
-    const sourceText = getSourcePathText(source);
+
+    const mainText = `Failed to process ${type} '${name}'`;
     const causeText = cause instanceof Error ? cause.message : '';
-    if (env.CI_PREFLIGHT === 'true') {
-      const { filePath, line, column } = getSourcePath(source);
-      console.log(
-        `::error file=${filePath},line=${line},col=${column}::Failed to process ${type} '${name}': ${causeText}`
-      );
+    const { filePath, line, column } = getSourcePath(source);
+    const sourceText = `${filePath}:${line}:${column}`;
+
+    if (CI_PREFLIGHT) {
+      const sourceArgs = `file=${filePath},line=${line},col=${column}`;
+      console.log(`::error ${sourceArgs}::${mainText}: ${causeText}`);
     }
 
-    super(
-      `Failed to process ${type} '${name}' at ${sourceText} : ${causeText}`,
-      {
-        cause,
-      }
-    );
+    super(`${mainText}' at ${sourceText} : ${causeText}`, {
+      cause,
+    });
   }
 }
 
@@ -42,9 +41,4 @@ export function newProcessingError(options: {
   }
 
   return new FakerApiDocsProcessingError(options);
-}
-
-function getSourcePathText(source: SourceableNode): string {
-  const { filePath, line, column } = getSourcePath(source);
-  return `${filePath}:${line}:${column}`;
 }
