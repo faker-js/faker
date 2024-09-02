@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.0.0](https://github.com/faker-js/faker/compare/v9.0.0-rc.1...v9.0.0) (2024-09-02)
+
 ## [9.0.0-rc.1](https://github.com/faker-js/faker/compare/v9.0.0-rc.0...v9.0.0-rc.1) (2024-08-19)
 
 
