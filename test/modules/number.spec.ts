@@ -667,30 +667,6 @@ describe('number', () => {
         expect(Object.values(values)).toContain(roman);
       });
 
-      it('should throw when min is not a number', () => {
-        expect(() => {
-          faker.number.romanNumeral({ min: '2q' as any });
-        }).toThrow(new FakerError('Min value must be a valid number.'));
-      });
-
-      it('should throw when min is NaN', () => {
-        expect(() => {
-          faker.number.romanNumeral({ min: NaN });
-        }).toThrow(new FakerError('Min value must be a valid number.'));
-      });
-
-      it('should throw when max is not a number', () => {
-        expect(() => {
-          faker.number.romanNumeral({ max: '2q' as any });
-        }).toThrow(new FakerError('Max value must be a valid number.'));
-      });
-
-      it('should throw when max is NaN', () => {
-        expect(() => {
-          faker.number.romanNumeral({ max: NaN });
-        }).toThrow(new FakerError('Max value must be a valid number.'));
-      });
-
       it('should throw when min value is less than 1', () => {
         expect(() => {
           faker.number.romanNumeral({ min: 0 });
@@ -706,7 +682,7 @@ describe('number', () => {
       it('should throw when max value is less than min value', () => {
         expect(() => {
           faker.number.romanNumeral({ min: 500, max: 100 });
-        }).toThrow(new FakerError('Max 100 should be larger then min 500.'));
+        }).toThrow(new FakerError('Max 100 should be greater than min 500.'));
       });
     });
   });

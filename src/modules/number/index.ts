@@ -464,14 +464,28 @@ export class NumberModule extends SimpleModuleBase {
    * faker.number.romanNumeral({ max: 20 }) // "XVII"
    * faker.number.romanNumeral({ min: 5, max: 10 }) // "VII"
    *
+   * @since 9.1.0
    */
-
-  romanNumeral(options: number | { min?: number; max?: number } = {}): string {
+  romanNumeral(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 1
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 3999
+           */
+          max?: number;
+        } = {}
+  ): string {
     const DEFAULT_MIN = 1;
     const DEFAULT_MAX = 3999;
-
-    let num;
-    let result = '';
 
     if (typeof options === 'number') {
       options = {
@@ -479,16 +493,7 @@ export class NumberModule extends SimpleModuleBase {
       };
     }
 
-    const min = Number(options.min ?? DEFAULT_MIN);
-    const max = Number(options.max ?? DEFAULT_MAX);
-
-    if (typeof min !== 'number' || isNaN(min)) {
-      throw new FakerError('Min value must be a valid number.');
-    }
-
-    if (typeof max !== 'number' || isNaN(max)) {
-      throw new FakerError('Max value must be a valid number.');
-    }
+    const { min = 1, max = 3999 } = options;
 
     if (min < DEFAULT_MIN) {
       throw new FakerError(`Min value ${min} should be 1 or greater.`);
@@ -498,13 +503,9 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max value ${max} should be 3999 or lesser.`);
     }
 
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
-    }
+    let num = this.int({ min, max });
 
-    num = this.int({ min, max });
-
-    const lookup: [string, number][] = [
+    const lookup: Array<[string, number]> = [
       ['M', 1000],
       ['CM', 900],
       ['D', 500],
@@ -519,6 +520,8 @@ export class NumberModule extends SimpleModuleBase {
       ['IV', 4],
       ['I', 1],
     ];
+
+    let result = '';
 
     for (const [k, v] of lookup) {
       result += k.repeat(Math.floor(num / v));
