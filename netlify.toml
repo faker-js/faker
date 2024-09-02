@@ -17,7 +17,7 @@
 
 # Alias for the main page
 [[redirects]]
-  from = "https://v8.fakerjs.dev"
+  from = "https://v9.fakerjs.dev"
   to = "https://fakerjs.dev"
   status = 302
   force = true
