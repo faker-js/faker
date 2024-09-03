@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [commit
 
 No noteworthy changes to [9.0.0-rc.1](https://github.com/faker-js/faker/blob/next/CHANGELOG.md#900-rc1-2024-08-19)
 
-We are happy to invite you to read our [Migration Guide](https://v9.fakerjs.dev/guide/upgrading.html).
+For those upgrading from earlier versions, please refer to our [Migration Guide](https://v9.fakerjs.dev/guide/upgrading.html) for detailed instructions.
 
 ## [9.0.0-rc.1](https://github.com/faker-js/faker/compare/v9.0.0-rc.0...v9.0.0-rc.1) (2024-08-19)
 
