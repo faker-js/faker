@@ -6,20 +6,6 @@
   publish = "docs/.vitepress/dist"
   command = "pnpm docs:build:ci"
 
-# Alias for the main page
-[[redirects]]
-  from = "https://v8.fakerjs.dev"
-  to = "https://fakerjs.dev"
-  status = 302
-  force = true
-
-# Alias for the next page
-[[redirects]]
-  from = "https://v9.fakerjs.dev"
-  to = "https://next.fakerjs.dev"
-  status = 302
-  force = true
-
 # Redirect to Discord server
 [[redirects]]
   from = "https://chat.fakerjs.dev"
