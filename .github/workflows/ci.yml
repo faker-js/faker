@@ -176,6 +176,9 @@ jobs:
       - name: Build types
         run: pnpm run build:types
 
+      - name: Patch types
+        run: pnpm run patch:types
+
       - name: Check scripts
         run: pnpm run ts-check
 
