@@ -119,7 +119,7 @@ export default defineConfig({
     algolia: {
       apiKey: process.env.API_KEY,
       appId: process.env.APP_ID,
-      indexName: 'fakerjs',
+      indexName: 'fakerjs-v7',
     },
 
     footer: {
