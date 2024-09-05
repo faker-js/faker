@@ -15,13 +15,6 @@
     fi
   '''
 
-# Alias for the main page
-[[redirects]]
-  from = "https://v9.fakerjs.dev"
-  to = "https://fakerjs.dev"
-  status = 302
-  force = true
-
 # Alias for the next page
 [[redirects]]
   from = "https://v10.fakerjs.dev"
