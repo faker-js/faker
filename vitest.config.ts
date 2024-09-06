@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config';
-import { CI_PREFLIGHT } from './scripts/consts';
+import { CI_PREFLIGHT } from './scripts/env';
 
 const VITEST_SEQUENCE_SEED = Date.now();
 

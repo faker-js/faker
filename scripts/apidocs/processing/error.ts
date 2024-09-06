@@ -1,5 +1,5 @@
 import { FakerError } from '../../../src/errors/faker-error';
-import { CI_PREFLIGHT } from '../../consts';
+import { CI_PREFLIGHT } from '../../env';
 import type { SourceableNode } from './source';
 import { getSourcePath } from './source';
 
@@ -22,7 +22,7 @@ export class FakerApiDocsProcessingError extends FakerError {
       console.log(`::error ${sourceArgs}::${mainText}: ${causeText}`);
     }
 
-    super(`${mainText}' at ${sourceText} : ${causeText}`, {
+    super(`${mainText} at ${sourceText} : ${causeText}`, {
       cause,
     });
   }
