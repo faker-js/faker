@@ -71,7 +71,7 @@ const sidebar: DefaultTheme.MultiSideBarConfig = {
 const algolia: DefaultTheme.AlgoliaSearchOptions = {
   apiKey: process.env.API_KEY,
   appId: process.env.APP_ID,
-  indexName: 'fakerjs',
+  indexName: 'fakerjs-v6',
 };
 
 const description =
