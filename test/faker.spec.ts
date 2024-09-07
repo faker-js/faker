@@ -13,7 +13,7 @@ describe('faker', () => {
     );
   });
 
-  it('should not log anything on startup', async () => {
+  it('should not log anything on startup', () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
