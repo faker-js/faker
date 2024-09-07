@@ -42,8 +42,9 @@ jobs:
 
       - name: Check Playground
         run: |
-          sed -i -e "s/overrides-for-dev/overrides/g" package.json
+          sed -i -e "s/overrides-for-release/overrides/g" package.json
           cat package.json
           pnpm install --no-frozen-lockfile
+          pnpm -r --workspace-concurrency 1 build
           pnpm -r --workspace-concurrency 1 test
         working-directory: faker-playground
