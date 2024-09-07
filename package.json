@@ -32,7 +32,7 @@
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "typesVersions": {
     ">=5.0": {
       "*": [
