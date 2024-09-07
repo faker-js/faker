@@ -40,6 +40,8 @@ jobs:
           CYPRESS_INSTALL_BINARY: 0
 
       - run: |
+          sed -i -e "s/overrides-for-dev/overrides/g" package.json
+          cat package.json
           pnpm install
           pnpm -r --workspace-concurrency 1 test
         working-directory: faker-playground
