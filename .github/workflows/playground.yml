@@ -1,0 +1,44 @@
+name: Playground
+
+on:
+  pull_request:
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  playground:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    name: Check Playground
+
+    steps:
+      - name: Set node version to 22
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          path: faker
+
+      - run: pnpm install && pnpm build
+        working-directory: faker
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          repository: fakerjs/playground
+          path: faker-playground
+
+      - run: |
+          pnpm install
+          pnpm -r --workspace-concurrency 1 test
+        working-directory: faker-playground
