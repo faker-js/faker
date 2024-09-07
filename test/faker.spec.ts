@@ -18,6 +18,7 @@ describe('faker', () => {
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
 
+    // @ts-ignore
     const file: unknown = await import('..');
     expect(file).toBeDefined();
 
