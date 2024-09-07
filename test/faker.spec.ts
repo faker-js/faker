@@ -13,10 +13,13 @@ describe('faker', () => {
     );
   });
 
-  it('should not log anything on startup', () => {
+  it('should not log anything on startup', async () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
+
+    const file: unknown = await import('..');
+    expect(file).toBeDefined();
 
     new Faker({ locale: { metadata: { title: '' } } });
 
