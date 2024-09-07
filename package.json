@@ -66,13 +66,11 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
     "./locale/*": {
       "types": "./dist/types/locale/*.d.ts",
-      "import": "./dist/locale/*.js",
       "require": "./dist/locale/*.cjs",
       "default": "./dist/locale/*.js"
     },
