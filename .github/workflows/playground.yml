@@ -23,19 +23,21 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
-
-      - run: pnpm install && pnpm build
-        working-directory: faker
-        env:
-          CYPRESS_INSTALL_BINARY: 0
-
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           repository: fakerjs/playground
           path: faker-playground
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          package_json_file: faker-playground/package.json
+
+      - run: pnpm install && pnpm build
+        working-directory: faker
+        env:
+          CYPRESS_INSTALL_BINARY: 0
 
       - run: |
           pnpm install
