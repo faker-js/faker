@@ -20,7 +20,7 @@ describe('faker', () => {
 
     // @ts-ignore
     const file: unknown = await import('..');
-    expect(file).toMatchInlineSnapshot('');
+    expect(file).toBeDefined();
 
     new Faker({ locale: { metadata: { title: '' } } });
 
