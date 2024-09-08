@@ -5,5 +5,9 @@ export default defineConfig({
   minify: true,
   transformer,
   cjsInterop: true,
-  writeTypesVersionsToPackageJson: true,
+  rollup: {
+    node10Compatibility: {
+      writeToPackageJson: true,
+    },
+  },
 });
