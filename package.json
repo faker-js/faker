@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
     "build": "packem build",
+    "build:types": "packem build --dts-only",
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidocs.ts",
     "generate:locales": "tsx ./scripts/generate-locales.ts",
@@ -123,7 +124,7 @@
     "prettier-plugin-packagejson": "2.5.2",
     "rimraf": "5.0.10",
     "esbuild": "0.23.1",
-    "@visulima/packem": "1.0.0-alpha.99",
+    "@visulima/packem": "1.0.0-alpha.100",
     "sanitize-html": "2.13.0",
     "semver": "7.6.3",
     "ts-morph": "23.0.0",
