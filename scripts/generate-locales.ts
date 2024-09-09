@@ -335,9 +335,8 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   const compareIndex = fileContent.indexOf(searchString) + searchString.length;
   const compareString = fileContent.substring(compareIndex);
 
-  const isDynamicFile = compareString.startsWith('mergeArrays');
   const isNonApplicable = compareString.startsWith('null');
-  if (isDynamicFile || isNonApplicable) {
+  if (isNonApplicable) {
     return;
   }
 

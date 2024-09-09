@@ -165,7 +165,8 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     sourcePath: `${filePath}#L${line}`,
     throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
     returns: returns.text,
-    examples: codeToHtml([formattedSignature, ...examples].join('\n')),
+    signature: codeToHtml(formattedSignature),
+    examples: codeToHtml(examples.join('\n')),
     deprecated: mdToHtml(deprecated),
     seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
   };

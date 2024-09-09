@@ -572,7 +572,6 @@ export class LocationModule extends ModuleBase {
     /**
      * The distance in km per degree for earth.
      */
-    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
     const kmPerDegree = 40_000 / 360; // in km/°
 
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
@@ -596,7 +595,12 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
-   * Returns a random time zone.
+   * Returns a random IANA time zone relevant to this locale.
+   *
+   * The returned time zone is tied to the current locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.date.timeZone(): For generating a random time zone from all available time zones.
    *
    * @example
    * faker.location.timeZone() // 'Pacific/Guam'

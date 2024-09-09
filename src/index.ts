@@ -20,6 +20,7 @@ export type {
   MetadataDefinition,
   MusicDefinition,
   PersonDefinition,
+  PersonEntryDefinition,
   PhoneNumberDefinition,
   ScienceDefinition,
   SystemDefinition,

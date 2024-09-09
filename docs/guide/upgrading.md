@@ -24,12 +24,8 @@ Support for Node.js v14 and v16 has been discontinued as these versions have rea
 
 ### Upgrade to TypeScript v5
 
-We now use TypeScript v5 for our project (previously v4).
-While generally not breaking for users, this might have small side effects on our types.
-
-#### Usage of TypeScript 5 Features
-
-The helpers module now uses TS5 features, so if you are using Faker with TypeScript, you must use TS5.
+Support for TypeScript v4 has been discontinued. Faker v9 requires a minimum of TypeScript v5.
+You can see this in action in the helpers module which now uses the [const generic type parameters](https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#const-type-parameters) feature.
 
 ```ts
 // v8
@@ -82,15 +78,23 @@ import {
 } from '@faker-js/faker';
 
 // < v9 default
-const f32 = new SimpleFaker({ randomizer: generateMersenne32Randomizer() });
-f32.seed(123);
-const r32 = f32.helpers.multiple(() => f32.number.int(10), { count: 10 });
+const oldFaker = new SimpleFaker({
+  randomizer: generateMersenne32Randomizer(),
+});
+oldFaker.seed(123);
+const oldValue = oldFaker.helpers.multiple(() => oldFaker.number.int(10), {
+  count: 10,
+});
 // > v9 default
-const f53 = new SimpleFaker({ randomizer: generateMersenne53Randomizer() });
-f53.seed(123);
-const r53 = f53.helpers.multiple(() => f53.number.int(10), { count: 5 });
+const newFaker = new SimpleFaker({
+  randomizer: generateMersenne53Randomizer(),
+});
+newFaker.seed(123);
+const newValue = newFaker.helpers.multiple(() => newFaker.number.int(10), {
+  count: 5,
+});
 
-diff(r32, r53);
+diff(oldValue, newValue);
 //[
 //  7,
 //  7, // [!code --]
@@ -109,7 +113,9 @@ diff(r32, r53);
 
 - If you don't have any seeded tests and just want some random values, then you don't have to change anything.
 - If you have seeded tests, you have to update most test snapshots or similar comparisons to new values.
-- If you are using [vitest](https://vitest.dev), you can do that using `pnpm vitest run -u`.
+- For updating snapshots or similar comparisons in different testing frameworks, you can use the following commands:
+  - **Vitest**: `vitest run --update`
+  - **Jest**: `jest --updateSnapshot`
 
 #### Keeping the Old Behavior
 
@@ -129,9 +135,11 @@ const faker = new Faker({
 });
 ```
 
-### Using `tsup` for the Build Process
+### Restructured dist folder
 
-After the switch to [tsup](https://tsup.egoist.dev), the `dist` folder now contains minified and chunked files for CJS. However, as we officially support only `exports` defined via `package.json`, this should not affect your code.
+The `dist` folder now contains minified and chunked files for CJS, because we switched to [tsup](https://tsup.egoist.dev) for the bundling process.
+So it is no longer possible to use `@faker-js/faker/dist/cjs/...`.
+However, as we officially support only `exports` defined via `package.json`, this should not affect your code.
 
 ## Removals of Deprecated Code
 
@@ -166,7 +174,7 @@ const customEsFakerWithFallback = new Faker({ locale: [es, base] });
 
 Removed deprecated commerce methods
 
-| old                                           | replacement                                       |
+| removed                                       | replacement                                       |
 | --------------------------------------------- | ------------------------------------------------- |
 | `faker.commerce.price(min, max, dec, symbol)` | `faker.commerce.price({ min, max, dec, symbol })` |
 
@@ -174,7 +182,7 @@ Removed deprecated commerce methods
 
 Removed deprecated company methods
 
-| old                           | replacement                   |
+| removed                       | replacement                   |
 | ----------------------------- | ----------------------------- |
 | `faker.company.suffixes`      | Part of `faker.company.name`  |
 | `faker.company.companySuffix` | Part of `faker.company.name`  |
@@ -183,11 +191,28 @@ Removed deprecated company methods
 | `faker.company.bsBuzz`        | `faker.company.buzzVerb`      |
 | `faker.company.bsNoun`        | `faker.company.buzzNoun`      |
 
+#### Company Name Affix files reorganized
+
+The company name affix files have been used inconsistently.
+Sometimes `suffix`es were used as prefixes in the patterns, because they contained legal entity types (and in English these were defined as `suffix`es).
+We renamed the files to match their actual content instead of their hypothetical position.
+If you are using the public methods, no changes are required.
+You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+
+| Before                    | After                                  |
+| ------------------------- | -------------------------------------- |
+| `location.company.prefix` | `location.company.category`            |
+| `location.company.suffix` | `location.direction.legal_entity_type` |
+
+::: info Note
+In some locales `prefix`es and `suffix`es might have been swapped, so the mapping might be wrong for those.
+:::
+
 ### Datatype Module
 
 Removed deprecated datatype methods
 
-| old                                     | replacement                                                  |
+| removed                                 | replacement                                                  |
 | --------------------------------------- | ------------------------------------------------------------ |
 | `faker.datatype.number()`               | `faker.number.int()` or `faker.number.float()`               |
 | `faker.datatype.float()`                | `faker.number.float()`                                       |
@@ -203,7 +228,7 @@ Removed deprecated datatype methods
 
 Removed deprecated date methods
 
-| old                                    | replacement                                |
+| removed                                | replacement                                |
 | -------------------------------------- | ------------------------------------------ |
 | `faker.date.past(years, refDate)`      | `faker.date.past({ years, refDate })`      |
 | `faker.date.future(years, refDate)`    | `faker.date.future({ years, refDate })`    |
@@ -218,7 +243,7 @@ Removed deprecated date methods
 
 Removed deprecated finance methods
 
-| old                                                       | replacement                                                   |
+| removed                                                   | replacement                                                   |
 | --------------------------------------------------------- | ------------------------------------------------------------- |
 | `faker.finance.account`                                   | `faker.finance.accountNumber`                                 |
 | `faker.finance.mask`                                      | `faker.finance.maskedNumber`                                  |
@@ -229,7 +254,7 @@ Removed deprecated finance methods
 
 Removed deprecated git methods
 
-| old                    | replacement                          |
+| removed                | replacement                          |
 | ---------------------- | ------------------------------------ |
 | `faker.git.shortSha()` | `faker.git.commitSha({ length: 7 })` |
 
@@ -237,7 +262,7 @@ Removed deprecated git methods
 
 Removed deprecated helpers methods
 
-| old                                     | replacement                                                    |
+| removed                                 | replacement                                                    |
 | --------------------------------------- | -------------------------------------------------------------- |
 | `faker.helpers.replaceSymbolWithNumber` | `string.replace(/#+/g, (m) => faker.string.numeric(m.length))` |
 | `faker.helpers.regexpStyleStringParse`  | `faker.helpers.fromRegExp`                                     |
@@ -349,11 +374,29 @@ const city = enforcer.enforce(faker.location.city, {
 `enforce-unique` does not directly support the `store` option previously available in `faker.helpers.unique`. If you were previously using this parameter, check the [documentation](https://www.npmjs.com/package/enforce-unique). If you need to reset the store, you can call the `reset()` method on the `UniqueEnforcer` instance.
 :::
 
+#### `faker.helpers.arrayElement` and `faker.helpers.arrayElements`
+
+The following only affects usage in Javascript, as in Typescript this usage would already throw a compile-time error.
+
+Previously, the `arrayElement` and `arrayElements` methods would throw a dedicated error, when called without arguments.
+
+```ts
+faker.helpers.arrayElement(undefined); // FakerError: Calling `faker.helpers.arrayElement()` without arguments is no longer supported.
+```
+
+Now, it throws a JS native error:
+
+```ts
+faker.helpers.arrayElement(undefined); // TypeError: Cannot read properties of undefined (reading 'length')
+```
+
+Calling the methods with an empty array instead still behaves as before.
+
 ### Image Module
 
 Removed deprecated image methods
 
-| old                       | replacement                                                                    |
+| removed                   | replacement                                                                    |
 | ------------------------- | ------------------------------------------------------------------------------ |
 | `faker.image.image()`     | `faker.image.url()`                                                            |
 | `faker.image.imageUrl()`  | `faker.image.url()`                                                            |
@@ -375,7 +418,7 @@ Removed deprecated image methods
 
 Removed deprecated image providers from `faker.image`. They already returned broken image URLs anyway.
 
-| old                                         | replacement                                              |
+| removed                                     | replacement                                              |
 | ------------------------------------------- | -------------------------------------------------------- |
 | `faker.image.lorempicsum.image`             | `faker.image.urlPicsumPhotos`                            |
 | `faker.image.lorempicsum.imageGrayscale`    | `faker.image.urlPicsumPhotos({ grayscale: true })`       |
@@ -397,7 +440,7 @@ Removed deprecated image providers from `faker.image`. They already returned bro
 
 Removed deprecated internet methods
 
-| old                                                            | replacement                                                       |
+| removed                                                        | replacement                                                       |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `faker.internet.avatar()`                                      | `faker.image.avatarLegacy()` or `faker.image.avatar()`            |
 | `faker.internet.email(firstName, lastName, provider, options)` | `faker.internet.email({ firstName, lastName, provider, ... })`    |
@@ -411,7 +454,7 @@ Removed deprecated internet methods
 
 Removed deprecated location methods
 
-| old                                                                | replacement                                                        |
+| removed                                                            | replacement                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `faker.location.zipCodeByState`                                    | `faker.location.zipCode({ state })`                                |
 | `faker.location.cityName`                                          | `faker.location.city`                                              |
@@ -445,7 +488,7 @@ The `faker.definitions.location.default_country` definition has been removed, as
 
 Removed deprecated number parameter
 
-| old                                 | replacement                          |
+| removed                             | replacement                          |
 | ----------------------------------- | ------------------------------------ |
 | `faker.number.float({ precision })` | `faker.number.float({ multipleOf })` |
 
@@ -453,27 +496,42 @@ Removed deprecated number parameter
 
 #### Changed Definitions
 
-The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescriptor()`, `faker.person.jobArea()` and `faker.person.jobType()` have been reorganized and are no longer nested under `definitions.person.title`. If you are using the public methods, no changes are required. You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
+The locale definitions used by `faker.person.jobTitle()`, `faker.person.jobDescriptor()`, `faker.person.jobArea()` and `faker.person.jobType()` have been reorganized and are no longer nested under `definitions.person.title`. Conversely, the gendered locale definitions used by `faker.person.firstName()`, `faker.person.lastName()`, `faker.person.middleName()` and `faker.person.prefix()` are now consolidated under a single definition property. If you are using the public methods, no changes are required. You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
 
-| Before                    | After                   |
-| ------------------------- | ----------------------- |
-| `person.title.descriptor` | `person.job_descriptor` |
-| `person.title.level`      | `person.job_area`       |
-| `person.title.job`        | `person.job_type`       |
+| Before                            | After                              |
+| --------------------------------- | ---------------------------------- |
+| `person.female_first_name`        | `person.first_name.female`         |
+| `person.female_last_name_pattern` | `person.last_name_pattern.female`  |
+| `person.female_last_name`         | `person.last_name.female`          |
+| `person.female_middle_name`       | `person.middle_name.female`        |
+| `person.female_prefix`            | `person.prefix.female`             |
+| `person.first_name`               | `person.first_name.generic`        |
+| `person.last_name_pattern`        | `person.last_name_pattern.generic` |
+| `person.last_name`                | `person.last_name.generic`         |
+| `person.male_first_name`          | `person.first_name.male`           |
+| `person.male_last_name_pattern`   | `person.last_name_pattern.male`    |
+| `person.male_last_name`           | `person.last_name.male`            |
+| `person.male_middle_name`         | `person.middle_name.male`          |
+| `person.male_prefix`              | `person.prefix.male`               |
+| `person.middle_name`              | `person.middle_name.generic`       |
+| `person.prefix`                   | `person.prefix.generic`            |
+| `person.title.descriptor`         | `person.job_descriptor`            |
+| `person.title.job`                | `person.job_type`                  |
+| `person.title.level`              | `person.job_area`                  |
 
 ### Phone Module
 
 Removed deprecated phone methods
 
-| old                          | replacement                                                                      |
-| ---------------------------- | -------------------------------------------------------------------------------- |
-| `faker.phone.number(format)` | `faker.phone.number()`, `faker.string.numeric()` or `faker.helpers.fromRegExp()` |
+| removed                      | replacement                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------- |
+| `faker.phone.number(format)` | `faker.phone.number(style)`, `faker.string.numeric()` or `faker.helpers.fromRegExp()` |
 
 ### Random Module
 
 Removed deprecated random module
 
-| old                           | replacement                                     |
+| removed                       | replacement                                     |
 | ----------------------------- | ----------------------------------------------- |
 | `faker.random.alpha()`        | `faker.string.alpha()`                          |
 | `faker.random.alphaNumeric()` | `faker.string.alphanumeric()`                   |
@@ -486,7 +544,7 @@ Removed deprecated random module
 
 Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
-| old                                                     | replacement                                            |
+| removed                                                 | replacement                                            |
 | ------------------------------------------------------- | ------------------------------------------------------ |
 | `import { faker } from '@faker-js/faker/locale/cz'`     | `import { faker } from '@faker-js/faker/locale/cs_CZ'` |
 | `import { faker } from '@faker-js/faker/locale/en_IND'` | `import { faker } from '@faker-js/faker/locale/en_IN'` |
@@ -497,7 +555,7 @@ Renamed deprecated locale aliases `cz`, `en_IND`, `ge` and removed `global`.
 
 The following locale definitions have been adjusted to align with Faker's locale definition naming standard:
 
-| old                                         | replacement                                  |
+| removed                                     | replacement                                  |
 | ------------------------------------------- | -------------------------------------------- |
 | `faker.definitions.science.chemicalElement` | `faker.definitions.science.chemical_element` |
 | `faker.definitions.system.directoryPaths`   | `faker.definitions.system.directory_path`    |
@@ -520,7 +578,7 @@ faker.definitions.science.chemical_element.atomicNumber
 
 Removed deprecated type aliases
 
-| old                              | replacement                     |
+| removed                          | replacement                     |
 | -------------------------------- | ------------------------------- |
 | `AddressDefinitions`             | `LocationDefinition`            |
 | `AirlineDefinitions`             | `AirlineDefinition`             |
@@ -555,7 +613,7 @@ Removed deprecated type aliases
 Previously, the `faker.date.birthdate()` method had defaults that were unclear in their specific impact.
 Now, the method requires either none or all of the `min`, `max` and `mode` options.
 
-We also improved the error messages in case of invalid min/max age/year ranges.
+We also improved the error messages to clearly indicate when the `min`, `max`, and `mode` options must be set together.
 
 ### Fail on Invalid Dates
 
@@ -566,6 +624,15 @@ Previously, if you passed something which could not be parsed to a `Date`, it wo
 Now, this throws an error raising awareness of that bad value.
 
 This affects the `refDate` parameter of the `anytime()`, `birthdate()`, `past()`, `future()`, `recent()` and `soon()`, methods as well as the `from` and `to` parameters of `between()` and `betweens()`.
+
+### Separate Timezone Methods
+
+The `timeZone` functionality has been divided to enhance specificity:
+
+- Use `faker.date.timeZone()` to generate a random global time zone.
+- Use `faker.location.timeZone()` to obtain time zone specific to the current locale.
+
+We haven't updated all locale dependent time zone data yet, so if you encounter unexpected values, please [create a new issue](https://github.com/faker-js/faker/issues/new?template=bug_report.yml).
 
 ### Prices Now Return More Price-Like Values
 
@@ -585,13 +652,16 @@ We plan to rethink this method some more in the future: [#2579](https://github.c
 
 ### Images Have Random Options by Default
 
-`faker.image.url()` now returns an image url with a random width and height by default. To obtain the previous behavior, pass `{width: 640, height: 480}`.
+Some of image methods had static default parameters, previously.
+These have been changed to return more divers urls.
+Following you can find a table with snippets to obtain the previous behavior:
 
-`faker.image.urlLoremFlickr()` now returns an image url with a random width and height by default. To obtain the previous behavior, pass `{width: 640, height: 480}`.
-
-`faker.image.urlPicsumPhotos()` now returns an image url with a random width and height by default, additionally images may be converted to grayscale and blurred at random. To obtain the previous behavior, pass `{width: 640, height: 480, blur: 0, grayscale: false}`
-
-`faker.image.dataUri()` now returns an image url with a random width and height by default, additionally the type of the image is now random. To obtain the previous behavior, pass `{width: 640, height: 480, type: 'svg-uri'}`.
+| Method                          | Old Defaults                                          |
+| ------------------------------- | ----------------------------------------------------- |
+| `faker.image.url()`             | `{width: 640, height: 480}`                           |
+| `faker.image.urlLoremFlickr()`  | `{width: 640, height: 480}`                           |
+| `faker.image.urlPicsumPhotos()` | `{width: 640,height: 480, blur: 0, grayscale: false}` |
+| `faker.image.dataUri()`         | `{width: 640, height: 480, type: 'svg-uri'}`          |
 
 ### Require `from` and `to` in `faker.date.between` and `betweens`
 
@@ -656,18 +726,3 @@ This affects:
 - The `format` property of `faker.color.cmyk()`, `faker.color.hsl()`, `faker.color.hwb()`, `faker.color.lab()`, `faker.color.lch()` must be one of `'binary' | 'css' | 'decimal'` if provided
 - The `variant` property of `faker.location.countryCode()` must be one of `alpha-2`, `alpha-3`, `numeric` if provided
 - The `casing` property of `faker.string.alpha()` and `faker.string.alphanumeric()` must be one of `'upper' | 'lower' | 'mixed'` if provided
-
-### Phone Number `style` Replaces Explicit `format`
-
-`faker.phone.number()` generates a phone number for the current locale. Previously, there was little control over the generated number, which may or may not have included country codes, extensions, white space, and punctuation.
-
-If you wanted more control over the number, it was previously necessary to pass an explicit `format` parameter. This has now been removed. Instead, you can consider one of two options:
-
-1. The new `style` parameter has convenient options for common use cases. There are three possible values.
-   - `'human'`: (default, existing behavior) A human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
-   - `'national'`: A phone number in a standardized national format, e.g. `(555) 123-4567`.
-   - `'international'`: A phone number in a E.123 standard international format with country code, e.g. `+15551234567`
-
-The styles are locale-aware, so for example if you use pt_PT, phone numbers suitable for Portugal would be generated.
-
-2. If none of the `style`s match your needs, you can use `faker.string.numeric()` or `faker.helpers.fromRegExp()` to create a custom pattern.

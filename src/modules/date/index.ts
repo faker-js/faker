@@ -685,4 +685,23 @@ export class DateModule extends SimpleDateModule {
     assertLocaleData(values, 'date.weekday', type);
     return this.faker.helpers.arrayElement(values);
   }
+
+  /**
+   * Returns a random IANA time zone name.
+   *
+   * The returned time zone is not tied to the current locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.location.timeZone(): For generating a timezone based on the current locale.
+   *
+   * @example
+   * faker.location.timeZone() // 'Pacific/Guam'
+   *
+   * @since 9.0.0
+   */
+  timeZone(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.date.time_zone
+    );
+  }
 }

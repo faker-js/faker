@@ -54,17 +54,17 @@ describe('person', () => {
 
         it('should return a sex-specific first name', () => {
           let name = faker.person.firstName('female');
-          expect(faker.definitions.person.female_first_name).toContain(name);
+          expect(faker.definitions.person.first_name.female).toContain(name);
 
           name = faker.person.firstName('male');
-          expect(faker.definitions.person.male_first_name).toContain(name);
+          expect(faker.definitions.person.first_name.male).toContain(name);
         });
 
         it('should return a sex-specific first name when no sex-specific first name was defined', () => {
           const name = fakerAZ.person.firstName();
           expect([
-            ...fakerAZ.definitions.person.female_first_name,
-            ...fakerAZ.definitions.person.male_first_name,
+            ...(fakerAZ.definitions.person.first_name.female ?? []),
+            ...(fakerAZ.definitions.person.first_name.male ?? []),
           ]).toContain(name);
         });
       });
@@ -79,10 +79,10 @@ describe('person', () => {
 
         it('should return a sex-specific last name', () => {
           let name = fakerAZ.person.lastName('female');
-          expect(fakerAZ.definitions.person.female_last_name).toContain(name);
+          expect(fakerAZ.definitions.person.last_name.female).toContain(name);
 
           name = fakerAZ.person.lastName('male');
-          expect(fakerAZ.definitions.person.male_last_name).toContain(name);
+          expect(fakerAZ.definitions.person.last_name.male).toContain(name);
         });
       });
 
@@ -96,21 +96,21 @@ describe('person', () => {
 
         it('should return a middle name when passed en locale', () => {
           let name = faker.person.middleName();
-          expect(faker.definitions.person.middle_name).toContain(name);
+          expect(faker.definitions.person.middle_name.generic).toContain(name);
 
           name = faker.person.middleName('female');
-          expect(faker.definitions.person.female_middle_name).toContain(name);
+          expect(faker.definitions.person.middle_name.female).toContain(name);
 
           name = faker.person.middleName('male');
-          expect(faker.definitions.person.male_middle_name).toContain(name);
+          expect(faker.definitions.person.middle_name.male).toContain(name);
         });
 
         it('should return a sex-specific middle name', () => {
           let name = fakerUK.person.middleName('female');
-          expect(fakerUK.definitions.person.female_middle_name).toContain(name);
+          expect(fakerUK.definitions.person.middle_name.female).toContain(name);
 
           name = fakerUK.person.middleName('male');
-          expect(fakerUK.definitions.person.male_middle_name).toContain(name);
+          expect(fakerUK.definitions.person.middle_name.male).toContain(name);
         });
       });
 
@@ -124,9 +124,9 @@ describe('person', () => {
 
         it('should return a female sex-specific name without firstName and lastName', () => {
           const female_specific = [
-            ...(fakerMK.rawDefinitions.person?.female_prefix ?? []),
-            ...(fakerMK.rawDefinitions.person?.female_first_name ?? []),
-            ...(fakerMK.rawDefinitions.person?.female_last_name ?? []),
+            ...(fakerMK.rawDefinitions.person?.prefix?.female ?? []),
+            ...(fakerMK.rawDefinitions.person?.first_name?.female ?? []),
+            ...(fakerMK.rawDefinitions.person?.last_name?.female ?? []),
             // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
@@ -140,9 +140,9 @@ describe('person', () => {
 
         it('should return a male sex-specific name without firstName and lastName', () => {
           const male_specific = [
-            ...(fakerMK.rawDefinitions.person?.male_prefix ?? []),
-            ...(fakerMK.rawDefinitions.person?.male_first_name ?? []),
-            ...(fakerMK.rawDefinitions.person?.male_last_name ?? []),
+            ...(fakerMK.rawDefinitions.person?.prefix?.male ?? []),
+            ...(fakerMK.rawDefinitions.person?.first_name?.male ?? []),
+            ...(fakerMK.rawDefinitions.person?.last_name?.male ?? []),
             // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
@@ -156,7 +156,7 @@ describe('person', () => {
 
         it('should return a female sex-specific name with given firstName and lastName', () => {
           const male_specific = [
-            ...(fakerMK.rawDefinitions.person?.female_prefix ?? []),
+            ...(fakerMK.rawDefinitions.person?.prefix?.female ?? []),
             'firstName',
             'lastName',
             // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
@@ -176,7 +176,7 @@ describe('person', () => {
 
         it('should return a male sex-specific name with given firstName and lastName', () => {
           const male_specific = [
-            ...(fakerMK.rawDefinitions.person?.male_prefix ?? []),
+            ...(fakerMK.rawDefinitions.person?.prefix?.male ?? []),
             'firstName',
             'lastName',
             // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
@@ -227,21 +227,21 @@ describe('person', () => {
           const prefix = faker.person.prefix();
 
           expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.person.prefix).toContain(prefix);
+          expect(faker.definitions.person.prefix.generic).toContain(prefix);
         });
 
         it('should return a female prefix with given string', () => {
           const prefix = fakerMK.person.prefix('female');
 
           expect(prefix).toBeTypeOf('string');
-          expect(fakerMK.definitions.person.female_prefix).toContain(prefix);
+          expect(fakerMK.definitions.person.prefix.female).toContain(prefix);
         });
 
         it('should return a male prefix with given string', () => {
           const prefix = fakerMK.person.prefix('male');
 
           expect(prefix).toBeTypeOf('string');
-          expect(fakerMK.definitions.person.male_prefix).toContain(prefix);
+          expect(fakerMK.definitions.person.prefix.male).toContain(prefix);
         });
       });
 
