@@ -46,10 +46,13 @@
     "fake contextual data generator",
     "fake contextual data"
   ],
-  "bugs": "https://github.com/faker-js/faker/issues",
+  "homepage": "https://fakerjs.dev",
+  "bugs": {
+    "url": "https://github.com/faker-js/faker/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/faker-js/faker.git"
+    "url": "git+https://github.com/faker-js/faker.git"
   },
   "funding": [
     {
