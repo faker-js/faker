@@ -7,6 +7,7 @@ export default defineConfig({
   cjsInterop: true,
   rollup: {
     node10Compatibility: {
+      typeScriptVersion: '>=5.0',
       writeToPackageJson: true,
     },
   },
