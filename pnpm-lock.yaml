@@ -96,7 +96,7 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(prettier@3.3.3)(typescript@5.5.4)(vue-tsc@2.1.2(typescript@5.5.4))
       prettier-plugin-packagejson:
-        specifier: ~2.5.2
+        specifier: 2.5.2
         version: 2.5.2(prettier@3.3.3)
       rimraf:
         specifier: 5.0.10
