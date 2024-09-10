@@ -1,4 +1,4 @@
-name: Playground
+name: Check PR
 
 on:
   pull_request:
