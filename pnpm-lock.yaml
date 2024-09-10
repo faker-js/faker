@@ -51,8 +51,8 @@ importers:
         specifier: 13.12.1
         version: 13.12.1
       '@visulima/packem':
-        specifier: 1.0.0-alpha.105
-        version: 1.0.0-alpha.105(esbuild@0.23.1)(jiti@1.21.6)(picomatch@4.0.2)(sucrase@3.35.0)(typescript@5.5.4)(yaml@2.5.1)
+        specifier: 1.0.0-alpha.106
+        version: 1.0.0-alpha.106(esbuild@0.23.1)(jiti@1.21.6)(picomatch@4.0.2)(sucrase@3.35.0)(typescript@5.5.4)(yaml@2.5.1)
       '@vitest/coverage-v8':
         specifier: 2.0.5
         version: 2.0.5(vitest@2.0.5(@types/node@20.16.2)(@vitest/ui@2.0.5)(jsdom@24.1.3))
@@ -1198,8 +1198,8 @@ packages:
     engines: {node: '>=18.* <=22.*'}
     os: [darwin, linux, win32]
 
-  '@visulima/packem@1.0.0-alpha.105':
-    resolution: {integrity: sha512-FykTx0yQy7ZDGXeQ4p3xHIDf+KpS7Bwy+0JQWyEu2xU8qvz+zYzi6hF4DJ9WvDAkgHhh2nU9N3rZUU3mzRwROw==}
+  '@visulima/packem@1.0.0-alpha.106':
+    resolution: {integrity: sha512-6qcmKbu+rOK1xHJOHsRB5wy777KcSr7Vn5LhmoljH+S1Vyz/jOWqvD1obkcnIf3ADnZnRpIsAI9Jtfi+373mlA==}
     engines: {node: '>=18.* <=22.*'}
     hasBin: true
     peerDependencies:
@@ -4918,7 +4918,7 @@ snapshots:
     transitivePeerDependencies:
       - yaml
 
-  '@visulima/packem@1.0.0-alpha.105(esbuild@0.23.1)(jiti@1.21.6)(picomatch@4.0.2)(sucrase@3.35.0)(typescript@5.5.4)(yaml@2.5.1)':
+  '@visulima/packem@1.0.0-alpha.106(esbuild@0.23.1)(jiti@1.21.6)(picomatch@4.0.2)(sucrase@3.35.0)(typescript@5.5.4)(yaml@2.5.1)':
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@babel/parser': 7.25.6
