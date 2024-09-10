@@ -87,7 +87,7 @@
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "typesVersions": {
     ">=5.0": {
       ".": [
