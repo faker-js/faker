@@ -81,7 +81,7 @@ const modules = getMethodNamesByModules(fakerEN);
 describe('BROKEN_LOCALE_METHODS test', () => {
   it('should not contain obsolete configuration (modules)', () => {
     const existingModules = Object.keys(modules);
-    const configuredModules = Object.keys(BROKEN_LOCALE_METHODS ?? {});
+    const configuredModules = Object.keys(BROKEN_LOCALE_METHODS);
     const obsoleteModules = configuredModules.filter(
       (module) => !existingModules.includes(module)
     );
