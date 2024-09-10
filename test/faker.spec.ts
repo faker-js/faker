@@ -19,7 +19,7 @@ describe('faker', () => {
       .map((methodName) => vi.spyOn(console, methodName));
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-ignore package types depends on been built
     const file: unknown = await import('..');
     expect(file).toBeDefined();
 
