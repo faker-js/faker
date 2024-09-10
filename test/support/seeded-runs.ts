@@ -142,8 +142,12 @@ class TestGenerator<
     repetitions: number = 1
   ): void {
     this.setup();
+    const callable = this.module[method];
+    if (callable == null) {
+      throw new Error(`Method ${method} not found in ${this.moduleName}`);
+    }
+
     for (let i = 0; i < repetitions; i++) {
-      const callable = this.module[method];
       const value = callable(...args);
       expect(value).toMatchSnapshot();
     }

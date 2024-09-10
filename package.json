@@ -2,63 +2,6 @@
   "name": "@faker-js/faker",
   "version": "9.0.0",
   "description": "Generate massive amounts of fake contextual data",
-  "sideEffects": false,
-  "keywords": [
-    "faker",
-    "faker.js",
-    "fakerjs",
-    "faker-js",
-    "fake data generator",
-    "fake data",
-    "fake-data",
-    "fake-generator",
-    "fake-data-generator",
-    "fake content generator",
-    "fake contextual data generator",
-    "fake contextual data"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/faker-js/faker.git"
-  },
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/fakerjs"
-    }
-  ],
-  "bugs": "https://github.com/faker-js/faker/issues",
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "index.d.ts",
-  "typesVersions": {
-    ">=5.0": {
-      "*": [
-        "dist/types/*"
-      ]
-    }
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    },
-    "./locale/*": {
-      "types": "./dist/types/locale/*.d.ts",
-      "import": "./dist/locale/*.js",
-      "require": "./dist/locale/*.cjs",
-      "default": "./dist/locale/*.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "CHANGELOG.md",
-    "dist"
-  ],
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
     "build:clean": "rimraf dist",
@@ -89,6 +32,66 @@
     "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
     "preflight": "pnpm install && run-s generate format lint build test:update-snapshots ts-check"
   },
+  "keywords": [
+    "faker",
+    "faker.js",
+    "fakerjs",
+    "faker-js",
+    "fake data generator",
+    "fake data",
+    "fake-data",
+    "fake-generator",
+    "fake-data-generator",
+    "fake content generator",
+    "fake contextual data generator",
+    "fake contextual data"
+  ],
+  "homepage": "https://fakerjs.dev",
+  "bugs": {
+    "url": "https://github.com/faker-js/faker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faker-js/faker.git"
+  },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/fakerjs"
+    }
+  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./locale/*": {
+      "types": "./dist/types/locale/*.d.ts",
+      "import": "./dist/locale/*.js",
+      "require": "./dist/locale/*.cjs",
+      "default": "./dist/locale/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=5.0": {
+      "*": [
+        "dist/types/*"
+      ]
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "dist"
+  ],
   "devDependencies": {
     "@actions/github": "6.0.0",
     "@algolia/client-search": "5.2.3",
@@ -119,6 +122,7 @@
     "npm-run-all2": "6.2.2",
     "prettier": "3.3.3",
     "prettier-plugin-organize-imports": "4.0.0",
+    "prettier-plugin-packagejson": "2.5.2",
     "rimraf": "5.0.10",
     "sanitize-html": "2.13.0",
     "semver": "7.6.3",
