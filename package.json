@@ -4,10 +4,7 @@
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
-    "build:clean": "rimraf dist",
-    "build:code": "tsup-node",
-    "build:types": "tsc --project tsconfig.build.json",
-    "build": "run-s build:clean build:code build:types",
+    "build": "packem build",
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidocs.ts",
     "generate:locales": "tsx ./scripts/generate-locales.ts",
@@ -65,26 +62,37 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
     },
     "./locale/*": {
-      "types": "./dist/types/locale/*.d.ts",
-      "import": "./dist/locale/*.js",
-      "require": "./dist/locale/*.cjs",
-      "default": "./dist/locale/*.js"
+      "require": {
+        "types": "./dist/locale/*.d.cts",
+        "default": "./dist/locale/*.cjs"
+      },
+      "import": {
+        "types": "./dist/locale/*.d.mts",
+        "default": "./dist/locale/*.mjs"
+      }
     },
     "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "index.d.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "typesVersions": {
     ">=5.0": {
-      "*": [
-        "dist/types/*"
+      ".": [
+        "./dist/index.d.ts"
+      ],
+      "locale/*": [
+        "./dist/locale/*.d.ts"
       ]
     }
   },
@@ -107,11 +115,13 @@
     "@types/sanitize-html": "2.13.0",
     "@types/semver": "7.5.8",
     "@types/validator": "13.12.1",
+    "@visulima/packem": "1.0.0-alpha.106",
     "@vitest/coverage-v8": "2.0.5",
     "@vitest/ui": "2.0.5",
     "@vueuse/core": "10.11.1",
     "commit-and-tag-version": "12.4.2",
     "cypress": "13.14.1",
+    "esbuild": "0.23.1",
     "eslint": "9.9.1",
     "eslint-config-prettier": "9.1.0",
     "eslint-define-config": "2.1.0",
@@ -127,7 +137,6 @@
     "sanitize-html": "2.13.0",
     "semver": "7.6.3",
     "ts-morph": "23.0.0",
-    "tsup": "8.2.4",
     "tsx": "4.19.0",
     "typescript": "5.5.4",
     "typescript-eslint": "8.3.0",
