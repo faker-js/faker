@@ -4,8 +4,8 @@ const config: KnipConfig = {
   workspaces: {
     '.': {
       entry: ['src/**/*', 'test/**/*'],
-      ignore: [],
-      ignoreDependencies: [],
+      ignore: ['docs/**/*', 'scripts/**/*', '.prettierrc.d.ts', '.github/**/*'],
+      ignoreDependencies: ['@actions/github', '@vueuse/core', 'vue'],
       ignoreBinaries: [],
     },
   },
