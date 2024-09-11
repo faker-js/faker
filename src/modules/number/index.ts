@@ -445,7 +445,7 @@ export class NumberModule extends SimpleModuleBase {
   }
 
   /**
-   * Returns a roman numeral in [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) format.
+   * Returns a roman numeral in String format.
    * The bounds are inclusive.
    *
    * @param options Maximum value or options object.
@@ -500,7 +500,7 @@ export class NumberModule extends SimpleModuleBase {
     }
 
     if (max > DEFAULT_MAX) {
-      throw new FakerError(`Max value ${max} should be 3999 or lesser.`);
+      throw new FakerError(`Max value ${max} should be 3999 or less.`);
     }
 
     let num = this.int({ min, max });
