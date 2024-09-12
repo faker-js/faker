@@ -676,7 +676,7 @@ describe('number', () => {
       it('should throw when max value is greater than 3999', () => {
         expect(() => {
           faker.number.romanNumeral({ max: 4000 });
-        }).toThrow(new FakerError('Max value 4000 should be 3999 or lesser.'));
+        }).toThrow(new FakerError('Max value 4000 should be 3999 or less.'));
       });
 
       it('should throw when max value is less than min value', () => {
