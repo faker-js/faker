@@ -113,7 +113,7 @@
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-unicorn": "55.0.0",
     "eslint-plugin-vitest": "0.5.4",
-    "knip": "^5.30.1",
+    "knip": "5.30.1",
     "npm-run-all2": "6.2.2",
     "prettier": "3.3.3",
     "prettier-plugin-organize-imports": "4.0.0",
