@@ -44,7 +44,7 @@ const BROKEN_LOCALE_METHODS = {
     betweens: '*',
   },
   location: {
-    state: ['az', 'nb_NO', 'ro_MD', 'sk'],
+    state: ['az', 'nb_NO', 'ro_MD'],
     zipCode: ['en_HK'],
   },
   string: {
@@ -75,7 +75,7 @@ const modules = getMethodNamesByModules(fakerEN);
 describe('BROKEN_LOCALE_METHODS test', () => {
   it('should not contain obsolete configuration (modules)', () => {
     const existingModules = Object.keys(modules);
-    const configuredModules = Object.keys(BROKEN_LOCALE_METHODS ?? {});
+    const configuredModules = Object.keys(BROKEN_LOCALE_METHODS);
     const obsoleteModules = configuredModules.filter(
       (module) => !existingModules.includes(module)
     );

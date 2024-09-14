@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "module": "ESNext",
     "strict": true,
     "noEmit": true,
-    "declaration": true,
     "stripInternal": true,
     "verbatimModuleSyntax": true,
-
-    // These are configs specifically for !build and have to be reverted in the tsconfig.build.json
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
