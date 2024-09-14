@@ -10,7 +10,7 @@ export default defineConfig({
   clean: true,
   format: ['esm', 'cjs'],
   target: ['es2022', 'node18'],
-  dts: false, // will be generated with the "build:types" script
+  dts: true,
   minify: true,
   sourcemap: false,
   splitting: true,

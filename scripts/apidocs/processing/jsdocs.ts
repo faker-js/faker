@@ -10,7 +10,11 @@ import {
 export type JSDocableLikeNode = Pick<JSDocableNode, 'getJsDocs'>;
 
 export function getJsDocs(node: JSDocableLikeNode): JSDoc {
-  return exactlyOne(node.getJsDocs(), 'jsdocs');
+  return exactlyOne(
+    node.getJsDocs(),
+    'jsdocs',
+    'Please ensure that each method signature has JSDocs, and that all properties of option/object parameters are documented with both @param tags and inline JSDocs.'
+  );
 }
 
 export function getDeprecated(jsdocs: JSDoc): string | undefined {
