@@ -6,8 +6,7 @@
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
     "build:clean": "rimraf dist",
     "build:code": "tsup-node",
-    "build:types": "tsc --project tsconfig.build.json",
-    "build": "run-s build:clean build:code build:types",
+    "build": "run-s build:clean build:code",
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidocs.ts",
     "generate:locales": "tsx ./scripts/generate-locales.ts",
@@ -65,26 +64,37 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "default": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     },
     "./locale/*": {
-      "types": "./dist/types/locale/*.d.ts",
-      "import": "./dist/locale/*.js",
-      "require": "./dist/locale/*.cjs",
-      "default": "./dist/locale/*.js"
+      "require": {
+        "types": "./dist/locale/*.d.cts",
+        "default": "./dist/locale/*.cjs"
+      },
+      "default": {
+        "types": "./dist/locale/*.d.ts",
+        "default": "./dist/locale/*.js"
+      }
     },
     "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "typesVersions": {
     ">=5.0": {
-      "*": [
-        "dist/types/*"
+      ".": [
+        "./dist/index.d.ts"
+      ],
+      "locale/*": [
+        "./dist/locale/*.d.ts"
       ]
     }
   },
