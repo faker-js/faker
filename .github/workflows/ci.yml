@@ -174,7 +174,7 @@ jobs:
           CYPRESS_INSTALL_BINARY: 0
 
       - name: Build types
-        run: pnpm run build:types
+        run: pnpm run build
 
       - name: Check scripts
         run: pnpm run ts-check
