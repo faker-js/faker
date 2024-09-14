@@ -1,5 +1,6 @@
 import type {
   PropertySignature,
+  Symbol,
   Type,
   TypeParameterDeclaration,
 } from 'ts-morph';
@@ -174,30 +175,43 @@ function processComplexParameter(
     return type
       .getApparentProperties()
       .flatMap((parameter) => {
-        const declaration = exactlyOne(
-          parameter.getDeclarations(),
-          'property declaration'
-        ) as PropertySignature;
-        const propertyType = declaration.getType();
-        const jsdocs = getJsDocs(declaration);
-        const deprecated = getDeprecated(jsdocs);
-
-        return [
-          {
-            name: `${name}.${parameter.getName()}${getNameSuffix(propertyType)}`,
-            type: getTypeText(propertyType, {
-              abbreviate: false,
-              stripUndefined: true,
-            }),
-            default: getDefault(jsdocs),
-            description:
-              getDescription(jsdocs) +
-              (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
-          },
-        ];
+        try {
+          return processComplexParameterProperty(name, parameter);
+        } catch (error) {
+          throw newProcessingError({
+            type: 'property',
+            name: `${name}.${parameter.getName()}`,
+            source: parameter.getDeclarations()[0],
+            cause: error,
+          });
+        }
       })
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 
   return [];
+}
+
+function processComplexParameterProperty(name: string, parameter: Symbol) {
+  const declaration = exactlyOne(
+    parameter.getDeclarations(),
+    'property declaration'
+  ) as PropertySignature;
+  const propertyType = declaration.getType();
+  const jsdocs = getJsDocs(declaration);
+  const deprecated = getDeprecated(jsdocs);
+
+  return [
+    {
+      name: `${name}.${parameter.getName()}${getNameSuffix(propertyType)}`,
+      type: getTypeText(propertyType, {
+        abbreviate: false,
+        stripUndefined: true,
+      }),
+      default: getDefault(jsdocs),
+      description:
+        getDescription(jsdocs) +
+        (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
+    },
+  ];
 }

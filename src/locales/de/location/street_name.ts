@@ -954,7 +954,7 @@ export default [
   'Unterölbach',
   'Unterstr.',
   'Uppersberg',
-  "Van\\'t-Hoff-Str.",
+  "Van't-Hoff-Str.",
   'Veit-Stoß-Str.',
   'Vereinsstr.',
   'Viktor-Meyer-Str.',

@@ -9,10 +9,10 @@ describe('simpleFaker', () => {
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
-    require('..').simpleFaker;
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
+    expect(require('..').simpleFaker).toBeDefined();
 
-    new SimpleFaker();
+    expect(new SimpleFaker()).toBeDefined();
 
     for (const spy of spies) {
       expect(spy).not.toHaveBeenCalled();
