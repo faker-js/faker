@@ -1,5 +1,3 @@
-// @ts-check
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
@@ -15,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const gitignorePath = resolve(__dirname, '.gitignore');
 
-export default tseslint.config(
+const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#region global
   includeIgnoreFile(gitignorePath),
   {
@@ -260,3 +258,5 @@ export default tseslint.config(
   }
   //#endregion
 );
+
+export default config;
