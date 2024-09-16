@@ -27,8 +27,8 @@ For detailed API documentation, please select the version of the documentation y
 |   Version   | Website                   |
 | :---------: | :------------------------ |
 |  v9 (next)  | https://next.fakerjs.dev/ |
-| v8 (stable) | https://fakerjs.dev/      |
-|  v7 (old)   | https://v7.fakerjs.dev/   |
+| v9 (stable) | https://fakerjs.dev/      |
+|  v8 (old)   | https://v8.fakerjs.dev/   |
 
 ---
 
@@ -81,7 +81,7 @@ export const users = faker.helpers.multiple(createRandomUser, {
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v8 (stable)](https://fakerjs.dev/api/) and [v9.\* (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v9 (stable)](https://fakerjs.dev/api/) and [v9.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
@@ -163,7 +163,7 @@ Thanks to all the people who already contributed to Faker!
 
 <a href="https://github.com/faker-js/faker/graphs/contributors"><img src="https://opencollective.com/fakerjs/contributors.svg?width=800" /></a>
 
-The [fakerjs.dev](https://fakerjs.dev) website is kindly hosted by the Netlify Team. Also the search functionality is powered by [algolia](https://www.algolia.com).
+The [fakerjs.dev](https://fakerjs.dev) website is generously hosted by [Netlify](https://www.netlify.com/), with search functionality powered by [Algolia](https://www.algolia.com/).
 
 ## 📝 Changelog
 
