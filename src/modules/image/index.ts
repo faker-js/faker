@@ -1,3 +1,4 @@
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
 /**
@@ -24,12 +25,8 @@ export class ImageModule extends ModuleBase {
    * @since 2.0.1
    */
   avatar(): string {
-    const avatarMethod = this.faker.helpers.arrayElement([
-      this.avatarLegacy,
-      this.avatarGitHub,
-    ]);
-
-    return avatarMethod();
+    // Add new avatar providers here, when adding a new one.
+    return this.avatarGitHub();
   }
 
   /**
@@ -55,9 +52,17 @@ export class ImageModule extends ModuleBase {
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
    *
    * @since 8.0.0
+   *
+   * @deprecated The links are no longer working. Use `avatar()` instead.
    */
-  // This implementation will change in the future when we tackle https://github.com/faker-js/faker/issues/465.
   avatarLegacy(): string {
+    deprecated({
+      deprecated: 'faker.image.avatarLegacy()',
+      proposed: 'faker.image.avatar()',
+      since: '9.0.1',
+      until: '10.0.0',
+    });
+
     return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
       1249
     )}.jpg`;
