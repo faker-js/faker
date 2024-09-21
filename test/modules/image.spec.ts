@@ -5,7 +5,7 @@ import { seededTests } from '../support/seeded-runs';
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
-    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy', 'avatarAI');
+    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy');
 
     t.describe('url', (t) => {
       t.it('noArgs')
@@ -88,6 +88,10 @@ describe('image', () => {
           color: 'red',
           type: 'svg-uri',
         });
+    });
+
+    t.describe('avatarAI', (t) => {
+      t.it('noArgs').it('with sex', { sex: 'female' });
     });
   });
 
