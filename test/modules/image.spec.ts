@@ -5,7 +5,7 @@ import { seededTests } from '../support/seeded-runs';
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
-    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy');
+    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy', 'avatarAI');
 
     t.describe('url', (t) => {
       t.it('noArgs')
@@ -121,6 +121,16 @@ describe('image', () => {
       expect(avatarUrl).toMatch(
         /^https:\/\/cloudflare-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
       );
+    });
+  });
+
+  describe('avatarAI', () => {
+    it('should return a random avatar url from AI', () => {
+      const avatarUrl = faker.image.avatarAI();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(/^https:\/\/cdn\.jsdelivr\.net\/.*\.jpg$/);
+      expect(() => new URL(avatarUrl)).not.toThrow();
     });
   });
 
