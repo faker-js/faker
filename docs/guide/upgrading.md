@@ -445,7 +445,7 @@ Removed deprecated internet methods
 | `faker.internet.avatar()`                                      | `faker.image.avatarLegacy()` or `faker.image.avatar()`            |
 | `faker.internet.email(firstName, lastName, provider, options)` | `faker.internet.email({ firstName, lastName, provider, ... })`    |
 | `faker.internet.exampleEmail(firstName, lastName, options)`    | `faker.internet.exampleEmail({ firstName, lastName, ... })`       |
-| `faker.internet.username(firstName, lastName)`                 | `faker.internet.username({ firstName, lastName })`                |
+| `faker.internet.userName(firstName, lastName)`                 | `faker.internet.userName({ firstName, lastName })`                |
 | `faker.internet.displayName(firstName, lastName)`              | `faker.internet.displayName({ firstName, lastName })`             |
 | `faker.internet.color(redBase, greenBase, blueBase)`           | `faker.internet.color({ redBase, greenBase, blueBase })`          |
 | `faker.internet.password(length, memorable, pattern, prefix)`  | `faker.internet.password({ length, memorable, pattern, prefix })` |

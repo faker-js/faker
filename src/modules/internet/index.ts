@@ -1,3 +1,4 @@
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -183,6 +184,58 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
+   * @see faker.internet.username(): For generating an Unicode display name.
+   *
+   * @example
+   * faker.internet.userName() // 'Nettie_Zboncak40'
+   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne98'
+   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
+   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
+   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
+   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
+   *
+   * @since 2.0.1
+   *
+   * @deprecated Use `faker.internet.username()` instead. Example: `faker.internet.username();`
+   */
+  userName(
+    options: {
+      /**
+       * The optional first name to use.
+       *
+       * @default faker.person.firstName()
+       */
+      firstName?: string;
+      /**
+       * The optional last name to use.
+       *
+       * @default faker.person.lastName()
+       */
+      lastName?: string;
+    } = {}
+  ): string {
+    deprecated({
+      deprecated: 'faker.internet.userName()',
+      proposed: 'faker.internet.username()',
+      since: '2.0.1',
+      until: '10.0.0',
+    });
+
+    return this.username(options);
+  }
+
+  /**
+   * Generates a username using the given person's name as base.
+   * The resulting username may use neither, one or both of the names provided.
+   * This will always return a plain ASCII string.
+   * Some basic stripping of accents and transliteration of characters will be done.
+   *
+   * @param options An options object.
+   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
    * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
@@ -195,7 +248,7 @@ export class InternetModule extends ModuleBase {
    * faker.internet.username({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
    * faker.internet.username({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
    *
-   * @since 2.0.1
+   * @since 9.1.0
    */
   username(
     options: {

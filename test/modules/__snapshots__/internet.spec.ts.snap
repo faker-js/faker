@@ -100,6 +100,22 @@ exports[`internet > 42 > url > without slash appended and with http protocol 1`]
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux i686; rv:13.5) Gecko/20100101 Firefox/13.5.1"`;
 
+exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Reynolds-Miller15"`;
+
+exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d.tpv"`;
+
+exports[`internet > 42 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii"`;
+
+exports[`internet > 42 > userName > with Latin names 1`] = `"Jane.Doe"`;
+
+exports[`internet > 42 > userName > with accented names 1`] = `"Helene.Muller"`;
+
+exports[`internet > 42 > userName > with all option 1`] = `"Jane.Doe"`;
+
+exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Wiegand59"`;
+
+exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe"`;
+
 exports[`internet > 42 > username > noArgs 1`] = `"Garnet.Reynolds-Miller15"`;
 
 exports[`internet > 42 > username > with Chinese names 1`] = `"hlzp8d.tpv"`;
@@ -216,6 +232,22 @@ exports[`internet > 1211 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko"`;
 
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito67"`;
+
+exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d_tpv89"`;
+
+exports[`internet > 1211 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii89"`;
+
+exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane_Doe89"`;
+
+exports[`internet > 1211 > userName > with accented names 1`] = `"Helene_Muller89"`;
+
+exports[`internet > 1211 > userName > with all option 1`] = `"Jane_Doe89"`;
+
+exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane99"`;
+
+exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito_Doe"`;
+
 exports[`internet > 1211 > username > noArgs 1`] = `"Tito67"`;
 
 exports[`internet > 1211 > username > with Chinese names 1`] = `"hlzp8d_tpv89"`;
@@ -331,6 +363,22 @@ exports[`internet > 1337 > url > with slash appended 1`] = `"https://fatal-co-pr
 exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fatal-co-producer.biz"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows NT 5.3; WOW64; rv:8.4) Gecko/20100101 Firefox/8.4.3"`;
+
+exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn.Gottlieb"`;
+
+exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d.tpv15"`;
+
+exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii15"`;
+
+exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane.Doe15"`;
+
+exports[`internet > 1337 > userName > with accented names 1`] = `"Helene.Muller15"`;
+
+exports[`internet > 1337 > userName > with all option 1`] = `"Jane.Doe15"`;
+
+exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane.Cronin45"`;
+
+exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn.Doe27"`;
 
 exports[`internet > 1337 > username > noArgs 1`] = `"Devyn.Gottlieb"`;
 
