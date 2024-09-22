@@ -51,7 +51,7 @@ describe('internet', () => {
         });
     });
 
-    t.describe('userName', (t) => {
+    t.describe('username', (t) => {
       t.it('noArgs')
         .it('with firstName option', { firstName: 'Jane' })
         .it('with lastName option', { lastName: 'Doe' })
@@ -339,9 +339,9 @@ describe('internet', () => {
         });
       });
 
-      describe('userName()', () => {
+      describe('username()', () => {
         it('should return a random username', () => {
-          const username = faker.internet.userName();
+          const username = faker.internet.username();
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
@@ -349,7 +349,7 @@ describe('internet', () => {
         });
 
         it('should return a random username with given firstName', () => {
-          const username = faker.internet.userName({ firstName: 'Aiden' });
+          const username = faker.internet.username({ firstName: 'Aiden' });
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
@@ -358,7 +358,7 @@ describe('internet', () => {
         });
 
         it('should return a random username with given firstName and lastName', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: 'Aiden',
             lastName: 'Harann',
           });
@@ -371,7 +371,7 @@ describe('internet', () => {
         });
 
         it('should strip accents', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: 'Adèle',
             lastName: 'Smith',
           });
@@ -380,7 +380,7 @@ describe('internet', () => {
         });
 
         it('should transliterate Cyrillic', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: 'Амос',
             lastName: 'Васильев',
           });
@@ -388,7 +388,7 @@ describe('internet', () => {
         });
 
         it('should provide a fallback for Chinese etc', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: '大羽',
             lastName: '陳',
           });
@@ -396,7 +396,7 @@ describe('internet', () => {
         });
 
         it('should provide a fallback special unicode characters', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: '🐼',
             lastName: '❤️',
           });

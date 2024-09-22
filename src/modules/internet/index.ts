@@ -28,7 +28,7 @@ export type HTTPProtocolType = 'http' | 'https';
  *
  * ### Overview
  *
- * For user accounts, you may need an [`email()`](https://fakerjs.dev/api/internet.html#email) and a [`password()`](https://fakerjs.dev/api/internet.html#password), as well as a ASCII [`userName()`](https://fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://fakerjs.dev/api/internet.html#displayname). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://fakerjs.dev/api/internet.html#exampleemail) instead.
+ * For user accounts, you may need an [`email()`](https://fakerjs.dev/api/internet.html#email) and a [`password()`](https://fakerjs.dev/api/internet.html#password), as well as a ASCII [`username()`](https://fakerjs.dev/api/internet.html#username) or Unicode [`displayName()`](https://fakerjs.dev/api/internet.html#displayname). Since the emails generated could coincidentally be real email addresses, you should not use these for sending real email addresses. If this is a concern, use [`exampleEmail()`](https://fakerjs.dev/api/internet.html#exampleemail) instead.
  *
  * For websites, you can generate a [`domainName()`](https://fakerjs.dev/api/internet.html#domainname) or a full [`url()`](https://fakerjs.dev/api/internet.html#url).
  *
@@ -92,7 +92,7 @@ export class InternetModule extends ModuleBase {
       allowSpecialCharacters = false,
     } = options;
 
-    let localPart: string = this.userName({ firstName, lastName });
+    let localPart: string = this.username({ firstName, lastName });
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
     localPart = localPart.replaceAll(/[^A-Za-z0-9._+-]+/g, '');
@@ -186,18 +186,18 @@ export class InternetModule extends ModuleBase {
    * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
-   * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne98'
-   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
-   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
-   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
-   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
+   * faker.internet.username() // 'Nettie_Zboncak40'
+   * faker.internet.username({ firstName: 'Jeanne' }) // 'Jeanne98'
+   * faker.internet.username({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
+   * faker.internet.username({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
+   * faker.internet.username({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+   * faker.internet.username({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
+   * faker.internet.username({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
+   * faker.internet.username({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
    *
    * @since 2.0.1
    */
-  userName(
+  username(
     options: {
       /**
        * The optional first name to use.
@@ -271,7 +271,7 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.userName(): For generating a plain ASCII username.
+   * @see faker.internet.username(): For generating a plain ASCII username.
    *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
