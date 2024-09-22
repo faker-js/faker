@@ -22,42 +22,35 @@ async function assertWebAddress(address: string): Promise<void> {
   expect(() => new URL(address)).not.toThrow();
 
   if (CI_PREFLIGHT) {
-    await expect(checkWebAddress(address)).resolves.toBe(true);
-  }
-}
-
-/**
- * Checks whether a call to the given url returns a http-200 (after redirects).
- *
- * @param address The address to check.
- */
-async function checkWebAddress(address: string): Promise<boolean> {
-  return new Promise((resolve) => {
-    https
-      .get(address, ({ statusCode, headers: { location } }) => {
-        if (statusCode == null) {
-          console.error('Got no statusCode expected 200');
-          resolve(false);
-        } else if (statusCode === 200) {
-          resolve(true);
-        } else if (statusCode >= 300 && statusCode < 400 && location) {
-          const newAddress = urlResolve(address, location);
-          checkWebAddress(newAddress)
-            .then(resolve)
-            .catch((error: unknown) => {
-              console.error('Failed to resolve redirect to', location, error);
-              resolve(false);
-            });
-        } else {
-          console.error(`Got statusCode: ${statusCode} expected 200`);
-          resolve(false);
-        }
+    await expect(
+      new Promise((resolve, reject) => {
+        https
+          .get(address, ({ statusCode, headers: { location } }) => {
+            if (statusCode == null) {
+              reject(new Error(`No StatusCode, expected 200`));
+            } else if (statusCode === 200) {
+              resolve(true);
+            } else if (statusCode >= 300 && statusCode < 400 && location) {
+              const newAddress = urlResolve(address, location);
+              assertWebAddress(newAddress)
+                .then(() => resolve(true))
+                .catch((error: unknown) => {
+                  reject(
+                    new Error(`Failed to resolve redirect to '${location}'`, {
+                      cause: error,
+                    })
+                  );
+                });
+            } else {
+              reject(new Error(`Bad StatusCode ${statusCode}, expected 200`));
+            }
+          })
+          .on('error', (error: unknown) => {
+            reject(new Error(`Failed to get '${address}'`, { cause: error }));
+          });
       })
-      .on('error', (error: unknown) => {
-        console.error('Got request error', error);
-        resolve(false);
-      });
-  });
+    ).resolves.toBe(true);
+  }
 }
 
 describe('image', () => {
