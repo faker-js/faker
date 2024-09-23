@@ -355,6 +355,7 @@ describe('internet', () => {
 
       describe('userName()', () => {
         it('should return a random userName', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName();
 
           expect(userName).toBeTruthy();
@@ -363,6 +364,7 @@ describe('internet', () => {
         });
 
         it('should return a random userName with given firstName', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName({ firstName: 'Aiden' });
 
           expect(userName).toBeTruthy();
@@ -372,6 +374,7 @@ describe('internet', () => {
         });
 
         it('should return a random userName with given firstName and lastName', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName({
             firstName: 'Aiden',
             lastName: 'Harann',
@@ -385,6 +388,7 @@ describe('internet', () => {
         });
 
         it('should strip accents', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName({
             firstName: 'Adèle',
             lastName: 'Smith',
@@ -394,6 +398,7 @@ describe('internet', () => {
         });
 
         it('should transliterate Cyrillic', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName({
             firstName: 'Амос',
             lastName: 'Васильев',
@@ -402,6 +407,7 @@ describe('internet', () => {
         });
 
         it('should provide a fallback for Chinese etc', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName({
             firstName: '大羽',
             lastName: '陳',
@@ -410,6 +416,7 @@ describe('internet', () => {
         });
 
         it('should provide a fallback special unicode characters', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const userName = faker.internet.userName({
             firstName: '🐼',
             lastName: '❤️',
