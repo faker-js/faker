@@ -59,7 +59,7 @@ export class ImageModule extends ModuleBase {
     deprecated({
       deprecated: 'faker.image.avatarLegacy()',
       proposed: 'faker.image.avatar()',
-      since: '9.0.1',
+      since: '9.0.2',
       until: '10.0.0',
     });
 
