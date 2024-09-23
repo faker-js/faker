@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.0.2](https://github.com/faker-js/faker/compare/v9.0.1...v9.0.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **locale:** improve pt_PT location and person data ([#3020](https://github.com/faker-js/faker/issues/3020)) ([3e47ee7](https://github.com/faker-js/faker/commit/3e47ee7da671296e11ed2b219f85b06c9d05d677))
+
 ## [9.0.1](https://github.com/faker-js/faker/compare/v9.0.0...v9.0.1) (2024-09-14)
 
 
