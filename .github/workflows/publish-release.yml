@@ -4,7 +4,9 @@ on:
   release:
     types: [published]
 
-permissions: {} # we use a personal access token to push the release branch
+permissions:
+  # we use a personal access token to push the release branch
+  id-token: write # required for provenance/signed releases on npm
 
 jobs:
   publish:
@@ -22,7 +24,7 @@ jobs:
         uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
 
       - name: Set node version to 22
-        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
           node-version: 22
           cache: 'pnpm'
@@ -56,6 +58,7 @@ jobs:
           pnpm publish --tag next --no-git-checks
         env:
           CYPRESS_INSTALL_BINARY: 0
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Set latest/next dist-tag
         run: |
