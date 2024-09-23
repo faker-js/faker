@@ -104,7 +104,7 @@
   ],
   "devDependencies": {
     "@actions/github": "6.0.0",
-    "@algolia/client-search": "5.4.1",
+    "@algolia/client-search": "5.5.3",
     "@eslint/compat": "1.1.1",
     "@eslint/js": "9.10.0",
     "@stylistic/eslint-plugin": "2.8.0",
