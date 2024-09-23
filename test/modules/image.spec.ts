@@ -114,6 +114,7 @@ describe('image', () => {
 
   describe('avatarLegacy', () => {
     it('should return a random avatar url from cloudflare-ipfs', () => {
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const avatarUrl = faker.image.avatarLegacy();
 
       expect(avatarUrl).toBeTypeOf('string');
