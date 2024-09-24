@@ -184,7 +184,7 @@ export class InternetModule extends ModuleBase {
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
    *
-   * @see faker.internet.username(): For generating an Unicode display name.
+   * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
