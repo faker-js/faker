@@ -219,7 +219,7 @@ export class InternetModule extends ModuleBase {
     deprecated({
       deprecated: 'faker.internet.userName()',
       proposed: 'faker.internet.username()',
-      since: '2.0.1',
+      since: '9.1.0',
       until: '10.0.0',
     });
 
