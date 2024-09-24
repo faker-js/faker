@@ -493,7 +493,7 @@ export class NumberModule extends SimpleModuleBase {
       };
     }
 
-    const { min = 1, max = 3999 } = options;
+    const { min = DEFAULT_MIN, max = DEFAULT_MAX } = options;
 
     if (min < DEFAULT_MIN) {
       throw new FakerError(`Min value ${min} should be 1 or greater.`);
