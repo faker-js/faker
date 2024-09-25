@@ -41,7 +41,6 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'logical-assignment-operators': 'error',
       'no-else-return': 'error',
-      'no-restricted-globals': ['error', 'Intl'],
       'prefer-exponentiation-operator': 'error',
       'prefer-template': 'error',
     },
@@ -205,6 +204,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
     files: ['src/**/*.ts'],
     rules: {
       'jsdoc/require-jsdoc': 'error',
+      'no-restricted-globals': ['error', 'Intl', 'Buffer'],
     },
   },
   {
