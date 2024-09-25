@@ -198,7 +198,7 @@ export class InternetModule extends ModuleBase {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.internet.username()` instead. Example: `faker.internet.username();`
+   * @deprecated Use `faker.internet.username()` instead.
    */
   userName(
     options: {
