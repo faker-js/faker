@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { toBase64 } from '../../src/internal/base64';
 
+// This test is kind of useless, because during testing the Buffer object is always available.
 describe('toBase64', () => {
   it.each(
     faker.helpers.multiple(
