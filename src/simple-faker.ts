@@ -1,10 +1,10 @@
-import { generateMersenne53Randomizer } from './internal/mersenne';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 import type { Randomizer } from './randomizer';
+import { generateMersenne53Randomizer } from './utils/mersenne';
 
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.
