@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 let toBase64_: (input: string) => string;
 if (typeof Buffer === 'undefined') {
   toBase64_ = (input: string): string => {
