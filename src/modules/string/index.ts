@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { SimpleModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../utils/types';
+import type { LiteralUnion } from '../../internal/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
