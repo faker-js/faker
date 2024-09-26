@@ -74,7 +74,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v9.0.2"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v9.0.3"`.
 :::
 
 ### Alternative CDN links
