@@ -11,7 +11,7 @@ describe('toBase64', () => {
     )
   )(
     "should behave the same as `Buffer.from(value).toString('base64')`",
-    (value: string) => {
+    (value) => {
       expect(toBase64(value)).toBe(Buffer.from(value).toString('base64'));
     }
   );
