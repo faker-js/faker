@@ -1,5 +1,5 @@
-import type { LocaleDefinition } from './definitions';
-import { FakerError } from './errors/faker-error';
+import type { LocaleDefinition } from '../definitions';
+import { FakerError } from '../errors/faker-error';
 
 /**
  * A proxy for LocaleDefinition that marks all properties as required and throws an error when an entry is accessed that is not defined.

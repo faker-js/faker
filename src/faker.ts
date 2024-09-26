@@ -1,8 +1,8 @@
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
-import type { LocaleProxy } from './locale-proxy';
-import { createLocaleProxy } from './locale-proxy';
+import type { LocaleProxy } from './internal/locale-proxy';
+import { createLocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
 import { BookModule } from './modules/book';

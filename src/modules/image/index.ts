@@ -1,3 +1,4 @@
+import { toBase64 } from '../../internal/base64';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
@@ -388,8 +389,6 @@ export class ImageModule extends ModuleBase {
 
     return type === 'svg-uri'
       ? `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgString)}`
-      : `data:image/svg+xml;base64,${Buffer.from(svgString).toString(
-          'base64'
-        )}`;
+      : `data:image/svg+xml;base64,${toBase64(svgString)}`;
   }
 }

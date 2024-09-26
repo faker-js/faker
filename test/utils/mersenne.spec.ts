@@ -1,10 +1,10 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { MersenneTwister19937 } from '../../src/internal/mersenne';
+import type { Randomizer } from '../../src/randomizer';
 import {
-  MersenneTwister19937,
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
-} from '../../src/internal/mersenne';
-import type { Randomizer } from '../../src/randomizer';
+} from '../../src/utils/mersenne';
 import { seededRuns } from '../support/seeded-runs';
 import { times } from '../support/times';
 import {
