@@ -1,8 +1,8 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
-import { assertLocaleData } from '../../locale-proxy';
 
 /**
  * Converts a date passed as a `string`, `number` or `Date` to a valid `Date` object.
