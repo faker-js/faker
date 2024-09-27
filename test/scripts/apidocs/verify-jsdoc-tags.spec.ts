@@ -124,7 +124,7 @@ describe('verify JSDoc tags', () => {
                 );
 
                 if (moduleName === 'randomizer') {
-                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/internal/mersenne';
+                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/utils/mersenne';
 
 const randomizer = generateMersenne32Randomizer();
 
