@@ -2,7 +2,7 @@ import { FakerError } from '../../errors/faker-error';
 import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../utils/types';
+import type { LiteralUnion } from '../../internal/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 

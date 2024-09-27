@@ -1,7 +1,7 @@
 import type { Casing, ColorFormat } from '../../../src';
 import { FakerError } from '../../../src/errors/faker-error';
+import type { LiteralUnion } from '../../../src/internal/types';
 import type { AlphaNumericChar } from '../../../src/modules/string';
-import type { LiteralUnion } from '../../../src/utils/types';
 // explicitly export types so they show up in the docs as decomposed types
 export type { NumberColorFormat, StringColorFormat } from '../../../src';
 export type { AlphaNumericChar, Casing, ColorFormat, LiteralUnion };
