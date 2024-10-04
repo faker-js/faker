@@ -63,7 +63,7 @@ While this is not a breaking change according to semantic versioning guidelines,
 In v9 we switch from a 32 bit random value to a 53 bit random value.
 We don't change the underlying algorithm much, but we now consume two seed values each step instead of one.
 
-You can read more in out Blog Post: [What's New In v9.0](/about/announcements/2024-08-31-whats-new-in-9-0.md)
+You can read more in out Blog Post: [What's New In v9.0](/about/announcements/2024-08-31-whats-new-in-9-0#use-high-precision-rng-by-default)
 
 #### Adoption
 
