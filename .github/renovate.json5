@@ -57,7 +57,7 @@
     },
     {
       "groupName": "doc-dependencies",
-      "matchPackageNames": ["@algolia/client-search", "ts-morph", "vitepress"]
+      "matchPackageNames": ["ts-morph", "vitepress"]
     }
   ],
   "stopUpdatingLabel": "s: on hold",
