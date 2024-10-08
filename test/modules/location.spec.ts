@@ -77,6 +77,8 @@ describe('location', () => {
 
     t.it('country');
 
+    t.it('continent');
+
     t.describe('countryCode', (t) => {
       t.it('noArgs')
         .it('with string alpha-2', 'alpha-2')

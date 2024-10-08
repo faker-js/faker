@@ -42,6 +42,11 @@ export type LocationDefinition = LocaleEntry<{
   country: string[];
 
   /**
+   * The names of all continents.
+   */
+  continent: string[];
+
+  /**
    * The [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country codes.
    */
   country_code: Array<{ alpha2: string; alpha3: string; numeric: string }>;
