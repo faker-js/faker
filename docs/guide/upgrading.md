@@ -14,8 +14,6 @@ This is the migration guide for upgrading from v8 to v9.
 
 :::
 
-v9 has not yet been released. This page contains a work-in-progress list of breaking changes in v9.
-
 ## General Breaking Changes
 
 ### Requires Node v18+
