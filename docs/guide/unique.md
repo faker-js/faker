@@ -93,7 +93,7 @@ const createUniqueUser = uniqueFactory(
     age: faker.number.int({ min: 18, max: 100 }),
   }),
   {
-    stringifier: value => JSON.stringify(value),
+    stringifier: (value) => JSON.stringify(value),
   }
 );
 // Each returned user is structurally unique
