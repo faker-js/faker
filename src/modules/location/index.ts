@@ -222,7 +222,7 @@ export class LocationModule extends ModuleBase {
    * @example
    * faker.location.continent() // 'Asia'
    *
-   * @since 9.0.4
+   * @since 9.1.0
    */
   continent(): string {
     return this.faker.helpers.arrayElement(
