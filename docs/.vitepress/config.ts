@@ -1,5 +1,6 @@
 import type { UserConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
+import { version } from '../../package.json';
 import { apiPages } from './api-pages';
 import {
   algoliaIndex,
@@ -148,6 +149,25 @@ const config: UserConfig<DefaultTheme.Config> = {
         rel: 'me',
         href: 'https://fosstodon.org/@faker_js',
       },
+    ],
+    [
+      'script',
+      {
+        id: 'browser-console-faker',
+      },
+      `
+console.warn('If you would like to test faker in the browser console, you can do so using \`await enableFaker()\`');
+console.warn('If you would like to test faker in a playground, visit https://new.fakerjs.dev');
+async function enableFaker() {
+  const imported = await import('https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm');
+  Object.assign(globalThis, imported);
+  console.log('You can now start using faker:');
+  console.log('e.g. \`faker.food.description()\` or \`fakerZH_CN.person.firstName()\`');
+  console.log('For other languages please refer to https://fakerjs.dev/guide/localization.html#available-locales');
+  console.log('For a full list of all methods please refer to https://fakerjs.dev/api/');
+  return imported;
+}
+`,
     ],
   ],
 
