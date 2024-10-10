@@ -1,6 +1,7 @@
 export type {
   AirlineDefinition,
   AnimalDefinition,
+  BookDefinition,
   ColorDefinition,
   CommerceDefinition,
   CommerceProductNameDefinition,
@@ -36,6 +37,7 @@ export * from './locales';
 export { Aircraft } from './modules/airline';
 export type { AircraftType, AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
+export type { BookModule } from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
   Casing,
