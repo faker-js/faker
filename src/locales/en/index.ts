@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import airline from './airline';
 import animal from './animal';
 import app from './app';
+import book from './book';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -31,6 +32,7 @@ const en: LocaleDefinition = {
   airline,
   animal,
   app,
+  book,
   cell_phone,
   color,
   commerce,
