@@ -1,5 +1,6 @@
 export type { AirlineDefinition } from './airline';
 export type { AnimalDefinition } from './animal';
+export type { BookDefinition } from './book';
 export type { ColorDefinition } from './color';
 export type {
   CommerceDefinition,
