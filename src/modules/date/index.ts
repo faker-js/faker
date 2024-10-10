@@ -569,8 +569,8 @@ export class SimpleDateModule extends SimpleModuleBase {
  *
  * If you need to generate a date range (start-end), you can do so using either of these two methods:
  *
- * - `const [start, end] = faker.date.betweens({ from, to, count: 2 });`
  * - `const start = faker.date.soon(); const end = faker.date.soon({ refDate: start });`
+ * - `const [start, end] = faker.date.betweens({ from, to, count: 2 });` // does not work with tsconfig's `noUncheckedIndexedAccess: true`
  *
  * Dates can be specified as Javascript Date objects, strings or UNIX timestamps.
  * For example to generate a date between 1st January 2000 and now, use:
