@@ -5,6 +5,7 @@ import type { LocaleProxy } from './internal/locale-proxy';
 import { createLocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
+import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
@@ -63,6 +64,7 @@ export class Faker extends SimpleFaker {
 
   readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
+  readonly book: BookModule = new BookModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);
