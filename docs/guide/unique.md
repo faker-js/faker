@@ -25,4 +25,4 @@ faker.helpers.uniqueArray(faker.internet.email, 1000); // will generate 1000 uni
 
 3. Build your own logic to keep track of a set of previously generated values and regenerate values as necessary if a duplicate is generated
 
-4. Use a third party package to enforce uniqueness such as [enforce-unique](https://github.com/MansurAliKoroglu/enforce-unique), [@dpaskhin/unique](https://github.com/dPaskhin/unique).
+4. Use a third-party package to enforce uniqueness, such as [enforce-unique](https://github.com/MansurAliKoroglu/enforce-unique) or [@dpaskhin/unique](https://github.com/dPaskhin/unique).
