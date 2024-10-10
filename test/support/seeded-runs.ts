@@ -1,6 +1,6 @@
 import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
-import type { Callable, MethodOf } from '../../src/utils/types';
+import type { Callable, MethodOf } from '../../src/internal/types';
 
 export const seededRuns = [42, 1337, 1211];
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { FakerError, en } from '../src';
-import { createLocaleProxy } from '../src/locale-proxy';
+import { FakerError, en } from '../../src';
+import { createLocaleProxy } from '../../src/internal/locale-proxy';
 
 describe('LocaleProxy', () => {
   const locale = createLocaleProxy(en);
