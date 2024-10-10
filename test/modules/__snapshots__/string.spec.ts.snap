@@ -164,6 +164,12 @@ exports[`string > 42 > symbol > with length parameter 5`] = `">%*,/"`;
 
 exports[`string > 42 > symbol > with length range 1`] = `"}\\>%%"\`>[!~_'&"`;
 
+exports[`string > 42 > ulid > with Date refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
+
+exports[`string > 42 > ulid > with number refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
+
+exports[`string > 42 > ulid > with string refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
+
 exports[`string > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
 exports[`string > 42 > uuid 2`] = `"21ffc41a-7170-4e4a-9488-2fcfe9e13056"`;
@@ -338,6 +344,12 @@ exports[`string > 1211 > symbol > with length parameter 5`] = `"~]-|<"`;
 
 exports[`string > 1211 > symbol > with length range 1`] = `"{(~@@],[_]?_.\`\`'=',~"`;
 
+exports[`string > 1211 > ulid > with Date refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
+
+exports[`string > 1211 > ulid > with number refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
+
+exports[`string > 1211 > ulid > with string refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
+
 exports[`string > 1211 > uuid 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
 
 exports[`string > 1211 > uuid 2`] = `"d64428b2-b736-43d9-970b-2b4c8739d1d7"`;
@@ -511,6 +523,12 @@ exports[`string > 1337 > symbol > with length parameter 4`] = `"^^,.="`;
 exports[`string > 1337 > symbol > with length parameter 5`] = `"]'*@:"`;
 
 exports[`string > 1337 > symbol > with length range 1`] = `"&)/+;)~\\$-?%"`;
+
+exports[`string > 1337 > ulid > with Date refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
+
+exports[`string > 1337 > ulid > with number refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
+
+exports[`string > 1337 > ulid > with string refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
 
 exports[`string > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 
