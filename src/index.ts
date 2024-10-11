@@ -1,6 +1,7 @@
 export type {
   AirlineDefinition,
   AnimalDefinition,
+  BookDefinition,
   ColorDefinition,
   CommerceDefinition,
   CommerceProductNameDefinition,
@@ -36,6 +37,7 @@ export * from './locales';
 export { Aircraft } from './modules/airline';
 export type { AircraftType, AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
+export type { BookModule } from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
   Casing,
@@ -65,7 +67,8 @@ export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
-export type { InternetModule } from './modules/internet';
+export { IPv4Network } from './modules/internet';
+export type { IPv4NetworkType, InternetModule } from './modules/internet';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
