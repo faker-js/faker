@@ -8,7 +8,7 @@ exports[`location > 42 > cardinalDirection > with abbreviated option 1`] = `"E"`
 
 exports[`location > 42 > city 1`] = `"Fort Moses"`;
 
-exports[`location > 42 > continent 1`] = `"North America"`;
+exports[`location > 42 > continent 1`] = `"Asia"`;
 
 exports[`location > 42 > country 1`] = `"Guinea"`;
 
@@ -146,7 +146,7 @@ exports[`location > 1211 > cardinalDirection > with abbreviated option 1`] = `"W
 
 exports[`location > 1211 > city 1`] = `"The Villages"`;
 
-exports[`location > 1211 > continent 1`] = `"Australia"`;
+exports[`location > 1211 > continent 1`] = `"South America"`;
 
 exports[`location > 1211 > country 1`] = `"Uganda"`;
 
@@ -284,7 +284,7 @@ exports[`location > 1337 > cardinalDirection > with abbreviated option 1`] = `"E
 
 exports[`location > 1337 > city 1`] = `"East Duane"`;
 
-exports[`location > 1337 > continent 1`] = `"Africa"`;
+exports[`location > 1337 > continent 1`] = `"Antarctica"`;
 
 exports[`location > 1337 > country 1`] = `"Egypt"`;
 

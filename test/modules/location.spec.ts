@@ -147,6 +147,17 @@ describe('location', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
+      describe('continent()', () => {
+        it('returns random continent', () => {
+          const continent = faker.location.continent();
+
+          expect(continent).toBeTruthy();
+          expect(continent).toMatch(
+            /^(Africa|Antarctica|Asia|Australia|Europe|North America|South America)$/
+          );
+        });
+      });
+
       describe('countryCode()', () => {
         it('returns random alpha-2 countryCode', () => {
           const countryCode = faker.location.countryCode('alpha-2');
