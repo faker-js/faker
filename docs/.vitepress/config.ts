@@ -1,11 +1,11 @@
 import type { UserConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
-import { version } from '../../package.json';
 import { apiPages } from './api-pages';
 import {
   algoliaIndex,
-  currentVersion,
+  version,
   versionBannerInfix,
+  versionLabel,
   versionLinks,
 } from './versions';
 
@@ -245,7 +245,7 @@ async function enableFaker() {
         ],
       },
       {
-        text: currentVersion,
+        text: versionLabel,
         items: [
           {
             text: 'Release Notes',
