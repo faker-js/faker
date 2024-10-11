@@ -149,12 +149,11 @@ describe('location', () => {
     () => {
       describe('continent()', () => {
         it('returns random continent', () => {
-          const continent = faker.location.continent();
+          const actual = faker.location.continent();
 
-          expect(continent).toBeTruthy();
-          expect(continent).toMatch(
-            /^(Africa|Antarctica|Asia|Australia|Europe|North America|South America)$/
-          );
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(faker.definitions.location.continent).toContain(actual);
         });
       });
 
