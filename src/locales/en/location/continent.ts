@@ -1,9 +1,9 @@
 export default [
-  'Asia',
   'Africa',
+  'Antarctica',
+  'Asia',
+  'Australia',
+  'Europe',
   'North America',
   'South America',
-  'Antarctica',
-  'Europe',
-  'Australia',
 ];
