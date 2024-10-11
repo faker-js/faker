@@ -37,14 +37,14 @@ export type LocationDefinition = LocaleEntry<{
   city_suffix: string[];
 
   /**
-   * The names of all countries.
-   */
-  country: string[];
-
-  /**
    * The names of all continents.
    */
   continent: string[];
+
+  /**
+   * The names of all countries.
+   */
+  country: string[];
 
   /**
    * The [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country codes.
