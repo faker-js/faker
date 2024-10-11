@@ -25,34 +25,4 @@ faker.helpers.uniqueArray(faker.internet.email, 1000); // will generate 1000 uni
 
 3. Build your own logic to keep track of a set of previously generated values and regenerate values as necessary if a duplicate is generated
 
-4. Use a third party package to enforce uniqueness such as [enforce-unique](https://github.com/MansurAliKoroglu/enforce-unique)
-
-Note you can supply a maximum time (in milliseconds) or maximum number of retries.
-
-```js
-import { EnforceUniqueError, UniqueEnforcer } from 'enforce-unique';
-
-const uniqueEnforcerEmail = new UniqueEnforcer();
-
-function createRandomUser() {
-  const firstName = faker.person.firstName();
-  const lastName = faker.person.lastName();
-  const email = uniqueEnforcerEmail.enforce(
-    () =>
-      faker.internet.email({
-        firstName,
-        lastName,
-      }),
-    {
-      maxTime: 50,
-      maxRetries: 50,
-    }
-  );
-
-  return {
-    firstName,
-    lastName,
-    email,
-  };
-}
-```
+4. Use a third-party package to enforce uniqueness, such as [enforce-unique](https://github.com/MansurAliKoroglu/enforce-unique) or [@dpaskhin/unique](https://github.com/dPaskhin/unique).
