@@ -89,7 +89,8 @@ It is highly recommended to use version tags when importing libraries in Deno, e
 
 ## TypeScript Support
 
-Faker supports TypeScript out of the box, so you don't have to install any extra packages.
+We assume that you either use TypeScript (strict mode) or at least use a type aware IDE.
+You can use Faker without it, but we don't have dedicated error messages for wrong parameter types.
 
 In order to have Faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
@@ -97,7 +98,8 @@ In order to have Faker working properly, you need to check if these `compilerOpt
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "moduleResolution": "Bundler" // "Node10", "Node16" or "NodeNext"
+    "moduleResolution": "Bundler", // "Node10", "Node16" or "NodeNext"
+    "strict": true // Optional, but recommended
   }
 }
 ```
