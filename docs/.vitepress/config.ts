@@ -217,7 +217,10 @@ async function enableFaker() {
       },
       {
         text: 'Try it',
-        items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
+        items: [
+          { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
+          { text: 'Browser Console ', link: '/guide/usage.html#browser' },
+        ],
       },
       {
         text: 'About',
