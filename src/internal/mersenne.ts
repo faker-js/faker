@@ -171,7 +171,7 @@ export class MersenneTwister19937 {
     this.initGenrand(19650218);
     let i = 1;
     let j = 0;
-    let k = this.N > keyLength ? this.N : keyLength;
+    let k = Math.max(this.N, keyLength);
     for (; k; k--) {
       // mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525)) + init_key[j] + j;
       this.mt[i] = this.addition32(
