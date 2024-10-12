@@ -37,6 +37,11 @@ export type LocationDefinition = LocaleEntry<{
   city_suffix: string[];
 
   /**
+   * The names of all continents.
+   */
+  continent: string[];
+
+  /**
    * The names of all countries.
    */
   country: string[];
