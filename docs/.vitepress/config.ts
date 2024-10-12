@@ -156,12 +156,12 @@ const config: UserConfig<DefaultTheme.Config> = {
         id: 'browser-console-faker',
       },
       `
-console.warn('If you would like to test faker in the browser console, you can do so using \`await enableFaker()\`');
-console.warn('If you would like to test faker in a playground, visit https://new.fakerjs.dev');
+console.warn('If you would like to test Faker in the browser console, you can do so using \`await enableFaker()\`');
+console.warn('If you would like to test Faker in a playground, visit https://new.fakerjs.dev');
 async function enableFaker() {
   const imported = await import('https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm');
   Object.assign(globalThis, imported);
-  console.log('You can now start using faker v${version}:');
+  console.log('You can now start using Faker v${version}:');
   console.log('e.g. \`faker.food.description()\` or \`fakerZH_CN.person.firstName()\`');
   console.log('For other languages please refer to https://fakerjs.dev/guide/localization.html#available-locales');
   console.log('For a full list of all methods please refer to https://fakerjs.dev/api/');
