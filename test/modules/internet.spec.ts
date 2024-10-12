@@ -66,6 +66,20 @@ describe('internet', () => {
         .it('with Chinese names', { firstName: '大羽', lastName: '陳' });
     });
 
+    t.describe('username', (t) => {
+      t.it('noArgs')
+        .it('with firstName option', { firstName: 'Jane' })
+        .it('with lastName option', { lastName: 'Doe' })
+        .it('with all option', { firstName: 'Jane', lastName: 'Doe' })
+        .it('with Latin names', { firstName: 'Jane', lastName: 'Doe' })
+        .it('with accented names', { firstName: 'Hélene', lastName: 'Müller' })
+        .it('with Cyrillic names', {
+          firstName: 'Фёдор',
+          lastName: 'Достоевский',
+        })
+        .it('with Chinese names', { firstName: '大羽', lastName: '陳' });
+    });
+
     t.describe('displayName', (t) => {
       t.it('noArgs')
         .it('with firstName option', { firstName: 'Jane' })
@@ -347,8 +361,80 @@ describe('internet', () => {
       });
 
       describe('userName()', () => {
+        it('should return a random userName', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName();
+
+          expect(userName).toBeTruthy();
+          expect(userName).toBeTypeOf('string');
+          expect(userName).toMatch(/\w/);
+        });
+
+        it('should return a random userName with given firstName', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName({ firstName: 'Aiden' });
+
+          expect(userName).toBeTruthy();
+          expect(userName).toBeTypeOf('string');
+          expect(userName).toMatch(/\w/);
+          expect(userName).includes('Aiden');
+        });
+
+        it('should return a random userName with given firstName and lastName', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName({
+            firstName: 'Aiden',
+            lastName: 'Harann',
+          });
+
+          expect(userName).toBeTruthy();
+          expect(userName).toBeTypeOf('string');
+          expect(userName).includes('Aiden');
+          expect(userName).includes('Harann');
+          expect(userName).toMatch(/^Aiden[._]Harann\d*/);
+        });
+
+        it('should strip accents', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName({
+            firstName: 'Adèle',
+            lastName: 'Smith',
+          });
+          expect(userName).includes('Adele');
+          expect(userName).includes('Smith');
+        });
+
+        it('should transliterate Cyrillic', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName({
+            firstName: 'Амос',
+            lastName: 'Васильев',
+          });
+          expect(userName).includes('Amos');
+        });
+
+        it('should provide a fallback for Chinese etc', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName({
+            firstName: '大羽',
+            lastName: '陳',
+          });
+          expect(userName).includes('hlzp8d');
+        });
+
+        it('should provide a fallback special unicode characters', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const userName = faker.internet.userName({
+            firstName: '🐼',
+            lastName: '❤️',
+          });
+          expect(userName).includes('2qt8');
+        });
+      });
+
+      describe('username()', () => {
         it('should return a random username', () => {
-          const username = faker.internet.userName();
+          const username = faker.internet.username();
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
@@ -356,7 +442,7 @@ describe('internet', () => {
         });
 
         it('should return a random username with given firstName', () => {
-          const username = faker.internet.userName({ firstName: 'Aiden' });
+          const username = faker.internet.username({ firstName: 'Aiden' });
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
@@ -365,7 +451,7 @@ describe('internet', () => {
         });
 
         it('should return a random username with given firstName and lastName', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: 'Aiden',
             lastName: 'Harann',
           });
@@ -378,7 +464,7 @@ describe('internet', () => {
         });
 
         it('should strip accents', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: 'Adèle',
             lastName: 'Smith',
           });
@@ -387,7 +473,7 @@ describe('internet', () => {
         });
 
         it('should transliterate Cyrillic', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: 'Амос',
             lastName: 'Васильев',
           });
@@ -395,7 +481,7 @@ describe('internet', () => {
         });
 
         it('should provide a fallback for Chinese etc', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: '大羽',
             lastName: '陳',
           });
@@ -403,7 +489,7 @@ describe('internet', () => {
         });
 
         it('should provide a fallback special unicode characters', () => {
-          const username = faker.internet.userName({
+          const username = faker.internet.username({
             firstName: '🐼',
             lastName: '❤️',
           });
