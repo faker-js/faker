@@ -161,7 +161,7 @@ console.warn('If you would like to test faker in a playground, visit https://new
 async function enableFaker() {
   const imported = await import('https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm');
   Object.assign(globalThis, imported);
-  console.log('You can now start using faker:');
+  console.log('You can now start using faker v${version}:');
   console.log('e.g. \`faker.food.description()\` or \`fakerZH_CN.person.firstName()\`');
   console.log('For other languages please refer to https://fakerjs.dev/guide/localization.html#available-locales');
   console.log('For a full list of all methods please refer to https://fakerjs.dev/api/');
