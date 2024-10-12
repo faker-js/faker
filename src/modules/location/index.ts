@@ -217,6 +217,20 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
+   * Returns a random continent name.
+   *
+   * @example
+   * faker.location.continent() // 'Asia'
+   *
+   * @since 9.1.0
+   */
+  continent(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.location.continent
+    );
+  }
+
+  /**
    * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
    * @param options The code to return or an options object.

@@ -77,6 +77,8 @@ describe('location', () => {
 
     t.it('country');
 
+    t.it('continent');
+
     t.describe('countryCode', (t) => {
       t.it('noArgs')
         .it('with string alpha-2', 'alpha-2')
@@ -145,6 +147,16 @@ describe('location', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
+      describe('continent()', () => {
+        it('returns random continent', () => {
+          const actual = faker.location.continent();
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(faker.definitions.location.continent).toContain(actual);
+        });
+      });
+
       describe('countryCode()', () => {
         it('returns random alpha-2 countryCode', () => {
           const countryCode = faker.location.countryCode('alpha-2');

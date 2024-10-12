@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
+import book from './book';
 import cell_phone from './cell_phone';
 import color from './color';
 import company from './company';
@@ -19,6 +20,7 @@ import team from './team';
 
 const pl: LocaleDefinition = {
   animal,
+  book,
   cell_phone,
   color,
   company,
