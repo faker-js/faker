@@ -1,6 +1,8 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { allFakers, faker } from '../../src';
+import { FakerError } from '../../src/errors/faker-error';
+import { IPv4Network } from '../../src/modules/internet';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -15,7 +17,6 @@ describe('internet', () => {
       'domainSuffix',
       'domainWord',
       'ip',
-      'ipv4',
       'ipv6',
       'port',
       'userAgent'
@@ -146,6 +147,12 @@ describe('internet', () => {
           appendSlash: false,
           protocol: 'http',
         });
+    });
+
+    t.describe('ipv4', (t) => {
+      t.it('noArgs')
+        .it('with cidrBlock', { cidrBlock: '192.168.13.37/24' })
+        .it('with network', { network: IPv4Network.Multicast });
     });
   });
 
@@ -681,6 +688,95 @@ describe('internet', () => {
             expect(+part).toBeLessThanOrEqual(255);
           }
         });
+
+        it('should return a random IPv4 for a given CIDR block', () => {
+          const actual = faker.internet.ipv4({
+            cidrBlock: '192.168.42.255/24',
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toSatisfy((value: string) => validator.isIP(value, 4));
+          expect(actual).toMatch(/^192\.168\.42\.\d{1,3}$/);
+        });
+
+        it('should return a random IPv4 for a given CIDR block non-8ish network mask', () => {
+          const actual = faker.internet.ipv4({
+            cidrBlock: '192.168.0.255/20',
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toSatisfy((value: string) => validator.isIP(value, 4));
+
+          const [first, second, third, fourth] = actual.split('.').map(Number);
+          expect(first).toBe(192);
+          expect(second).toBe(168);
+          expect(third).toBeGreaterThanOrEqual(0);
+          expect(third).toBeLessThanOrEqual(15);
+          expect(fourth).toBeGreaterThanOrEqual(0);
+          expect(fourth).toBeLessThanOrEqual(255);
+        });
+
+        it.each([
+          '',
+          '...',
+          '.../',
+          '.0.0.0/0',
+          '0..0.0/0',
+          '0.0..0/0',
+          '0.0.0./0',
+          '0.0.0.0/',
+          'a.0.0.0/0',
+          '0.b.0.0/0',
+          '0.0.c.0/0',
+          '0.0.0.d/0',
+          '0.0.0.0/e',
+        ])(
+          'should throw an error if not following the x.x.x.x/y format',
+          (cidrBlock) => {
+            expect(() =>
+              faker.internet.ipv4({
+                cidrBlock,
+              })
+            ).toThrow(
+              new FakerError(
+                `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
+              )
+            );
+          }
+        );
+
+        it.each([
+          [IPv4Network.Any, /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
+          [IPv4Network.Loopback, /^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
+          [IPv4Network.PrivateA, /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
+          [
+            IPv4Network.PrivateB,
+            /^172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3}$/,
+          ],
+          [IPv4Network.PrivateC, /^192\.168\.\d{1,3}\.\d{1,3}$/],
+          [IPv4Network.TestNet1, /^192\.0\.2\.\d{1,3}$/],
+          [IPv4Network.TestNet2, /^198\.51\.100\.\d{1,3}$/],
+          [IPv4Network.TestNet3, /^203\.0\.113\.\d{1,3}$/],
+          [IPv4Network.LinkLocal, /^169\.254\.\d{1,3}\.\d{1,3}$/],
+          [
+            IPv4Network.Multicast,
+            /^2(2[4-9]|3[0-9])\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
+          ],
+        ] as const)(
+          'should return a random IPv4 for %s network',
+          (network, regex) => {
+            const actual = faker.internet.ipv4({ network });
+
+            expect(actual).toBeTruthy();
+            expect(actual).toBeTypeOf('string');
+            expect(actual).toSatisfy((value: string) =>
+              validator.isIP(value, 4)
+            );
+            expect(actual).toMatch(regex);
+          }
+        );
       });
 
       describe('ipv6()', () => {
