@@ -88,3 +88,4 @@ export {
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
 } from './utils/mersenne';
+export { resolveLocaleData } from './utils/resolve-locale-data';

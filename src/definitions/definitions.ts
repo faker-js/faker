@@ -29,29 +29,49 @@ export type LocaleEntry<TCategoryDefinition extends Record<string, unknown>> = {
 } & Record<string, unknown>; // Unsupported & custom entries
 
 /**
- * The definitions as used by the translations/locales.
+ * The internal types for the definitions.
  */
-export type LocaleDefinition = {
-  metadata?: MetadataDefinition;
-  airline?: AirlineDefinition;
-  animal?: AnimalDefinition;
-  book?: BookDefinition;
-  color?: ColorDefinition;
-  commerce?: CommerceDefinition;
-  company?: CompanyDefinition;
-  database?: DatabaseDefinition;
-  date?: DateDefinition;
-  finance?: FinanceDefinition;
-  food?: FoodDefinition;
-  hacker?: HackerDefinition;
-  internet?: InternetDefinition;
-  location?: LocationDefinition;
-  lorem?: LoremDefinition;
-  music?: MusicDefinition;
-  person?: PersonDefinition;
-  phone_number?: PhoneNumberDefinition;
-  science?: ScienceDefinition;
-  system?: SystemDefinition;
-  vehicle?: VehicleDefinition;
-  word?: WordDefinition;
-} & Record<string, Record<string, unknown>>;
+type RawLocaleDefinition = {
+  metadata: MetadataDefinition;
+  airline: AirlineDefinition;
+  animal: AnimalDefinition;
+  book: BookDefinition;
+  color: ColorDefinition;
+  commerce: CommerceDefinition;
+  company: CompanyDefinition;
+  database: DatabaseDefinition;
+  date: DateDefinition;
+  finance: FinanceDefinition;
+  food: FoodDefinition;
+  hacker: HackerDefinition;
+  internet: InternetDefinition;
+  location: LocationDefinition;
+  lorem: LoremDefinition;
+  music: MusicDefinition;
+  person: PersonDefinition;
+  phone_number: PhoneNumberDefinition;
+  science: ScienceDefinition;
+  system: SystemDefinition;
+  vehicle: VehicleDefinition;
+  word: WordDefinition;
+};
+
+/**
+ * Helper type to undo `LocaleEntry<T>` wrapping.
+ */
+type DefinedLocaleEntry<T> = T extends LocaleEntry<infer U> ? U : never;
+
+/**
+ * Helper type containing the well known locale definitions as used by this library, assuming all values are present.
+ *
+ * This type is mainly used for `resolveLocaleData()` to enable auto completion.
+ */
+export type DefinedLocaleDefinition = {
+  [K in keyof RawLocaleDefinition]: DefinedLocaleEntry<RawLocaleDefinition[K]>;
+};
+
+/**
+ * The extensible definitions as used by the translations/locales.
+ */
+export type LocaleDefinition = Partial<RawLocaleDefinition> &
+  Record<string, Record<string, unknown>>;
