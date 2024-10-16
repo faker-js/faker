@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate company related entries.
@@ -24,7 +25,9 @@ export class CompanyModule extends ModuleBase {
    * @since 7.4.0
    */
   name(): string {
-    return this.faker.helpers.fake(this.faker.definitions.company.name_pattern);
+    return this.faker.helpers.fake(
+      resolveLocaleData(this.faker.fakerCore, 'company', 'name_pattern')
+    );
   }
 
   /**
@@ -65,7 +68,7 @@ export class CompanyModule extends ModuleBase {
    */
   catchPhraseAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.adjective
+      resolveLocaleData(this.faker.fakerCore, 'company', 'adjective')
     );
   }
 
@@ -79,7 +82,7 @@ export class CompanyModule extends ModuleBase {
    */
   catchPhraseDescriptor(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.descriptor
+      resolveLocaleData(this.faker.fakerCore, 'company', 'descriptor')
     );
   }
 
@@ -92,7 +95,9 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseNoun(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.company.noun);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'company', 'noun')
+    );
   }
 
   /**
@@ -105,7 +110,7 @@ export class CompanyModule extends ModuleBase {
    */
   buzzAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.buzz_adjective
+      resolveLocaleData(this.faker.fakerCore, 'company', 'buzz_adjective')
     );
   }
 
@@ -119,7 +124,7 @@ export class CompanyModule extends ModuleBase {
    */
   buzzVerb(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.buzz_verb
+      resolveLocaleData(this.faker.fakerCore, 'company', 'buzz_verb')
     );
   }
 
@@ -133,7 +138,7 @@ export class CompanyModule extends ModuleBase {
    */
   buzzNoun(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.buzz_noun
+      resolveLocaleData(this.faker.fakerCore, 'company', 'buzz_noun')
     );
   }
 }

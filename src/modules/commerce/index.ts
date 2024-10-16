@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<
@@ -96,7 +97,7 @@ export class CommerceModule extends ModuleBase {
    */
   department(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.department
+      resolveLocaleData(this.faker.fakerCore, 'commerce', 'department')
     );
   }
 
@@ -218,7 +219,8 @@ export class CommerceModule extends ModuleBase {
    */
   productAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.product_name.adjective
+      resolveLocaleData(this.faker.fakerCore, 'commerce', 'product_name')
+        .adjective
     );
   }
 
@@ -232,7 +234,8 @@ export class CommerceModule extends ModuleBase {
    */
   productMaterial(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.product_name.material
+      resolveLocaleData(this.faker.fakerCore, 'commerce', 'product_name')
+        .material
     );
   }
 
@@ -246,7 +249,8 @@ export class CommerceModule extends ModuleBase {
    */
   product(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.product_name.product
+      resolveLocaleData(this.faker.fakerCore, 'commerce', 'product_name')
+        .product
     );
   }
 
@@ -260,7 +264,7 @@ export class CommerceModule extends ModuleBase {
    */
   productDescription(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.commerce.product_description
+      resolveLocaleData(this.faker.fakerCore, 'commerce', 'product_description')
     );
   }
 

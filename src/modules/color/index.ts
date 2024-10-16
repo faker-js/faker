@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Color space names supported by CSS.
@@ -209,7 +210,9 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   human(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.color.human);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'color', 'human')
+    );
   }
 
   /**
@@ -222,7 +225,9 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   space(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.color.space);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'color', 'space')
+    );
   }
 
   /**

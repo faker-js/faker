@@ -5,6 +5,7 @@
  * operations.
  */
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -88,7 +89,7 @@ export class AirlineModule extends ModuleBase {
    */
   airport(): Airport {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airport
+      resolveLocaleData(this.faker.fakerCore, 'airline', 'airport')
     );
   }
 
@@ -102,7 +103,7 @@ export class AirlineModule extends ModuleBase {
    */
   airline(): Airline {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airline
+      resolveLocaleData(this.faker.fakerCore, 'airline', 'airline')
     );
   }
 
@@ -116,7 +117,7 @@ export class AirlineModule extends ModuleBase {
    */
   airplane(): Airplane {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airplane
+      resolveLocaleData(this.faker.fakerCore, 'airline', 'airplane')
     );
   }
 

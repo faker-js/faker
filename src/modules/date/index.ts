@@ -4,6 +4,7 @@ import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate dates (without methods requiring localized data).
@@ -602,7 +603,7 @@ export class DateModule extends SimpleDateModule {
   ): string {
     const { abbreviated = false, context = false } = options;
 
-    const source = this.faker.definitions.date.month;
+    const source = resolveLocaleData(this.faker.fakerCore, 'date', 'month');
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
       const useContext = context && source['abbr_context'] != null;
@@ -654,7 +655,7 @@ export class DateModule extends SimpleDateModule {
   ): string {
     const { abbreviated = false, context = false } = options;
 
-    const source = this.faker.definitions.date.weekday;
+    const source = resolveLocaleData(this.faker.fakerCore, 'date', 'weekday');
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
       const useContext = context && source['abbr_context'] != null;
@@ -684,7 +685,7 @@ export class DateModule extends SimpleDateModule {
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.date.time_zone
+      resolveLocaleData(this.faker.fakerCore, 'date', 'time_zone')
     );
   }
 }

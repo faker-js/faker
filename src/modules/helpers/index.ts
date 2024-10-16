@@ -665,7 +665,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @example
    * faker.helpers.uniqueArray(faker.word.sample, 50)
-   * faker.helpers.uniqueArray(faker.definitions.person.first_name, 6)
+   * faker.helpers.uniqueArray(resolveLocaleData(faker.fakerCore, 'person', 'first_name'), 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    *
    * @since 6.0.0

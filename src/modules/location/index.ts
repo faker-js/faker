@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate addresses and locations. Prior to Faker 8.0.0, this module was known as `faker.address`.
@@ -47,7 +48,7 @@ export class LocationModule extends ModuleBase {
            *
            * This won't be used if the state option is specified.
            *
-           * @default faker.definitions.location.postcode
+           * @default resolveLocaleData(faker.fakerCore, 'location', 'postcode')
            */
           format?: string;
         } = {}
@@ -59,8 +60,11 @@ export class LocationModule extends ModuleBase {
     const { state } = options;
 
     if (state != null) {
-      const zipPattern =
-        this.faker.definitions.location.postcode_by_state[state];
+      const zipPattern = resolveLocaleData(
+        this.faker.fakerCore,
+        'location',
+        'postcode_by_state'
+      )[state];
 
       if (zipPattern == null) {
         throw new FakerError(
@@ -71,7 +75,9 @@ export class LocationModule extends ModuleBase {
       return this.faker.helpers.fake(zipPattern);
     }
 
-    let { format = this.faker.definitions.location.postcode } = options;
+    let {
+      format = resolveLocaleData(this.faker.fakerCore, 'location', 'postcode'),
+    } = options;
     if (typeof format === 'string') {
       format = [format];
     }
@@ -92,7 +98,7 @@ export class LocationModule extends ModuleBase {
    */
   city(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.location.city_pattern
+      resolveLocaleData(this.faker.fakerCore, 'location', 'city_pattern')
     );
   }
 
@@ -106,7 +112,9 @@ export class LocationModule extends ModuleBase {
    */
   buildingNumber(): string {
     return this.faker.helpers
-      .arrayElement(this.faker.definitions.location.building_number)
+      .arrayElement(
+        resolveLocaleData(this.faker.fakerCore, 'location', 'building_number')
+      )
       .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
@@ -125,7 +133,7 @@ export class LocationModule extends ModuleBase {
    */
   street(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.location.street_pattern
+      resolveLocaleData(this.faker.fakerCore, 'location', 'street_pattern')
     );
   }
 
@@ -161,7 +169,11 @@ export class LocationModule extends ModuleBase {
 
     const { useFullAddress } = options;
 
-    const formats = this.faker.definitions.location.street_address;
+    const formats = resolveLocaleData(
+      this.faker.fakerCore,
+      'location',
+      'street_address'
+    );
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
     return this.faker.helpers.fake(format);
@@ -178,7 +190,9 @@ export class LocationModule extends ModuleBase {
    */
   secondaryAddress(): string {
     return this.faker.helpers
-      .fake(this.faker.definitions.location.secondary_address)
+      .fake(
+        resolveLocaleData(this.faker.fakerCore, 'location', 'secondary_address')
+      )
       .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
@@ -198,7 +212,7 @@ export class LocationModule extends ModuleBase {
    */
   county(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.county
+      resolveLocaleData(this.faker.fakerCore, 'location', 'county')
     );
   }
 
@@ -212,7 +226,7 @@ export class LocationModule extends ModuleBase {
    */
   country(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.country
+      resolveLocaleData(this.faker.fakerCore, 'location', 'country')
     );
   }
 
@@ -226,7 +240,7 @@ export class LocationModule extends ModuleBase {
    */
   continent(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.continent
+      resolveLocaleData(this.faker.fakerCore, 'location', 'continent')
     );
   }
 
@@ -289,7 +303,7 @@ export class LocationModule extends ModuleBase {
     })();
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.country_code
+      resolveLocaleData(this.faker.fakerCore, 'location', 'country_code')
     )[key];
   }
 
@@ -324,8 +338,8 @@ export class LocationModule extends ModuleBase {
   ): string {
     const { abbreviated = false } = options;
     const stateDataSet = abbreviated
-      ? this.faker.definitions.location.state_abbr
-      : this.faker.definitions.location.state;
+      ? resolveLocaleData(this.faker.fakerCore, 'location', 'state_abbr')
+      : resolveLocaleData(this.faker.fakerCore, 'location', 'state');
 
     return this.faker.helpers.arrayElement(stateDataSet);
   }
@@ -444,14 +458,18 @@ export class LocationModule extends ModuleBase {
 
     if (!abbreviated) {
       return this.faker.helpers.arrayElement([
-        ...this.faker.definitions.location.direction.cardinal,
-        ...this.faker.definitions.location.direction.ordinal,
+        ...resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+          .cardinal,
+        ...resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+          .ordinal,
       ]);
     }
 
     return this.faker.helpers.arrayElement([
-      ...this.faker.definitions.location.direction.cardinal_abbr,
-      ...this.faker.definitions.location.direction.ordinal_abbr,
+      ...resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+        .cardinal_abbr,
+      ...resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+        .ordinal_abbr,
     ]);
   }
 
@@ -483,12 +501,14 @@ export class LocationModule extends ModuleBase {
 
     if (!abbreviated) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.cardinal
+        resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+          .cardinal
       );
     }
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction.cardinal_abbr
+      resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+        .cardinal_abbr
     );
   }
 
@@ -520,12 +540,13 @@ export class LocationModule extends ModuleBase {
 
     if (!abbreviated) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.ordinal
+        resolveLocaleData(this.faker.fakerCore, 'location', 'direction').ordinal
       );
     }
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction.ordinal_abbr
+      resolveLocaleData(this.faker.fakerCore, 'location', 'direction')
+        .ordinal_abbr
     );
   }
 
@@ -625,7 +646,7 @@ export class LocationModule extends ModuleBase {
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.time_zone
+      resolveLocaleData(this.faker.fakerCore, 'location', 'time_zone')
     );
   }
 }

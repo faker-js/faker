@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 import { filterWordListByLength } from './filter-word-list-by-length';
 
 /**
@@ -71,7 +72,7 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.adjective,
+        wordList: resolveLocaleData(this.faker.fakerCore, 'word', 'adjective'),
       })
     );
   }
@@ -141,7 +142,7 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.adverb,
+        wordList: resolveLocaleData(this.faker.fakerCore, 'word', 'adverb'),
       })
     );
   }
@@ -211,7 +212,11 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.conjunction,
+        wordList: resolveLocaleData(
+          this.faker.fakerCore,
+          'word',
+          'conjunction'
+        ),
       })
     );
   }
@@ -281,7 +286,11 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.interjection,
+        wordList: resolveLocaleData(
+          this.faker.fakerCore,
+          'word',
+          'interjection'
+        ),
       })
     );
   }
@@ -351,7 +360,7 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.noun,
+        wordList: resolveLocaleData(this.faker.fakerCore, 'word', 'noun'),
       })
     );
   }
@@ -421,7 +430,11 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.preposition,
+        wordList: resolveLocaleData(
+          this.faker.fakerCore,
+          'word',
+          'preposition'
+        ),
       })
     );
   }
@@ -491,7 +504,7 @@ export class WordModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.word.verb,
+        wordList: resolveLocaleData(this.faker.fakerCore, 'word', 'verb'),
       })
     );
   }

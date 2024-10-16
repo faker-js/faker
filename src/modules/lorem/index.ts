@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
@@ -79,7 +80,7 @@ export class LoremModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...opts,
-        wordList: this.faker.definitions.lorem.word,
+        wordList: resolveLocaleData(this.faker.fakerCore, 'lorem', 'word'),
       })
     );
   }

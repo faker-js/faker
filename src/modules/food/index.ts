@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 /**
  * Module for generating food-related data.
  *
@@ -19,7 +20,7 @@ export class FoodModule extends ModuleBase {
    */
   adjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.adjective
+      resolveLocaleData(this.faker.fakerCore, 'food', 'adjective')
     );
   }
 
@@ -33,7 +34,7 @@ export class FoodModule extends ModuleBase {
    */
   description(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.food.description_pattern
+      resolveLocaleData(this.faker.fakerCore, 'food', 'description_pattern')
     );
   }
 
@@ -54,12 +55,16 @@ export class FoodModule extends ModuleBase {
         .join(' ');
     if (this.faker.datatype.boolean()) {
       return toTitleCase(
-        this.faker.helpers.fake(this.faker.definitions.food.dish_pattern)
+        this.faker.helpers.fake(
+          resolveLocaleData(this.faker.fakerCore, 'food', 'dish_pattern')
+        )
       );
     }
 
     return toTitleCase(
-      this.faker.helpers.arrayElement(this.faker.definitions.food.dish)
+      this.faker.helpers.arrayElement(
+        resolveLocaleData(this.faker.fakerCore, 'food', 'dish')
+      )
     );
   }
 
@@ -73,7 +78,7 @@ export class FoodModule extends ModuleBase {
    */
   ethnicCategory(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.ethnic_category
+      resolveLocaleData(this.faker.fakerCore, 'food', 'ethnic_category')
     );
   }
 
@@ -86,7 +91,9 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   fruit(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.fruit);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'food', 'fruit')
+    );
   }
 
   /**
@@ -99,7 +106,7 @@ export class FoodModule extends ModuleBase {
    */
   ingredient(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.ingredient
+      resolveLocaleData(this.faker.fakerCore, 'food', 'ingredient')
     );
   }
 
@@ -112,7 +119,9 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   meat(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.meat);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'food', 'meat')
+    );
   }
 
   /**
@@ -124,7 +133,9 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   spice(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.spice);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'food', 'spice')
+    );
   }
 
   /**
@@ -137,7 +148,7 @@ export class FoodModule extends ModuleBase {
    */
   vegetable(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.vegetable
+      resolveLocaleData(this.faker.fakerCore, 'food', 'vegetable')
     );
   }
 }

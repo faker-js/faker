@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate vehicle related entries.
@@ -32,7 +33,7 @@ export class VehicleModule extends ModuleBase {
    */
   manufacturer(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.vehicle.manufacturer
+      resolveLocaleData(this.faker.fakerCore, 'vehicle', 'manufacturer')
     );
   }
 
@@ -46,7 +47,7 @@ export class VehicleModule extends ModuleBase {
    */
   model(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.vehicle.model
+      resolveLocaleData(this.faker.fakerCore, 'vehicle', 'model')
     );
   }
 
@@ -59,7 +60,9 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   type(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.vehicle.type);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'vehicle', 'type')
+    );
   }
 
   /**
@@ -71,7 +74,9 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   fuel(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.vehicle.fuel);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'vehicle', 'fuel')
+    );
   }
 
   /**
@@ -142,7 +147,7 @@ export class VehicleModule extends ModuleBase {
    */
   bicycle(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.vehicle.bicycle_type
+      resolveLocaleData(this.faker.fakerCore, 'vehicle', 'bicycle_type')
     );
   }
 }
