@@ -3,8 +3,9 @@ import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import {
   algoliaIndex,
-  currentVersion,
+  version,
   versionBannerInfix,
+  versionLabel,
   versionLinks,
 } from './versions';
 
@@ -149,6 +150,26 @@ const config: UserConfig<DefaultTheme.Config> = {
         href: 'https://fosstodon.org/@faker_js',
       },
     ],
+    [
+      'script',
+      {
+        id: 'browser-console-faker',
+      },
+      `
+const logStyle = 'background: rgba(16, 183, 127, 0.14); color: rgba(255, 255, 245, 0.86); padding: 0.5rem; display: inline-block;';
+console.log(\`%cIf you would like to test Faker in the browser console, you can do so using 'await enableFaker()'.
+If you would like to test Faker in a playground, visit https://new.fakerjs.dev.\`, logStyle);
+async function enableFaker() {
+  const imported = await import('https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm');
+  Object.assign(globalThis, imported);
+  console.log(\`%cYou can now start using Faker v${version}:
+e.g. 'faker.food.description()' or 'fakerZH_CN.person.firstName()'
+For other languages please refer to https://fakerjs.dev/guide/localization.html#available-locales
+For a full list of all methods please refer to https://fakerjs.dev/api/\`, logStyle);
+  return imported;
+}
+`,
+    ],
   ],
 
   themeConfig: {
@@ -197,7 +218,10 @@ const config: UserConfig<DefaultTheme.Config> = {
       },
       {
         text: 'Try it',
-        items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
+        items: [
+          { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
+          { text: 'Browser Console ', link: '/guide/usage.html#browser' },
+        ],
       },
       {
         text: 'About',
@@ -222,7 +246,7 @@ const config: UserConfig<DefaultTheme.Config> = {
         ],
       },
       {
-        text: currentVersion,
+        text: versionLabel,
         items: [
           {
             text: 'Release Notes',
