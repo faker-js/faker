@@ -1,5 +1,6 @@
 import type { AirlineDefinition } from './airline';
 import type { AnimalDefinition } from './animal';
+import type { BookDefinition } from './book';
 import type { ColorDefinition } from './color';
 import type { CommerceDefinition } from './commerce';
 import type { CompanyDefinition } from './company';
@@ -34,6 +35,7 @@ export type LocaleDefinition = {
   metadata?: MetadataDefinition;
   airline?: AirlineDefinition;
   animal?: AnimalDefinition;
+  book?: BookDefinition;
   color?: ColorDefinition;
   commerce?: CommerceDefinition;
   company?: CompanyDefinition;

@@ -1,26 +1,9 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { toDate } from '../../internal/date';
+import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
-import { assertLocaleData } from '../../locale-proxy';
-
-/**
- * Converts a date passed as a `string`, `number` or `Date` to a valid `Date` object.
- *
- * @param date The date to convert.
- * @param name The reference name used for error messages. Defaults to `'refDate'`.
- *
- * @throws If the given date is invalid.
- */
-function toDate(date: string | Date | number, name: string = 'refDate'): Date {
-  const converted = new Date(date);
-
-  if (Number.isNaN(converted.valueOf())) {
-    throw new FakerError(`Invalid ${name} date: ${date.toString()}`);
-  }
-
-  return converted;
-}
 
 /**
  * Module to generate dates (without methods requiring localized data).
@@ -684,5 +667,24 @@ export class DateModule extends SimpleDateModule {
     const values = source[type];
     assertLocaleData(values, 'date.weekday', type);
     return this.faker.helpers.arrayElement(values);
+  }
+
+  /**
+   * Returns a random IANA time zone name.
+   *
+   * The returned time zone is not tied to the current locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.location.timeZone(): For generating a timezone based on the current locale.
+   *
+   * @example
+   * faker.location.timeZone() // 'Pacific/Guam'
+   *
+   * @since 9.0.0
+   */
+  timeZone(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.date.time_zone
+    );
   }
 }

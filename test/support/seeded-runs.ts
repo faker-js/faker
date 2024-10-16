@@ -1,6 +1,6 @@
 import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
-import type { Callable, MethodOf } from '../../src/utils/types';
+import type { Callable, MethodOf } from '../../src/internal/types';
 
 export const seededRuns = [42, 1337, 1211];
 
@@ -142,8 +142,12 @@ class TestGenerator<
     repetitions: number = 1
   ): void {
     this.setup();
+    const callable = this.module[method];
+    if (callable == null) {
+      throw new Error(`Method ${method} not found in ${this.moduleName}`);
+    }
+
     for (let i = 0; i < repetitions; i++) {
-      const callable = this.module[method];
       const value = callable(...args);
       expect(value).toMatchSnapshot();
     }
@@ -161,24 +165,11 @@ class TestGenerator<
   }
 
   /**
-   * Temporarily ignores this method. Useful for testing purposes.
-   *
-   * @param method The name of the method.
-   *
-   * @deprecated Implement a proper test.
-   */
-  todo(method: MethodOf<TModule>): this {
-    this.expectNotTested(method);
-    vi_it.todo(method);
-    return this;
-  }
-
-  /**
    * Generates a test for a method without arguments.
    *
    * @param method The name of the method.
    */
-  it<TMethodName extends NoArgsMethodOf<TModule>>(method: TMethodName): this {
+  it(method: NoArgsMethodOf<TModule>): this {
     return this.itRepeated(method, 1);
   }
 
@@ -189,15 +180,12 @@ class TestGenerator<
    * @param method The name of the method.
    * @param repetitions The number of repetitions to run.
    */
-  itRepeated<TMethodName extends NoArgsMethodOf<TModule>>(
-    method: TMethodName,
-    repetitions: number
-  ): this {
+  itRepeated(method: NoArgsMethodOf<TModule>, repetitions: number): this {
     this.expectNotTested(method);
     vi_it(method, () =>
       this.callAndVerify(
         method,
-        [] as unknown as Parameters<TModule[TMethodName]>,
+        [] as unknown as Parameters<TModule[NoArgsMethodOf<TModule>]>,
         repetitions
       )
     );

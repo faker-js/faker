@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { FakerError, faker, fakerEN_CA, fakerEN_US } from '../../src';
+import {
+  FakerError,
+  allLocales,
+  faker,
+  fakerEN_CA,
+  fakerEN_US,
+} from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -71,6 +77,8 @@ describe('location', () => {
 
     t.it('country');
 
+    t.it('continent');
+
     t.describe('countryCode', (t) => {
       t.it('noArgs')
         .it('with string alpha-2', 'alpha-2')
@@ -139,6 +147,16 @@ describe('location', () => {
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
     () => {
+      describe('continent()', () => {
+        it('returns random continent', () => {
+          const actual = faker.location.continent();
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(faker.definitions.location.continent).toContain(actual);
+        });
+      });
+
       describe('countryCode()', () => {
         it('returns random alpha-2 countryCode', () => {
           const countryCode = faker.location.countryCode('alpha-2');
@@ -390,6 +408,37 @@ describe('location', () => {
           }
         );
       });
+
+      describe('timeZone', () => {
+        it('should return a random timezone', () => {
+          const actual = faker.location.timeZone();
+          expect(faker.definitions.location.time_zone).toContain(actual);
+        });
+      });
     }
   );
+});
+
+describe('definitions', () => {
+  describe('timeZone', () => {
+    it.each(Object.entries(allLocales))(
+      'locale data for %s should be a subset of the base locale',
+      (locale, data) => {
+        if (locale === 'base') {
+          expect(data.location?.time_zone).toSatisfy(Array.isArray);
+          expect(data.location?.time_zone?.length).toBeGreaterThan(0);
+          expect(data.location?.time_zone).toEqual(
+            allLocales.base.date?.time_zone
+          );
+        } else if (data.location?.time_zone != null) {
+          expect(data.location.time_zone).toSatisfy(Array.isArray);
+          expect(data.location.time_zone.length).toBeGreaterThan(0);
+          // expected and actual are flipped here
+          expect(allLocales.base.date?.time_zone).toEqual(
+            expect.arrayContaining(data.location.time_zone)
+          );
+        }
+      }
+    );
+  });
 });

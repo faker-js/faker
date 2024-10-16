@@ -58,15 +58,17 @@ export class LocationModule extends ModuleBase {
 
     const { state } = options;
 
-    if (state) {
-      const zipPattern: string =
+    if (state != null) {
+      const zipPattern =
         this.faker.definitions.location.postcode_by_state[state];
 
-      if (zipPattern) {
-        return this.faker.helpers.fake(zipPattern);
+      if (zipPattern == null) {
+        throw new FakerError(
+          `No zip code definition found for state "${state}"`
+        );
       }
 
-      throw new FakerError(`No zip code definition found for state "${state}"`);
+      return this.faker.helpers.fake(zipPattern);
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
@@ -211,6 +213,20 @@ export class LocationModule extends ModuleBase {
   country(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.country
+    );
+  }
+
+  /**
+   * Returns a random continent name.
+   *
+   * @example
+   * faker.location.continent() // 'Asia'
+   *
+   * @since 9.1.0
+   */
+  continent(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.location.continent
     );
   }
 
@@ -572,7 +588,6 @@ export class LocationModule extends ModuleBase {
     /**
      * The distance in km per degree for earth.
      */
-    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
     const kmPerDegree = 40_000 / 360; // in km/°
 
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
@@ -596,7 +611,12 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
-   * Returns a random time zone.
+   * Returns a random IANA time zone relevant to this locale.
+   *
+   * The returned time zone is tied to the current locale.
+   *
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.date.timeZone(): For generating a random time zone from all available time zones.
    *
    * @example
    * faker.location.timeZone() // 'Pacific/Guam'

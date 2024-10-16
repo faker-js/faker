@@ -10,7 +10,11 @@ import {
 export type JSDocableLikeNode = Pick<JSDocableNode, 'getJsDocs'>;
 
 export function getJsDocs(node: JSDocableLikeNode): JSDoc {
-  return exactlyOne(node.getJsDocs(), 'jsdocs');
+  return exactlyOne(
+    node.getJsDocs(),
+    'jsdocs',
+    'Please ensure that each method signature has JSDocs, and that all properties of option/object parameters are documented with both @param tags and inline JSDocs.'
+  );
 }
 
 export function getDeprecated(jsdocs: JSDoc): string | undefined {
@@ -31,7 +35,6 @@ export function getTypeParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
       .getTags()
       .filter((tag) => tag.getTagName() === 'template')
       .filter((tag) => tag instanceof JSDocTemplateTag)
-      .map((tag) => tag as JSDocTemplateTag)
       .map((tag) => [tag.getTypeParameters()[0].getName(), tag] as const)
   );
 }
@@ -42,7 +45,6 @@ export function getParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
       .getTags()
       .filter((tag) => tag.getTagName() === 'param')
       .filter((tag) => tag instanceof JSDocParameterTag)
-      .map((tag) => tag as JSDocParameterTag)
       .map((tag) => [tag.getName(), tag] as const)
   );
 }

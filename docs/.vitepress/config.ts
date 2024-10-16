@@ -3,8 +3,9 @@ import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import {
   algoliaIndex,
-  currentVersion,
+  version,
   versionBannerInfix,
+  versionLabel,
   versionLinks,
 } from './versions';
 
@@ -91,9 +92,11 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
       ],
     },
   ];
+
   for (const entry of links) {
     entry.collapsed = entry.text !== entryToExpand;
   }
+
   return links;
 }
 
@@ -147,6 +150,26 @@ const config: UserConfig<DefaultTheme.Config> = {
         href: 'https://fosstodon.org/@faker_js',
       },
     ],
+    [
+      'script',
+      {
+        id: 'browser-console-faker',
+      },
+      `
+const logStyle = 'background: rgba(16, 183, 127, 0.14); color: rgba(255, 255, 245, 0.86); padding: 0.5rem; display: inline-block;';
+console.log(\`%cIf you would like to test Faker in the browser console, you can do so using 'await enableFaker()'.
+If you would like to test Faker in a playground, visit https://new.fakerjs.dev.\`, logStyle);
+async function enableFaker() {
+  const imported = await import('https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm');
+  Object.assign(globalThis, imported);
+  console.log(\`%cYou can now start using Faker v${version}:
+e.g. 'faker.food.description()' or 'fakerZH_CN.person.firstName()'
+For other languages please refer to https://fakerjs.dev/guide/localization.html#available-locales
+For a full list of all methods please refer to https://fakerjs.dev/api/\`, logStyle);
+  return imported;
+}
+`,
+    ],
   ],
 
   themeConfig: {
@@ -162,6 +185,7 @@ const config: UserConfig<DefaultTheme.Config> = {
       { icon: 'mastodon', link: 'https://fosstodon.org/@faker_js' },
       { icon: 'x', link: 'https://twitter.com/faker_js' },
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/@faker-js/faker' },
       {
         icon: {
           svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Open Collective</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c2.54 0 4.894-.79 6.834-2.135l-3.107-3.109a7.715 7.715 0 1 1 0-13.512l3.107-3.109A11.943 11.943 0 0 0 12 0zm9.865 5.166l-3.109 3.107A7.67 7.67 0 0 1 19.715 12a7.682 7.682 0 0 1-.959 3.727l3.109 3.107A11.943 11.943 0 0 0 24 12c0-2.54-.79-4.894-2.135-6.834z"/></svg>',
@@ -194,7 +218,10 @@ const config: UserConfig<DefaultTheme.Config> = {
       },
       {
         text: 'Try it',
-        items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
+        items: [
+          { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
+          { text: 'Browser Console ', link: '/guide/usage.html#browser' },
+        ],
       },
       {
         text: 'About',
@@ -219,7 +246,7 @@ const config: UserConfig<DefaultTheme.Config> = {
         ],
       },
       {
-        text: currentVersion,
+        text: versionLabel,
         items: [
           {
             text: 'Release Notes',

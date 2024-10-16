@@ -36,6 +36,11 @@ function resolvePathToMethodFile(
   signature: number
 ): string {
   const dir = resolveDirToModule(moduleName);
+  // TODO @ST-DDT 2024-09-23: Remove this in v10
+  if (methodName === 'userName') {
+    methodName = 'userNameDeprecated';
+  }
+
   return resolve(dir, `${methodName}_${signature}.ts`);
 }
 
@@ -119,7 +124,7 @@ describe('verify JSDoc tags', () => {
                 );
 
                 if (moduleName === 'randomizer') {
-                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/internal/mersenne';
+                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/utils/mersenne';
 
 const randomizer = generateMersenne32Randomizer();
 
