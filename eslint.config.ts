@@ -1,10 +1,10 @@
 import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
+import eslintPluginVitest from '@vitest/eslint-plugin';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import eslintPluginVitest from 'eslint-plugin-vitest';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import tseslint from 'typescript-eslint';
@@ -153,7 +153,6 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
 
       // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
       // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
-      'unicorn/better-regex': 'off',
       'unicorn/consistent-function-scoping': 'off',
       'unicorn/no-object-as-default-parameter': 'off',
       'unicorn/prefer-export-from': 'off',

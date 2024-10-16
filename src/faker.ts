@@ -2,11 +2,10 @@ import type { FakerCore } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
-import { generateMersenne53Randomizer } from './internal/mersenne';
-import type { LocaleProxy } from './locale-proxy';
-import { createLocaleProxy } from './locale-proxy';
+import { createLocaleProxy, type LocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
+import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
@@ -33,6 +32,7 @@ import { WordModule } from './modules/word';
 import type { Randomizer } from './randomizer';
 import { SimpleFaker } from './simple-faker';
 import { mergeLocales } from './utils/merge-locales';
+import { generateMersenne53Randomizer } from './utils/mersenne';
 
 /**
  * This is Faker's main class containing all modules that can be used to generate data.
@@ -64,6 +64,7 @@ export class Faker extends SimpleFaker {
 
   readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
+  readonly book: BookModule = new BookModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);

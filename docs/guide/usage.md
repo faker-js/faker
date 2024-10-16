@@ -32,6 +32,11 @@ For more information on selecting and customizing a locale, please refer to our 
 
 If you want to try it yourself, you can open your browser console via `Ctrl + Shift + J` / `F12`.
 
+On our website, you can load faker into the browser console
+
+- by using `await enableFaker()`
+- or using the following code:
+
 ```js
 const { faker } = await import('https://esm.sh/@faker-js/faker');
 
@@ -74,7 +79,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v9.0.1"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v9.0.3"`.
 :::
 
 ### Alternative CDN links

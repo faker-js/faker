@@ -14,8 +14,6 @@ This is the migration guide for upgrading from v8 to v9.
 
 :::
 
-v9 has not yet been released. This page contains a work-in-progress list of breaking changes in v9.
-
 ## General Breaking Changes
 
 ### Requires Node v18+
@@ -199,10 +197,10 @@ We renamed the files to match their actual content instead of their hypothetical
 If you are using the public methods, no changes are required.
 You only need to change your code if you are accessing the raw definitions e.g. in `faker.helpers.fake()`.
 
-| Before                    | After                                  |
-| ------------------------- | -------------------------------------- |
-| `location.company.prefix` | `location.company.category`            |
-| `location.company.suffix` | `location.direction.legal_entity_type` |
+| Before           | After                       |
+| ---------------- | --------------------------- |
+| `company.prefix` | `company.category`          |
+| `company.suffix` | `company.legal_entity_type` |
 
 ::: info Note
 In some locales `prefix`es and `suffix`es might have been swapped, so the mapping might be wrong for those.
