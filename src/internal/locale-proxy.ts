@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import type { LocaleDefinition } from '../definitions';
 import { FakerError } from '../errors/faker-error';
 
 /**
  * A proxy for LocaleDefinition that marks all properties as required and throws an error when an entry is accessed that is not defined.
+ *
+ * @deprecated Use `faker.fakerCore.locale` and `resolveLocaleData()` instead.
  */
 export type LocaleProxy = Readonly<{
   [key in keyof LocaleDefinition]-?: LocaleProxyCategory<LocaleDefinition[key]>;
