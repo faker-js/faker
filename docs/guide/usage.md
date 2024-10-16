@@ -32,6 +32,11 @@ For more information on selecting and customizing a locale, please refer to our 
 
 If you want to try it yourself, you can open your browser console via `Ctrl + Shift + J` / `F12`.
 
+On our website, you can load faker into the browser console
+
+- by using `await enableFaker()`
+- or using the following code:
+
 ```js
 const { faker } = await import('https://esm.sh/@faker-js/faker');
 
