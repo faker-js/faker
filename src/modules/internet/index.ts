@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
+import { toBase64Url } from '../../internal/base64';
 import { deprecated } from '../../internal/deprecated';
-import { toBase64 } from '../../internal/base64';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
@@ -1114,8 +1114,8 @@ export class InternetModule extends ModuleBase {
       },
     } = options;
 
-    const encodedHeader = toBase64(JSON.stringify(header));
-    const encodedPayload = toBase64(JSON.stringify(payload));
+    const encodedHeader = toBase64Url(JSON.stringify(header));
+    const encodedPayload = toBase64Url(JSON.stringify(payload));
     const signature = this.faker.string.alphanumeric(64);
 
     return `${encodedHeader}.${encodedPayload}.${signature}`;
