@@ -1,4 +1,5 @@
 import { getDefaultRefDate } from './get-default-ref-date';
+import { resolveLocaleData } from './resolve-locale-data';
 import { setDefaultRefDate } from './set-default-ref-date';
 
 /**
@@ -6,5 +7,6 @@ import { setDefaultRefDate } from './set-default-ref-date';
  */
 export const utilsModule = {
   getDefaultRefDate,
+  resolveLocaleData,
   setDefaultRefDate,
 };
