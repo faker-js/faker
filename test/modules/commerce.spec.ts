@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -54,7 +54,9 @@ describe('commerce', () => {
       describe(`department()`, () => {
         it('should return random value from department array', () => {
           const department = faker.commerce.department();
-          expect(faker.definitions.commerce.department).toContain(department);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'department')
+          ).toContain(department);
         });
       });
 
@@ -64,15 +66,18 @@ describe('commerce', () => {
           expect(name.split(' ').length).toBeGreaterThanOrEqual(3);
 
           const parts = name.split(' ');
-          expect(faker.definitions.commerce.product_name.adjective).toContain(
-            parts[0]
-          );
-          expect(faker.definitions.commerce.product_name.material).toContain(
-            parts[1]
-          );
-          expect(faker.definitions.commerce.product_name.product).toContain(
-            parts[2]
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'product_name')
+              .adjective
+          ).toContain(parts[0]);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'product_name')
+              .material
+          ).toContain(parts[1]);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'product_name')
+              .product
+          ).toContain(parts[2]);
         });
       });
 
@@ -162,27 +167,30 @@ describe('commerce', () => {
       describe(`productAdjective()`, () => {
         it('should return random value from product adjective array', () => {
           const actual = faker.commerce.productAdjective();
-          expect(faker.definitions.commerce.product_name.adjective).toContain(
-            actual
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'product_name')
+              .adjective
+          ).toContain(actual);
         });
       });
 
       describe(`productMaterial()`, () => {
         it('should return random value from product material array', () => {
           const actual = faker.commerce.productMaterial();
-          expect(faker.definitions.commerce.product_name.material).toContain(
-            actual
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'product_name')
+              .material
+          ).toContain(actual);
         });
       });
 
       describe(`product()`, () => {
         it('should return random value from product array', () => {
           const actual = faker.commerce.product();
-          expect(faker.definitions.commerce.product_name.product).toContain(
-            actual
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'commerce', 'product_name')
+              .product
+          ).toContain(actual);
         });
       });
 

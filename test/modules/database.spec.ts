@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -18,7 +18,9 @@ describe('database', () => {
           const column = faker.database.column();
           expect(column).toBeTruthy();
           expect(column).toBeTypeOf('string');
-          expect(faker.definitions.database.column).toContain(column);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'database', 'column')
+          ).toContain(column);
         });
       });
 
@@ -27,7 +29,9 @@ describe('database', () => {
           const collation = faker.database.collation();
           expect(collation).toBeTruthy();
           expect(collation).toBeTypeOf('string');
-          expect(faker.definitions.database.collation).toContain(collation);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'database', 'collation')
+          ).toContain(collation);
         });
       });
 
@@ -36,7 +40,9 @@ describe('database', () => {
           const engine = faker.database.engine();
           expect(engine).toBeTruthy();
           expect(engine).toBeTypeOf('string');
-          expect(faker.definitions.database.engine).toContain(engine);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'database', 'engine')
+          ).toContain(engine);
         });
       });
 
@@ -45,7 +51,9 @@ describe('database', () => {
           const type = faker.database.type();
           expect(type).toBeTruthy();
           expect(type).toBeTypeOf('string');
-          expect(faker.definitions.database.type).toContain(type);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'database', 'type')
+          ).toContain(type);
         });
       });
 

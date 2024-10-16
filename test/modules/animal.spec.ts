@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -34,7 +34,9 @@ describe('animal', () => {
       describe.each(functionNames)('%s()', (functionName) => {
         it(`should return random value from ${functionName} array`, () => {
           const actual = faker.animal[functionName]();
-          expect(faker.definitions.animal[functionName]).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'animal', functionName)
+          ).toContain(actual);
         });
       });
     }

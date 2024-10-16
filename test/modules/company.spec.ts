@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -64,7 +64,9 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.adjective).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'adjective')
+          ).toContain(actual);
         });
       });
 
@@ -74,7 +76,9 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.descriptor).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'descriptor')
+          ).toContain(actual);
         });
       });
 
@@ -84,7 +88,9 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.noun).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'noun')
+          ).toContain(actual);
         });
       });
 
@@ -94,7 +100,9 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.buzz_adjective).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'buzz_adjective')
+          ).toContain(actual);
         });
       });
 
@@ -104,7 +112,9 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.buzz_verb).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'buzz_verb')
+          ).toContain(actual);
         });
       });
 
@@ -114,7 +124,9 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.buzz_noun).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'buzz_noun')
+          ).toContain(actual);
         });
       });
     }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -39,9 +39,9 @@ describe('vehicle', () => {
 
           expect(manufacturer).toBeTruthy();
           expect(manufacturer).toBeTypeOf('string');
-          expect(faker.definitions.vehicle.manufacturer).toContain(
-            manufacturer
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'vehicle', 'manufacturer')
+          ).toContain(manufacturer);
         });
       });
 
@@ -51,7 +51,9 @@ describe('vehicle', () => {
 
           expect(model).toBeTruthy();
           expect(model).toBeTypeOf('string');
-          expect(faker.definitions.vehicle.model).toContain(model);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'vehicle', 'model')
+          ).toContain(model);
         });
       });
 
@@ -61,7 +63,9 @@ describe('vehicle', () => {
 
           expect(type).toBeTruthy();
           expect(type).toBeTypeOf('string');
-          expect(faker.definitions.vehicle.type).toContain(type);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'vehicle', 'type')
+          ).toContain(type);
         });
       });
 
@@ -71,7 +75,9 @@ describe('vehicle', () => {
 
           expect(fuel).toBeTruthy();
           expect(fuel).toBeTypeOf('string');
-          expect(faker.definitions.vehicle.fuel).toContain(fuel);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'vehicle', 'fuel')
+          ).toContain(fuel);
         });
       });
 
@@ -81,7 +87,9 @@ describe('vehicle', () => {
 
           expect(color).toBeTruthy();
           expect(color).toBeTypeOf('string');
-          expect(faker.definitions.color.human).toContain(color);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'color', 'human')
+          ).toContain(color);
         });
       });
 
@@ -120,7 +128,9 @@ describe('vehicle', () => {
 
           expect(bicycle).toBeTruthy();
           expect(bicycle).toBeTypeOf('string');
-          expect(faker.definitions.vehicle.bicycle_type).toContain(bicycle);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'vehicle', 'bicycle_type')
+          ).toContain(bicycle);
         });
       });
     }

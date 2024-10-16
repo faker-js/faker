@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -43,7 +43,9 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.lorem.word).toContain(actual);
+          expect(resolveLocaleData(faker.fakerCore, 'lorem', 'word')).toContain(
+            actual
+          );
         });
 
         // INFO @Shinigami92 2022-02-11: Seems there are only words with a max length of 14 characters
@@ -54,7 +56,9 @@ describe('lorem', () => {
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
-            expect(faker.definitions.lorem.word).toContain(actual);
+            expect(
+              resolveLocaleData(faker.fakerCore, 'lorem', 'word')
+            ).toContain(actual);
             expect(actual).toHaveLength(length);
           }
         );
@@ -72,7 +76,9 @@ describe('lorem', () => {
           expect(words).toHaveLength(3);
 
           for (const word of words) {
-            expect(faker.definitions.lorem.word).toContain(word);
+            expect(
+              resolveLocaleData(faker.fakerCore, 'lorem', 'word')
+            ).toContain(word);
           }
         });
 
@@ -89,7 +95,9 @@ describe('lorem', () => {
             expect(words).toHaveLength(num);
 
             for (const word of words) {
-              expect(faker.definitions.lorem.word).toContain(word);
+              expect(
+                resolveLocaleData(faker.fakerCore, 'lorem', 'word')
+              ).toContain(word);
             }
           }
         );
@@ -106,7 +114,9 @@ describe('lorem', () => {
           expect(words.length).toBeLessThanOrEqual(20);
 
           for (const word of words) {
-            expect(faker.definitions.lorem.word).toContain(word);
+            expect(
+              resolveLocaleData(faker.fakerCore, 'lorem', 'word')
+            ).toContain(word);
           }
         });
       });

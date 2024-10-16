@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CssFunction, CssSpace, faker } from '../../src';
+import { CssFunction, CssSpace, faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -31,14 +31,18 @@ describe('color', () => {
       describe(`human()`, () => {
         it('should return random human readable color from human color array', () => {
           const color = faker.color.human();
-          expect(faker.definitions.color.human).toContain(color);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'color', 'human')
+          ).toContain(color);
         });
       });
 
       describe(`space()`, () => {
         it('should return random color space from color space array', () => {
           const space = faker.color.space();
-          expect(faker.definitions.color.space).toContain(space);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'color', 'space')
+          ).toContain(space);
         });
       });
 

@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { allFakers, faker } from '../../src';
+import { allFakers, faker, resolveLocaleData } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import { IPv4Network } from '../../src/modules/internet';
 import { seededTests } from '../support/seeded-runs';
@@ -168,7 +168,9 @@ describe('internet', () => {
           expect(email).toSatisfy(validator.isEmail);
 
           const [, suffix] = email.split('@');
-          expect(faker.definitions.internet.free_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'free_email')
+          ).toContain(suffix);
         });
 
         it.each(Object.entries(allFakers))(
@@ -199,7 +201,9 @@ describe('internet', () => {
           expect(prefix).toMatch(
             /^(Aiden\.Harann55((\d{1,2})|([._][A-Za-z]*(\d{1,2})?)))/
           );
-          expect(faker.definitions.internet.free_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'free_email')
+          ).toContain(suffix);
         });
 
         it('should not allow an email that starts or ends with a .', () => {
@@ -244,7 +248,9 @@ describe('internet', () => {
           expect(prefix).includes('Aiden');
           expect(prefix).includes('Harann');
           expect(prefix).toMatch(/^Aiden[._]Harann\d*/);
-          expect(faker.definitions.internet.free_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'free_email')
+          ).toContain(suffix);
         });
 
         it('should return a valid email for very long names', () => {
@@ -286,7 +292,9 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
-          expect(faker.definitions.internet.free_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'free_email')
+          ).toContain(suffix);
         });
       });
 
@@ -301,7 +309,9 @@ describe('internet', () => {
           const suffix = email.split('@')[1];
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'example_email')
+          ).toContain(suffix);
         });
 
         it('should return an email with the example suffix and given firstName', () => {
@@ -316,7 +326,9 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'example_email')
+          ).toContain(suffix);
           expect(prefix).toMatch(/^Aiden.Harann55/);
         });
 
@@ -335,7 +347,9 @@ describe('internet', () => {
           expect(email).includes('Harann');
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'example_email')
+          ).toContain(suffix);
           expect(prefix).toMatch(/^Aiden[._]Harann\d*/);
         });
 
@@ -353,7 +367,9 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'example_email')
+          ).toContain(suffix);
           expect(prefix).includes('Mike');
           expect(prefix).includes('Smith');
           expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
@@ -631,7 +647,9 @@ describe('internet', () => {
           const [prefix, suffix] = domainName.split('.');
 
           expect(prefix).toSatisfy(validator.isSlug);
-          expect(faker.definitions.internet.domain_suffix).toContain(suffix);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'domain_suffix')
+          ).toContain(suffix);
         });
       });
 
@@ -641,9 +659,9 @@ describe('internet', () => {
 
           expect(domainSuffix).toBeTruthy();
           expect(domainSuffix).toBeTypeOf('string');
-          expect(faker.definitions.internet.domain_suffix).toContain(
-            domainSuffix
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'internet', 'domain_suffix')
+          ).toContain(domainSuffix);
         });
       });
 

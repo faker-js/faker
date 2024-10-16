@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Aircraft, faker } from '../../src';
+import { Aircraft, faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -47,21 +47,27 @@ describe('airline', () => {
       describe(`airport()`, () => {
         it('should return a random value from airport array', () => {
           const airport = faker.airline.airport();
-          expect(faker.definitions.airline.airport).toContainEqual(airport);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'airline', 'airport')
+          ).toContainEqual(airport);
         });
       });
 
       describe(`airline()`, () => {
         it('should return a random value from airline array', () => {
           const airline = faker.airline.airline();
-          expect(faker.definitions.airline.airline).toContainEqual(airline);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'airline', 'airline')
+          ).toContainEqual(airline);
         });
       });
 
       describe(`airplane()`, () => {
         it('should return a random value from airplane array', () => {
           const airplane = faker.airline.airplane();
-          expect(faker.definitions.airline.airplane).toContainEqual(airplane);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'airline', 'airplane')
+          ).toContainEqual(airplane);
         });
       });
 
