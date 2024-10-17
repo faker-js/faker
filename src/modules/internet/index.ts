@@ -1066,9 +1066,9 @@ export class InternetModule extends ModuleBase {
        *
        * @default
        * {
-       *    alg: faker.internet.jwtAlgorithm(),
-       *    typ: 'JWT',
-       * };
+       *   alg: faker.internet.jwtAlgorithm(),
+       *   typ: 'JWT'
+       * }
        */
       header?: Record<string, unknown>;
       /**
@@ -1076,14 +1076,14 @@ export class InternetModule extends ModuleBase {
        *
        * @default
        * {
-       *    iat: faker.date.recent(),
-       *    exp: faker.date.soon(),
-       *    nbf: faker.date.anytime(),
-       *    iss: faker.company.name(),
-       *    sub: faker.string.uuid(),
-       *    aud: faker.string.uuid(),
-       *    jti: faker.string.uuid(),
-       * };
+       *   iat: faker.date.recent(),
+       *   exp: faker.date.soon(),
+       *   nbf: faker.date.anytime(),
+       *   iss: faker.company.name(),
+       *   sub: faker.string.uuid(),
+       *   aud: faker.string.uuid(),
+       *   jti: faker.string.uuid()
+       * }
        */
       payload?: Record<string, unknown>;
       /**
