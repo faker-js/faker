@@ -207,7 +207,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       'no-undef': 'error',
     },
     languageOptions: {
-      // Don't allow any globals in our TypeScript files
+      // Don't allow any globals in our TypeScript files - unless explicitly ignored
       globals: {},
     },
   },
