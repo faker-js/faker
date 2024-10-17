@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -19,7 +19,9 @@ describe('music', () => {
 
           expect(album).toBeTruthy();
           expect(album).toBeTypeOf('string');
-          expect(faker.definitions.music.album).toContain(album);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'music', 'album')
+          ).toContain(album);
         });
       });
 
@@ -29,7 +31,9 @@ describe('music', () => {
 
           expect(artist).toBeTruthy();
           expect(artist).toBeTypeOf('string');
-          expect(faker.definitions.music.artist).toContain(artist);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'music', 'artist')
+          ).toContain(artist);
         });
       });
 
@@ -39,7 +43,9 @@ describe('music', () => {
 
           expect(genre).toBeTruthy();
           expect(genre).toBeTypeOf('string');
-          expect(faker.definitions.music.genre).toContain(genre);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'music', 'genre')
+          ).toContain(genre);
         });
       });
 
@@ -49,7 +55,9 @@ describe('music', () => {
 
           expect(songName).toBeTruthy();
           expect(songName).toBeTypeOf('string');
-          expect(faker.definitions.music.song_name).toContain(songName);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'music', 'song_name')
+          ).toContain(songName);
         });
       });
     }

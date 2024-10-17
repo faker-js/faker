@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -32,7 +32,9 @@ describe('food', () => {
       describe('adjective', () => {
         it(`should return random value from adjective array`, () => {
           const actual = faker.food.adjective();
-          expect(faker.definitions.food.adjective).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'food', 'adjective')
+          ).toContain(actual);
         });
       });
 
@@ -46,42 +48,54 @@ describe('food', () => {
       describe('ethnicCategory', () => {
         it(`should return random value from ethnic_category array`, () => {
           const actual = faker.food.ethnicCategory();
-          expect(faker.definitions.food.ethnic_category).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'food', 'ethnic_category')
+          ).toContain(actual);
         });
       });
 
       describe('fruit', () => {
         it(`should return random value from fruit array`, () => {
           const actual = faker.food.fruit();
-          expect(faker.definitions.food.fruit).toContain(actual);
+          expect(resolveLocaleData(faker.fakerCore, 'food', 'fruit')).toContain(
+            actual
+          );
         });
       });
 
       describe('ingredient', () => {
         it(`should return random value from ingredient array`, () => {
           const actual = faker.food.ingredient();
-          expect(faker.definitions.food.ingredient).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'food', 'ingredient')
+          ).toContain(actual);
         });
       });
 
       describe('meat', () => {
         it(`should return random value from meat array`, () => {
           const actual = faker.food.meat();
-          expect(faker.definitions.food.meat).toContain(actual);
+          expect(resolveLocaleData(faker.fakerCore, 'food', 'meat')).toContain(
+            actual
+          );
         });
       });
 
       describe('spice', () => {
         it(`should return random value from spice array`, () => {
           const actual = faker.food.spice();
-          expect(faker.definitions.food.spice).toContain(actual);
+          expect(resolveLocaleData(faker.fakerCore, 'food', 'spice')).toContain(
+            actual
+          );
         });
       });
 
       describe('vegetable', () => {
         it(`should return random value from vegetable array`, () => {
           const actual = faker.food.vegetable();
-          expect(faker.definitions.food.vegetable).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'food', 'vegetable')
+          ).toContain(actual);
         });
       });
     }

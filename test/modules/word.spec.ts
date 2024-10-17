@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { filterWordListByLength } from '../../src/modules/word/filter-word-list-by-length';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -128,7 +128,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.adjective).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'word', 'adjective')
+          ).toContain(actual);
         });
       });
 
@@ -138,7 +140,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.adverb).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'word', 'adverb')
+          ).toContain(actual);
         });
       });
 
@@ -148,7 +152,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.conjunction).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'word', 'conjunction')
+          ).toContain(actual);
         });
       });
 
@@ -158,7 +164,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.interjection).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'word', 'interjection')
+          ).toContain(actual);
         });
       });
 
@@ -168,7 +176,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.noun).toContain(actual);
+          expect(resolveLocaleData(faker.fakerCore, 'word', 'noun')).toContain(
+            actual
+          );
         });
       });
 
@@ -178,7 +188,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.preposition).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'word', 'preposition')
+          ).toContain(actual);
         });
       });
 
@@ -188,7 +200,9 @@ describe('word', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.word.verb).toContain(actual);
+          expect(resolveLocaleData(faker.fakerCore, 'word', 'verb')).toContain(
+            actual
+          );
         });
       });
     }

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { FakerError, faker } from '../../src';
+import { FakerError, faker, resolveLocaleData } from '../../src';
 import { fakeEval } from '../../src/modules/helpers/eval';
 
 describe('fakeEval()', () => {
@@ -96,22 +96,28 @@ describe('fakeEval()', () => {
   it('supports returning complex objects', () => {
     const actual = fakeEval('airline.airline', faker);
     expect(actual).toBeTypeOf('object');
-    expect(faker.definitions.airline.airline).toContain(actual);
+    expect(resolveLocaleData(faker.fakerCore, 'airline', 'airline')).toContain(
+      actual
+    );
   });
 
   it('supports patterns after a function call', () => {
     const actual = fakeEval('airline.airline().name', faker);
     expect(actual).toBeTypeOf('string');
-    expect(faker.definitions.airline.airline.map(({ name }) => name)).toContain(
-      actual
-    ); // function().name
+    expect(
+      resolveLocaleData(faker.fakerCore, 'airline', 'airline').map(
+        ({ name }) => name
+      )
+    ).toContain(actual); // function().name
   });
 
   it('supports patterns after a function reference', () => {
     const actual = fakeEval('airline.airline.iataCode', faker);
     expect(actual).toBeTypeOf('string');
     expect(
-      faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
+      resolveLocaleData(faker.fakerCore, 'airline', 'airline').map(
+        ({ iataCode }) => iataCode
+      )
     ).toContain(actual);
   });
 
@@ -125,12 +131,14 @@ describe('fakeEval()', () => {
 
   it('requires a function for parameters', () => {
     // TODO @ST-DDT 2023-12-11: Replace in v10
-    // expect(faker.definitions.person.first_name.generic).toBeDefined();
+    // expect(resolveLocaleData(faker.fakerCore, 'person', 'first_name').generic).toBeDefined();
     //expect(() => fakeEval('person.first_name().generic', faker)).toThrow(
     //  new FakerError(`Cannot resolve expression 'person.first_name'`)
     //  );
     const actual = fakeEval('person.first_name().generic', faker);
-    expect(faker.definitions.person.first_name.generic ?? []).toContain(actual);
+    expect(
+      resolveLocaleData(faker.fakerCore, 'person', 'first_name').generic ?? []
+    ).toContain(actual);
   });
 
   it('requires a valid expression (missing value)', () => {

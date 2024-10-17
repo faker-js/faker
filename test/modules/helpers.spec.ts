@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FakerError, faker } from '../../src';
+import { FakerError, faker, resolveLocaleData } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -676,7 +676,7 @@ describe('helpers', () => {
         it('definition array returns unique array', () => {
           const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(
-            faker.definitions.hacker.noun,
+            resolveLocaleData(faker.fakerCore, 'hacker', 'noun'),
             length
           );
           expect(unique).not.toContainDuplicates();
@@ -945,7 +945,9 @@ describe('helpers', () => {
           const actual = faker.helpers.fake('{{airline.airline.iataCode}}');
           expect(actual).toBeTypeOf('string');
           expect(
-            faker.definitions.airline.airline.map(({ iataCode }) => iataCode)
+            resolveLocaleData(faker.fakerCore, 'airline', 'airline').map(
+              ({ iataCode }) => iataCode
+            )
           ).toContain(actual);
         });
 
@@ -954,15 +956,15 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings', () => {
-          expect(faker.definitions.cell_phone?.formats).toContain(
-            faker.helpers.fake('{{cell_phone.formats}}')
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'cell_phone', 'formats')
+          ).toContain(faker.helpers.fake('{{cell_phone.formats}}'));
         });
 
         it('should be able to return locale definition strings that starts with the name of an existing module', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{location.city_name}}')
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'location', 'city_name')
+          ).toContain(faker.helpers.fake('{{location.city_name}}'));
         });
 
         it('should be able to pass multiple static templates', () => {
@@ -972,7 +974,9 @@ describe('helpers', () => {
         });
 
         it('should be able to pass multiple dynamic templates', () => {
-          expect(faker.definitions.company.buzz_noun).toContain(
+          expect(
+            resolveLocaleData(faker.fakerCore, 'company', 'buzz_noun')
+          ).toContain(
             faker.helpers.fake([
               '{{company.buzz_noun}}',
               '{{company.buzzNoun}}',
@@ -1021,13 +1025,16 @@ describe('helpers', () => {
         });
 
         it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.state).toContain(
-            faker.helpers.fake('{{address.state}}')
-          );
+          expect(
+            resolveLocaleData(faker.fakerCore, 'location', 'state')
+          ).toContain(faker.helpers.fake('{{address.state}}'));
           expect([
-            ...(faker.definitions.person.first_name.female ?? []),
-            ...(faker.definitions.person.first_name.generic ?? []),
-            ...(faker.definitions.person.first_name.male ?? []),
+            ...(resolveLocaleData(faker.fakerCore, 'person', 'first_name')
+              .female ?? []),
+            ...(resolveLocaleData(faker.fakerCore, 'person', 'first_name')
+              .generic ?? []),
+            ...(resolveLocaleData(faker.fakerCore, 'person', 'first_name')
+              .male ?? []),
           ]).toContain(faker.helpers.fake('{{name.firstName}}'));
         });
 

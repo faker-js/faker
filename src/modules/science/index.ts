@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * The possible definitions related to elements.
@@ -49,7 +50,7 @@ export class ScienceModule extends ModuleBase {
    */
   chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemical_element
+      resolveLocaleData(this.faker.fakerCore, 'science', 'chemical_element')
     );
   }
 
@@ -64,6 +65,8 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   unit(): Unit {
-    return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'science', 'unit')
+    );
   }
 }

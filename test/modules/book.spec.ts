@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -19,7 +19,9 @@ describe('book', () => {
 
           expect(author).toBeTruthy();
           expect(author).toBeTypeOf('string');
-          expect(faker.definitions.book.author).toContain(author);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'book', 'author')
+          ).toContain(author);
         });
       });
 
@@ -29,7 +31,9 @@ describe('book', () => {
 
           expect(format).toBeTruthy();
           expect(format).toBeTypeOf('string');
-          expect(faker.definitions.book.format).toContain(format);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'book', 'format')
+          ).toContain(format);
         });
       });
 
@@ -39,7 +43,9 @@ describe('book', () => {
 
           expect(genre).toBeTruthy();
           expect(genre).toBeTypeOf('string');
-          expect(faker.definitions.book.genre).toContain(genre);
+          expect(resolveLocaleData(faker.fakerCore, 'book', 'genre')).toContain(
+            genre
+          );
         });
       });
 
@@ -49,7 +55,9 @@ describe('book', () => {
 
           expect(publisher).toBeTruthy();
           expect(publisher).toBeTypeOf('string');
-          expect(faker.definitions.book.publisher).toContain(publisher);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'book', 'publisher')
+          ).toContain(publisher);
         });
       });
 
@@ -59,7 +67,9 @@ describe('book', () => {
 
           expect(series).toBeTruthy();
           expect(series).toBeTypeOf('string');
-          expect(faker.definitions.book.series).toContain(series);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'book', 'series')
+          ).toContain(series);
         });
       });
 
@@ -69,7 +79,9 @@ describe('book', () => {
 
           expect(title).toBeTruthy();
           expect(title).toBeTypeOf('string');
-          expect(faker.definitions.book.title).toContain(title);
+          expect(resolveLocaleData(faker.fakerCore, 'book', 'title')).toContain(
+            title
+          );
         });
       });
     }

@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate book related entries.
@@ -26,7 +27,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   author(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.author);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'book', 'author')
+    );
   }
 
   /**
@@ -38,7 +41,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   format(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.format);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'book', 'format')
+    );
   }
 
   /**
@@ -50,7 +55,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.genre);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'book', 'genre')
+    );
   }
 
   /**
@@ -63,7 +70,7 @@ export class BookModule extends ModuleBase {
    */
   publisher(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.book.publisher
+      resolveLocaleData(this.faker.fakerCore, 'book', 'publisher')
     );
   }
 
@@ -76,7 +83,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   series(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.series);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'book', 'series')
+    );
   }
 
   /**
@@ -88,6 +97,8 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   title(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.title);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'book', 'title')
+    );
   }
 }

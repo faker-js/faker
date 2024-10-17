@@ -138,6 +138,10 @@ ${examples}`;
                     ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
                   ];
 
+                  if (examples.includes('resolveLocaleData')) {
+                    imports.push('resolveLocaleData');
+                  }
+
                   if (imports.length > 0) {
                     examples = `import { ${imports.join(
                       ', '

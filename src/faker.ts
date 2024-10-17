@@ -60,6 +60,12 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker extends SimpleFaker {
+  /**
+   * The definitions for the current locale.
+   *
+   * @deprecated Use `faker.fakerCore.locale` and `resolveLocaleData()` instead.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   readonly definitions: LocaleProxy;
 
   readonly airline: AirlineModule = new AirlineModule(this);
@@ -87,8 +93,12 @@ export class Faker extends SimpleFaker {
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
 
+  /**
+   * The raw definitions for the current locale.
+   *
+   * @deprecated Use `faker.fakerCore.locale` instead.
+   */
   get rawDefinitions(): LocaleDefinition {
-    // TODO @ST-DDT 2024-05-14: Should we deprecate this?
     return this.fakerCore.locale;
   }
 
@@ -201,6 +211,7 @@ export class Faker extends SimpleFaker {
     this.fakerCore = fakerCore;
     // super({ fakerCore });
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     this.definitions = createLocaleProxy(this.rawDefinitions);
   }
 

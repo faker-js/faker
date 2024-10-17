@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {
   BitcoinAddressFamily,
@@ -160,7 +161,7 @@ export class FinanceModule extends ModuleBase {
   accountName(): string {
     return [
       this.faker.helpers.arrayElement(
-        this.faker.definitions.finance.account_type
+        resolveLocaleData(this.faker.fakerCore, 'finance', 'account_type')
       ),
       'Account',
     ].join(' ');
@@ -425,7 +426,7 @@ export class FinanceModule extends ModuleBase {
    */
   transactionType(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.finance.transaction_type
+      resolveLocaleData(this.faker.fakerCore, 'finance', 'transaction_type')
     );
   }
 
@@ -443,7 +444,7 @@ export class FinanceModule extends ModuleBase {
    */
   currency(): Currency {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.finance.currency
+      resolveLocaleData(this.faker.fakerCore, 'finance', 'currency')
     );
   }
 
@@ -650,7 +651,11 @@ export class FinanceModule extends ModuleBase {
     const { issuer = '' } = options;
 
     let format: string;
-    const localeFormat = this.faker.definitions.finance.credit_card;
+    const localeFormat = resolveLocaleData(
+      this.faker.fakerCore,
+      'finance',
+      'credit_card'
+    );
     const normalizedIssuer = issuer.toLowerCase();
     if (normalizedIssuer in localeFormat) {
       format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
@@ -690,7 +695,7 @@ export class FinanceModule extends ModuleBase {
    */
   creditCardIssuer(): string {
     return this.faker.helpers.objectKey(
-      this.faker.definitions.finance.credit_card
+      resolveLocaleData(this.faker.fakerCore, 'finance', 'credit_card')
     ) as string;
   }
 

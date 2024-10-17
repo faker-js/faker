@@ -1,6 +1,7 @@
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
 
@@ -165,7 +166,7 @@ export class InternetModule extends ModuleBase {
       firstName,
       lastName,
       provider = this.faker.helpers.arrayElement(
-        this.faker.definitions.internet.free_email
+        resolveLocaleData(this.faker.fakerCore, 'internet', 'free_email')
       ),
       allowSpecialCharacters = false,
     } = options;
@@ -240,7 +241,7 @@ export class InternetModule extends ModuleBase {
     const { firstName, lastName, allowSpecialCharacters = false } = options;
 
     const provider = this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.example_email
+      resolveLocaleData(this.faker.fakerCore, 'internet', 'example_email')
     );
 
     return this.email({
@@ -506,19 +507,21 @@ export class InternetModule extends ModuleBase {
       /**
        * A list of the HTTP status code types that should be used.
        *
-       * @default Object.keys(faker.definitions.internet.http_status_code)
+       * @default Object.keys(resolveLocaleData(faker.fakerCore, 'internet', 'http_status_code'))
        */
       types?: ReadonlyArray<HTTPStatusCodeType>;
     } = {}
   ): number {
     const {
       types = Object.keys(
-        this.faker.definitions.internet.http_status_code
+        resolveLocaleData(this.faker.fakerCore, 'internet', 'http_status_code')
       ) as HTTPStatusCodeType[],
     } = options;
     const httpStatusCodeType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.http_status_code[httpStatusCodeType]
+      resolveLocaleData(this.faker.fakerCore, 'internet', 'http_status_code')[
+        httpStatusCodeType
+      ]
     );
   }
 
@@ -580,7 +583,7 @@ export class InternetModule extends ModuleBase {
    */
   domainSuffix(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.domain_suffix
+      resolveLocaleData(this.faker.fakerCore, 'internet', 'domain_suffix')
     );
   }
 
@@ -1006,17 +1009,19 @@ export class InternetModule extends ModuleBase {
       /**
        * A list of the emoji types that should be used.
        *
-       * @default Object.keys(faker.definitions.internet.emoji)
+       * @default Object.keys(resolveLocaleData(faker.fakerCore, 'internet', 'emoji'))
        */
       types?: ReadonlyArray<EmojiType>;
     } = {}
   ): string {
     const {
-      types = Object.keys(this.faker.definitions.internet.emoji) as EmojiType[],
+      types = Object.keys(
+        resolveLocaleData(this.faker.fakerCore, 'internet', 'emoji')
+      ) as EmojiType[],
     } = options;
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.emoji[emojiType]
+      resolveLocaleData(this.faker.fakerCore, 'internet', 'emoji')[emojiType]
     );
   }
 }

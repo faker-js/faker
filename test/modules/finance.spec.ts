@@ -1,6 +1,6 @@
 import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
-import { faker, fakerZH_CN } from '../../src';
+import { faker, fakerZH_CN, resolveLocaleData } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
@@ -510,9 +510,11 @@ describe('finance', () => {
         it('should return a string', () => {
           const issuer = faker.finance.creditCardIssuer();
           expect(issuer).toBeTypeOf('string');
-          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
-            issuer
-          );
+          expect(
+            Object.keys(
+              resolveLocaleData(faker.fakerCore, 'finance', 'credit_card')
+            )
+          ).toContain(issuer);
         });
       });
 

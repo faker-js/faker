@@ -5,6 +5,7 @@ import {
   faker,
   fakerEN_CA,
   fakerEN_US,
+  resolveLocaleData,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -153,7 +154,9 @@ describe('location', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.location.continent).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'location', 'continent')
+          ).toContain(actual);
         });
       });
 
@@ -412,7 +415,9 @@ describe('location', () => {
       describe('timeZone', () => {
         it('should return a random timezone', () => {
           const actual = faker.location.timeZone();
-          expect(faker.definitions.location.time_zone).toContain(actual);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'location', 'time_zone')
+          ).toContain(actual);
         });
       });
     }

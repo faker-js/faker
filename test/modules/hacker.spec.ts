@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -19,7 +19,9 @@ describe('hacker', () => {
 
           expect(abbreviation).toBeTypeOf('string');
           expect(abbreviation.length).toBeGreaterThan(0);
-          expect(faker.definitions.hacker.abbreviation).toContain(abbreviation);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'hacker', 'abbreviation')
+          ).toContain(abbreviation);
         });
       });
 
@@ -29,7 +31,9 @@ describe('hacker', () => {
 
           expect(adjective).toBeTypeOf('string');
           expect(adjective.length).toBeGreaterThan(0);
-          expect(faker.definitions.hacker.adjective).toContain(adjective);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'hacker', 'adjective')
+          ).toContain(adjective);
         });
       });
 
@@ -39,7 +43,9 @@ describe('hacker', () => {
 
           expect(noun).toBeTypeOf('string');
           expect(noun.length).toBeGreaterThan(0);
-          expect(faker.definitions.hacker.noun).toContain(noun);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'hacker', 'noun')
+          ).toContain(noun);
         });
       });
 
@@ -49,7 +55,9 @@ describe('hacker', () => {
 
           expect(verb).toBeTypeOf('string');
           expect(verb.length).toBeGreaterThan(0);
-          expect(faker.definitions.hacker.verb).toContain(verb);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'hacker', 'verb')
+          ).toContain(verb);
         });
       });
 
@@ -59,7 +67,9 @@ describe('hacker', () => {
 
           expect(ingverb).toBeTypeOf('string');
           expect(ingverb.length).toBeGreaterThan(0);
-          expect(faker.definitions.hacker.ingverb).toContain(ingverb);
+          expect(
+            resolveLocaleData(faker.fakerCore, 'hacker', 'ingverb')
+          ).toContain(ingverb);
         });
       });
 

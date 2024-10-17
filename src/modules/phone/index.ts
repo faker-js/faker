@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 import { legacyReplaceSymbolWithNumber } from '../helpers';
 
 /**
@@ -40,7 +41,11 @@ export class PhoneModule extends ModuleBase {
     } = {}
   ): string {
     const { style = 'human' } = options;
-    const formats = this.faker.definitions.phone_number.format;
+    const formats = resolveLocaleData(
+      this.faker.fakerCore,
+      'phone_number',
+      'format'
+    );
 
     const definitions = formats[style];
     if (!definitions) {

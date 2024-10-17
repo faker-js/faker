@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate hacker/IT words and phrases.
@@ -26,7 +27,7 @@ export class HackerModule extends ModuleBase {
    */
   abbreviation(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.abbreviation
+      resolveLocaleData(this.faker.fakerCore, 'hacker', 'abbreviation')
     );
   }
 
@@ -40,7 +41,7 @@ export class HackerModule extends ModuleBase {
    */
   adjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.adjective
+      resolveLocaleData(this.faker.fakerCore, 'hacker', 'adjective')
     );
   }
 
@@ -53,7 +54,9 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   noun(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.noun);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'hacker', 'noun')
+    );
   }
 
   /**
@@ -65,7 +68,9 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   verb(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.verb);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'hacker', 'verb')
+    );
   }
 
   /**
@@ -78,7 +83,7 @@ export class HackerModule extends ModuleBase {
    */
   ingverb(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.ingverb
+      resolveLocaleData(this.faker.fakerCore, 'hacker', 'ingverb')
     );
   }
 
@@ -101,7 +106,7 @@ export class HackerModule extends ModuleBase {
     };
 
     const phrase = this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.phrase
+      resolveLocaleData(this.faker.fakerCore, 'hacker', 'phrase')
     );
     return this.faker.helpers.mustache(phrase, data);
   }

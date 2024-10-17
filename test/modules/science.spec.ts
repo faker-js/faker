@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, resolveLocaleData } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -28,9 +28,11 @@ describe('science', () => {
 
           expect(name).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.chemical_element.find(
-              (element) => element.name === name
-            );
+            resolveLocaleData(
+              faker.fakerCore,
+              'science',
+              'chemical_element'
+            ).find((element) => element.name === name);
           }).toBeTruthy();
         });
 
@@ -39,9 +41,11 @@ describe('science', () => {
 
           expect(symbol).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.chemical_element.find(
-              (element) => element.symbol === symbol
-            );
+            resolveLocaleData(
+              faker.fakerCore,
+              'science',
+              'chemical_element'
+            ).find((element) => element.symbol === symbol);
           }).toBeTruthy();
         });
 
@@ -50,9 +54,11 @@ describe('science', () => {
 
           expect(atomicNumber).toBeTypeOf('number');
           expect(() => {
-            faker.definitions.science.chemical_element.find(
-              (element) => element.atomicNumber === atomicNumber
-            );
+            resolveLocaleData(
+              faker.fakerCore,
+              'science',
+              'chemical_element'
+            ).find((element) => element.atomicNumber === atomicNumber);
           }).toBeTruthy();
         });
       });
@@ -69,7 +75,9 @@ describe('science', () => {
 
           expect(name).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.unit.find((unit) => unit.name === name);
+            resolveLocaleData(faker.fakerCore, 'science', 'unit').find(
+              (unit) => unit.name === name
+            );
           }).toBeTruthy();
         });
 
@@ -78,7 +86,7 @@ describe('science', () => {
 
           expect(symbol).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.unit.find(
+            resolveLocaleData(faker.fakerCore, 'science', 'unit').find(
               (unit) => unit.symbol === symbol
             );
           }).toBeTruthy();

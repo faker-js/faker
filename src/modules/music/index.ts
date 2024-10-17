@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate music related entries.
@@ -27,7 +28,9 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.album);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'music', 'album')
+    );
   }
 
   /**
@@ -39,7 +42,9 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   artist(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.artist);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'music', 'artist')
+    );
   }
 
   /**
@@ -51,7 +56,9 @@ export class MusicModule extends ModuleBase {
    * @since 5.2.0
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
+    return this.faker.helpers.arrayElement(
+      resolveLocaleData(this.faker.fakerCore, 'music', 'genre')
+    );
   }
 
   /**
@@ -64,7 +71,7 @@ export class MusicModule extends ModuleBase {
    */
   songName(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.music.song_name
+      resolveLocaleData(this.faker.fakerCore, 'music', 'song_name')
     );
   }
 }

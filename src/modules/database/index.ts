@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import { resolveLocaleData } from '../../utils/resolve-locale-data';
 
 /**
  * Module to generate database related entries.
@@ -20,7 +21,7 @@ export class DatabaseModule extends ModuleBase {
    */
   column(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.column
+      resolveLocaleData(this.faker.fakerCore, 'database', 'column')
     );
   }
 
@@ -34,7 +35,7 @@ export class DatabaseModule extends ModuleBase {
    */
   type(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.type
+      resolveLocaleData(this.faker.fakerCore, 'database', 'type')
     );
   }
 
@@ -48,7 +49,7 @@ export class DatabaseModule extends ModuleBase {
    */
   collation(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.collation
+      resolveLocaleData(this.faker.fakerCore, 'database', 'collation')
     );
   }
 
@@ -62,7 +63,7 @@ export class DatabaseModule extends ModuleBase {
    */
   engine(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.engine
+      resolveLocaleData(this.faker.fakerCore, 'database', 'engine')
     );
   }
 
