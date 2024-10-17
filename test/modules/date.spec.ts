@@ -461,7 +461,9 @@ describe('date', () => {
         it('should return random value from date.month.wide_context array for context option', () => {
           // Use a locale which has a wide_context array
           const month = fakerAZ.date.month({ context: true });
-          expect(fakerAZ.definitions.date.month.wide_context).toContain(month);
+          expect(
+            resolveLocaleData(fakerAZ.fakerCore, 'date', 'month').wide_context
+          ).toContain(month);
         });
 
         it('should return random value from date.month.abbr array for abbreviated option', () => {
@@ -477,7 +479,9 @@ describe('date', () => {
             abbreviated: true,
             context: true,
           });
-          expect(fakerAZ.definitions.date.month.abbr_context).toContain(month);
+          expect(
+            resolveLocaleData(fakerAZ.fakerCore, 'date', 'month').abbr_context
+          ).toContain(month);
         });
 
         it('should return random value from date.month.wide array for context option when date.month.wide_context array is missing', () => {
@@ -508,9 +512,9 @@ describe('date', () => {
         it('should return random value from date.weekday.wide_context array for context option', () => {
           // Use a locale (e.g. az) which has a wide_context array
           const weekday = fakerAZ.date.weekday({ context: true });
-          expect(fakerAZ.definitions.date.weekday.wide_context).toContain(
-            weekday
-          );
+          expect(
+            resolveLocaleData(fakerAZ.fakerCore, 'date', 'weekday').wide_context
+          ).toContain(weekday);
         });
 
         it('should return random value from date.weekday.abbr array for abbreviated option', () => {
@@ -526,9 +530,9 @@ describe('date', () => {
             abbreviated: true,
             context: true,
           });
-          expect(fakerAZ.definitions.date.weekday.abbr_context).toContain(
-            weekday
-          );
+          expect(
+            resolveLocaleData(fakerAZ.fakerCore, 'date', 'weekday').abbr_context
+          ).toContain(weekday);
         });
 
         it('should return random value from date.weekday.wide array for context option when date.weekday.wide_context array is missing', () => {

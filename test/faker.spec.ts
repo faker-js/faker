@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { Faker, faker } from '../src';
