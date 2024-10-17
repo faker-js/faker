@@ -1041,6 +1041,8 @@ export class InternetModule extends ModuleBase {
   /**
    * Generates a random JWT (JSON Web Token).
    *
+   * Please note that this method generates a random signature instead of a valid one.
+   *
    * @param options The optional options object.
    * @param options.header The Header to use for the token. Defaults to a random object with the following fields: `alg` and `typ`.
    * @param options.payload The Payload to use for the token. Defaults to a random object with the following fields: `iat`, `exp`, `nbf`, `iss`, `sub`, `aud`, and `jti`.
