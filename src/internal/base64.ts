@@ -1,3 +1,4 @@
+/* eslint-disable no-undef -- This file serves as a compatibility layer between environments */
 /**
  * This works the same as `Buffer.from(input).toString('base64')`
  * to work on both Node.js and browser environment.
