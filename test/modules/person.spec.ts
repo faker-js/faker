@@ -61,9 +61,9 @@ describe('person', () => {
 
         it('should return a sex-specific first name', () => {
           const { female = [], male = [] } = resolveLocaleData(
-            fakerAZ.fakerCore,
+            faker.fakerCore,
             'person',
-            'last_name'
+            'first_name'
           );
 
           let name = faker.person.firstName('female');
