@@ -1,5 +1,3 @@
-import type { Randomizer } from '../randomizer';
-
 /**
  * Copyright (c) 2022-2023 Faker
  *
@@ -173,7 +171,7 @@ export class MersenneTwister19937 {
     this.initGenrand(19650218);
     let i = 1;
     let j = 0;
-    let k = this.N > keyLength ? this.N : keyLength;
+    let k = Math.max(this.N, keyLength);
     for (; k; k--) {
       // mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525)) + init_key[j] + j;
       this.mt[i] = this.addition32(
@@ -324,50 +322,4 @@ export class MersenneTwister19937 {
     return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
   }
   // These real versions are due to Isaku Wada, 2002/01/09
-}
-
-/**
- * Generates a MersenneTwister19937 randomizer with 32 bits of precision.
- * This is the default randomizer used by faker prior to v9.0.
- */
-export function generateMersenne32Randomizer(): Randomizer {
-  const twister = new MersenneTwister19937();
-
-  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
-
-  return {
-    next(): number {
-      return twister.genrandReal2();
-    },
-    seed(seed: number | number[]): void {
-      if (typeof seed === 'number') {
-        twister.initGenrand(seed);
-      } else if (Array.isArray(seed)) {
-        twister.initByArray(seed, seed.length);
-      }
-    },
-  };
-}
-
-/**
- * Generates a MersenneTwister19937 randomizer with 53 bits of precision.
- * This is the default randomizer used by faker starting with v9.0.
- */
-export function generateMersenne53Randomizer(): Randomizer {
-  const twister = new MersenneTwister19937();
-
-  twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
-
-  return {
-    next(): number {
-      return twister.genrandRes53();
-    },
-    seed(seed: number | number[]): void {
-      if (typeof seed === 'number') {
-        twister.initGenrand(seed);
-      } else if (Array.isArray(seed)) {
-        twister.initByArray(seed, seed.length);
-      }
-    },
-  };
 }

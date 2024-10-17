@@ -1,12 +1,10 @@
-// @ts-check
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
+import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
-import eslintPluginDeprecation from 'eslint-plugin-deprecation';
+import stylistic from '@stylistic/eslint-plugin';
+import eslintPluginVitest from '@vitest/eslint-plugin';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import eslintPluginVitest from 'eslint-plugin-vitest';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import tseslint from 'typescript-eslint';
@@ -15,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const gitignorePath = resolve(__dirname, '.gitignore');
 
-export default tseslint.config(
+const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#region global
   includeIgnoreFile(gitignorePath),
   {
@@ -26,6 +24,7 @@ export default tseslint.config(
       'docs/.vitepress/components/shims.d.ts',
       'docs/.vitepress/shared/utils/slugify.ts',
       'docs/.vitepress/theme/index.ts',
+      'eslint.config.js',
     ],
   },
   {
@@ -56,7 +55,6 @@ export default tseslint.config(
       '@typescript-eslint': tseslint.plugin,
     },
     languageOptions: {
-      parser: tseslint.parser,
       parserOptions: {
         project: true,
         warnOnUnsupportedTypeScriptVersion: false,
@@ -100,10 +98,6 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/padding-line-between-statements': [
-        'error',
-        { blankLine: 'always', prev: 'block-like', next: '*' },
-      ],
       '@typescript-eslint/prefer-regexp-exec': 'error',
       '@typescript-eslint/restrict-plus-operands': [
         'error',
@@ -129,29 +123,21 @@ export default tseslint.config(
   },
   //#endregion
 
-  //#region deprecation
+  //#region stylistic
   {
     plugins: {
-      deprecation:
-        // https://github.com/gund/eslint-plugin-deprecation/issues/78
-        // @ts-expect-error: Just eat it!
-        fixupPluginRules(eslintPluginDeprecation),
-    },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: true,
-        warnOnUnsupportedTypeScriptVersion: false,
-      },
+      '@stylistic': stylistic,
     },
     rules: {
-      'deprecation/deprecation': 'error',
+      '@stylistic/padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: 'block-like', next: '*' },
+      ],
     },
   },
   //#endregion
 
   //#region unicorn
-  // @ts-expect-error: Ignore for now
   eslintPluginUnicorn.configs['flat/recommended'],
   {
     rules: {
@@ -167,7 +153,6 @@ export default tseslint.config(
 
       // TODO @Shinigami92 2023-09-23: The following rules currently conflict with our code.
       // Each rule should be checked whether it should be enabled/configured and the problems fixed, or stay disabled permanently.
-      'unicorn/better-regex': 'off',
       'unicorn/consistent-function-scoping': 'off',
       'unicorn/no-object-as-default-parameter': 'off',
       'unicorn/prefer-export-from': 'off',
@@ -272,3 +257,5 @@ export default tseslint.config(
   }
   //#endregion
 );
+
+export default config;

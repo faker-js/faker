@@ -58,15 +58,17 @@ export class LocationModule extends ModuleBase {
 
     const { state } = options;
 
-    if (state) {
-      const zipPattern: string =
+    if (state != null) {
+      const zipPattern =
         this.faker.definitions.location.postcode_by_state[state];
 
-      if (zipPattern) {
-        return this.faker.helpers.fake(zipPattern);
+      if (zipPattern == null) {
+        throw new FakerError(
+          `No zip code definition found for state "${state}"`
+        );
       }
 
-      throw new FakerError(`No zip code definition found for state "${state}"`);
+      return this.faker.helpers.fake(zipPattern);
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
@@ -211,6 +213,20 @@ export class LocationModule extends ModuleBase {
   country(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.country
+    );
+  }
+
+  /**
+   * Returns a random continent name.
+   *
+   * @example
+   * faker.location.continent() // 'Asia'
+   *
+   * @since 9.1.0
+   */
+  continent(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.location.continent
     );
   }
 

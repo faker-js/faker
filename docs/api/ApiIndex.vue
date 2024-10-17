@@ -69,8 +69,13 @@ const filtered = computed(() => {
           </h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
+              <!-- TODO @ST-DDT 2024-09-25: Remove this in v10 -->
               <a
-                :href="item.link + '#' + slugify(h.anchor)"
+                :href="
+                  item.link +
+                  '#' +
+                  (h.anchor === 'userName' ? 'username-1' : slugify(h.anchor))
+                "
                 :class="{ deprecated: h.deprecated }"
                 >{{ h.text }}</a
               >

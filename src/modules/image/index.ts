@@ -1,3 +1,5 @@
+import { toBase64 } from '../../internal/base64';
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 
 /**
@@ -11,7 +13,7 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar).
  *
- * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
+ * If you need more control over the content of the images, you can pass a `category` parameter e.g. `'cat'` or `'nature'` to [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or simply use [`faker.helpers.arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) with your own array of image URLs.
  */
 export class ImageModule extends ModuleBase {
   /**
@@ -24,12 +26,8 @@ export class ImageModule extends ModuleBase {
    * @since 2.0.1
    */
   avatar(): string {
-    const avatarMethod = this.faker.helpers.arrayElement([
-      this.avatarLegacy,
-      this.avatarGitHub,
-    ]);
-
-    return avatarMethod();
+    // Add new avatar providers here, when adding a new one.
+    return this.avatarGitHub();
   }
 
   /**
@@ -55,9 +53,17 @@ export class ImageModule extends ModuleBase {
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
    *
    * @since 8.0.0
+   *
+   * @deprecated The links are no longer working. Use `avatar()` instead.
    */
-  // This implementation will change in the future when we tackle https://github.com/faker-js/faker/issues/465.
   avatarLegacy(): string {
+    deprecated({
+      deprecated: 'faker.image.avatarLegacy()',
+      proposed: 'faker.image.avatar()',
+      since: '9.0.2',
+      until: '10.0.0',
+    });
+
     return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
       1249
     )}.jpg`;
@@ -383,8 +389,6 @@ export class ImageModule extends ModuleBase {
 
     return type === 'svg-uri'
       ? `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgString)}`
-      : `data:image/svg+xml;base64,${Buffer.from(svgString).toString(
-          'base64'
-        )}`;
+      : `data:image/svg+xml;base64,${toBase64(svgString)}`;
   }
 }
