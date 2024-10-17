@@ -39,14 +39,9 @@ export const toBase64: (input: string) => string =
  */
 export const toBase64Url: (input: string) => string =
   typeof Buffer === 'undefined'
-    ? (input) => {
-        const utf8Bytes = new TextEncoder().encode(input);
-        const binaryString = Array.from(utf8Bytes, (byte) =>
-          String.fromCodePoint(byte)
-        ).join('');
-        return btoa(binaryString)
+    ? (input) =>
+        toBase64(input)
           .replaceAll('+', '-')
           .replaceAll('/', '_')
-          .replaceAll(/=+$/g, '');
-      }
+          .replaceAll(/=+$/g, '')
     : (input) => Buffer.from(input).toString('base64url');
