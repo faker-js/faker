@@ -15,7 +15,7 @@ This is the migration guide for upgrading from v8 to v9.
 :::
 
 ::: info Want to learn more about new features in v9?
-Read our [release announcement](/about/announcements/2024-08-31.md)
+Read our [release announcements](/about/announcements/2024-08-31.md)
 :::
 
 ## General Breaking Changes
