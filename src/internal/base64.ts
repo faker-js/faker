@@ -44,6 +44,9 @@ export const toBase64Url: (input: string) => string =
         const binaryString = Array.from(utf8Bytes, (byte) =>
           String.fromCodePoint(byte)
         ).join('');
-        return btoa(binaryString);
+        return btoa(binaryString)
+          .replaceAll('+', '-')
+          .replaceAll('/', '_')
+          .replaceAll(/=+$/g, '');
       }
     : (input) => Buffer.from(input).toString('base64url');
