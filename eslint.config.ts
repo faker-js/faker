@@ -201,20 +201,14 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
 
   //#region overrides
   {
-    // Must override the config from typescript-eslint
     files: ['src/**/*.ts'],
     rules: {
-      'no-undef': 'error',
+      'no-undef': 'error', // Must override the config from typescript-eslint
+      'jsdoc/require-jsdoc': 'error',
     },
     languageOptions: {
       // Don't allow any globals in our TypeScript files - unless explicitly ignored
       globals: {},
-    },
-  },
-  {
-    files: ['src/**/*.ts'],
-    rules: {
-      'jsdoc/require-jsdoc': 'error',
     },
   },
   {
