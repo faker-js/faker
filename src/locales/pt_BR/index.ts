@@ -14,6 +14,12 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
+/**
+ * The locale data for the `pt_BR` locale.
+ *
+ * - Language: Portuguese (Brazil)
+ * - Endonym: Português (Brasil)
+ */
 const pt_BR: LocaleDefinition = {
   color,
   commerce,
