@@ -649,22 +649,22 @@ describe('number', () => {
       });
 
       it('should generate a Roman numeral between 1 and 10', () => {
-        const values = {
-          1: 'I',
-          2: 'II',
-          3: 'III',
-          4: 'IV',
-          5: 'V',
-          6: 'VI',
-          7: 'VII',
-          8: 'VIII',
-          9: 'IX',
-          10: 'X',
-        };
+        const values = [
+          'I',
+          'II',
+          'III',
+          'IV',
+          'V',
+          'VI',
+          'VII',
+          'VIII',
+          'IX',
+          'X',
+        ];
 
         const roman = faker.number.romanNumeral({ min: 1, max: 10 });
 
-        expect(Object.values(values)).toContain(roman);
+        expect(values).toContain(roman);
       });
 
       it('should throw when min value is less than 1', () => {

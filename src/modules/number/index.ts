@@ -496,11 +496,15 @@ export class NumberModule extends SimpleModuleBase {
     const { min = DEFAULT_MIN, max = DEFAULT_MAX } = options;
 
     if (min < DEFAULT_MIN) {
-      throw new FakerError(`Min value ${min} should be 1 or greater.`);
+      throw new FakerError(
+        `Min value ${min} should be ${DEFAULT_MIN} or greater.`
+      );
     }
 
     if (max > DEFAULT_MAX) {
-      throw new FakerError(`Max value ${max} should be 3999 or less.`);
+      throw new FakerError(
+        `Max value ${max} should be ${DEFAULT_MAX} or less.`
+      );
     }
 
     let num = this.int({ min, max });
@@ -525,7 +529,7 @@ export class NumberModule extends SimpleModuleBase {
 
     for (const [k, v] of lookup) {
       result += k.repeat(Math.floor(num / v));
-      num = num % v;
+      num %= v;
     }
 
     return result;
