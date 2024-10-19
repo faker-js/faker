@@ -32,9 +32,12 @@ describe('animal', () => {
     'random seeded tests for seed %i',
     () => {
       describe.each(functionNames)('%s()', (functionName) => {
+        const entryName = functionName
+          .replaceAll(/([A-Z])/g, '_$1')
+          .toLowerCase();
         it(`should return random value from ${functionName} array`, () => {
           const actual = faker.animal[functionName]();
-          expect(faker.definitions.animal[functionName]).toContain(actual);
+          expect(faker.definitions.animal[entryName]).toContain(actual);
         });
       });
     }
