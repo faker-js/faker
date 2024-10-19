@@ -64,9 +64,13 @@ exports[`internet > 42 > httpStatusCode > noArgs 1`] = `226`;
 
 exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
 
-exports[`internet > 42 > ip 1`] = `"243.187.153.39"`;
+exports[`internet > 42 > ip 1`] = `"243.98.3.69"`;
 
-exports[`internet > 42 > ipv4 1`] = `"95.243.187.153"`;
+exports[`internet > 42 > ipv4 > noArgs 1`] = `"95.225.220.121"`;
+
+exports[`internet > 42 > ipv4 > with cidrBlock 1`] = `"192.168.13.95"`;
+
+exports[`internet > 42 > ipv4 > with network 1`] = `"229.254.29.199"`;
 
 exports[`internet > 42 > ipv6 1`] = `"8ead:331d:df0f:c444:6b96:d368:ab4b:d1d3"`;
 
@@ -115,6 +119,22 @@ exports[`internet > 42 > userName > with all option 1`] = `"Jane.Doe"`;
 exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Wiegand59"`;
 
 exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe"`;
+
+exports[`internet > 42 > username > noArgs 1`] = `"Garnet.Reynolds-Miller15"`;
+
+exports[`internet > 42 > username > with Chinese names 1`] = `"hlzp8d.tpv"`;
+
+exports[`internet > 42 > username > with Cyrillic names 1`] = `"Fedor.Dostoevskii"`;
+
+exports[`internet > 42 > username > with Latin names 1`] = `"Jane.Doe"`;
+
+exports[`internet > 42 > username > with accented names 1`] = `"Helene.Muller"`;
+
+exports[`internet > 42 > username > with all option 1`] = `"Jane.Doe"`;
+
+exports[`internet > 42 > username > with firstName option 1`] = `"Jane_Wiegand59"`;
+
+exports[`internet > 42 > username > with lastName option 1`] = `"Garnet_Doe"`;
 
 exports[`internet > 1211 > color > noArgs 1`] = `"#77721c"`;
 
@@ -182,7 +202,11 @@ exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
 exports[`internet > 1211 > ip 1`] = `"d4fe:fa7f:baec:9dc4:c48f:a8eb:f46f:b7c8"`;
 
-exports[`internet > 1211 > ipv4 1`] = `"237.228.57.255"`;
+exports[`internet > 1211 > ipv4 > noArgs 1`] = `"237.179.127.46"`;
+
+exports[`internet > 1211 > ipv4 > with cidrBlock 1`] = `"192.168.13.237"`;
+
+exports[`internet > 1211 > ipv4 > with network 1`] = `"238.219.55.242"`;
 
 exports[`internet > 1211 > ipv6 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
 
@@ -231,6 +255,22 @@ exports[`internet > 1211 > userName > with all option 1`] = `"Jane_Doe89"`;
 exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane99"`;
 
 exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito_Doe"`;
+
+exports[`internet > 1211 > username > noArgs 1`] = `"Tito67"`;
+
+exports[`internet > 1211 > username > with Chinese names 1`] = `"hlzp8d_tpv89"`;
+
+exports[`internet > 1211 > username > with Cyrillic names 1`] = `"Fedor_Dostoevskii89"`;
+
+exports[`internet > 1211 > username > with Latin names 1`] = `"Jane_Doe89"`;
+
+exports[`internet > 1211 > username > with accented names 1`] = `"Helene_Muller89"`;
+
+exports[`internet > 1211 > username > with all option 1`] = `"Jane_Doe89"`;
+
+exports[`internet > 1211 > username > with firstName option 1`] = `"Jane99"`;
+
+exports[`internet > 1211 > username > with lastName option 1`] = `"Tito_Doe"`;
 
 exports[`internet > 1337 > color > noArgs 1`] = `"#211423"`;
 
@@ -296,9 +336,13 @@ exports[`internet > 1337 > httpStatusCode > noArgs 1`] = `201`;
 
 exports[`internet > 1337 > httpStatusCode > with options 1`] = `407`;
 
-exports[`internet > 1337 > ip 1`] = `"40.71.117.82"`;
+exports[`internet > 1337 > ip 1`] = `"40.159.131.70"`;
 
-exports[`internet > 1337 > ipv4 1`] = `"67.40.71.117"`;
+exports[`internet > 1337 > ipv4 > noArgs 1`] = `"67.20.12.145"`;
+
+exports[`internet > 1337 > ipv4 > with cidrBlock 1`] = `"192.168.13.67"`;
+
+exports[`internet > 1337 > ipv4 > with network 1`] = `"228.49.64.201"`;
 
 exports[`internet > 1337 > ipv6 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
 
@@ -347,3 +391,19 @@ exports[`internet > 1337 > userName > with all option 1`] = `"Jane.Doe15"`;
 exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane.Cronin45"`;
 
 exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn.Doe27"`;
+
+exports[`internet > 1337 > username > noArgs 1`] = `"Devyn.Gottlieb"`;
+
+exports[`internet > 1337 > username > with Chinese names 1`] = `"hlzp8d.tpv15"`;
+
+exports[`internet > 1337 > username > with Cyrillic names 1`] = `"Fedor.Dostoevskii15"`;
+
+exports[`internet > 1337 > username > with Latin names 1`] = `"Jane.Doe15"`;
+
+exports[`internet > 1337 > username > with accented names 1`] = `"Helene.Muller15"`;
+
+exports[`internet > 1337 > username > with all option 1`] = `"Jane.Doe15"`;
+
+exports[`internet > 1337 > username > with firstName option 1`] = `"Jane.Cronin45"`;
+
+exports[`internet > 1337 > username > with lastName option 1`] = `"Devyn.Doe27"`;

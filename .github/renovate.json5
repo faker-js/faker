@@ -38,6 +38,7 @@
       "matchPackageNames": [
         "@eslint-types/**",
         "@eslint/**",
+        "@stylistic/**",
         "eslint",
         "eslint-**",
         "typescript-eslint"
@@ -57,7 +58,7 @@
     },
     {
       "groupName": "doc-dependencies",
-      "matchPackageNames": ["@algolia/client-search", "ts-morph", "vitepress"]
+      "matchPackageNames": ["ts-morph", "vitepress"]
     }
   ],
   "stopUpdatingLabel": "s: on hold",

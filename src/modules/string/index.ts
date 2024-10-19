@@ -1,6 +1,8 @@
 import { FakerError } from '../../errors/faker-error';
+import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
+import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../utils/types';
+import type { LiteralUnion } from '../../internal/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
@@ -702,6 +704,37 @@ export class StringModule extends SimpleModuleBase {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
       .replaceAll('x', () => this.faker.number.hex({ min: 0x0, max: 0xf }))
       .replaceAll('y', () => this.faker.number.hex({ min: 0x8, max: 0xb }));
+  }
+
+  /**
+   * Returns a ULID ([Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec)).
+   *
+   * @param options The optional options object.
+   * @param options.refDate The timestamp to encode into the ULID.
+   * The encoded timestamp is represented by the first 10 characters of the result.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+   * faker.string.ulid({ refDate: '2020-01-01T00:00:00.000Z' }) // '01DXF6DT00CX9QNNW7PNXQ3YR8'
+   *
+   * @since 9.1.0
+   */
+  ulid(
+    options: {
+      /**
+       * The date to use as reference point for the newly generated ULID encoded timestamp.
+       * The encoded timestamp is represented by the first 10 characters of the result.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const { refDate = this.faker.defaultRefDate() } = options;
+    const date = toDate(refDate);
+
+    return dateToBase32(date) + this.fromCharacters(CROCKFORDS_BASE32, 16);
   }
 
   /**

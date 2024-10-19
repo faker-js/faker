@@ -1,6 +1,6 @@
 import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
-import type { Callable, MethodOf } from '../../src/utils/types';
+import type { Callable, MethodOf } from '../../src/internal/types';
 
 export const seededRuns = [42, 1337, 1211];
 
@@ -142,8 +142,12 @@ class TestGenerator<
     repetitions: number = 1
   ): void {
     this.setup();
+    const callable = this.module[method];
+    if (callable == null) {
+      throw new Error(`Method ${method} not found in ${this.moduleName}`);
+    }
+
     for (let i = 0; i < repetitions; i++) {
-      const callable = this.module[method];
       const value = callable(...args);
       expect(value).toMatchSnapshot();
     }

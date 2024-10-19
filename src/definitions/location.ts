@@ -8,7 +8,7 @@ export type LocationDefinition = LocaleEntry<{
    * Postcodes patterns by state
    */
   postcode_by_state: {
-    [state: string]: string;
+    [state: string]: string | string[];
   };
 
   /**
@@ -35,6 +35,11 @@ export type LocationDefinition = LocaleEntry<{
    * Common city suffixes.
    */
   city_suffix: string[];
+
+  /**
+   * The names of all continents.
+   */
+  continent: string[];
 
   /**
    * The names of all countries.

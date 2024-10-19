@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.0.3](https://github.com/faker-js/faker/compare/v9.0.2...v9.0.3) (2024-09-26)
+
+
+### Changed Locales
+
+* **locale:** update french legal entity types ([#3142](https://github.com/faker-js/faker/issues/3142)) ([d6bceb6](https://github.com/faker-js/faker/commit/d6bceb662de6559446fedb11de53a632a525aba0))
+
+
+### Bug Fixes
+
+* **image:** fix dataUri with type svg-base64 in browsers ([#3144](https://github.com/faker-js/faker/issues/3144)) ([78b2a3a](https://github.com/faker-js/faker/commit/78b2a3a8b85679eeff27beccebcc404b0a5ff3cf))
+
+## [9.0.2](https://github.com/faker-js/faker/compare/v9.0.1...v9.0.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **locale:** improve pt_PT location and person data ([#3020](https://github.com/faker-js/faker/issues/3020)) ([3e47ee7](https://github.com/faker-js/faker/commit/3e47ee7da671296e11ed2b219f85b06c9d05d677))
+
+## [9.0.1](https://github.com/faker-js/faker/compare/v9.0.0...v9.0.1) (2024-09-14)
+
+
+### Bug Fixes
+
+* emit cts types ([#3093](https://github.com/faker-js/faker/issues/3093)) ([53ef42c](https://github.com/faker-js/faker/commit/53ef42cc192996a0e09bba9d5f5f8a70a7932275))
+
+## [9.0.0](https://github.com/faker-js/faker/compare/v9.0.0-rc.1...v9.0.0) (2024-09-02)
+
+
+No noteworthy changes to [9.0.0-rc.1](https://github.com/faker-js/faker/blob/next/CHANGELOG.md#900-rc1-2024-08-19)
+
+For those upgrading from earlier versions, please refer to our [Migration Guide](https://v9.fakerjs.dev/guide/upgrading.html) for detailed instructions.
+
 ## [9.0.0-rc.1](https://github.com/faker-js/faker/compare/v9.0.0-rc.0...v9.0.0-rc.1) (2024-08-19)
 
 
