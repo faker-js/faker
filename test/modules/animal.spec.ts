@@ -17,6 +17,7 @@ const functionNames = [
   'horse',
   'insect',
   'lion',
+  'petName',
   'rabbit',
   'rodent',
   'snake',
