@@ -298,8 +298,11 @@ const user = createRandomUser();
 const userToReject = createRandomUser({ birthday: new Date('2024-10-20') });
 ```
 
-::: tip Note
-Please ensure that nested elements and arrays are merged/replaced according to your needs.
-:::
+A potential `options` parameter could be used to:
 
-Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
+- control which optional properties are included,
+- control how nested elements and arrays are merged or replaced,
+- or specify the number of items to generate for nested lists.
+
+Congratulations, you should now be able to create any complex object you desire.
+Happy faking 🥳.
