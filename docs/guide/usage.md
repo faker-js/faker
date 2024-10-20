@@ -260,7 +260,8 @@ This allows the value to be more reasonable based on the provided arguments.
 
 Unlike the `_id` property that uses an `uuid` implementation, which has a low chance of duplicates, the `email` function is more likely to produce duplicates, especially if the call arguments are similar. We have a dedicated guide page on generating [unique values](unique).
 
-The example above demonstrates how to generate complex objects. To gain more control over specific properties, you can introduce an `overwrites` or similar parameter:
+The example above demonstrates how to generate complex objects.
+To gain more control over the values of specific properties, you can introduce `overwrites`, `options` or similar parameters:
 
 ```ts {3,17}
 import { faker } from '@faker-js/faker';
