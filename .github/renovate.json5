@@ -38,6 +38,7 @@
       "matchPackageNames": [
         "@eslint-types/**",
         "@eslint/**",
+        "@stylistic/**",
         "eslint",
         "eslint-**",
         "typescript-eslint"
