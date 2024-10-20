@@ -957,12 +957,12 @@ export class FinanceModule extends ModuleBase {
    *
    * @since 5.1.0
    *
-   * @deprecated Refer to issue # for alternatives ways to generate a transaction descriptions.
+   * @deprecated Refer to [PR #3202](https://github.com/faker-js/faker/pull/3202#issuecomment-2425147798) for alternatives ways to generate a transaction descriptions.
    */
   transactionDescription(): string {
     deprecated({
       deprecated: 'faker.finance.transactionDescription()',
-      proposed: 'an alternative from issue # instead',
+      proposed: 'an alternative from PR #3202',
       since: '9.1.0',
       until: '10.0.0',
     });
