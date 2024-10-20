@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "strict": true,
+    "noEmit": true,
+    "stripInternal": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "emitDeclarationOnly": false,
+    "incremental": true,
+    "tsBuildInfoFile": "/home/amaan/Desktop/Open Source/fakerrrr/node_modules/.pnpm/vitest@2.1.2_@types+node@20.16.11_@vitest+ui@2.1.2_jsdom@25.0.1/node_modules/vitest/dist/chunks/tsconfig.tmp.tsbuildinfo"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test/scripts/apidocs/temp"
+  ]
+}

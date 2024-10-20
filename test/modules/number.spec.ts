@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
@@ -666,6 +666,37 @@ describe('number', () => {
 
         expect(values).toContain(roman);
       });
+
+      it.each(
+        Object.entries({
+          I: 1,
+          IV: 4,
+          IX: 9,
+          X: 10,
+          XC: 90,
+          XCIX: 99,
+          XXVII: 27,
+          CCLXIII: 263,
+          DXXXVI: 536,
+          DCCXIX: 719,
+          MDCCCLI: 1851,
+          MDCCCXCII: 1892,
+          MMCLXXXIII: 2183,
+          MMCMXLIII: 2943,
+          MMMDCCLXVI: 3766,
+          MMMDCCLXXIV: 3774,
+          MMMCMXCIX: 3999,
+        })
+      )(
+        'should generate a Roman numeral %s for value %d',
+        (expected: string, value: number) => {
+          const mock = vi.spyOn(faker.number, 'int');
+          mock.mockReturnValue(value);
+          const actual = faker.number.romanNumeral();
+          mock.mockRestore();
+          expect(actual).toBe(expected);
+        }
+      );
 
       it('should throw when min value is less than 1', () => {
         expect(() => {
