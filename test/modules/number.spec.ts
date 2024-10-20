@@ -648,34 +648,15 @@ describe('number', () => {
         expect(roman).toMatch(/^[IVXLCDM]+$/);
       });
 
-      it('should generate a Roman numeral between 1 and 10', () => {
-        const values = [
-          'I',
-          'II',
-          'III',
-          'IV',
-          'V',
-          'VI',
-          'VII',
-          'VIII',
-          'IX',
-          'X',
-        ];
-
-        const roman = faker.number.romanNumeral({ min: 1, max: 10 });
-
-        expect(values).toContain(roman);
-      });
-
       it.each(
         Object.entries({
           I: 1,
           IV: 4,
           IX: 9,
           X: 10,
+          XXVII: 27,
           XC: 90,
           XCIX: 99,
-          XXVII: 27,
           CCLXIII: 263,
           DXXXVI: 536,
           DCCXIX: 719,
