@@ -260,4 +260,45 @@ This allows the value to be more reasonable based on the provided arguments.
 
 Unlike the `_id` property that uses an `uuid` implementation, which has a low chance of duplicates, the `email` function is more likely to produce duplicates, especially if the call arguments are similar. We have a dedicated guide page on generating [unique values](unique).
 
+The example above demonstrates how to generate complex objects. To gain more control over specific properties, you can introduce an `overwrites` or similar parameter:
+
+```ts {3,17}
+import { faker } from '@faker-js/faker';
+
+function createRandomUser(overwrites: Partial<User> = {}): User {
+  const {
+    _id = faker.string.uuid(),
+    avatar = faker.image.avatar(),
+    birthday = faker.date.birthdate(),
+    sex = faker.person.sexType(),
+    firstName = faker.person.firstName(sex),
+    lastName = faker.person.lastName(),
+    email = faker.internet.email({ firstName, lastName }),
+    subscriptionTier = faker.helpers.arrayElement([
+      'free',
+      'basic',
+      'business',
+    ]),
+  } = overwrites;
+
+  return {
+    _id,
+    avatar,
+    birthday,
+    email,
+    firstName,
+    lastName,
+    sex,
+    subscriptionTier,
+  };
+}
+
+const user = createRandomUser();
+const userToReject = createRandomUser({ birthday: new Date('2024-10-20') });
+```
+
+::: tip Note
+Please ensure that nested elements and arrays are merged/replaced according to your needs.
+:::
+
 Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
