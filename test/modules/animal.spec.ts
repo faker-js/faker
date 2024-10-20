@@ -7,21 +7,23 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('animal', () => {
   seededTests(faker, 'animal', (t) => {
-    t.it('bear');
-    t.it('bird');
-    t.it('cat');
-    t.it('cetacean');
-    t.it('cow');
-    t.it('crocodilia');
-    t.it('dog');
-    t.it('fish');
-    t.it('horse');
-    t.it('insect');
-    t.it('lion');
-    t.it('rabbit');
-    t.it('rodent');
-    t.it('snake');
-    t.it('type');
+    t.itEach(
+      'bear',
+      'bird',
+      'cat',
+      'cetacean',
+      'cow',
+      'crocodilia',
+      'dog',
+      'fish',
+      'horse',
+      'insect',
+      'lion',
+      'rabbit',
+      'rodent',
+      'snake',
+      'type'
+    );
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
