@@ -295,7 +295,7 @@ function createRandomUser(overwrites: Partial<User> = {}): User {
 }
 
 const user = createRandomUser();
-const userToReject = createRandomUser({ birthday: new Date('2024-10-20') });
+const userToReject = createRandomUser({ birthday: new Date('2124-10-20') });
 ```
 
 A potential `options` parameter could be used to:
