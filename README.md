@@ -33,6 +33,7 @@ For detailed API documentation, please select the version of the documentation y
 ---
 
 ## 🚀 Features
+
 - 🧍 Person - Generate Names, Genders, Bios, Job titles, and more.
 - 💌 Location - Generate Addresses, Zip Codes, Street Names, States, and Countries!
 - ⏰ Date - Past, present, future, recent, soon... whenever!
