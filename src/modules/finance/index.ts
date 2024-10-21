@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {
@@ -202,6 +203,8 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.maskedNumber(3) // '(...342)'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
    */
   maskedNumber(length?: number): string;
   /**
@@ -219,6 +222,8 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
    */
   maskedNumber(options?: {
     /**
@@ -256,6 +261,8 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
    */
   maskedNumber(
     optionsOrLength?:
@@ -297,6 +304,8 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
    */
   maskedNumber(
     options:
@@ -322,6 +331,14 @@ export class FinanceModule extends ModuleBase {
           ellipsis?: boolean;
         } = {}
   ): string {
+    deprecated({
+      deprecated: 'faker.finance.maskedNumber()',
+      proposed:
+        "faker.finance.iban().replace(/(?<=.{4})\\w(?=.{2})/g, '*') or a similar approach",
+      since: '9.1.0',
+      until: '10.0.0',
+    });
+
     if (typeof options === 'number') {
       options = { length: options };
     }
@@ -961,9 +978,9 @@ export class FinanceModule extends ModuleBase {
     const company = this.faker.company.name();
     const transactionType = this.transactionType();
     const account = this.accountNumber();
-    const card = this.maskedNumber();
+    const card = this.creditCardNumber().replaceAll(/(?<=.{4}).(?=.{2})/g, '*');
     const currency = this.currencyCode();
 
-    return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;
+    return `${transactionType} transaction at ${company} using card ending with ${card} for ${currency} ${amount} in account ***${account}`;
   }
 }
