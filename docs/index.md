@@ -23,7 +23,7 @@ features:
   - icon: 🧍
     title: Person
     details: Generate Names, Genders, Bios, Job titles, and more.
-  - icon: 💌
+  - icon: 📍
     title: Location
     details: Generate Addresses, Zip Codes, Street Names, States, and Countries!
   - icon: ⏰
