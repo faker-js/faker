@@ -260,4 +260,49 @@ This allows the value to be more reasonable based on the provided arguments.
 
 Unlike the `_id` property that uses an `uuid` implementation, which has a low chance of duplicates, the `email` function is more likely to produce duplicates, especially if the call arguments are similar. We have a dedicated guide page on generating [unique values](unique).
 
-Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
+The example above demonstrates how to generate complex objects.
+To gain more control over the values of specific properties, you can introduce `overwrites`, `options` or similar parameters:
+
+```ts {3,17}
+import { faker } from '@faker-js/faker';
+
+function createRandomUser(overwrites: Partial<User> = {}): User {
+  const {
+    _id = faker.string.uuid(),
+    avatar = faker.image.avatar(),
+    birthday = faker.date.birthdate(),
+    sex = faker.person.sexType(),
+    firstName = faker.person.firstName(sex),
+    lastName = faker.person.lastName(),
+    email = faker.internet.email({ firstName, lastName }),
+    subscriptionTier = faker.helpers.arrayElement([
+      'free',
+      'basic',
+      'business',
+    ]),
+  } = overwrites;
+
+  return {
+    _id,
+    avatar,
+    birthday,
+    email,
+    firstName,
+    lastName,
+    sex,
+    subscriptionTier,
+  };
+}
+
+const user = createRandomUser();
+const userToReject = createRandomUser({ birthday: new Date('2124-10-20') });
+```
+
+A potential `options` parameter could be used to:
+
+- control which optional properties are included,
+- control how nested elements and arrays are merged or replaced,
+- or specify the number of items to generate for nested lists.
+
+Congratulations, you should now be able to create any complex object you desire.
+Happy faking 🥳.
