@@ -103,7 +103,6 @@
     "dist"
   ],
   "devDependencies": {
-    "@actions/github": "6.0.0",
     "@eslint/compat": "1.2.1",
     "@eslint/js": "9.13.0",
     "@stylistic/eslint-plugin": "2.9.0",
