@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {
@@ -955,8 +956,17 @@ export class FinanceModule extends ModuleBase {
    * // 'invoice transaction at Kilback - Durgan using card ending with ***(...4316) for UAH 783.82 in account ***16168663'
    *
    * @since 5.1.0
+   *
+   * @deprecated Refer to [PR #3202](https://github.com/faker-js/faker/pull/3202#issuecomment-2425147798) for alternatives ways to generate a transaction descriptions.
    */
   transactionDescription(): string {
+    deprecated({
+      deprecated: 'faker.finance.transactionDescription()',
+      proposed: 'an alternative from PR #3202',
+      since: '9.1.0',
+      until: '10.0.0',
+    });
+
     const amount = this.amount();
     const company = this.faker.company.name();
     const transactionType = this.transactionType();

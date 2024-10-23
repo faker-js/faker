@@ -626,6 +626,7 @@ describe('finance', () => {
 
       describe('transactionDescription()', () => {
         it('should return a string', () => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           const transactionDescription = faker.finance.transactionDescription();
 
           expect(transactionDescription).toBeTypeOf('string');
