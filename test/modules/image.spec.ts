@@ -1,7 +1,57 @@
+import https from 'node:https';
+import { resolve as urlResolve } from 'node:url';
 import isDataURI from 'validator/lib/isDataURI';
 import { describe, expect, it } from 'vitest';
+import { CI_PREFLIGHT } from '../../scripts/env';
 import { faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
+
+/**
+ * Checks that the given address is a working https address. An address is considered valid, if it
+ *
+ * - is a string
+ * - starts with https
+ * - is a proper url
+ * - returns a http-200 (after redirects)
+ *
+ * @param address The address to check.
+ */
+async function assertWebAddress(address: string): Promise<void> {
+  expect(address).toBeTypeOf('string');
+  expect(address).toMatch(/^https:\/\//);
+  expect(() => new URL(address)).not.toThrow();
+
+  if (CI_PREFLIGHT) {
+    await expect(
+      new Promise((resolve, reject) => {
+        https
+          .get(address, ({ statusCode, headers: { location } }) => {
+            if (statusCode == null) {
+              reject(new Error(`No StatusCode, expected 200`));
+            } else if (statusCode === 200) {
+              resolve(true);
+            } else if (statusCode >= 300 && statusCode < 400 && location) {
+              const newAddress = urlResolve(address, location);
+              assertWebAddress(newAddress)
+                .then(() => resolve(true))
+                .catch((error: unknown) => {
+                  reject(
+                    new Error(`Failed to resolve redirect to '${location}'`, {
+                      cause: error,
+                    })
+                  );
+                });
+            } else {
+              reject(new Error(`Bad StatusCode ${statusCode}, expected 200`));
+            }
+          })
+          .on('error', (error: unknown) => {
+            reject(new Error(`Failed to get '${address}'`, { cause: error }));
+          });
+      })
+    ).resolves.toBe(true);
+  }
+}
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
@@ -92,23 +142,22 @@ describe('image', () => {
   });
 
   describe('avatar', () => {
-    it('should return a random avatar url', () => {
+    it('should return a random avatar url', async () => {
       const avatarUrl = faker.image.avatar();
 
-      expect(avatarUrl).toBeTypeOf('string');
-      expect(avatarUrl).toMatch(/^https:\/\//);
-      expect(() => new URL(avatarUrl)).not.toThrow();
+      await assertWebAddress(avatarUrl);
     });
   });
 
   describe('avatarGitHub', () => {
-    it('should return a random avatar url from GitHub', () => {
+    it('should return a random avatar url from GitHub', async () => {
       const avatarUrl = faker.image.avatarGitHub();
 
       expect(avatarUrl).toBeTypeOf('string');
       expect(avatarUrl).toMatch(
         /^https:\/\/avatars\.githubusercontent\.com\/u\/\d+$/
       );
+      await assertWebAddress(avatarUrl);
     });
   });
 
@@ -121,56 +170,50 @@ describe('image', () => {
       expect(avatarUrl).toMatch(
         /^https:\/\/cloudflare-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
       );
+      // The links aren't working anymore - there is nothing we can do about it
+      // await assertWebAddress(avatarUrl);
     });
   });
 
   describe('url', () => {
-    it('should return a random image url', () => {
+    it('should return a random image url', async () => {
       const imageUrl = faker.image.url();
 
-      expect(imageUrl).toBeTypeOf('string');
-      expect(imageUrl).toMatch(/^https:\/\//);
-      expect(() => new URL(imageUrl)).not.toThrow();
+      await assertWebAddress(imageUrl);
     });
 
-    it('should return a random image url with a width', () => {
+    it('should return a random image url with a width', async () => {
       const width = 100;
       const imageUrl = faker.image.url({ width });
 
-      expect(imageUrl).toBeTypeOf('string');
-      expect(imageUrl).toMatch(/^https:\/\//);
-      expect(() => new URL(imageUrl)).not.toThrow();
+      await assertWebAddress(imageUrl);
       expect(imageUrl).include(`${width}`);
     });
 
-    it('should return a random image url with a height', () => {
+    it('should return a random image url with a height', async () => {
       const height = 100;
       const imageUrl = faker.image.url({ height });
 
-      expect(imageUrl).toBeTypeOf('string');
-      expect(imageUrl).toMatch(/^https:\/\//);
-      expect(() => new URL(imageUrl)).not.toThrow();
+      await assertWebAddress(imageUrl);
       expect(imageUrl).include(`${height}`);
     });
 
-    it('should return a random image url with a width and height', () => {
+    it('should return a random image url with a width and height', async () => {
       const width = 128;
       const height = 64;
       const imageUrl = faker.image.url({ width, height });
 
-      expect(imageUrl).toBeTypeOf('string');
-      expect(imageUrl).toMatch(/^https:\/\//);
-      expect(() => new URL(imageUrl)).not.toThrow();
+      await assertWebAddress(imageUrl);
       expect(imageUrl).include(`${width}`);
       expect(imageUrl).include(`${height}`);
     });
   });
 
   describe('urlLoremFlickr', () => {
-    it('should return a random image url from LoremFlickr', () => {
+    it('should return a random image url from LoremFlickr', async () => {
       const imageUrl = faker.image.urlLoremFlickr();
 
-      expect(imageUrl).toBeTypeOf('string');
+      await assertWebAddress(imageUrl);
       expect(imageUrl).toMatch(
         /^https:\/\/loremflickr\.com\/\d+\/\d+\?lock=\d+$/
       );
@@ -178,10 +221,10 @@ describe('image', () => {
   });
 
   describe('urlPicsumPhotos', () => {
-    it('should return a random image url from PicsumPhotos', () => {
+    it('should return a random image url from PicsumPhotos', async () => {
       const imageUrl = faker.image.urlPicsumPhotos();
 
-      expect(imageUrl).toBeTypeOf('string');
+      await assertWebAddress(imageUrl);
       expect(imageUrl).toMatch(
         /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+(\?(grayscale&?)?(blur=\d+)?)?$/
       );
@@ -189,10 +232,10 @@ describe('image', () => {
   });
 
   describe('urlPlaceholder', () => {
-    it('should return a random image url from Placeholder', () => {
+    it('should return a random image url from Placeholder', async () => {
       const imageUrl = faker.image.urlPlaceholder();
 
-      expect(imageUrl).toBeTypeOf('string');
+      await assertWebAddress(imageUrl);
       expect(imageUrl).toMatch(
         /^https:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
       );
