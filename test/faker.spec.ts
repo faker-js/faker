@@ -1,18 +1,10 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { Faker, faker } from '../src';
+import { Faker, faker, generateMersenne53Randomizer } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import { keys } from '../src/internal/keys';
 
 describe('faker', () => {
-  it('should throw error if no locales passed', () => {
-    expect(() => new Faker({ locale: [] })).toThrow(
-      new FakerError(
-        'The locale option must contain at least one locale definition.'
-      )
-    );
-  });
-
   it('should not log anything on startup', async () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
@@ -69,19 +61,68 @@ describe('faker', () => {
     });
   });
 
-  describe('randomizer', () => {
-    it('should be possible to provide a custom Randomizer', () => {
-      const customFaker = new Faker({
-        locale: {},
-        randomizer: {
-          next: () => 0,
-          seed: () => void 0,
-        },
+  describe('constructor()', () => {
+    describe('locale', () => {
+      it('should throw error if no locales passed', () => {
+        expect(() => new Faker({ locale: [] })).toThrow(
+          new FakerError(
+            'The locale option must contain at least one locale definition.'
+          )
+        );
+      });
+    });
+
+    describe('randomizer', () => {
+      it('should be possible to provide a custom Randomizer', () => {
+        const customFaker = new Faker({
+          locale: {},
+          randomizer: {
+            next: () => 0,
+            seed: () => void 0,
+          },
+        });
+
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+      });
+    });
+
+    describe('seed', () => {
+      it('should be possible to provide an initial seed', () => {
+        const customFaker = new Faker({
+          locale: {},
+          seed: 12345,
+        });
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+
+        customFaker.seed(12345);
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
       });
 
-      expect(customFaker.number.int()).toBe(0);
-      expect(customFaker.number.int()).toBe(0);
-      expect(customFaker.number.int()).toBe(0);
+      it('should prioritize the randomizer over the seed', () => {
+        const customFaker = new Faker({
+          locale: {},
+          randomizer: generateMersenne53Randomizer(67890),
+          seed: 12345, // This seed should be ignored
+        });
+
+        expect(customFaker.number.int()).toBe(3319821087749105);
+        expect(customFaker.number.int()).toBe(8108180265059478);
+        expect(customFaker.number.int()).toBe(1714153343835993);
+
+        customFaker.seed(67890);
+
+        expect(customFaker.number.int()).toBe(3319821087749105);
+        expect(customFaker.number.int()).toBe(8108180265059478);
+        expect(customFaker.number.int()).toBe(1714153343835993);
+      });
     });
   });
 
