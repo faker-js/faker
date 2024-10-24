@@ -1,0 +1,1 @@
+export default ['Audiolivro', 'Ebook', 'Capa mole', 'Capa dura'];
