@@ -1,6 +1,6 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { SimpleFaker, simpleFaker } from '../src';
+import { generateMersenne53Randomizer, SimpleFaker, simpleFaker } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe('simpleFaker', () => {
@@ -18,6 +18,58 @@ describe('simpleFaker', () => {
       expect(spy).not.toHaveBeenCalled();
       spy.mockRestore();
     }
+  });
+
+  describe('constructor()', () => {
+    describe('randomizer', () => {
+      it('should be possible to provide a custom Randomizer', () => {
+        const customFaker = new SimpleFaker({
+          randomizer: {
+            next: () => 0,
+            seed: () => void 0,
+          },
+        });
+
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+      });
+    });
+
+    describe('seed', () => {
+      it('should be possible to provide an initial seed', () => {
+        const customFaker = new SimpleFaker({
+          seed: 12345,
+        });
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+
+        customFaker.seed(12345); // Retry with the expected seed
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+      });
+
+      it('should prioritize the randomizer over the seed', () => {
+        const customFaker = new SimpleFaker({
+          randomizer: generateMersenne53Randomizer(67890),
+          seed: 12345, // This seed should be ignored
+        });
+
+        expect(customFaker.number.int()).toBe(3319821087749105);
+        expect(customFaker.number.int()).toBe(8108180265059478);
+        expect(customFaker.number.int()).toBe(1714153343835993);
+
+        customFaker.seed(67890); // Retry with the expected seed
+
+        expect(customFaker.number.int()).toBe(3319821087749105);
+        expect(customFaker.number.int()).toBe(8108180265059478);
+        expect(customFaker.number.int()).toBe(1714153343835993);
+      });
+    });
   });
 
   // This is only here for coverage

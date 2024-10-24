@@ -125,6 +125,11 @@ export class Faker extends SimpleFaker {
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.seed The initial seed to use.
+   * The seed can be used to generate reproducible values.
+   * Refer to the `seed()` method for more information.
+   * This option is ignored if `randomizer` is specified.
+   * Defaults to a random seed.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -157,8 +162,20 @@ export class Faker extends SimpleFaker {
      * @default generateMersenne53Randomizer()
      */
     randomizer?: Randomizer;
+
+    /**
+     * The initial seed to use.
+     * The seed can be used to generate reproducible values.
+     *
+     * Refer to the `seed()` method for more information.
+     *
+     * This option is ignored if `randomizer` is specified.
+     *
+     * @default randomSeed()
+     */
+    seed?: number;
   }) {
-    super({ randomizer: options.randomizer });
+    super({ seed: options.seed, randomizer: options.randomizer });
 
     let { locale } = options;
 
