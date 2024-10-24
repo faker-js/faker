@@ -1,1 +1,1 @@
-export default ['Audiolivro', 'Ebook', 'Capa mole', 'Capa dura'];
+export default ['Audiolivro', 'Capa dura', 'Capa mole', 'Ebook'];

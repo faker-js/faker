@@ -17,9 +17,9 @@ export default [
   'Editora Pipoca & Nanquim',
   'Editora Planeta de Livros Brasil',
   'Editora Rocco',
+  'Editora Saraiva',
   'Editora Sextante',
   'Editora Viseu',
   'Editora Voo',
-  'Editora Saraiva',
   'Globo Livros',
 ];
