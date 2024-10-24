@@ -6,6 +6,8 @@ import type { Randomizer } from '../randomizer';
  * This is the default randomizer used by faker prior to v9.0.
  *
  * @example
+ * import { de, en, generateMersenne32Randomizer, Faker } from '@faker-js/faker';
+ *
  * const randomizer = generateMersenne32Randomizer();
  * randomizer.seed(42);
  * // Share the same randomizer between multiple instances
@@ -38,6 +40,8 @@ export function generateMersenne32Randomizer(): Randomizer {
  * This is the default randomizer used by faker starting with v9.0.
  *
  * @example
+ * import { de, en, generateMersenne53Randomizer, Faker } from '@faker-js/faker';
+ *
  * const randomizer = generateMersenne53Randomizer();
  * randomizer.seed(42);
  * // Share the same randomizer between multiple instances
