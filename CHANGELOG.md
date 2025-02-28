@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.5.1](https://github.com/faker-js/faker/compare/v9.5.0...v9.5.1) (2025-02-28)
+
+
+### Bug Fixes
+
+* test before using Buffers ([#3400](https://github.com/faker-js/faker/issues/3400)) ([ec7c9a8](https://github.com/faker-js/faker/commit/ec7c9a8e607d63a008d06747f89c9512f5b3171e))
+
 ## [9.5.0](https://github.com/faker-js/faker/compare/v9.4.0...v9.5.0) (2025-02-10)
 
 
