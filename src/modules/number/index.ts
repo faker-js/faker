@@ -379,7 +379,6 @@ export class NumberModule extends SimpleModuleBase {
    *
    * @throws When `min` is greater than `max`.
    * @throws When `multipleOf` is not a positive bigint.
-   * @throws When `multipleOf` is greater than `max`.
    *
    * @example
    * faker.number.bigInt() // 55422n
