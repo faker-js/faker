@@ -18,7 +18,8 @@
     "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs --port 5173",
     "docs:diff": "tsx ./scripts/diff.ts",
-    "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
+    "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:install docs:test:e2e:run",
+    "docs:test:e2e:install": "cypress install",
     "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "format": "prettier --cache --write .",
@@ -147,5 +148,11 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "cypress",
+      "esbuild"
+    ]
   }
 }
