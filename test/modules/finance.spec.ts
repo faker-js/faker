@@ -1,4 +1,5 @@
 import isCreditCard from 'validator/lib/isCreditCard';
+import { isAbaRouting } from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
@@ -149,10 +150,23 @@ describe('finance', () => {
       });
 
       describe('routingNumber()', () => {
-        it('should return a string', () => {
-          const routingNumber = faker.finance.routingNumber();
+        const routingNumber = faker.finance.routingNumber();
 
+        const firstTwoDigits = routingNumber.substring(0, 2);
+        const federalReserveDistrict = Number.parseInt(firstTwoDigits);
+
+        it('should return a string', () => {
           expect(routingNumber).toBeTypeOf('string');
+        });
+
+        it('should pass check digit validation', () => {
+          expect(routingNumber).toSatisfy(isAbaRouting);
+        });
+
+        it('should correspond to a valid federal reserve district', () => {
+          expect(federalReserveDistrict).toBeTypeOf('number');
+          expect(federalReserveDistrict).toBeGreaterThan(0);
+          expect(federalReserveDistrict).toBeLessThanOrEqual(12);
         });
       });
 
