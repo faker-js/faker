@@ -378,6 +378,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.multipleOf The generated bigint will be a multiple of this parameter. Defaults to `1n`.
    *
    * @throws When `min` is greater than `max`.
+   * @throws When there are no suitable bigint between `min` and `max`.
    * @throws When `multipleOf` is not a positive bigint.
    *
    * @example
