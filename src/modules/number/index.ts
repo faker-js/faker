@@ -170,10 +170,6 @@ export class NumberModule extends SimpleModuleBase {
       multipleOf = fractionDigits == null ? undefined : 10 ** -fractionDigits,
     } = options;
 
-    if (max === min) {
-      return min;
-    }
-
     if (max < min) {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
