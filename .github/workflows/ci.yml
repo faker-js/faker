@@ -95,7 +95,7 @@ jobs:
   e2e-test:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1@sha256:02eaae11b7d3dc9f408a5f64c3990faea75943d612ea86b8b218d95b48f22ce8
+      image: cypress/browsers:node-22.14.0-chrome-133.0.6943.126-1-ff-135.0.1-edge-133.0.3065.82-1@sha256:0bb89e2255ab99e3dddea6496205ceb5541578fc24df2dcc26056dc4e0451bbc
       options: --user 1001
     timeout-minutes: 10
     name: 'E2E Doc Test: node-22, ubuntu-latest'
@@ -113,7 +113,7 @@ jobs:
         run: pnpm run docs:build:ci
 
       - name: Download Cypress
-        run: docs:test:e2e:install
+        run: pnpm run docs:test:e2e:install
 
       - id: e2e
         name: Run e2e
