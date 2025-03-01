@@ -454,15 +454,14 @@ export class NumberModule extends SimpleModuleBase {
       );
     }
 
-    const delta = effectiveMax - effectiveMin;
+    const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
     const offset =
       BigInt(
         this.faker.string.numeric({
           length: delta.toString(10).length,
           allowLeadingZeros: true,
         })
-      ) %
-      (delta + BigInt(1));
+      ) % delta;
     return (effectiveMin + offset) * multipleOf;
   }
 
