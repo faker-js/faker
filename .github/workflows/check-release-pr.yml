@@ -45,8 +45,6 @@ jobs:
         run: |
           cd faker
           pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Build - faker
         run: |

@@ -39,8 +39,6 @@ jobs:
 
       - name: Install deps
         run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Build
         run: pnpm run build
@@ -87,8 +85,6 @@ jobs:
 
       - name: Install deps
         run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Build
         run: pnpm run build
@@ -116,6 +112,9 @@ jobs:
       - name: Build docs
         run: pnpm run docs:build:ci
 
+      - name: Download Cypress
+        run: docs:test:e2e:install
+
       - id: e2e
         name: Run e2e
         run: pnpm run docs:test:e2e:run
@@ -141,8 +140,6 @@ jobs:
 
       - name: Install deps
         run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Lint
         run: pnpm run lint
@@ -171,8 +168,6 @@ jobs:
 
       - name: Install deps
         run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Build types
         run: pnpm run build
@@ -201,8 +196,6 @@ jobs:
 
       - name: Install deps
         run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Build
         run: pnpm run build

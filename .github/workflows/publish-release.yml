@@ -31,8 +31,6 @@ jobs:
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       - name: Gather release information
         run: |
@@ -57,7 +55,6 @@ jobs:
         run: |
           pnpm publish --tag next --no-git-checks
         env:
-          CYPRESS_INSTALL_BINARY: 0
           NPM_CONFIG_PROVENANCE: true
 
       - name: Set latest/next dist-tag
