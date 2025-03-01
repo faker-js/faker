@@ -465,7 +465,7 @@ for (const locale of locales) {
   localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
   localeIndexExportsIndividual += `export { faker as ${localizedFaker} } from './${locale}';\n`;
   localeIndexExportsGrouped += `  ${locale}: ${localizedFaker},\n`;
-  localesIndexImports += `import { default as ${locale} } from './${locale}';\n`;
+  localesIndexImports += `import ${locale} from './${locale}';\n`;
   localesIndexExportsIndividual += `export { default as ${locale} } from './${locale}';\n`;
   localesIndexExportsGrouped += `  ${locale},\n`;
   localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
