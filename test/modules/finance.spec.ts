@@ -1,5 +1,5 @@
-import isCreditCard from 'validator/lib/isCreditCard';
 import { isAbaRouting } from 'validator';
+import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
 import { faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';

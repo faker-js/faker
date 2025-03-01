@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
@@ -45,8 +44,6 @@ export function prettyPrintIban(iban: string): string {
 
   return pretty.trimEnd();
 }
-
-
 
 /**
  * Module to generate finance and money related entries.
@@ -188,12 +185,12 @@ export class FinanceModule extends ModuleBase {
    */
   routingNumber(): string {
     const federalReserveRoutingSymbol = this.faker.helpers.arrayElement(
-        this.faker.definitions.finance.federal_reserve_routing_symbol
+      this.faker.definitions.finance.federal_reserve_routing_symbol
     );
 
     const institutionIdentifier = this.faker.string.numeric({
-        length: 4,
-        allowLeadingZeros: true
+      length: 4,
+      allowLeadingZeros: true,
     });
 
     const routingNumber = federalReserveRoutingSymbol + institutionIdentifier;
