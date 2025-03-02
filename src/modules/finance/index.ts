@@ -176,10 +176,10 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Generates a random routing number.
+   * Generates a random [ABA routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number).
    *
    * @example
-   * faker.finance.routingNumber() // '522814402'
+   * faker.finance.routingNumber() // '062197511'
    *
    * @since 5.0.0
    */
