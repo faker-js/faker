@@ -1,0 +1,38 @@
+{
+  "individuals": [
+    {
+      "name": "Indeed",
+      "url": "https://opencollective.com/indeed",
+      "img": "https://images.opencollective.com/indeed/4b8725e/logo/256.png"
+    }
+  ],
+  "gold": [],
+  "silver": [],
+  "bronze": [
+    {
+      "name": "Nightfall AI",
+      "url": "https://opencollective.com/nightfall",
+      "img": "https://images.opencollective.com/nightfall/877f049/avatar/256.png"
+    },
+    {
+      "name": "Flowdash",
+      "url": "https://opencollective.com/flowdash",
+      "img": "https://images.opencollective.com/flowdash/e9f182e/logo/256.png"
+    },
+    {
+      "name": "Frontside",
+      "url": "https://opencollective.com/frontside",
+      "img": "https://images.opencollective.com/frontside/a8f93a4/logo/256.png"
+    },
+    {
+      "name": "Retool",
+      "url": "https://opencollective.com/retool",
+      "img": "https://images.opencollective.com/retool/98ea68e/logo/256.png"
+    },
+    {
+      "name": "clay",
+      "url": "https://opencollective.com/clayglobal",
+      "img": "https://images.opencollective.com/clayglobal/559c1d9/logo/256.png"
+    }
+  ]
+}
