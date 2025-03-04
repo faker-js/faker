@@ -150,20 +150,19 @@ describe('finance', () => {
       });
 
       describe('routingNumber()', () => {
-        const routingNumber = faker.finance.routingNumber();
+        it('should return a string and pass check digit validation', () => {
+          const routingNumber = faker.finance.routingNumber();
 
-        const firstTwoDigits = routingNumber.substring(0, 2);
-        const federalReserveDistrict = Number.parseInt(firstTwoDigits);
-
-        it('should return a string', () => {
           expect(routingNumber).toBeTypeOf('string');
-        });
-
-        it('should pass check digit validation', () => {
           expect(routingNumber).toSatisfy(isAbaRouting);
         });
 
         it('should correspond to a valid federal reserve district', () => {
+          const routingNumber = faker.finance.routingNumber();
+
+          const firstTwoDigits = routingNumber.substring(0, 2);
+          const federalReserveDistrict = Number.parseInt(firstTwoDigits);
+
           expect(federalReserveDistrict).toBeTypeOf('number');
           expect(federalReserveDistrict).toBeGreaterThan(0);
           expect(federalReserveDistrict).toBeLessThanOrEqual(12);
