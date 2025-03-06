@@ -375,14 +375,18 @@ export class NumberModule extends SimpleModuleBase {
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
+   * @param options.multipleOf The generated bigint will be a multiple of this parameter. Defaults to `1n`.
    *
    * @throws When `min` is greater than `max`.
+   * @throws When there are no suitable bigint between `min` and `max`.
+   * @throws When `multipleOf` is not a positive bigint.
    *
    * @example
    * faker.number.bigInt() // 55422n
    * faker.number.bigInt(100n) // 52n
    * faker.number.bigInt({ min: 1000000n }) // 431433n
    * faker.number.bigInt({ max: 100n }) // 42n
+   * faker.number.bigInt({ multipleOf: 7n }) // 35n
    * faker.number.bigInt({ min: 10n, max: 100n }) // 36n
    *
    * @since 8.0.0
@@ -406,6 +410,12 @@ export class NumberModule extends SimpleModuleBase {
            * @default min + 999999999999999n
            */
           max?: bigint | number | string | boolean;
+          /**
+           * The generated bigint will be a multiple of this parameter.
+           *
+           * @default 1n
+           */
+          multipleOf?: bigint | number | string | boolean;
         } = {}
   ): bigint {
     if (
@@ -421,27 +431,38 @@ export class NumberModule extends SimpleModuleBase {
 
     const min = BigInt(options.min ?? 0);
     const max = BigInt(options.max ?? min + BigInt(999999999999999));
-
-    if (max === min) {
-      return min;
-    }
+    const multipleOf = BigInt(options.multipleOf ?? 1);
 
     if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
+      throw new FakerError(`Max ${max} should be larger than min ${min}.`);
     }
 
-    const delta = max - min;
+    if (multipleOf <= BigInt(0)) {
+      throw new FakerError(`multipleOf should be greater than 0.`);
+    }
 
+    const effectiveMin = min / multipleOf + (min % multipleOf > 0n ? 1n : 0n); // Math.ceil(min / multipleOf)
+    const effectiveMax = max / multipleOf - (max % multipleOf < 0n ? 1n : 0n); // Math.floor(max / multipleOf)
+
+    if (effectiveMin === effectiveMax) {
+      return effectiveMin * multipleOf;
+    }
+
+    if (effectiveMax < effectiveMin) {
+      throw new FakerError(
+        `No suitable bigint value between ${min} and ${max} found.`
+      );
+    }
+
+    const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
     const offset =
       BigInt(
         this.faker.string.numeric({
           length: delta.toString(10).length,
           allowLeadingZeros: true,
         })
-      ) %
-      (delta + BigInt(1));
-
-    return min + offset;
+      ) % delta;
+    return (effectiveMin + offset) * multipleOf;
   }
 
   /**
