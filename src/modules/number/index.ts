@@ -113,7 +113,7 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.fractionDigits The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf` or `fractionDigits` should be passed.
    *
    * @throws When `min` is greater than `max`.
-   * @throws When `multipleOf` is not a positive float.
+   * @throws When `multipleOf` is not a positive number.
    * @throws When `fractionDigits` is negative.
    * @throws When `fractionDigits` and `multipleOf` is passed in the same options object.
    *
