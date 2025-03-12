@@ -25,7 +25,7 @@ export type FinanceDefinition = LocaleEntry<{
   federal_reserve_routing_symbol: string[];
 
   /**
-   * Currencies including their name, code and symbol (e.g. `US Dollar` / `USD` / `$`).
+   * Currencies including their name, code, symbol and ISO numeric code (e.g. `US Dollar` / `USD` / `$` / '840').
    */
   currency: Currency[];
 
