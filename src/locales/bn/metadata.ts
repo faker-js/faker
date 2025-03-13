@@ -1,13 +1,12 @@
-import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/metadata';
+import type { PreBuiltMetadataDefinition } from '../../definitions/metadata';
 
-const metadata: PreBuiltMetadataDefinitionForCountry = {
+const metadata: PreBuiltMetadataDefinition = {
   title: 'Bengali',
   code: 'bn',
   language: 'bn',
-  country: 'Bangladesh',
   endonym: 'বাংলা',
   dir: 'ltr',
-  script: 'Beng',
+  script: 'Latn',
 };
 
 export default metadata;
