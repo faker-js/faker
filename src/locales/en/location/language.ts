@@ -24,7 +24,7 @@ export default [
   { name: 'Japanese', alpha2: 'ja', alpha3: 'jpn' },
   { name: 'Chinese', alpha2: 'zh', alpha3: 'zho' },
   { name: 'Hindi', alpha2: 'hi', alpha3: 'hin' },
-  { name: 'Bengali', alpha2: 'bn_BD', alpha3: 'ben' },
+  { name: 'Bengali', alpha2: 'bn', alpha3: 'ben' },
   { name: 'Gujarati', alpha2: 'gu', alpha3: 'guj' },
   { name: 'Tamil', alpha2: 'ta', alpha3: 'tam' },
   { name: 'Telugu', alpha2: 'te', alpha3: 'tel' },

@@ -13,7 +13,7 @@ export default [
   { name: 'جاپانی', alpha2: 'ja', alpha3: 'jpn' },
   { name: 'چینی', alpha2: 'zh', alpha3: 'zho' },
   { name: 'ہندی', alpha2: 'hi', alpha3: 'hin' },
-  { name: 'بنگالی', alpha2: 'bn_BD', alpha3: 'ben' },
+  { name: 'بنگالی', alpha2: 'bn', alpha3: 'ben' },
   { name: 'تمل', alpha2: 'ta', alpha3: 'tam' },
   { name: 'تلگو', alpha2: 'te', alpha3: 'tel' },
   { name: 'پنجابی', alpha2: 'pa', alpha3: 'pan' },
