@@ -5,21 +5,21 @@
 
 import { Faker } from '../faker';
 import base from '../locales/base';
-import bn from '../locales/bn';
+import bn_BD from '../locales/bn_BD';
 import en from '../locales/en';
 
 /**
- * The faker instance for the `bn` locale.
+ * The faker instance for the `bn_BD` locale.
  *
- * - Language: Bengali
- * - Endonym: বাংলা
+ * - Language: Bengali (Bangladesh)
+ * - Endonym: বাংলা (বাংলাদেশ)
  *
  * This instance uses the following locales internally (in descending precedence):
  *
- * - `bn`
+ * - `bn_BD`
  * - `en`
  * - `base`
  */
 export const faker = new Faker({
-  locale: [bn, en, base],
+  locale: [bn_BD, en, base],
 });
