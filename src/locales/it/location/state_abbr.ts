@@ -10,7 +10,7 @@ export default [
   'BA',
   'BT',
   'BL',
-  'BN',
+  'bn_BD',
   'BG',
   'BI',
   'BO',

@@ -4,7 +4,7 @@ export default [
   'AG',
   'BC',
   'BH',
-  'BN',
+  'bn_BD',
   'BT',
   'BR',
   'BV',
