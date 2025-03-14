@@ -46,6 +46,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
       expect([
         'Arab',
         'Armn',
+        'Beng',
         'Cyrl',
         'Deva',
         'Geor',

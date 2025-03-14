@@ -7,7 +7,7 @@ const metadata: PreBuiltMetadataDefinitionForCountry = {
   language: 'bn',
   endonym: 'বাংলা (বাংলাদেশ)',
   dir: 'ltr',
-  script: 'Latn',
+  script: 'Beng',
 };
 
 export default metadata;

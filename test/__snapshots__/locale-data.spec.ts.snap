@@ -6,7 +6,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "ar": " #()-.T،ءآأؤإئابةتثجحخدذرزسشصضطظعغـفقكلمنهوىيًٍَُِّْٱ",
   "az": " #()+,-.ABCDEFGHJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyzÇÖÜçöüğİıŞşƏəабвгдеийклмнопрстуфцчьюя’",
   "base": " ()+,-./:;ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
-  "bn": " #()+,-.:ABCDEFGHIKLMNOPRSTUVWXYZabcdefghiklmnoprstuvyঁংঅআইঈউএঐওকখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহ়ািীুূৃেৈোৌ্ৎ৪৯",
+  "bn_BD": "অআইএকগঙচজটডতধনপফবভমযরলশসহ়ািুৃেো্",
   "cs_CZ": " #()+-.ABCDEFGHIJKLMNOPRSTUVWXZabcdefghijklmnopqrstuvwxyzÁÍÚáéíóöúüýČčĎďěňŘřŠšťůűŽž",
   "da": " !"#()+,-./ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyzÅÆØãåæçéíø",
   "de": " #&'()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜßàãäéíöúü",
