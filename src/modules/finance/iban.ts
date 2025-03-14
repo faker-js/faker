@@ -1172,7 +1172,7 @@ const iban: Iban = {
     'BJ',
     'BL',
     'BM',
-    'BN',
+    'bn_BD',
     'BO',
     'BQ',
     'BR',
