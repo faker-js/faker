@@ -27,7 +27,7 @@ export default [
   { alpha2: 'BJ', alpha3: 'BEN', numeric: '204' },
   { alpha2: 'BL', alpha3: 'BLM', numeric: '652' },
   { alpha2: 'BM', alpha3: 'BMU', numeric: '060' },
-  { alpha2: 'BD', alpha3: 'BRN', numeric: '096' },
+  { alpha2: 'BN', alpha3: 'BRN', numeric: '096' },
   { alpha2: 'BO', alpha3: 'BOL', numeric: '068' },
   { alpha2: 'BQ', alpha3: 'BES', numeric: '535' },
   { alpha2: 'BR', alpha3: 'BRA', numeric: '076' },
