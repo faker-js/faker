@@ -7,6 +7,7 @@ import af_ZA from './af_ZA';
 import ar from './ar';
 import az from './az';
 import base from './base';
+import bn_BD from './bn_BD';
 import cs_CZ from './cs_CZ';
 import da from './da';
 import de from './de';
@@ -77,6 +78,7 @@ export { default as af_ZA } from './af_ZA';
 export { default as ar } from './ar';
 export { default as az } from './az';
 export { default as base } from './base';
+export { default as bn_BD } from './bn_BD';
 export { default as cs_CZ } from './cs_CZ';
 export { default as da } from './da';
 export { default as de } from './de';
@@ -148,6 +150,7 @@ export const allLocales = {
   ar,
   az,
   base,
+  bn_BD,
   cs_CZ,
   da,
   de,
