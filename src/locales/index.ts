@@ -48,6 +48,7 @@ import it from './it';
 import ja from './ja';
 import ka_GE from './ka_GE';
 import ko from './ko';
+import ku from './ku';
 import lv from './lv';
 import mk from './mk';
 import nb_NO from './nb_NO';
@@ -119,6 +120,7 @@ export { default as it } from './it';
 export { default as ja } from './ja';
 export { default as ka_GE } from './ka_GE';
 export { default as ko } from './ko';
+export { default as ku } from './ku';
 export { default as lv } from './lv';
 export { default as mk } from './mk';
 export { default as nb_NO } from './nb_NO';
@@ -191,6 +193,7 @@ export const allLocales = {
   ja,
   ka_GE,
   ko,
+  ku,
   lv,
   mk,
   nb_NO,

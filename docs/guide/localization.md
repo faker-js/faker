@@ -95,6 +95,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `ja`          | Japanese                  | `fakerJA`          |
 | `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
 | `ko`          | Korean                    | `fakerKO`          |
+| `ku`          | Kurdish                   | `fakerKU`          |
 | `lv`          | Latvian                   | `fakerLV`          |
 | `mk`          | Macedonian                | `fakerMK`          |
 | `nb_NO`       | Norwegian (Norway)        | `fakerNB_NO`       |
