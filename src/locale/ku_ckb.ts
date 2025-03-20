@@ -6,20 +6,20 @@
 import { Faker } from '../faker';
 import base from '../locales/base';
 import en from '../locales/en';
-import ku from '../locales/ku';
+import ku_ckb from '../locales/ku_ckb';
 
 /**
- * The faker instance for the `ku` locale.
+ * The faker instance for the `ku_ckb` locale.
  *
- * - Language: Kurdish
- * - Endonym: کوردیی
+ * - Language: Kurdish (Sorani)
+ * - Endonym: کوردی (سۆرانی)
  *
  * This instance uses the following locales internally (in descending precedence):
  *
- * - `ku`
+ * - `ku_ckb`
  * - `en`
  * - `base`
  */
 export const faker = new Faker({
-  locale: [ku, en, base],
+  locale: [ku_ckb, en, base],
 });

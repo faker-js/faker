@@ -1,10 +1,11 @@
 import type { PreBuiltMetadataDefinition } from '../../definitions/metadata';
 
 const metadata: PreBuiltMetadataDefinition = {
-  title: 'Kurdish',
-  code: 'ku',
+  title: 'Kurdish (Sorani)',
+  code: 'ku_ckb',
   language: 'ku',
-  endonym: 'کوردیی',
+  variant: 'ckb',
+  endonym: 'کوردی (سۆرانی)',
   dir: 'rtl',
   script: 'Arab',
 };
