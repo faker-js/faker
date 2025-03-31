@@ -172,6 +172,12 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   {
     name: 'jsdoc overrides',
     rules: {
+      'jsdoc/check-tag-names': [
+        'error',
+        {
+          definedTags: ['remarks'],
+        },
+      ],
       'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
       'jsdoc/require-returns': 'off',
       'jsdoc/sort-tags': [
@@ -180,6 +186,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
           tagSequence: [
             { tags: ['template'] },
             { tags: ['internal'] },
+            { tags: ['remarks'] },
             { tags: ['param'] },
             { tags: ['returns'] },
             { tags: ['throws'] },

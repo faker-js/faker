@@ -38,6 +38,8 @@ export class ImageModule extends ModuleBase {
   /**
    * Generates a random avatar from GitHub.
    *
+   * @remarks This method generates a random string representing an URL from GitHub by using a random user ID. Faker is not responsible for the content of the image or the service providing it.
+   *
    * @example
    * faker.image.avatarGitHub()
    * // 'https://avatars.githubusercontent.com/u/97165289'
