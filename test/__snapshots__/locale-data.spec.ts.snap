@@ -8,6 +8,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "base": " ()+,-./:;ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
   "bn_BD": "অআইএকগঙচজটডতধনপফবভমযরলশসহ়ািুৃেো্",
   "cs_CZ": " #()+-.ABCDEFGHIJKLMNOPRSTUVWXZabcdefghijklmnopqrstuvwxyzÁÍÚáéíóöúüýČčĎďěňŘřŠšťůűŽž",
+  "cy": "ACEGHILMRSTabcdefghilnorstuwy",
   "da": " !"#()+,-./ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyzÅÆØãåæçéíø",
   "de": " #&'()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜßàãäéíöúü",
   "de_AT": " #&()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜßãäéíöúü",

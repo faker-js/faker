@@ -9,6 +9,7 @@ import { faker as fakerAZ } from './az';
 import { faker as fakerBASE } from './base';
 import { faker as fakerBN_BD } from './bn_BD';
 import { faker as fakerCS_CZ } from './cs_CZ';
+import { faker as fakerCY } from './cy';
 import { faker as fakerDA } from './da';
 import { faker as fakerDE } from './de';
 import { faker as fakerDE_AT } from './de_AT';
@@ -80,6 +81,7 @@ export { faker as fakerAZ } from './az';
 export { faker as fakerBASE } from './base';
 export { faker as fakerBN_BD } from './bn_BD';
 export { faker as fakerCS_CZ } from './cs_CZ';
+export { faker as fakerCY } from './cy';
 export { faker as fakerDA } from './da';
 export { faker as fakerDE } from './de';
 export { faker as fakerDE_AT } from './de_AT';
@@ -152,6 +154,7 @@ export const allFakers = {
   base: fakerBASE,
   bn_BD: fakerBN_BD,
   cs_CZ: fakerCS_CZ,
+  cy: fakerCY,
   da: fakerDA,
   de: fakerDE,
   de_AT: fakerDE_AT,

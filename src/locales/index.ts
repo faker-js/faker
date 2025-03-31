@@ -9,6 +9,7 @@ import az from './az';
 import base from './base';
 import bn_BD from './bn_BD';
 import cs_CZ from './cs_CZ';
+import cy from './cy';
 import da from './da';
 import de from './de';
 import de_AT from './de_AT';
@@ -80,6 +81,7 @@ export { default as az } from './az';
 export { default as base } from './base';
 export { default as bn_BD } from './bn_BD';
 export { default as cs_CZ } from './cs_CZ';
+export { default as cy } from './cy';
 export { default as da } from './da';
 export { default as de } from './de';
 export { default as de_AT } from './de_AT';
@@ -152,6 +154,7 @@ export const allLocales = {
   base,
   bn_BD,
   cs_CZ,
+  cy,
   da,
   de,
   de_AT,
