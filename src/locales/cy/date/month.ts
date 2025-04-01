@@ -11,7 +11,7 @@ export default {
     'Medi',
     'Mehefin',
     'Rhagfyr',
-    'Tachwededd',
+    'Tachwedd',
   ],
   abbr: [
     'Aws',
