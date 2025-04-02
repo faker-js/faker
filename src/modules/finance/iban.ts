@@ -500,7 +500,7 @@ const iban: Iban = {
       total: 22,
       bban: [
         {
-          type: 'c',
+          type: 'a',
           count: 4,
         },
         {
@@ -862,7 +862,7 @@ const iban: Iban = {
       total: 29,
       bban: [
         {
-          type: 'c',
+          type: 'a',
           count: 4,
         },
         {
