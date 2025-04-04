@@ -54,6 +54,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
+| `bn_BD`       | Bengali (Bangladesh)      | `fakerBN_BD`       |
 | `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
 | `da`          | Danish                    | `fakerDA`          |
 | `de`          | German                    | `fakerDE`          |
