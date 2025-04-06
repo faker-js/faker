@@ -6,20 +6,20 @@
 import { Faker } from '../faker';
 import base from '../locales/base';
 import en from '../locales/en';
-import ta from '../locales/ta';
+import ta_IN from '../locales/ta_IN';
 
 /**
- * The faker instance for the `ta` locale.
+ * The faker instance for the `ta_IN` locale.
  *
- * - Language: Tamil
- * - Endonym: தமிழ்
+ * - Language: Tamil (India)
+ * - Endonym: தமிழ் (இந்தியா)
  *
  * This instance uses the following locales internally (in descending precedence):
  *
- * - `ta`
+ * - `ta_IN`
  * - `en`
  * - `base`
  */
 export const faker = new Faker({
-  locale: [ta, en, base],
+  locale: [ta_IN, en, base],
 });

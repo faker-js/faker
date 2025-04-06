@@ -59,7 +59,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
         'Latn',
         'Thaa',
         'Thai',
-        'Tamil',
+        'Taml',
       ]).toContain(metadata.script);
       expect(metadata.endonym).toBeTypeOf('string');
       expect(metadata.dir).toBeTypeOf('string');
