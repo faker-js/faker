@@ -127,7 +127,7 @@
     "eslint-plugin-unicorn": "57.0.0",
     "jiti": "2.4.2",
     "npm-run-all2": "7.0.2",
-    "prettier": "3.5.2",
+    "prettier": "3.5.3",
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-packagejson": "2.5.10",
     "rimraf": "5.0.10",
