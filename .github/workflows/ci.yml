@@ -95,7 +95,7 @@ jobs:
   e2e-test:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:22.14.0@sha256:0bb89e2255ab99e3dddea6496205ceb5541578fc24df2dcc26056dc4e0451bbc
+      image: cypress/browsers:22.14.0@sha256:55119cf831abaff1d4a66cfcdcd617a9dedf5a6183ec2272e24bf657db5f1ce5
       options: --user 1001
     timeout-minutes: 10
     name: 'E2E Doc Test: node-22, ubuntu-latest'
