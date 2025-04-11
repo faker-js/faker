@@ -46,6 +46,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
       expect([
         'Arab',
         'Armn',
+        'Beng',
         'Cyrl',
         'Deva',
         'Geor',
@@ -56,6 +57,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
         'Jpan',
         'Kore',
         'Latn',
+        'Taml',
         'Thaa',
         'Thai',
       ]).toContain(metadata.script);

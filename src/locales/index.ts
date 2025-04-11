@@ -7,7 +7,9 @@ import af_ZA from './af_ZA';
 import ar from './ar';
 import az from './az';
 import base from './base';
+import bn_BD from './bn_BD';
 import cs_CZ from './cs_CZ';
+import cy from './cy';
 import da from './da';
 import de from './de';
 import de_AT from './de_AT';
@@ -62,6 +64,7 @@ import ru from './ru';
 import sk from './sk';
 import sr_RS_latin from './sr_RS_latin';
 import sv from './sv';
+import ta_IN from './ta_IN';
 import th from './th';
 import tr from './tr';
 import uk from './uk';
@@ -77,7 +80,9 @@ export { default as af_ZA } from './af_ZA';
 export { default as ar } from './ar';
 export { default as az } from './az';
 export { default as base } from './base';
+export { default as bn_BD } from './bn_BD';
 export { default as cs_CZ } from './cs_CZ';
+export { default as cy } from './cy';
 export { default as da } from './da';
 export { default as de } from './de';
 export { default as de_AT } from './de_AT';
@@ -132,6 +137,7 @@ export { default as ru } from './ru';
 export { default as sk } from './sk';
 export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
+export { default as ta_IN } from './ta_IN';
 export { default as th } from './th';
 export { default as tr } from './tr';
 export { default as uk } from './uk';
@@ -148,7 +154,9 @@ export const allLocales = {
   ar,
   az,
   base,
+  bn_BD,
   cs_CZ,
+  cy,
   da,
   de,
   de_AT,
@@ -203,6 +211,7 @@ export const allLocales = {
   sk,
   sr_RS_latin,
   sv,
+  ta_IN,
   th,
   tr,
   uk,

@@ -54,7 +54,9 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
+| `bn_BD`       | Bengali (Bangladesh)      | `fakerBN_BD`       |
 | `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
+| `cy`          | Welsh                     | `fakerCY`          |
 | `da`          | Danish                    | `fakerDA`          |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
@@ -109,6 +111,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `sk`          | Slovak                    | `fakerSK`          |
 | `sr_RS_latin` | Serbian (Serbia, Latin)   | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
+| `ta_IN`       | Tamil (India)             | `fakerTA_IN`       |
 | `th`          | Thai                      | `fakerTH`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |

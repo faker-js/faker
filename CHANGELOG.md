@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.6.0](https://github.com/faker-js/faker/compare/v9.5.1...v9.6.0) (2025-03-06)
+
+
+### Features
+
+* **finance:** add ISO 4217 numerical codes to Currency ([#3404](https://github.com/faker-js/faker/issues/3404)) ([ae9aec6](https://github.com/faker-js/faker/commit/ae9aec67b19f779e818be5550a8edc44f20d91d4))
+* **number:** bigint multipleOf ([#3402](https://github.com/faker-js/faker/issues/3402)) ([7b4f85a](https://github.com/faker-js/faker/commit/7b4f85a2c00bf2adff2b88957bd6322100e6e541))
+
 ## [9.5.1](https://github.com/faker-js/faker/compare/v9.5.0...v9.5.1) (2025-02-28)
 
 

@@ -205,9 +205,7 @@ class TestGenerator<
    *
    * @param methods The names of the methods.
    */
-  itEach<TMethodName extends NoArgsMethodOf<TModule>>(
-    ...methods: TMethodName[]
-  ): this {
+  itEach(...methods: Array<NoArgsMethodOf<TModule>>): this {
     for (const method of methods) {
       this.it(method);
     }
