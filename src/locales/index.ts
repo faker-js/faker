@@ -64,6 +64,7 @@ import ru from './ru';
 import sk from './sk';
 import sr_RS_latin from './sr_RS_latin';
 import sv from './sv';
+import ta_IN from './ta_IN';
 import th from './th';
 import tr from './tr';
 import uk from './uk';
@@ -136,6 +137,7 @@ export { default as ru } from './ru';
 export { default as sk } from './sk';
 export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
+export { default as ta_IN } from './ta_IN';
 export { default as th } from './th';
 export { default as tr } from './tr';
 export { default as uk } from './uk';
@@ -209,6 +211,7 @@ export const allLocales = {
   sk,
   sr_RS_latin,
   sv,
+  ta_IN,
   th,
   tr,
   uk,

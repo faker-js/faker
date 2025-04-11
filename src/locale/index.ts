@@ -64,6 +64,7 @@ import { faker as fakerRU } from './ru';
 import { faker as fakerSK } from './sk';
 import { faker as fakerSR_RS_latin } from './sr_RS_latin';
 import { faker as fakerSV } from './sv';
+import { faker as fakerTA_IN } from './ta_IN';
 import { faker as fakerTH } from './th';
 import { faker as fakerTR } from './tr';
 import { faker as fakerUK } from './uk';
@@ -136,6 +137,7 @@ export { faker as fakerRU } from './ru';
 export { faker as fakerSK } from './sk';
 export { faker as fakerSR_RS_latin } from './sr_RS_latin';
 export { faker as fakerSV } from './sv';
+export { faker as fakerTA_IN } from './ta_IN';
 export { faker as fakerTH } from './th';
 export { faker as fakerTR } from './tr';
 export { faker as fakerUK } from './uk';
@@ -209,6 +211,7 @@ export const allFakers = {
   sk: fakerSK,
   sr_RS_latin: fakerSR_RS_latin,
   sv: fakerSV,
+  ta_IN: fakerTA_IN,
   th: fakerTH,
   tr: fakerTR,
   uk: fakerUK,
