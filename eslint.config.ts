@@ -285,6 +285,13 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
         typecheck: true,
       },
     },
+  },
+  {
+    files: ['test/**/*.spec.cts'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      'unicorn/prefer-module': 'off',
+    },
   }
   //#endregion
 );

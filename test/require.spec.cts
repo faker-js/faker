@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module */
 const { describe, expect, it, vi } = await import('vitest');
 const { allLocales, SimpleFaker } = require('../dist/index.cjs');
 
