@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.7.0](https://github.com/faker-js/faker/compare/v9.6.0...v9.7.0) (2025-04-13)
+
+
+### New Locales
+
+* **locale:** Add bn_BD locale ([#3439](https://github.com/faker-js/faker/issues/3439)) ([fef0ad7](https://github.com/faker-js/faker/commit/fef0ad7859ff5994947c2c02afd6bdf13dffd234))
+* **locale:** add cy locale, start with date ([#3462](https://github.com/faker-js/faker/issues/3462)) ([f70a6f7](https://github.com/faker-js/faker/commit/f70a6f7a656090ed900ea18b39961d0d5ff78be0))
+* **locale:** add finance support for ja locale ([#3449](https://github.com/faker-js/faker/issues/3449)) ([b2c5298](https://github.com/faker-js/faker/commit/b2c5298c94f632681937fc6d62da2f84252b5c66))
+* **locale:** add localize sex support for zh_CN & zh_TW ([#3450](https://github.com/faker-js/faker/issues/3450)) ([048c325](https://github.com/faker-js/faker/commit/048c32581bd5d15f333ef63e4ca968e02793373d))
+* **locale:** add Tamil language support ([#3468](https://github.com/faker-js/faker/issues/3468)) ([cdf6dc4](https://github.com/faker-js/faker/commit/cdf6dc4a973b8e64069f8b8d98e6921188f08575))
+
+
+### Bug Fixes
+
+* **airline:** Air France and KLM Royal Dutch Airlines ([#3440](https://github.com/faker-js/faker/issues/3440)) ([8a2d168](https://github.com/faker-js/faker/commit/8a2d168f62307af8c4b04ab8ab4624786009671b))
+* **iban:** more strict pattern for IE and PS ([#3464](https://github.com/faker-js/faker/issues/3464)) ([7b12056](https://github.com/faker-js/faker/commit/7b120567139b2ac84d052f42f1f352c6697f2aa2))
+* **locale:** rename ja and zh_CN company affix files ([#3448](https://github.com/faker-js/faker/issues/3448)) ([1e551c5](https://github.com/faker-js/faker/commit/1e551c5f47e292d3dc6bbefae9eaf75664a052a1))
+* **number:** don't ignore multipleOf in float when min=max ([#3417](https://github.com/faker-js/faker/issues/3417)) ([e4cc4e5](https://github.com/faker-js/faker/commit/e4cc4e50d1d4103c26f06fd2db0ca187dbb537cd))
+
 ## [9.6.0](https://github.com/faker-js/faker/compare/v9.5.1...v9.6.0) (2025-03-06)
 
 
