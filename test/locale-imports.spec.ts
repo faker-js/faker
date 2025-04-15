@@ -1,8 +1,8 @@
+import isISO15924 from 'validator/lib/isISO15924';
 import { describe, expect, it } from 'vitest';
 import type { Faker } from '../src';
 import { allLocales } from '../src';
 import { keys } from '../src/internal/keys';
-import isISO15924 from 'validator/lib/isISO15924';
 
 describe.each(keys(allLocales))('locale imports', (locale) => {
   it(`should be possible to directly require('@faker-js/faker/locale/${locale}')`, () => {
