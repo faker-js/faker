@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import airline from './airline';
 import animal from './animal';
+import book from './book';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -31,6 +32,7 @@ import word from './word';
 const zh_CN: LocaleDefinition = {
   airline,
   animal,
+  book,
   color,
   commerce,
   company,
