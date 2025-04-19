@@ -1,3 +1,4 @@
+import isULID from 'validator/lib/isULID';
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -774,6 +775,7 @@ describe('string', () => {
           const ulid = faker.string.ulid();
           const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
           expect(ulid).toMatch(regex);
+          expect(ulid).toSatisfy(isULID);
         });
       });
 
