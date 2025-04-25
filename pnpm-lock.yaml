@@ -27,8 +27,8 @@ importers:
         specifier: 7.7.0
         version: 7.7.0
       '@types/validator':
-        specifier: 13.12.3
-        version: 13.12.3
+        specifier: 13.15.0
+        version: 13.15.0
       '@vitest/coverage-v8':
         specifier: 3.1.1
         version: 3.1.1(vitest@3.1.1)
@@ -892,8 +892,8 @@ packages:
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
-  '@types/validator@13.12.3':
-    resolution: {integrity: sha512-2ipwZ2NydGQJImne+FhNdhgRM37e9lCev99KnqkbFHd94Xn/mErARWI1RSLem1QA19ch5kOhzIZd7e8CA2FI8g==}
+  '@types/validator@13.15.0':
+    resolution: {integrity: sha512-nh7nrWhLr6CBq9ldtw0wx+z9wKnnv/uTVLA9g/3/TcOYxbpOSZE+MhKPmWqU+K0NvThjhv12uD8MuqijB0WzEA==}
 
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
@@ -4340,7 +4340,7 @@ snapshots:
 
   '@types/unist@3.0.3': {}
 
-  '@types/validator@13.12.3': {}
+  '@types/validator@13.15.0': {}
 
   '@types/web-bluetooth@0.0.21': {}
 

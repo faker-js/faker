@@ -1,3 +1,6 @@
+import isISO31661Alpha2 from 'validator/lib/isISO31661Alpha2';
+import isISO31661Alpha3 from 'validator/lib/isISO31661Alpha3';
+import isISO31661Numeric from 'validator/lib/isISO31661Numeric';
 import { describe, expect, it } from 'vitest';
 import {
   FakerError,
@@ -165,6 +168,7 @@ describe('location', () => {
 
           expect(countryCode).toBeTruthy();
           expect(countryCode).toMatch(/^[A-Z]{2}$/);
+          expect(countryCode).toSatisfy(isISO31661Alpha2);
         });
 
         it('returns random alpha-3 countryCode', () => {
@@ -172,6 +176,7 @@ describe('location', () => {
 
           expect(countryCode).toBeTruthy();
           expect(countryCode).toMatch(/^[A-Z]{3}$/);
+          expect(countryCode).toSatisfy(isISO31661Alpha3);
         });
 
         it('returns random numeric countryCode', () => {
@@ -179,6 +184,7 @@ describe('location', () => {
 
           expect(countryCode).toBeTruthy();
           expect(countryCode).toMatch(/^\d{3}$/);
+          expect(countryCode).toSatisfy(isISO31661Numeric);
         });
       });
 
