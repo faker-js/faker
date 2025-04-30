@@ -4,18 +4,24 @@
  */
 import type { AnimalDefinition } from '../../..';
 import bear from './bear';
+import bird from './bird';
 import cat from './cat';
 import dog from './dog';
 import fish from './fish';
 import horse from './horse';
+import insect from './insect';
+import pet_name from './pet_name';
 import type_ from './type';
 
 const animal: AnimalDefinition = {
   bear,
+  bird,
   cat,
   dog,
   fish,
   horse,
+  insect,
+  pet_name,
   type: type_,
 };
 
