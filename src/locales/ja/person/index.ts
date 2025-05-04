@@ -7,12 +7,14 @@ import first_name from './first_name';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import name_ from './name';
+import sex from './sex';
 
 const person: PersonDefinition = {
   first_name,
   last_name,
   last_name_pattern,
   name: name_,
+  sex,
 };
 
 export default person;
