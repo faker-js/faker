@@ -37,7 +37,7 @@ features:
     details: Generate Prices, Product Names, Adjectives, and Descriptions.
   - icon: 🌏
     title: Localization
-    details: Pick from over 60 locales to generate realistic looking Names, Addresses, and Phone Numbers.
+    details: Pick from over 70 locales to generate realistic looking Names, Addresses, and Phone Numbers.
 ---
 
 <div class="opencollective">

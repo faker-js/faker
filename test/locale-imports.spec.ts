@@ -1,3 +1,4 @@
+import isISO15924 from 'validator/lib/isISO15924';
 import { describe, expect, it } from 'vitest';
 import type { Faker } from '../src';
 import { allLocales } from '../src';
@@ -43,24 +44,7 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
       expect(metadata.language).toBeTypeOf('string');
       expect(metadata.language).toMatch(/^[a-z]{2}$/);
       expect(metadata.script).toBeTypeOf('string');
-      expect([
-        'Arab',
-        'Armn',
-        'Beng',
-        'Cyrl',
-        'Deva',
-        'Geor',
-        'Grek',
-        'Hans',
-        'Hant',
-        'Hebr',
-        'Jpan',
-        'Kore',
-        'Latn',
-        'Taml',
-        'Thaa',
-        'Thai',
-      ]).toContain(metadata.script);
+      expect(metadata.script).toSatisfy(isISO15924);
       expect(metadata.endonym).toBeTypeOf('string');
       expect(metadata.dir).toBeTypeOf('string');
       expect(['ltr', 'rtl']).toContain(metadata.dir);
