@@ -576,7 +576,7 @@ export default [
   },
   {
     symbol: 'Lv',
-    name: 'リビモリウム',
+    name: 'リバモリウム',
     atomicNumber: 116,
   },
   {
