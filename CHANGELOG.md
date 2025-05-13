@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.8.0](https://github.com/faker-js/faker/compare/v9.7.0...v9.8.0) (2025-05-13)
+
+
+### New Locales
+
+* **locale:** Add additional Japanese last names to the locale data ([#3484](https://github.com/faker-js/faker/issues/3484)) ([72e66c3](https://github.com/faker-js/faker/commit/72e66c3a3a22738ce163b26dc5315c82f49032e7))
+* **locale:** add Japanese date and month definitions ([#3492](https://github.com/faker-js/faker/issues/3492)) ([b70e793](https://github.com/faker-js/faker/commit/b70e7934b7b3181d8f3fbe98627985cd71fbfe26))
+* **locale:** add Japanese science locale data including elements and units ([#3491](https://github.com/faker-js/faker/issues/3491)) ([54fd551](https://github.com/faker-js/faker/commit/54fd5519e92270926e75a914ccf98b4699fbb4f2))
+* **locale:** add Japanese sex definitions for person locale ([#3495](https://github.com/faker-js/faker/issues/3495)) ([1dbd8fa](https://github.com/faker-js/faker/commit/1dbd8fa511e0c69ed73324a330f16f9aa1a6670a))
+* **locale:** add vehicle locale data for Japanese ([#3490](https://github.com/faker-js/faker/issues/3490)) ([dfadb1d](https://github.com/faker-js/faker/commit/dfadb1da746e7bf82b59dc5314bb9f0735b0f37d))
+* **locale:** add zh_CN book ([#3477](https://github.com/faker-js/faker/issues/3477)) ([786a3d0](https://github.com/faker-js/faker/commit/786a3d0bd8d72d2bf2cfc38358c45d2960848654))
+* **locale:** add zh_CN food ([#3479](https://github.com/faker-js/faker/issues/3479)) ([6c883e7](https://github.com/faker-js/faker/commit/6c883e74b894f1b777291e67d5b2b7bc63e38a80))
+* **locale:** update Japanese company categories ([#3489](https://github.com/faker-js/faker/issues/3489)) ([8c0953a](https://github.com/faker-js/faker/commit/8c0953a2617f3c8ddd95320af46063d83d115ddb))
+* **locale:** update zh_CN animal ([#3480](https://github.com/faker-js/faker/issues/3480)) ([38ee7b8](https://github.com/faker-js/faker/commit/38ee7b81a82c466710586091e7046d7bfcbed337))
+* **locale:** update zh_CN location ([#3481](https://github.com/faker-js/faker/issues/3481)) ([456f102](https://github.com/faker-js/faker/commit/456f10276bfbc1a654162e94e5815ca01ffa7fdd))
+* **locale:** update zh_CN word ([#3478](https://github.com/faker-js/faker/issues/3478)) ([aa98867](https://github.com/faker-js/faker/commit/aa98867765093588ea2fbda2daa6cbce40b20d5f))
+
+
+### Changed Locales
+
+* **locale:** ko state data update ([#3487](https://github.com/faker-js/faker/issues/3487)) ([b611ec2](https://github.com/faker-js/faker/commit/b611ec2e519bc0be6d53e81fb333fcb15c3964f1))
+* **locale:** normalize internet data ([#3502](https://github.com/faker-js/faker/issues/3502)) ([e6151e4](https://github.com/faker-js/faker/commit/e6151e4efd29f360b82ff25c4ddb2ffae8e30e86))
+* **locale:** rename pt-BR streetSuffix to streetPrefix ([#3493](https://github.com/faker-js/faker/issues/3493)) ([7c23db3](https://github.com/faker-js/faker/commit/7c23db316e794aab2a9181e0f960e094bea71054))
+
+
+### Bug Fixes
+
+* **locale:** correct Japanese country names ([#3510](https://github.com/faker-js/faker/issues/3510)) ([046bb81](https://github.com/faker-js/faker/commit/046bb8155850b9fee0c22a0177e695c3ba0d3a1a))
+* **locale:** correct the name of element Lv in Japanese ([#3509](https://github.com/faker-js/faker/issues/3509)) ([6a7ef4c](https://github.com/faker-js/faker/commit/6a7ef4c2ad97f50e9a47efd0fa7c22804fc9d4f1))
+* **locale:** ko modified street_name to street_name_part ([#3485](https://github.com/faker-js/faker/issues/3485)) ([c15da8e](https://github.com/faker-js/faker/commit/c15da8efec3fc05d089bdf2dc1513183b614e04b))
+
 ## [9.7.0](https://github.com/faker-js/faker/compare/v9.6.0...v9.7.0) (2025-04-13)
 
 
