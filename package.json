@@ -133,7 +133,7 @@
     "rimraf": "5.0.10",
     "sanitize-html": "2.15.0",
     "semver": "7.7.1",
-    "ts-morph": "25.0.1",
+    "ts-morph": "26.0.0",
     "tsup": "8.4.0",
     "tsx": "4.19.3",
     "typescript": "5.8.3",
