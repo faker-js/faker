@@ -5,6 +5,7 @@
 import type { LocationDefinition } from '../../..';
 import city_name from './city_name';
 import city_pattern from './city_pattern';
+import country_code from './country_code';
 import postcode from './postcode';
 import postcode_by_state from './postcode_by_state';
 import state from './state';
@@ -14,6 +15,7 @@ import street_pattern from './street_pattern';
 const location: LocationDefinition = {
   city_name,
   city_pattern,
+  country_code,
   postcode,
   postcode_by_state,
   state,

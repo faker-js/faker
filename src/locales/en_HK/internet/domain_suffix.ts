@@ -1,1 +1,1 @@
-export default ['com', 'hk', 'com.hk', 'org.hk'];
+export default ['com', 'com.hk', 'hk', 'org.hk'];

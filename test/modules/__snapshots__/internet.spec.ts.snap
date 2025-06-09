@@ -32,31 +32,31 @@ exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
 exports[`internet > 42 > domainWord 1`] = `"hospitable-unit"`;
 
-exports[`internet > 42 > email > noArgs 1`] = `"Valentine.Miller15@yahoo.com"`;
+exports[`internet > 42 > email > noArgs 1`] = `"Valentine.Miller15@hotmail.com"`;
 
 exports[`internet > 42 > email > with all options 1`] = `"Jane.Doe@fakerjs.dev"`;
 
-exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Valentine.Miller15@yahoo.com"`;
+exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Valentine.Miller15@hotmail.com"`;
 
-exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Reynolds-Miller15@yahoo.com"`;
+exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Reynolds-Miller15@hotmail.com"`;
 
-exports[`internet > 42 > email > with lastName option 1`] = `"Valentine_Doe59@yahoo.com"`;
+exports[`internet > 42 > email > with lastName option 1`] = `"Valentine_Doe59@hotmail.com"`;
 
 exports[`internet > 42 > email > with provider option 1`] = `"Garnet.Reynolds-Miller15@fakerjs.dev"`;
 
-exports[`internet > 42 > emoji > noArgs 1`] = `"🌾"`;
+exports[`internet > 42 > emoji > noArgs 1`] = `"🦮"`;
 
-exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
+exports[`internet > 42 > emoji > with options 1`] = `"🐟"`;
 
-exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Valentine.Miller15@example.com"`;
+exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Valentine.Miller15@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane_Doe@example.com"`;
+exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane_Doe@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Valentine.Miller15@example.com"`;
+exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Valentine.Miller15@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Reynolds-Miller15@example.com"`;
+exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Reynolds-Miller15@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Valentine_Doe59@example.com"`;
+exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Valentine_Doe59@example.net"`;
 
 exports[`internet > 42 > httpMethod 1`] = `"POST"`;
 
@@ -80,7 +80,7 @@ exports[`internet > 42 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.e
 
 exports[`internet > 42 > jwt > with custom payload 1`] = `"eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJBY21lIn0.JB993RBH1YPdbbiwqiB8imsMcvA2Ba4WXOi6Gr7u2UgFjwxbYMWTBV5c2kogPmhx"`;
 
-exports[`internet > 42 > jwtAlgorithm 1`] = `"RS384"`;
+exports[`internet > 42 > jwtAlgorithm 1`] = `"HS384"`;
 
 exports[`internet > 42 > mac > noArgs 1`] = `"5f:b9:22:0d:9b:0f"`;
 
@@ -170,37 +170,37 @@ exports[`internet > 1211 > displayName > with firstName option 1`] = `"Jane.Tran
 
 exports[`internet > 1211 > displayName > with lastName option 1`] = `"Tito_Doe22"`;
 
-exports[`internet > 1211 > domainName 1`] = `"velvety-tarragon.biz"`;
+exports[`internet > 1211 > domainName 1`] = `"velvety-tarragon.com"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
 exports[`internet > 1211 > domainWord 1`] = `"velvety-tarragon"`;
 
-exports[`internet > 1211 > email > noArgs 1`] = `"Skye68@hotmail.com"`;
+exports[`internet > 1211 > email > noArgs 1`] = `"Skye68@yahoo.com"`;
 
 exports[`internet > 1211 > email > with all options 1`] = `"Jane_Doe89@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Skye68@hotmail.com"`;
+exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Skye68@yahoo.com"`;
 
-exports[`internet > 1211 > email > with firstName option 1`] = `"Jane67@hotmail.com"`;
+exports[`internet > 1211 > email > with firstName option 1`] = `"Jane67@yahoo.com"`;
 
-exports[`internet > 1211 > email > with lastName option 1`] = `"Skye.Doe@hotmail.com"`;
+exports[`internet > 1211 > email > with lastName option 1`] = `"Skye.Doe@yahoo.com"`;
 
 exports[`internet > 1211 > email > with provider option 1`] = `"Tito67@fakerjs.dev"`;
 
-exports[`internet > 1211 > emoji > noArgs 1`] = `"🇹🇳"`;
+exports[`internet > 1211 > emoji > noArgs 1`] = `"🇺🇬"`;
 
-exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
+exports[`internet > 1211 > emoji > with options 1`] = `"🦩"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Skye68@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Skye68@example.org"`;
 
-exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane_Doe@example.net"`;
+exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane_Doe@example.org"`;
 
-exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Skye68@example.net"`;
+exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Skye68@example.org"`;
 
-exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane67@example.net"`;
+exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane67@example.org"`;
 
-exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Skye.Doe@example.net"`;
+exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Skye.Doe@example.org"`;
 
 exports[`internet > 1211 > httpMethod 1`] = `"PATCH"`;
 
@@ -218,11 +218,11 @@ exports[`internet > 1211 > ipv4 > with network 1`] = `"238.219.55.242"`;
 
 exports[`internet > 1211 > ipv6 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
 
-exports[`internet > 1211 > jwt > noArgs 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3Nzg1MDExMywibmJmIjoxNjA5MTk5Nzk2LCJpc3MiOiJQYXVjZWssIFJ1bm9sZnNkb3R0aXIgYW5kIEhlcm1hbm4iLCJzdWIiOiJiZGNhZDZkZC0zOTM1LTRmYzYtOGU4Zi0zNGI4NWQ2NDQyOGIiLCJhdWQiOiJiNzM2M2Q5Ny0wYjJiLTQ0YzgtYjczOS1kMWQ3Njc5YzhlZmQiLCJqdGkiOiIzYmQ1ZTA4Yy03MTQyLTQ0M2UtYWY2My05OTk5ZGFkY2RlODUifQ.rlPcW5f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSD"`;
+exports[`internet > 1211 > jwt > noArgs 1`] = `"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3Nzg1MDExMywibmJmIjoxNjA5MTk5Nzk2LCJpc3MiOiJQYXVjZWssIFJ1bm9sZnNkb3R0aXIgYW5kIEhlcm1hbm4iLCJzdWIiOiJiZGNhZDZkZC0zOTM1LTRmYzYtOGU4Zi0zNGI4NWQ2NDQyOGIiLCJhdWQiOiJiNzM2M2Q5Ny0wYjJiLTQ0YzgtYjczOS1kMWQ3Njc5YzhlZmQiLCJqdGkiOiIzYmQ1ZTA4Yy03MTQyLTQ0M2UtYWY2My05OTk5ZGFkY2RlODUifQ.rlPcW5f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSD"`;
 
 exports[`internet > 1211 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3NzkwNzgxOSwibmJmIjoxNTYwNTI3OTk5LCJpc3MiOiJPc2luc2tpLCBQYXVjZWsgYW5kIFJ1bm9sZnNkb3R0aXIiLCJzdWIiOiI1YmRjYWQ2ZC1kMzkzLTQ1ZmMtYTZlOC1mMzRiODVkNjQ0MjgiLCJhdWQiOiIyYjczNjNkOS03MGIyLTRiNGMtYjg3My05ZDFkNzY3OWM4ZWYiLCJqdGkiOiJkM2JkNWUwOC1jNzE0LTQyNDMtOWVmNi0zOTk5OWRhZGNkZTgifQ.xrlPcW5f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWS"`;
 
-exports[`internet > 1211 > jwt > with custom payload 1`] = `"eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBY21lIn0.dZFGLlHOLEPqRRdAcmZLoWxYdiHwlQngjayH8HufpcQzt2HbHhMvsdBS6QsntzOx"`;
+exports[`internet > 1211 > jwt > with custom payload 1`] = `"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBY21lIn0.dZFGLlHOLEPqRRdAcmZLoWxYdiHwlQngjayH8HufpcQzt2HbHhMvsdBS6QsntzOx"`;
 
 exports[`internet > 1211 > jwtAlgorithm 1`] = `"none"`;
 
@@ -250,11 +250,11 @@ exports[`internet > 1211 > protocol 1`] = `"https"`;
 
 exports[`internet > 1211 > url > noArgs 1`] = `"https://unknown-decongestant.org"`;
 
-exports[`internet > 1211 > url > with slash appended 1`] = `"https://velvety-tarragon.biz/"`;
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://velvety-tarragon.com/"`;
 
-exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://velvety-tarragon.biz"`;
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://velvety-tarragon.com"`;
 
-exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/605.67 (KHTML, like Gecko) Chrome/107.7.7.14 Mobile Safari/592.76"`;
+exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.67.68 (KHTML, like Gecko) Version/16_1 Mobile/15E148 Safari/584.81"`;
 
 exports[`internet > 1211 > userName > noArgs 1`] = `"Tito67"`;
 
@@ -314,9 +314,9 @@ exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane45"`;
 
 exports[`internet > 1337 > displayName > with lastName option 1`] = `"Devyn.Doe"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fatal-co-producer.biz"`;
+exports[`internet > 1337 > domainName 1`] = `"fatal-co-producer.com"`;
 
-exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
+exports[`internet > 1337 > domainSuffix 1`] = `"com"`;
 
 exports[`internet > 1337 > domainWord 1`] = `"fatal-co-producer"`;
 
@@ -332,19 +332,19 @@ exports[`internet > 1337 > email > with lastName option 1`] = `"Carmella.Doe45@g
 
 exports[`internet > 1337 > email > with provider option 1`] = `"Devyn.Gottlieb@fakerjs.dev"`;
 
-exports[`internet > 1337 > emoji > noArgs 1`] = `"🧏🏾‍♂️"`;
+exports[`internet > 1337 > emoji > noArgs 1`] = `"👩‍🎤"`;
 
-exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
+exports[`internet > 1337 > emoji > with options 1`] = `"🐐"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Carmella.Koelpin51@example.org"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Carmella.Koelpin51@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane/Doe27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane/Doe27@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Carmella.Koelpin51@example.org"`;
+exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Carmella.Koelpin51@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane.Gottlieb@example.org"`;
+exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane.Gottlieb@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Carmella.Doe45@example.org"`;
+exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Carmella.Doe45@example.com"`;
 
 exports[`internet > 1337 > httpMethod 1`] = `"POST"`;
 
@@ -362,13 +362,13 @@ exports[`internet > 1337 > ipv4 > with network 1`] = `"228.49.64.201"`;
 
 exports[`internet > 1337 > ipv6 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
 
-exports[`internet > 1337 > jwt > noArgs 1`] = `"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc5NzA3MCwibmJmIjoxNTc1MjcwODM1LCJpc3MiOiJMZWFubm9uIC0gR2lic29uIiwic3ViIjoiZmIxNmEyZjctY2M1Ni00OWMzLWI0YTctMjYzOGQyZjY4ODBiIiwiYXVkIjoiMjI1YjA1MGMtNWI3Zi00ZDk5LThmNDAtMWZmNzViMGNhM2FlIiwianRpIjoiZTViNDgyNzctNmM3Yi00YzVlLThiZTYtN2VhODNmOGMzNjY4In0.G1eJVCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgIu"`;
+exports[`internet > 1337 > jwt > noArgs 1`] = `"eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc5NzA3MCwibmJmIjoxNTc1MjcwODM1LCJpc3MiOiJMZWFubm9uIC0gR2lic29uIiwic3ViIjoiZmIxNmEyZjctY2M1Ni00OWMzLWI0YTctMjYzOGQyZjY4ODBiIiwiYXVkIjoiMjI1YjA1MGMtNWI3Zi00ZDk5LThmNDAtMWZmNzViMGNhM2FlIiwianRpIjoiZTViNDgyNzctNmM3Yi00YzVlLThiZTYtN2VhODNmOGMzNjY4In0.G1eJVCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgIu"`;
 
 exports[`internet > 1337 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc4Njc1MCwibmJmIjoxNTYzODQyNzk2LCJpc3MiOiJIYW1tZXMgTExDIiwic3ViIjoiNGZiMTZhMmYtN2NjNS00NjljLWEzNGEtNzI2MzhkMmY2ODgwIiwiYXVkIjoiZjIyNWIwNTAtYzViNy00ZmQ5LWI5ZjQtMDFmZjc1YjBjYTNhIiwianRpIjoiMmU1YjQ4MjctNzZjNy00YmM1LWFlYmUtNjdlYTgzZjhjMzY2In0.7G1eJVCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgI"`;
 
-exports[`internet > 1337 > jwt > with custom payload 1`] = `"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBY21lIn0.hsjwgYJ7nC7YrMNmpALbhFubpcwPbXqvv0JZa7nG0m3MlHuYPBzZf05WYulI0LFb"`;
+exports[`internet > 1337 > jwt > with custom payload 1`] = `"eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBY21lIn0.hsjwgYJ7nC7YrMNmpALbhFubpcwPbXqvv0JZa7nG0m3MlHuYPBzZf05WYulI0LFb"`;
 
-exports[`internet > 1337 > jwtAlgorithm 1`] = `"RS256"`;
+exports[`internet > 1337 > jwtAlgorithm 1`] = `"HS256"`;
 
 exports[`internet > 1337 > mac > noArgs 1`] = `"42:47:58:4f:b1:6a"`;
 
@@ -394,11 +394,11 @@ exports[`internet > 1337 > protocol 1`] = `"http"`;
 
 exports[`internet > 1337 > url > noArgs 1`] = `"https://cumbersome-duster.info/"`;
 
-exports[`internet > 1337 > url > with slash appended 1`] = `"https://fatal-co-producer.biz/"`;
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://fatal-co-producer.com/"`;
 
-exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fatal-co-producer.biz"`;
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fatal-co-producer.com"`;
 
-exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/547.27.45 (KHTML, like Gecko) Version/16.1 Safari/558.51.26"`;
+exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Linux; Android 6; SM-G998B) AppleWebKit/568.32 (KHTML, like Gecko) Chrome/94.2.20.15 Mobile Safari/544.38"`;
 
 exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn.Gottlieb"`;
 

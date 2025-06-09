@@ -41,7 +41,7 @@ For detailed API documentation, please select the version of the documentation y
 - 👠 Commerce - Generate Prices, Product Names, Adjectives, and Descriptions.
 - 👾 Hacker - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
 - 🔢 Number and String - Of course, we can also generate random numbers and strings.
-- 🌏 Localization - Pick from over 60 locales to generate realistic looking Names, Addresses, and Phone Numbers.
+- 🌏 Localization - Pick from over 70 locales to generate realistic looking Names, Addresses, and Phone Numbers.
 
 > **Note**: Faker tries to generate realistic data and not obvious fake data.
 > The generated names, addresses, emails, phone numbers, and/or other data might be coincidentally valid information.
