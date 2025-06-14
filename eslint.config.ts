@@ -175,7 +175,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       'jsdoc/check-tag-names': [
         'error',
         {
-          definedTags: ['remarks'],
+          definedTags: ['remark'],
         },
       ],
       'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
@@ -186,7 +186,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
           tagSequence: [
             { tags: ['template'] },
             { tags: ['internal'] },
-            { tags: ['remarks'] },
+            { tags: ['remark'] },
             { tags: ['param'] },
             { tags: ['returns'] },
             { tags: ['throws'] },

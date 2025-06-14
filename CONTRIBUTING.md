@@ -299,7 +299,7 @@ function foo(options: { test: string }) {
 > Other JSDoc tags are in use for specific cases.
 
 - `@internal` - If the method is not intended to be used by the end user, e.g. a helper function.
-- `@remarks` - If the method depends on external data not being controlled by Faker, e.g. a third-party image provider.
+- `@remark` - If the method depends on external data not being controlled by Faker, e.g. a third-party image provider.
 
 > We use eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
 
