@@ -9,9 +9,11 @@ exports[`method > expected and actual methods are equal 1`] = `
   "methodWithDeprecated",
   "methodWithDeprecatedOption",
   "methodWithExample",
+  "methodWithMultipleRemarks",
   "methodWithMultipleSeeMarkers",
   "methodWithMultipleSeeMarkersAndBackticks",
   "methodWithMultipleThrows",
+  "methodWithRemark",
   "methodWithSinceMarker",
   "methodWithThrows",
   "multiParamMethod",
@@ -83,6 +85,7 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "resolvedType": {
           "text": "any",
@@ -129,6 +132,7 @@ exports[`method > processMethodLike(defaultBooleanParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -166,6 +170,7 @@ exports[`method > processMethodLike(functionParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -440,6 +445,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "string",
         "type": "simple",
@@ -474,6 +480,7 @@ exports[`method > processMethodLike(methodWithDeprecated) 1`] = `
       "description": "Test with deprecated and see marker.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -544,6 +551,7 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -577,12 +585,45 @@ exports[`method > processMethodLike(methodWithExample) 1`] = `
         "test.apidocs.methodWithExample() // 0",
       ],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
       },
       "seeAlsos": [],
       "signature": "function methodWithExample(): number;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
+exports[`method > processMethodLike(methodWithMultipleRemarks) 1`] = `
+{
+  "name": "methodWithMultipleRemarks",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with multiple remark markers.",
+      "examples": [],
+      "parameters": [],
+      "remarks": [
+        "First special text.",
+        "Second special text.",
+        "Thrid special text.",
+      ],
+      "returns": {
+        "text": "number",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function methodWithMultipleRemarks(): number;",
       "since": "1.0.0",
       "throws": [],
     },
@@ -604,6 +645,7 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkers) 1`] = `
       "description": "Test with multiple see markers.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -634,6 +676,7 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkersAndBackticks) 1`
       "description": "Test with multiple see markers and backticks.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -664,6 +707,7 @@ exports[`method > processMethodLike(methodWithMultipleThrows) 1`] = `
       "description": "Test with multiple throws.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -685,6 +729,36 @@ exports[`method > processMethodLike(methodWithMultipleThrows) 1`] = `
 }
 `;
 
+exports[`method > processMethodLike(methodWithRemark) 1`] = `
+{
+  "name": "methodWithRemark",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with remark marker.",
+      "examples": [],
+      "parameters": [],
+      "remarks": [
+        "This text is special.",
+      ],
+      "returns": {
+        "text": "number",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function methodWithRemark(): number;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
 exports[`method > processMethodLike(methodWithSinceMarker) 1`] = `
 {
   "name": "methodWithSinceMarker",
@@ -694,6 +768,7 @@ exports[`method > processMethodLike(methodWithSinceMarker) 1`] = `
       "description": "Test with since marker.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -721,6 +796,7 @@ exports[`method > processMethodLike(methodWithThrows) 1`] = `
       "description": "Test with throws.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -778,6 +854,7 @@ exports[`method > processMethodLike(multiParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -805,6 +882,7 @@ exports[`method > processMethodLike(noParamMethod) 1`] = `
       "description": "Test with no parameters.",
       "examples": [],
       "parameters": [],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -842,6 +920,7 @@ exports[`method > processMethodLike(optionalStringParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -929,6 +1008,7 @@ Defaults to \`{ value: 1 }\`.",
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -994,6 +1074,7 @@ exports[`method > processMethodLike(optionsInterfaceParamMethodWithDefaults) 1`]
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -1100,6 +1181,7 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -1188,6 +1270,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -1229,6 +1312,7 @@ exports[`method > processMethodLike(recordParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -1266,6 +1350,7 @@ exports[`method > processMethodLike(requiredNumberParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "number",
         "type": "simple",
@@ -1645,6 +1730,7 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
           },
         },
       ],
+      "remarks": [],
       "returns": {
         "text": "string",
         "type": "simple",

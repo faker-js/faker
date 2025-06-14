@@ -137,6 +137,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     description,
     since,
     parameters,
+    remarks,
     returns,
     throws,
     signature,
@@ -158,6 +159,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     name,
     deprecated: mdToHtml(deprecated),
     description: mdToHtml(description),
+    remark: remarks.length === 0 ? undefined : mdToHtml(remarks.join('\n')),
     since,
     parameters: parameters.map((param) => ({
       ...param,
@@ -178,6 +180,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   return {
     name,
     description: mdToHtml(description),
+    remark: remarks.length === 0 ? undefined : mdToHtml(remarks.join('\n')),
     parameters: parameters.map((param) => ({
       ...param,
       type: param.type.text,

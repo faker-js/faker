@@ -2,6 +2,7 @@ export interface ApiDocsMethod {
   readonly name: string;
   readonly deprecated: string | undefined; // HTML
   readonly description: string; // HTML
+  readonly remark: string | undefined; // HTML
   readonly since: string;
   readonly parameters: ApiDocsMethodParameter[];
   readonly returns: string;
@@ -9,7 +10,7 @@ export interface ApiDocsMethod {
   readonly signature: string; // HTML
   readonly examples: string; // HTML
   readonly refresh: (() => Promise<unknown[]>) | undefined;
-  readonly seeAlsos: string[];
+  readonly seeAlsos: string[]; // HTML
   readonly sourcePath: string; // URL-Suffix
 }
 
