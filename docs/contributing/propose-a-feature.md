@@ -6,15 +6,15 @@ If you want to propose a new feature in Faker, please create a new issue using t
 As our library grows, we welcome contributions that introduce new features and maintain the cohesive functionality of our existing codebase.
 To ensure quality and consistency, we have established guidelines for contributing new features.
 
-## General Feature Guideline
+## General Feature Guidelines
 
 General criteria for new features are as follows:
 
 - **Relevance**: Must be widely applicable and not specific to a particular niche.
-- **Deterministic**: Functions must be based on Fakers internal [Randomizer](/api/randomizer).
-- **Conflict free**: Should not conflict with or duplicate existing features.
+- **Deterministic**: Functions must be based on Faker's internal [Randomizer](/api/randomizer).
+- **Conflict-Free**: Should not conflict with or duplicate existing features.
 - **Utility**: Provides significant value to a broad user base.
-- **Library agnostic**: Implementations must be based solely on JavaScript runtime environments and not on specific libraries or frameworks.
+- **Library-Agnostic**: Implementations must be based solely on JavaScript runtime environments and not on specific libraries or frameworks.
 
 ## Accepting a Feature
 
@@ -22,14 +22,14 @@ In order for a feature to be accepted in Faker, it must fulfill all the criteria
 Additionally, depending on the type of feature, there might be additional requirements.
 
 ::: tip Note
-Using thumb-up emotes ( :+1: ) on issues gives the Faker team a general idea of the community interest in a feature.
+Using thumb-up emojis ( :+1: ) on issues helps the Faker estimate the community interest in a feature.
 If you see a feature request that you like, leave an up vote to increase interest.
-You can obviously also upvote your own feature requests.
+Feel free to upvote your own feature requests as well.
 :::
 
-### New Locale Criteria
+## Criteria for New Locales 
 
-Faker already contains [over 60 different locales](/guide/localization#available-locales).
+Faker already contains [over 70 different locales](/guide/localization#available-locales).
 
 If you want to propose a new locale that does not already exist, make sure to read our guide on [locale code names](/guide/localization#locale-codes).
 You should be able to name your locale using the provided naming standards.
