@@ -70,19 +70,19 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           link: '/contributing/code-of-conduct',
         },
         {
-          text: 'Reporting Bugs',
+          text: 'Report Bugs',
           link: '/contributing/report-bugs',
         },
         {
-          text: 'Proposing a Feature',
+          text: 'Propose a Feature',
           link: '/contributing/propose-a-feature',
         },
         {
-          text: 'Setting up a Development Environment',
+          text: 'Set up a Development Environment',
           link: '/contributing/set-up-a-development-environment',
         },
         {
-          text: 'Submitting a Pull Request',
+          text: 'Submit a Pull Request',
           link: '/contributing/submit-a-pull-request',
         },
       ],
