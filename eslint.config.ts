@@ -38,17 +38,11 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   },
   //#endregion
 
-  //#region prettier
-  // Prettier recommended should be the first plugin to allow overriding opinionated rules below in any section
-  eslintPluginPrettierRecommended,
-  //#endregion
-
   //#region eslint (js)
   eslint.configs.recommended,
   {
     name: 'eslint overrides',
     rules: {
-      curly: ['error', 'all'],
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'logical-assignment-operators': 'error',
       'no-else-return': 'error',
@@ -203,6 +197,15 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       jsdoc: {
         mode: 'typescript',
       },
+    },
+  },
+  //#endregion
+
+  //#region prettier
+  eslintPluginPrettierRecommended,
+  {
+    rules: {
+      curly: ['error', 'all'], // https://github.com/prettier/eslint-config-prettier#curly
     },
   },
   //#endregion
