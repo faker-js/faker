@@ -1,6 +1,6 @@
 import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
+import eslintPluginStylistic from '@stylistic/eslint-plugin';
 import eslintPluginVitest from '@vitest/eslint-plugin';
 import eslintPluginFileProgress from 'eslint-plugin-file-progress';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
@@ -38,11 +38,17 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   },
   //#endregion
 
+  //#region prettier
+  // Prettier recommended should be the first plugin to allow overriding opinionated rules below in any section
+  eslintPluginPrettierRecommended,
+  //#endregion
+
   //#region eslint (js)
   eslint.configs.recommended,
   {
     name: 'eslint overrides',
     rules: {
+      curly: ['error', 'all'],
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'logical-assignment-operators': 'error',
       'no-else-return': 'error',
@@ -135,7 +141,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   {
     name: 'stylistic overrides',
     plugins: {
-      '@stylistic': stylistic,
+      '@stylistic': eslintPluginStylistic,
     },
     rules: {
       '@stylistic/padding-line-between-statements': [
@@ -147,15 +153,15 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#endregion
 
   //#region unicorn
-  eslintPluginUnicorn.configs['flat/recommended'],
+  eslintPluginUnicorn.configs.recommended,
   {
     name: 'unicorn overrides',
     rules: {
       'unicorn/import-style': 'off', // subjective & doesn't do anything for us
       'unicorn/no-array-callback-reference': 'off', // reduces readability
       'unicorn/no-nested-ternary': 'off', // incompatible with prettier
-      'unicorn/no-object-as-default-parameter': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2199
       'unicorn/no-null': 'off', // incompatible with TypeScript
+      'unicorn/no-object-as-default-parameter': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2199
       'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
       'unicorn/number-literal-case': 'off', // incompatible with prettier
       'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
@@ -199,10 +205,6 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       },
     },
   },
-  //#endregion
-
-  //#region prettier
-  eslintPluginPrettierRecommended,
   //#endregion
 
   //#region file-progress
@@ -249,7 +251,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       vitest: eslintPluginVitest,
     },
     rules: {
-      'deprecation/deprecation': 'off',
+      '@typescript-eslint/no-deprecated': 'off',
 
       '@typescript-eslint/restrict-template-expressions': [
         'error',
