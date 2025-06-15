@@ -27,7 +27,7 @@ If you see a feature request that you like, leave an up vote to increase interes
 Feel free to upvote your own feature requests as well.
 :::
 
-## Criteria for New Locales 
+## Criteria for New Locales
 
 Faker already contains [over 70 different locales](/guide/localization#available-locales).
 
