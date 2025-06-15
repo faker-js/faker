@@ -42,9 +42,9 @@ Each addition to Faker comes with associated costs.
 This encompasses initial expenses like design, implementation, review, and documentation of the feature.
 Ideally, these tasks can be delegated to the requester or another member of the community.
 
-Moreover, ongoing maintenance of Faker incurs further costs, including awareness of the feature, a more intricate module structure, increased bundle size, and additional effort during refactoring. 
+Moreover, ongoing maintenance of Faker incurs further costs, including awareness of the feature, a more intricate module structure, increased bundle size, and additional effort during refactoring.
 
-If your feature isn't accepted into the library, you can still create it using Faker's Helper methods. 
+If your feature isn't accepted into the library, you can still create it using Faker's Helper methods.
 Our goal is to empower developers, not limit possibilities.
 
 For more details on creating custom features, refer to our documentation on [Create Complex Objects](/guide/usage#create-complex-objects).
