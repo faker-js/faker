@@ -147,7 +147,7 @@ function seeAlsoToUrl(see: string): string {
     <div v-html="description"></div>
 
     <div v-if="remark" class="tip custom-block">
-      <p class="custom-block-title">Attention!</p>
+      <p class="custom-block-title">Note</p>
       <div v-html="remark"></div>
     </div>
 
