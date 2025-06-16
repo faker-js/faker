@@ -49,6 +49,11 @@ It is a shorthand for running the following scripts in order:
 - `pnpm run test:update-snapshots` - runs all tests with [vitest](https://github.com/vitest-dev/vitest), and updates any snapshots if needed
 - `pnpm run ts-check` - checks that there are no TypeScript errors in any files
 
+::: tip Note
+The `preflight` command is very helpful when switching between different branches,
+to get your local environment synced up with the branch's state.
+:::
+
 ## Step 5: Commit and Push Your Changes
 
 Once everything looks good, commit your changes:
@@ -76,33 +81,33 @@ PR Guidelines:
 
 ### The Pull Request Title
 
-Pull Request titles need to follow our semantic convention, since it is used as commit message when merging your PR.
-Commit messages are used when automatically updating the [CHANGELOG](https://github.com/faker-js/faker/blob/next/CHANGELOG.md) file for each version.
+A Pull Request title needs to follow the semantic of a [conventional commit](https://www.conventionalcommits.org), since it is used as commit message when merging your PR.
+These commit messages are then used to automatically update the [CHANGELOG](https://github.com/faker-js/faker/blob/next/CHANGELOG.md) file for each release version.
 
 PR titles are written in following convention: `type(scope): subject`
 
 **type** is required and indicates the intent of the PR.
 
 ::: tip Note
-The types `feat` and `fix` will be shown in the changelog as `### Features` or `### Bug Fixes`.
+The types `feat` and `fix` will be shown in the CHANGELOG as `### Features` or `### Bug Fixes`.
 The type `refactor` will also show up as `### Changed Locales` if it has the `locale` scope.
 All other types wont show up except for breaking changes marked with the `!` in front of `:`
 :::
 
 Allowed types are:
 
-| type     | description                                                               |
-| -------- | ------------------------------------------------------------------------- |
-| feat     | A new feature is introduced                                               |
-| fix      | A bug was fixed                                                           |
-| chore    | No user affected code changes were made                                   |
-| refactor | A refactoring that affected also user (e.g. log a deprecation warning)    |
-| docs     | Docs were added or changed                                                |
-| test     | Test were added or changed                                                |
-| ci       | CI were added or changed                                                  |
-| build    | Build scripts were added or changed                                       |
-| infra    | Infrastructure related things were made (e.g. issue-template was updated) |
-| revert   | A revert was triggered via git                                            |
+| type     | description                                                               | Shows Up In CHANGELOG                        |
+| -------- | ------------------------------------------------------------------------- | -------------------------------------------- |
+| feat     | A new feature is introduced                                               | :white_check_mark:                           |
+| fix      | A bug was fixed                                                           | :white_check_mark:                           |
+| chore    | No user affected code changes were made                                   | :x:                                          |
+| refactor | A refactoring that affected also user (e.g. log a deprecation warning)    | :white_check_mark: (with the `locale` scope) |
+| docs     | Docs were added or changed                                                | :x:                                          |
+| test     | Test were added or changed                                                | :x:                                          |
+| ci       | CI were added or changed                                                  | :x:                                          |
+| build    | Build scripts were added or changed                                       | :x:                                          |
+| infra    | Infrastructure related things were made (e.g. issue-template was updated) | :x:                                          |
+| revert   | A revert was triggered via git                                            | :x:                                          |
 
 **scope** is optional and indicates the scope of the PR.
 
@@ -131,7 +136,8 @@ As such, we (the Faker team) must be mindful of valid scopes and we reserve the 
 
 **subject** is required and describes what the PR does.
 
-Please note that the PR title should not include a suffix of e.g. `(#123)` as this will be done automatically by GitHub while merging
+Please note that the PR title should not include a suffix of e.g. `(#123)`.
+This will be done automatically by GitHub while merging.
 
 Some examples of valid pull request titles:
 

@@ -58,5 +58,5 @@ For a streamlined development experience, Faker supports VSCode Devcontainers.
 
 ## Step 3: Submit a Pull Request
 
-Your development environment has sucessfully been set up.
+Your development environment has successfully been set up.
 You are now ready to [Submit a Pull Request](./submit-a-pull-request.md).
