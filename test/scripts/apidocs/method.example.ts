@@ -448,6 +448,30 @@ export class SignatureTest {
   }
 
   /**
+   * Test with remark marker.
+   *
+   * @remark This text is special.
+   *
+   * @since 1.0.0
+   */
+  methodWithRemark(): number {
+    return 0;
+  }
+
+  /**
+   * Test with multiple remark markers.
+   *
+   * @remark First special text.
+   * @remark Second special text.
+   * @remark Thrid special text.
+   *
+   * @since 1.0.0
+   */
+  methodWithMultipleRemarks(): number {
+    return 0;
+  }
+
+  /**
    * Complex array parameter.
    *
    * @template T The type of the entries to pick from.

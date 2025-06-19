@@ -20,6 +20,8 @@ export class ImageModule extends ModuleBase {
   /**
    * Generates a random avatar image url.
    *
+   * @remark This method sometimes generates a random string representing an URL from GitHub by using a random user ID. Faker is not responsible for the content of the image or the service providing it.
+   *
    * @example
    * faker.image.avatar()
    * // 'https://avatars.githubusercontent.com/u/97165289'
@@ -37,6 +39,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random avatar from GitHub.
+   *
+   * @remark This method generates a random string representing an URL from GitHub by using a random user ID. Faker is not responsible for the content of the image or the service providing it.
    *
    * @example
    * faker.image.avatarGitHub()
@@ -92,6 +96,8 @@ export class ImageModule extends ModuleBase {
   /**
    * Generates a random avatar from `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar`.
    *
+   * @remark This method generates a random string representing an URL from cloudflare-ipfs. Faker is not responsible for the content of the image or the service providing it.
+   *
    * @example
    * faker.image.avatarLegacy()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
@@ -115,6 +121,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random image url.
+   *
+   * @remark This method generates a random string representing an URL from loremflickr. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
@@ -157,6 +165,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random image url provided via https://loremflickr.com.
+   *
+   * @remark This method generates a random string representing an URL from loremflickr. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
@@ -204,6 +214,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random image url provided via https://picsum.photos.
+   *
+   * @remark This method generates a random string representing an URL from picsum.photos. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
@@ -283,6 +295,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random image url provided via https://via.placeholder.com/.
+   *
+   * @remark This method generates a random string representing an URL from via.placeholder. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random number between 1 and 3500.

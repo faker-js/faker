@@ -2,6 +2,7 @@ import { randomSeed } from './internal/seed';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
+import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 import type { Randomizer } from './randomizer';
@@ -14,6 +15,7 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * - `datatype`
  * - `date` (without `month` and `weekday`)
  * - `helpers` (without `fake`)
+ * - `location` (`latitude`, `longitude` and `nearbyGPSCoordinate` only)
  * - `number`
  * - `string`
  *
@@ -85,6 +87,7 @@ export class SimpleFaker {
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
   readonly helpers: SimpleHelpersModule = new SimpleHelpersModule(this);
+  readonly location: SimpleLocationModule = new SimpleLocationModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly string: StringModule = new StringModule(this);
 

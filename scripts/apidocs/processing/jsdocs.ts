@@ -69,6 +69,10 @@ export function getSeeAlsos(jsdocs: JSDoc): string[] {
   return getTagsFromJSDoc(jsdocs, 'see', true);
 }
 
+export function getRemarks(jsdocs: JSDoc): string[] {
+  return getTagsFromJSDoc(jsdocs, 'remark');
+}
+
 function getOptionalTagFromJSDoc(
   jsdocs: JSDoc,
   type: string
