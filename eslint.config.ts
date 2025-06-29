@@ -256,7 +256,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   },
   {
     name: 'test/**/*.ts overrides',
-    files: ['test/**/*.spec.ts', 'test/**/*.spec.d.ts'],
+    files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
     plugins: {
       vitest: eslintPluginVitest,
     },
@@ -284,6 +284,13 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       vitest: {
         typecheck: true,
       },
+    },
+  },
+  {
+    files: ['test/**/*.spec.cts'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      'unicorn/prefer-module': 'off',
     },
   }
   //#endregion

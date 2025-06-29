@@ -1,4 +1,4 @@
-import type { UserConfig } from 'vitepress';
+import { defineConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import {
@@ -63,6 +63,31 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
       items: apiPages,
     },
     {
+      text: 'Contributing',
+      items: [
+        {
+          text: 'Code of Conduct',
+          link: '/contributing/code-of-conduct',
+        },
+        {
+          text: 'Report Bugs',
+          link: '/contributing/report-bugs',
+        },
+        {
+          text: 'Propose a Feature',
+          link: '/contributing/propose-a-feature',
+        },
+        {
+          text: 'Set up a Development Environment',
+          link: '/contributing/set-up-a-development-environment',
+        },
+        {
+          text: 'Submit a Pull Request',
+          link: '/contributing/submit-a-pull-request',
+        },
+      ],
+    },
+    {
       text: 'About',
       items: [
         {
@@ -94,10 +119,6 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           text: 'Team',
           link: '/about/team',
         },
-        {
-          text: 'Contributing',
-          link: '/about/contributing',
-        },
       ],
     },
   ];
@@ -109,8 +130,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   return links;
 }
 
-// TODO @Shinigami92 2023-12-28: reuse `defineConfig` from vitepress, when we can go esm-only
-const config: UserConfig<DefaultTheme.Config> = {
+const config = defineConfig({
   title: 'Faker',
   description,
 
@@ -215,10 +235,6 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
             text: 'Team',
             link: '/about/team',
           },
-          {
-            text: 'Contributing',
-            link: '/about/contributing',
-          },
         ],
       },
       {
@@ -239,6 +255,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
     sidebar: {
       '/guide/': getSideBarWithExpandedEntry('Guide'),
       '/api/': getSideBarWithExpandedEntry('API'),
+      '/contributing/': getSideBarWithExpandedEntry('Contributing'),
       '/about/': getSideBarWithExpandedEntry('About'),
     },
   },
@@ -248,7 +265,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       __BANNER__: versionBannerInfix ?? false,
     },
   },
-};
+});
 
 if (versionBannerInfix) {
   config.head?.push([
