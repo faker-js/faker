@@ -1,4 +1,4 @@
-import type { UserConfig } from 'vitepress';
+import { defineConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import {
@@ -130,8 +130,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   return links;
 }
 
-// TODO @Shinigami92 2023-12-28: reuse `defineConfig` from vitepress, when we can go esm-only
-const config: UserConfig<DefaultTheme.Config> = {
+const config = defineConfig({
   title: 'Faker',
   description,
 
@@ -266,7 +265,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       __BANNER__: versionBannerInfix ?? false,
     },
   },
-};
+});
 
 if (versionBannerInfix) {
   config.head?.push([
