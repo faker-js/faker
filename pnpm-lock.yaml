@@ -80,9 +80,6 @@ importers:
       prettier-plugin-pkg:
         specifier: 0.21.1
         version: 0.21.1(prettier@3.5.3)
-      rimraf:
-        specifier: 5.0.10
-        version: 5.0.10
       sanitize-html:
         specifier: 2.15.0
         version: 2.15.0
@@ -2967,10 +2964,6 @@ packages:
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
-
-  rimraf@5.0.10:
-    resolution: {integrity: sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ==}
-    hasBin: true
 
   rollup@4.44.0:
     resolution: {integrity: sha512-qHcdEzLCiktQIfwBq420pn2dP+30uzqYxv9ETm91wdt2R9AFcWfjNAmje4NWlnCIQ5RMTzVf0ZyisOKqHR6RwA==}
@@ -6582,10 +6575,6 @@ snapshots:
   reusify@1.1.0: {}
 
   rfdc@1.4.1: {}
-
-  rimraf@5.0.10:
-    dependencies:
-      glob: 10.4.5
 
   rollup@4.44.0:
     dependencies:

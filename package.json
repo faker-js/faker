@@ -3,8 +3,8 @@
   "version": "9.8.0",
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
-    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
-    "build:clean": "rimraf dist",
+    "clean": "git clean -fdx --exclude _local",
+    "build:clean": "git clean -fX dist",
     "build:code": "tsup-node",
     "build": "run-s build:clean build:code",
     "generate": "run-s generate:locales generate:api-docs",
@@ -130,7 +130,6 @@
     "prettier": "3.5.3",
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-pkg": "0.21.1",
-    "rimraf": "5.0.10",
     "sanitize-html": "2.15.0",
     "semver": "7.7.1",
     "ts-morph": "26.0.0",
