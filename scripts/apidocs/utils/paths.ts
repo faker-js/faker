@@ -1,7 +1,6 @@
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
-const FILE_PATH_THIS = dirname(fileURLToPath(import.meta.url));
+const FILE_PATH_THIS = import.meta.dirname;
 /**
  * The path to the project directory.
  */
