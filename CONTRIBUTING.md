@@ -296,6 +296,11 @@ function foo(options: { test: string }) {
 </tr>
 </table>
 
+> Other JSDoc tags are in use for specific cases.
+
+- `@internal` - If the method is not intended to be used by the end user, e.g. a helper function.
+- `@remark` - If the method depends on external data not being controlled by Faker, e.g. a third-party image provider.
+
 > We use eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
 
 This is in place so all JSDoc tags will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.

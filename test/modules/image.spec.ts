@@ -139,7 +139,6 @@ describe('image', () => {
 
   describe('avatarLegacy', () => {
     it('should return a random avatar url from cloudflare-ipfs', () => {
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const actual = faker.image.avatarLegacy();
 
       expect(actual).toBeTypeOf('string');
@@ -231,7 +230,6 @@ describe('image', () => {
 
   describe('urlPlaceholder', () => {
     it('should return a random image url from Placeholder', () => {
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const actual = faker.image.urlPlaceholder();
 
       assertValidUrl(actual);
