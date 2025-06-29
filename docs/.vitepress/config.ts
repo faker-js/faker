@@ -63,6 +63,31 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
       items: apiPages,
     },
     {
+      text: 'Contributing',
+      items: [
+        {
+          text: 'Code of Conduct',
+          link: '/contributing/code-of-conduct',
+        },
+        {
+          text: 'Report Bugs',
+          link: '/contributing/report-bugs',
+        },
+        {
+          text: 'Propose a Feature',
+          link: '/contributing/propose-a-feature',
+        },
+        {
+          text: 'Set up a Development Environment',
+          link: '/contributing/set-up-a-development-environment',
+        },
+        {
+          text: 'Submit a Pull Request',
+          link: '/contributing/submit-a-pull-request',
+        },
+      ],
+    },
+    {
       text: 'About',
       items: [
         {
@@ -93,10 +118,6 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
         {
           text: 'Team',
           link: '/about/team',
-        },
-        {
-          text: 'Contributing',
-          link: '/about/contributing',
         },
       ],
     },
@@ -214,10 +235,6 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
             text: 'Team',
             link: '/about/team',
           },
-          {
-            text: 'Contributing',
-            link: '/about/contributing',
-          },
         ],
       },
       {
@@ -238,6 +255,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
     sidebar: {
       '/guide/': getSideBarWithExpandedEntry('Guide'),
       '/api/': getSideBarWithExpandedEntry('API'),
+      '/contributing/': getSideBarWithExpandedEntry('Contributing'),
       '/about/': getSideBarWithExpandedEntry('About'),
     },
   },
