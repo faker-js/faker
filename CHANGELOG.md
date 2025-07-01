@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [9.9.0](https://github.com/faker-js/faker/compare/v9.8.0...v9.9.0) (2025-07-01)
+
+
+### New Locales
+
+* **locale:** add word data to pt_br and pt_pt locales ([#3531](https://github.com/faker-js/faker/issues/3531)) ([a405ac8](https://github.com/faker-js/faker/commit/a405ac8740bcfb2ec5f84c06752484a2b332a90a))
+
+
+### Features
+
+* **location:** simple coordinate methods ([#3528](https://github.com/faker-js/faker/issues/3528)) ([d07d96d](https://github.com/faker-js/faker/commit/d07d96d01833085f2d3c5f9c851a572ebf8c47df))
+
 ## [9.8.0](https://github.com/faker-js/faker/compare/v9.7.0...v9.8.0) (2025-05-13)
 
 
