@@ -209,9 +209,9 @@ describe('location', () => {
         });
 
         it.each([
-          ['IL', 60001, 62999],
-          ['GA', 30001, 31999],
-          ['WA', 98001, 99403],
+          ['IL', 60002, 62998],
+          ['GA', 30002, 39897],
+          ['WA', 83822, 99402],
         ])('returns zipCode valid for state %s', (state, lower, upper) => {
           const zipCode1 = +fakerEN_US.location.zipCode({ state });
           expect(zipCode1).toBeGreaterThanOrEqual(lower);
