@@ -24,7 +24,7 @@ function assertValidUrl(address: string): void {
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
-    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy');
+    t.itEach('avatar', 'avatarGitHub');
 
     t.describe('url', (t) => {
       t.it('noArgs')
@@ -58,33 +58,6 @@ describe('image', () => {
           height: 128,
           blur: 4,
           grayscale: true,
-        });
-    });
-
-    t.describe('urlPlaceholder', (t) => {
-      t.it('noArgs')
-        .it('with width', { width: 128 })
-        .it('with height', { height: 128 })
-        .it('with width and height', { width: 128, height: 128 })
-        .it('with backgroundColor', { backgroundColor: 'FF0000' })
-        .it('with textColor', { textColor: '0000FF' })
-        .it('with format', { format: 'webp' })
-        .it('with text', { text: 'Hello' })
-        .it('with all options', {
-          width: 128,
-          height: 128,
-          backgroundColor: 'FF0000',
-          textColor: '0000FF',
-          format: 'png',
-          text: 'hello',
-        })
-        .it('with empty colors and text', {
-          width: 128,
-          height: 128,
-          backgroundColor: '',
-          textColor: '',
-          format: 'png',
-          text: '',
         });
     });
 
@@ -134,19 +107,6 @@ describe('image', () => {
         /^https:\/\/avatars\.githubusercontent\.com\/u\/\d+$/
       );
       assertValidUrl(actual);
-    });
-  });
-
-  describe('avatarLegacy', () => {
-    it('should return a random avatar url from cloudflare-ipfs', () => {
-      const actual = faker.image.avatarLegacy();
-
-      expect(actual).toBeTypeOf('string');
-      expect(actual).toMatch(
-        /^https:\/\/cloudflare-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
-      );
-      // The links aren't working anymore - there is nothing we can do about it
-      //  assertWebAddress(avatarUrl);
     });
   });
 
@@ -224,17 +184,6 @@ describe('image', () => {
       assertValidUrl(actual);
       expect(actual).toMatch(
         /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+(\?(grayscale&?)?(blur=\d+)?)?$/
-      );
-    });
-  });
-
-  describe('urlPlaceholder', () => {
-    it('should return a random image url from Placeholder', () => {
-      const actual = faker.image.urlPlaceholder();
-
-      assertValidUrl(actual);
-      expect(actual).toMatch(
-        /^https:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
       );
     });
   });

@@ -71,7 +71,7 @@ import { faker } from '@faker-js/faker/locale/en';
 
 describe('Testing the application', () => {
   it('should create an account with username and password', () => {
-    let username = faker.internet.username(); // before version 9.1.0, use userName()
+    let username = faker.internet.username();
     let password = faker.internet.password();
     let email = faker.internet.exampleEmail();
 
@@ -111,7 +111,7 @@ test.describe('Testing the application', () => {
   test('should create an account with username and password', async ({
     page,
   }) => {
-    const username = faker.internet.username(); // before version 9.1.0, use userName()
+    const username = faker.internet.username();
     const password = faker.internet.password();
     const email = faker.internet.exampleEmail();
 

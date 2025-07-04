@@ -1120,17 +1120,6 @@ describe('helpers', () => {
           delete (faker.string as any).special;
         });
 
-        it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.state).toContain(
-            faker.helpers.fake('{{address.state}}')
-          );
-          expect([
-            ...(faker.definitions.person.first_name.female ?? []),
-            ...(faker.definitions.person.first_name.generic ?? []),
-            ...(faker.definitions.person.first_name.male ?? []),
-          ]).toContain(faker.helpers.fake('{{name.firstName}}'));
-        });
-
         it('should not trim whitespace', () => {
           expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
         });

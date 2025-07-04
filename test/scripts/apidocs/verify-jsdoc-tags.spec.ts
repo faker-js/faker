@@ -35,11 +35,6 @@ function resolvePathToMethodFile(
   signature: number
 ): string {
   const dir = resolveDirToModule(moduleName);
-  // TODO @ST-DDT 2024-09-23: Remove this in v10
-  if (methodName === 'userName') {
-    methodName = 'userNameDeprecated';
-  }
-
   return resolve(dir, `${methodName}_${signature}.ts`);
 }
 

@@ -4,8 +4,6 @@ exports[`image > 42 > avatar 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets
 
 exports[`image > 42 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/37454012"`;
 
-exports[`image > 42 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
-
 exports[`image > 42 > dataUri > noArgs 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxNDk4IiBoZWlnaHQ9IjM4MDIiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNhZDMzMWQiLz48dGV4dCB4PSI3NDkiIHk9IjE5MDEiIGZvbnQtc2l6ZT0iMjAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+MTQ5OHgzODAyPC90ZXh0Pjwvc3ZnPg=="`;
 
 exports[`image > 42 > dataUri > with all options+base64 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIyIiBoZWlnaHQ9IjEzMzciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiM2NDMyMTgiLz48dGV4dCB4PSIxIiB5PSI2NjguNSIgZm9udC1zaXplPSIyMCIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj4yeDEzMzc8L3RleHQ+PC9zdmc+"`;
@@ -64,31 +62,9 @@ exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos
 
 exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/B993RBH1Y/128/128?grayscale&blur=10"`;
 
-exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1311x3328/ad331d/df0fc4.gif?text=auctus%20cognomen%20esse"`;
-
-exports[`image > 42 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
-
-exports[`image > 42 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1311x3328/FF0000/ad331d.png?text=suggero%20accusator%20volubilis"`;
-
-exports[`image > 42 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
-
-exports[`image > 42 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1311x3328/ad331d/df0fc4.webp?text=attonbitus%20auctus%20cognomen"`;
-
-exports[`image > 42 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1311x128/ead331/ddf0fc.jpeg?text=attonbitus%20auctus%20cognomen"`;
-
-exports[`image > 42 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1311x3328/ad331d/df0fc4.gif?text=Hello"`;
-
-exports[`image > 42 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1311x3328/ad331d/0000FF.png?text=suggero%20accusator%20volubilis"`;
-
-exports[`image > 42 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1311/ead331/ddf0fc.jpeg?text=attonbitus%20auctus%20cognomen"`;
-
-exports[`image > 42 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/8ead33/1ddf0f.webp?text=benevolentia%20attonbitus%20auctus"`;
-
 exports[`image > 1211 > avatar 1`] = `"https://avatars.githubusercontent.com/u/89347165"`;
 
 exports[`image > 1211 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/92852016"`;
-
-exports[`image > 1211 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
 exports[`image > 1211 > dataUri > noArgs 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIzNzE0IiBoZWlnaHQ9IjM1NzMiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiM0ZmVmYTciLz48dGV4dCB4PSIxODU3IiB5PSIxNzg2LjUiIGZvbnQtc2l6ZT0iMjAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+MzcxNHgzNTczPC90ZXh0Pjwvc3ZnPg=="`;
 
@@ -148,31 +124,9 @@ exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.phot
 
 exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/ZFGLlH/128/128?blur=9"`;
 
-exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3250x3128/4fefa7/fbaec9.webp?text=unde%20blanditiis%20officia"`;
-
-exports[`image > 1211 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
-
-exports[`image > 1211 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/3250x3128/FF0000/4fefa7.png?text=tonsor%20tenuis%20sollers"`;
-
-exports[`image > 1211 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
-
-exports[`image > 1211 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/3250x3128/4fefa7/fbaec9.webp?text=usque%20unde%20blanditiis"`;
-
-exports[`image > 1211 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/3250x128/d4fefa/7fbaec.jpg?text=usque%20unde%20blanditiis"`;
-
-exports[`image > 1211 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/3250x3128/4fefa7/fbaec9.webp?text=Hello"`;
-
-exports[`image > 1211 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/3250x3128/4fefa7/0000FF.png?text=tonsor%20tenuis%20sollers"`;
-
-exports[`image > 1211 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x3250/d4fefa/7fbaec.jpg?text=usque%20unde%20blanditiis"`;
-
-exports[`image > 1211 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/ed4fef/a7fbae.webp?text=dapifer%20usque%20unde"`;
-
 exports[`image > 1337 > avatar 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/27.jpg"`;
 
 exports[`image > 1337 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/26202467"`;
-
-exports[`image > 1337 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
 
 exports[`image > 1337 > dataUri > noArgs 1`] = `"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9ImZ1bGwiIHdpZHRoPSIxMDQ4IiBoZWlnaHQ9IjYzNSI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzZhN2I1ZiIvPjx0ZXh0IHg9IjUyNCIgeT0iMzE3LjUiIGZvbnQtc2l6ZT0iMjAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+MTA0OHg2MzU8L3RleHQ+PC9zdmc+"`;
 
@@ -231,23 +185,3 @@ exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.pho
 exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/jwgYJ7n/128/1048?grayscale&blur=3"`;
 
 exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/sjwgYJ/128/128?grayscale&blur=1"`;
-
-exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/918x556/6a7b5f/a28d2f.jpg?text=testimonium%20thalassinus%20contra"`;
-
-exports[`image > 1337 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
-
-exports[`image > 1337 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/918x556/FF0000/6a7b5f.png?text=ancilla%20creptio%20quisquam"`;
-
-exports[`image > 1337 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
-
-exports[`image > 1337 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/918x556/6a7b5f/a28d2f.webp?text=decipio%20testimonium%20thalassinus"`;
-
-exports[`image > 1337 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/918x128/36a7b5/fa28d2.webp?text=decipio%20testimonium%20thalassinus"`;
-
-exports[`image > 1337 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/918x556/6a7b5f/a28d2f.jpg?text=Hello"`;
-
-exports[`image > 1337 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/918x556/6a7b5f/0000FF.png?text=ancilla%20creptio%20quisquam"`;
-
-exports[`image > 1337 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x918/36a7b5/fa28d2.webp?text=decipio%20testimonium%20thalassinus"`;
-
-exports[`image > 1337 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/536a7b/5fa28d.gif?text=vorago%20decipio%20testimonium"`;
