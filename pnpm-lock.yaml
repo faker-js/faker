@@ -33,8 +33,8 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
       '@vitest/eslint-plugin':
-        specifier: 1.3.3
-        version: 1.3.3(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4)
+        specifier: 1.3.4
+        version: 1.3.4(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4)
       '@vitest/ui':
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
@@ -985,8 +985,8 @@ packages:
       '@vitest/browser':
         optional: true
 
-  '@vitest/eslint-plugin@1.3.3':
-    resolution: {integrity: sha512-zOB4T5f80JXfP5DC2yQl7azRYq8PmGqYle3uxh3a0NnbKc+EaSYSpEcrVAh2r5W97pi3BVv7oRb5NdEQy0cCXA==}
+  '@vitest/eslint-plugin@1.3.4':
+    resolution: {integrity: sha512-EOg8d0jn3BAiKnR55WkFxmxfWA3nmzrbIIuOXyTe6A72duryNgyU+bdBEauA97Aab3ho9kLmAwgPX63Ckj4QEg==}
     peerDependencies:
       eslint: '>= 8.57.0'
       typescript: '>= 5.0.0'
@@ -4474,7 +4474,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.3.3(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4)':
+  '@vitest/eslint-plugin@1.3.4(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4)':
     dependencies:
       '@typescript-eslint/utils': 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.30.1(jiti@2.4.2)
