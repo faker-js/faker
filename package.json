@@ -126,7 +126,7 @@
     "eslint-plugin-prettier": "5.5.1",
     "eslint-plugin-unicorn": "59.0.1",
     "jiti": "2.4.2",
-    "npm-run-all2": "7.0.2",
+    "npm-run-all2": "8.0.4",
     "prettier": "3.6.2",
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-pkg": "0.21.1",
@@ -141,7 +141,7 @@
     "vitepress": "1.6.3",
     "vitest": "3.2.4",
     "vue": "3.5.17",
-    "vue-tsc": "2.2.10"
+    "vue-tsc": "3.0.1"
   },
   "packageManager": "pnpm@10.12.4",
   "engines": {
