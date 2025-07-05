@@ -53,7 +53,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           link: '/guide/unique',
         },
         {
-          text: 'Upgrading to v9',
+          text: 'Upgrading to v10',
           link: '/guide/upgrading',
         },
       ],
