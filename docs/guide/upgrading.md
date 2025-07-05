@@ -39,7 +39,7 @@ If your version of Node.js is too old, you may see an error like:
 
 ```
 Uncaught:
-Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/matt/Documents/git/faker/dist/index.js not supported.
+Error [ERR_REQUIRE_ESM]: require() of ES Module <path>/faker/dist/index.js not supported.
 Instead, change the require of index.js in null to a dynamic import(), which is available in all CommonJS modules.
 ```
 
