@@ -61,3 +61,22 @@ Some methods do not have exact replacements, so check your code carefully.
 | `faker.image.urlPlaceholder` | `faker.image.dataUri`                                    |
 | `faker.finance.maskedNumber` | See [#3201](https://github.com/faker-js/faker/pull/3201) |
 | `faker.image.avatarLegacy`   | `faker.image.avatar`                                     |
+
+### Word Methods Default Resolution Strategy
+
+The default resolution strategy for the methods in the word module changed to 'fail'.
+This means that method in the word module will fail if no words for your input criteria exist.
+
+Previously, the methods would return a random word, completly ignoring the the length requirements you specified.
+If you want to restore this behaviour, you can provide the 'any-length' strategy to the word methods.
+
+| Method in v9                | Method in v10 with v9 behaviour                       |
+| --------------------------- | ----------------------------------------------------- |
+| `faker.word.adjective()`    | `faker.word.adjective({ strategy: 'any-length' })`    |
+| `faker.word.adverb()`       | `faker.word.adverb({ strategy: 'any-length' })`       |
+| `faker.word.conjunction()`  | `faker.word.conjunction({ strategy: 'any-length' })`  |
+| `faker.word.interjection()` | `faker.word.interjection({ strategy: 'any-length' })` |
+| `faker.word.noun()`         | `faker.word.noun({ strategy: 'any-length' })`         |
+| `faker.word.preposition()`  | `faker.word.preposition({ strategy: 'any-length' })`  |
+| `faker.word.sample()`       | `faker.word.sample({ strategy: 'any-length' })`       |
+| `faker.word.verb()`         | `faker.word.verb({ strategy: 'any-length' })`         |
