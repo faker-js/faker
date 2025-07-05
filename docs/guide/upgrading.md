@@ -47,17 +47,17 @@ Instead change the require of index.js in null to a dynamic import() which is av
 
 A number of methods which were deprecated in v9 are completely removed in v10. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v9 (e.g. `npm install --save-dev faker@9`) and fix any deprecation warnings issued by your code.
 
-| Removed Method           | Replacement / Notes         |
-|-------------------------|-----------------------------|
-| `faker.address.*`       | `faker.location.*`          |
-| `faker.name.*`          | `faker.person.*`            |
-| `faker.internet.userName` | `faker.internet.username`  |
+| Removed Method            | Replacement / Notes       |
+| ------------------------- | ------------------------- |
+| `faker.address.*`         | `faker.location.*`        |
+| `faker.name.*`            | `faker.person.*`          |
+| `faker.internet.userName` | `faker.internet.username` |
 
 Some methods do not have exact replacements, so check your code carefully.
 
 | Removed Method               | Replacement / Notes                                      |
 | ---------------------------- | -------------------------------------------------------- |
-| `faker.internet.color`       | `faker.color.rgb()`                                      |
+| `faker.internet.color`       | `faker.color.rgb`                                        |
 | `faker.image.urlPlaceholder` | `faker.image.dataUri`                                    |
 | `faker.finance.maskedNumber` | See [#3201](https://github.com/faker-js/faker/pull/3201) |
-| `faker.image.avatarLegacy` | `faker.image.avatar`                                   |
+| `faker.image.avatarLegacy`   | `faker.image.avatar`                                     |
