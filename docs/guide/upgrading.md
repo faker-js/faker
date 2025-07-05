@@ -21,18 +21,18 @@ v10 has not yet been released. This page contains a work-in-progress list of bre
 
 ## General Breaking Changes
 
-### Node v18 no longer supported
+### Node v18 No Longer Supported
 
-Support for Node.js v18 has been discontinued as this versions have reached their [end-of-life](https://github.com/nodejs/Release). Faker.js v10 requires a minimum of Node.js v20.19.0 or Node v22.13.0 or Node 24.0.0.
+Support for Node.js v18 has been discontinued, as this version has reached its [end-of-life](https://github.com/nodejs/Release). Faker.js v10 requires a minimum of Node.js v20.19.0, v22.13.0, or v24.0.0.
 
-### CommonJS still supported, but check your Node version
+### CommonJS Still Supported, but Check Your Node Version
 
-Technically Node v10 is now an ESM-only package. However, the good news is you can still use it from your CommonJS packages without code changes thanks to the [ESM Modules require feature](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) in recent version of Node js.
+Technically, Faker v10 is now an ESM-only package. However, the good news is that you can still use it from your CommonJS packages without code changes, thanks to the [ESM Modules require feature](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) in recent versions of Node.js.
 
-If you are using Node 20, ensure you are using a sufficiently recent minor version - Node v20.19+ or Node v22.13+ is required.
+If you are using Node 20, ensure you are using a sufficiently recent minor version—Node v20.19+ or Node v22.13+ is required.
 
 ```ts
-const { faker, fakerES } = require('@faker-js/faker'); //this still works
+const { faker, fakerES } = require('@faker-js/faker'); // this still works
 ```
 
 If your version of Node.js is too old, you may see an error like:
@@ -40,12 +40,12 @@ If your version of Node.js is too old, you may see an error like:
 ```
 Uncaught:
 Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/matt/Documents/git/faker/dist/index.js not supported.
-Instead change the require of index.js in null to a dynamic import() which is available in all CommonJS modules.
+Instead, change the require of index.js in null to a dynamic import(), which is available in all CommonJS modules.
 ```
 
-### Removals of Deprecated Code
+### Removal of Deprecated Code
 
-A number of methods which were deprecated in v9 are completely removed in v10. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v9 (e.g. `npm install --save-dev faker@9`) and fix any deprecation warnings issued by your code.
+A number of methods that were deprecated in v9 have been completely removed in v10. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v9 (e.g., `npm install --save-dev faker@9`) and fix any deprecation warnings issued by your code.
 
 | Removed Method            | Replacement / Notes       |
 | ------------------------- | ------------------------- |
