@@ -65,7 +65,7 @@ Some methods do not have exact replacements, so check your code carefully.
 ### Word Methods Default Resolution Strategy
 
 The default resolution strategy for the methods in the word module changed to 'fail'.
-This means that method in the word module will fail if no words for your input criteria exist.
+This means that method in the word module will throw an error if no words for your input criteria exist.
 
 Previously, the methods would return a random word, completly ignoring the the length requirements you specified.
 If you want to restore this behaviour, you can provide the 'any-length' strategy to the word methods.
