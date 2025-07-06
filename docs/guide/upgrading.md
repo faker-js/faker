@@ -67,6 +67,13 @@ Some methods do not have exact replacements, so check your code carefully.
 The default resolution strategy for the methods in the word module changed to 'fail'.
 This means that methods in the word module will throw an error if no words for your input criteria exist.
 
+```ts
+// There are no nouns between 20-25 characters long in the word list
+faker.word.noun({length:{min:20, max:25}})
+// In v9, this would return a random noun of any length, like 'plastic'
+// In v10, this throws an error `FakerError: No words found that match the given length.`
+```
+
 Previously, the methods would return a random word, completly ignoring the the length requirements you specified.
 If you want to restore this behaviour, you can provide the 'any-length' strategy to the word methods.
 
