@@ -56,12 +56,10 @@
     "type": "git",
     "url": "git+https://github.com/faker-js/faker.git"
   },
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/fakerjs"
-    }
-  ],
+  "funding": [{
+    "type": "opencollective",
+    "url": "https://opencollective.com/fakerjs"
+  }],
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -137,7 +135,7 @@
   },
   "packageManager": "pnpm@10.12.4",
   "engines": {
-    "node": ">=20.19",
+    "node": "^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0",
     "npm": ">=10"
   },
   "pnpm": {
