@@ -69,7 +69,7 @@ This means that methods in the word module will throw an error if no words for y
 
 ```ts
 // There are no nouns between 20-25 characters long in the word list
-faker.word.noun({length:{min:20, max:25}})
+faker.word.noun({ length: { min: 20, max: 25 } });
 // In v9, this would return a random noun of any length, like 'plastic'
 // In v10, this throws an error `FakerError: No words found that match the given length.`
 ```
