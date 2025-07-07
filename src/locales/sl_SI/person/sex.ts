@@ -1,1 +1,1 @@
-export default ['ženski', 'moški'];
+export default ['Ženski', 'Moški'];
