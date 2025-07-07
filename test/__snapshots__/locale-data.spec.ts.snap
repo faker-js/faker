@@ -61,6 +61,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "ro_MD": " #+,-./ABCDEFGHIJKLMNOPRSTUVXZabcdefghijklmnoprstuvxyzâîăȘșț",
   "ru": " !#'()+,-.AOАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё—",
   "sk": " "#()+-./ABCDEFGHIJKLMNOPRSTUVWXZabcdefghijklmnopqrstuvwxyzÍÚáäéíóôöúýČčĎďěĽľňŕřŠšťŽž",
+  "sl_SI": " .ABCDEFGHIJLMNOPQRSTVXabcdefghijklmnopqrstuvxzÁÂÉÍáâãçéêíóõúšŽž",
   "sr_RS_latin": " #()+.ABCDEFGHIJKLMNOPRSTUVWZabcdefghijklmnopqrstuvwyzĆćČčĐđŠšŽž",
   "sv": " #+,-.ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyzÄÅÖãäåçéíö",
   "ta_IN": "ஆஐகஙசஞடணதனபமயரறளழவாிுெை்",

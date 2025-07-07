@@ -62,6 +62,7 @@ import ro from './ro';
 import ro_MD from './ro_MD';
 import ru from './ru';
 import sk from './sk';
+import sl_SI from './sl_SI';
 import sr_RS_latin from './sr_RS_latin';
 import sv from './sv';
 import ta_IN from './ta_IN';
@@ -135,6 +136,7 @@ export { default as ro } from './ro';
 export { default as ro_MD } from './ro_MD';
 export { default as ru } from './ru';
 export { default as sk } from './sk';
+export { default as sl_SI } from './sl_SI';
 export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
 export { default as ta_IN } from './ta_IN';
@@ -209,6 +211,7 @@ export const allLocales = {
   ro_MD,
   ru,
   sk,
+  sl_SI,
   sr_RS_latin,
   sv,
   ta_IN,
