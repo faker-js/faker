@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`person > 42 > bio 1`] = `"vodja, starš, pisatelj"`;
+exports[`person > 42 > bio 1`] = `"traveler, philosopher, model"`;
 
 exports[`person > 42 > firstName > noArgs 1`] = `"Garnet"`;
 
@@ -20,9 +20,9 @@ exports[`person > 42 > gender 1`] = `"Gender nonconforming"`;
 
 exports[`person > 42 > jobArea 1`] = `"Identity"`;
 
-exports[`person > 42 > jobDescriptor 1`] = `"korporativni"`;
+exports[`person > 42 > jobDescriptor 1`] = `"National"`;
 
-exports[`person > 42 > jobTitle 1`] = `"korporativni Usability Producer"`;
+exports[`person > 42 > jobTitle 1`] = `"National Usability Producer"`;
 
 exports[`person > 42 > jobType 1`] = `"Coordinator"`;
 
@@ -50,7 +50,7 @@ exports[`person > 42 > suffix > with sex 1`] = `"III"`;
 
 exports[`person > 42 > zodiacSign 1`] = `"Gemini"`;
 
-exports[`person > 1211 > bio 1`] = `"decongestant zanesenjak, prijatelj 🥊"`;
+exports[`person > 1211 > bio 1`] = `"decongestant supporter, parent 🥊"`;
 
 exports[`person > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
@@ -70,9 +70,9 @@ exports[`person > 1211 > gender 1`] = `"Trigender"`;
 
 exports[`person > 1211 > jobArea 1`] = `"Factors"`;
 
-exports[`person > 1211 > jobDescriptor 1`] = `"starejši"`;
+exports[`person > 1211 > jobDescriptor 1`] = `"Chief"`;
 
-exports[`person > 1211 > jobTitle 1`] = `"starejši Interactions Manager"`;
+exports[`person > 1211 > jobTitle 1`] = `"Chief Interactions Manager"`;
 
 exports[`person > 1211 > jobType 1`] = `"Representative"`;
 
@@ -100,7 +100,7 @@ exports[`person > 1211 > suffix > with sex 1`] = `"DVM"`;
 
 exports[`person > 1211 > zodiacSign 1`] = `"Capricorn"`;
 
-exports[`person > 1337 > bio 1`] = `"filmozof, igralec videoiger, ljubitelj hrane"`;
+exports[`person > 1337 > bio 1`] = `"creator, engineer, friend"`;
 
 exports[`person > 1337 > firstName > noArgs 1`] = `"Devyn"`;
 
@@ -120,9 +120,9 @@ exports[`person > 1337 > gender 1`] = `"Demigender"`;
 
 exports[`person > 1337 > jobArea 1`] = `"Functionality"`;
 
-exports[`person > 1337 > jobDescriptor 1`] = `"interni"`;
+exports[`person > 1337 > jobDescriptor 1`] = `"Future"`;
 
-exports[`person > 1337 > jobTitle 1`] = `"interni Marketing Engineer"`;
+exports[`person > 1337 > jobTitle 1`] = `"Future Marketing Engineer"`;
 
 exports[`person > 1337 > jobType 1`] = `"Engineer"`;
 
