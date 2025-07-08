@@ -7,6 +7,7 @@ import bio_part from './bio_part';
 import bio_pattern from './bio_pattern';
 import bio_supporter from './bio_supporter';
 import first_name from './first_name';
+import job_area from './job_area';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import name_ from './name';
@@ -19,6 +20,7 @@ const person: PersonDefinition = {
   bio_pattern,
   bio_supporter,
   first_name,
+  job_area,
   last_name,
   last_name_pattern,
   name: name_,
