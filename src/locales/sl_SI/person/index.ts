@@ -8,6 +8,8 @@ import bio_pattern from './bio_pattern';
 import bio_supporter from './bio_supporter';
 import first_name from './first_name';
 import job_area from './job_area';
+import job_title from './job_title';
+import job_title_pattern from './job_title_pattern';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import name_ from './name';
@@ -21,6 +23,8 @@ const person: PersonDefinition = {
   bio_supporter,
   first_name,
   job_area,
+  job_title,
+  job_title_pattern,
   last_name,
   last_name_pattern,
   name: name_,
