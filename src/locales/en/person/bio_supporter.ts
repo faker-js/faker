@@ -1,9 +1,9 @@
 export default [
-  'advocate',
-  'devotee',
-  'enthusiast',
-  'fan',
-  'junkie',
-  'lover',
-  'supporter',
+  'navdušenec',
+  'oboževalec',
+  'podpornik',
+  'pristaš',
+  'privrženec',
+  'zagrizenec',
+  'zanesenjak',
 ];

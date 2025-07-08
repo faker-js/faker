@@ -3,6 +3,9 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PersonDefinition } from '../../..';
+import bio_part from './bio_part';
+import bio_pattern from './bio_pattern';
+import bio_supporter from './bio_supporter';
 import first_name from './first_name';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
@@ -12,6 +15,9 @@ import sex from './sex';
 import suffix from './suffix';
 
 const person: PersonDefinition = {
+  bio_part,
+  bio_pattern,
+  bio_supporter,
   first_name,
   last_name,
   last_name_pattern,
