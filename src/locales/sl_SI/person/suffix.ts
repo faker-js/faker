@@ -1,1 +1,4 @@
-export default null;
+export default [
+  'ml.', // mlajši
+  'st.', // starejši
+];
