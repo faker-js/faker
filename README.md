@@ -26,7 +26,7 @@ For detailed API documentation, please select the version of the documentation y
 
 |   Version   | Website                   |
 | :---------: | :------------------------ |
-|  v9 (next)  | https://next.fakerjs.dev/ |
+| v10 (next)  | https://next.fakerjs.dev/ |
 | v9 (stable) | https://fakerjs.dev/      |
 |  v8 (old)   | https://v8.fakerjs.dev/   |
 
