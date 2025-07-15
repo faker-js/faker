@@ -1,6 +1,6 @@
 import isCreditCard from 'validator/lib/isCreditCard';
 import { describe, expect, it } from 'vitest';
-import { faker, fakerZH_CN } from '../../src';
+import { allLocales, faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
@@ -596,4 +596,59 @@ describe('finance', () => {
       });
     }
   );
+});
+
+describe('finance locale data', () => {
+  describe.each(Object.entries(allLocales))(`%s`, (_localeName, localeData) => {
+    describe('credit cards', () => {
+      describe('issuer', () => {
+        describe.each(Object.entries(localeData.finance?.credit_card ?? {}))(
+          '%s',
+          (issuerName, issuerPatterns) => {
+            // Dedicated type for readability purposes
+            type KnownProvider = Exclude<
+              Parameters<typeof isCreditCard>[1],
+              undefined
+            >['provider'];
+
+            function isKnownProvider(
+              value: string | undefined
+            ): value is KnownProvider {
+              // taken from type definitions of validatorjs:
+              // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/be7c952a562aa9a55f06058187ece41fcb173b17/types/validator/index.d.ts#L268
+              return (
+                value === undefined ||
+                [
+                  'amex',
+                  'dinersclub',
+                  'discover',
+                  'jcb',
+                  'mastercard',
+                  'unionpay',
+                  'visa',
+                ].includes(value)
+              );
+            }
+
+            function isCreditCardFromIsser(value: string) {
+              if (!isKnownProvider(value)) {
+                // best we can do is retun false, so that the test fails
+                return false;
+              }
+
+              return isCreditCard(value, { provider: value });
+            }
+
+            it.each(issuerPatterns)(
+              'patter "%s" should generate a valid credit card number',
+              (pattern) => {
+                const result = faker.finance.creditCardNumber(pattern);
+                expect(result).toSatisfy(isCreditCardFromIsser);
+              }
+            );
+          }
+        );
+      });
+    });
+  });
 });
