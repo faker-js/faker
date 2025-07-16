@@ -1,4 +1,5 @@
 import isCreditCard from 'validator/lib/isCreditCard';
+import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
 import { allLocales, faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
@@ -643,6 +644,7 @@ describe('finance locale data', () => {
               'patter "%s" should generate a valid credit card number',
               (pattern) => {
                 const result = faker.finance.creditCardNumber(pattern);
+                expect(result).toSatisfy(isLuhnNumber);
                 expect(result).toSatisfy(isCreditCardFromIsser);
               }
             );
