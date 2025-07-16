@@ -631,12 +631,12 @@ describe('finance locale data', () => {
             }
 
             function isCreditCardFromIsser(value: string) {
-              if (!isKnownProvider(value)) {
+              if (!isKnownProvider(issuerName)) {
                 // best we can do is retun false, so that the test fails
                 return false;
               }
 
-              return isCreditCard(value, { provider: value });
+              return isCreditCard(value, { provider: issuerName });
             }
 
             it.each(issuerPatterns)(
