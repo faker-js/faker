@@ -612,32 +612,35 @@ describe('finance locale data', () => {
               undefined
             >['provider'];
 
-            function isKnownProvider(
+            function getKnownProvider(
               value: string | undefined
-            ): value is KnownProvider {
-              // taken from type definitions of validatorjs:
-              // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/be7c952a562aa9a55f06058187ece41fcb173b17/types/validator/index.d.ts#L268
-              return (
-                value === undefined ||
-                [
-                  'amex',
-                  'dinersclub',
-                  'discover',
-                  'jcb',
-                  'mastercard',
-                  'unionpay',
-                  'visa',
-                ].includes(value)
-              );
+            ): KnownProvider {
+              // taken from definitions of validatorjs:
+              // https://github.com/validatorjs/validator.js/blob/72573b3d1d8ab2e6575e6bba1cbe2b01f95f4935/src/lib/isCreditCard.js#L4-L12
+              const providers: Record<string, KnownProvider> = {
+                american_express: 'amex',
+                diners_club: 'dinersclub',
+                discover: 'discover',
+                jcb: 'jcb',
+                mastercard: 'mastercard',
+                unionpay: 'unionpay',
+                visa: 'visa',
+              };
+
+              const knownProvider = providers[value ?? ''];
+              if (knownProvider == null) {
+                throw new Error(
+                  `Issuer "${value}" is not a known provider for validatorjs. Because of that the validity of it's patterns can not be verified.`
+                );
+              }
+
+              return knownProvider;
             }
 
             function isCreditCardFromIsser(value: string) {
-              if (!isKnownProvider(issuerName)) {
-                // best we can do is retun false, so that the test fails
-                return false;
-              }
-
-              return isCreditCard(value, { provider: issuerName });
+              return isCreditCard(value, {
+                provider: getKnownProvider(issuerName),
+              });
             }
 
             it.each(issuerPatterns)(
