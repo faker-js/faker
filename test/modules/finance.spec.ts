@@ -600,7 +600,10 @@ describe('finance', () => {
 });
 
 describe('finance locale data', () => {
-  describe.each(Object.entries(allLocales))(`%s`, (_localeName, localeData) => {
+  const localesWithData = Object.entries(allLocales).filter(
+    ([, data]) => Object.keys(data.finance?.credit_card ?? {}).length > 0
+  );
+  describe.each(localesWithData)(`%s`, (_localeName, localeData) => {
     describe('credit cards', () => {
       describe('issuer', () => {
         describe.each(Object.entries(localeData.finance?.credit_card ?? {}))(
