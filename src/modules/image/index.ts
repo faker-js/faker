@@ -1,5 +1,4 @@
 import { toBase64 } from '../../internal/base64';
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { SexType } from '../person';
 
@@ -10,7 +9,7 @@ import type { SexType } from '../person';
  *
  * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
  *
- * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
+ * For a random placeholder image containing only solid color and text, use [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
  * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar), or [`personPortrait()`](https://fakerjs.dev/api/image.html#personportrait) which has more control over the size and sex of the person.
  *
@@ -91,32 +90,6 @@ export class ImageModule extends ModuleBase {
     const baseURL =
       'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait';
     return `${baseURL}/${sex}/${size}/${this.faker.number.int({ min: 0, max: 99 })}.jpg`;
-  }
-
-  /**
-   * Generates a random avatar from `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar`.
-   *
-   * @remark This method generates a random string representing an URL from cloudflare-ipfs. Faker is not responsible for the content of the image or the service providing it.
-   *
-   * @example
-   * faker.image.avatarLegacy()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated The links are no longer working. Use `avatar()` instead.
-   */
-  avatarLegacy(): string {
-    deprecated({
-      deprecated: 'faker.image.avatarLegacy()',
-      proposed: 'faker.image.avatar() or faker.image.personPortrait()',
-      since: '9.0.2',
-      until: '10.0.0',
-    });
-
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
-      1249
-    )}.jpg`;
   }
 
   /**
@@ -289,110 +262,6 @@ export class ImageModule extends ModuleBase {
         url += `blur=${blur}`;
       }
     }
-
-    return url;
-  }
-
-  /**
-   * Generates a random image url provided via https://via.placeholder.com/.
-   *
-   * @remark This method generates a random string representing an URL from via.placeholder. Faker is not responsible for the content of the image or the service providing it.
-   *
-   * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to a random number between 1 and 3500.
-   * @param options.height The height of the image. Defaults to a random number between 1 and 3500.
-   * @param options.backgroundColor The background color of the image. Defaults to a random hex color.
-   * @param options.textColor The text color of the image. Defaults to a random hex color.
-   * @param options.format The format of the image. Defaults to a random format.
-   * @param options.text The text to display on the image. Defaults to a random string.
-   *
-   * @example
-   * faker.image.urlPlaceholder() // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ width: 128 }) // 'https://via.placeholder.com/128x180/FF0000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ height: 128 }) // 'https://via.placeholder.com/150x128/FF0000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ backgroundColor: '000000' }) // 'https://via.placeholder.com/150x180/000000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ textColor: '000000' }) // 'https://via.placeholder.com/150x180/FF0000/000000.webp?text=lorem'
-   * faker.image.urlPlaceholder({ format: 'png' }) // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.png?text=lorem'
-   * faker.image.urlPlaceholder({ text: 'lorem ipsum' }) // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?text=lorem+ipsum'
-   * faker.image.urlPlaceholder({ width: 128, height: 128, backgroundColor: '000000', textColor: 'FF0000', format: 'png', text: 'lorem ipsum' }) // 'https://via.placeholder.com/128x128/000000/FF0000.png?text=lorem+ipsum'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated The service has bad uptime. Use `faker.image.url()` or `faker.image.dataUri()` instead.
-   */
-  urlPlaceholder(
-    options: {
-      /**
-       * The width of the image.
-       *
-       * @default faker.number.int({ min: 1, max: 3500 })
-       */
-      width?: number;
-      /**
-       * The height of the image.
-       *
-       * @default faker.number.int({ min: 1, max: 3500 })
-       */
-      height?: number;
-      /**
-       * The background color of the image.
-       *
-       * @default faker.color.rgb({ format: 'hex', prefix: '' })
-       */
-      backgroundColor?: string;
-      /**
-       * The text color of the image.
-       *
-       * @default faker.color.rgb({ format: 'hex', prefix: '' })
-       */
-      textColor?: string;
-      /**
-       * The format of the image.
-       *
-       * @default faker.helpers.arrayElement(['gif', 'jpeg', 'jpg', 'png', 'webp'])
-       */
-      format?: 'gif' | 'jpeg' | 'jpg' | 'png' | 'webp';
-      /**
-       * The text to display on the image.
-       *
-       * @default faker.lorem.words()
-       */
-      text?: string;
-    } = {}
-  ): string {
-    deprecated({
-      deprecated: 'faker.image.urlPlaceholder()',
-      proposed: 'faker.image.url() or faker.image.dataUri()',
-      since: '9.4.0',
-      until: '10.0.0',
-    });
-
-    const {
-      width = this.faker.number.int({ min: 1, max: 3500 }),
-      height = this.faker.number.int({ min: 1, max: 3500 }),
-      backgroundColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
-      textColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
-      format = this.faker.helpers.arrayElement([
-        'gif',
-        'jpeg',
-        'jpg',
-        'png',
-        'webp',
-      ]),
-      text = this.faker.lorem.words(),
-    } = options;
-
-    let url = `https://via.placeholder.com`;
-
-    url += `/${width}`;
-    url += `x${height}`;
-
-    url += `/${backgroundColor}`;
-    url += `/${textColor}`;
-
-    url += `.${format}`;
-
-    url += `?text=${encodeURIComponent(text)}`;
 
     return url;
   }

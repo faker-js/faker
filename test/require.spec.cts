@@ -1,5 +1,5 @@
 const { describe, expect, it, vi } = await import('vitest');
-const { allLocales, SimpleFaker } = require('../dist/index.cjs');
+const { allLocales, SimpleFaker } = require('../dist/index.js');
 
 describe('require (cjs)', () => {
   describe.each(
@@ -9,7 +9,7 @@ describe('require (cjs)', () => {
     )
   )('locale imports', (locale) => {
     it(`should be possible to directly require('@faker-js/faker/locale/${locale}')`, () => {
-      const { faker } = require(`../dist/locale/${locale}.cjs`);
+      const { faker } = require(`../dist/locale/${locale}.js`);
 
       expect(faker).toBeDefined();
       expect(faker.string.alpha()).toBeTypeOf('string');

@@ -1,15 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`internet > 42 > color > noArgs 1`] = `"#307a5e"`;
-
-exports[`internet > 42 > color > with all options 1`] = `"#62ac90"`;
-
-exports[`internet > 42 > color > with blueBase option 1`] = `"#307a90"`;
-
-exports[`internet > 42 > color > with greenBase option 1`] = `"#30ac5e"`;
-
-exports[`internet > 42 > color > with redBase option 1`] = `"#627a5e"`;
-
 exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet15"`;
 
 exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽.陳95"`;
@@ -112,22 +102,6 @@ exports[`internet > 42 > url > without slash appended and with http protocol 1`]
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/118.0"`;
 
-exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Reynolds-Miller15"`;
-
-exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d.tpv"`;
-
-exports[`internet > 42 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii"`;
-
-exports[`internet > 42 > userName > with Latin names 1`] = `"Jane.Doe"`;
-
-exports[`internet > 42 > userName > with accented names 1`] = `"Helene.Muller"`;
-
-exports[`internet > 42 > userName > with all option 1`] = `"Jane.Doe"`;
-
-exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Wiegand59"`;
-
-exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe"`;
-
 exports[`internet > 42 > username > noArgs 1`] = `"Garnet.Reynolds-Miller15"`;
 
 exports[`internet > 42 > username > with Chinese names 1`] = `"hlzp8d.tpv"`;
@@ -143,16 +117,6 @@ exports[`internet > 42 > username > with all option 1`] = `"Jane.Doe"`;
 exports[`internet > 42 > username > with firstName option 1`] = `"Jane_Wiegand59"`;
 
 exports[`internet > 42 > username > with lastName option 1`] = `"Garnet_Doe"`;
-
-exports[`internet > 1211 > color > noArgs 1`] = `"#77721c"`;
-
-exports[`internet > 1211 > color > with all options 1`] = `"#a9a44e"`;
-
-exports[`internet > 1211 > color > with blueBase option 1`] = `"#77724e"`;
-
-exports[`internet > 1211 > color > with greenBase option 1`] = `"#77a41c"`;
-
-exports[`internet > 1211 > color > with redBase option 1`] = `"#a9721c"`;
 
 exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Fahey67"`;
 
@@ -256,22 +220,6 @@ exports[`internet > 1211 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.67.68 (KHTML, like Gecko) Version/16_1 Mobile/15E148 Safari/584.81"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Tito67"`;
-
-exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d_tpv89"`;
-
-exports[`internet > 1211 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii89"`;
-
-exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane_Doe89"`;
-
-exports[`internet > 1211 > userName > with accented names 1`] = `"Helene_Muller89"`;
-
-exports[`internet > 1211 > userName > with all option 1`] = `"Jane_Doe89"`;
-
-exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane99"`;
-
-exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito_Doe"`;
-
 exports[`internet > 1211 > username > noArgs 1`] = `"Tito67"`;
 
 exports[`internet > 1211 > username > with Chinese names 1`] = `"hlzp8d_tpv89"`;
@@ -287,16 +235,6 @@ exports[`internet > 1211 > username > with all option 1`] = `"Jane_Doe89"`;
 exports[`internet > 1211 > username > with firstName option 1`] = `"Jane99"`;
 
 exports[`internet > 1211 > username > with lastName option 1`] = `"Tito_Doe"`;
-
-exports[`internet > 1337 > color > noArgs 1`] = `"#211423"`;
-
-exports[`internet > 1337 > color > with all options 1`] = `"#534655"`;
-
-exports[`internet > 1337 > color > with blueBase option 1`] = `"#211455"`;
-
-exports[`internet > 1337 > color > with greenBase option 1`] = `"#214623"`;
-
-exports[`internet > 1337 > color > with redBase option 1`] = `"#531423"`;
 
 exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn.Gottlieb"`;
 
@@ -399,22 +337,6 @@ exports[`internet > 1337 > url > with slash appended 1`] = `"https://fatal-co-pr
 exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fatal-co-producer.com"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Linux; Android 6; SM-G998B) AppleWebKit/568.32 (KHTML, like Gecko) Chrome/94.2.20.15 Mobile Safari/544.38"`;
-
-exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn.Gottlieb"`;
-
-exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d.tpv15"`;
-
-exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii15"`;
-
-exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane.Doe15"`;
-
-exports[`internet > 1337 > userName > with accented names 1`] = `"Helene.Muller15"`;
-
-exports[`internet > 1337 > userName > with all option 1`] = `"Jane.Doe15"`;
-
-exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane.Cronin45"`;
-
-exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn.Doe27"`;
 
 exports[`internet > 1337 > username > noArgs 1`] = `"Devyn.Gottlieb"`;
 

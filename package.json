@@ -1,6 +1,6 @@
 {
   "name": "@faker-js/faker",
-  "version": "9.9.0",
+  "version": "10.0.0-beta.0",
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
     "clean": "git clean -fdx --exclude _local",
@@ -67,20 +67,12 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
       "default": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       }
     },
     "./locale/*": {
-      "require": {
-        "types": "./dist/locale/*.d.cts",
-        "default": "./dist/locale/*.cjs"
-      },
       "default": {
         "types": "./dist/locale/*.d.ts",
         "default": "./dist/locale/*.js"
@@ -88,7 +80,7 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/index.cjs",
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typesVersions": {
@@ -145,8 +137,8 @@
   },
   "packageManager": "pnpm@10.12.4",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": "^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0",
+    "npm": ">=10"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
