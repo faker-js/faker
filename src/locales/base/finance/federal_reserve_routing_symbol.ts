@@ -1,5 +1,4 @@
 // Source: https://www.frbservices.org/resources/fees/check-key-to-routing-numbers.html
-// Last Synced with Source: 2025-03-01
 export default [
   '0110',
   '0111',

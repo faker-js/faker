@@ -151,7 +151,7 @@ describe('finance', () => {
       });
 
       describe('routingNumber()', () => {
-        it('should return a string and pass check digit validation', () => {
+        it('should return a valid ABA routing number', () => {
           const routingNumber = faker.finance.routingNumber();
 
           expect(routingNumber).toBeTypeOf('string');
