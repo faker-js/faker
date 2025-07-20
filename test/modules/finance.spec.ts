@@ -83,18 +83,6 @@ describe('finance', () => {
         .it('with issuer option mastercard', { issuer: 'mastercard' });
     });
 
-    t.describe('maskedNumber', (t) => {
-      t.it('noArgs')
-        .it('with length', 5)
-        .it('with length option', { length: 5 })
-        .it('with length and parenthesis option', { length: 5, parens: false })
-        .it('with length, parenthesis and ellipsis option', {
-          length: 5,
-          parens: false,
-          ellipsis: true,
-        });
-    });
-
     t.describe('bitcoinAddress', (t) => {
       t.it('noArgs')
         .it('with type option', { type: BitcoinAddressFamily.Legacy })
@@ -154,43 +142,6 @@ describe('finance', () => {
           const routingNumber = faker.finance.routingNumber();
 
           expect(routingNumber).toBeTypeOf('string');
-        });
-      });
-
-      describe('maskedNumber()', () => {
-        it('should return contain parenthesis, ellipsis and have a length of 4 by default', () => {
-          const actual = faker.finance.maskedNumber();
-
-          expect(actual).toMatch(/\(\.{3}\d{4}\)/);
-        });
-
-        it('should set a default length', () => {
-          const expected = 4; // default account mask length
-
-          const mask = faker.finance.maskedNumber({
-            parens: false,
-            ellipsis: false,
-          });
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
-        });
-
-        it('should set a specified length', () => {
-          const expected = faker.number.int({ min: 1, max: 20 });
-
-          const mask = faker.finance.maskedNumber({
-            length: expected,
-            parens: false,
-            ellipsis: false,
-          }); // the length of mask picks 4 if the random number generator picks 0
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
         });
       });
 

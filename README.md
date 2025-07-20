@@ -26,7 +26,7 @@ For detailed API documentation, please select the version of the documentation y
 
 |   Version   | Website                   |
 | :---------: | :------------------------ |
-|  v9 (next)  | https://next.fakerjs.dev/ |
+| v10 (next)  | https://next.fakerjs.dev/ |
 | v9 (stable) | https://fakerjs.dev/      |
 |  v8 (old)   | https://v8.fakerjs.dev/   |
 
@@ -65,7 +65,7 @@ const { faker } = require('@faker-js/faker');
 export function createRandomUser() {
   return {
     userId: faker.string.uuid(),
-    username: faker.internet.username(), // before version 9.1.0, use userName()
+    username: faker.internet.username(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
     password: faker.internet.password(),
@@ -81,7 +81,7 @@ export const users = faker.helpers.multiple(createRandomUser, {
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v9 (stable)](https://fakerjs.dev/api/) and [v9.\* (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v9 (stable)](https://fakerjs.dev/api/) and [v10.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 

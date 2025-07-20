@@ -5,19 +5,6 @@ import { allLocales } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe.each(keys(allLocales))('locale imports', (locale) => {
-  it(`should be possible to directly require('@faker-js/faker/locale/${locale}')`, () => {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, unicorn/prefer-module
-    const { faker } = require(`../dist/locale/${locale}.cjs`) as {
-      faker: Faker;
-    };
-
-    expect(faker).toBeDefined();
-    expect(faker.string.alpha()).toBeTypeOf('string');
-    expect(faker.definitions.metadata.title).toBe(
-      allLocales[locale].metadata?.title
-    );
-  });
-
   it(`should be possible to directly import('@faker-js/faker/locale/${locale}')`, async () => {
     const { faker } = (await import(`../dist/locale/${locale}.js`)) as {
       faker: Faker;

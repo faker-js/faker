@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.0.0-beta.0](https://github.com/faker-js/faker/compare/v9.9.0...v10.0.0-beta.0) (2025-07-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **word:** change default error strategy to 'fail' (#3560)
+* remove deprecations (#3553)
+* esm only (#3540)
+
+* remove deprecations ([#3553](https://github.com/faker-js/faker/issues/3553)) ([623d274](https://github.com/faker-js/faker/commit/623d2741a4ca165596fad7fede2f850b6c08aa3a))
+* **word:** change default error strategy to 'fail' ([#3560](https://github.com/faker-js/faker/issues/3560)) ([93416f7](https://github.com/faker-js/faker/commit/93416f71cf0ddf32dd12c181c862a1b59ef4fd86))
+
+
+### Features
+
+* esm only ([#3540](https://github.com/faker-js/faker/issues/3540)) ([160960b](https://github.com/faker-js/faker/commit/160960b79719e1298668a7ebba390b30b8de1080))
+
+## [9.9.0](https://github.com/faker-js/faker/compare/v9.8.0...v9.9.0) (2025-07-01)
+
+
+### New Locales
+
+* **locale:** add word data to pt_br and pt_pt locales ([#3531](https://github.com/faker-js/faker/issues/3531)) ([a405ac8](https://github.com/faker-js/faker/commit/a405ac8740bcfb2ec5f84c06752484a2b332a90a))
+
+
+### Features
+
+* **location:** simple coordinate methods ([#3528](https://github.com/faker-js/faker/issues/3528)) ([d07d96d](https://github.com/faker-js/faker/commit/d07d96d01833085f2d3c5f9c851a572ebf8c47df))
+
 ## [9.8.0](https://github.com/faker-js/faker/compare/v9.7.0...v9.8.0) (2025-05-13)
 
 

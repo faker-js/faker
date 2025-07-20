@@ -6,13 +6,10 @@ import eslintPluginFileProgress from 'eslint-plugin-file-progress';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import tseslint from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const gitignorePath = resolve(__dirname, '.gitignore');
+const gitignorePath = resolve(import.meta.dirname, '.gitignore');
 
 const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#region global
@@ -256,7 +253,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   },
   {
     name: 'test/**/*.ts overrides',
-    files: ['test/**/*.spec.ts', 'test/**/*.spec.d.ts'],
+    files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
     plugins: {
       vitest: eslintPluginVitest,
     },
@@ -284,6 +281,13 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       vitest: {
         typecheck: true,
       },
+    },
+  },
+  {
+    files: ['test/**/*.spec.cts'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      'unicorn/prefer-module': 'off',
     },
   }
   //#endregion

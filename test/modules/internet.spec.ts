@@ -2,7 +2,6 @@ import {
   isEmail,
   isFQDN,
   isHexadecimal,
-  isHexColor,
   isIP,
   isJWT,
   isMACAddress,
@@ -67,20 +66,6 @@ describe('internet', () => {
         });
     });
 
-    t.describe('userName', (t) => {
-      t.it('noArgs')
-        .it('with firstName option', { firstName: 'Jane' })
-        .it('with lastName option', { lastName: 'Doe' })
-        .it('with all option', { firstName: 'Jane', lastName: 'Doe' })
-        .it('with Latin names', { firstName: 'Jane', lastName: 'Doe' })
-        .it('with accented names', { firstName: 'Hélene', lastName: 'Müller' })
-        .it('with Cyrillic names', {
-          firstName: 'Фёдор',
-          lastName: 'Достоевский',
-        })
-        .it('with Chinese names', { firstName: '大羽', lastName: '陳' });
-    });
-
     t.describe('username', (t) => {
       t.it('noArgs')
         .it('with firstName option', { firstName: 'Jane' })
@@ -131,18 +116,6 @@ describe('internet', () => {
 
     t.describe('httpStatusCode', (t) => {
       t.it('noArgs').it('with options', { types: ['clientError'] });
-    });
-
-    t.describe('color', (t) => {
-      t.it('noArgs')
-        .it('with blueBase option', { blueBase: 100 })
-        .it('with greenBase option', { greenBase: 100 })
-        .it('with redBase option', { redBase: 100 })
-        .it('with all options', {
-          redBase: 100,
-          blueBase: 100,
-          greenBase: 100,
-        });
     });
 
     t.describe('mac', (t) => {
@@ -378,71 +351,6 @@ describe('internet', () => {
           expect(prefix).includes('Mike');
           expect(prefix).includes('Smith');
           expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
-        });
-      });
-
-      describe('userName()', () => {
-        it('should return a random userName', () => {
-          const userName = faker.internet.userName();
-
-          expect(userName).toBeTruthy();
-          expect(userName).toBeTypeOf('string');
-          expect(userName).toMatch(/\w/);
-        });
-
-        it('should return a random userName with given firstName', () => {
-          const userName = faker.internet.userName({ firstName: 'Aiden' });
-
-          expect(userName).toBeTruthy();
-          expect(userName).toBeTypeOf('string');
-          expect(userName).toMatch(/\w/);
-          expect(userName).includes('Aiden');
-        });
-
-        it('should return a random userName with given firstName and lastName', () => {
-          const userName = faker.internet.userName({
-            firstName: 'Aiden',
-            lastName: 'Harann',
-          });
-
-          expect(userName).toBeTruthy();
-          expect(userName).toBeTypeOf('string');
-          expect(userName).includes('Aiden');
-          expect(userName).includes('Harann');
-          expect(userName).toMatch(/^Aiden[._]Harann\d*/);
-        });
-
-        it('should strip accents', () => {
-          const userName = faker.internet.userName({
-            firstName: 'Adèle',
-            lastName: 'Smith',
-          });
-          expect(userName).includes('Adele');
-          expect(userName).includes('Smith');
-        });
-
-        it('should transliterate Cyrillic', () => {
-          const userName = faker.internet.userName({
-            firstName: 'Амос',
-            lastName: 'Васильев',
-          });
-          expect(userName).includes('Amos');
-        });
-
-        it('should provide a fallback for Chinese etc', () => {
-          const userName = faker.internet.userName({
-            firstName: '大羽',
-            lastName: '陳',
-          });
-          expect(userName).includes('hlzp8d');
-        });
-
-        it('should provide a fallback special unicode characters', () => {
-          const userName = faker.internet.userName({
-            firstName: '🐼',
-            lastName: '❤️',
-          });
-          expect(userName).includes('2qt8');
         });
       });
 
@@ -835,28 +743,6 @@ describe('internet', () => {
           expect(ua).toBeTypeOf('string');
           expect(ua.length).toBeGreaterThanOrEqual(1);
           expect(ua).includes('/');
-        });
-      });
-
-      describe('color()', () => {
-        it('should return a random hex value', () => {
-          const color = faker.internet.color();
-
-          expect(color).toBeTruthy();
-          expect(color).toBeTypeOf('string');
-          expect(color).toSatisfy(isHexColor);
-        });
-
-        it('should return a random hex value with given values', () => {
-          const color = faker.internet.color({
-            redBase: 100,
-            greenBase: 100,
-            blueBase: 100,
-          });
-
-          expect(color).toBeTruthy();
-          expect(color).toBeTypeOf('string');
-          expect(color).toSatisfy(isHexColor);
         });
       });
 
