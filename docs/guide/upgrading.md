@@ -27,9 +27,9 @@ Support for Node.js v18 has been discontinued, as this version has reached its [
 
 ### CommonJS Still Supported, but Check Your Node Version
 
-Technically, Faker v10 is now an ESM-only package. However, the good news is that you can still use it from your CommonJS packages without code changes, thanks to the [ESM Modules require feature](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) in recent versions of Node.js.
+Technically, Faker v10 is now an ESM-only package. However, the good news is that you can still use it from your CommonJS projects without code changes, thanks to the [ESM Modules require feature](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) in recent versions of Node.js.
 
-If you are using Node 20, ensure you are using a sufficiently recent minor version—Node v20.19+ or Node v22.13+ is required.
+If you are using Node 20 or Node 22, ensure you are using a sufficiently recent minor version—Node v20.19+ or Node v22.13+ is required.
 
 ```ts
 const { faker, fakerES } = require('@faker-js/faker'); // this still works
@@ -47,7 +47,7 @@ Instead, change the require of index.js in null to a dynamic import(), which is 
 
 A number of methods that were deprecated in v9 have been completely removed in v10. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v9 (e.g., `npm install --save-dev faker@9`) and fix any deprecation warnings issued by your code.
 
-| Removed Method            | Replacement / Notes       |
+| Removed Method            | Replacement               |
 | ------------------------- | ------------------------- |
 | `faker.address.*`         | `faker.location.*`        |
 | `faker.name.*`            | `faker.person.*`          |
@@ -74,10 +74,10 @@ faker.word.noun({ length: { min: 20, max: 25 } });
 // In v10, this throws an error `FakerError: No words found that match the given length.`
 ```
 
-Previously, the methods would return a random word, completly ignoring the the length requirements you specified.
-If you want to restore this behaviour, you can provide the 'any-length' strategy to the word methods.
+Previously, the methods would return a random word, completely ignoring the the length requirements you specified.
+If you want to restore this behavior, you can provide the 'any-length' strategy to the word methods.
 
-| Method in v9                | Method in v10 with v9 behaviour                       |
+| Method in v9                | Method in v10 with v9 behavior                        |
 | --------------------------- | ----------------------------------------------------- |
 | `faker.word.adjective()`    | `faker.word.adjective({ strategy: 'any-length' })`    |
 | `faker.word.adverb()`       | `faker.word.adverb({ strategy: 'any-length' })`       |
