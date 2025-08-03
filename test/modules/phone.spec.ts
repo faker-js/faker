@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, fakerEN_GB } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
@@ -26,6 +26,12 @@ describe('phone', () => {
           const phoneNumber = faker.phone.number();
 
           expect(phoneNumber).toMatch(/\d/);
+        });
+
+        it('should return a fixed length mobile format in en_GB locale', () => {
+          const phoneNumber = fakerEN_GB.phone.number({ style: 'mobile' });
+
+          expect(phoneNumber).toMatch(/0\d{10}/);
         });
       });
 
