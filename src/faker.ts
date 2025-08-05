@@ -44,9 +44,11 @@ import { mergeLocales } from './utils/merge-locales';
  * faker.person.firstName(); // 'John'
  * faker.person.lastName(); // 'Doe'
  *
- * Create Faker instance with only `es` data and no `en` fallback (=> smaller bundle size):
- *
  * @example
+ * //
+ * // Create Faker instance with only `es` data and no `en` fallback (=> smaller bundle size):
+ * //
+ *
  * import { Faker, es } from '@faker-js/faker';
  * // const { Faker, es } = require('@faker-js/faker');
  *
