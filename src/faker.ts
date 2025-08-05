@@ -45,6 +45,7 @@ import { mergeLocales } from './utils/merge-locales';
  * faker.person.lastName(); // 'Doe'
  * @example
  *
+ *
  * //
  * // Create Faker instance with only `es` data and no `en` fallback (=> smaller bundle size):
  * //
