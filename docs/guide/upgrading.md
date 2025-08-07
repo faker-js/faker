@@ -25,7 +25,9 @@ v10 has not yet been released. This page contains a work-in-progress list of bre
 
 Support for Node.js v18 has been discontinued, as this version has reached its [end-of-life](https://github.com/nodejs/Release). Faker.js v10 requires a minimum of Node.js v20.19.0, v22.13.0, or v24.0.0.
 
-### CommonJS Still Supported, but Check Your Node Version
+### CommonJS Still Supported, but Check Your Versions
+
+#### Node
 
 Technically, Faker v10 is now an ESM-only package. However, the good news is that you can still use it from your CommonJS projects without code changes, thanks to the [ESM Modules require feature](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) in recent versions of Node.js.
 
@@ -42,6 +44,12 @@ Uncaught:
 Error [ERR_REQUIRE_ESM]: require() of ES Module <path>/faker/dist/index.js not supported.
 Instead, change the require of index.js in null to a dynamic import(), which is available in all CommonJS modules.
 ```
+
+#### TypeScript
+
+As mentioned in the previous section, CJS can still be used using a modern module resolution strategy. This directly impacts your `tsconfig.json` setup.
+
+Previously, you were able provide the values `"Bundler"`, `"Node10"`, `"Node16"` or `"NodeNext"` for the configuration `"moduleResulution"`. Starting in v10 of Faker, only the values `"Bundler"`, `"Node20"` or `"NodeNext"` are supported for your CJS codebase. To use `"Node20"` your **`typescript` version must be at least `5.9.0`**. 
 
 ### Removal of Deprecated Code
 
