@@ -99,14 +99,27 @@ You can use Faker without it, but we don't have dedicated error messages for wro
 
 In order to have Faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
-```json
+::: code-group
+
+```json [esm]
 {
   "compilerOptions": {
-    "moduleResolution": "Bundler", // "Node10", "Node16" or "NodeNext"
+    "moduleResolution": "Bundler", // or "Node10", "Node16", "Node20", "NodeNext"
     "strict": true // Optional, but recommended
   }
 }
 ```
+
+```json [cjs]
+{
+  "compilerOptions": {
+    "moduleResolution": "Bundler", // or "Node20" or "NodeNext"
+    "strict": true // Optional, but recommended
+  }
+}
+```
+
+:::
 
 ## Reproducible results
 
