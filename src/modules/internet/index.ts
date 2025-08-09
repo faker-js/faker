@@ -365,7 +365,7 @@ export class InternetModule extends ModuleBase {
         return charCode.toString(36);
       })
       .join('');
-    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll("'", '');
     result = result.replaceAll(' ', '');
 
     return result;
@@ -423,7 +423,7 @@ export class InternetModule extends ModuleBase {
     ];
 
     let result = this.faker.helpers.arrayElement(strategies)();
-    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll("'", '');
     result = result.replaceAll(' ', '');
     return result;
   }
