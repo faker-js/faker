@@ -388,8 +388,8 @@ describe('location', () => {
           )(
             'should return random gps coordinate within a distance of another one (%j)',
             ({ isMetric, radius }) => {
-              const latitude1 = +fakerFn.location.latitude();
-              const longitude1 = +fakerFn.location.longitude();
+              const latitude1 = fakerFn.location.latitude();
+              const longitude1 = fakerFn.location.longitude();
 
               const coordinate = fakerFn.location.nearbyGPSCoordinate({
                 origin: [latitude1, longitude1],
