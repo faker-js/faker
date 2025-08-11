@@ -47,9 +47,9 @@ Instead, change the require of index.js in null to a dynamic import(), which is 
 
 #### TypeScript
 
-As mentioned in the previous section, CJS can still be used using a modern module resolution strategy. This directly impacts your `tsconfig.json` setup.
+As mentioned in the previous section, CJS can still be used if you use a modern module resolution strategy. This directly impacts your `tsconfig.json` setup.
 
-Previously, you were able provide the values `"Bundler"`, `"Node10"`, `"Node16"` or `"NodeNext"` for the configuration `"moduleResulution"`. Starting in v10 of Faker, only the values `"Bundler"`, `"Node20"` or `"NodeNext"` are supported for your CJS codebase. To use `"Node20"` your **`typescript` version must be at least `5.9.0`**.
+Previously, you were able to provide the values `"Bundler"`, `"Node10"`, `"Node16"` or `"NodeNext"` for the configuration `"moduleResulution"`. Starting in v10 of Faker, only the values `"Bundler"`, `"Node20"` or `"NodeNext"` are supported for your CJS codebase. [To use `"Node20"` your **`typescript` version must be at least `5.9.0`**](https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/#support-for---module-node20).
 
 ### Removal of Deprecated Code
 
