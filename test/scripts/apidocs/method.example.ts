@@ -463,7 +463,7 @@ export class SignatureTest {
    *
    * @remark First special text.
    * @remark Second special text.
-   * @remark Thrid special text.
+   * @remark Third special text.
    *
    * @since 1.0.0
    */
