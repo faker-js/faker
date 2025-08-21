@@ -105,8 +105,8 @@ importers:
         specifier: 13.15.15
         version: 13.15.15
       vitepress:
-        specifier: 1.6.3
-        version: 1.6.3(@algolia/client-search@5.34.1)(@types/node@22.17.2)(change-case@5.4.4)(postcss@8.5.6)(search-insights@2.17.3)(typescript@5.9.2)
+        specifier: 1.6.4
+        version: 1.6.4(@algolia/client-search@5.34.1)(@types/node@22.17.2)(change-case@5.4.4)(postcss@8.5.6)(search-insights@2.17.3)(typescript@5.9.2)
       vitest:
         specifier: 3.2.4
         version: 3.2.4(@types/node@22.17.2)(@vitest/ui@3.2.4)(jiti@2.5.1)(jsdom@25.0.1)(tsx@4.20.4)(yaml@2.8.0)
@@ -3563,8 +3563,8 @@ packages:
       yaml:
         optional: true
 
-  vitepress@1.6.3:
-    resolution: {integrity: sha512-fCkfdOk8yRZT8GD9BFqusW3+GggWYZ/rYncOfmgcDtP3ualNHCAg+Robxp2/6xfH1WwPHtGpPwv7mbA3qomtBw==}
+  vitepress@1.6.4:
+    resolution: {integrity: sha512-+2ym1/+0VVrbhNyRoFFesVvBvHAVMZMK0rw60E3X/5349M1GuVdKeazuksqopEdvkKwKGs21Q729jX81/bkBJg==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -7254,7 +7254,7 @@ snapshots:
       tsx: 4.20.4
       yaml: 2.8.0
 
-  vitepress@1.6.3(@algolia/client-search@5.34.1)(@types/node@22.17.2)(change-case@5.4.4)(postcss@8.5.6)(search-insights@2.17.3)(typescript@5.9.2):
+  vitepress@1.6.4(@algolia/client-search@5.34.1)(@types/node@22.17.2)(change-case@5.4.4)(postcss@8.5.6)(search-insights@2.17.3)(typescript@5.9.2):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.34.1)(search-insights@2.17.3)
@@ -7265,7 +7265,7 @@ snapshots:
       '@types/markdown-it': 14.1.2
       '@vitejs/plugin-vue': 5.2.4(vite@5.4.19(@types/node@22.17.2))(vue@3.5.19(typescript@5.9.2))
       '@vue/devtools-api': 7.7.7
-      '@vue/shared': 3.5.18
+      '@vue/shared': 3.5.19
       '@vueuse/core': 12.8.2(typescript@5.9.2)
       '@vueuse/integrations': 12.8.2(change-case@5.4.4)(focus-trap@7.6.5)(typescript@5.9.2)
       focus-trap: 7.6.5
