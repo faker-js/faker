@@ -110,7 +110,7 @@
     "@vitest/ui": "3.2.4",
     "@vueuse/core": "13.7.0",
     "commit-and-tag-version": "12.5.2",
-    "cypress": "14.5.4",
+    "cypress": "15.0.0",
     "eslint": "9.33.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-file-progress": "3.0.2",
