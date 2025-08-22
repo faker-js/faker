@@ -81,7 +81,7 @@ export const users = faker.helpers.multiple(createRandomUser, {
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v9 (stable)](https://fakerjs.dev/api/) and [v10.\* (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v10 (stable)](https://fakerjs.dev/api/) and [v10.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
