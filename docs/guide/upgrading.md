@@ -6,10 +6,6 @@ outline: [2, 3]
 
 This is the migration guide for upgrading from v9 to v10.
 
-::: tip
-v10 has not yet been released. This page contains a work-in-progress list of breaking changes in v10.
-:::
-
 ::: info Not the version you are looking for?
 
 - [Upgrading to v9](https://v9.fakerjs.dev/guide/upgrading.html)
