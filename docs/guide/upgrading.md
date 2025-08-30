@@ -49,7 +49,7 @@ Previously, you were able to provide the values `"Bundler"`, `"Node10"`, `"Node1
 
 #### Incompatibility with Jest
 
-Because the [Jest](https://www.npmjs.com/package/jest) testing library uses its own module resolution system, there are known compatibility issues with Faker v10 and CJS in Jest tests. 
+Because the [Jest](https://www.npmjs.com/package/jest) testing library uses its own module resolution system, there are known compatibility issues with Faker v10 in combination with CJS in Jest tests.
 
 For now, keep using Faker v9, or see possible workarounds in [issue #3606](https://github.com/faker-js/faker/issues/3606).
 
