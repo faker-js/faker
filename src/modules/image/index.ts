@@ -1,4 +1,5 @@
 import { toBase64 } from '../../internal/base64';
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { SexType } from '../person';
 
