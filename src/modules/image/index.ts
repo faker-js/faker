@@ -176,6 +176,13 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
+    deprecated({
+      deprecated: 'faker.image.urlLoremFlickr()',
+      proposed: 'faker.image.url()',
+      since: '10.1.0',
+      until: '11.0.0',
+    });
+
     const {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
