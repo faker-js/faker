@@ -7,7 +7,7 @@ import type { SexType } from '../person';
  *
  * ### Overview
  *
- * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from an image provider "Picsum".  Other providers may be added in future versions. You can request an image specifically from this provider, with additional options using [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
+ * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but an URL pointing to an image from an image provider like "Picsum". Other providers may be added in future versions. You can request an image specifically from this provider, with additional options using [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
  *
  * For a random placeholder image containing only solid color and text, use [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
