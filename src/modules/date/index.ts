@@ -5,6 +5,20 @@ import { toDate } from '../../internal/date';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
 
+type TupleOf<
+  T,
+  TLength extends number,
+  TResultContainer extends unknown[],
+> = TResultContainer['length'] extends TLength
+  ? TResultContainer
+  : TupleOf<T, TLength, [T, ...TResultContainer]>;
+
+type DynamicTouple<T, TDesiredLength extends number> = TupleOf<
+  T,
+  TDesiredLength,
+  []
+>;
+
 /**
  * Module to generate dates (without methods requiring localized data).
  */
@@ -171,6 +185,63 @@ export class SimpleDateModule extends SimpleModuleBase {
     return new Date(this.faker.number.int({ min: fromMs, max: toMs }));
   }
 
+  betweens(options: {
+    /**
+     * The early date boundary.
+     */
+    from: string | Date | number;
+    /**
+     * The late date boundary.
+     */
+    to: string | Date | number;
+    /**
+     * The number of dates to generate.
+     *
+     * @default 3
+     */
+    count?: never;
+  }): DynamicTouple<Date, 3>;
+  betweens<const T extends number>(options: {
+    /**
+     * The early date boundary.
+     */
+    from: string | Date | number;
+    /**
+     * The late date boundary.
+     */
+    to: string | Date | number;
+    /**
+     * The number of dates to generate.
+     *
+     * @default 3
+     */
+    count: T;
+  }): DynamicTouple<Date, T>;
+  betweens(options: {
+    /**
+     * The early date boundary.
+     */
+    from: string | Date | number;
+    /**
+     * The late date boundary.
+     */
+    to: string | Date | number;
+    /**
+     * The number of dates to generate.
+     *
+     * @default 3
+     */
+    count: {
+      /**
+       * The minimum number of dates to generate.
+       */
+      min: number;
+      /**
+       * The maximum number of dates to generate.
+       */
+      max: number;
+    };
+  }): Date[];
   /**
    * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
    *
@@ -200,7 +271,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  betweens(options: {
+  betweens<const T extends number>(options: {
     /**
      * The early date boundary.
      */
@@ -215,7 +286,7 @@ export class SimpleDateModule extends SimpleModuleBase {
      * @default 3
      */
     count?:
-      | number
+      | T
       | {
           /**
            * The minimum number of dates to generate.
@@ -228,6 +299,15 @@ export class SimpleDateModule extends SimpleModuleBase {
         };
   }): Date[] {
     const { from, to, count = 3 } = options;
+
+    // hover here to see the types
+    const noArgs = this.betweens({ from, to });
+    const withCount = this.betweens({ from, to, count: 6 });
+    const withRange = this.betweens({ from, to, count: { min: 1, max: 3 } });
+
+    const someNumber: number = 6;
+    const withCountSomeNumber = this.betweens({ from, to, count: someNumber });
+
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
       .sort((a, b) => a.getTime() - b.getTime());
