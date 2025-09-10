@@ -1,6 +1,7 @@
 import isCreditCard from 'validator/lib/isCreditCard';
+import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
-import { faker, fakerZH_CN } from '../../src';
+import { allLocales, faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
@@ -596,4 +597,64 @@ describe('finance', () => {
       });
     }
   );
+});
+
+describe('finance locale data', () => {
+  // Dedicated type for readability purposes
+  type KnownProvider = Exclude<
+    Parameters<typeof isCreditCard>[1],
+    undefined
+  >['provider'];
+
+  function getKnownProvider(value: string | undefined): KnownProvider {
+    // taken from definitions of validatorjs:
+    // https://github.com/validatorjs/validator.js/blob/72573b3d1d8ab2e6575e6bba1cbe2b01f95f4935/src/lib/isCreditCard.js#L4-L12
+    const providers: Record<string, KnownProvider> = {
+      american_express: 'amex',
+      diners_club: 'dinersclub',
+      discover: 'discover',
+      jcb: 'jcb',
+      mastercard: 'mastercard',
+      unionpay: 'unionpay',
+      visa: 'visa',
+    };
+
+    const knownProvider = providers[value ?? ''];
+    if (knownProvider == null) {
+      throw new Error(
+        `Issuer "${value}" is not a known provider for validatorjs. Because of that the validity of it's patterns can not be verified.`
+      );
+    }
+
+    return knownProvider;
+  }
+
+  const localesWithData = Object.entries(allLocales).filter(
+    ([, data]) => Object.keys(data.finance?.credit_card ?? {}).length > 0
+  );
+  describe.each(localesWithData)(`%s`, (_localeName, localeData) => {
+    describe('credit cards', () => {
+      describe('issuer', () => {
+        describe.each(Object.entries(localeData.finance?.credit_card ?? {}))(
+          '%s',
+          (issuerName, issuerPatterns) => {
+            function isCreditCardFromIssuer(value: string) {
+              return isCreditCard(value, {
+                provider: getKnownProvider(issuerName),
+              });
+            }
+
+            it.each(issuerPatterns)(
+              'pattern "%s" should generate a valid credit card number',
+              (pattern) => {
+                const result = faker.finance.creditCardNumber(pattern);
+                expect(result).toSatisfy(isLuhnNumber);
+                expect(result).toSatisfy(isCreditCardFromIssuer);
+              }
+            );
+          }
+        );
+      });
+    });
+  });
 });

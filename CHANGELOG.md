@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.0.0](https://github.com/faker-js/faker/compare/v10.0.0-beta.0...v10.0.0) (2025-08-21)
+
+
+### New Locales
+
+* **locale:** extended list of colors in Polish ([#3586](https://github.com/faker-js/faker/issues/3586)) ([9940d54](https://github.com/faker-js/faker/commit/9940d54f75205b65a74d11484cb385c85656a43f))
+
+
+### Features
+
+* **locales:** add animal vocabulary(bear, bird, cat, rabbit, pet_name) in Korean ([#3535](https://github.com/faker-js/faker/issues/3535)) ([0d2143c](https://github.com/faker-js/faker/commit/0d2143c75d804d1dc53c17078eb59bc1970a07d1))
+
+
+### Changed Locales
+
+* **locale:** remove invalid credit card issuer patterns ([#3568](https://github.com/faker-js/faker/issues/3568)) ([9783d95](https://github.com/faker-js/faker/commit/9783d95a8e43c45bc44c5c0c546b250b6c2ae140))
+
 ## [10.0.0-beta.0](https://github.com/faker-js/faker/compare/v9.9.0...v10.0.0-beta.0) (2025-07-09)
 
 

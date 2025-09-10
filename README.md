@@ -24,11 +24,11 @@ Please proceed to the [Getting Started Guide](https://fakerjs.dev/guide/) for th
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
-|   Version   | Website                   |
-| :---------: | :------------------------ |
-| v10 (next)  | https://next.fakerjs.dev/ |
-| v9 (stable) | https://fakerjs.dev/      |
-|  v8 (old)   | https://v8.fakerjs.dev/   |
+|   Version    | Website                   |
+| :----------: | :------------------------ |
+|  v10 (next)  | https://next.fakerjs.dev/ |
+| v10 (stable) | https://fakerjs.dev/      |
+|   v9 (old)   | https://v9.fakerjs.dev/   |
 
 ---
 
@@ -81,7 +81,7 @@ export const users = faker.helpers.multiple(createRandomUser, {
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v9 (stable)](https://fakerjs.dev/api/) and [v10.\* (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v10 (stable)](https://fakerjs.dev/api/) and [v10.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
