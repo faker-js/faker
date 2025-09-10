@@ -47,6 +47,12 @@ As mentioned in the previous section, CJS can still be used if you use a modern 
 
 Previously, you were able to provide the values `"Bundler"`, `"Node10"`, `"Node16"` or `"NodeNext"` for the configuration `"moduleResulution"`. Starting in v10 of Faker, only the values `"Bundler"`, `"Node20"` or `"NodeNext"` are supported for your CJS codebase. [To use `"Node20"` your **`typescript` version must be at least `5.9.0`**](https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/#support-for---module-node20).
 
+#### Incompatibility with Jest
+
+Because the [Jest](https://www.npmjs.com/package/jest) testing library uses its own module resolution system, there are known compatibility issues with Faker v10 in combination with CJS in Jest tests.
+
+For now, keep using Faker v9, or see possible workarounds in [issue #3606](https://github.com/faker-js/faker/issues/3606).
+
 ### Removal of Deprecated Code
 
 A number of methods that were deprecated in v9 have been completely removed in v10. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v9 (e.g., `npm install --save-dev faker@9`) and fix any deprecation warnings issued by your code.

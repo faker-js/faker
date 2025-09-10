@@ -1,4 +1,5 @@
 import { toBase64 } from '../../internal/base64';
+import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { SexType } from '../person';
 
@@ -7,7 +8,7 @@ import type { SexType } from '../person';
  *
  * ### Overview
  *
- * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
+ * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but an URL pointing to an image from an image provider like "Picsum". Other providers may be added in future versions. You can request an image specifically from this provider, with additional options using [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
  *
  * For a random placeholder image containing only solid color and text, use [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
@@ -95,14 +96,14 @@ export class ImageModule extends ModuleBase {
   /**
    * Generates a random image url.
    *
-   * @remark This method generates a random string representing an URL from loremflickr. Faker is not responsible for the content of the image or the service providing it.
+   * @remark This method generates a random string representing an URL from an external provider. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    *
    * @example
-   * faker.image.url() // 'https://loremflickr.com/640/480?lock=1234'
+   * faker.image.url() // 'https://picsum.photos/seed/NWbJM2B/640/480'
    *
    * @since 8.0.0
    */
@@ -128,9 +129,9 @@ export class ImageModule extends ModuleBase {
     } = options;
 
     const urlMethod = this.faker.helpers.arrayElement([
-      this.urlLoremFlickr,
       ({ width, height }: { width?: number; height?: number }) =>
         this.urlPicsumPhotos({ width, height, grayscale: false, blur: 0 }),
+      // Other providers may be added back here in future versions.
     ]);
 
     return urlMethod({ width, height });
@@ -153,6 +154,8 @@ export class ImageModule extends ModuleBase {
    * faker.image.urlLoremFlickr({ category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
    *
    * @since 8.0.0
+   *
+   * @deprecated LoremFlickr is no longer available, and image links will be broken. Use `faker.image.url()` instead.
    */
   urlLoremFlickr(
     options: {
@@ -174,6 +177,13 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
+    deprecated({
+      deprecated: 'faker.image.urlLoremFlickr()',
+      proposed: 'faker.image.url()',
+      since: '10.1.0',
+      until: '11.0.0',
+    });
+
     const {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
