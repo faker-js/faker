@@ -1,0 +1,16 @@
+export default [
+  'Gelamereng',
+  'Mevêy Gawra',
+  'Narincî',
+  'Nîlî',
+  'Qewrê',
+  'Reş',
+  'Sewz',
+  'Sewzî tarîk',
+  'Sor',
+  'Spê',
+  'Zerd',
+  'Zerdî kem',
+  'Şîn',
+  'Şînî tarîk',
+];
