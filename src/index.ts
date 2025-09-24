@@ -69,7 +69,7 @@ export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export { IPv4Network } from './modules/internet';
 export type { IPv4NetworkType, InternetModule } from './modules/internet';
-export type { LocationModule } from './modules/location';
+export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
 export type { NumberModule } from './modules/number';

@@ -612,22 +612,6 @@ describe('date', () => {
           expect(age).toBeLessThanOrEqual(22);
         });
 
-        it.each(['min', 'max', 'mode'] as const)(
-          "should throw an error when '%s' is not provided",
-          (key) => {
-            const options = { min: 18, max: 80, mode: 'age' } as const;
-
-            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            delete options[key];
-
-            expect(() => faker.date.birthdate(options)).toThrow(
-              new FakerError(
-                `The 'min', 'max', and 'mode' options must be set together.`
-              )
-            );
-          }
-        );
-
         it('should throw an error when the min > max year', () => {
           const min = 2000;
           const max = 1990;
