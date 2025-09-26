@@ -1,0 +1,17 @@
+export default [
+  'Agder',
+  'Akershus',
+  'Buskerud',
+  'Innlandet',
+  'Finnmark',
+  'Møre og Romsdal',
+  'Nordland',
+  'Oslo',
+  'Rogaland',
+  'Vestfold',
+  'Vestland',
+  'Telemark',
+  'Troms',
+  'Trööndelage',
+  'Østfold',
+];
