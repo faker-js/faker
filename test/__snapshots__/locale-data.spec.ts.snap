@@ -41,7 +41,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "fr_SN": " #'-.ABCDEFGHIJKLMNOPQRSTVWYZabcdefghijklmnopqrstuvwxyzÉèéëïÿ",
   "he": " "#%&'()+,-./ABCDEFGHIJKLMNOPRSTUVWXYZ_abcefgilmnoprstuvyְִַָֹּאבגדהוזחטיךכלםמןנסעףפץצקרשת׳״",
   "hr": " #()+,-.ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwyzäöĆćČčĐđŠšŽž",
-  "hu": " #%&()+,-./:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÉÍÓÖÚáãäåçèéíóöúüŐőű–’",
+  "hu": " #%&()+,-./:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÉÍÓÖÚÜáãäåçèéíóöúüŐőű–’",
   "hy": " #'()+-./ԱԲԳԴԵԶԷԹԻԼԽԿՀՁՂՃՄՅՆՇՈՉՊՋՌՍՎՏՓՔՕՖաբգդեզէըթժիլխծկհձղճմյնշոչպջռսվտրցւփքօֆև․",
   "id_ID": " #()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwyz",
   "it": " #&'()+,-./ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyz°àèéìòù",
