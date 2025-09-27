@@ -126,7 +126,7 @@ export const faker = new Faker({
 
 ## ⚙️ Setting a randomness seed
 
-If you want consistent results, you can set your own seed:
+If you want consistent results, you can set your own seed. If you are using `faker.date` methods, there are additional considerations. See [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
 
 ```ts
 faker.seed(123);
