@@ -16,15 +16,14 @@
  */
 import { constants } from 'node:fs';
 import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 import { keys } from '../src/internal/keys';
 import { formatMarkdown, formatTypescript } from './apidocs/utils/format';
 
 // Constants
 
-const pathRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const pathRoot = resolve(import.meta.dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
@@ -369,7 +368,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
   const legacyDefinitions = ['app', 'cell_phone', 'team'];
   const definitionsToSkip = [
-    'internet',
     'location',
     'lorem',
     'metadata',

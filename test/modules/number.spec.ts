@@ -156,6 +156,18 @@ describe('number', () => {
         );
       });
 
+      it('throws for impossible multipleOf where min=max', () => {
+        const input = {
+          min: 11,
+          max: 11,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.int(input)).toThrow(
+          new FakerError('No suitable integer value between 11 and 11 found.')
+        );
+      });
+
       it('should return a random number given a maximum value as Number', () => {
         const actual = faker.number.int(10);
 
@@ -388,6 +400,32 @@ describe('number', () => {
       it('throws an error for negative multipleOf', () => {
         expect(() => faker.number.float({ multipleOf: -0.01 })).toThrow(
           new FakerError('multipleOf should be greater than 0.')
+        );
+      });
+
+      it('throws for impossible multipleOf', () => {
+        const input = {
+          min: 11,
+          max: 19,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError(
+            'No suitable integer value between 1.1 and 1.9000000000000001 found.'
+          )
+        );
+      });
+
+      it('throws for impossible multipleOf where min=max', () => {
+        const input = {
+          min: 11,
+          max: 11,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError('No suitable integer value between 1.1 and 1.1 found.')
         );
       });
 

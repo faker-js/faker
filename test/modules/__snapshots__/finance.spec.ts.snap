@@ -69,16 +69,6 @@ exports[`finance > 42 > iban > with formatted option 1`] = `"GT69 T10P 0V13 4624
 
 exports[`finance > 42 > litecoinAddress 1`] = `"3JAaa4SAH2YQdbbiwrhB9hnsMcvA"`;
 
-exports[`finance > 42 > maskedNumber > noArgs 1`] = `"(...3975)"`;
-
-exports[`finance > 42 > maskedNumber > with length 1`] = `"(...39751)"`;
-
-exports[`finance > 42 > maskedNumber > with length and parenthesis option 1`] = `"...39751"`;
-
-exports[`finance > 42 > maskedNumber > with length option 1`] = `"(...39751)"`;
-
-exports[`finance > 42 > maskedNumber > with length, parenthesis and ellipsis option 1`] = `"...39751"`;
-
 exports[`finance > 42 > pin > noArgs 1`] = `"3975"`;
 
 exports[`finance > 42 > pin > with length 1`] = `"3975110867"`;
@@ -160,16 +150,6 @@ exports[`finance > 1211 > iban > with formatted option 1`] = `"TN83 2673 6788 21
 
 exports[`finance > 1211 > litecoinAddress 1`] = `"3eZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog"`;
 
-exports[`finance > 1211 > maskedNumber > noArgs 1`] = `"(...9829)"`;
-
-exports[`finance > 1211 > maskedNumber > with length 1`] = `"(...98296)"`;
-
-exports[`finance > 1211 > maskedNumber > with length and parenthesis option 1`] = `"...98296"`;
-
-exports[`finance > 1211 > maskedNumber > with length option 1`] = `"(...98296)"`;
-
-exports[`finance > 1211 > maskedNumber > with length, parenthesis and ellipsis option 1`] = `"...98296"`;
-
 exports[`finance > 1211 > pin > noArgs 1`] = `"9829"`;
 
 exports[`finance > 1211 > pin > with length 1`] = `"9829667368"`;
@@ -250,16 +230,6 @@ exports[`finance > 1337 > iban > with formatted and countryCode option 1`] = `"D
 exports[`finance > 1337 > iban > with formatted option 1`] = `"FO22 0053 2700 6047 34"`;
 
 exports[`finance > 1337 > litecoinAddress 1`] = `"LhsjwgYJ7oC8ZrMNmqzLbhEubpcw"`;
-
-exports[`finance > 1337 > maskedNumber > noArgs 1`] = `"(...2124)"`;
-
-exports[`finance > 1337 > maskedNumber > with length 1`] = `"(...21243)"`;
-
-exports[`finance > 1337 > maskedNumber > with length and parenthesis option 1`] = `"...21243"`;
-
-exports[`finance > 1337 > maskedNumber > with length option 1`] = `"(...21243)"`;
-
-exports[`finance > 1337 > maskedNumber > with length, parenthesis and ellipsis option 1`] = `"...21243"`;
 
 exports[`finance > 1337 > pin > noArgs 1`] = `"2124"`;
 

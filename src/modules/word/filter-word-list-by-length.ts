@@ -51,7 +51,7 @@ const STRATEGIES = {
  * @param options The options to provide.
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
- * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'any-length'`.
+ * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
  *
  * Available error handling strategies:
  *
@@ -66,7 +66,7 @@ export function filterWordListByLength(options: {
   length?: number | { min: number; max: number };
   strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
 }): string[] {
-  const { wordList, length, strategy = 'any-length' } = options;
+  const { wordList, length, strategy = 'fail' } = options;
 
   if (length != null) {
     const filter: (word: string) => boolean =

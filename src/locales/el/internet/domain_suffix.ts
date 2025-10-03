@@ -1,1 +1,1 @@
-export default ['gr', 'com', 'biz', 'info', 'name'];
+export default ['biz', 'com', 'gr', 'info', 'name'];

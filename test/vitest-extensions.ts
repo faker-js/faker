@@ -2,7 +2,7 @@
 import { expect } from 'vitest';
 
 expect.extend({
-  toContainDuplicates<T>(received: T[]) {
+  toContainDuplicates(received: unknown[]) {
     const { isNot = false } = this;
 
     const uniques = new Set(received);
