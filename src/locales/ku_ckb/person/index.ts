@@ -6,11 +6,13 @@ import type { PersonDefinition } from '../../..';
 import first_name from './first_name';
 import last_name from './last_name';
 import middle_name from './middle_name';
+import sex from './sex';
 
 const person: PersonDefinition = {
   first_name,
   last_name,
   middle_name,
+  sex,
 };
 
 export default person;
