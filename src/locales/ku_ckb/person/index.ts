@@ -5,7 +5,9 @@
 import type { PersonDefinition } from '../../..';
 import first_name from './first_name';
 import last_name from './last_name';
+import last_name_pattern from './last_name_pattern';
 import middle_name from './middle_name';
+import middle_name_pattern from './middle_name_pattern';
 import name_ from './name';
 import prefix from './prefix';
 import sex from './sex';
@@ -13,7 +15,9 @@ import sex from './sex';
 const person: PersonDefinition = {
   first_name,
   last_name,
+  last_name_pattern,
   middle_name,
+  middle_name_pattern,
   name: name_,
   prefix,
   sex,

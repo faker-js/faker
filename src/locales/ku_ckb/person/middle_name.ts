@@ -1,7 +1,5 @@
 export default {
-  generic: [],
-  female: [],
-  male: [
+  generic: [
     'ئاراز',
     'ئاراس',
     'ئارام',
