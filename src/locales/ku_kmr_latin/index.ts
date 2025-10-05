@@ -10,7 +10,7 @@ import person from './person';
 /**
  * The locale data for the `ku_kmr_latin` locale.
  *
- * - Language: Kurdish Kurmanji (Latin)
+ * - Language: Kurdish (Kurmanji, Latin)
  * - Endonym: کوردیی ناوەڕاست لاتینی
  */
 const ku_kmr_latin: LocaleDefinition = {
