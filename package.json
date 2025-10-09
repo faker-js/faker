@@ -135,7 +135,7 @@
     "vue": "3.5.19",
     "vue-tsc": "3.0.6"
   },
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.18.1",
   "engines": {
     "node": "^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0",
     "npm": ">=10"
