@@ -1,4 +1,6 @@
 import { includeIgnoreFile } from '@eslint/compat';
+import type { ConfigWithExtendsArray } from '@eslint/config-helpers';
+import { defineConfig } from '@eslint/config-helpers';
 import eslint from '@eslint/js';
 import eslintPluginStylistic from '@stylistic/eslint-plugin';
 import eslintPluginVitest from '@vitest/eslint-plugin';
@@ -11,7 +13,7 @@ import tseslint from 'typescript-eslint';
 
 const gitignorePath = resolve(import.meta.dirname, '.gitignore');
 
-const config: ReturnType<typeof tseslint.config> = tseslint.config(
+export default defineConfig(
   //#region global
   includeIgnoreFile(gitignorePath),
   {
@@ -51,7 +53,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#endregion
 
   //#region typescript-eslint
-  ...tseslint.configs.strictTypeChecked,
+  ...(tseslint.configs.strictTypeChecked as ConfigWithExtendsArray),
   {
     name: 'typescript-eslint overrides',
     languageOptions: {
@@ -255,6 +257,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
     name: 'test/**/*.ts overrides',
     files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
     plugins: {
+      // @ts-expect-error: weird type error
       vitest: eslintPluginVitest,
     },
     rules: {
@@ -292,5 +295,3 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   }
   //#endregion
 );
-
-export default config;
