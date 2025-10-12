@@ -1,5 +1,4 @@
 import { includeIgnoreFile } from '@eslint/compat';
-import { defineConfig } from '@eslint/config-helpers';
 import eslint from '@eslint/js';
 import eslintPluginStylistic from '@stylistic/eslint-plugin';
 import eslintPluginVitest from '@vitest/eslint-plugin';
@@ -7,6 +6,7 @@ import eslintPluginFileProgress from 'eslint-plugin-file-progress';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+import { defineConfig } from 'eslint/config';
 import { resolve } from 'node:path';
 import tseslint from 'typescript-eslint';
 
