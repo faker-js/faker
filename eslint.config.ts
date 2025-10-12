@@ -1,5 +1,4 @@
 import { includeIgnoreFile } from '@eslint/compat';
-import type { ConfigWithExtendsArray } from '@eslint/config-helpers';
 import { defineConfig } from '@eslint/config-helpers';
 import eslint from '@eslint/js';
 import eslintPluginStylistic from '@stylistic/eslint-plugin';
@@ -53,7 +52,7 @@ export default defineConfig(
   //#endregion
 
   //#region typescript-eslint
-  ...(tseslint.configs.strictTypeChecked as ConfigWithExtendsArray),
+  tseslint.configs.strictTypeChecked,
   {
     name: 'typescript-eslint overrides',
     languageOptions: {
