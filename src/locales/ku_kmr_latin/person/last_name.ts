@@ -1,4 +1,3 @@
-// src/locales/ku_latin/person/last_name.ts
 export default {
   generic: [
     'Adar',

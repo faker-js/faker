@@ -1,12 +1,12 @@
 export default [
-  'Berêveber', // Manager
-  'Berêveber Giştî', // General Manager
-  'Mühendis', // Engineer
-  'Berêveber Kar', // Work Manager
-  'Dizayner', // Designer
-  'Rojnamevan', // Journalist
-  'Berhemhêner', // Producer
-  'Raheîner', // Leader
-  'Yarmetî', // Assistant/Support
-  'Wekîl', // Lawyer/Representative
+  'Berêveber',
+  'Berêveber Giştî',
+  'Mühendis',
+  'Berêveber Kar',
+  'Dizayner',
+  'Rojnamevan',
+  'Berhemhêner',
+  'Raheîner',
+  'Yarmetî',
+  'Wekîl',
 ];
