@@ -39,7 +39,7 @@ export default [
   'Land Cruiser',
   'LeBaron',
   'Malibu',
-  'Mercielago',
+  'Murcielago',
   'Model 3',
   'Model S',
   'Model T',
