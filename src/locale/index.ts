@@ -50,6 +50,7 @@ import { faker as fakerJA } from './ja';
 import { faker as fakerKA_GE } from './ka_GE';
 import { faker as fakerKO } from './ko';
 import { faker as fakerKU_ckb } from './ku_ckb';
+import { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 import { faker as fakerLV } from './lv';
 import { faker as fakerMK } from './mk';
 import { faker as fakerNB_NO } from './nb_NO';
@@ -125,6 +126,7 @@ export { faker as fakerJA } from './ja';
 export { faker as fakerKA_GE } from './ka_GE';
 export { faker as fakerKO } from './ko';
 export { faker as fakerKU_ckb } from './ku_ckb';
+export { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 export { faker as fakerLV } from './lv';
 export { faker as fakerMK } from './mk';
 export { faker as fakerNB_NO } from './nb_NO';
@@ -201,6 +203,7 @@ export const allFakers = {
   ka_GE: fakerKA_GE,
   ko: fakerKO,
   ku_ckb: fakerKU_ckb,
+  ku_kmr_latin: fakerKU_kmr_latin,
   lv: fakerLV,
   mk: fakerMK,
   nb_NO: fakerNB_NO,

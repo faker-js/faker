@@ -48,82 +48,83 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 
 <!-- Run 'pnpm run generate:locales' to update. -->
 
-| Locale        | Name                      | Faker              |
-| :------------ | :------------------------ | :----------------- |
-| `af_ZA`       | Afrikaans (South Africa)  | `fakerAF_ZA`       |
-| `ar`          | Arabic                    | `fakerAR`          |
-| `az`          | Azerbaijani               | `fakerAZ`          |
-| `base`        | Base                      | `fakerBASE`        |
-| `bn_BD`       | Bengali (Bangladesh)      | `fakerBN_BD`       |
-| `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
-| `cy`          | Welsh                     | `fakerCY`          |
-| `da`          | Danish                    | `fakerDA`          |
-| `de`          | German                    | `fakerDE`          |
-| `de_AT`       | German (Austria)          | `fakerDE_AT`       |
-| `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
-| `dv`          | Maldivian                 | `fakerDV`          |
-| `el`          | Greek                     | `fakerEL`          |
-| `en`          | English                   | `fakerEN`          |
-| `en_AU`       | English (Australia)       | `fakerEN_AU`       |
-| `en_AU_ocker` | English (Australia Ocker) | `fakerEN_AU_ocker` |
-| `en_BORK`     | English (Bork)            | `fakerEN_BORK`     |
-| `en_CA`       | English (Canada)          | `fakerEN_CA`       |
-| `en_GB`       | English (Great Britain)   | `fakerEN_GB`       |
-| `en_GH`       | English (Ghana)           | `fakerEN_GH`       |
-| `en_HK`       | English (Hong Kong)       | `fakerEN_HK`       |
-| `en_IE`       | English (Ireland)         | `fakerEN_IE`       |
-| `en_IN`       | English (India)           | `fakerEN_IN`       |
-| `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
-| `en_US`       | English (United States)   | `fakerEN_US`       |
-| `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
-| `eo`          | Esperanto                 | `fakerEO`          |
-| `es`          | Spanish                   | `fakerES`          |
-| `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
-| `fa`          | Farsi/Persian             | `fakerFA`          |
-| `fi`          | Finnish                   | `fakerFI`          |
-| `fr`          | French                    | `fakerFR`          |
-| `fr_BE`       | French (Belgium)          | `fakerFR_BE`       |
-| `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
-| `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
-| `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
-| `fr_SN`       | French (Senegal)          | `fakerFR_SN`       |
-| `he`          | Hebrew                    | `fakerHE`          |
-| `hr`          | Croatian                  | `fakerHR`          |
-| `hu`          | Hungarian                 | `fakerHU`          |
-| `hy`          | Armenian                  | `fakerHY`          |
-| `id_ID`       | Indonesian (Indonesia)    | `fakerID_ID`       |
-| `it`          | Italian                   | `fakerIT`          |
-| `ja`          | Japanese                  | `fakerJA`          |
-| `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
-| `ko`          | Korean                    | `fakerKO`          |
-| `ku_ckb`      | Kurdish (Sorani)          | `fakerKU_ckb`      |
-| `lv`          | Latvian                   | `fakerLV`          |
-| `mk`          | Macedonian                | `fakerMK`          |
-| `nb_NO`       | Norwegian (Norway)        | `fakerNB_NO`       |
-| `ne`          | Nepali                    | `fakerNE`          |
-| `nl`          | Dutch                     | `fakerNL`          |
-| `nl_BE`       | Dutch (Belgium)           | `fakerNL_BE`       |
-| `pl`          | Polish                    | `fakerPL`          |
-| `pt_BR`       | Portuguese (Brazil)       | `fakerPT_BR`       |
-| `pt_PT`       | Portuguese (Portugal)     | `fakerPT_PT`       |
-| `ro`          | Romanian                  | `fakerRO`          |
-| `ro_MD`       | Romanian (Moldova)        | `fakerRO_MD`       |
-| `ru`          | Russian                   | `fakerRU`          |
-| `sk`          | Slovak                    | `fakerSK`          |
-| `sl_SI`       | Slovenian (Slovenia)      | `fakerSL_SI`       |
-| `sr_RS_latin` | Serbian (Serbia, Latin)   | `fakerSR_RS_latin` |
-| `sv`          | Swedish                   | `fakerSV`          |
-| `ta_IN`       | Tamil (India)             | `fakerTA_IN`       |
-| `th`          | Thai                      | `fakerTH`          |
-| `tr`          | Turkish                   | `fakerTR`          |
-| `uk`          | Ukrainian                 | `fakerUK`          |
-| `ur`          | Urdu                      | `fakerUR`          |
-| `uz_UZ_latin` | Uzbek (Uzbekistan, Latin) | `fakerUZ_UZ_latin` |
-| `vi`          | Vietnamese                | `fakerVI`          |
-| `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
-| `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
-| `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
-| `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
+| Locale         | Name                      | Faker               |
+| :------------- | :------------------------ | :------------------ |
+| `af_ZA`        | Afrikaans (South Africa)  | `fakerAF_ZA`        |
+| `ar`           | Arabic                    | `fakerAR`           |
+| `az`           | Azerbaijani               | `fakerAZ`           |
+| `base`         | Base                      | `fakerBASE`         |
+| `bn_BD`        | Bengali (Bangladesh)      | `fakerBN_BD`        |
+| `cs_CZ`        | Czech (Czechia)           | `fakerCS_CZ`        |
+| `cy`           | Welsh                     | `fakerCY`           |
+| `da`           | Danish                    | `fakerDA`           |
+| `de`           | German                    | `fakerDE`           |
+| `de_AT`        | German (Austria)          | `fakerDE_AT`        |
+| `de_CH`        | German (Switzerland)      | `fakerDE_CH`        |
+| `dv`           | Maldivian                 | `fakerDV`           |
+| `el`           | Greek                     | `fakerEL`           |
+| `en`           | English                   | `fakerEN`           |
+| `en_AU`        | English (Australia)       | `fakerEN_AU`        |
+| `en_AU_ocker`  | English (Australia Ocker) | `fakerEN_AU_ocker`  |
+| `en_BORK`      | English (Bork)            | `fakerEN_BORK`      |
+| `en_CA`        | English (Canada)          | `fakerEN_CA`        |
+| `en_GB`        | English (Great Britain)   | `fakerEN_GB`        |
+| `en_GH`        | English (Ghana)           | `fakerEN_GH`        |
+| `en_HK`        | English (Hong Kong)       | `fakerEN_HK`        |
+| `en_IE`        | English (Ireland)         | `fakerEN_IE`        |
+| `en_IN`        | English (India)           | `fakerEN_IN`        |
+| `en_NG`        | English (Nigeria)         | `fakerEN_NG`        |
+| `en_US`        | English (United States)   | `fakerEN_US`        |
+| `en_ZA`        | English (South Africa)    | `fakerEN_ZA`        |
+| `eo`           | Esperanto                 | `fakerEO`           |
+| `es`           | Spanish                   | `fakerES`           |
+| `es_MX`        | Spanish (Mexico)          | `fakerES_MX`        |
+| `fa`           | Farsi/Persian             | `fakerFA`           |
+| `fi`           | Finnish                   | `fakerFI`           |
+| `fr`           | French                    | `fakerFR`           |
+| `fr_BE`        | French (Belgium)          | `fakerFR_BE`        |
+| `fr_CA`        | French (Canada)           | `fakerFR_CA`        |
+| `fr_CH`        | French (Switzerland)      | `fakerFR_CH`        |
+| `fr_LU`        | French (Luxembourg)       | `fakerFR_LU`        |
+| `fr_SN`        | French (Senegal)          | `fakerFR_SN`        |
+| `he`           | Hebrew                    | `fakerHE`           |
+| `hr`           | Croatian                  | `fakerHR`           |
+| `hu`           | Hungarian                 | `fakerHU`           |
+| `hy`           | Armenian                  | `fakerHY`           |
+| `id_ID`        | Indonesian (Indonesia)    | `fakerID_ID`        |
+| `it`           | Italian                   | `fakerIT`           |
+| `ja`           | Japanese                  | `fakerJA`           |
+| `ka_GE`        | Georgian (Georgia)        | `fakerKA_GE`        |
+| `ko`           | Korean                    | `fakerKO`           |
+| `ku_ckb`       | Kurdish (Sorani)          | `fakerKU_ckb`       |
+| `ku_kmr_latin` | Kurdish (Kurmanji, Latin) | `fakerKU_kmr_latin` |
+| `lv`           | Latvian                   | `fakerLV`           |
+| `mk`           | Macedonian                | `fakerMK`           |
+| `nb_NO`        | Norwegian (Norway)        | `fakerNB_NO`        |
+| `ne`           | Nepali                    | `fakerNE`           |
+| `nl`           | Dutch                     | `fakerNL`           |
+| `nl_BE`        | Dutch (Belgium)           | `fakerNL_BE`        |
+| `pl`           | Polish                    | `fakerPL`           |
+| `pt_BR`        | Portuguese (Brazil)       | `fakerPT_BR`        |
+| `pt_PT`        | Portuguese (Portugal)     | `fakerPT_PT`        |
+| `ro`           | Romanian                  | `fakerRO`           |
+| `ro_MD`        | Romanian (Moldova)        | `fakerRO_MD`        |
+| `ru`           | Russian                   | `fakerRU`           |
+| `sk`           | Slovak                    | `fakerSK`           |
+| `sl_SI`        | Slovenian (Slovenia)      | `fakerSL_SI`        |
+| `sr_RS_latin`  | Serbian (Serbia, Latin)   | `fakerSR_RS_latin`  |
+| `sv`           | Swedish                   | `fakerSV`           |
+| `ta_IN`        | Tamil (India)             | `fakerTA_IN`        |
+| `th`           | Thai                      | `fakerTH`           |
+| `tr`           | Turkish                   | `fakerTR`           |
+| `uk`           | Ukrainian                 | `fakerUK`           |
+| `ur`           | Urdu                      | `fakerUR`           |
+| `uz_UZ_latin`  | Uzbek (Uzbekistan, Latin) | `fakerUZ_UZ_latin`  |
+| `vi`           | Vietnamese                | `fakerVI`           |
+| `yo_NG`        | Yoruba (Nigeria)          | `fakerYO_NG`        |
+| `zh_CN`        | Chinese (China)           | `fakerZH_CN`        |
+| `zh_TW`        | Chinese (Taiwan)          | `fakerZH_TW`        |
+| `zu_ZA`        | Zulu (South Africa)       | `fakerZU_ZA`        |
 
 <!-- LOCALES-AUTO-GENERATED-END -->
 
