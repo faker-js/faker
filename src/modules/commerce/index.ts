@@ -372,11 +372,19 @@ export class CommerceModule extends ModuleBase {
    *
    * @since 10.2.0
    */
-  upc(options: { prefix?: string } = {}): string {
+  upc(
+    options: {
+      /**
+       * Optional numeric prefix for the UPC body (0–11 digits).
+       */
+      prefix?: string;
+    } = {}
+  ): string {
     const { prefix = '' } = options;
     if (prefix && /\D/.test(prefix)) {
       throw new FakerError('Prefix must contain only numeric digits');
     }
+
     if (prefix.length > 11) {
       throw new FakerError('Prefix must be at most 11 numeric digits');
     }

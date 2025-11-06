@@ -30,4 +30,3 @@ export function calculateUPCCheckDigit(digits: string): number {
 
   return (10 - (sum % 10)) % 10;
 }
-

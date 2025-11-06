@@ -6,6 +6,31 @@ import { times } from './../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
+/**
+ * Helper function to verify UPC check digit using Modulo 10 algorithm
+ *
+ * @param upc The UPC string to verify.
+ */
+function verifyUPCCheckDigit(upc: string): boolean {
+  if (!/^\d{12}$/.test(upc)) {
+    return false;
+  }
+
+  const body = upc.slice(0, 11);
+  const checkDigit = Number.parseInt(upc[11], 10);
+
+  let sum = 0;
+  let idx = 0;
+  for (const digit of body) {
+    const n = Number.parseInt(digit, 10);
+    sum += n * (idx % 2 === 0 ? 3 : 1);
+    idx++;
+  }
+
+  const calculatedCheck = (10 - (sum % 10)) % 10;
+  return calculatedCheck === checkDigit;
+}
+
 describe('commerce', () => {
   seededTests(faker, 'commerce', (t) => {
     t.itEach(
@@ -257,35 +282,12 @@ describe('commerce', () => {
       });
 
       describe(`upc()`, () => {
-        /**
-         * Helper function to verify UPC check digit using Modulo 10 algorithm
-         */
-        function verifyUPCCheckDigit(upc: string): boolean {
-          if (!/^\d{12}$/.test(upc)) {
-            return false;
-          }
-
-          const body = upc.slice(0, 11);
-          const checkDigit = Number.parseInt(upc[11], 10);
-
-          let sum = 0;
-          let idx = 0;
-          for (const digit of body) {
-            const n = Number.parseInt(digit, 10);
-            sum += n * (idx % 2 === 0 ? 3 : 1);
-            idx++;
-          }
-
-          const calculatedCheck = (10 - (sum % 10)) % 10;
-          return calculatedCheck === checkDigit;
-        }
-
         it('should return a 12-digit UPC-A string when not passing arguments', () => {
           const upc = faker.commerce.upc();
 
           expect(upc).toBeTruthy();
           expect(upc).toBeTypeOf('string');
-          expect(upc.length, 'UPC should be exactly 12 digits').toBe(12);
+          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc, 'UPC should contain only digits').toMatch(/^\d{12}$/);
           expect(
             verifyUPCCheckDigit(upc),
@@ -298,7 +300,7 @@ describe('commerce', () => {
 
           expect(upc).toBeTruthy();
           expect(upc).toBeTypeOf('string');
-          expect(upc.length, 'UPC should be exactly 12 digits').toBe(12);
+          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc, 'UPC should contain only digits').toMatch(/^\d{12}$/);
           expect(
             verifyUPCCheckDigit(upc),
@@ -312,7 +314,7 @@ describe('commerce', () => {
 
           expect(upc).toBeTruthy();
           expect(upc).toBeTypeOf('string');
-          expect(upc.length, 'UPC should be exactly 12 digits').toBe(12);
+          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc, 'UPC should contain only digits').toMatch(/^\d{12}$/);
           expect(
             upc.startsWith(prefix),
@@ -330,7 +332,7 @@ describe('commerce', () => {
 
           expect(upc).toBeTruthy();
           expect(upc).toBeTypeOf('string');
-          expect(upc.length, 'UPC should be exactly 12 digits').toBe(12);
+          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc, 'UPC should contain only digits').toMatch(/^\d{12}$/);
           expect(
             upc.startsWith(prefix),
@@ -348,7 +350,7 @@ describe('commerce', () => {
 
           expect(upc).toBeTruthy();
           expect(upc).toBeTypeOf('string');
-          expect(upc.length, 'UPC should be exactly 12 digits').toBe(12);
+          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc, 'UPC should contain only digits').toMatch(/^\d{12}$/);
           expect(
             upc.startsWith(prefix),
@@ -365,7 +367,7 @@ describe('commerce', () => {
           const upc = faker.commerce.upc({ prefix });
 
           expect(upc).toBeTruthy();
-          expect(upc.length, 'UPC should be exactly 12 digits').toBe(12);
+          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc.startsWith(prefix)).toBe(true);
           expect(verifyUPCCheckDigit(upc)).toBe(true);
         });
@@ -386,10 +388,19 @@ describe('commerce', () => {
             const prefix = length > 0 ? '0'.repeat(length) : '';
             const upc = faker.commerce.upc({ prefix });
 
-            expect(upc.length, `UPC with prefix length ${length} should be 12 digits`).toBe(12);
-            expect(verifyUPCCheckDigit(upc), `UPC with prefix length ${length} should have valid check digit`).toBe(true);
+            expect(
+              upc,
+              `UPC with prefix length ${length} should be 12 digits`
+            ).toHaveLength(12);
+            expect(
+              verifyUPCCheckDigit(upc),
+              `UPC with prefix length ${length} should have valid check digit`
+            ).toBe(true);
             if (prefix) {
-              expect(upc.startsWith(prefix), `UPC should start with prefix of length ${length}`).toBe(true);
+              expect(
+                upc.startsWith(prefix),
+                `UPC should start with prefix of length ${length}`
+              ).toBe(true);
             }
           }
         });
@@ -433,13 +444,12 @@ describe('commerce', () => {
         });
 
         it('should generate valid UPCs that pass check digit validation for multiple calls', () => {
-          const results = faker.helpers.multiple(
-            () => faker.commerce.upc(),
-            { count: 100 }
-          );
+          const results = faker.helpers.multiple(() => faker.commerce.upc(), {
+            count: 100,
+          });
 
           for (const upc of results) {
-            expect(upc.length).toBe(12);
+            expect(upc).toHaveLength(12);
             expect(upc).toMatch(/^\d{12}$/);
             expect(verifyUPCCheckDigit(upc)).toBe(true);
           }
@@ -452,7 +462,7 @@ describe('commerce', () => {
           );
 
           for (const upc of results) {
-            expect(upc.length).toBe(12);
+            expect(upc).toHaveLength(12);
             expect(upc).toMatch(/^\d{12}$/);
             expect(upc.startsWith('01234')).toBe(true);
             expect(verifyUPCCheckDigit(upc)).toBe(true);
