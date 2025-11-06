@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.1.0](https://github.com/faker-js/faker/compare/v10.0.0...v10.1.0) (2025-10-14)
+
+
+### New Locales
+
+* **locale:** Add ku_ckb locale ([#3441](https://github.com/faker-js/faker/issues/3441)) ([9de894a](https://github.com/faker-js/faker/commit/9de894a638e040ec7d9511a8ca0d2db44def6ed5))
+* **locale:** add Russian localization for book module ([#3628](https://github.com/faker-js/faker/issues/3628)) ([428ff33](https://github.com/faker-js/faker/commit/428ff3328b4c4b13ec29d646eea7c4ea98522323))
+
+
+### Bug Fixes
+
+* **locale:** fix the Spring Airlines IATA Code ([#3612](https://github.com/faker-js/faker/issues/3612)) ([b547045](https://github.com/faker-js/faker/commit/b547045a55a86f327940852ce8b8df3c3a656109))
+
 ## [10.0.0](https://github.com/faker-js/faker/compare/v10.0.0-beta.0...v10.0.0) (2025-08-21)
 
 

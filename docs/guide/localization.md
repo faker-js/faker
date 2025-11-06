@@ -111,6 +111,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `ro_MD`        | Romanian (Moldova)        | `fakerRO_MD`        |
 | `ru`           | Russian                   | `fakerRU`           |
 | `sk`           | Slovak                    | `fakerSK`           |
+| `sl_SI`        | Slovenian (Slovenia)      | `fakerSL_SI`        |
 | `sr_RS_latin`  | Serbian (Serbia, Latin)   | `fakerSR_RS_latin`  |
 | `sv`           | Swedish                   | `fakerSV`           |
 | `ta_IN`        | Tamil (India)             | `fakerTA_IN`        |

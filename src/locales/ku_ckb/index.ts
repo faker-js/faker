@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import lorem from './lorem';
 import metadata from './metadata';
+import person from './person';
 
 /**
  * The locale data for the `ku_ckb` locale.
@@ -15,6 +16,7 @@ import metadata from './metadata';
 const ku_ckb: LocaleDefinition = {
   lorem,
   metadata,
+  person,
 };
 
 export default ku_ckb;
