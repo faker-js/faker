@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import date from './date';
+import location from './location';
 import metadata from './metadata';
 
 /**
@@ -14,6 +15,7 @@ import metadata from './metadata';
  */
 const bn_BD: LocaleDefinition = {
   date,
+  location,
   metadata,
 };
 
