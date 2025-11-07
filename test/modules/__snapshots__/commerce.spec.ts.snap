@@ -36,6 +36,16 @@ exports[`commerce > 42 > productMaterial 1`] = `"Cotton"`;
 
 exports[`commerce > 42 > productName 1`] = `"Handcrafted Wooden Sausages"`;
 
+exports[`commerce > 42 > upc > noArgs 1`] = `"397511086709"`;
+
+exports[`commerce > 42 > upc > with 5 digit prefix 1`] = `"012343975112"`;
+
+exports[`commerce > 42 > upc > with 11 digit prefix 1`] = `"012345678905"`;
+
+exports[`commerce > 42 > upc > with empty prefix 1`] = `"397511086709"`;
+
+exports[`commerce > 42 > upc > with single digit prefix 1`] = `"039751108673"`;
+
 exports[`commerce > 1211 > department 1`] = `"Tools"`;
 
 exports[`commerce > 1211 > isbn > noArgs 1`] = `"978-1-82966-736-0"`;
@@ -72,6 +82,16 @@ exports[`commerce > 1211 > productMaterial 1`] = `"Steel"`;
 
 exports[`commerce > 1211 > productName 1`] = `"Tasty Steel Cheese"`;
 
+exports[`commerce > 1211 > upc > noArgs 1`] = `"982966736875"`;
+
+exports[`commerce > 1211 > upc > with 5 digit prefix 1`] = `"012349829662"`;
+
+exports[`commerce > 1211 > upc > with 11 digit prefix 1`] = `"012345678905"`;
+
+exports[`commerce > 1211 > upc > with empty prefix 1`] = `"982966736875"`;
+
+exports[`commerce > 1211 > upc > with single digit prefix 1`] = `"098296673688"`;
+
 exports[`commerce > 1337 > department 1`] = `"Computers"`;
 
 exports[`commerce > 1337 > isbn > noArgs 1`] = `"978-0-12-435297-1"`;
@@ -107,3 +127,13 @@ exports[`commerce > 1337 > productDescription 1`] = `"Innovative Car featuring l
 exports[`commerce > 1337 > productMaterial 1`] = `"Ceramic"`;
 
 exports[`commerce > 1337 > productName 1`] = `"Frozen Bronze Chicken"`;
+
+exports[`commerce > 1337 > upc > noArgs 1`] = `"212435297133"`;
+
+exports[`commerce > 1337 > upc > with 5 digit prefix 1`] = `"012342124351"`;
+
+exports[`commerce > 1337 > upc > with 11 digit prefix 1`] = `"012345678905"`;
+
+exports[`commerce > 1337 > upc > with empty prefix 1`] = `"212435297133"`;
+
+exports[`commerce > 1337 > upc > with single digit prefix 1`] = `"021243529714"`;
