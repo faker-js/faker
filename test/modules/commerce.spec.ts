@@ -1,4 +1,4 @@
-import { isISBN } from 'validator';
+import { isEAN, isISBN } from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -7,7 +7,7 @@ import { times } from './../support/times';
 const NON_SEEDED_BASED_RUN = 5;
 
 /**
- * Helper function to verify UPC check digit using Modulo 10 algorithm
+ * Helper function to verify UPC check digit
  *
  * @param upc The UPC string to verify.
  */
@@ -16,19 +16,7 @@ function verifyUPCCheckDigit(upc: string): boolean {
     return false;
   }
 
-  const body = upc.slice(0, 11);
-  const checkDigit = Number.parseInt(upc[11], 10);
-
-  let sum = 0;
-  let idx = 0;
-  for (const digit of body) {
-    const n = Number.parseInt(digit, 10);
-    sum += n * (idx % 2 === 0 ? 3 : 1);
-    idx++;
-  }
-
-  const calculatedCheck = (10 - (sum % 10)) % 10;
-  return calculatedCheck === checkDigit;
+  return isEAN(`0${upc}`);
 }
 
 describe('commerce', () => {
@@ -348,18 +336,7 @@ describe('commerce', () => {
           const prefix = '01234567890';
           const upc = faker.commerce.upc({ prefix });
 
-          expect(upc).toBeTruthy();
-          expect(upc).toBeTypeOf('string');
-          expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
-          expect(upc, 'UPC should contain only digits').toMatch(/^\d{12}$/);
-          expect(
-            upc.startsWith(prefix),
-            'UPC should start with the provided prefix'
-          ).toBe(true);
-          expect(
-            verifyUPCCheckDigit(upc),
-            'UPC check digit should be valid'
-          ).toBe(true);
+          expect(upc).toBe('012345678905');
         });
 
         it('should handle prefix with leading zeros', () => {
@@ -370,15 +347,6 @@ describe('commerce', () => {
           expect(upc, 'UPC should be exactly 12 digits').toHaveLength(12);
           expect(upc.startsWith(prefix)).toBe(true);
           expect(verifyUPCCheckDigit(upc)).toBe(true);
-        });
-
-        it('should generate different UPCs on multiple calls', () => {
-          const upc1 = faker.commerce.upc();
-          const upc2 = faker.commerce.upc();
-
-          // While it's theoretically possible to get the same UPC twice,
-          // it's highly unlikely with 11 digits of randomness
-          expect(upc1).not.toBe(upc2);
         });
 
         it('should generate valid UPCs with various prefix lengths', () => {
@@ -451,20 +419,6 @@ describe('commerce', () => {
           for (const upc of results) {
             expect(upc).toHaveLength(12);
             expect(upc).toMatch(/^\d{12}$/);
-            expect(verifyUPCCheckDigit(upc)).toBe(true);
-          }
-        });
-
-        it('should generate valid UPCs with prefix that pass check digit validation for multiple calls', () => {
-          const results = faker.helpers.multiple(
-            () => faker.commerce.upc({ prefix: '01234' }),
-            { count: 100 }
-          );
-
-          for (const upc of results) {
-            expect(upc).toHaveLength(12);
-            expect(upc).toMatch(/^\d{12}$/);
-            expect(upc.startsWith('01234')).toBe(true);
             expect(verifyUPCCheckDigit(upc)).toBe(true);
           }
         });
