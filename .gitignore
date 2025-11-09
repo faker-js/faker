@@ -87,6 +87,7 @@ versions.json
 /docs/api/api-search-index.json
 /docs/public/api-diff-index.json
 /docs/public/faker.js
+/docs/locales/*.md
 
 # Faker
 TAGS
