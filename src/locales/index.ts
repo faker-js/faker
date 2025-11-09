@@ -50,6 +50,7 @@ import ja from './ja';
 import ka_GE from './ka_GE';
 import ko from './ko';
 import ku_ckb from './ku_ckb';
+import ku_kmr_latin from './ku_kmr_latin';
 import lv from './lv';
 import mk from './mk';
 import nb_NO from './nb_NO';
@@ -63,6 +64,7 @@ import ro from './ro';
 import ro_MD from './ro_MD';
 import ru from './ru';
 import sk from './sk';
+import sl_SI from './sl_SI';
 import sr_RS_latin from './sr_RS_latin';
 import sv from './sv';
 import ta_IN from './ta_IN';
@@ -124,6 +126,7 @@ export { default as ja } from './ja';
 export { default as ka_GE } from './ka_GE';
 export { default as ko } from './ko';
 export { default as ku_ckb } from './ku_ckb';
+export { default as ku_kmr_latin } from './ku_kmr_latin';
 export { default as lv } from './lv';
 export { default as mk } from './mk';
 export { default as nb_NO } from './nb_NO';
@@ -137,6 +140,7 @@ export { default as ro } from './ro';
 export { default as ro_MD } from './ro_MD';
 export { default as ru } from './ru';
 export { default as sk } from './sk';
+export { default as sl_SI } from './sl_SI';
 export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
 export { default as ta_IN } from './ta_IN';
@@ -199,6 +203,7 @@ export const allLocales = {
   ka_GE,
   ko,
   ku_ckb,
+  ku_kmr_latin,
   lv,
   mk,
   nb_NO,
@@ -212,6 +217,7 @@ export const allLocales = {
   ro_MD,
   ru,
   sk,
+  sl_SI,
   sr_RS_latin,
   sv,
   ta_IN,
