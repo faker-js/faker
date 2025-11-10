@@ -15,7 +15,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "de_CH": " #&+,-./ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwxyzÖäçèéôöü",
   "dv": " #&+-.ހށނރބޅކއވމފދތލގޏސޑޒޓޔޕޖޗޘޙޚޛޝޞޟޠޡޢޣޤަާިީުޫެޭޮޯް",
   "el": " #&()+,-./ABCDEFGHILMNOPRSTUVWXYabcdefghiklmnopqrstuvwxyΆΈΌΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩάέήίαβγδεζηθικλμνξοπρςστυφχψωϊόύώ",
-  "en": " !"#$&'()*+,-./:<=?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghijklmnopqrstuvwxyzÉØáãäåçèéëíïñóöøùüýăđēńőřşŠšţūŻŽž’…",
+  "en": " !"#$&'()*+,-./:<=?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghijklmnopqrstuvwxyzÅÉØáãäåçèéëíïñóôöøùüýăđēńőřşŠšţūŻŽž’…",
   "en_AU": " #'()+-ABCDEFGHIJKLMNOPQRSTVWXYZabcdefghijklmnopqrstuvwxyz",
   "en_AU_ocker": " #()+-ABCDEFGHIJKLMNOPQRSTVWXYZabcdefghijklmnopqrstuvwxyz",
   "en_BORK": "-BINTUabcdefghijklmnopqrstuvxyz",
