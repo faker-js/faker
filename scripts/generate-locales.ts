@@ -540,7 +540,7 @@ for (const locale of locales) {
   localesIndexExportsIndividual += `export { default as ${locale} } from './${locale}';\n`;
   localesIndexExportsGrouped += `  ${locale},\n`;
   const linkedLocale =
-    locale === 'base' ? 'base' : `[\`${locale}\`](/locales/${locale}.md)`;
+    locale === 'base' ? '`base`' : `[\`${locale}\`](/locales/${locale}.md)`;
   localizationLocales += `| ${linkedLocale} | ${localeTitle} | \`${localizedFaker}\` |\n`;
 
   promises.push(
