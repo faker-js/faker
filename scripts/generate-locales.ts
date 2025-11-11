@@ -140,6 +140,10 @@ async function tryLoadMetadata(locale: string): Promise<MetadataDefinition> {
 }
 
 async function generateLocaleDocumentation(locale: string): Promise<void> {
+  if (locale === 'base') {
+    return;
+  }
+
   const metadata = await tryLoadMetadata(locale);
   const localizedFakerExport = toFakerExportName(locale);
   const content = `
@@ -535,7 +539,9 @@ for (const locale of locales) {
   localesIndexImports += `import ${locale} from './${locale}';\n`;
   localesIndexExportsIndividual += `export { default as ${locale} } from './${locale}';\n`;
   localesIndexExportsGrouped += `  ${locale},\n`;
-  localizationLocales += `| [\`${locale}\`](/locales/${locale}.md) | ${localeTitle} | \`${localizedFaker}\` |\n`;
+  const linkedLocale =
+    locale === 'base' ? 'base' : `[\`${locale}\`](/locales/${locale}.md)`;
+  localizationLocales += `| ${linkedLocale} | ${localeTitle} | \`${localizedFaker}\` |\n`;
 
   promises.push(
     // src/locale/<locale>.ts
