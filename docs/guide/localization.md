@@ -53,7 +53,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | [`af_ZA`](/locales/af_ZA.md)               | Afrikaans (South Africa)  | `fakerAF_ZA`        |
 | [`ar`](/locales/ar.md)                     | Arabic                    | `fakerAR`           |
 | [`az`](/locales/az.md)                     | Azerbaijani               | `fakerAZ`           |
-| [`base`](/locales/base.md)                 | Base                      | `fakerBASE`         |
+| `base`                                     | Base                      | `fakerBASE`         |
 | [`bn_BD`](/locales/bn_BD.md)               | Bengali (Bangladesh)      | `fakerBN_BD`        |
 | [`cs_CZ`](/locales/cs_CZ.md)               | Czech (Czechia)           | `fakerCS_CZ`        |
 | [`cy`](/locales/cy.md)                     | Welsh                     | `fakerCY`           |
