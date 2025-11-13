@@ -48,4 +48,7 @@ export default {
     'Стул',
     'Шарф',
   ],
+  patterns: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

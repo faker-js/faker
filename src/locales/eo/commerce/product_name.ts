@@ -65,4 +65,7 @@ export default {
     'ĉemizo',
     'ŝuo',
   ],
+  patterns: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

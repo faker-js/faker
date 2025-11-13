@@ -22,4 +22,7 @@ export default {
     'Stul',
     'Sviter',
   ],
+  patterns: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

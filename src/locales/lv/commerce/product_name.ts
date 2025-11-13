@@ -45,4 +45,7 @@ export default {
     'televizors',
     'zābaks',
   ],
+  patterns: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

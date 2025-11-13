@@ -33,4 +33,7 @@ export default {
     'Skor',
     'Stol',
   ],
+  patterns: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

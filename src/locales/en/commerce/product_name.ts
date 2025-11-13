@@ -71,4 +71,7 @@ export default {
     'Towels',
     'Tuna',
   ],
+  patterns: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };
