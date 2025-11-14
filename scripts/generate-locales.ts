@@ -548,6 +548,7 @@ for (const locale of locales) {
     // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateLocaleFile(locale),
 
+    // /docs/locales/*.md
     // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateLocaleDocumentation(locale),
 
