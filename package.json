@@ -56,10 +56,12 @@
     "type": "git",
     "url": "git+https://github.com/faker-js/faker.git"
   },
-  "funding": [{
-    "type": "opencollective",
-    "url": "https://opencollective.com/fakerjs"
-  }],
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/fakerjs"
+    }
+  ],
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
