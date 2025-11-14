@@ -14,7 +14,7 @@
     "docs:build:embedded": "tsup-node --entry.faker src/index.ts --format esm --outDir docs/public --no-dts --no-clean",
     "docs:build:run": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
-    "docs:dev": "run-s generate:api-docs docs:build:embedded docs:dev:run",
+    "docs:dev": "run-s generate:api-docs generate:locales docs:build:embedded docs:dev:run",
     "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs --port 5173",
     "docs:diff": "tsx ./scripts/diff.ts",
@@ -56,12 +56,10 @@
     "type": "git",
     "url": "git+https://github.com/faker-js/faker.git"
   },
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/fakerjs"
-    }
-  ],
+  "funding": [{
+    "type": "opencollective",
+    "url": "https://opencollective.com/fakerjs"
+  }],
   "license": "MIT",
   "sideEffects": false,
   "type": "module",

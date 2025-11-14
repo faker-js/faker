@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useRoute } from 'vitepress';
-import { nextTick, onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { formatResult } from './format';
 
 type FakerModule = Awaited<typeof import('@faker-js/faker')>;
 
-const route = useRoute();
 const { target } = defineProps<{ target: string }>();
 
 let pendingFrame: number | null = null;
@@ -24,9 +22,6 @@ function scheduleEnhancement(): void {
 }
 
 async function enhanceCodeBlocks(): Promise<void> {
-  await nextTick();
-  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
-
   const blocks = Array.from(
     document.querySelectorAll<HTMLElement>('pre > code')
   ).filter((block) => block.textContent?.includes('@faker-js/faker'));
@@ -71,12 +66,12 @@ function processCodeBlock(block: HTMLElement, fakerModule: FakerModule): void {
     return;
   }
 
-  const fakerInstances = resolveFakerInstances(fakerModule);
-  if (fakerInstances.size === 0) {
+  const fakerInstance = resolveFakerInstance(fakerModule);
+  if (fakerInstance == null) {
     return;
   }
 
-  const invocations = collectInvocations(domLines, fakerInstances);
+  const invocations = collectInvocations(domLines, target, fakerInstance);
 
   for (const { domLine, expression, varName, fakerInstance } of invocations) {
     const evaluation = evaluateExpression(expression, varName, fakerInstance);
@@ -89,20 +84,14 @@ function processCodeBlock(block: HTMLElement, fakerModule: FakerModule): void {
   }
 }
 
-function resolveFakerInstances(fakerModule: FakerModule): Map<string, unknown> {
-  const result = new Map<string, unknown>();
-
-  const targetInstance = (fakerModule as Record<string, unknown>)[target];
-  if (targetInstance != null) {
-    result.set(target, targetInstance);
-  }
-
-  return result;
+function resolveFakerInstance(fakerModule: FakerModule): unknown | null {
+  return (fakerModule as Record<string, unknown>)[target] ?? null;
 }
 
 function collectInvocations(
   domLines: NodeListOf<HTMLElement>,
-  fakerInstances: Map<string, unknown>
+  varName: string,
+  fakerInstance: unknown
 ) {
   const targets: Array<{
     domLine: HTMLElement;
@@ -111,9 +100,7 @@ function collectInvocations(
     fakerInstance: unknown;
   }> = [];
 
-  const varNames = [...fakerInstances.keys()];
-
-  if (varNames.length === 0) {
+  if (!varName) {
     return targets;
   }
 
@@ -121,7 +108,7 @@ function collectInvocations(
     const domLine = domLines[index];
     const text = domLine.textContent ?? '';
 
-    if (!varNames.some((name) => text.includes(`${name}.`))) {
+    if (!text.includes(`${varName}.`)) {
       continue;
     }
 
@@ -140,9 +127,9 @@ function collectInvocations(
 
     const endIndex = index;
     const expression = extractExpression(domLines, startIndex, endIndex);
-    const varName = expression.match(/^([\w$]+)/)?.[1] ?? '';
+    const expressionVarName = expression.match(/^([\w$]+)/)?.[1] ?? '';
 
-    if (!expression || !fakerInstances.has(varName)) {
+    if (!expression || expressionVarName !== varName) {
       continue;
     }
 
@@ -150,7 +137,7 @@ function collectInvocations(
       domLine: domLines[endIndex]!,
       expression,
       varName,
-      fakerInstance: fakerInstances.get(varName)!,
+      fakerInstance,
     });
   }
 
@@ -231,11 +218,6 @@ ${newCommentSpan(content)}
 function newCommentSpan(content: string): string {
   return `<span class="comment-delete-marker" style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ${content}</span>`;
 }
-
-watch(
-  () => route.path,
-  () => scheduleEnhancement()
-);
 
 onMounted(() => {
   scheduleEnhancement();
