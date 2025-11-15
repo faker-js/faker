@@ -1,1 +1,1 @@
-export default ['gmail.com', 'zoznam.sk', 'azet.sk'];
+export default ['azet.sk', 'gmail.com', 'zoznam.sk'];

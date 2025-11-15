@@ -59,6 +59,7 @@ export default [
   'plum',
   'pomegranate',
   'prune',
+  'raspberry',
   'rockmelon',
   'snowpea',
   'sprout',

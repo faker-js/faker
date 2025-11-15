@@ -10,7 +10,7 @@ exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 08:
 
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
+Author: Jerome Vandervort <Jerome_Vandervort@yahoo.com>
 Date: Tue Dec 31 14:20:57 2019 +1100
 
     bypass bluetooth application
@@ -19,7 +19,7 @@ Date: Tue Dec 31 14:20:57 2019 +1100
 
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
+Author: Jerome Vandervort <Jerome_Vandervort@yahoo.com>
 Date: Tue Dec 31 14:20:57 2019 +1100
 
     bypass bluetooth application
@@ -28,7 +28,7 @@ Date: Tue Dec 31 14:20:57 2019 +1100
 
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Jerome Vandervort <Jerome_Vandervort@hotmail.com>
+Author: Jerome Vandervort <Jerome_Vandervort@yahoo.com>
 Date: Tue Dec 31 14:20:57 2019 +1100
 
     bypass bluetooth application
@@ -53,7 +53,7 @@ exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 2
 
 exports[`git > 1211 > commitEntry > with only Date refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
-Author: Deion Durgan <Deion.Durgan@hotmail.com>
+Author: Deion Durgan <Deion.Durgan@yahoo.com>
 Date: Tue Dec 31 11:08:15 2019 -0600
 
     override solid state array
@@ -62,7 +62,7 @@ Date: Tue Dec 31 11:08:15 2019 -0600
 
 exports[`git > 1211 > commitEntry > with only number refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
-Author: Deion Durgan <Deion.Durgan@hotmail.com>
+Author: Deion Durgan <Deion.Durgan@yahoo.com>
 Date: Tue Dec 31 11:08:15 2019 -0600
 
     override solid state array
@@ -71,7 +71,7 @@ Date: Tue Dec 31 11:08:15 2019 -0600
 
 exports[`git > 1211 > commitEntry > with only string refDate 1`] = `
 "commit d4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3fa
-Author: Deion Durgan <Deion.Durgan@hotmail.com>
+Author: Deion Durgan <Deion.Durgan@yahoo.com>
 Date: Tue Dec 31 11:08:15 2019 -0600
 
     override solid state array
@@ -96,7 +96,7 @@ exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 0
 
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Matt_Hills <Matt_Hills99@yahoo.com>
+Author: Matt_Hills <Matt_Hills99@hotmail.com>
 Date: Tue Dec 31 00:20:42 2019 -0900
 
     synthesize wireless hard drive
@@ -105,7 +105,7 @@ Date: Tue Dec 31 00:20:42 2019 -0900
 
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Matt_Hills <Matt_Hills99@yahoo.com>
+Author: Matt_Hills <Matt_Hills99@hotmail.com>
 Date: Tue Dec 31 00:20:42 2019 -0900
 
     synthesize wireless hard drive
@@ -114,7 +114,7 @@ Date: Tue Dec 31 00:20:42 2019 -0900
 
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Matt_Hills <Matt_Hills99@yahoo.com>
+Author: Matt_Hills <Matt_Hills99@hotmail.com>
 Date: Tue Dec 31 00:20:42 2019 -0900
 
     synthesize wireless hard drive

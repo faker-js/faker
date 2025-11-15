@@ -4,13 +4,13 @@
  */
 import type { CompanyDefinition } from '../../..';
 import category from './category';
+import legal_entity_type from './legal_entity_type';
 import name_pattern from './name_pattern';
-import type_ from './type';
 
 const company: CompanyDefinition = {
   category,
+  legal_entity_type,
   name_pattern,
-  type: type_,
 };
 
 export default company;

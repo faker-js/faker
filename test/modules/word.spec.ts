@@ -19,9 +19,8 @@ describe('word', () => {
       'sample'
     )((t) => {
       t.it('noArgs')
-        .it('with length = 10', 10)
-        .it('with length = 20', 20)
-        .it('with options.length', { length: 10 })
+        .it('with length = 4', 4)
+        .it('with options.length', { length: 4 })
         .it('with options.strategy', { strategy: 'shortest' })
         .it('with options.length and options.strategy', {
           length: { min: 18, max: 20 },
@@ -31,9 +30,8 @@ describe('word', () => {
 
     t.describe('words', (t) => {
       t.it('noArgs')
-        .it('with count = 10', 10)
-        .it('with count = 20', 20)
-        .it('with options.count', { count: 10 })
+        .it('with count = 4', 4)
+        .it('with options.count', { count: 4 })
         .it('with options.count range', { count: { min: 18, max: 20 } });
     });
   });
@@ -63,13 +61,13 @@ describe('word', () => {
       expect(result).toEqual(['foo', 'bar', 'baz', 'a']);
     });
 
-    it('returns the word list if no words match the length', () => {
-      const result = filterWordListByLength({
-        wordList,
-        length,
-      });
-      // TODO @ST-DDT 2022-10-02: This should throw an error in the next major version.
-      expect(result).toEqual(wordList);
+    it('by default throws an error when no words match the given length', () => {
+      expect(() => {
+        filterWordListByLength({
+          wordList,
+          length,
+        });
+      }).toThrow('No words found that match the given length.');
     });
 
     it('returns the appropriate words when strategy is "any-length" and no words match the given length', () => {

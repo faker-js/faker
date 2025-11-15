@@ -160,13 +160,6 @@ export class SimpleDateModule extends SimpleModuleBase {
      */
     to: string | Date | number;
   }): Date {
-    // TODO @matthewmayer 2023-03-27: Consider removing in v10 as this check is only needed in JS
-    if (options == null || options.from == null || options.to == null) {
-      throw new FakerError(
-        'Must pass an options object with `from` and `to` values.'
-      );
-    }
-
     const { from, to } = options;
 
     const fromMs = toDate(from, 'from').getTime();
@@ -234,13 +227,6 @@ export class SimpleDateModule extends SimpleModuleBase {
           max: number;
         };
   }): Date[] {
-    // TODO @matthewmayer 2023-03-27: Consider removing in v10 as this check is only needed in JS
-    if (options == null || options.from == null || options.to == null) {
-      throw new FakerError(
-        'Must pass an options object with `from` and `to` values.'
-      );
-    }
-
     const { from, to, count = 3 } = options;
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
@@ -486,20 +472,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       min = 18,
       max = 80,
       refDate: rawRefDate = this.faker.defaultRefDate(),
-      mode: originalMode,
-      min: originalMin,
-      max: originalMax,
     } = options;
-
-    // TODO @ST-DDT 2024-03-17: Remove check in v10
-    const optionsSet = [originalMin, originalMax, originalMode].filter(
-      (x) => x != null
-    ).length;
-    if (optionsSet % 3 !== 0) {
-      throw new FakerError(
-        "The 'min', 'max', and 'mode' options must be set together."
-      );
-    }
 
     const refDate = toDate(rawRefDate);
     const refYear = refDate.getUTCFullYear();

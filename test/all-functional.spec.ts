@@ -50,7 +50,7 @@ const BROKEN_LOCALE_METHODS = {
     betweens: '*',
   },
   location: {
-    state: ['az', 'nb_NO', 'ro_MD'],
+    state: ['az', 'ro_MD'],
     zipCode: ['en_HK'],
   },
   string: {
