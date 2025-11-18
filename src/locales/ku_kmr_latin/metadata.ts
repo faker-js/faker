@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinition = {
   code: 'ku_kmr_latin',
   language: 'ku',
   variant: 'kmr_latin',
-  endonym: 'کوردیی ناوەڕاست لاتینی',
+  endonym: 'Kurdî (Kurmancî)',
   dir: 'ltr',
   script: 'Latn',
 };
