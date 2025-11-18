@@ -8,7 +8,7 @@ exports[`food > 42 > dish 1`] = `"Moses's Special Buckwheat Flour"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 
-exports[`food > 42 > fruit 1`] = `"fig"`;
+exports[`food > 42 > fruit 1`] = `"fingerlime"`;
 
 exports[`food > 42 > ingredient 1`] = `"flathead"`;
 
@@ -20,13 +20,13 @@ exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
 
 exports[`food > 1211 > adjective 1`] = `"tender"`;
 
-exports[`food > 1211 > description 1`] = `"Three cherries with onion, pumpkin, parsnip, purple carrot and soy beans. With a side of baked prune, and your choice of celery or capsicum."`;
+exports[`food > 1211 > description 1`] = `"Three cherries with okra, pumpkin, onion, pumpkin and soy beans. With a side of baked raspberry, and your choice of celery or capsicum."`;
 
 exports[`food > 1211 > dish 1`] = `"Sushi"`;
 
 exports[`food > 1211 > ethnicCategory 1`] = `"Texan"`;
 
-exports[`food > 1211 > fruit 1`] = `"strawberry"`;
+exports[`food > 1211 > fruit 1`] = `"starfruit"`;
 
 exports[`food > 1211 > ingredient 1`] = `"turmeric"`;
 
@@ -38,7 +38,7 @@ exports[`food > 1211 > vegetable 1`] = `"sun dried tomatoes"`;
 
 exports[`food > 1337 > adjective 1`] = `"fluffy"`;
 
-exports[`food > 1337 > description 1`] = `"A slow-roasted Cory's Shearwater with a fresh, fluffy exterior. Stuffed with orange and covered in fingerlime sauce. Sides with bok choy puree and wild english spinach."`;
+exports[`food > 1337 > description 1`] = `"A slow-roasted Cory's Shearwater with a fresh, fluffy exterior. Stuffed with papaw and covered in goji berry sauce. Sides with beetroot puree and wild endive."`;
 
 exports[`food > 1337 > dish 1`] = `"Egyptian Dill Soup"`;
 
