@@ -23,7 +23,7 @@ jobs:
     name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           # Required for docs/versions tests
           fetch-depth: 0
@@ -69,7 +69,7 @@ jobs:
         run: date
 
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           # Required for docs/versions tests
           fetch-depth: 0
@@ -95,13 +95,13 @@ jobs:
   e2e-test:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:24.0.0@sha256:fe122441daa9ac524d5ea50da485f240fd2f037b3352fc4dfafe561cfc65cb18
+      image: cypress/browsers:24.11.1@sha256:ff79e75249941c52c301821a7979db306e2659aa2d6038428bcf77c6f5f125e1
       options: --user 1001
     timeout-minutes: 10
     name: 'E2E Doc Test: node-24, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
 
       - name: Install pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
@@ -125,7 +125,7 @@ jobs:
     name: 'Lint: node-24, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           fetch-depth: 0
 
@@ -135,7 +135,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: 24.9.0
+          node-version: 24.11.1
           cache: 'pnpm'
 
       - name: Install deps
@@ -153,7 +153,7 @@ jobs:
     name: 'TS-Check: node-24, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           fetch-depth: 0
 
@@ -163,7 +163,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: 24.9.0
+          node-version: 24.11.1
           cache: 'pnpm'
 
       - name: Install deps
@@ -181,7 +181,7 @@ jobs:
     name: 'Codecov: node-24, ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           fetch-depth: 0
 
@@ -191,7 +191,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: 24.9.0
+          node-version: 24.11.1
           cache: 'pnpm'
 
       - name: Install deps
