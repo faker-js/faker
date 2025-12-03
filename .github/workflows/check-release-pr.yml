@@ -17,12 +17,12 @@ jobs:
 
     steps:
       - name: Checkout faker
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           path: faker
 
       - name: Checkout playground
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           repository: faker-js/playground
           path: playground
@@ -35,7 +35,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: 24.9.0
+          node-version: 24.11.1
           cache: 'pnpm'
           cache-dependency-path: |
             faker/pnpm-lock.yaml
