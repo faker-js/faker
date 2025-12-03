@@ -1,6 +1,5 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
@@ -14,7 +13,7 @@ import { getProject } from '../../../scripts/apidocs/project';
 // - has valid @see tags
 // - has proper links in the description
 
-const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
+const tempDir = resolve(import.meta.dirname, 'temp');
 const relativeImportPath = `${'../'.repeat(5)}src`;
 
 afterAll(() => {
@@ -36,11 +35,6 @@ function resolvePathToMethodFile(
   signature: number
 ): string {
   const dir = resolveDirToModule(moduleName);
-  // TODO @ST-DDT 2024-09-23: Remove this in v10
-  if (methodName === 'userName') {
-    methodName = 'userNameDeprecated';
-  }
-
   return resolve(dir, `${methodName}_${signature}.ts`);
 }
 

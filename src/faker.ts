@@ -1,6 +1,5 @@
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { deprecated } from './internal/deprecated';
 import type { LocaleProxy } from './internal/locale-proxy';
 import { createLocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
@@ -18,11 +17,9 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
-import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { ScienceModule } from './modules/science';
@@ -86,29 +83,6 @@ export class Faker extends SimpleFaker {
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
-
-  // Aliases
-  /** @deprecated Use {@link Faker#location} instead */
-  get address(): AddressModule {
-    deprecated({
-      deprecated: 'faker.address',
-      proposed: 'faker.location',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.location;
-  }
-
-  /** @deprecated Use {@link Faker#person} instead */
-  get name(): NameModule {
-    deprecated({
-      deprecated: 'faker.name',
-      proposed: 'faker.person',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.person;
-  }
 
   /**
    * Creates a new instance of Faker.

@@ -1,1 +1,1 @@
-export default ['rs', 'com', 'co.rs', 'edu.rs', 'in.rs'];
+export default ['co.rs', 'com', 'edu.rs', 'in.rs', 'rs'];

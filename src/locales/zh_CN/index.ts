@@ -5,12 +5,14 @@
 import type { LocaleDefinition } from '../..';
 import airline from './airline';
 import animal from './animal';
+import book from './book';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
 import database from './database';
 import date from './date';
 import finance from './finance';
+import food from './food';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
@@ -31,12 +33,14 @@ import word from './word';
 const zh_CN: LocaleDefinition = {
   airline,
   animal,
+  book,
   color,
   commerce,
   company,
   database,
   date,
   finance,
+  food,
   hacker,
   internet,
   location,

@@ -10,7 +10,7 @@ import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
 import state_abbr from './state_abbr';
-import street_name from './street_name';
+import street_name_part from './street_name_part';
 import street_pattern from './street_pattern';
 import street_suffix from './street_suffix';
 
@@ -22,7 +22,7 @@ const location: LocationDefinition = {
   secondary_address,
   state,
   state_abbr,
-  street_name,
+  street_name_part,
   street_pattern,
   street_suffix,
 };
