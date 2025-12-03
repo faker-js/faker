@@ -254,6 +254,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
 
     sidebar: {
       '/guide/': getSideBarWithExpandedEntry('Guide'),
+      '/locales/': getSideBarWithExpandedEntry('Guide'),
       '/api/': getSideBarWithExpandedEntry('API'),
       '/contributing/': getSideBarWithExpandedEntry('Contributing'),
       '/about/': getSideBarWithExpandedEntry('About'),
