@@ -12,7 +12,7 @@ import ku_kmr_latin from '../locales/ku_kmr_latin';
  * The faker instance for the `ku_kmr_latin` locale.
  *
  * - Language: Kurdish (Kurmanji, Latin)
- * - Endonym: کوردیی ناوەڕاست لاتینی
+ * - Endonym: Kurdî (Kurmancî)
  *
  * This instance uses the following locales internally (in descending precedence):
  *
