@@ -7,6 +7,7 @@
  * - `src/locales/<locale>/index.ts`
  * - `src/locales/<locale>/<module...>/index.ts`
  * - `src/docs/guide/localization.md`
+ * - `src/docs/locales/<locale>.md`
  *
  * If you wish to edit all/specific locale data files you can do so using the
  * `updateLocaleFileHook()` method.
@@ -15,7 +16,14 @@
  * Run this script using `pnpm run generate:locales`
  */
 import { constants } from 'node:fs';
-import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import {
+  access,
+  mkdir,
+  readFile,
+  readdir,
+  stat,
+  writeFile,
+} from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 import { keys } from '../src/internal/keys';
@@ -28,6 +36,7 @@ const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
+const pathDocsLocales = resolve(pathRoot, 'docs', 'locales');
 const pathDocsGuideLocalization = resolve(
   pathRoot,
   'docs',
@@ -111,6 +120,10 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
+function toFakerExportName(locale: string): string {
+  return `faker${locale.replace(/^([a-z]+)/, (part) => part.toUpperCase())}`;
+}
+
 async function loadMetadata(locale: string): Promise<MetadataDefinition> {
   const imported = await import(
     `file:${resolve(pathLocales, locale, 'metadata.ts')}`
@@ -124,6 +137,68 @@ async function tryLoadMetadata(locale: string): Promise<MetadataDefinition> {
   } catch {
     return {};
   }
+}
+
+async function generateLocaleDocumentation(locale: string): Promise<void> {
+  if (locale === 'base') {
+    return;
+  }
+
+  const metadata = await tryLoadMetadata(locale);
+  const localizedFakerExport = toFakerExportName(locale);
+  const content = `
+  <script setup>
+  import ApiDocsLocale from '../.vitepress/components/api-docs/locale.vue';
+  </script>
+
+  # ${metadata.title}
+  ${metadata.title} is one of the many supported [locales](/guide/localization.html#available-locales) in Faker. It uses the language code \`${metadata.code}\` and is available as \`${localizedFakerExport}\`.
+
+  ## Language data
+
+  | Key | Value |
+  | :--- | :--- |
+  | Name | ${metadata.title} |
+  | Local Name | ${metadata.endonym} |
+  | Language | ${metadata.language} |
+  | Script | ${metadata.script} |
+  | Direction | ${metadata.dir} |
+
+  ## Usage
+
+  A few commonly localized methods are shown below. Reload this page to see more random examples. Not [all methods](/api/) are localized in all locales.
+
+  \`\`\`ts
+  import { ${localizedFakerExport} } from '@faker-js/faker';
+  // const { ${localizedFakerExport} } = require('@faker-js/faker'); // CJS
+
+  // Commonly localized methods:
+  ${localizedFakerExport}.person.fullName();
+  ${localizedFakerExport}.location.streetAddress();
+  ${localizedFakerExport}.location.city();
+  ${localizedFakerExport}.location.state();
+  ${localizedFakerExport}.location.zipCode();
+  ${localizedFakerExport}.phone.number();
+  ${localizedFakerExport}.commerce.productName();
+  ${localizedFakerExport}.internet.email();
+  ${localizedFakerExport}.internet.url();
+  ${localizedFakerExport}.date.month();
+  ${localizedFakerExport}.date.weekday();
+  ${localizedFakerExport}.word.noun();
+  ${localizedFakerExport}.word.verb();
+  ${localizedFakerExport}.company.name();
+
+  // Non-localized methods work as normal:
+  ${localizedFakerExport}.number.int();
+  \`\`\`
+
+  <ApiDocsLocale target="${localizedFakerExport}" v-once />
+  `;
+  await mkdir(pathDocsLocales, { recursive: true });
+  return writeFile(
+    resolve(pathDocsLocales, `${locale}.md`),
+    await formatMarkdown(content)
+  );
 }
 
 async function generateLocaleFile(locale: string): Promise<void> {
@@ -456,9 +531,7 @@ for (const locale of locales) {
     console.error(error);
   }
 
-  const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
-    part.toUpperCase()
-  )}`;
+  const localizedFaker = toFakerExportName(locale);
 
   localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
   localeIndexExportsIndividual += `export { faker as ${localizedFaker} } from './${locale}';\n`;
@@ -466,12 +539,18 @@ for (const locale of locales) {
   localesIndexImports += `import ${locale} from './${locale}';\n`;
   localesIndexExportsIndividual += `export { default as ${locale} } from './${locale}';\n`;
   localesIndexExportsGrouped += `  ${locale},\n`;
-  localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
+  const linkedLocale =
+    locale === 'base' ? '`base`' : `[\`${locale}\`](/locales/${locale}.md)`;
+  localizationLocales += `| ${linkedLocale} | ${localeTitle} | \`${localizedFaker}\` |\n`;
 
   promises.push(
     // src/locale/<locale>.ts
     // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateLocaleFile(locale),
+
+    // /docs/locales/*.md
+    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    generateLocaleDocumentation(locale),
 
     // src/locales/**/index.ts
     // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
