@@ -55,7 +55,7 @@ export default {
     "צ'יפס",
     'שולחן',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.product}} {{commerce.productAdjective}} מ{{commerce.productMaterial}}',
   ],
 };

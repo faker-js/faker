@@ -55,7 +55,7 @@ export default {
     'Tuna',
     'Zapatos',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.product}} {{commerce.productAdjective}} de {{commerce.productMaterial}}',
   ],
 };

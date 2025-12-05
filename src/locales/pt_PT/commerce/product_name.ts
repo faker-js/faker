@@ -57,7 +57,7 @@ export default {
     'Teclado',
     'Toalhas',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.product}} {{commerce.productAdjective}} de {{commerce.productMaterial}}',
   ],
 };

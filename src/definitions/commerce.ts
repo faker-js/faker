@@ -42,5 +42,5 @@ export interface CommerceProductNameDefinition {
   /**
    * Patterns to generate localized product names.
    */
-  patterns: string[];
+  pattern: string[];
 }

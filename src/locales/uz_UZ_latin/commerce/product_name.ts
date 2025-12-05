@@ -96,7 +96,7 @@ export default {
     'Un',
     'Velosiped',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
   ],
 };

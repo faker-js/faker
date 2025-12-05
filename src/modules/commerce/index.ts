@@ -112,7 +112,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productName(): string {
-    const patterns = this.faker.definitions.commerce.product_name.patterns;
+    const patterns = this.faker.definitions.commerce.product_name.pattern;
     return this.faker.helpers.fake(patterns);
   }
 

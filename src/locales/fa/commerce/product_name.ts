@@ -53,7 +53,7 @@ export default {
     'کلاه',
     'کیبورد',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.product}} {{commerce.productMaterial}} {{commerce.productAdjective}}',
   ],
 };

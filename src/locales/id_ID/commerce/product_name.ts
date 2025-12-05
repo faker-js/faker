@@ -78,7 +78,7 @@ export default {
     'Topi',
     'Tuna',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.product}} {{commerce.productMaterial}} {{commerce.productAdjective}}',
   ],
 };

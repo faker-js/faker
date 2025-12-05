@@ -35,7 +35,7 @@ export default {
     'Υπολογιστής',
     'Ωάρι',
   ],
-  patterns: [
+  pattern: [
     '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
   ],
 };
