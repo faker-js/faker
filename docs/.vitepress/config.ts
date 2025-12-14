@@ -151,7 +151,7 @@ const config = defineConfig({
       'script',
       { id: 'browser-console-faker' },
       `
-const logStyle = 'background: rgba(16, 183, 127, 0.14); color: rgba(255, 255, 245, 0.86); padding: 0.5rem; display: inline-block;';
+const logStyle = 'background: rgba(16, 183, 127, 0.14); padding: 0.5rem; display: inline-block;';
 console.log(\`%cIf you would like to test Faker in the browser console, you can do so using 'await enableFaker()'.
 If you would like to test Faker in a playground, visit https://new.fakerjs.dev.\`, logStyle);
 async function enableFaker() {
