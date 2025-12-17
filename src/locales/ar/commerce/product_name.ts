@@ -56,4 +56,7 @@ export default {
     'لوحة المفاتيح',
     'مناشف',
   ],
+  pattern: [
+    '{{commerce.product}} {{commerce.productMaterial}} {{commerce.productAdjective}}',
+  ],
 };
