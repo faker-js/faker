@@ -168,6 +168,10 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
     ],
   ],
 
+  sitemap: {
+    hostname: 'https://fakerjs.dev',
+  },
+
   themeConfig: {
     logo: '/logo.svg',
 
