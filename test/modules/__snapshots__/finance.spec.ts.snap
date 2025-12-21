@@ -223,11 +223,11 @@ exports[`finance > 1337 > currencySymbol 1`] = `"$"`;
 
 exports[`finance > 1337 > ethereumAddress 1`] = `"0x536a7b5fa28d2f9bb79ca46ea394bc4f9bb0af32"`;
 
-exports[`finance > 1337 > iban > noArgs 1`] = `"FO2200532700604734"`;
+exports[`finance > 1337 > iban > noArgs 1`] = `"FI1300552916047457"`;
 
 exports[`finance > 1337 > iban > with formatted and countryCode option 1`] = `"DE04 0033 2713 1474 7007 41"`;
 
-exports[`finance > 1337 > iban > with formatted option 1`] = `"FO22 0053 2700 6047 34"`;
+exports[`finance > 1337 > iban > with formatted option 1`] = `"FI13 0055 2916 0474 57"`;
 
 exports[`finance > 1337 > litecoinAddress 1`] = `"LhsjwgYJ7oC8ZrMNmqzLbhEubpcw"`;
 
