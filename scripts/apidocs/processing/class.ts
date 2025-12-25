@@ -123,7 +123,7 @@ function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
 
 function processModule(
   module: ClassDeclaration,
-  category: string | undefined = undefined
+  category?: string
 ): RawApiDocsPage {
   const title = getModuleName(module);
 
@@ -201,7 +201,7 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
 function preparePage(
   module: JSDocableLikeNode,
   title: string,
-  category: string | undefined = undefined
+  category?: string
 ): RawApiDocsPage {
   console.log(`- ${title}`);
 
