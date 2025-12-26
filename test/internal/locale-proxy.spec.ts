@@ -37,7 +37,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         locale.category = {};
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -46,7 +46,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         locale.airline = {};
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -55,7 +55,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         delete locale.category;
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -64,7 +64,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         delete locale.airline;
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -94,7 +94,7 @@ describe('LocaleProxy', () => {
     });
 
     it('should not be possible to access a missing entry in a missing category', () => {
-      expect(() => locale.category.missing).toThrow(
+      expect(() => locale.category.missing).toThrowError(
         new FakerError(
           `The locale data for 'category.missing' are missing in this locale.
   If this is a custom Faker instance, please make sure all required locales are used e.g. '[de_AT, de, en, base]'.
@@ -105,7 +105,7 @@ describe('LocaleProxy', () => {
     });
 
     it('should not be possible to access a missing entry in a present category', () => {
-      expect(() => locale.airline.missing).toThrow(
+      expect(() => locale.airline.missing).toThrowError(
         new FakerError(
           `The locale data for 'airline.missing' are missing in this locale.
   If this is a custom Faker instance, please make sure all required locales are used e.g. '[de_AT, de, en, base]'.
@@ -124,7 +124,7 @@ describe('LocaleProxy', () => {
         airline: { airline: null },
       });
 
-      expect(() => unavailable.airline.airline).toThrow(
+      expect(() => unavailable.airline.airline).toThrowError(
         new FakerError(
           `The locale data for 'airline.airline' aren't applicable to this locale.
   If you think this is a bug, please report it at: https://github.com/faker-js/faker`
@@ -136,7 +136,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         locale.category.missing = {};
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -145,7 +145,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         locale.airline.missing = {};
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -154,7 +154,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         locale.airline.airline = ['dummy'];
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -163,7 +163,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         delete locale.category.missing;
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -172,7 +172,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         delete locale.airline.missing;
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });
@@ -181,7 +181,7 @@ describe('LocaleProxy', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
         delete locale.airline.airline;
-      }).toThrow(
+      }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
     });

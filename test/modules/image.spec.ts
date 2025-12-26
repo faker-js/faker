@@ -19,7 +19,7 @@ import { seededTests } from '../support/seeded-runs';
 function assertValidUrl(address: string): void {
   expect(address).toBeTypeOf('string');
   expect(address).toMatch(/^https:\/\//);
-  expect(() => new URL(address)).not.toThrow();
+  expect(() => new URL(address)).not.toThrowError();
 }
 
 describe('image', () => {
@@ -118,7 +118,7 @@ describe('image', () => {
       expect(imageUrl).toMatch(
         /^https:\/\/cdn\.jsdelivr\.net\/gh\/faker-js\/assets-person-portrait\/(female|male)\/512\/\d{1,2}\.jpg$/
       );
-      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(() => new URL(imageUrl)).not.toThrowError();
     });
 
     it('should return a random avatar url from AI with fixed size and sex', () => {
@@ -128,7 +128,7 @@ describe('image', () => {
       expect(imageUrl).toMatch(
         /^https:\/\/cdn\.jsdelivr\.net\/gh\/faker-js\/assets-person-portrait\/male\/128\/\d{1,2}\.jpg$/
       );
-      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(() => new URL(imageUrl)).not.toThrowError();
     });
   });
 
