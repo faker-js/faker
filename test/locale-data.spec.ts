@@ -12,7 +12,7 @@ function checkLocaleData(data: unknown) {
       checkLocaleData(nestedData);
     });
   } else {
-    it.skip('primitives cannot be tested');
+    // primitives cannot be tested
   }
 }
 

@@ -556,7 +556,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^w$/);
           });
 
-          it.skip('handles case insensitive characters', () => {
+          it.todo('handles case insensitive characters', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/w/i);
@@ -575,7 +575,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^%$/i);
           });
 
-          it.skip('handles the wildcard character', () => {
+          it.todo('handles the wildcard character', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/./);
