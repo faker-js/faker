@@ -255,10 +255,7 @@ export default defineConfig(
   {
     name: 'test/**/*.ts overrides',
     files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
-    plugins: {
-      // @ts-expect-error: weird type error
-      vitest: eslintPluginVitest,
-    },
+    extends: [eslintPluginVitest.configs.recommended],
     rules: {
       '@typescript-eslint/no-deprecated': 'off',
 
@@ -270,8 +267,6 @@ export default defineConfig(
           allowAny: true,
         },
       ],
-
-      ...eslintPluginVitest.configs.recommended.rules,
 
       'vitest/expect-expect': 'off',
       'vitest/no-alias-methods': 'error',
