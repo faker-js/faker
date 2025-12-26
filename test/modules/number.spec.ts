@@ -101,7 +101,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([20, 30]);
       });
 
@@ -116,7 +116,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([10, 20, 30, 40, 50]);
       });
 
@@ -347,7 +347,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });

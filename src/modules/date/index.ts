@@ -230,7 +230,7 @@ export class SimpleDateModule extends SimpleModuleBase {
     const { from, to, count = 3 } = options;
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
-      .sort((a, b) => a.getTime() - b.getTime());
+      .toSorted((a, b) => a.getTime() - b.getTime());
   }
 
   /**

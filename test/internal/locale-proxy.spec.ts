@@ -76,7 +76,9 @@ describe('LocaleProxy', () => {
     });
 
     it('should be possible to get all categories keys on actual locale', () => {
-      expect(Object.keys(locale).sort()).toEqual(Object.keys(en).sort());
+      expect(Object.keys(locale).toSorted()).toEqual(
+        Object.keys(en).toSorted()
+      );
     });
   });
 
@@ -191,8 +193,8 @@ describe('LocaleProxy', () => {
     });
 
     it('should be possible to get all keys from existing category', () => {
-      expect(Object.keys(locale.airline).sort()).toEqual(
-        Object.keys(enAirline).sort()
+      expect(Object.keys(locale.airline).toSorted()).toEqual(
+        Object.keys(enAirline).toSorted()
       );
     });
   });

@@ -102,7 +102,7 @@ export function processModuleClasses(project: Project): RawApiDocsPage[] {
         (module: string): boolean =>
           module.endsWith('Module') && !module.startsWith('Simple')
       )
-    ).sort((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
+    ).toSorted((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
 }
 
