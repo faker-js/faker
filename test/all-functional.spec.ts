@@ -109,7 +109,7 @@ describe('BROKEN_LOCALE_METHODS test', () => {
 describe('functional tests', () => {
   describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
     if (locale === 'base') {
-      // base locale is checked by other tests
+      it.skip('base locale is checked by other tests');
       return;
     }
 
@@ -145,7 +145,7 @@ describe('functional tests', () => {
 describe('faker.helpers.fake functional tests', () => {
   describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
     if (locale === 'base') {
-      // base locale is checked by other tests
+      it.skip('base locale is checked by other tests');
       return;
     }
 
