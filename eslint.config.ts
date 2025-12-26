@@ -270,6 +270,7 @@ export default defineConfig(
 
       'vitest/expect-expect': 'off',
       'vitest/no-alias-methods': 'error',
+      'vitest/no-conditional-expect': 'off', // we require conditional logic when iterating over faker instances or instances in diffent versions (for the docs)
       'vitest/prefer-each': 'error',
       'vitest/prefer-to-have-length': 'error',
       'vitest/valid-expect': ['error', { maxArgs: 2 }],
