@@ -157,6 +157,7 @@ export default defineConfig(
       'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
       'unicorn/number-literal-case': 'off', // incompatible with prettier
       'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
+      'unicorn/prefer-bigint-literals': 'off', // currently there is no clear argument on why literal would be better
       'unicorn/prefer-string-raw': 'off', // The additional prefix doesn't help readability
       'unicorn/prefer-string-slice': 'off', // string.substring is sometimes easier to use
       'unicorn/prefer-ternary': 'off', // ternaries aren't always better
