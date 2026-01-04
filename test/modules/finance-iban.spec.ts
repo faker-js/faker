@@ -377,6 +377,31 @@ describe('finance_iban', () => {
             `First two character should be AL, given is ${iban.substring(0, 2)}`
           ).toBe('AL');
         });
+
+        it('IBAN for Iran is correct', () => {
+          const iban = faker.finance.iban({
+            formatted: false,
+            countryCode: 'IR',
+          });
+          const ibanFormated = prettyPrintIban(iban);
+
+          expect(iban).toSatisfy(isIBAN);
+
+          expect(
+            26,
+            `IR IBAN would be 26 chars length, given is ${iban.length}`
+          ).toBe(iban.length);
+
+          expect(
+            32,
+            `IR formatted IBAN would be 32 chars length, given is ${ibanFormated.length}`
+          ).toBe(ibanFormated.length);
+
+          expect(
+            iban.substring(0, 2),
+            `First two character should be IR, given is ${iban.substring(0, 2)}`
+          ).toBe('IR');
+        });
       });
     }
   );

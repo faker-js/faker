@@ -74,7 +74,7 @@ describe('locale-data', () => {
     const characterSets = Object.fromEntries(
       Object.entries(allLocales).map(([locale, data]) => [
         locale,
-        allCharacters(data).sort().join(''),
+        allCharacters(data).toSorted().join(''),
       ])
     );
     expect(characterSets).toMatchSnapshot();

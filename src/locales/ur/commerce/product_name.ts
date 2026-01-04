@@ -36,4 +36,7 @@ export default {
     'کی بورڈ',
     'گاڑی',
   ],
+  pattern: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

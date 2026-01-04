@@ -291,11 +291,11 @@ class TestGenerator<
    * This method will be called automatically at the end of each run.
    */
   expectAllMethodsToBeTested(): void {
-    const actual = [...this.tested].sort();
+    const actual = [...this.tested].toSorted();
     const expected = Object.entries(this.module)
       .filter(([, value]) => typeof value === 'function')
       .map(([key]) => key)
-      .sort();
+      .toSorted();
     vi_it('should test all methods', () => {
       expect(actual).toEqual(expected);
     });

@@ -3,7 +3,7 @@ import { expect } from 'vitest';
 
 expect.extend({
   toContainDuplicates(received: unknown[]) {
-    const { isNot = false } = this;
+    const { isNot } = this;
 
     const uniques = new Set(received);
     const duplications = received.filter((entry) => !uniques.delete(entry));

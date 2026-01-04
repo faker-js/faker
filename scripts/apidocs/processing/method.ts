@@ -73,7 +73,7 @@ function getAllMethods(clazz: ClassDeclaration): MethodDeclaration[] {
     }
   }
 
-  return Object.values(methods).sort((a, b) =>
+  return Object.values(methods).toSorted((a, b) =>
     a.getName().localeCompare(b.getName())
   );
 }
@@ -170,7 +170,7 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
         });
       }
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .toSorted((a, b) => a.name.localeCompare(b.name));
 }
 
 export function processMethodLike(
