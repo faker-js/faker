@@ -130,7 +130,7 @@ describe('image', () => {
         expect(imageUrl).toMatch(
           /^https:\/\/cdn\.jsdelivr\.net\/gh\/faker-js\/assets-person-portrait\/(female|male)\/512\/\d{1,2}\.jpg$/
         );
-        expect(() => new URL(imageUrl)).not.toThrow();
+        expect(() => new URL(imageUrl)).not.toThrowError();
       }
     );
 
