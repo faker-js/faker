@@ -36,7 +36,7 @@ For detailed API documentation, please select the version of the documentation y
 
 - 🧍 Person - Generate Names, Genders, Bios, Job titles, and more.
 - 📍 Location - Generate Addresses, Zip Codes, Street Names, States, and Countries!
-- ⏰ Date - Past, present, future, recent, soon... whenever!
+- 🗓️ Date - Past, present, future, recent, soon... whenever!
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
 - 👠 Commerce - Generate Prices, Product Names, Adjectives, and Descriptions.
 - 👾 Hacker - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
