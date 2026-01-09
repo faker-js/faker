@@ -34,6 +34,6 @@ import type { Randomizer } from '../randomizer';
  * faker.number.int({ min: 0, max: 10, distributor: uniform }); // 2
  * faker.number.int({ min: 0, max: 10, distributor: uniform }); // 9
  *
- * @since 9.6.0
+ * @since 10.3.0
  */
 export type Distributor = (randomizer: Randomizer) => number;
