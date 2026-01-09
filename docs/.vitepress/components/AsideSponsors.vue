@@ -1,18 +1,47 @@
 <script setup lang="ts">
-import type { Sponsors } from 'vitepress/dist/client/theme-default/components/VPSponsors.vue';
+import { useLocalStorage } from '@vueuse/core';
+import type { Sponsor } from 'vitepress/dist/client/theme-default/components/VPSponsorsGrid.vue';
 import { VPDocAsideSponsors } from 'vitepress/theme';
-import type { Ref } from 'vue';
-import { onMounted, ref } from 'vue';
-import { bronze, gold, individuals, silver } from './sponsors.json';
+import { computed, onMounted } from 'vue';
 
-const sponsors: Ref<Sponsors[]> = ref([
-  { tier: 'Individuals (>>$500)', size: 'big', items: individuals },
-  { tier: 'Gold ($500)', size: 'small', items: gold },
-  { tier: 'Silver ($250)', size: 'mini', items: silver },
-  { tier: 'Bronze ($100)', size: 'xmini', items: bronze },
-]);
+/**
+ * @see https://graphql-docs-v2.opencollective.com/types/Member
+ */
+interface Backer {
+  account: {
+    name: string | null;
+    slug: string;
+    imageUrl: string | null;
+  };
+  since: string;
+  isActive: boolean;
+  totalDonations: {
+    value: number | null;
+    currency: string | null;
+    valueInCents: number | null;
+  };
+}
 
-onMounted(async () => {
+const backersStorage = useLocalStorage<{
+  lastUpdated: number;
+  backers: Backer[];
+}>('fakerjs-backers', {
+  lastUpdated: 0,
+  backers: [],
+});
+
+const sponsors = computed<Sponsor[]>(
+  () =>
+    backersStorage.value?.backers
+      .map((backer) => ({
+        name: backer.account.name ?? backer.account.slug,
+        img: backer.account.imageUrl ?? '',
+        url: `https://opencollective.com/${backer.account.slug}`,
+      }))
+      .slice(0, 10) || []
+);
+
+async function fetchBackers(): Promise<Backer[]> {
   const response = await fetch('https://api.opencollective.com/graphql/v2', {
     method: 'POST',
     headers: {
@@ -30,8 +59,10 @@ onMounted(async () => {
         account {
           name
           slug
+          imageUrl
         }
         since
+        isActive
         totalDonations {
           value
           currency
@@ -46,14 +77,31 @@ onMounted(async () => {
     }),
   }).then((res) => res.json());
 
-  const sorted = response.data.account.members.nodes.toSorted(
-    (a, b) => b.totalDonations.valueInCents - a.totalDonations.valueInCents
+  return (response.data.account.members.nodes as Backer[]).toSorted(
+    (a, b) =>
+      (b.totalDonations.valueInCents ?? 0) -
+      (a.totalDonations.valueInCents ?? 0)
   );
+}
 
-  console.log(sorted.slice(0, 10));
+onMounted(async () => {
+  // Refresh every start of the month
+  const now = new Date();
+  const lastUpdated = new Date(backersStorage.value.lastUpdated);
+  if (
+    backersStorage.value.backers.length === 0 ||
+    now.getFullYear() !== lastUpdated.getFullYear() ||
+    now.getMonth() !== lastUpdated.getMonth()
+  ) {
+    const backers = await fetchBackers();
+    backersStorage.value = {
+      lastUpdated: Date.now(),
+      backers,
+    };
+  }
 });
 </script>
 
 <template>
-  <VPDocAsideSponsors :data="sponsors" />
+  <VPDocAsideSponsors tier="Top 10 Sponsors" size="xmini" :data="sponsors" />
 </template>
