@@ -79,7 +79,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v9.5.1"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v10.2.0"`.
 :::
 
 ### Alternative CDN links
@@ -99,14 +99,27 @@ You can use Faker without it, but we don't have dedicated error messages for wro
 
 In order to have Faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
-```json
+::: code-group
+
+```json [esm]
 {
   "compilerOptions": {
-    "moduleResolution": "Bundler", // "Node10", "Node16" or "NodeNext"
+    "moduleResolution": "Bundler", // or "Node10", "Node16", "Node20", "NodeNext"
     "strict": true // Optional, but recommended
   }
 }
 ```
+
+```json [cjs]
+{
+  "compilerOptions": {
+    "moduleResolution": "Bundler", // or "Node20" or "NodeNext"
+    "strict": true // Optional, but recommended
+  }
+}
+```
+
+:::
 
 ## Reproducible results
 

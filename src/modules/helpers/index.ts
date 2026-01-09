@@ -344,8 +344,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param pattern The template string/RegExp to generate a matching string for.
    *
-   * @throws If min value is more than max value in quantifier, e.g. `#{10,5}`.
-   * @throws If an invalid quantifier symbol is passed in.
+   * @throws {FakerError} If min value is more than max value in quantifier, e.g. `#{10,5}`.
+   * @throws {FakerError} If an invalid quantifier symbol is passed in.
    *
    * @example
    * faker.helpers.fromRegExp('#{5}') // '#####'
@@ -789,7 +789,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param object The object to be used.
    *
-   * @throws If the given object is empty.
+   * @throws {FakerError} If the given object is empty.
    *
    * @example
    * faker.helpers.objectKey({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 'Falcon'
@@ -808,7 +808,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param object The object to be used.
    *
-   * @throws If the given object is empty.
+   * @throws {FakerError} If the given object is empty.
    *
    * @example
    * faker.helpers.objectValue({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 390
@@ -827,7 +827,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param object The object to be used.
    *
-   * @throws If the given object is empty.
+   * @throws {FakerError} If the given object is empty.
    *
    * @example
    * faker.helpers.objectEntry({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // ['Snail', 0.03]
@@ -848,7 +848,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param array The array to pick the value from.
    *
-   * @throws If the given array is empty.
+   * @throws {FakerError} If the given array is empty.
    *
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'

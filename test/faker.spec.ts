@@ -55,16 +55,16 @@ describe('faker', () => {
       // Non-existing module
       expect(faker.definitions.missing).toBeDefined();
       // Non-existing definition in a non-existing module
-      expect(() => faker.definitions.missing?.missing).toThrow();
+      expect(() => faker.definitions.missing?.missing).toThrowError();
       // Non-existing definition in an existing module
-      expect(() => faker.definitions.location.missing).toThrow();
+      expect(() => faker.definitions.location.missing).toThrowError();
     });
   });
 
   describe('constructor()', () => {
     describe('locale', () => {
       it('should throw error if no locales passed', () => {
-        expect(() => new Faker({ locale: [] })).toThrow(
+        expect(() => new Faker({ locale: [] })).toThrowError(
           new FakerError(
             'The locale option must contain at least one locale definition.'
           )

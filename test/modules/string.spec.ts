@@ -1,3 +1,4 @@
+import isULID from 'validator/lib/isULID';
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -181,7 +182,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string)', () => {
-          expect(() => faker.string.fromCharacters('')).toThrow(
+          expect(() => faker.string.fromCharacters('')).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -189,7 +190,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string[])', () => {
-          expect(() => faker.string.fromCharacters([])).toThrow(
+          expect(() => faker.string.fromCharacters([])).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -285,7 +286,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -300,7 +301,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -318,7 +319,7 @@ describe('string', () => {
             exclude: ['a', '%'],
           });
 
-          expect(() => faker.string.alpha(input)).not.toThrow();
+          expect(() => faker.string.alpha(input)).not.toThrowError();
           expect(input.exclude).toEqual(['a', '%']);
         });
       });
@@ -439,7 +440,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -454,7 +455,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -470,7 +471,7 @@ describe('string', () => {
             exclude: ['a', '0', '%'],
           });
 
-          expect(() => faker.string.alphanumeric(input)).not.toThrow();
+          expect(() => faker.string.alphanumeric(input)).not.toThrowError();
           expect(input.exclude).toEqual(['a', '0', '%']);
         });
       });
@@ -678,7 +679,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: [...'123456789'],
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -692,7 +693,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789',
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -764,7 +765,7 @@ describe('string', () => {
         it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
           'should reject invalid refDates %s',
           (refDate) => {
-            expect(() => faker.string.ulid({ refDate })).toThrow(
+            expect(() => faker.string.ulid({ refDate })).toThrowError(
               new FakerError(`Invalid refDate date: ${refDate.toString()}`)
             );
           }
@@ -774,6 +775,7 @@ describe('string', () => {
           const ulid = faker.string.ulid();
           const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
           expect(ulid).toMatch(regex);
+          expect(ulid).toSatisfy(isULID);
         });
       });
 

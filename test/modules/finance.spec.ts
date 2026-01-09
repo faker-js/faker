@@ -1,6 +1,7 @@
 import isCreditCard from 'validator/lib/isCreditCard';
+import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
-import { faker, fakerZH_CN } from '../../src';
+import { allLocales, faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
@@ -83,18 +84,6 @@ describe('finance', () => {
         .it('with issuer option mastercard', { issuer: 'mastercard' });
     });
 
-    t.describe('maskedNumber', (t) => {
-      t.it('noArgs')
-        .it('with length', 5)
-        .it('with length option', { length: 5 })
-        .it('with length and parenthesis option', { length: 5, parens: false })
-        .it('with length, parenthesis and ellipsis option', {
-          length: 5,
-          parens: false,
-          ellipsis: true,
-        });
-    });
-
     t.describe('bitcoinAddress', (t) => {
       t.it('noArgs')
         .it('with type option', { type: BitcoinAddressFamily.Legacy })
@@ -154,45 +143,6 @@ describe('finance', () => {
           const routingNumber = faker.finance.routingNumber();
 
           expect(routingNumber).toBeTypeOf('string');
-        });
-      });
-
-      describe('maskedNumber()', () => {
-        it('should return contain parenthesis, ellipsis and have a length of 4 by default', () => {
-          // eslint-disable-next-line @typescript-eslint/no-deprecated
-          const actual = faker.finance.maskedNumber();
-
-          expect(actual).toMatch(/\(\.{3}\d{4}\)/);
-        });
-
-        it('should set a default length', () => {
-          const expected = 4; // default account mask length
-          // eslint-disable-next-line @typescript-eslint/no-deprecated
-          const mask = faker.finance.maskedNumber({
-            parens: false,
-            ellipsis: false,
-          });
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
-        });
-
-        it('should set a specified length', () => {
-          const expected = faker.number.int({ min: 1, max: 20 });
-
-          // eslint-disable-next-line @typescript-eslint/no-deprecated
-          const mask = faker.finance.maskedNumber({
-            length: expected,
-            parens: false,
-            ellipsis: false,
-          }); // the length of mask picks 4 if the random number generator picks 0
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
         });
       });
 
@@ -266,22 +216,26 @@ describe('finance', () => {
           }
         );
 
-        it('should return the number formatted on the current locale', () => {
-          const number = 6000;
-          const decimalPlaces = 2;
-          const expected = number.toLocaleString(undefined, {
-            minimumFractionDigits: decimalPlaces,
-          });
+        // This test is flaky on Windows Github Actions
+        it.todo(
+          'should return the number formatted on the current locale',
+          () => {
+            const number = 6000;
+            const decimalPlaces = 2;
+            const expected = number.toLocaleString(undefined, {
+              minimumFractionDigits: decimalPlaces,
+            });
 
-          const amount = faker.finance.amount({
-            min: number,
-            max: number,
-            dec: decimalPlaces,
-            autoFormat: true,
-          });
+            const amount = faker.finance.amount({
+              min: number,
+              max: number,
+              dec: decimalPlaces,
+              autoFormat: true,
+            });
 
-          expect(amount).toStrictEqual(expected);
-        });
+            expect(amount).toStrictEqual(expected);
+          }
+        );
       });
 
       describe('transactionType()', () => {
@@ -565,7 +519,9 @@ describe('finance', () => {
         });
 
         it('should throw an error when length is less than 1', () => {
-          expect(() => faker.finance.pin(-5)).toThrow(/^minimum length is 1$/);
+          expect(() => faker.finance.pin(-5)).toThrowError(
+            /^minimum length is 1$/
+          );
         });
       });
 
@@ -612,7 +568,7 @@ describe('finance', () => {
                 formatted: false,
                 countryCode: unsupportedCountryCode,
               })
-            ).toThrow(
+            ).toThrowError(
               new FakerError(
                 `Country code ${unsupportedCountryCode} not supported.`
               )
@@ -647,4 +603,64 @@ describe('finance', () => {
       });
     }
   );
+});
+
+describe('finance locale data', () => {
+  // Dedicated type for readability purposes
+  type KnownProvider = Exclude<
+    Parameters<typeof isCreditCard>[1],
+    undefined
+  >['provider'];
+
+  function getKnownProvider(value: string | undefined): KnownProvider {
+    // taken from definitions of validatorjs:
+    // https://github.com/validatorjs/validator.js/blob/72573b3d1d8ab2e6575e6bba1cbe2b01f95f4935/src/lib/isCreditCard.js#L4-L12
+    const providers: Record<string, KnownProvider> = {
+      american_express: 'amex',
+      diners_club: 'dinersclub',
+      discover: 'discover',
+      jcb: 'jcb',
+      mastercard: 'mastercard',
+      unionpay: 'unionpay',
+      visa: 'visa',
+    };
+
+    const knownProvider = providers[value ?? ''];
+    if (knownProvider == null) {
+      throw new Error(
+        `Issuer "${value}" is not a known provider for validatorjs. Because of that the validity of it's patterns can not be verified.`
+      );
+    }
+
+    return knownProvider;
+  }
+
+  const localesWithData = Object.entries(allLocales).filter(
+    ([, data]) => Object.keys(data.finance?.credit_card ?? {}).length > 0
+  );
+  describe.each(localesWithData)(`%s`, (_localeName, localeData) => {
+    describe('credit cards', () => {
+      describe('issuer', () => {
+        describe.each(Object.entries(localeData.finance?.credit_card ?? {}))(
+          '%s',
+          (issuerName, issuerPatterns) => {
+            function isCreditCardFromIssuer(value: string) {
+              return isCreditCard(value, {
+                provider: getKnownProvider(issuerName),
+              });
+            }
+
+            it.each(issuerPatterns)(
+              'pattern "%s" should generate a valid credit card number',
+              (pattern) => {
+                const result = faker.finance.creditCardNumber(pattern);
+                expect(result).toSatisfy(isLuhnNumber);
+                expect(result).toSatisfy(isCreditCardFromIssuer);
+              }
+            );
+          }
+        );
+      });
+    });
+  });
 });

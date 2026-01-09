@@ -15,7 +15,11 @@ This documentation only covers the JavaScript implementation of Faker.
 
 ## Environments
 
-You can run Faker in the browser, or in Node.js. Faker v9.0 requires Node.js version 18 or above. Both ESM and CommonJS imports are available.
+You can run Faker in the browser, or in Node.js. Faker v10.0 requires Node.js version 20 or above.
+
+::: tip Note
+When using CJS, you need to use at least Node.js v20.19. See https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require
+:::
 
 ## Installation
 

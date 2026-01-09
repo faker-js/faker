@@ -58,12 +58,6 @@
     {
       "groupName": "doc-dependencies",
       "matchPackageNames": ["ts-morph", "vitepress"]
-    },
-    {
-      // Disable updates for rimraf until Node 18 support is dropped
-      "groupName": "disabled",
-      "matchPackageNames": ["rimraf"],
-      "enabled": false
     }
   ],
   "stopUpdatingLabel": "s: on hold",

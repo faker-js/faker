@@ -4,13 +4,14 @@ import { generateMersenne32Randomizer, SimpleFaker, simpleFaker } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe('simpleFaker', () => {
-  it('should not log anything on startup', () => {
+  it('should not log anything on startup', async () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
 
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
-    expect(require('..').simpleFaker).toBeDefined();
+    // Using import() requires types being build but the CI / TS-Check runs without them.
+    const { simpleFaker: importedSimpleFaker } = await import('..');
+    expect(importedSimpleFaker).toBeDefined();
 
     expect(new SimpleFaker()).toBeDefined();
 

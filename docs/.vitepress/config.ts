@@ -1,4 +1,4 @@
-import type { UserConfig } from 'vitepress';
+import { defineConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import {
@@ -53,7 +53,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           link: '/guide/unique',
         },
         {
-          text: 'Upgrading to v9',
+          text: 'Upgrading to v10',
           link: '/guide/upgrading',
         },
       ],
@@ -61,6 +61,31 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
     {
       text: 'API',
       items: apiPages,
+    },
+    {
+      text: 'Contributing',
+      items: [
+        {
+          text: 'Code of Conduct',
+          link: '/contributing/code-of-conduct',
+        },
+        {
+          text: 'Report Bugs',
+          link: '/contributing/report-bugs',
+        },
+        {
+          text: 'Propose a Feature',
+          link: '/contributing/propose-a-feature',
+        },
+        {
+          text: 'Set up a Development Environment',
+          link: '/contributing/set-up-a-development-environment',
+        },
+        {
+          text: 'Submit a Pull Request',
+          link: '/contributing/submit-a-pull-request',
+        },
+      ],
     },
     {
       text: 'About',
@@ -94,10 +119,6 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           text: 'Team',
           link: '/about/team',
         },
-        {
-          text: 'Contributing',
-          link: '/about/contributing',
-        },
       ],
     },
   ];
@@ -109,8 +130,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   return links;
 }
 
-// TODO @Shinigami92 2023-12-28: reuse `defineConfig` from vitepress, when we can go esm-only
-const config: UserConfig<DefaultTheme.Config> = {
+const config = defineConfig({
   title: 'Faker',
   description,
 
@@ -131,7 +151,7 @@ const config: UserConfig<DefaultTheme.Config> = {
       'script',
       { id: 'browser-console-faker' },
       `
-const logStyle = 'background: rgba(16, 183, 127, 0.14); color: rgba(255, 255, 245, 0.86); padding: 0.5rem; display: inline-block;';
+const logStyle = 'background: rgba(16, 183, 127, 0.14); padding: 0.5rem; display: inline-block;';
 console.log(\`%cIf you would like to test Faker in the browser console, you can do so using 'await enableFaker()'.
 If you would like to test Faker in a playground, visit https://new.fakerjs.dev.\`, logStyle);
 async function enableFaker() {
@@ -147,6 +167,10 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
 `,
     ],
   ],
+
+  sitemap: {
+    hostname: 'https://fakerjs.dev',
+  },
 
   themeConfig: {
     logo: '/logo.svg',
@@ -215,10 +239,6 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
             text: 'Team',
             link: '/about/team',
           },
-          {
-            text: 'Contributing',
-            link: '/about/contributing',
-          },
         ],
       },
       {
@@ -238,7 +258,9 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
 
     sidebar: {
       '/guide/': getSideBarWithExpandedEntry('Guide'),
+      '/locales/': getSideBarWithExpandedEntry('Guide'),
       '/api/': getSideBarWithExpandedEntry('API'),
+      '/contributing/': getSideBarWithExpandedEntry('Contributing'),
       '/about/': getSideBarWithExpandedEntry('About'),
     },
   },
@@ -248,7 +270,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       __BANNER__: versionBannerInfix ?? false,
     },
   },
-};
+});
 
 if (versionBannerInfix) {
   config.head?.push([

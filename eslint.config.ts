@@ -1,20 +1,18 @@
 import { includeIgnoreFile } from '@eslint/compat';
 import eslint from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
+import eslintPluginStylistic from '@stylistic/eslint-plugin';
 import eslintPluginVitest from '@vitest/eslint-plugin';
 import eslintPluginFileProgress from 'eslint-plugin-file-progress';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'eslint/config';
+import { resolve } from 'node:path';
 import tseslint from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const gitignorePath = resolve(__dirname, '.gitignore');
+const gitignorePath = resolve(import.meta.dirname, '.gitignore');
 
-const config: ReturnType<typeof tseslint.config> = tseslint.config(
+export default defineConfig(
   //#region global
   includeIgnoreFile(gitignorePath),
   {
@@ -54,7 +52,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#endregion
 
   //#region typescript-eslint
-  ...tseslint.configs.strictTypeChecked,
+  tseslint.configs.strictTypeChecked,
   {
     name: 'typescript-eslint overrides',
     languageOptions: {
@@ -135,7 +133,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   {
     name: 'stylistic overrides',
     plugins: {
-      '@stylistic': stylistic,
+      '@stylistic': eslintPluginStylistic,
     },
     rules: {
       '@stylistic/padding-line-between-statements': [
@@ -147,18 +145,19 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#endregion
 
   //#region unicorn
-  eslintPluginUnicorn.configs['flat/recommended'],
+  eslintPluginUnicorn.configs.recommended,
   {
     name: 'unicorn overrides',
     rules: {
       'unicorn/import-style': 'off', // subjective & doesn't do anything for us
       'unicorn/no-array-callback-reference': 'off', // reduces readability
       'unicorn/no-nested-ternary': 'off', // incompatible with prettier
-      'unicorn/no-object-as-default-parameter': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2199
       'unicorn/no-null': 'off', // incompatible with TypeScript
+      'unicorn/no-object-as-default-parameter': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2199
       'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
       'unicorn/number-literal-case': 'off', // incompatible with prettier
       'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
+      'unicorn/prefer-bigint-literals': 'off', // currently there is no clear argument on why literal would be better
       'unicorn/prefer-string-raw': 'off', // The additional prefix doesn't help readability
       'unicorn/prefer-string-slice': 'off', // string.substring is sometimes easier to use
       'unicorn/prefer-ternary': 'off', // ternaries aren't always better
@@ -172,6 +171,12 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   {
     name: 'jsdoc overrides',
     rules: {
+      'jsdoc/check-tag-names': [
+        'error',
+        {
+          definedTags: ['remark'],
+        },
+      ],
       'jsdoc/require-jsdoc': 'off', // Enabled only for src/**/*.ts
       'jsdoc/require-returns': 'off',
       'jsdoc/sort-tags': [
@@ -180,6 +185,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
           tagSequence: [
             { tags: ['template'] },
             { tags: ['internal'] },
+            { tags: ['remark'] },
             { tags: ['param'] },
             { tags: ['returns'] },
             { tags: ['throws'] },
@@ -203,6 +209,11 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
 
   //#region prettier
   eslintPluginPrettierRecommended,
+  {
+    rules: {
+      curly: ['error', 'all'], // https://github.com/prettier/eslint-config-prettier#curly
+    },
+  },
   //#endregion
 
   //#region file-progress
@@ -244,12 +255,10 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   },
   {
     name: 'test/**/*.ts overrides',
-    files: ['test/**/*.spec.ts', 'test/**/*.spec.d.ts'],
-    plugins: {
-      vitest: eslintPluginVitest,
-    },
+    files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
+    extends: [eslintPluginVitest.configs.recommended],
     rules: {
-      'deprecation/deprecation': 'off',
+      '@typescript-eslint/no-deprecated': 'off',
 
       '@typescript-eslint/restrict-template-expressions': [
         'error',
@@ -260,10 +269,9 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
         },
       ],
 
-      ...eslintPluginVitest.configs.recommended.rules,
-
       'vitest/expect-expect': 'off',
       'vitest/no-alias-methods': 'error',
+      'vitest/no-conditional-expect': 'off', // we require conditional logic when iterating over faker instances or instances in diffent versions (for the docs)
       'vitest/prefer-each': 'error',
       'vitest/prefer-to-have-length': 'error',
       'vitest/valid-expect': ['error', { maxArgs: 2 }],
@@ -273,8 +281,13 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
         typecheck: true,
       },
     },
+  },
+  {
+    files: ['test/**/*.spec.cts'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      'unicorn/prefer-module': 'off',
+    },
   }
   //#endregion
 );
-
-export default config;

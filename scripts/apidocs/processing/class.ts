@@ -104,7 +104,7 @@ export function processModuleClasses(project: Project): RawApiDocsPage[] {
         (module: string): boolean =>
           module.endsWith('Module') && !module.startsWith('Simple')
       )
-    ).sort((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
+    ).toSorted((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
 }
 
@@ -125,7 +125,7 @@ function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
 
 function processModule(
   module: ClassDeclaration,
-  category: string | undefined = undefined
+  category?: string
 ): RawApiDocsPage {
   const title = getModuleName(module);
 
@@ -231,7 +231,7 @@ ${wrapCode(distributor.getText().replace(/export /, ''))}`;
 function preparePage(
   module: JSDocableLikeNode,
   title: string,
-  category: string | undefined = undefined
+  category?: string
 ): RawApiDocsPage {
   console.log(`- ${title}`);
 
