@@ -706,7 +706,7 @@ export class StringModule extends SimpleModuleBase {
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @param options An options object.
-   * @param options.version  The specific UUID version to use.
+   * @param options.version The specific UUID version to use.
    *
    * @example
    * faker.string.uuid({ version: 4 }) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
@@ -723,7 +723,7 @@ export class StringModule extends SimpleModuleBase {
    * Returns a UUID v7 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @param options An options object.
-   * @param options.version  The specific UUID version to use.
+   * @param options.version The specific UUID version to use.
    * @param options.refDate The timestamp to encode into the uuid.
    * The encoded timestamp is represented by the first 12 characters of the result.
    * Defaults to `faker.defaultRefDate()`.
@@ -750,7 +750,7 @@ export class StringModule extends SimpleModuleBase {
    * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @param options An optional options object.
-   * @param options.version  The specific UUID version to use. Defaults to `4`.
+   * @param options.version The specific UUID version to use. Defaults to `4`.
    * @param options.refDate The timestamp to encode into the UUID.
    * This parameter is only relevant for time based UUID's.
    * Defaults to `faker.defaultRefDate()`.
