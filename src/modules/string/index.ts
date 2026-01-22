@@ -3,6 +3,7 @@ import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
+import { uuidV4, uuidV7 } from './uuid';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
@@ -693,17 +694,128 @@ export class StringModule extends SimpleModuleBase {
   }
 
   /**
-   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
    *
    * @since 8.0.0
    */
-  uuid(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-      .replaceAll('x', () => this.faker.number.hex({ min: 0x0, max: 0xf }))
-      .replaceAll('y', () => this.faker.number.hex({ min: 0x8, max: 0xb }));
+  uuid(): string;
+  /**
+   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An options object.
+   * @param options.version  The specific UUID version to use.
+   *
+   * @example
+   * faker.string.uuid({ version: 4 }) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @since 8.0.0
+   */
+  uuid(options: {
+    /**
+     * The specific UUID version to use.
+     */
+    version: 4;
+  }): string;
+  /**
+   * Returns a UUID v7 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An options object.
+   * @param options.version  The specific UUID version to use.
+   * @param options.refDate The timestamp to encode into the uuid.
+   * The encoded timestamp is represented by the first 12 characters of the result.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.uuid() // '019be2c5-58de-70fe-a693-2ccbff1f0780'
+   *
+   * @since 10.3.0
+   */
+  uuid(options: {
+    /**
+     * The specific UUID version to use.
+     */
+    version: 7;
+    /**
+     * The timestamp to encode into the uuid.
+     * The encoded timestamp is represented by the first 12 characters of the result.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate: string | Date | number;
+  }): string;
+  /**
+   * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An optional options object.
+   * @param options.version  The specific UUID version to use. Defaults to `4`.
+   * @param options.refDate The timestamp to encode into the UUID.
+   * This parameter is only relevant for time based UUID's.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @since 8.0.0
+   */
+  uuid(options?: {
+    /**
+     * The specific UUID version to use.
+     */
+    version?: 4 | 7;
+    /**
+     * The timestamp to encode into the UUID.
+     * This parameter is only relevant for time based UUID's.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate?: string | Date | number;
+  }): string;
+  /**
+   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An optional options object.
+   * @param options.version  The specific UUID version to use. Defaults to `4`.
+   * @param options.refDate The timestamp to encode into the UUID.
+   * This parameter is only relevant for time based UUID's.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @since 8.0.0
+   */
+  uuid(
+    options: {
+      /**
+       * The specific UUID version to use.
+       *
+       * @default 4
+       */
+      version?: 4 | 7;
+      /**
+       * The timestamp to encode into the UUID.
+       * This parameter is only relevant for time based UUID's.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const { version = 4, refDate = this.faker.defaultRefDate() } = options;
+    switch (version) {
+      case 7: {
+        return uuidV7(this.faker, toDate(refDate));
+      }
+
+      default: {
+        return uuidV4(this.faker);
+      }
+    }
+
+    this.uuid();
   }
 
   /**
