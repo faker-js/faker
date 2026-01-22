@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { allLocales } from '../src';
-import './vitest-extensions';
 
 function checkLocaleData(data: unknown) {
   if (Array.isArray(data)) {
