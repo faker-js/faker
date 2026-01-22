@@ -757,6 +757,9 @@ export class StringModule extends SimpleModuleBase {
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   * faker.string.uuid({ version: 4 }) // 'd5482c1f-c30d-4bbc-b151-d95145bae71b'
+   * faker.string.uuid({ version: 7 }) // '01948b54-1b78-75fb-9922-0d9b0fd32248'
+   * faker.string.uuid({ version: 7, refDate: '2020-01-01T00:00:00.000Z' }) // '016f5e66-e800-725e-b078-f413f23aaff0'
    *
    * @since 8.0.0
    */
@@ -784,6 +787,9 @@ export class StringModule extends SimpleModuleBase {
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   * faker.string.uuid({ version: 4 }) // 'd5482c1f-c30d-4bbc-b151-d95145bae71b'
+   * faker.string.uuid({ version: 7 }) // '01948b54-1b78-75fb-9922-0d9b0fd32248'
+   * faker.string.uuid({ version: 7, refDate: '2020-01-01T00:00:00.000Z' }) // '016f5e66-e800-725e-b078-f413f23aaff0'
    *
    * @since 8.0.0
    */
