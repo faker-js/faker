@@ -820,8 +820,6 @@ export class StringModule extends SimpleModuleBase {
         return uuidV4(this.faker);
       }
     }
-
-    this.uuid();
   }
 
   /**
