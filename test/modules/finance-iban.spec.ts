@@ -16,7 +16,7 @@ describe('finance_iban', () => {
         countryCode: country,
       });
 
-      expect(actual).toMatch(new RegExp(`^${country}`));
+      expect(actual).toStartWith(country);
       expect(actual).toSatisfy(isIBAN);
     });
   });

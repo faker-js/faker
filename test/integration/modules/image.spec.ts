@@ -22,7 +22,7 @@ import { faker } from '../../../src';
  */
 async function assertWorkingUrl(address: string): Promise<void> {
   expect(address).toBeTypeOf('string');
-  expect(address).toMatch(/^https:\/\//);
+  expect(address).toStartWith('https://');
   expect(() => new URL(address)).not.toThrowError();
 
   await expect(
