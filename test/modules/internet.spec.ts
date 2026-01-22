@@ -864,7 +864,7 @@ describe('internet', () => {
           expect(password).toBeTruthy();
           expect(password).toBeTypeOf('string');
           expect(password).toHaveLength(32);
-          expect(password).toMatch(/^a!G6/);
+          expect(password).toStartWith('a!G6');
           expect(password).toSatisfy(isStrongPassword);
         });
       });
