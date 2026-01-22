@@ -1,5 +1,5 @@
-import { isUUID } from 'validator';
 import isULID from 'validator/lib/isULID';
+import isUUID from 'validator/lib/isUUID';
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
