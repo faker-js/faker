@@ -776,37 +776,9 @@ export class StringModule extends SimpleModuleBase {
      */
     refDate?: string | Date | number;
   }): string;
-  /**
-   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
-   *
-   * @param options An optional options object.
-   * @param options.version  The specific UUID version to use. Defaults to `4`.
-   * @param options.refDate The timestamp to encode into the UUID.
-   * This parameter is only relevant for time based UUID's.
-   * Defaults to `faker.defaultRefDate()`.
-   *
-   * @example
-   * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
-   * faker.string.uuid({ version: 4 }) // 'd5482c1f-c30d-4bbc-b151-d95145bae71b'
-   * faker.string.uuid({ version: 7 }) // '01948b54-1b78-75fb-9922-0d9b0fd32248'
-   * faker.string.uuid({ version: 7, refDate: '2020-01-01T00:00:00.000Z' }) // '016f5e66-e800-725e-b078-f413f23aaff0'
-   *
-   * @since 8.0.0
-   */
   uuid(
     options: {
-      /**
-       * The specific UUID version to use.
-       *
-       * @default 4
-       */
       version?: 4 | 7;
-      /**
-       * The timestamp to encode into the UUID.
-       * This parameter is only relevant for time based UUID's.
-       *
-       * @default faker.defaultRefDate()
-       */
       refDate?: string | Date | number;
     } = {}
   ): string {
