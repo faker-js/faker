@@ -752,7 +752,7 @@ export class StringModule extends SimpleModuleBase {
    * @param options An optional options object.
    * @param options.version The specific UUID version to use. Defaults to `4`.
    * @param options.refDate The timestamp to encode into the UUID.
-   * This parameter is only relevant for time based UUID's.
+   * This parameter is only relevant for UUID v7.
    * Defaults to `faker.defaultRefDate()`.
    *
    * @example
