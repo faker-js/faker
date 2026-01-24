@@ -770,7 +770,7 @@ export class StringModule extends SimpleModuleBase {
     version?: 4 | 7;
     /**
      * The timestamp to encode into the UUID.
-     * This parameter is only relevant for time based UUID's.
+     * This parameter is only relevant for UUID v7.
      *
      * @default faker.defaultRefDate()
      */
