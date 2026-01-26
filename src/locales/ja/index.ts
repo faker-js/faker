@@ -7,6 +7,7 @@ import cell_phone from './cell_phone';
 import company from './company';
 import date from './date';
 import finance from './finance';
+import food from './food';
 import location from './location';
 import lorem from './lorem';
 import metadata from './metadata';
@@ -26,6 +27,7 @@ const ja: LocaleDefinition = {
   company,
   date,
   finance,
+  food,
   location,
   lorem,
   metadata,
