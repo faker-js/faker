@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import cell_phone from './cell_phone';
+import color from './color';
 import company from './company';
 import date from './date';
 import finance from './finance';
@@ -24,6 +25,7 @@ import vehicle from './vehicle';
  */
 const ja: LocaleDefinition = {
   cell_phone,
+  color,
   company,
   date,
   finance,
