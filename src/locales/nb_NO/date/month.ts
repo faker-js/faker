@@ -1,0 +1,31 @@
+// Sources: https://sprakradet.no/godt-og-korrekt-sprak/rettskriving-og-grammatikk/forkortelser/
+export default {
+  wide: [
+    'april',
+    'august',
+    'desember',
+    'februar',
+    'januar',
+    'juli',
+    'juni',
+    'mai',
+    'mars',
+    'november',
+    'oktober',
+    'september',
+  ],
+  abbr: [
+    'apr.',
+    'aug.',
+    'des.',
+    'feb.',
+    'jan.',
+    'jul.',
+    'juni',
+    'mai',
+    'mars',
+    'nov.',
+    'okt.',
+    'sep.',
+  ],
+};
