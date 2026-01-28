@@ -9,6 +9,7 @@ import last_name_pattern from './last_name_pattern';
 import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
+import western_zodiac_sign from './western_zodiac_sign';
 
 const person: PersonDefinition = {
   first_name,
@@ -17,6 +18,7 @@ const person: PersonDefinition = {
   name: name_,
   prefix,
   suffix,
+  western_zodiac_sign,
 };
 
 export default person;
