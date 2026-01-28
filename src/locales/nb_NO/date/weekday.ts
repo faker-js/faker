@@ -1,4 +1,4 @@
-// Sources: https://sprakradet.no/godt-og-korrekt-sprak/rettskriving-og-grammatikk/forkortelser/
+// Sources: https://st.unicode.org/cldr-apps/v#/no/Gregorian/header_Days_abbreviated_Formatting
 export default {
   wide: [
     'fredag',
@@ -9,5 +9,5 @@ export default {
     'tirsdag',
     'torsdag',
   ],
-  abbr: ['fr.', 'lø.', 'ma.', 'on.', 'sø.', 'ti.', 'to.'],
+  abbr: ['fre.', 'lør.', 'man.', 'ons.', 'søn.', 'tir.', 'tor.'],
 };

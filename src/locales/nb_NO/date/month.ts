@@ -1,4 +1,4 @@
-// Sources: https://sprakradet.no/godt-og-korrekt-sprak/rettskriving-og-grammatikk/forkortelser/
+// Sources: https://st.unicode.org/cldr-apps/v#/no/Gregorian/header_Months_abbreviated_Formatting, https://sprakradet.no/spraksporsmal-og-svar/forkortelser-for-maneds-og-dagsnavn/
 export default {
   wide: [
     'april',
@@ -15,12 +15,26 @@ export default {
     'september',
   ],
   abbr: [
+    'apr',
+    'aug',
+    'des',
+    'feb',
+    'jan',
+    'jul',
+    'jun',
+    'mai',
+    'mar',
+    'nov',
+    'okt',
+    'sep',
+  ],
+  abbr_context: [
     'apr.',
     'aug.',
     'des.',
     'feb.',
     'jan.',
-    'jul.',
+    'juli',
     'juni',
     'mai',
     'mars',
