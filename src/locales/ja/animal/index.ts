@@ -4,10 +4,12 @@
  */
 import type { AnimalDefinition } from '../../..';
 import cat from './cat';
+import cow from './cow';
 import dog from './dog';
 
 const animal: AnimalDefinition = {
   cat,
+  cow,
   dog,
 };
 
