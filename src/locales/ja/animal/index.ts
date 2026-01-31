@@ -5,10 +5,12 @@
 import type { AnimalDefinition } from '../../..';
 import cat from './cat';
 import dog from './dog';
+import horse from './horse';
 
 const animal: AnimalDefinition = {
   cat,
   dog,
+  horse,
 };
 
 export default animal;
