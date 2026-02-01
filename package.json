@@ -119,7 +119,7 @@
     "eslint-plugin-unicorn": "62.0.0",
     "jiti": "2.6.1",
     "npm-run-all2": "8.0.4",
-    "prettier": "3.7.4",
+    "prettier": "3.8.1",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-pkg": "0.21.2",
     "sanitize-html": "2.17.0",
