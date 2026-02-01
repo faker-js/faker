@@ -33,8 +33,8 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
       '@vitest/eslint-plugin':
-        specifier: 1.6.3
-        version: 1.6.3(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4)
+        specifier: 1.6.6
+        version: 1.6.6(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4)
       '@vitest/ui':
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
@@ -1013,8 +1013,8 @@ packages:
       '@vitest/browser':
         optional: true
 
-  '@vitest/eslint-plugin@1.6.3':
-    resolution: {integrity: sha512-2h4GQ113DR2KGQkZyXXXyKpAv9L130YCe/0be44VeSUsYXdh9XGt0+snCPTijNxG0vJo0YDrdFvpY1bOUfx5ng==}
+  '@vitest/eslint-plugin@1.6.6':
+    resolution: {integrity: sha512-bwgQxQWRtnTVzsUHK824tBmHzjV0iTx3tZaiQIYDjX3SA7TsQS8CuDVqxXrRY3FaOUMgbGavesCxI9MOfFLm7Q==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: '>=8.57.0'
@@ -4233,7 +4233,7 @@ snapshots:
   '@typescript-eslint/project-service@8.50.1(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.50.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.50.1
+      '@typescript-eslint/types': 8.52.0
       debug: 4.4.3(supports-color@8.1.1)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -4370,7 +4370,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.6.3(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4)':
+  '@vitest/eslint-plugin@1.6.6(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.52.0
       '@typescript-eslint/utils': 8.52.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
