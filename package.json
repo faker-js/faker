@@ -101,7 +101,7 @@
     "@eslint/compat": "2.0.1",
     "@eslint/js": "9.39.2",
     "@stylistic/eslint-plugin": "5.7.1",
-    "@types/node": "22.19.3",
+    "@types/node": "22.19.7",
     "@types/sanitize-html": "2.16.0",
     "@types/semver": "7.7.1",
     "@types/validator": "13.15.10",
@@ -110,7 +110,7 @@
     "@vitest/ui": "3.2.4",
     "@vueuse/core": "13.9.0",
     "commit-and-tag-version": "12.6.1",
-    "cypress": "15.8.1",
+    "cypress": "15.9.0",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-file-progress": "3.0.2",
@@ -132,8 +132,8 @@
     "validator": "13.15.26",
     "vitepress": "1.6.4",
     "vitest": "3.2.4",
-    "vue": "3.5.26",
-    "vue-tsc": "3.2.1"
+    "vue": "3.5.27",
+    "vue-tsc": "3.2.4"
   },
   "packageManager": "pnpm@10.26.2",
   "engines": {
