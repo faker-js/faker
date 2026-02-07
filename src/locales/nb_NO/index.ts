@@ -13,6 +13,7 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
+import vehicle from './vehicle';
 import word from './word';
 
 /**
@@ -32,6 +33,7 @@ const nb_NO: LocaleDefinition = {
   person,
   phone_number,
   science,
+  vehicle,
   word,
 };
 
