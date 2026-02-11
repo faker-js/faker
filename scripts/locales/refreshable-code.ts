@@ -1,4 +1,4 @@
-import { formatTypescript } from './format';
+import { formatTypescript } from '../shared/format';
 
 export async function toRefreshableCode(
   name: string,

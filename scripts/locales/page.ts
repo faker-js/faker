@@ -1,28 +1,27 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { MetadataDefinition } from '../../src';
-import { formatTypescript } from '../apidocs/utils/format';
-import { codeToHtml } from '../apidocs/utils/markdown';
-import { toRefreshableCode } from '../apidocs/utils/refreshable-code';
-import {
-  pathDocsLocales,
-  toFakerExportName,
-  tryLoadMetadata,
-} from '../generate-locales';
+import { formatTypescript } from '../shared/format';
+import { codeToHtml } from '../shared/markdown';
+import { FILE_PATH_DOCS_LOCALES } from '../shared/paths';
+import { toFakerExportName } from './exports';
+import { tryLoadMetadata } from './metadata';
+import { toRefreshableCode } from './refreshable-code';
 
 /**
  * Writes the locale docs page and data for the given locale to the correct location.
  *
  * @param locale The locale to write.
  */
-export async function writeLocalePage(locale: string): Promise<void> {
+export async function writeLocalePage(locale: string): Promise<unknown> {
   try {
     const metadata = await tryLoadMetadata(locale);
     const localizedFakerExport = toFakerExportName(locale);
 
-    await mkdir(pathDocsLocales, { recursive: true });
-    await writePageMarkdown(locale, localizedFakerExport, metadata);
-    await writePageData(locale, localizedFakerExport);
+    return await Promise.all([
+      writePageMarkdown(locale, localizedFakerExport, metadata),
+      writePageData(locale, localizedFakerExport),
+    ]);
   } catch (error) {
     throw new Error(`Error writing page ${locale}`, { cause: error });
   }
@@ -66,7 +65,7 @@ A few commonly localized methods are shown below. Click the refresh button to se
 <RefreshableCode :examples="localeData.examples" :refresh="localeData.refresh" refreshOnLoad />
 `;
 
-  await writeFile(resolve(pathDocsLocales, `${locale}.md`), content);
+  await writeFile(resolve(FILE_PATH_DOCS_LOCALES, `${locale}.md`), content);
 }
 
 /**
@@ -115,7 +114,7 @@ ${localizedFakerExport}.number.int();
     );
 
   return writeFile(
-    resolve(pathDocsLocales, `${locale}.ts`),
+    resolve(FILE_PATH_DOCS_LOCALES, `${locale}.ts`),
     await formatTypescript(content)
   );
 }
