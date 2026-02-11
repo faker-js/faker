@@ -25,6 +25,7 @@ import { initMarkdownRenderer } from './apidocs/utils/markdown';
 import { writeLocalePage } from './locales/page';
 import {
   pathDocsLocales,
+  pathLocales,
   toFakerExportName,
   tryLoadMetadata,
 } from './locales/shared';
@@ -33,7 +34,6 @@ import {
 
 const pathRoot = resolve(import.meta.dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
-const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
 const pathDocsGuideLocalization = resolve(

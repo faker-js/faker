@@ -14,7 +14,7 @@ export const pathDocsLocales = resolve(
 /**
  * Path to the source locales directory.
  */
-const pathLocales = resolve(import.meta.dirname, '../../src/locales');
+export const pathLocales = resolve(import.meta.dirname, '../../src/locales');
 
 /**
  * Converts a locale name to a Faker export name.
