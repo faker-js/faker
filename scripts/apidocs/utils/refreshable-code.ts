@@ -20,8 +20,6 @@ export async function toRefreshableCode(
 
   const fullMethod = `async (): Promise<unknown[]> => {
 await enableFaker();
-faker.seed();
-faker.setDefaultRefDate();
 const result: unknown[] = [];
 
 ${exampleLines}
