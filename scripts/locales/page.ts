@@ -61,7 +61,7 @@ ${metadata.title} is one of the many supported [locales](/guide/localization.htm
 
 ## Usage
 
-A few commonly localized methods are shown below. Reload this page to see more random examples. Not [all methods](/api/) are localized in all locales.
+A few commonly localized methods are shown below. Click the refresh button to see more random examples. Not [all methods](/api/) are localized in all locales.
 
 <RefreshableCode :examples="localeData.examples" :refresh="localeData.refresh" refreshOnLoad />
 `;
