@@ -8,7 +8,7 @@ import {
   pathDocsLocales,
   toFakerExportName,
   tryLoadMetadata,
-} from '../generate-locales';
+} from './shared';
 
 /**
  * Writes the locale docs page and data for the given locale to the correct location.

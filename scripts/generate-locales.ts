@@ -23,6 +23,11 @@ import { keys } from '../src/internal/keys';
 import { formatMarkdown, formatTypescript } from './apidocs/utils/format';
 import { initMarkdownRenderer } from './apidocs/utils/markdown';
 import { writeLocalePage } from './locales/page';
+import {
+  pathDocsLocales,
+  toFakerExportName,
+  tryLoadMetadata,
+} from './locales/shared';
 
 // Constants
 
@@ -31,7 +36,6 @@ const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-export const pathDocsLocales = resolve(pathRoot, 'docs', 'locales');
 const pathDocsGuideLocalization = resolve(
   pathRoot,
   'docs',
@@ -115,25 +119,11 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
-export function toFakerExportName(locale: string): string {
-  return `faker${locale.replace(/^([a-z]+)/, (part) => part.toUpperCase())}`;
-}
-
 async function loadMetadata(locale: string): Promise<MetadataDefinition> {
   const imported = await import(
     `file:${resolve(pathLocales, locale, 'metadata.ts')}`
   );
   return imported.default as MetadataDefinition;
-}
-
-export async function tryLoadMetadata(
-  locale: string
-): Promise<MetadataDefinition> {
-  try {
-    return await loadMetadata(locale);
-  } catch {
-    return {};
-  }
 }
 
 async function generateLocaleDocumentation(locale: string): Promise<void> {
