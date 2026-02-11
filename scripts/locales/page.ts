@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { MetadataDefinition } from '../../src';
-import { formatTypescript } from '../shared/format';
+import { formatMarkdown, formatTypescript } from '../shared/format';
 import { codeToHtml } from '../shared/markdown';
 import { FILE_PATH_DOCS_LOCALES } from '../shared/paths';
 import { toRefreshableCode } from '../shared/refreshable-code';
@@ -65,7 +65,10 @@ A few commonly localized methods are shown below. Click the refresh button to se
 <RefreshableCode :examples="localeData.examples" :refresh="localeData.refresh" refreshOnLoad />
 `;
 
-  await writeFile(resolve(FILE_PATH_DOCS_LOCALES, `${locale}.md`), content);
+  await writeFile(
+    resolve(FILE_PATH_DOCS_LOCALES, `${locale}.md`),
+    await formatMarkdown(content)
+  );
 }
 
 /**
