@@ -12,6 +12,11 @@ export const pathDocsLocales = resolve(
 );
 
 /**
+ * Path to the source locales directory.
+ */
+const pathLocales = resolve(import.meta.dirname, '../../src/locales');
+
+/**
  * Converts a locale name to a Faker export name.
  *
  * @param locale The locale name (e.g., 'en', 'en_US').
@@ -30,7 +35,6 @@ export function toFakerExportName(locale: string): string {
 export async function tryLoadMetadata(
   locale: string
 ): Promise<MetadataDefinition> {
-  const pathLocales = resolve(import.meta.dirname, '../../src/locales');
   try {
     const imported = await import(
       `file:${resolve(pathLocales, locale, 'metadata.ts')}`

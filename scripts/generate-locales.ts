@@ -119,6 +119,15 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
+/**
+ * Loads the metadata for a locale.
+ * Unlike `tryLoadMetadata`, this function throws an error if the metadata cannot be loaded,
+ * allowing the caller to handle or log the error appropriately.
+ *
+ * @param locale The locale to load metadata for.
+ * @returns The metadata definition.
+ * @throws Error if the metadata cannot be loaded.
+ */
 async function loadMetadata(locale: string): Promise<MetadataDefinition> {
   const imported = await import(
     `file:${resolve(pathLocales, locale, 'metadata.ts')}`
