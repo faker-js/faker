@@ -35,6 +35,11 @@ export function toFakerExportName(locale: string): string {
 export async function tryLoadMetadata(
   locale: string
 ): Promise<MetadataDefinition> {
+  // Validate locale to prevent path traversal
+  if (locale.includes('..') || locale.includes('/') || locale.includes('\\')) {
+    return {};
+  }
+
   try {
     const imported = await import(
       `file:${resolve(pathLocales, locale, 'metadata.ts')}`
