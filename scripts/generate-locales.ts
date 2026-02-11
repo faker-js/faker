@@ -107,7 +107,7 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
-async function generateLocaleDocumentation(locale: string): Promise<unknown> {
+async function generateLocaleDocumentation(locale: string): Promise<void> {
   if (locale === 'base') {
     return;
   }

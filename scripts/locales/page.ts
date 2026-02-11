@@ -13,12 +13,12 @@ import { tryLoadMetadata } from './metadata';
  *
  * @param locale The locale to write.
  */
-export async function writeLocalePage(locale: string): Promise<unknown> {
+export async function writeLocalePage(locale: string): Promise<void> {
   try {
     const metadata = await tryLoadMetadata(locale);
     const localizedFakerExport = toFakerExportName(locale);
 
-    return await Promise.all([
+    await Promise.all([
       writePageMarkdown(locale, localizedFakerExport, metadata),
       writePageData(locale, localizedFakerExport),
     ]);
