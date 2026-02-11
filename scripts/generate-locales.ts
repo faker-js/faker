@@ -16,18 +16,13 @@
  * Run this script using `pnpm run generate:locales`
  */
 import { constants } from 'node:fs';
-import {
-  access,
-  mkdir,
-  readFile,
-  readdir,
-  stat,
-  writeFile,
-} from 'node:fs/promises';
+import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 import { keys } from '../src/internal/keys';
 import { formatMarkdown, formatTypescript } from './apidocs/utils/format';
+import { initMarkdownRenderer } from './apidocs/utils/markdown';
+import { writeLocalePage } from './locales/page';
 
 // Constants
 
@@ -36,7 +31,7 @@ const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocaleIndex = resolve(pathLocale, 'index.ts');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-const pathDocsLocales = resolve(pathRoot, 'docs', 'locales');
+export const pathDocsLocales = resolve(pathRoot, 'docs', 'locales');
 const pathDocsGuideLocalization = resolve(
   pathRoot,
   'docs',
@@ -120,7 +115,7 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
-function toFakerExportName(locale: string): string {
+export function toFakerExportName(locale: string): string {
   return `faker${locale.replace(/^([a-z]+)/, (part) => part.toUpperCase())}`;
 }
 
@@ -131,7 +126,9 @@ async function loadMetadata(locale: string): Promise<MetadataDefinition> {
   return imported.default as MetadataDefinition;
 }
 
-async function tryLoadMetadata(locale: string): Promise<MetadataDefinition> {
+export async function tryLoadMetadata(
+  locale: string
+): Promise<MetadataDefinition> {
   try {
     return await loadMetadata(locale);
   } catch {
@@ -144,61 +141,7 @@ async function generateLocaleDocumentation(locale: string): Promise<void> {
     return;
   }
 
-  const metadata = await tryLoadMetadata(locale);
-  const localizedFakerExport = toFakerExportName(locale);
-  const content = `
-  <script setup>
-  import ApiDocsLocale from '../.vitepress/components/api-docs/locale.vue';
-  </script>
-
-  # ${metadata.title}
-  ${metadata.title} is one of the many supported [locales](/guide/localization.html#available-locales) in Faker. It uses the language code \`${metadata.code}\` and is available as \`${localizedFakerExport}\`.
-
-  ## Language data
-
-  | Key | Value |
-  | :--- | :--- |
-  | Name | ${metadata.title} |
-  | Local Name | ${metadata.endonym} |
-  | Language | ${metadata.language} |
-  | Script | ${metadata.script} |
-  | Direction | ${metadata.dir} |
-
-  ## Usage
-
-  A few commonly localized methods are shown below. Reload this page to see more random examples. Not [all methods](/api/) are localized in all locales.
-
-  \`\`\`ts
-  import { ${localizedFakerExport} } from '@faker-js/faker';
-  // const { ${localizedFakerExport} } = require('@faker-js/faker'); // CJS
-
-  // Commonly localized methods:
-  ${localizedFakerExport}.person.fullName();
-  ${localizedFakerExport}.location.streetAddress();
-  ${localizedFakerExport}.location.city();
-  ${localizedFakerExport}.location.state();
-  ${localizedFakerExport}.location.zipCode();
-  ${localizedFakerExport}.phone.number();
-  ${localizedFakerExport}.commerce.productName();
-  ${localizedFakerExport}.internet.email();
-  ${localizedFakerExport}.internet.url();
-  ${localizedFakerExport}.date.month();
-  ${localizedFakerExport}.date.weekday();
-  ${localizedFakerExport}.word.noun();
-  ${localizedFakerExport}.word.verb();
-  ${localizedFakerExport}.company.name();
-
-  // Non-localized methods work as normal:
-  ${localizedFakerExport}.number.int();
-  \`\`\`
-
-  <ApiDocsLocale target="${localizedFakerExport}" v-once />
-  `;
-  await mkdir(pathDocsLocales, { recursive: true });
-  return writeFile(
-    resolve(pathDocsLocales, `${locale}.md`),
-    await formatMarkdown(content)
-  );
+  return writeLocalePage(locale);
 }
 
 async function generateLocaleFile(locale: string): Promise<void> {
@@ -510,6 +453,8 @@ let localesIndexExportsGrouped = '';
 
 let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
 const promises: Array<Promise<unknown>> = [];
+
+await initMarkdownRenderer();
 
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
