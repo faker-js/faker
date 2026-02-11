@@ -1,10 +1,10 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
-import { toRefreshableCode } from '../../locales/refreshable-code';
 import { formatMarkdown, formatTypescript } from '../../shared/format';
 import { adjustUrls, codeToHtml, mdToHtml } from '../../shared/markdown';
 import { FILE_PATH_API_DOCS } from '../../shared/paths';
+import { toRefreshableCode } from '../../shared/refreshable-code';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
 import { required } from '../utils/value-checks';

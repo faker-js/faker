@@ -4,9 +4,9 @@ import type { MetadataDefinition } from '../../src';
 import { formatTypescript } from '../shared/format';
 import { codeToHtml } from '../shared/markdown';
 import { FILE_PATH_DOCS_LOCALES } from '../shared/paths';
+import { toRefreshableCode } from '../shared/refreshable-code';
 import { toFakerExportName } from './exports';
 import { tryLoadMetadata } from './metadata';
-import { toRefreshableCode } from './refreshable-code';
 
 /**
  * Writes the locale docs page and data for the given locale to the correct location.
