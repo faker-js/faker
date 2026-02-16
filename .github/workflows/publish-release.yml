@@ -46,16 +46,9 @@ jobs:
           echo -e "$(grep -P '## 📙 API Documentation' -B 10000 README.md)\n\n- [Getting Started Guide](https://fakerjs.dev/guide/)\n- [API Reference](https://fakerjs.dev/api/)\n\n$(grep -P '## 🚀 Features' -A 10000 README.md)" > README.md
           sed -i "s|/fakerjs.dev/|/v$RELEASE_MAJOR.fakerjs.dev/|g" README.md
 
-      - name: Set publishing config
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
       - name: Publish
         run: |
-          pnpm publish --tag next --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
+          pnpm publish --access public --tag next --no-git-checks --provenance
 
       - name: Set latest/next dist-tag
         run: |
