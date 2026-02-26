@@ -16,34 +16,21 @@
  * Run this script using `pnpm run generate:locales`
  */
 import { constants } from 'node:fs';
-import {
-  access,
-  mkdir,
-  readFile,
-  readdir,
-  stat,
-  writeFile,
-} from 'node:fs/promises';
+import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { PersonEntryDefinition } from '../dist';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 import { keys } from '../src/internal/keys';
-import { formatMarkdown, formatTypescript } from './apidocs/utils/format';
-
-// Constants
-
-const pathRoot = resolve(import.meta.dirname, '..');
-const pathLocale = resolve(pathRoot, 'src', 'locale');
-const pathLocales = resolve(pathRoot, 'src', 'locales');
-const pathLocaleIndex = resolve(pathLocale, 'index.ts');
-const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-const pathDocsLocales = resolve(pathRoot, 'docs', 'locales');
-const pathDocsGuideLocalization = resolve(
-  pathRoot,
-  'docs',
-  'guide',
-  'localization.md'
-);
+import { toFakerExportName } from './locales/exports';
+import { loadMetadata, tryLoadMetadata } from './locales/metadata';
+import { writeLocalePage } from './locales/page';
+import { formatMarkdown, formatTypescript } from './shared/format';
+import { initMarkdownRenderer } from './shared/markdown';
+import {
+  FILE_PATH_DOCS,
+  FILE_PATH_SRC_LOCALE,
+  FILE_PATH_SRC_LOCALES,
+} from './shared/paths';
 
 // Workaround for nameOf<T>
 type PascalCase<TName extends string> =
@@ -121,85 +108,12 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
-function toFakerExportName(locale: string): string {
-  return `faker${locale.replace(/^([a-z]+)/, (part) => part.toUpperCase())}`;
-}
-
-async function loadMetadata(locale: string): Promise<MetadataDefinition> {
-  const imported = await import(
-    `file:${resolve(pathLocales, locale, 'metadata.ts')}`
-  );
-  return imported.default as MetadataDefinition;
-}
-
-async function tryLoadMetadata(locale: string): Promise<MetadataDefinition> {
-  try {
-    return await loadMetadata(locale);
-  } catch {
-    return {};
-  }
-}
-
 async function generateLocaleDocumentation(locale: string): Promise<void> {
   if (locale === 'base') {
     return;
   }
 
-  const metadata = await tryLoadMetadata(locale);
-  const localizedFakerExport = toFakerExportName(locale);
-  const content = `
-  <script setup>
-  import ApiDocsLocale from '../.vitepress/components/api-docs/locale.vue';
-  </script>
-
-  # ${metadata.title}
-  ${metadata.title} is one of the many supported [locales](/guide/localization.html#available-locales) in Faker. It uses the language code \`${metadata.code}\` and is available as \`${localizedFakerExport}\`.
-
-  ## Language data
-
-  | Key | Value |
-  | :--- | :--- |
-  | Name | ${metadata.title} |
-  | Local Name | ${metadata.endonym} |
-  | Language | ${metadata.language} |
-  | Script | ${metadata.script} |
-  | Direction | ${metadata.dir} |
-
-  ## Usage
-
-  A few commonly localized methods are shown below. Reload this page to see more random examples. Not [all methods](/api/) are localized in all locales.
-
-  \`\`\`ts
-  import { ${localizedFakerExport} } from '@faker-js/faker';
-  // const { ${localizedFakerExport} } = require('@faker-js/faker'); // CJS
-
-  // Commonly localized methods:
-  ${localizedFakerExport}.person.fullName();
-  ${localizedFakerExport}.location.streetAddress();
-  ${localizedFakerExport}.location.city();
-  ${localizedFakerExport}.location.state();
-  ${localizedFakerExport}.location.zipCode();
-  ${localizedFakerExport}.phone.number();
-  ${localizedFakerExport}.commerce.productName();
-  ${localizedFakerExport}.internet.email();
-  ${localizedFakerExport}.internet.url();
-  ${localizedFakerExport}.date.month();
-  ${localizedFakerExport}.date.weekday();
-  ${localizedFakerExport}.word.noun();
-  ${localizedFakerExport}.word.verb();
-  ${localizedFakerExport}.company.name();
-
-  // Non-localized methods work as normal:
-  ${localizedFakerExport}.number.int();
-  \`\`\`
-
-  <ApiDocsLocale target="${localizedFakerExport}" v-once />
-  `;
-  await mkdir(pathDocsLocales, { recursive: true });
-  return writeFile(
-    resolve(pathDocsLocales, `${locale}.md`),
-    await formatMarkdown(content)
-  );
+  return writeLocalePage(locale);
 }
 
 async function generateLocaleFile(locale: string): Promise<void> {
@@ -209,7 +123,7 @@ async function generateLocaleFile(locale: string): Promise<void> {
   for (let i = parts.length - 1; i > 0; i--) {
     const fallback = parts.slice(0, i).join('_');
     try {
-      await access(resolve(pathLocales, fallback), constants.R_OK);
+      await access(resolve(FILE_PATH_SRC_LOCALES, fallback), constants.R_OK);
       locales.push(fallback);
     } catch {
       // file is missing
@@ -260,7 +174,7 @@ ${locales.map((locale) => `- \`${locale}\``).join('\n')}`;
       `;
 
   return writeFile(
-    resolve(pathLocale, `${locale}.ts`),
+    resolve(FILE_PATH_SRC_LOCALE, `${locale}.ts`),
     await formatTypescript(content)
   );
 }
@@ -375,7 +289,7 @@ async function updateLocaleFile(filePath: string): Promise<void> {
   const fileStat = await stat(filePath);
   if (fileStat.isFile()) {
     const [locale, moduleKey, entryKey] = filePath
-      .substring(pathLocales.length + 1, filePath.length - 3)
+      .substring(FILE_PATH_SRC_LOCALES.length + 1, filePath.length - 3)
       .split(/[\\/]/);
     return updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
@@ -544,7 +458,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
 // Start of actual logic
 
-const locales = await readdir(pathLocales);
+const locales = await readdir(FILE_PATH_SRC_LOCALES);
 removeIndexTs(locales);
 
 // src/locale/index.ts (Faker Imports and Exports)
@@ -559,8 +473,10 @@ let localesIndexExportsGrouped = '';
 let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
 const promises: Array<Promise<unknown>> = [];
 
+await initMarkdownRenderer();
+
 for (const locale of locales) {
-  const pathModules = resolve(pathLocales, locale);
+  const pathModules = resolve(FILE_PATH_SRC_LOCALES, locale);
   const pathMetadata = resolve(pathModules, 'metadata.ts');
   let localeTitle = 'No title found';
   try {
@@ -622,6 +538,7 @@ let localeIndexContent = `
   `;
 
 localeIndexContent = await formatTypescript(localeIndexContent);
+const pathLocaleIndex = resolve(FILE_PATH_SRC_LOCALE, 'index.ts');
 await writeFile(pathLocaleIndex, localeIndexContent);
 
 // src/locales/index.ts
@@ -638,12 +555,19 @@ let localesIndexContent = `
   } as const;
   `;
 
+const pathLocalesIndex = resolve(FILE_PATH_SRC_LOCALES, 'index.ts');
 localesIndexContent = await formatTypescript(localesIndexContent);
 await writeFile(pathLocalesIndex, localesIndexContent);
 
 // docs/guide/localization.md
 
 localizationLocales = await formatMarkdown(localizationLocales);
+
+const pathDocsGuideLocalization = resolve(
+  FILE_PATH_DOCS,
+  'guide',
+  'localization.md'
+);
 
 let localizationContent = await readFile(pathDocsGuideLocalization, 'utf8');
 localizationContent = localizationContent.replaceAll(

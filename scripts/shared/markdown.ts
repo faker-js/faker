@@ -1,13 +1,13 @@
 import sanitizeHtml from 'sanitize-html';
 import type { MarkdownRenderer } from 'vitepress';
 import { createMarkdownRenderer } from 'vitepress';
-import vitepressConfig from '../../../docs/.vitepress/config';
+import vitepressConfig from '../../docs/.vitepress/config';
 import { FILE_PATH_API_DOCS } from './paths';
 
 let markdown: MarkdownRenderer;
 
 export async function initMarkdownRenderer(): Promise<void> {
-  markdown = await createMarkdownRenderer(
+  markdown ??= await createMarkdownRenderer(
     FILE_PATH_API_DOCS,
     vitepressConfig.markdown,
     '/'
