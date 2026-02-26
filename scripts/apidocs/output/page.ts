@@ -1,11 +1,12 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
+import { formatMarkdown, formatTypescript } from '../../shared/format';
+import { adjustUrls, codeToHtml, mdToHtml } from '../../shared/markdown';
+import { FILE_PATH_API_DOCS } from '../../shared/paths';
+import { toRefreshableCode } from '../../shared/refreshable-code';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
-import { formatMarkdown, formatTypescript } from '../utils/format';
-import { adjustUrls, codeToHtml, mdToHtml } from '../utils/markdown';
-import { FILE_PATH_API_DOCS } from '../utils/paths';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
@@ -211,40 +212,5 @@ export async function toRefreshFunction(
   const { examples } = signatureData;
 
   const exampleCode = examples.join('\n');
-  if (!/^\w*faker\w*\./im.test(exampleCode)) {
-    // No recordable faker calls in examples
-    return 'undefined';
-  }
-
-  const exampleLines = exampleCode
-    .replaceAll(/ ?\/\/.*$/gm, '') // Remove comments
-    .replaceAll(/^import .*$/gm, '') // Remove imports
-    .replaceAll(
-      // record results of faker calls
-      /^(\w*faker\w*\..+(?:(?:.|\n..)*\n[^ ])?\)(?:\.\w+)?);?$/gim,
-      `try { result.push($1); } catch (error: unknown) { result.push(error instanceof Error ? error.name : 'Error'); }\n`
-    );
-
-  const fullMethod = `async (): Promise<unknown[]> => {
-await enableFaker();
-faker.seed();
-faker.setDefaultRefDate();
-const result: unknown[] = [];
-
-${exampleLines}
-
-return result;
-}`;
-  try {
-    const formattedMethod = await formatTypescript(fullMethod);
-    return formattedMethod.replace(/;\s+$/, ''); // Remove trailing semicolon
-  } catch (error: unknown) {
-    console.error(
-      'Failed to format refresh function for',
-      name,
-      fullMethod,
-      error
-    );
-    return 'undefined';
-  }
+  return await toRefreshableCode(name, exampleCode);
 }

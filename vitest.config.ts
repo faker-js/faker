@@ -12,7 +12,6 @@ export default defineConfig({
     include: ['test/**/*.spec.ts', 'test/**/*.spec.cts'],
     exclude: ['test/integration/**/*.spec.ts'],
     coverage: {
-      all: true,
       provider: 'v8',
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],

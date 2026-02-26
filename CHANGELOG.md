@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.3.0](https://github.com/faker-js/faker/compare/v10.2.0...v10.3.0) (2026-02-06)
+
+
+### New Locales
+
+* **locale:** add Japanese  dog definition ([#3715](https://github.com/faker-js/faker/issues/3715)) ([76c9df1](https://github.com/faker-js/faker/commit/76c9df131a55f63da55101cc7cccff2f7928187c))
+* **locale:** add Japanese color definitions ([#3707](https://github.com/faker-js/faker/issues/3707)) ([bbbb215](https://github.com/faker-js/faker/commit/bbbb215ef6441ec7a3ebdd660fd2690074f69c67))
+* **locale:** add Japanese food module ([#3706](https://github.com/faker-js/faker/issues/3706)) ([71d55c0](https://github.com/faker-js/faker/commit/71d55c09f15ab437444c57d0eebff4477f75b131))
+* **locale:** add Japanese internet definitions ([#3708](https://github.com/faker-js/faker/issues/3708)) ([184a709](https://github.com/faker-js/faker/commit/184a709825979c6d8d7c3ea240ac2485bed96296))
+* **locale:** add Japanese job definitions for person module ([#3705](https://github.com/faker-js/faker/issues/3705)) ([e7f3ccd](https://github.com/faker-js/faker/commit/e7f3ccd2e5b0ba84455edb680dfcfa5d86ecdbaf))
+* **locale:** add Japanese suffix definitions for person module ([#3704](https://github.com/faker-js/faker/issues/3704)) ([45ad7d8](https://github.com/faker-js/faker/commit/45ad7d81682f65ab7fe37eea0633d7f0262cde87))
+* **locale:** add Norwegian (nb_NO) continent definitions ([#3712](https://github.com/faker-js/faker/issues/3712)) ([c0f0f23](https://github.com/faker-js/faker/commit/c0f0f232adad715791cde3622939b463d925c165))
+* **locale:** add Norwegian (nb_NO) direction definition ([#3713](https://github.com/faker-js/faker/issues/3713)) ([43b18fa](https://github.com/faker-js/faker/commit/43b18fa0c540fdc2a3a61517377da63653802d25))
+* **locale:** add Norwegian (nb_NO) sex definitions ([#3710](https://github.com/faker-js/faker/issues/3710)) ([76063f2](https://github.com/faker-js/faker/commit/76063f26574b48f7ea8fd918f18744f3276669ad))
+* **locale:** add Norwegian (nb_NO) vehicle definition ([#3732](https://github.com/faker-js/faker/issues/3732)) ([d1c32b0](https://github.com/faker-js/faker/commit/d1c32b0326298534f40986328296232af209eb19))
+
+
+### Features
+
+* **locales:** add Norwegian (nb_NO) zodiac sign definitions ([#3711](https://github.com/faker-js/faker/issues/3711)) ([e306542](https://github.com/faker-js/faker/commit/e306542867a4839fbe7eb8015c73db2f24bc6ceb))
+* **person:** `sexType` can return `'generic'` ([#3259](https://github.com/faker-js/faker/issues/3259)) ([0e099a1](https://github.com/faker-js/faker/commit/0e099a1033ae89de2f9810558c3c0257d78a50fe))
+* **string:** support uuid v7 ([#3701](https://github.com/faker-js/faker/issues/3701)) ([87c2753](https://github.com/faker-js/faker/commit/87c2753fe3c92e53925a970f40a7b10422f44378))
+
+
+### Changed Locales
+
+* **locale:** normalize system locale data ([#3702](https://github.com/faker-js/faker/issues/3702)) ([ba91653](https://github.com/faker-js/faker/commit/ba91653cd4c4ceecf6c96ef887979bfd97fa4e5c))
+
+
+### Bug Fixes
+
+* **locale:** remove empty string from Hebrew lorem words ([#3698](https://github.com/faker-js/faker/issues/3698)) ([81a896c](https://github.com/faker-js/faker/commit/81a896c09a3a0907fd34734b6d636b5e35fb8291))
+* **location:** state name to 'Trøndelag' for nb_NO ([#3691](https://github.com/faker-js/faker/issues/3691)) ([eaef389](https://github.com/faker-js/faker/commit/eaef38961863a40a7bed6632858bcf36dd23c560))
+
 ## [10.2.0](https://github.com/faker-js/faker/compare/v10.1.0...v10.2.0) (2025-12-27)
 
 

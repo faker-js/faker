@@ -13,6 +13,6 @@ export default [
   'Vestland',
   'Telemark',
   'Troms',
-  'Trööndelage',
+  'Trøndelag',
   'Østfold',
 ];
