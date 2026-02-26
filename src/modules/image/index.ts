@@ -1,23 +1,26 @@
 import { toBase64 } from '../../internal/base64';
 import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
+import type { SexType } from '../person';
 
 /**
  * Module to generate images.
  *
  * ### Overview
  *
- * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
+ * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but an URL pointing to an image from an image provider like "Picsum". Other providers may be added in future versions. You can request an image specifically from this provider, with additional options using [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
  *
- * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
+ * For a random placeholder image containing only solid color and text, use [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
- * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar).
+ * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar), or [`personPortrait()`](https://fakerjs.dev/api/image.html#personportrait) which has more control over the size and sex of the person.
  *
  * If you need more control over the content of the images, you can pass a `category` parameter e.g. `'cat'` or `'nature'` to [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or simply use [`faker.helpers.arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) with your own array of image URLs.
  */
 export class ImageModule extends ModuleBase {
   /**
    * Generates a random avatar image url.
+   *
+   * @remark This method sometimes generates a random string representing an URL from GitHub by using a random user ID. Faker is not responsible for the content of the image or the service providing it.
    *
    * @example
    * faker.image.avatar()
@@ -27,11 +30,17 @@ export class ImageModule extends ModuleBase {
    */
   avatar(): string {
     // Add new avatar providers here, when adding a new one.
-    return this.avatarGitHub();
+    const avatarMethod = this.faker.helpers.arrayElement([
+      this.personPortrait,
+      this.avatarGitHub,
+    ]);
+    return avatarMethod();
   }
 
   /**
    * Generates a random avatar from GitHub.
+   *
+   * @remark This method generates a random string representing an URL from GitHub by using a random user ID. Faker is not responsible for the content of the image or the service providing it.
    *
    * @example
    * faker.image.avatarGitHub()
@@ -46,38 +55,61 @@ export class ImageModule extends ModuleBase {
   }
 
   /**
-   * Generates a random avatar from `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar`.
+   * Generates a random square portrait (avatar) of a person.
+   * These are static images of fictional people created by an AI, Stable Diffusion 3.
+   * The image URLs are served via the JSDelivr CDN and subject to their [terms of use](https://www.jsdelivr.com/terms).
+   *
+   * @param options Options for generating an AI avatar.
+   * @param options.sex The sex of the person for the avatar. Can be `'female'` or `'male'`. If not provided or `'generic'`, defaults to a random selection.
+   * @param options.size The size of the image. Can be `512`, `256`, `128`, `64` or `32`. If not provided, defaults to `512`.
    *
    * @example
-   * faker.image.avatarLegacy()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
+   * faker.image.personPortrait() // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/57.jpg'
+   * faker.image.personPortrait({ sex: 'male', size: '128' }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
    *
-   * @since 8.0.0
-   *
-   * @deprecated The links are no longer working. Use `avatar()` instead.
+   * @since 9.5.0
    */
-  avatarLegacy(): string {
-    deprecated({
-      deprecated: 'faker.image.avatarLegacy()',
-      proposed: 'faker.image.avatar()',
-      since: '9.0.2',
-      until: '10.0.0',
-    });
+  personPortrait(
+    options: {
+      /**
+       * The sex of the person for the avatar.
+       * Can be `'female'` or `'male'`. `'generic'` uses a random selection.
+       *
+       * @default faker.person.sexType()
+       */
+      sex?: SexType;
+      /**
+       * The size of the image.
+       * Can be `512`, `256`, `128`, `64` or `32`.
+       *
+       * @default 512
+       */
+      size?: 512 | 256 | 128 | 64 | 32;
+    } = {}
+  ): string {
+    const { size = 512 } = options;
+    let { sex = this.faker.person.sexType() } = options;
 
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
-      1249
-    )}.jpg`;
+    if (sex === 'generic') {
+      sex = this.faker.person.sexType();
+    }
+
+    const baseURL =
+      'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait';
+    return `${baseURL}/${sex}/${size}/${this.faker.number.int({ min: 0, max: 99 })}.jpg`;
   }
 
   /**
    * Generates a random image url.
+   *
+   * @remark This method generates a random string representing an URL from an external provider. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
    * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
    *
    * @example
-   * faker.image.url() // 'https://loremflickr.com/640/480?lock=1234'
+   * faker.image.url() // 'https://picsum.photos/seed/NWbJM2B/640/480'
    *
    * @since 8.0.0
    */
@@ -103,9 +135,9 @@ export class ImageModule extends ModuleBase {
     } = options;
 
     const urlMethod = this.faker.helpers.arrayElement([
-      this.urlLoremFlickr,
       ({ width, height }: { width?: number; height?: number }) =>
         this.urlPicsumPhotos({ width, height, grayscale: false, blur: 0 }),
+      // Other providers may be added back here in future versions.
     ]);
 
     return urlMethod({ width, height });
@@ -113,6 +145,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random image url provided via https://loremflickr.com.
+   *
+   * @remark This method generates a random string representing an URL from loremflickr. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
@@ -126,6 +160,8 @@ export class ImageModule extends ModuleBase {
    * faker.image.urlLoremFlickr({ category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
    *
    * @since 8.0.0
+   *
+   * @deprecated LoremFlickr is no longer available, and image links will be broken. Use `faker.image.url()` instead.
    */
   urlLoremFlickr(
     options: {
@@ -147,6 +183,13 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
+    deprecated({
+      deprecated: 'faker.image.urlLoremFlickr()',
+      proposed: 'faker.image.url()',
+      since: '10.1.0',
+      until: '11.0.0',
+    });
+
     const {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
@@ -160,6 +203,8 @@ export class ImageModule extends ModuleBase {
 
   /**
    * Generates a random image url provided via https://picsum.photos.
+   *
+   * @remark This method generates a random string representing an URL from picsum.photos. Faker is not responsible for the content of the image or the service providing it.
    *
    * @param options Options for generating a URL for an image.
    * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
@@ -238,99 +283,6 @@ export class ImageModule extends ModuleBase {
   }
 
   /**
-   * Generates a random image url provided via https://via.placeholder.com/.
-   *
-   * @param options Options for generating a URL for an image.
-   * @param options.width The width of the image. Defaults to a random number between 1 and 3999.
-   * @param options.height The height of the image. Defaults to a random number between 1 and 3999.
-   * @param options.backgroundColor The background color of the image. Defaults to a random hex color.
-   * @param options.textColor The text color of the image. Defaults to a random hex color.
-   * @param options.format The format of the image. Defaults to a random format.
-   * @param options.text The text to display on the image. Defaults to a random string.
-   *
-   * @example
-   * faker.image.urlPlaceholder() // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ width: 128 }) // 'https://via.placeholder.com/128x180/FF0000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ height: 128 }) // 'https://via.placeholder.com/150x128/FF0000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ backgroundColor: '000000' }) // 'https://via.placeholder.com/150x180/000000/FFFFFF.webp?text=lorem'
-   * faker.image.urlPlaceholder({ textColor: '000000' }) // 'https://via.placeholder.com/150x180/FF0000/000000.webp?text=lorem'
-   * faker.image.urlPlaceholder({ format: 'png' }) // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.png?text=lorem'
-   * faker.image.urlPlaceholder({ text: 'lorem ipsum' }) // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?text=lorem+ipsum'
-   * faker.image.urlPlaceholder({ width: 128, height: 128, backgroundColor: '000000', textColor: 'FF0000', format: 'png', text: 'lorem ipsum' }) // 'https://via.placeholder.com/128x128/000000/FF0000.png?text=lorem+ipsum'
-   *
-   * @since 8.0.0
-   */
-  urlPlaceholder(
-    options: {
-      /**
-       * The width of the image.
-       *
-       * @default faker.number.int({ min: 1, max: 3999 })
-       */
-      width?: number;
-      /**
-       * The height of the image.
-       *
-       * @default faker.number.int({ min: 1, max: 3999 })
-       */
-      height?: number;
-      /**
-       * The background color of the image.
-       *
-       * @default faker.color.rgb({ format: 'hex', prefix: '' })
-       */
-      backgroundColor?: string;
-      /**
-       * The text color of the image.
-       *
-       * @default faker.color.rgb({ format: 'hex', prefix: '' })
-       */
-      textColor?: string;
-      /**
-       * The format of the image.
-       *
-       * @default faker.helpers.arrayElement(['gif', 'jpeg', 'jpg', 'png', 'webp'])
-       */
-      format?: 'gif' | 'jpeg' | 'jpg' | 'png' | 'webp';
-      /**
-       * The text to display on the image.
-       *
-       * @default faker.lorem.words()
-       */
-      text?: string;
-    } = {}
-  ): string {
-    const {
-      width = this.faker.number.int({ min: 1, max: 3999 }),
-      height = this.faker.number.int({ min: 1, max: 3999 }),
-      backgroundColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
-      textColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
-      format = this.faker.helpers.arrayElement([
-        'gif',
-        'jpeg',
-        'jpg',
-        'png',
-        'webp',
-      ]),
-      text = this.faker.lorem.words(),
-    } = options;
-
-    let url = `https://via.placeholder.com`;
-
-    url += `/${width}`;
-    url += `x${height}`;
-
-    url += `/${backgroundColor}`;
-    url += `/${textColor}`;
-
-    url += `.${format}`;
-
-    url += `?text=${encodeURIComponent(text)}`;
-
-    return url;
-  }
-
-  /**
    * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
    *
    * @param options Options for generating a data uri.
@@ -369,7 +321,7 @@ export class ImageModule extends ModuleBase {
        * The type of the image to return. Consisting of
        * the file extension and the used encoding.
        *
-       * @default faker.helpers.arrayElements(['svg-uri', 'svg-base64'])
+       * @default faker.helpers.arrayElement(['svg-uri', 'svg-base64'])
        */
       type?: 'svg-uri' | 'svg-base64';
     } = {}
@@ -378,7 +330,7 @@ export class ImageModule extends ModuleBase {
       width = this.faker.number.int({ min: 1, max: 3999 }),
       height = this.faker.number.int({ min: 1, max: 3999 }),
       color = this.faker.color.rgb(),
-      type = this.faker.helpers.arrayElements(['svg-uri', 'svg-base64']),
+      type = this.faker.helpers.arrayElement(['svg-uri', 'svg-base64']),
     } = options;
 
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${

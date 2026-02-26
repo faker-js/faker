@@ -10,7 +10,7 @@ export function loadExampleMethods(): Record<string, MethodDeclaration> {
       .getClassOrThrow('SignatureTest')
       .getMethods()
       .map((m) => [m.getName(), m] as const)
-      .sort(([a], [b]) => a.localeCompare(b)) // Relevant for Object.keys() order
+      .toSorted(([a], [b]) => a.localeCompare(b)) // Relevant for Object.keys() order
   );
 }
 
@@ -22,7 +22,7 @@ export function loadExampleClasses(): Record<string, ClassDeclaration> {
     loadProjectFile('test/scripts/apidocs/class.example.ts')
       .getClasses()
       .map((m) => [m.getNameOrThrow(), m] as const)
-      .sort(([a], [b]) => a.localeCompare(b)) // Relevant for Object.keys() order
+      .toSorted(([a], [b]) => a.localeCompare(b)) // Relevant for Object.keys() order
   );
 }
 

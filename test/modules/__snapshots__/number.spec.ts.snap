@@ -1,12 +1,14 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`number > 42 > bigInt > noArgs 1`] = `397511086709821n`;
+exports[`number > 42 > bigInt > noArgs 1`] = `975110867098211n`;
 
 exports[`number > 42 > bigInt > with big options 1`] = `19556777749482489605814694n`;
 
 exports[`number > 42 > bigInt > with bigint value 1`] = `25n`;
 
 exports[`number > 42 > bigInt > with boolean value 1`] = `1n`;
+
+exports[`number > 42 > bigInt > with multipleOf 1`] = `147890295638632n`;
 
 exports[`number > 42 > bigInt > with number value 1`] = `39n`;
 
@@ -64,13 +66,15 @@ exports[`number > 42 > romanNumeral > with only max 1`] = `"LXII"`;
 
 exports[`number > 42 > romanNumeral > with only min 1`] = `"MDI"`;
 
-exports[`number > 1211 > bigInt > noArgs 1`] = `982966736876848n`;
+exports[`number > 1211 > bigInt > noArgs 1`] = `829667368768488n`;
 
 exports[`number > 1211 > bigInt > with big options 1`] = `25442250580110979794946298n`;
 
 exports[`number > 1211 > bigInt > with bigint value 1`] = `114n`;
 
 exports[`number > 1211 > bigInt > with boolean value 1`] = `1n`;
+
+exports[`number > 1211 > bigInt > with multipleOf 1`] = `784113589297853n`;
 
 exports[`number > 1211 > bigInt > with number value 1`] = `12n`;
 
@@ -128,13 +132,15 @@ exports[`number > 1211 > romanNumeral > with only max 1`] = `"CLIV"`;
 
 exports[`number > 1211 > romanNumeral > with only min 1`] = `"MMMDCCXIV"`;
 
-exports[`number > 1337 > bigInt > noArgs 1`] = `212435297136194n`;
+exports[`number > 1337 > bigInt > noArgs 1`] = `124352971361947n`;
 
 exports[`number > 1337 > bigInt > with big options 1`] = `27379244885156992800029992n`;
 
 exports[`number > 1337 > bigInt > with bigint value 1`] = `88n`;
 
 exports[`number > 1337 > bigInt > with boolean value 1`] = `0n`;
+
+exports[`number > 1337 > bigInt > with multipleOf 1`] = `682275118016671n`;
 
 exports[`number > 1337 > bigInt > with number value 1`] = `21n`;
 

@@ -4,8 +4,8 @@ exports[`airline > 42 > aircraftType 1`] = `"regional"`;
 
 exports[`airline > 42 > airline 1`] = `
 {
-  "iataCode": "ET",
-  "name": "Ethiopian Airlines",
+  "iataCode": "EY",
+  "name": "Etihad Airways",
 }
 `;
 
@@ -55,8 +55,8 @@ exports[`airline > 1211 > aircraftType 1`] = `"widebody"`;
 
 exports[`airline > 1211 > airline 1`] = `
 {
-  "iataCode": "VN",
-  "name": "Vietnam Airlines",
+  "iataCode": "VJ",
+  "name": "VietJet Air",
 }
 `;
 
@@ -106,8 +106,8 @@ exports[`airline > 1337 > aircraftType 1`] = `"narrowbody"`;
 
 exports[`airline > 1337 > airline 1`] = `
 {
-  "iataCode": "CX",
-  "name": "Cathay Pacific",
+  "iataCode": "5J",
+  "name": "Cebu Pacific Air",
 }
 `;
 

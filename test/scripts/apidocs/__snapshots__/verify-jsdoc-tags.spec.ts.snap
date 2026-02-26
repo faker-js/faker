@@ -105,6 +105,7 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
       "productDescription",
       "productMaterial",
       "productName",
+      "upc",
     ],
   ],
   [
@@ -167,11 +168,11 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
       "currency",
       "currencyCode",
       "currencyName",
+      "currencyNumericCode",
       "currencySymbol",
       "ethereumAddress",
       "iban",
       "litecoinAddress",
-      "maskedNumber",
       "pin",
       "routingNumber",
       "transactionDescription",
@@ -241,18 +242,16 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
     [
       "avatar",
       "avatarGitHub",
-      "avatarLegacy",
       "dataUri",
+      "personPortrait",
       "url",
       "urlLoremFlickr",
       "urlPicsumPhotos",
-      "urlPlaceholder",
     ],
   ],
   [
     "internet",
     [
-      "color",
       "displayName",
       "domainName",
       "domainSuffix",
@@ -274,7 +273,6 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
       "url",
       "userAgent",
       "username",
-      "userName",
     ],
   ],
   [

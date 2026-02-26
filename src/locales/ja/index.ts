@@ -3,13 +3,21 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import cell_phone from './cell_phone';
+import color from './color';
 import company from './company';
+import date from './date';
+import finance from './finance';
+import food from './food';
+import internet from './internet';
 import location from './location';
 import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
+import science from './science';
+import vehicle from './vehicle';
 
 /**
  * The locale data for the `ja` locale.
@@ -18,13 +26,21 @@ import phone_number from './phone_number';
  * - Endonym: 日本語
  */
 const ja: LocaleDefinition = {
+  animal,
   cell_phone,
+  color,
   company,
+  date,
+  finance,
+  food,
+  internet,
   location,
   lorem,
   metadata,
   person,
   phone_number,
+  science,
+  vehicle,
 };
 
 export default ja;

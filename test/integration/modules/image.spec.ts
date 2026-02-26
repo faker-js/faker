@@ -22,8 +22,8 @@ import { faker } from '../../../src';
  */
 async function assertWorkingUrl(address: string): Promise<void> {
   expect(address).toBeTypeOf('string');
-  expect(address).toMatch(/^https:\/\//);
-  expect(() => new URL(address)).not.toThrow();
+  expect(address).toStartWith('https://');
+  expect(() => new URL(address)).not.toThrowError();
 
   await expect(
     new Promise((resolve, reject) => {
@@ -74,6 +74,13 @@ describe('image', () => {
     });
   });
 
+  describe('personPortrait', () => {
+    it('should return a random asset url', async () => {
+      const actual = faker.image.personPortrait();
+      await assertWorkingUrl(actual);
+    });
+  });
+
   describe('url', () => {
     it('should return a random image url', async () => {
       const actual = faker.image.url();
@@ -106,13 +113,6 @@ describe('image', () => {
   describe('urlPicsumPhotos', () => {
     it('should return a random image url from PicsumPhotos', async () => {
       const actual = faker.image.urlPicsumPhotos();
-      await assertWorkingUrl(actual);
-    });
-  });
-
-  describe('urlPlaceholder', () => {
-    it('should return a random image url from Placeholder', async () => {
-      const actual = faker.image.urlPlaceholder();
       await assertWorkingUrl(actual);
     });
   });

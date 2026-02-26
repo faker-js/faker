@@ -1,7 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
 
@@ -132,18 +131,6 @@ function makeValidDomainWordSlug(faker: Faker, word: string): string {
     casing: 'lower',
     length: faker.number.int({ min: 4, max: 8 }),
   });
-}
-
-/**
- * Generates a random color in hex format with the given base color.
- *
- * @param faker The faker instance to use.
- * @param base The base color to use.
- */
-function colorFromBase(faker: Faker, base: number): string {
-  return Math.floor((faker.number.int(256) + base) / 2)
-    .toString(16)
-    .padStart(2, '0');
 }
 
 /**
@@ -309,58 +296,6 @@ export class InternetModule extends ModuleBase {
    * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
-   * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne98'
-   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
-   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
-   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
-   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet.username()` instead.
-   */
-  userName(
-    options: {
-      /**
-       * The optional first name to use.
-       *
-       * @default faker.person.firstName()
-       */
-      firstName?: string;
-      /**
-       * The optional last name to use.
-       *
-       * @default faker.person.lastName()
-       */
-      lastName?: string;
-    } = {}
-  ): string {
-    deprecated({
-      deprecated: 'faker.internet.userName()',
-      proposed: 'faker.internet.username()',
-      since: '9.1.0',
-      until: '10.0.0',
-    });
-
-    return this.username(options);
-  }
-
-  /**
-   * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
-   * This will always return a plain ASCII string.
-   * Some basic stripping of accents and transliteration of characters will be done.
-   *
-   * @param options An options object.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.displayName(): For generating an Unicode display name.
-   *
-   * @example
    * faker.internet.username() // 'Nettie_Zboncak40'
    * faker.internet.username({ firstName: 'Jeanne' }) // 'Jeanne98'
    * faker.internet.username({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
@@ -430,7 +365,7 @@ export class InternetModule extends ModuleBase {
         return charCode.toString(36);
       })
       .join('');
-    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll("'", '');
     result = result.replaceAll(' ', '');
 
     return result;
@@ -488,7 +423,7 @@ export class InternetModule extends ModuleBase {
     ];
 
     let result = this.faker.helpers.arrayElement(strategies)();
-    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll("'", '');
     result = result.replaceAll(' ', '');
     return result;
   }
@@ -498,7 +433,6 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.protocol() // 'http'
-   * faker.internet.protocol() // 'https'
    *
    * @since 2.1.5
    */
@@ -784,7 +718,7 @@ export class InternetModule extends ModuleBase {
    * Generates a random port number.
    *
    * @example
-   * faker.internet.port() // '9414'
+   * faker.internet.port() // 9414
    *
    * @since 5.4.0
    */
@@ -805,54 +739,6 @@ export class InternetModule extends ModuleBase {
     return this.faker.helpers.fake(
       this.faker.definitions.internet.user_agent_pattern
     );
-  }
-
-  /**
-   * Generates a random css hex color code in aesthetically pleasing color palette.
-   *
-   * Based on
-   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-   *
-   * @param options An options object.
-   * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
-   * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
-   * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
-   *
-   * @example
-   * faker.internet.color() // '#30686e'
-   * faker.internet.color({ redBase: 100, greenBase: 100, blueBase: 100 }) // '#4e5f8b'
-   *
-   * @since 2.0.1
-   */
-  color(
-    options: {
-      /**
-       * The optional base red in range between `0` and `255`.
-       *
-       * @default 0
-       */
-      redBase?: number;
-      /**
-       * The optional base green in range between `0` and `255`.
-       *
-       * @default 0
-       */
-      greenBase?: number;
-      /**
-       * The optional base blue in range between `0` and `255`.
-       *
-       * @default 0
-       */
-      blueBase?: number;
-    } = {}
-  ): string {
-    const { redBase = 0, greenBase = 0, blueBase = 0 } = options;
-
-    const red = colorFromBase(this.faker, redBase);
-    const green = colorFromBase(this.faker, greenBase);
-    const blue = colorFromBase(this.faker, blueBase);
-
-    return `#${red}${green}${blue}`;
   }
 
   /**

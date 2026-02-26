@@ -14,6 +14,7 @@ import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
+import word from './word';
 
 /**
  * The locale data for the `pt_BR` locale.
@@ -33,6 +34,7 @@ const pt_BR: LocaleDefinition = {
   metadata,
   person,
   phone_number,
+  word,
 };
 
 export default pt_BR;

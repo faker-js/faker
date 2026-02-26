@@ -13,6 +13,7 @@ import location from './location';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
+import word from './word';
 
 /**
  * The locale data for the `pt_PT` locale.
@@ -31,6 +32,7 @@ const pt_PT: LocaleDefinition = {
   metadata,
   person,
   phone_number,
+  word,
 };
 
 export default pt_PT;

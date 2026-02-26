@@ -15,7 +15,7 @@ describe('toDate()', () => {
 
   it('should throw a FakerError for an invalid date string', () => {
     const timestamp = 'aaaa-07-05T15:49:19+0000';
-    expect(() => toDate(timestamp)).toThrow(
+    expect(() => toDate(timestamp)).toThrowError(
       new FakerError(`Invalid refDate date: ${timestamp}`)
     );
   });

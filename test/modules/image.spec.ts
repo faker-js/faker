@@ -1,6 +1,6 @@
 import isDataURI from 'validator/lib/isDataURI';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker, Sex } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 
 /**
@@ -19,12 +19,12 @@ import { seededTests } from '../support/seeded-runs';
 function assertValidUrl(address: string): void {
   expect(address).toBeTypeOf('string');
   expect(address).toMatch(/^https:\/\//);
-  expect(() => new URL(address)).not.toThrow();
+  expect(() => new URL(address)).not.toThrowError();
 }
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
-    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy');
+    t.itEach('avatar', 'avatarGitHub');
 
     t.describe('url', (t) => {
       t.it('noArgs')
@@ -61,33 +61,6 @@ describe('image', () => {
         });
     });
 
-    t.describe('urlPlaceholder', (t) => {
-      t.it('noArgs')
-        .it('with width', { width: 128 })
-        .it('with height', { height: 128 })
-        .it('with width and height', { width: 128, height: 128 })
-        .it('with backgroundColor', { backgroundColor: 'FF0000' })
-        .it('with textColor', { textColor: '0000FF' })
-        .it('with format', { format: 'webp' })
-        .it('with text', { text: 'Hello' })
-        .it('with all options', {
-          width: 128,
-          height: 128,
-          backgroundColor: 'FF0000',
-          textColor: '0000FF',
-          format: 'png',
-          text: 'hello',
-        })
-        .it('with empty colors and text', {
-          width: 128,
-          height: 128,
-          backgroundColor: '',
-          textColor: '',
-          format: 'png',
-          text: '',
-        });
-    });
-
     t.describe('dataUri', (t) => {
       t.it('noArgs')
         .it('with width', { width: 128 })
@@ -107,6 +80,13 @@ describe('image', () => {
           color: 'red',
           type: 'svg-uri',
         });
+    });
+
+    t.describe('personPortrait', (t) => {
+      t.it('noArgs')
+        .it('with sex', { sex: 'female' })
+        .it('with size', { size: 128 })
+        .it('with sex and size', { sex: 'male', size: 256 });
     });
   });
 
@@ -130,17 +110,38 @@ describe('image', () => {
     });
   });
 
-  describe('avatarLegacy', () => {
-    it('should return a random avatar url from cloudflare-ipfs', () => {
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
-      const actual = faker.image.avatarLegacy();
+  describe('personPortrait', () => {
+    it('should return a random avatar url from AI', () => {
+      const imageUrl = faker.image.personPortrait();
 
-      expect(actual).toBeTypeOf('string');
-      expect(actual).toMatch(
-        /^https:\/\/cloudflare-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https:\/\/cdn\.jsdelivr\.net\/gh\/faker-js\/assets-person-portrait\/(female|male)\/512\/\d{1,2}\.jpg$/
       );
-      // The links aren't working anymore - there is nothing we can do about it
-      //  assertWebAddress(avatarUrl);
+      expect(() => new URL(imageUrl)).not.toThrowError();
+    });
+
+    it.each(Object.values(Sex))(
+      'should return a random avatar url from AI for %s',
+      (sex) => {
+        const imageUrl = faker.image.personPortrait({ sex });
+
+        expect(imageUrl).toBeTypeOf('string');
+        expect(imageUrl).toMatch(
+          /^https:\/\/cdn\.jsdelivr\.net\/gh\/faker-js\/assets-person-portrait\/(female|male)\/512\/\d{1,2}\.jpg$/
+        );
+        expect(() => new URL(imageUrl)).not.toThrowError();
+      }
+    );
+
+    it('should return a random avatar url from AI with fixed size and sex', () => {
+      const imageUrl = faker.image.personPortrait({ sex: 'male', size: 128 });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https:\/\/cdn\.jsdelivr\.net\/gh\/faker-js\/assets-person-portrait\/male\/128\/\d{1,2}\.jpg$/
+      );
+      expect(() => new URL(imageUrl)).not.toThrowError();
     });
   });
 
@@ -196,17 +197,6 @@ describe('image', () => {
       assertValidUrl(actual);
       expect(actual).toMatch(
         /^https:\/\/picsum\.photos\/seed\/[0-9a-zA-Z]+\/\d+\/\d+(\?(grayscale&?)?(blur=\d+)?)?$/
-      );
-    });
-  });
-
-  describe('urlPlaceholder', () => {
-    it('should return a random image url from Placeholder', () => {
-      const actual = faker.image.urlPlaceholder();
-
-      assertValidUrl(actual);
-      expect(actual).toMatch(
-        /^https:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
       );
     });
   });

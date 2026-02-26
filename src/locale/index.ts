@@ -7,7 +7,9 @@ import { faker as fakerAF_ZA } from './af_ZA';
 import { faker as fakerAR } from './ar';
 import { faker as fakerAZ } from './az';
 import { faker as fakerBASE } from './base';
+import { faker as fakerBN_BD } from './bn_BD';
 import { faker as fakerCS_CZ } from './cs_CZ';
+import { faker as fakerCY } from './cy';
 import { faker as fakerDA } from './da';
 import { faker as fakerDE } from './de';
 import { faker as fakerDE_AT } from './de_AT';
@@ -47,6 +49,8 @@ import { faker as fakerIT } from './it';
 import { faker as fakerJA } from './ja';
 import { faker as fakerKA_GE } from './ka_GE';
 import { faker as fakerKO } from './ko';
+import { faker as fakerKU_ckb } from './ku_ckb';
+import { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 import { faker as fakerLV } from './lv';
 import { faker as fakerMK } from './mk';
 import { faker as fakerNB_NO } from './nb_NO';
@@ -60,8 +64,10 @@ import { faker as fakerRO } from './ro';
 import { faker as fakerRO_MD } from './ro_MD';
 import { faker as fakerRU } from './ru';
 import { faker as fakerSK } from './sk';
+import { faker as fakerSL_SI } from './sl_SI';
 import { faker as fakerSR_RS_latin } from './sr_RS_latin';
 import { faker as fakerSV } from './sv';
+import { faker as fakerTA_IN } from './ta_IN';
 import { faker as fakerTH } from './th';
 import { faker as fakerTR } from './tr';
 import { faker as fakerUK } from './uk';
@@ -77,7 +83,9 @@ export { faker as fakerAF_ZA } from './af_ZA';
 export { faker as fakerAR } from './ar';
 export { faker as fakerAZ } from './az';
 export { faker as fakerBASE } from './base';
+export { faker as fakerBN_BD } from './bn_BD';
 export { faker as fakerCS_CZ } from './cs_CZ';
+export { faker as fakerCY } from './cy';
 export { faker as fakerDA } from './da';
 export { faker as fakerDE } from './de';
 export { faker as fakerDE_AT } from './de_AT';
@@ -117,6 +125,8 @@ export { faker as fakerIT } from './it';
 export { faker as fakerJA } from './ja';
 export { faker as fakerKA_GE } from './ka_GE';
 export { faker as fakerKO } from './ko';
+export { faker as fakerKU_ckb } from './ku_ckb';
+export { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 export { faker as fakerLV } from './lv';
 export { faker as fakerMK } from './mk';
 export { faker as fakerNB_NO } from './nb_NO';
@@ -130,8 +140,10 @@ export { faker as fakerRO } from './ro';
 export { faker as fakerRO_MD } from './ro_MD';
 export { faker as fakerRU } from './ru';
 export { faker as fakerSK } from './sk';
+export { faker as fakerSL_SI } from './sl_SI';
 export { faker as fakerSR_RS_latin } from './sr_RS_latin';
 export { faker as fakerSV } from './sv';
+export { faker as fakerTA_IN } from './ta_IN';
 export { faker as fakerTH } from './th';
 export { faker as fakerTR } from './tr';
 export { faker as fakerUK } from './uk';
@@ -148,7 +160,9 @@ export const allFakers = {
   ar: fakerAR,
   az: fakerAZ,
   base: fakerBASE,
+  bn_BD: fakerBN_BD,
   cs_CZ: fakerCS_CZ,
+  cy: fakerCY,
   da: fakerDA,
   de: fakerDE,
   de_AT: fakerDE_AT,
@@ -188,6 +202,8 @@ export const allFakers = {
   ja: fakerJA,
   ka_GE: fakerKA_GE,
   ko: fakerKO,
+  ku_ckb: fakerKU_ckb,
+  ku_kmr_latin: fakerKU_kmr_latin,
   lv: fakerLV,
   mk: fakerMK,
   nb_NO: fakerNB_NO,
@@ -201,8 +217,10 @@ export const allFakers = {
   ro_MD: fakerRO_MD,
   ru: fakerRU,
   sk: fakerSK,
+  sl_SI: fakerSL_SI,
   sr_RS_latin: fakerSR_RS_latin,
   sv: fakerSV,
+  ta_IN: fakerTA_IN,
   th: fakerTH,
   tr: fakerTR,
   uk: fakerUK,
