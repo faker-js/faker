@@ -1,5 +1,5 @@
 import type { ClassDeclaration, InterfaceDeclaration, Project } from 'ts-morph';
-import { wrapCode } from '../utils/markdown';
+import { wrapCode } from '../../shared/markdown';
 import { required, valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';

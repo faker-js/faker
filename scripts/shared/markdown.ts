@@ -59,7 +59,7 @@ function comparableSanitizedHtml(html: string): string {
 }
 
 /**
- * Wraps the given code in markdown a code block.
+ * Wraps the given code in a markdown code block.
  *
  * @param code The code to wrap.
  *
