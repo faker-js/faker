@@ -59,7 +59,7 @@ import { uniformDistributor } from './uniform';
  * distributor(randomizer) // 0.5164955927828387
  * distributor(randomizer) // 0.3476359433171099
  *
- * @since 10.3.0
+ * @since 10.4.0
  */
 export function exponentialDistributor(
   options?:
