@@ -27,7 +27,7 @@ export type HackerDefinition = LocaleEntry<{
   /**
    * Some phrases that will be injected with random hacker words.
    * May use any of the hacker module methods prefixed with `hacker.` wrapped in double braces
-   * (e.g. `I'm {{hacker.ingverb}} {{hacker.adjective}} {{hacker.noun}}`).
+   * A list of faker patterns to generate a hacker phrase.
    *
    * @see faker.helpers.fake(): For more information about how the phrases are generated.
    */
