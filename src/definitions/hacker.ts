@@ -25,11 +25,7 @@ export type HackerDefinition = LocaleEntry<{
   noun: string[];
 
   /**
-   * Some phrases that will be injected with random hacker words.
-   * May use any of the hacker module methods prefixed with `hacker.` wrapped in double braces
    * A list of faker patterns to generate a hacker phrase.
-   *
-   * @see faker.helpers.fake(): For more information about how the phrases are generated.
    */
   phrase: string[];
 
