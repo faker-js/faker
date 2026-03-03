@@ -1,6 +1,21 @@
 import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 import { int } from '../number/int';
+import type { AircraftType } from './aircraft-type';
+import { Aircraft } from './aircraft-type';
+
+// Temp export
+export const aircraftTypeMaxRows: Record<AircraftType, number> = {
+  regional: 20,
+  narrowbody: 35,
+  widebody: 60,
+};
+// Temp export
+export const aircraftTypeSeats: Record<AircraftType, string[]> = {
+  regional: ['A', 'B', 'C', 'D'],
+  narrowbody: ['A', 'B', 'C', 'D', 'E', 'F'],
+  widebody: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
+};
 
 /**
  * Generates a random seat.

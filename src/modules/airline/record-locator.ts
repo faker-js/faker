@@ -1,6 +1,11 @@
 import type { FakerCore } from '../../core';
 import { alphanumeric } from '../string/alphanumeric';
 
+// Temp export
+export const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+// Temp export
+export const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
+
 /**
  * Generates a random [record locator](https://en.wikipedia.org/wiki/Record_locator). Record locators
  * are used by airlines to identify reservations. They're also known as booking reference numbers,
