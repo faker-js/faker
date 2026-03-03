@@ -1,59 +1,12 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
-
-export enum Aircraft {
-  Narrowbody = 'narrowbody',
-  Regional = 'regional',
-  Widebody = 'widebody',
-}
-
-export type AircraftType = `${Aircraft}`;
-
-export interface Airline {
-  /**
-   * The name of the airline (e.g. `'American Airlines'`).
-   */
-  readonly name: string;
-  /**
-   * The 2 character [IATA](https://iata.org) code of the airline (e.g. `'AA'`).
-   */
-  readonly iataCode: string;
-}
-
-export interface Airplane {
-  /**
-   * The name of the airplane (e.g. `'Airbus A321'`).
-   */
-  readonly name: string;
-  /**
-   * The [IATA](https://iata.org) code of the airplane (e.g. `'321'`).
-   */
-  readonly iataTypeCode: string;
-}
-
-export interface Airport {
-  /**
-   * The name of the airport (e.g. `'Dallas Fort Worth International Airport'`).
-   */
-  readonly name: string;
-  /**
-   * The [IATA](https://iata.org) code of the airport (e.g. `'DFW'`).
-   */
-  readonly iataCode: string;
-}
-
-const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
-const aircraftTypeMaxRows: Record<AircraftType, number> = {
-  regional: 20,
-  narrowbody: 35,
-  widebody: 60,
-};
-const aircraftTypeSeats: Record<AircraftType, string[]> = {
-  regional: ['A', 'B', 'C', 'D'],
-  narrowbody: ['A', 'B', 'C', 'D', 'E', 'F'],
-  widebody: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
-};
+import type { AircraftType } from './aircraft-type';
+import { Aircraft } from './aircraft-type';
+import type { Airline } from './airline';
+import type { Airplane } from './airplane';
+import type { Airport } from './airport';
+import { numerics, visuallySimilarCharacters } from './record-locator';
+import { aircraftTypeMaxRows, aircraftTypeSeats } from './seat';
 
 /**
  * Module to generate airline and airport related data according to [International Air Transport Association (IATA)](https://iata.org) standards.

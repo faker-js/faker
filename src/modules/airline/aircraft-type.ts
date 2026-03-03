@@ -1,6 +1,14 @@
 import type { FakerCore } from '../../core';
 import { enumValue } from '../helpers/enum-value';
 
+export enum Aircraft {
+  Narrowbody = 'narrowbody',
+  Regional = 'regional',
+  Widebody = 'widebody',
+}
+
+export type AircraftType = `${Aircraft}`;
+
 /**
  * Returns a random aircraft type.
  *
