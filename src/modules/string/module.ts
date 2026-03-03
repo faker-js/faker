@@ -4,7 +4,7 @@ import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
-import { uuidV4, uuidV7 } from './uuid';
+import { uuidV4, uuidV7 } from './_uuid';
 
 /**
  * The largest timestamp a ULID can encode, as the timestamp component is a 48 bit unsigned integer.

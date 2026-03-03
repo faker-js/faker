@@ -62,11 +62,11 @@ export type { Currency, FinanceModule } from './modules/finance';
 export {
   BitcoinAddressFamily,
   BitcoinNetwork,
-} from './modules/finance/bitcoin';
+} from './modules/finance/_bitcoin';
 export type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,
-} from './modules/finance/bitcoin';
+} from './modules/finance/_bitcoin';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
