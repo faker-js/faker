@@ -1,6 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-
-const nbsp = '\u00A0';
+import { nbsp } from './commit-entry';
 
 /**
  * Module to generate git related entries.
