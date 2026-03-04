@@ -6,6 +6,7 @@ import { arrayElement } from '../helpers/array-element';
  * Returns a random currency symbol.
  *
  * @param fakerCore The FakerCore to use.
+ *
  * @throws {FakerError} If no currency in the locale data has a symbol.
  *
  * @example

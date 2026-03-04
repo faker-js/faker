@@ -59,25 +59,19 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type {
+  BitcoinAddressFamily,
+  BitcoinNetwork,
   Currency,
   FinanceModule,
   VatNumberCountryCode,
 } from './modules/finance';
-export {
-  BitcoinAddressFamily,
-  BitcoinNetwork,
-} from './modules/finance/_bitcoin';
-export type {
-  BitcoinAddressFamilyType,
-  BitcoinNetworkType,
-} from './modules/finance/_bitcoin';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export { IPv4Network } from './modules/internet';
-export type { IPv4NetworkType, InternetModule } from './modules/internet';
+export type { InternetModule, IPv4NetworkType } from './modules/internet';
 export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MedicalModule } from './modules/medical';

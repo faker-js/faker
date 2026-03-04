@@ -1,2 +1,8 @@
+export { BitcoinAddressFamily, BitcoinNetwork } from './bitcoin-address';
+export type {
+  BitcoinAddressFamilyType,
+  BitcoinNetworkType,
+} from './bitcoin-address';
+export type { Currency } from './currency';
 export * from './module';
-export type { VatNumberCountryCode } from './_vat-number';
+export type { VatNumberCountryCode } from './vat-number';

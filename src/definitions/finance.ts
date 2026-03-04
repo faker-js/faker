@@ -1,4 +1,4 @@
-import type { Currency } from '../modules/finance';
+import type { Currency } from '../modules/finance/currency';
 import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to finance.
