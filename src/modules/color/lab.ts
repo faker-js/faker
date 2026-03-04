@@ -1,5 +1,11 @@
 import type { FakerCore } from '../../core';
 import { float } from '../number/float';
+import { toColorFormat } from './_to-color-format';
+import type {
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from './_types';
 
 /**
  * Returns a LAB (CIELAB) color.

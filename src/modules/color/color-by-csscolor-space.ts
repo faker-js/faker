@@ -1,5 +1,12 @@
 import type { FakerCore } from '../../core';
 import { float } from '../number/float';
+import { toColorFormat } from './_to-color-format';
+import type {
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from './_types';
+import type { CssSpaceType } from './css-supported-space';
 
 /**
  * Returns a random color based on CSS color space specified.
