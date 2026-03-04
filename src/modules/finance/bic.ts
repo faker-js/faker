@@ -3,6 +3,7 @@ import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 import { alpha } from '../string/alpha';
 import { alphanumeric } from '../string/alphanumeric';
+import { ibanLib } from './_iban-lib';
 
 /**
  * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
@@ -37,7 +38,7 @@ export function bic(
     length: 4,
     casing: 'upper',
   });
-  const countryCode = arrayElement(fakerCore, iban.iso3166);
+  const countryCode = arrayElement(fakerCore, ibanLib.iso3166);
   const locationCode = alphanumeric(fakerCore, {
     length: 2,
     casing: 'upper',

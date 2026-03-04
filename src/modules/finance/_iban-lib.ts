@@ -13,7 +13,12 @@ interface Iban {
   toDigitString: (str: string) => string;
 }
 
-const iban: Iban = {
+/**
+ * The internal data required to generate IBANs.
+ *
+ * @internal
+ */
+export const ibanLib: Iban = {
   alpha: [
     'A',
     'B',
@@ -1422,5 +1427,3 @@ const iban: Iban = {
       String((match.toUpperCase().codePointAt(0) ?? Number.NaN) - 55)
     ),
 };
-
-export default iban;

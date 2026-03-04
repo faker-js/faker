@@ -1,53 +1,17 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './_bitcoin';
+import { ibanLib } from './_iban-lib';
+import type {
+  BitcoinAddressFamilyType,
+  BitcoinNetworkType,
+} from './bitcoin-address';
 import {
   BitcoinAddressFamily,
   BitcoinAddressSpecs,
   BitcoinNetwork,
-} from './_bitcoin';
-import iban from './_iban';
-
-/**
- * The possible definitions related to currency entries.
- */
-export interface Currency {
-  /**
-   * The full name for the currency (e.g. `US Dollar`).
-   */
-  name: string;
-
-  /**
-   * The code/short text/abbreviation for the currency (e.g. `USD`).
-   */
-  code: string;
-
-  /**
-   * The symbol for the currency (e.g. `$`).
-   */
-  symbol: string;
-
-  /**
-   * The ISO 4217 numeric code for the currency (e.g. `840`).
-   */
-  numericCode: string;
-}
-
-/**
- * Puts a space after every 4 characters.
- *
- * @internal
- *
- * @param iban The iban to pretty print.
- */
-export function prettyPrintIban(iban: string): string {
-  let pretty = '';
-  for (let i = 0; i < iban.length; i += 4) {
-    pretty += `${iban.substring(i, i + 4)} `;
-  }
-
-  return pretty.trimEnd();
-}
+} from './bitcoin-address';
+import type { Currency } from './currency';
+import { prettyPrintIban } from './iban';
 
 /**
  * Module to generate finance and money related entries.
@@ -745,8 +709,8 @@ export class FinanceModule extends ModuleBase {
     const { countryCode, formatted = false } = options;
 
     const ibanFormat = countryCode
-      ? iban.formats.find((f) => f.country === countryCode)
-      : this.faker.helpers.arrayElement(iban.formats);
+      ? ibanLib.formats.find((f) => f.country === countryCode)
+      : this.faker.helpers.arrayElement(ibanLib.formats);
 
     if (!ibanFormat) {
       throw new FakerError(`Country code ${countryCode} not supported.`);
@@ -759,20 +723,20 @@ export class FinanceModule extends ModuleBase {
       count += bban.count;
       while (c > 0) {
         if (bban.type === 'a') {
-          s += this.faker.helpers.arrayElement(iban.alpha);
+          s += this.faker.helpers.arrayElement(ibanLib.alpha);
         } else if (bban.type === 'c') {
           if (this.faker.datatype.boolean(0.8)) {
             s += this.faker.number.int(9);
           } else {
-            s += this.faker.helpers.arrayElement(iban.alpha);
+            s += this.faker.helpers.arrayElement(ibanLib.alpha);
           }
         } else {
           if (c >= 3 && this.faker.datatype.boolean(0.3)) {
             if (this.faker.datatype.boolean()) {
-              s += this.faker.helpers.arrayElement(iban.pattern100);
+              s += this.faker.helpers.arrayElement(ibanLib.pattern100);
               c -= 2;
             } else {
-              s += this.faker.helpers.arrayElement(iban.pattern10);
+              s += this.faker.helpers.arrayElement(ibanLib.pattern10);
               c--;
             }
           } else {
@@ -787,7 +751,7 @@ export class FinanceModule extends ModuleBase {
     }
 
     let checksum: string | number =
-      98 - iban.mod97(iban.toDigitString(`${s}${ibanFormat.country}00`));
+      98 - ibanLib.mod97(ibanLib.toDigitString(`${s}${ibanFormat.country}00`));
 
     if (checksum < 10) {
       checksum = `0${checksum}`;
@@ -827,7 +791,7 @@ export class FinanceModule extends ModuleBase {
       length: 4,
       casing: 'upper',
     });
-    const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
+    const countryCode = this.faker.helpers.arrayElement(ibanLib.iso3166);
     const locationCode = this.faker.string.alphanumeric({
       length: 2,
       casing: 'upper',
