@@ -186,8 +186,6 @@ ${examples}`;
                   const content = [];
 
                   const hasFakerCore = examples.includes('fakerCore');
-                  // TODO @ST-DDT 2026-04-19: Remove when past is migrated to SMF
-                  const hasTempPast = examples.includes('past(fakerCore');
 
                   if (hasFakerCore) {
                     rootImports.delete('fakerCore');
@@ -195,21 +193,14 @@ ${examples}`;
                     rootImports.add('en');
                   }
 
-                  if (hasTempPast) {
-                    rootImports.add('SimpleFaker');
-                  }
-
                   if (functionImports.length > 0) {
                     content.push(
                       '// functionImports',
 
-                      ...functionImports
-                        // TODO @ST-DDT 2026-04-19: Remove when past is migrated to SMF
-                        .filter(([functionName]) => functionName !== 'past')
-                        .map(
-                          ([functionName, importPath]) =>
-                            `import { ${functionName} } from '${importPath}';`
-                        )
+                      ...functionImports.map(
+                        ([functionName, importPath]) =>
+                          `import { ${functionName} } from '${importPath}';`
+                      )
                     );
                   }
 
@@ -225,12 +216,6 @@ ${examples}`;
                       '// fakerCore',
                       `import { createFakerCore } from '${relativeImportPath}/core';`,
                       `const fakerCore = createFakerCore({ locale: [en, base] });`
-                    );
-                  }
-
-                  if (hasTempPast) {
-                    content.push(
-                      'const past = new SimpleFaker(fakerCore).date.past;'
                     );
                   }
 
