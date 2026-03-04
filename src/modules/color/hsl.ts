@@ -1,6 +1,12 @@
 import type { FakerCore } from '../../core';
 import { float } from '../number/float';
 import { int } from '../number/int';
+import { toColorFormat } from './_to-color-format';
+import type {
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from './_types';
 
 /**
  * Returns an HSL color.
