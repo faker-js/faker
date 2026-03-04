@@ -14,6 +14,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function productName(fakerCore: FakerCore): string {
-  const patterns = fakerCore.locale.commerce.product_name.pattern;
-  return new Faker(fakerCore).helpers.fake(patterns);
+  return new Faker(fakerCore).helpers.fake(
+    fakerCore.locale.commerce.product_name.pattern
+  );
 }
