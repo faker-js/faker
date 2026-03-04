@@ -1,5 +1,4 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
 import { arrayElement } from './array-element';
 
 /**

@@ -1,10 +1,144 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
+import { boolean } from '../datatype/boolean';
 import { int } from '../number/int';
 import { alphanumeric } from '../string/alphanumeric';
 import { fromCharacters } from '../string/from-characters';
 import { arrayElement } from './array-element';
 import { multiple } from './multiple';
+
+/**
+ * Replaces regexp tokens that randexp does not randomize unless a quantifier is present.
+ *
+ * @param fakerCore The Faker instance to use.
+ * @param pattern The regular expression pattern to transform.
+ * @param isCaseInsensitive Whether alpha literals may vary in case.
+ */
+function replaceUnquantifiedRegExpTokens(
+  fakerCore: FakerCore,
+  pattern: string,
+  isCaseInsensitive: boolean
+): string {
+  let result = '';
+  let inCharacterClass = false;
+
+  for (let i = 0; i < pattern.length; i++) {
+    const char = pattern[i];
+
+    if (char === '\\') {
+      result += char;
+      if (i + 1 < pattern.length) {
+        result += pattern[++i];
+      }
+
+      continue;
+    }
+
+    if (char === '[') {
+      inCharacterClass = true;
+      result += char;
+      continue;
+    }
+
+    if (char === ']') {
+      inCharacterClass = false;
+      result += char;
+      continue;
+    }
+
+    const nextChar = pattern[i + 1];
+    const hasQuantifier = ['?', '*', '+', '{'].includes(nextChar);
+
+    if (!inCharacterClass && !hasQuantifier && char === '.') {
+      result += alphanumeric(fakerCore);
+      continue;
+    }
+
+    if (
+      !inCharacterClass &&
+      !hasQuantifier &&
+      isCaseInsensitive &&
+      /^[a-z]$/i.test(char)
+    ) {
+      result += fromCharacters(fakerCore, [
+        char.toLowerCase(),
+        char.toUpperCase(),
+      ]);
+      continue;
+    }
+
+    result += char;
+  }
+
+  return result;
+}
+
+/**
+ * Returns a number based on given RegEx-based quantifier symbol or quantifier values.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param quantifierSymbol Quantifier symbols can be either of these: `?`, `*`, `+`.
+ * @param quantifierMin Quantifier minimum value. If given without a maximum, this will be used as the quantifier value.
+ * @param quantifierMax Quantifier maximum value. Will randomly get a value between the minimum and maximum if both are provided.
+ *
+ * @returns a random number based on the given quantifier parameters.
+ *
+ * @example
+ * getRepetitionsBasedOnQuantifierParameters(fakerCore, '*', null, null) // 3
+ * getRepetitionsBasedOnQuantifierParameters(fakerCore, null, 10, null) // 10
+ * getRepetitionsBasedOnQuantifierParameters(fakerCore, null, 5, 8) // 6
+ *
+ * @since 8.0.0
+ */
+function getRepetitionsBasedOnQuantifierParameters(
+  fakerCore: FakerCore,
+  quantifierSymbol: string,
+  quantifierMin: string,
+  quantifierMax: string
+): number {
+  let repetitions = 1;
+  if (quantifierSymbol) {
+    switch (quantifierSymbol) {
+      case '?': {
+        repetitions = boolean(fakerCore) ? 0 : 1;
+        break;
+      }
+
+      case '*': {
+        let limit = 1;
+        while (boolean(fakerCore)) {
+          limit *= 2;
+        }
+
+        repetitions = int(fakerCore, { min: 0, max: limit });
+        break;
+      }
+
+      case '+': {
+        let limit = 1;
+        while (boolean(fakerCore)) {
+          limit *= 2;
+        }
+
+        repetitions = int(fakerCore, { min: 1, max: limit });
+        break;
+      }
+
+      default: {
+        throw new FakerError('Unknown quantifier symbol provided.');
+      }
+    }
+  } else if (quantifierMin != null && quantifierMax != null) {
+    repetitions = int(fakerCore, {
+      min: Number.parseInt(quantifierMin),
+      max: Number.parseInt(quantifierMax),
+    });
+  } else if (quantifierMin != null && quantifierMax == null) {
+    repetitions = Number.parseInt(quantifierMin);
+  }
+
+  return repetitions;
+}
 
 /**
  * Generates a string matching the given regex like expressions.
