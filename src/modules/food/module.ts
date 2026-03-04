@@ -1,16 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-
-/**
- * Converts the given string to title case.
- *
- * @param text The text to convert.
- */
-function toTitleCase(text: string): string {
-  return text
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
+import { toTitleCase } from './dish';
 
 /**
  * Module for generating food-related data.
