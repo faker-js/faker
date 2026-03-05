@@ -1,6 +1,13 @@
 import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 
+export type HTTPStatusCodeType =
+  | 'informational'
+  | 'success'
+  | 'clientError'
+  | 'serverError'
+  | 'redirection';
+
 /**
  * Generates a random HTTP status code.
  *
@@ -22,7 +29,7 @@ export function httpStatusCode(
     /**
      * A list of the HTTP status code types that should be used.
      *
-     * @default Object.keys(faker.definitions.internet.http_status_code)
+     * @default Object.keys(fakerCore.locale.internet.http_status_code)
      */
     types?: ReadonlyArray<HTTPStatusCodeType>;
   } = {}

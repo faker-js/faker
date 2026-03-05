@@ -1,6 +1,18 @@
 import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 
+export type EmojiType =
+  | 'smiley'
+  | 'body'
+  | 'person'
+  | 'nature'
+  | 'food'
+  | 'travel'
+  | 'activity'
+  | 'object'
+  | 'symbol'
+  | 'flag';
+
 /**
  * Generates a random emoji.
  *

@@ -1,4 +1,5 @@
-import type { EmojiType, HTTPStatusCodeType } from '../modules/internet';
+import type { EmojiType } from '../modules/internet/emoji';
+import type { HTTPStatusCodeType } from '../modules/internet/http-status-code';
 import type { LocaleEntry } from './definitions';
 
 /**

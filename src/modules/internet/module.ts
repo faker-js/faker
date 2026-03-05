@@ -1,137 +1,13 @@
 import { FakerError } from '../../errors/faker-error';
-import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './_char-mappings';
-
-export type EmojiType =
-  | 'smiley'
-  | 'body'
-  | 'person'
-  | 'nature'
-  | 'food'
-  | 'travel'
-  | 'activity'
-  | 'object'
-  | 'symbol'
-  | 'flag';
-
-export type HTTPStatusCodeType =
-  | 'informational'
-  | 'success'
-  | 'clientError'
-  | 'serverError'
-  | 'redirection';
-
-export type HTTPProtocolType = 'http' | 'https';
-
-export enum IPv4Network {
-  /**
-   * Equivalent to: `0.0.0.0/0`
-   */
-  Any = 'any',
-  /**
-   * Equivalent to: `127.0.0.0/8`
-   *
-   * @see [RFC1122](https://www.rfc-editor.org/rfc/rfc1122)
-   */
-  Loopback = 'loopback',
-  /**
-   * Equivalent to: `10.0.0.0/8`
-   *
-   * @see [RFC1918](https://www.rfc-editor.org/rfc/rfc1918)
-   */
-  PrivateA = 'private-a',
-  /**
-   * Equivalent to: `172.16.0.0/12`
-   *
-   * @see [RFC1918](https://www.rfc-editor.org/rfc/rfc1918)
-   */
-  PrivateB = 'private-b',
-  /**
-   * Equivalent to: `192.168.0.0/16`
-   *
-   * @see [RFC1918](https://www.rfc-editor.org/rfc/rfc1918)
-   */
-  PrivateC = 'private-c',
-  /**
-   * Equivalent to: `192.0.2.0/24`
-   *
-   * @see [RFC5737](https://www.rfc-editor.org/rfc/rfc5737)
-   */
-  TestNet1 = 'test-net-1',
-  /**
-   * Equivalent to: `198.51.100.0/24`
-   *
-   * @see [RFC5737](https://www.rfc-editor.org/rfc/rfc5737)
-   */
-  TestNet2 = 'test-net-2',
-  /**
-   * Equivalent to: `203.0.113.0/24`
-   *
-   * @see [RFC5737](https://www.rfc-editor.org/rfc/rfc5737)
-   */
-  TestNet3 = 'test-net-3',
-  /**
-   * Equivalent to: `169.254.0.0/16`
-   *
-   * @see [RFC3927](https://www.rfc-editor.org/rfc/rfc3927)
-   */
-  LinkLocal = 'link-local',
-  /**
-   * Equivalent to: `224.0.0.0/4`
-   *
-   * @see [RFC5771](https://www.rfc-editor.org/rfc/rfc5771)
-   */
-  Multicast = 'multicast',
-}
-
-export type IPv4NetworkType = `${IPv4Network}`;
-
-const ipv4Networks: Record<IPv4Network, string> = {
-  [IPv4Network.Any]: '0.0.0.0/0',
-  [IPv4Network.Loopback]: '127.0.0.0/8',
-  [IPv4Network.PrivateA]: '10.0.0.0/8',
-  [IPv4Network.PrivateB]: '172.16.0.0/12',
-  [IPv4Network.PrivateC]: '192.168.0.0/16',
-  [IPv4Network.TestNet1]: '192.0.2.0/24',
-  [IPv4Network.TestNet2]: '198.51.100.0/24',
-  [IPv4Network.TestNet3]: '203.0.113.0/24',
-  [IPv4Network.LinkLocal]: '169.254.0.0/16',
-  [IPv4Network.Multicast]: '224.0.0.0/4',
-};
-
-/**
- * Checks whether the given string is a valid slug for `domainWord`s.
- *
- * @param slug The slug to check.
- */
-function isValidDomainWordSlug(slug: string): boolean {
-  return /^[a-z][a-z-]*[a-z]$/i.exec(slug) !== null;
-}
-
-/**
- * Tries various ways to produce a valid domain word slug, falling back to a random string if needed.
- *
- * @param faker The faker instance to use.
- * @param word The initial word to slugify.
- */
-function makeValidDomainWordSlug(faker: Faker, word: string): string {
-  const slug1 = faker.helpers.slugify(word);
-  if (isValidDomainWordSlug(slug1)) {
-    return slug1;
-  }
-
-  const slug2 = faker.helpers.slugify(faker.lorem.word());
-  if (isValidDomainWordSlug(slug2)) {
-    return slug2;
-  }
-
-  return faker.string.alpha({
-    casing: 'lower',
-    length: faker.number.int({ min: 4, max: 8 }),
-  });
-}
+import { makeValidDomainWordSlug } from './domain-word';
+import type { EmojiType } from './emoji';
+import type { HTTPStatusCodeType } from './http-status-code';
+import type { IPv4NetworkType } from './ipv4';
+import { ipv4Networks } from './ipv4';
+import type { HTTPProtocolType } from './url';
 
 /**
  * Module to generate internet related entries.
@@ -577,10 +453,13 @@ export class InternetModule extends ModuleBase {
     // For locales with non-ASCII characters, we fall back to lorem words, or a random string
 
     const word1 = makeValidDomainWordSlug(
-      this.faker,
+      this.faker.fakerCore,
       this.faker.word.adjective()
     );
-    const word2 = makeValidDomainWordSlug(this.faker, this.faker.word.noun());
+    const word2 = makeValidDomainWordSlug(
+      this.faker.fakerCore,
+      this.faker.word.noun()
+    );
     return `${word1}-${word2}`.toLowerCase();
   }
 
