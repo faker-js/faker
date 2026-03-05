@@ -1,5 +1,10 @@
 import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
+import { lines } from './lines';
+import { paragraph } from './paragraph';
+import { paragraphs } from './paragraphs';
+import { sentence } from './sentence';
+import { sentences } from './sentences';
 
 /**
  * Generates a random text based on a random lorem method.
@@ -20,15 +25,13 @@ import { arrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function text(fakerCore: FakerCore): string {
-  const methods: Array<keyof LoremModule> = [
-    'sentence',
-    'sentences',
-    'paragraph',
-    'paragraphs',
-    'lines',
-  ];
+  const method = arrayElement(fakerCore, [
+    sentence,
+    sentences,
+    paragraph,
+    paragraphs,
+    lines,
+  ]);
 
-  const method = arrayElement(fakerCore, methods);
-
-  return this[method]();
+  return method(fakerCore);
 }
