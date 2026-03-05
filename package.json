@@ -106,7 +106,7 @@
     "@types/semver": "7.7.1",
     "@types/validator": "13.15.10",
     "@vitest/coverage-v8": "4.0.18",
-    "@vitest/eslint-plugin": "1.6.6",
+    "@vitest/eslint-plugin": "1.6.9",
     "@vitest/ui": "4.0.18",
     "@vueuse/core": "14.1.0",
     "commit-and-tag-version": "12.6.1",
