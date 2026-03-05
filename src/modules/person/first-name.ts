@@ -1,5 +1,7 @@
 import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
+import { selectDefinition } from './_select-definition';
+import type { SexType } from './sex-type';
 
 /**
  * Returns a random first name.

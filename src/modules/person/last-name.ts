@@ -2,6 +2,8 @@ import type { FakerCore } from '../../core';
 import { Faker } from '../../faker';
 import { arrayElement } from '../helpers/array-element';
 import { weightedArrayElement } from '../helpers/weighted-array-element';
+import { selectDefinition } from './_select-definition';
+import type { SexType } from './sex-type';
 
 /**
  * Returns a random last name.

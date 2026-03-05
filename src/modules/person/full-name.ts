@@ -6,6 +6,8 @@ import { firstName as personFirstName } from './first-name';
 import { lastName as personLastName } from './last-name';
 import { middleName } from './middle-name';
 import { prefix } from './prefix';
+import type { SexType } from './sex-type';
+import { Sex } from './sex-type';
 import { suffix } from './suffix';
 
 /**
@@ -46,7 +48,7 @@ export function fullName(
     /**
      * The optional sex to use. Can be either `'female'` or `'male'`.
      *
-     * @default helpersArrayElement(fakerCore, ['female', 'male'])
+     * @default helpersArrayElement(fakerCore, [Sex.Female, Sex.Male])
      */
     sex?: SexType;
   } = {}
