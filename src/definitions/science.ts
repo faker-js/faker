@@ -1,4 +1,5 @@
-import type { ChemicalElement, Unit } from '../modules/science';
+import type { ChemicalElement } from '../modules/science/chemical-element';
+import type { Unit } from '../modules/science/unit';
 import type { LocaleEntry } from './definitions';
 
 /**
