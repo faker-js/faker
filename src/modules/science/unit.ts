@@ -1,6 +1,17 @@
 import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 
+export interface Unit {
+  /**
+   * The long version of the unit (e.g. `meter`).
+   */
+  name: string;
+  /**
+   * The short version/abbreviation of the unit (e.g. `Pa`).
+   */
+  symbol: string;
+}
+
 /**
  * Returns a random scientific unit.
  *

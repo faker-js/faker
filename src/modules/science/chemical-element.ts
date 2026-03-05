@@ -2,6 +2,24 @@ import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 
 /**
+ * The possible definitions related to elements.
+ */
+export interface ChemicalElement {
+  /**
+   * The symbol for the element (e.g. `'He'`).
+   */
+  symbol: string;
+  /**
+   * The name for the element (e.g. `'Cerium'`).
+   */
+  name: string;
+  /**
+   * The atomic number for the element (e.g. `52`).
+   */
+  atomicNumber: number;
+}
+
+/**
  * Returns a random periodic table element.
  *
  * @param fakerCore The FakerCore to use.
