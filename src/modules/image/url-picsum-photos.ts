@@ -1,5 +1,4 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
 import { boolean } from '../datatype/boolean';
 import { int } from '../number/int';
 import { alphanumeric } from '../string/alphanumeric';
@@ -7,9 +6,9 @@ import { alphanumeric } from '../string/alphanumeric';
 /**
  * Generates a random image url provided via https://picsum.photos.
  *
- * @param fakerCore The FakerCore to use.
  * @remark This method generates a random string representing an URL from picsum.photos. Faker is not responsible for the content of the image or the service providing it.
  *
+ * @param fakerCore The FakerCore to use.
  * @param options Options for generating a URL for an image.
  * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
  * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
