@@ -1,12 +1,12 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
 import { int } from '../number/int';
 
 /**
  * Generates a random avatar from GitHub.
  *
- * @param fakerCore The FakerCore to use.
  * @remark This method generates a random string representing an URL from GitHub by using a random user ID. Faker is not responsible for the content of the image or the service providing it.
+ *
+ * @param fakerCore The FakerCore to use.
  *
  * @example
  * avatarGitHub(fakerCore)
