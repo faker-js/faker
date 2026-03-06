@@ -40,9 +40,9 @@ export function binary(
     prefix?: string;
   } = {}
 ): string {
-  const { prefix = '0b' } = options;
+  const { prefix = '0b', length = 1 } = options;
 
   let result = prefix;
-  result += fromCharacters(fakerCore, ['0', '1'], options.length ?? 1);
+  result += fromCharacters(fakerCore, ['0', '1'], length);
   return result;
 }

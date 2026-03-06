@@ -4,87 +4,10 @@ import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
-import { uuidV4, uuidV7 } from './_uuid';
-
-/**
- * The largest timestamp a ULID can encode, as the timestamp component is a 48 bit unsigned integer.
- */
-const MAX_ULID_TIMESTAMP = 2 ** 48 - 1;
-
-const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
-const LOWER_CHARS: ReadonlyArray<string> = [...'abcdefghijklmnopqrstuvwxyz'];
-const DIGIT_CHARS: ReadonlyArray<string> = [...'0123456789'];
-
-export type LowerAlphaChar =
-  | 'a'
-  | 'b'
-  | 'c'
-  | 'd'
-  | 'e'
-  | 'f'
-  | 'g'
-  | 'h'
-  | 'i'
-  | 'j'
-  | 'k'
-  | 'l'
-  | 'm'
-  | 'n'
-  | 'o'
-  | 'p'
-  | 'q'
-  | 'r'
-  | 's'
-  | 't'
-  | 'u'
-  | 'v'
-  | 'w'
-  | 'x'
-  | 'y'
-  | 'z';
-
-export type UpperAlphaChar =
-  | 'A'
-  | 'B'
-  | 'C'
-  | 'D'
-  | 'E'
-  | 'F'
-  | 'G'
-  | 'H'
-  | 'I'
-  | 'J'
-  | 'K'
-  | 'L'
-  | 'M'
-  | 'N'
-  | 'O'
-  | 'P'
-  | 'Q'
-  | 'R'
-  | 'S'
-  | 'T'
-  | 'U'
-  | 'V'
-  | 'W'
-  | 'X'
-  | 'Y'
-  | 'Z';
-
-export type NumericChar =
-  | '0'
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9';
-
-export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
-export type AlphaNumericChar = AlphaChar | NumericChar;
+import type { AlphaChar, AlphaNumericChar, NumericChar } from './_types';
+import { DIGIT_CHARS, LOWER_CHARS, UPPER_CHARS } from './_types';
+import { MAX_ULID_TIMESTAMP } from './ulid';
+import { uuidV4, uuidV7 } from './uuid';
 
 /**
  * Module to generate string related entries.
@@ -701,11 +624,11 @@ export class StringModule extends SimpleModuleBase {
     const { version = 4, refDate = this.faker.defaultRefDate() } = options;
     switch (version) {
       case 7: {
-        return uuidV7(this.faker, toDate(refDate));
+        return uuidV7(this.faker.fakerCore, toDate(refDate));
       }
 
       default: {
-        return uuidV4(this.faker);
+        return uuidV4(this.faker.fakerCore);
       }
     }
   }

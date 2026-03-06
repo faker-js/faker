@@ -4,6 +4,8 @@ import type { LiteralUnion } from '../../internal/types';
 import type { NumberOrRange } from '../../utils/types';
 import { arrayElement } from '../helpers/array-element';
 import { rangeToNumber } from '../helpers/range-to-number';
+import type { NumericChar } from './_types';
+import { DIGIT_CHARS } from './_types';
 import { fromCharacters } from './from-characters';
 
 /**

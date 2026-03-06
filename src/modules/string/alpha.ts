@@ -2,6 +2,8 @@ import type { FakerCore } from '../../core';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
 import { rangeToNumber } from '../helpers/range-to-number';
+import type { AlphaChar } from './_types';
+import { LOWER_CHARS, UPPER_CHARS } from './_types';
 import { fromCharacters } from './from-characters';
 
 /**
