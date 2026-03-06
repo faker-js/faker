@@ -2,6 +2,19 @@ import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 import { fileExt } from './file-ext';
 
+// Temp export
+export const commonMimeTypes = [
+  'application/pdf',
+  'audio/mpeg',
+  'audio/wav',
+  'image/png',
+  'image/jpeg',
+  'image/gif',
+  'video/mp4',
+  'video/mpeg',
+  'text/html',
+];
+
 /**
  * Returns a commonly used file extension.
  *

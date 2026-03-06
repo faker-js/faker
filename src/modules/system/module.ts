@@ -1,38 +1,13 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
-
-const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
-
-const commonMimeTypes = [
-  'application/pdf',
-  'audio/mpeg',
-  'audio/wav',
-  'image/png',
-  'image/jpeg',
-  'image/gif',
-  'video/mp4',
-  'video/mpeg',
-  'text/html',
-];
-
-const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
-const commonInterfaceSchemas = {
-  index: 'o',
-  slot: 's',
-  mac: 'x',
-  pci: 'p',
-} as const;
-
-const CRON_DAY_OF_WEEK = [
-  'SUN',
-  'MON',
-  'TUE',
-  'WED',
-  'THU',
-  'FRI',
-  'SAT',
-] as const;
+import { commonMimeTypes } from './common-file-ext';
+import { commonFileTypes } from './common-file-type';
+import { CRON_DAY_OF_WEEK } from './cron';
+import {
+  commonInterfaceSchemas,
+  commonInterfaceTypes,
+} from './network-interface';
 
 /**
  * Generates fake data for many computer systems properties.
