@@ -6,12 +6,14 @@ import type { AnimalDefinition } from '../../..';
 import bear from './bear';
 import bird from './bird';
 import cat from './cat';
+import cow from './cow';
 import dog from './dog';
 
 const animal: AnimalDefinition = {
   bear,
   bird,
   cat,
+  cow,
   dog,
 };
 
