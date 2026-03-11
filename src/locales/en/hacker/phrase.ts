@@ -1,10 +1,10 @@
 export default [
-  "I'll {{verb}} the {{adjective}} {{abbreviation}} {{noun}}, that should {{noun}} the {{abbreviation}} {{noun}}!",
-  'If we {{verb}} the {{noun}}, we can get to the {{abbreviation}} {{noun}} through the {{adjective}} {{abbreviation}} {{noun}}!',
-  'The {{abbreviation}} {{noun}} is down, {{verb}} the {{adjective}} {{noun}} so we can {{verb}} the {{abbreviation}} {{noun}}!',
-  'Try to {{verb}} the {{abbreviation}} {{noun}}, maybe it will {{verb}} the {{adjective}} {{noun}}!',
-  'Use the {{adjective}} {{abbreviation}} {{noun}}, then you can {{verb}} the {{adjective}} {{noun}}!',
-  'We need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!',
-  "You can't {{verb}} the {{noun}} without {{ingverb}} the {{adjective}} {{abbreviation}} {{noun}}!",
-  "{{ingverb}} the {{noun}} won't do anything, we need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!",
+  "I'll {{hacker.verb}} the {{hacker.adjective}} {{hacker.abbreviation}} {{hacker.noun}}, that should {{hacker.noun}} the {{hacker.abbreviation}} {{hacker.noun}}!",
+  'If we {{hacker.verb}} the {{hacker.noun}}, we can get to the {{hacker.abbreviation}} {{hacker.noun}} through the {{hacker.adjective}} {{hacker.abbreviation}} {{hacker.noun}}!',
+  'The {{hacker.abbreviation}} {{hacker.noun}} is down, {{hacker.verb}} the {{hacker.adjective}} {{hacker.noun}} so we can {{hacker.verb}} the {{hacker.abbreviation}} {{hacker.noun}}!',
+  'Try to {{hacker.verb}} the {{hacker.abbreviation}} {{hacker.noun}}, maybe it will {{hacker.verb}} the {{hacker.adjective}} {{hacker.noun}}!',
+  'Use the {{hacker.adjective}} {{hacker.abbreviation}} {{hacker.noun}}, then you can {{hacker.verb}} the {{hacker.adjective}} {{hacker.noun}}!',
+  'We need to {{hacker.verb}} the {{hacker.adjective}} {{hacker.abbreviation}} {{hacker.noun}}!',
+  "You can't {{hacker.verb}} the {{hacker.noun}} without {{hacker.ingverb}} the {{hacker.adjective}} {{hacker.abbreviation}} {{hacker.noun}}!",
+  "{{hacker.ingverb}} the {{hacker.noun}} won't do anything, we need to {{hacker.verb}} the {{hacker.adjective}} {{hacker.abbreviation}} {{hacker.noun}}!",
 ];
