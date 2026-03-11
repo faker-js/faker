@@ -3,12 +3,18 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { AnimalDefinition } from '../../..';
+import bear from './bear';
+import bird from './bird';
 import cat from './cat';
+import cow from './cow';
 import dog from './dog';
 import horse from './horse';
 
 const animal: AnimalDefinition = {
+  bear,
+  bird,
   cat,
+  cow,
   dog,
   horse,
 };

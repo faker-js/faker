@@ -4,7 +4,8 @@
     "lib": ["ES2015", "DOM"],
     "types": ["cypress"],
     "noEmit": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strict": true
   },
   "include": ["**/*.ts"]
 }

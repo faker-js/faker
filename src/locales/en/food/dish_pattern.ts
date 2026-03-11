@@ -1,6 +1,8 @@
 export default [
   '{{food.adjective}} {{food.ethnic_category}} stew',
+  '{{food.adjective}} {{food.fruit}} and {{food.vegetable}} salad',
   '{{food.adjective}} {{food.meat}} with {{food.vegetable}}',
+  '{{food.adjective}} {{food.vegetable}} curry',
   '{{food.ethnic_category}} {{food.ingredient}} soup',
   '{{food.fruit}} and {{food.fruit}} tart',
   '{{food.fruit}} pie',
@@ -12,6 +14,8 @@ export default [
   '{{food.meat}} with {{food.fruit}} sauce',
   '{{food.spice}}-crusted {{food.meat}}',
   '{{food.spice}}-rubbed {{food.meat}} salad',
+  '{{food.spice}}-spiced {{food.vegetable}} bowl',
+  '{{food.vegetable}} and {{food.ingredient}} stew',
   '{{food.vegetable}} salad',
   "{{person.first_name.generic}}'s special {{food.ingredient}}",
 ];
