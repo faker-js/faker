@@ -4,13 +4,19 @@
  */
 import type { AnimalDefinition } from '../../..';
 import bear from './bear';
+import bird from './bird';
 import cat from './cat';
+import cow from './cow';
 import dog from './dog';
+import fish from './fish';
 
 const animal: AnimalDefinition = {
   bear,
+  bird,
   cat,
+  cow,
   dog,
+  fish,
 };
 
 export default animal;
