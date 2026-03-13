@@ -17,5 +17,5 @@ export default [
   '{{food.spice}}-spiced {{food.vegetable}} bowl',
   '{{food.vegetable}} and {{food.ingredient}} stew',
   '{{food.vegetable}} salad',
-  "{{person.first_name.generic}}'s special {{food.ingredient}}",
+  "{{person.firstName}}'s special {{food.ingredient}}",
 ];

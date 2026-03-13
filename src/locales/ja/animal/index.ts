@@ -8,6 +8,7 @@ import bird from './bird';
 import cat from './cat';
 import cow from './cow';
 import dog from './dog';
+import fish from './fish';
 import horse from './horse';
 
 const animal: AnimalDefinition = {
@@ -16,6 +17,7 @@ const animal: AnimalDefinition = {
   cat,
   cow,
   dog,
+  fish,
   horse,
 };
 

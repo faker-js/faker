@@ -1,4 +1,1 @@
-export default {
-  female: ['خاتو', 'دادە'],
-  male: ['کاک'],
-};
+export default { female: ['خاتو', 'دادە'], male: ['کاک'] };
