@@ -58,7 +58,7 @@ function comparableSanitizedHtml(html: string): string {
  */
 export async function codeToHtml(code: string): Promise<string> {
   const delimiter = '```';
-  return await mdToHtml(`${delimiter}ts\n${code}\n${delimiter}`);
+  return mdToHtml(`${delimiter}ts\n${code}\n${delimiter}`);
 }
 
 /**
