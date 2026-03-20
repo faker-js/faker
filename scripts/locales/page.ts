@@ -108,7 +108,7 @@ ${localizedFakerExport}.number.int();
 `;
 
   const pageData = {
-    examples: codeToHtml(exampleCode),
+    examples: await codeToHtml(exampleCode),
     refresh: 'refresh-placeholder',
   };
   const refreshableCode = await toRefreshableCode(locale, exampleCode);

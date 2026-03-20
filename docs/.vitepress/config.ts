@@ -195,13 +195,16 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       },
     ],
 
-    algolia:
+    search:
       process.env.API_KEY == null || process.env.APP_ID == null
         ? undefined
         : {
-            apiKey: process.env.API_KEY,
-            appId: process.env.APP_ID,
-            indexName: algoliaIndex,
+            provider: 'algolia' as const,
+            options: {
+              apiKey: process.env.API_KEY,
+              appId: process.env.APP_ID,
+              indexName: algoliaIndex,
+            },
           },
 
     footer: {
