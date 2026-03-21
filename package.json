@@ -109,8 +109,8 @@
     "@vitest/eslint-plugin": "1.6.9",
     "@vitest/ui": "4.0.18",
     "@vueuse/core": "14.2.1",
-    "commit-and-tag-version": "12.6.1",
-    "cypress": "15.10.0",
+    "commit-and-tag-version": "12.7.1",
+    "cypress": "15.12.0",
     "eslint": "9.39.3",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-file-progress": "3.0.2",
@@ -133,7 +133,7 @@
     "vitepress": "2.0.0-alpha.17",
     "vitest": "4.0.18",
     "vue": "3.5.30",
-    "vue-tsc": "3.2.5"
+    "vue-tsc": "3.2.6"
   },
   "packageManager": "pnpm@10.31.0",
   "engines": {
