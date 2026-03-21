@@ -217,22 +217,25 @@ describe('finance', () => {
         );
 
         // This test is flaky on Windows Github Actions
-        it.skip('should return the number formatted on the current locale', () => {
-          const number = 6000;
-          const decimalPlaces = 2;
-          const expected = number.toLocaleString(undefined, {
-            minimumFractionDigits: decimalPlaces,
-          });
+        it.todo(
+          'should return the number formatted on the current locale',
+          () => {
+            const number = 6000;
+            const decimalPlaces = 2;
+            const expected = number.toLocaleString(undefined, {
+              minimumFractionDigits: decimalPlaces,
+            });
 
-          const amount = faker.finance.amount({
-            min: number,
-            max: number,
-            dec: decimalPlaces,
-            autoFormat: true,
-          });
+            const amount = faker.finance.amount({
+              min: number,
+              max: number,
+              dec: decimalPlaces,
+              autoFormat: true,
+            });
 
-          expect(amount).toStrictEqual(expected);
-        });
+            expect(amount).toStrictEqual(expected);
+          }
+        );
       });
 
       describe('transactionType()', () => {
@@ -516,7 +519,9 @@ describe('finance', () => {
         });
 
         it('should throw an error when length is less than 1', () => {
-          expect(() => faker.finance.pin(-5)).toThrow(/^minimum length is 1$/);
+          expect(() => faker.finance.pin(-5)).toThrowError(
+            /^minimum length is 1$/
+          );
         });
       });
 
@@ -563,7 +568,7 @@ describe('finance', () => {
                 formatted: false,
                 countryCode: unsupportedCountryCode,
               })
-            ).toThrow(
+            ).toThrowError(
               new FakerError(
                 `Country code ${unsupportedCountryCode} not supported.`
               )

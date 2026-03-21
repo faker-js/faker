@@ -365,7 +365,7 @@ function foo(bar: number = 0) {
  *
  * @param bar this is a parameter description. Defaults to `0`.
  *
- * @throws If bar is negative.
+ * @throws {FakerError} If bar is negative.
  */
 function foo(bar: number = 0) {
   // implementation

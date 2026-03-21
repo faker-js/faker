@@ -15,7 +15,7 @@ function getMethodNamesByModules(faker: Faker): { [module: string]: string[] } {
   return Object.fromEntries(
     Object.keys(faker)
       .filter(isTestableModule)
-      .sort()
+      .toSorted()
       .map<[string, string[]]>((moduleName) => [
         moduleName,
         getMethodNamesOf(faker[moduleName]),

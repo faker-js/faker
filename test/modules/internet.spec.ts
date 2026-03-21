@@ -672,7 +672,7 @@ describe('internet', () => {
               faker.internet.ipv4({
                 cidrBlock,
               })
-            ).toThrow(
+            ).toThrowError(
               new FakerError(
                 `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
               )
@@ -864,7 +864,7 @@ describe('internet', () => {
           expect(password).toBeTruthy();
           expect(password).toBeTypeOf('string');
           expect(password).toHaveLength(32);
-          expect(password).toMatch(/^a!G6/);
+          expect(password).toStartWith('a!G6');
           expect(password).toSatisfy(isStrongPassword);
         });
       });

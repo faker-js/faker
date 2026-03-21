@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { allLocales } from '../src';
-import './vitest-extensions';
 
 function checkLocaleData(data: unknown) {
   if (Array.isArray(data)) {
@@ -74,7 +73,7 @@ describe('locale-data', () => {
     const characterSets = Object.fromEntries(
       Object.entries(allLocales).map(([locale, data]) => [
         locale,
-        allCharacters(data).sort().join(''),
+        allCharacters(data).toSorted().join(''),
       ])
     );
     expect(characterSets).toMatchSnapshot();

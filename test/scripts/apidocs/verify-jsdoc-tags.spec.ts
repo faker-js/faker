@@ -61,7 +61,7 @@ function assertDescription(description: string): void {
   const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
   for (const link of links) {
-    expect(link).toMatch(/^https?:\/\//);
+    expect(link).toStartWith('https://');
     expect(link).toSatisfy(isURL);
 
     if (link.includes('fakerjs.dev/api/')) {

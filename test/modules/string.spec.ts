@@ -1,8 +1,17 @@
 import isULID from 'validator/lib/isULID';
+import isUUID from 'validator/lib/isUUID';
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
+
+function isUuidV4(value: string) {
+  return isUUID(value, '4');
+}
+
+function isUuidV7(value: string) {
+  return isUUID(value, '7');
+}
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -112,7 +121,24 @@ describe('string', () => {
         .it('with length range', { min: 10, max: 20 });
     });
 
-    t.itRepeated('uuid', 5);
+    t.describe('uuid', (t) => {
+      const ulidRefDate = '2025-01-22T00:05:32.664Z';
+
+      t.itRepeated('noArgs', 5)
+        .itRepeated('with version = 4', 5, { version: 4 })
+        .it('with version = 7 and string refDate', {
+          version: 7,
+          refDate: ulidRefDate,
+        })
+        .it('with version = 7 and Date refDate', {
+          version: 7,
+          refDate: new Date(ulidRefDate),
+        })
+        .it('with version = 7 and number refDate', {
+          version: 7,
+          refDate: new Date(ulidRefDate).getTime(),
+        });
+    });
 
     t.describe('ulid', (t) => {
       const ulidRefDate = '2021-02-21T17:09:15.711Z';
@@ -182,7 +208,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string)', () => {
-          expect(() => faker.string.fromCharacters('')).toThrow(
+          expect(() => faker.string.fromCharacters('')).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -190,7 +216,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string[])', () => {
-          expect(() => faker.string.fromCharacters([])).toThrow(
+          expect(() => faker.string.fromCharacters([])).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -286,7 +312,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -301,7 +327,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -319,7 +345,7 @@ describe('string', () => {
             exclude: ['a', '%'],
           });
 
-          expect(() => faker.string.alpha(input)).not.toThrow();
+          expect(() => faker.string.alpha(input)).not.toThrowError();
           expect(input.exclude).toEqual(['a', '%']);
         });
       });
@@ -440,7 +466,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -455,7 +481,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -471,7 +497,7 @@ describe('string', () => {
             exclude: ['a', '0', '%'],
           });
 
-          expect(() => faker.string.alphanumeric(input)).not.toThrow();
+          expect(() => faker.string.alphanumeric(input)).not.toThrowError();
           expect(input.exclude).toEqual(['a', '0', '%']);
         });
       });
@@ -679,7 +705,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: [...'123456789'],
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -693,7 +719,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789',
             })
-          ).toThrow(
+          ).toThrowError(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -753,11 +779,42 @@ describe('string', () => {
       });
 
       describe(`uuid`, () => {
-        it('generates a valid UUID', () => {
-          const UUID = faker.string.uuid();
-          const RFC4122 =
-            /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
-          expect(UUID).toMatch(RFC4122);
+        describe('version 4', () => {
+          it('generates a valid UUID', () => {
+            const uuid = faker.string.uuid({ version: 4 });
+            expect(uuid).toSatisfy(isUuidV4);
+          });
+        });
+
+        describe('version 7', () => {
+          it('generates a valid UUID', () => {
+            const uuid = faker.string.uuid({ version: 7 });
+            expect(uuid).toSatisfy(isUuidV7);
+          });
+
+          it('generates nil bytes in the unix part if 0 is given as a ref date', () => {
+            const uuid = faker.string.uuid({ version: 7, refDate: 0 });
+
+            expect(uuid).toSatisfy(isUuidV7);
+            expect(uuid).toStartWith('00000000-0000');
+          });
+
+          it('generates nil bytes in the unix part if a negative is given as a ref date', () => {
+            const uuid = faker.string.uuid({ version: 7, refDate: -3000 });
+
+            expect(uuid).toSatisfy(isUuidV7);
+            expect(uuid).toStartWith('00000000-0000');
+          });
+
+          it('generates max bytes in the unix part if the maximum unix time epoch is given as a ref date', () => {
+            const uuid = faker.string.uuid({
+              version: 7,
+              refDate: 0xffffffffffff,
+            });
+
+            expect(uuid).toSatisfy(isUuidV7);
+            expect(uuid).toStartWith('ffffffff-ffff');
+          });
         });
       });
 
@@ -765,7 +822,7 @@ describe('string', () => {
         it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
           'should reject invalid refDates %s',
           (refDate) => {
-            expect(() => faker.string.ulid({ refDate })).toThrow(
+            expect(() => faker.string.ulid({ refDate })).toThrowError(
               new FakerError(`Invalid refDate date: ${refDate.toString()}`)
             );
           }

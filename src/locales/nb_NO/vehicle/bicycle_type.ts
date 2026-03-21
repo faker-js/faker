@@ -1,0 +1,20 @@
+// Source: https://snl.no/sykkel (Retrieved 2026-01-31)
+export default [
+  'BMX-sykkel',
+  'Bysykkel',
+  'Elsykkel',
+  'Etthjulssykkel',
+  'Feitsykkel',
+  'Hybridsykkel',
+  'Kassesykkel',
+  'Landeveissykkel',
+  'Lastesykkel',
+  'Liggesykkel',
+  'Longtailsykkel',
+  'Racersykkel',
+  'Sammenleggbar sykkel',
+  'Tandemsykkel',
+  'Terrengsykkel',
+  'Transportsykkel',
+  'Trehjulssykkel',
+];

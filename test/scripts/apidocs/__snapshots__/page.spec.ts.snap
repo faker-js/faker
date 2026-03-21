@@ -3,8 +3,6 @@
 exports[`toRefreshFunction > should handle multiline calls 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
-  faker.seed();
-  faker.setDefaultRefDate();
   const result: unknown[] = [];
 
   try {
@@ -25,8 +23,6 @@ exports[`toRefreshFunction > should handle multiline calls 1`] = `
 exports[`toRefreshFunction > should handle multiple calls 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
-  faker.seed();
-  faker.setDefaultRefDate();
   const result: unknown[] = [];
 
   try {
@@ -48,8 +44,6 @@ exports[`toRefreshFunction > should handle multiple calls 1`] = `
 exports[`toRefreshFunction > should handle properties after calls 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
-  faker.seed();
-  faker.setDefaultRefDate();
   const result: unknown[] = [];
 
   try {
@@ -65,8 +59,6 @@ exports[`toRefreshFunction > should handle properties after calls 1`] = `
 exports[`toRefreshFunction > should handle single line calls with semicolon 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
-  faker.seed();
-  faker.setDefaultRefDate();
   const result: unknown[] = [];
 
   try {
@@ -82,8 +74,6 @@ exports[`toRefreshFunction > should handle single line calls with semicolon 1`] 
 exports[`toRefreshFunction > should handle single line calls without semicolon 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
-  faker.seed();
-  faker.setDefaultRefDate();
   const result: unknown[] = [];
 
   try {

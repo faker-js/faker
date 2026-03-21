@@ -157,6 +157,7 @@ export default defineConfig(
       'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
       'unicorn/number-literal-case': 'off', // incompatible with prettier
       'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
+      'unicorn/prefer-bigint-literals': 'off', // currently there is no clear argument on why literal would be better
       'unicorn/prefer-string-raw': 'off', // The additional prefix doesn't help readability
       'unicorn/prefer-string-slice': 'off', // string.substring is sometimes easier to use
       'unicorn/prefer-ternary': 'off', // ternaries aren't always better
@@ -255,10 +256,7 @@ export default defineConfig(
   {
     name: 'test/**/*.ts overrides',
     files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
-    plugins: {
-      // @ts-expect-error: weird type error
-      vitest: eslintPluginVitest,
-    },
+    extends: [eslintPluginVitest.configs.recommended],
     rules: {
       '@typescript-eslint/no-deprecated': 'off',
 
@@ -271,10 +269,9 @@ export default defineConfig(
         },
       ],
 
-      ...eslintPluginVitest.configs.recommended.rules,
-
       'vitest/expect-expect': 'off',
       'vitest/no-alias-methods': 'error',
+      'vitest/no-conditional-expect': 'off', // we require conditional logic when iterating over faker instances or instances in diffent versions (for the docs)
       'vitest/prefer-each': 'error',
       'vitest/prefer-to-have-length': 'error',
       'vitest/valid-expect': ['error', { maxArgs: 2 }],

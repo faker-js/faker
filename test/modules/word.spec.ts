@@ -67,7 +67,7 @@ describe('word', () => {
           wordList,
           length,
         });
-      }).toThrow('No words found that match the given length.');
+      }).toThrowError('No words found that match the given length.');
     });
 
     it('returns the appropriate words when strategy is "any-length" and no words match the given length', () => {
@@ -113,7 +113,7 @@ describe('word', () => {
           length,
           strategy: 'fail',
         });
-      }).toThrow('No words found that match the given length.');
+      }).toThrowError('No words found that match the given length.');
     });
   });
 

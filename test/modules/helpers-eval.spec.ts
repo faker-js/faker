@@ -4,13 +4,13 @@ import { fakeEval } from '../../src/modules/helpers/eval';
 
 describe('fakeEval()', () => {
   it('does not allow empty string input', () => {
-    expect(() => fakeEval('', faker)).toThrow(
+    expect(() => fakeEval('', faker)).toThrowError(
       new FakerError('Eval expression cannot be empty.')
     );
   });
 
   it('does not allow empty entrypoints', () => {
-    expect(() => fakeEval('foobar', faker, [])).toThrow(
+    expect(() => fakeEval('foobar', faker, [])).toThrowError(
       new FakerError('Eval entrypoints cannot be empty.')
     );
   });
@@ -116,7 +116,7 @@ describe('fakeEval()', () => {
   });
 
   it('requires a dot after a function call', () => {
-    expect(() => fakeEval('airline.airline()iataCode', faker)).toThrow(
+    expect(() => fakeEval('airline.airline()iataCode', faker)).toThrowError(
       new FakerError(
         "Expected dot ('.'), open parenthesis ('('), or nothing after function call but got 'i'"
       )
@@ -125,34 +125,34 @@ describe('fakeEval()', () => {
 
   it('requires a function for parameters', () => {
     expect(faker.definitions.person.first_name.generic).toBeDefined();
-    expect(() => fakeEval('person.first_name().generic', faker)).toThrow(
+    expect(() => fakeEval('person.first_name().generic', faker)).toThrowError(
       new FakerError("Cannot resolve expression 'person.first_name().generic'")
     );
   });
 
   it('requires a valid expression (missing value)', () => {
-    expect(() => fakeEval('foo.bar', faker)).toThrow(
+    expect(() => fakeEval('foo.bar', faker)).toThrowError(
       new FakerError("Cannot resolve expression 'foo.bar'")
     );
   });
 
   it('requires a valid expression (trailing dot)', () => {
-    expect(() => fakeEval('airline.airline.', faker)).toThrow(
+    expect(() => fakeEval('airline.airline.', faker)).toThrowError(
       new FakerError("Found dot without property name in 'airline.'")
     );
-    expect(() => fakeEval('airline.airline.()', faker)).toThrow(
+    expect(() => fakeEval('airline.airline.()', faker)).toThrowError(
       new FakerError("Found dot without property name in 'airline.()'")
     );
-    expect(() => fakeEval('airline.airline.().iataCode', faker)).toThrow(
+    expect(() => fakeEval('airline.airline.().iataCode', faker)).toThrowError(
       new FakerError("Found dot without property name in 'airline.().iataCode'")
     );
   });
 
   it('requires a valid expression (unclosed parenthesis)', () => {
-    expect(() => fakeEval('airline.airline(', faker)).toThrow(
+    expect(() => fakeEval('airline.airline(', faker)).toThrowError(
       new FakerError("Missing closing parenthesis in '('")
     );
-    expect(() => fakeEval('airline.airline(.iataCode', faker)).toThrow(
+    expect(() => fakeEval('airline.airline(.iataCode', faker)).toThrowError(
       new FakerError("Missing closing parenthesis in '(.iataCode'")
     );
   });

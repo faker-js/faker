@@ -1,8 +1,8 @@
 import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { formatTypescript } from '../utils/format';
-import { FILE_PATH_API_DOCS } from '../utils/paths';
+import { formatTypescript } from '../../shared/format';
+import { FILE_PATH_API_DOCS } from '../../shared/paths';
 import { SCRIPT_COMMAND } from './constants';
 
 const pathSourceBaseUrlFile = resolve(FILE_PATH_API_DOCS, 'source-base-url.ts');

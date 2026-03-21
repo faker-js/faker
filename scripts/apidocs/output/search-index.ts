@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { APIGroup } from '../../../docs/api/api-types';
+import { FILE_PATH_API_DOCS } from '../../shared/paths';
 import type { RawApiDocsPage } from '../processing/class';
-import { FILE_PATH_API_DOCS } from '../utils/paths';
 
 const pathDocsApiSearchIndex = resolve(
   FILE_PATH_API_DOCS,
