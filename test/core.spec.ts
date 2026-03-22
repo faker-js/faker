@@ -1,11 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
-import {
-  generateMersenne53Randomizer,
-  type LocaleDefinition,
-  type Randomizer,
-} from '../src';
 import type { FakerConfig } from '../src/config';
 import { createFakerCore } from '../src/core';
+import type { LocaleDefinition } from '../src/definitions/definitions';
+import type { Randomizer } from '../src/randomizer';
+import { generateMersenne53Randomizer } from '../src/utils/mersenne';
 
 describe('createFakerCore', () => {
   describe('locale', () => {
