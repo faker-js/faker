@@ -26,7 +26,7 @@ export interface FakerCore {
   readonly config: FakerConfig;
 }
 
-export interface FakerCoreOptions {
+export interface FakerOptions {
   /**
    * The locale definitions to use. If not provided, this core will not have any locale data and thus all methods that rely on locale data will throw an error when called.
    *
@@ -82,7 +82,7 @@ export interface FakerCoreOptions {
  *
  * @since 10.4.0
  */
-export function createFakerCore(options: FakerCoreOptions = {}): FakerCore {
+export function createFakerCore(options: FakerOptions = {}): FakerCore {
   const { locale, randomizer, config, seed } = options;
 
   if (randomizer != null && seed != null) {

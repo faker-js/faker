@@ -1,4 +1,4 @@
-import type { FakerCoreOptions } from './core';
+import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import type { LocaleProxy } from './internal/locale-proxy';
 import { createLocaleProxy } from './internal/locale-proxy';
@@ -122,7 +122,7 @@ export class Faker extends SimpleFaker {
    *
    * @since 8.0.0
    */
-  constructor(options: FakerCoreOptions) {
+  constructor(options: FakerOptions) {
     super(options);
 
     this.definitions = createLocaleProxy(this.fakerCore.locale);
@@ -143,5 +143,3 @@ export class Faker extends SimpleFaker {
     return this.fakerCore.locale.metadata ?? {};
   }
 }
-
-export type FakerOptions = ConstructorParameters<typeof Faker>[0];

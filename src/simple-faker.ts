@@ -1,4 +1,4 @@
-import type { FakerCore, FakerCoreOptions } from './core';
+import type { FakerCore, FakerOptions } from './core';
 import { createFakerCore } from './core';
 import { randomSeed } from './internal/seed';
 import { DatatypeModule } from './modules/datatype';
@@ -120,7 +120,7 @@ export class SimpleFaker {
    *
    * @since 8.1.0
    */
-  constructor(options?: FakerCoreOptions) {
+  constructor(options?: FakerOptions) {
     this.fakerCore = createFakerCore(options);
   }
 

@@ -1,3 +1,4 @@
+export type { FakerOptions } from './core';
 export type {
   AirlineDefinition,
   AnimalDefinition,
@@ -30,7 +31,6 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export { Faker } from './faker';
-export type { FakerOptions } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
