@@ -1,4 +1,6 @@
-export type { FakerOptions } from './core';
+export type { FakerConfig } from './config';
+export { createFakerCore } from './core';
+export type { FakerCore, FakerOptions } from './core';
 export type {
   AirlineDefinition,
   AnimalDefinition,
