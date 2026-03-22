@@ -38,4 +38,9 @@ export interface CommerceProductNameDefinition {
    * Types of products (e.g. chair).
    */
   product: string[];
+
+  /**
+   * Patterns to generate localized product names.
+   */
+  pattern: string[];
 }

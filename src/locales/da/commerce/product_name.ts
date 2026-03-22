@@ -64,4 +64,7 @@ export default {
     'Tastatur',
     'Tun',
   ],
+  pattern: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

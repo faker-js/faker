@@ -88,4 +88,7 @@ export default {
     'zak',
     'zeep',
   ],
+  pattern: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

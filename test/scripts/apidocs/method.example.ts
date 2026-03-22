@@ -3,8 +3,14 @@ import { FakerError } from '../../../src/errors/faker-error';
 import type { LiteralUnion } from '../../../src/internal/types';
 import type { AlphaNumericChar } from '../../../src/modules/string';
 // explicitly export types so they show up in the docs as decomposed types
-export type { NumberColorFormat, StringColorFormat } from '../../../src';
-export type { AlphaNumericChar, Casing, ColorFormat, LiteralUnion };
+export type {
+  Casing,
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from '../../../src';
+export type { LiteralUnion } from '../../../src/internal/types';
+export type { AlphaNumericChar } from '../../../src/modules/string';
 
 /**
  * Parameter options type with default from signature.
@@ -357,7 +363,7 @@ export class SignatureTest {
   /**
    * Test with throws.
    *
-   * @throws Everytime.
+   * @throws {FakerError} Everytime.
    *
    * @since 1.0.0
    */
@@ -368,8 +374,8 @@ export class SignatureTest {
   /**
    * Test with multiple throws.
    *
-   * @throws First error case.
-   * @throws Another error case.
+   * @throws {FakerError} First error case.
+   * @throws {FakerError} Another error case.
    *
    * @since 1.0.0
    */
@@ -438,6 +444,30 @@ export class SignatureTest {
    * @since 1.0.0
    */
   methodWithSinceMarker(): number {
+    return 0;
+  }
+
+  /**
+   * Test with remark marker.
+   *
+   * @remark This text is special.
+   *
+   * @since 1.0.0
+   */
+  methodWithRemark(): number {
+    return 0;
+  }
+
+  /**
+   * Test with multiple remark markers.
+   *
+   * @remark First special text.
+   * @remark Second special text.
+   * @remark Third special text.
+   *
+   * @since 1.0.0
+   */
+  methodWithMultipleRemarks(): number {
     return 0;
   }
 

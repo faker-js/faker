@@ -79,7 +79,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v9.0.3"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v10.3.0"`.
 :::
 
 ### Alternative CDN links
@@ -94,18 +94,32 @@ It is highly recommended to use version tags when importing libraries in Deno, e
 
 ## TypeScript Support
 
-Faker supports TypeScript out of the box, so you don't have to install any extra packages.
+We assume that you use TypeScript (strict mode).
+You can use Faker without it, but we don't have dedicated error messages for wrong parameter types.
 
 In order to have Faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
-```json
+::: code-group
+
+```json [esm]
 {
   "compilerOptions": {
-    "esModuleInterop": true,
-    "moduleResolution": "Bundler" // "Node10", "Node16" or "NodeNext"
+    "moduleResolution": "Bundler", // or "Node10", "Node16", "Node20", "NodeNext"
+    "strict": true // Optional, but recommended
   }
 }
 ```
+
+```json [cjs]
+{
+  "compilerOptions": {
+    "moduleResolution": "Bundler", // or "Node20" or "NodeNext"
+    "strict": true // Optional, but recommended
+  }
+}
+```
+
+:::
 
 ## Reproducible results
 
@@ -135,7 +149,7 @@ console.log(firstRandom === secondRandom);
 When upgrading to a new version of Faker, you may get different values for the same seed, as the underlying data (lists of names, words etc) may have changed.
 :::
 
-There are a few methods which use relative dates for which setting a random seed is not sufficient to have reproducible results, for example: `faker.date.past`, `faker.date.future`, `faker.date.birthdate`, `faker.date.recent`, `faker.date.soon` and `faker.git.commitEntry`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
+There are a few methods which use relative dates for which setting a random seed is not sufficient to have reproducible results, for example: `faker.date.past`, `faker.date.future`, `faker.date.recent`, `faker.date.soon`, `faker.git.commitEntry` and `faker.string.uuid({ version: 7 })`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
 
 ```ts
 // creates a date soon after 2023-01-01
@@ -258,4 +272,49 @@ This allows the value to be more reasonable based on the provided arguments.
 
 Unlike the `_id` property that uses an `uuid` implementation, which has a low chance of duplicates, the `email` function is more likely to produce duplicates, especially if the call arguments are similar. We have a dedicated guide page on generating [unique values](unique).
 
-Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
+The example above demonstrates how to generate complex objects.
+To gain more control over the values of specific properties, you can introduce `overwrites`, `options` or similar parameters:
+
+```ts {3,17}
+import { faker } from '@faker-js/faker';
+
+function createRandomUser(overwrites: Partial<User> = {}): User {
+  const {
+    _id = faker.string.uuid(),
+    avatar = faker.image.avatar(),
+    birthday = faker.date.birthdate(),
+    sex = faker.person.sexType(),
+    firstName = faker.person.firstName(sex),
+    lastName = faker.person.lastName(),
+    email = faker.internet.email({ firstName, lastName }),
+    subscriptionTier = faker.helpers.arrayElement([
+      'free',
+      'basic',
+      'business',
+    ]),
+  } = overwrites;
+
+  return {
+    _id,
+    avatar,
+    birthday,
+    email,
+    firstName,
+    lastName,
+    sex,
+    subscriptionTier,
+  };
+}
+
+const user = createRandomUser();
+const userToReject = createRandomUser({ birthday: new Date('2124-10-20') });
+```
+
+A potential `options` parameter could be used to:
+
+- control which optional properties are included,
+- control how nested elements and arrays are merged or replaced,
+- or specify the number of items to generate for nested lists.
+
+Congratulations, you should now be able to create any complex object you desire.
+Happy faking 🥳.

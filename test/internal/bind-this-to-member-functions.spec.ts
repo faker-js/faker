@@ -18,15 +18,15 @@ describe('internal', () => {
 
       const someMethodWithoutBind = someModule.someMethod;
 
-      expect(() => someMethodWithoutBind()).toThrow(
-        new Error("Cannot read properties of undefined (reading 'faker')")
+      expect(() => someMethodWithoutBind()).toThrowError(
+        new TypeError("Cannot read properties of undefined (reading 'faker')")
       );
 
       bindThisToMemberFunctions(someModule);
 
       const someMethod = someModule.someMethod;
 
-      expect(() => someMethod()).not.toThrow();
+      expect(() => someMethod()).not.toThrowError();
     });
   });
 });

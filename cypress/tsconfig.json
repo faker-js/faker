@@ -3,9 +3,9 @@
     "target": "ES5",
     "lib": ["ES2015", "DOM"],
     "types": ["cypress"],
-    "esModuleInterop": true,
     "noEmit": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strict": true
   },
   "include": ["**/*.ts"]
 }

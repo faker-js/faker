@@ -500,7 +500,7 @@ const iban: Iban = {
       total: 22,
       bban: [
         {
-          type: 'c',
+          type: 'a',
           count: 4,
         },
         {
@@ -528,6 +528,17 @@ const iban: Iban = {
         },
       ],
       format: 'ILkk bbbn nncc cccc cccc ccc',
+    },
+    {
+      country: 'IR',
+      total: 26,
+      bban: [
+        {
+          type: 'n',
+          count: 22,
+        },
+      ],
+      format: 'IRkk bbbb cccc cccc cccc cccc cc',
     },
     {
       country: 'IT',
@@ -862,7 +873,7 @@ const iban: Iban = {
       total: 29,
       bban: [
         {
-          type: 'c',
+          type: 'a',
           count: 4,
         },
         {

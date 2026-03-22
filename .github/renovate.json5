@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
-    "schedule:earlyMondays",
+    "schedule:monthly",
     "group:allNonMajor",
     ":prHourlyLimitNone"
   ],
@@ -36,8 +36,8 @@
     {
       "groupName": "eslint",
       "matchPackageNames": [
-        "@eslint-types/**",
         "@eslint/**",
+        "@stylistic/**",
         "eslint",
         "eslint-**",
         "typescript-eslint"

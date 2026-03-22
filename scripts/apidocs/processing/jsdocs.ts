@@ -50,7 +50,11 @@ export function getParameterTags(jsdocs: JSDoc): Record<string, JSDocTag> {
 }
 
 export function getDefault(jsdocs: JSDoc): string | undefined {
-  return getOptionalTagFromJSDoc(jsdocs, `default`);
+  return (
+    getOptionalTagFromJSDoc(jsdocs, `default`)
+      // Prevent line breaks between the key and the value { foo: 'bar' }
+      ?.replaceAll(': ', ': ')
+  );
 }
 
 export function getThrows(jsdocs: JSDoc): string[] {
@@ -63,6 +67,10 @@ export function getExamples(jsdocs: JSDoc): string[] {
 
 export function getSeeAlsos(jsdocs: JSDoc): string[] {
   return getTagsFromJSDoc(jsdocs, 'see', true);
+}
+
+export function getRemarks(jsdocs: JSDoc): string[] {
+  return getTagsFromJSDoc(jsdocs, 'remark');
 }
 
 function getOptionalTagFromJSDoc(

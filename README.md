@@ -24,24 +24,24 @@ Please proceed to the [Getting Started Guide](https://fakerjs.dev/guide/) for th
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
-|   Version   | Website                   |
-| :---------: | :------------------------ |
-|  v9 (next)  | https://next.fakerjs.dev/ |
-| v9 (stable) | https://fakerjs.dev/      |
-|  v8 (old)   | https://v8.fakerjs.dev/   |
+|   Version    | Website                   |
+| :----------: | :------------------------ |
+|  v10 (next)  | https://next.fakerjs.dev/ |
+| v10 (stable) | https://fakerjs.dev/      |
+|   v9 (old)   | https://v9.fakerjs.dev/   |
 
 ---
 
 ## 🚀 Features
 
-- 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
-- ⏰ Time-based Data - Past, present, future, recent, soon... whenever!
-- 🌏 Localization - Pick a locale to generate realistic looking Names, Addresses, and Phone Numbers.
+- 🧍 Person - Generate Names, Genders, Bios, Job titles, and more.
+- 📍 Location - Generate Addresses, Zip Codes, Street Names, States, and Countries!
+- ⏰ Date - Past, present, future, recent, soon... whenever!
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
-- 👠 Products - Generate Prices, Product Names, Adjectives, and Descriptions.
-- 👾 Hacker Jargon - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
-- 🧍 Names - Generate virtual humans with a complete online and offline identity.
-- 🔢 Numbers - Of course, we can also generate random numbers and strings.
+- 👠 Commerce - Generate Prices, Product Names, Adjectives, and Descriptions.
+- 👾 Hacker - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
+- 🔢 Number and String - Of course, we can also generate random numbers and strings.
+- 🌏 Localization - Pick from over 70 locales to generate realistic looking Names, Addresses, and Phone Numbers.
 
 > **Note**: Faker tries to generate realistic data and not obvious fake data.
 > The generated names, addresses, emails, phone numbers, and/or other data might be coincidentally valid information.
@@ -65,7 +65,7 @@ const { faker } = require('@faker-js/faker');
 export function createRandomUser() {
   return {
     userId: faker.string.uuid(),
-    username: faker.internet.username(), // before version 9.1.0, use userName()
+    username: faker.internet.username(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
     password: faker.internet.password(),
@@ -81,7 +81,7 @@ export const users = faker.helpers.multiple(createRandomUser, {
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the documentation for [v9 (stable)](https://fakerjs.dev/api/) and [v9.\* (next)](https://next.fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v10 (stable)](https://fakerjs.dev/api/) and [v10.\* (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
@@ -126,7 +126,7 @@ export const faker = new Faker({
 
 ## ⚙️ Setting a randomness seed
 
-If you want consistent results, you can set your own seed:
+If you want consistent results, you can set your own seed. If you are using `faker.date` methods, there are additional considerations. See [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
 
 ```ts
 faker.seed(123);

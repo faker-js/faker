@@ -1,17 +1,14 @@
 import type {
   ClassDeclaration,
+  ConstructorDeclaration,
   FunctionDeclaration,
   InterfaceDeclaration,
+  MethodDeclaration,
   MethodSignature,
   Project,
 } from 'ts-morph';
-import {
-  SyntaxKind,
-  type ConstructorDeclaration,
-  type MethodDeclaration,
-} from 'ts-morph';
+import { SyntaxKind } from 'ts-morph';
 import { groupBy } from '../../../src/internal/group-by';
-import { valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type {
   RawApiDocsSignature,
@@ -76,7 +73,7 @@ function getAllMethods(clazz: ClassDeclaration): MethodDeclaration[] {
     }
   }
 
-  return Object.values(methods).sort((a, b) =>
+  return Object.values(methods).toSorted((a, b) =>
     a.getName().localeCompare(b.getName())
   );
 }
@@ -138,12 +135,11 @@ function getAllFunctions(
   );
 }
 
-export function processProjectFunctions(
-  project: Project,
-  ...names: string[]
-): RawApiDocsMethod[] {
+export function processUtilityFunctions(project: Project): RawApiDocsMethod[] {
   return processMethodLikes(
-    valuesForKeys(getAllFunctions(project), names),
+    Object.values(getAllFunctions(project)).filter((fn) =>
+      fn.getSourceFile().getFilePath().includes('/src/utils/')
+    ),
     (f) => f.getNameOrThrow()
   );
 }
@@ -174,7 +170,7 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
         });
       }
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .toSorted((a, b) => a.name.localeCompare(b.name));
 }
 
 export function processMethodLike(

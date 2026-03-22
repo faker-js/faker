@@ -1,11 +1,12 @@
-import type { FakerCore } from './core';
+import type { FakerCore, FakerCoreOptions } from './core';
+import { createFakerCore } from './core';
+import { randomSeed } from './internal/seed';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
+import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
-import type { Randomizer } from './randomizer';
-import { generateMersenne53Randomizer } from './utils/mersenne';
 
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.
@@ -14,6 +15,7 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * - `datatype`
  * - `date` (without `month` and `weekday`)
  * - `helpers` (without `fake`)
+ * - `location` (`latitude`, `longitude` and `nearbyGPSCoordinate` only)
  * - `number`
  * - `string`
  *
@@ -27,6 +29,11 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * simpleFaker.string.uuid(); // 'c50e1f5c-86e8-4aa9-888e-168e0a182519'
  */
 export class SimpleFaker {
+  /**
+   * The faker core containing the randomizer and config to use.
+   *
+   * @internal
+   */
   readonly fakerCore: FakerCore;
 
   /**
@@ -82,6 +89,7 @@ export class SimpleFaker {
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
   readonly helpers: SimpleHelpersModule = new SimpleHelpersModule(this);
+  readonly location: SimpleLocationModule = new SimpleLocationModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly string: StringModule = new StringModule(this);
 
@@ -95,6 +103,10 @@ export class SimpleFaker {
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.seed The initial seed to use.
+   * The seed can be used to generate reproducible values.
+   * Refer to the `seed()` method for more information.
+   * Defaults to a random seed.
    *
    * @example
    * import { SimpleFaker } from '@faker-js/faker';
@@ -108,44 +120,16 @@ export class SimpleFaker {
    *
    * @since 8.1.0
    */
-  constructor(
-    options?:
-      | {
-          /**
-           * The Randomizer to use.
-           * Specify this only if you want to use it to achieve a specific goal,
-           * such as sharing the same random generator with other instances/tools.
-           *
-           * @default generateMersenne53Randomizer()
-           */
-          randomizer?: Randomizer;
-        }
-      | {
-          /**
-           * The faker core with the randomizer and config to use.
-           */
-          fakerCore: FakerCore;
-        }
-  );
-  constructor(
-    options: {
-      randomizer?: Randomizer;
-      fakerCore?: FakerCore;
-    } = {}
-  ) {
-    const {
-      randomizer = generateMersenne53Randomizer(),
-      fakerCore = { locale: {}, randomizer, config: {} },
-    } = options;
-
-    this.fakerCore = fakerCore;
+  constructor(options?: FakerCoreOptions) {
+    this.fakerCore = createFakerCore(options);
   }
 
   /**
    * Sets the seed or generates a new one.
    *
    * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
+   * number of calls that have been made since it was set. If you are using dates,
+   * you will also need to configure them separately.
    *
    * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.
@@ -165,11 +149,11 @@ export class SimpleFaker {
    * // Consistent values for tests:
    * faker.seed(42)
    * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 10
    *
    * faker.seed(42)
    * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 10
    *
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
@@ -201,12 +185,12 @@ export class SimpleFaker {
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 3
+   * faker.number.int(10); // 10
    *
    * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 3
+   * faker.number.int(10); // 10
    *
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
@@ -239,20 +223,20 @@ export class SimpleFaker {
    * // Consistent values for tests (using a number):
    * faker.seed(42)
    * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 10
    *
    * faker.seed(42)
    * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 10
    *
    * // Consistent values for tests (using an array):
    * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 3
+   * faker.number.int(10); // 10
    *
    * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
+   * faker.number.int(10); // 3
+   * faker.number.int(10); // 10
    *
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
@@ -261,9 +245,7 @@ export class SimpleFaker {
    * @since 6.0.0
    */
   seed(seed?: number | number[]): number | number[];
-  seed(
-    seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
-  ): number | number[] {
+  seed(seed: number | number[] = randomSeed()): number | number[] {
     this.fakerCore.randomizer.seed(seed);
 
     return seed;

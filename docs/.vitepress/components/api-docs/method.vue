@@ -3,17 +3,20 @@ import { sourceBaseUrl } from '../../../api/source-base-url';
 import { slugify } from '../../shared/utils/slugify';
 import type { ApiDocsMethod } from './method';
 import MethodParameters from './method-parameters.vue';
+import RefreshableCode from './refreshable-code.vue';
 
 const { method } = defineProps<{ method: ApiDocsMethod }>();
 const {
   deprecated,
   description,
+  remark,
   since,
   parameters,
   returns,
   throws,
   signature,
   examples,
+  refresh,
   seeAlsos,
   sourcePath,
 } = method;
@@ -39,6 +42,11 @@ function seeAlsoToUrl(see: string): string {
 
     <div v-html="description"></div>
 
+    <div v-if="remark" class="tip custom-block">
+      <p class="custom-block-title">Note</p>
+      <div v-html="remark"></div>
+    </div>
+
     <p v-if="since">
       <em>Available since v{{ since }}</em>
     </p>
@@ -51,8 +59,8 @@ function seeAlsoToUrl(see: string): string {
 
     <div v-html="signature" />
 
-    <h3>Examples</h3>
-    <div v-html="examples" />
+    <h3 class="inline">Examples</h3>
+    <RefreshableCode :examples="examples" :refresh="refresh" />
 
     <div v-if="seeAlsos.length > 0">
       <h3>See Also</h3>
@@ -106,5 +114,9 @@ a.source-link {
 svg.source-link-icon {
   display: inline;
   margin-left: 0.3em;
+}
+
+h3.inline {
+  display: inline-block;
 }
 </style>

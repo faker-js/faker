@@ -1,18 +1,9 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { Faker, faker } from '../src';
-import { FakerError } from '../src/errors/faker-error';
+import { Faker, faker, generateMersenne32Randomizer } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe('faker', () => {
-  it('should throw error if no locales passed', () => {
-    expect(() => new Faker({ locale: [] })).toThrow(
-      new FakerError(
-        'The locale option must contain at least one locale definition.'
-      )
-    );
-  });
-
   it('should not log anything on startup', async () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
@@ -63,25 +54,73 @@ describe('faker', () => {
       // Non-existing module
       expect(faker.definitions.missing).toBeDefined();
       // Non-existing definition in a non-existing module
-      expect(() => faker.definitions.missing?.missing).toThrow();
+      expect(() => faker.definitions.missing?.missing).toThrowError();
       // Non-existing definition in an existing module
-      expect(() => faker.definitions.location.missing).toThrow();
+      expect(() => faker.definitions.location.missing).toThrowError();
     });
   });
 
-  describe('randomizer', () => {
-    it('should be possible to provide a custom Randomizer', () => {
-      const customFaker = new Faker({
-        locale: {},
-        randomizer: {
-          next: () => 0,
-          seed: () => void 0,
-        },
+  describe('constructor()', () => {
+    describe('locale', () => {
+      it('should throw error if no locales passed', () => {
+        expect(() => new Faker({ locale: [] })).not.toThrowError();
+        // TODO @ST-DDT 2026-03-22: Should we keep throwing an error here?
       });
+    });
 
-      expect(customFaker.number.int()).toBe(0);
-      expect(customFaker.number.int()).toBe(0);
-      expect(customFaker.number.int()).toBe(0);
+    describe('randomizer', () => {
+      it('should be possible to provide a custom Randomizer', () => {
+        const customFaker = new Faker({
+          locale: {},
+          randomizer: {
+            next: () => 0,
+            seed: () => void 0,
+          },
+        });
+
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+      });
+    });
+
+    describe('seed', () => {
+      it('should be possible to provide an initial seed', () => {
+        const customFaker = new Faker({
+          locale: {},
+          seed: 12345,
+        });
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+
+        customFaker.seed(12345);
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+      });
+    });
+
+    describe('randomizer+seed', () => {
+      it('should take apply both the randomizer and seed', () => {
+        const customFaker = new Faker({
+          locale: {},
+          randomizer: generateMersenne32Randomizer(67890),
+          seed: 12345,
+        });
+
+        expect(customFaker.number.int()).toBe(8373237322874880);
+        expect(customFaker.number.int()).toBe(8017800868134912);
+        expect(customFaker.number.int()).toBe(2849657711493120);
+
+        customFaker.seed(12345); // Retry with the expected seed
+
+        expect(customFaker.number.int()).toBe(8373237322874880);
+        expect(customFaker.number.int()).toBe(8017800868134912);
+        expect(customFaker.number.int()).toBe(2849657711493120);
+      });
     });
   });
 

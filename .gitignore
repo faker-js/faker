@@ -20,6 +20,9 @@ lib-cov
 coverage
 *.lcov
 
+# Vitest Temp files
+tsconfig.vitest-temp.json
+
 # nyc test coverage
 .nyc_output
 
@@ -77,7 +80,15 @@ versions.json
 /dist
 /docs/.vitepress/cache
 /docs/.vitepress/dist
+/docs/api/*.ts
+!/docs/api/api-types.ts
+/docs/api/*.md
+!/docs/api/index.md
+/docs/api/api-search-index.json
 /docs/public/api-diff-index.json
+/docs/public/faker.js
+/docs/locales/*
+!/docs/locales/.gitkeep
 
 # Faker
 TAGS
@@ -98,3 +109,5 @@ yarn.lock
 
 cypress/screenshots
 cypress/videos
+
+_local/

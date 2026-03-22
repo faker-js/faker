@@ -21,12 +21,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.adjective() // 'pungent'
    * faker.word.adjective(5) // 'slimy'
-   * faker.word.adjective(100) // 'complete'
    * faker.word.adjective({ strategy: 'shortest' }) // 'icy'
    * faker.word.adjective({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'distant'
    *
@@ -62,15 +61,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.adjective,
       })
     );
@@ -91,12 +93,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.adverb() // 'quarrelsomely'
    * faker.word.adverb(5) // 'madly'
-   * faker.word.adverb(100) // 'sadly'
    * faker.word.adverb({ strategy: 'shortest' }) // 'too'
    * faker.word.adverb({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'sweetly'
    *
@@ -132,15 +133,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.adverb,
       })
     );
@@ -161,12 +165,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.conjunction() // 'in order that'
    * faker.word.conjunction(5) // 'since'
-   * faker.word.conjunction(100) // 'as long as'
    * faker.word.conjunction({ strategy: 'shortest' }) // 'or'
    * faker.word.conjunction({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'hence'
    *
@@ -202,15 +205,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.conjunction,
       })
     );
@@ -231,12 +237,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.interjection() // 'gah'
    * faker.word.interjection(5) // 'fooey'
-   * faker.word.interjection(100) // 'yowza'
    * faker.word.interjection({ strategy: 'shortest' }) // 'hm'
    * faker.word.interjection({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'boohoo'
    *
@@ -272,15 +277,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.interjection,
       })
     );
@@ -301,12 +309,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.noun() // 'external'
    * faker.word.noun(5) // 'front'
-   * faker.word.noun(100) // 'care'
    * faker.word.noun({ strategy: 'shortest' }) // 'ad'
    * faker.word.noun({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'average'
    *
@@ -342,15 +349,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.noun,
       })
     );
@@ -371,12 +381,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.preposition() // 'without'
    * faker.word.preposition(5) // 'abaft'
-   * faker.word.preposition(100) // 'an'
    * faker.word.preposition({ strategy: 'shortest' }) // 'a'
    * faker.word.preposition({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'given'
    *
@@ -412,15 +421,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.preposition,
       })
     );
@@ -441,12 +453,11 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.verb() // 'act'
    * faker.word.verb(5) // 'tinge'
-   * faker.word.verb(100) // 'mess'
    * faker.word.verb({ strategy: 'shortest' }) // 'do'
    * faker.word.verb({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'vault'
    *
@@ -482,15 +493,18 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const opts = typeof options === 'number' ? { length: options } : options;
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...opts,
+        ...options,
         wordList: this.faker.definitions.word.verb,
       })
     );
@@ -511,7 +525,7 @@ export class WordModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.word.sample() // 'incidentally'
@@ -549,7 +563,7 @@ export class WordModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}

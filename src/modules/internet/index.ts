@@ -1,8 +1,8 @@
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
+import type { Faker } from '../../faker';
+import { toBase64Url } from '../../internal/base64';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';
-import * as random_ua from './user-agent';
 
 export type EmojiType =
   | 'smiley'
@@ -100,6 +100,38 @@ const ipv4Networks: Record<IPv4Network, string> = {
   [IPv4Network.LinkLocal]: '169.254.0.0/16',
   [IPv4Network.Multicast]: '224.0.0.0/4',
 };
+
+/**
+ * Checks whether the given string is a valid slug for `domainWord`s.
+ *
+ * @param slug The slug to check.
+ */
+function isValidDomainWordSlug(slug: string): boolean {
+  return /^[a-z][a-z-]*[a-z]$/i.exec(slug) !== null;
+}
+
+/**
+ * Tries various ways to produce a valid domain word slug, falling back to a random string if needed.
+ *
+ * @param faker The faker instance to use.
+ * @param word The initial word to slugify.
+ */
+function makeValidDomainWordSlug(faker: Faker, word: string): string {
+  const slug1 = faker.helpers.slugify(word);
+  if (isValidDomainWordSlug(slug1)) {
+    return slug1;
+  }
+
+  const slug2 = faker.helpers.slugify(faker.lorem.word());
+  if (isValidDomainWordSlug(slug2)) {
+    return slug2;
+  }
+
+  return faker.string.alpha({
+    casing: 'lower',
+    length: faker.number.int({ min: 4, max: 8 }),
+  });
+}
 
 /**
  * Module to generate internet related entries.
@@ -264,58 +296,6 @@ export class InternetModule extends ModuleBase {
    * @see faker.internet.displayName(): For generating an Unicode display name.
    *
    * @example
-   * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne98'
-   * faker.internet.userName({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
-   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
-   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
-   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
-   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
-   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet.username()` instead.
-   */
-  userName(
-    options: {
-      /**
-       * The optional first name to use.
-       *
-       * @default faker.person.firstName()
-       */
-      firstName?: string;
-      /**
-       * The optional last name to use.
-       *
-       * @default faker.person.lastName()
-       */
-      lastName?: string;
-    } = {}
-  ): string {
-    deprecated({
-      deprecated: 'faker.internet.userName()',
-      proposed: 'faker.internet.username()',
-      since: '9.1.0',
-      until: '10.0.0',
-    });
-
-    return this.username(options);
-  }
-
-  /**
-   * Generates a username using the given person's name as base.
-   * The resulting username may use neither, one or both of the names provided.
-   * This will always return a plain ASCII string.
-   * Some basic stripping of accents and transliteration of characters will be done.
-   *
-   * @param options An options object.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.displayName(): For generating an Unicode display name.
-   *
-   * @example
    * faker.internet.username() // 'Nettie_Zboncak40'
    * faker.internet.username({ firstName: 'Jeanne' }) // 'Jeanne98'
    * faker.internet.username({ firstName: 'Jeanne' }) // 'Jeanne.Smith98'
@@ -385,7 +365,7 @@ export class InternetModule extends ModuleBase {
         return charCode.toString(36);
       })
       .join('');
-    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll("'", '');
     result = result.replaceAll(' ', '');
 
     return result;
@@ -443,7 +423,7 @@ export class InternetModule extends ModuleBase {
     ];
 
     let result = this.faker.helpers.arrayElement(strategies)();
-    result = result.toString().replaceAll("'", '');
+    result = result.replaceAll("'", '');
     result = result.replaceAll(' ', '');
     return result;
   }
@@ -453,7 +433,6 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.protocol() // 'http'
-   * faker.internet.protocol() // 'https'
    *
    * @since 2.1.5
    */
@@ -594,9 +573,15 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainWord(): string {
-    return this.faker.helpers
-      .slugify(`${this.faker.word.adjective()}-${this.faker.word.noun()}`)
-      .toLowerCase();
+    // Generate an ASCII "word" in the form `noun-adjective`
+    // For locales with non-ASCII characters, we fall back to lorem words, or a random string
+
+    const word1 = makeValidDomainWordSlug(
+      this.faker,
+      this.faker.word.adjective()
+    );
+    const word2 = makeValidDomainWordSlug(this.faker, this.faker.word.noun());
+    return `${word1}-${word2}`.toLowerCase();
   }
 
   /**
@@ -733,7 +718,7 @@ export class InternetModule extends ModuleBase {
    * Generates a random port number.
    *
    * @example
-   * faker.internet.port() // '9414'
+   * faker.internet.port() // 9414
    *
    * @since 5.4.0
    */
@@ -746,65 +731,14 @@ export class InternetModule extends ModuleBase {
    *
    * @example
    * faker.internet.userAgent()
-   * // 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_8)  AppleWebKit/536.0.2 (KHTML, like Gecko) Chrome/27.0.849.0 Safari/536.0.2'
+   * // 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_1 like Mac OS X) AppleWebKit/537.19.86 (KHTML, like Gecko) Version/18_3 Mobile/15E148 Safari/598.43'
    *
    * @since 2.0.1
    */
   userAgent(): string {
-    return random_ua.generate(this.faker);
-  }
-
-  /**
-   * Generates a random css hex color code in aesthetically pleasing color palette.
-   *
-   * Based on
-   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-   *
-   * @param options An options object.
-   * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
-   * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
-   * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
-   *
-   * @example
-   * faker.internet.color() // '#30686e'
-   * faker.internet.color({ redBase: 100, greenBase: 100, blueBase: 100 }) // '#4e5f8b'
-   *
-   * @since 2.0.1
-   */
-  color(
-    options: {
-      /**
-       * The optional base red in range between `0` and `255`.
-       *
-       * @default 0
-       */
-      redBase?: number;
-      /**
-       * The optional base green in range between `0` and `255`.
-       *
-       * @default 0
-       */
-      greenBase?: number;
-      /**
-       * The optional base blue in range between `0` and `255`.
-       *
-       * @default 0
-       */
-      blueBase?: number;
-    } = {}
-  ): string {
-    const { redBase = 0, greenBase = 0, blueBase = 0 } = options;
-
-    const colorFromBase = (base: number): string =>
-      Math.floor((this.faker.number.int(256) + base) / 2)
-        .toString(16)
-        .padStart(2, '0');
-
-    const red = colorFromBase(redBase);
-    const green = colorFromBase(greenBase);
-    const blue = colorFromBase(blueBase);
-
-    return `#${red}${green}${blue}`;
+    return this.faker.helpers.fake(
+      this.faker.definitions.internet.user_agent_pattern
+    );
   }
 
   /**
@@ -829,14 +763,14 @@ export class InternetModule extends ModuleBase {
   /**
    * Generates a random mac address.
    *
-   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
    * faker.internet.mac() // '32:8e:2e:09:c6:05'
    *
    * @since 3.0.0
    */
-  mac(sep?: string): string;
+  mac(separator?: string): string;
   /**
    * Generates a random mac address.
    *
@@ -1018,5 +952,107 @@ export class InternetModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.emoji[emojiType]
     );
+  }
+
+  /**
+   * Generates a random JWT (JSON Web Token) Algorithm.
+   *
+   * @see faker.internet.jwt(): For generating random JWT (JSON Web Token).
+   *
+   * @example
+   * faker.internet.jwtAlgorithm() // 'HS256'
+   * faker.internet.jwtAlgorithm() // 'RS512'
+   *
+   * @since 9.1.0
+   */
+  jwtAlgorithm(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.internet.jwt_algorithm
+    );
+  }
+
+  /**
+   * Generates a random JWT (JSON Web Token).
+   *
+   * Please note that this method generates a random signature instead of a valid one.
+   *
+   * @param options The optional options object.
+   * @param options.header The Header to use for the token. Defaults to a random object with the following fields: `alg` and `typ`.
+   * @param options.payload The Payload to use for the token. Defaults to a random object with the following fields: `iat`, `exp`, `nbf`, `iss`, `sub`, `aud`, and `jti`.
+   * @param options.refDate The date to use as reference point for the newly generated date.
+   *
+   * @see https://datatracker.ietf.org/doc/html/rfc7519
+   * @see faker.internet.jwtAlgorithm(): For generating random JWT (JSON Web Token) Algorithm.
+   *
+   * @example
+   * faker.internet.jwt() // 'eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzI2MzgxMDYsImV4cCI6MTczMjY5MjUwOSwibmJmIjoxNzA1MDgxNjQ4LCJpc3MiOiJHdXRrb3dza2kgYW5kIFNvbnMiLCJzdWIiOiJlMzQxZjMwNS0yM2I2LTRkYmQtOTY2ZC1iNDRiZmM0ZGIzMGUiLCJhdWQiOiI0YzMwZGE3Yi0zZDUzLTQ4OGUtYTAyZC0zOWI2MDZiZmYxMTciLCJqdGkiOiJiMGZmOTMzOC04ODMwLTRmNDgtYjA3Ny1kNDNmMjU2OGZlYzAifQ.oDLVR73M0u5SjMPlc1aruxbdK7l2titXSeo9J5M1JUd65a1X9MhCz7FOobtX8eaj'
+   * faker.internet.jwt({ header: { alg: 'HS256' }}) // 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTg2MTM3MTIsImV4cCI6MTcxODYzMzY3OSwibmJmIjoxNjk3MjYzNjMwLCJpc3MiOiJEb3lsZSBhbmQgU29ucyIsInN1YiI6IjYxYWRkYWFmLWY4MjktNDkzZS1iNTI1LTJjMGJkNjkzOTdjNyIsImF1ZCI6IjczNjcyMjVjLWIwMWMtNGE1My1hYzQyLTYwOWJkZmI1MzBiOCIsImp0aSI6IjU2Y2ZkZjAxLWRhMzMtNGUxNi04MzJiLTFlYTk3ZGY1MTQ2YSJ9.5iUgaCaFVPZ8d1QD0xMjoeJbmPVyUfKfoRQ6Njzm5MLp5F4UMh5REbPCrW70fAkr'
+   * faker.internet.jwt({ payload: { iss: 'Acme' }}) // 'eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBY21lIn0.syUt0GBukNac8Cn1AGKFq2SWAXWy1YIfl0uOYiwg6TZ3omAW0c7FGWY6bC7ZOFSt'
+   * faker.internet.jwt({ refDate: '2020-01-01T00:00:00.000Z' }) // 'eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MDY4NDUsImV4cCI6MTU3Nzg0NjI4MCwibmJmIjoxNTgxNTQyMDYwLCJpc3MiOiJLcmVpZ2VyLCBBbHRlbndlcnRoIGFuZCBQYXVjZWsiLCJzdWIiOiI5NzVjMjMyOS02MDlhLTRjYTYtYjBkZi05ZmY4MGZiNDUwN2QiLCJhdWQiOiI0ODQxZWYwNi01OWYwLTQzMWEtYmFmZi0xMjkxZmRhZDdhNjgiLCJqdGkiOiJmNDBjZTJiYi00ZWYyLTQ1MjMtOGIxMy1kN2Q4NTA5N2M2ZTUifQ.cuClEZQ0CyPIMVS5uxrMwWXz0wcqFFdt0oNne3PMryyly0jghkxVurss2TapMC3C'
+   *
+   * @since 9.1.0
+   */
+  jwt(
+    options: {
+      /**
+       * The header to use for the token. If present, it will replace any default values.
+       *
+       * @default
+       * {
+       *   alg: faker.internet.jwtAlgorithm(),
+       *   typ: 'JWT'
+       * }
+       */
+      header?: Record<string, unknown>;
+      /**
+       * The payload to use for the token. If present, it will replace any default values.
+       *
+       * @default
+       * {
+       *   iat: faker.date.recent(),
+       *   exp: faker.date.soon(),
+       *   nbf: faker.date.anytime(),
+       *   iss: faker.company.name(),
+       *   sub: faker.string.uuid(),
+       *   aud: faker.string.uuid(),
+       *   jti: faker.string.uuid()
+       * }
+       */
+      payload?: Record<string, unknown>;
+      /**
+       * The date to use as reference point for the newly generated date.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const { refDate = this.faker.defaultRefDate() } = options;
+
+    const iatDefault = this.faker.date.recent({ refDate });
+
+    const {
+      header = {
+        alg: this.jwtAlgorithm(),
+        typ: 'JWT',
+      },
+      payload = {
+        iat: Math.round(iatDefault.valueOf() / 1000),
+        exp: Math.round(
+          this.faker.date.soon({ refDate: iatDefault }).valueOf() / 1000
+        ),
+        nbf: Math.round(this.faker.date.anytime({ refDate }).valueOf() / 1000),
+        iss: this.faker.company.name(),
+        sub: this.faker.string.uuid(),
+        aud: this.faker.string.uuid(),
+        jti: this.faker.string.uuid(),
+      },
+    } = options;
+
+    const encodedHeader = toBase64Url(JSON.stringify(header));
+    const encodedPayload = toBase64Url(JSON.stringify(payload));
+    const signature = this.faker.string.alphanumeric(64);
+
+    return `${encodedHeader}.${encodedPayload}.${signature}`;
   }
 }

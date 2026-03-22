@@ -64,4 +64,7 @@ export default {
     'Voiture',
     'Vélo',
   ],
+  pattern: [
+    '{{commerce.product}} {{commerce.productAdjective}} en {{commerce.productMaterial}}',
+  ],
 };

@@ -1,16 +1,17 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { SimpleFaker, simpleFaker } from '../src';
+import { generateMersenne32Randomizer, SimpleFaker, simpleFaker } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe('simpleFaker', () => {
-  it('should not log anything on startup', () => {
+  it('should not log anything on startup', async () => {
     const spies: MockInstance[] = keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
 
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, unicorn/prefer-module -- Using import() requires types being build but the CI / TS-Check runs without them.
-    expect(require('..').simpleFaker).toBeDefined();
+    // Using import() requires types being build but the CI / TS-Check runs without them.
+    const { simpleFaker: importedSimpleFaker } = await import('..');
+    expect(importedSimpleFaker).toBeDefined();
 
     expect(new SimpleFaker()).toBeDefined();
 
@@ -18,6 +19,60 @@ describe('simpleFaker', () => {
       expect(spy).not.toHaveBeenCalled();
       spy.mockRestore();
     }
+  });
+
+  describe('constructor()', () => {
+    describe('randomizer', () => {
+      it('should be possible to provide a custom Randomizer', () => {
+        const customFaker = new SimpleFaker({
+          randomizer: {
+            next: () => 0,
+            seed: () => void 0,
+          },
+        });
+
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+        expect(customFaker.number.int()).toBe(0);
+      });
+    });
+
+    describe('seed', () => {
+      it('should be possible to provide an initial seed', () => {
+        const customFaker = new SimpleFaker({
+          seed: 12345,
+        });
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+
+        customFaker.seed(12345); // Retry with the expected seed
+
+        expect(customFaker.number.int()).toBe(8373237378417847);
+        expect(customFaker.number.int()).toBe(2849657659447330);
+        expect(customFaker.number.int()).toBe(1656593383470774);
+      });
+    });
+
+    describe('randomizer+seed', () => {
+      it('should take apply both the randomizer and seed', () => {
+        const customFaker = new SimpleFaker({
+          randomizer: generateMersenne32Randomizer(67890),
+          seed: 12345,
+        });
+
+        expect(customFaker.number.int()).toBe(8373237322874880);
+        expect(customFaker.number.int()).toBe(8017800868134912);
+        expect(customFaker.number.int()).toBe(2849657711493120);
+
+        customFaker.seed(12345); // Retry with the expected seed
+
+        expect(customFaker.number.int()).toBe(8373237322874880);
+        expect(customFaker.number.int()).toBe(8017800868134912);
+        expect(customFaker.number.int()).toBe(2849657711493120);
+      });
+    });
   });
 
   // This is only here for coverage

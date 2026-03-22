@@ -3,6 +3,7 @@ import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
+import { uuidV4, uuidV7 } from './uuid';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
@@ -103,7 +104,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @param characters The characters to use for the string. Can be a string or an array of characters.
    * If it is an array, then each element is treated as a single character even if it is a string with multiple characters.
-   * @param length The length of the string to generate. Defaults to `1`.
+   * @param length The length of the string to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param length.min The minimum length of the string to generate.
    * @param length.max The maximum length of the string to generate.
    *
@@ -155,8 +156,8 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance.
-   * @param options.length The number or range of characters to generate. Defaults to `1`.
+   * @param options Either the length of the string to generate or the optional options object.
+   * @param options.length The length of the string to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.exclude An array with characters which should be excluded in the generated string. Defaults to `[]`.
    *
@@ -175,7 +176,7 @@ export class StringModule extends SimpleModuleBase {
       | number
       | {
           /**
-           * The number or range of characters to generate.
+           * The length of the string to generate either as a fixed length or as a length range.
            *
            * @default 1
            */
@@ -183,11 +184,11 @@ export class StringModule extends SimpleModuleBase {
             | number
             | {
                 /**
-                 * The minimum number of characters to generate.
+                 * The minimum length of the string to generate.
                  */
                 min: number;
                 /**
-                 * The maximum number of characters to generate.
+                 * The maximum length of the string to generate.
                  */
                 max: number;
               };
@@ -249,8 +250,8 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Generating a string consisting of alpha characters and digits.
    *
-   * @param options Either the number of characters or an options instance.
-   * @param options.length The number or range of characters and digits to generate. Defaults to `1`.
+   * @param options Either the length of the string to generate or the optional options object.
+   * @param options.length The length of the string to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.exclude An array of characters and digits which should be excluded in the generated string. Defaults to `[]`.
    *
@@ -269,7 +270,7 @@ export class StringModule extends SimpleModuleBase {
       | number
       | {
           /**
-           * The number or range of characters and digits to generate.
+           * The length of the string to generate either as a fixed length or as a length range.
            *
            * @default 1
            */
@@ -277,11 +278,11 @@ export class StringModule extends SimpleModuleBase {
             | number
             | {
                 /**
-                 * The minimum number of characters and digits to generate.
+                 * The minimum length of the string to generate.
                  */
                 min: number;
                 /**
-                 * The maximum number of characters and digits to generate.
+                 * The maximum length of the string to generate.
                  */
                 max: number;
               };
@@ -345,7 +346,7 @@ export class StringModule extends SimpleModuleBase {
    * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) string.
    *
    * @param options The optional options object.
-   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.length The length of the string (excluding the prefix) to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
    *
    * @see faker.number.binary(): For generating a binary number (within a range).
@@ -362,7 +363,7 @@ export class StringModule extends SimpleModuleBase {
   binary(
     options: {
       /**
-       * The number or range of characters to generate after the prefix.
+       * The length of the string (excluding the prefix) to generate either as a fixed length or as a length range.
        *
        * @default 1
        */
@@ -370,11 +371,11 @@ export class StringModule extends SimpleModuleBase {
         | number
         | {
             /**
-             * The minimum number of characters to generate.
+             * The minimum length of the string (excluding the prefix) to generate.
              */
             min: number;
             /**
-             * The maximum number of characters to generate.
+             * The maximum length of the string (excluding the prefix) to generate.
              */
             max: number;
           };
@@ -397,7 +398,7 @@ export class StringModule extends SimpleModuleBase {
    * Returns an [octal](https://en.wikipedia.org/wiki/Octal) string.
    *
    * @param options The optional options object.
-   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.length The length of the string (excluding the prefix) to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
    *
    * @see faker.number.octal(): For generating an octal number (within a range).
@@ -414,7 +415,7 @@ export class StringModule extends SimpleModuleBase {
   octal(
     options: {
       /**
-       * The number or range of characters to generate after the prefix.
+       * The length of the string (excluding the prefix) to generate either as a fixed length or as a length range.
        *
        * @default 1
        */
@@ -422,11 +423,11 @@ export class StringModule extends SimpleModuleBase {
         | number
         | {
             /**
-             * The minimum number of characters to generate.
+             * The minimum length of the string (excluding the prefix) to generate.
              */
             min: number;
             /**
-             * The maximum number of characters to generate.
+             * The maximum length of the string (excluding the prefix) to generate.
              */
             max: number;
           };
@@ -452,7 +453,7 @@ export class StringModule extends SimpleModuleBase {
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
    *
    * @param options The optional options object.
-   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.length The length of the string (excluding the prefix) to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param options.casing Casing of the generated number. Defaults to `'mixed'`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    *
@@ -472,7 +473,7 @@ export class StringModule extends SimpleModuleBase {
   hexadecimal(
     options: {
       /**
-       * The number or range of characters to generate after the prefix.
+       * The length of the string (excluding the prefix) to generate either as a fixed length or as a length range.
        *
        * @default 1
        */
@@ -480,11 +481,11 @@ export class StringModule extends SimpleModuleBase {
         | number
         | {
             /**
-             * The minimum number of characters to generate after the prefix.
+             * The minimum length of the string (excluding the prefix) to generate.
              */
             min: number;
             /**
-             * The maximum number of characters to generate after the prefix.
+             * The maximum length of the string (excluding the prefix) to generate.
              */
             max: number;
           };
@@ -548,8 +549,8 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Generates a given length string of digits.
    *
-   * @param options Either the number of characters or the options to use.
-   * @param options.length The number or range of digits to generate. Defaults to `1`.
+   * @param options Either the length of the string to generate or the optional options object.
+   * @param options.length The length of the string to generate either as a fixed length or as a length range. Defaults to `1`.
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
@@ -570,7 +571,7 @@ export class StringModule extends SimpleModuleBase {
       | number
       | {
           /**
-           * The number or range of digits to generate.
+           * The length of the string to generate either as a fixed length or as a length range.
            *
            * @default 1
            */
@@ -578,11 +579,11 @@ export class StringModule extends SimpleModuleBase {
             | number
             | {
                 /**
-                 * The minimum number of digits to generate.
+                 * The minimum length of the string to generate.
                  */
                 min: number;
                 /**
-                 * The maximum number of digits to generate.
+                 * The maximum length of the string to generate.
                  */
                 max: number;
               };
@@ -649,9 +650,9 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Defaults to `10`.
-   * @param length.min The minimum number of characters to generate.
-   * @param length.max The maximum number of characters to generate.
+   * @param length The length of the string (excluding the prefix) to generate either as a fixed length or as a length range. Defaults to `10`.
+   * @param length.min The minimum length of the string to generate.
+   * @param length.max The maximum length of the string to generate.
    *
    * @example
    * faker.string.sample() // 'Zo!.:*e>wR'
@@ -665,11 +666,11 @@ export class StringModule extends SimpleModuleBase {
       | number
       | {
           /**
-           * The minimum number of characters to generate.
+           * The minimum length of the string to generate.
            */
           min: number;
           /**
-           * The maximum number of characters to generate.
+           * The maximum length of the string to generate.
            */
           max: number;
         } = 10
@@ -693,17 +694,104 @@ export class StringModule extends SimpleModuleBase {
   }
 
   /**
-   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
    *
    * @since 8.0.0
    */
-  uuid(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-      .replaceAll('x', () => this.faker.number.hex({ min: 0x0, max: 0xf }))
-      .replaceAll('y', () => this.faker.number.hex({ min: 0x8, max: 0xb }));
+  uuid(): string;
+  /**
+   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An options object.
+   * @param options.version The specific UUID version to use.
+   *
+   * @example
+   * faker.string.uuid({ version: 4 }) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @since 8.0.0
+   */
+  uuid(options: {
+    /**
+     * The specific UUID version to use.
+     */
+    version: 4;
+  }): string;
+  /**
+   * Returns a UUID v7 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An options object.
+   * @param options.version The specific UUID version to use.
+   * @param options.refDate The timestamp to encode into the uuid.
+   * The encoded timestamp is represented by the first 12 characters of the result.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.uuid() // '019be2c5-58de-70fe-a693-2ccbff1f0780'
+   *
+   * @since 10.3.0
+   */
+  uuid(options: {
+    /**
+     * The specific UUID version to use.
+     */
+    version: 7;
+    /**
+     * The timestamp to encode into the uuid.
+     * The encoded timestamp is represented by the first 12 characters of the result.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate: string | Date | number;
+  }): string;
+  /**
+   * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @param options An optional options object.
+   * @param options.version The specific UUID version to use. Defaults to `4`.
+   * @param options.refDate The timestamp to encode into the UUID.
+   * This parameter is only relevant for UUID v7.
+   * Defaults to `faker.defaultRefDate()`.
+   *
+   * @example
+   * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   * faker.string.uuid({ version: 4 }) // 'd5482c1f-c30d-4bbc-b151-d95145bae71b'
+   * faker.string.uuid({ version: 7 }) // '01948b54-1b78-75fb-9922-0d9b0fd32248'
+   * faker.string.uuid({ version: 7, refDate: '2020-01-01T00:00:00.000Z' }) // '016f5e66-e800-725e-b078-f413f23aaff0'
+   *
+   * @since 8.0.0
+   */
+  uuid(options?: {
+    /**
+     * The specific UUID version to use.
+     */
+    version?: 4 | 7;
+    /**
+     * The timestamp to encode into the UUID.
+     * This parameter is only relevant for UUID v7.
+     *
+     * @default faker.defaultRefDate()
+     */
+    refDate?: string | Date | number;
+  }): string;
+  uuid(
+    options: {
+      version?: 4 | 7;
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const { version = 4, refDate = this.faker.defaultRefDate() } = options;
+    switch (version) {
+      case 7: {
+        return uuidV7(this.faker, toDate(refDate));
+      }
+
+      default: {
+        return uuidV4(this.faker);
+      }
+    }
   }
 
   /**
@@ -740,7 +828,7 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Generates a [Nano ID](https://github.com/ai/nanoid).
    *
-   * @param length Length of the generated string. Defaults to `21`.
+   * @param length The length of the string to generate either as a fixed length or as a length range. Defaults to `21`.
    * @param length.min The minimum length of the Nano ID to generate.
    * @param length.max The maximum length of the Nano ID to generate.
    *
@@ -794,13 +882,14 @@ export class StringModule extends SimpleModuleBase {
 
   /**
    * Returns a string containing only special characters from the following list:
+   *
    * ```txt
    * ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
    * ```
    *
-   * @param length Length of the generated string. Defaults to `1`.
-   * @param length.min The minimum number of special characters to generate.
-   * @param length.max The maximum number of special characters to generate.
+   * @param length The length of the string to generate either as a fixed length or as a length range. Defaults to `1`.
+   * @param length.min The minimum length of the string to generate.
+   * @param length.max The maximum length of the string to generate.
    *
    * @example
    * faker.string.symbol() // '$'
@@ -814,11 +903,11 @@ export class StringModule extends SimpleModuleBase {
       | number
       | {
           /**
-           * The minimum number of special characters to generate.
+           * The minimum length of the string to generate.
            */
           min: number;
           /**
-           * The maximum number of special characters to generate.
+           * The maximum length of the string to generate.
            */
           max: number;
         } = 1

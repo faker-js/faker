@@ -38,12 +38,10 @@ const STRATEGIES = {
   'any-length': (wordList: ReadonlyArray<string>): string[] => {
     return [...wordList];
   },
-} as const; /*
-satisfies Record<
-string, // Parameters<filterWordListByLength>[0]['strategy']
-(wordList: string[], length: { min: number; max: number }) => string[]
+} satisfies Record<
+  NonNullable<Parameters<typeof filterWordListByLength>[0]['strategy']>,
+  (wordList: string[], length: { min: number; max: number }) => string[]
 >;
-*/
 
 /**
  * Filters a string array for values with a matching length.
@@ -53,7 +51,7 @@ string, // Parameters<filterWordListByLength>[0]['strategy']
  * @param options The options to provide.
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
- * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'any-length'`.
+ * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
  *
  * Available error handling strategies:
  *
@@ -68,9 +66,9 @@ export function filterWordListByLength(options: {
   length?: number | { min: number; max: number };
   strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
 }): string[] {
-  const { wordList, length, strategy = 'any-length' } = options;
+  const { wordList, length, strategy = 'fail' } = options;
 
-  if (length) {
+  if (length != null) {
     const filter: (word: string) => boolean =
       typeof length === 'number'
         ? (word) => word.length === length
