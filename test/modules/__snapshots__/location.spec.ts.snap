@@ -32,6 +32,13 @@ exports[`location > 42 > direction > noArgs 1`] = `"South"`;
 
 exports[`location > 42 > direction > with abbreviated option 1`] = `"S"`;
 
+exports[`location > 42 > fullAddress 1`] = `
+"751 Laury Rapid
+Fort Clintonberg
+Nebraska
+26123"
+`;
+
 exports[`location > 42 > language 1`] = `
 {
   "alpha2": "gu",
@@ -178,6 +185,14 @@ exports[`location > 1211 > direction > noArgs 1`] = `"Southwest"`;
 
 exports[`location > 1211 > direction > with abbreviated option 1`] = `"SW"`;
 
+exports[`location > 1211 > fullAddress 1`] = `
+"Suite 396
+736 St Mary's Road
+Stromanhaven
+New Jersey
+39739"
+`;
+
 exports[`location > 1211 > language 1`] = `
 {
   "alpha2": "tl",
@@ -323,6 +338,13 @@ exports[`location > 1337 > county 1`] = `"Morgan County"`;
 exports[`location > 1337 > direction > noArgs 1`] = `"South"`;
 
 exports[`location > 1337 > direction > with abbreviated option 1`] = `"S"`;
+
+exports[`location > 1337 > fullAddress 1`] = `
+"34352 Salisbury Road
+South Willardport
+South Carolina
+45712"
+`;
 
 exports[`location > 1337 > language 1`] = `
 {
