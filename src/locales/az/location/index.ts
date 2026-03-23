@@ -7,6 +7,7 @@ import building_number from './building_number';
 import city_name from './city_name';
 import city_pattern from './city_pattern';
 import country from './country';
+import full_address from './full_address';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
@@ -20,6 +21,7 @@ const location: LocationDefinition = {
   city_name,
   city_pattern,
   country,
+  full_address,
   postcode,
   secondary_address,
   state,

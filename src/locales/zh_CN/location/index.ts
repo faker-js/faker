@@ -11,6 +11,7 @@ import city_suffix from './city_suffix';
 import continent from './continent';
 import country from './country';
 import direction from './direction';
+import full_address from './full_address';
 import language from './language';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
@@ -30,6 +31,7 @@ const location: LocationDefinition = {
   continent,
   country,
   direction,
+  full_address,
   language,
   postcode,
   secondary_address,
