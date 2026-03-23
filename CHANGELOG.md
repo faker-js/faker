@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.4.0](https://github.com/faker-js/faker/compare/v10.3.0...v10.4.0) (2026-03-23)
+
+
+### New Locales
+
+* **locale:** add Japanese bear definitions ([#3720](https://github.com/faker-js/faker/issues/3720)) ([2a4b15c](https://github.com/faker-js/faker/commit/2a4b15cff44cec578b23b579d9bd8603887024ac))
+* **locale:** add Japanese bird definitions ([#3719](https://github.com/faker-js/faker/issues/3719)) ([dc31ff8](https://github.com/faker-js/faker/commit/dc31ff8f79c9811ed23ebea845ece4abd375aeaa))
+* **locale:** add Japanese cat breed definitions ([#3716](https://github.com/faker-js/faker/issues/3716)) ([54af8a8](https://github.com/faker-js/faker/commit/54af8a8ca051631350a727a2dc596e212b91061a))
+* **locale:** add Japanese cattle breed definitions ([#3717](https://github.com/faker-js/faker/issues/3717)) ([c2c7342](https://github.com/faker-js/faker/commit/c2c7342d8d0bd93871659fa9150ce6f80364cf93))
+* **locale:** add Japanese fish definitions ([#3721](https://github.com/faker-js/faker/issues/3721)) ([15fc361](https://github.com/faker-js/faker/commit/15fc36187225cff20037658dd9f9b6e076641ca9))
+* **locale:** add Japanese horse breed definitions ([#3718](https://github.com/faker-js/faker/issues/3718)) ([e02536e](https://github.com/faker-js/faker/commit/e02536ee5283e29961965dc3e4e56c74dc65c16f))
+* **locale:** add Norwegian (nb_NO) country definition ([#3714](https://github.com/faker-js/faker/issues/3714)) ([614b4e9](https://github.com/faker-js/faker/commit/614b4e9eb7f86334619822d654063abc7026ee48))
+
+
+### Features
+
+* fi locale phone numbers ([#3747](https://github.com/faker-js/faker/issues/3747)) ([7afa8b5](https://github.com/faker-js/faker/commit/7afa8b5628e51a8eba5e56d63d0ffc0ff2cea11f))
+* **food:** add plant-based dish variety ([#3745](https://github.com/faker-js/faker/issues/3745)) ([41edf49](https://github.com/faker-js/faker/commit/41edf49c9eb32db4a70a57a3e0ab687b9ec4b6a5))
+
+
+### Changed Locales
+
+* **locale:** filter and cleanup PersonEntryDefintions data ([#3266](https://github.com/faker-js/faker/issues/3266)) ([67defc8](https://github.com/faker-js/faker/commit/67defc8b0b3d4006f2151889d4401a3f2aa00580))
+
+
+### Bug Fixes
+
+* **locales:** correct typos and capitalization in es_MX street names ([#3737](https://github.com/faker-js/faker/issues/3737)) ([2b32c28](https://github.com/faker-js/faker/commit/2b32c28b438307904a12e1271fbc4f2e614091b6))
+
 ## [10.3.0](https://github.com/faker-js/faker/compare/v10.2.0...v10.3.0) (2026-02-06)
 
 
