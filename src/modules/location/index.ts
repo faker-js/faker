@@ -373,7 +373,7 @@ export class LocationModule extends SimpleLocationModule {
    * fakerEN_GB.location.postalAddress() // '79 Bogan Corner\nCastle Zemlakborough\nDumfries and Galloway\nZH17 2SD'
    * fakerZH_CN.location.postalAddress() // '广东省贵原市门路19号'
    *
-   * @since 10.4.0
+   * @since 10.5.0
    */
   postalAddress(): string {
     return this.faker.helpers.fake(
