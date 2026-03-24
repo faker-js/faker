@@ -161,7 +161,7 @@ describe('date', () => {
           it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
             'should reject invalid refDates %s',
             (refDate) => {
-              expect(() => faker.date[method]({ refDate })).toThrowError(
+              expect(() => faker.date[method]({ refDate })).toThrow(
                 new FakerError(`Invalid refDate date: ${refDate.toString()}`)
               );
             }
@@ -194,7 +194,7 @@ describe('date', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.past({ years: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Years must be greater than 0.'));
+          ).toThrow(new FakerError('Years must be greater than 0.'));
         });
 
         it.each(converterMap)(
@@ -225,7 +225,7 @@ describe('date', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.future({ years: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Years must be greater than 0.'));
+          ).toThrow(new FakerError('Years must be greater than 0.'));
         });
 
         it.each(converterMap)(
@@ -268,9 +268,7 @@ describe('date', () => {
               from: '2000-01-01',
               to: '1990-01-01',
             })
-          ).toThrowError(
-            new FakerError('`from` date must be before `to` date.')
-          );
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
         it('should allow date 0 (start of UNIX epoch)', () => {
@@ -287,7 +285,7 @@ describe('date', () => {
               from: '1990-01-01',
               to: 'not-a-date',
             })
-          ).toThrowError(new FakerError('Invalid to date: not-a-date'));
+          ).toThrow(new FakerError('Invalid to date: not-a-date'));
         });
       });
 
@@ -366,9 +364,7 @@ describe('date', () => {
               to: '1990-01-01',
               count: 3,
             })
-          ).toThrowError(
-            new FakerError('`from` date must be before `to` date.')
-          );
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
         it('should throw an error if to is invalid', () => {
@@ -378,7 +374,7 @@ describe('date', () => {
               to: 'not-a-date',
               count: 3,
             })
-          ).toThrowError(new FakerError('Invalid to date: not-a-date'));
+          ).toThrow(new FakerError('Invalid to date: not-a-date'));
         });
       });
 
@@ -393,7 +389,7 @@ describe('date', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.recent({ days: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Days must be greater than 0.'));
+          ).toThrow(new FakerError('Days must be greater than 0.'));
         });
 
         it.each(converterMap)(
@@ -434,7 +430,7 @@ describe('date', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.soon({ days: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Days must be greater than 0.'));
+          ).toThrow(new FakerError('Days must be greater than 0.'));
         });
 
         it.each(converterMap)(
@@ -622,7 +618,7 @@ describe('date', () => {
 
           expect(() =>
             faker.date.birthdate({ min, max, mode: 'year' })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               `Max year 1990 should be greater than or equal to min year 2000.`
             )
@@ -636,7 +632,7 @@ describe('date', () => {
 
           expect(() =>
             faker.date.birthdate({ min, max, refDate, mode: 'age' })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               `Max age 25 should be greater than or equal to min age 31.`
             )
