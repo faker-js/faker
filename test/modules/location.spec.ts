@@ -75,7 +75,7 @@ describe('location', () => {
         .it('with useFullAddress options', { useFullAddress: true });
     });
 
-    t.it('fullAddress');
+    t.it('postalAddress');
 
     t.itEach('city');
 

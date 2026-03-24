@@ -140,7 +140,7 @@ export type LocationDefinition = LocaleEntry<{
   /**
    * The fake pattern(s) used to generate a full postal address.
    */
-  full_address: string | string[];
+  postal_address: string | string[];
 
   /**
    * The address "inside" an address/e.g. an apartment or office. Since these rarely start with 0, any consecutive # characters will be replaced by a number without a leading zero.
