@@ -250,6 +250,14 @@ describe('location', () => {
         });
       });
 
+      describe('postalAddress()', () => {
+        it('returns a random multi-line postal address', () => {
+          const postalAddress = faker.location.postalAddress();
+          expect(postalAddress).toBeTypeOf('string');
+          expect(postalAddress).toContain('\n');
+        });
+      });
+
       describe.each([faker, simpleFaker])('latitude()', (fakerFn) => {
         it('returns a number', () => {
           const latitude = fakerFn.location.latitude();
