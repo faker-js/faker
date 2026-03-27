@@ -38,8 +38,6 @@ jobs:
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
           RELEASE_MAJOR=$(jq -r '.version | split(".")[0]' package.json)
           echo "RELEASE_MAJOR=$RELEASE_MAJOR" >> $GITHUB_ENV
-          DIST_TAG=$(jq -r '.version | if split("-")[1] == null then "latest" else "next" end' package.json)
-          echo "DIST_TAG=$DIST_TAG" >> $GITHUB_ENV
 
       - name: Prepare README
         run: |
@@ -49,10 +47,6 @@ jobs:
       - name: Publish
         run: |
           pnpm publish --access public --tag next --no-git-checks --provenance
-
-      - name: Set latest/next dist-tag
-        run: |
-          pnpm dist-tag add @faker-js/faker@$RELEASE_VERSION $DIST_TAG
 
       - name: Push to Release Branch
         run: |
