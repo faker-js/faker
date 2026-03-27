@@ -57,10 +57,6 @@ jobs:
         env:
           NPM_CONFIG_PROVENANCE: true
 
-      - name: Set latest/next dist-tag
-        run: |
-          pnpm dist-tag add @faker-js/faker@$RELEASE_VERSION $DIST_TAG
-
       - name: Push to Release Branch
         run: |
           git push origin $GITHUB_REF_NAME:v$RELEASE_MAJOR
