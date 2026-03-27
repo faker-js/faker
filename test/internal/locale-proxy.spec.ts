@@ -76,7 +76,9 @@ describe('LocaleProxy', () => {
     });
 
     it('should be possible to get all categories keys on actual locale', () => {
-      expect(Object.keys(locale).sort()).toEqual(Object.keys(en).sort());
+      expect(Object.keys(locale).toSorted()).toEqual(
+        Object.keys(en).toSorted()
+      );
     });
   });
 
@@ -97,6 +99,7 @@ describe('LocaleProxy', () => {
       expect(() => locale.category.missing).toThrow(
         new FakerError(
           `The locale data for 'category.missing' are missing in this locale.
+  If this is a custom Faker instance, please make sure all required locales are used e.g. '[de_AT, de, en, base]'.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
   For more information see https://fakerjs.dev/guide/localization.html`
         )
@@ -107,6 +110,7 @@ describe('LocaleProxy', () => {
       expect(() => locale.airline.missing).toThrow(
         new FakerError(
           `The locale data for 'airline.missing' are missing in this locale.
+  If this is a custom Faker instance, please make sure all required locales are used e.g. '[de_AT, de, en, base]'.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
   For more information see https://fakerjs.dev/guide/localization.html`
         )
@@ -189,8 +193,8 @@ describe('LocaleProxy', () => {
     });
 
     it('should be possible to get all keys from existing category', () => {
-      expect(Object.keys(locale.airline).sort()).toEqual(
-        Object.keys(enAirline).sort()
+      expect(Object.keys(locale.airline).toSorted()).toEqual(
+        Object.keys(enAirline).toSorted()
       );
     });
   });

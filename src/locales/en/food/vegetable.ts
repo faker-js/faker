@@ -51,7 +51,6 @@ export default [
   'purple carrot',
   'radicchio',
   'radish',
-  'raspberry',
   'red cabbage',
   'red pepper',
   'rhubarb',

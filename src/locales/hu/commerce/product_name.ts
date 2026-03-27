@@ -57,4 +57,7 @@ export default {
     'Törölköző',
     'Virsli',
   ],
+  pattern: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

@@ -18,7 +18,7 @@ export type FinanceDefinition = LocaleEntry<{
   credit_card: { [issuer: string]: string[] };
 
   /**
-   * Currencies including their name, code and symbol (e.g. `US Dollar` / `USD` / `$`).
+   * Currencies including their name, code, symbol and ISO numeric code (e.g. `US Dollar` / `USD` / `$` / '840').
    */
   currency: Currency[];
 
@@ -26,4 +26,9 @@ export type FinanceDefinition = LocaleEntry<{
    * Types of transactions (e.g. `deposit`).
    */
   transaction_type: string[];
+
+  /**
+   * The pattern used to generate transaction descriptions.
+   */
+  transaction_description_pattern: string[];
 }>;

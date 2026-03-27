@@ -1,5 +1,5 @@
 export default {
-  generic: ['Dr', 'M', 'Mlle', 'Mme', 'Prof'],
-  female: ['Mme', 'Mlle', 'Dr', 'Prof'],
-  male: ['M', 'Dr', 'Prof'],
+  generic: ['Dr', 'Prof'],
+  female: ['Mlle', 'Mme'],
+  male: ['M'],
 };

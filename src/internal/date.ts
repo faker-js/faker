@@ -6,7 +6,7 @@ import { FakerError } from '../errors/faker-error';
  * @param date The date to convert.
  * @param name The reference name used for error messages. Defaults to `'refDate'`.
  *
- * @throws If the given date is invalid.
+ * @throws {FakerError} If the given date is invalid.
  */
 export function toDate(
   date: string | Date | number,

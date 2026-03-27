@@ -12,6 +12,19 @@ const converterMap = [
 const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2021-02-21T17:09:15.711Z';
 
+function calculateAge(birthdate: Date, refDate: Date): number {
+  let age = refDate.getFullYear() - birthdate.getFullYear();
+  if (
+    refDate.getMonth() < birthdate.getMonth() ||
+    (refDate.getMonth() === birthdate.getMonth() &&
+      refDate.getDate() < birthdate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+}
+
 describe('date', () => {
   seededTests(faker, 'date', (t) => {
     t.describe('anytime', (t) => {
@@ -530,19 +543,6 @@ describe('date', () => {
       });
 
       describe('birthdate', () => {
-        function calculateAge(birthdate: Date, refDate: Date): number {
-          let age = refDate.getFullYear() - birthdate.getFullYear();
-          if (
-            refDate.getMonth() < birthdate.getMonth() ||
-            (refDate.getMonth() === birthdate.getMonth() &&
-              refDate.getDate() < birthdate.getDate())
-          ) {
-            age--;
-          }
-
-          return age;
-        }
-
         it('returns a random birthdate', () => {
           const birthdate = faker.date.birthdate();
           expect(birthdate).toBeInstanceOf(Date);
@@ -611,22 +611,6 @@ describe('date', () => {
           expect(age).toBeGreaterThanOrEqual(21);
           expect(age).toBeLessThanOrEqual(22);
         });
-
-        it.each(['min', 'max', 'mode'] as const)(
-          "should throw an error when '%s' is not provided",
-          (key) => {
-            const options = { min: 18, max: 80, mode: 'age' } as const;
-
-            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            delete options[key];
-
-            expect(() => faker.date.birthdate(options)).toThrow(
-              new FakerError(
-                `The 'min', 'max', and 'mode' options must be set together.`
-              )
-            );
-          }
-        );
 
         it('should throw an error when the min > max year', () => {
           const min = 2000;

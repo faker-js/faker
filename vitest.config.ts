@@ -9,16 +9,29 @@ console.log('VITEST_SEQUENCE_SEED', VITEST_SEQUENCE_SEED);
 export default defineConfig({
   test: {
     setupFiles: ['test/setup.ts'],
+    include: ['test/**/*.spec.ts', 'test/**/*.spec.cts'],
+    exclude: ['test/integration/**/*.spec.ts'],
     coverage: {
-      all: true,
       provider: 'v8',
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
-    reporters: CI_PREFLIGHT ? ['basic', 'github-actions'] : ['basic'],
+    reporters: CI_PREFLIGHT
+      ? ['default', 'github-actions']
+      : [['default', { summary: false }]],
     sequence: {
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,
+    },
+    onStackTrace(_, { file }) {
+      if (
+        file.includes('/src/internal/locale-proxy') ||
+        file.includes('/test/support/')
+      ) {
+        return false;
+      }
+
+      return true;
     },
     typecheck: {
       enabled: true,

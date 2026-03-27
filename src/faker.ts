@@ -1,6 +1,5 @@
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { deprecated } from './internal/deprecated';
 import type { LocaleProxy } from './internal/locale-proxy';
 import { createLocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
@@ -18,11 +17,9 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
-import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { ScienceModule } from './modules/science';
@@ -87,29 +84,6 @@ export class Faker extends SimpleFaker {
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
 
-  // Aliases
-  /** @deprecated Use {@link Faker#location} instead */
-  get address(): AddressModule {
-    deprecated({
-      deprecated: 'faker.address',
-      proposed: 'faker.location',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.location;
-  }
-
-  /** @deprecated Use {@link Faker#person} instead */
-  get name(): NameModule {
-    deprecated({
-      deprecated: 'faker.name',
-      proposed: 'faker.person',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.person;
-  }
-
   /**
    * Creates a new instance of Faker.
    *
@@ -120,11 +94,17 @@ export class Faker extends SimpleFaker {
    * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
-   * @param options.locale The locale data to use.
+   * @param options.locale The locale data to use for this instance.
+   * If an array is provided, the first locale that has a definition for a given property will be used.
+   * Please make sure that all required locales and their parent locales are present, e.g. `[de_AT, de, en, base]`.
    * @param options.randomizer The Randomizer to use.
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.seed The initial seed to use.
+   * The seed can be used to generate reproducible values.
+   * Refer to the `seed()` method for more information.
+   * Defaults to a random seed.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -144,6 +124,7 @@ export class Faker extends SimpleFaker {
     /**
      * The locale data to use for this instance.
      * If an array is provided, the first locale that has a definition for a given property will be used.
+     * Please make sure that all required locales and their parent locales are present, e.g. `[de_AT, de, en, base]`.
      *
      * @see mergeLocales(): For more information about how the locales are merged.
      */
@@ -157,8 +138,18 @@ export class Faker extends SimpleFaker {
      * @default generateMersenne53Randomizer()
      */
     randomizer?: Randomizer;
+
+    /**
+     * The initial seed to use.
+     * The seed can be used to generate reproducible values.
+     *
+     * Refer to the `seed()` method for more information.
+     *
+     * Defaults to a random seed.
+     */
+    seed?: number;
   }) {
-    super({ randomizer: options.randomizer });
+    super({ randomizer: options.randomizer, seed: options.seed });
 
     let { locale } = options;
 

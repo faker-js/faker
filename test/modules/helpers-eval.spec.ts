@@ -124,18 +124,15 @@ describe('fakeEval()', () => {
   });
 
   it('requires a function for parameters', () => {
-    // TODO @ST-DDT 2023-12-11: Replace in v10
-    // expect(faker.definitions.person.first_name.generic).toBeDefined();
-    //expect(() => fakeEval('person.first_name().generic', faker)).toThrow(
-    //  new FakerError(`Cannot resolve expression 'person.first_name'`)
-    //  );
-    const actual = fakeEval('person.first_name().generic', faker);
-    expect(faker.definitions.person.first_name.generic ?? []).toContain(actual);
+    expect(faker.definitions.person.first_name.generic).toBeDefined();
+    expect(() => fakeEval('person.first_name().generic', faker)).toThrow(
+      new FakerError("Cannot resolve expression 'person.first_name().generic'")
+    );
   });
 
   it('requires a valid expression (missing value)', () => {
     expect(() => fakeEval('foo.bar', faker)).toThrow(
-      new FakerError(`Cannot resolve expression 'foo.bar'`)
+      new FakerError("Cannot resolve expression 'foo.bar'")
     );
   });
 

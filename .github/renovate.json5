@@ -36,7 +36,6 @@
     {
       "groupName": "eslint",
       "matchPackageNames": [
-        "@eslint-types/**",
         "@eslint/**",
         "@stylistic/**",
         "eslint",

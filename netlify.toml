@@ -1,5 +1,5 @@
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "24"
 
 # Documentation
 [build]
@@ -8,7 +8,7 @@
 
 # Alias for the next page
 [[redirects]]
-  from = "https://v10.fakerjs.dev/*"
+  from = "https://v11.fakerjs.dev/*"
   to = "https://next.fakerjs.dev/:splat"
   status = 302
   force = true

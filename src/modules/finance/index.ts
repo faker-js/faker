@@ -26,6 +26,11 @@ export interface Currency {
    * The symbol for the currency (e.g. `$`).
    */
   symbol: string;
+
+  /**
+   * The ISO 4217 numeric code for the currency (e.g. `840`).
+   */
+  numericCode: string;
 }
 
 /**
@@ -63,9 +68,11 @@ export class FinanceModule extends ModuleBase {
    *
    * @param length The length of the account number. Defaults to `8`.
    *
+   * @see faker.string.numeric(): For generating the number with greater control.
+   *
    * @example
-   * faker.finance.accountNumber() // 92842238
-   * faker.finance.accountNumber(5) // 32564
+   * faker.finance.accountNumber() // '92842238'
+   * faker.finance.accountNumber(5) // '32564'
    *
    * @since 8.0.0
    */
@@ -76,9 +83,11 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object.
    * @param options.length The length of the account number. Defaults to `8`.
    *
+   * @see faker.string.numeric(): For generating the number with greater control.
+   *
    * @example
-   * faker.finance.accountNumber() // 92842238
-   * faker.finance.accountNumber({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // '92842238'
+   * faker.finance.accountNumber({ length: 5 }) // '32564'
    *
    * @since 8.0.0
    */
@@ -96,10 +105,12 @@ export class FinanceModule extends ModuleBase {
    * @param optionsOrLength An options object or the length of the account number.
    * @param optionsOrLength.length The length of the account number. Defaults to `8`.
    *
+   * @see faker.string.numeric(): For generating the number with greater control.
+   *
    * @example
-   * faker.finance.accountNumber() // 92842238
-   * faker.finance.accountNumber(5) // 28736
-   * faker.finance.accountNumber({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // '92842238'
+   * faker.finance.accountNumber(5) // '28736'
+   * faker.finance.accountNumber({ length: 5 }) // '32564'
    *
    * @since 8.0.0
    */
@@ -121,10 +132,12 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the account number.
    * @param options.length The length of the account number. Defaults to `8`.
    *
+   * @see faker.string.numeric(): For generating the number with greater control.
+   *
    * @example
-   * faker.finance.accountNumber() // 92842238
-   * faker.finance.accountNumber(5) // 28736
-   * faker.finance.accountNumber({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // '92842238'
+   * faker.finance.accountNumber(5) // '28736'
+   * faker.finance.accountNumber({ length: 5 }) // '32564'
    *
    * @since 8.0.0
    */
@@ -193,155 +206,6 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Generates a random masked number.
-   *
-   * @param length The length of the unmasked number. Defaults to `4`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber(3) // '(...342)'
-   *
-   * @since 8.0.0
-   */
-  maskedNumber(length?: number): string;
-  /**
-   * Generates a random masked number.
-   *
-   * @param options An options object.
-   * @param options.length The length of the unmasked number. Defaults to `4`.
-   * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
-   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
-   *
-   * @since 8.0.0
-   */
-  maskedNumber(options?: {
-    /**
-     * The length of the unmasked number.
-     *
-     * @default 4
-     */
-    length?: number;
-    /**
-     * Whether to use surrounding parenthesis.
-     *
-     * @default true
-     */
-    parens?: boolean;
-    /**
-     * Whether to prefix the numbers with an ellipsis.
-     *
-     * @default true
-     */
-    ellipsis?: boolean;
-  }): string;
-  /**
-   * Generates a random masked number.
-   *
-   * @param optionsOrLength An options object or the length of the unmask number.
-   * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
-   * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber(3) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
-   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
-   *
-   * @since 8.0.0
-   */
-  maskedNumber(
-    optionsOrLength?:
-      | number
-      | {
-          /**
-           * The length of the unmasked number.
-           *
-           * @default 4
-           */
-          length?: number;
-          /**
-           * Whether to use surrounding parenthesis.
-           *
-           * @default true
-           */
-          parens?: boolean;
-          /**
-           * Whether to prefix the numbers with an ellipsis.
-           *
-           * @default true
-           */
-          ellipsis?: boolean;
-        }
-  ): string;
-  /**
-   * Generates a random masked number.
-   *
-   * @param options An options object.
-   * @param options.length The length of the unmasked number. Defaults to `4`.
-   * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber(3) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
-   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
-   *
-   * @since 8.0.0
-   */
-  maskedNumber(
-    options:
-      | number
-      | {
-          /**
-           * The length of the unmasked number.
-           *
-           * @default 4
-           */
-          length?: number;
-          /**
-           * Whether to use surrounding parenthesis.
-           *
-           * @default true
-           */
-          parens?: boolean;
-          /**
-           * Whether to prefix the numbers with an ellipsis.
-           *
-           * @default true
-           */
-          ellipsis?: boolean;
-        } = {}
-  ): string {
-    if (typeof options === 'number') {
-      options = { length: options };
-    }
-
-    const { ellipsis = true, length = 4, parens = true } = options;
-
-    let template = this.faker.string.numeric({ length });
-
-    if (ellipsis) {
-      template = `...${template}`;
-    }
-
-    if (parens) {
-      template = `(${template})`;
-    }
-
-    return template;
-  }
-
-  /**
    * Generates a random amount between the given bounds (inclusive).
    *
    * @param options An options object.
@@ -350,6 +214,8 @@ export class FinanceModule extends ModuleBase {
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
    * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
    * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   *
+   * @see faker.number.float(): For generating the amount with greater control.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -430,14 +296,15 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Returns a random currency object, containing `code`, `name `and `symbol` properties.
+   * Returns a random currency object, containing `code`, `name`, `symbol`, and `numericCode` properties.
    *
    * @see faker.finance.currencyCode(): For generating specifically the currency code.
    * @see faker.finance.currencyName(): For generating specifically the currency name.
    * @see faker.finance.currencySymbol(): For generating specifically the currency symbol.
+   * @see faker.finance.currencyNumericCode(): For generating specifically the currency numeric code.
    *
    * @example
-   * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
+   * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$', numericCode: '840' }
    *
    * @since 8.0.0
    */
@@ -487,6 +354,19 @@ export class FinanceModule extends ModuleBase {
     } while (symbol.length === 0);
 
     return symbol;
+  }
+
+  /**
+   * Returns a random currency numeric code.
+   * (The ISO 4217 numerical code for a currency (e.g. `US Dollar` -> `840` ))
+   *
+   * @example
+   * faker.finance.currencyNumericCode() // '840'
+   *
+   * @since 9.6.0
+   */
+  currencyNumericCode(): string {
+    return this.currency().numericCode;
   }
 
   /**
@@ -699,7 +579,9 @@ export class FinanceModule extends ModuleBase {
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
+   *
+   * @see faker.string.numeric(): For generating the pin with greater control.
    *
    * @example
    * faker.finance.pin() // '5067'
@@ -714,7 +596,9 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
+   *
+   * @see faker.string.numeric(): For generating the pin with greater control.
    *
    * @example
    * faker.finance.pin() // '5067'
@@ -736,7 +620,9 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
+   *
+   * @see faker.string.numeric(): For generating the pin with greater control.
    *
    * @example
    * faker.finance.pin() // '5067'
@@ -763,7 +649,9 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
+   *
+   * @see faker.string.numeric(): For generating the pin with greater control.
    *
    * @example
    * faker.finance.pin() // '5067'
@@ -824,7 +712,7 @@ export class FinanceModule extends ModuleBase {
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    *
-   * @throws Will throw an error if the passed country code is not supported.
+   * @throws {FakerError} Will throw an error if the passed country code is not supported.
    *
    * @example
    * faker.finance.iban() // 'TR736918640040966092800056'
@@ -952,18 +840,13 @@ export class FinanceModule extends ModuleBase {
    *
    * @example
    * faker.finance.transactionDescription()
-   * // 'invoice transaction at Kilback - Durgan using card ending with ***(...4316) for UAH 783.82 in account ***16168663'
+   * // 'payment transaction at Emard LLC using card ending with ****9187 for HNL 506.57 in account ***2584.'
    *
    * @since 5.1.0
    */
   transactionDescription(): string {
-    const amount = this.amount();
-    const company = this.faker.company.name();
-    const transactionType = this.transactionType();
-    const account = this.accountNumber();
-    const card = this.maskedNumber();
-    const currency = this.currencyCode();
-
-    return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;
+    return this.faker.helpers.fake(
+      this.faker.definitions.finance.transaction_description_pattern
+    );
   }
 }

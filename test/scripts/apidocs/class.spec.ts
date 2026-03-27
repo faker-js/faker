@@ -11,7 +11,7 @@ describe('class', () => {
   });
 
   it('expected and actual modules are equal', () => {
-    expect(Object.keys(modules).sort()).toMatchSnapshot();
+    expect(Object.keys(modules).toSorted()).toMatchSnapshot();
   });
 
   it.each(Object.entries(modules))('processClass(%s)', (_, module) => {

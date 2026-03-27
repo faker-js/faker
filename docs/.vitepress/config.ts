@@ -1,8 +1,10 @@
-import type { UserConfig } from 'vitepress';
+import { defineConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import {
   algoliaIndex,
+  commitHash,
+  isReleaseBranch,
   version,
   versionBannerInfix,
   versionLabel,
@@ -13,7 +15,13 @@ type SidebarItem = DefaultTheme.SidebarItem;
 
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
-const image = 'https://fakerjs.dev/social-image.png';
+const socialImage = 'https://fakerjs.dev/social-image.png';
+const consoleDownload = isReleaseBranch
+  ? `https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm`
+  : '/faker.js';
+const consoleVersion = isReleaseBranch
+  ? version
+  : `${version.replace(/-.*$/, '')}-preview+${commitHash}`;
 
 function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   const links: SidebarItem[] = [
@@ -45,7 +53,7 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           link: '/guide/unique',
         },
         {
-          text: 'Upgrading to v9',
+          text: 'Upgrading to v10',
           link: '/guide/upgrading',
         },
       ],
@@ -53,6 +61,31 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
     {
       text: 'API',
       items: apiPages,
+    },
+    {
+      text: 'Contributing',
+      items: [
+        {
+          text: 'Code of Conduct',
+          link: '/contributing/code-of-conduct',
+        },
+        {
+          text: 'Report Bugs',
+          link: '/contributing/report-bugs',
+        },
+        {
+          text: 'Propose a Feature',
+          link: '/contributing/propose-a-feature',
+        },
+        {
+          text: 'Set up a Development Environment',
+          link: '/contributing/set-up-a-development-environment',
+        },
+        {
+          text: 'Submit a Pull Request',
+          link: '/contributing/submit-a-pull-request',
+        },
+      ],
     },
     {
       text: 'About',
@@ -86,10 +119,6 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           text: 'Team',
           link: '/about/team',
         },
-        {
-          text: 'Contributing',
-          link: '/about/contributing',
-        },
       ],
     },
   ];
@@ -101,77 +130,47 @@ function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   return links;
 }
 
-// TODO @Shinigami92 2023-12-28: reuse `defineConfig` from vitepress, when we can go esm-only
-const config: UserConfig<DefaultTheme.Config> = {
+const config = defineConfig({
   title: 'Faker',
   description,
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
-    [
-      'meta',
-      {
-        name: 'og:description',
-        content: description,
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'twitter:description',
-        content: description,
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'og:image',
-        content: image,
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'twitter:image',
-        content: image,
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'me',
-        href: 'https://fosstodon.org/@faker_js',
-      },
-    ],
+    ['meta', { name: 'og:title', content: 'FakerJS' }],
+    ['meta', { name: 'og:description', content: description }],
+    ['meta', { name: 'og:image', content: socialImage }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: 'FakerJS' }],
+    ['meta', { name: 'twitter:description', content: description }],
+    ['meta', { name: 'twitter:site', content: '@faker_js' }],
+    ['meta', { name: 'twitter:image', content: socialImage }],
+    ['meta', { name: 'twitter:image:alt', content: 'The FakerJS logo' }],
+    ['link', { rel: 'me', href: 'https://fosstodon.org/@faker_js' }],
     [
       'script',
-      {
-        id: 'browser-console-faker',
-      },
+      { id: 'browser-console-faker' },
       `
-const logStyle = 'background: rgba(16, 183, 127, 0.14); color: rgba(255, 255, 245, 0.86); padding: 0.5rem; display: inline-block;';
+const logStyle = 'background: rgba(16, 183, 127, 0.14); padding: 0.5rem; display: inline-block;';
 console.log(\`%cIf you would like to test Faker in the browser console, you can do so using 'await enableFaker()'.
 If you would like to test Faker in a playground, visit https://new.fakerjs.dev.\`, logStyle);
 async function enableFaker() {
-  const imported = await import('https://cdn.jsdelivr.net/npm/@faker-js/faker@${version}/+esm');
+  const imported = await import('${consoleDownload}');
   Object.assign(globalThis, imported);
-  console.log(\`%cYou can now start using Faker v${version}:
+  console.log(\`%cYou can now start using Faker v${consoleVersion}:
 e.g. 'faker.food.description()' or 'fakerZH_CN.person.firstName()'
 For other languages please refer to https://fakerjs.dev/guide/localization.html#available-locales
 For a full list of all methods please refer to https://fakerjs.dev/api/\`, logStyle);
+  enableFaker = () => imported; // Init only once
   return imported;
 }
 `,
     ],
   ],
+
+  sitemap: {
+    hostname: 'https://fakerjs.dev',
+  },
 
   themeConfig: {
     logo: '/logo.svg',
@@ -196,13 +195,16 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       },
     ],
 
-    algolia:
+    search:
       process.env.API_KEY == null || process.env.APP_ID == null
         ? undefined
         : {
-            apiKey: process.env.API_KEY,
-            appId: process.env.APP_ID,
-            indexName: algoliaIndex,
+            provider: 'algolia' as const,
+            options: {
+              apiKey: process.env.API_KEY,
+              appId: process.env.APP_ID,
+              indexName: algoliaIndex,
+            },
           },
 
     footer: {
@@ -240,10 +242,6 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
             text: 'Team',
             link: '/about/team',
           },
-          {
-            text: 'Contributing',
-            link: '/about/contributing',
-          },
         ],
       },
       {
@@ -263,7 +261,9 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
 
     sidebar: {
       '/guide/': getSideBarWithExpandedEntry('Guide'),
+      '/locales/': getSideBarWithExpandedEntry('Guide'),
       '/api/': getSideBarWithExpandedEntry('API'),
+      '/contributing/': getSideBarWithExpandedEntry('Contributing'),
       '/about/': getSideBarWithExpandedEntry('About'),
     },
   },
@@ -273,7 +273,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       __BANNER__: versionBannerInfix ?? false,
     },
   },
-};
+});
 
 if (versionBannerInfix) {
   config.head?.push([
