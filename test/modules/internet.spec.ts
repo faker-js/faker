@@ -672,7 +672,7 @@ describe('internet', () => {
               faker.internet.ipv4({
                 cidrBlock,
               })
-            ).toThrowError(
+            ).toThrow(
               new FakerError(
                 `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
               )

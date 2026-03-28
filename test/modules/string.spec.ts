@@ -208,7 +208,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string)', () => {
-          expect(() => faker.string.fromCharacters('')).toThrowError(
+          expect(() => faker.string.fromCharacters('')).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -216,7 +216,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string[])', () => {
-          expect(() => faker.string.fromCharacters([])).toThrowError(
+          expect(() => faker.string.fromCharacters([])).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -312,7 +312,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -327,7 +327,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -345,7 +345,7 @@ describe('string', () => {
             exclude: ['a', '%'],
           });
 
-          expect(() => faker.string.alpha(input)).not.toThrowError();
+          expect(() => faker.string.alpha(input)).not.toThrow();
           expect(input.exclude).toEqual(['a', '%']);
         });
       });
@@ -466,7 +466,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -481,7 +481,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -497,7 +497,7 @@ describe('string', () => {
             exclude: ['a', '0', '%'],
           });
 
-          expect(() => faker.string.alphanumeric(input)).not.toThrowError();
+          expect(() => faker.string.alphanumeric(input)).not.toThrow();
           expect(input.exclude).toEqual(['a', '0', '%']);
         });
       });
@@ -705,7 +705,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: [...'123456789'],
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -719,7 +719,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789',
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -822,7 +822,7 @@ describe('string', () => {
         it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
           'should reject invalid refDates %s',
           (refDate) => {
-            expect(() => faker.string.ulid({ refDate })).toThrowError(
+            expect(() => faker.string.ulid({ refDate })).toThrow(
               new FakerError(`Invalid refDate date: ${refDate.toString()}`)
             );
           }

@@ -1,6 +1,7 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { Faker, faker, generateMersenne32Randomizer } from '../src';
+import { FakerError } from '../src/errors/faker-error';
 import { keys } from '../src/internal/keys';
 
 describe('faker', () => {
@@ -54,17 +55,20 @@ describe('faker', () => {
       // Non-existing module
       expect(faker.definitions.missing).toBeDefined();
       // Non-existing definition in a non-existing module
-      expect(() => faker.definitions.missing?.missing).toThrowError();
+      expect(() => faker.definitions.missing?.missing).toThrow();
       // Non-existing definition in an existing module
-      expect(() => faker.definitions.location.missing).toThrowError();
+      expect(() => faker.definitions.location.missing).toThrow();
     });
   });
 
   describe('constructor()', () => {
     describe('locale', () => {
       it('should throw error if no locales passed', () => {
-        expect(() => new Faker({ locale: [] })).not.toThrowError();
-        // TODO @ST-DDT 2026-03-22: Should we keep throwing an error here?
+        expect(() => new Faker({ locale: [] })).toThrow(
+          new FakerError(
+            'The locale option must contain at least one locale definition.'
+          )
+        );
       });
     });
 
