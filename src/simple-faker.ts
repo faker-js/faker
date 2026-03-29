@@ -8,6 +8,8 @@ import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
 
+export const DEFAULT_REF_DATE_SOURCE: () => Date = () => new Date();
+
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.
  *
@@ -40,7 +42,7 @@ export class SimpleFaker {
    * Gets a new reference date used to generate relative dates.
    */
   get defaultRefDate(): () => Date {
-    return this.fakerCore.config.defaultRefDate ?? (() => new Date());
+    return this.fakerCore.config.defaultRefDate ?? DEFAULT_REF_DATE_SOURCE;
   }
 
   /**
