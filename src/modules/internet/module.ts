@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-https -- We allow http in results */
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';

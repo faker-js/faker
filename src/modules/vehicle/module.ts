@@ -38,7 +38,7 @@ const vinTransliteration: Record<string, number> = {
  */
 export function vinCheckDigit(vin: string): string {
   let checksum = 0;
-  for (const [index, character] of vin.split('').entries()) {
+  for (const [index, character] of [...vin].entries()) {
     const value = vinTransliteration[character] ?? Number(character);
     checksum += value * vinWeights[index];
   }

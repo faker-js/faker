@@ -31,6 +31,7 @@ function readOtherLatestReleaseTagNames(): string[] {
     }
   }
 
+  // oxlint-disable-next-line typescript/no-unsafe-return -- tsgolint fails to resolve the type of `Array#toSorted`
   return Object.values(latestTagByMajor).toSorted(semver.rcompare);
 }
 

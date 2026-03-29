@@ -142,7 +142,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm run lint --format=github
 
       - name: Check formatting
         run: pnpm prettier --check .

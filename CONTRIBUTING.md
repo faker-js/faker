@@ -21,7 +21,7 @@ This is a shorthand for running the following scripts in order:
 - `pnpm run generate:locales` - generates locale files
 - `pnpm run generate:api-docs` - generates API documentation
 - `pnpm run format` - runs [prettify](https://github.com/prettier/prettier) to format code
-- `pnpm run lint` - runs [ESLint](https://github.com/eslint/eslint) to enforce project code standards
+- `pnpm run lint` - runs [oxlint](https://oxc.rs/docs/guide/usage/linter) to enforce project code standards
 - `pnpm run build:clean` - removes artifacts from previous builds
 - `pnpm run build:code` - builds the code
 - `pnpm run test:update-snapshots` - runs all tests, and updates any snapshots if needed
@@ -301,9 +301,9 @@ function foo(options: { test: string }) {
 - `@internal` - If the method is not intended to be used by the end user, e.g. a helper function.
 - `@remark` - If the method depends on external data not being controlled by Faker, e.g. a third-party image provider.
 
-> We use eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
+> We use oxlint with eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
 
-This is in place so all JSDoc tags will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.
+This is in place so all JSDoc tags will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by running `pnpm run lint --fix`.
 
 > JSDocs should always be multiline
 

@@ -10,7 +10,7 @@ describe('faker', () => {
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) => vi.spyOn(console, methodName));
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // oxlint-disable-next-line typescript/ban-ts-comment
     // @ts-ignore: Types may or may not exist, depending on whether the project was built first.
     const file: unknown = await import('..');
     expect(file).toBeDefined();

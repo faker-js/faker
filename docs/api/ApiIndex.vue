@@ -7,7 +7,7 @@ import apiSearchIndex from './api-search-index.json';
 import type { APIGroup } from './api-types';
 
 const query = ref('');
-const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ');
+const normalize = (s: string) => s.toLowerCase().replaceAll('-', ' ');
 
 const filtered = computed(() => {
   const q = normalize(query.value);
@@ -31,17 +31,17 @@ const filtered = computed(() => {
           const matchedHeaders = item.headers.filter(
             ({ text, anchor }) => matches(text) || matches(anchor)
           );
-          return matchedHeaders.length
+          return matchedHeaders.length > 0
             ? { text: item.text, link: item.link, headers: matchedHeaders }
             : null;
         })
-        .filter((i) => i);
+        .filter((i) => i != null);
 
-      return matchedGroups.length
+      return matchedGroups.length > 0
         ? { text: section.text, items: matchedGroups }
         : null;
     })
-    .filter((i) => i) as APIGroup[];
+    .filter((i) => i != null) as APIGroup[];
 });
 </script>
 
