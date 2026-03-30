@@ -135,7 +135,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
-          node-version: 24.14.0
+          node-version: 24.14.1
           cache: 'pnpm'
 
       - name: Install deps
@@ -163,7 +163,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
-          node-version: 24.14.0
+          node-version: 24.14.1
           cache: 'pnpm'
 
       - name: Install deps
@@ -191,7 +191,7 @@ jobs:
       - name: Set node version to 24
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
-          node-version: 24.14.0
+          node-version: 24.14.1
           cache: 'pnpm'
 
       - name: Install deps
@@ -204,7 +204,7 @@ jobs:
         run: pnpm vitest run --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@1af58845a975a7985b0beb0cbe6fbbb71a41dbad # v5.5.3
+        uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5.5.4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
