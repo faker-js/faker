@@ -125,7 +125,7 @@
     "tsdown": "0.21.7",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.57.1",
+    "typescript-eslint": "8.57.2",
     "validator": "13.15.26",
     "vitepress": "2.0.0-alpha.17",
     "vitest": "4.1.0",
