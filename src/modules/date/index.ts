@@ -67,7 +67,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
    * faker.date.past({ years: 10 }) // '2017-10-25T21:34:19.488Z'
-   * faker.date.future({ years: { min: 4, max: 7 } }) // '2022-12-12T03:43:16.434Z'
+   * faker.date.past({ years: { min: 4, max: 7 } }) // '2022-12-12T03:43:16.434Z'
    * faker.date.past({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2017-08-18T02:59:12.350Z'
    *
    * @since 8.0.0
