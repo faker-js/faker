@@ -79,6 +79,8 @@ transformIgnorePatterns: [
 ],
 ```
 
+Check more in our [playground](https://github.com/faker-js/playground/blob/main/playgrounds/jest-cjs/jest.config.js).
+
 ### Removal of Deprecated Code
 
 A number of methods that were deprecated in v9 have been completely removed in v10. To prepare for the upgrade, it is recommended to first upgrade to the latest version of v9 (e.g., `npm install --save-dev faker@9`) and fix any deprecation warnings issued by your code.
