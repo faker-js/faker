@@ -63,4 +63,7 @@ export default {
     'Tuş Takımı',
     'Şapka',
   ],
+  pattern: [
+    '{{commerce.productAdjective}} {{commerce.productMaterial}} {{commerce.product}}',
+  ],
 };

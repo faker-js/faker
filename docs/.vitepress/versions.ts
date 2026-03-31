@@ -31,7 +31,7 @@ function readOtherLatestReleaseTagNames(): string[] {
     }
   }
 
-  return Object.values(latestTagByMajor).sort(semver.rcompare);
+  return Object.values(latestTagByMajor).toSorted(semver.rcompare);
 }
 
 // Set by netlify

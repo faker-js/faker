@@ -363,7 +363,7 @@ export class SignatureTest {
   /**
    * Test with throws.
    *
-   * @throws Everytime.
+   * @throws {FakerError} Everytime.
    *
    * @since 1.0.0
    */
@@ -374,8 +374,8 @@ export class SignatureTest {
   /**
    * Test with multiple throws.
    *
-   * @throws First error case.
-   * @throws Another error case.
+   * @throws {FakerError} First error case.
+   * @throws {FakerError} Another error case.
    *
    * @since 1.0.0
    */

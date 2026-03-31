@@ -170,15 +170,31 @@ exports[`string > 42 > ulid > with number refDate 1`] = `"01EZ2S259ZBYQK441VKP0Z
 
 exports[`string > 42 > ulid > with string refDate 1`] = `"01EZ2S259ZBYQK441VKP0ZT655"`;
 
-exports[`string > 42 > uuid 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
+exports[`string > 42 > uuid > noArgs 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
 
-exports[`string > 42 > uuid 2`] = `"21ffc41a-7170-4e4a-9488-2fcfe9e13056"`;
+exports[`string > 42 > uuid > noArgs 2`] = `"21ffc41a-7170-4e4a-9488-2fcfe9e13056"`;
 
-exports[`string > 42 > uuid 3`] = `"d5482c1f-c30d-4bbc-b151-d95145bae71b"`;
+exports[`string > 42 > uuid > noArgs 3`] = `"d5482c1f-c30d-4bbc-b151-d95145bae71b"`;
 
-exports[`string > 42 > uuid 4`] = `"8c786010-a58e-436c-8314-2ecadc2e8ce5"`;
+exports[`string > 42 > uuid > noArgs 4`] = `"8c786010-a58e-436c-8314-2ecadc2e8ce5"`;
 
-exports[`string > 42 > uuid 5`] = `"36dd0863-15f5-48b5-bff4-74409804e327"`;
+exports[`string > 42 > uuid > noArgs 5`] = `"36dd0863-15f5-48b5-bff4-74409804e327"`;
+
+exports[`string > 42 > uuid > with version = 4 1`] = `"5fb9220d-9b0f-4d32-a248-6492457c3890"`;
+
+exports[`string > 42 > uuid > with version = 4 2`] = `"21ffc41a-7170-4e4a-9488-2fcfe9e13056"`;
+
+exports[`string > 42 > uuid > with version = 4 3`] = `"d5482c1f-c30d-4bbc-b151-d95145bae71b"`;
+
+exports[`string > 42 > uuid > with version = 4 4`] = `"8c786010-a58e-436c-8314-2ecadc2e8ce5"`;
+
+exports[`string > 42 > uuid > with version = 4 5`] = `"36dd0863-15f5-48b5-bff4-74409804e327"`;
+
+exports[`string > 42 > uuid > with version = 7 and Date refDate 1`] = `"01948b54-1b78-75fb-9922-0d9b0fd32248"`;
+
+exports[`string > 42 > uuid > with version = 7 and number refDate 1`] = `"01948b54-1b78-75fb-9922-0d9b0fd32248"`;
+
+exports[`string > 42 > uuid > with version = 7 and string refDate 1`] = `"01948b54-1b78-75fb-9922-0d9b0fd32248"`;
 
 exports[`string > 1211 > alpha > noArgs 1`] = `"W"`;
 
@@ -350,15 +366,31 @@ exports[`string > 1211 > ulid > with number refDate 1`] = `"01EZ2S259ZXW7ZNNRBPT
 
 exports[`string > 1211 > ulid > with string refDate 1`] = `"01EZ2S259ZXW7ZNNRBPTRMTDVV"`;
 
-exports[`string > 1211 > uuid 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
+exports[`string > 1211 > uuid > noArgs 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
 
-exports[`string > 1211 > uuid 2`] = `"d64428b2-b736-43d9-970b-2b4c8739d1d7"`;
+exports[`string > 1211 > uuid > noArgs 2`] = `"d64428b2-b736-43d9-970b-2b4c8739d1d7"`;
 
-exports[`string > 1211 > uuid 3`] = `"79c8efdd-3bd5-4e08-bc71-4243ef639999"`;
+exports[`string > 1211 > uuid > noArgs 3`] = `"79c8efdd-3bd5-4e08-bc71-4243ef639999"`;
 
-exports[`string > 1211 > uuid 4`] = `"adcde858-75d3-4f13-90e6-e9ff59ce28bb"`;
+exports[`string > 1211 > uuid > noArgs 4`] = `"adcde858-75d3-4f13-90e6-e9ff59ce28bb"`;
 
-exports[`string > 1211 > uuid 5`] = `"de2b16a5-033e-49a8-8a9e-77d809771962"`;
+exports[`string > 1211 > uuid > noArgs 5`] = `"de2b16a5-033e-49a8-8a9e-77d809771962"`;
+
+exports[`string > 1211 > uuid > with version = 4 1`] = `"ee3faac5-bdca-4d6d-9d39-35fc6e8f34b8"`;
+
+exports[`string > 1211 > uuid > with version = 4 2`] = `"d64428b2-b736-43d9-970b-2b4c8739d1d7"`;
+
+exports[`string > 1211 > uuid > with version = 4 3`] = `"79c8efdd-3bd5-4e08-bc71-4243ef639999"`;
+
+exports[`string > 1211 > uuid > with version = 4 4`] = `"adcde858-75d3-4f13-90e6-e9ff59ce28bb"`;
+
+exports[`string > 1211 > uuid > with version = 4 5`] = `"de2b16a5-033e-49a8-8a9e-77d809771962"`;
+
+exports[`string > 1211 > uuid > with version = 7 and Date refDate 1`] = `"01948b54-1b78-7ee3-8faa-c5bdcad6dd39"`;
+
+exports[`string > 1211 > uuid > with version = 7 and number refDate 1`] = `"01948b54-1b78-7ee3-8faa-c5bdcad6dd39"`;
+
+exports[`string > 1211 > uuid > with version = 7 and string refDate 1`] = `"01948b54-1b78-7ee3-8faa-c5bdcad6dd39"`;
 
 exports[`string > 1337 > alpha > noArgs 1`] = `"n"`;
 
@@ -530,12 +562,28 @@ exports[`string > 1337 > ulid > with number refDate 1`] = `"01EZ2S259Z858EAG8ZQ3
 
 exports[`string > 1337 > ulid > with string refDate 1`] = `"01EZ2S259Z858EAG8ZQ3CM4ZES"`;
 
-exports[`string > 1337 > uuid 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
+exports[`string > 1337 > uuid > noArgs 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
 
-exports[`string > 1337 > uuid 2`] = `"f6880bf2-25b0-450c-a5b7-fd99f401ff75"`;
+exports[`string > 1337 > uuid > noArgs 2`] = `"f6880bf2-25b0-450c-a5b7-fd99f401ff75"`;
 
-exports[`string > 1337 > uuid 3`] = `"0ca3ae2e-5b48-4277-b6c7-bc5ebe67ea83"`;
+exports[`string > 1337 > uuid > noArgs 3`] = `"0ca3ae2e-5b48-4277-b6c7-bc5ebe67ea83"`;
 
-exports[`string > 1337 > uuid 4`] = `"8c36682a-03be-496d-8f46-b50570ebc104"`;
+exports[`string > 1337 > uuid > noArgs 4`] = `"8c36682a-03be-496d-8f46-b50570ebc104"`;
 
-exports[`string > 1337 > uuid 5`] = `"3a7e9225-61a0-4ba0-9c5c-592d4b9e801f"`;
+exports[`string > 1337 > uuid > noArgs 5`] = `"3a7e9225-61a0-4ba0-9c5c-592d4b9e801f"`;
+
+exports[`string > 1337 > uuid > with version = 4 1`] = `"4247584f-b16a-42f7-8cc5-69c34a72638d"`;
+
+exports[`string > 1337 > uuid > with version = 4 2`] = `"f6880bf2-25b0-450c-a5b7-fd99f401ff75"`;
+
+exports[`string > 1337 > uuid > with version = 4 3`] = `"0ca3ae2e-5b48-4277-b6c7-bc5ebe67ea83"`;
+
+exports[`string > 1337 > uuid > with version = 4 4`] = `"8c36682a-03be-496d-8f46-b50570ebc104"`;
+
+exports[`string > 1337 > uuid > with version = 4 5`] = `"3a7e9225-61a0-4ba0-9c5c-592d4b9e801f"`;
+
+exports[`string > 1337 > uuid > with version = 7 and Date refDate 1`] = `"01948b54-1b78-7424-9758-4fb16a2f7cc5"`;
+
+exports[`string > 1337 > uuid > with version = 7 and number refDate 1`] = `"01948b54-1b78-7424-9758-4fb16a2f7cc5"`;
+
+exports[`string > 1337 > uuid > with version = 7 and string refDate 1`] = `"01948b54-1b78-7424-9758-4fb16a2f7cc5"`;

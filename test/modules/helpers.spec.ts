@@ -3,7 +3,6 @@ import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
-import './../vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -552,7 +551,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^w$/);
           });
 
-          it.skip('handles case insensitive characters', () => {
+          it.todo('handles case insensitive characters', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/w/i);
@@ -571,7 +570,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^%$/i);
           });
 
-          it.skip('handles the wildcard character', () => {
+          it.todo('handles the wildcard character', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/./);

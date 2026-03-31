@@ -1,5 +1,5 @@
 import type { Node } from 'ts-morph';
-import { FILE_PATH_PROJECT } from '../utils/paths';
+import { FILE_PATH_PROJECT } from '../../shared/paths';
 
 /**
  * Represents a source element in the raw API docs.

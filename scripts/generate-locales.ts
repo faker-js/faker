@@ -7,6 +7,7 @@
  * - `src/locales/<locale>/index.ts`
  * - `src/locales/<locale>/<module...>/index.ts`
  * - `src/docs/guide/localization.md`
+ * - `src/docs/locales/<locale>.md`
  *
  * If you wish to edit all/specific locale data files you can do so using the
  * `updateLocaleFileHook()` method.
@@ -17,23 +18,19 @@
 import { constants } from 'node:fs';
 import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import type { PersonEntryDefinition } from '../dist';
 import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 import { keys } from '../src/internal/keys';
-import { formatMarkdown, formatTypescript } from './apidocs/utils/format';
-
-// Constants
-
-const pathRoot = resolve(import.meta.dirname, '..');
-const pathLocale = resolve(pathRoot, 'src', 'locale');
-const pathLocales = resolve(pathRoot, 'src', 'locales');
-const pathLocaleIndex = resolve(pathLocale, 'index.ts');
-const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-const pathDocsGuideLocalization = resolve(
-  pathRoot,
-  'docs',
-  'guide',
-  'localization.md'
-);
+import { toFakerExportName } from './locales/exports';
+import { loadMetadata, tryLoadMetadata } from './locales/metadata';
+import { writeLocalePage } from './locales/page';
+import { formatMarkdown, formatTypescript } from './shared/format';
+import { initMarkdownRenderer } from './shared/markdown';
+import {
+  FILE_PATH_DOCS,
+  FILE_PATH_SRC_LOCALE,
+  FILE_PATH_SRC_LOCALES,
+} from './shared/paths';
 
 // Workaround for nameOf<T>
 type PascalCase<TName extends string> =
@@ -111,19 +108,12 @@ function escapeField(parent: string, module: string): string {
   return module;
 }
 
-async function loadMetadata(locale: string): Promise<MetadataDefinition> {
-  const imported = await import(
-    `file:${resolve(pathLocales, locale, 'metadata.ts')}`
-  );
-  return imported.default as MetadataDefinition;
-}
-
-async function tryLoadMetadata(locale: string): Promise<MetadataDefinition> {
-  try {
-    return await loadMetadata(locale);
-  } catch {
-    return {};
+async function generateLocaleDocumentation(locale: string): Promise<void> {
+  if (locale === 'base') {
+    return;
   }
+
+  return writeLocalePage(locale);
 }
 
 async function generateLocaleFile(locale: string): Promise<void> {
@@ -133,7 +123,7 @@ async function generateLocaleFile(locale: string): Promise<void> {
   for (let i = parts.length - 1; i > 0; i--) {
     const fallback = parts.slice(0, i).join('_');
     try {
-      await access(resolve(pathLocales, fallback), constants.R_OK);
+      await access(resolve(FILE_PATH_SRC_LOCALES, fallback), constants.R_OK);
       locales.push(fallback);
     } catch {
       // file is missing
@@ -184,7 +174,7 @@ ${locales.map((locale) => `- \`${locale}\``).join('\n')}`;
       `;
 
   return writeFile(
-    resolve(pathLocale, `${locale}.ts`),
+    resolve(FILE_PATH_SRC_LOCALE, `${locale}.ts`),
     await formatTypescript(content)
   );
 }
@@ -299,7 +289,7 @@ async function updateLocaleFile(filePath: string): Promise<void> {
   const fileStat = await stat(filePath);
   if (fileStat.isFile()) {
     const [locale, moduleKey, entryKey] = filePath
-      .substring(pathLocales.length + 1, filePath.length - 3)
+      .substring(FILE_PATH_SRC_LOCALES.length + 1, filePath.length - 3)
       .split(/[\\/]/);
     return updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
@@ -325,7 +315,54 @@ async function updateLocaleFileHook(
     console.log(`${filePath} <-> ${locale} @ ${definitionKey} -> ${entryName}`);
   }
 
+  if (definitionKey === 'person' && entryName != null) {
+    await normalizePersonFile(filePath);
+  }
+
   return normalizeLocaleFile(filePath, definitionKey);
+}
+
+async function normalizePersonFile(filePath: string) {
+  const { default: data } = (await import(`file:${filePath}`)) as {
+    default: PersonEntryDefinition<string>;
+  };
+  const { female = [], generic = [], male = [] } = data ?? {};
+
+  // Revert merging of female and male => generic
+  for (let i = generic.length; i >= 0; --i) {
+    if (female.includes(generic[i]) !== male.includes(generic[i])) {
+      generic.splice(i, 1);
+    }
+  }
+
+  // Remove generic entries from females and detect new generic entries
+  for (let i = female.length; i >= 0; --i) {
+    if (generic.includes(female[i])) {
+      female.splice(i, 1);
+    } else if (male.includes(female[i])) {
+      generic.push(female[i]);
+      female.splice(i, 1);
+    }
+  }
+
+  // Remove generic entries from males
+  for (let i = male.length; i >= 0; --i) {
+    if (generic.includes(male[i])) {
+      male.splice(i, 1);
+    }
+  }
+
+  const newData = {
+    generic: generic.length > 0 ? generic.toSorted() : undefined,
+    female: female.length > 0 ? female.toSorted() : undefined,
+    male: male.length > 0 ? male.toSorted() : undefined,
+  };
+
+  const newContent = `export default ${JSON.stringify(newData)};`;
+
+  if (female.length > 0 || generic.length > 0 || male.length > 0) {
+    await writeFile(filePath, await formatTypescript(newContent));
+  }
 }
 
 /**
@@ -354,7 +391,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
           .slice(0, 1000)
           // sort entries alphabetically
           // We cannot sort the entries locale aware as the sort order is not stable within node versions #2905
-          .sort() as T
+          .toSorted() as T
       );
     }
 
@@ -373,7 +410,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     'metadata',
     'person',
     'phone_number',
-    'system',
     'word',
     ...legacyDefinitions,
   ];
@@ -422,7 +458,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
 
 // Start of actual logic
 
-const locales = await readdir(pathLocales);
+const locales = await readdir(FILE_PATH_SRC_LOCALES);
 removeIndexTs(locales);
 
 // src/locale/index.ts (Faker Imports and Exports)
@@ -437,8 +473,10 @@ let localesIndexExportsGrouped = '';
 let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
 const promises: Array<Promise<unknown>> = [];
 
+await initMarkdownRenderer();
+
 for (const locale of locales) {
-  const pathModules = resolve(pathLocales, locale);
+  const pathModules = resolve(FILE_PATH_SRC_LOCALES, locale);
   const pathMetadata = resolve(pathModules, 'metadata.ts');
   let localeTitle = 'No title found';
   try {
@@ -456,9 +494,7 @@ for (const locale of locales) {
     console.error(error);
   }
 
-  const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
-    part.toUpperCase()
-  )}`;
+  const localizedFaker = toFakerExportName(locale);
 
   localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
   localeIndexExportsIndividual += `export { faker as ${localizedFaker} } from './${locale}';\n`;
@@ -466,12 +502,18 @@ for (const locale of locales) {
   localesIndexImports += `import ${locale} from './${locale}';\n`;
   localesIndexExportsIndividual += `export { default as ${locale} } from './${locale}';\n`;
   localesIndexExportsGrouped += `  ${locale},\n`;
-  localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
+  const linkedLocale =
+    locale === 'base' ? '`base`' : `[\`${locale}\`](/locales/${locale}.md)`;
+  localizationLocales += `| ${linkedLocale} | ${localeTitle} | \`${localizedFaker}\` |\n`;
 
   promises.push(
     // src/locale/<locale>.ts
     // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateLocaleFile(locale),
+
+    // /docs/locales/*.md
+    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    generateLocaleDocumentation(locale),
 
     // src/locales/**/index.ts
     // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
@@ -496,6 +538,7 @@ let localeIndexContent = `
   `;
 
 localeIndexContent = await formatTypescript(localeIndexContent);
+const pathLocaleIndex = resolve(FILE_PATH_SRC_LOCALE, 'index.ts');
 await writeFile(pathLocaleIndex, localeIndexContent);
 
 // src/locales/index.ts
@@ -512,12 +555,19 @@ let localesIndexContent = `
   } as const;
   `;
 
+const pathLocalesIndex = resolve(FILE_PATH_SRC_LOCALES, 'index.ts');
 localesIndexContent = await formatTypescript(localesIndexContent);
 await writeFile(pathLocalesIndex, localesIndexContent);
 
 // docs/guide/localization.md
 
 localizationLocales = await formatMarkdown(localizationLocales);
+
+const pathDocsGuideLocalization = resolve(
+  FILE_PATH_DOCS,
+  'guide',
+  'localization.md'
+);
 
 let localizationContent = await readFile(pathDocsGuideLocalization, 'utf8');
 localizationContent = localizationContent.replaceAll(
