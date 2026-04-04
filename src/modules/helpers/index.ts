@@ -36,9 +36,11 @@ function getRepetitionsBasedOnQuantifierParameters(
       }
 
       case '*': {
+        const starLimit = 256;
         let limit = 1;
         while (faker.datatype.boolean()) {
-          limit *= 2;
+          limit = Math.min(limit * 2, starLimit);
+          if (limit >= starLimit) break;
         }
 
         repetitions = faker.number.int({ min: 0, max: limit });
@@ -46,9 +48,11 @@ function getRepetitionsBasedOnQuantifierParameters(
       }
 
       case '+': {
+        const plusLimit = 256;
         let limit = 1;
         while (faker.datatype.boolean()) {
-          limit *= 2;
+          limit = Math.min(limit * 2, plusLimit);
+          if (limit >= plusLimit) break;
         }
 
         repetitions = faker.number.int({ min: 1, max: limit });
@@ -1269,29 +1273,31 @@ export class HelpersModule extends SimpleHelpersModule {
     pattern =
       typeof pattern === 'string' ? pattern : this.arrayElement(pattern);
 
-    // find first matching {{ and }}
-    const start = pattern.search(/{{[a-z]/);
-    const end = pattern.indexOf('}}', start);
+    // Iteratively replace all {{...}} tags to avoid stack overflow on deep nesting
+    let result = pattern;
 
-    // if no {{ and }} is found, we are done
-    if (start === -1 || end === -1) {
-      return pattern;
+    while (true) {
+      // Find first matching {{ and }}
+      const start = result.search(/{{[a-z]/);
+      const end = result.indexOf('}}', start);
+
+      // If no {{ and }} is found, we are done
+      if (start === -1 || end === -1) {
+        return result;
+      }
+
+      // Extract method name from between the {{ }} that we found
+      // for example: {{person.firstName}}
+      const token = result.substring(start + 2, end + 2);
+      const method = token.replace('}}', '').replace('{{', '');
+
+      const evalResult = fakeEval(method, this.faker);
+      const stringified = String(evalResult);
+
+      // Replace the found tag with the returned fake value
+      // We cannot use string.replace here because the result might contain evaluated characters
+      result =
+        result.substring(0, start) + stringified + result.substring(end + 2);
     }
-
-    // extract method name from between the {{ }} that we found
-    // for example: {{person.firstName}}
-    const token = pattern.substring(start + 2, end + 2);
-    const method = token.replace('}}', '').replace('{{', '');
-
-    const result = fakeEval(method, this.faker);
-    const stringified = String(result);
-
-    // Replace the found tag with the returned fake value
-    // We cannot use string.replace here because the result might contain evaluated characters
-    const patched =
-      pattern.substring(0, start) + stringified + pattern.substring(end + 2);
-
-    // return the response recursively until we are done finding all tags
-    return this.fake(patched);
   }
 }
