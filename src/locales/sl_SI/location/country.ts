@@ -4,7 +4,6 @@ export default [
   'Alžirija',
   'Andora',
   'Angola',
-  'Antarktika',
   'Argentina',
   'Armenija',
   'Aruba',
