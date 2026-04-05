@@ -1,1 +1,6 @@
-export default ['stanovanje ###', 'nadstropje #', 'apartma ###', 'pisarna ###'];
+export default [
+  'stanovanje št. ###',
+  'nadstropje #',
+  'apartma ###',
+  'pisarna ###',
+];
