@@ -78,8 +78,7 @@ export function wrapCode(code: string): string {
  * @returns The converted HTML string.
  */
 export async function codeToHtml(code: string): Promise<string> {
-  const delimiter = '```';
-  return mdToHtml(`${delimiter}ts\n${code}\n${delimiter}`);
+  return mdToHtml(wrapCode(code));
 }
 
 /**
