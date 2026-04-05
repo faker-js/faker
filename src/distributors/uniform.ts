@@ -32,7 +32,7 @@ import type { Distributor } from './distributor';
  * distributor(randomizer) // 0.28282249581185814
  * distributor(randomizer) // 0.017890944117802343
  *
- * @since 10.4.0
+ * @since 10.5.0
  */
 export function uniformDistributor(): Distributor {
   return UNIFORM_DISTRIBUTOR;
