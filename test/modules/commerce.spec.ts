@@ -376,39 +376,39 @@ describe('commerce', () => {
         it('should throw FakerError when prefix contains non-digit characters', () => {
           expect(() => {
             faker.commerce.upc({ prefix: 'abc' });
-          }).toThrowError('Prefix must contain only numeric digits');
+          }).toThrow('Prefix must contain only numeric digits');
 
           expect(() => {
             faker.commerce.upc({ prefix: '123abc' });
-          }).toThrowError('Prefix must contain only numeric digits');
+          }).toThrow('Prefix must contain only numeric digits');
 
           expect(() => {
             faker.commerce.upc({ prefix: '12-34' });
-          }).toThrowError('Prefix must contain only numeric digits');
+          }).toThrow('Prefix must contain only numeric digits');
 
           expect(() => {
             faker.commerce.upc({ prefix: ' 123' });
-          }).toThrowError('Prefix must contain only numeric digits');
+          }).toThrow('Prefix must contain only numeric digits');
         });
 
         it('should throw FakerError when prefix is longer than 11 digits', () => {
           expect(() => {
             faker.commerce.upc({ prefix: '012345678901' });
-          }).toThrowError('Prefix must be at most 11 numeric digits');
+          }).toThrow('Prefix must be at most 11 numeric digits');
 
           expect(() => {
             faker.commerce.upc({ prefix: '012345678901234' });
-          }).toThrowError('Prefix must be at most 11 numeric digits');
+          }).toThrow('Prefix must be at most 11 numeric digits');
         });
 
         it('should throw FakerError with correct error message for invalid prefix types', () => {
           expect(() => {
             faker.commerce.upc({ prefix: '12a' });
-          }).toThrowError('Prefix must contain only numeric digits');
+          }).toThrow('Prefix must contain only numeric digits');
 
           expect(() => {
             faker.commerce.upc({ prefix: '012345678901' });
-          }).toThrowError('Prefix must be at most 11 numeric digits');
+          }).toThrow('Prefix must be at most 11 numeric digits');
         });
 
         it('should generate valid UPCs that pass check digit validation for multiple calls', () => {

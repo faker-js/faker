@@ -37,7 +37,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
     div: ['class'],
-    pre: ['class', 'v-pre', 'tabindex'],
+    pre: ['class', 'dir', 'style', 'v-pre', 'tabindex'],
     span: ['class', 'style'],
     table: ['tabindex'],
     th: ['style'],
@@ -77,8 +77,9 @@ export function wrapCode(code: string): string {
  *
  * @returns The converted HTML string.
  */
-export function codeToHtml(code: string): string {
-  return mdToHtml(wrapCode(code));
+export async function codeToHtml(code: string): Promise<string> {
+  const delimiter = '```';
+  return mdToHtml(`${delimiter}ts\n${code}\n${delimiter}`);
 }
 
 /**
@@ -89,7 +90,7 @@ export function codeToHtml(code: string): string {
  *
  * @returns The converted HTML string.
  */
-export function mdToHtml(md: string, inline?: boolean): string;
+export async function mdToHtml(md: string, inline?: boolean): Promise<string>;
 /**
  * Converts Markdown to an HTML string and sanitizes it.
  *
@@ -98,19 +99,21 @@ export function mdToHtml(md: string, inline?: boolean): string;
  *
  * @returns The converted HTML string.
  */
-export function mdToHtml(
+export async function mdToHtml(
   md: string | undefined,
   inline?: boolean
-): string | undefined;
-export function mdToHtml(
+): Promise<string | undefined>;
+export async function mdToHtml(
   md: string | undefined,
   inline: boolean = false
-): string | undefined {
+): Promise<string | undefined> {
   if (md == null) {
     return undefined;
   }
 
-  const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
+  const rawHtml = inline
+    ? markdown.renderInline(md)
+    : await markdown.renderAsync(md);
 
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
   // Revert some escaped characters for comparison.

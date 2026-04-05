@@ -1,5 +1,5 @@
 export default {
-  generic: ['Xatun', 'Profesor', 'Doktor', 'Doktore'],
-  female: ['Xatun', 'Profesor', 'Doktore'],
-  male: ['Kak', 'Profesor', 'Doktor'],
+  generic: ['Profesor'],
+  female: ['Doktore', 'Xatun'],
+  male: ['Doktor', 'Kak'],
 };

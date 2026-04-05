@@ -4,7 +4,7 @@ exports[`food > 42 > adjective 1`] = `"golden"`;
 
 exports[`food > 42 > description 1`] = `"A sour broccoli creation, seasoned with anise and liquorice root, showcasing the best of plant-based cuisine."`;
 
-exports[`food > 42 > dish 1`] = `"Moses's Special Buckwheat Flour"`;
+exports[`food > 42 > dish 1`] = `"Camryn's Special Aubergine"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 

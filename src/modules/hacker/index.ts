@@ -92,17 +92,6 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   phrase(): string {
-    const data = {
-      abbreviation: this.abbreviation,
-      adjective: this.adjective,
-      ingverb: this.ingverb,
-      noun: this.noun,
-      verb: this.verb,
-    };
-
-    const phrase = this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.phrase
-    );
-    return this.faker.helpers.mustache(phrase, data);
+    return this.faker.helpers.fake(this.faker.definitions.hacker.phrase);
   }
 }

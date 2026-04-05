@@ -74,7 +74,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
 
   ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${codeToHtml(examples.join('\n'))}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${await codeToHtml(examples.join('\n'))}</div>`}
 
   :::
 
@@ -180,23 +180,31 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
 
   return {
     name,
-    description: mdToHtml(description),
-    remark: remarks.length === 0 ? undefined : mdToHtml(remarks.join('\n')),
-    parameters: parameters.map((param) => ({
-      ...param,
-      type: param.type.text,
-      default: param.default ?? extractSummaryDefault(param.description),
-      description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
-    })),
+    description: await mdToHtml(description),
+    remark:
+      remarks.length === 0 ? undefined : await mdToHtml(remarks.join('\n')),
+    parameters: await Promise.all(
+      parameters.map(async (param) => ({
+        ...param,
+        type: param.type.text,
+        default: param.default ?? extractSummaryDefault(param.description),
+        description: await mdToHtml(
+          param.description.replace(defaultCommentRegex, '')
+        ),
+      }))
+    ),
     since,
     sourcePath: `${filePath}#L${line}`,
-    throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
+    throws:
+      throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
-    signature: codeToHtml(formattedSignature),
-    examples: codeToHtml(examples.join('\n')),
+    signature: await codeToHtml(formattedSignature),
+    examples: await codeToHtml(examples.join('\n')),
     refresh,
-    deprecated: mdToHtml(deprecated),
-    seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
+    deprecated: await mdToHtml(deprecated),
+    seeAlsos: await Promise.all(
+      seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true))
+    ),
   };
 }
 
