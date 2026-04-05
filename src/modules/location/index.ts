@@ -365,6 +365,38 @@ export class LocationModule extends SimpleLocationModule {
   }
 
   /**
+   * Generates a random localized full postal address, which may include a street address, secondary address, city, state, and zip code. To ensure you get locale-specific address formats, use a localized Faker instance.
+   *
+   * @example
+   * faker.location.postalAddress()
+   * // 'Apt. 980
+   * // 0917 O'Conner Estates
+   * // West Shannonview
+   * // Michigan
+   * // 82180'
+   *
+   * fakerEN_US.location.postalAddress()
+   * // '0917 O'Conner Estates, Apt. 980
+   * // West Shannonview, MI 82180'
+   *
+   * fakerEN_GB.location.postalAddress()
+   * // '79 Bogan Corner
+   * // Castle Zemlakborough
+   * // Dumfries and Galloway
+   * // ZH17 2SD'
+   *
+   * fakerZH_CN.location.postalAddress()
+   * // '广东省贵原市门路19号'
+   *
+   * @since 10.5.0
+   */
+  postalAddress(): string {
+    return this.faker.helpers.fake(
+      this.faker.definitions.location.postal_address
+    );
+  }
+
+  /**
    * Generates a random localized secondary address. This refers to a specific location at a given address
    * such as an apartment or room number.
    *

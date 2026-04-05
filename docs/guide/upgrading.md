@@ -47,11 +47,39 @@ As mentioned in the previous section, CJS can still be used if you use a modern 
 
 Previously, you were able to provide the values `"Bundler"`, `"Node10"`, `"Node16"` or `"NodeNext"` for the configuration `"moduleResulution"`. Starting in v10 of Faker, only the values `"Bundler"`, `"Node20"` or `"NodeNext"` are supported for your CJS codebase. [To use `"Node20"` your **`typescript` version must be at least `5.9.0`**](https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/#support-for---module-node20).
 
-#### Incompatibility with Jest
+#### Jest
 
-Because the [Jest](https://www.npmjs.com/package/jest) testing library uses its own module resolution system, there are known compatibility issues with Faker v10 in combination with CJS in Jest tests.
+Because [Jest](https://www.npmjs.com/package/jest) testing library uses its own module resolution system, there are known compatibility issues with Faker v10 in combination with CJS in the Jest tests.
 
-For now, keep using Faker v9, or see possible workarounds in [issue #3606](https://github.com/faker-js/faker/issues/3606).
+If any below solutions fails, keep using Faker v9. You can find some more details and possible workarounds in [issue #3606](https://github.com/faker-js/faker/issues/3606).
+
+##### `ts-jest`
+
+When using Jest in a TypeScript project you might be already using `ts-jest` for transforming `ts` files on the fly. In such case you should apply following changes to your `jest.config.ts`:
+
+```ts
+// Transform both `ts` and `js` files. Defining only `ts` would not be enough, as we also need to transform @faker-js
+transform: {
+  '^.+\\.(t|j)s$': 'ts-jest',
+
+  // or when you pass more settings:
+  '^.+\\.(t|j)s$': [
+    'ts-jest',
+    // ... other setttings
+  ]
+}
+
+// Exclude from transformation all files in `node_modules`, except `@faker-js`
+transformIgnorePatterns: [
+  // npm
+  'node_modules/(?!@faker-js).+',
+
+  // pnpm
+  'node_modules/.pnpm/.+/node_modules/(?!@faker-js).+'
+],
+```
+
+Check more in our [playground](https://github.com/faker-js/playground/blob/main/playgrounds/jest-cjs/jest.config.js).
 
 ### Removal of Deprecated Code
 
