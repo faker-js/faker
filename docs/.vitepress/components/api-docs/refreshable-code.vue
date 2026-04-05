@@ -28,7 +28,8 @@ function initRefresh(): Element[] {
     // Skip empty and preparatory lines (no '^faker.' invocation)
     if (
       domLines[lineIndex]?.children.length === 0 ||
-      !/^\w*faker\w*\./i.test(domLines[lineIndex]?.textContent ?? '')
+      (!/^\w*faker\w*\./i.test(domLines[lineIndex]?.textContent ?? '') &&
+        !/^distributor\(/.test(domLines[lineIndex]?.textContent ?? ''))
     ) {
       lineIndex++;
       continue;
