@@ -206,7 +206,7 @@ export function processProjectDistributors(project: Project): RawApiDocsPage {
   const distributor = required(
     project
       .getSourceFile('src/distributors/distributor.ts')
-      ?.getTypeAliases()[0],
+      ?.getTypeAlias('Distributor'),
     'Distributor'
   );
 

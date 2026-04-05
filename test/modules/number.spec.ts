@@ -285,7 +285,7 @@ describe('number', () => {
 
       it('should generate a number with low base', () => {
         const distributor = exponentialDistributor({ base: 0.1 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[faker.number.int({ max: 9, distributor })]++;
         }
@@ -296,7 +296,7 @@ describe('number', () => {
 
       it('should generate a number with high base', () => {
         const distributor = exponentialDistributor({ base: 10 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[faker.number.int({ max: 9, distributor })]++;
         }
@@ -307,7 +307,7 @@ describe('number', () => {
 
       it('should generate a number with low bias', () => {
         const distributor = exponentialDistributor({ bias: -9 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[faker.number.int({ max: 9, distributor })]++;
         }
@@ -318,7 +318,7 @@ describe('number', () => {
 
       it('should generate a number with high bias', () => {
         const distributor = exponentialDistributor({ bias: 9 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[faker.number.int({ max: 9, distributor })]++;
         }
@@ -497,7 +497,7 @@ describe('number', () => {
 
       it('should generate a number with low base', () => {
         const distributor = exponentialDistributor({ base: 0.1 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[Math.floor(faker.number.float({ max: 10, distributor }))]++;
         }
@@ -508,7 +508,7 @@ describe('number', () => {
 
       it('should generate a number with high base', () => {
         const distributor = exponentialDistributor({ base: 10 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[Math.floor(faker.number.float({ max: 10, distributor }))]++;
         }
@@ -519,7 +519,7 @@ describe('number', () => {
 
       it('should generate a number with low bias', () => {
         const distributor = exponentialDistributor({ bias: -9 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[Math.floor(faker.number.float({ max: 10, distributor }))]++;
         }
@@ -530,7 +530,7 @@ describe('number', () => {
 
       it('should generate a number with high bias', () => {
         const distributor = exponentialDistributor({ bias: 9 });
-        const results = Array.from({ length: 10 }, (_, i) => i);
+        const results = Array.from({ length: 10 }, () => 0);
         for (let i = 0; i < 1000; i++) {
           results[Math.floor(faker.number.float({ max: 10, distributor }))]++;
         }

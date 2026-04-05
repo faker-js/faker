@@ -10,7 +10,7 @@ import type { Randomizer } from '../randomizer';
  *
  * - Uniform distributor: All values have the same likelihood.
  * - Normal distributor: Values are more likely to be close to a specific value.
- * - Exponential distributor: Values are more likely to be close to 0.
+ * - Exponential distributor: Values are biased towards `0`/`1` (depending on options).
  *
  * Distributor functions can be used by some faker functions such as `faker.number.int()` and `faker.number.float()`.
  *
