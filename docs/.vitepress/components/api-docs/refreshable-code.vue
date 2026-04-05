@@ -29,7 +29,9 @@ function initRefresh(): Element[] {
     // Keep in sync with ref scripts/shared/refreshable-code.ts
     if (
       domLines[lineIndex]?.children.length === 0 ||
-      !/^\w*faker\w*\.|^distributor\(/i.test(domLines[lineIndex]?.textContent ?? '')
+      !/^\w*faker\w*\.|^distributor\(/i.test(
+        domLines[lineIndex]?.textContent ?? ''
+      )
     ) {
       lineIndex++;
       continue;
