@@ -3,7 +3,7 @@ export default [
   'Beltinci',
   'Bled',
   'Bovec',
-  'Brezice',
+  'Brežice',
   'Celje',
   'Cerknica',
   'Cerkno',
