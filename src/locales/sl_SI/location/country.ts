@@ -97,7 +97,7 @@ export default [
   'Romunija',
   'Rusija',
   'Salomonovi otoki',
-  'Salvador',
+  'El Salvador',
   'Savdska Arabija',
   'Severna Makedonija',
   'Sejšeli',
