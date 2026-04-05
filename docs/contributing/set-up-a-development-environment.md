@@ -18,7 +18,7 @@ If you are unfamiliar with Forks, check out [GitHub Forking Guide](https://docs.
 1. Go to the [Faker GitHub repository](https://github.com/faker-js/faker) and click the **Fork** button.
 1. Open a terminal and clone your fork:
    ```sh
-   git clone https://github.com/<Your_GitHub_Username>/faker
+   git clone https://github.com/<Your_GitHub_Username>/faker.git
    ```
 1. Navigate into the cloned directory:
    ```sh
@@ -27,6 +27,7 @@ If you are unfamiliar with Forks, check out [GitHub Forking Guide](https://docs.
 1. Add the upstream source to keep your fork updated:
    ```sh
    git remote add upstream https://github.com/faker-js/faker.git
+   git fetch upstream
    ```
 
 ## Step 2: Choose Your Development Setup
