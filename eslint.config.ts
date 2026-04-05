@@ -6,12 +6,13 @@ import eslintPluginFileProgress from 'eslint-plugin-file-progress';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+import { defineConfig } from 'eslint/config';
 import { resolve } from 'node:path';
 import tseslint from 'typescript-eslint';
 
 const gitignorePath = resolve(import.meta.dirname, '.gitignore');
 
-const config: ReturnType<typeof tseslint.config> = tseslint.config(
+export default defineConfig(
   //#region global
   includeIgnoreFile(gitignorePath),
   {
@@ -51,7 +52,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   //#endregion
 
   //#region typescript-eslint
-  ...tseslint.configs.strictTypeChecked,
+  tseslint.configs.strictTypeChecked,
   {
     name: 'typescript-eslint overrides',
     languageOptions: {
@@ -156,6 +157,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
       'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
       'unicorn/number-literal-case': 'off', // incompatible with prettier
       'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
+      'unicorn/prefer-bigint-literals': 'off', // currently there is no clear argument on why literal would be better
       'unicorn/prefer-string-raw': 'off', // The additional prefix doesn't help readability
       'unicorn/prefer-string-slice': 'off', // string.substring is sometimes easier to use
       'unicorn/prefer-ternary': 'off', // ternaries aren't always better
@@ -254,9 +256,7 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   {
     name: 'test/**/*.ts overrides',
     files: ['test/**/*.spec.ts', 'test/**/*.spec.cts', 'test/**/*.spec.d.ts'],
-    plugins: {
-      vitest: eslintPluginVitest,
-    },
+    extends: [eslintPluginVitest.configs.recommended],
     rules: {
       '@typescript-eslint/no-deprecated': 'off',
 
@@ -269,10 +269,9 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
         },
       ],
 
-      ...eslintPluginVitest.configs.recommended.rules,
-
       'vitest/expect-expect': 'off',
       'vitest/no-alias-methods': 'error',
+      'vitest/no-conditional-expect': 'off', // we require conditional logic when iterating over faker instances or instances in diffent versions (for the docs)
       'vitest/prefer-each': 'error',
       'vitest/prefer-to-have-length': 'error',
       'vitest/valid-expect': ['error', { maxArgs: 2 }],
@@ -292,5 +291,3 @@ const config: ReturnType<typeof tseslint.config> = tseslint.config(
   }
   //#endregion
 );
-
-export default config;

@@ -616,7 +616,7 @@ exports[`method > processMethodLike(methodWithMultipleRemarks) 1`] = `
       "remarks": [
         "First special text.",
         "Second special text.",
-        "Thrid special text.",
+        "Third special text.",
       ],
       "returns": {
         "text": "number",

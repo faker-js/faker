@@ -79,7 +79,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v10.0.0-beta.0"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v10.4.0"`.
 :::
 
 ### Alternative CDN links
@@ -99,14 +99,27 @@ You can use Faker without it, but we don't have dedicated error messages for wro
 
 In order to have Faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
-```json
+::: code-group
+
+```json [esm]
 {
   "compilerOptions": {
-    "moduleResolution": "Bundler", // "Node10", "Node16" or "NodeNext"
+    "moduleResolution": "Bundler", // or "Node10", "Node16", "Node20", "NodeNext"
     "strict": true // Optional, but recommended
   }
 }
 ```
+
+```json [cjs]
+{
+  "compilerOptions": {
+    "moduleResolution": "Bundler", // or "Node20" or "NodeNext"
+    "strict": true // Optional, but recommended
+  }
+}
+```
+
+:::
 
 ## Reproducible results
 
@@ -136,7 +149,7 @@ console.log(firstRandom === secondRandom);
 When upgrading to a new version of Faker, you may get different values for the same seed, as the underlying data (lists of names, words etc) may have changed.
 :::
 
-There are a few methods which use relative dates for which setting a random seed is not sufficient to have reproducible results, for example: `faker.date.past`, `faker.date.future`, `faker.date.birthdate`, `faker.date.recent`, `faker.date.soon` and `faker.git.commitEntry`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
+There are a few methods which use relative dates for which setting a random seed is not sufficient to have reproducible results, for example: `faker.date.past`, `faker.date.future`, `faker.date.recent`, `faker.date.soon`, `faker.git.commitEntry` and `faker.string.uuid({ version: 7 })`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
 
 ```ts
 // creates a date soon after 2023-01-01

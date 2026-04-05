@@ -6,10 +6,6 @@ outline: [2, 3]
 
 This is the migration guide for upgrading from v9 to v10.
 
-::: tip
-v10 has not yet been released. This page contains a work-in-progress list of breaking changes in v10.
-:::
-
 ::: info Not the version you are looking for?
 
 - [Upgrading to v9](https://v9.fakerjs.dev/guide/upgrading.html)
@@ -25,7 +21,9 @@ v10 has not yet been released. This page contains a work-in-progress list of bre
 
 Support for Node.js v18 has been discontinued, as this version has reached its [end-of-life](https://github.com/nodejs/Release). Faker.js v10 requires a minimum of Node.js v20.19.0, v22.13.0, or v24.0.0.
 
-### CommonJS Still Supported, but Check Your Node Version
+### CommonJS Still Supported, but Check Your Versions
+
+#### Node
 
 Technically, Faker v10 is now an ESM-only package. However, the good news is that you can still use it from your CommonJS projects without code changes, thanks to the [ESM Modules require feature](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) in recent versions of Node.js.
 
@@ -42,6 +40,46 @@ Uncaught:
 Error [ERR_REQUIRE_ESM]: require() of ES Module <path>/faker/dist/index.js not supported.
 Instead, change the require of index.js in null to a dynamic import(), which is available in all CommonJS modules.
 ```
+
+#### TypeScript
+
+As mentioned in the previous section, CJS can still be used if you use a modern module resolution strategy. This directly impacts your `tsconfig.json` setup.
+
+Previously, you were able to provide the values `"Bundler"`, `"Node10"`, `"Node16"` or `"NodeNext"` for the configuration `"moduleResulution"`. Starting in v10 of Faker, only the values `"Bundler"`, `"Node20"` or `"NodeNext"` are supported for your CJS codebase. [To use `"Node20"` your **`typescript` version must be at least `5.9.0`**](https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/#support-for---module-node20).
+
+#### Jest
+
+Because [Jest](https://www.npmjs.com/package/jest) testing library uses its own module resolution system, there are known compatibility issues with Faker v10 in combination with CJS in the Jest tests.
+
+If any below solutions fails, keep using Faker v9. You can find some more details and possible workarounds in [issue #3606](https://github.com/faker-js/faker/issues/3606).
+
+##### `ts-jest`
+
+When using Jest in a TypeScript project you might be already using `ts-jest` for transforming `ts` files on the fly. In such case you should apply following changes to your `jest.config.ts`:
+
+```ts
+// Transform both `ts` and `js` files. Defining only `ts` would not be enough, as we also need to transform @faker-js
+transform: {
+  '^.+\\.(t|j)s$': 'ts-jest',
+
+  // or when you pass more settings:
+  '^.+\\.(t|j)s$': [
+    'ts-jest',
+    // ... other setttings
+  ]
+}
+
+// Exclude from transformation all files in `node_modules`, except `@faker-js`
+transformIgnorePatterns: [
+  // npm
+  'node_modules/(?!@faker-js).+',
+
+  // pnpm
+  'node_modules/.pnpm/.+/node_modules/(?!@faker-js).+'
+],
+```
+
+Check more in our [playground](https://github.com/faker-js/playground/blob/main/playgrounds/jest-cjs/jest.config.js).
 
 ### Removal of Deprecated Code
 

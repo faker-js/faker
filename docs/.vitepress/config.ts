@@ -135,7 +135,7 @@ const config = defineConfig({
   description,
 
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
     ['meta', { name: 'og:title', content: 'FakerJS' }],
     ['meta', { name: 'og:description', content: description }],
@@ -151,7 +151,7 @@ const config = defineConfig({
       'script',
       { id: 'browser-console-faker' },
       `
-const logStyle = 'background: rgba(16, 183, 127, 0.14); color: rgba(255, 255, 245, 0.86); padding: 0.5rem; display: inline-block;';
+const logStyle = 'background: rgba(16, 183, 127, 0.14); padding: 0.5rem; display: inline-block;';
 console.log(\`%cIf you would like to test Faker in the browser console, you can do so using 'await enableFaker()'.
 If you would like to test Faker in a playground, visit https://new.fakerjs.dev.\`, logStyle);
 async function enableFaker() {
@@ -167,6 +167,10 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
 `,
     ],
   ],
+
+  sitemap: {
+    hostname: 'https://fakerjs.dev',
+  },
 
   themeConfig: {
     logo: '/logo.svg',
@@ -191,13 +195,16 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       },
     ],
 
-    algolia:
+    search:
       process.env.API_KEY == null || process.env.APP_ID == null
         ? undefined
         : {
-            apiKey: process.env.API_KEY,
-            appId: process.env.APP_ID,
-            indexName: algoliaIndex,
+            provider: 'algolia' as const,
+            options: {
+              apiKey: process.env.API_KEY,
+              appId: process.env.APP_ID,
+              indexName: algoliaIndex,
+            },
           },
 
     footer: {
@@ -254,6 +261,7 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
 
     sidebar: {
       '/guide/': getSideBarWithExpandedEntry('Guide'),
+      '/locales/': getSideBarWithExpandedEntry('Guide'),
       '/api/': getSideBarWithExpandedEntry('API'),
       '/contributing/': getSideBarWithExpandedEntry('Contributing'),
       '/about/': getSideBarWithExpandedEntry('About'),

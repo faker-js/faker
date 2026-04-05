@@ -1,13 +1,14 @@
 import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { FILE_PATH_DOCS } from '../../shared/paths';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
-import { FILE_PATH_PUBLIC } from '../utils/paths';
 
+const filePathPublic = resolve(FILE_PATH_DOCS, 'public');
 export const FILE_NAME_DOCS_DIFF_INDEX = 'api-diff-index.json';
 export const FILE_PATH_DOCS_DIFF_INDEX = resolve(
-  FILE_PATH_PUBLIC,
+  filePathPublic,
   FILE_NAME_DOCS_DIFF_INDEX
 );
 

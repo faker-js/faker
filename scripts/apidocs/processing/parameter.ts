@@ -188,7 +188,7 @@ function processComplexParameter(
           });
         }
       })
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .toSorted((a, b) => a.name.localeCompare(b.name));
   }
 
   return [];

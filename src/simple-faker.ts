@@ -153,7 +153,8 @@ export class SimpleFaker {
    * Sets the seed or generates a new one.
    *
    * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
+   * number of calls that have been made since it was set. If you are using dates,
+   * you will also need to configure them separately.
    *
    * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.

@@ -65,4 +65,7 @@ export default {
     '鸡肉',
     '鼠标',
   ],
+  pattern: [
+    '{{commerce.productMaterial}}{{commerce.productAdjective}}{{commerce.product}}',
+  ],
 };

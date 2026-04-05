@@ -28,13 +28,13 @@ exports[`image > 42 > personPortrait > with sex and size 1`] = `"https://cdn.jsd
 
 exports[`image > 42 > personPortrait > with size 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/128/95.jpg"`;
 
-exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/993RBH1Y/1498/3802"`;
+exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/B993RBH1Y/1498/3802"`;
 
-exports[`image > 42 > url > with height 1`] = `"https://picsum.photos/seed/B993RBH1Y/1498/128"`;
+exports[`image > 42 > url > with height 1`] = `"https://picsum.photos/seed/JB993RBH1Y/1498/128"`;
 
-exports[`image > 42 > url > with width 1`] = `"https://picsum.photos/seed/B993RBH1Y/128/1498"`;
+exports[`image > 42 > url > with width 1`] = `"https://picsum.photos/seed/JB993RBH1Y/128/1498"`;
 
-exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8563273192166996"`;
+exports[`image > 42 > url > with width and height 1`] = `"https://picsum.photos/seed/WJB993R/128/128"`;
 
 exports[`image > 42 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/1498/3802?lock=6593215287158609"`;
 
@@ -90,13 +90,13 @@ exports[`image > 1211 > personPortrait > with sex and size 1`] = `"https://cdn.j
 
 exports[`image > 1211 > personPortrait > with size 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/89.jpg"`;
 
-exports[`image > 1211 > url > noArgs 1`] = `"https://loremflickr.com/3714/3573?lock=8982492793493979"`;
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/ZFGLlH/3714/3573"`;
 
-exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/seed/ZFGLlH/3714/128"`;
+exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/3714/128"`;
 
-exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/seed/ZFGLlH/128/3714"`;
+exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/128/3714"`;
 
-exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/dZFGLlHOLE/128/128"`;
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/TdZFGLlHOL/128/128"`;
 
 exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/3714/3573?lock=2031760796090808"`;
 
@@ -152,13 +152,13 @@ exports[`image > 1337 > personPortrait > with sex and size 1`] = `"https://cdn.j
 
 exports[`image > 1337 > personPortrait > with size 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/128/15.jpg"`;
 
-exports[`image > 1337 > url > noArgs 1`] = `"https://loremflickr.com/1048/635?lock=4137158724208997"`;
+exports[`image > 1337 > url > noArgs 1`] = `"https://picsum.photos/seed/sjwgYJ/1048/635"`;
 
-exports[`image > 1337 > url > with height 1`] = `"https://loremflickr.com/1048/128?lock=2505140979113303"`;
+exports[`image > 1337 > url > with height 1`] = `"https://picsum.photos/seed/hsjwg/1048/128"`;
 
-exports[`image > 1337 > url > with width 1`] = `"https://loremflickr.com/128/1048?lock=2505140979113303"`;
+exports[`image > 1337 > url > with width 1`] = `"https://picsum.photos/seed/hsjwg/128/1048"`;
 
-exports[`image > 1337 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=1429298155729043"`;
+exports[`image > 1337 > url > with width and height 1`] = `"https://picsum.photos/seed/9hsjwg/128/128"`;
 
 exports[`image > 1337 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/1048/635?lock=2505140979113303"`;
 

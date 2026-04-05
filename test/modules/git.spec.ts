@@ -67,16 +67,16 @@ describe('git', () => {
 
           expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
 
-          const authorRegex = /^Author: .*$/;
+          const authorPrefix = 'Author: ';
           if (parts.length === 7) {
             expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
-            expect(parts[2]).toMatch(authorRegex);
+            expect(parts[2]).toStartWith(authorPrefix);
             expect(parts[2].substring(8)).toSatisfy(isValidCommitAuthor);
             expect(parts[3]).toMatch(/^Date: .+$/);
             expect(parts[4]).toBe('');
             expect(parts[5]).toMatch(/^\s{4}.+$/);
           } else {
-            expect(parts[1]).toMatch(authorRegex);
+            expect(parts[1]).toStartWith(authorPrefix);
             expect(parts[1].substring(8)).toSatisfy(isValidCommitAuthor);
             expect(parts[2]).toMatch(/^Date: .+$/);
             expect(parts[3]).toBe('');

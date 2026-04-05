@@ -579,7 +579,7 @@ export class FinanceModule extends ModuleBase {
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -596,7 +596,7 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -620,7 +620,7 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -649,7 +649,7 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -712,7 +712,7 @@ export class FinanceModule extends ModuleBase {
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    *
-   * @throws Will throw an error if the passed country code is not supported.
+   * @throws {FakerError} Will throw an error if the passed country code is not supported.
    *
    * @example
    * faker.finance.iban() // 'TR736918640040966092800056'
