@@ -25,11 +25,11 @@ function initRefresh(): Element[] {
   let lineIndex = 0;
   const result: Element[] = [];
   while (lineIndex < domLines.length) {
-    // Skip empty and preparatory lines (no '^faker.' invocation)
+    // Skip empty and preparatory lines (no recorded invocation)
+    // Keep in sync with ref scripts/shared/refreshable-code.ts
     if (
       domLines[lineIndex]?.children.length === 0 ||
-      (!/^\w*faker\w*\./i.test(domLines[lineIndex]?.textContent ?? '') &&
-        !/^distributor\(/.test(domLines[lineIndex]?.textContent ?? ''))
+      !/^\w*faker\w*\.|^distributor\(/i.test(domLines[lineIndex]?.textContent ?? '')
     ) {
       lineIndex++;
       continue;
