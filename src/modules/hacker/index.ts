@@ -1,4 +1,3 @@
-import { fakeFromPattern } from '../../internal/fake-from-pattern';
 import { ModuleBase } from '../../internal/module-base';
 
 /**
@@ -93,6 +92,6 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   phrase(): string {
-    return fakeFromPattern(this.faker, this.faker.definitions.hacker.phrase);
+    return this.faker.helpers.fake(this.faker.definitions.hacker.phrase);
   }
 }
