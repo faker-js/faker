@@ -1,12 +1,12 @@
 export default [
-  'CE', // Celjska
-  'GO', // Goriška
   'GZ', // Gorenjska
+  'GO', // Goriška
   'JV', // Jugovzhodna Slovenija
   'KA', // Koroška
-  'KR', // Kraška (Obalno-kraška)
-  'MB', // Podravska (Maribor)
-  'MS', // Pomurska (Murska Sobota)
+  'KR', // Obalno-kraška
+  'OS', // Osrednjeslovenska
+  'MB', // Podravska
+  'MS', // Pomurska
   'PO', // Posavska
   'PS', // Primorsko-notranjska
   'SG', // Savinjska
