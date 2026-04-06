@@ -101,7 +101,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([20, 30]);
       });
 
@@ -116,7 +116,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([10, 20, 30, 40, 50]);
       });
 
@@ -153,6 +153,18 @@ describe('number', () => {
 
         expect(() => faker.number.int(input)).toThrow(
           new FakerError('No suitable integer value between 11 and 19 found.')
+        );
+      });
+
+      it('throws for impossible multipleOf where min=max', () => {
+        const input = {
+          min: 11,
+          max: 11,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.int(input)).toThrow(
+          new FakerError('No suitable integer value between 11 and 11 found.')
         );
       });
 
@@ -335,7 +347,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
@@ -388,6 +400,32 @@ describe('number', () => {
       it('throws an error for negative multipleOf', () => {
         expect(() => faker.number.float({ multipleOf: -0.01 })).toThrow(
           new FakerError('multipleOf should be greater than 0.')
+        );
+      });
+
+      it('throws for impossible multipleOf', () => {
+        const input = {
+          min: 11,
+          max: 19,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError(
+            'No suitable integer value between 1.1 and 1.9000000000000001 found.'
+          )
+        );
+      });
+
+      it('throws for impossible multipleOf where min=max', () => {
+        const input = {
+          min: 11,
+          max: 11,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError('No suitable integer value between 1.1 and 1.1 found.')
         );
       });
 

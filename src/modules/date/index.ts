@@ -142,8 +142,8 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    *
-   * @throws If `from` or `to` are not provided.
-   * @throws If `from` is after `to`.
+   * @throws {FakerError} If `from` or `to` are not provided.
+   * @throws {FakerError} If `from` is after `to`.
    *
    * @example
    * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
@@ -160,13 +160,6 @@ export class SimpleDateModule extends SimpleModuleBase {
      */
     to: string | Date | number;
   }): Date {
-    // TODO @matthewmayer 2023-03-27: Consider removing in v10 as this check is only needed in JS
-    if (options == null || options.from == null || options.to == null) {
-      throw new FakerError(
-        'Must pass an options object with `from` and `to` values.'
-      );
-    }
-
     const { from, to } = options;
 
     const fromMs = toDate(from, 'from').getTime();
@@ -186,8 +179,8 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    *
-   * @throws If `from` or `to` are not provided.
-   * @throws If `from` is after `to`.
+   * @throws {FakerError} If `from` or `to` are not provided.
+   * @throws {FakerError} If `from` is after `to`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -234,17 +227,10 @@ export class SimpleDateModule extends SimpleModuleBase {
           max: number;
         };
   }): Date[] {
-    // TODO @matthewmayer 2023-03-27: Consider removing in v10 as this check is only needed in JS
-    if (options == null || options.from == null || options.to == null) {
-      throw new FakerError(
-        'Must pass an options object with `from` and `to` values.'
-      );
-    }
-
     const { from, to, count = 3 } = options;
     return this.faker.helpers
       .multiple(() => this.between({ from, to }), { count })
-      .sort((a, b) => a.getTime() - b.getTime());
+      .toSorted((a, b) => a.getTime() - b.getTime());
   }
 
   /**
@@ -486,20 +472,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       min = 18,
       max = 80,
       refDate: rawRefDate = this.faker.defaultRefDate(),
-      mode: originalMode,
-      min: originalMin,
-      max: originalMax,
     } = options;
-
-    // TODO @ST-DDT 2024-03-17: Remove check in v10
-    const optionsSet = [originalMin, originalMax, originalMode].filter(
-      (x) => x != null
-    ).length;
-    if (optionsSet % 3 !== 0) {
-      throw new FakerError(
-        "The 'min', 'max', and 'mode' options must be set together."
-      );
-    }
 
     const refDate = toDate(rawRefDate);
     const refYear = refDate.getUTCFullYear();

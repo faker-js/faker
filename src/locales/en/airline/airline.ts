@@ -101,7 +101,7 @@ export default [
   { name: 'Southwest Airlines', iataCode: 'WN' },
   { name: 'SpiceJet', iataCode: 'SG' },
   { name: 'Spirit Airlines', iataCode: 'NK' },
-  { name: 'Spring Airlines', iataCode: '9S' },
+  { name: 'Spring Airlines', iataCode: '9C' },
   { name: 'SriLankan Airlines', iataCode: 'UL' },
   { name: 'Star Peru', iataCode: '2I' },
   { name: 'Sun Country Airlines', iataCode: 'SY' },

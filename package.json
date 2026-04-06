@@ -1,20 +1,20 @@
 {
   "name": "@faker-js/faker",
-  "version": "9.6.0",
+  "version": "10.4.0",
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
-    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/cache docs/.vitepress/dist node_modules",
-    "build:clean": "rimraf dist",
-    "build:code": "tsup-node",
+    "clean": "git clean -fdx --exclude _local",
+    "build:clean": "git clean -fX dist",
+    "build:code": "tsdown",
     "build": "run-s build:clean build:code",
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidocs.ts",
     "generate:locales": "tsx ./scripts/generate-locales.ts",
-    "docs:build": "run-s generate:api-docs docs:build:embedded docs:build:run",
-    "docs:build:embedded": "tsup-node --entry.faker src/index.ts --format esm --outDir docs/public --no-dts --no-clean",
+    "docs:build": "run-s generate:api-docs generate:locales docs:build:embedded docs:build:run",
+    "docs:build:embedded": "tsdown --entry.faker src/index.ts --format esm --outDir docs/public --no-dts --no-clean",
     "docs:build:run": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
-    "docs:dev": "run-s generate:api-docs docs:build:embedded docs:dev:run",
+    "docs:dev": "run-s generate:api-docs generate:locales docs:build:embedded docs:dev:run",
     "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs --port 5173",
     "docs:diff": "tsx ./scripts/diff.ts",
@@ -67,30 +67,18 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./locale/*": {
-      "require": {
-        "types": "./dist/locale/*.d.cts",
-        "default": "./dist/locale/*.cjs"
-      },
-      "default": {
-        "types": "./dist/locale/*.d.ts",
-        "default": "./dist/locale/*.js"
-      }
+      "types": "./dist/locale/*.d.ts",
+      "default": "./dist/locale/*.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "typesVersions": {
     ">=5.0": {
       ".": [
@@ -106,48 +94,48 @@
     "dist"
   ],
   "devDependencies": {
-    "@eslint/compat": "1.2.8",
-    "@eslint/js": "9.24.0",
-    "@stylistic/eslint-plugin": "4.2.0",
-    "@types/node": "22.14.0",
-    "@types/sanitize-html": "2.15.0",
-    "@types/semver": "7.7.0",
-    "@types/validator": "13.12.3",
-    "@vitest/coverage-v8": "3.1.1",
-    "@vitest/eslint-plugin": "1.1.40",
-    "@vitest/ui": "3.1.1",
-    "@vueuse/core": "13.1.0",
-    "commit-and-tag-version": "12.5.0",
-    "cypress": "14.3.0",
-    "eslint": "9.24.0",
-    "eslint-config-prettier": "10.1.2",
-    "eslint-plugin-file-progress": "3.0.2",
-    "eslint-plugin-jsdoc": "50.6.9",
-    "eslint-plugin-prettier": "5.2.6",
-    "eslint-plugin-unicorn": "58.0.0",
-    "jiti": "2.4.2",
-    "npm-run-all2": "7.0.2",
-    "prettier": "3.5.3",
-    "prettier-plugin-organize-imports": "4.1.0",
-    "prettier-plugin-packagejson": "2.5.10",
-    "rimraf": "5.0.10",
-    "sanitize-html": "2.15.0",
-    "semver": "7.7.1",
-    "ts-morph": "25.0.1",
-    "tsup": "8.4.0",
-    "tsx": "4.19.3",
-    "typescript": "5.8.2",
-    "typescript-eslint": "8.29.1",
-    "validator": "13.15.0",
-    "vitepress": "1.6.3",
-    "vitest": "3.1.1",
-    "vue": "3.5.13",
-    "vue-tsc": "2.2.8"
+    "@eslint/compat": "2.0.3",
+    "@eslint/js": "10.0.1",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@types/node": "24.12.0",
+    "@types/sanitize-html": "2.16.1",
+    "@types/semver": "7.7.1",
+    "@types/validator": "13.15.10",
+    "@vitest/coverage-v8": "4.1.2",
+    "@vitest/eslint-plugin": "1.6.13",
+    "@vitest/ui": "4.1.2",
+    "@vueuse/core": "14.2.1",
+    "commit-and-tag-version": "12.7.1",
+    "cypress": "15.13.0",
+    "eslint": "10.1.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-file-progress": "4.0.0",
+    "eslint-plugin-jsdoc": "62.8.1",
+    "eslint-plugin-prettier": "5.5.5",
+    "eslint-plugin-unicorn": "64.0.0",
+    "jiti": "2.6.1",
+    "npm-run-all2": "8.0.4",
+    "prettier": "3.8.1",
+    "prettier-plugin-organize-imports": "4.3.0",
+    "prettier-plugin-pkg": "0.22.0",
+    "publint": "0.3.18",
+    "sanitize-html": "2.17.2",
+    "semver": "7.7.4",
+    "ts-morph": "27.0.2",
+    "tsdown": "0.21.7",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.58.0",
+    "validator": "13.15.26",
+    "vitepress": "2.0.0-alpha.17",
+    "vitest": "4.1.2",
+    "vue": "3.5.31",
+    "vue-tsc": "3.2.6"
   },
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.33.0",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": "^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0",
+    "npm": ">=10"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
