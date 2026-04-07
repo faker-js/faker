@@ -23,7 +23,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "en_GB": " #'+,-.?ABCDEFGHIJKLMNOPQRSTUVWYabcdefghiklmnopqrstuvwxyz",
   "en_GH": " #+-.?ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnoprstuvwxyzɔε",
   "en_HK": " #'+,-.ABCDEFGHIJKLMNOPRSTUVWXYZabcdeghiklmnoprstuvwxyz",
-  "en_IE": " #()*+-ACDEFGHKLMNOPRSTVWXYabcdefghiklmnoprstuvwxy",
+  "en_IE": " #()*+-.ACDEFGHKLMNOPRSTVWXYabcdefghiklmnoprstuvwxy",
   "en_IN": " #'()+,-.ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyz",
   "en_NG": " #+-ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwxyz",
   "en_US": " ,-ABCDEFGHJKLMNOPRSTUVWabcdefghiklmnoprstuvwy",
