@@ -6,20 +6,20 @@
 import { Faker } from '../faker';
 import base from '../locales/base';
 import en from '../locales/en';
-import mn from '../locales/mn';
+import mn_MN_cyrl from '../locales/mn_MN_cyrl';
 
 /**
- * The faker instance for the `mn` locale.
+ * The faker instance for the `mn_MN_cyrl` locale.
  *
- * - Language: Mongolian
- * - Endonym: Монгол
+ * - Language: Mongolian (Mongolia, Cyrillic)
+ * - Endonym: Монгол (Монгол Улс, Кирилл)
  *
  * This instance uses the following locales internally (in descending precedence):
  *
- * - `mn`
+ * - `mn_MN_cyrl`
  * - `en`
  * - `base`
  */
 export const faker = new Faker({
-  locale: [mn, en, base],
+  locale: [mn_MN_cyrl, en, base],
 });

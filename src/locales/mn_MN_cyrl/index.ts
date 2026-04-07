@@ -8,15 +8,15 @@ import date from './date';
 import metadata from './metadata';
 
 /**
- * The locale data for the `mn` locale.
+ * The locale data for the `mn_MN_cyrl` locale.
  *
- * - Language: Mongolian
- * - Endonym: Монгол
+ * - Language: Mongolian (Mongolia, Cyrillic)
+ * - Endonym: Монгол (Монгол Улс, Кирилл)
  */
-const mn: LocaleDefinition = {
+const mn_MN_cyrl: LocaleDefinition = {
   color,
   date,
   metadata,
 };
 
-export default mn;
+export default mn_MN_cyrl;
