@@ -6,33 +6,31 @@ import type { LocationDefinition } from '../../..';
 import building_number from './building_number';
 import city_name from './city_name';
 import city_pattern from './city_pattern';
-import city_prefix from './city_prefix';
-import county from './county';
-import postal_address from './postal_address';
+import country from './country';
+import direction from './direction';
+import language from './language';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
 import state_abbr from './state_abbr';
 import street_address from './street_address';
-import street_name_part from './street_name_part';
+import street_name from './street_name';
 import street_pattern from './street_pattern';
-import street_prefix from './street_prefix';
 
 const location: LocationDefinition = {
   building_number,
   city_name,
   city_pattern,
-  city_prefix,
-  county,
-  postal_address,
+  country,
+  direction,
+  language,
   postcode,
   secondary_address,
   state,
   state_abbr,
   street_address,
-  street_name_part,
+  street_name,
   street_pattern,
-  street_prefix,
 };
 
 export default location;

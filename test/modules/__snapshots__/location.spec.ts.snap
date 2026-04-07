@@ -124,6 +124,13 @@ exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
 
+exports[`location > 42 > postalAddress 1`] = `
+"751 Laury Rapid
+Fort Clintonberg
+Nebraska
+26123"
+`;
+
 exports[`location > 42 > secondaryAddress 1`] = `"Apt. 975"`;
 
 exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
@@ -270,6 +277,14 @@ exports[`location > 1211 > ordinalDirection > noArgs 1`] = `"Southwest"`;
 
 exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW"`;
 
+exports[`location > 1211 > postalAddress 1`] = `
+"Suite 396
+736 St Mary's Road
+Stromanhaven
+New Jersey
+39739"
+`;
+
 exports[`location > 1211 > secondaryAddress 1`] = `"Suite 929"`;
 
 exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
@@ -415,6 +430,13 @@ exports[`location > 1337 > nearbyGPSCoordinate > with radius and isMetric 1`] = 
 exports[`location > 1337 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
+
+exports[`location > 1337 > postalAddress 1`] = `
+"34352 Salisbury Road
+South Willardport
+South Carolina
+45712"
+`;
 
 exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 224"`;
 
