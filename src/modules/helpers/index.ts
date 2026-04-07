@@ -371,7 +371,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     if (pattern instanceof RegExp) {
       isCaseInsensitive = pattern.flags.includes('i');
       pattern = pattern.toString();
-      pattern = /\/(.+?)\//.exec(pattern)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
+      pattern = /\/\^?(.+?)\$?\//.exec(pattern)?.[1] ?? ''; // Remove slash and anchors from front and back of RegExp
     }
 
     let min: number;
