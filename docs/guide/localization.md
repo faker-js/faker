@@ -100,6 +100,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | [`ku_kmr_latin`](/locales/ku_kmr_latin.md) | Kurdish (Kurmanji, Latin) | `fakerKU_kmr_latin` |
 | [`lv`](/locales/lv.md)                     | Latvian                   | `fakerLV`           |
 | [`mk`](/locales/mk.md)                     | Macedonian                | `fakerMK`           |
+| [`mn`](/locales/mn.md)                     | Mongolian                 | `fakerMN`           |
 | [`nb_NO`](/locales/nb_NO.md)               | Norwegian (Norway)        | `fakerNB_NO`        |
 | [`ne`](/locales/ne.md)                     | Nepali                    | `fakerNE`           |
 | [`nl`](/locales/nl.md)                     | Dutch                     | `fakerNL`           |
