@@ -1,3 +1,4 @@
+// Provinces (Provincias)
 export default [
   'Álava',
   'Albacete',
