@@ -75,6 +75,8 @@ describe('location', () => {
         .it('with useFullAddress options', { useFullAddress: true });
     });
 
+    t.it('postalAddress');
+
     t.itEach('city');
 
     t.it('county');
@@ -245,6 +247,14 @@ describe('location', () => {
         it('never starts with a zero', () => {
           const buildingNumber = faker.location.buildingNumber();
           expect(buildingNumber).not.toStartWith('0');
+        });
+      });
+
+      describe('postalAddress()', () => {
+        it('returns a random multi-line postal address', () => {
+          const postalAddress = faker.location.postalAddress();
+          expect(postalAddress).toBeTypeOf('string');
+          expect(postalAddress).toContain('\n');
         });
       });
 

@@ -53,6 +53,7 @@ import ku_ckb from './ku_ckb';
 import ku_kmr_latin from './ku_kmr_latin';
 import lv from './lv';
 import mk from './mk';
+import mn_MN_cyrl from './mn_MN_cyrl';
 import nb_NO from './nb_NO';
 import ne from './ne';
 import nl from './nl';
@@ -129,6 +130,7 @@ export { default as ku_ckb } from './ku_ckb';
 export { default as ku_kmr_latin } from './ku_kmr_latin';
 export { default as lv } from './lv';
 export { default as mk } from './mk';
+export { default as mn_MN_cyrl } from './mn_MN_cyrl';
 export { default as nb_NO } from './nb_NO';
 export { default as ne } from './ne';
 export { default as nl } from './nl';
@@ -206,6 +208,7 @@ export const allLocales = {
   ku_kmr_latin,
   lv,
   mk,
+  mn_MN_cyrl,
   nb_NO,
   ne,
   nl,
