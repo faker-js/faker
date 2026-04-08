@@ -80,7 +80,7 @@ export interface FakerOptions {
  * createFakerCore() // no locale data, default randomizer and empty config
  * createFakerCore({ locale: en }) // custom locale data, default randomizer and empty config
  *
- * @since 10.4.0
+ * @since 10.5.0
  */
 export function createFakerCore(options: FakerOptions = {}): FakerCore {
   const {
