@@ -52,7 +52,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "ku_kmr_latin": " ABCDEFGHJKLMNPRSTUWXYZabcdefghijklmnopqrstuvwxyzÇÖÜçêîûüğıŞş",
   "lv": " #()+,-.ABCDEFGHIJKLMNOPRSTUVZabcdefghijklmnopqrstuvxyzĀāČčĒēĢģĪīĶķĻļņŠšŪūŽžайкнопрсуы",
   "mk": " #()+,-.IcejЃЅЈЉЊЌЏАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШабвгдежзиклмнопрстуфхцчшѓјљњќџ’",
-  "mn_MN_cyrl": " -АБГДЕЗЛМНПТХабвгджзийлмнорстухцшэяёүө",
+  "mn_MN_cyrl": " -АБГДЕЗЛМНПТХабвгдийлмнорстухцчшыэяёүө",
   "nb_NO": " #+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÅØãåæçéíø",
   "ne": " #+-ABCDGHIJKLMNPRSTabcdefghijklmnoprstuvwxy",
   "nl": " !#%&'()+,-.;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÃâãéêëïöúû",
