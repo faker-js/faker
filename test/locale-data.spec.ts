@@ -58,6 +58,7 @@ function allCharacters(data: unknown, path: string = ''): string[] {
       data
         .replaceAll(/{{(?:[^{]|{(?!{))*?}}/g, '') // remove placeholders
         .replaceAll(/\d+/g, '') // remove numbers
+        .replaceAll('\n', '') // remove newlines
     );
   }
 

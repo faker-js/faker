@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import location from './location';
 import metadata from './metadata';
 import person from './person';
 
@@ -13,6 +14,7 @@ import person from './person';
  * - Endonym: Slovensko (Slovenia)
  */
 const sl_SI: LocaleDefinition = {
+  location,
   metadata,
   person,
 };

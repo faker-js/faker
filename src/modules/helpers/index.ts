@@ -486,7 +486,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       );
 
       if (isNegated) {
-        let index = -1;
+        let index;
         // 0-9
         for (let i = 48; i <= 57; i++) {
           index = rangeCodes.indexOf(i);
