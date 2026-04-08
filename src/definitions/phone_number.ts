@@ -25,5 +25,9 @@ export type PhoneNumberDefinition = LocaleEntry<{
      * Formats for a phone number in the standardised E.123 format, e.g. `+15551234567`
      */
     international: string[];
+    /**
+     * Formats for a mobile phone number in a standardized national format, e.g. `5551234567`.
+     */
+    mobile?: string[];
   };
 }>;

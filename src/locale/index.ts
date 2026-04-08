@@ -53,6 +53,7 @@ import { faker as fakerKU_ckb } from './ku_ckb';
 import { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 import { faker as fakerLV } from './lv';
 import { faker as fakerMK } from './mk';
+import { faker as fakerMN_MN_cyrl } from './mn_MN_cyrl';
 import { faker as fakerNB_NO } from './nb_NO';
 import { faker as fakerNE } from './ne';
 import { faker as fakerNL } from './nl';
@@ -129,6 +130,7 @@ export { faker as fakerKU_ckb } from './ku_ckb';
 export { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 export { faker as fakerLV } from './lv';
 export { faker as fakerMK } from './mk';
+export { faker as fakerMN_MN_cyrl } from './mn_MN_cyrl';
 export { faker as fakerNB_NO } from './nb_NO';
 export { faker as fakerNE } from './ne';
 export { faker as fakerNL } from './nl';
@@ -206,6 +208,7 @@ export const allFakers = {
   ku_kmr_latin: fakerKU_kmr_latin,
   lv: fakerLV,
   mk: fakerMK,
+  mn_MN_cyrl: fakerMN_MN_cyrl,
   nb_NO: fakerNB_NO,
   ne: fakerNE,
   nl: fakerNL,
