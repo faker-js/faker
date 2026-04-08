@@ -108,7 +108,7 @@ export default {
     'Lanz',
     'Lehmann',
     'Leu',
-    'Leunberger',
+    'Leuenberger',
     'Lustenberger',
     'Lutz',
     'Lüscher',
