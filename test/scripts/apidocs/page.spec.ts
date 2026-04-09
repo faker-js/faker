@@ -116,12 +116,12 @@ describe('toRefreshFunction', () => {
   it.todo('should handle SMF calls', async () => {
     // given
     const method = newTestMethod({
-      examples: ["???(fakerCore, 'food', 'fruit');"],
+      examples: ['getDefaultRefDate(fakerCore);'],
     });
 
     // when
     const result = await toRefreshFunction(method, {
-      '???': 'utils',
+      getDefaultRefDate: 'utils',
     });
 
     // then

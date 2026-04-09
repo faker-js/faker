@@ -38,7 +38,9 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
     [
       "generateMersenne32Randomizer",
       "generateMersenne53Randomizer",
+      "getDefaultRefDate",
       "mergeLocales",
+      "setDefaultRefDate",
     ],
   ],
   [

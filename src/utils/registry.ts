@@ -1,5 +1,10 @@
-// TODO @ST-DDT 2026-04-12: Add future SMF utils
+import { getDefaultRefDate } from './get-default-ref-date';
+import { setDefaultRefDate } from './set-default-ref-date';
+
 /**
  * Registry module containing all standalone utility functions for the Faker library.
  */
-export const utilsModule = {};
+export const utilsModule = {
+  getDefaultRefDate,
+  setDefaultRefDate,
+};
