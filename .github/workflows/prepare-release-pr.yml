@@ -64,19 +64,22 @@ jobs:
 
       - name: Create draft PR
         run: |
+          RELEASE_CHECKLIST_URL="$(gh issue list --label 'c: release' --state open --limit 1 --json url --jq '.[0].url // ""')"
+          PR_BODY="Release for $RELEASE_VERSION
+
+          - [ ] Completed manual changes/tasks for this release"
+          if [ -n "$RELEASE_CHECKLIST_URL" ]; then
+            PR_BODY="$PR_BODY
+
+          ---
+
+          - Checklist: $RELEASE_CHECKLIST_URL"
+          fi
           gh pr create \
             --base $GITHUB_REF_NAME \
             --head $RELEASE_BRANCH \
             --draft \
             --title "chore(release): $RELEASE_VERSION" \
-            --body "
-          Release for $RELEASE_VERSION
-
-          - [ ] Completed manual changes/tasks for this release
-
-          ---
-
-          - Checklist: TODO add link to issue
-          "
+            --body "$PR_BODY"
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
