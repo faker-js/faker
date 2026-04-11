@@ -1,7 +1,7 @@
 import isISO15924 from 'validator/lib/isISO15924';
 import { describe, expect, it } from 'vitest';
 import type { Faker } from '../src';
-import { allLocales } from '../src';
+import { allLocales, resolveLocaleData } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe.each(keys(allLocales))('locale imports', (locale) => {
@@ -13,6 +13,9 @@ describe.each(keys(allLocales))('locale imports', (locale) => {
     expect(faker).toBeDefined();
     expect(faker.string.alpha()).toBeTypeOf('string');
     expect(faker.definitions.metadata.title).toBe(
+      allLocales[locale].metadata?.title
+    );
+    expect(resolveLocaleData(faker.fakerCore, 'metadata', 'title')).toBe(
       allLocales[locale].metadata?.title
     );
   });

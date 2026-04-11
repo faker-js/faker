@@ -1,5 +1,9 @@
 const { describe, expect, it, vi } = await import('vitest');
-const { allLocales, SimpleFaker } = require('../dist/index.js');
+const {
+  allLocales,
+  SimpleFaker,
+  resolveLocaleData,
+} = require('../dist/index.js');
 
 describe('require (cjs)', () => {
   describe.each(
@@ -14,6 +18,9 @@ describe('require (cjs)', () => {
       expect(faker).toBeDefined();
       expect(faker.string.alpha()).toBeTypeOf('string');
       expect(faker.definitions.metadata.title).toBe(
+        allLocales[locale].metadata?.title
+      );
+      expect(resolveLocaleData(faker.fakerCore, 'metadata', 'title')).toBe(
         allLocales[locale].metadata?.title
       );
     });
