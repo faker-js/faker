@@ -1,5 +1,5 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**

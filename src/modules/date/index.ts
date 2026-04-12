@@ -1,6 +1,6 @@
-import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import type { Faker } from '../../faker';
 import { toDate } from '../../internal/date';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
