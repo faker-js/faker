@@ -312,9 +312,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    const { bio_pattern } = this.faker.definitions.person;
-
-    return this.faker.helpers.fake(bio_pattern);
+    return this.faker.helpers.fake(this.faker.definitions.person.bio_pattern);
   }
 
   /**
