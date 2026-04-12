@@ -1,3 +1,4 @@
+import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import type { LocaleProxy } from './internal/locale-proxy';
@@ -26,9 +27,7 @@ import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
-import type { Randomizer } from './randomizer';
 import { SimpleFaker } from './simple-faker';
-import { mergeLocales } from './utils/merge-locales';
 
 /**
  * This is Faker's main class containing all modules that can be used to generate data.
@@ -56,7 +55,6 @@ import { mergeLocales } from './utils/merge-locales';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker extends SimpleFaker {
-  readonly rawDefinitions: LocaleDefinition;
   readonly definitions: LocaleProxy;
 
   readonly airline: AirlineModule = new AirlineModule(this);
@@ -83,6 +81,10 @@ export class Faker extends SimpleFaker {
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
+
+  get rawDefinitions(): LocaleDefinition {
+    return this.fakerCore.locale;
+  }
 
   /**
    * Creates a new instance of Faker.
@@ -120,51 +122,20 @@ export class Faker extends SimpleFaker {
    *
    * @since 8.0.0
    */
-  constructor(options: {
-    /**
-     * The locale data to use for this instance.
-     * If an array is provided, the first locale that has a definition for a given property will be used.
-     * Please make sure that all required locales and their parent locales are present, e.g. `[de_AT, de, en, base]`.
-     *
-     * @see mergeLocales(): For more information about how the locales are merged.
-     */
-    locale: LocaleDefinition | LocaleDefinition[];
+  constructor(options: FakerOptions) {
+    super(options);
 
-    /**
-     * The Randomizer to use.
-     * Specify this only if you want to use it to achieve a specific goal,
-     * such as sharing the same random generator with other instances/tools.
-     *
-     * @default generateMersenne53Randomizer()
-     */
-    randomizer?: Randomizer;
+    const { locale } = options;
 
-    /**
-     * The initial seed to use.
-     * The seed can be used to generate reproducible values.
-     *
-     * Refer to the `seed()` method for more information.
-     *
-     * Defaults to a random seed.
-     */
-    seed?: number;
-  }) {
-    super({ randomizer: options.randomizer, seed: options.seed });
-
-    let { locale } = options;
-
-    if (Array.isArray(locale)) {
-      if (locale.length === 0) {
-        throw new FakerError(
-          'The locale option must contain at least one locale definition.'
-        );
-      }
-
-      locale = mergeLocales(locale);
+    // TODO @ST-DDT 2026-03-08: We should either not throw or throw consistently when locale data are empty.
+    // And likely refer to simpleFaker as alternative
+    if (Array.isArray(locale) && locale.length === 0) {
+      throw new FakerError(
+        'The locale option must contain at least one locale definition.'
+      );
     }
 
-    this.rawDefinitions = locale;
-    this.definitions = createLocaleProxy(this.rawDefinitions);
+    this.definitions = createLocaleProxy(this.fakerCore.locale);
   }
 
   /**
@@ -179,8 +150,6 @@ export class Faker extends SimpleFaker {
    * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
-    return this.rawDefinitions.metadata ?? {};
+    return this.fakerCore.locale.metadata ?? {};
   }
 }
-
-export type FakerOptions = ConstructorParameters<typeof Faker>[0];

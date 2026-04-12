@@ -66,7 +66,7 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
 export function fakeEval(
   expression: string,
   faker: Faker,
-  entrypoints: ReadonlyArray<unknown> = [faker, faker.rawDefinitions]
+  entrypoints: ReadonlyArray<unknown> = [faker, faker.fakerCore.locale]
 ): unknown {
   if (expression.length === 0) {
     throw new FakerError('Eval expression cannot be empty.');

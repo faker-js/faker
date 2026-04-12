@@ -157,13 +157,13 @@ describe('person', () => {
 
         it('should return a female applicable name without firstName and lastName', () => {
           const female_applicable = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.female ?? []),
-            ...(fakerMK.rawDefinitions.person?.first_name?.female ?? []),
-            ...(fakerMK.rawDefinitions.person?.last_name?.female ?? []),
-            ...(fakerMK.rawDefinitions.person?.prefix?.generic ?? []),
-            ...(fakerMK.rawDefinitions.person?.first_name?.generic ?? []),
-            ...(fakerMK.rawDefinitions.person?.last_name?.generic ?? []),
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
+            ...(fakerMK.fakerCore.locale.person?.prefix?.female ?? []),
+            ...(fakerMK.fakerCore.locale.person?.first_name?.female ?? []),
+            ...(fakerMK.fakerCore.locale.person?.last_name?.female ?? []),
+            ...(fakerMK.fakerCore.locale.person?.prefix?.generic ?? []),
+            ...(fakerMK.fakerCore.locale.person?.first_name?.generic ?? []),
+            ...(fakerMK.fakerCore.locale.person?.last_name?.generic ?? []),
+            // ...(fakerMK.fakerCore.locale.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'female' });
@@ -176,13 +176,13 @@ describe('person', () => {
 
         it('should return a male applicable name without firstName and lastName', () => {
           const male_applicable = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.male ?? []),
-            ...(fakerMK.rawDefinitions.person?.first_name?.male ?? []),
-            ...(fakerMK.rawDefinitions.person?.last_name?.male ?? []),
-            ...(fakerMK.rawDefinitions.person?.prefix?.generic ?? []),
-            ...(fakerMK.rawDefinitions.person?.first_name?.generic ?? []),
-            ...(fakerMK.rawDefinitions.person?.last_name?.generic ?? []),
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
+            ...(fakerMK.fakerCore.locale.person?.prefix?.male ?? []),
+            ...(fakerMK.fakerCore.locale.person?.first_name?.male ?? []),
+            ...(fakerMK.fakerCore.locale.person?.last_name?.male ?? []),
+            ...(fakerMK.fakerCore.locale.person?.prefix?.generic ?? []),
+            ...(fakerMK.fakerCore.locale.person?.first_name?.generic ?? []),
+            ...(fakerMK.fakerCore.locale.person?.last_name?.generic ?? []),
+            // ...(fakerMK.fakerCore.locale.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'male' });
@@ -195,11 +195,11 @@ describe('person', () => {
 
         it('should return a female applicable name with given firstName and lastName', () => {
           const female_applicable = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.female ?? []),
-            ...(fakerMK.rawDefinitions.person?.prefix?.generic ?? []),
+            ...(fakerMK.fakerCore.locale.person?.prefix?.female ?? []),
+            ...(fakerMK.fakerCore.locale.person?.prefix?.generic ?? []),
             'firstName',
             'lastName',
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
+            // ...(fakerMK.fakerCore.locale.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({
@@ -216,11 +216,11 @@ describe('person', () => {
 
         it('should return a male applicable name with given firstName and lastName', () => {
           const male_applicable = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.male ?? []),
-            ...(fakerMK.rawDefinitions.person?.prefix?.generic ?? []),
+            ...(fakerMK.fakerCore.locale.person?.prefix?.male ?? []),
+            ...(fakerMK.fakerCore.locale.person?.prefix?.generic ?? []),
             'firstName',
             'lastName',
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
+            // ...(fakerMK.fakerCore.locale.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({
@@ -283,9 +283,9 @@ describe('person', () => {
 
           expect(prefix).toBeTypeOf('string');
           const all_applicable = [
-            ...(faker.definitions.person.prefix.generic ?? []),
-            ...(faker.definitions.person.prefix.female ?? []),
-            ...(faker.definitions.person.prefix.male ?? []),
+            ...(faker.fakerCore.locale.person?.prefix?.generic ?? []),
+            ...(faker.fakerCore.locale.person?.prefix?.female ?? []),
+            ...(faker.fakerCore.locale.person?.prefix?.male ?? []),
           ];
           expect(all_applicable).toContain(prefix);
         });

@@ -5,11 +5,13 @@
 import type { PhoneNumberDefinition } from '../../../..';
 import human from './human';
 import international from './international';
+import mobile from './mobile';
 import national from './national';
 
 const format: PhoneNumberDefinition['format'] = {
   human,
   international,
+  mobile,
   national,
 };
 

@@ -6,6 +6,15 @@ import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
+ * Small helper function to convert a number of years to an amount of milliseconds.
+ *
+ * @param years The number of years to convert to milliseconds.
+ */
+function yearsToMs(years: number): number {
+  return years * 365 * 24 * 3600 * 1000;
+}
+
+/**
  * Module to generate dates (without methods requiring localized data).
  */
 export class SimpleDateModule extends SimpleModuleBase {
@@ -47,14 +56,18 @@ export class SimpleDateModule extends SimpleModuleBase {
    * Generates a random date in the past.
    *
    * @param options The optional options object.
-   * @param options.years The range of years the date may be in the past. Defaults to `1`.
+   * @param options.years The range of years the date may be in the past. Either as a fixed amount of years or as a year range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @throws {FakerError} If `years.max` is less than 0.
+   * @throws {FakerError} If `years.min` is greater or equal than `years.max`.
    *
    * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
    * faker.date.past({ years: 10 }) // '2017-10-25T21:34:19.488Z'
+   * faker.date.past({ years: { min: 4, max: 7 } }) // '2022-12-12T03:43:16.434Z'
    * faker.date.past({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2017-08-18T02:59:12.350Z'
    *
    * @since 8.0.0
@@ -66,7 +79,22 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      years?: number;
+      years?:
+        | number
+        | {
+            /**
+             * The minimum amount of years the date should be in the past.
+             *
+             * @default 0
+             */
+            min: number;
+            /**
+             * The maximum amount of years the date should be in the past.
+             *
+             * @default 1
+             */
+            max: number;
+          };
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -75,17 +103,27 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
+    const { refDate = this.faker.defaultRefDate() } = options;
+    let { years = 1 } = options;
+    if (typeof years === 'number') {
+      years = { min: 0, max: years };
+    }
 
-    if (years <= 0) {
+    if (years.max <= 0) {
       throw new FakerError('Years must be greater than 0.');
+    }
+
+    if (years.min >= years.max) {
+      throw new FakerError(
+        'The maximum amount of years must be greater than the minimum amount of years.'
+      );
     }
 
     const time = toDate(refDate).getTime();
 
     return this.between({
-      from: time - years * 365 * 24 * 3600 * 1000,
-      to: time - 1000,
+      from: time - yearsToMs(years.max),
+      to: time - yearsToMs(years.min) - 1000,
     });
   }
 
@@ -93,14 +131,18 @@ export class SimpleDateModule extends SimpleModuleBase {
    * Generates a random date in the future.
    *
    * @param options The optional options object.
-   * @param options.years The range of years the date may be in the future. Defaults to `1`.
+   * @param options.years The range of years the date may be in the future. Either as a fixed amount of years or as a year range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @throws {FakerError} If `years.max` is less than 0.
+   * @throws {FakerError} If `years.min` is greater or equal than `years.max`.
    *
    * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
    * faker.date.future({ years: 10 }) // '2030-11-23T09:38:28.710Z'
+   * faker.date.future({ years: { min: 4, max: 7 } }) // '2031-05-21T05:49:21.116Z'
    * faker.date.future({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-12-13T22:45:10.252Z'
    *
    * @since 8.0.0
@@ -112,7 +154,22 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      years?: number;
+      years?:
+        | number
+        | {
+            /**
+             * The minimum amount of years the date should be in the future.
+             *
+             * @default 0
+             */
+            min: number;
+            /**
+             * The maximum amount of years the date should be in the future.
+             *
+             * @default 1
+             */
+            max: number;
+          };
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -121,17 +178,27 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { years = 1, refDate = this.faker.defaultRefDate() } = options;
+    const { refDate = this.faker.defaultRefDate() } = options;
+    let { years = 1 } = options;
+    if (typeof years === 'number') {
+      years = { min: 0, max: years };
+    }
 
-    if (years <= 0) {
+    if (years.max <= 0) {
       throw new FakerError('Years must be greater than 0.');
+    }
+
+    if (years.min >= years.max) {
+      throw new FakerError(
+        'The maximum amount of years must be greater than the minimum amount of years.'
+      );
     }
 
     const time = toDate(refDate).getTime();
 
     return this.between({
-      from: time + 1000,
-      to: time + years * 365 * 24 * 3600 * 1000,
+      from: time + yearsToMs(years.min) + 1000,
+      to: time + yearsToMs(years.max),
     });
   }
 
