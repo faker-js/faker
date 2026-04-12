@@ -78,7 +78,7 @@ describe('person', () => {
           expect([...generic, ...male]).toContain(maleName);
         });
 
-        it('should return a sex-specific last name when no sex-generic last name was defined', () => {
+        it('should return a sex-specific first name when no sex-generic first name was defined', () => {
           const {
             generic,
             female = [],
