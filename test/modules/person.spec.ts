@@ -114,16 +114,24 @@ describe('person', () => {
           } = faker.definitions.person.last_name;
 
           const name = faker.person.lastName();
-          expect([...generic, ...female, ...male]).toContain(name);
+          for (const part of name.split(/[ -]/)) {
+            expect([...generic, ...female, ...male]).toContain(part);
+          }
 
           const genericName = faker.person.lastName('generic');
-          expect(generic).toContain(genericName);
+          for (const part of genericName.split(/[ -]/)) {
+            expect(generic).toContain(part);
+          }
 
           const femaleName = faker.person.lastName('female');
-          expect([...generic, ...female]).toContain(femaleName);
+          for (const part of femaleName.split(/[ -]/)) {
+            expect([...generic, ...female]).toContain(part);
+          }
 
           const maleName = faker.person.lastName('male');
-          expect([...generic, ...male]).toContain(maleName);
+          for (const part of maleName.split(/[ -]/)) {
+            expect([...generic, ...male]).toContain(part);
+          }
         });
 
         it('should return a sex-specific last name when no sex-generic last name was defined', () => {
@@ -136,13 +144,19 @@ describe('person', () => {
           expect(generic).toBeUndefined();
 
           const name = fakerAZ.person.lastName();
-          expect([...female, ...male]).toContain(name);
+          for (const part of name.split(/[ -]/)) {
+            expect([...female, ...male]).toContain(part);
+          }
 
           const femaleName = fakerAZ.person.lastName('female');
-          expect(female).toContain(femaleName);
+          for (const part of femaleName.split(/[ -]/)) {
+            expect(female).toContain(part);
+          }
 
           const maleName = fakerAZ.person.lastName('male');
-          expect(male).toContain(maleName);
+          for (const part of maleName.split(/[ -]/)) {
+            expect(male).toContain(part);
+          }
         });
       });
 
