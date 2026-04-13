@@ -14,7 +14,7 @@ import type { SexType } from '../person';
  *
  * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar), or [`personPortrait()`](https://fakerjs.dev/api/image.html#personportrait) which has more control over the size and sex of the person.
  *
- * If you need more control over the content of the images, you can pass a `category` parameter e.g. `'cat'` or `'nature'` to [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or simply use [`faker.helpers.arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) with your own array of image URLs.
+ * For additional image options like grayscale, blur, and seed control, use [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos). Alternatively, use [`faker.helpers.arrayElement()`](https://fakerjs.dev/api/helpers.html#arrayelement) with your own array of image URLs.
  */
 export class ImageModule extends ModuleBase {
   /**
