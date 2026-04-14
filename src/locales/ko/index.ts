@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import color from './color';
 import company from './company';
 import date from './date';
@@ -14,7 +15,14 @@ import person from './person';
 import phone_number from './phone_number';
 import word from './word';
 
+/**
+ * The locale data for the `ko` locale.
+ *
+ * - Language: Korean
+ * - Endonym: 한국어
+ */
 const ko: LocaleDefinition = {
+  animal,
   color,
   company,
   date,

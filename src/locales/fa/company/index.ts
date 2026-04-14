@@ -8,9 +8,9 @@ import buzz_adjective from './buzz_adjective';
 import buzz_noun from './buzz_noun';
 import buzz_verb from './buzz_verb';
 import descriptor from './descriptor';
+import legal_entity_type from './legal_entity_type';
 import name_pattern from './name_pattern';
 import noun from './noun';
-import suffix from './suffix';
 
 const company: CompanyDefinition = {
   adjective,
@@ -18,9 +18,9 @@ const company: CompanyDefinition = {
   buzz_noun,
   buzz_verb,
   descriptor,
+  legal_entity_type,
   name_pattern,
   noun,
-  suffix,
 };
 
 export default company;

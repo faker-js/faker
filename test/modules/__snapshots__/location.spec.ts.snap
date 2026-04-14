@@ -6,7 +6,9 @@ exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
 exports[`location > 42 > cardinalDirection > with abbreviated option 1`] = `"E"`;
 
-exports[`location > 42 > city 1`] = `"Fort Moses"`;
+exports[`location > 42 > city 1`] = `"Fort Camryn"`;
+
+exports[`location > 42 > continent 1`] = `"Asia"`;
 
 exports[`location > 42 > country 1`] = `"Guinea"`;
 
@@ -29,6 +31,14 @@ exports[`location > 42 > county 1`] = `"Borders"`;
 exports[`location > 42 > direction > noArgs 1`] = `"South"`;
 
 exports[`location > 42 > direction > with abbreviated option 1`] = `"S"`;
+
+exports[`location > 42 > language 1`] = `
+{
+  "alpha2": "gu",
+  "alpha3": "guj",
+  "name": "Gujarati",
+}
+`;
 
 exports[`location > 42 > latitude > noArgs 1`] = `-22.5828`;
 
@@ -114,21 +124,28 @@ exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
 
+exports[`location > 42 > postalAddress 1`] = `
+"751 Laury Rapid
+Fort Clintonberg
+Nebraska
+26123"
+`;
+
 exports[`location > 42 > secondaryAddress 1`] = `"Apt. 975"`;
 
 exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
 exports[`location > 42 > state > with options 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Wiegand Ridges"`;
+exports[`location > 42 > street 1`] = `"Miller Crest"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Anderson Throughway"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Laury Rapid"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"9751 Anderson Throughway"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"9751 Laury Rapid"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"9751 Anderson Throughway Suite 709"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"9751 Laury Rapid Apt. 982"`;
 
-exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
+exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/Center"`;
 
 exports[`location > 42 > zipCode > noArgs 1`] = `"97511"`;
 
@@ -143,6 +160,8 @@ exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
 exports[`location > 1211 > cardinalDirection > with abbreviated option 1`] = `"W"`;
 
 exports[`location > 1211 > city 1`] = `"The Villages"`;
+
+exports[`location > 1211 > continent 1`] = `"South America"`;
 
 exports[`location > 1211 > country 1`] = `"Uganda"`;
 
@@ -165,6 +184,14 @@ exports[`location > 1211 > county 1`] = `"Tyne and Wear"`;
 exports[`location > 1211 > direction > noArgs 1`] = `"Southwest"`;
 
 exports[`location > 1211 > direction > with abbreviated option 1`] = `"SW"`;
+
+exports[`location > 1211 > language 1`] = `
+{
+  "alpha2": "tl",
+  "alpha3": "tgl",
+  "name": "Tagalog",
+}
+`;
 
 exports[`location > 1211 > latitude > noArgs 1`] = `77.1337`;
 
@@ -250,6 +277,14 @@ exports[`location > 1211 > ordinalDirection > noArgs 1`] = `"Southwest"`;
 
 exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW"`;
 
+exports[`location > 1211 > postalAddress 1`] = `
+"Suite 396
+736 St Mary's Road
+Stromanhaven
+New Jersey
+39739"
+`;
+
 exports[`location > 1211 > secondaryAddress 1`] = `"Suite 929"`;
 
 exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
@@ -278,7 +313,9 @@ exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
 exports[`location > 1337 > cardinalDirection > with abbreviated option 1`] = `"E"`;
 
-exports[`location > 1337 > city 1`] = `"East Duane"`;
+exports[`location > 1337 > city 1`] = `"East Faye"`;
+
+exports[`location > 1337 > continent 1`] = `"Antarctica"`;
 
 exports[`location > 1337 > country 1`] = `"Egypt"`;
 
@@ -301,6 +338,14 @@ exports[`location > 1337 > county 1`] = `"Morgan County"`;
 exports[`location > 1337 > direction > noArgs 1`] = `"South"`;
 
 exports[`location > 1337 > direction > with abbreviated option 1`] = `"S"`;
+
+exports[`location > 1337 > language 1`] = `
+{
+  "alpha2": "ru",
+  "alpha3": "rus",
+  "name": "Russian",
+}
+`;
 
 exports[`location > 1337 > latitude > noArgs 1`] = `-42.8356`;
 
@@ -386,21 +431,28 @@ exports[`location > 1337 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
 
+exports[`location > 1337 > postalAddress 1`] = `
+"34352 Salisbury Road
+South Willardport
+South Carolina
+45712"
+`;
+
 exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 224"`;
 
 exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
 
 exports[`location > 1337 > state > with options 1`] = `"IN"`;
 
-exports[`location > 1337 > street 1`] = `"Carmella Forge"`;
+exports[`location > 1337 > street 1`] = `"Josephine Gateway"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"22435 Westley Ridges"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"22435 Bernardo Hills"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"22435 Westley Ridges"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"22435 Bernardo Hills"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"22435 Westley Ridges Apt. 461"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"22435 Bernardo Hills Suite 294"`;
 
-exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
+exports[`location > 1337 > timeZone 1`] = `"America/Guadeloupe"`;
 
 exports[`location > 1337 > zipCode > noArgs 1`] = `"12435"`;
 

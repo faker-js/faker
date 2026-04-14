@@ -30,11 +30,21 @@ exports[`commerce > 42 > product 1`] = `"Computer"`;
 
 exports[`commerce > 42 > productAdjective 1`] = `"Handcrafted"`;
 
-exports[`commerce > 42 > productDescription 1`] = `"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016"`;
+exports[`commerce > 42 > productDescription 1`] = `"New salmon Pants with ergonomic design for crushing comfort"`;
 
-exports[`commerce > 42 > productMaterial 1`] = `"Frozen"`;
+exports[`commerce > 42 > productMaterial 1`] = `"Cotton"`;
 
 exports[`commerce > 42 > productName 1`] = `"Handcrafted Wooden Sausages"`;
+
+exports[`commerce > 42 > upc > noArgs 1`] = `"397511086709"`;
+
+exports[`commerce > 42 > upc > with 5 digit prefix 1`] = `"012343975112"`;
+
+exports[`commerce > 42 > upc > with 11 digit prefix 1`] = `"012345678905"`;
+
+exports[`commerce > 42 > upc > with empty prefix 1`] = `"397511086709"`;
+
+exports[`commerce > 42 > upc > with single digit prefix 1`] = `"039751108673"`;
 
 exports[`commerce > 1211 > department 1`] = `"Tools"`;
 
@@ -66,11 +76,21 @@ exports[`commerce > 1211 > product 1`] = `"Towels"`;
 
 exports[`commerce > 1211 > productAdjective 1`] = `"Tasty"`;
 
-exports[`commerce > 1211 > productDescription 1`] = `"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality"`;
+exports[`commerce > 1211 > productDescription 1`] = `"Soft Cheese designed with Wooden for right performance"`;
 
-exports[`commerce > 1211 > productMaterial 1`] = `"Wooden"`;
+exports[`commerce > 1211 > productMaterial 1`] = `"Steel"`;
 
 exports[`commerce > 1211 > productName 1`] = `"Tasty Steel Cheese"`;
+
+exports[`commerce > 1211 > upc > noArgs 1`] = `"982966736875"`;
+
+exports[`commerce > 1211 > upc > with 5 digit prefix 1`] = `"012349829662"`;
+
+exports[`commerce > 1211 > upc > with 11 digit prefix 1`] = `"012345678905"`;
+
+exports[`commerce > 1211 > upc > with empty prefix 1`] = `"982966736875"`;
+
+exports[`commerce > 1211 > upc > with single digit prefix 1`] = `"098296673688"`;
 
 exports[`commerce > 1337 > department 1`] = `"Computers"`;
 
@@ -100,10 +120,20 @@ exports[`commerce > 1337 > price > with min option 1`] = `"293.09"`;
 
 exports[`commerce > 1337 > product 1`] = `"Chicken"`;
 
-exports[`commerce > 1337 > productAdjective 1`] = `"Generic"`;
+exports[`commerce > 1337 > productAdjective 1`] = `"Frozen"`;
 
-exports[`commerce > 1337 > productDescription 1`] = `"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support"`;
+exports[`commerce > 1337 > productDescription 1`] = `"Innovative Car featuring lawful technology and Concrete construction"`;
 
-exports[`commerce > 1337 > productMaterial 1`] = `"Fresh"`;
+exports[`commerce > 1337 > productMaterial 1`] = `"Ceramic"`;
 
-exports[`commerce > 1337 > productName 1`] = `"Generic Concrete Chicken"`;
+exports[`commerce > 1337 > productName 1`] = `"Frozen Bronze Chicken"`;
+
+exports[`commerce > 1337 > upc > noArgs 1`] = `"212435297133"`;
+
+exports[`commerce > 1337 > upc > with 5 digit prefix 1`] = `"012342124351"`;
+
+exports[`commerce > 1337 > upc > with 11 digit prefix 1`] = `"012345678905"`;
+
+exports[`commerce > 1337 > upc > with empty prefix 1`] = `"212435297133"`;
+
+exports[`commerce > 1337 > upc > with single digit prefix 1`] = `"021243529714"`;

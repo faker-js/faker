@@ -1,4 +1,4 @@
-import validator from 'validator';
+import { isSlug } from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -43,7 +43,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.lorem.words).toContain(actual);
+          expect(faker.definitions.lorem.word).toContain(actual);
         });
 
         // INFO @Shinigami92 2022-02-11: Seems there are only words with a max length of 14 characters
@@ -54,7 +54,7 @@ describe('lorem', () => {
 
             expect(actual).toBeTruthy();
             expect(actual).toBeTypeOf('string');
-            expect(faker.definitions.lorem.words).toContain(actual);
+            expect(faker.definitions.lorem.word).toContain(actual);
             expect(actual).toHaveLength(length);
           }
         );
@@ -72,7 +72,7 @@ describe('lorem', () => {
           expect(words).toHaveLength(3);
 
           for (const word of words) {
-            expect(faker.definitions.lorem.words).toContain(word);
+            expect(faker.definitions.lorem.word).toContain(word);
           }
         });
 
@@ -89,7 +89,7 @@ describe('lorem', () => {
             expect(words).toHaveLength(num);
 
             for (const word of words) {
-              expect(faker.definitions.lorem.words).toContain(word);
+              expect(faker.definitions.lorem.word).toContain(word);
             }
           }
         );
@@ -106,7 +106,7 @@ describe('lorem', () => {
           expect(words.length).toBeLessThanOrEqual(20);
 
           for (const word of words) {
-            expect(faker.definitions.lorem.words).toContain(word);
+            expect(faker.definitions.lorem.word).toContain(word);
           }
         });
       });
@@ -154,7 +154,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual).toSatisfy(validator.isSlug);
+          expect(actual).toSatisfy(isSlug);
         });
 
         it.each(times(25))(
@@ -170,7 +170,7 @@ describe('lorem', () => {
             expect(words).toHaveLength(wordCount);
 
             if (wordCount > 1) {
-              expect(actual).toSatisfy(validator.isSlug);
+              expect(actual).toSatisfy(isSlug);
             }
           }
         );

@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import airline from './airline';
 import animal from './animal';
 import app from './app';
+import book from './book';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -27,10 +28,17 @@ import team from './team';
 import vehicle from './vehicle';
 import word from './word';
 
+/**
+ * The locale data for the `en` locale.
+ *
+ * - Language: English
+ * - Endonym: English
+ */
 const en: LocaleDefinition = {
   airline,
   animal,
   app,
+  book,
   cell_phone,
   color,
   commerce,

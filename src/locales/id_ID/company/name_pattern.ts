@@ -1,5 +1,5 @@
 export default [
-  '{{company.prefix}} {{person.last_name}}',
-  '{{company.prefix}} {{person.last_name}} {{company.suffix}}',
-  '{{person.last_name}} {{company.suffix}}',
+  '{{company.prefix}} {{person.lastName}}',
+  '{{company.prefix}} {{person.lastName}} {{company.legal_entity_type}}',
+  '{{person.lastName}} {{company.legal_entity_type}}',
 ];

@@ -1,69 +1,83 @@
 import type { Faker } from '../..';
+import type { PersonEntryDefinition } from '../../definitions/person';
 import { ModuleBase } from '../../internal/module-base';
-import { assertLocaleData } from '../../locale-proxy';
 
+/**
+ * The enum for values corresponding to a person's sex.
+ */
 export enum Sex {
+  /**
+   * Is used for values that are primarily attributable to only females.
+   */
   Female = 'female',
+  /**
+   * Is used for values that cannot clearly be attributed to a specific sex or are used for both sexes.
+   */
+  Generic = 'generic',
+  /**
+   * Is used for values that are primarily attributable to only males.
+   */
   Male = 'male',
 }
 
+/**
+ * The parameter type for values corresponding to a person's sex.
+ */
 export type SexType = `${Sex}`;
 
 /**
  * Select a definition based on given sex.
  *
  * @param faker Faker instance.
- * @param elementSelectorFn The method used to select the actual element.
  * @param sex Sex.
- * @param param2 Definitions.
- * @param param2.generic Non-sex definitions.
- * @param param2.female Female definitions.
- * @param param2.male Male definitions.
- * @param type Type of the definition.
+ * @param personEntry Definitions.
  *
  * @returns Definition based on given sex.
  */
 function selectDefinition<T>(
   faker: Faker,
-  elementSelectorFn: (values: T[]) => string,
-  sex: SexType | undefined,
-  {
-    generic,
-    female,
-    male,
-  }: { generic?: T[] | null; female?: T[] | null; male?: T[] | null },
-  type: string
-): string {
-  let values: T[] | undefined | null;
+  sex: SexType = faker.person.sexType(),
+  personEntry: PersonEntryDefinition<T>
+): T[] {
+  const { generic, female, male } = personEntry;
 
-  switch (sex) {
-    case Sex.Female: {
-      values = female;
-      break;
-    }
-
-    case Sex.Male: {
-      values = male;
-      break;
-    }
-
-    default: {
-      values = generic;
-      break;
-    }
+  if (sex === 'generic') {
+    return (
+      generic ??
+      faker.helpers.arrayElement([female, male]) ??
+      // The last statement should never happen at run time. At this point in time,
+      // the entry will satisfy at least (generic || (female && male)).
+      // TS is not able to infer the type correctly.
+      []
+    );
   }
 
-  if (values == null) {
-    if (female != null && male != null) {
-      values = faker.helpers.arrayElement([female, male]);
-    } else {
-      values = generic;
+  const binary = sex === 'female' ? female : male;
+
+  if (binary != null) {
+    if (generic != null) {
+      return faker.helpers.weightedArrayElement([
+        {
+          weight: 3 * Math.sqrt(binary.length),
+          value: binary,
+        },
+        {
+          weight: Math.sqrt(generic.length),
+          value: generic,
+        },
+      ]);
     }
 
-    assertLocaleData(values, `person.{${type}, female_${type}, male_${type}}`);
+    return binary;
   }
 
-  return elementSelectorFn(values);
+  return (
+    generic ??
+    // The last statement should never happen at run time. At this point in time,
+    // the entry will satisfy at least (generic || (female && male)).
+    // TS is not able to infer the type correctly.
+    []
+  );
 }
 
 /**
@@ -100,19 +114,12 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   firstName(sex?: SexType): string {
-    const { first_name, female_first_name, male_first_name } =
-      this.faker.rawDefinitions.person ?? {};
-
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      {
-        generic: first_name,
-        female: female_first_name,
-        male: male_first_name,
-      },
-      'first_name'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(
+        this.faker,
+        sex,
+        this.faker.definitions.person.first_name
+      )
     );
   }
 
@@ -130,44 +137,16 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    const {
-      last_name,
-      female_last_name,
-      male_last_name,
-      last_name_pattern,
-      male_last_name_pattern,
-      female_last_name_pattern,
-    } = this.faker.rawDefinitions.person ?? {};
-
-    if (
-      last_name_pattern != null ||
-      male_last_name_pattern != null ||
-      female_last_name_pattern != null
-    ) {
-      const pattern = selectDefinition(
-        this.faker,
-        this.faker.helpers.weightedArrayElement,
-        sex,
-        {
-          generic: last_name_pattern,
-          female: female_last_name_pattern,
-          male: male_last_name_pattern,
-        },
-        'last_name_pattern'
+    const patterns = this.faker.fakerCore.locale.person?.last_name_pattern;
+    if (patterns != null) {
+      const pattern = this.faker.helpers.weightedArrayElement(
+        selectDefinition(this.faker, sex, patterns)
       );
       return this.faker.helpers.fake(pattern);
     }
 
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      {
-        generic: last_name,
-        female: female_last_name,
-        male: male_last_name,
-      },
-      'last_name'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(this.faker, sex, this.faker.definitions.person.last_name)
     );
   }
 
@@ -185,19 +164,12 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   middleName(sex?: SexType): string {
-    const { middle_name, female_middle_name, male_middle_name } =
-      this.faker.rawDefinitions.person ?? {};
-
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      {
-        generic: middle_name,
-        female: female_middle_name,
-        male: male_middle_name,
-      },
-      'middle_name'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(
+        this.faker,
+        sex,
+        this.faker.definitions.person.middle_name
+      )
     );
   }
 
@@ -297,16 +269,38 @@ export class PersonModule extends ModuleBase {
   /**
    * Returns a random sex type. The `SexType` is intended to be used in parameters and conditions.
    *
+   * @param options The optional options object.
+   * @param options.includeGeneric Whether `'generic'` should be included in the potential outputs.
+   * If `false`, this method only returns `'female'` and `'male'`.
+   * Default is `false`.
+   *
    * @see faker.person.gender(): For generating a gender related value in forms.
    * @see faker.person.sex(): For generating a binary-gender value in forms.
    *
    * @example
    * faker.person.sexType() // Sex.Female
+   * faker.person.sexType({ includeGeneric: true }) // Sex.Generic
    *
    * @since 8.0.0
    */
-  sexType(): SexType {
-    return this.faker.helpers.enumValue(Sex);
+  sexType(
+    options: {
+      /**
+       * Whether `'generic'` should be included in the potential outputs.
+       * If `false`, this method only returns `'female'` and `'male'`.
+       *
+       * @default false
+       */
+      includeGeneric?: boolean;
+    } = {}
+  ): SexType {
+    const { includeGeneric = false } = options;
+
+    if (includeGeneric) {
+      return this.faker.helpers.enumValue(Sex);
+    }
+
+    return this.faker.helpers.arrayElement([Sex.Female, Sex.Male]);
   }
 
   /**
@@ -318,9 +312,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    const { bio_pattern } = this.faker.definitions.person;
-
-    return this.faker.helpers.fake(bio_pattern);
+    return this.faker.helpers.fake(this.faker.definitions.person.bio_pattern);
   }
 
   /**
@@ -336,19 +328,8 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   prefix(sex?: SexType): string {
-    const { prefix, female_prefix, male_prefix } =
-      this.faker.rawDefinitions.person ?? {};
-
-    return selectDefinition(
-      this.faker,
-      this.faker.helpers.arrayElement,
-      sex,
-      {
-        generic: prefix,
-        female: female_prefix,
-        male: male_prefix,
-      },
-      'prefix'
+    return this.faker.helpers.arrayElement(
+      selectDefinition(this.faker, sex, this.faker.definitions.person.prefix)
     );
   }
 

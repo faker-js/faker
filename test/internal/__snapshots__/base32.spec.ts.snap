@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dateToBase32() > encodes current date correctly 1`] = `"01GWX1T800"`;

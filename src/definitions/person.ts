@@ -1,27 +1,49 @@
 import type { LocaleEntry } from './definitions';
 
 /**
+ * Entries that are dependent on a person's sex.
+ */
+export type PersonEntryDefinition<T> =
+  | {
+      /**
+       * Values that are primarily attributable to only females.
+       */
+      female: T[];
+      /**
+       * Values that cannot clearly be attributed to a specific sex or are used for both sexes.
+       */
+      generic?: T[];
+      /**
+       * Values that are primarily attributable to only males.
+       */
+      male: T[];
+    }
+  | {
+      female?: never;
+      /**
+       * Values that cannot clearly be attributed to a specific sex or are used for both sexes.
+       */
+      generic: T[];
+      male?: never;
+    };
+
+type SimplePersonEntryDefinition = PersonEntryDefinition<string>;
+type WeightedPersonEntryDefinition = PersonEntryDefinition<{
+  value: string;
+  weight: number;
+}>;
+
+/**
  * The possible definitions related to people's names.
  */
 export type PersonDefinition = LocaleEntry<{
   gender: string[];
   sex: string[];
 
-  prefix: string[];
-  female_prefix: string[];
-  male_prefix: string[];
-
-  first_name: string[];
-  female_first_name: string[];
-  male_first_name: string[];
-
-  middle_name: string[];
-  female_middle_name: string[];
-  male_middle_name: string[];
-
-  last_name: string[];
-  female_last_name: string[];
-  male_last_name: string[];
+  prefix: SimplePersonEntryDefinition;
+  first_name: SimplePersonEntryDefinition;
+  middle_name: SimplePersonEntryDefinition;
+  last_name: SimplePersonEntryDefinition;
 
   suffix: string[];
 
@@ -33,9 +55,7 @@ export type PersonDefinition = LocaleEntry<{
   /**
    * A weighted list of patterns used to generate last names.
    */
-  last_name_pattern: Array<{ value: string; weight: number }>;
-  male_last_name_pattern: Array<{ value: string; weight: number }>;
-  female_last_name_pattern: Array<{ value: string; weight: number }>;
+  last_name_pattern: WeightedPersonEntryDefinition;
 
   bio_pattern: string[];
 

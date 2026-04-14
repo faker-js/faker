@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   {
     symbol: 'H',
     name: 'Wodór',
@@ -589,4 +589,4 @@ export default Object.freeze([
     name: 'Oganeson',
     atomicNumber: 118,
   },
-]);
+];

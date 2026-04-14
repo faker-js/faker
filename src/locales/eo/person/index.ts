@@ -5,14 +5,10 @@
 import type { PersonDefinition } from '../../..';
 import bio_part from './bio_part';
 import bio_pattern from './bio_pattern';
-import female_first_name from './female_first_name';
-import female_prefix from './female_prefix';
 import first_name from './first_name';
 import gender from './gender';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
-import male_first_name from './male_first_name';
-import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
 import sex from './sex';
@@ -21,14 +17,10 @@ import western_zodiac_sign from './western_zodiac_sign';
 const person: PersonDefinition = {
   bio_part,
   bio_pattern,
-  female_first_name,
-  female_prefix,
   first_name,
   gender,
   last_name,
   last_name_pattern,
-  male_first_name,
-  male_prefix,
   name: name_,
   prefix,
   sex,

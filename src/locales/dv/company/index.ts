@@ -4,15 +4,15 @@
  */
 import type { CompanyDefinition } from '../../..';
 import adjective from './adjective';
+import legal_entity_type from './legal_entity_type';
 import name_pattern from './name_pattern';
 import noun from './noun';
-import suffix from './suffix';
 
 const company: CompanyDefinition = {
   adjective,
+  legal_entity_type,
   name_pattern,
   noun,
-  suffix,
 };
 
 export default company;

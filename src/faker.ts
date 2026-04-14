@@ -1,10 +1,11 @@
+import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { deprecated } from './internal/deprecated';
-import type { LocaleProxy } from './locale-proxy';
-import { createLocaleProxy } from './locale-proxy';
+import type { LocaleProxy } from './internal/locale-proxy';
+import { createLocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
+import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
@@ -17,20 +18,16 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
-import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
-import type { Randomizer } from './randomizer';
 import { SimpleFaker } from './simple-faker';
-import { mergeLocales } from './utils/merge-locales';
 
 /**
  * This is Faker's main class containing all modules that can be used to generate data.
@@ -58,11 +55,11 @@ import { mergeLocales } from './utils/merge-locales';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker extends SimpleFaker {
-  readonly rawDefinitions: LocaleDefinition;
   readonly definitions: LocaleProxy;
 
   readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
+  readonly book: BookModule = new BookModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);
@@ -85,27 +82,8 @@ export class Faker extends SimpleFaker {
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
 
-  // Aliases
-  /** @deprecated Use {@link Faker#location} instead */
-  get address(): AddressModule {
-    deprecated({
-      deprecated: 'faker.address',
-      proposed: 'faker.location',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.location;
-  }
-
-  /** @deprecated Use {@link Faker#person} instead */
-  get name(): NameModule {
-    deprecated({
-      deprecated: 'faker.name',
-      proposed: 'faker.person',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.person;
+  get rawDefinitions(): LocaleDefinition {
+    return this.fakerCore.locale;
   }
 
   /**
@@ -118,11 +96,17 @@ export class Faker extends SimpleFaker {
    * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
-   * @param options.locale The locale data to use.
+   * @param options.locale The locale data to use for this instance.
+   * If an array is provided, the first locale that has a definition for a given property will be used.
+   * Please make sure that all required locales and their parent locales are present, e.g. `[de_AT, de, en, base]`.
    * @param options.randomizer The Randomizer to use.
    * Specify this only if you want to use it to achieve a specific goal,
    * such as sharing the same random generator with other instances/tools.
    * Defaults to faker's Mersenne Twister based pseudo random number generator.
+   * @param options.seed The initial seed to use.
+   * The seed can be used to generate reproducible values.
+   * Refer to the `seed()` method for more information.
+   * Defaults to a random seed.
    *
    * @example
    * import { Faker, es } from '@faker-js/faker';
@@ -138,40 +122,20 @@ export class Faker extends SimpleFaker {
    *
    * @since 8.0.0
    */
-  constructor(options: {
-    /**
-     * The locale data to use for this instance.
-     * If an array is provided, the first locale that has a definition for a given property will be used.
-     *
-     * @see mergeLocales(): For more information about how the locales are merged.
-     */
-    locale: LocaleDefinition | LocaleDefinition[];
+  constructor(options: FakerOptions) {
+    super(options);
 
-    /**
-     * The Randomizer to use.
-     * Specify this only if you want to use it to achieve a specific goal,
-     * such as sharing the same random generator with other instances/tools.
-     *
-     * @default generateMersenne53Randomizer()
-     */
-    randomizer?: Randomizer;
-  }) {
-    super({ randomizer: options.randomizer });
+    const { locale } = options;
 
-    let { locale } = options;
-
-    if (Array.isArray(locale)) {
-      if (locale.length === 0) {
-        throw new FakerError(
-          'The locale option must contain at least one locale definition.'
-        );
-      }
-
-      locale = mergeLocales(locale);
+    // TODO @ST-DDT 2026-03-08: We should either not throw or throw consistently when locale data are empty.
+    // And likely refer to simpleFaker as alternative
+    if (Array.isArray(locale) && locale.length === 0) {
+      throw new FakerError(
+        'The locale option must contain at least one locale definition.'
+      );
     }
 
-    this.rawDefinitions = locale;
-    this.definitions = createLocaleProxy(this.rawDefinitions);
+    this.definitions = createLocaleProxy(this.fakerCore.locale);
   }
 
   /**
@@ -186,8 +150,6 @@ export class Faker extends SimpleFaker {
    * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
-    return this.rawDefinitions.metadata ?? {};
+    return this.fakerCore.locale.metadata ?? {};
   }
 }
-
-export type FakerOptions = ConstructorParameters<typeof Faker>[0];

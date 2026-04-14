@@ -66,7 +66,7 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
 export function fakeEval(
   expression: string,
   faker: Faker,
-  entrypoints: ReadonlyArray<unknown> = [faker, faker.rawDefinitions]
+  entrypoints: ReadonlyArray<unknown> = [faker, faker.fakerCore.locale]
 ): unknown {
   if (expression.length === 0) {
     throw new FakerError('Eval expression cannot be empty.');
@@ -133,9 +133,7 @@ function evalProcessFunction(
   return [
     index + (nextChar === '.' ? 2 : 1), // one for the closing bracket, one for the dot
     entrypoints.map((entrypoint): unknown =>
-      // TODO @ST-DDT 2023-12-11: Replace in v9
-      // typeof entrypoint === 'function' ? entrypoint(...params) : undefined
-      typeof entrypoint === 'function' ? entrypoint(...params) : entrypoint
+      typeof entrypoint === 'function' ? entrypoint(...params) : undefined
     ),
   ];
 }

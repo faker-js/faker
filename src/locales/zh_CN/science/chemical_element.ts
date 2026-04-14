@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   {
     symbol: 'H',
     name: '氢',
@@ -211,17 +211,17 @@ export default Object.freeze([
   },
   {
     symbol: 'Tc',
-    name: 'Technetium',
+    name: '锝',
     atomicNumber: 43,
   },
   {
     symbol: 'Ru',
-    name: '锝',
+    name: '钌',
     atomicNumber: 44,
   },
   {
     symbol: 'Rh',
-    name: '锝',
+    name: '铑',
     atomicNumber: 45,
   },
   {
@@ -326,7 +326,7 @@ export default Object.freeze([
   },
   {
     symbol: 'Dy',
-    name: '钬',
+    name: '镝',
     atomicNumber: 66,
   },
   {
@@ -336,7 +336,7 @@ export default Object.freeze([
   },
   {
     symbol: 'Er',
-    name: '铥',
+    name: '铒',
     atomicNumber: 68,
   },
   {
@@ -451,12 +451,12 @@ export default Object.freeze([
   },
   {
     symbol: 'Pa',
-    name: '镎',
+    name: '镤',
     atomicNumber: 91,
   },
   {
     symbol: 'U',
-    name: '镎',
+    name: '铀',
     atomicNumber: 92,
   },
   {
@@ -581,7 +581,7 @@ export default Object.freeze([
   },
   {
     symbol: 'Ts',
-    name: '钿',
+    name: '鿬',
     atomicNumber: 117,
   },
   {
@@ -589,4 +589,4 @@ export default Object.freeze([
     name: '鿫',
     atomicNumber: 118,
   },
-]);
+];

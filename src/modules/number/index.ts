@@ -25,9 +25,9 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    * @param options.multipleOf Generated number will be a multiple of the given integer. Defaults to `1`.
    *
-   * @throws When `min` is greater than `max`.
-   * @throws When there are no suitable integers between `min` and `max`.
-   * @throws When `multipleOf` is not a positive integer.
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When there are no suitable integers between `min` and `max`.
+   * @throws {FakerError} When `multipleOf` is not a positive integer.
    *
    * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
    *
@@ -96,8 +96,7 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    // @ts-expect-error: access private member field
-    const randomizer = this.faker._randomizer;
+    const { randomizer } = this.faker.fakerCore;
     const real = randomizer.next();
     const delta = effectiveMax - effectiveMin + 1; // +1 for inclusive max bounds and even distribution
     return Math.floor(real * delta + effectiveMin) * multipleOf;
@@ -112,10 +111,10 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.multipleOf The generated number will be a multiple of this parameter. Only one of `multipleOf` or `fractionDigits` should be passed.
    * @param options.fractionDigits The maximum number of digits to appear after the decimal point, for example `2` will round to 2 decimal points.  Only one of `multipleOf` or `fractionDigits` should be passed.
    *
-   * @throws When `min` is greater than `max`.
-   * @throws When `multipleOf` is negative.
-   * @throws When `fractionDigits` is negative.
-   * @throws When `fractionDigits` and `multipleOf` is passed in the same options object.
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When `multipleOf` is not a positive number.
+   * @throws {FakerError} When `fractionDigits` is negative.
+   * @throws {FakerError} When `fractionDigits` and `multipleOf` is passed in the same options object.
    *
    * @example
    * faker.number.float() // 0.5688541042618454
@@ -170,10 +169,6 @@ export class NumberModule extends SimpleModuleBase {
       multipleOf = fractionDigits == null ? undefined : 10 ** -fractionDigits,
     } = options;
 
-    if (max === min) {
-      return min;
-    }
-
     if (max < min) {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
@@ -214,8 +209,7 @@ export class NumberModule extends SimpleModuleBase {
       return int / factor;
     }
 
-    // @ts-expect-error: access private member field
-    const randomizer = this.faker._randomizer;
+    const { randomizer } = this.faker.fakerCore;
     const real = randomizer.next();
     return real * (max - min) + min;
   }
@@ -228,8 +222,8 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `1`.
    *
-   * @throws When `min` is greater than `max`.
-   * @throws When there are no integers between `min` and `max`.
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When there are no integers between `min` and `max`.
    *
    * @see faker.string.binary(): For generating a `binary string` with a given length (range).
    *
@@ -278,8 +272,8 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `7`.
    *
-   * @throws When `min` is greater than `max`.
-   * @throws When there are no integers between `min` and `max`.
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When there are no integers between `min` and `max`.
    *
    * @see faker.string.octal(): For generating an `octal string` with a given length (range).
    *
@@ -328,8 +322,8 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `15`.
    *
-   * @throws When `min` is greater than `max`.
-   * @throws When there are no integers between `min` and `max`.
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When there are no integers between `min` and `max`.
    *
    * @example
    * faker.number.hex() // 'b'
@@ -375,14 +369,18 @@ export class NumberModule extends SimpleModuleBase {
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
+   * @param options.multipleOf The generated bigint will be a multiple of this parameter. Defaults to `1n`.
    *
-   * @throws When `min` is greater than `max`.
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When there are no suitable bigint between `min` and `max`.
+   * @throws {FakerError} When `multipleOf` is not a positive bigint.
    *
    * @example
    * faker.number.bigInt() // 55422n
    * faker.number.bigInt(100n) // 52n
    * faker.number.bigInt({ min: 1000000n }) // 431433n
    * faker.number.bigInt({ max: 100n }) // 42n
+   * faker.number.bigInt({ multipleOf: 7n }) // 35n
    * faker.number.bigInt({ min: 10n, max: 100n }) // 36n
    *
    * @since 8.0.0
@@ -406,6 +404,12 @@ export class NumberModule extends SimpleModuleBase {
            * @default min + 999999999999999n
            */
           max?: bigint | number | string | boolean;
+          /**
+           * The generated bigint will be a multiple of this parameter.
+           *
+           * @default 1n
+           */
+          multipleOf?: bigint | number | string | boolean;
         } = {}
   ): bigint {
     if (
@@ -421,26 +425,128 @@ export class NumberModule extends SimpleModuleBase {
 
     const min = BigInt(options.min ?? 0);
     const max = BigInt(options.max ?? min + BigInt(999999999999999));
-
-    if (max === min) {
-      return min;
-    }
+    const multipleOf = BigInt(options.multipleOf ?? 1);
 
     if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
+      throw new FakerError(`Max ${max} should be larger than min ${min}.`);
     }
 
-    const delta = max - min;
+    if (multipleOf <= BigInt(0)) {
+      throw new FakerError(`multipleOf should be greater than 0.`);
+    }
 
+    const effectiveMin = min / multipleOf + (min % multipleOf > 0n ? 1n : 0n); // Math.ceil(min / multipleOf)
+    const effectiveMax = max / multipleOf - (max % multipleOf < 0n ? 1n : 0n); // Math.floor(max / multipleOf)
+
+    if (effectiveMin === effectiveMax) {
+      return effectiveMin * multipleOf;
+    }
+
+    if (effectiveMax < effectiveMin) {
+      throw new FakerError(
+        `No suitable bigint value between ${min} and ${max} found.`
+      );
+    }
+
+    const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
     const offset =
       BigInt(
         this.faker.string.numeric({
           length: delta.toString(10).length,
           allowLeadingZeros: true,
         })
-      ) %
-      (delta + BigInt(1));
+      ) % delta;
+    return (effectiveMin + offset) * multipleOf;
+  }
 
-    return min + offset;
+  /**
+   * Returns a roman numeral in String format.
+   * The bounds are inclusive.
+   *
+   * @param options Maximum value or options object.
+   * @param options.min Lower bound for generated roman numerals. Defaults to `1`.
+   * @param options.max Upper bound for generated roman numerals. Defaults to `3999`.
+   *
+   * @throws {FakerError} When `min` is greater than `max`.
+   * @throws {FakerError} When `min`, `max` is not a number.
+   * @throws {FakerError} When `min` is less than `1`.
+   * @throws {FakerError} When `max` is greater than `3999`.
+   *
+   * @example
+   * faker.number.romanNumeral() // "CMXCIII"
+   * faker.number.romanNumeral(5) // "III"
+   * faker.number.romanNumeral({ min: 10 }) // "XCIX"
+   * faker.number.romanNumeral({ max: 20 }) // "XVII"
+   * faker.number.romanNumeral({ min: 5, max: 10 }) // "VII"
+   *
+   * @since 9.2.0
+   */
+  romanNumeral(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 1
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 3999
+           */
+          max?: number;
+        } = {}
+  ): string {
+    const DEFAULT_MIN = 1;
+    const DEFAULT_MAX = 3999;
+
+    if (typeof options === 'number') {
+      options = {
+        max: options,
+      };
+    }
+
+    const { min = DEFAULT_MIN, max = DEFAULT_MAX } = options;
+
+    if (min < DEFAULT_MIN) {
+      throw new FakerError(
+        `Min value ${min} should be ${DEFAULT_MIN} or greater.`
+      );
+    }
+
+    if (max > DEFAULT_MAX) {
+      throw new FakerError(
+        `Max value ${max} should be ${DEFAULT_MAX} or less.`
+      );
+    }
+
+    let num = this.int({ min, max });
+
+    const lookup: Array<[string, number]> = [
+      ['M', 1000],
+      ['CM', 900],
+      ['D', 500],
+      ['CD', 400],
+      ['C', 100],
+      ['XC', 90],
+      ['L', 50],
+      ['XL', 40],
+      ['X', 10],
+      ['IX', 9],
+      ['V', 5],
+      ['IV', 4],
+      ['I', 1],
+    ];
+
+    let result = '';
+
+    for (const [k, v] of lookup) {
+      result += k.repeat(Math.floor(num / v));
+      num %= v;
+    }
+
+    return result;
   }
 }

@@ -10,5 +10,5 @@ export type LoremDefinition = LocaleEntry<{
   /**
    * Lorem words used to generate dummy texts.
    */
-  words: string[];
+  word: string[];
 }>;

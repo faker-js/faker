@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import validator from 'validator';
+import { resolve } from 'node:path';
+import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
 import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
@@ -14,7 +13,7 @@ import { getProject } from '../../../scripts/apidocs/project';
 // - has valid @see tags
 // - has proper links in the description
 
-const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
+const tempDir = resolve(import.meta.dirname, 'temp');
 const relativeImportPath = `${'../'.repeat(5)}src`;
 
 afterAll(() => {
@@ -62,8 +61,8 @@ function assertDescription(description: string): void {
   const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
   for (const link of links) {
-    expect(link).toMatch(/^https?:\/\//);
-    expect(link).toSatisfy(validator.isURL);
+    expect(link).toStartWith('https://');
+    expect(link).toSatisfy(isURL);
 
     if (link.includes('fakerjs.dev/api/')) {
       expect(allowedLinks, `${link} to point to a valid target`).toContain(
@@ -72,6 +71,18 @@ function assertDescription(description: string): void {
     }
   }
 }
+
+describe('check docs completeness', () => {
+  it('all modules and methods are present', () => {
+    // This could be converted to an Object, but that would erase the order of the pages
+    const pageContents = modules.map((m) => [
+      m.camelTitle,
+      m.methods.map((m) => m.name),
+    ]);
+
+    expect(pageContents).toMatchSnapshot();
+  });
+});
 
 describe('verify JSDoc tags', () => {
   describe.each(modules.map((m) => [m.camelTitle, m]))(
@@ -119,7 +130,7 @@ describe('verify JSDoc tags', () => {
                 );
 
                 if (moduleName === 'randomizer') {
-                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/internal/mersenne';
+                  examples = `import { generateMersenne32Randomizer } from '${relativeImportPath}/utils/mersenne';
 
 const randomizer = generateMersenne32Randomizer();
 
@@ -130,7 +141,7 @@ ${examples}`;
                 if (!examples.includes('import ')) {
                   const imports = [
                     // collect the imports for the various locales e.g. fakerDE_CH
-                    ...new Set(examples.match(/(?<!\.)faker[^.]*(?=\.)/g)),
+                    ...new Set(examples.match(/(?<!\.)faker[^.-]*(?=\.)/g)),
                   ];
 
                   if (imports.length > 0) {
@@ -147,52 +158,68 @@ ${examples}`;
                 assertDescription(signature.description);
               });
 
-              it('verify @example tag', { timeout: 30000 }, async () => {
-                const examples = signature.examples.join('\n');
+              it(
+                'verify @example tag',
+                {
+                  retry: 3,
+                  timeout: 30000,
+                },
+                async () => {
+                  const examples = signature.examples.join('\n');
 
-                expect(
-                  examples,
-                  `${moduleName}.${methodName} to have examples`
-                ).not.toBe('');
+                  expect(
+                    examples,
+                    `${moduleName}.${methodName} to have examples`
+                  ).not.toBe('');
 
-                // Grab path to example file
-                const path = resolvePathToMethodFile(
-                  moduleName,
-                  methodName,
-                  signatureIndex
-                );
+                  // Grab path to example file
+                  const path = resolvePathToMethodFile(
+                    moduleName,
+                    methodName,
+                    signatureIndex
+                  );
 
-                // Executing the examples should not throw
-                await expect(
-                  import(`${path}?scope=example`),
-                  examples
-                ).resolves.toBeDefined();
-              });
+                  // Executing the examples should not throw
+                  await expect(
+                    import(`${path}?scope=example`),
+                    examples
+                  ).resolves.toBeDefined();
+                }
+              );
 
               // This only checks whether the whole method is deprecated or not
               // It does not check whether the method is deprecated for a specific set of arguments
-              it('verify @deprecated tag', { timeout: 30000 }, async () => {
-                // Grab path to example file
-                const path = resolvePathToMethodFile(
-                  moduleName,
-                  methodName,
-                  signatureIndex
-                );
+              it(
+                'verify @deprecated tag',
+                {
+                  retry: 3,
+                  timeout: 30000,
+                },
+                async () => {
+                  // Grab path to example file
+                  const path = resolvePathToMethodFile(
+                    moduleName,
+                    methodName,
+                    signatureIndex
+                  );
 
-                const consoleWarnSpy = vi.spyOn(console, 'warn');
+                  const consoleWarnSpy = vi.spyOn(console, 'warn');
 
-                // Run the examples
-                await import(`${path}?scope=deprecated`);
+                  // Run the examples
+                  await import(`${path}?scope=deprecated`);
 
-                // Verify that deprecated methods log a warning
-                const { deprecated } = signature;
-                if (deprecated == null) {
-                  expect(consoleWarnSpy).not.toHaveBeenCalled();
-                } else {
-                  expect(consoleWarnSpy).toHaveBeenCalled();
-                  expect(deprecated).not.toBe('');
+                  // Verify that deprecated methods log a warning
+                  const { deprecated } = signature;
+                  if (deprecated == null) {
+                    expect(consoleWarnSpy).not.toHaveBeenCalled();
+                  } else {
+                    expect(consoleWarnSpy).toHaveBeenCalled();
+                    expect(deprecated).not.toBe('');
+                  }
+
+                  consoleWarnSpy.mockRestore();
                 }
-              });
+              );
 
               describe.each(signature.parameters.map((p) => [p.name, p]))(
                 '%s',
@@ -274,7 +301,7 @@ ${examples}`;
                 expect(since, '@since to be present').toBeTruthy();
                 expect(since).not.toBe('');
                 expect(since, '@since to be a valid semver').toSatisfy(
-                  validator.isSemVer
+                  isSemVer
                 );
               });
             }

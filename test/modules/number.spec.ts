@@ -1,9 +1,17 @@
-import validator from 'validator';
-import { describe, expect, it } from 'vitest';
+import { isHexadecimal, isOctal } from 'validator';
+import { describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
-import { MERSENNE_MAX_VALUE } from '../internal/mersenne-test-utils';
 import { seededTests } from '../support/seeded-runs';
+import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 import { times } from './../support/times';
+
+function isFloat(value: number): boolean {
+  return value % 1 !== 0;
+}
+
+function isBinary(str: string): boolean {
+  return [...str].every((char) => char === '0' || char === '1');
+}
 
 describe('number', () => {
   seededTests(faker, 'number', (t) => {
@@ -42,10 +50,21 @@ describe('number', () => {
         .it('with boolean value', true)
         .it('with bigint value', 123n)
         .it('with options', { min: -42, max: 69 })
+        .it('with multipleOf', { multipleOf: 7919n })
         .it('with big options', {
           min: 6135715171537515454317351n,
           max: 32465761264574654845432354n,
         });
+    });
+
+    t.describe('romanNumeral', (t) => {
+      t.it('noArgs')
+        .it('with number value', 1000)
+        .it('with only min', { min: 5 })
+        .it('with only max', { max: 165 })
+        .it('with min as 1', { min: 1 })
+        .it('with max as 3999', { max: 3999 })
+        .it('with min and max', { min: 100, max: 502 });
     });
   });
 
@@ -82,7 +101,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([20, 30]);
       });
 
@@ -97,7 +116,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([10, 20, 30, 40, 50]);
       });
 
@@ -134,6 +153,18 @@ describe('number', () => {
 
         expect(() => faker.number.int(input)).toThrow(
           new FakerError('No suitable integer value between 11 and 19 found.')
+        );
+      });
+
+      it('throws for impossible multipleOf where min=max', () => {
+        const input = {
+          min: 11,
+          max: 11,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.int(input)).toThrow(
+          new FakerError('No suitable integer value between 11 and 11 found.')
         );
       });
 
@@ -249,10 +280,6 @@ describe('number', () => {
     });
 
     describe('float', () => {
-      function isFloat(value: number) {
-        return value % 1 !== 0;
-      }
-
       it('should return a float between 0 and 1 (inclusive) by default', () => {
         const actual = faker.number.float();
 
@@ -320,7 +347,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
@@ -376,6 +403,32 @@ describe('number', () => {
         );
       });
 
+      it('throws for impossible multipleOf', () => {
+        const input = {
+          min: 11,
+          max: 19,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError(
+            'No suitable integer value between 1.1 and 1.9000000000000001 found.'
+          )
+        );
+      });
+
+      it('throws for impossible multipleOf where min=max', () => {
+        const input = {
+          min: 11,
+          max: 11,
+          multipleOf: 10,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError('No suitable integer value between 1.1 and 1.1 found.')
+        );
+      });
+
       it('should not modify the input object', () => {
         expect(() =>
           faker.number.float(Object.freeze({ min: 1, max: 2 }))
@@ -395,10 +448,6 @@ describe('number', () => {
     });
 
     describe('binary', () => {
-      function isBinary(str: string) {
-        return [...str].every((char) => char === '0' || char === '1');
-      }
-
       it('generates single binary character when no additional argument was provided', () => {
         const binary = faker.number.binary();
 
@@ -454,7 +503,7 @@ describe('number', () => {
         const octal = faker.number.octal();
 
         expect(octal).toBeTypeOf('string');
-        expect(octal).toSatisfy(validator.isOctal);
+        expect(octal).toSatisfy(isOctal);
 
         expect(octal).toHaveLength(1);
       });
@@ -463,7 +512,7 @@ describe('number', () => {
         const octal = faker.number.octal(5);
 
         expect(octal).toBeTypeOf('string');
-        expect(octal).toSatisfy(validator.isOctal);
+        expect(octal).toSatisfy(isOctal);
 
         const octalNum = Number.parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(5);
@@ -473,7 +522,7 @@ describe('number', () => {
         const octal = faker.number.octal({ min: 15, max: 255 });
 
         expect(octal).toBeTypeOf('string');
-        expect(octal).toSatisfy(validator.isOctal);
+        expect(octal).toSatisfy(isOctal);
 
         const octalNum = Number.parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(255);
@@ -505,7 +554,7 @@ describe('number', () => {
         const hex = faker.number.hex();
 
         expect(hex).toBeTypeOf('string');
-        expect(hex).toSatisfy(validator.isHexadecimal);
+        expect(hex).toSatisfy(isHexadecimal);
 
         expect(hex).toHaveLength(1);
       });
@@ -514,14 +563,14 @@ describe('number', () => {
         const hex = faker.number.hex(5);
 
         expect(hex).toBeTypeOf('string');
-        expect(hex).toSatisfy(validator.isHexadecimal);
+        expect(hex).toSatisfy(isHexadecimal);
       });
 
       it('generates a random hex in a specific range', () => {
         const hex = faker.number.hex({ min: 15, max: 255 });
 
         expect(hex).toBeTypeOf('string');
-        expect(hex).toSatisfy(validator.isHexadecimal);
+        expect(hex).toSatisfy(isHexadecimal);
 
         const hexNum = Number.parseInt(hex, 16);
         expect(hexNum).toBeLessThanOrEqual(255);
@@ -621,16 +670,211 @@ describe('number', () => {
         expect(() => {
           faker.number.bigInt({ min, max });
         }).toThrow(
-          new FakerError(`Max ${max} should be larger then min ${min}.`)
+          new FakerError(`Max ${max} should be larger than min ${min}.`)
         );
+      });
+
+      it('should generate a random bigint with a given multipleOf of 1n', () => {
+        const generateBigInt = faker.number.bigInt({ multipleOf: 1n });
+        expect(generateBigInt).toBeTypeOf('bigint');
+      });
+
+      it('should generate a random bigint with a given multipleOf of 7919n', () => {
+        const generateBigInt = faker.number.bigInt({ multipleOf: 7919n });
+        expect(generateBigInt).toBeTypeOf('bigint');
+        expect(generateBigInt % 7919n).toBe(0n);
+      });
+
+      it('should generate a random bigint with a given max value less than multipleOf', () => {
+        const generatedBigInt = faker.number.bigInt({
+          max: 10n,
+          multipleOf: 20n,
+        });
+        expect(generatedBigInt).toBeTypeOf('bigint');
+        expect(generatedBigInt % 20n).toBe(0n);
+      });
+
+      it('should generate a suitable bigint value between negative min and max', () => {
+        const generateBigInt = faker.number.bigInt({
+          min: -9,
+          max: 0,
+          multipleOf: 5,
+        });
+        expect(generateBigInt).toBeTypeOf('bigint');
+        expect(generateBigInt % 5n).toBe(0n);
+      });
+
+      it('should generate a suitable bigint value between negative min and negative max', () => {
+        const generateBigInt = faker.number.bigInt({
+          min: -9,
+          max: -1,
+          multipleOf: 5,
+        });
+        expect(generateBigInt).toBeTypeOf('bigint');
+        expect(generateBigInt).toBe(-5n);
+      });
+
+      it('should generate a suitable bigint value between negative min and negative max (edge case)', () => {
+        const generateBigInt = faker.number.bigInt({
+          min: -9,
+          max: -1,
+          multipleOf: 9,
+        });
+        expect(generateBigInt).toBeTypeOf('bigint');
+        expect(generateBigInt).toBe(-9n);
+      });
+
+      it('should return inclusive positive min/max value', () => {
+        const positive4 = 4n;
+        const positive5 = 5n;
+        let foundPositive4 = false;
+        let foundPositive5 = false;
+
+        for (let iter = 0; iter < 1000; iter++) {
+          const actual = faker.number.bigInt({
+            min: positive4,
+            max: positive5,
+          });
+
+          if (actual === positive4) {
+            foundPositive4 = true;
+          } else if (actual === positive5) {
+            foundPositive5 = true;
+          }
+
+          expect(actual).toBeTypeOf('bigint');
+          expect(actual).toBeGreaterThanOrEqual(positive4);
+          expect(actual).toBeLessThanOrEqual(positive5);
+
+          if (foundPositive4 && foundPositive5) {
+            break;
+          }
+        }
+
+        expect(foundPositive4).toBeTruthy();
+        expect(foundPositive5).toBeTruthy();
+      });
+
+      it('should return inclusive negative min/max value', () => {
+        const negative4 = -4n;
+        const negative5 = -5n;
+        let foundNegative4 = false;
+        let foundNegative5 = false;
+
+        for (let iter = 0; iter < 1000; iter++) {
+          const actual = faker.number.bigInt({
+            min: negative5,
+            max: negative4,
+          });
+
+          if (actual === negative4) {
+            foundNegative4 = true;
+          } else if (actual === negative5) {
+            foundNegative5 = true;
+          }
+
+          expect(actual).toBeTypeOf('bigint');
+          expect(actual).toBeGreaterThanOrEqual(negative5);
+          expect(actual).toBeLessThanOrEqual(negative4);
+
+          if (foundNegative4 && foundNegative5) {
+            break;
+          }
+        }
+
+        expect(foundNegative4).toBeTruthy();
+        expect(foundNegative5).toBeTruthy();
+      });
+
+      it('should throw for non-positive multipleOf', () => {
+        expect(() => faker.number.bigInt({ multipleOf: 0n })).toThrow(
+          new FakerError('multipleOf should be greater than 0.')
+        );
+      });
+
+      it('should throw if there is no suitable bigint value between min and max', () => {
+        expect(() =>
+          faker.number.bigInt({ min: 6, max: 9, multipleOf: 5 })
+        ).toThrow(
+          new FakerError('No suitable bigint value between 6 and 9 found.')
+        );
+      });
+
+      it('should throw if there is no suitable bigint value between same min and max', () => {
+        expect(() =>
+          faker.number.bigInt({ min: 1, max: 1, multipleOf: 5 })
+        ).toThrow(
+          new FakerError('No suitable bigint value between 1 and 1 found.')
+        );
+      });
+    });
+
+    describe('romanNumeral', () => {
+      it('should generate a Roman numeral within default range', () => {
+        const roman = faker.number.romanNumeral();
+        expect(roman).toBeTypeOf('string');
+        expect(roman).toMatch(/^[IVXLCDM]+$/);
+      });
+
+      it('should generate a Roman numeral with max value of 1000', () => {
+        const roman = faker.number.romanNumeral(1000);
+        expect(roman).toMatch(/^[IVXLCDM]+$/);
+      });
+
+      it.each(
+        Object.entries({
+          I: 1,
+          IV: 4,
+          IX: 9,
+          X: 10,
+          XXVII: 27,
+          XC: 90,
+          XCIX: 99,
+          CCLXIII: 263,
+          DXXXVI: 536,
+          DCCXIX: 719,
+          MDCCCLI: 1851,
+          MDCCCXCII: 1892,
+          MMCLXXXIII: 2183,
+          MMCMXLIII: 2943,
+          MMMDCCLXVI: 3766,
+          MMMDCCLXXIV: 3774,
+          MMMCMXCIX: 3999,
+        })
+      )(
+        'should generate a Roman numeral %s for value %d',
+        (expected: string, value: number) => {
+          const mock = vi.spyOn(faker.number, 'int');
+          mock.mockReturnValue(value);
+          const actual = faker.number.romanNumeral();
+          mock.mockRestore();
+          expect(actual).toBe(expected);
+        }
+      );
+
+      it('should throw when min value is less than 1', () => {
+        expect(() => {
+          faker.number.romanNumeral({ min: 0 });
+        }).toThrow(new FakerError('Min value 0 should be 1 or greater.'));
+      });
+
+      it('should throw when max value is greater than 3999', () => {
+        expect(() => {
+          faker.number.romanNumeral({ max: 4000 });
+        }).toThrow(new FakerError('Max value 4000 should be 3999 or less.'));
+      });
+
+      it('should throw when max value is less than min value', () => {
+        expect(() => {
+          faker.number.romanNumeral({ min: 500, max: 100 });
+        }).toThrow(new FakerError('Max 100 should be greater than min 500.'));
       });
     });
   });
 
   describe('value range tests', () => {
     const customFaker = new SimpleFaker();
-    // @ts-expect-error: access private member field
-    const randomizer = customFaker._randomizer;
+    const { randomizer } = customFaker.fakerCore;
     describe('int', () => {
       it('should be able to return 0', () => {
         randomizer.next = () => 0;
@@ -638,8 +882,7 @@ describe('number', () => {
         expect(actual).toBe(0);
       });
 
-      // TODO @ST-DDT 2023-10-12: This requires a randomizer with 53 bits of precision
-      it.todo('should be able to return MAX_SAFE_INTEGER', () => {
+      it('should be able to return MAX_SAFE_INTEGER', () => {
         randomizer.next = () => MERSENNE_MAX_VALUE;
         const actual = customFaker.number.int();
         expect(actual).toBe(Number.MAX_SAFE_INTEGER);

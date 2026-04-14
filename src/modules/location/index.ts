@@ -1,5 +1,198 @@
+import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { ModuleBase } from '../../internal/module-base';
+import { SimpleModuleBase } from '../../internal/module-base';
+
+/**
+ * Represents a language with its full name, 2 character ISO 639-1 code, and 3 character ISO 639-2 code.
+ */
+export interface Language {
+  /**
+   * The full name for the language (e.g. `English`).
+   */
+  name: string;
+
+  /**
+   * The 2 character [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) code.
+   */
+  alpha2: string;
+
+  /**
+   * The 3 character [ISO 639-2](https://en.wikipedia.org/wiki/ISO_639-2) code.
+   */
+  alpha3: string;
+}
+
+/**
+ * Module with location functions that don't require localized data
+ */
+export class SimpleLocationModule extends SimpleModuleBase {
+  /**
+   * Generates a random latitude.
+   *
+   * @param options An options object.
+   * @param options.max The upper bound for the latitude to generate. Defaults to `90`.
+   * @param options.min The lower bound for the latitude to generate. Defaults to `-90`.
+   * @param options.precision The number of decimal points of precision for the latitude. Defaults to `4`.
+   *
+   * @example
+   * faker.location.latitude() // -30.9501
+   * faker.location.latitude({ max: 10 }) // 5.7225
+   * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
+   * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
+   *
+   * @since 8.0.0
+   */
+  latitude(
+    options: {
+      /**
+       * The upper bound for the latitude to generate.
+       *
+       * @default 90
+       */
+      max?: number;
+      /**
+       * The lower bound for the latitude to generate.
+       *
+       * @default -90
+       */
+      min?: number;
+      /**
+       * The number of decimal points of precision for the latitude.
+       *
+       * @default 4
+       */
+      precision?: number;
+    } = {}
+  ): number {
+    const { max = 90, min = -90, precision = 4 } = options;
+
+    return this.faker.number.float({ min, max, fractionDigits: precision });
+  }
+
+  /**
+   * Generates a random longitude.
+   *
+   * @param options An options object.
+   * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
+   * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
+   * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
+   *
+   * @example
+   * faker.location.longitude() // -30.9501
+   * faker.location.longitude({ max: 10 }) // 5.7225
+   * faker.location.longitude({ max: 10, min: -10 }) // -9.6273
+   * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // 2.68452
+   *
+   * @since 8.0.0
+   */
+  longitude(
+    options: {
+      /**
+       * The upper bound for the longitude to generate.
+       *
+       * @default 180
+       */
+      max?: number;
+      /**
+       * The lower bound for the longitude to generate.
+       *
+       * @default -180
+       */
+      min?: number;
+      /**
+       * The number of decimal points of precision for the longitude.
+       *
+       * @default 4
+       */
+      precision?: number;
+    } = {}
+  ): number {
+    const { max = 180, min = -180, precision = 4 } = options;
+
+    return this.faker.number.float({ max, min, fractionDigits: precision });
+  }
+
+  /**
+   * Generates a random GPS coordinate within the specified radius from the given coordinate.
+   *
+   * @param options The options for generating a GPS coordinate.
+   * @param options.origin The original coordinate to get a new coordinate close to.
+   * If no coordinate is given, a random one will be chosen.
+   * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
+   * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
+   *
+   * @example
+   * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.location.nearbyGPSCoordinate({ origin: [33, -170] }) // [ 33.0165, -170.0636 ]
+   * faker.location.nearbyGPSCoordinate({ origin: [33, -170], radius: 1000, isMetric: true }) // [ 37.9163, -179.2408 ]
+   *
+   * @since 8.0.0
+   */
+  nearbyGPSCoordinate(
+    options: {
+      /**
+       * The original coordinate to get a new coordinate close to.
+       */
+      origin?: [latitude: number, longitude: number];
+      /**
+       * The maximum distance from the given coordinate to the new coordinate.
+       *
+       * @default 10
+       */
+      radius?: number;
+      /**
+       * If `true` assume the radius to be in kilometers. If `false` for miles.
+       *
+       * @default false
+       */
+      isMetric?: boolean;
+    } = {}
+  ): [latitude: number, longitude: number] {
+    const { origin, radius = 10, isMetric = false } = options;
+
+    // If there is no origin, the best we can do is return a random GPS coordinate.
+    if (origin == null) {
+      return [this.latitude(), this.longitude()];
+    }
+
+    const angleRadians = this.faker.number.float({
+      max: 2 * Math.PI,
+      fractionDigits: 5,
+    }); // in ° radians
+
+    const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
+    const errorCorrection = 0.995; // avoid float issues
+    const distanceInKm =
+      this.faker.number.float({
+        max: radiusMetric,
+        fractionDigits: 3,
+      }) * errorCorrection; // in km
+
+    /**
+     * The distance in km per degree for earth.
+     */
+    const kmPerDegree = 40_000 / 360; // in km/°
+
+    const distanceInDegree = distanceInKm / kmPerDegree; // in °
+
+    const coordinate: [latitude: number, longitude: number] = [
+      origin[0] + Math.sin(angleRadians) * distanceInDegree,
+      origin[1] + Math.cos(angleRadians) * distanceInDegree,
+    ];
+
+    // Box latitude [-90°, 90°]
+    coordinate[0] = coordinate[0] % 180;
+    if (coordinate[0] < -90 || coordinate[0] > 90) {
+      coordinate[0] = Math.sign(coordinate[0]) * 180 - coordinate[0];
+      coordinate[1] += 180;
+    }
+
+    // Box longitude [-180°, 180°]
+    coordinate[1] = (((coordinate[1] % 360) + 540) % 360) - 180;
+
+    return [coordinate[0], coordinate[1]];
+  }
+}
 
 /**
  * Module to generate addresses and locations. Prior to Faker 8.0.0, this module was known as `faker.address`.
@@ -12,7 +205,11 @@ import { ModuleBase } from '../../internal/module-base';
  *
  * For a random country, you can use [`country()`](https://fakerjs.dev/api/location.html#country) or [`countryCode()`](https://fakerjs.dev/api/location.html#countrycode).
  */
-export class LocationModule extends ModuleBase {
+export class LocationModule extends SimpleLocationModule {
+  constructor(protected readonly faker: Faker) {
+    super(faker);
+  }
+
   /**
    * Generates random zip code from specified format. If format is not specified,
    * the locale's zip format is used.
@@ -58,15 +255,17 @@ export class LocationModule extends ModuleBase {
 
     const { state } = options;
 
-    if (state) {
-      const zipPattern: string =
+    if (state != null) {
+      const zipPattern =
         this.faker.definitions.location.postcode_by_state[state];
 
-      if (zipPattern) {
-        return this.faker.helpers.fake(zipPattern);
+      if (zipPattern == null) {
+        throw new FakerError(
+          `No zip code definition found for state "${state}"`
+        );
       }
 
-      throw new FakerError(`No zip code definition found for state "${state}"`);
+      return this.faker.helpers.fake(zipPattern);
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
@@ -166,6 +365,38 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
+   * Generates a random localized full postal address, which may include a street address, secondary address, city, state, and zip code. To ensure you get locale-specific address formats, use a localized Faker instance.
+   *
+   * @example
+   * faker.location.postalAddress()
+   * // 'Apt. 980
+   * // 0917 O'Conner Estates
+   * // West Shannonview
+   * // Michigan
+   * // 82180'
+   *
+   * fakerEN_US.location.postalAddress()
+   * // '0917 O'Conner Estates, Apt. 980
+   * // West Shannonview, MI 82180'
+   *
+   * fakerEN_GB.location.postalAddress()
+   * // '79 Bogan Corner
+   * // Castle Zemlakborough
+   * // Dumfries and Galloway
+   * // ZH17 2SD'
+   *
+   * fakerZH_CN.location.postalAddress()
+   * // '广东省贵原市门路19号'
+   *
+   * @since 10.5.0
+   */
+  postalAddress(): string {
+    return this.faker.helpers.fake(
+      this.faker.definitions.location.postal_address
+    );
+  }
+
+  /**
    * Generates a random localized secondary address. This refers to a specific location at a given address
    * such as an apartment or room number.
    *
@@ -211,6 +442,20 @@ export class LocationModule extends ModuleBase {
   country(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.country
+    );
+  }
+
+  /**
+   * Returns a random continent name.
+   *
+   * @example
+   * faker.location.continent() // 'Asia'
+   *
+   * @since 9.1.0
+   */
+  continent(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.location.continent
     );
   }
 
@@ -312,92 +557,6 @@ export class LocationModule extends ModuleBase {
       : this.faker.definitions.location.state;
 
     return this.faker.helpers.arrayElement(stateDataSet);
-  }
-
-  /**
-   * Generates a random latitude.
-   *
-   * @param options An options object.
-   * @param options.max The upper bound for the latitude to generate. Defaults to `90`.
-   * @param options.min The lower bound for the latitude to generate. Defaults to `-90`.
-   * @param options.precision The number of decimal points of precision for the latitude. Defaults to `4`.
-   *
-   * @example
-   * faker.location.latitude() // -30.9501
-   * faker.location.latitude({ max: 10 }) // 5.7225
-   * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
-   * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
-   *
-   * @since 8.0.0
-   */
-  latitude(
-    options: {
-      /**
-       * The upper bound for the latitude to generate.
-       *
-       * @default 90
-       */
-      max?: number;
-      /**
-       * The lower bound for the latitude to generate.
-       *
-       * @default -90
-       */
-      min?: number;
-      /**
-       * The number of decimal points of precision for the latitude.
-       *
-       * @default 4
-       */
-      precision?: number;
-    } = {}
-  ): number {
-    const { max = 90, min = -90, precision = 4 } = options;
-
-    return this.faker.number.float({ min, max, fractionDigits: precision });
-  }
-
-  /**
-   * Generates a random longitude.
-   *
-   * @param options An options object.
-   * @param options.max The upper bound for the longitude to generate. Defaults to `180`.
-   * @param options.min The lower bound for the longitude to generate. Defaults to `-180`.
-   * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
-   *
-   * @example
-   * faker.location.longitude() // -30.9501
-   * faker.location.longitude({ max: 10 }) // 5.7225
-   * faker.location.longitude({ max: 10, min: -10 }) // -9.6273
-   * faker.location.longitude({ max: 10, min: -10, precision: 5 }) // 2.68452
-   *
-   * @since 8.0.0
-   */
-  longitude(
-    options: {
-      /**
-       * The upper bound for the longitude to generate.
-       *
-       * @default 180
-       */
-      max?: number;
-      /**
-       * The lower bound for the longitude to generate.
-       *
-       * @default -180
-       */
-      min?: number;
-      /**
-       * The number of decimal points of precision for the longitude.
-       *
-       * @default 4
-       */
-      precision?: number;
-    } = {}
-  ): number {
-    const { max = 180, min = -180, precision = 4 } = options;
-
-    return this.faker.number.float({ max, min, fractionDigits: precision });
   }
 
   /**
@@ -514,89 +673,12 @@ export class LocationModule extends ModuleBase {
   }
 
   /**
-   * Generates a random GPS coordinate within the specified radius from the given coordinate.
+   * Returns a random IANA time zone relevant to this locale.
    *
-   * @param options The options for generating a GPS coordinate.
-   * @param options.origin The original coordinate to get a new coordinate close to.
-   * If no coordinate is given, a random one will be chosen.
-   * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
-   * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
+   * The returned time zone is tied to the current locale.
    *
-   * @example
-   * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
-   * faker.location.nearbyGPSCoordinate({ origin: [33, -170] }) // [ 33.0165, -170.0636 ]
-   * faker.location.nearbyGPSCoordinate({ origin: [33, -170], radius: 1000, isMetric: true }) // [ 37.9163, -179.2408 ]
-   *
-   * @since 8.0.0
-   */
-  nearbyGPSCoordinate(
-    options: {
-      /**
-       * The original coordinate to get a new coordinate close to.
-       */
-      origin?: [latitude: number, longitude: number];
-      /**
-       * The maximum distance from the given coordinate to the new coordinate.
-       *
-       * @default 10
-       */
-      radius?: number;
-      /**
-       * If `true` assume the radius to be in kilometers. If `false` for miles.
-       *
-       * @default false
-       */
-      isMetric?: boolean;
-    } = {}
-  ): [latitude: number, longitude: number] {
-    const { origin, radius = 10, isMetric = false } = options;
-
-    // If there is no origin, the best we can do is return a random GPS coordinate.
-    if (origin == null) {
-      return [this.latitude(), this.longitude()];
-    }
-
-    const angleRadians = this.faker.number.float({
-      max: 2 * Math.PI,
-      fractionDigits: 5,
-    }); // in ° radians
-
-    const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
-    const errorCorrection = 0.995; // avoid float issues
-    const distanceInKm =
-      this.faker.number.float({
-        max: radiusMetric,
-        fractionDigits: 3,
-      }) * errorCorrection; // in km
-
-    /**
-     * The distance in km per degree for earth.
-     */
-    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
-    const kmPerDegree = 40_000 / 360; // in km/°
-
-    const distanceInDegree = distanceInKm / kmPerDegree; // in °
-
-    const coordinate: [latitude: number, longitude: number] = [
-      origin[0] + Math.sin(angleRadians) * distanceInDegree,
-      origin[1] + Math.cos(angleRadians) * distanceInDegree,
-    ];
-
-    // Box latitude [-90°, 90°]
-    coordinate[0] = coordinate[0] % 180;
-    if (coordinate[0] < -90 || coordinate[0] > 90) {
-      coordinate[0] = Math.sign(coordinate[0]) * 180 - coordinate[0];
-      coordinate[1] += 180;
-    }
-
-    // Box longitude [-180°, 180°]
-    coordinate[1] = (((coordinate[1] % 360) + 540) % 360) - 180;
-
-    return [coordinate[0], coordinate[1]];
-  }
-
-  /**
-   * Returns a random time zone.
+   * @see [IANA Time Zone Database](https://www.iana.org/time-zones)
+   * @see faker.date.timeZone(): For generating a random time zone from all available time zones.
    *
    * @example
    * faker.location.timeZone() // 'Pacific/Guam'
@@ -606,6 +688,27 @@ export class LocationModule extends ModuleBase {
   timeZone(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.time_zone
+    );
+  }
+
+  /**
+   * Returns a random spoken language.
+   *
+   * @see [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1)
+   * @see [ISO 639-2](https://en.wikipedia.org/wiki/ISO_639-2)
+   * @see [ISO 639-2 Language Code List](https://www.loc.gov/standards/iso639-2/php/code_list.php)
+   *
+   * @example
+   * faker.location.language() // { alpha2: 'de', alpha3: 'deu', name: 'German' }
+   * faker.location.language().name // German
+   * faker.location.language().alpha2 // de
+   * faker.location.language().alpha3 // deu
+   *
+   * @since 9.4.0
+   */
+  language(): Language {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.location.language
     );
   }
 }

@@ -3,7 +3,6 @@ import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
-import './../vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -188,15 +187,6 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
-        });
-
-        it('should throw with no arguments', () => {
-          // @ts-expect-error: `arrayElement` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElement()).toThrow(
-            new FakerError(
-              'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
-            )
-          );
         });
 
         it('should throw on an empty array', () => {
@@ -468,15 +458,6 @@ describe('helpers', () => {
           }
         );
 
-        it('should throw with no arguments', () => {
-          // @ts-expect-error: `arrayElements` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElements()).toThrow(
-            new FakerError(
-              'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
-            )
-          );
-        });
-
         describe('should not throw on an array with nullish elements', () => {
           it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
             expect(() =>
@@ -561,29 +542,127 @@ describe('helpers', () => {
       });
 
       describe('fromRegExp()', () => {
-        it('deals with range repeat', () => {
-          const string = faker.helpers.fromRegExp(/#{5,10}/);
-          expect(string.length).toBeLessThanOrEqual(10);
-          expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^#{5,10}$/);
+        describe('single character patterns', () => {
+          it('handles case sensitive characters', () => {
+            const actual = faker.helpers.fromRegExp(/w/);
+            expect(actual).toHaveLength(1);
+            expect(actual).not.toContain('W');
+            expect(actual).toBe('w');
+            expect(actual).toMatch(/^w$/);
+          });
+
+          it.todo('handles case insensitive characters', () => {
+            const set = new Set<string>();
+            for (let i = 0; i < 100; i++) {
+              const actual = faker.helpers.fromRegExp(/w/i);
+              expect(actual).toHaveLength(1);
+              expect(actual).toMatch(/^W$/i);
+              set.add(actual);
+            }
+
+            expect(set.size).toBe(2);
+          });
+
+          it('handles case insensitive symbols', () => {
+            const actual = faker.helpers.fromRegExp(/%/i);
+            expect(actual).toHaveLength(1);
+            expect(actual).toBe('%');
+            expect(actual).toMatch(/^%$/i);
+          });
+
+          it.todo('handles the wildcard character', () => {
+            const set = new Set<string>();
+            for (let i = 0; i < 100; i++) {
+              const actual = faker.helpers.fromRegExp(/./);
+              expect(actual).toHaveLength(1);
+              expect(actual).toMatch(/^.$/);
+              set.add(actual);
+            }
+
+            expect(set.size).toBeGreaterThan(5);
+          });
         });
 
-        it('repeats string {n} number of times', () => {
-          expect(faker.helpers.fromRegExp('%{10}')).toBe('%'.repeat(10));
-          expect(faker.helpers.fromRegExp('%{30}')).toBe('%'.repeat(30));
-          expect(faker.helpers.fromRegExp('%{5}')).toBe('%'.repeat(5));
+        describe('fixed length patterns', () => {
+          it('handles case sensitive characters', () => {
+            const actual = faker.helpers.fromRegExp(/w{100}/);
+            expect(actual).toHaveLength(100);
+            expect(actual).not.toContain('W');
+            expect(actual).toContain('w');
+            expect(actual).toBe('w'.repeat(100));
+            expect(actual).toMatch(/^w{100}$/);
+          });
+
+          it('handles case insensitive characters', () => {
+            const actual = faker.helpers.fromRegExp(/w{100}/i);
+            expect(actual).toHaveLength(100);
+            expect(actual).toContain('W');
+            expect(actual).toContain('w');
+            expect(actual).toMatch(/^W{100}$/i);
+          });
+
+          it('handles case insensitive symbols', () => {
+            const actual = faker.helpers.fromRegExp(/%{100}/i);
+            expect(actual).toHaveLength(100);
+            expect(actual).toBe('%'.repeat(100));
+            expect(actual).toMatch(/^%{100}$/);
+          });
+
+          it('handles the wildcard character', () => {
+            const actual = faker.helpers.fromRegExp(/.{100}/);
+            expect(actual).toHaveLength(100);
+            expect(actual).toMatch(/^.{100}$/);
+            const set = new Set(actual);
+            expect(set.size).toBeGreaterThan(5);
+          });
+        });
+
+        describe('length range patterns', () => {
+          it('handles case sensitive characters', () => {
+            const actual = faker.helpers.fromRegExp(/w{5,10}/);
+            expect(actual.length).toBeGreaterThanOrEqual(5);
+            expect(actual.length).toBeLessThanOrEqual(10);
+            expect(actual).not.toContain('W');
+            expect(actual).toContain('w');
+            expect(actual).toMatch(/^w{5,10}$/);
+          });
+
+          it('handles case insensitive characters', () => {
+            const actual = faker.helpers.fromRegExp(/w{50,100}/i);
+            expect(actual.length).toBeGreaterThanOrEqual(50);
+            expect(actual.length).toBeLessThanOrEqual(100);
+            expect(actual).toContain('W');
+            expect(actual).toContain('w');
+            expect(actual).toMatch(/^W{50,100}$/i);
+          });
+
+          it('handles case insensitive symbols', () => {
+            const actual = faker.helpers.fromRegExp(/%{50,100}/i);
+            expect(actual.length).toBeGreaterThanOrEqual(50);
+            expect(actual.length).toBeLessThanOrEqual(100);
+            expect(actual).toMatch(/^%{50,100}$/);
+          });
+
+          it('handles the wildcard character', () => {
+            const actual = faker.helpers.fromRegExp(/.{50,100}/);
+            expect(actual.length).toBeGreaterThanOrEqual(50);
+            expect(actual.length).toBeLessThanOrEqual(100);
+            expect(actual).toMatch(/^.{50,100}$/);
+            const set = new Set(actual);
+            expect(set.size).toBeGreaterThan(5);
+          });
         });
 
         it('creates a numerical range', () => {
-          const string = faker.helpers.fromRegExp('Hello[0-9]');
-          expect(string).toMatch(/^Hello[0-9]$/);
+          const actual = faker.helpers.fromRegExp('Hello[0-9]');
+          expect(actual).toMatch(/^Hello[0-9]$/);
         });
 
         it('deals with multiple tokens in one string', () => {
-          const string = faker.helpers.fromRegExp(
+          const actual = faker.helpers.fromRegExp(
             'Test#{5}%{2,5}Testing*[1-5]{10}END'
           );
-          expect(string).toMatch(/^Test#{5}%{2,5}Testing*[1-5]{10}END$/);
+          expect(actual).toMatch(/^Test#{5}%{2,5}Testing*[1-5]{10}END$/);
         });
 
         it('throws error when min > max outside set', () => {
@@ -595,18 +674,20 @@ describe('helpers', () => {
         });
 
         it('deals with RegExp object', () => {
-          const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/);
-          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/);
+          const actual = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/);
+          expect(actual).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/);
         });
 
         it('doesnt include negated characters', () => {
-          const string = faker.helpers.fromRegExp(/[^a-t0-9]{4}/i);
-          expect(string).toMatch(/[^a-t0-9]{4}/);
+          const actual = faker.helpers.fromRegExp(/[^a-t0-9]{4}/i);
+          expect(actual).toHaveLength(4);
+          expect(actual).toMatch(/[^a-t0-9]{4}/);
         });
 
         it('handles case insensitive flags', () => {
-          const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
-          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
+          const actual = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
+          expect(actual).toHaveLength(9);
+          expect(actual).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
         });
       });
 
@@ -1036,25 +1117,6 @@ describe('helpers', () => {
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           delete (faker.string as any).special;
-        });
-
-        it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.state).toContain(
-            faker.helpers.fake('{{address.state}}')
-          );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.firstName}}')
-          );
-        });
-
-        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored: #893
-        it.todo('should support deprecated definition aliases', () => {
-          expect(faker.definitions.location.city_name).toContain(
-            faker.helpers.fake('{{address.city_name}}')
-          );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
-          );
         });
 
         it('should not trim whitespace', () => {

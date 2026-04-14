@@ -4,7 +4,7 @@
 
 Did you know Faker supports many different locales?  
 When using our default instance `import { faker } from '@faker-js/faker'` you get English data.
-However, we also provide pre-built instances for [more than 60 available locales](#available-locales).
+However, we also provide pre-built instances for [more than 70 available locales](#available-locales).
 
 For example, you can import the German locale:
 
@@ -48,77 +48,84 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 
 <!-- Run 'pnpm run generate:locales' to update. -->
 
-| Locale        | Name                      | Faker              |
-| :------------ | :------------------------ | :----------------- |
-| `af_ZA`       | Afrikaans (South Africa)  | `fakerAF_ZA`       |
-| `ar`          | Arabic                    | `fakerAR`          |
-| `az`          | Azerbaijani               | `fakerAZ`          |
-| `base`        | Base                      | `fakerBASE`        |
-| `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
-| `da`          | Danish                    | `fakerDA`          |
-| `de`          | German                    | `fakerDE`          |
-| `de_AT`       | German (Austria)          | `fakerDE_AT`       |
-| `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
-| `dv`          | Maldivian                 | `fakerDV`          |
-| `el`          | Greek                     | `fakerEL`          |
-| `en`          | English                   | `fakerEN`          |
-| `en_AU`       | English (Australia)       | `fakerEN_AU`       |
-| `en_AU_ocker` | English (Australia Ocker) | `fakerEN_AU_ocker` |
-| `en_BORK`     | English (Bork)            | `fakerEN_BORK`     |
-| `en_CA`       | English (Canada)          | `fakerEN_CA`       |
-| `en_GB`       | English (Great Britain)   | `fakerEN_GB`       |
-| `en_GH`       | English (Ghana)           | `fakerEN_GH`       |
-| `en_HK`       | English (Hong Kong)       | `fakerEN_HK`       |
-| `en_IE`       | English (Ireland)         | `fakerEN_IE`       |
-| `en_IN`       | English (India)           | `fakerEN_IN`       |
-| `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
-| `en_US`       | English (United States)   | `fakerEN_US`       |
-| `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
-| `eo`          | Esperanto                 | `fakerEO`          |
-| `es`          | Spanish                   | `fakerES`          |
-| `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
-| `fa`          | Farsi/Persian             | `fakerFA`          |
-| `fi`          | Finnish                   | `fakerFI`          |
-| `fr`          | French                    | `fakerFR`          |
-| `fr_BE`       | French (Belgium)          | `fakerFR_BE`       |
-| `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
-| `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
-| `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
-| `fr_SN`       | French (Senegal)          | `fakerFR_SN`       |
-| `he`          | Hebrew                    | `fakerHE`          |
-| `hr`          | Croatian                  | `fakerHR`          |
-| `hu`          | Hungarian                 | `fakerHU`          |
-| `hy`          | Armenian                  | `fakerHY`          |
-| `id_ID`       | Indonesian (Indonesia)    | `fakerID_ID`       |
-| `it`          | Italian                   | `fakerIT`          |
-| `ja`          | Japanese                  | `fakerJA`          |
-| `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
-| `ko`          | Korean                    | `fakerKO`          |
-| `lv`          | Latvian                   | `fakerLV`          |
-| `mk`          | Macedonian                | `fakerMK`          |
-| `nb_NO`       | Norwegian (Norway)        | `fakerNB_NO`       |
-| `ne`          | Nepali                    | `fakerNE`          |
-| `nl`          | Dutch                     | `fakerNL`          |
-| `nl_BE`       | Dutch (Belgium)           | `fakerNL_BE`       |
-| `pl`          | Polish                    | `fakerPL`          |
-| `pt_BR`       | Portuguese (Brazil)       | `fakerPT_BR`       |
-| `pt_PT`       | Portuguese (Portugal)     | `fakerPT_PT`       |
-| `ro`          | Romanian                  | `fakerRO`          |
-| `ro_MD`       | Romanian (Moldova)        | `fakerRO_MD`       |
-| `ru`          | Russian                   | `fakerRU`          |
-| `sk`          | Slovak                    | `fakerSK`          |
-| `sr_RS_latin` | Serbian (Serbia, Latin)   | `fakerSR_RS_latin` |
-| `sv`          | Swedish                   | `fakerSV`          |
-| `th`          | Thai                      | `fakerTH`          |
-| `tr`          | Turkish                   | `fakerTR`          |
-| `uk`          | Ukrainian                 | `fakerUK`          |
-| `ur`          | Urdu                      | `fakerUR`          |
-| `uz_UZ_latin` | Uzbek (Uzbekistan, Latin) | `fakerUZ_UZ_latin` |
-| `vi`          | Vietnamese                | `fakerVI`          |
-| `yo_NG`       | Yoruba (Nigeria)          | `fakerYO_NG`       |
-| `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
-| `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
-| `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
+| Locale                                     | Name                           | Faker               |
+| :----------------------------------------- | :----------------------------- | :------------------ |
+| [`af_ZA`](/locales/af_ZA.md)               | Afrikaans (South Africa)       | `fakerAF_ZA`        |
+| [`ar`](/locales/ar.md)                     | Arabic                         | `fakerAR`           |
+| [`az`](/locales/az.md)                     | Azerbaijani                    | `fakerAZ`           |
+| `base`                                     | Base                           | `fakerBASE`         |
+| [`bn_BD`](/locales/bn_BD.md)               | Bengali (Bangladesh)           | `fakerBN_BD`        |
+| [`cs_CZ`](/locales/cs_CZ.md)               | Czech (Czechia)                | `fakerCS_CZ`        |
+| [`cy`](/locales/cy.md)                     | Welsh                          | `fakerCY`           |
+| [`da`](/locales/da.md)                     | Danish                         | `fakerDA`           |
+| [`de`](/locales/de.md)                     | German                         | `fakerDE`           |
+| [`de_AT`](/locales/de_AT.md)               | German (Austria)               | `fakerDE_AT`        |
+| [`de_CH`](/locales/de_CH.md)               | German (Switzerland)           | `fakerDE_CH`        |
+| [`dv`](/locales/dv.md)                     | Maldivian                      | `fakerDV`           |
+| [`el`](/locales/el.md)                     | Greek                          | `fakerEL`           |
+| [`en`](/locales/en.md)                     | English                        | `fakerEN`           |
+| [`en_AU`](/locales/en_AU.md)               | English (Australia)            | `fakerEN_AU`        |
+| [`en_AU_ocker`](/locales/en_AU_ocker.md)   | English (Australia Ocker)      | `fakerEN_AU_ocker`  |
+| [`en_BORK`](/locales/en_BORK.md)           | English (Bork)                 | `fakerEN_BORK`      |
+| [`en_CA`](/locales/en_CA.md)               | English (Canada)               | `fakerEN_CA`        |
+| [`en_GB`](/locales/en_GB.md)               | English (Great Britain)        | `fakerEN_GB`        |
+| [`en_GH`](/locales/en_GH.md)               | English (Ghana)                | `fakerEN_GH`        |
+| [`en_HK`](/locales/en_HK.md)               | English (Hong Kong)            | `fakerEN_HK`        |
+| [`en_IE`](/locales/en_IE.md)               | English (Ireland)              | `fakerEN_IE`        |
+| [`en_IN`](/locales/en_IN.md)               | English (India)                | `fakerEN_IN`        |
+| [`en_NG`](/locales/en_NG.md)               | English (Nigeria)              | `fakerEN_NG`        |
+| [`en_US`](/locales/en_US.md)               | English (United States)        | `fakerEN_US`        |
+| [`en_ZA`](/locales/en_ZA.md)               | English (South Africa)         | `fakerEN_ZA`        |
+| [`eo`](/locales/eo.md)                     | Esperanto                      | `fakerEO`           |
+| [`es`](/locales/es.md)                     | Spanish                        | `fakerES`           |
+| [`es_MX`](/locales/es_MX.md)               | Spanish (Mexico)               | `fakerES_MX`        |
+| [`fa`](/locales/fa.md)                     | Farsi/Persian                  | `fakerFA`           |
+| [`fi`](/locales/fi.md)                     | Finnish                        | `fakerFI`           |
+| [`fr`](/locales/fr.md)                     | French                         | `fakerFR`           |
+| [`fr_BE`](/locales/fr_BE.md)               | French (Belgium)               | `fakerFR_BE`        |
+| [`fr_CA`](/locales/fr_CA.md)               | French (Canada)                | `fakerFR_CA`        |
+| [`fr_CH`](/locales/fr_CH.md)               | French (Switzerland)           | `fakerFR_CH`        |
+| [`fr_LU`](/locales/fr_LU.md)               | French (Luxembourg)            | `fakerFR_LU`        |
+| [`fr_SN`](/locales/fr_SN.md)               | French (Senegal)               | `fakerFR_SN`        |
+| [`he`](/locales/he.md)                     | Hebrew                         | `fakerHE`           |
+| [`hr`](/locales/hr.md)                     | Croatian                       | `fakerHR`           |
+| [`hu`](/locales/hu.md)                     | Hungarian                      | `fakerHU`           |
+| [`hy`](/locales/hy.md)                     | Armenian                       | `fakerHY`           |
+| [`id_ID`](/locales/id_ID.md)               | Indonesian (Indonesia)         | `fakerID_ID`        |
+| [`it`](/locales/it.md)                     | Italian                        | `fakerIT`           |
+| [`ja`](/locales/ja.md)                     | Japanese                       | `fakerJA`           |
+| [`ka_GE`](/locales/ka_GE.md)               | Georgian (Georgia)             | `fakerKA_GE`        |
+| [`ko`](/locales/ko.md)                     | Korean                         | `fakerKO`           |
+| [`ku_ckb`](/locales/ku_ckb.md)             | Kurdish (Sorani)               | `fakerKU_ckb`       |
+| [`ku_kmr_latin`](/locales/ku_kmr_latin.md) | Kurdish (Kurmanji, Latin)      | `fakerKU_kmr_latin` |
+| [`lv`](/locales/lv.md)                     | Latvian                        | `fakerLV`           |
+| [`mk`](/locales/mk.md)                     | Macedonian                     | `fakerMK`           |
+| [`mn_MN_cyrl`](/locales/mn_MN_cyrl.md)     | Mongolian (Mongolia, Cyrillic) | `fakerMN_MN_cyrl`   |
+| [`nb_NO`](/locales/nb_NO.md)               | Norwegian (Norway)             | `fakerNB_NO`        |
+| [`ne`](/locales/ne.md)                     | Nepali                         | `fakerNE`           |
+| [`nl`](/locales/nl.md)                     | Dutch                          | `fakerNL`           |
+| [`nl_BE`](/locales/nl_BE.md)               | Dutch (Belgium)                | `fakerNL_BE`        |
+| [`pl`](/locales/pl.md)                     | Polish                         | `fakerPL`           |
+| [`pt_BR`](/locales/pt_BR.md)               | Portuguese (Brazil)            | `fakerPT_BR`        |
+| [`pt_PT`](/locales/pt_PT.md)               | Portuguese (Portugal)          | `fakerPT_PT`        |
+| [`ro`](/locales/ro.md)                     | Romanian                       | `fakerRO`           |
+| [`ro_MD`](/locales/ro_MD.md)               | Romanian (Moldova)             | `fakerRO_MD`        |
+| [`ru`](/locales/ru.md)                     | Russian                        | `fakerRU`           |
+| [`sk`](/locales/sk.md)                     | Slovak                         | `fakerSK`           |
+| [`sl_SI`](/locales/sl_SI.md)               | Slovenian (Slovenia)           | `fakerSL_SI`        |
+| [`sr_RS_latin`](/locales/sr_RS_latin.md)   | Serbian (Serbia, Latin)        | `fakerSR_RS_latin`  |
+| [`sv`](/locales/sv.md)                     | Swedish                        | `fakerSV`           |
+| [`ta_IN`](/locales/ta_IN.md)               | Tamil (India)                  | `fakerTA_IN`        |
+| [`th`](/locales/th.md)                     | Thai                           | `fakerTH`           |
+| [`tr`](/locales/tr.md)                     | Turkish                        | `fakerTR`           |
+| [`uk`](/locales/uk.md)                     | Ukrainian                      | `fakerUK`           |
+| [`ur`](/locales/ur.md)                     | Urdu                           | `fakerUR`           |
+| [`uz_UZ_latin`](/locales/uz_UZ_latin.md)   | Uzbek (Uzbekistan, Latin)      | `fakerUZ_UZ_latin`  |
+| [`vi`](/locales/vi.md)                     | Vietnamese                     | `fakerVI`           |
+| [`yo_NG`](/locales/yo_NG.md)               | Yoruba (Nigeria)               | `fakerYO_NG`        |
+| [`zh_CN`](/locales/zh_CN.md)               | Chinese (China)                | `fakerZH_CN`        |
+| [`zh_TW`](/locales/zh_TW.md)               | Chinese (Taiwan)               | `fakerZH_TW`        |
+| [`zu_ZA`](/locales/zu_ZA.md)               | Zulu (South Africa)            | `fakerZU_ZA`        |
 
 <!-- LOCALES-AUTO-GENERATED-END -->
 
@@ -165,3 +172,85 @@ for (let key of Object.keys(allFakers)) {
   }
 }
 ```
+
+## Handling Missing Data Errors
+
+```txt
+[Error]: The locale data for 'category.entry' are missing in this locale.
+Please contribute the missing data to the project or use a locale/Faker instance that has these data.
+For more information see https://fakerjs.dev/guide/localization.html
+```
+
+If you receive this error, this means you are using a locale (`Faker` instance) that does not have the relevant data for that method yet.
+Please consider contributing the missing data, so that others can use them in the future as well.
+
+As a workaround, you can provide additional fallbacks to your `Faker` instance:
+
+```ts
+import { Faker, el } from '@faker-js/faker'; // [!code --]
+import { Faker, base, el, en } from '@faker-js/faker'; // [!code ++]
+
+const faker = new Faker({
+  locale: [el], // [!code --]
+  locale: [el, en, base], // [!code ++]
+});
+console.log(faker.location.country()); // 'Belgium'
+```
+
+::: tip Note
+Of course, you can use [Custom Locales and Fallbacks](#custom-locales-and-fallbacks) for this as well.
+:::
+
+## Handling Not-Applicable Data Errors
+
+```txt
+[Error]: The locale data for 'category.entry' aren't applicable to this locale.
+If you think this is a bug, please report it at: https://github.com/faker-js/faker
+```
+
+If you receive this error, this means the current locale is unable to provide reasonable values for that method.
+For example, there are no zip codes in Hongkong, so for that reason the `en_HK` locale is unable to provide these data.
+The same applies to other locales and methods.
+
+```ts
+import { fakerEN_HK } from '@faker-js/faker';
+
+console.log(fakerEN_HK.location.zipCode()); // Error // [!code error]
+```
+
+For these cases, we explicitly set the data to `null` to clarify, that we have thought about it, but there are no valid values to put there.
+We could have used an empty array `[]`, but some locale data are stored as objects `{}`,
+so `null` works for both of them without custom downstream handling of missing data.
+
+::: tip Note
+We are by far no experts in all provided languages/countries/locales,
+so if you think this is an error for your locale, please create an issue and consider contributing the relevant data.
+:::
+
+If you want to use other fallback data instead, you can define them like this:
+
+```ts{4}
+import { Faker, en, en_HK } from '@faker-js/faker';
+
+const faker = new Faker({
+  locale: [{ location: { postcode: en.location.postcode } }, en_HK],
+});
+console.log(faker.location.zipCode()); // '17551-0348'
+```
+
+::: warning Warning
+Since `null` is considered present data, it will not use any fallbacks for that.
+So the following code does **not** work:
+
+```ts
+import { Faker, en, en_HK } from '@faker-js/faker';
+
+const faker = new Faker({
+  locale: [en_HK, { location: { postcode: en.location.postcode } }], // [!code warning]
+});
+console.log(faker.location.zipCode()); // Error // [!code error]
+```
+
+:::
+
+See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)

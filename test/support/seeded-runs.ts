@@ -1,6 +1,6 @@
 import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
-import type { Callable, MethodOf } from '../../src/utils/types';
+import type { Callable, MethodOf } from '../../src/internal/types';
 
 export const seededRuns = [42, 1337, 1211];
 
@@ -134,18 +134,28 @@ class TestGenerator<
    *
    * @param method The method name to call.
    * @param args The arguments to call it with.
+   * @param extraStackFrames Additional stack frames to add into the stacktrace.
    * @param repetitions The number of times to call it.
    */
   private callAndVerify<TMethodName extends MethodOf<TModule>>(
     method: TMethodName,
     args: Parameters<TModule[TMethodName]>,
+    extraStackFrames: () => string[],
     repetitions: number = 1
   ): void {
     this.setup();
+    const callable = this.module[method];
+    if (callable == null) {
+      throw new Error(`Method ${method} not found in ${this.moduleName}`);
+    }
+
     for (let i = 0; i < repetitions; i++) {
-      const callable = this.module[method];
-      const value = callable(...args);
-      expect(value).toMatchSnapshot();
+      try {
+        const value = callable(...args);
+        expect(value).toMatchSnapshot();
+      } catch (error: unknown) {
+        throw patchExtraStackFrames(error, extraStackFrames);
+      }
     }
   }
 
@@ -161,24 +171,11 @@ class TestGenerator<
   }
 
   /**
-   * Temporarily ignores this method. Useful for testing purposes.
-   *
-   * @param method The name of the method.
-   *
-   * @deprecated Implement a proper test.
-   */
-  todo(method: MethodOf<TModule>): this {
-    this.expectNotTested(method);
-    vi_it.todo(method);
-    return this;
-  }
-
-  /**
    * Generates a test for a method without arguments.
    *
    * @param method The name of the method.
    */
-  it<TMethodName extends NoArgsMethodOf<TModule>>(method: TMethodName): this {
+  it(method: NoArgsMethodOf<TModule>): this {
     return this.itRepeated(method, 1);
   }
 
@@ -189,15 +186,14 @@ class TestGenerator<
    * @param method The name of the method.
    * @param repetitions The number of repetitions to run.
    */
-  itRepeated<TMethodName extends NoArgsMethodOf<TModule>>(
-    method: TMethodName,
-    repetitions: number
-  ): this {
+  itRepeated(method: NoArgsMethodOf<TModule>, repetitions: number): this {
     this.expectNotTested(method);
+    const extraStackFrames = collectExtraStackFrames();
     vi_it(method, () =>
       this.callAndVerify(
         method,
-        [] as unknown as Parameters<TModule[TMethodName]>,
+        [] as unknown as Parameters<TModule[NoArgsMethodOf<TModule>]>,
+        extraStackFrames,
         repetitions
       )
     );
@@ -209,9 +205,7 @@ class TestGenerator<
    *
    * @param methods The names of the methods.
    */
-  itEach<TMethodName extends NoArgsMethodOf<TModule>>(
-    ...methods: TMethodName[]
-  ): this {
+  itEach(...methods: Array<NoArgsMethodOf<TModule>>): this {
     for (const method of methods) {
       this.it(method);
     }
@@ -245,7 +239,10 @@ class TestGenerator<
     const tester: MethodTester<TModule[TMethodName]> = {
       it(name: string, ...args: Parameters<TModule[TMethodName]>) {
         expectVariantNotTested(name);
-        vi_it(name, () => callAndVerify(method, args));
+        const extraStackFrames = collectExtraStackFrames(
+          /* t. */ `it('${name}', `.length // ...args)
+        );
+        vi_it(name, () => callAndVerify(method, args, extraStackFrames));
         return tester;
       },
       itRepeated(
@@ -254,7 +251,12 @@ class TestGenerator<
         ...args: Parameters<TModule[TMethodName]>
       ) {
         expectVariantNotTested(name);
-        vi_it(name, () => callAndVerify(method, args, repetitions));
+        const extraStackFrames = collectExtraStackFrames(
+          /* t. */ `itRepeated('${name}', ${repetitions}, `.length // ...args)
+        );
+        vi_it(name, () =>
+          callAndVerify(method, args, extraStackFrames, repetitions)
+        );
         return tester;
       },
     };
@@ -289,15 +291,65 @@ class TestGenerator<
    * This method will be called automatically at the end of each run.
    */
   expectAllMethodsToBeTested(): void {
-    const actual = [...this.tested].sort();
+    const actual = [...this.tested].toSorted();
     const expected = Object.entries(this.module)
       .filter(([, value]) => typeof value === 'function')
       .map(([key]) => key)
-      .sort();
+      .toSorted();
     vi_it('should test all methods', () => {
       expect(actual).toEqual(expected);
     });
   }
+}
+
+/**
+ * Lazily collects the current call stack with an additional offset.
+ *
+ * Vitest's stacktraces only contain the stacktrace from inside `it(name, () => { here })`.
+ * This method collects the location where the `it` block is created instead of executed.
+ * The stack frames can then later be added to the error stack to provide a more accurate location.
+ *
+ * @param extraOffset The additional offset to add to the column numbers to account for the name of the test.
+ */
+function collectExtraStackFrames(extraOffset: number = 0): () => string[] {
+  const stack = new Error('collect').stack;
+  if (stack == null) {
+    return () => [];
+  }
+
+  return () =>
+    stack
+      .split('\n')
+      .map((e) => e.replaceAll('\\', '/')) // Windows to Linux paths
+      .filter((e) => e.includes('/test/')) // exclude node_modules
+      .filter((e) => !e.includes('/test/support/')) // exclude this file
+      .map((e) =>
+        e.replace(/:(\d+)$/, (_, column: string) => `:${+column + extraOffset}`)
+      );
+}
+
+/**
+ * Modifies the error stack to include the given additional stack frames after the last occurrence of this file.
+ *
+ * @param error The error to modify.
+ * @param extraStackFrames The additional stack frames to add.
+ */
+function patchExtraStackFrames(
+  error: unknown,
+  extraStackFrames: () => string[]
+): unknown {
+  if (error instanceof Error && error.stack != null) {
+    const stack = error.stack.split('\n');
+    const index = stack.findLastIndex((e) =>
+      e
+        .replaceAll('\\', '/') // Windows to Linux paths
+        .includes('/test/support/')
+    );
+    stack.splice(index + 1, 0, ...extraStackFrames());
+    error.stack = stack.join('\n');
+  }
+
+  return error;
 }
 
 /**

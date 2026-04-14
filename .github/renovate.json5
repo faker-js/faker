@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
-    "schedule:earlyMondays",
+    "schedule:monthly",
     "group:allNonMajor",
     ":prHourlyLimitNone"
   ],
@@ -35,15 +35,17 @@
     },
     {
       "groupName": "eslint",
-      "matchPackagePrefixes": [
-        "@typescript-eslint/",
-        "@eslint-types/",
-        "eslint"
+      "matchPackageNames": [
+        "@eslint/**",
+        "@stylistic/**",
+        "eslint",
+        "eslint-**",
+        "typescript-eslint"
       ]
     },
     {
       "groupName": "vitest",
-      "matchPackagePrefixes": ["@vitest/", "vitest"]
+      "matchPackageNames": ["@vitest/**", "vitest"]
     },
     {
       "groupName": "prettier",
@@ -55,7 +57,7 @@
     },
     {
       "groupName": "doc-dependencies",
-      "matchPackageNames": ["@algolia/client-search", "ts-morph", "vitepress"]
+      "matchPackageNames": ["ts-morph", "vitepress"]
     }
   ],
   "stopUpdatingLabel": "s: on hold",

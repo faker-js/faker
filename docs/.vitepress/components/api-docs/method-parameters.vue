@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ApiDocsMethodParameter } from './method';
 
-const props = defineProps<{ parameters: ApiDocsMethodParameter[] }>();
+const { parameters } = defineProps<{ parameters: ApiDocsMethodParameter[] }>();
 </script>
 
 <template>
@@ -18,19 +18,22 @@ const props = defineProps<{ parameters: ApiDocsMethodParameter[] }>();
         </tr>
       </thead>
       <tbody>
-        <tr v-for="parameter of props.parameters" :key="parameter.name">
+        <tr
+          v-for="{ name, description, type, default: def } of parameters"
+          :key="name"
+        >
           <td
             :class="{
-              deprecated: parameter.description.includes('DEPRECATED'),
+              deprecated: description.includes('DEPRECATED'),
             }"
           >
-            {{ parameter.name }}
+            {{ name }}
           </td>
-          <td>{{ parameter.type }}</td>
+          <td>{{ type }}</td>
           <td>
-            <code v-if="parameter.default">{{ parameter.default }}</code>
+            <code v-if="def">{{ def }}</code>
           </td>
-          <td v-html="parameter.description"></td>
+          <td v-html="description"></td>
         </tr>
       </tbody>
     </table>

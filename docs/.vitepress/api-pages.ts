@@ -11,6 +11,7 @@ export const apiPages = [
     items: [
       { text: 'Airline', link: '/api/airline.html' },
       { text: 'Animal', link: '/api/animal.html' },
+      { text: 'Book', link: '/api/book.html' },
       { text: 'Color', link: '/api/color.html' },
       { text: 'Commerce', link: '/api/commerce.html' },
       { text: 'Company', link: '/api/company.html' },

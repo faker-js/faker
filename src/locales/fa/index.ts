@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import airline from './airline';
 import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
@@ -19,7 +20,14 @@ import phone_number from './phone_number';
 import vehicle from './vehicle';
 import word from './word';
 
+/**
+ * The locale data for the `fa` locale.
+ *
+ * - Language: Farsi/Persian
+ * - Endonym: فارسی
+ */
 const fa: LocaleDefinition = {
+  airline,
   cell_phone,
   color,
   commerce,

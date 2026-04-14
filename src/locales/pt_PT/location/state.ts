@@ -1,5 +1,5 @@
 export default [
-  'Azores',
+  'Açores',
   'Aveiro',
   'Beja',
   'Braga',
@@ -10,7 +10,7 @@ export default [
   'Faro',
   'Guarda',
   'Leiria',
-  'Lisbon',
+  'Lisboa',
   'Madeira',
   'Portalegre',
   'Porto',

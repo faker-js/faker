@@ -2,7 +2,7 @@
 import { useElementSize } from '@vueuse/core';
 import { ref, watchEffect } from 'vue';
 
-defineProps<{
+const { version } = defineProps<{
   version: string;
 }>();
 

@@ -1,51 +1,71 @@
 <script setup lang="ts">
+import { sourceBaseUrl } from '../../../api/source-base-url';
+import { slugify } from '../../shared/utils/slugify';
 import type { ApiDocsMethod } from './method';
 import MethodParameters from './method-parameters.vue';
-import { slugify } from '../../shared/utils/slugify';
-import { sourceBaseUrl } from '../../../api/source-base-url';
+import RefreshableCode from './refreshable-code.vue';
 
-const props = defineProps<{ method: ApiDocsMethod }>();
+const { method } = defineProps<{ method: ApiDocsMethod }>();
+const {
+  deprecated,
+  description,
+  remark,
+  since,
+  parameters,
+  returns,
+  throws,
+  signature,
+  examples,
+  refresh,
+  seeAlsos,
+  sourcePath,
+} = method;
 
 function seeAlsoToUrl(see: string): string {
-  const [, module, method] = see.replace(/\(.*/, '').split('\.');
-  if (!method) {
-    return 'faker.html#' + slugify(module);
+  const [, module, methodName] = see.replace(/\(.*/, '').split('\.');
+
+  if (!methodName) {
+    return `faker.html#${slugify(module)}`;
   }
-  return module + '.html#' + slugify(method);
+
+  return `${module}.html#${slugify(methodName)}`;
 }
 </script>
 
 <template>
   <div>
-    <div v-if="props.method.deprecated" class="warning custom-block">
+    <div v-if="deprecated" class="warning custom-block">
       <p class="custom-block-title">Deprecated</p>
       <p>This method is deprecated and will be removed in a future version.</p>
-      <span v-html="props.method.deprecated" />
+      <span v-html="deprecated" />
     </div>
 
-    <div v-html="props.method.description"></div>
+    <div v-html="description"></div>
 
-    <p v-if="props.method.since">
-      <em>Available since v{{ props.method.since }}</em>
+    <div v-if="remark" class="tip custom-block">
+      <p class="custom-block-title">Note</p>
+      <div v-html="remark"></div>
+    </div>
+
+    <p v-if="since">
+      <em>Available since v{{ since }}</em>
     </p>
 
-    <MethodParameters
-      v-if="props.method.parameters.length > 0"
-      :parameters="props.method.parameters"
-    />
+    <MethodParameters v-if="parameters.length > 0" :parameters="parameters" />
 
-    <p><strong>Returns:</strong> {{ props.method.returns }}</p>
+    <p><strong>Returns:</strong> {{ returns }}</p>
 
-    <p v-if="props.method.throws">
-      <strong>Throws:</strong> <span v-html="props.method.throws" />
-    </p>
+    <p v-if="throws"><strong>Throws:</strong> <span v-html="throws" /></p>
 
-    <div v-html="props.method.examples" />
+    <div v-html="signature" />
 
-    <div v-if="props.method.seeAlsos.length > 0">
+    <h3 class="inline">Examples</h3>
+    <RefreshableCode :examples="examples" :refresh="refresh" />
+
+    <div v-if="seeAlsos.length > 0">
       <h3>See Also</h3>
       <ul>
-        <li v-for="seeAlso of props.method.seeAlsos" :key="seeAlso">
+        <li v-for="seeAlso of seeAlsos" :key="seeAlso">
           <a
             v-if="seeAlso.startsWith('faker.')"
             :href="seeAlsoToUrl(seeAlso)"
@@ -56,12 +76,12 @@ function seeAlsoToUrl(see: string): string {
       </ul>
     </div>
 
-    <div v-if="props.method.sourcePath">
+    <div v-if="sourcePath">
       <h3>Source</h3>
       <ul>
         <li>
           <a
-            :href="sourceBaseUrl + props.method.sourcePath"
+            :href="sourceBaseUrl + sourcePath"
             target="_blank"
             class="source-link"
           >
@@ -94,5 +114,9 @@ a.source-link {
 svg.source-link-icon {
   display: inline;
   margin-left: 0.3em;
+}
+
+h3.inline {
+  display: inline-block;
 }
 </style>

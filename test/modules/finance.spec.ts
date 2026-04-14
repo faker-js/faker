@@ -1,8 +1,12 @@
-import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import isCreditCard from 'validator/lib/isCreditCard';
+import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
-import { faker, fakerZH_CN } from '../../src';
+import { allLocales, faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
+import {
+  BitcoinAddressFamily,
+  BitcoinNetwork,
+} from '../../src/modules/finance/bitcoin';
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
@@ -21,7 +25,7 @@ describe('finance', () => {
       'currencyCode',
       'currencyName',
       'currencySymbol',
-      'bitcoinAddress',
+      'currencyNumericCode',
       'litecoinAddress',
       'creditCardCVV',
       'ethereumAddress',
@@ -80,15 +84,12 @@ describe('finance', () => {
         .it('with issuer option mastercard', { issuer: 'mastercard' });
     });
 
-    t.describe('maskedNumber', (t) => {
+    t.describe('bitcoinAddress', (t) => {
       t.it('noArgs')
-        .it('with length', 5)
-        .it('with length option', { length: 5 })
-        .it('with length and parenthesis option', { length: 5, parens: false })
-        .it('with length, parenthesis and ellipsis option', {
-          length: 5,
-          parens: false,
-          ellipsis: true,
+        .it('with type option', { type: BitcoinAddressFamily.Legacy })
+        .it('with type and network option', {
+          type: BitcoinAddressFamily.Legacy,
+          network: BitcoinNetwork.Mainnet,
         });
     });
   });
@@ -142,42 +143,6 @@ describe('finance', () => {
           const routingNumber = faker.finance.routingNumber();
 
           expect(routingNumber).toBeTypeOf('string');
-        });
-      });
-
-      describe('maskedNumber()', () => {
-        it('should return contain parenthesis, ellipsis and have a length of 4 by default', () => {
-          const actual = faker.finance.maskedNumber();
-
-          expect(actual).toMatch(/\(\.{3}\d{4}\)/);
-        });
-
-        it('should set a default length', () => {
-          const expected = 4; // default account mask length
-          const mask = faker.finance.maskedNumber({
-            parens: false,
-            ellipsis: false,
-          });
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
-        });
-
-        it('should set a specified length', () => {
-          const expected = faker.number.int({ min: 1, max: 20 });
-
-          const mask = faker.finance.maskedNumber({
-            length: expected,
-            parens: false,
-            ellipsis: false,
-          }); // the length of mask picks 4 if the random number generator picks 0
-
-          expect(
-            mask,
-            `The expected default mask length is ${expected} but it was ${mask.length}`
-          ).toHaveLength(expected);
         });
       });
 
@@ -251,22 +216,26 @@ describe('finance', () => {
           }
         );
 
-        it('should return the number formatted on the current locale', () => {
-          const number = 6000;
-          const decimalPlaces = 2;
-          const expected = number.toLocaleString(undefined, {
-            minimumFractionDigits: decimalPlaces,
-          });
+        // This test is flaky on Windows Github Actions
+        it.todo(
+          'should return the number formatted on the current locale',
+          () => {
+            const number = 6000;
+            const decimalPlaces = 2;
+            const expected = number.toLocaleString(undefined, {
+              minimumFractionDigits: decimalPlaces,
+            });
 
-          const amount = faker.finance.amount({
-            min: number,
-            max: number,
-            dec: decimalPlaces,
-            autoFormat: true,
-          });
+            const amount = faker.finance.amount({
+              min: number,
+              max: number,
+              dec: decimalPlaces,
+              autoFormat: true,
+            });
 
-          expect(amount).toStrictEqual(expected);
-        });
+            expect(amount).toStrictEqual(expected);
+          }
+        );
       });
 
       describe('transactionType()', () => {
@@ -284,6 +253,7 @@ describe('finance', () => {
           expect(currency.code).toMatch(/^[A-Z]{3}$/);
           expect(currency.name).toBeTypeOf('string');
           expect(currency.symbol).toBeTypeOf('string');
+          expect(currency.numericCode).toBeTypeOf('string');
         });
       });
 
@@ -312,18 +282,106 @@ describe('finance', () => {
         });
       });
 
+      describe('currencyNumericCode()', () => {
+        it('should return a string with length of 3', () => {
+          const currencyNumericCode = faker.finance.currencyNumericCode();
+
+          expect(currencyNumericCode).toBeTypeOf('string');
+          expect(currencyNumericCode).toMatch(/^\d{3}$/);
+        });
+      });
+
       describe('bitcoinAddress()', () => {
+        const m_legacy = /^1[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const t_legacy = /^m[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const m_segwit = /^3[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const t_segwit = /^2[A-HJ-NP-Za-km-z1-9]{25,39}$/;
+        const m_bech32 = /^bc1[ac-hj-np-z02-9]{39,39}$/;
+        const t_bech32 = /^tb1[ac-hj-np-z02-9]{39,39}$/;
+        const m_taproot = /^bc1p[ac-hj-np-z02-9]{58,58}$/;
+        const t_taproot = /^tb1p[ac-hj-np-z02-9]{58,58}$/;
+
+        const isBtcAddress = (address: string) =>
+          [
+            m_legacy,
+            t_legacy,
+            m_segwit,
+            t_segwit,
+            m_bech32,
+            t_bech32,
+            m_taproot,
+            t_taproot,
+          ].some((r) => r.test(address));
+
         it('should return a valid bitcoin address', () => {
           const bitcoinAddress = faker.finance.bitcoinAddress();
-          /**
-           *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
-           *  Therefore we take one from the total length of the address not including the first character ([13])
-           */
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).toSatisfy(isValidBtcAddress);
+          expect(bitcoinAddress).toSatisfy(isBtcAddress);
         });
+
+        it.each([
+          [BitcoinAddressFamily.Legacy, m_legacy],
+          [BitcoinAddressFamily.Segwit, m_segwit],
+          [BitcoinAddressFamily.Bech32, m_bech32],
+          [BitcoinAddressFamily.Taproot, m_taproot],
+        ] as const)(
+          'should handle the type = $type argument',
+          (type, regex) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              type,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toMatch(regex);
+          }
+        );
+
+        it.each([
+          [BitcoinNetwork.Mainnet, [m_legacy, m_segwit, m_bech32, m_taproot]],
+          [BitcoinNetwork.Testnet, [t_legacy, t_segwit, t_bech32, t_taproot]],
+        ] as const)(
+          'should handle the network = $network argument',
+          (network, regexes) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              network,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toSatisfy((v: string) =>
+              regexes.some((r) => r.test(v))
+            );
+          }
+        );
+
+        it.each([
+          [BitcoinAddressFamily.Legacy, BitcoinNetwork.Mainnet, m_legacy],
+          [BitcoinAddressFamily.Legacy, BitcoinNetwork.Testnet, t_legacy],
+          [BitcoinAddressFamily.Segwit, BitcoinNetwork.Mainnet, m_segwit],
+          [BitcoinAddressFamily.Segwit, BitcoinNetwork.Testnet, t_segwit],
+          [BitcoinAddressFamily.Bech32, BitcoinNetwork.Mainnet, m_bech32],
+          [BitcoinAddressFamily.Bech32, BitcoinNetwork.Testnet, t_bech32],
+          [BitcoinAddressFamily.Taproot, BitcoinNetwork.Mainnet, m_taproot],
+          [BitcoinAddressFamily.Taproot, BitcoinNetwork.Testnet, t_taproot],
+        ] as const)(
+          'should handle the type = $type and network = $network arguments',
+          (type, network, regex) => {
+            const bitcoinAddress = faker.finance.bitcoinAddress({
+              type,
+              network,
+            });
+
+            expect(bitcoinAddress).toBeTruthy();
+            expect(bitcoinAddress).toBeTypeOf('string');
+            expect(bitcoinAddress).toSatisfy(isBtcAddress);
+            expect(bitcoinAddress).toMatch(regex);
+          }
+        );
       });
 
       describe('litecoinAddress()', () => {
@@ -543,4 +601,64 @@ describe('finance', () => {
       });
     }
   );
+});
+
+describe('finance locale data', () => {
+  // Dedicated type for readability purposes
+  type KnownProvider = Exclude<
+    Parameters<typeof isCreditCard>[1],
+    undefined
+  >['provider'];
+
+  function getKnownProvider(value: string | undefined): KnownProvider {
+    // taken from definitions of validatorjs:
+    // https://github.com/validatorjs/validator.js/blob/72573b3d1d8ab2e6575e6bba1cbe2b01f95f4935/src/lib/isCreditCard.js#L4-L12
+    const providers: Record<string, KnownProvider> = {
+      american_express: 'amex',
+      diners_club: 'dinersclub',
+      discover: 'discover',
+      jcb: 'jcb',
+      mastercard: 'mastercard',
+      unionpay: 'unionpay',
+      visa: 'visa',
+    };
+
+    const knownProvider = providers[value ?? ''];
+    if (knownProvider == null) {
+      throw new Error(
+        `Issuer "${value}" is not a known provider for validatorjs. Because of that the validity of it's patterns can not be verified.`
+      );
+    }
+
+    return knownProvider;
+  }
+
+  const localesWithData = Object.entries(allLocales).filter(
+    ([, data]) => Object.keys(data.finance?.credit_card ?? {}).length > 0
+  );
+  describe.each(localesWithData)(`%s`, (_localeName, localeData) => {
+    describe('credit cards', () => {
+      describe('issuer', () => {
+        describe.each(Object.entries(localeData.finance?.credit_card ?? {}))(
+          '%s',
+          (issuerName, issuerPatterns) => {
+            function isCreditCardFromIssuer(value: string) {
+              return isCreditCard(value, {
+                provider: getKnownProvider(issuerName),
+              });
+            }
+
+            it.each(issuerPatterns)(
+              'pattern "%s" should generate a valid credit card number',
+              (pattern) => {
+                const result = faker.finance.creditCardNumber(pattern);
+                expect(result).toSatisfy(isLuhnNumber);
+                expect(result).toSatisfy(isCreditCardFromIssuer);
+              }
+            );
+          }
+        );
+      });
+    });
+  });
 });

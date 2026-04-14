@@ -12,8 +12,15 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
+import vehicle from './vehicle';
 import word from './word';
 
+/**
+ * The locale data for the `nb_NO` locale.
+ *
+ * - Language: Norwegian (Norway)
+ * - Endonym: Norsk bokmål (Norge)
+ */
 const nb_NO: LocaleDefinition = {
   color,
   commerce,
@@ -24,6 +31,7 @@ const nb_NO: LocaleDefinition = {
   person,
   phone_number,
   science,
+  vehicle,
   word,
 };
 

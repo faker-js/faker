@@ -1,0 +1,39 @@
+name: Integration Test
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1' # weekly on Mondays at 03:00
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  integration_test:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
+
+      - name: Set node version to 24
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: 24.14.1
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Integration Test
+        run: pnpm run integration-test

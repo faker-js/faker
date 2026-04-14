@@ -1,4 +1,4 @@
 export default [
-  '{{company.type}}{{person.last_name}}{{company.category}}',
-  '{{person.last_name}}{{company.category}}{{company.type}}',
+  '{{company.legal_entity_type}}{{person.lastName}}{{company.category}}',
+  '{{person.lastName}}{{company.category}}{{company.legal_entity_type}}',
 ];

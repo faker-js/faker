@@ -1,1 +1,1 @@
-export default ['t.mk', 'gmail.com', 'yahoo.com', 'hotmail.com'];
+export default ['gmail.com', 'hotmail.com', 't.mk', 'yahoo.com'];

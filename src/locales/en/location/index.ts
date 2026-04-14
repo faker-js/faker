@@ -8,9 +8,12 @@ import city_name from './city_name';
 import city_pattern from './city_pattern';
 import city_prefix from './city_prefix';
 import city_suffix from './city_suffix';
+import continent from './continent';
 import country from './country';
 import county from './county';
 import direction from './direction';
+import language from './language';
+import postal_address from './postal_address';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
@@ -26,9 +29,12 @@ const location: LocationDefinition = {
   city_pattern,
   city_prefix,
   city_suffix,
+  continent,
   country,
   county,
   direction,
+  language,
+  postal_address,
   postcode,
   secondary_address,
   state,

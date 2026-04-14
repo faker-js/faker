@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, faker, fakerAZ } from '../../src';
+import { FakerError, allLocales, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -11,6 +11,19 @@ const converterMap = [
 
 const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2021-02-21T17:09:15.711Z';
+
+function calculateAge(birthdate: Date, refDate: Date): number {
+  let age = refDate.getFullYear() - birthdate.getFullYear();
+  if (
+    refDate.getMonth() < birthdate.getMonth() ||
+    (refDate.getMonth() === birthdate.getMonth() &&
+      refDate.getDate() < birthdate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+}
 
 describe('date', () => {
   seededTests(faker, 'date', (t) => {
@@ -31,7 +44,8 @@ describe('date', () => {
         .it('with only number refDate', {
           refDate: new Date(refDate).getTime(),
         })
-        .it('with value', { years: 10, refDate });
+        .it('with value numeric', { years: 10, refDate })
+        .it('with value range', { years: { min: 3, max: 12 }, refDate });
     });
 
     t.describeEach(
@@ -58,6 +72,8 @@ describe('date', () => {
           context: true,
         });
     });
+
+    t.it('timeZone');
 
     t.describe('between', (t) => {
       t.it('with string dates', {
@@ -175,11 +191,58 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(yearsAgo);
         });
 
+        it('should return a date between 20 and 40 years in the past', () => {
+          const today = new Date();
+          const yearsAgoMax = 40;
+          const yearAgoMax = new Date(today);
+          yearAgoMax.setFullYear(yearAgoMax.getFullYear() - yearsAgoMax);
+
+          const yearsAgoMin = 20;
+          const yearAgoMin = new Date(today);
+          yearAgoMin.setFullYear(yearAgoMin.getFullYear() - yearsAgoMin);
+
+          const date = faker.date.past({
+            years: { min: yearsAgoMin, max: yearsAgoMax },
+          });
+
+          expect(date).lessThan(today);
+          expect(date).lessThan(yearAgoMin);
+          expect(date).greaterThanOrEqual(yearAgoMax);
+        });
+
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.past({ years: 0, refDate: refDate.toISOString() })
           ).toThrow(new FakerError('Years must be greater than 0.'));
+        });
+
+        it('should throw an error when years.min > years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.past({
+              years: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
+        });
+
+        it('should throw an error when years.min = years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.past({
+              years: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -201,9 +264,34 @@ describe('date', () => {
 
       describe('future()', () => {
         it('should return a date 75 years into the future', () => {
-          const date = faker.date.future({ years: 75 });
+          const today = new Date();
+          const yearsUntilMax = 75;
+          const yearUntilMax = new Date(today);
+          yearUntilMax.setFullYear(yearUntilMax.getFullYear() + yearsUntilMax);
 
-          expect(date).greaterThan(new Date());
+          const date = faker.date.future({ years: yearsUntilMax });
+
+          expect(date).greaterThan(today);
+          expect(date).lessThanOrEqual(yearUntilMax);
+        });
+
+        it('should return a date between 20 and 40 years in the future', () => {
+          const today = new Date();
+          const yearsUntilMin = 20;
+          const yearUntilMin = new Date(today);
+          yearUntilMin.setFullYear(yearUntilMin.getFullYear() + yearsUntilMin);
+
+          const yearsUntilMax = 40;
+          const yearUntilMax = new Date(today);
+          yearUntilMax.setFullYear(yearUntilMax.getFullYear() + yearsUntilMax);
+
+          const date = faker.date.future({
+            years: { min: yearsUntilMin, max: yearsUntilMax },
+          });
+
+          expect(date).greaterThan(today);
+          expect(date).greaterThan(yearUntilMin);
+          expect(date).lessThanOrEqual(yearUntilMax);
         });
 
         it('should throw an error when years = 0', () => {
@@ -211,6 +299,34 @@ describe('date', () => {
           expect(() =>
             faker.date.future({ years: 0, refDate: refDate.toISOString() })
           ).toThrow(new FakerError('Years must be greater than 0.'));
+        });
+
+        it('should throw an error when years.min > years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.future({
+              years: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
+        });
+
+        it('should throw an error when years.min = years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.future({
+              years: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -528,19 +644,6 @@ describe('date', () => {
       });
 
       describe('birthdate', () => {
-        function calculateAge(birthdate: Date, refDate: Date): number {
-          let age = refDate.getFullYear() - birthdate.getFullYear();
-          if (
-            refDate.getMonth() < birthdate.getMonth() ||
-            (refDate.getMonth() === birthdate.getMonth() &&
-              refDate.getDate() < birthdate.getDate())
-          ) {
-            age--;
-          }
-
-          return age;
-        }
-
         it('returns a random birthdate', () => {
           const birthdate = faker.date.birthdate();
           expect(birthdate).toBeInstanceOf(Date);
@@ -610,22 +713,6 @@ describe('date', () => {
           expect(age).toBeLessThanOrEqual(22);
         });
 
-        it.each(['min', 'max', 'mode'] as const)(
-          "should throw an error when '%s' is not provided",
-          (key) => {
-            const options = { min: 18, max: 80, mode: 'age' } as const;
-
-            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            delete options[key];
-
-            expect(() => faker.date.birthdate(options)).toThrow(
-              new FakerError(
-                `The 'min', 'max', and 'mode' options must be set together.`
-              )
-            );
-          }
-        );
-
         it('should throw an error when the min > max year', () => {
           const min = 2000;
           const max = 1990;
@@ -653,8 +740,30 @@ describe('date', () => {
           );
         });
       });
+
+      describe('timeZone', () => {
+        it('should return a random timezone', () => {
+          const actual = faker.date.timeZone();
+          expect(faker.definitions.date.time_zone).toContain(actual);
+        });
+      });
     }
   );
+
+  describe('definitions', () => {
+    describe('timeZone', () => {
+      it('should have timezones in the base locale', () => {
+        expect(allLocales.base.date?.time_zone).toSatisfy(Array.isArray);
+        expect(allLocales.base.date?.time_zone?.length).toBeGreaterThan(0);
+      });
+
+      it.each(
+        Object.entries(allLocales).filter(([locale]) => locale !== 'base')
+      )('should not have any timezones in %s', (_, data) => {
+        expect(data.date?.time_zone).toBeUndefined();
+      });
+    });
+  });
 
   describe('refDateSource', () => {
     afterEach(() => {
