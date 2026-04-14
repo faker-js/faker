@@ -72,10 +72,11 @@ jobs:
             --title "chore(release): $RELEASE_VERSION" \
             --body "Release for $RELEASE_VERSION
 
-            - [ ] Completed manual changes/tasks for this release
+          - [ ] Completed manual changes/tasks for this release
 
-            ---
+          ---
 
-            - Checklist: $RELEASE_CHECKLIST_URL"
+          - Checklist: $RELEASE_CHECKLIST_URL
+          "
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
