@@ -110,9 +110,7 @@ export class NumberModule extends SimpleModuleBase {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    // @ts-expect-error: access private member field
-    const randomizer = this.faker._randomizer;
-    const real = distributor(randomizer);
+    const real = distributor(this.faker.fakerCore.randomizer);
     const delta = effectiveMax - effectiveMin + 1; // +1 for inclusive max bounds and even distribution
     return Math.floor(real * delta + effectiveMin) * multipleOf;
   }
@@ -233,9 +231,7 @@ export class NumberModule extends SimpleModuleBase {
       return int / factor;
     }
 
-    // @ts-expect-error: access private member field
-    const randomizer = this.faker._randomizer;
-    const real = distributor(randomizer);
+    const real = distributor(this.faker.fakerCore.randomizer);
     return real * (max - min) + min;
   }
 

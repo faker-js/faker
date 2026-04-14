@@ -1,3 +1,6 @@
+export type { FakerConfig } from './config';
+export { createFakerCore } from './core';
+export type { FakerCore, FakerOptions } from './core';
 export type {
   AirlineDefinition,
   AnimalDefinition,
@@ -33,7 +36,6 @@ export { exponentialDistributor } from './distributors/exponential';
 export { uniformDistributor } from './distributors/uniform';
 export { FakerError } from './errors/faker-error';
 export { Faker } from './faker';
-export type { FakerOptions } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';

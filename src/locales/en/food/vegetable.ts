@@ -24,6 +24,7 @@ export default [
   'cornichons',
   'cos lettuce',
   'cucumber',
+  'daikon',
   'dried chinese broccoli',
   'eggplant',
   'endive',

@@ -745,7 +745,7 @@ export class InternetModule extends ModuleBase {
    * Generates a random mac address.
    *
    * @param options An options object.
-   * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
    * faker.internet.mac() // '32:8e:2e:09:c6:05'
@@ -775,7 +775,7 @@ export class InternetModule extends ModuleBase {
    * Generates a random mac address.
    *
    * @param options The optional separator or an options object.
-   * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
    * faker.internet.mac() // '32:8e:2e:09:c6:05'

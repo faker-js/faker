@@ -8,6 +8,7 @@ import city_name from './city_name';
 import city_pattern from './city_pattern';
 import country from './country';
 import county from './county';
+import postal_address from './postal_address';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
@@ -22,6 +23,7 @@ const location: LocationDefinition = {
   city_pattern,
   country,
   county,
+  postal_address,
   postcode,
   secondary_address,
   state,
