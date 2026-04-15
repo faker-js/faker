@@ -584,17 +584,18 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
+    const direction = this.faker.definitions.location.direction;
 
     if (!abbreviated) {
       return this.faker.helpers.arrayElement([
-        ...this.faker.definitions.location.direction.cardinal,
-        ...this.faker.definitions.location.direction.ordinal,
+        ...direction.cardinal,
+        ...direction.ordinal,
       ]);
     }
 
     return this.faker.helpers.arrayElement([
-      ...this.faker.definitions.location.direction.cardinal_abbr,
-      ...this.faker.definitions.location.direction.ordinal_abbr,
+      ...direction.cardinal_abbr,
+      ...direction.ordinal_abbr,
     ]);
   }
 
@@ -623,16 +624,13 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
+    const direction = this.faker.definitions.location.direction;
 
     if (!abbreviated) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.cardinal
-      );
+      return this.faker.helpers.arrayElement(direction.cardinal);
     }
 
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction.cardinal_abbr
-    );
+    return this.faker.helpers.arrayElement(direction.cardinal_abbr);
   }
 
   /**
@@ -660,16 +658,13 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
+    const direction = this.faker.definitions.location.direction;
 
     if (!abbreviated) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.ordinal
-      );
+      return this.faker.helpers.arrayElement(direction.ordinal);
     }
 
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction.ordinal_abbr
-    );
+    return this.faker.helpers.arrayElement(direction.ordinal_abbr);
   }
 
   /**
