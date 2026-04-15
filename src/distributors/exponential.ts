@@ -88,22 +88,6 @@ export function exponentialDistributor(
         bias?: number;
       }
 ): Distributor;
-/**
- * Creates a new function that generates exponentially distributed values.
- * This function uses `(base ** next() - 1) / (base - 1)` to spread the values.
- *
- * @param options The options for generating the distributor.
- * @param options.base The base of the exponential distribution. Should be greater than 0. Defaults to `2`.
- * The higher/more above `1` the `base`, the more likely the number will be closer to the minimum value.
- * The lower/closer to zero the `base`, the more likely the number will be closer to the maximum value.
- * Values of `1` will generate a uniform distributor.
- * Can alternatively be configured using the `bias` option.
- * @param options.bias An alternative way to specify the `base`. Also accepts values below zero. Defaults to `-1`.
- * The higher/more positive the `bias`, the more likely the number will be closer to the maximum value.
- * The lower/more negative the `bias`, the more likely the number will be closer to the minimum value.
- * Values of `0` will generate a uniform distributor.
- * Can alternatively be configured using the `base` option.
- */
 export function exponentialDistributor(
   options: {
     base?: number;
