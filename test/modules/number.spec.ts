@@ -277,6 +277,17 @@ describe('number', () => {
           new FakerError(`No suitable integer value between 2.1 and 2.9 found.`)
         );
       });
+
+      it('should generate a number based on the provided distributor', () => {
+        let distributorCall = 0;
+        const distributor = () => (distributorCall++ % 4 === 0 ? 0.999 : 0);
+        const results = Array.from({ length: 10 }, () => 0);
+        for (let i = 0; i < 1000; i++) {
+          results[faker.number.int({ max: 9, distributor })]++;
+        }
+
+        expect(results).toEqual([750, 0, 0, 0, 0, 0, 0, 0, 0, 250]);
+      });
     });
 
     describe('float', () => {
@@ -444,6 +455,17 @@ describe('number', () => {
         }).toThrow(
           new FakerError(`Max ${max} should be greater than min ${min}.`)
         );
+      });
+
+      it('should generate a number based on the provided distributor', () => {
+        let distributorCall = 0;
+        const distributor = () => (distributorCall++ % 4 === 0 ? 0.999 : 0);
+        const results = Array.from({ length: 10 }, () => 0);
+        for (let i = 0; i < 1000; i++) {
+          results[Math.floor(faker.number.float({ max: 10, distributor }))]++;
+        }
+
+        expect(results).toEqual([750, 0, 0, 0, 0, 0, 0, 0, 0, 250]);
       });
     });
 
