@@ -8,7 +8,7 @@ exports[`food > 42 > dish 1`] = `"Camryn's Special Aubergine"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 
-exports[`food > 42 > fruit 1`] = `"fingerlime"`;
+exports[`food > 42 > fruit 1`] = `"fig"`;
 
 exports[`food > 42 > ingredient 1`] = `"flathead"`;
 
@@ -20,7 +20,7 @@ exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
 
 exports[`food > 1211 > adjective 1`] = `"tender"`;
 
-exports[`food > 1211 > description 1`] = `"Three cherries with okra, pumpkin, onion, pumpkin and soy beans. With a side of baked raspberry, and your choice of celery or capsicum."`;
+exports[`food > 1211 > description 1`] = `"Three cherries with okra, potatoes, onion, pumpkin and soy beans. With a side of baked plum, and your choice of celery or capsicum."`;
 
 exports[`food > 1211 > dish 1`] = `"Tacos"`;
 
@@ -44,7 +44,7 @@ exports[`food > 1337 > dish 1`] = `"Moist Green Beans Curry"`;
 
 exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
 
-exports[`food > 1337 > fruit 1`] = `"custard apple"`;
+exports[`food > 1337 > fruit 1`] = `"cumquat"`;
 
 exports[`food > 1337 > ingredient 1`] = `"coconut water"`;
 
