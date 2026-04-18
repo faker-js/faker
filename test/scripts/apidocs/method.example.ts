@@ -351,8 +351,10 @@ export class SignatureTest {
    * Test with multiple example markers.
    *
    * @example
+   * // Inline usage
    * test.apidocs.methodWithMultipleExamples() // 0
    * @example
+   * // Stored in a variable
    * const value = test.apidocs.methodWithMultipleExamples();
    * console.log(value); // 0
    *

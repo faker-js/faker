@@ -613,8 +613,10 @@ exports[`method > processMethodLike(methodWithMultipleExamples) 1`] = `
       "deprecated": undefined,
       "description": "Test with multiple example markers.",
       "examples": [
-        "test.apidocs.methodWithMultipleExamples() // 0",
-        "const value = test.apidocs.methodWithMultipleExamples();
+        "// Inline usage
+test.apidocs.methodWithMultipleExamples() // 0",
+        "// Stored in a variable
+const value = test.apidocs.methodWithMultipleExamples();
 console.log(value); // 0",
       ],
       "parameters": [],

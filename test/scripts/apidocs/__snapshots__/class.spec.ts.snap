@@ -57,8 +57,10 @@ exports[`class > processClass(ModuleMultipleExamplesTest) 1`] = `
   "deprecated": undefined,
   "description": "This is a description for a module with multiple code examples.",
   "examples": [
-    "new ModuleMultipleExamplesTest()",
-    "const instance = new ModuleMultipleExamplesTest();
+    "// Basic instantiation
+new ModuleMultipleExamplesTest()",
+    "// Stateful usage
+const instance = new ModuleMultipleExamplesTest();
 instance.doSomething();",
   ],
   "methods": [],

@@ -93,6 +93,11 @@ export async function codeToHtml(code: string): Promise<string> {
  * If only a single code block is provided, a plain code block is rendered
  * instead so we don't emit an unnecessary tab strip.
  *
+ * When multiple code blocks are provided, each block's first line must be a
+ * single-line `//` comment that is used as the tab title. This keeps the tab
+ * titles visible in JSDoc-driven IDE tooltips without introducing any
+ * docs-site-only metadata in the source.
+ *
  * @param codes The code blocks to convert.
  *
  * @returns The converted HTML string.
@@ -104,12 +109,26 @@ export async function codeGroupToHtml(codes: string[]): Promise<string> {
 
   const delimiter = '```';
   const blocks = codes
-    .map(
-      (code, index) =>
-        `${delimiter}ts [Example ${index + 1}]\n${code}\n${delimiter}`
-    )
+    .map((code, index) => {
+      const title = extractCodeGroupTitle(code, index);
+      return `${delimiter}ts [${title}]\n${code}\n${delimiter}`;
+    })
     .join('\n\n');
   return mdToHtml(`::: code-group\n\n${blocks}\n\n:::`);
+}
+
+const codeGroupTitleCommentRegex = /^\s*\/\/\s*(.+?)\s*$/;
+
+function extractCodeGroupTitle(code: string, index: number): string {
+  const firstLine = code.split('\n', 1)[0];
+  const match = codeGroupTitleCommentRegex.exec(firstLine);
+  if (match == null) {
+    throw new Error(
+      `Example ${index + 1} in a multi-example block must start with a \`// Title\` line comment to label the code-group tab, but got: ${JSON.stringify(firstLine)}`
+    );
+  }
+
+  return match[1];
 }
 
 /**
