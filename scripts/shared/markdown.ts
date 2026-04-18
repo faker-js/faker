@@ -110,8 +110,8 @@ export async function codeGroupToHtml(codes: string[]): Promise<string> {
   const delimiter = '```';
   const blocks = codes
     .map((code, index) => {
-      const title = extractCodeGroupTitle(code, index);
-      return `${delimiter}ts [${title}]\n${code}\n${delimiter}`;
+      const { title, body } = extractCodeGroupTitle(code, index);
+      return `${delimiter}ts [${title}]\n${body}\n${delimiter}`;
     })
     .join('\n\n');
   return mdToHtml(`::: code-group\n\n${blocks}\n\n:::`);
@@ -119,8 +119,12 @@ export async function codeGroupToHtml(codes: string[]): Promise<string> {
 
 const codeGroupTitleCommentRegex = /^\s*\/\/\s*(.+?)\s*$/;
 
-function extractCodeGroupTitle(code: string, index: number): string {
-  const firstLine = code.split('\n', 1)[0];
+function extractCodeGroupTitle(
+  code: string,
+  index: number
+): { title: string; body: string } {
+  const newlineIndex = code.indexOf('\n');
+  const firstLine = newlineIndex === -1 ? code : code.slice(0, newlineIndex);
   const match = codeGroupTitleCommentRegex.exec(firstLine);
   if (match == null) {
     throw new Error(
@@ -128,7 +132,9 @@ function extractCodeGroupTitle(code: string, index: number): string {
     );
   }
 
-  return match[1];
+  const body = newlineIndex === -1 ? '' : code.slice(newlineIndex + 1);
+
+  return { title: match[1], body };
 }
 
 /**

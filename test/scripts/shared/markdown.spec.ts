@@ -26,6 +26,10 @@ describe('markdown', () => {
       expect(html).toContain('vp-code-group');
       expect(html).toContain('First title');
       expect(html).toContain('Second title');
+      // The leading title comment should be stripped from the rendered code body
+      // since the tab label already displays it.
+      expect(html).not.toContain('// First title');
+      expect(html).not.toContain('// Second title');
     });
 
     it('throws when a multi-example block is missing a title comment', async () => {
