@@ -117,24 +117,21 @@ export async function codeGroupToHtml(codes: string[]): Promise<string> {
   return mdToHtml(`::: code-group\n\n${blocks}\n\n:::`);
 }
 
-const codeGroupTitleCommentRegex = /^\s*\/\/\s*(.+?)\s*$/;
-
 function extractCodeGroupTitle(
   code: string,
   index: number
 ): { title: string; body: string } {
   const newlineIndex = code.indexOf('\n');
-  const firstLine = newlineIndex === -1 ? code : code.slice(0, newlineIndex);
-  const match = codeGroupTitleCommentRegex.exec(firstLine);
-  if (match == null) {
+  const firstLine = newlineIndex === -1 ? '' : code.slice(0, newlineIndex);
+  if (!firstLine.startsWith('// ')) {
     throw new Error(
       `Example ${index + 1} in a multi-example block must start with a \`// Title\` line comment to label the code-group tab, but got: ${JSON.stringify(firstLine)}`
     );
   }
 
-  const body = newlineIndex === -1 ? '' : code.slice(newlineIndex + 1);
+  const body = code.slice(newlineIndex + 1);
 
-  return { title: match[1], body };
+  return { title: firstLine.substring(3), body };
 }
 
 /**
