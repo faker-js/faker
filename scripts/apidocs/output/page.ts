@@ -2,7 +2,12 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
 import { formatMarkdown, formatTypescript } from '../../shared/format';
-import { adjustUrls, codeToHtml, mdToHtml } from '../../shared/markdown';
+import {
+  adjustUrls,
+  codeGroupToHtml,
+  codeToHtml,
+  mdToHtml,
+} from '../../shared/markdown';
 import { FILE_PATH_API_DOCS } from '../../shared/paths';
 import { toRefreshableCode } from '../../shared/refreshable-code';
 import type { RawApiDocsPage } from '../processing/class';
@@ -74,7 +79,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
 
   ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${await codeToHtml(examples.join('\n'))}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples)}</div>`}
 
   :::
 
@@ -199,7 +204,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     signature: await codeToHtml(formattedSignature),
-    examples: await codeToHtml(examples.join('\n')),
+    examples: await codeGroupToHtml(examples),
     refresh,
     deprecated: await mdToHtml(deprecated),
     seeAlsos: await Promise.all(
