@@ -12,3 +12,8 @@ exports[`markdown > codeGroupToHtml() > renders a tabbed code group with titles 
 </div></div></div>
 "
 `;
+
+exports[`markdown > codeGroupToHtml() > throws when a multi-example block is missing a title comment 1`] = `
+[Error: Example 2 in a multi-example block must start with a \`// Title\` line comment to label the code-group tab, but got:
+const b = 2;]
+`;

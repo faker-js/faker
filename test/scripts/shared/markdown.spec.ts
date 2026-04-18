@@ -28,9 +28,7 @@ describe('markdown', () => {
     it('throws when a multi-example block is missing a title comment', async () => {
       await expect(
         codeGroupToHtml(['// First title\nconst a = 1;', 'const b = 2;'])
-      ).rejects.toThrow(
-        /Example 2 in a multi-example block must start with a `\/\/ Title` line comment/
-      );
+      ).rejects.toThrowErrorMatchingSnapshot();
     });
   });
 });

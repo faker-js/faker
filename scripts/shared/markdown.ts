@@ -125,7 +125,7 @@ function extractCodeGroupTitle(
   const firstLine = newlineIndex === -1 ? '' : code.slice(0, newlineIndex);
   if (!firstLine.startsWith('// ')) {
     throw new Error(
-      `Example ${index + 1} in a multi-example block must start with a \`// Title\` line comment to label the code-group tab, but got: ${JSON.stringify(firstLine)}`
+      `Example ${index + 1} in a multi-example block must start with a \`// Title\` line comment to label the code-group tab, but got:\n${code}`
     );
   }
 
