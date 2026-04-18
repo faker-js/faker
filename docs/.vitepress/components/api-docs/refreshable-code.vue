@@ -14,7 +14,9 @@ const {
 }>();
 
 const code = useTemplateRef('code');
-const codeBlock = computed(() => code.value?.querySelector('div pre code'));
+// Scope to the wrapper so that multiple `<pre><code>` blocks (one per tab in a
+// VitePress code-group) are all covered. `.line` selectors below rely on this.
+const codeBlock = computed(() => code.value);
 const codeLines = ref<Element[]>();
 
 function initRefresh(): Element[] {
