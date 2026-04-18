@@ -1,3 +1,4 @@
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { ModuleBase } from '../../internal/module-base';
 
 /**

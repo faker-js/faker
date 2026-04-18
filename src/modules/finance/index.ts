@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { ModuleBase } from '../../internal/module-base';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {

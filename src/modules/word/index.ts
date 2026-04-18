@@ -1,4 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { ModuleBase } from '../../internal/module-base';
 import { filterWordListByLength } from './filter-word-list-by-length';
 

@@ -4,6 +4,7 @@
  * responsible for setting standards relating to many aspects of airline
  * operations.
  */
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { ModuleBase } from '../../internal/module-base';
 
 export enum Aircraft {

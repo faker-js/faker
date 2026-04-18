@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**

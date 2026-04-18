@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { toBase64Url } from '../../internal/base64';
 import { ModuleBase } from '../../internal/module-base';
 import { charMapping } from './char-mappings';

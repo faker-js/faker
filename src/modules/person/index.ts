@@ -1,5 +1,6 @@
 import type { PersonEntryDefinition } from '../../definitions/person';
 import type { Faker } from '../../faker';
+import { assertLocaleData } from '../../internal/assert-locale-data';
 import { ModuleBase } from '../../internal/module-base';
 
 /**
