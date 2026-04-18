@@ -13,8 +13,7 @@ describe('markdown', () => {
     it('renders a plain code block for a single example', async () => {
       const html = await codeGroupToHtml(['const a = 1;']);
 
-      expect(html).not.toContain('vp-code-group');
-      expect(html).toContain('const');
+      expect(html).toMatchSnapshot();
     });
 
     it('renders a tabbed code group with titles from leading comments', async () => {
@@ -23,13 +22,7 @@ describe('markdown', () => {
         '// Second title\nconst b = 2;',
       ]);
 
-      expect(html).toContain('vp-code-group');
-      expect(html).toContain('First title');
-      expect(html).toContain('Second title');
-      // The leading title comment should be stripped from the rendered code body
-      // since the tab label already displays it.
-      expect(html).not.toContain('// First title');
-      expect(html).not.toContain('// Second title');
+      expect(html).toMatchSnapshot();
     });
 
     it('throws when a multi-example block is missing a title comment', async () => {
