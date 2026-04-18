@@ -16,6 +16,7 @@
     "dist",
     // Ignore the generated API documentation
     "docs/api",
+    "docs/locales",
     // required for the signature related tests on macOS #2280
     "test/scripts/apidocs/temp"
   ]

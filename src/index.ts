@@ -1,3 +1,6 @@
+export type { FakerConfig } from './config';
+export { createFakerCore } from './core';
+export type { FakerCore, FakerOptions } from './core';
 export type {
   AirlineDefinition,
   AnimalDefinition,
@@ -28,9 +31,11 @@ export type {
   VehicleDefinition,
   WordDefinition,
 } from './definitions';
+export type { Distributor } from './distributors/distributor';
+export { exponentialDistributor } from './distributors/exponential';
+export { uniformDistributor } from './distributors/uniform';
 export { FakerError } from './errors/faker-error';
 export { Faker } from './faker';
-export type { FakerOptions } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
@@ -69,7 +74,7 @@ export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export { IPv4Network } from './modules/internet';
 export type { IPv4NetworkType, InternetModule } from './modules/internet';
-export type { LocationModule } from './modules/location';
+export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
 export type { NumberModule } from './modules/number';

@@ -73,7 +73,7 @@ function getAllMethods(clazz: ClassDeclaration): MethodDeclaration[] {
     }
   }
 
-  return Object.values(methods).sort((a, b) =>
+  return Object.values(methods).toSorted((a, b) =>
     a.getName().localeCompare(b.getName())
   );
 }
@@ -144,6 +144,17 @@ export function processUtilityFunctions(project: Project): RawApiDocsMethod[] {
   );
 }
 
+export function processDistributorFunctions(
+  project: Project
+): RawApiDocsMethod[] {
+  return processMethodLikes(
+    Object.values(getAllFunctions(project)).filter((fn) =>
+      fn.getSourceFile().getFilePath().includes('/src/distributors/')
+    ),
+    (f) => f.getNameOrThrow()
+  );
+}
+
 // Method-likes
 
 type MethodLikeDeclaration = SignatureLikeDeclaration &
@@ -170,7 +181,7 @@ function processMethodLikes<T extends MethodLikeDeclaration>(
         });
       }
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .toSorted((a, b) => a.name.localeCompare(b.name));
 }
 
 export function processMethodLike(

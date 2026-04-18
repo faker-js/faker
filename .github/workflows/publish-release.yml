@@ -15,18 +15,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0 # we want to push the release branch later
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Install pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
 
-      - name: Set node version to 22
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+      - name: Set node version to 24
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
-          node-version: 22
+          node-version: 24.14.1
           cache: 'pnpm'
 
       - name: Install deps
@@ -38,28 +38,15 @@ jobs:
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
           RELEASE_MAJOR=$(jq -r '.version | split(".")[0]' package.json)
           echo "RELEASE_MAJOR=$RELEASE_MAJOR" >> $GITHUB_ENV
-          DIST_TAG=$(jq -r '.version | if split("-")[1] == null then "latest" else "next" end' package.json)
-          echo "DIST_TAG=$DIST_TAG" >> $GITHUB_ENV
 
       - name: Prepare README
         run: |
           echo -e "$(grep -P '## 📙 API Documentation' -B 10000 README.md)\n\n- [Getting Started Guide](https://fakerjs.dev/guide/)\n- [API Reference](https://fakerjs.dev/api/)\n\n$(grep -P '## 🚀 Features' -A 10000 README.md)" > README.md
           sed -i "s|/fakerjs.dev/|/v$RELEASE_MAJOR.fakerjs.dev/|g" README.md
 
-      - name: Set publishing config
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
       - name: Publish
         run: |
-          pnpm publish --tag next --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
-
-      - name: Set latest/next dist-tag
-        run: |
-          pnpm dist-tag add @faker-js/faker@$RELEASE_VERSION $DIST_TAG
+          pnpm publish --access public --tag next --no-git-checks --provenance
 
       - name: Push to Release Branch
         run: |

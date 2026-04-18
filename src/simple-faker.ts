@@ -1,11 +1,14 @@
+import type { FakerCore, FakerOptions } from './core';
+import { createFakerCore } from './core';
 import { randomSeed } from './internal/seed';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
 import { SimpleHelpersModule } from './modules/helpers';
+import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
-import type { Randomizer } from './randomizer';
-import { generateMersenne53Randomizer } from './utils/mersenne';
+
+export const DEFAULT_REF_DATE_SOURCE: () => Date = () => new Date();
 
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.
@@ -14,6 +17,7 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * - `datatype`
  * - `date` (without `month` and `weekday`)
  * - `helpers` (without `fake`)
+ * - `location` (`latitude`, `longitude` and `nearbyGPSCoordinate` only)
  * - `number`
  * - `string`
  *
@@ -27,13 +31,18 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * simpleFaker.string.uuid(); // 'c50e1f5c-86e8-4aa9-888e-168e0a182519'
  */
 export class SimpleFaker {
-  protected _defaultRefDate: () => Date = () => new Date();
+  /**
+   * The faker core containing the randomizer and config to use.
+   *
+   * @internal
+   */
+  readonly fakerCore: FakerCore;
 
   /**
    * Gets a new reference date used to generate relative dates.
    */
   get defaultRefDate(): () => Date {
-    return this._defaultRefDate;
+    return this.fakerCore.config.defaultRefDate ?? DEFAULT_REF_DATE_SOURCE;
   }
 
   /**
@@ -73,18 +82,16 @@ export class SimpleFaker {
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
   ): void {
     if (typeof dateOrSource === 'function') {
-      this._defaultRefDate = dateOrSource;
+      this.fakerCore.config.defaultRefDate = dateOrSource;
     } else {
-      this._defaultRefDate = () => new Date(dateOrSource);
+      this.fakerCore.config.defaultRefDate = () => new Date(dateOrSource);
     }
   }
-
-  /** @internal */
-  private readonly _randomizer: Randomizer;
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
   readonly helpers: SimpleHelpersModule = new SimpleHelpersModule(this);
+  readonly location: SimpleLocationModule = new SimpleLocationModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly string: StringModule = new StringModule(this);
 
@@ -115,42 +122,16 @@ export class SimpleFaker {
    *
    * @since 8.1.0
    */
-  constructor(
-    options: {
-      /**
-       * The Randomizer to use.
-       * Specify this only if you want to use it to achieve a specific goal,
-       * such as sharing the same random generator with other instances/tools.
-       *
-       * @default generateMersenne53Randomizer()
-       */
-      randomizer?: Randomizer;
-
-      /**
-       * The initial seed to use.
-       * The seed can be used to generate reproducible values.
-       *
-       * Refer to the `seed()` method for more information.
-       *
-       * Defaults to a random seed.
-       */
-      seed?: number;
-    } = {}
-  ) {
-    const { randomizer, seed } = options;
-
-    if (randomizer != null && seed != null) {
-      randomizer.seed(seed);
-    }
-
-    this._randomizer = randomizer ?? generateMersenne53Randomizer(seed);
+  constructor(options?: FakerOptions) {
+    this.fakerCore = createFakerCore(options);
   }
 
   /**
    * Sets the seed or generates a new one.
    *
    * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
+   * number of calls that have been made since it was set. If you are using dates,
+   * you will also need to configure them separately.
    *
    * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.
@@ -267,7 +248,7 @@ export class SimpleFaker {
    */
   seed(seed?: number | number[]): number | number[];
   seed(seed: number | number[] = randomSeed()): number | number[] {
-    this._randomizer.seed(seed);
+    this.fakerCore.randomizer.seed(seed);
 
     return seed;
   }

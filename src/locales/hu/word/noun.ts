@@ -650,7 +650,6 @@ export default [
   'pali',
   'papucsos kígyógomba',
   'parabola csúcspontja',
-  'parasztország',
   'parazita',
   'parkolójegy',
   'partraszállás',

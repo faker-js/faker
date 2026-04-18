@@ -8,6 +8,7 @@ import {
   getDescription,
   getExamples,
   getJsDocs,
+  getRemarks,
   getSeeAlsos,
   getSince,
   getThrows,
@@ -38,6 +39,10 @@ export interface RawApiDocsSignature {
    * The parameters of the signature.
    */
   parameters: RawApiDocsParameter[];
+  /**
+   * Additional comments of the signature that are supposed to stand out from the description.
+   */
+  remarks: string[];
   /**
    * The return type of the signature.
    */
@@ -107,6 +112,7 @@ function processSignature(
       description: getDescription(jsdocs),
       since: getSince(jsdocs),
       parameters,
+      remarks: getRemarks(jsdocs),
       returns,
       throws: getThrows(jsdocs),
       signature: getSignatureText(signature),

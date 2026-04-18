@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { allLocales } from '../src';
-import './vitest-extensions';
 
 function checkLocaleData(data: unknown) {
   if (Array.isArray(data)) {
@@ -59,6 +58,7 @@ function allCharacters(data: unknown, path: string = ''): string[] {
       data
         .replaceAll(/{{(?:[^{]|{(?!{))*?}}/g, '') // remove placeholders
         .replaceAll(/\d+/g, '') // remove numbers
+        .replaceAll('\n', '') // remove newlines
     );
   }
 
@@ -74,7 +74,7 @@ describe('locale-data', () => {
     const characterSets = Object.fromEntries(
       Object.entries(allLocales).map(([locale, data]) => [
         locale,
-        allCharacters(data).sort().join(''),
+        allCharacters(data).toSorted().join(''),
       ])
     );
     expect(characterSets).toMatchSnapshot();

@@ -94,7 +94,7 @@ export default [
   { name: '西南航空公司', iataCode: 'WN' },
   { name: '香料航空公司', iataCode: 'SG' },
   { name: '精神航空公司', iataCode: 'NK' },
-  { name: '春秋航空公司', iataCode: '9S' },
+  { name: '春秋航空公司', iataCode: '9C' },
   { name: '斯里兰卡航空公司', iataCode: 'UL' },
   { name: '秘鲁星航空公司', iataCode: '2I' },
   { name: '太阳城航空公司', iataCode: 'SY' },

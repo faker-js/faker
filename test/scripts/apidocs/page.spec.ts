@@ -12,6 +12,7 @@ function newTestMethod(
       {
         deprecated: 'deprecated',
         description: 'description',
+        remarks: [],
         since: 'since',
         parameters: [],
         returns: {

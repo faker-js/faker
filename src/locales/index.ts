@@ -9,6 +9,7 @@ import az from './az';
 import base from './base';
 import bn_BD from './bn_BD';
 import cs_CZ from './cs_CZ';
+import cy from './cy';
 import da from './da';
 import de from './de';
 import de_AT from './de_AT';
@@ -48,8 +49,11 @@ import it from './it';
 import ja from './ja';
 import ka_GE from './ka_GE';
 import ko from './ko';
+import ku_ckb from './ku_ckb';
+import ku_kmr_latin from './ku_kmr_latin';
 import lv from './lv';
 import mk from './mk';
+import mn_MN_cyrl from './mn_MN_cyrl';
 import nb_NO from './nb_NO';
 import ne from './ne';
 import nl from './nl';
@@ -61,8 +65,10 @@ import ro from './ro';
 import ro_MD from './ro_MD';
 import ru from './ru';
 import sk from './sk';
+import sl_SI from './sl_SI';
 import sr_RS_latin from './sr_RS_latin';
 import sv from './sv';
+import ta_IN from './ta_IN';
 import th from './th';
 import tr from './tr';
 import uk from './uk';
@@ -80,6 +86,7 @@ export { default as az } from './az';
 export { default as base } from './base';
 export { default as bn_BD } from './bn_BD';
 export { default as cs_CZ } from './cs_CZ';
+export { default as cy } from './cy';
 export { default as da } from './da';
 export { default as de } from './de';
 export { default as de_AT } from './de_AT';
@@ -119,8 +126,11 @@ export { default as it } from './it';
 export { default as ja } from './ja';
 export { default as ka_GE } from './ka_GE';
 export { default as ko } from './ko';
+export { default as ku_ckb } from './ku_ckb';
+export { default as ku_kmr_latin } from './ku_kmr_latin';
 export { default as lv } from './lv';
 export { default as mk } from './mk';
+export { default as mn_MN_cyrl } from './mn_MN_cyrl';
 export { default as nb_NO } from './nb_NO';
 export { default as ne } from './ne';
 export { default as nl } from './nl';
@@ -132,8 +142,10 @@ export { default as ro } from './ro';
 export { default as ro_MD } from './ro_MD';
 export { default as ru } from './ru';
 export { default as sk } from './sk';
+export { default as sl_SI } from './sl_SI';
 export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
+export { default as ta_IN } from './ta_IN';
 export { default as th } from './th';
 export { default as tr } from './tr';
 export { default as uk } from './uk';
@@ -152,6 +164,7 @@ export const allLocales = {
   base,
   bn_BD,
   cs_CZ,
+  cy,
   da,
   de,
   de_AT,
@@ -191,8 +204,11 @@ export const allLocales = {
   ja,
   ka_GE,
   ko,
+  ku_ckb,
+  ku_kmr_latin,
   lv,
   mk,
+  mn_MN_cyrl,
   nb_NO,
   ne,
   nl,
@@ -204,8 +220,10 @@ export const allLocales = {
   ro_MD,
   ru,
   sk,
+  sl_SI,
   sr_RS_latin,
   sv,
+  ta_IN,
   th,
   tr,
   uk,

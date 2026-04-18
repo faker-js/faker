@@ -2,7 +2,7 @@
 
 exports[`system > 42 > commonFileExt 1`] = `"png"`;
 
-exports[`system > 42 > commonFileName > noArgs 1`] = `"unnaturally_dreamily.mp2"`;
+exports[`system > 42 > commonFileName > noArgs 1`] = `"unnaturally_dreamily.m3a"`;
 
 exports[`system > 42 > commonFileName > with extension 1`] = `"unnaturally_dreamily.ext"`;
 
@@ -18,19 +18,19 @@ exports[`system > 42 > cron > with includeYear false 1`] = `"* * ? 8 ?"`;
 
 exports[`system > 42 > cron > with includeYear true 1`] = `"* * ? 8 ? *"`;
 
-exports[`system > 42 > directoryPath 1`] = `"/opt/bin"`;
+exports[`system > 42 > directoryPath 1`] = `"/net"`;
 
 exports[`system > 42 > fileExt > noArgs 1`] = `"docx"`;
 
 exports[`system > 42 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 42 > fileName > noArgs 1`] = `"unnaturally_dreamily.iso"`;
+exports[`system > 42 > fileName > noArgs 1`] = `"unnaturally_dreamily.mar"`;
 
-exports[`system > 42 > fileName > with extensionCount 1`] = `"unnaturally_dreamily.iso.xlw"`;
+exports[`system > 42 > fileName > with extensionCount 1`] = `"unnaturally_dreamily.mar.xlw"`;
 
 exports[`system > 42 > fileName > with extensionCount range 1`] = `"unnaturally_dreamily"`;
 
-exports[`system > 42 > filePath 1`] = `"/opt/bin/supposing_dreamily_embarrassment.xlsx"`;
+exports[`system > 42 > filePath 1`] = `"/net/supposing_dreamily_embarrassment.xlsx"`;
 
 exports[`system > 42 > fileType 1`] = `"font"`;
 
@@ -104,9 +104,9 @@ exports[`system > 1211 > fileExt > noArgs 1`] = `"mp4"`;
 
 exports[`system > 1211 > fileExt > with mimeType 1`] = `"map"`;
 
-exports[`system > 1211 > fileName > noArgs 1`] = `"happy_unnaturally_phew.vst"`;
+exports[`system > 1211 > fileName > noArgs 1`] = `"happy_unnaturally_phew.vss"`;
 
-exports[`system > 1211 > fileName > with extensionCount 1`] = `"happy_unnaturally_phew.vst.mpg4"`;
+exports[`system > 1211 > fileName > with extensionCount 1`] = `"happy_unnaturally_phew.vss.mpg4"`;
 
 exports[`system > 1211 > fileName > with extensionCount range 1`] = `"happy_unnaturally_phew.mpg4"`;
 
@@ -178,19 +178,19 @@ exports[`system > 1337 > cron > with includeYear false 1`] = `"* * 9 6 *"`;
 
 exports[`system > 1337 > cron > with includeYear true 1`] = `"* * 9 6 * 2004"`;
 
-exports[`system > 1337 > directoryPath 1`] = `"/Library"`;
+exports[`system > 1337 > directoryPath 1`] = `"/home"`;
 
 exports[`system > 1337 > fileExt > noArgs 1`] = `"xul"`;
 
 exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 1337 > fileName > noArgs 1`] = `"wallaby.jpe"`;
+exports[`system > 1337 > fileName > noArgs 1`] = `"wallaby.jpg"`;
 
-exports[`system > 1337 > fileName > with extensionCount 1`] = `"wallaby.jpe.distz"`;
+exports[`system > 1337 > fileName > with extensionCount 1`] = `"wallaby.jpg.distz"`;
 
 exports[`system > 1337 > fileName > with extensionCount range 1`] = `"wallaby.distz.rar"`;
 
-exports[`system > 1337 > filePath 1`] = `"/Library/mmm.distz"`;
+exports[`system > 1337 > filePath 1`] = `"/home/mmm.distz"`;
 
 exports[`system > 1337 > fileType 1`] = `"audio"`;
 

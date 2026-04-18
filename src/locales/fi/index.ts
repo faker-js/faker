@@ -3,9 +3,11 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import cell_phone from './cell_phone';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
+import phone_number from './phone_number';
 
 /**
  * The locale data for the `fi` locale.
@@ -14,9 +16,11 @@ import person from './person';
  * - Endonym: suomi
  */
 const fi: LocaleDefinition = {
+  cell_phone,
   location,
   metadata,
   person,
+  phone_number,
 };
 
 export default fi;

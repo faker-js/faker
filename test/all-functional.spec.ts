@@ -3,19 +3,13 @@ import type { Faker, allLocales } from '../src';
 import { allFakers, fakerEN } from '../src';
 import { keys } from '../src/internal/keys';
 
-const IGNORED_MODULES = new Set([
-  'rawDefinitions',
-  'definitions',
-  'helpers',
-  '_randomizer',
-  '_defaultRefDate',
-]);
+const IGNORED_MODULES = new Set(['definitions', 'helpers', 'fakerCore']);
 
 function getMethodNamesByModules(faker: Faker): { [module: string]: string[] } {
   return Object.fromEntries(
     Object.keys(faker)
       .filter(isTestableModule)
-      .sort()
+      .toSorted()
       .map<[string, string[]]>((moduleName) => [
         moduleName,
         getMethodNamesOf(faker[moduleName]),
@@ -50,7 +44,7 @@ const BROKEN_LOCALE_METHODS = {
     betweens: '*',
   },
   location: {
-    state: ['az', 'nb_NO', 'ro_MD'],
+    state: ['az', 'ro_MD'],
     zipCode: ['en_HK'],
   },
   string: {
