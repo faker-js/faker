@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, useTemplateRef } from 'vue';
+import { onMounted, ref, useTemplateRef } from 'vue';
 import { formatResult } from './format';
 import RefreshButton from './refresh-button.vue';
 
@@ -14,16 +14,13 @@ const {
 }>();
 
 const code = useTemplateRef('code');
-// Scope to the wrapper so that multiple `<pre><code>` blocks (one per tab in a
-// VitePress code-group) are all covered. `.line` selectors below rely on this.
-const codeBlock = computed(() => code.value);
 const codeLines = ref<Element[]>();
 
 function initRefresh(): Element[] {
-  if (codeBlock.value == null) {
+  if (code.value == null) {
     return [];
   }
-  const domLines = codeBlock.value.querySelectorAll('.line');
+  const domLines = code.value.querySelectorAll('.line');
   let lineIndex = 0;
   const result: Element[] = [];
   while (lineIndex < domLines.length) {
@@ -84,13 +81,13 @@ function initRefresh(): Element[] {
 }
 
 async function onRefresh(): Promise<void> {
-  if (refresh != null && codeBlock.value != null) {
+  if (refresh != null && code.value != null) {
     codeLines.value ??= initRefresh();
 
     const results = await refresh();
 
     // Remove old comments
-    codeBlock.value
+    code.value
       .querySelectorAll('.comment-delete-marker')
       .forEach((el) => el.remove());
 
