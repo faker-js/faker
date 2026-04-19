@@ -647,7 +647,10 @@ export class DateModule extends SimpleDateModule {
   ): string {
     const { abbreviated = false, context = false } = options;
 
-    const source = this.faker.definitions.date.month;
+    const source = assertLocaleData(
+      this.faker.fakerCore.locale.date?.month,
+      'date.month'
+    );
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
       const useContext = context && source['abbr_context'] != null;
@@ -699,7 +702,10 @@ export class DateModule extends SimpleDateModule {
   ): string {
     const { abbreviated = false, context = false } = options;
 
-    const source = this.faker.definitions.date.weekday;
+    const source = assertLocaleData(
+      this.faker.fakerCore.locale.date?.weekday,
+      'date.weekday'
+    );
     let type: keyof DateEntryDefinition;
     if (abbreviated) {
       const useContext = context && source['abbr_context'] != null;
@@ -729,7 +735,10 @@ export class DateModule extends SimpleDateModule {
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.date.time_zone
+      assertLocaleData(
+        this.faker.fakerCore.locale.date?.time_zone,
+        'date.time_zone'
+      )
     );
   }
 }

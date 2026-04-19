@@ -119,7 +119,10 @@ export class PersonModule extends ModuleBase {
       selectDefinition(
         this.faker,
         sex,
-        this.faker.definitions.person.first_name
+        assertLocaleData(
+          this.faker.fakerCore.locale.person?.first_name,
+          'person.first_name'
+        )
       )
     );
   }
@@ -147,7 +150,14 @@ export class PersonModule extends ModuleBase {
     }
 
     return this.faker.helpers.arrayElement(
-      selectDefinition(this.faker, sex, this.faker.definitions.person.last_name)
+      selectDefinition(
+        this.faker,
+        sex,
+        assertLocaleData(
+          this.faker.fakerCore.locale.person?.last_name,
+          'person.last_name'
+        )
+      )
     );
   }
 
@@ -169,7 +179,10 @@ export class PersonModule extends ModuleBase {
       selectDefinition(
         this.faker,
         sex,
-        this.faker.definitions.person.middle_name
+        assertLocaleData(
+          this.faker.fakerCore.locale.person?.middle_name,
+          'person.middle_name'
+        )
       )
     );
   }
@@ -220,7 +233,7 @@ export class PersonModule extends ModuleBase {
     } = options;
 
     const fullNamePattern: string = this.faker.helpers.weightedArrayElement(
-      this.faker.definitions.person.name
+      assertLocaleData(this.faker.fakerCore.locale.person?.name, 'person.name')
     );
 
     const fullName = this.faker.helpers.mustache(fullNamePattern, {
@@ -245,7 +258,10 @@ export class PersonModule extends ModuleBase {
    */
   gender(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.gender
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.gender,
+        'person.gender'
+      )
     );
   }
 
@@ -264,7 +280,9 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   sex(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.person.sex);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.person?.sex, 'person.sex')
+    );
   }
 
   /**
@@ -313,7 +331,12 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    return this.faker.helpers.fake(this.faker.definitions.person.bio_pattern);
+    return this.faker.helpers.fake(
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.bio_pattern,
+        'person.bio_pattern'
+      )
+    );
   }
 
   /**
@@ -330,7 +353,14 @@ export class PersonModule extends ModuleBase {
    */
   prefix(sex?: SexType): string {
     return this.faker.helpers.arrayElement(
-      selectDefinition(this.faker, sex, this.faker.definitions.person.prefix)
+      selectDefinition(
+        this.faker,
+        sex,
+        assertLocaleData(
+          this.faker.fakerCore.locale.person?.prefix,
+          'person.prefix'
+        )
+      )
     );
   }
 
@@ -345,7 +375,10 @@ export class PersonModule extends ModuleBase {
   suffix(): string {
     // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.suffix
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.suffix,
+        'person.suffix'
+      )
     );
   }
 
@@ -359,7 +392,10 @@ export class PersonModule extends ModuleBase {
    */
   jobTitle(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.person.job_title_pattern
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.job_title_pattern,
+        'person.job_title_pattern'
+      )
     );
   }
 
@@ -373,7 +409,10 @@ export class PersonModule extends ModuleBase {
    */
   jobDescriptor(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.job_descriptor
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.job_descriptor,
+        'person.job_descriptor'
+      )
     );
   }
 
@@ -387,7 +426,10 @@ export class PersonModule extends ModuleBase {
    */
   jobArea(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.job_area
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.job_area,
+        'person.job_area'
+      )
     );
   }
 
@@ -401,7 +443,10 @@ export class PersonModule extends ModuleBase {
    */
   jobType(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.job_type
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.job_type,
+        'person.job_type'
+      )
     );
   }
 
@@ -415,7 +460,10 @@ export class PersonModule extends ModuleBase {
    */
   zodiacSign(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.western_zodiac_sign
+      assertLocaleData(
+        this.faker.fakerCore.locale.person?.western_zodiac_sign,
+        'person.western_zodiac_sign'
+      )
     );
   }
 }

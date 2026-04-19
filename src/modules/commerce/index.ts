@@ -100,7 +100,10 @@ export class CommerceModule extends ModuleBase {
    */
   department(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.department
+      assertLocaleData(
+        this.faker.fakerCore.locale.commerce?.department,
+        'commerce.department'
+      )
     );
   }
 
@@ -113,7 +116,10 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productName(): string {
-    const patterns = this.faker.definitions.commerce.product_name.pattern;
+    const patterns = assertLocaleData(
+      this.faker.fakerCore.locale.commerce?.product_name,
+      'commerce.product_name'
+    ).pattern;
     return this.faker.helpers.fake(patterns);
   }
 
@@ -223,7 +229,10 @@ export class CommerceModule extends ModuleBase {
    */
   productAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.product_name.adjective
+      assertLocaleData(
+        this.faker.fakerCore.locale.commerce?.product_name,
+        'commerce.product_name'
+      ).adjective
     );
   }
 
@@ -237,7 +246,10 @@ export class CommerceModule extends ModuleBase {
    */
   productMaterial(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.product_name.material
+      assertLocaleData(
+        this.faker.fakerCore.locale.commerce?.product_name,
+        'commerce.product_name'
+      ).material
     );
   }
 
@@ -251,7 +263,10 @@ export class CommerceModule extends ModuleBase {
    */
   product(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.product_name.product
+      assertLocaleData(
+        this.faker.fakerCore.locale.commerce?.product_name,
+        'commerce.product_name'
+      ).product
     );
   }
 
@@ -265,7 +280,10 @@ export class CommerceModule extends ModuleBase {
    */
   productDescription(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.commerce.product_description
+      assertLocaleData(
+        this.faker.fakerCore.locale.commerce?.product_description,
+        'commerce.product_description'
+      )
     );
   }
 

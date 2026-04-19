@@ -174,7 +174,10 @@ export class FinanceModule extends ModuleBase {
   accountName(): string {
     return [
       this.faker.helpers.arrayElement(
-        this.faker.definitions.finance.account_type
+        assertLocaleData(
+          this.faker.fakerCore.locale.finance?.account_type,
+          'finance.account_type'
+        )
       ),
       'Account',
     ].join(' ');
@@ -292,7 +295,10 @@ export class FinanceModule extends ModuleBase {
    */
   transactionType(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.finance.transaction_type
+      assertLocaleData(
+        this.faker.fakerCore.locale.finance?.transaction_type,
+        'finance.transaction_type'
+      )
     );
   }
 
@@ -311,7 +317,10 @@ export class FinanceModule extends ModuleBase {
    */
   currency(): Currency {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.finance.currency
+      assertLocaleData(
+        this.faker.fakerCore.locale.finance?.currency,
+        'finance.currency'
+      )
     );
   }
 
@@ -531,7 +540,10 @@ export class FinanceModule extends ModuleBase {
     const { issuer = '' } = options;
 
     let format: string;
-    const localeFormat = this.faker.definitions.finance.credit_card;
+    const localeFormat = assertLocaleData(
+      this.faker.fakerCore.locale.finance?.credit_card,
+      'finance.credit_card'
+    );
     const normalizedIssuer = issuer.toLowerCase();
     if (normalizedIssuer in localeFormat) {
       format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
@@ -571,7 +583,10 @@ export class FinanceModule extends ModuleBase {
    */
   creditCardIssuer(): string {
     return this.faker.helpers.objectKey(
-      this.faker.definitions.finance.credit_card
+      assertLocaleData(
+        this.faker.fakerCore.locale.finance?.credit_card,
+        'finance.credit_card'
+      )
     ) as string;
   }
 
@@ -847,7 +862,10 @@ export class FinanceModule extends ModuleBase {
    */
   transactionDescription(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.finance.transaction_description_pattern
+      assertLocaleData(
+        this.faker.fakerCore.locale.finance?.transaction_description_pattern,
+        'finance.transaction_description_pattern'
+      )
     );
   }
 }

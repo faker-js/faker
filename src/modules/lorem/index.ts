@@ -83,7 +83,10 @@ export class LoremModule extends ModuleBase {
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...options,
-        wordList: this.faker.definitions.lorem.word,
+        wordList: assertLocaleData(
+          this.faker.fakerCore.locale.lorem?.word,
+          'lorem.word'
+        ),
       })
     );
   }

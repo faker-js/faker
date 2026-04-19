@@ -115,7 +115,12 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   mimeType(): string {
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mime_type);
+    const mimeTypeKeys = Object.keys(
+      assertLocaleData(
+        this.faker.fakerCore.locale.system?.mime_type,
+        'system.mime_type'
+      )
+    );
 
     return this.faker.helpers.arrayElement(mimeTypeKeys);
   }
@@ -153,7 +158,10 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileType(): string {
-    const mimeTypes = this.faker.definitions.system.mime_type;
+    const mimeTypes = assertLocaleData(
+      this.faker.fakerCore.locale.system?.mime_type,
+      'system.mime_type'
+    );
 
     const typeSet = new Set(
       Object.keys(mimeTypes).map((key) => key.split('/')[0])
@@ -173,7 +181,10 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
-    const mimeTypes = this.faker.definitions.system.mime_type;
+    const mimeTypes = assertLocaleData(
+      this.faker.fakerCore.locale.system?.mime_type,
+      'system.mime_type'
+    );
 
     if (typeof mimeType === 'string') {
       return this.faker.helpers.arrayElement(mimeTypes[mimeType].extensions);
@@ -194,7 +205,10 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   directoryPath(): string {
-    const paths = this.faker.definitions.system.directory_path;
+    const paths = assertLocaleData(
+      this.faker.fakerCore.locale.system?.directory_path,
+      'system.directory_path'
+    );
     return this.faker.helpers.arrayElement(paths);
   }
 

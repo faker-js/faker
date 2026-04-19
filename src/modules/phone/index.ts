@@ -43,7 +43,10 @@ export class PhoneModule extends ModuleBase {
     } = {}
   ): string {
     const { style = 'human' } = options;
-    const formats = this.faker.definitions.phone_number.format;
+    const formats = assertLocaleData(
+      this.faker.fakerCore.locale.phone_number?.format,
+      'phone_number.format'
+    );
 
     const definitions = formats[style];
     if (!definitions) {

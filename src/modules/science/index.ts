@@ -50,7 +50,10 @@ export class ScienceModule extends ModuleBase {
    */
   chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemical_element
+      assertLocaleData(
+        this.faker.fakerCore.locale.science?.chemical_element,
+        'science.chemical_element'
+      )
     );
   }
 
@@ -65,6 +68,11 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   unit(): Unit {
-    return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(
+        this.faker.fakerCore.locale.science?.unit,
+        'science.unit'
+      )
+    );
   }
 }

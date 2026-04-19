@@ -27,7 +27,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   author(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.author);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.book?.author, 'book.author')
+    );
   }
 
   /**
@@ -39,7 +41,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   format(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.format);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.book?.format, 'book.format')
+    );
   }
 
   /**
@@ -51,7 +55,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.genre);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.book?.genre, 'book.genre')
+    );
   }
 
   /**
@@ -64,7 +70,10 @@ export class BookModule extends ModuleBase {
    */
   publisher(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.book.publisher
+      assertLocaleData(
+        this.faker.fakerCore.locale.book?.publisher,
+        'book.publisher'
+      )
     );
   }
 
@@ -77,7 +86,9 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   series(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.series);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.book?.series, 'book.series')
+    );
   }
 
   /**
@@ -89,6 +100,8 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   title(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.book.title);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.book?.title, 'book.title')
+    );
   }
 }

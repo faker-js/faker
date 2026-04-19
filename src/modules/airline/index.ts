@@ -89,7 +89,10 @@ export class AirlineModule extends ModuleBase {
    */
   airport(): Airport {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airport
+      assertLocaleData(
+        this.faker.fakerCore.locale.airline?.airport,
+        'airline.airport'
+      )
     );
   }
 
@@ -103,7 +106,10 @@ export class AirlineModule extends ModuleBase {
    */
   airline(): Airline {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airline
+      assertLocaleData(
+        this.faker.fakerCore.locale.airline?.airline,
+        'airline.airline'
+      )
     );
   }
 
@@ -117,7 +123,10 @@ export class AirlineModule extends ModuleBase {
    */
   airplane(): Airplane {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airplane
+      assertLocaleData(
+        this.faker.fakerCore.locale.airline?.airplane,
+        'airline.airplane'
+      )
     );
   }
 

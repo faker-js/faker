@@ -218,7 +218,9 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   human(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.color.human);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.color?.human, 'color.human')
+    );
   }
 
   /**
@@ -231,7 +233,9 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   space(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.color.space);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.color?.space, 'color.space')
+    );
   }
 
   /**

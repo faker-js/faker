@@ -198,7 +198,10 @@ export class InternetModule extends ModuleBase {
       firstName,
       lastName,
       provider = this.faker.helpers.arrayElement(
-        this.faker.definitions.internet.free_email
+        assertLocaleData(
+          this.faker.fakerCore.locale.internet?.free_email,
+          'internet.free_email'
+        )
       ),
       allowSpecialCharacters = false,
     } = options;
@@ -273,7 +276,10 @@ export class InternetModule extends ModuleBase {
     const { firstName, lastName, allowSpecialCharacters = false } = options;
 
     const provider = this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.example_email
+      assertLocaleData(
+        this.faker.fakerCore.locale.internet?.example_email,
+        'internet.example_email'
+      )
     );
 
     return this.email({
@@ -493,12 +499,18 @@ export class InternetModule extends ModuleBase {
   ): number {
     const {
       types = Object.keys(
-        this.faker.definitions.internet.http_status_code
+        assertLocaleData(
+          this.faker.fakerCore.locale.internet?.http_status_code,
+          'internet.http_status_code'
+        )
       ) as HTTPStatusCodeType[],
     } = options;
     const httpStatusCodeType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.http_status_code[httpStatusCodeType]
+      assertLocaleData(
+        this.faker.fakerCore.locale.internet?.http_status_code,
+        'internet.http_status_code'
+      )[httpStatusCodeType]
     );
   }
 
@@ -560,7 +572,10 @@ export class InternetModule extends ModuleBase {
    */
   domainSuffix(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.domain_suffix
+      assertLocaleData(
+        this.faker.fakerCore.locale.internet?.domain_suffix,
+        'internet.domain_suffix'
+      )
     );
   }
 
@@ -738,7 +753,10 @@ export class InternetModule extends ModuleBase {
    */
   userAgent(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.internet.user_agent_pattern
+      assertLocaleData(
+        this.faker.fakerCore.locale.internet?.user_agent_pattern,
+        'internet.user_agent_pattern'
+      )
     );
   }
 
@@ -947,11 +965,19 @@ export class InternetModule extends ModuleBase {
     } = {}
   ): string {
     const {
-      types = Object.keys(this.faker.definitions.internet.emoji) as EmojiType[],
+      types = Object.keys(
+        assertLocaleData(
+          this.faker.fakerCore.locale.internet?.emoji,
+          'internet.emoji'
+        )
+      ) as EmojiType[],
     } = options;
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.emoji[emojiType]
+      assertLocaleData(
+        this.faker.fakerCore.locale.internet?.emoji,
+        'internet.emoji'
+      )[emojiType]
     );
   }
 
@@ -968,7 +994,10 @@ export class InternetModule extends ModuleBase {
    */
   jwtAlgorithm(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.jwt_algorithm
+      assertLocaleData(
+        this.faker.fakerCore.locale.internet?.jwt_algorithm,
+        'internet.jwt_algorithm'
+      )
     );
   }
 

@@ -22,7 +22,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   dog(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.dog);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.dog, 'animal.dog')
+    );
   }
 
   /**
@@ -34,7 +36,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cat(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.cat);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.cat, 'animal.cat')
+    );
   }
 
   /**
@@ -46,7 +50,12 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   snake(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.snake);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.snake,
+        'animal.snake'
+      )
+    );
   }
 
   /**
@@ -58,7 +67,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   bear(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.bear);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.bear, 'animal.bear')
+    );
   }
 
   /**
@@ -70,7 +81,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   lion(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.lion);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.lion, 'animal.lion')
+    );
   }
 
   /**
@@ -83,7 +96,10 @@ export class AnimalModule extends ModuleBase {
    */
   cetacean(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.cetacean
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.cetacean,
+        'animal.cetacean'
+      )
     );
   }
 
@@ -96,7 +112,12 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   horse(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.horse);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.horse,
+        'animal.horse'
+      )
+    );
   }
 
   /**
@@ -108,7 +129,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   bird(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.bird);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.bird, 'animal.bird')
+    );
   }
 
   /**
@@ -120,7 +143,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cow(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.cow);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.cow, 'animal.cow')
+    );
   }
 
   /**
@@ -132,7 +157,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   fish(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.fish);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.fish, 'animal.fish')
+    );
   }
 
   /**
@@ -145,7 +172,10 @@ export class AnimalModule extends ModuleBase {
    */
   crocodilia(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.crocodilia
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.crocodilia,
+        'animal.crocodilia'
+      )
     );
   }
 
@@ -159,7 +189,10 @@ export class AnimalModule extends ModuleBase {
    */
   insect(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.insect
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.insect,
+        'animal.insect'
+      )
     );
   }
 
@@ -173,7 +206,10 @@ export class AnimalModule extends ModuleBase {
    */
   rabbit(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.rabbit
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.rabbit,
+        'animal.rabbit'
+      )
     );
   }
 
@@ -187,7 +223,10 @@ export class AnimalModule extends ModuleBase {
    */
   rodent(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.rodent
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.rodent,
+        'animal.rodent'
+      )
     );
   }
 
@@ -200,7 +239,9 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   type(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.type);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.animal?.type, 'animal.type')
+    );
   }
 
   /**
@@ -213,7 +254,10 @@ export class AnimalModule extends ModuleBase {
    */
   petName(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.pet_name
+      assertLocaleData(
+        this.faker.fakerCore.locale.animal?.pet_name,
+        'animal.pet_name'
+      )
     );
   }
 }

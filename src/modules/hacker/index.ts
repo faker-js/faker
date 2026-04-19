@@ -27,7 +27,10 @@ export class HackerModule extends ModuleBase {
    */
   abbreviation(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.abbreviation
+      assertLocaleData(
+        this.faker.fakerCore.locale.hacker?.abbreviation,
+        'hacker.abbreviation'
+      )
     );
   }
 
@@ -41,7 +44,10 @@ export class HackerModule extends ModuleBase {
    */
   adjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.adjective
+      assertLocaleData(
+        this.faker.fakerCore.locale.hacker?.adjective,
+        'hacker.adjective'
+      )
     );
   }
 
@@ -54,7 +60,9 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   noun(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.noun);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.hacker?.noun, 'hacker.noun')
+    );
   }
 
   /**
@@ -66,7 +74,9 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   verb(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.verb);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.hacker?.verb, 'hacker.verb')
+    );
   }
 
   /**
@@ -79,7 +89,10 @@ export class HackerModule extends ModuleBase {
    */
   ingverb(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.ingverb
+      assertLocaleData(
+        this.faker.fakerCore.locale.hacker?.ingverb,
+        'hacker.ingverb'
+      )
     );
   }
 
@@ -93,6 +106,11 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   phrase(): string {
-    return this.faker.helpers.fake(this.faker.definitions.hacker.phrase);
+    return this.faker.helpers.fake(
+      assertLocaleData(
+        this.faker.fakerCore.locale.hacker?.phrase,
+        'hacker.phrase'
+      )
+    );
   }
 }

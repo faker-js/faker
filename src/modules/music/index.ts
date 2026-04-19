@@ -28,7 +28,9 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.album);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.music?.album, 'music.album')
+    );
   }
 
   /**
@@ -40,7 +42,12 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   artist(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.artist);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(
+        this.faker.fakerCore.locale.music?.artist,
+        'music.artist'
+      )
+    );
   }
 
   /**
@@ -52,7 +59,9 @@ export class MusicModule extends ModuleBase {
    * @since 5.2.0
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(this.faker.fakerCore.locale.music?.genre, 'music.genre')
+    );
   }
 
   /**
@@ -65,7 +74,10 @@ export class MusicModule extends ModuleBase {
    */
   songName(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.music.song_name
+      assertLocaleData(
+        this.faker.fakerCore.locale.music?.song_name,
+        'music.song_name'
+      )
     );
   }
 }

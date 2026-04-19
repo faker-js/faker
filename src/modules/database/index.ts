@@ -21,7 +21,10 @@ export class DatabaseModule extends ModuleBase {
    */
   column(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.column
+      assertLocaleData(
+        this.faker.fakerCore.locale.database?.column,
+        'database.column'
+      )
     );
   }
 
@@ -35,7 +38,10 @@ export class DatabaseModule extends ModuleBase {
    */
   type(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.type
+      assertLocaleData(
+        this.faker.fakerCore.locale.database?.type,
+        'database.type'
+      )
     );
   }
 
@@ -49,7 +55,10 @@ export class DatabaseModule extends ModuleBase {
    */
   collation(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.collation
+      assertLocaleData(
+        this.faker.fakerCore.locale.database?.collation,
+        'database.collation'
+      )
     );
   }
 
@@ -63,7 +72,10 @@ export class DatabaseModule extends ModuleBase {
    */
   engine(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.engine
+      assertLocaleData(
+        this.faker.fakerCore.locale.database?.engine,
+        'database.engine'
+      )
     );
   }
 

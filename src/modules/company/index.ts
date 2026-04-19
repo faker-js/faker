@@ -25,7 +25,12 @@ export class CompanyModule extends ModuleBase {
    * @since 7.4.0
    */
   name(): string {
-    return this.faker.helpers.fake(this.faker.definitions.company.name_pattern);
+    return this.faker.helpers.fake(
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.name_pattern,
+        'company.name_pattern'
+      )
+    );
   }
 
   /**
@@ -66,7 +71,10 @@ export class CompanyModule extends ModuleBase {
    */
   catchPhraseAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.adjective
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.adjective,
+        'company.adjective'
+      )
     );
   }
 
@@ -80,7 +88,10 @@ export class CompanyModule extends ModuleBase {
    */
   catchPhraseDescriptor(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.descriptor
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.descriptor,
+        'company.descriptor'
+      )
     );
   }
 
@@ -93,7 +104,12 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseNoun(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.company.noun);
+    return this.faker.helpers.arrayElement(
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.noun,
+        'company.noun'
+      )
+    );
   }
 
   /**
@@ -106,7 +122,10 @@ export class CompanyModule extends ModuleBase {
    */
   buzzAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.buzz_adjective
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.buzz_adjective,
+        'company.buzz_adjective'
+      )
     );
   }
 
@@ -120,7 +139,10 @@ export class CompanyModule extends ModuleBase {
    */
   buzzVerb(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.buzz_verb
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.buzz_verb,
+        'company.buzz_verb'
+      )
     );
   }
 
@@ -134,7 +156,10 @@ export class CompanyModule extends ModuleBase {
    */
   buzzNoun(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.buzz_noun
+      assertLocaleData(
+        this.faker.fakerCore.locale.company?.buzz_noun,
+        'company.buzz_noun'
+      )
     );
   }
 }

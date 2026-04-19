@@ -257,8 +257,10 @@ export class LocationModule extends SimpleLocationModule {
     const { state } = options;
 
     if (state != null) {
-      const zipPattern =
-        this.faker.definitions.location.postcode_by_state[state];
+      const zipPattern = assertLocaleData(
+        this.faker.fakerCore.locale.location?.postcode_by_state,
+        'location.postcode_by_state'
+      )[state];
 
       if (zipPattern == null) {
         throw new FakerError(
@@ -269,7 +271,12 @@ export class LocationModule extends SimpleLocationModule {
       return this.faker.helpers.fake(zipPattern);
     }
 
-    let { format = this.faker.definitions.location.postcode } = options;
+    let {
+      format = assertLocaleData(
+        this.faker.fakerCore.locale.location?.postcode,
+        'location.postcode'
+      ),
+    } = options;
     if (typeof format === 'string') {
       format = [format];
     }
@@ -290,7 +297,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   city(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.location.city_pattern
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.city_pattern,
+        'location.city_pattern'
+      )
     );
   }
 
@@ -304,7 +314,12 @@ export class LocationModule extends SimpleLocationModule {
    */
   buildingNumber(): string {
     return this.faker.helpers
-      .arrayElement(this.faker.definitions.location.building_number)
+      .arrayElement(
+        assertLocaleData(
+          this.faker.fakerCore.locale.location?.building_number,
+          'location.building_number'
+        )
+      )
       .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
@@ -323,7 +338,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   street(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.location.street_pattern
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.street_pattern,
+        'location.street_pattern'
+      )
     );
   }
 
@@ -359,7 +377,10 @@ export class LocationModule extends SimpleLocationModule {
 
     const { useFullAddress } = options;
 
-    const formats = this.faker.definitions.location.street_address;
+    const formats = assertLocaleData(
+      this.faker.fakerCore.locale.location?.street_address,
+      'location.street_address'
+    );
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
     return this.faker.helpers.fake(format);
@@ -393,7 +414,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   postalAddress(): string {
     return this.faker.helpers.fake(
-      this.faker.definitions.location.postal_address
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.postal_address,
+        'location.postal_address'
+      )
     );
   }
 
@@ -408,7 +432,12 @@ export class LocationModule extends SimpleLocationModule {
    */
   secondaryAddress(): string {
     return this.faker.helpers
-      .fake(this.faker.definitions.location.secondary_address)
+      .fake(
+        assertLocaleData(
+          this.faker.fakerCore.locale.location?.secondary_address,
+          'location.secondary_address'
+        )
+      )
       .replaceAll(/#+/g, (m) =>
         this.faker.string.numeric({
           length: m.length,
@@ -428,7 +457,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   county(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.county
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.county,
+        'location.county'
+      )
     );
   }
 
@@ -442,7 +474,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   country(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.country
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.country,
+        'location.country'
+      )
     );
   }
 
@@ -456,7 +491,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   continent(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.continent
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.continent,
+        'location.continent'
+      )
     );
   }
 
@@ -519,7 +557,10 @@ export class LocationModule extends SimpleLocationModule {
     })();
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.country_code
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.country_code,
+        'location.country_code'
+      )
     )[key];
   }
 
@@ -554,8 +595,14 @@ export class LocationModule extends SimpleLocationModule {
   ): string {
     const { abbreviated = false } = options;
     const data = abbreviated
-      ? this.faker.definitions.location.state_abbr
-      : this.faker.definitions.location.state;
+      ? assertLocaleData(
+          this.faker.fakerCore.locale.location?.state_abbr,
+          'location.state_abbr'
+        )
+      : assertLocaleData(
+          this.faker.fakerCore.locale.location?.state,
+          'location.state'
+        );
 
     return this.faker.helpers.arrayElement(data);
   }
@@ -585,7 +632,10 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
-    const direction = this.faker.definitions.location.direction;
+    const direction = assertLocaleData(
+      this.faker.fakerCore.locale.location?.direction,
+      'location.direction'
+    );
     const data = abbreviated
       ? [...direction.cardinal_abbr, ...direction.ordinal_abbr]
       : [...direction.cardinal, ...direction.ordinal];
@@ -618,7 +668,10 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
-    const direction = this.faker.definitions.location.direction;
+    const direction = assertLocaleData(
+      this.faker.fakerCore.locale.location?.direction,
+      'location.direction'
+    );
     const data = abbreviated ? direction.cardinal_abbr : direction.cardinal;
 
     return this.faker.helpers.arrayElement(data);
@@ -649,7 +702,10 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
-    const direction = this.faker.definitions.location.direction;
+    const direction = assertLocaleData(
+      this.faker.fakerCore.locale.location?.direction,
+      'location.direction'
+    );
     const data = abbreviated ? direction.ordinal_abbr : direction.ordinal;
 
     return this.faker.helpers.arrayElement(data);
@@ -670,7 +726,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.time_zone
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.time_zone,
+        'location.time_zone'
+      )
     );
   }
 
@@ -691,7 +750,10 @@ export class LocationModule extends SimpleLocationModule {
    */
   language(): Language {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.language
+      assertLocaleData(
+        this.faker.fakerCore.locale.location?.language,
+        'location.language'
+      )
     );
   }
 }
