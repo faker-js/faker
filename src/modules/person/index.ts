@@ -1,5 +1,5 @@
-import type { Faker } from '../..';
 import type { PersonEntryDefinition } from '../../definitions/person';
+import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 
 /**

@@ -9,6 +9,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "methodWithDeprecated",
   "methodWithDeprecatedOption",
   "methodWithExample",
+  "methodWithMultipleExamples",
   "methodWithMultipleRemarks",
   "methodWithMultipleSeeMarkers",
   "methodWithMultipleSeeMarkersAndBackticks",
@@ -592,6 +593,40 @@ exports[`method > processMethodLike(methodWithExample) 1`] = `
       },
       "seeAlsos": [],
       "signature": "function methodWithExample(): number;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
+exports[`method > processMethodLike(methodWithMultipleExamples) 1`] = `
+{
+  "name": "methodWithMultipleExamples",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with multiple example markers.",
+      "examples": [
+        "// Inline usage
+test.apidocs.methodWithMultipleExamples() // 0",
+        "// Stored in a variable
+const value = test.apidocs.methodWithMultipleExamples();
+console.log(value); // 0",
+      ],
+      "parameters": [],
+      "remarks": [],
+      "returns": {
+        "text": "number",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function methodWithMultipleExamples(): number;",
       "since": "1.0.0",
       "throws": [],
     },

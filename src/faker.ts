@@ -35,6 +35,7 @@ import { SimpleFaker } from './simple-faker';
  * Please have a look at the individual modules and methods for more information and examples.
  *
  * @example
+ * // Default Faker instance
  * import { faker } from '@faker-js/faker';
  * // const { faker } = require('@faker-js/faker');
  *
@@ -43,6 +44,7 @@ import { SimpleFaker } from './simple-faker';
  * faker.person.firstName(); // 'John'
  * faker.person.lastName(); // 'Doe'
  * @example
+ * // Custom locale without en fallback
  * import { Faker, es } from '@faker-js/faker';
  * // const { Faker, es } = require('@faker-js/faker');
  *

@@ -180,18 +180,24 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Generates a random routing number.
+   * Generates a random [ABA routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number).
    *
    * @example
-   * faker.finance.routingNumber() // '522814402'
+   * faker.finance.routingNumber() // '062197511'
    *
    * @since 5.0.0
    */
   routingNumber(): string {
-    const routingNumber = this.faker.string.numeric({
-      length: 8,
+    const federalReserveRoutingSymbol = this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.federal_reserve_routing_symbol
+    );
+
+    const institutionIdentifier = this.faker.string.numeric({
+      length: 4,
       allowLeadingZeros: true,
     });
+
+    const routingNumber = federalReserveRoutingSymbol + institutionIdentifier;
 
     // Modules 10 straight summation.
     let sum = 0;
