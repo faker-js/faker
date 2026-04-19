@@ -1,12 +1,21 @@
 import type { LocaleDefinition } from '../definitions';
 import { FakerError } from '../errors/faker-error';
 
+const LOCALE_PROXY_TAG = Symbol('FakerLocaleProxy');
+
 /**
  * A proxy for LocaleDefinition that marks all properties as required and throws an error when an entry is accessed that is not defined.
  */
-export type LocaleProxy = Readonly<{
-  [key in keyof LocaleDefinition]-?: LocaleProxyCategory<LocaleDefinition[key]>;
-}>;
+export type LocaleProxy = Readonly<
+  {
+    [key in keyof LocaleDefinition]-?: LocaleProxyCategory<
+      LocaleDefinition[key]
+    >;
+  } & {
+    raw: LocaleDefinition;
+    [LOCALE_PROXY_TAG]: true;
+  }
+>;
 
 type LocaleProxyCategory<T> = Readonly<{
   [key in keyof T]-?: LocaleProxyEntry<T[key]>;
@@ -19,12 +28,30 @@ const throwReadOnlyError: () => never = () => {
 };
 
 /**
+ * Checks if the given value is a LocaleProxy.
+ *
+ * @param value The value to check.
+ *
+ * @returns  True if the value is a LocaleProxy, false otherwise.
+ */
+function isLocaleProxy(value: unknown): value is LocaleProxy {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (value as any)?.[LOCALE_PROXY_TAG] === true;
+}
+
+/**
  * Creates a proxy for LocaleDefinition that throws an error if an undefined property is accessed.
  *
  * @param locale The locale definition to create the proxy for.
  */
-export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
-  const proxies = {} as LocaleDefinition;
+export function createLocaleProxy(
+  locale: LocaleDefinition | LocaleProxy
+): LocaleProxy {
+  if (isLocaleProxy(locale)) {
+    return locale;
+  }
+
+  const proxies = { raw: locale } as LocaleDefinition;
   return new Proxy(locale, {
     has(): true {
       // Categories are always present (proxied), that's why we return true.
@@ -33,9 +60,17 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
 
     get(
       target: LocaleDefinition,
-      categoryName: keyof LocaleDefinition
-    ): LocaleDefinition[keyof LocaleDefinition] {
-      if (typeof categoryName === 'symbol' || categoryName === 'nodeType') {
+      categoryName: keyof LocaleProxy
+    ): LocaleProxy[keyof LocaleProxy] {
+      if (typeof categoryName === 'symbol') {
+        if (categoryName === LOCALE_PROXY_TAG) {
+          return true;
+        }
+
+        return target[categoryName];
+      }
+
+      if (categoryName === 'nodeType') {
         return target[categoryName];
       }
 
@@ -51,7 +86,7 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
 
     set: throwReadOnlyError,
     deleteProperty: throwReadOnlyError,
-  }) as LocaleProxy;
+  }) as unknown as LocaleProxy;
 }
 
 /**

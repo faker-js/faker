@@ -1,5 +1,7 @@
 import type { FakerConfig } from './config';
 import type { LocaleDefinition } from './definitions';
+import type { LocaleProxy } from './internal/locale-proxy';
+import { createLocaleProxy } from './internal/locale-proxy';
 import type { Randomizer } from './randomizer';
 import { mergeLocales } from './utils/merge-locales';
 import { generateMersenne53Randomizer } from './utils/mersenne';
@@ -13,7 +15,7 @@ export interface FakerCore {
    *
    * Always present, but it might be empty if the locale data is not available.
    */
-  readonly locale: LocaleDefinition;
+  readonly locale: LocaleProxy;
 
   /**
    * The randomizer used to generate random values.
@@ -32,7 +34,7 @@ export interface FakerOptions {
    *
    * @default {}
    */
-  locale?: LocaleDefinition | LocaleDefinition[];
+  locale?: LocaleProxy | LocaleDefinition | LocaleDefinition[];
   /**
    * The randomizer used to generate random values.
    *
@@ -95,7 +97,9 @@ export function createFakerCore(options: FakerOptions = {}): FakerCore {
   }
 
   return {
-    locale: Array.isArray(locale) ? mergeLocales(locale) : locale,
+    locale: createLocaleProxy(
+      Array.isArray(locale) ? mergeLocales(locale) : locale
+    ),
     randomizer,
     config,
   };
