@@ -20,6 +20,14 @@ describe('LocaleProxy', () => {
 
       expect(proxy).toBe(locale);
     });
+
+    it('should be possible to access raw without throwing', () => {
+      expect(() => locale.raw).not.toThrow();
+    });
+
+    it('should expose the original locale definition via raw', () => {
+      expect(locale.raw).toBe(en);
+    });
   });
 
   describe('category', () => {
