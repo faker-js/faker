@@ -691,7 +691,7 @@ describe('helpers', () => {
         });
 
         it('hides regex wrapper characters', () => {
-          const actual = faker.helpers.fromRegExp(/^foo$/i);
+          const actual = faker.helpers.fromRegExp(/^^foo$$/i);
           expect(actual).toBe('foo');
         });
       });

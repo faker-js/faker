@@ -370,7 +370,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     if (pattern instanceof RegExp) {
       isCaseInsensitive = pattern.flags.includes('i');
-      pattern = pattern.source.replace(/^\^/, '').replace(/\$$/, '');
+      pattern = pattern.source.replace(/^\^+/, '').replace(/\$+$/, '');
     }
 
     let min: number;
