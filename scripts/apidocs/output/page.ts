@@ -28,18 +28,27 @@ editLink: false
  * @param pages The pages to write.
  */
 export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
-  await Promise.all(pages.map(writePage));
+  const registryHints: Record<string, string> = Object.fromEntries(
+    pages.flatMap((page) =>
+      page.methods.map((method) => [method.name, page.camelTitle])
+    )
+  );
+  await Promise.all(pages.map((page) => writePage(page, registryHints)));
 }
 
 /**
  * Writes the api docs page and data for the given module to the correct location.
  *
  * @param page The page to write.
+ * @param registryHints Hints for accessing SMF via module registry.
  */
-async function writePage(page: RawApiDocsPage): Promise<void> {
+async function writePage(
+  page: RawApiDocsPage,
+  registryHints: Record<string, string> = {}
+): Promise<void> {
   try {
     await writePageMarkdown(page);
-    await writePageData(page);
+    await writePageData(page, registryHints);
   } catch (error) {
     throw new Error(`Error writing page ${page.title}`, { cause: error });
   }
@@ -103,20 +112,29 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
  * Writes the api docs data for the given module to correct location.
  *
  * @param page The page to write.
+ * @param registryHints Hints for accessing SMF via module registry.
  */
-async function writePageData(page: RawApiDocsPage): Promise<void> {
+async function writePageData(
+  page: RawApiDocsPage,
+  registryHints: Record<string, string> = {}
+): Promise<void> {
   const { camelTitle, methods } = page;
   const pageData: Record<string, ApiDocsMethod> = Object.fromEntries(
     await Promise.all(
       methods.map(async (method) => [method.name, await toMethodData(method)])
     )
   );
+  const priorizedRegistryHints = {
+    ...registryHints,
+    // own module > other modules
+    ...Object.fromEntries(methods.map((method) => [method.name, camelTitle])),
+  };
 
   const refreshFunctions: Record<string, string> = Object.fromEntries(
     await Promise.all(
       methods.map(async (method) => [
         method.name,
-        await toRefreshFunction(method),
+        await toRefreshFunction(method, priorizedRegistryHints),
       ])
     )
   );
@@ -218,12 +236,13 @@ export function extractSummaryDefault(description: string): string | undefined {
 }
 
 export async function toRefreshFunction(
-  method: RawApiDocsMethod
+  method: RawApiDocsMethod,
+  registryHints: Record<string, string> = {}
 ): Promise<string> {
   const { name, signatures } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
   const { examples } = signatureData;
 
   const exampleCode = examples.join('\n');
-  return await toRefreshableCode(name, exampleCode);
+  return await toRefreshableCode(name, exampleCode, registryHints);
 }

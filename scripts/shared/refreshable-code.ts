@@ -2,15 +2,31 @@ import { formatTypescript } from '../shared/format';
 
 export async function toRefreshableCode(
   name: string,
-  exampleCode: string
+  exampleCode: string,
+  moduleHints: Record<string, string> = {}
 ): Promise<string> {
   const exampleLines = exampleCode
     .replaceAll(/ ?\/\/.*$/gm, '') // Remove comments
     .replaceAll(/^import .*$/gm, '') // Remove imports
     .replaceAll(
-      // record results of relevant calls
       // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
-      /^(\w*faker\w*\..+(?:(?:.|\n..)*\n[^ ])?\)(?:\.\w+)?|distributor\(.+\));?$/gim,
+      /\b(?<!\.)(\w+)\((faker\.)?fakerCore/g,
+      (match, p1) => {
+        // Access SMF via module registry if possible
+        // firstName(fakerCore) -> fakerRegistry.person.firstName(fakerCore)
+        if (moduleHints[p1]) {
+          return `fakerRegistry.${moduleHints[p1]}.${match}`;
+        }
+
+        throw new Error(
+          `Unable to find module hint for ${p1} in example code for ${name}`
+        );
+      }
+    )
+    .replaceAll(
+      // Record results of relevant calls
+      // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
+      /^((?<callBase>\w*faker\w*\.|distributor\()(?<consumeToEOL>.+)(?<multiline>(?<consumeIndented>\n +.*)+(?<finalLine>\n[^ \n]+))?\)(?<nestedProperty>\.\w+)?);?$/gim,
       `try { result.push($1); } catch (error: unknown) { result.push(error instanceof Error ? error.name : 'Error'); }\n`
     );
 
@@ -22,6 +38,7 @@ export async function toRefreshableCode(
   const fullMethod = `async (): Promise<unknown[]> => {
 await enableFaker();
 const result: unknown[] = [];
+${/(?<!\.)fakerCore/.test(exampleCode) ? 'const fakerCore = faker.fakerCore;' : ''}
 
 ${exampleLines}
 

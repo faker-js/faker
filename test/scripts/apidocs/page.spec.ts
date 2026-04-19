@@ -112,4 +112,19 @@ describe('toRefreshFunction', () => {
     // then
     expect(result).toMatchSnapshot();
   });
+
+  it.todo('should handle SMF calls', async () => {
+    // given
+    const method = newTestMethod({
+      examples: ["???(fakerCore, 'food', 'fruit');"],
+    });
+
+    // when
+    const result = await toRefreshFunction(method, {
+      '???': 'utils',
+    });
+
+    // then
+    expect(result).toMatchSnapshot();
+  });
 });
