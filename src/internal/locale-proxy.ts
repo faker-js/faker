@@ -74,11 +74,7 @@ export function createLocaleProxy(
         return target[categoryName];
       }
 
-      if (categoryName in proxies) {
-        return proxies[categoryName];
-      }
-
-      return (proxies[categoryName] = createCategoryProxy(
+      return (proxies[categoryName] ??= createCategoryProxy(
         categoryName,
         target[categoryName]
       ));
