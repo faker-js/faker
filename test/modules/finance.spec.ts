@@ -1,3 +1,4 @@
+import { isAbaRouting } from 'validator';
 import isCreditCard from 'validator/lib/isCreditCard';
 import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
@@ -139,10 +140,22 @@ describe('finance', () => {
       });
 
       describe('routingNumber()', () => {
-        it('should return a string', () => {
+        it('should return a valid ABA routing number', () => {
           const routingNumber = faker.finance.routingNumber();
 
           expect(routingNumber).toBeTypeOf('string');
+          expect(routingNumber).toSatisfy(isAbaRouting);
+        });
+
+        it('should correspond to a valid federal reserve district', () => {
+          const routingNumber = faker.finance.routingNumber();
+
+          const firstTwoDigits = routingNumber.substring(0, 2);
+          const federalReserveDistrict = Number.parseInt(firstTwoDigits);
+
+          expect(federalReserveDistrict).toBeTypeOf('number');
+          expect(federalReserveDistrict).toBeGreaterThan(0);
+          expect(federalReserveDistrict).toBeLessThanOrEqual(12);
         });
       });
 
