@@ -1,5 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`toRefreshFunction > should handle SMF calls 1`] = `
+"async (): Promise<unknown[]> => {
+  await enableFaker();
+  const result: unknown[] = [];
+  const fakerCore = faker.fakerCore;
+
+  try {
+    result.push(fakerRegistry.utils.getDefaultRefDate(fakerCore));
+  } catch (error: unknown) {
+    result.push(error instanceof Error ? error.name : 'Error');
+  }
+
+  return result;
+}"
+`;
+
 exports[`toRefreshFunction > should handle multiline calls 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
