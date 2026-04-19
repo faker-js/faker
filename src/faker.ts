@@ -151,6 +151,6 @@ export class Faker extends SimpleFaker {
    * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
-    return this.fakerCore.locale.metadata ?? {};
+    return this.fakerCore.locale.raw.metadata ?? {};
   }
 }
