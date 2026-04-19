@@ -22,7 +22,7 @@ describe('LocaleProxy', () => {
     });
 
     it('should be possible to access raw without throwing', () => {
-      expect(() => locale.raw).not.toThrow();
+      expect(() => locale.raw.missing?.missing).toBeUndefined();
     });
 
     it('should expose the original locale definition via raw', () => {
