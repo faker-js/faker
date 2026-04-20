@@ -12,7 +12,14 @@ export type LocaleProxy = Readonly<
       LocaleDefinition[key]
     >;
   } & {
+    /**
+     * The raw locale definition used to create this proxy.
+     * This can be useful to check if a category/entry exists without triggering the proxy's error.
+     */
     raw: LocaleDefinition;
+    /**
+     * Marker to identify a `LocaleProxy`.
+     */
     [LOCALE_PROXY_TAG]: true;
   }
 >;
@@ -36,7 +43,11 @@ const throwReadOnlyError: () => never = () => {
  */
 function isLocaleProxy(value: unknown): value is LocaleProxy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (value as any)?.[LOCALE_PROXY_TAG] === true;
+  return (
+    value != null &&
+    typeof value === 'object' &&
+    (value as any)?.[LOCALE_PROXY_TAG] === true
+  );
 }
 
 /**
