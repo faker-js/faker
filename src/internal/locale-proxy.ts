@@ -42,10 +42,10 @@ const throwReadOnlyError: () => never = () => {
  * @returns  True if the value is a LocaleProxy, false otherwise.
  */
 function isLocaleProxy(value: unknown): value is LocaleProxy {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (
     value != null &&
     typeof value === 'object' &&
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (value as any)?.[LOCALE_PROXY_TAG] === true
   );
 }

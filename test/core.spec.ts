@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import type { FakerConfig } from '../src/config';
 import { createFakerCore } from '../src/core';
 import type { LocaleDefinition } from '../src/definitions/definitions';
+import { createLocaleProxy } from '../src/internal/locale-proxy';
 import type { Randomizer } from '../src/randomizer';
 import { generateMersenne53Randomizer } from '../src/utils/mersenne';
 
@@ -44,6 +45,16 @@ describe('createFakerCore', () => {
       const actual = createFakerCore({ locale: [locale1, locale2] });
 
       expect(actual.locale).toEqual({ ...locale1, ...locale2 });
+    });
+
+    it('should handle LocaleProxy', () => {
+      const locale: LocaleDefinition = { test1: { test: 'test1' } };
+      const proxy = createLocaleProxy(locale);
+      const actual = createFakerCore({ locale: proxy });
+
+      expect(actual.locale).toBe(proxy);
+      expect(actual.locale).toEqual(locale);
+      expect(actual.locale.raw).toBe(locale);
     });
   });
 
