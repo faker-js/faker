@@ -689,6 +689,11 @@ describe('helpers', () => {
           expect(actual).toHaveLength(9);
           expect(actual).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
         });
+
+        it('hides regex wrapper characters', () => {
+          const actual = faker.helpers.fromRegExp(/^^foo$$/i);
+          expect(actual).toBe('foo');
+        });
       });
 
       describe('shuffle()', () => {

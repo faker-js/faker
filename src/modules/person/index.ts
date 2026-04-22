@@ -137,7 +137,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    const patterns = this.faker.fakerCore.locale.person?.last_name_pattern;
+    const patterns = this.faker.definitions.raw.person?.last_name_pattern;
     if (patterns != null) {
       const pattern = this.faker.helpers.weightedArrayElement(
         selectDefinition(this.faker, sex, patterns)

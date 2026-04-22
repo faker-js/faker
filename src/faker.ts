@@ -2,7 +2,6 @@ import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import type { LocaleProxy } from './internal/locale-proxy';
-import { createLocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
 import { BookModule } from './modules/book';
@@ -57,8 +56,6 @@ import { SimpleFaker } from './simple-faker';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker extends SimpleFaker {
-  readonly definitions: LocaleProxy;
-
   readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
   readonly book: BookModule = new BookModule(this);
@@ -85,6 +82,10 @@ export class Faker extends SimpleFaker {
   readonly word: WordModule = new WordModule(this);
 
   get rawDefinitions(): LocaleDefinition {
+    return this.fakerCore.locale.raw;
+  }
+
+  get definitions(): LocaleProxy {
     return this.fakerCore.locale;
   }
 
@@ -136,8 +137,6 @@ export class Faker extends SimpleFaker {
         'The locale option must contain at least one locale definition.'
       );
     }
-
-    this.definitions = createLocaleProxy(this.fakerCore.locale);
   }
 
   /**
@@ -152,6 +151,6 @@ export class Faker extends SimpleFaker {
    * @since 8.1.0
    */
   getMetadata(): MetadataDefinition {
-    return this.fakerCore.locale.metadata ?? {};
+    return this.fakerCore.locale.raw.metadata ?? {};
   }
 }

@@ -14,6 +14,20 @@ describe('LocaleProxy', () => {
     it('should be possible to use not equals on locale', () => {
       expect(locale).not.toEqual(createLocaleProxy({}));
     });
+
+    it('should be possible to pass a LocaleProxy to createLocaleProxy', () => {
+      const proxy = createLocaleProxy(locale);
+
+      expect(proxy).toBe(locale);
+    });
+
+    it('should be possible to access raw without throwing', () => {
+      expect(locale.raw.missing?.missing).toBeUndefined();
+    });
+
+    it('should expose the original locale definition via raw', () => {
+      expect(locale.raw).toBe(en);
+    });
   });
 
   describe('category', () => {
