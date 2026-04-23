@@ -27,7 +27,7 @@ export async function toRefreshableCode(
       // Record results of relevant calls
       // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
       /^((?<callBase>\w*faker\w*\.|distributor\()(?<consumeToEOL>.+)(?<multiline>(?<consumeIndented>\n +.*)+(?<finalLine>\n[^ \n]+))?\)(?<nestedProperty>\.\w+)?);?$/gim,
-      `try { result.push($1); } catch (error: unknown) { result.push(error instanceof Error ? error.name : 'Error'); }\n`
+      `try { result.push($1); } catch (error: unknown) { result.push(error instanceof Error ? error.name : 'Error'); console.log('Error in example for ${name}:', error); }\n`
     );
 
   if (!exampleLines.includes('try { result.push(')) {
@@ -39,8 +39,16 @@ export async function toRefreshableCode(
 await enableFaker();
 const result: unknown[] = [];
 ${/(?<!\.)fakerCore/.test(exampleCode) ? 'const fakerCore = faker.fakerCore;' : ''}
+${
+  // TODO @ST-DDT 2026-04-23: Remove when past is transformed into standalone function
+  exampleCode.includes('past(fakerCore')
+    ? 'fakerRegistry.date = { past: (fakerCore) => new SimpleFaker(fakerCore).date.past() };'
+    : ''
+}
 
 ${exampleLines}
+
+${exampleCode.includes('setDefaultRefDate(') ? 'faker.setDefaultRefDate(); // Reset' : ''}
 
 return result;
 }`;
