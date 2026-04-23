@@ -1,3 +1,4 @@
+import type { ModuleRegistry } from '../registry.types';
 import { getDefaultRefDate } from './get-default-ref-date';
 import { setDefaultRefDate } from './set-default-ref-date';
 
@@ -7,4 +8,4 @@ import { setDefaultRefDate } from './set-default-ref-date';
 export const utilsModule = {
   getDefaultRefDate,
   setDefaultRefDate,
-};
+} as const satisfies ModuleRegistry;
