@@ -1,4 +1,4 @@
-import type { FakerCore } from '.';
+import type { FakerCore } from './core';
 
 /**
  * Global Registry for the Faker library, containing all module registries.
