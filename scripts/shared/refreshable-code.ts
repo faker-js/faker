@@ -12,7 +12,7 @@ export async function toRefreshableCode(
       // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
       /\b(?<!\.)(\w+)\((faker\.)?fakerCore/g,
       (match, p1) => {
-        // Access SMF via module registry if possible
+        // Access standalone functions via module registry if possible
         // firstName(fakerCore) -> fakerRegistry.person.firstName(fakerCore)
         if (moduleHints[p1]) {
           return `fakerRegistry.${moduleHints[p1]}.${match}`;

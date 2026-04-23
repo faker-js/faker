@@ -40,7 +40,7 @@ export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
  * Writes the api docs page and data for the given module to the correct location.
  *
  * @param page The page to write.
- * @param registryHints Hints for accessing SMF via module registry.
+ * @param registryHints Hints for accessing standalone functions via module registry.
  */
 async function writePage(
   page: RawApiDocsPage,
@@ -112,7 +112,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
  * Writes the api docs data for the given module to correct location.
  *
  * @param page The page to write.
- * @param registryHints Hints for accessing SMF via module registry.
+ * @param registryHints Hints for accessing standalone functions via module registry.
  */
 async function writePageData(
   page: RawApiDocsPage,

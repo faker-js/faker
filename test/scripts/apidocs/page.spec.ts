@@ -113,7 +113,7 @@ describe('toRefreshFunction', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('should handle SMF calls', async () => {
+  it('should handle standalone functions calls', async () => {
     // given
     const method = newTestMethod({
       examples: ['getDefaultRefDate(fakerCore);'],
