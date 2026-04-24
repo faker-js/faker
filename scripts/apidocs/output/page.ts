@@ -124,7 +124,7 @@ async function writePageData(
       methods.map(async (method) => [method.name, await toMethodData(method)])
     )
   );
-  const priorizedRegistryHints = {
+  const prioritizedRegistryHints = {
     ...registryHints,
     // own module > other modules
     ...Object.fromEntries(methods.map((method) => [method.name, camelTitle])),
@@ -134,7 +134,7 @@ async function writePageData(
     await Promise.all(
       methods.map(async (method) => [
         method.name,
-        await toRefreshFunction(method, priorizedRegistryHints),
+        await toRefreshFunction(method, prioritizedRegistryHints),
       ])
     )
   );

@@ -8,7 +8,4 @@ export type FakerRegistry = Record<string, ModuleRegistry>;
 /**
  * Per module registry containing the module's standalone functions.
  */
-export type ModuleRegistry = Record<
-  string,
-  (fakerCore: FakerCore, ...args: never[]) => unknown
->;
+export type ModuleRegistry = Record<string, (fakerCore: FakerCore) => unknown>;
