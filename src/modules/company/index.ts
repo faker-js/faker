@@ -56,7 +56,7 @@ export class CompanyModule extends ModuleBase {
   }
 
   /**
-   * Returns a random catch phrase adjective that can be displayed to an end user..
+   * Returns a random catch phrase adjective that can be displayed to an end user.
    *
    * @example
    * faker.company.catchPhraseAdjective() // 'Multi-tiered'
@@ -70,7 +70,7 @@ export class CompanyModule extends ModuleBase {
   }
 
   /**
-   * Returns a random catch phrase descriptor that can be displayed to an end user..
+   * Returns a random catch phrase descriptor that can be displayed to an end user.
    *
    * @example
    * faker.company.catchPhraseDescriptor() // 'composite'
@@ -84,7 +84,7 @@ export class CompanyModule extends ModuleBase {
   }
 
   /**
-   * Returns a random catch phrase noun that can be displayed to an end user..
+   * Returns a random catch phrase noun that can be displayed to an end user.
    *
    * @example
    * faker.company.catchPhraseNoun() // 'leverage'

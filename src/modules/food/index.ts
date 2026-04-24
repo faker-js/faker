@@ -112,7 +112,7 @@ export class FoodModule extends ModuleBase {
   }
 
   /**
-   * Generates a random meat
+   * Generates a random meat.
    *
    * @example
    * faker.food.meat() // 'venison'

@@ -224,7 +224,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   }
 
   /**
-   * Parses the given string symbol by symbols and replaces the placeholder appropriately.
+   * Parses the given string symbol by symbol and replaces the placeholder appropriately.
    *
    * - `#` will be replaced with a digit (`0` - `9`).
    * - `?` will be replaced with an upper letter ('A' - 'Z')
@@ -752,7 +752,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @template TResult The type of result of the given callback.
    *
-   * @param callback The callback to that will be invoked if the probability check was successful.
+   * @param callback The callback that will be invoked if the probability check was successful.
    * @param options The options to use.
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *

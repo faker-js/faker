@@ -234,7 +234,7 @@ export class ColorModule extends ModuleBase {
   }
 
   /**
-   * Returns a random css supported color function name.
+   * Returns a random CSS-supported color function name.
    *
    * @example
    * faker.color.cssSupportedFunction() // 'rgb'
@@ -246,7 +246,7 @@ export class ColorModule extends ModuleBase {
   }
 
   /**
-   * Returns a random css supported color space name.
+   * Returns a random CSS-supported color space name.
    *
    * @example
    * faker.color.cssSupportedSpace() // 'display-p3'
