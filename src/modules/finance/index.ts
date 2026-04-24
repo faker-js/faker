@@ -379,7 +379,7 @@ export class FinanceModule extends ModuleBase {
    * Generates a random Bitcoin address.
    *
    * @param options An optional options object.
-   * @param options.type The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
+   * @param options.type The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
    * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
    *
    * @example
@@ -392,9 +392,9 @@ export class FinanceModule extends ModuleBase {
   bitcoinAddress(
     options: {
       /**
-       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
+       * The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`).
        *
-       * @default faker.helpers.arrayElement(['legacy','sewgit','bech32','taproot'])
+       * @default faker.helpers.enumValue(BitcoinAddressFamily)
        */
       type?: BitcoinAddressFamilyType;
       /**

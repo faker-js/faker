@@ -60,7 +60,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @throws {FakerError} If `years.max` is less than 0.
-   * @throws {FakerError} If `years.min` is greater or equal than `years.max`.
+   * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
    *
    * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
    *
@@ -135,7 +135,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @throws {FakerError} If `years.max` is less than 0.
-   * @throws {FakerError} If `years.min` is greater or equal than `years.max`.
+   * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
    *
    * @see faker.date.soon(): For generating dates in the near future (days instead of years).
    *

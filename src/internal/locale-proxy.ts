@@ -39,7 +39,7 @@ const throwReadOnlyError: () => never = () => {
  *
  * @param value The value to check.
  *
- * @returns  True if the value is a LocaleProxy, false otherwise.
+ * @returns True if the value is a LocaleProxy, false otherwise.
  */
 function isLocaleProxy(value: unknown): value is LocaleProxy {
   return (
