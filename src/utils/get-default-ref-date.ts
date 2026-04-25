@@ -1,6 +1,6 @@
 import type { FakerCore } from '../core';
 
-export const DEFAULT_REF_DATE_SOURCE: () => Date = () => new Date();
+const DEFAULT_REF_DATE_SOURCE: () => Date = () => new Date();
 
 /**
  * Gets a new reference date used to generate relative dates.
