@@ -13,6 +13,7 @@ import type { FakerCore } from '../core';
  *
  * @example
  * // Default
+ * fakerCore.randomizer.seed(1234); // Keep `past()` offset consistent for example runs
  * // setDefaultRefDate(fakerCore);
  * past(fakerCore); // Changes based on the current date/time
  * @example
