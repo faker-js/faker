@@ -247,7 +247,7 @@ ${examples}`;
               });
               //#endregion
 
-              //#region Example
+              //#region @example
               it(
                 'verify @example tag',
                 {
