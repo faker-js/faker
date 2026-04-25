@@ -278,7 +278,7 @@ ${examples}`;
               );
               //#endregion
 
-              //#region Deprecated
+              //#region @deprecated
               // This only checks whether the whole method is deprecated or not
               // It does not check whether the method is deprecated for a specific set of arguments
               it(
