@@ -12,17 +12,16 @@ import type { FakerCore } from '../core';
  * @see faker.seed(): For generating reproducible values.
  *
  * @example
- * fakerCore.randomizer.seed(1234);
- *
- * // Default behavior
+ * // Default
  * // setDefaultRefDate(fakerCore);
  * past(fakerCore); // Changes based on the current date/time
- *
- * // Use a static ref date
+ * @example
+ * // Fixed
+ * fakerCore.randomizer.seed(1234);
  * setDefaultRefDate(fakerCore, new Date('2020-01-01'));
  * past(fakerCore); // Reproducible '2019-07-03T08:27:58.118Z'
- *
- * // Use a ref date that changes every time it is used
+ * @example
+ * // Tick on use
  * let clock = new Date("2020-01-01").getTime();
  * setDefaultRefDate(fakerCore, () => {
  *   clock += 1000; // +1s

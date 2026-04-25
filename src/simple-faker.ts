@@ -56,25 +56,24 @@ export class SimpleFaker {
    * @see faker.seed(): For generating reproducible values.
    *
    * @example
-   * faker.seed(1234);
-   *
-   * // Default behavior
-   * // faker.setDefaultRefDate();
-   * faker.date.past(); // Changes based on the current date/time
-   *
-   * // Use a static ref date
-   * faker.setDefaultRefDate(new Date('2020-01-01'));
-   * faker.date.past(); // Reproducible '2019-07-03T08:27:58.118Z'
-   *
-   * // Use a ref date that changes every time it is used
+   * // Default
+   * // setDefaultRefDate(fakerCore);
+   * past(fakerCore); // Changes based on the current date/time
+   * @example
+   * // Fixed
+   * fakerCore.randomizer.seed(1234);
+   * setDefaultRefDate(fakerCore, new Date('2020-01-01'));
+   * past(fakerCore); // Reproducible '2019-07-03T08:27:58.118Z'
+   * @example
+   * // Tick on use
    * let clock = new Date("2020-01-01").getTime();
-   * faker.setDefaultRefDate(() => {
+   * setDefaultRefDate(fakerCore, () => {
    *   clock += 1000; // +1s
    *   return new Date(clock);
    * });
    *
-   * faker.defaultRefDate() // 2020-01-01T00:00:01Z
-   * faker.defaultRefDate() // 2020-01-01T00:00:02Z
+   * getDefaultRefDate(fakerCore) // 2020-01-01T00:00:01Z
+   * getDefaultRefDate(fakerCore) // 2020-01-01T00:00:02Z
    *
    * @since 8.0.0
    */
