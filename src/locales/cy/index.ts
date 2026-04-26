@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import color from './color';
 import date from './date';
 import metadata from './metadata';
+import person from './person';
 
 /**
  * The locale data for the `cy` locale.
@@ -17,6 +18,7 @@ const cy: LocaleDefinition = {
   color,
   date,
   metadata,
+  person,
 };
 
 export default cy;
