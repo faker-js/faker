@@ -33,9 +33,10 @@ const backersStorage = useLocalStorage<{
 const sponsors = computed<Sponsor[]>(
   () =>
     backersStorage.value?.backers
+      .filter((backer) => backer.account.imageUrl)
       .map((backer) => ({
         name: backer.account.name ?? backer.account.slug,
-        img: backer.account.imageUrl ?? '',
+        img: backer.account.imageUrl!,
         url: `https://opencollective.com/${backer.account.slug}`,
       }))
       .slice(0, 10) || []
@@ -93,15 +94,24 @@ onMounted(async () => {
     now.getFullYear() !== lastUpdated.getFullYear() ||
     now.getMonth() !== lastUpdated.getMonth()
   ) {
-    const backers = await fetchBackers();
-    backersStorage.value = {
-      lastUpdated: Date.now(),
-      backers,
-    };
+    try {
+      const backers = await fetchBackers();
+      backersStorage.value = {
+        lastUpdated: Date.now(),
+        backers,
+      };
+    } catch {
+      // Silently ignore fetch errors; the section will hide itself when empty.
+    }
   }
 });
 </script>
 
 <template>
-  <VPDocAsideSponsors tier="Top 10 Sponsors" size="xmini" :data="sponsors" />
+  <VPDocAsideSponsors
+    v-if="sponsors.length > 0"
+    tier="Top 10 Sponsors"
+    size="xmini"
+    :data="sponsors"
+  />
 </template>
