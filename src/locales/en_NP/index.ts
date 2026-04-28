@@ -11,12 +11,12 @@ import person from './person';
 import phone_number from './phone_number';
 
 /**
- * The locale data for the `ne` locale.
+ * The locale data for the `en_NP` locale.
  *
- * - Language: Nepali
- * - Endonym: नेपाली
+ * - Language: English (Nepal)
+ * - Endonym: English (Nepal)
  */
-const ne: LocaleDefinition = {
+const en_NP: LocaleDefinition = {
   company,
   internet,
   location,
@@ -25,4 +25,4 @@ const ne: LocaleDefinition = {
   phone_number,
 };
 
-export default ne;
+export default en_NP;

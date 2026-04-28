@@ -27,6 +27,7 @@ import en_HK from './en_HK';
 import en_IE from './en_IE';
 import en_IN from './en_IN';
 import en_NG from './en_NG';
+import en_NP from './en_NP';
 import en_US from './en_US';
 import en_ZA from './en_ZA';
 import eo from './eo';
@@ -55,7 +56,6 @@ import lv from './lv';
 import mk from './mk';
 import mn_MN_cyrl from './mn_MN_cyrl';
 import nb_NO from './nb_NO';
-import ne from './ne';
 import nl from './nl';
 import nl_BE from './nl_BE';
 import pl from './pl';
@@ -104,6 +104,7 @@ export { default as en_HK } from './en_HK';
 export { default as en_IE } from './en_IE';
 export { default as en_IN } from './en_IN';
 export { default as en_NG } from './en_NG';
+export { default as en_NP } from './en_NP';
 export { default as en_US } from './en_US';
 export { default as en_ZA } from './en_ZA';
 export { default as eo } from './eo';
@@ -132,7 +133,6 @@ export { default as lv } from './lv';
 export { default as mk } from './mk';
 export { default as mn_MN_cyrl } from './mn_MN_cyrl';
 export { default as nb_NO } from './nb_NO';
-export { default as ne } from './ne';
 export { default as nl } from './nl';
 export { default as nl_BE } from './nl_BE';
 export { default as pl } from './pl';
@@ -182,6 +182,7 @@ export const allLocales = {
   en_IE,
   en_IN,
   en_NG,
+  en_NP,
   en_US,
   en_ZA,
   eo,
@@ -210,7 +211,6 @@ export const allLocales = {
   mk,
   mn_MN_cyrl,
   nb_NO,
-  ne,
   nl,
   nl_BE,
   pl,

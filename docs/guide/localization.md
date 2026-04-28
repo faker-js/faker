@@ -74,6 +74,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | [`en_IE`](/locales/en_IE.md)               | English (Ireland)              | `fakerEN_IE`        |
 | [`en_IN`](/locales/en_IN.md)               | English (India)                | `fakerEN_IN`        |
 | [`en_NG`](/locales/en_NG.md)               | English (Nigeria)              | `fakerEN_NG`        |
+| [`en_NP`](/locales/en_NP.md)               | English (Nepal)                | `fakerEN_NP`        |
 | [`en_US`](/locales/en_US.md)               | English (United States)        | `fakerEN_US`        |
 | [`en_ZA`](/locales/en_ZA.md)               | English (South Africa)         | `fakerEN_ZA`        |
 | [`eo`](/locales/eo.md)                     | Esperanto                      | `fakerEO`           |
@@ -102,7 +103,6 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | [`mk`](/locales/mk.md)                     | Macedonian                     | `fakerMK`           |
 | [`mn_MN_cyrl`](/locales/mn_MN_cyrl.md)     | Mongolian (Mongolia, Cyrillic) | `fakerMN_MN_cyrl`   |
 | [`nb_NO`](/locales/nb_NO.md)               | Norwegian (Norway)             | `fakerNB_NO`        |
-| [`ne`](/locales/ne.md)                     | Nepali                         | `fakerNE`           |
 | [`nl`](/locales/nl.md)                     | Dutch                          | `fakerNL`           |
 | [`nl_BE`](/locales/nl_BE.md)               | Dutch (Belgium)                | `fakerNL_BE`        |
 | [`pl`](/locales/pl.md)                     | Polish                         | `fakerPL`           |

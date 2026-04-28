@@ -27,6 +27,7 @@ import { faker as fakerEN_HK } from './en_HK';
 import { faker as fakerEN_IE } from './en_IE';
 import { faker as fakerEN_IN } from './en_IN';
 import { faker as fakerEN_NG } from './en_NG';
+import { faker as fakerEN_NP } from './en_NP';
 import { faker as fakerEN_US } from './en_US';
 import { faker as fakerEN_ZA } from './en_ZA';
 import { faker as fakerEO } from './eo';
@@ -55,7 +56,6 @@ import { faker as fakerLV } from './lv';
 import { faker as fakerMK } from './mk';
 import { faker as fakerMN_MN_cyrl } from './mn_MN_cyrl';
 import { faker as fakerNB_NO } from './nb_NO';
-import { faker as fakerNE } from './ne';
 import { faker as fakerNL } from './nl';
 import { faker as fakerNL_BE } from './nl_BE';
 import { faker as fakerPL } from './pl';
@@ -104,6 +104,7 @@ export { faker as fakerEN_HK } from './en_HK';
 export { faker as fakerEN_IE } from './en_IE';
 export { faker as fakerEN_IN } from './en_IN';
 export { faker as fakerEN_NG } from './en_NG';
+export { faker as fakerEN_NP } from './en_NP';
 export { faker as fakerEN_US } from './en_US';
 export { faker as fakerEN_ZA } from './en_ZA';
 export { faker as fakerEO } from './eo';
@@ -132,7 +133,6 @@ export { faker as fakerLV } from './lv';
 export { faker as fakerMK } from './mk';
 export { faker as fakerMN_MN_cyrl } from './mn_MN_cyrl';
 export { faker as fakerNB_NO } from './nb_NO';
-export { faker as fakerNE } from './ne';
 export { faker as fakerNL } from './nl';
 export { faker as fakerNL_BE } from './nl_BE';
 export { faker as fakerPL } from './pl';
@@ -182,6 +182,7 @@ export const allFakers = {
   en_IE: fakerEN_IE,
   en_IN: fakerEN_IN,
   en_NG: fakerEN_NG,
+  en_NP: fakerEN_NP,
   en_US: fakerEN_US,
   en_ZA: fakerEN_ZA,
   eo: fakerEO,
@@ -210,7 +211,6 @@ export const allFakers = {
   mk: fakerMK,
   mn_MN_cyrl: fakerMN_MN_cyrl,
   nb_NO: fakerNB_NO,
-  ne: fakerNE,
   nl: fakerNL,
   nl_BE: fakerNL_BE,
   pl: fakerPL,
