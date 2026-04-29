@@ -45,7 +45,6 @@ export type { AnimalModule } from './modules/animal';
 export type { BookModule } from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
-  Casing,
   ColorFormat,
   ColorModule,
   CssFunctionType,
@@ -88,6 +87,7 @@ export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
 export type { Randomizer } from './randomizer';
 export { SimpleFaker, simpleFaker } from './simple-faker';
+export type { Casing } from './types';
 export { mergeLocales } from './utils/merge-locales';
 export {
   generateMersenne32Randomizer,
