@@ -222,10 +222,10 @@ describe('date', () => {
 
           const date = customFaker.date.past({
             years: { min: 20, max: 40 },
-            refDate: new Date(2020, 2, 1, 0, 0, 1),
+            refDate: new Date(Date.UTC(2020, 2, 1, 0, 0, 1)),
           });
 
-          expect(date).toEqual(new Date(2000, 2, 1));
+          expect(date).toEqual(new Date(Date.UTC(2000, 2, 1)));
         });
 
         it('should return a date between 20 and 40 years in the past (max)', () => {
@@ -240,10 +240,10 @@ describe('date', () => {
 
           const date = customFaker.date.past({
             years: { min: 20, max: 40 },
-            refDate: new Date(2020, 2, 1),
+            refDate: new Date(Date.UTC(2020, 2, 1)),
           });
 
-          expect(date).toEqual(new Date(1980, 2, 1));
+          expect(date).toEqual(new Date(Date.UTC(1980, 2, 1)));
         });
 
         it('should throw an error when years = 0', () => {
@@ -342,10 +342,10 @@ describe('date', () => {
 
           const date = customFaker.date.future({
             years: { min: 20, max: 40 },
-            refDate: new Date(2020, 2, 1),
+            refDate: new Date(Date.UTC(2020, 2, 1)),
           });
 
-          expect(date).toEqual(new Date(2040, 2, 1, 0, 0, 1));
+          expect(date).toEqual(new Date(Date.UTC(2040, 2, 1, 0, 0, 1)));
         });
 
         it('should return a date between 20 and 40 years in the future (max)', () => {
@@ -360,10 +360,10 @@ describe('date', () => {
 
           const date = customFaker.date.future({
             years: { min: 20, max: 40 },
-            refDate: new Date(2020, 2, 1),
+            refDate: new Date(Date.UTC(2020, 2, 1)),
           });
 
-          expect(date).toEqual(new Date(2060, 2, 1));
+          expect(date).toEqual(new Date(Date.UTC(2060, 2, 1)));
         });
 
         it('should throw an error when years = 0', () => {
