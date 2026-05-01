@@ -3,7 +3,7 @@ import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
-import type { Casing } from '../../types';
+import type { Casing } from '../../utils/types';
 import { uuidV4, uuidV7 } from './uuid';
 
 const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];

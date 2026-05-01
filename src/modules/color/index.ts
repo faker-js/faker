@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import type { Casing } from '../../types';
+import type { Casing } from '../../utils/types';
 
 /**
  * Color space names supported by CSS.

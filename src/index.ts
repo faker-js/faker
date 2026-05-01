@@ -87,9 +87,9 @@ export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
 export type { Randomizer } from './randomizer';
 export { SimpleFaker, simpleFaker } from './simple-faker';
-export type { Casing } from './types';
 export { mergeLocales } from './utils/merge-locales';
 export {
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
 } from './utils/mersenne';
+export type { Casing } from './utils/types';

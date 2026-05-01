@@ -1,4 +1,4 @@
-import type { Casing } from '../../types';
+import type { Casing } from '../../utils/types';
 
 /**
  * The bitcoin address families.
