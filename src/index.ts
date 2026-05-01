@@ -45,7 +45,6 @@ export type { AnimalModule } from './modules/animal';
 export type { BookModule } from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
-  Casing,
   ColorFormat,
   ColorModule,
   CssFunctionType,
@@ -94,3 +93,4 @@ export {
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
 } from './utils/mersenne';
+export type { Casing } from './utils/types';

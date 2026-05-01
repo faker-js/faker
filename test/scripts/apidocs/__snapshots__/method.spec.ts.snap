@@ -1447,15 +1447,15 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
           "name": "options.casing?",
           "type": {
             "resolvedType": {
-              "text": "'lower' | 'upper' | 'mixed'",
+              "text": "'upper' | 'lower' | 'mixed'",
               "type": "union",
               "types": [
                 {
-                  "text": "'lower'",
+                  "text": "'upper'",
                   "type": "simple",
                 },
                 {
-                  "text": "'upper'",
+                  "text": "'lower'",
                   "type": "simple",
                 },
                 {
