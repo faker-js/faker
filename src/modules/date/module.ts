@@ -4,6 +4,7 @@ import type { Faker } from '../../faker';
 import { toDate } from '../../internal/date';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
+import type { NumberRange } from '../../utils/types';
 
 /**
  * Module to generate dates (without methods requiring localized data).
@@ -70,22 +71,7 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      years?:
-        | number
-        | {
-            /**
-             * The minimum amount of years the date should be in the past.
-             *
-             * @default 0
-             */
-            min: number;
-            /**
-             * The maximum amount of years the date should be in the past.
-             *
-             * @default 1
-             */
-            max: number;
-          };
+      years?: number | NumberRange;
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -149,22 +135,7 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      years?:
-        | number
-        | {
-            /**
-             * The minimum amount of years the date should be in the future.
-             *
-             * @default 0
-             */
-            min: number;
-            /**
-             * The maximum amount of years the date should be in the future.
-             *
-             * @default 1
-             */
-            max: number;
-          };
+      years?: number | NumberRange;
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -280,18 +251,7 @@ export class SimpleDateModule extends SimpleModuleBase {
      *
      * @default 3
      */
-    count?:
-      | number
-      | {
-          /**
-           * The minimum number of dates to generate.
-           */
-          min: number;
-          /**
-           * The maximum number of dates to generate.
-           */
-          max: number;
-        };
+    count?: number | NumberRange;
   }): Date[] {
     const { from, to, count = 3 } = options;
     return this.faker.helpers

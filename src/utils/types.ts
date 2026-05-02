@@ -6,3 +6,17 @@
  * - `'mixed'`: Generated characters keep their original casing.
  */
 export type Casing = 'upper' | 'lower' | 'mixed';
+
+/**
+ * A range of numbers with an inclusive minimum and maximum.
+ */
+export interface NumberRange {
+  /**
+   * The minimum value (inclusive).
+   */
+  min: number;
+  /**
+   * The maximum value (inclusive).
+   */
+  max: number;
+}

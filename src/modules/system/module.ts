@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import type { NumberRange } from '../../utils/types';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -57,18 +58,7 @@ export class SystemModule extends ModuleBase {
        *
        * @default 1
        */
-      extensionCount?:
-        | number
-        | {
-            /**
-             * Minimum number of extensions.
-             */
-            min: number;
-            /**
-             * Maximum number of extensions.
-             */
-            max: number;
-          };
+      extensionCount?: number | NumberRange;
     } = {}
   ): string {
     const { extensionCount = 1 } = options;

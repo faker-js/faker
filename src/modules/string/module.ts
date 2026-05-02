@@ -3,7 +3,7 @@ import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
-import type { Casing } from '../../utils/types';
+import type { Casing, NumberRange } from '../../utils/types';
 import { uuidV4, uuidV7 } from './uuid';
 
 const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
@@ -117,18 +117,7 @@ export class StringModule extends SimpleModuleBase {
    */
   fromCharacters(
     characters: string | ReadonlyArray<string>,
-    length:
-      | number
-      | {
-          /**
-           * The minimum length of the string to generate.
-           */
-          min: number;
-          /**
-           * The maximum length of the string to generate.
-           */
-          max: number;
-        } = 1
+    length: number | NumberRange = 1
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
@@ -179,18 +168,7 @@ export class StringModule extends SimpleModuleBase {
            *
            * @default 1
            */
-          length?:
-            | number
-            | {
-                /**
-                 * The minimum length of the string to generate.
-                 */
-                min: number;
-                /**
-                 * The maximum length of the string to generate.
-                 */
-                max: number;
-              };
+          length?: number | NumberRange;
           /**
            * The casing of the characters.
            *
@@ -273,18 +251,7 @@ export class StringModule extends SimpleModuleBase {
            *
            * @default 1
            */
-          length?:
-            | number
-            | {
-                /**
-                 * The minimum length of the string to generate.
-                 */
-                min: number;
-                /**
-                 * The maximum length of the string to generate.
-                 */
-                max: number;
-              };
+          length?: number | NumberRange;
           /**
            * The casing of the characters.
            *
@@ -366,18 +333,7 @@ export class StringModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      length?:
-        | number
-        | {
-            /**
-             * The minimum length of the string (excluding the prefix) to generate.
-             */
-            min: number;
-            /**
-             * The maximum length of the string (excluding the prefix) to generate.
-             */
-            max: number;
-          };
+      length?: number | NumberRange;
       /**
        * Prefix for the generated number.
        *
@@ -418,18 +374,7 @@ export class StringModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      length?:
-        | number
-        | {
-            /**
-             * The minimum length of the string (excluding the prefix) to generate.
-             */
-            min: number;
-            /**
-             * The maximum length of the string (excluding the prefix) to generate.
-             */
-            max: number;
-          };
+      length?: number | NumberRange;
       /**
        * Prefix for the generated number.
        *
@@ -476,18 +421,7 @@ export class StringModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      length?:
-        | number
-        | {
-            /**
-             * The minimum length of the string (excluding the prefix) to generate.
-             */
-            min: number;
-            /**
-             * The maximum length of the string (excluding the prefix) to generate.
-             */
-            max: number;
-          };
+      length?: number | NumberRange;
       /**
        * Casing of the generated number.
        *
@@ -574,18 +508,7 @@ export class StringModule extends SimpleModuleBase {
            *
            * @default 1
            */
-          length?:
-            | number
-            | {
-                /**
-                 * The minimum length of the string to generate.
-                 */
-                min: number;
-                /**
-                 * The maximum length of the string to generate.
-                 */
-                max: number;
-              };
+          length?: number | NumberRange;
           /**
            * Whether leading zeros are allowed or not.
            *
@@ -660,20 +583,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  sample(
-    length:
-      | number
-      | {
-          /**
-           * The minimum length of the string to generate.
-           */
-          min: number;
-          /**
-           * The maximum length of the string to generate.
-           */
-          max: number;
-        } = 10
-  ): string {
+  sample(length: number | NumberRange = 10): string {
     length = this.faker.helpers.rangeToNumber(length);
 
     const charCodeOption = {
@@ -838,20 +748,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  nanoid(
-    length:
-      | number
-      | {
-          /**
-           * The minimum length of the Nano ID to generate.
-           */
-          min: number;
-          /**
-           * The maximum length of the Nano ID to generate.
-           */
-          max: number;
-        } = 21
-  ): string {
+  nanoid(length: number | NumberRange = 21): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
       return '';
@@ -897,20 +794,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  symbol(
-    length:
-      | number
-      | {
-          /**
-           * The minimum length of the string to generate.
-           */
-          min: number;
-          /**
-           * The maximum length of the string to generate.
-           */
-          max: number;
-        } = 1
-  ): string {
+  symbol(length: number | NumberRange = 1): string {
     return this.fromCharacters(
       [
         '!',

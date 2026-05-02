@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { groupBy } from '../../internal/group-by';
+import type { NumberRange } from '../../utils/types';
 
 /**
  * The error handling strategies for the `filterWordListByLength` function.
@@ -10,10 +11,7 @@ const STRATEGIES = {
   fail: () => {
     throw new FakerError('No words found that match the given length.');
   },
-  closest: (
-    wordList: ReadonlyArray<string>,
-    length: { min: number; max: number }
-  ): string[] => {
+  closest: (wordList: ReadonlyArray<string>, length: NumberRange): string[] => {
     const wordsByLength = groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
     const min = Math.min(...lengths);
@@ -40,7 +38,7 @@ const STRATEGIES = {
   },
 } satisfies Record<
   NonNullable<Parameters<typeof filterWordListByLength>[0]['strategy']>,
-  (wordList: string[], length: { min: number; max: number }) => string[]
+  (wordList: string[], length: NumberRange) => string[]
 >;
 
 /**
@@ -63,7 +61,7 @@ const STRATEGIES = {
  */
 export function filterWordListByLength(options: {
   wordList: ReadonlyArray<string>;
-  length?: number | { min: number; max: number };
+  length?: number | NumberRange;
   strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
 }): string[] {
   const { wordList, length, strategy = 'fail' } = options;
