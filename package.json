@@ -121,7 +121,7 @@
     "publint": "0.3.18",
     "sanitize-html": "2.17.3",
     "semver": "7.7.4",
-    "ts-morph": "27.0.2",
+    "ts-morph": "28.0.0",
     "tsdown": "0.21.7",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
