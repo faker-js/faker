@@ -1053,6 +1053,23 @@ describe('helpers', () => {
           ).toContain(actual);
         });
 
+        it('should support resolving primitive instance properties after a function call', () => {
+          const actual = faker.helpers.fake('{{string.alpha(10).length}}');
+          expect(actual).toBe('10');
+        });
+
+        it('should support calling primitive instance methods after a function reference', () => {
+          const actual = faker.helpers.fake('{{string.alpha.toUpperCase}}');
+          expect(actual).toMatch(/^[A-Z]$/);
+        });
+
+        it('should support calling instance methods after a function call', () => {
+          const actual = faker.helpers.fake(
+            '{{date.anytime({"refDate": 1735714800000}).toISOString}}'
+          );
+          expect(actual).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+        });
+
         it('should be able to return empty strings', () => {
           expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });

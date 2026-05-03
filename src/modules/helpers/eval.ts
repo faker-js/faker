@@ -217,11 +217,24 @@ function resolveProperty(entrypoint: unknown, key: string): unknown {
         return undefined;
       }
 
-      return entrypoint?.[key as keyof typeof entrypoint];
+      return resolveProperty(entrypoint, key);
     }
 
     case 'object': {
-      return entrypoint?.[key as keyof typeof entrypoint];
+      if (entrypoint == null) {
+        return undefined;
+      }
+
+      const value = (entrypoint as Record<string, unknown>)[key];
+      return typeof value === 'function' ? value.bind(entrypoint) : value;
+    }
+
+    case 'bigint':
+    case 'boolean':
+    case 'number':
+    case 'string': {
+      const value = (new Object(entrypoint) as Record<string, unknown>)[key];
+      return typeof value === 'function' ? value.bind(entrypoint) : value;
     }
 
     default: {
