@@ -1037,6 +1037,18 @@ describe('helpers', () => {
           );
         });
 
+        it('does not allow access to special object properties', () => {
+          expect(() => faker.helpers.fake('{{helpers.constructor}}')).toThrow(
+            new FakerError(`Cannot resolve expression 'helpers.constructor'`)
+          );
+          expect(() => faker.helpers.fake('{{helpers.prototype}}')).toThrow(
+            new FakerError(`Cannot resolve expression 'helpers.prototype'`)
+          );
+          expect(() => faker.helpers.fake('{{helpers.__proto__}}')).toThrow(
+            new FakerError(`Cannot resolve expression 'helpers.__proto__'`)
+          );
+        });
+
         it('should support complex data', () => {
           const actual = faker.helpers.fake('{{science.unit}}');
           expect(actual).toBe('[object Object]');

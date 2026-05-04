@@ -1165,6 +1165,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
+   * faker.helpers.fake('Generated code has length {{string.alphanumeric(10).length}}.') // 'Generated code has length 10.'
    *
    * @since 7.4.0
    */
@@ -1259,6 +1260,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   * faker.helpers.fake('Generated code has length {{string.alphanumeric(10).length}}.') // 'Generated code has length 10.'
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
    *
    * @since 7.4.0

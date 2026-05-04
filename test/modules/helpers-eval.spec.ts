@@ -136,6 +136,18 @@ describe('fakeEval()', () => {
     );
   });
 
+  it('does not allow access to special object properties', () => {
+    expect(() => fakeEval('helpers.constructor', faker)).toThrow(
+      new FakerError("Cannot resolve expression 'helpers.constructor'")
+    );
+    expect(() => fakeEval('helpers.prototype', faker)).toThrow(
+      new FakerError("Cannot resolve expression 'helpers.prototype'")
+    );
+    expect(() => fakeEval('helpers.__proto__', faker)).toThrow(
+      new FakerError("Cannot resolve expression 'helpers.__proto__'")
+    );
+  });
+
   it('requires a valid expression (trailing dot)', () => {
     expect(() => fakeEval('airline.airline.', faker)).toThrow(
       new FakerError("Found dot without property name in 'airline.'")

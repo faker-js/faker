@@ -2,6 +2,7 @@ import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 
 const REGEX_DOT_OR_BRACKET = /\.|\(/;
+const BLOCKED_PROPERTIES = new Set(['__proto__', 'constructor', 'prototype']);
 
 /**
  * Resolves the given expression and returns its result. This method should only be used when using serialized expressions.
@@ -209,6 +210,10 @@ function evalProcessExpression(
  * @param key The property name to resolve.
  */
 function resolveProperty(entrypoint: unknown, key: string): unknown {
+  if (BLOCKED_PROPERTIES.has(key)) {
+    return undefined;
+  }
+
   switch (typeof entrypoint) {
     case 'function': {
       try {
