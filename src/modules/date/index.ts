@@ -6,15 +6,6 @@ import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
- * Small helper function to convert a number of years to an amount of milliseconds.
- *
- * @param years The number of years to convert to milliseconds.
- */
-function yearsToMs(years: number): number {
-  return years * 365 * 24 * 3600 * 1000;
-}
-
-/**
  * Module to generate dates (without methods requiring localized data).
  */
 export class SimpleDateModule extends SimpleModuleBase {
@@ -119,11 +110,15 @@ export class SimpleDateModule extends SimpleModuleBase {
       );
     }
 
-    const time = toDate(refDate).getTime();
+    const time = toDate(refDate);
+    const from = new Date(time);
+    from.setUTCFullYear(from.getUTCFullYear() - years.max);
+    const to = new Date(time);
+    to.setUTCFullYear(to.getUTCFullYear() - years.min);
 
     return this.between({
-      from: time - yearsToMs(years.max),
-      to: time - yearsToMs(years.min) - 1000,
+      from,
+      to: to.getTime() - 1000,
     });
   }
 
@@ -194,11 +189,15 @@ export class SimpleDateModule extends SimpleModuleBase {
       );
     }
 
-    const time = toDate(refDate).getTime();
+    const time = toDate(refDate);
+    const from = new Date(time);
+    from.setUTCFullYear(from.getUTCFullYear() + years.min);
+    const to = new Date(time);
+    to.setUTCFullYear(to.getUTCFullYear() + years.max);
 
     return this.between({
-      from: time + yearsToMs(years.min) + 1000,
-      to: time + yearsToMs(years.max),
+      from: from.getTime() + 1000,
+      to,
     });
   }
 

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, allLocales, faker, fakerAZ } from '../../src';
+import { FakerError, SimpleFaker, allLocales, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -210,6 +210,42 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(yearAgoMax);
         });
 
+        it('should return a date between 20 and 40 years in the past (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.999999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.past({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1, 0, 0, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2000, 2, 1)));
+        });
+
+        it('should return a date between 20 and 40 years in the past (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.past({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(1980, 2, 1)));
+        });
+
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() =>
@@ -292,6 +328,42 @@ describe('date', () => {
           expect(date).greaterThan(today);
           expect(date).greaterThan(yearUntilMin);
           expect(date).lessThanOrEqual(yearUntilMax);
+        });
+
+        it('should return a date between 20 and 40 years in the future (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.future({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2040, 2, 1, 0, 0, 1)));
+        });
+
+        it('should return a date between 20 and 40 years in the future (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.999999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.future({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2060, 2, 1)));
         });
 
         it('should throw an error when years = 0', () => {
