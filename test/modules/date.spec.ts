@@ -57,7 +57,8 @@ describe('date', () => {
         .it('with only number refDate', {
           refDate: new Date(refDate).getTime(),
         })
-        .it('with value', { days: 10, refDate });
+        .it('with value numeric', { days: 10, refDate })
+        .it('with value range', { days: { min: 3, max: 12 }, refDate });
     });
 
     t.describeEach(
@@ -558,11 +559,94 @@ describe('date', () => {
           expect(date).lessThanOrEqual(new Date());
         });
 
+        it('should return a date between 20 and 40 days in the past', () => {
+          const today = new Date();
+          const daysAgoMax = 40;
+          const dayAgoMax = new Date(today);
+          dayAgoMax.setDate(dayAgoMax.getDate() - daysAgoMax);
+
+          const daysAgoMin = 20;
+          const dayAgoMin = new Date(today);
+          dayAgoMin.setDate(dayAgoMin.getDate() - daysAgoMin);
+
+          const date = faker.date.recent({
+            days: { min: daysAgoMin, max: daysAgoMax },
+          });
+
+          expect(date).lessThan(today);
+          expect(date).lessThan(dayAgoMin);
+          expect(date).greaterThanOrEqual(dayAgoMax);
+        });
+
+        it('should return a date between 20 and 40 days in the past (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.9999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.recent({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1, 0, 0, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 1, 10)));
+        });
+
+        it('should return a date between 20 and 40 days in the past (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.recent({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 0, 21)));
+        });
+
         it('should throw an error when days = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.recent({ days: 0, refDate: refDate.toISOString() })
           ).toThrow(new FakerError('Days must be greater than 0.'));
+        });
+
+        it('should throw an error when days.min > days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.recent({
+              days: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
+        });
+
+        it('should throw an error when days.min = days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.recent({
+              days: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -599,11 +683,94 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(new Date());
         });
 
+        it('should return a date between 20 and 40 days in the future', () => {
+          const today = new Date();
+          const daysUntilMin = 20;
+          const dayUntilMin = new Date(today);
+          dayUntilMin.setDate(dayUntilMin.getDate() + daysUntilMin);
+
+          const daysUntilMax = 40;
+          const dayUntilMax = new Date(today);
+          dayUntilMax.setDate(dayUntilMax.getDate() + daysUntilMax);
+
+          const date = faker.date.soon({
+            days: { min: daysUntilMin, max: daysUntilMax },
+          });
+
+          expect(date).greaterThan(today);
+          expect(date).greaterThan(dayUntilMin);
+          expect(date).lessThanOrEqual(dayUntilMax);
+        });
+
+        it('should return a date between 20 and 40 days in the future (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.soon({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 2, 21, 0, 0, 1)));
+        });
+
+        it('should return a date between 20 and 40 days in the future (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.9999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.soon({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 3, 10)));
+        });
+
         it('should throw an error when days = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.soon({ days: 0, refDate: refDate.toISOString() })
           ).toThrow(new FakerError('Days must be greater than 0.'));
+        });
+
+        it('should throw an error when days.min > days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.soon({
+              days: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
+        });
+
+        it('should throw an error when days.min = days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.soon({
+              days: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
         });
 
         it.each(converterMap)(

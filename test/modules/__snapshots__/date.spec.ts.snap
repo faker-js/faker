@@ -109,7 +109,9 @@ exports[`date > 42 > recent > with only number refDate 1`] = `2021-02-21T02:08:3
 
 exports[`date > 42 > recent > with only string refDate 1`] = `2021-02-21T02:08:35.603Z`;
 
-exports[`date > 42 > recent > with value 1`] = `2021-02-15T11:02:37.999Z`;
+exports[`date > 42 > recent > with value numeric 1`] = `2021-02-15T11:02:37.999Z`;
+
+exports[`date > 42 > recent > with value range 1`] = `2021-02-13T02:03:17.733Z`;
 
 exports[`date > 42 > soon > with only Date refDate 1`] = `2021-02-22T02:08:36.603Z`;
 
@@ -117,7 +119,9 @@ exports[`date > 42 > soon > with only number refDate 1`] = `2021-02-22T02:08:36.
 
 exports[`date > 42 > soon > with only string refDate 1`] = `2021-02-22T02:08:36.603Z`;
 
-exports[`date > 42 > soon > with value 1`] = `2021-02-25T11:02:38.999Z`;
+exports[`date > 42 > soon > with value numeric 1`] = `2021-02-25T11:02:38.999Z`;
+
+exports[`date > 42 > soon > with value range 1`] = `2021-02-28T02:03:18.733Z`;
 
 exports[`date > 42 > timeZone 1`] = `"America/North_Dakota/Center"`;
 
@@ -239,7 +243,9 @@ exports[`date > 1211 > recent > with only number refDate 1`] = `2021-02-21T15:26
 
 exports[`date > 1211 > recent > with only string refDate 1`] = `2021-02-21T15:26:18.924Z`;
 
-exports[`date > 1211 > recent > with value 1`] = `2021-02-20T23:59:56.196Z`;
+exports[`date > 1211 > recent > with value numeric 1`] = `2021-02-20T23:59:56.196Z`;
+
+exports[`date > 1211 > recent > with value range 1`] = `2021-02-18T01:42:52.055Z`;
 
 exports[`date > 1211 > soon > with only Date refDate 1`] = `2021-02-22T15:26:19.924Z`;
 
@@ -247,7 +253,9 @@ exports[`date > 1211 > soon > with only number refDate 1`] = `2021-02-22T15:26:1
 
 exports[`date > 1211 > soon > with only string refDate 1`] = `2021-02-22T15:26:19.924Z`;
 
-exports[`date > 1211 > soon > with value 1`] = `2021-03-02T23:59:57.196Z`;
+exports[`date > 1211 > soon > with value numeric 1`] = `2021-03-02T23:59:57.196Z`;
+
+exports[`date > 1211 > soon > with value range 1`] = `2021-03-05T01:42:53.055Z`;
 
 exports[`date > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
@@ -367,7 +375,9 @@ exports[`date > 1337 > recent > with only number refDate 1`] = `2021-02-20T23:26
 
 exports[`date > 1337 > recent > with only string refDate 1`] = `2021-02-20T23:26:34.381Z`;
 
-exports[`date > 1337 > recent > with value 1`] = `2021-02-14T08:02:24.768Z`;
+exports[`date > 1337 > recent > with value numeric 1`] = `2021-02-14T08:02:24.768Z`;
+
+exports[`date > 1337 > recent > with value range 1`] = `2021-02-12T01:45:05.836Z`;
 
 exports[`date > 1337 > soon > with only Date refDate 1`] = `2021-02-21T23:26:35.381Z`;
 
@@ -375,7 +385,9 @@ exports[`date > 1337 > soon > with only number refDate 1`] = `2021-02-21T23:26:3
 
 exports[`date > 1337 > soon > with only string refDate 1`] = `2021-02-21T23:26:35.381Z`;
 
-exports[`date > 1337 > soon > with value 1`] = `2021-02-24T08:02:25.768Z`;
+exports[`date > 1337 > soon > with value numeric 1`] = `2021-02-24T08:02:25.768Z`;
+
+exports[`date > 1337 > soon > with value range 1`] = `2021-02-27T01:45:06.836Z`;
 
 exports[`date > 1337 > timeZone 1`] = `"America/Guadeloupe"`;
 
