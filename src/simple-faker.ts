@@ -7,7 +7,7 @@ import { SimpleHelpersModule } from './modules/helpers';
 import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
-import { getDefaultRefDate } from './utils/get-default-ref-date';
+import { getDefaultRefDate as utilsGetDefaultRefDate } from './utils/get-default-ref-date';
 import { setDefaultRefDate as utilsSetDefaultRefDate } from './utils/set-default-ref-date';
 
 /**
@@ -42,7 +42,7 @@ export class SimpleFaker {
    * Gets a new reference date used to generate relative dates.
    */
   get defaultRefDate(): () => Date {
-    return () => getDefaultRefDate(this.fakerCore);
+    return () => utilsGetDefaultRefDate(this.fakerCore);
   }
 
   /**
