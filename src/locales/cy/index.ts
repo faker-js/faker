@@ -9,6 +9,7 @@ import date from './date';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
+import vehicle from './vehicle';
 
 /**
  * The locale data for the `cy` locale.
@@ -23,6 +24,7 @@ const cy: LocaleDefinition = {
   location,
   metadata,
   person,
+  vehicle,
 };
 
 export default cy;
