@@ -10,7 +10,7 @@ export async function toRefreshableCode(
     .replaceAll(/^import .*$/gm, '') // Remove imports
     .replaceAll(
       // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
-      /\b(?<!\.)(\w+)\((faker\.)?fakerCore[,]*/g,
+      /\b(?<!\.)(\w+)\((faker\.)?fakerCore[,]?/g,
       (match, p1) => {
         // Access standalone functions via old Faker class instance
         // firstName(fakerCore) -> faker.person.firstName()
@@ -39,7 +39,7 @@ export async function toRefreshableCode(
   const fullMethod = `async (): Promise<unknown[]> => {
 await enableFaker();
 const result: unknown[] = [];
-${/(?<!\.)fakerCore/.test(exampleCode) ? 'const fakerCore = faker.fakerCore;' : ''}
+${/(?<!\.)fakerCore/.test(exampleCode) ? 'const { fakerCore } = faker;' : ''}
 
 ${exampleLines}
 

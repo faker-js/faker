@@ -61,6 +61,9 @@ export interface FakerOptions {
 /**
  * Helper function to create a FakerCore instance.
  *
+ * @remark The `config`, `randomizer` and (single) `locale` instances can be shared between multiple cores.
+ * When shared, changing them will affect the other cores as well.
+ *
  * @param options The options to create the FakerCore instance with.
  * @param options.locale The locale definitions to use.
  * If not provided, this core will not have any locale data and thus all methods that rely on locale data will throw an error when called.
