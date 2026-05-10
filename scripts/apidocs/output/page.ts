@@ -30,7 +30,10 @@ editLink: false
 export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
   const registryHints: Record<string, string> = Object.fromEntries(
     pages.flatMap((page) =>
-      page.methods.map((method) => [method.name, page.camelTitle])
+      page.methods.map((method) => [
+        method.name,
+        `${page.camelTitle}.${method.name}`,
+      ])
     )
   );
   await Promise.all(pages.map((page) => writePage(page, registryHints)));
@@ -127,7 +130,12 @@ async function writePageData(
   const prioritizedRegistryHints = {
     ...registryHints,
     // own module > other modules
-    ...Object.fromEntries(methods.map((method) => [method.name, camelTitle])),
+    ...Object.fromEntries(
+      methods.map((method) => [method.name, `${camelTitle}.${method.name}`])
+    ),
+    // utils always win
+    getDefaultRefDate: 'defaultRefDate',
+    setDefaultRefDate: 'setDefaultRefDate',
   };
 
   const refreshFunctions: Record<string, string> = Object.fromEntries(

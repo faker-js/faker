@@ -10,12 +10,13 @@ export async function toRefreshableCode(
     .replaceAll(/^import .*$/gm, '') // Remove imports
     .replaceAll(
       // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
-      /\b(?<!\.)(\w+)\((faker\.)?fakerCore/g,
+      /\b(?<!\.)(\w+)\((faker\.)?fakerCore[,]*/g,
       (match, p1) => {
-        // Access standalone functions via module registry if possible
-        // firstName(fakerCore) -> fakerRegistry.person.firstName(fakerCore)
-        if (moduleHints[p1]) {
-          return `fakerRegistry.${moduleHints[p1]}.${match}`;
+        // Access standalone functions via old Faker class instance
+        // firstName(fakerCore) -> faker.person.firstName()
+        const hint = moduleHints[p1];
+        if (hint != null) {
+          return `faker.${hint}(`;
         }
 
         throw new Error(
@@ -39,12 +40,6 @@ export async function toRefreshableCode(
 await enableFaker();
 const result: unknown[] = [];
 ${/(?<!\.)fakerCore/.test(exampleCode) ? 'const fakerCore = faker.fakerCore;' : ''}
-${
-  // TODO @ST-DDT 2026-04-23: Remove when past is transformed into standalone function
-  exampleCode.includes('past(fakerCore')
-    ? 'fakerRegistry.date = { past: (fakerCore) => new SimpleFaker(fakerCore).date.past() };'
-    : ''
-}
 
 ${exampleLines}
 

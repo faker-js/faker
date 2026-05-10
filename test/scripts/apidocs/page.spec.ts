@@ -121,7 +121,7 @@ describe('toRefreshFunction', () => {
 
     // when
     const result = await toRefreshFunction(method, {
-      getDefaultRefDate: 'utils',
+      getDefaultRefDate: 'defaultRefDate',
     });
 
     // then
