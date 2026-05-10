@@ -96,7 +96,7 @@ exports[`toRefreshFunction > should handle standalone functions calls 1`] = `
 "async (): Promise<unknown[]> => {
   await enableFaker();
   const result: unknown[] = [];
-  const fakerCore = faker.fakerCore;
+  const { fakerCore } = faker;
 
   try {
     result.push(faker.defaultRefDate());
