@@ -116,11 +116,12 @@ describe('toRefreshFunction', () => {
   it('should handle standalone functions calls', async () => {
     // given
     const method = newTestMethod({
-      examples: ['getDefaultRefDate(fakerCore);'],
+      examples: ['getDefaultRefDate(fakerCore);', 'past(fakerCore)'],
     });
 
     // when
     const result = await toRefreshFunction(method, {
+      past: 'date.past',
       getDefaultRefDate: 'defaultRefDate',
     });
 

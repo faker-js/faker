@@ -105,6 +105,13 @@ exports[`toRefreshFunction > should handle standalone functions calls 1`] = `
     console.log('Error in example for test:', error);
   }
 
+  try {
+    result.push(faker.date.past());
+  } catch (error: unknown) {
+    result.push(error instanceof Error ? error.name : 'Error');
+    console.log('Error in example for test:', error);
+  }
+
   return result;
 }"
 `;
