@@ -303,14 +303,18 @@ export class SimpleDateModule extends SimpleModuleBase {
    * Generates a random date in the recent past.
    *
    * @param options The optional options object.
-   * @param options.days The range of days the date may be in the past. Defaults to `1`.
+   * @param options.days The range of days the date may be in the past. Either as a fixed amount of days or as a day range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @throws {FakerError} If `days.max` is less than 0.
+   * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
    *
    * @see faker.date.past(): For generating dates further back in time (years instead of days).
    *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
    * faker.date.recent({ days: 10 }) // '2022-01-29T06:12:12.829Z'
+   * faker.date.recent({ days: { min: 4, max: 7 } }) // '2022-02-02T17:54:01.818Z'
    * faker.date.recent({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2019-12-27T18:11:19.117Z'
    *
    * @since 8.0.0
@@ -322,7 +326,22 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      days?: number;
+      days?:
+        | number
+        | {
+            /**
+             * The minimum amount of days the date should be in the past.
+             *
+             * @default 0
+             */
+            min: number;
+            /**
+             * The maximum amount of days the date should be in the past.
+             *
+             * @default 1
+             */
+            max: number;
+          };
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -331,17 +350,31 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
+    const { refDate = this.faker.defaultRefDate() } = options;
+    let { days = 1 } = options;
+    if (typeof days === 'number') {
+      days = { min: 0, max: days };
+    }
 
-    if (days <= 0) {
+    if (days.max <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const time = toDate(refDate).getTime();
+    if (days.min >= days.max) {
+      throw new FakerError(
+        'The maximum amount of days must be greater than the minimum amount of days.'
+      );
+    }
+
+    const time = toDate(refDate);
+    const from = new Date(time);
+    from.setUTCDate(from.getUTCDate() - days.max);
+    const to = new Date(time);
+    to.setUTCDate(to.getUTCDate() - days.min);
 
     return this.between({
-      from: time - days * 24 * 3600 * 1000,
-      to: time - 1000,
+      from,
+      to: to.getTime() - 1000,
     });
   }
 
@@ -349,14 +382,18 @@ export class SimpleDateModule extends SimpleModuleBase {
    * Generates a random date in the near future.
    *
    * @param options The optional options object.
-   * @param options.days The range of days the date may be in the future. Defaults to `1`.
+   * @param options.days The range of days the date may be in the future. Either as a fixed amount of days or as a day range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @throws {FakerError} If `days.max` is less than 0.
+   * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
    *
    * @see faker.date.future(): For generating dates further in the future (years instead of days).
    *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
    * faker.date.soon({ days: 10 }) // '2022-02-11T05:14:39.138Z'
+   * faker.date.soon({ days: { min: 4, max: 7 } }) // '2022-02-09T17:54:01.818Z'
    * faker.date.soon({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
    *
    * @since 8.0.0
@@ -368,7 +405,22 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      days?: number;
+      days?:
+        | number
+        | {
+            /**
+             * The minimum amount of days the date should be in the future.
+             *
+             * @default 0
+             */
+            min: number;
+            /**
+             * The maximum amount of days the date should be in the future.
+             *
+             * @default 1
+             */
+            max: number;
+          };
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -377,17 +429,31 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    const { days = 1, refDate = this.faker.defaultRefDate() } = options;
+    const { refDate = this.faker.defaultRefDate() } = options;
+    let { days = 1 } = options;
+    if (typeof days === 'number') {
+      days = { min: 0, max: days };
+    }
 
-    if (days <= 0) {
+    if (days.max <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const time = toDate(refDate).getTime();
+    if (days.min >= days.max) {
+      throw new FakerError(
+        'The maximum amount of days must be greater than the minimum amount of days.'
+      );
+    }
+
+    const time = toDate(refDate);
+    const from = new Date(time);
+    from.setUTCDate(from.getUTCDate() + days.min);
+    const to = new Date(time);
+    to.setUTCDate(to.getUTCDate() + days.max);
 
     return this.between({
-      from: time + 1000,
-      to: time + days * 24 * 3600 * 1000,
+      from: from.getTime() + 1000,
+      to,
     });
   }
 
