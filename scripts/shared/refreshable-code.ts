@@ -10,17 +10,17 @@ export async function toRefreshableCode(
     .replaceAll(/^import .*$/gm, '') // Remove imports
     .replaceAll(
       // Keep in sync with docs/.vitepress/components/api-docs/refreshable-code.vue
-      /\b(?<!\.)(\w+)\((faker\.)?fakerCore[,]?/g,
-      (match, p1) => {
-        // Access standalone functions via old Faker class instance
-        // firstName(fakerCore) -> faker.person.firstName()
-        const hint = moduleHints[p1];
+      /\b(?<!\.)(\w+)\((faker\.)?fakerCore,?/g,
+      (_, methodName) => {
+        // We only have access to the main index imports, so we call the functions on the main faker object instead.
+        // e.g.: firstName(fakerCore) -> faker.person.firstName()
+        const hint = moduleHints[methodName];
         if (hint != null) {
           return `faker.${hint}(`;
         }
 
         throw new Error(
-          `Unable to find module hint for ${p1} in example code for ${name}`
+          `Unable to find module hint for ${methodName} in example code for ${name}`
         );
       }
     )
