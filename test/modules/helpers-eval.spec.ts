@@ -99,6 +99,17 @@ describe('fakeEval()', () => {
     expect(faker.definitions.airline.airline).toContain(actual);
   });
 
+  it('supports returning lazy results', () => {
+    faker.rawDefinitions.custom = {
+      lazy: () => ({
+        key: 'lazy result',
+      }),
+    };
+    const actual = fakeEval('custom.lazy.key', faker);
+    expect(actual).toBeTypeOf('string');
+    expect(actual).toBe('lazy result');
+  });
+
   it('supports patterns after a function call', () => {
     const actual = fakeEval('airline.airline().name', faker);
     expect(actual).toBeTypeOf('string');
