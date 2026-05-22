@@ -38,4 +38,15 @@ describe('groupBy()', () => {
       Jane: [2],
     });
   });
+
+  it('should group values under object prototype property names', () => {
+    const result = groupBy(
+      ['first', 'second'],
+      () => '__proto__',
+      (value) => value
+    );
+
+    expect(result.__proto__).toEqual(['first', 'second']);
+    expect(Object.hasOwn(result, '__proto__')).toBe(true);
+  });
 });
