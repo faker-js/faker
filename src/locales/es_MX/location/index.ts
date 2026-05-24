@@ -12,9 +12,9 @@ import secondary_address from './secondary_address';
 import state from './state';
 import state_abbr from './state_abbr';
 import street_address from './street_address';
-import street_name from './street_name';
+import street_name_part from './street_name_part';
 import street_pattern from './street_pattern';
-import street_suffix from './street_suffix';
+import street_prefix from './street_prefix';
 
 const location: LocationDefinition = {
   building_number,
@@ -26,9 +26,9 @@ const location: LocationDefinition = {
   state,
   state_abbr,
   street_address,
-  street_name,
+  street_name_part,
   street_pattern,
-  street_suffix,
+  street_prefix,
 };
 
 export default location;
