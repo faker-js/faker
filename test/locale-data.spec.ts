@@ -11,6 +11,7 @@ function checkLocaleData(data: unknown) {
       checkLocaleData(nestedData);
     });
   } else {
+    // eslint-disable-next-line vitest/no-disabled-tests -- More explicit than just skipping the test
     it.skip('primitives cannot be tested');
   }
 }
