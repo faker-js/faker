@@ -117,21 +117,21 @@ export type LocationDefinition = LocaleEntry<{
   /**
    * Common street prefixes.
    *
-   * e.g. `Avenue du ...` as in `Avenue du Parc`
+   * e.g. `'Avenue du '` as in `'Avenue du Parc'`
    */
   street_prefix: string[];
 
   /**
    * Common name parts of street names that get combined with prefixes and suffixes.
    *
-   * e.g. `Main` as in `Main Street`
+   * e.g. `'Main'` as in `'Main Street'`
    */
   street_name_part: string[];
 
   /**
    * Common street suffixes.
    *
-   * e.g. `... Street` as in `Main Street`
+   * e.g. `' Street'` as in `'Main Street'`
    */
   street_suffix: string[];
 
