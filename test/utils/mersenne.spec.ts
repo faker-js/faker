@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MersenneTwister19937 } from '../../src/internal/mersenne';
 import { randomSeed } from '../../src/internal/seed';
 import type { Randomizer } from '../../src/randomizer';
@@ -15,6 +15,18 @@ import {
 } from './mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 25;
+
+describe('randomSeed()', () => {
+  it('should stay within the positive seed range for the lowest random value', () => {
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0);
+
+    try {
+      expect(randomSeed()).toBe(1);
+    } finally {
+      random.mockRestore();
+    }
+  });
+});
 
 describe('MersenneTwister19937', () => {
   describe('nextU32()', () => {
