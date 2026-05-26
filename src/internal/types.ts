@@ -14,9 +14,7 @@ export type LiteralUnion<TSuggested extends TBase, TBase = string> =
  * These would fail when invoked since they are invoked without the `new` keyword.
  */
 export type Callable = (
-  // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ...args: any[]
+  ...args: never[]
 ) => unknown;
 
 /**
