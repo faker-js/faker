@@ -6,11 +6,13 @@ import type { LocationDefinition } from '../../..';
 import county from './county';
 import direction from './direction';
 import postal_address from './postal_address';
+import postcode from './postcode';
 
 const location: LocationDefinition = {
   county,
   direction,
   postal_address,
+  postcode,
 };
 
 export default location;
