@@ -119,7 +119,7 @@
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-pkg": "0.22.1",
     "publint": "0.3.18",
-    "sanitize-html": "2.17.3",
+    "sanitize-html": "2.17.4",
     "semver": "7.7.4",
     "ts-morph": "28.0.0",
     "tsdown": "0.21.10",

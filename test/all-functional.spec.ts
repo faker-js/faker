@@ -103,6 +103,7 @@ describe('BROKEN_LOCALE_METHODS test', () => {
 describe('functional tests', () => {
   describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
     if (locale === 'base') {
+      // eslint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that this was intentional.
       it.skip('base locale is checked by other tests');
       return;
     }
@@ -139,6 +140,7 @@ describe('functional tests', () => {
 describe('faker.helpers.fake functional tests', () => {
   describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
     if (locale === 'base') {
+      // eslint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that this was intentional.
       it.skip('base locale is checked by other tests');
       return;
     }
