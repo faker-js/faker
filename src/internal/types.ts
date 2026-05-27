@@ -13,9 +13,7 @@ export type LiteralUnion<TSuggested extends TBase, TBase = string> =
  * `Function` cannot be used instead because it doesn't accept class declarations.
  * These would fail when invoked since they are invoked without the `new` keyword.
  */
-export type Callable = (
-  ...args: never[]
-) => unknown;
+export type Callable = (...args: never[]) => unknown;
 
 /**
  * Type that represents a single method/function name of the given type.
