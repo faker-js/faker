@@ -7,6 +7,7 @@ import animal from './animal';
 import book from './book';
 import color from './color';
 import date from './date';
+import internet from './internet';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
@@ -23,6 +24,7 @@ const cy: LocaleDefinition = {
   book,
   color,
   date,
+  internet,
   location,
   metadata,
   person,
