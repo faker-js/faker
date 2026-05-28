@@ -20,7 +20,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "en_AU_ocker": " #()+-ABCDEFGHIJKLMNOPQRSTVWXYZabcdefghijklmnopqrstuvwxyz",
   "en_BORK": "-BINTUabcdefghijklmnopqrstuvxyz",
   "en_CA": " !#()+-.?ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxyÎâèéô–’",
-  "en_GB": " #'+,-.?ABCDEFGHIJKLMNOPQRSTUVWYabcdefghiklmnopqrstuvwxyz",
+  "en_GB": " #'+,-.?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz",
   "en_GH": " #+-.?ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnoprstuvwxyzɔε",
   "en_HK": " #'+,-.ABCDEFGHIJKLMNOPRSTUVWXYZabcdeghiklmnoprstuvwxyz",
   "en_IE": " #()*+-.ACDEFGHKLMNOPRSTVWXYabcdefghiklmnoprstuvwxy",
