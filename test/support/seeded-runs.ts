@@ -1,8 +1,26 @@
 import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
-import type { Callable, MethodOf } from '../../src/internal/types';
 
 export const seededRuns = [42, 1337, 1211];
+
+/**
+ * A function that returns a value.
+ *
+ * `Function` cannot be used instead because it doesn't accept class declarations.
+ * These would fail when invoked since they are invoked without the `new` keyword.
+ */
+type Callable = (...args: never[]) => unknown;
+
+/**
+ * Type that represents a single method/function name of the given type.
+ */
+type MethodOf<TObjectType, TSignature extends Callable = Callable> = {
+  [Key in keyof TObjectType]: TObjectType[Key] extends TSignature
+    ? Key extends string
+      ? Key
+      : never
+    : never;
+}[keyof TObjectType];
 
 /**
  * A type allowing only the names of faker modules.
