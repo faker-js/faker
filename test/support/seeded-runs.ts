@@ -10,7 +10,7 @@ export const seededRuns = [42, 1337, 1211];
 type FakerModule = {
   [Key in keyof Faker]: Faker[Key] extends Callable | string | number | number[]
     ? never
-    : Key extends 'definitions' | 'locales'
+    : Key extends 'definitions' | 'rawDefinitions' | 'fakerCore'
       ? never
       : Key;
 }[keyof Faker];
