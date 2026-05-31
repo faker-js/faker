@@ -1,1 +1,1 @@
-export default ['Group', 'Limited', 'Ltd', 'Pvt Ltd'];
+export default ['प्रा. लि.', 'लि.', 'लिमिटेड', 'समूह'];

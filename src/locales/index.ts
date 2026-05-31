@@ -27,6 +27,7 @@ import en_HK from './en_HK';
 import en_IE from './en_IE';
 import en_IN from './en_IN';
 import en_NG from './en_NG';
+import en_NP from './en_NP';
 import en_US from './en_US';
 import en_ZA from './en_ZA';
 import eo from './eo';
@@ -104,6 +105,7 @@ export { default as en_HK } from './en_HK';
 export { default as en_IE } from './en_IE';
 export { default as en_IN } from './en_IN';
 export { default as en_NG } from './en_NG';
+export { default as en_NP } from './en_NP';
 export { default as en_US } from './en_US';
 export { default as en_ZA } from './en_ZA';
 export { default as eo } from './eo';
@@ -182,6 +184,7 @@ export const allLocales = {
   en_IE,
   en_IN,
   en_NG,
+  en_NP,
   en_US,
   en_ZA,
   eo,
