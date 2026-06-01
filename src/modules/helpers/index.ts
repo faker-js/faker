@@ -373,6 +373,17 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       pattern = pattern.source.replace(/^\^+/, '').replace(/\$+$/, '');
     }
 
+    if (pattern === '.') {
+      return this.faker.string.alphanumeric();
+    }
+
+    if (isCaseInsensitive && /^[a-z]$/i.test(pattern)) {
+      return this.faker.string.fromCharacters([
+        pattern.toLowerCase(),
+        pattern.toUpperCase(),
+      ]);
+    }
+
     let min: number;
     let max: number;
     let repetitions: number;
