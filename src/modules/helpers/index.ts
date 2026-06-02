@@ -159,6 +159,13 @@ function legacyRegexpStringParse(
   return string;
 }
 
+/**
+ * Replaces regexp tokens that randexp does not randomize unless a quantifier is present.
+ *
+ * @param faker The Faker instance to use.
+ * @param pattern The regular expression pattern to transform.
+ * @param isCaseInsensitive Whether alpha literals may vary in case.
+ */
 function replaceUnquantifiedRegExpTokens(
   faker: SimpleFaker,
   pattern: string,
@@ -175,6 +182,7 @@ function replaceUnquantifiedRegExpTokens(
       if (i + 1 < pattern.length) {
         result += pattern[++i];
       }
+
       continue;
     }
 
