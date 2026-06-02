@@ -159,6 +159,68 @@ function legacyRegexpStringParse(
   return string;
 }
 
+function replaceUnquantifiedRegExpTokens(
+  faker: SimpleFaker,
+  pattern: string,
+  isCaseInsensitive: boolean
+): string {
+  let result = '';
+  let inCharacterClass = false;
+
+  for (let i = 0; i < pattern.length; i++) {
+    const char = pattern[i];
+
+    if (char === '\\') {
+      result += char;
+      if (i + 1 < pattern.length) {
+        result += pattern[++i];
+      }
+      continue;
+    }
+
+    if (char === '[') {
+      inCharacterClass = true;
+      result += char;
+      continue;
+    }
+
+    if (char === ']') {
+      inCharacterClass = false;
+      result += char;
+      continue;
+    }
+
+    const nextChar = pattern[i + 1];
+    const hasQuantifier =
+      nextChar === '?' ||
+      nextChar === '*' ||
+      nextChar === '+' ||
+      nextChar === '{';
+
+    if (!inCharacterClass && !hasQuantifier && char === '.') {
+      result += faker.string.alphanumeric();
+      continue;
+    }
+
+    if (
+      !inCharacterClass &&
+      !hasQuantifier &&
+      isCaseInsensitive &&
+      /^[a-z]$/i.test(char)
+    ) {
+      result += faker.string.fromCharacters([
+        char.toLowerCase(),
+        char.toUpperCase(),
+      ]);
+      continue;
+    }
+
+    result += char;
+  }
+
+  return result;
+}
+
 /**
  * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
  * `!` will be replaced by digits >=2 (`2` - `9`).
@@ -383,6 +445,12 @@ export class SimpleHelpersModule extends SimpleModuleBase {
         pattern.toUpperCase(),
       ]);
     }
+
+    pattern = replaceUnquantifiedRegExpTokens(
+      this.faker,
+      pattern,
+      isCaseInsensitive
+    );
 
     let min: number;
     let max: number;

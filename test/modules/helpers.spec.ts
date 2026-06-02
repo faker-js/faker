@@ -581,6 +581,25 @@ describe('helpers', () => {
 
             expect(set.size).toBeGreaterThan(5);
           });
+
+          it('handles repeated wildcard characters', () => {
+            const actual = faker.helpers.fromRegExp(/../);
+            expect(actual).toHaveLength(2);
+            expect(actual).toMatch(/^..$/);
+            expect(actual).not.toBe('..');
+          });
+
+          it('handles repeated case insensitive characters', () => {
+            const set = new Set<string>();
+            for (let i = 0; i < 100; i++) {
+              const actual = faker.helpers.fromRegExp(/ww/i);
+              expect(actual).toHaveLength(2);
+              expect(actual).toMatch(/^ww$/i);
+              set.add(actual);
+            }
+
+            expect(set.size).toBeGreaterThan(1);
+          });
         });
 
         describe('fixed length patterns', () => {
@@ -692,7 +711,8 @@ describe('helpers', () => {
 
         it('hides regex wrapper characters', () => {
           const actual = faker.helpers.fromRegExp(/^^foo$$/i);
-          expect(actual).toBe('foo');
+          expect(actual).toHaveLength(3);
+          expect(actual).toMatch(/^foo$/i);
         });
       });
 
