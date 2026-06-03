@@ -76,7 +76,6 @@ describe('system', () => {
             'jpg',
             'm1v',
             'm2a',
-            'm1v',
             'm2v',
             'm3a',
             'mp2',
@@ -94,6 +93,8 @@ describe('system', () => {
             'shtml',
             'wav',
           ];
+
+          expect(new Set(extensions).size).toBe(extensions.length);
 
           expect(
             extensions,
