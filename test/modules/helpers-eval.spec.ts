@@ -115,6 +115,17 @@ describe('fakeEval()', () => {
     ).toContain(actual);
   });
 
+  it('supports prototype methods after generated primitive values', () => {
+    const entrypoint = { value: () => 1234 };
+
+    expect(fakeEval('value.toPrecision(3)', faker, [entrypoint])).toBe(
+      '1.23e+3'
+    );
+    expect(fakeEval('value().toPrecision(3)', faker, [entrypoint])).toBe(
+      '1.23e+3'
+    );
+  });
+
   it('requires a dot after a function call', () => {
     expect(() => fakeEval('airline.airline()iataCode', faker)).toThrow(
       new FakerError(

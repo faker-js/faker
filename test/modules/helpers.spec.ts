@@ -1057,6 +1057,10 @@ describe('helpers', () => {
           expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });
 
+        it('should resolve properties after generated primitive values', () => {
+          expect(faker.helpers.fake('{{string.alpha(10).length}}')).toBe('10');
+        });
+
         it('should be able to return locale definition strings', () => {
           expect(faker.definitions.cell_phone?.formats).toContain(
             faker.helpers.fake('{{cell_phone.formats}}')

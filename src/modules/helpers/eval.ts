@@ -217,15 +217,41 @@ function resolveProperty(entrypoint: unknown, key: string): unknown {
         return undefined;
       }
 
-      return entrypoint?.[key as keyof typeof entrypoint];
+      return getProperty(entrypoint, key);
     }
 
     case 'object': {
-      return entrypoint?.[key as keyof typeof entrypoint];
+      return getProperty(entrypoint, key);
+    }
+
+    case 'bigint':
+    case 'boolean':
+    case 'number':
+    case 'string': {
+      return getProperty(entrypoint, key);
     }
 
     default: {
       return undefined;
     }
   }
+}
+
+type Callable = (this: unknown, ...args: unknown[]) => unknown;
+
+/**
+ * Resolves the given property and binds methods to their source value.
+ *
+ * @param entrypoint The entrypoint to resolve the property on.
+ * @param key The property name to resolve.
+ */
+function getProperty(entrypoint: unknown, key: string): unknown {
+  if (entrypoint == null) {
+    return undefined;
+  }
+
+  const value = (new Object(entrypoint) as Record<string, unknown>)[key];
+  return typeof value === 'function'
+    ? (value as Callable).bind(entrypoint)
+    : value;
 }
