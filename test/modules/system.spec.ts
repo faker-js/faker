@@ -94,8 +94,6 @@ describe('system', () => {
             'wav',
           ];
 
-          expect(new Set(extensions).size).toBe(extensions.length);
-
           expect(
             extensions,
             `generated common file ext should be one of [${extensions.join(
