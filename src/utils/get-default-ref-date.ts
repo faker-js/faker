@@ -33,6 +33,8 @@ const DEFAULT_REF_DATE_SOURCE: () => Date = () => new Date();
  * getDefaultRefDate(fakerCore) // 2020-01-01T00:00:02Z
  *
  * @since 10.5.0
+ *
+ * @experimental
  */
 export function getDefaultRefDate(fakerCore: FakerCore): Date {
   return (fakerCore.config.defaultRefDate ?? DEFAULT_REF_DATE_SOURCE)();
