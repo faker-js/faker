@@ -43,7 +43,10 @@ function seeAlsoToUrl(see: string): string {
 
     <div v-if="experimental" class="warning custom-block">
       <p class="custom-block-title">Experimental</p>
-      <p>This method is experimental and changes may not follow semantic versioning.</p>
+      <p>
+        This method is experimental and changes may not follow semantic
+        versioning.
+      </p>
     </div>
 
     <div v-html="description"></div>
