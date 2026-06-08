@@ -114,7 +114,13 @@ function newCommentLine(content: string): string {
 }
 
 function newCommentSpan(content: string): string {
-  return `<span class="comment-delete-marker" style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ${content}</span>`;
+  return `<span class="comment-delete-marker" style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ${escapeHtml(content)}</span>`;
+}
+
+function escapeHtml(text: string): string {
+  const el = document.createElement('span');
+  el.textContent = text;
+  return el.innerHTML;
 }
 
 if (refresh != null && refreshOnLoad) {
