@@ -1,3 +1,4 @@
+import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
@@ -175,7 +176,12 @@ export class SystemModule extends ModuleBase {
     const mimeTypes = this.faker.definitions.system.mime_type;
 
     if (typeof mimeType === 'string') {
-      return this.faker.helpers.arrayElement(mimeTypes[mimeType].extensions);
+      const entry = mimeTypes[mimeType];
+      if (entry == null) {
+        throw new FakerError(`MIME type ${mimeType} is not supported.`);
+      }
+
+      return this.faker.helpers.arrayElement(entry.extensions);
     }
 
     const extensionSet = new Set(
