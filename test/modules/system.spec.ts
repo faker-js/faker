@@ -1,6 +1,6 @@
 import { isMimeType, isSemVer } from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from './../support/times';
 
@@ -76,7 +76,6 @@ describe('system', () => {
             'jpg',
             'm1v',
             'm2a',
-            'm1v',
             'm2v',
             'm3a',
             'mp2',
@@ -189,6 +188,12 @@ describe('system', () => {
               ','
             )}]. Got "${actual}".`
           ).include(actual);
+        });
+
+        it('should throw for unsupported mimeType', () => {
+          expect(() => faker.system.fileExt('application/not-real')).toThrow(
+            new FakerError('MIME type application/not-real is not supported.')
+          );
         });
       });
 
