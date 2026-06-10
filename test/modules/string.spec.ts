@@ -3,7 +3,7 @@ import isUUID from 'validator/lib/isUUID';
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 function isUuidV4(value: string) {
   return isUUID(value, '4');

@@ -11,7 +11,7 @@ import {
   simpleFaker,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 function degreesToRadians(degrees: number) {
   return degrees * (Math.PI / 180.0);
