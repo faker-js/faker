@@ -8,6 +8,7 @@ import {
   faker,
   fakerEN_CA,
   fakerEN_US,
+  fakerNL,
   simpleFaker,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -208,6 +209,17 @@ describe('location', () => {
           const zipCode = fakerEN_CA.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+        });
+
+        it('should not return forbidden letter combinations for nl locale', () => {
+          // The letter combinations 'SS', 'SD' and 'SA' are not used in Dutch
+          // postal codes. See https://github.com/faker-js/faker/issues/3368
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerNL.location.zipCode();
+
+            expect(zipCode).toMatch(/^[1-9]\d{3} [A-Z]{2}$/);
+            expect(zipCode.slice(-2)).not.toBeOneOf(['SS', 'SD', 'SA']);
+          }
         });
 
         it.each([
