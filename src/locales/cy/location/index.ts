@@ -11,6 +11,8 @@ import county from './county';
 import direction from './direction';
 import postal_address from './postal_address';
 import postcode from './postcode';
+import street_name from './street_name';
+import street_pattern from './street_pattern';
 
 const location: LocationDefinition = {
   city_pattern,
@@ -21,6 +23,8 @@ const location: LocationDefinition = {
   direction,
   postal_address,
   postcode,
+  street_name,
+  street_pattern,
 };
 
 export default location;
