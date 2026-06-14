@@ -180,18 +180,24 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Generates a random routing number.
+   * Generates a random [ABA routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number).
    *
    * @example
-   * faker.finance.routingNumber() // '522814402'
+   * faker.finance.routingNumber() // '062197511'
    *
    * @since 5.0.0
    */
   routingNumber(): string {
-    const routingNumber = this.faker.string.numeric({
-      length: 8,
+    const federalReserveRoutingSymbol = this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.federal_reserve_routing_symbol
+    );
+
+    const institutionIdentifier = this.faker.string.numeric({
+      length: 4,
       allowLeadingZeros: true,
     });
+
+    const routingNumber = federalReserveRoutingSymbol + institutionIdentifier;
 
     // Modules 10 straight summation.
     let sum = 0;
@@ -373,7 +379,7 @@ export class FinanceModule extends ModuleBase {
    * Generates a random Bitcoin address.
    *
    * @param options An optional options object.
-   * @param options.type The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
+   * @param options.type The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
    * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
    *
    * @example
@@ -386,9 +392,9 @@ export class FinanceModule extends ModuleBase {
   bitcoinAddress(
     options: {
       /**
-       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
+       * The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`).
        *
-       * @default faker.helpers.arrayElement(['legacy','sewgit','bech32','taproot'])
+       * @default faker.helpers.enumValue(BitcoinAddressFamily)
        */
       type?: BitcoinAddressFamilyType;
       /**

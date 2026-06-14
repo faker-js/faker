@@ -1,0 +1,18 @@
+export default [
+  'arian',
+  'aur',
+  'brown',
+  'browngoch',
+  'coch',
+  'du',
+  'glas',
+  'gwyn',
+  'gwyrdd',
+  'indigo',
+  'llwyd',
+  'melyn',
+  'melyngoch',
+  'oren',
+  'pinc',
+  'porffor',
+];

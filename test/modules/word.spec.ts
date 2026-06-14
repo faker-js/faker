@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { filterWordListByLength } from '../../src/modules/word/filter-word-list-by-length';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -67,7 +67,7 @@ describe('word', () => {
           wordList,
           length,
         });
-      }).toThrowError('No words found that match the given length.');
+      }).toThrow('No words found that match the given length.');
     });
 
     it('returns the appropriate words when strategy is "any-length" and no words match the given length', () => {
@@ -113,7 +113,7 @@ describe('word', () => {
           length,
           strategy: 'fail',
         });
-      }).toThrowError('No words found that match the given length.');
+      }).toThrow('No words found that match the given length.');
     });
   });
 

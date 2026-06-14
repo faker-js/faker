@@ -1,4 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
+import type { Casing } from '../../utils/types';
 
 /**
  * Color space names supported by CSS.
@@ -39,7 +40,6 @@ export type CssFunctionType = `${CssFunction}`;
 export type StringColorFormat = 'css' | 'binary';
 export type NumberColorFormat = 'decimal';
 export type ColorFormat = StringColorFormat | NumberColorFormat;
-export type Casing = 'lower' | 'upper' | 'mixed';
 
 /**
  * Formats the hex format of a generated color string according
@@ -234,7 +234,7 @@ export class ColorModule extends ModuleBase {
   }
 
   /**
-   * Returns a random css supported color function name.
+   * Returns a random CSS-supported color function name.
    *
    * @example
    * faker.color.cssSupportedFunction() // 'rgb'
@@ -246,7 +246,7 @@ export class ColorModule extends ModuleBase {
   }
 
   /**
-   * Returns a random css supported color space name.
+   * Returns a random CSS-supported color space name.
    *
    * @example
    * faker.color.cssSupportedSpace() // 'display-p3'

@@ -112,4 +112,20 @@ describe('toRefreshFunction', () => {
     // then
     expect(result).toMatchSnapshot();
   });
+
+  it('should handle standalone functions calls', async () => {
+    // given
+    const method = newTestMethod({
+      examples: ['getDefaultRefDate(fakerCore);', 'past(fakerCore)'],
+    });
+
+    // when
+    const result = await toRefreshFunction(method, {
+      past: 'date.past',
+      getDefaultRefDate: 'defaultRefDate',
+    });
+
+    // then
+    expect(result).toMatchSnapshot();
+  });
 });

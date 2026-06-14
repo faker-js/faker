@@ -135,7 +135,7 @@ const config = defineConfig({
   description,
 
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
     ['meta', { name: 'og:title', content: 'FakerJS' }],
     ['meta', { name: 'og:description', content: description }],
@@ -195,13 +195,16 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
       },
     ],
 
-    algolia:
+    search:
       process.env.API_KEY == null || process.env.APP_ID == null
         ? undefined
         : {
-            apiKey: process.env.API_KEY,
-            appId: process.env.APP_ID,
-            indexName: algoliaIndex,
+            provider: 'algolia' as const,
+            options: {
+              apiKey: process.env.API_KEY,
+              appId: process.env.APP_ID,
+              indexName: algoliaIndex,
+            },
           },
 
     footer: {

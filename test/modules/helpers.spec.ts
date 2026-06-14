@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -190,7 +190,7 @@ describe('helpers', () => {
         });
 
         it('should throw on an empty array', () => {
-          expect(() => faker.helpers.arrayElement([])).toThrowError(
+          expect(() => faker.helpers.arrayElement([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -199,7 +199,7 @@ describe('helpers', () => {
           it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
             expect(() =>
               faker.helpers.arrayElement([nullishValue])
-            ).not.toThrowError();
+            ).not.toThrow();
           });
         });
       });
@@ -284,7 +284,7 @@ describe('helpers', () => {
         });
 
         it('should throw if the array is empty', () => {
-          expect(() => faker.helpers.weightedArrayElement([])).toThrowError(
+          expect(() => faker.helpers.weightedArrayElement([])).toThrow(
             new FakerError(
               'weightedArrayElement expects an array with at least one element'
             )
@@ -302,9 +302,7 @@ describe('helpers', () => {
             { weight: 0, value: 'hello' },
             { weight: 5, value: 'to' },
           ];
-          expect(() =>
-            faker.helpers.weightedArrayElement(testArray)
-          ).toThrowError(
+          expect(() => faker.helpers.weightedArrayElement(testArray)).toThrow(
             new FakerError(
               'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
             )
@@ -316,9 +314,7 @@ describe('helpers', () => {
             { weight: -1, value: 'hello' },
             { weight: 5, value: 'to' },
           ];
-          expect(() =>
-            faker.helpers.weightedArrayElement(testArray)
-          ).toThrowError(
+          expect(() => faker.helpers.weightedArrayElement(testArray)).toThrow(
             new FakerError(
               'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
             )
@@ -333,7 +329,7 @@ describe('helpers', () => {
           const frozenArray = Object.freeze(testArray);
           expect(() =>
             faker.helpers.weightedArrayElement(frozenArray)
-          ).not.toThrowError();
+          ).not.toThrow();
         });
       });
 
@@ -469,7 +465,7 @@ describe('helpers', () => {
                 [nullishValue, nullishValue, nullishValue],
                 2
               )
-            ).not.toThrowError();
+            ).not.toThrow();
           });
         });
       });
@@ -555,7 +551,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^w$/);
           });
 
-          it.todo('handles case insensitive characters', () => {
+          it('handles case insensitive characters', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/w/i);
@@ -574,7 +570,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^%$/i);
           });
 
-          it.todo('handles the wildcard character', () => {
+          it('handles the wildcard character', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/./);
@@ -584,6 +580,25 @@ describe('helpers', () => {
             }
 
             expect(set.size).toBeGreaterThan(5);
+          });
+
+          it('handles repeated wildcard characters', () => {
+            const actual = faker.helpers.fromRegExp(/../);
+            expect(actual).toHaveLength(2);
+            expect(actual).toMatch(/^..$/);
+            expect(actual).not.toBe('..');
+          });
+
+          it('handles repeated case insensitive characters', () => {
+            const set = new Set<string>();
+            for (let i = 0; i < 100; i++) {
+              const actual = faker.helpers.fromRegExp(/ww/i);
+              expect(actual).toHaveLength(2);
+              expect(actual).toMatch(/^ww$/i);
+              set.add(actual);
+            }
+
+            expect(set.size).toBeGreaterThan(1);
           });
         });
 
@@ -670,13 +685,11 @@ describe('helpers', () => {
         });
 
         it('throws error when min > max outside set', () => {
-          expect(() => faker.helpers.fromRegExp('#{10,5}')).toThrowError();
+          expect(() => faker.helpers.fromRegExp('#{10,5}')).toThrow();
         });
 
         it('throws error when min > max in set', () => {
-          expect(() =>
-            faker.helpers.fromRegExp('[a-z0-9]{10,5}')
-          ).toThrowError();
+          expect(() => faker.helpers.fromRegExp('[a-z0-9]{10,5}')).toThrow();
         });
 
         it('deals with RegExp object', () => {
@@ -694,6 +707,12 @@ describe('helpers', () => {
           const actual = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
           expect(actual).toHaveLength(9);
           expect(actual).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
+        });
+
+        it('hides regex wrapper characters', () => {
+          const actual = faker.helpers.fromRegExp(/^^foo$$/i);
+          expect(actual).toHaveLength(3);
+          expect(actual).toMatch(/^foo$/i);
         });
       });
 
@@ -728,7 +747,7 @@ describe('helpers', () => {
             'i',
             'j',
           ]);
-          expect(() => faker.helpers.shuffle(input)).not.toThrowError();
+          expect(() => faker.helpers.shuffle(input)).not.toThrow();
         });
 
         it('does not mutate the input array when inplace is false', () => {
@@ -746,7 +765,7 @@ describe('helpers', () => {
           ]);
           expect(() =>
             faker.helpers.shuffle(input, { inplace: false })
-          ).not.toThrowError();
+          ).not.toThrow();
         });
 
         it('throws an error when the input array is readonly and inplace is true', () => {
@@ -765,7 +784,7 @@ describe('helpers', () => {
           expect(() =>
             // @ts-expect-error: we want to test that it throws
             faker.helpers.shuffle(input, { inplace: true })
-          ).toThrowError();
+          ).toThrow();
         });
       });
 
@@ -899,9 +918,7 @@ describe('helpers', () => {
             probability: 0.4,
           });
 
-          expect(() =>
-            faker.helpers.maybe(() => 'foo', input)
-          ).not.toThrowError();
+          expect(() => faker.helpers.maybe(() => 'foo', input)).not.toThrow();
         });
       });
 
@@ -918,7 +935,7 @@ describe('helpers', () => {
         });
 
         it('should throw if given object is empty', () => {
-          expect(() => faker.helpers.objectKey({})).toThrowError(
+          expect(() => faker.helpers.objectKey({})).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -937,7 +954,7 @@ describe('helpers', () => {
         });
 
         it('should throw if given object is empty', () => {
-          expect(() => faker.helpers.objectValue({})).toThrowError(
+          expect(() => faker.helpers.objectValue({})).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -958,7 +975,7 @@ describe('helpers', () => {
         });
 
         it('should throw if given object is empty', () => {
-          expect(() => faker.helpers.objectEntry({})).toThrowError(
+          expect(() => faker.helpers.objectEntry({})).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -1018,13 +1035,13 @@ describe('helpers', () => {
         });
 
         it('should throw with empty array parameters', () => {
-          expect(() => faker.helpers.fake([])).toThrowError(
+          expect(() => faker.helpers.fake([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
 
         it('does not allow invalid module name', () => {
-          expect(() => faker.helpers.fake('{{foo.bar}}')).toThrowError(
+          expect(() => faker.helpers.fake('{{foo.bar}}')).toThrow(
             new FakerError(`Cannot resolve expression 'foo.bar'`)
           );
         });
@@ -1035,7 +1052,7 @@ describe('helpers', () => {
         });
 
         it('does not allow invalid method name', () => {
-          expect(() => faker.helpers.fake('{{location.foo}}')).toThrowError(
+          expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
             new FakerError(`Cannot resolve expression 'location.foo'`)
           );
         });

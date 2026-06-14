@@ -11,7 +11,7 @@ import {
   simpleFaker,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 function degreesToRadians(degrees: number) {
   return degrees * (Math.PI / 180.0);
@@ -74,6 +74,8 @@ describe('location', () => {
         .it('with boolean', false)
         .it('with useFullAddress options', { useFullAddress: true });
     });
+
+    t.it('postalAddress');
 
     t.itEach('city');
 
@@ -224,7 +226,7 @@ describe('location', () => {
         });
 
         it('should throw when definitions.location.postcode_by_state not set', () => {
-          expect(() => faker.location.zipCode({ state: 'XX' })).toThrowError(
+          expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
             new FakerError(
               `The locale data for 'location.postcode_by_state' are missing in this locale.
   If this is a custom Faker instance, please make sure all required locales are used e.g. '[de_AT, de, en, base]'.
@@ -235,9 +237,7 @@ describe('location', () => {
         });
 
         it('should throw when definitions.location.postcode_by_state[state] is unknown', () => {
-          expect(() =>
-            fakerEN_US.location.zipCode({ state: 'XX' })
-          ).toThrowError(
+          expect(() => fakerEN_US.location.zipCode({ state: 'XX' })).toThrow(
             new FakerError('No zip code definition found for state "XX"')
           );
         });
@@ -247,6 +247,14 @@ describe('location', () => {
         it('never starts with a zero', () => {
           const buildingNumber = faker.location.buildingNumber();
           expect(buildingNumber).not.toStartWith('0');
+        });
+      });
+
+      describe('postalAddress()', () => {
+        it('returns a random multi-line postal address', () => {
+          const postalAddress = faker.location.postalAddress();
+          expect(postalAddress).toBeTypeOf('string');
+          expect(postalAddress).toContain('\n');
         });
       });
 

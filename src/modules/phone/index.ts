@@ -23,6 +23,7 @@ export class PhoneModule extends ModuleBase {
    * faker.phone.number({ style: 'human' }) // '555.770.7727 x1234'
    * faker.phone.number({ style: 'national' }) // '(961) 770-7727'
    * faker.phone.number({ style: 'international' }) // '+15551234567'
+   * fakerEN_GB.phone.number({ style: 'mobile' }) // '07123456789'
    *
    * @since 7.3.0
    */
@@ -33,10 +34,11 @@ export class PhoneModule extends ModuleBase {
        * - `'human'`: (default) A human-input phone number, e.g. `555-770-7727` or `555.770.7727 x1234`
        * - `'national'`: A phone number in a standardized national format, e.g. `(555) 123-4567`.
        * - `'international'`: A phone number in the E.123 international format, e.g. `+15551234567`
+       * - `'mobile'`: In selected locales, provides a number used for mobile phones, e.g. `07123456789` in en_GB.
        *
        * @default 'human'
        */
-      style?: 'human' | 'national' | 'international';
+      style?: 'human' | 'national' | 'international' | 'mobile';
     } = {}
   ): string {
     const { style = 'human' } = options;

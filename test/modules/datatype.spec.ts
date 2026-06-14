@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -68,12 +68,10 @@ describe('datatype', () => {
           const filledOptions: { probability?: number } = Object.freeze({
             probability: 1,
           });
-          expect(() =>
-            faker.datatype.boolean(filledOptions)
-          ).not.toThrowError();
+          expect(() => faker.datatype.boolean(filledOptions)).not.toThrow();
 
           const emptyOptions: { probability?: number } = Object.freeze({});
-          expect(() => faker.datatype.boolean(emptyOptions)).not.toThrowError();
+          expect(() => faker.datatype.boolean(emptyOptions)).not.toThrow();
         });
       });
     }

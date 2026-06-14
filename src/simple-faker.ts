@@ -1,3 +1,5 @@
+import type { FakerCore, FakerOptions } from './core';
+import { createFakerCore } from './core';
 import { randomSeed } from './internal/seed';
 import { DatatypeModule } from './modules/datatype';
 import { SimpleDateModule } from './modules/date';
@@ -5,8 +7,8 @@ import { SimpleHelpersModule } from './modules/helpers';
 import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
 import { StringModule } from './modules/string';
-import type { Randomizer } from './randomizer';
-import { generateMersenne53Randomizer } from './utils/mersenne';
+import { getDefaultRefDate as utilsGetDefaultRefDate } from './utils/get-default-ref-date';
+import { setDefaultRefDate as utilsSetDefaultRefDate } from './utils/set-default-ref-date';
 
 /**
  * This is a simplified Faker class that doesn't need any localized data to generate its output.
@@ -29,13 +31,18 @@ import { generateMersenne53Randomizer } from './utils/mersenne';
  * simpleFaker.string.uuid(); // 'c50e1f5c-86e8-4aa9-888e-168e0a182519'
  */
 export class SimpleFaker {
-  protected _defaultRefDate: () => Date = () => new Date();
+  /**
+   * The faker core containing the randomizer and config to use.
+   *
+   * @internal
+   */
+  readonly fakerCore: FakerCore;
 
   /**
    * Gets a new reference date used to generate relative dates.
    */
   get defaultRefDate(): () => Date {
-    return this._defaultRefDate;
+    return () => utilsGetDefaultRefDate(this.fakerCore);
   }
 
   /**
@@ -49,17 +56,17 @@ export class SimpleFaker {
    * @see faker.seed(): For generating reproducible values.
    *
    * @example
-   * faker.seed(1234);
-   *
-   * // Default behavior
+   * // Default
+   * faker.seed(1234); // Keep `past()` offset consistent for example runs
    * // faker.setDefaultRefDate();
    * faker.date.past(); // Changes based on the current date/time
-   *
-   * // Use a static ref date
+   * @example
+   * // Fixed
+   * faker.seed(1234);
    * faker.setDefaultRefDate(new Date('2020-01-01'));
    * faker.date.past(); // Reproducible '2019-07-03T08:27:58.118Z'
-   *
-   * // Use a ref date that changes every time it is used
+   * @example
+   * // Tick on use
    * let clock = new Date("2020-01-01").getTime();
    * faker.setDefaultRefDate(() => {
    *   clock += 1000; // +1s
@@ -74,15 +81,8 @@ export class SimpleFaker {
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
   ): void {
-    if (typeof dateOrSource === 'function') {
-      this._defaultRefDate = dateOrSource;
-    } else {
-      this._defaultRefDate = () => new Date(dateOrSource);
-    }
+    utilsSetDefaultRefDate(this.fakerCore, dateOrSource);
   }
-
-  /** @internal */
-  private readonly _randomizer: Randomizer;
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
   readonly date: SimpleDateModule = new SimpleDateModule(this);
@@ -118,35 +118,8 @@ export class SimpleFaker {
    *
    * @since 8.1.0
    */
-  constructor(
-    options: {
-      /**
-       * The Randomizer to use.
-       * Specify this only if you want to use it to achieve a specific goal,
-       * such as sharing the same random generator with other instances/tools.
-       *
-       * @default generateMersenne53Randomizer()
-       */
-      randomizer?: Randomizer;
-
-      /**
-       * The initial seed to use.
-       * The seed can be used to generate reproducible values.
-       *
-       * Refer to the `seed()` method for more information.
-       *
-       * Defaults to a random seed.
-       */
-      seed?: number;
-    } = {}
-  ) {
-    const { randomizer, seed } = options;
-
-    if (randomizer != null && seed != null) {
-      randomizer.seed(seed);
-    }
-
-    this._randomizer = randomizer ?? generateMersenne53Randomizer(seed);
+  constructor(options?: FakerOptions) {
+    this.fakerCore = createFakerCore(options);
   }
 
   /**
@@ -193,7 +166,7 @@ export class SimpleFaker {
    * Please note that generated values are dependent on both the seed and the
    * number of calls that have been made since it was set.
    *
-   * This method is intended to allow for consistent values in a tests, so you
+   * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.
    *
    * In addition to that it can be used for creating truly random tests
@@ -230,7 +203,7 @@ export class SimpleFaker {
    * Please note that generated values are dependent on both the seed and the
    * number of calls that have been made since it was set.
    *
-   * This method is intended to allow for consistent values in a tests, so you
+   * This method is intended to allow for consistent values in tests, so you
    * might want to use hardcoded values as the seed.
    *
    * In addition to that it can be used for creating truly random tests
@@ -271,7 +244,7 @@ export class SimpleFaker {
    */
   seed(seed?: number | number[]): number | number[];
   seed(seed: number | number[] = randomSeed()): number | number[] {
-    this._randomizer.seed(seed);
+    this.fakerCore.randomizer.seed(seed);
 
     return seed;
   }

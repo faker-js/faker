@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import color from './color';
 import database from './database';
 import date from './date';
+import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
@@ -21,6 +22,7 @@ const base: LocaleDefinition = {
   color,
   database,
   date,
+  finance,
   hacker,
   internet,
   location,

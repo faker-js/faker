@@ -10,7 +10,8 @@ Before making changes, ensure your fork is synchronized with Faker’s latest up
 
 ```sh
 git fetch upstream
-git merge upstream/next origin/next
+git switch next
+git merge upstream/next
 ```
 
 ## Step 2: Create a New Branch

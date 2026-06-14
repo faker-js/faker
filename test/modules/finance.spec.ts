@@ -1,3 +1,4 @@
+import { isAbaRouting } from 'validator';
 import isCreditCard from 'validator/lib/isCreditCard';
 import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
@@ -10,7 +11,7 @@ import {
 import ibanLib from '../../src/modules/finance/iban';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -139,10 +140,22 @@ describe('finance', () => {
       });
 
       describe('routingNumber()', () => {
-        it('should return a string', () => {
+        it('should return a valid ABA routing number', () => {
           const routingNumber = faker.finance.routingNumber();
 
           expect(routingNumber).toBeTypeOf('string');
+          expect(routingNumber).toSatisfy(isAbaRouting);
+        });
+
+        it('should correspond to a valid federal reserve district', () => {
+          const routingNumber = faker.finance.routingNumber();
+
+          const firstTwoDigits = routingNumber.substring(0, 2);
+          const federalReserveDistrict = Number.parseInt(firstTwoDigits);
+
+          expect(federalReserveDistrict).toBeTypeOf('number');
+          expect(federalReserveDistrict).toBeGreaterThan(0);
+          expect(federalReserveDistrict).toBeLessThanOrEqual(12);
         });
       });
 
@@ -519,9 +532,7 @@ describe('finance', () => {
         });
 
         it('should throw an error when length is less than 1', () => {
-          expect(() => faker.finance.pin(-5)).toThrowError(
-            /^minimum length is 1$/
-          );
+          expect(() => faker.finance.pin(-5)).toThrow(/^minimum length is 1$/);
         });
       });
 
@@ -568,7 +579,7 @@ describe('finance', () => {
                 formatted: false,
                 countryCode: unsupportedCountryCode,
               })
-            ).toThrowError(
+            ).toThrow(
               new FakerError(
                 `Country code ${unsupportedCountryCode} not supported.`
               )

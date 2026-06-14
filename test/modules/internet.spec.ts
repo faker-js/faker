@@ -15,7 +15,7 @@ import { allFakers, faker, fakerKO } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import { IPv4Network } from '../../src/modules/internet';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -672,7 +672,7 @@ describe('internet', () => {
               faker.internet.ipv4({
                 cidrBlock,
               })
-            ).toThrowError(
+            ).toThrow(
               new FakerError(
                 `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
               )

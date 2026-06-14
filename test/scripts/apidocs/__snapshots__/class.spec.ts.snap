@@ -5,6 +5,7 @@ exports[`class > expected and actual modules are equal 1`] = `
   "ModuleDeprecationTest",
   "ModuleExampleTest",
   "ModuleFakerJsLinkTest",
+  "ModuleMultipleExamplesTest",
   "ModuleNextFakerJsLinkTest",
   "ModuleSimpleTest",
 ]
@@ -46,6 +47,24 @@ and [api docs](https://fakerjs.dev/api/).",
   "examples": [],
   "methods": [],
   "title": "ModuleFakerJsLinkTest",
+}
+`;
+
+exports[`class > processClass(ModuleMultipleExamplesTest) 1`] = `
+{
+  "camelTitle": "moduleMultipleExamplesTest",
+  "category": undefined,
+  "deprecated": undefined,
+  "description": "This is a description for a module with multiple code examples.",
+  "examples": [
+    "// Basic instantiation
+new ModuleMultipleExamplesTest()",
+    "// Stateful usage
+const instance = new ModuleMultipleExamplesTest();
+instance.doSomething();",
+  ],
+  "methods": [],
+  "title": "ModuleMultipleExamplesTest",
 }
 `;
 

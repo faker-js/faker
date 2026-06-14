@@ -1,5 +1,5 @@
-import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
@@ -365,6 +365,38 @@ export class LocationModule extends SimpleLocationModule {
   }
 
   /**
+   * Generates a random localized full postal address, which may include a street address, secondary address, city, state, and zip code. To ensure you get locale-specific address formats, use a localized Faker instance.
+   *
+   * @example
+   * faker.location.postalAddress()
+   * // 'Apt. 980
+   * // 0917 O'Conner Estates
+   * // West Shannonview
+   * // Michigan
+   * // 82180'
+   *
+   * fakerEN_US.location.postalAddress()
+   * // '0917 O'Conner Estates, Apt. 980
+   * // West Shannonview, MI 82180'
+   *
+   * fakerEN_GB.location.postalAddress()
+   * // '79 Bogan Corner
+   * // Castle Zemlakborough
+   * // Dumfries and Galloway
+   * // ZH17 2SD'
+   *
+   * fakerZH_CN.location.postalAddress()
+   * // '广东省贵原市门路19号'
+   *
+   * @since 10.5.0
+   */
+  postalAddress(): string {
+    return this.faker.helpers.fake(
+      this.faker.definitions.location.postal_address
+    );
+  }
+
+  /**
    * Generates a random localized secondary address. This refers to a specific location at a given address
    * such as an apartment or room number.
    *
@@ -520,11 +552,11 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
-    const stateDataSet = abbreviated
+    const data = abbreviated
       ? this.faker.definitions.location.state_abbr
       : this.faker.definitions.location.state;
 
-    return this.faker.helpers.arrayElement(stateDataSet);
+    return this.faker.helpers.arrayElement(data);
   }
 
   /**
@@ -552,18 +584,12 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
+    const direction = this.faker.definitions.location.direction;
+    const data = abbreviated
+      ? [...direction.cardinal_abbr, ...direction.ordinal_abbr]
+      : [...direction.cardinal, ...direction.ordinal];
 
-    if (!abbreviated) {
-      return this.faker.helpers.arrayElement([
-        ...this.faker.definitions.location.direction.cardinal,
-        ...this.faker.definitions.location.direction.ordinal,
-      ]);
-    }
-
-    return this.faker.helpers.arrayElement([
-      ...this.faker.definitions.location.direction.cardinal_abbr,
-      ...this.faker.definitions.location.direction.ordinal_abbr,
-    ]);
+    return this.faker.helpers.arrayElement(data);
   }
 
   /**
@@ -591,16 +617,10 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
+    const direction = this.faker.definitions.location.direction;
+    const data = abbreviated ? direction.cardinal_abbr : direction.cardinal;
 
-    if (!abbreviated) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.cardinal
-      );
-    }
-
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction.cardinal_abbr
-    );
+    return this.faker.helpers.arrayElement(data);
   }
 
   /**
@@ -628,16 +648,10 @@ export class LocationModule extends SimpleLocationModule {
     } = {}
   ): string {
     const { abbreviated = false } = options;
+    const direction = this.faker.definitions.location.direction;
+    const data = abbreviated ? direction.ordinal_abbr : direction.ordinal;
 
-    if (!abbreviated) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.location.direction.ordinal
-      );
-    }
-
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.direction.ordinal_abbr
-    );
+    return this.faker.helpers.arrayElement(data);
   }
 
   /**

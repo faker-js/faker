@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, allLocales, faker, fakerAZ } from '../../src';
+import { FakerError, SimpleFaker, allLocales, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const converterMap = [
   (d: Date) => d,
@@ -44,7 +44,8 @@ describe('date', () => {
         .it('with only number refDate', {
           refDate: new Date(refDate).getTime(),
         })
-        .it('with value', { years: 10, refDate });
+        .it('with value numeric', { years: 10, refDate })
+        .it('with value range', { years: { min: 3, max: 12 }, refDate });
     });
 
     t.describeEach(
@@ -56,7 +57,8 @@ describe('date', () => {
         .it('with only number refDate', {
           refDate: new Date(refDate).getTime(),
         })
-        .it('with value', { days: 10, refDate });
+        .it('with value numeric', { days: 10, refDate })
+        .it('with value range', { days: { min: 3, max: 12 }, refDate });
     });
 
     t.describeEach(
@@ -161,7 +163,7 @@ describe('date', () => {
           it.each(['invalid', Number.NaN, new Date(Number.NaN)] as const)(
             'should reject invalid refDates %s',
             (refDate) => {
-              expect(() => faker.date[method]({ refDate })).toThrowError(
+              expect(() => faker.date[method]({ refDate })).toThrow(
                 new FakerError(`Invalid refDate date: ${refDate.toString()}`)
               );
             }
@@ -190,11 +192,94 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(yearsAgo);
         });
 
+        it('should return a date between 20 and 40 years in the past', () => {
+          const today = new Date();
+          const yearsAgoMax = 40;
+          const yearAgoMax = new Date(today);
+          yearAgoMax.setFullYear(yearAgoMax.getFullYear() - yearsAgoMax);
+
+          const yearsAgoMin = 20;
+          const yearAgoMin = new Date(today);
+          yearAgoMin.setFullYear(yearAgoMin.getFullYear() - yearsAgoMin);
+
+          const date = faker.date.past({
+            years: { min: yearsAgoMin, max: yearsAgoMax },
+          });
+
+          expect(date).lessThan(today);
+          expect(date).lessThan(yearAgoMin);
+          expect(date).greaterThanOrEqual(yearAgoMax);
+        });
+
+        it('should return a date between 20 and 40 years in the past (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.999999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.past({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1, 0, 0, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2000, 2, 1)));
+        });
+
+        it('should return a date between 20 and 40 years in the past (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.past({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(1980, 2, 1)));
+        });
+
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.past({ years: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Years must be greater than 0.'));
+          ).toThrow(new FakerError('Years must be greater than 0.'));
+        });
+
+        it('should throw an error when years.min > years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.past({
+              years: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
+        });
+
+        it('should throw an error when years.min = years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.past({
+              years: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -216,16 +301,105 @@ describe('date', () => {
 
       describe('future()', () => {
         it('should return a date 75 years into the future', () => {
-          const date = faker.date.future({ years: 75 });
+          const today = new Date();
+          const yearsUntilMax = 75;
+          const yearUntilMax = new Date(today);
+          yearUntilMax.setFullYear(yearUntilMax.getFullYear() + yearsUntilMax);
 
-          expect(date).greaterThan(new Date());
+          const date = faker.date.future({ years: yearsUntilMax });
+
+          expect(date).greaterThan(today);
+          expect(date).lessThanOrEqual(yearUntilMax);
+        });
+
+        it('should return a date between 20 and 40 years in the future', () => {
+          const today = new Date();
+          const yearsUntilMin = 20;
+          const yearUntilMin = new Date(today);
+          yearUntilMin.setFullYear(yearUntilMin.getFullYear() + yearsUntilMin);
+
+          const yearsUntilMax = 40;
+          const yearUntilMax = new Date(today);
+          yearUntilMax.setFullYear(yearUntilMax.getFullYear() + yearsUntilMax);
+
+          const date = faker.date.future({
+            years: { min: yearsUntilMin, max: yearsUntilMax },
+          });
+
+          expect(date).greaterThan(today);
+          expect(date).greaterThan(yearUntilMin);
+          expect(date).lessThanOrEqual(yearUntilMax);
+        });
+
+        it('should return a date between 20 and 40 years in the future (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.future({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2040, 2, 1, 0, 0, 1)));
+        });
+
+        it('should return a date between 20 and 40 years in the future (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.999999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.future({
+            years: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2060, 2, 1)));
         });
 
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.future({ years: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Years must be greater than 0.'));
+          ).toThrow(new FakerError('Years must be greater than 0.'));
+        });
+
+        it('should throw an error when years.min > years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.future({
+              years: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
+        });
+
+        it('should throw an error when years.min = years.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.future({
+              years: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of years must be greater than the minimum amount of years.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -268,9 +442,7 @@ describe('date', () => {
               from: '2000-01-01',
               to: '1990-01-01',
             })
-          ).toThrowError(
-            new FakerError('`from` date must be before `to` date.')
-          );
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
         it('should allow date 0 (start of UNIX epoch)', () => {
@@ -287,7 +459,7 @@ describe('date', () => {
               from: '1990-01-01',
               to: 'not-a-date',
             })
-          ).toThrowError(new FakerError('Invalid to date: not-a-date'));
+          ).toThrow(new FakerError('Invalid to date: not-a-date'));
         });
       });
 
@@ -366,9 +538,7 @@ describe('date', () => {
               to: '1990-01-01',
               count: 3,
             })
-          ).toThrowError(
-            new FakerError('`from` date must be before `to` date.')
-          );
+          ).toThrow(new FakerError('`from` date must be before `to` date.'));
         });
 
         it('should throw an error if to is invalid', () => {
@@ -378,7 +548,7 @@ describe('date', () => {
               to: 'not-a-date',
               count: 3,
             })
-          ).toThrowError(new FakerError('Invalid to date: not-a-date'));
+          ).toThrow(new FakerError('Invalid to date: not-a-date'));
         });
       });
 
@@ -389,11 +559,94 @@ describe('date', () => {
           expect(date).lessThanOrEqual(new Date());
         });
 
+        it('should return a date between 20 and 40 days in the past', () => {
+          const today = new Date();
+          const daysAgoMax = 40;
+          const dayAgoMax = new Date(today);
+          dayAgoMax.setDate(dayAgoMax.getDate() - daysAgoMax);
+
+          const daysAgoMin = 20;
+          const dayAgoMin = new Date(today);
+          dayAgoMin.setDate(dayAgoMin.getDate() - daysAgoMin);
+
+          const date = faker.date.recent({
+            days: { min: daysAgoMin, max: daysAgoMax },
+          });
+
+          expect(date).lessThan(today);
+          expect(date).lessThan(dayAgoMin);
+          expect(date).greaterThanOrEqual(dayAgoMax);
+        });
+
+        it('should return a date between 20 and 40 days in the past (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.9999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.recent({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1, 0, 0, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 1, 10)));
+        });
+
+        it('should return a date between 20 and 40 days in the past (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.recent({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 0, 21)));
+        });
+
         it('should throw an error when days = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.recent({ days: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Days must be greater than 0.'));
+          ).toThrow(new FakerError('Days must be greater than 0.'));
+        });
+
+        it('should throw an error when days.min > days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.recent({
+              days: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
+        });
+
+        it('should throw an error when days.min = days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.recent({
+              days: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -430,11 +683,94 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(new Date());
         });
 
+        it('should return a date between 20 and 40 days in the future', () => {
+          const today = new Date();
+          const daysUntilMin = 20;
+          const dayUntilMin = new Date(today);
+          dayUntilMin.setDate(dayUntilMin.getDate() + daysUntilMin);
+
+          const daysUntilMax = 40;
+          const dayUntilMax = new Date(today);
+          dayUntilMax.setDate(dayUntilMax.getDate() + daysUntilMax);
+
+          const date = faker.date.soon({
+            days: { min: daysUntilMin, max: daysUntilMax },
+          });
+
+          expect(date).greaterThan(today);
+          expect(date).greaterThan(dayUntilMin);
+          expect(date).lessThanOrEqual(dayUntilMax);
+        });
+
+        it('should return a date between 20 and 40 days in the future (min)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.soon({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 2, 21, 0, 0, 1)));
+        });
+
+        it('should return a date between 20 and 40 days in the future (max)', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0.9999999999999;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.soon({
+            days: { min: 20, max: 40 },
+            refDate: new Date(Date.UTC(2020, 2, 1)),
+          });
+
+          expect(date).toEqual(new Date(Date.UTC(2020, 3, 10)));
+        });
+
         it('should throw an error when days = 0', () => {
           const refDate = new Date();
           expect(() =>
             faker.date.soon({ days: 0, refDate: refDate.toISOString() })
-          ).toThrowError(new FakerError('Days must be greater than 0.'));
+          ).toThrow(new FakerError('Days must be greater than 0.'));
+        });
+
+        it('should throw an error when days.min > days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.soon({
+              days: { min: 3, max: 2 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
+        });
+
+        it('should throw an error when days.min = days.max', () => {
+          const refDate = new Date();
+          expect(() =>
+            faker.date.soon({
+              days: { min: 6, max: 6 },
+              refDate: refDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The maximum amount of days must be greater than the minimum amount of days.'
+            )
+          );
         });
 
         it.each(converterMap)(
@@ -622,7 +958,7 @@ describe('date', () => {
 
           expect(() =>
             faker.date.birthdate({ min, max, mode: 'year' })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               `Max year 1990 should be greater than or equal to min year 2000.`
             )
@@ -636,7 +972,7 @@ describe('date', () => {
 
           expect(() =>
             faker.date.birthdate({ min, max, refDate, mode: 'age' })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               `Max age 25 should be greater than or equal to min age 31.`
             )

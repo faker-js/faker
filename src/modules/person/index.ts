@@ -1,5 +1,5 @@
-import type { Faker } from '../..';
 import type { PersonEntryDefinition } from '../../definitions/person';
+import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 
 /**
@@ -137,13 +137,10 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    if (this.faker.rawDefinitions.person?.last_name_pattern != null) {
+    const patterns = this.faker.definitions.raw.person?.last_name_pattern;
+    if (patterns != null) {
       const pattern = this.faker.helpers.weightedArrayElement(
-        selectDefinition(
-          this.faker,
-          sex,
-          this.faker.rawDefinitions.person.last_name_pattern
-        )
+        selectDefinition(this.faker, sex, patterns)
       );
       return this.faker.helpers.fake(pattern);
     }
@@ -315,9 +312,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    const { bio_pattern } = this.faker.definitions.person;
-
-    return this.faker.helpers.fake(bio_pattern);
+    return this.faker.helpers.fake(this.faker.definitions.person.bio_pattern);
   }
 
   /**

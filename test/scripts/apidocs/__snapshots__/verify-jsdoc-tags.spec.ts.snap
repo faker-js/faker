@@ -27,11 +27,20 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
     ],
   ],
   [
+    "distributors",
+    [
+      "exponentialDistributor",
+      "uniformDistributor",
+    ],
+  ],
+  [
     "utils",
     [
       "generateMersenne32Randomizer",
       "generateMersenne53Randomizer",
+      "getDefaultRefDate",
       "mergeLocales",
+      "setDefaultRefDate",
     ],
   ],
   [
@@ -291,6 +300,7 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
       "longitude",
       "nearbyGPSCoordinate",
       "ordinalDirection",
+      "postalAddress",
       "secondaryAddress",
       "state",
       "street",
