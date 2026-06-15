@@ -94,7 +94,7 @@ importers:
         version: 28.0.0
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(publint@0.3.21)(tsx@4.22.4)(typescript@5.9.3)(vue-tsc@3.3.4(typescript@5.9.3))
+        version: 0.22.2(publint@0.3.21)(tsx@4.22.4)(typescript@5.9.3)(unrun@0.3.1(synckit@0.11.13))(vue-tsc@3.3.4(typescript@5.9.3))
       tsx:
         specifier: 4.22.4
         version: 4.22.4
@@ -104,6 +104,9 @@ importers:
       typescript-eslint:
         specifier: 8.61.0
         version: 8.61.0(eslint@10.4.1(jiti@2.7.0))(typescript@5.9.3)
+      unrun:
+        specifier: 0.3.1
+        version: 0.3.1(synckit@0.11.13)
       validator:
         specifier: 13.15.35
         version: 13.15.35
@@ -3217,6 +3220,16 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
+  unrun@0.3.1:
+    resolution: {integrity: sha512-onIck/oNnCaytwths1ZVp1LK2Gq2hPoyFhiHebObuUXqR3S0uHuLLaBK8K6mRRgV7Ptip8AnNvaUsgzwWwBZuA==}
+    engines: {node: ^22.13.0 || >=24.0.0}
+    hasBin: true
+    peerDependencies:
+      synckit: ^0.11.11
+    peerDependenciesMeta:
+      synckit:
+        optional: true
+
   untildify@4.0.0:
     resolution: {integrity: sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==}
     engines: {node: '>=8'}
@@ -6319,7 +6332,7 @@ snapshots:
       '@ts-morph/common': 0.29.0
       code-block-writer: 13.0.3
 
-  tsdown@0.22.2(publint@0.3.21)(tsx@4.22.4)(typescript@5.9.3)(vue-tsc@3.3.4(typescript@5.9.3)):
+  tsdown@0.22.2(publint@0.3.21)(tsx@4.22.4)(typescript@5.9.3)(unrun@0.3.1(synckit@0.11.13))(vue-tsc@3.3.4(typescript@5.9.3)):
     dependencies:
       ansis: 4.3.1
       cac: 7.0.0
@@ -6340,6 +6353,7 @@ snapshots:
       publint: 0.3.21
       tsx: 4.22.4
       typescript: 5.9.3
+      unrun: 0.3.1(synckit@0.11.13)
     transitivePeerDependencies:
       - '@ts-macro/tsc'
       - '@typescript/native-preview'
@@ -6422,6 +6436,12 @@ snapshots:
       unist-util-visit-parents: 6.0.2
 
   universalify@2.0.1: {}
+
+  unrun@0.3.1(synckit@0.11.13):
+    dependencies:
+      rolldown: 1.1.1
+    optionalDependencies:
+      synckit: 0.11.13
 
   untildify@4.0.0: {}
 
