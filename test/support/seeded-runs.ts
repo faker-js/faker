@@ -22,13 +22,18 @@ type MethodOf<TObjectType, TSignature extends Callable = Callable> = {
     : never;
 }[keyof TObjectType];
 
+type VerifiedKeyOf<T, TKey extends keyof T> = TKey;
+
 /**
  * A type allowing only the names of faker modules.
  */
 type FakerModule = {
   [Key in keyof Faker]: Faker[Key] extends Callable | string | number | number[]
     ? never
-    : Key extends 'definitions' | 'locales'
+    : Key extends VerifiedKeyOf<
+          Faker,
+          'definitions' | 'rawDefinitions' | 'fakerCore'
+        >
       ? never
       : Key;
 }[keyof Faker];

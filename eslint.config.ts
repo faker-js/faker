@@ -194,6 +194,7 @@ export default defineConfig(
             { tags: ['since'] },
             { tags: ['default'] },
             { tags: ['deprecated'] },
+            { tags: ['experimental'] },
           ],
         },
       ],

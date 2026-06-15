@@ -7,6 +7,7 @@ import {
   getDeprecated,
   getDescription,
   getExamples,
+  getExperimental,
   getJsDocs,
   getRemarks,
   getSeeAlsos,
@@ -27,6 +28,10 @@ export interface RawApiDocsSignature {
    * The deprecation notice of the signature, if it has one.
    */
   deprecated: string | undefined;
+  /**
+   * Whether the signature is experimental and may change in future versions.
+   */
+  experimental: true | undefined;
   /**
    * The description of the signature.
    */
@@ -109,6 +114,7 @@ function processSignature(
   try {
     return {
       deprecated: getDeprecated(jsdocs),
+      experimental: getExperimental(jsdocs),
       description: getDescription(jsdocs),
       since: getSince(jsdocs),
       parameters,

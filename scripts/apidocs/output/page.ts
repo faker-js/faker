@@ -166,6 +166,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   const signatureData = required(signatures.at(-1), 'method signature');
   const {
     deprecated,
+    experimental,
     description,
     since,
     parameters,
@@ -232,6 +233,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     signature: await codeToHtml(formattedSignature),
     examples: await codeGroupToHtml(examples),
     refresh,
+    experimental,
     deprecated: await mdToHtml(deprecated),
     seeAlsos: await Promise.all(
       seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true))

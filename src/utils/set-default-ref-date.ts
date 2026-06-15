@@ -33,6 +33,8 @@ import type { FakerCore } from '../core';
  * getDefaultRefDate(fakerCore) // 2020-01-01T00:00:02Z
  *
  * @since 10.5.0
+ *
+ * @experimental
  */
 export function setDefaultRefDate(
   fakerCore: FakerCore,

@@ -11,6 +11,7 @@ function newTestMethod(
     signatures: [
       {
         deprecated: 'deprecated',
+        experimental: undefined,
         description: 'description',
         remarks: [],
         since: 'since',
