@@ -45,14 +45,11 @@ describe('API Test', () => {
           method: 'HEAD',
           url: link,
           failOnStatusCode: false,
-        })
-          .should(({ status }) => {
-            expect(
-              status,
-              `${text} to have a working link: /api/${link}`
-            ).to.eq(200);
-          })
-          .end();
+        }).should(({ status }) => {
+          expect(status, `${text} to have a working link: /api/${link}`).to.eq(
+            200
+          );
+        });
       });
     });
   });
