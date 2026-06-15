@@ -1,0 +1,3 @@
+allowBuilds:
+  cypress: false
+  esbuild: false
