@@ -8,12 +8,12 @@ function isFakerOrigin(): boolean {
     const originUrl = execSync('git remote get-url origin')
       .toString('utf8')
       .trim();
-    return (
-      originUrl === 'git@github.com:faker-js/faker' ||
-      originUrl === 'git@github.com:faker-js/faker.git' ||
-      originUrl === 'https://github.com/faker-js/faker' ||
-      originUrl === 'https://github.com/faker-js/faker.git'
-    );
+    return [
+      'git@github.com:faker-js/faker',
+      'git@github.com:faker-js/faker.git',
+      'https://github.com/faker-js/faker',
+      'https://github.com/faker-js/faker.git',
+    ].includes(originUrl);
   } catch {
     return false;
   }

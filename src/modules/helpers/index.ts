@@ -199,11 +199,7 @@ function replaceUnquantifiedRegExpTokens(
     }
 
     const nextChar = pattern[i + 1];
-    const hasQuantifier =
-      nextChar === '?' ||
-      nextChar === '*' ||
-      nextChar === '+' ||
-      nextChar === '{';
+    const hasQuantifier = ['?', '*', '+', '{'].includes(nextChar);
 
     if (!inCharacterClass && !hasQuantifier && char === '.') {
       result += faker.string.alphanumeric();

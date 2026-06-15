@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
+/* eslint-disable unicorn/no-this-outside-of-class */
 import { expect } from 'vitest';
 
 expect.extend({

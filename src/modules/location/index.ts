@@ -182,7 +182,7 @@ export class SimpleLocationModule extends SimpleModuleBase {
 
     // Box latitude [-90°, 90°]
     coordinate[0] = coordinate[0] % 180;
-    if (coordinate[0] < -90 || coordinate[0] > 90) {
+    if (Math.abs(coordinate[0]) > 90) {
       coordinate[0] = Math.sign(coordinate[0]) * 180 - coordinate[0];
       coordinate[1] += 180;
     }

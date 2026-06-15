@@ -23,7 +23,7 @@ const consoleVersion = isReleaseBranch
   ? version
   : `${version.replace(/-.*$/, '')}-preview+${commitHash}`;
 
-function getSideBarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
+function getSidebarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
   const links: SidebarItem[] = [
     {
       text: 'Guide',
@@ -260,11 +260,11 @@ For a full list of all methods please refer to https://fakerjs.dev/api/\`, logSt
     ],
 
     sidebar: {
-      '/guide/': getSideBarWithExpandedEntry('Guide'),
-      '/locales/': getSideBarWithExpandedEntry('Guide'),
-      '/api/': getSideBarWithExpandedEntry('API'),
-      '/contributing/': getSideBarWithExpandedEntry('Contributing'),
-      '/about/': getSideBarWithExpandedEntry('About'),
+      '/guide/': getSidebarWithExpandedEntry('Guide'),
+      '/locales/': getSidebarWithExpandedEntry('Guide'),
+      '/api/': getSidebarWithExpandedEntry('API'),
+      '/contributing/': getSidebarWithExpandedEntry('Contributing'),
+      '/about/': getSidebarWithExpandedEntry('About'),
     },
   },
 

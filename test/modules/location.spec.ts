@@ -27,7 +27,7 @@ function kilometersToMiles(miles: number) {
  * @param num The number to check.
  */
 function precision(num: number): number {
-  const decimalPart = num.toString().split('.')[1];
+  const decimalPart = num.toString().split('.', 2)[1];
   if (decimalPart === undefined) {
     return 0;
   }
@@ -35,7 +35,7 @@ function precision(num: number): number {
   return decimalPart.length;
 }
 
-// http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+// https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
 const EQUATORIAL_EARTH_RADIUS = 6378.137;
 
 function haversine(
