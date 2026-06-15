@@ -9,6 +9,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "methodWithDeprecated",
   "methodWithDeprecatedOption",
   "methodWithExample",
+  "methodWithExperimental",
   "methodWithMultipleExamples",
   "methodWithMultipleRemarks",
   "methodWithMultipleSeeMarkers",
@@ -38,6 +39,7 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
       "deprecated": undefined,
       "description": "Complex array parameter.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -122,6 +124,7 @@ exports[`method > processMethodLike(defaultBooleanParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with a default parameter.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": "true",
@@ -160,6 +163,7 @@ exports[`method > processMethodLike(functionParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with a function parameters.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -198,6 +202,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with LiteralUnion.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -480,6 +485,7 @@ exports[`method > processMethodLike(methodWithDeprecated) 1`] = `
       "deprecated": "do something else",
       "description": "Test with deprecated and see marker.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -510,6 +516,7 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
       "deprecated": undefined,
       "description": "Test with deprecated option.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -585,6 +592,7 @@ exports[`method > processMethodLike(methodWithExample) 1`] = `
       "examples": [
         "test.apidocs.methodWithExample() // 0",
       ],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -593,6 +601,35 @@ exports[`method > processMethodLike(methodWithExample) 1`] = `
       },
       "seeAlsos": [],
       "signature": "function methodWithExample(): number;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
+exports[`method > processMethodLike(methodWithExperimental) 1`] = `
+{
+  "name": "methodWithExperimental",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with experimental .",
+      "examples": [],
+      "experimental": true,
+      "parameters": [],
+      "remarks": [],
+      "returns": {
+        "text": "number",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function methodWithExperimental(): number;",
       "since": "1.0.0",
       "throws": [],
     },
@@ -619,6 +656,7 @@ test.apidocs.methodWithMultipleExamples() // 0",
 const value = test.apidocs.methodWithMultipleExamples();
 console.log(value); // 0",
       ],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -647,6 +685,7 @@ exports[`method > processMethodLike(methodWithMultipleRemarks) 1`] = `
       "deprecated": undefined,
       "description": "Test with multiple remark markers.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [
         "First special text.",
@@ -679,6 +718,7 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkers) 1`] = `
       "deprecated": undefined,
       "description": "Test with multiple see markers.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -710,6 +750,7 @@ exports[`method > processMethodLike(methodWithMultipleSeeMarkersAndBackticks) 1`
       "deprecated": undefined,
       "description": "Test with multiple see markers and backticks.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -741,6 +782,7 @@ exports[`method > processMethodLike(methodWithMultipleThrows) 1`] = `
       "deprecated": undefined,
       "description": "Test with multiple throws.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -772,6 +814,7 @@ exports[`method > processMethodLike(methodWithRemark) 1`] = `
       "deprecated": undefined,
       "description": "Test with remark marker.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [
         "This text is special.",
@@ -802,6 +845,7 @@ exports[`method > processMethodLike(methodWithSinceMarker) 1`] = `
       "deprecated": undefined,
       "description": "Test with since marker.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -830,6 +874,7 @@ exports[`method > processMethodLike(methodWithThrows) 1`] = `
       "deprecated": undefined,
       "description": "Test with throws.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -860,6 +905,7 @@ exports[`method > processMethodLike(multiParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with multiple parameters.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -916,6 +962,7 @@ exports[`method > processMethodLike(noParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with no parameters.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [],
       "remarks": [],
       "returns": {
@@ -944,6 +991,7 @@ exports[`method > processMethodLike(optionalStringParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with an optional parameter.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -982,6 +1030,7 @@ exports[`method > processMethodLike(optionsInlineParamMethodWithDefaults) 1`] = 
       "deprecated": undefined,
       "description": "Test with a function parameters (inline types) with defaults.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": "{ value: 1 }",
@@ -1080,6 +1129,7 @@ exports[`method > processMethodLike(optionsInterfaceParamMethodWithDefaults) 1`]
       "deprecated": undefined,
       "description": "Test with a function parameters with defaults.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": "{ value: 1 }",
@@ -1140,6 +1190,7 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with an options parameter.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -1249,6 +1300,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
       "deprecated": undefined,
       "description": "Test with a function parameters with defaults.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": "{ value: 1 }",
@@ -1336,6 +1388,7 @@ exports[`method > processMethodLike(recordParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with a Record parameter.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -1374,6 +1427,7 @@ exports[`method > processMethodLike(requiredNumberParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with a required parameter.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,
@@ -1412,6 +1466,7 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
       "deprecated": undefined,
       "description": "Test with string union.",
       "examples": [],
+      "experimental": undefined,
       "parameters": [
         {
           "default": undefined,

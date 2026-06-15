@@ -8,6 +8,7 @@ import RefreshableCode from './refreshable-code.vue';
 const { method } = defineProps<{ method: ApiDocsMethod }>();
 const {
   deprecated,
+  experimental,
   description,
   remark,
   since,
@@ -38,6 +39,14 @@ function seeAlsoToUrl(see: string): string {
       <p class="custom-block-title">Deprecated</p>
       <p>This method is deprecated and will be removed in a future version.</p>
       <span v-html="deprecated" />
+    </div>
+
+    <div v-if="experimental" class="warning custom-block">
+      <p class="custom-block-title">Experimental</p>
+      <p>
+        This method is experimental and future changes may not follow semantic
+        versioning.
+      </p>
     </div>
 
     <div v-html="description"></div>

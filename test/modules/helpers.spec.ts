@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -551,7 +551,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^w$/);
           });
 
-          it.todo('handles case insensitive characters', () => {
+          it('handles case insensitive characters', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/w/i);
@@ -570,7 +570,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^%$/i);
           });
 
-          it.todo('handles the wildcard character', () => {
+          it('handles the wildcard character', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/./);
@@ -580,6 +580,25 @@ describe('helpers', () => {
             }
 
             expect(set.size).toBeGreaterThan(5);
+          });
+
+          it('handles repeated wildcard characters', () => {
+            const actual = faker.helpers.fromRegExp(/../);
+            expect(actual).toHaveLength(2);
+            expect(actual).toMatch(/^..$/);
+            expect(actual).not.toBe('..');
+          });
+
+          it('handles repeated case insensitive characters', () => {
+            const set = new Set<string>();
+            for (let i = 0; i < 100; i++) {
+              const actual = faker.helpers.fromRegExp(/ww/i);
+              expect(actual).toHaveLength(2);
+              expect(actual).toMatch(/^ww$/i);
+              set.add(actual);
+            }
+
+            expect(set.size).toBeGreaterThan(1);
           });
         });
 
@@ -692,7 +711,8 @@ describe('helpers', () => {
 
         it('hides regex wrapper characters', () => {
           const actual = faker.helpers.fromRegExp(/^^foo$$/i);
-          expect(actual).toBe('foo');
+          expect(actual).toHaveLength(3);
+          expect(actual).toMatch(/^foo$/i);
         });
       });
 

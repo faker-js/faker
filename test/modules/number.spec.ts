@@ -2,8 +2,8 @@ import { isHexadecimal, isOctal } from 'validator';
 import { describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
+import { times } from '../support/times';
 import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
-import { times } from './../support/times';
 
 function isFloat(value: number): boolean {
   return value % 1 !== 0;
