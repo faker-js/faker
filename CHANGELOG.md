@@ -2,6 +2,65 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.5.0](https://github.com/faker-js/faker/compare/v10.4.0...v10.5.0) (2026-06-17)
+
+
+### New Locales
+
+* **locale:** add color to cy ([#3816](https://github.com/faker-js/faker/issues/3816)) ([5a6379f](https://github.com/faker-js/faker/commit/5a6379f28080bd57cf059e9a0adcbf16e6f3862f))
+* **locale:** add Farsi airline module locale ([#3789](https://github.com/faker-js/faker/issues/3789)) ([f4a1c3e](https://github.com/faker-js/faker/commit/f4a1c3e51a26ec2ae5dc4e0b9218aadf06980eca))
+* **locale:** add mn_MN_cyrl (Mongolian) locale ([#3796](https://github.com/faker-js/faker/issues/3796)) ([d17c0f1](https://github.com/faker-js/faker/commit/d17c0f1fe2ea95666b668c1e87ef4a1505a19538))
+* **locale:** Add more realistic Greek address data ([#3792](https://github.com/faker-js/faker/issues/3792)) ([6153eb7](https://github.com/faker-js/faker/commit/6153eb7768fa6b7e07e9416c95d115baf3a9a09a))
+* **locale:** Add postal_address and improved secondary_address for es ([#3798](https://github.com/faker-js/faker/issues/3798)) ([6c2a0ab](https://github.com/faker-js/faker/commit/6c2a0abd3092c8afb2bca67544a16e85a13b6b61))
+* **locale:** add sl_SI locale, location module ([#3652](https://github.com/faker-js/faker/issues/3652)) ([28d4f7c](https://github.com/faker-js/faker/commit/28d4f7cc2852abab8df61ec143e6d3e1ddb85ae2))
+* **locale:** add Welsh (cy) animal type definitions ([#3842](https://github.com/faker-js/faker/issues/3842)) ([50a5ec9](https://github.com/faker-js/faker/commit/50a5ec9477d8784bbac41f3c5bb1c013417cacec))
+* **locale:** add Welsh (cy) book format definitions ([#3846](https://github.com/faker-js/faker/issues/3846)) ([#3846](https://github.com/faker-js/faker/issues/3846)) ([2b32d6e](https://github.com/faker-js/faker/commit/2b32d6ef02a9c03e1b85769b7a566cc4f5521480))
+* **locale:** add Welsh (cy) building numbers definition ([#3892](https://github.com/faker-js/faker/issues/3892)) ([4996a2b](https://github.com/faker-js/faker/commit/4996a2b477bfe606628142f5c60f421033aa4e73))
+* **locale:** add Welsh (cy) city name definitions ([#3884](https://github.com/faker-js/faker/issues/3884)) ([ac36c22](https://github.com/faker-js/faker/commit/ac36c222c59552f7bbc1006acc8c7e666f0d861b))
+* **locale:** add Welsh (cy) continents definitions  ([#3880](https://github.com/faker-js/faker/issues/3880)) ([03a1682](https://github.com/faker-js/faker/commit/03a1682727c873da386b926b81ccd2cf9e73ea2f))
+* **locale:** add Welsh (cy) county definitions ([#3849](https://github.com/faker-js/faker/issues/3849)) ([f51d28a](https://github.com/faker-js/faker/commit/f51d28a3c68151fdab1113c6fe9e4fbeca1268e2))
+* **locale:** add Welsh (cy) direction definitions ([#3840](https://github.com/faker-js/faker/issues/3840)) ([d862071](https://github.com/faker-js/faker/commit/d862071c60696604ef64eb622a791f5bbee04ec1))
+* **locale:** add Welsh (cy) internet domain suffix definitions ([#3865](https://github.com/faker-js/faker/issues/3865)) ([#3865](https://github.com/faker-js/faker/issues/3865)) ([fb2e2cb](https://github.com/faker-js/faker/commit/fb2e2cbe3d0eb1939590e0d7736c2189f99fe81b))
+* **locale:** add Welsh (cy) phone number definitions ([#3878](https://github.com/faker-js/faker/issues/3878)) ([70994db](https://github.com/faker-js/faker/commit/70994dbf77c9aea4edcf2dffbb46c777376a7814))
+* **locale:** add Welsh (cy) postal address definitions ([#3850](https://github.com/faker-js/faker/issues/3850)) ([e72fd7c](https://github.com/faker-js/faker/commit/e72fd7c0d76b3e2fbd7208a4653f2248608eb524))
+* **locale:** add Welsh (cy) postcode definitions ([#3851](https://github.com/faker-js/faker/issues/3851)) ([1afbd59](https://github.com/faker-js/faker/commit/1afbd59cc14b29006dbdbc1c92e310f070c57ac8))
+* **locale:** add Welsh (cy) sex definitions ([#3824](https://github.com/faker-js/faker/issues/3824)) ([6f29eb7](https://github.com/faker-js/faker/commit/6f29eb754848344dd5dcfe90600bfe221b6cc054))
+* **locale:** add Welsh (cy) state definitions ([#3891](https://github.com/faker-js/faker/issues/3891)) ([#3891](https://github.com/faker-js/faker/issues/3891)) ([606d47c](https://github.com/faker-js/faker/commit/606d47c1c5a758190b4942339709921699a3b132))
+* **locale:** add Welsh (cy) street name definitions ([#3889](https://github.com/faker-js/faker/issues/3889)) ([143789e](https://github.com/faker-js/faker/commit/143789efb3b3d1947d3239de314f660ee24b8f81))
+* **locale:** add Welsh (cy) vehicle fuel definitions ([#3845](https://github.com/faker-js/faker/issues/3845)) ([29c918a](https://github.com/faker-js/faker/commit/29c918a2beb09ac7dd1ed0fa4b0fa8c7ce51bc89))
+* **locale:** extend tr person last names ([#3839](https://github.com/faker-js/faker/issues/3839)) ([f433771](https://github.com/faker-js/faker/commit/f4337712526cf07f6d601d5128eb36f74fd8a053))
+* **locale:** improved en_GB postcodes ([#3864](https://github.com/faker-js/faker/issues/3864)) ([a4e5039](https://github.com/faker-js/faker/commit/a4e503989ac0c26e06b2a7cade324e99343617ce))
+* **locale:** improved en_IE postal_address ([#3797](https://github.com/faker-js/faker/issues/3797)) ([fb3ffd3](https://github.com/faker-js/faker/commit/fb3ffd373b39998b3742bc092061ec098a4c93ef))
+
+
+### Features
+
+* add first standalone module functions ([#3818](https://github.com/faker-js/faker/issues/3818)) ([5d4f5de](https://github.com/faker-js/faker/commit/5d4f5ded06d57dc4203e025055ed4143ebfadf0a))
+* **date:** add ability to provide date range for `recent` and `soon` ([#3844](https://github.com/faker-js/faker/issues/3844)) ([0bc038d](https://github.com/faker-js/faker/commit/0bc038d5ca3f884da89106a27fe0050def8921c8))
+* **date:** add ability to provide year range for `past` and `future` ([#3783](https://github.com/faker-js/faker/issues/3783)) ([237e7dc](https://github.com/faker-js/faker/commit/237e7dc34aafafeef68e667a0140d08a8bfa7fb2))
+* **food:** expand plant-based dish and pattern variety ([#3887](https://github.com/faker-js/faker/issues/3887)) ([5eaf729](https://github.com/faker-js/faker/commit/5eaf729128b4343a595c36ee804c28325b21b9a4))
+* introduce FakerCore ([#2838](https://github.com/faker-js/faker/issues/2838)) ([68e15d7](https://github.com/faker-js/faker/commit/68e15d7e33f709afa89a77a435c83e9e6257a704))
+* **location:** add postal address generation ([#3760](https://github.com/faker-js/faker/issues/3760)) ([753bec6](https://github.com/faker-js/faker/commit/753bec682dfc5046a02fde18e2c141777afa2f53))
+* **number:** add distributor functions ([#3375](https://github.com/faker-js/faker/issues/3375)) ([325e402](https://github.com/faker-js/faker/commit/325e402dfd7c6d62f0e96ce3276ace5e984c975a))
+* **phone:** mobile style for phone.number ([#3583](https://github.com/faker-js/faker/issues/3583)) ([cd5953b](https://github.com/faker-js/faker/commit/cd5953b5bfd5ea9193f7d58f7544bb261cd31259))
+
+
+### Bug Fixes
+
+* **date:** incorrect date boundary in past and future ([#3827](https://github.com/faker-js/faker/issues/3827)) ([0446411](https://github.com/faker-js/faker/commit/0446411f6dc42973a4e7bf0a8cf2c57039146a25))
+* **finance:** routingNumber now uses real FederalReserveRoutingSymbol from lookup table. ([#3429](https://github.com/faker-js/faker/issues/3429)) ([c53c1fe](https://github.com/faker-js/faker/commit/c53c1fefb63b70ff6c5c417e212c6902dc4fa665))
+* **food:** correct fruit and vegetable locale data ([#3800](https://github.com/faker-js/faker/issues/3800)) ([30a812a](https://github.com/faker-js/faker/commit/30a812a52ec87553dc3c46b8ab465aa7c7aa8b46))
+* handle single-character fromRegExp patterns ([#3877](https://github.com/faker-js/faker/issues/3877)) ([ec6cc3b](https://github.com/faker-js/faker/commit/ec6cc3bbfdb2500cddd49062ee01674083f731f7))
+* **helpers:** ignore wrapper characters in fromRegExp ([#3795](https://github.com/faker-js/faker/issues/3795)) ([9e2c0e3](https://github.com/faker-js/faker/commit/9e2c0e391b436f56ff54ad89d02efa9982406389))
+* **helpers:** lazy results in fake ([#3852](https://github.com/faker-js/faker/issues/3852)) ([5458620](https://github.com/faker-js/faker/commit/54586208f904012f57c50b46cc1ad32bcbe4bfb7))
+* hide warnings for permanently disabled test stubs ([#3860](https://github.com/faker-js/faker/issues/3860)) ([03252b9](https://github.com/faker-js/faker/commit/03252b9c2ea72529eb15431468e50d9d31330c56))
+* link release checklist in release PR workflow ([#3802](https://github.com/faker-js/faker/issues/3802)) ([8436c4f](https://github.com/faker-js/faker/commit/8436c4f73201df9ce2bfa575ba5a2b592ab6c839))
+* **locale:** changed farsi phone locales to correct ones ([#3775](https://github.com/faker-js/faker/issues/3775)) ([5e1ce98](https://github.com/faker-js/faker/commit/5e1ce98218883d192aa9d5ba2ab948ec5f9fc8df))
+* **locale:** phone numbers for en_AU ([#3788](https://github.com/faker-js/faker/issues/3788)) ([eba7d99](https://github.com/faker-js/faker/commit/eba7d99f77004a21a4ac4d46df0d2438eaa9fe05))
+* **locale:** remove citation brackets from snake names ([#3822](https://github.com/faker-js/faker/issues/3822)) ([bda44d0](https://github.com/faker-js/faker/commit/bda44d0b6739f6b2d9e5fdd189fd97c1ae76c7ed))
+* **locale:** typo in de_CH last name ([#3799](https://github.com/faker-js/faker/issues/3799)) ([17138d8](https://github.com/faker-js/faker/commit/17138d82a7def296f41c6d172b0eade04617bb69))
+* validate unsupported fileExt mime types ([#3879](https://github.com/faker-js/faker/issues/3879)) ([d11b5d3](https://github.com/faker-js/faker/commit/d11b5d3a84fba5c21a38b26ab1c80882a794065c))
+
 ## [10.4.0](https://github.com/faker-js/faker/compare/v10.3.0...v10.4.0) (2026-03-23)
 
 
