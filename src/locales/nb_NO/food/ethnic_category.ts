@@ -1,0 +1,17 @@
+export default [
+  'fransk',
+  'gresk',
+  'indisk',
+  'italiensk',
+  'japansk',
+  'kinesisk',
+  'koreansk',
+  'libanesisk',
+  'marokkansk',
+  'meksikansk',
+  'norsk',
+  'spansk',
+  'thailandsk',
+  'tyrkisk',
+  'vietnamesisk',
+];
