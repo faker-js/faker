@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -22,6 +23,7 @@ import word from './word';
  * - Endonym: Norsk bokmål (Norge)
  */
 const nb_NO: LocaleDefinition = {
+  animal,
   color,
   commerce,
   company,
