@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import food from './food';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -25,6 +26,7 @@ const nb_NO: LocaleDefinition = {
   color,
   commerce,
   company,
+  food,
   internet,
   location,
   metadata,
