@@ -28,6 +28,6 @@ export default [
   'steinbit',
   'torsk',
   'uer',
-  'ørret',
   'ål',
+  'ørret',
 ];
