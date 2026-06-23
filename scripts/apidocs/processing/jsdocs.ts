@@ -21,6 +21,10 @@ export function getDeprecated(jsdocs: JSDoc): string | undefined {
   return getOptionalTagFromJSDoc(jsdocs, 'deprecated');
 }
 
+export function getExperimental(jsdocs: JSDoc): true | undefined {
+  return hasTagFromJSDoc(jsdocs, 'experimental') ? true : undefined;
+}
+
 export function getDescription(jsdocs: JSDoc | JSDocTag): string {
   return required(jsdocs.getCommentText(), 'jsdocs description');
 }
@@ -97,5 +101,14 @@ function getTagsFromJSDoc(
         full ? tag.getStructure().text?.toString() : tag.getCommentText()
       ),
     `@${type}`
+  );
+}
+
+function hasTagFromJSDoc(jsdocs: JSDoc, type: string): boolean {
+  return (
+    optionalOne(
+      jsdocs.getTags().filter((tag) => tag.getTagName() === type),
+      `@${type}`
+    ) != null
   );
 }

@@ -1,6 +1,7 @@
 export interface ApiDocsMethod {
   readonly name: string;
   readonly deprecated: string | undefined; // HTML
+  readonly experimental: true | undefined;
   readonly description: string; // HTML
   readonly remark: string | undefined; // HTML
   readonly since: string;

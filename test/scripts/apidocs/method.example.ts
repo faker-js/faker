@@ -378,6 +378,17 @@ export class SignatureTest {
   }
 
   /**
+   * Test with experimental .
+   *
+   * @since 1.0.0
+   *
+   * @experimental
+   */
+  methodWithExperimental(): number {
+    return 0;
+  }
+
+  /**
    * Test with throws.
    *
    * @throws {FakerError} Everytime.

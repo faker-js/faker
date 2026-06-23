@@ -194,6 +194,7 @@ export default defineConfig(
             { tags: ['since'] },
             { tags: ['default'] },
             { tags: ['deprecated'] },
+            { tags: ['experimental'] },
           ],
         },
       ],
@@ -248,6 +249,7 @@ export default defineConfig(
         'error',
         {
           case: 'snakeCase',
+          checkDirectories: false,
         },
       ],
       'unicorn/text-encoding-identifier-case': 'off',

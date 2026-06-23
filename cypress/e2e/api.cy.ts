@@ -34,7 +34,7 @@ describe('API Test', () => {
       cy.get('.api-group li').each(($el) => {
         const anchor = $el.find('a');
         const text = anchor.text();
-        const link = anchor.attr('href')?.split('#')[0] ?? 'MISSING';
+        const link = anchor.attr('href')?.split('#', 1)[0] ?? 'MISSING';
         if (checked.has(link)) {
           return;
         }
@@ -45,14 +45,11 @@ describe('API Test', () => {
           method: 'HEAD',
           url: link,
           failOnStatusCode: false,
-        })
-          .should(({ status }) => {
-            expect(
-              status,
-              `${text} to have a working link: /api/${link}`
-            ).to.eq(200);
-          })
-          .end();
+        }).should(({ status }) => {
+          expect(status, `${text} to have a working link: /api/${link}`).to.eq(
+            200
+          );
+        });
       });
     });
   });
