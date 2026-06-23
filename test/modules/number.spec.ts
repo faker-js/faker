@@ -2,8 +2,8 @@ import { isHexadecimal, isOctal } from 'validator';
 import { describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
+import { times } from '../support/times';
 import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
-import { times } from './../support/times';
 
 function isFloat(value: number): boolean {
   return value % 1 !== 0;
@@ -101,7 +101,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([20, 30]);
       });
 
@@ -116,7 +116,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
         expect(results).toEqual([10, 20, 30, 40, 50]);
       });
 
@@ -277,6 +277,17 @@ describe('number', () => {
           new FakerError(`No suitable integer value between 2.1 and 2.9 found.`)
         );
       });
+
+      it('should generate a number based on the provided distributor', () => {
+        let distributorCall = 0;
+        const distributor = () => (distributorCall++ % 4 === 0 ? 0.999 : 0);
+        const results = Array.from({ length: 10 }, () => 0);
+        for (let i = 0; i < 1000; i++) {
+          results[faker.number.int({ max: 9, distributor })]++;
+        }
+
+        expect(results).toEqual([750, 0, 0, 0, 0, 0, 0, 0, 0, 250]);
+      });
     });
 
     describe('float', () => {
@@ -347,7 +358,7 @@ describe('number', () => {
               })
             )
           ),
-        ].sort();
+        ].toSorted();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
@@ -444,6 +455,17 @@ describe('number', () => {
         }).toThrow(
           new FakerError(`Max ${max} should be greater than min ${min}.`)
         );
+      });
+
+      it('should generate a number based on the provided distributor', () => {
+        let distributorCall = 0;
+        const distributor = () => (distributorCall++ % 4 === 0 ? 0.999 : 0);
+        const results = Array.from({ length: 10 }, () => 0);
+        for (let i = 0; i < 1000; i++) {
+          results[Math.floor(faker.number.float({ max: 10, distributor }))]++;
+        }
+
+        expect(results).toEqual([750, 0, 0, 0, 0, 0, 0, 0, 0, 250]);
       });
     });
 
@@ -874,8 +896,7 @@ describe('number', () => {
 
   describe('value range tests', () => {
     const customFaker = new SimpleFaker();
-    // @ts-expect-error: access private member field
-    const randomizer = customFaker._randomizer;
+    const { randomizer } = customFaker.fakerCore;
     describe('int', () => {
       it('should be able to return 0', () => {
         randomizer.next = () => 0;

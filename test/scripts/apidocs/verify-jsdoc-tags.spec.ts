@@ -1,10 +1,10 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
 import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
+import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
 import { getProject } from '../../../scripts/apidocs/project';
 
 // This test suite ensures, that every method
@@ -14,7 +14,7 @@ import { getProject } from '../../../scripts/apidocs/project';
 // - has valid @see tags
 // - has proper links in the description
 
-const tempDir = resolve(dirname(fileURLToPath(import.meta.url)), 'temp');
+const tempDir = resolve(import.meta.dirname, 'temp');
 const relativeImportPath = `${'../'.repeat(5)}src`;
 
 afterAll(() => {
@@ -25,6 +25,18 @@ afterAll(() => {
 });
 
 const modules = processComponents(getProject());
+const smfImportsByMethod = new Map(modules.flatMap(moduleToImportTuples));
+
+function moduleToImportsMap(module: RawApiDocsPage): Map<string, string> {
+  return new Map(moduleToImportTuples(module));
+}
+
+function moduleToImportTuples(module: RawApiDocsPage): Array<[string, string]> {
+  return module.methods.map((method) => [
+    method.name,
+    `${relativeImportPath}/${module.camelTitle === 'utils' ? '.' : 'modules'}/${module.camelTitle}/${toKebabCase(method.name)}`,
+  ]);
+}
 
 function resolveDirToModule(moduleName: string): string {
   return resolve(tempDir, moduleName);
@@ -36,12 +48,14 @@ function resolvePathToMethodFile(
   signature: number
 ): string {
   const dir = resolveDirToModule(moduleName);
-  // TODO @ST-DDT 2024-09-23: Remove this in v10
-  if (methodName === 'userName') {
-    methodName = 'userNameDeprecated';
-  }
-
   return resolve(dir, `${methodName}_${signature}.ts`);
+}
+
+function toKebabCase(str: string): string {
+  return str
+    .replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+    .replaceAll(/[\s_]+/g, '-')
+    .toLowerCase();
 }
 
 const allowedReferences = new Set(
@@ -67,7 +81,7 @@ function assertDescription(description: string): void {
   const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
   for (const link of links) {
-    expect(link).toMatch(/^https?:\/\//);
+    expect(link).toStartWith('https://');
     expect(link).toSatisfy(isURL);
 
     if (link.includes('fakerjs.dev/api/')) {
@@ -91,6 +105,7 @@ describe('check docs completeness', () => {
 });
 
 describe('verify JSDoc tags', () => {
+  //#region Per Module
   describe.each(modules.map((m) => [m.camelTitle, m]))(
     '%s',
     (moduleName, module) => {
@@ -100,12 +115,16 @@ describe('verify JSDoc tags', () => {
         });
       });
 
+      const thisModuleImportsByMethod = moduleToImportsMap(module);
+
+      //#region Per Method
       describe.each(module.methods.map((m) => [m.name, m]))(
         '%s',
         (methodName, method) => {
           describe.each(method.signatures.map((s, i) => [i, s]))(
             '%i',
             (signatureIndex, signature) => {
+              //#region Prepare example files
               beforeAll(() => {
                 // Write temp files to disk
                 // By extracting the examples
@@ -145,25 +164,90 @@ ${examples}`;
 
                 // If imports are present, we expect them to be complete
                 if (!examples.includes('import ')) {
-                  const imports = [
+                  const rootImports =
                     // collect the imports for the various locales e.g. fakerDE_CH
-                    ...new Set(examples.match(/(?<!\.)faker[^.-]*(?=\.)/g)),
-                  ];
+                    new Set(examples.match(/(?<!\.)faker\w*(?=\.)/g));
 
-                  if (imports.length > 0) {
-                    examples = `import { ${imports.join(
-                      ', '
-                    )} } from '${relativeImportPath}';\n\n${examples}`;
+                  const functionImports = [
+                    ...new Set(examples.match(/\b(\w+)\((faker\.)?fakerCore/g)),
+                  ]
+                    .map((s) => s.replaceAll(/\((faker\.)?fakerCore/g, ''))
+                    .map((functionName) => [
+                      functionName,
+                      thisModuleImportsByMethod.get(functionName) ??
+                        smfImportsByMethod.get(functionName),
+                    ])
+                    .filter(([, importPath]) => importPath != null) as Array<
+                    [string, string]
+                  >;
+
+                  const content = [];
+
+                  const hasFakerCore = examples.includes('fakerCore');
+                  // TODO @ST-DDT 2026-04-19: Remove when past is migrated to SMF
+                  const hasTempPast = examples.includes('past(fakerCore');
+
+                  if (hasFakerCore) {
+                    rootImports.delete('fakerCore');
+                    rootImports.add('base');
+                    rootImports.add('en');
                   }
+
+                  if (hasTempPast) {
+                    rootImports.add('SimpleFaker');
+                  }
+
+                  if (functionImports.length > 0) {
+                    content.push(
+                      '// functionImports',
+
+                      ...functionImports
+                        // TODO @ST-DDT 2026-04-19: Remove when past is migrated to SMF
+                        .filter(([functionName]) => functionName !== 'past')
+                        .map(
+                          ([functionName, importPath]) =>
+                            `import { ${functionName} } from '${importPath}';`
+                        )
+                    );
+                  }
+
+                  if (rootImports.size > 0) {
+                    content.push(
+                      '// rootImports',
+                      `import { ${[...rootImports].join(', ')} } from '${relativeImportPath}';`
+                    );
+                  }
+
+                  if (hasFakerCore) {
+                    content.push(
+                      '// fakerCore',
+                      `import { createFakerCore } from '${relativeImportPath}/core';`,
+                      `const fakerCore = createFakerCore({ locale: [en, base] });`
+                    );
+                  }
+
+                  if (hasTempPast) {
+                    content.push(
+                      'const past = new SimpleFaker(fakerCore).date.past;'
+                    );
+                  }
+
+                  content.push('', '// Examples', examples);
+
+                  examples = content.join('\n');
                 }
 
                 writeFileSync(path, examples);
               });
+              //#endregion
 
+              //#region Description
               it('verify description', () => {
                 assertDescription(signature.description);
               });
+              //#endregion
 
+              //#region @example
               it(
                 'verify @example tag',
                 {
@@ -192,7 +276,9 @@ ${examples}`;
                   ).resolves.toBeDefined();
                 }
               );
+              //#endregion
 
+              //#region @deprecated
               // This only checks whether the whole method is deprecated or not
               // It does not check whether the method is deprecated for a specific set of arguments
               it(
@@ -226,7 +312,9 @@ ${examples}`;
                   consoleWarnSpy.mockRestore();
                 }
               );
+              //#endregion
 
+              //#region Parameters
               describe.each(signature.parameters.map((p) => [p.name, p]))(
                 '%s',
                 (_, parameter) => {
@@ -264,7 +352,9 @@ ${examples}`;
                   });
                 }
               );
+              //#endregion
 
+              //#region @see
               it('verify @see tags', () => {
                 for (const link of signature.seeAlsos) {
                   if (link.startsWith('faker.')) {
@@ -301,7 +391,9 @@ ${examples}`;
                   }
                 }
               });
+              //#endregion
 
+              //#region @since
               it('verify @since tag', () => {
                 const { since } = signature;
                 expect(since, '@since to be present').toBeTruthy();
@@ -310,10 +402,13 @@ ${examples}`;
                   isSemVer
                 );
               });
+              //#endregion
             }
           );
         }
       );
+      //#endregion
     }
   );
+  //#endregion
 });

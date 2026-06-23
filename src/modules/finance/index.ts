@@ -1,5 +1,4 @@
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { ModuleBase } from '../../internal/module-base';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {
@@ -181,18 +180,24 @@ export class FinanceModule extends ModuleBase {
   }
 
   /**
-   * Generates a random routing number.
+   * Generates a random [ABA routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number).
    *
    * @example
-   * faker.finance.routingNumber() // '522814402'
+   * faker.finance.routingNumber() // '062197511'
    *
    * @since 5.0.0
    */
   routingNumber(): string {
-    const routingNumber = this.faker.string.numeric({
-      length: 8,
+    const federalReserveRoutingSymbol = this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.federal_reserve_routing_symbol
+    );
+
+    const institutionIdentifier = this.faker.string.numeric({
+      length: 4,
       allowLeadingZeros: true,
     });
+
+    const routingNumber = federalReserveRoutingSymbol + institutionIdentifier;
 
     // Modules 10 straight summation.
     let sum = 0;
@@ -204,171 +209,6 @@ export class FinanceModule extends ModuleBase {
     }
 
     return `${routingNumber}${Math.ceil(sum / 10) * 10 - sum}`;
-  }
-
-  /**
-   * Generates a random masked number.
-   *
-   * @param length The length of the unmasked number. Defaults to `4`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber(3) // '(...342)'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
-   */
-  maskedNumber(length?: number): string;
-  /**
-   * Generates a random masked number.
-   *
-   * @param options An options object.
-   * @param options.length The length of the unmasked number. Defaults to `4`.
-   * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
-   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
-   */
-  maskedNumber(options?: {
-    /**
-     * The length of the unmasked number.
-     *
-     * @default 4
-     */
-    length?: number;
-    /**
-     * Whether to use surrounding parenthesis.
-     *
-     * @default true
-     */
-    parens?: boolean;
-    /**
-     * Whether to prefix the numbers with an ellipsis.
-     *
-     * @default true
-     */
-    ellipsis?: boolean;
-  }): string;
-  /**
-   * Generates a random masked number.
-   *
-   * @param optionsOrLength An options object or the length of the unmask number.
-   * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
-   * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber(3) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
-   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
-   */
-  maskedNumber(
-    optionsOrLength?:
-      | number
-      | {
-          /**
-           * The length of the unmasked number.
-           *
-           * @default 4
-           */
-          length?: number;
-          /**
-           * Whether to use surrounding parenthesis.
-           *
-           * @default true
-           */
-          parens?: boolean;
-          /**
-           * Whether to prefix the numbers with an ellipsis.
-           *
-           * @default true
-           */
-          ellipsis?: boolean;
-        }
-  ): string;
-  /**
-   * Generates a random masked number.
-   *
-   * @param options An options object.
-   * @param options.length The length of the unmasked number. Defaults to `4`.
-   * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   *
-   * @example
-   * faker.finance.maskedNumber() // '(...9711)'
-   * faker.finance.maskedNumber(3) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
-   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
-   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
-   *
-   * @since 8.0.0
-   *
-   * @deprecated Use `faker.finance.iban().replace(/(?<=.{4})\w(?=.{2})/g, '*')` or a similar approach instead.
-   */
-  maskedNumber(
-    options:
-      | number
-      | {
-          /**
-           * The length of the unmasked number.
-           *
-           * @default 4
-           */
-          length?: number;
-          /**
-           * Whether to use surrounding parenthesis.
-           *
-           * @default true
-           */
-          parens?: boolean;
-          /**
-           * Whether to prefix the numbers with an ellipsis.
-           *
-           * @default true
-           */
-          ellipsis?: boolean;
-        } = {}
-  ): string {
-    deprecated({
-      deprecated: 'faker.finance.maskedNumber()',
-      proposed:
-        "faker.finance.iban().replace(/(?<=.{4})\\w(?=.{2})/g, '*') or a similar approach",
-      since: '9.3.0',
-      until: '10.0.0',
-    });
-
-    if (typeof options === 'number') {
-      options = { length: options };
-    }
-
-    const { ellipsis = true, length = 4, parens = true } = options;
-
-    let template = this.faker.string.numeric({ length });
-
-    if (ellipsis) {
-      template = `...${template}`;
-    }
-
-    if (parens) {
-      template = `(${template})`;
-    }
-
-    return template;
   }
 
   /**
@@ -539,7 +379,7 @@ export class FinanceModule extends ModuleBase {
    * Generates a random Bitcoin address.
    *
    * @param options An optional options object.
-   * @param options.type The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
+   * @param options.type The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`). Defaults to a random address type.
    * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
    *
    * @example
@@ -552,9 +392,9 @@ export class FinanceModule extends ModuleBase {
   bitcoinAddress(
     options: {
       /**
-       * The bitcoin address type (`'legacy'`, `'sewgit'`, `'bech32'` or `'taproot'`).
+       * The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`).
        *
-       * @default faker.helpers.arrayElement(['legacy','sewgit','bech32','taproot'])
+       * @default faker.helpers.enumValue(BitcoinAddressFamily)
        */
       type?: BitcoinAddressFamilyType;
       /**
@@ -745,7 +585,7 @@ export class FinanceModule extends ModuleBase {
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -762,7 +602,7 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -786,7 +626,7 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -815,7 +655,7 @@ export class FinanceModule extends ModuleBase {
    * @param options An options object or the length of the PIN.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
    *
-   * @throws Will throw an error if length is less than 1.
+   * @throws {FakerError} Will throw an error if length is less than 1.
    *
    * @see faker.string.numeric(): For generating the pin with greater control.
    *
@@ -878,7 +718,7 @@ export class FinanceModule extends ModuleBase {
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
    *
-   * @throws Will throw an error if the passed country code is not supported.
+   * @throws {FakerError} Will throw an error if the passed country code is not supported.
    *
    * @example
    * faker.finance.iban() // 'TR736918640040966092800056'

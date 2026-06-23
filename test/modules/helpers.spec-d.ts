@@ -45,10 +45,14 @@ describe('helpers', () => {
   });
 
   describe('maybe', () => {
-    it('const generic single element', () => {
-      // TODO @ST-DDT 2024-02-25: Check why this is detected as `number` instead of `1`
+    it('generic single element', () => {
       const actual = faker.helpers.maybe(() => 1);
       expectTypeOf(actual).toEqualTypeOf<number | undefined>();
+    });
+
+    it('const generic single element', () => {
+      const actual = faker.helpers.maybe(() => 1 as const);
+      expectTypeOf(actual).toEqualTypeOf<1 | undefined>();
     });
   });
 

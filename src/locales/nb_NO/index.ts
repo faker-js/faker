@@ -3,15 +3,18 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import food from './food';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
+import vehicle from './vehicle';
 import word from './word';
 
 /**
@@ -21,15 +24,18 @@ import word from './word';
  * - Endonym: Norsk bokmål (Norge)
  */
 const nb_NO: LocaleDefinition = {
+  animal,
   color,
   commerce,
   company,
+  food,
   internet,
   location,
   metadata,
   person,
   phone_number,
   science,
+  vehicle,
   word,
 };
 

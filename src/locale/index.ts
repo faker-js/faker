@@ -49,8 +49,11 @@ import { faker as fakerIT } from './it';
 import { faker as fakerJA } from './ja';
 import { faker as fakerKA_GE } from './ka_GE';
 import { faker as fakerKO } from './ko';
+import { faker as fakerKU_ckb } from './ku_ckb';
+import { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 import { faker as fakerLV } from './lv';
 import { faker as fakerMK } from './mk';
+import { faker as fakerMN_MN_cyrl } from './mn_MN_cyrl';
 import { faker as fakerNB_NO } from './nb_NO';
 import { faker as fakerNE } from './ne';
 import { faker as fakerNL } from './nl';
@@ -62,6 +65,7 @@ import { faker as fakerRO } from './ro';
 import { faker as fakerRO_MD } from './ro_MD';
 import { faker as fakerRU } from './ru';
 import { faker as fakerSK } from './sk';
+import { faker as fakerSL_SI } from './sl_SI';
 import { faker as fakerSR_RS_latin } from './sr_RS_latin';
 import { faker as fakerSV } from './sv';
 import { faker as fakerTA_IN } from './ta_IN';
@@ -122,8 +126,11 @@ export { faker as fakerIT } from './it';
 export { faker as fakerJA } from './ja';
 export { faker as fakerKA_GE } from './ka_GE';
 export { faker as fakerKO } from './ko';
+export { faker as fakerKU_ckb } from './ku_ckb';
+export { faker as fakerKU_kmr_latin } from './ku_kmr_latin';
 export { faker as fakerLV } from './lv';
 export { faker as fakerMK } from './mk';
+export { faker as fakerMN_MN_cyrl } from './mn_MN_cyrl';
 export { faker as fakerNB_NO } from './nb_NO';
 export { faker as fakerNE } from './ne';
 export { faker as fakerNL } from './nl';
@@ -135,6 +142,7 @@ export { faker as fakerRO } from './ro';
 export { faker as fakerRO_MD } from './ro_MD';
 export { faker as fakerRU } from './ru';
 export { faker as fakerSK } from './sk';
+export { faker as fakerSL_SI } from './sl_SI';
 export { faker as fakerSR_RS_latin } from './sr_RS_latin';
 export { faker as fakerSV } from './sv';
 export { faker as fakerTA_IN } from './ta_IN';
@@ -196,8 +204,11 @@ export const allFakers = {
   ja: fakerJA,
   ka_GE: fakerKA_GE,
   ko: fakerKO,
+  ku_ckb: fakerKU_ckb,
+  ku_kmr_latin: fakerKU_kmr_latin,
   lv: fakerLV,
   mk: fakerMK,
+  mn_MN_cyrl: fakerMN_MN_cyrl,
   nb_NO: fakerNB_NO,
   ne: fakerNE,
   nl: fakerNL,
@@ -209,6 +220,7 @@ export const allFakers = {
   ro_MD: fakerRO_MD,
   ru: fakerRU,
   sk: fakerSK,
+  sl_SI: fakerSL_SI,
   sr_RS_latin: fakerSR_RS_latin,
   sv: fakerSV,
   ta_IN: fakerTA_IN,

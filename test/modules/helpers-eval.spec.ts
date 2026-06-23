@@ -99,6 +99,17 @@ describe('fakeEval()', () => {
     expect(faker.definitions.airline.airline).toContain(actual);
   });
 
+  it('supports returning lazy results', () => {
+    faker.rawDefinitions.custom = {
+      lazy: () => ({
+        key: 'lazy result',
+      }),
+    };
+    const actual = fakeEval('custom.lazy.key', faker);
+    expect(actual).toBeTypeOf('string');
+    expect(actual).toBe('lazy result');
+  });
+
   it('supports patterns after a function call', () => {
     const actual = fakeEval('airline.airline().name', faker);
     expect(actual).toBeTypeOf('string');
@@ -124,18 +135,15 @@ describe('fakeEval()', () => {
   });
 
   it('requires a function for parameters', () => {
-    // TODO @ST-DDT 2023-12-11: Replace in v10
-    // expect(faker.definitions.person.first_name.generic).toBeDefined();
-    //expect(() => fakeEval('person.first_name().generic', faker)).toThrow(
-    //  new FakerError(`Cannot resolve expression 'person.first_name'`)
-    //  );
-    const actual = fakeEval('person.first_name().generic', faker);
-    expect(faker.definitions.person.first_name.generic ?? []).toContain(actual);
+    expect(faker.definitions.person.first_name.generic).toBeDefined();
+    expect(() => fakeEval('person.first_name().generic', faker)).toThrow(
+      new FakerError("Cannot resolve expression 'person.first_name().generic'")
+    );
   });
 
   it('requires a valid expression (missing value)', () => {
     expect(() => fakeEval('foo.bar', faker)).toThrow(
-      new FakerError(`Cannot resolve expression 'foo.bar'`)
+      new FakerError("Cannot resolve expression 'foo.bar'")
     );
   });
 

@@ -2,8 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
-import './../vitest-extensions';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -552,7 +551,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^w$/);
           });
 
-          it.skip('handles case insensitive characters', () => {
+          it('handles case insensitive characters', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/w/i);
@@ -571,7 +570,7 @@ describe('helpers', () => {
             expect(actual).toMatch(/^%$/i);
           });
 
-          it.skip('handles the wildcard character', () => {
+          it('handles the wildcard character', () => {
             const set = new Set<string>();
             for (let i = 0; i < 100; i++) {
               const actual = faker.helpers.fromRegExp(/./);
@@ -581,6 +580,25 @@ describe('helpers', () => {
             }
 
             expect(set.size).toBeGreaterThan(5);
+          });
+
+          it('handles repeated wildcard characters', () => {
+            const actual = faker.helpers.fromRegExp(/../);
+            expect(actual).toHaveLength(2);
+            expect(actual).toMatch(/^..$/);
+            expect(actual).not.toBe('..');
+          });
+
+          it('handles repeated case insensitive characters', () => {
+            const set = new Set<string>();
+            for (let i = 0; i < 100; i++) {
+              const actual = faker.helpers.fromRegExp(/ww/i);
+              expect(actual).toHaveLength(2);
+              expect(actual).toMatch(/^ww$/i);
+              set.add(actual);
+            }
+
+            expect(set.size).toBeGreaterThan(1);
           });
         });
 
@@ -689,6 +707,12 @@ describe('helpers', () => {
           const actual = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
           expect(actual).toHaveLength(9);
           expect(actual).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
+        });
+
+        it('hides regex wrapper characters', () => {
+          const actual = faker.helpers.fromRegExp(/^^foo$$/i);
+          expect(actual).toHaveLength(3);
+          expect(actual).toMatch(/^foo$/i);
         });
       });
 
@@ -1118,17 +1142,6 @@ describe('helpers', () => {
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           delete (faker.string as any).special;
-        });
-
-        it('should support deprecated module aliases', () => {
-          expect(faker.definitions.location.state).toContain(
-            faker.helpers.fake('{{address.state}}')
-          );
-          expect([
-            ...(faker.definitions.person.first_name.female ?? []),
-            ...(faker.definitions.person.first_name.generic ?? []),
-            ...(faker.definitions.person.first_name.male ?? []),
-          ]).toContain(faker.helpers.fake('{{name.firstName}}'));
         });
 
         it('should not trim whitespace', () => {

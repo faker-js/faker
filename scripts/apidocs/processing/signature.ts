@@ -7,7 +7,9 @@ import {
   getDeprecated,
   getDescription,
   getExamples,
+  getExperimental,
   getJsDocs,
+  getRemarks,
   getSeeAlsos,
   getSince,
   getThrows,
@@ -27,6 +29,10 @@ export interface RawApiDocsSignature {
    */
   deprecated: string | undefined;
   /**
+   * Whether the signature is experimental and may change in future versions.
+   */
+  experimental: true | undefined;
+  /**
    * The description of the signature.
    */
   description: string;
@@ -38,6 +44,10 @@ export interface RawApiDocsSignature {
    * The parameters of the signature.
    */
   parameters: RawApiDocsParameter[];
+  /**
+   * Additional comments of the signature that are supposed to stand out from the description.
+   */
+  remarks: string[];
   /**
    * The return type of the signature.
    */
@@ -104,9 +114,11 @@ function processSignature(
   try {
     return {
       deprecated: getDeprecated(jsdocs),
+      experimental: getExperimental(jsdocs),
       description: getDescription(jsdocs),
       since: getSince(jsdocs),
       parameters,
+      remarks: getRemarks(jsdocs),
       returns,
       throws: getThrows(jsdocs),
       signature: getSignatureText(signature),

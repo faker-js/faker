@@ -1,3 +1,4 @@
+// Autonomous Communities (Comunidades Autónomas)
 export default [
   'Andalucía',
   'Aragón',

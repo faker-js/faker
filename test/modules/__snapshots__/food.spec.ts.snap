@@ -2,9 +2,9 @@
 
 exports[`food > 42 > adjective 1`] = `"golden"`;
 
-exports[`food > 42 > description 1`] = `"A succulent quail steak, encased in a crunchy anise crust, served with a side of liquorice root mashed arugula."`;
+exports[`food > 42 > description 1`] = `"An exquisite quail roast, infused with the essence of butternut pumpkin, slow-roasted to bring out its natural flavors and served with a side of creamy asparagus"`;
 
-exports[`food > 42 > dish 1`] = `"Moses's Special Buckwheat Flour"`;
+exports[`food > 42 > dish 1`] = `"Jicama Salad"`;
 
 exports[`food > 42 > ethnicCategory 1`] = `"Gujarati"`;
 
@@ -20,13 +20,13 @@ exports[`food > 42 > vegetable 1`] = `"cos lettuce"`;
 
 exports[`food > 1211 > adjective 1`] = `"tender"`;
 
-exports[`food > 1211 > description 1`] = `"Three cherries with onion, pumpkin, parsnip, purple carrot and soy beans. With a side of baked prune, and your choice of celery or capsicum."`;
+exports[`food > 1211 > description 1`] = `"Tenderly braised duck in a rich nutmeg and potatoes sauce, served with a side of creamy onion."`;
 
-exports[`food > 1211 > dish 1`] = `"Sushi"`;
+exports[`food > 1211 > dish 1`] = `"Tabouleh"`;
 
 exports[`food > 1211 > ethnicCategory 1`] = `"Texan"`;
 
-exports[`food > 1211 > fruit 1`] = `"strawberry"`;
+exports[`food > 1211 > fruit 1`] = `"starfruit"`;
 
 exports[`food > 1211 > ingredient 1`] = `"turmeric"`;
 
@@ -38,13 +38,13 @@ exports[`food > 1211 > vegetable 1`] = `"sun dried tomatoes"`;
 
 exports[`food > 1337 > adjective 1`] = `"fluffy"`;
 
-exports[`food > 1337 > description 1`] = `"A slow-roasted Cory's Shearwater with a fresh, fluffy exterior. Stuffed with orange and covered in fingerlime sauce. Sides with bok choy puree and wild english spinach."`;
+exports[`food > 1337 > description 1`] = `"A special indigo dill from Egypt. To support the strong flavor it is sided with a tablespoon of pepper."`;
 
-exports[`food > 1337 > dish 1`] = `"Egyptian Dill Soup"`;
+exports[`food > 1337 > dish 1`] = `"Moist Green Beans And White Wine Vinegar Bowl"`;
 
 exports[`food > 1337 > ethnicCategory 1`] = `"Czech"`;
 
-exports[`food > 1337 > fruit 1`] = `"custard apple"`;
+exports[`food > 1337 > fruit 1`] = `"cumquat"`;
 
 exports[`food > 1337 > ingredient 1`] = `"coconut water"`;
 

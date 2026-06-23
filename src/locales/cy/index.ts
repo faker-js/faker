@@ -3,8 +3,16 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
+import book from './book';
+import color from './color';
 import date from './date';
+import internet from './internet';
+import location from './location';
 import metadata from './metadata';
+import person from './person';
+import phone_number from './phone_number';
+import vehicle from './vehicle';
 
 /**
  * The locale data for the `cy` locale.
@@ -13,8 +21,16 @@ import metadata from './metadata';
  * - Endonym: Cymraeg
  */
 const cy: LocaleDefinition = {
+  animal,
+  book,
+  color,
   date,
+  internet,
+  location,
   metadata,
+  person,
+  phone_number,
+  vehicle,
 };
 
 export default cy;

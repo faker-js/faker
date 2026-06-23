@@ -31,3 +31,16 @@ export class ModuleDeprecationTest {}
  * new ModuleExampleTest()
  */
 export class ModuleExampleTest {}
+
+/**
+ * This is a description for a module with multiple code examples.
+ *
+ * @example
+ * // Basic instantiation
+ * new ModuleMultipleExamplesTest()
+ * @example
+ * // Stateful usage
+ * const instance = new ModuleMultipleExamplesTest();
+ * instance.doSomething();
+ */
+export class ModuleMultipleExamplesTest {}

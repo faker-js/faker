@@ -3,10 +3,14 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import animal from './animal';
 import cell_phone from './cell_phone';
+import color from './color';
 import company from './company';
 import date from './date';
 import finance from './finance';
+import food from './food';
+import internet from './internet';
 import location from './location';
 import lorem from './lorem';
 import metadata from './metadata';
@@ -22,10 +26,14 @@ import vehicle from './vehicle';
  * - Endonym: 日本語
  */
 const ja: LocaleDefinition = {
+  animal,
   cell_phone,
+  color,
   company,
   date,
   finance,
+  food,
+  internet,
   location,
   lorem,
   metadata,

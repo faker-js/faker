@@ -52,4 +52,7 @@ export default {
     'Toallas',
     'Zapatos',
   ],
+  pattern: [
+    '{{commerce.product}} {{commerce.productAdjective}} de {{commerce.productMaterial}}',
+  ],
 };

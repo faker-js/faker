@@ -1,4 +1,4 @@
 export default [
-  '{{person.firstName}} {{location.street_suffix}}',
-  '{{person.lastName}} {{location.street_suffix}}',
+  '{{location.street_name}}', //Οδ. is usually omitted
+  '{{location.street_prefix}} {{location.street_name}}',
 ];

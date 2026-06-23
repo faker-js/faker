@@ -1,0 +1,17 @@
+export default [
+  '{{food.adjective}} {{food.ethnic_category}} gryte',
+  '{{food.adjective}} {{food.meat}} med {{food.vegetable}}',
+  '{{food.adjective}} {{food.vegetable}}salat',
+  '{{food.ethnic_category}} {{food.ingredient}}suppe',
+  '{{food.fruit}}- og {{food.vegetable}}salat',
+  '{{food.fruit}}pai',
+  '{{food.ingredient}} og {{food.meat}}pai',
+  '{{food.meat}} med {{food.fruit}}saus',
+  '{{food.meat}}biff',
+  '{{food.spice}}marinert {{food.meat}}',
+  '{{food.spice}}stekt {{food.vegetable}}',
+  '{{food.vegetable}} og {{food.ingredient}}gryte',
+  '{{food.vegetable}}salat',
+  '{{food.vegetable}}suppe med {{food.spice}}',
+  '{{person.firstName}} sin spesielle {{food.ingredient}}',
+];

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { allLocales } from '../src';
-import './vitest-extensions';
 
 function checkLocaleData(data: unknown) {
   if (Array.isArray(data)) {
@@ -12,6 +11,7 @@ function checkLocaleData(data: unknown) {
       checkLocaleData(nestedData);
     });
   } else {
+    // eslint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that primitive values are intentionally not checked.
     it.skip('primitives cannot be tested');
   }
 }
@@ -59,6 +59,7 @@ function allCharacters(data: unknown, path: string = ''): string[] {
       data
         .replaceAll(/{{(?:[^{]|{(?!{))*?}}/g, '') // remove placeholders
         .replaceAll(/\d+/g, '') // remove numbers
+        .replaceAll('\n', '') // remove newlines
     );
   }
 
@@ -74,7 +75,7 @@ describe('locale-data', () => {
     const characterSets = Object.fromEntries(
       Object.entries(allLocales).map(([locale, data]) => [
         locale,
-        allCharacters(data).sort().join(''),
+        allCharacters(data).toSorted().join(''),
       ])
     );
     expect(characterSets).toMatchSnapshot();

@@ -8,9 +8,12 @@ import {
   faker,
   fakerEN_CA,
   fakerEN_US,
+  fakerFR,
+  fakerNL,
+  simpleFaker,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 function degreesToRadians(degrees: number) {
   return degrees * (Math.PI / 180.0);
@@ -26,7 +29,7 @@ function kilometersToMiles(miles: number) {
  * @param num The number to check.
  */
 function precision(num: number): number {
-  const decimalPart = num.toString().split('.')[1];
+  const decimalPart = num.toString().split('.', 2)[1];
   if (decimalPart === undefined) {
     return 0;
   }
@@ -34,7 +37,7 @@ function precision(num: number): number {
   return decimalPart.length;
 }
 
-// http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+// https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
 const EQUATORIAL_EARTH_RADIUS = 6378.137;
 
 function haversine(
@@ -73,6 +76,8 @@ describe('location', () => {
         .it('with boolean', false)
         .it('with useFullAddress options', { useFullAddress: true });
     });
+
+    t.it('postalAddress');
 
     t.itEach('city');
 
@@ -207,6 +212,36 @@ describe('location', () => {
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
         });
 
+        it('should not return forbidden letter combinations for nl locale', () => {
+          // The letter combinations 'SS', 'SD' and 'SA' are not used in Dutch
+          // postal codes. See https://github.com/faker-js/faker/issues/3368
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerNL.location.zipCode();
+
+            expect(zipCode).toMatch(/^[1-9]\d{3} [A-Z]{2}$/);
+            expect(zipCode.slice(-2)).not.toBeOneOf(['SS', 'SD', 'SA']);
+          }
+        });
+
+        it('should only return valid department prefixes for fr locale', () => {
+          // French postal codes use department prefixes 01-95 (metropolitan)
+          // and 971-978/984/986-989 (overseas); 00xxx, 96xxx and 99xxx are not
+          // assigned. See https://github.com/faker-js/faker/issues/3550
+          const overseas = new Set([
+            971, 972, 973, 974, 975, 976, 977, 978, 984, 986, 987, 988, 989,
+          ]);
+
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerFR.location.zipCode();
+
+            expect(zipCode).toMatch(/^\d{5}$/);
+            const department = Number(zipCode.slice(0, 2));
+            const isMetropolitan = department >= 1 && department <= 95;
+            const isOverseas = overseas.has(Number(zipCode.slice(0, 3)));
+            expect(isMetropolitan || isOverseas).toBe(true);
+          }
+        });
+
         it.each([
           ['IL', 60001, 62999],
           ['GA', 30001, 31999],
@@ -243,26 +278,34 @@ describe('location', () => {
       describe('buildingNumber()', () => {
         it('never starts with a zero', () => {
           const buildingNumber = faker.location.buildingNumber();
-          expect(buildingNumber).not.toMatch(/^0/);
+          expect(buildingNumber).not.toStartWith('0');
         });
       });
 
-      describe('latitude()', () => {
+      describe('postalAddress()', () => {
+        it('returns a random multi-line postal address', () => {
+          const postalAddress = faker.location.postalAddress();
+          expect(postalAddress).toBeTypeOf('string');
+          expect(postalAddress).toContain('\n');
+        });
+      });
+
+      describe.each([faker, simpleFaker])('latitude()', (fakerFn) => {
         it('returns a number', () => {
-          const latitude = faker.location.latitude();
+          const latitude = fakerFn.location.latitude();
 
           expect(latitude).toBeTypeOf('number');
         });
 
         it('returns random latitude', () => {
-          const latitude = faker.location.latitude();
+          const latitude = fakerFn.location.latitude();
 
           expect(latitude).toBeGreaterThanOrEqual(-90.0);
           expect(latitude).toBeLessThanOrEqual(90.0);
         });
 
         it('returns latitude with min and max and default precision', () => {
-          const latitude = faker.location.latitude({ max: 5, min: -5 });
+          const latitude = fakerFn.location.latitude({ max: 5, min: -5 });
 
           expect(
             precision(latitude),
@@ -274,7 +317,7 @@ describe('location', () => {
         });
 
         it('returns random latitude with custom precision', () => {
-          const latitude = faker.location.latitude({ precision: 7 });
+          const latitude = fakerFn.location.latitude({ precision: 7 });
 
           expect(
             precision(latitude),
@@ -286,22 +329,22 @@ describe('location', () => {
         });
       });
 
-      describe('longitude()', () => {
+      describe.each([faker, simpleFaker])('longitude()', (fakerFn) => {
         it('returns a number', () => {
-          const longitude = faker.location.longitude();
+          const longitude = fakerFn.location.longitude();
 
           expect(longitude).toBeTypeOf('number');
         });
 
         it('returns random longitude', () => {
-          const longitude = faker.location.longitude();
+          const longitude = fakerFn.location.longitude();
 
           expect(longitude).toBeGreaterThanOrEqual(-180);
           expect(longitude).toBeLessThanOrEqual(180);
         });
 
         it('returns random longitude with min and max and default precision', () => {
-          const longitude = faker.location.longitude({ max: 100, min: -30 });
+          const longitude = fakerFn.location.longitude({ max: 100, min: -30 });
 
           expect(
             precision(longitude),
@@ -313,7 +356,7 @@ describe('location', () => {
         });
 
         it('returns random longitude with custom precision', () => {
-          const longitude = faker.location.longitude({ precision: 7 });
+          const longitude = fakerFn.location.longitude({ precision: 7 });
 
           expect(
             precision(longitude),
@@ -376,47 +419,50 @@ describe('location', () => {
         });
       });
 
-      describe('nearbyGPSCoordinate()', () => {
-        it.each(
-          times(100).flatMap((radius) => [
-            [{ isMetric: true, radius }],
-            [{ isMetric: false, radius }],
-          ])
-        )(
-          'should return random gps coordinate within a distance of another one (%j)',
-          ({ isMetric, radius }) => {
-            const latitude1 = +faker.location.latitude();
-            const longitude1 = +faker.location.longitude();
+      describe.each([faker, simpleFaker])(
+        'nearbyGPSCoordinate()',
+        (fakerFn) => {
+          it.each(
+            times(100).flatMap((radius) => [
+              [{ isMetric: true, radius }],
+              [{ isMetric: false, radius }],
+            ])
+          )(
+            'should return random gps coordinate within a distance of another one (%j)',
+            ({ isMetric, radius }) => {
+              const latitude1 = fakerFn.location.latitude();
+              const longitude1 = fakerFn.location.longitude();
 
-            const coordinate = faker.location.nearbyGPSCoordinate({
-              origin: [latitude1, longitude1],
-              radius,
-              isMetric,
-            });
+              const coordinate = fakerFn.location.nearbyGPSCoordinate({
+                origin: [latitude1, longitude1],
+                radius,
+                isMetric,
+              });
 
-            expect(coordinate).toHaveLength(2);
-            expect(coordinate[0]).toBeTypeOf('number');
-            expect(coordinate[1]).toBeTypeOf('number');
+              expect(coordinate).toHaveLength(2);
+              expect(coordinate[0]).toBeTypeOf('number');
+              expect(coordinate[1]).toBeTypeOf('number');
 
-            const latitude2 = coordinate[0];
-            expect(latitude2).toBeGreaterThanOrEqual(-90.0);
-            expect(latitude2).toBeLessThanOrEqual(90.0);
+              const latitude2 = coordinate[0];
+              expect(latitude2).toBeGreaterThanOrEqual(-90.0);
+              expect(latitude2).toBeLessThanOrEqual(90.0);
 
-            const longitude2 = coordinate[1];
-            expect(longitude2).toBeGreaterThanOrEqual(-180.0);
-            expect(longitude2).toBeLessThanOrEqual(180.0);
+              const longitude2 = coordinate[1];
+              expect(longitude2).toBeGreaterThanOrEqual(-180.0);
+              expect(longitude2).toBeLessThanOrEqual(180.0);
 
-            const actualDistance = haversine(
-              latitude1,
-              longitude1,
-              latitude2,
-              longitude2,
-              isMetric
-            );
-            expect(actualDistance).toBeLessThanOrEqual(radius);
-          }
-        );
-      });
+              const actualDistance = haversine(
+                latitude1,
+                longitude1,
+                latitude2,
+                longitude2,
+                isMetric
+              );
+              expect(actualDistance).toBeLessThanOrEqual(radius);
+            }
+          );
+        }
+      );
 
       describe('timeZone', () => {
         it('should return a random timezone', () => {

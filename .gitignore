@@ -87,6 +87,8 @@ versions.json
 /docs/api/api-search-index.json
 /docs/public/api-diff-index.json
 /docs/public/faker.js
+/docs/locales/*
+!/docs/locales/.gitkeep
 
 # Faker
 TAGS
@@ -107,3 +109,6 @@ yarn.lock
 
 cypress/screenshots
 cypress/videos
+.playwright-mcp/
+
+_local/

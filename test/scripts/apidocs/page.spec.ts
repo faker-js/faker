@@ -11,7 +11,9 @@ function newTestMethod(
     signatures: [
       {
         deprecated: 'deprecated',
+        experimental: undefined,
         description: 'description',
+        remarks: [],
         since: 'since',
         parameters: [],
         returns: {
@@ -107,6 +109,22 @@ describe('toRefreshFunction', () => {
 
     // when
     const result = await toRefreshFunction(method);
+
+    // then
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should handle standalone functions calls', async () => {
+    // given
+    const method = newTestMethod({
+      examples: ['getDefaultRefDate(fakerCore);', 'past(fakerCore)'],
+    });
+
+    // when
+    const result = await toRefreshFunction(method, {
+      past: 'date.past',
+      getDefaultRefDate: 'defaultRefDate',
+    });
 
     // then
     expect(result).toMatchSnapshot();

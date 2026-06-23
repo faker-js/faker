@@ -1,4 +1,5 @@
 import type { ClassDeclaration, InterfaceDeclaration, Project } from 'ts-morph';
+import { wrapCode } from '../../shared/markdown';
 import { required, valuesForKeys } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';
@@ -12,6 +13,7 @@ import type { RawApiDocsMethod } from './method';
 import {
   processClassConstructors,
   processClassMethods,
+  processDistributorFunctions,
   processInterfaceMethods,
   processUtilityFunctions,
 } from './method';
@@ -102,7 +104,7 @@ export function processModuleClasses(project: Project): RawApiDocsPage[] {
         (module: string): boolean =>
           module.endsWith('Module') && !module.startsWith('Simple')
       )
-    ).sort((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
+    ).toSorted((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
 }
 
@@ -123,7 +125,7 @@ function processModules(modules: ClassDeclaration[]): RawApiDocsPage[] {
 
 function processModule(
   module: ClassDeclaration,
-  category: string | undefined = undefined
+  category?: string
 ): RawApiDocsPage {
   const title = getModuleName(module);
 
@@ -196,12 +198,40 @@ export function processProjectUtilities(project: Project): RawApiDocsPage {
   };
 }
 
+// Distributors
+
+export function processProjectDistributors(project: Project): RawApiDocsPage {
+  console.log(`- Distributors`);
+
+  const distributor = required(
+    project
+      .getSourceFile('src/distributors/distributor.ts')
+      ?.getTypeAlias('Distributor'),
+    'Distributor'
+  );
+
+  const jsdocs = getJsDocs(distributor);
+  const description = `${getDescription(jsdocs)}
+
+${wrapCode(distributor.getText().replace(/export /, ''))}`;
+
+  return {
+    title: 'Distributors',
+    camelTitle: 'distributors',
+    category: undefined,
+    deprecated: undefined,
+    description,
+    examples: getExamples(jsdocs),
+    methods: processDistributorFunctions(project),
+  };
+}
+
 // Helpers
 
 function preparePage(
   module: JSDocableLikeNode,
   title: string,
-  category: string | undefined = undefined
+  category?: string
 ): RawApiDocsPage {
   console.log(`- ${title}`);
 

@@ -160,6 +160,72 @@ function legacyRegexpStringParse(
 }
 
 /**
+ * Replaces regexp tokens that randexp does not randomize unless a quantifier is present.
+ *
+ * @param faker The Faker instance to use.
+ * @param pattern The regular expression pattern to transform.
+ * @param isCaseInsensitive Whether alpha literals may vary in case.
+ */
+function replaceUnquantifiedRegExpTokens(
+  faker: SimpleFaker,
+  pattern: string,
+  isCaseInsensitive: boolean
+): string {
+  let result = '';
+  let inCharacterClass = false;
+
+  for (let i = 0; i < pattern.length; i++) {
+    const char = pattern[i];
+
+    if (char === '\\') {
+      result += char;
+      if (i + 1 < pattern.length) {
+        result += pattern[++i];
+      }
+
+      continue;
+    }
+
+    if (char === '[') {
+      inCharacterClass = true;
+      result += char;
+      continue;
+    }
+
+    if (char === ']') {
+      inCharacterClass = false;
+      result += char;
+      continue;
+    }
+
+    const nextChar = pattern[i + 1];
+    const hasQuantifier = ['?', '*', '+', '{'].includes(nextChar);
+
+    if (!inCharacterClass && !hasQuantifier && char === '.') {
+      result += faker.string.alphanumeric();
+      continue;
+    }
+
+    if (
+      !inCharacterClass &&
+      !hasQuantifier &&
+      isCaseInsensitive &&
+      /^[a-z]$/i.test(char)
+    ) {
+      result += faker.string.fromCharacters([
+        char.toLowerCase(),
+        char.toUpperCase(),
+      ]);
+      continue;
+    }
+
+    result += char;
+  }
+
+  return result;
+}
+
+/**
  * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
  * `!` will be replaced by digits >=2 (`2` - `9`).
  *
@@ -224,7 +290,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   }
 
   /**
-   * Parses the given string symbol by symbols and replaces the placeholder appropriately.
+   * Parses the given string symbol by symbol and replaces the placeholder appropriately.
    *
    * - `#` will be replaced with a digit (`0` - `9`).
    * - `?` will be replaced with an upper letter ('A' - 'Z')
@@ -344,8 +410,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param pattern The template string/RegExp to generate a matching string for.
    *
-   * @throws If min value is more than max value in quantifier, e.g. `#{10,5}`.
-   * @throws If an invalid quantifier symbol is passed in.
+   * @throws {FakerError} If min value is more than max value in quantifier, e.g. `#{10,5}`.
+   * @throws {FakerError} If an invalid quantifier symbol is passed in.
    *
    * @example
    * faker.helpers.fromRegExp('#{5}') // '#####'
@@ -370,9 +436,25 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     if (pattern instanceof RegExp) {
       isCaseInsensitive = pattern.flags.includes('i');
-      pattern = pattern.toString();
-      pattern = /\/(.+?)\//.exec(pattern)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
+      pattern = pattern.source.replace(/^\^+/, '').replace(/\$+$/, '');
     }
+
+    if (pattern === '.') {
+      return this.faker.string.alphanumeric();
+    }
+
+    if (isCaseInsensitive && /^[a-z]$/i.test(pattern)) {
+      return this.faker.string.fromCharacters([
+        pattern.toLowerCase(),
+        pattern.toUpperCase(),
+      ]);
+    }
+
+    pattern = replaceUnquantifiedRegExpTokens(
+      this.faker,
+      pattern,
+      isCaseInsensitive
+    );
 
     let min: number;
     let max: number;
@@ -486,7 +568,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       );
 
       if (isNegated) {
-        let index = -1;
+        let index;
         // 0-9
         for (let i = 48; i <= 57; i++) {
           index = rangeCodes.indexOf(i);
@@ -753,7 +835,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @template TResult The type of result of the given callback.
    *
-   * @param callback The callback to that will be invoked if the probability check was successful.
+   * @param callback The callback that will be invoked if the probability check was successful.
    * @param options The options to use.
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *
@@ -789,7 +871,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param object The object to be used.
    *
-   * @throws If the given object is empty.
+   * @throws {FakerError} If the given object is empty.
    *
    * @example
    * faker.helpers.objectKey({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 'Falcon'
@@ -808,7 +890,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param object The object to be used.
    *
-   * @throws If the given object is empty.
+   * @throws {FakerError} If the given object is empty.
    *
    * @example
    * faker.helpers.objectValue({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 390
@@ -827,7 +909,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param object The object to be used.
    *
-   * @throws If the given object is empty.
+   * @throws {FakerError} If the given object is empty.
    *
    * @example
    * faker.helpers.objectEntry({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // ['Snail', 0.03]
@@ -848,7 +930,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @param array The array to pick the value from.
    *
-   * @throws If the given array is empty.
+   * @throws {FakerError} If the given array is empty.
    *
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'

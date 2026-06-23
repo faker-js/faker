@@ -1,20 +1,26 @@
 import { describe, expect, it } from 'vitest';
-import { Sex, faker, fakerAZ, fakerMK, fakerUK } from '../../src';
+import { Sex, faker, fakerAZ, fakerUK } from '../../src';
 import { seededTests } from '../support/seeded-runs';
-import { times } from './../support/times';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('person', () => {
   seededTests(faker, 'person', (t) => {
     t.itEach(
-      'sexType',
       'gender',
       'jobTitle',
       'jobDescriptor',
       'jobArea',
       'jobType',
       'bio'
+    );
+
+    t.describe('sexType', (t) =>
+      t
+        .it('noArgs')
+        .it('with includeGeneric=true', { includeGeneric: true })
+        .it('with includeGeneric=false', { includeGeneric: false })
     );
 
     t.describeEach(
@@ -46,151 +52,253 @@ describe('person', () => {
     () => {
       describe('firstName()', () => {
         it('should return a random first name', () => {
-          const first_name = faker.person.firstName();
+          const name = faker.person.firstName();
 
-          expect(first_name).toBeTypeOf('string');
-          expect(first_name.length).toBeGreaterThan(0);
+          expect(name).toBeTypeOf('string');
+          expect(name.length).toBeGreaterThan(0);
         });
 
         it('should return a sex-specific first name', () => {
-          let name = faker.person.firstName('female');
-          expect(faker.definitions.person.first_name.female).toContain(name);
+          const {
+            generic = [],
+            female = [],
+            male = [],
+          } = faker.definitions.person.first_name;
 
-          name = faker.person.firstName('male');
-          expect(faker.definitions.person.first_name.male).toContain(name);
+          const name = faker.person.firstName();
+          expect([...generic, ...female, ...male]).toContain(name);
+
+          const genericName = faker.person.firstName('generic');
+          expect(generic).toContain(genericName);
+
+          const femaleName = faker.person.firstName('female');
+          expect([...generic, ...female]).toContain(femaleName);
+
+          const maleName = faker.person.firstName('male');
+          expect([...generic, ...male]).toContain(maleName);
         });
 
-        it('should return a sex-specific first name when no sex-specific first name was defined', () => {
+        it('should return a sex-specific first name when no sex-generic first name was defined', () => {
+          const {
+            generic,
+            female = [],
+            male = [],
+          } = fakerAZ.definitions.person.first_name;
+
+          expect(generic).toBeUndefined();
+
           const name = fakerAZ.person.firstName();
-          expect([
-            ...(fakerAZ.definitions.person.first_name.female ?? []),
-            ...(fakerAZ.definitions.person.first_name.male ?? []),
-          ]).toContain(name);
+          expect([...female, ...male]).toContain(name);
+
+          const femaleName = fakerAZ.person.firstName('female');
+          expect(female).toContain(femaleName);
+
+          const maleName = fakerAZ.person.firstName('male');
+          expect(male).toContain(maleName);
         });
       });
 
       describe('lastName()', () => {
         it('should return a random last name', () => {
-          const last_name = faker.person.lastName();
+          const name = faker.person.lastName();
 
-          expect(last_name).toBeTypeOf('string');
-          expect(last_name.length).toBeGreaterThan(0);
+          expect(name).toBeTypeOf('string');
+          expect(name.length).toBeGreaterThan(0);
         });
 
         it('should return a sex-specific last name', () => {
-          let name = fakerAZ.person.lastName('female');
-          expect(fakerAZ.definitions.person.last_name.female).toContain(name);
+          const {
+            generic = [],
+            female = [],
+            male = [],
+          } = faker.definitions.person.last_name;
 
-          name = fakerAZ.person.lastName('male');
-          expect(fakerAZ.definitions.person.last_name.male).toContain(name);
+          const name = faker.person.lastName();
+          for (const part of name.split(/[ -]/)) {
+            expect([...generic, ...female, ...male]).toContain(part);
+          }
+
+          const genericName = faker.person.lastName('generic');
+          for (const part of genericName.split(/[ -]/)) {
+            expect(generic).toContain(part);
+          }
+
+          const femaleName = faker.person.lastName('female');
+          for (const part of femaleName.split(/[ -]/)) {
+            expect([...generic, ...female]).toContain(part);
+          }
+
+          const maleName = faker.person.lastName('male');
+          for (const part of maleName.split(/[ -]/)) {
+            expect([...generic, ...male]).toContain(part);
+          }
+        });
+
+        it('should return a sex-specific last name when no sex-generic last name was defined', () => {
+          const {
+            generic,
+            female = [],
+            male = [],
+          } = fakerAZ.definitions.person.last_name;
+
+          expect(generic).toBeUndefined();
+
+          const name = fakerAZ.person.lastName();
+          for (const part of name.split(/[ -]/)) {
+            expect([...female, ...male]).toContain(part);
+          }
+
+          const femaleName = fakerAZ.person.lastName('female');
+          for (const part of femaleName.split(/[ -]/)) {
+            expect(female).toContain(part);
+          }
+
+          const maleName = fakerAZ.person.lastName('male');
+          for (const part of maleName.split(/[ -]/)) {
+            expect(male).toContain(part);
+          }
         });
       });
 
       describe('middleName()', () => {
         it('should return a random middle name', () => {
-          const middle_name = faker.person.middleName();
+          const name = faker.person.middleName();
 
-          expect(middle_name).toBeTypeOf('string');
-          expect(middle_name.length).toBeGreaterThan(0);
-        });
-
-        it('should return a middle name when passed en locale', () => {
-          let name = faker.person.middleName();
-          expect(faker.definitions.person.middle_name.generic).toContain(name);
-
-          name = faker.person.middleName('female');
-          expect(faker.definitions.person.middle_name.female).toContain(name);
-
-          name = faker.person.middleName('male');
-          expect(faker.definitions.person.middle_name.male).toContain(name);
+          expect(name).toBeTypeOf('string');
+          expect(name.length).toBeGreaterThan(0);
         });
 
         it('should return a sex-specific middle name', () => {
-          let name = fakerUK.person.middleName('female');
-          expect(fakerUK.definitions.person.middle_name.female).toContain(name);
+          const {
+            generic = [],
+            female = [],
+            male = [],
+          } = faker.definitions.person.middle_name;
 
-          name = fakerUK.person.middleName('male');
-          expect(fakerUK.definitions.person.middle_name.male).toContain(name);
+          const name = faker.person.middleName();
+          expect([...generic, ...female, ...male]).toContain(name);
+
+          const genericName = faker.person.middleName('generic');
+          expect(generic).toContain(genericName);
+
+          const femaleName = faker.person.middleName('female');
+          expect([...generic, ...female]).toContain(femaleName);
+
+          const maleName = faker.person.middleName('male');
+          expect([...generic, ...male]).toContain(maleName);
+        });
+
+        it('should return a sex-specific middle name when no sex-generic middle name was defined', () => {
+          const {
+            generic,
+            female = [],
+            male = [],
+          } = fakerUK.definitions.person.middle_name;
+
+          expect(generic).toBeUndefined();
+
+          const femaleName = fakerUK.person.middleName('female');
+          expect(female).toContain(femaleName);
+
+          const maleName = fakerUK.person.middleName('male');
+          expect(male).toContain(maleName);
         });
       });
 
       describe('fullName()', () => {
         it('should return a name with firstName and lastName', () => {
-          const fullName = faker.person.fullName();
+          const name = faker.person.fullName();
 
-          expect(fullName).toBeTypeOf('string');
-          expect(fullName).toContain(' ');
+          expect(name).toBeTypeOf('string');
+          expect(name).toContain(' ');
         });
 
-        it('should return a female sex-specific name without firstName and lastName', () => {
-          const female_specific = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.female ?? []),
-            ...(fakerMK.rawDefinitions.person?.first_name?.female ?? []),
-            ...(fakerMK.rawDefinitions.person?.last_name?.female ?? []),
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
+        it('should return a sex-specific full name', () => {
+          const { prefix, first_name, last_name, suffix } =
+            faker.definitions.person;
+
+          const generic = [
+            ...(prefix?.generic ?? []),
+            ...(first_name?.generic ?? []),
+            ...(last_name?.generic ?? []),
+            ...(suffix ?? []),
+          ];
+          const female = [
+            ...(prefix?.female ?? []),
+            ...(first_name?.female ?? []),
+            ...(last_name?.female ?? []),
+          ];
+          const male = [
+            ...(prefix?.male ?? []),
+            ...(first_name?.male ?? []),
+            ...(last_name?.male ?? []),
           ];
 
-          const fullName = fakerMK.person.fullName({ sex: 'female' });
+          const name = faker.person.fullName();
+          for (const part of name.split(/[ -]/)) {
+            expect([...generic, ...female, ...male]).toContain(part);
+          }
 
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(female_specific).toContain(part);
+          const genericName = faker.person.fullName({ sex: 'generic' });
+          for (const part of genericName.split(/[ -]/)) {
+            expect(generic).toContain(part);
+          }
+
+          const femaleName = faker.person.fullName({ sex: 'female' });
+          for (const part of femaleName.split(/[ -]/)) {
+            expect([...generic, ...female]).toContain(part);
+          }
+
+          const maleName = faker.person.fullName({ sex: 'male' });
+          for (const part of maleName.split(/[ -]/)) {
+            expect([...generic, ...male]).toContain(part);
           }
         });
 
-        it('should return a male sex-specific name without firstName and lastName', () => {
-          const male_specific = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.male ?? []),
-            ...(fakerMK.rawDefinitions.person?.first_name?.male ?? []),
-            ...(fakerMK.rawDefinitions.person?.last_name?.male ?? []),
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
-          ];
+        it('should return a sex-specific full name with given firstName and lastName', () => {
+          const { prefix, suffix } = faker.definitions.person;
 
-          const fullName = fakerMK.person.fullName({ sex: 'male' });
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
-          }
-        });
-
-        it('should return a female sex-specific name with given firstName and lastName', () => {
-          const male_specific = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.female ?? []),
+          const generic = [
+            ...(prefix?.generic ?? []),
             'firstName',
             'lastName',
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
+            ...(suffix ?? []),
           ];
+          const { female = [], male = [] } = prefix ?? {};
 
-          const fullName = fakerMK.person.fullName({
+          const name = faker.person.fullName({
             firstName: 'firstName',
             lastName: 'lastName',
+          });
+          for (const part of name.split(/[ -]/)) {
+            expect([...generic, ...female, ...male]).toContain(part);
+          }
+
+          const genericName = faker.person.fullName({
+            sex: 'generic',
+            firstName: 'firstName',
+            lastName: 'lastName',
+          });
+          for (const part of genericName.split(/[ -]/)) {
+            expect(generic).toContain(part);
+          }
+
+          const femaleName = faker.person.fullName({
             sex: 'female',
-          });
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
-          }
-        });
-
-        it('should return a male sex-specific name with given firstName and lastName', () => {
-          const male_specific = [
-            ...(fakerMK.rawDefinitions.person?.prefix?.male ?? []),
-            'firstName',
-            'lastName',
-            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
-          ];
-
-          const fullName = fakerMK.person.fullName({
             firstName: 'firstName',
             lastName: 'lastName',
-            sex: 'male',
           });
+          for (const part of femaleName.split(/[ -]/)) {
+            expect([...generic, ...female]).toContain(part);
+          }
 
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
+          const maleName = faker.person.fullName({
+            sex: 'male',
+            firstName: 'firstName',
+            lastName: 'lastName',
+          });
+          for (const part of maleName.split(/[ -]/)) {
+            expect([...generic, ...male]).toContain(part);
           }
         });
       });
@@ -214,8 +322,22 @@ describe('person', () => {
       });
 
       describe('sexType()', () => {
-        it('should return a sex type', () => {
+        it('should return a sex type without generic by default', () => {
           const sexType = faker.person.sexType();
+
+          expect(sexType).toBeTypeOf('string');
+          expect([Sex.Female, Sex.Male]).toContain(sexType);
+        });
+
+        it('should return a sex type explicitly without generic', () => {
+          const sexType = faker.person.sexType({ includeGeneric: false });
+
+          expect(sexType).toBeTypeOf('string');
+          expect([Sex.Female, Sex.Male]).toContain(sexType);
+        });
+
+        it('should return a sex type including generic', () => {
+          const sexType = faker.person.sexType({ includeGeneric: true });
 
           expect(sexType).toBeTypeOf('string');
           expect(Object.values(Sex)).toContain(sexType);
@@ -227,21 +349,27 @@ describe('person', () => {
           const prefix = faker.person.prefix();
 
           expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.person.prefix.generic).toContain(prefix);
+          expect(prefix.length).toBeGreaterThan(0);
         });
 
-        it('should return a female prefix with given string', () => {
-          const prefix = fakerMK.person.prefix('female');
+        it('should return a sex-specific prefix', () => {
+          const {
+            generic = [],
+            female = [],
+            male = [],
+          } = faker.definitions.person.prefix;
 
-          expect(prefix).toBeTypeOf('string');
-          expect(fakerMK.definitions.person.prefix.female).toContain(prefix);
-        });
+          const name = faker.person.prefix();
+          expect([...generic, ...female, ...male]).toContain(name);
 
-        it('should return a male prefix with given string', () => {
-          const prefix = fakerMK.person.prefix('male');
+          const genericName = faker.person.prefix('generic');
+          expect(generic).toContain(genericName);
 
-          expect(prefix).toBeTypeOf('string');
-          expect(fakerMK.definitions.person.prefix.male).toContain(prefix);
+          const femaleName = faker.person.prefix('female');
+          expect([...generic, ...female]).toContain(femaleName);
+
+          const maleName = faker.person.prefix('male');
+          expect([...generic, ...male]).toContain(maleName);
         });
       });
 
@@ -256,15 +384,19 @@ describe('person', () => {
 
       describe('jobTitle()', () => {
         it('should return a job title consisting of a descriptor, area, and type', () => {
+          const { job_descriptor, job_area, job_type } =
+            faker.definitions.person;
+
           const jobTitle = faker.person.jobTitle();
 
           expect(jobTitle).toBeTypeOf('string');
+          expect(jobTitle.length).toBeGreaterThan(0);
 
           const [descriptor, level, job] = jobTitle.split(' ');
 
-          expect(faker.definitions.person.job_descriptor).toContain(descriptor);
-          expect(faker.definitions.person.job_area).toContain(level);
-          expect(faker.definitions.person.job_type).toContain(job);
+          expect(job_descriptor).toContain(descriptor);
+          expect(job_area).toContain(level);
+          expect(job_type).toContain(job);
         });
       });
 
@@ -273,6 +405,7 @@ describe('person', () => {
           const descriptor = faker.person.jobDescriptor();
 
           expect(descriptor).toBeTypeOf('string');
+          expect(descriptor.length).toBeGreaterThan(0);
 
           expect(faker.definitions.person.job_descriptor).toContain(descriptor);
         });
@@ -283,6 +416,7 @@ describe('person', () => {
           const level = faker.person.jobArea();
 
           expect(level).toBeTypeOf('string');
+          expect(level.length).toBeGreaterThan(0);
 
           expect(faker.definitions.person.job_area).toContain(level);
         });
@@ -293,6 +427,7 @@ describe('person', () => {
           const job = faker.person.jobType();
 
           expect(job).toBeTypeOf('string');
+          expect(job.length).toBeGreaterThan(0);
 
           expect(faker.definitions.person.job_type).toContain(job);
         });
@@ -303,6 +438,7 @@ describe('person', () => {
           const sign = faker.person.zodiacSign();
 
           expect(sign).toBeTypeOf('string');
+          expect(sign.length).toBeGreaterThan(0);
 
           expect(faker.definitions.person.western_zodiac_sign).toContain(sign);
         });

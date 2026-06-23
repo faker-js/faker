@@ -1,11 +1,17 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
+import { formatMarkdown, formatTypescript } from '../../shared/format';
+import {
+  adjustUrls,
+  codeGroupToHtml,
+  codeToHtml,
+  mdToHtml,
+} from '../../shared/markdown';
+import { FILE_PATH_API_DOCS } from '../../shared/paths';
+import { toRefreshableCode } from '../../shared/refreshable-code';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
-import { formatMarkdown, formatTypescript } from '../utils/format';
-import { adjustUrls, codeToHtml, mdToHtml } from '../utils/markdown';
-import { FILE_PATH_API_DOCS } from '../utils/paths';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
@@ -22,18 +28,30 @@ editLink: false
  * @param pages The pages to write.
  */
 export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
-  await Promise.all(pages.map(writePage));
+  const registryHints: Record<string, string> = Object.fromEntries(
+    pages.flatMap((page) =>
+      page.methods.map((method) => [
+        method.name,
+        `${page.camelTitle}.${method.name}`,
+      ])
+    )
+  );
+  await Promise.all(pages.map((page) => writePage(page, registryHints)));
 }
 
 /**
  * Writes the api docs page and data for the given module to the correct location.
  *
  * @param page The page to write.
+ * @param registryHints Hints for accessing standalone functions via module registry.
  */
-async function writePage(page: RawApiDocsPage): Promise<void> {
+async function writePage(
+  page: RawApiDocsPage,
+  registryHints: Record<string, string> = {}
+): Promise<void> {
   try {
     await writePageMarkdown(page);
-    await writePageData(page);
+    await writePageData(page, registryHints);
   } catch (error) {
     throw new Error(`Error writing page ${page.title}`, { cause: error });
   }
@@ -73,7 +91,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
 
   ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${codeToHtml(examples.join('\n'))}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples)}</div>`}
 
   :::
 
@@ -97,20 +115,34 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
  * Writes the api docs data for the given module to correct location.
  *
  * @param page The page to write.
+ * @param registryHints Hints for accessing standalone functions via module registry.
  */
-async function writePageData(page: RawApiDocsPage): Promise<void> {
+async function writePageData(
+  page: RawApiDocsPage,
+  registryHints: Record<string, string> = {}
+): Promise<void> {
   const { camelTitle, methods } = page;
   const pageData: Record<string, ApiDocsMethod> = Object.fromEntries(
     await Promise.all(
       methods.map(async (method) => [method.name, await toMethodData(method)])
     )
   );
+  const prioritizedRegistryHints = {
+    ...registryHints,
+    // own module > other modules
+    ...Object.fromEntries(
+      methods.map((method) => [method.name, `${camelTitle}.${method.name}`])
+    ),
+    // utils always win
+    getDefaultRefDate: 'defaultRefDate',
+    setDefaultRefDate: 'setDefaultRefDate',
+  };
 
   const refreshFunctions: Record<string, string> = Object.fromEntries(
     await Promise.all(
       methods.map(async (method) => [
         method.name,
-        await toRefreshFunction(method),
+        await toRefreshFunction(method, prioritizedRegistryHints),
       ])
     )
   );
@@ -134,9 +166,11 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   const signatureData = required(signatures.at(-1), 'method signature');
   const {
     deprecated,
+    experimental,
     description,
     since,
     parameters,
+    remarks,
     returns,
     throws,
     signature,
@@ -158,6 +192,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     name,
     deprecated: mdToHtml(deprecated),
     description: mdToHtml(description),
+    remark: remarks.length === 0 ? undefined : mdToHtml(remarks.join('\n')),
     since,
     parameters: parameters.map((param) => ({
       ...param,
@@ -177,22 +212,32 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
 
   return {
     name,
-    description: mdToHtml(description),
-    parameters: parameters.map((param) => ({
-      ...param,
-      type: param.type.text,
-      default: param.default ?? extractSummaryDefault(param.description),
-      description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
-    })),
+    description: await mdToHtml(description),
+    remark:
+      remarks.length === 0 ? undefined : await mdToHtml(remarks.join('\n')),
+    parameters: await Promise.all(
+      parameters.map(async (param) => ({
+        ...param,
+        type: param.type.text,
+        default: param.default ?? extractSummaryDefault(param.description),
+        description: await mdToHtml(
+          param.description.replace(defaultCommentRegex, '')
+        ),
+      }))
+    ),
     since,
     sourcePath: `${filePath}#L${line}`,
-    throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
+    throws:
+      throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
-    signature: codeToHtml(formattedSignature),
-    examples: codeToHtml(examples.join('\n')),
+    signature: await codeToHtml(formattedSignature),
+    examples: await codeGroupToHtml(examples),
     refresh,
-    deprecated: mdToHtml(deprecated),
-    seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
+    experimental,
+    deprecated: await mdToHtml(deprecated),
+    seeAlsos: await Promise.all(
+      seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true))
+    ),
   };
 }
 
@@ -201,47 +246,13 @@ export function extractSummaryDefault(description: string): string | undefined {
 }
 
 export async function toRefreshFunction(
-  method: RawApiDocsMethod
+  method: RawApiDocsMethod,
+  registryHints: Record<string, string> = {}
 ): Promise<string> {
   const { name, signatures } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
   const { examples } = signatureData;
 
   const exampleCode = examples.join('\n');
-  if (!/^\w*faker\w*\./im.test(exampleCode)) {
-    // No recordable faker calls in examples
-    return 'undefined';
-  }
-
-  const exampleLines = exampleCode
-    .replaceAll(/ ?\/\/.*$/gm, '') // Remove comments
-    .replaceAll(/^import .*$/gm, '') // Remove imports
-    .replaceAll(
-      // record results of faker calls
-      /^(\w*faker\w*\..+(?:(?:.|\n..)*\n[^ ])?\)(?:\.\w+)?);?$/gim,
-      `try { result.push($1); } catch (error: unknown) { result.push(error instanceof Error ? error.name : 'Error'); }\n`
-    );
-
-  const fullMethod = `async (): Promise<unknown[]> => {
-await enableFaker();
-faker.seed();
-faker.setDefaultRefDate();
-const result: unknown[] = [];
-
-${exampleLines}
-
-return result;
-}`;
-  try {
-    const formattedMethod = await formatTypescript(fullMethod);
-    return formattedMethod.replace(/;\s+$/, ''); // Remove trailing semicolon
-  } catch (error: unknown) {
-    console.error(
-      'Failed to format refresh function for',
-      name,
-      fullMethod,
-      error
-    );
-    return 'undefined';
-  }
+  return await toRefreshableCode(name, exampleCode, registryHints);
 }
