@@ -78,10 +78,8 @@ const allowedLinks = new Set(
 
 function assertDescription(description: string): void {
   const linkRegexp = /\[([^\]]+)\]\(([^)]+)\)/g;
-  const links = description
-    .matchAll(linkRegexp)
-    .map((m) => m[2])
-    .toArray();
+  // eslint-disable-next-line unicorn/prefer-iterator-to-array -- Requires Node 22+
+  const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
   for (const link of links) {
     expect(link).toStartWith('https://');
