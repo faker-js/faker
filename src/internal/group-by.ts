@@ -39,7 +39,7 @@ export function groupBy<TOriginalValue, TMappedValue>(
   valueMapper: (value: TOriginalValue) => TMappedValue = (value) =>
     value as unknown as TMappedValue
 ): Record<string, TMappedValue[]> {
-  const result: Record<string, TMappedValue[]> = {};
+  const result: Record<string, TMappedValue[]> = Object.create(null);
 
   for (const value of values) {
     const key = keyMapper(value);
