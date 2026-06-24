@@ -46,6 +46,6 @@ describe('groupBy()', () => {
 
     expect(result['__proto__']).toEqual(['__proto__', '__proto__']);
     expect(result.toString).toEqual(['toString']);
-    expect(Object.keys(result).sort()).toEqual(['__proto__', 'toString']);
+    expect(Object.keys(result).toSorted()).toEqual(['__proto__', 'toString']);
   });
 });
