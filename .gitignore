@@ -101,6 +101,7 @@ REVISION
 .tasks-cache
 *DONOTVERSION*
 .history
+/tmp
 
 # Unwanted package managers
 .yarn/
