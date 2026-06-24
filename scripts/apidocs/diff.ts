@@ -71,12 +71,13 @@ export async function diff(
 
   for (const moduleName of allKeys(target, source)) {
     const remoteModule = target[moduleName];
-    const localModule = source[moduleName];
 
     if (!remoteModule) {
       diff[moduleName] = ['ADDED'];
       continue;
     }
+
+    const localModule = source[moduleName];
 
     if (!localModule) {
       diff[moduleName] = ['REMOVED'];

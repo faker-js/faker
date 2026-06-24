@@ -736,6 +736,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     for (let i = list.length - 1; i > 0; --i) {
       const j = this.faker.number.int(i);
+      // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
       [list[i], list[j]] = [list[j], list[i]];
     }
 
@@ -985,7 +986,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       );
     }
 
-    if (!array.every((elt) => elt.weight > 0)) {
+    if (array.some((elt) => elt.weight <= 0)) {
       throw new FakerError(
         'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
       );
@@ -1058,13 +1059,11 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     const arrayCopy = [...array];
     let i = array.length;
     const min = i - numElements;
-    let temp: T;
-    let index: number;
 
     // Shuffle the last `count` elements of the array
     while (i-- > min) {
-      index = this.faker.number.int(i);
-      temp = arrayCopy[index];
+      const index = this.faker.number.int(i);
+      const temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
     }

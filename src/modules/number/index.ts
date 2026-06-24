@@ -85,7 +85,7 @@ export class NumberModule extends SimpleModuleBase {
       distributor = uniformDistributor(),
     } = options;
 
-    if (!Number.isInteger(multipleOf)) {
+    if (!Number.isSafeInteger(multipleOf)) {
       throw new FakerError(`multipleOf should be an integer.`);
     }
 
@@ -201,7 +201,7 @@ export class NumberModule extends SimpleModuleBase {
         );
       }
 
-      if (!Number.isInteger(fractionDigits)) {
+      if (!Number.isSafeInteger(fractionDigits)) {
         throw new FakerError('fractionDigits should be an integer.');
       }
 
@@ -220,7 +220,7 @@ export class NumberModule extends SimpleModuleBase {
       const logPrecision = Math.log10(multipleOf);
       // Workaround to get integer values for the inverse of all multiples of the form 10^-n
       const factor =
-        multipleOf < 1 && Number.isInteger(logPrecision)
+        multipleOf < 1 && Number.isSafeInteger(logPrecision)
           ? 10 ** -logPrecision
           : 1 / multipleOf;
       const int = this.int({
@@ -446,11 +446,12 @@ export class NumberModule extends SimpleModuleBase {
 
     const min = BigInt(options.min ?? 0);
     const max = BigInt(options.max ?? min + BigInt(999999999999999));
-    const multipleOf = BigInt(options.multipleOf ?? 1);
 
     if (max < min) {
       throw new FakerError(`Max ${max} should be larger than min ${min}.`);
     }
+
+    const multipleOf = BigInt(options.multipleOf ?? 1);
 
     if (multipleOf <= BigInt(0)) {
       throw new FakerError(`multipleOf should be greater than 0.`);

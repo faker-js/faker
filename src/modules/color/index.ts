@@ -409,7 +409,6 @@ export class ColorModule extends ModuleBase {
       casing = 'lower',
     } = options;
     let color: string | number[];
-    let cssFunction: CssFunctionType = 'rgb';
     if (format === 'hex') {
       color = this.faker.string.hexadecimal({
         length: includeAlpha ? 8 : 6,
@@ -419,6 +418,7 @@ export class ColorModule extends ModuleBase {
       return color;
     }
 
+    let cssFunction: CssFunctionType = 'rgb';
     color = Array.from({ length: 3 }, () => this.faker.number.int(255));
     if (includeAlpha) {
       color.push(this.faker.number.float({ multipleOf: 0.01 }));

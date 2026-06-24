@@ -3,6 +3,7 @@ import { CI_PREFLIGHT } from './scripts/env';
 
 const VITEST_SEQUENCE_SEED = Date.now();
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 console.log('VITEST_SEQUENCE_SEED', VITEST_SEQUENCE_SEED);
 
 // https://vitejs.dev/config/
@@ -24,14 +25,10 @@ export default defineConfig({
       shuffle: true,
     },
     onStackTrace(_, { file }) {
-      if (
-        file.includes('/src/internal/locale-proxy') ||
-        file.includes('/test/support/')
-      ) {
-        return false;
-      }
-
-      return true;
+      return (
+        !file.includes('/src/internal/locale-proxy') &&
+        !file.includes('/test/support/')
+      );
     },
     typecheck: {
       enabled: true,
