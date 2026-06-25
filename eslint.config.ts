@@ -149,19 +149,37 @@ export default defineConfig(
   {
     name: 'unicorn overrides',
     rules: {
+      'unicorn/consistent-boolean-name': 'off', // subjective
+      'unicorn/consistent-class-member-order': 'off', // subjective
       'unicorn/import-style': 'off', // subjective & doesn't do anything for us
+      'unicorn/name-replacements': 'off', // if abbreviations don't reduce readability, they're fine
       'unicorn/no-array-callback-reference': 'off', // reduces readability
+      'unicorn/no-break-in-nested-loop': 'off', // subjective
+      'unicorn/no-computed-property-existence-check': 'off', // subjective
       'unicorn/no-nested-ternary': 'off', // incompatible with prettier
+      'unicorn/no-non-function-verb-prefix': 'off', // subjective
       'unicorn/no-null': 'off', // incompatible with TypeScript
       'unicorn/no-object-as-default-parameter': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2199
+      'unicorn/no-unsafe-property-key': 'off', // subjective
+      'unicorn/no-unsafe-string-replacement': 'off', // subjective
+      'unicorn/no-useless-else': 'off', // subjective
+      'unicorn/no-useless-recursion': 'off', // subjective
+      'unicorn/no-useless-template-literals': 'off', // subjective
       'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
       'unicorn/number-literal-case': 'off', // incompatible with prettier
       'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
+      'unicorn/prefer-at': 'off', // subjective
+      'unicorn/prefer-await': 'off', // subjective
       'unicorn/prefer-bigint-literals': 'off', // currently there is no clear argument on why literal would be better
+      'unicorn/prefer-global-number-constants': 'off', // We use unicorn/prefer-number-properties
+      'unicorn/prefer-minimal-ternary': 'off', // subjective
+      'unicorn/prefer-number-coercion': 'off', // subjective
       'unicorn/prefer-string-raw': 'off', // The additional prefix doesn't help readability
       'unicorn/prefer-string-slice': 'off', // string.substring is sometimes easier to use
       'unicorn/prefer-ternary': 'off', // ternaries aren't always better
-      'unicorn/prevent-abbreviations': 'off', // if abbreviations don't reduce readability, they're fine
+      'unicorn/prefer-uint8array-base64': 'off', // not relevant for our codebase
+      'unicorn/prefer-unicode-code-point-escapes': 'off', // subjective
+      'unicorn/require-array-sort-compare': 'off', // default sort is good enough
     },
   },
   //#endregion

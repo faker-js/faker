@@ -335,6 +335,7 @@ class TestGenerator<
  * @param extraOffset The additional offset to add to the column numbers to account for the name of the test.
  */
 function collectExtraStackFrames(extraOffset: number = 0): () => string[] {
+  // eslint-disable-next-line unicorn/no-nonstandard-builtin-properties
   const stack = new Error('collect').stack;
   if (stack == null) {
     return () => [];
