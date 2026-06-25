@@ -24,7 +24,7 @@ export interface Unit {
    */
   name: string;
   /**
-   * The short version/abbreviation of the element (e.g. `Pa`).
+   * The short version/abbreviation of the unit (e.g. `Pa`).
    */
   symbol: string;
 }

@@ -496,10 +496,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     }
 
     const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[-!@#$&()`.+,/"])/;
-    const RANGE_ALPHANUMEMRIC_REG =
+    const RANGE_ALPHANUMERIC_REG =
       /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:,(\d+)|)\}|(\?|\*|\+)|)/;
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
-    token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
+    token = RANGE_ALPHANUMERIC_REG.exec(pattern);
     while (token != null) {
       const isNegated = token[1] === '^';
       const includesDash: boolean = token[2] === '-';
@@ -612,7 +612,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
         pattern.slice(0, token.index) +
         generatedString +
         pattern.slice(token.index + token[0].length);
-      token = RANGE_ALPHANUMEMRIC_REG.exec(pattern);
+      token = RANGE_ALPHANUMERIC_REG.exec(pattern);
     }
 
     const RANGE_REP_REG = /(.)\{(\d+),(\d+)\}/;
