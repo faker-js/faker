@@ -409,7 +409,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     'lorem',
     'metadata',
     'person',
-    'phone_number',
     'word',
     ...legacyDefinitions,
   ];

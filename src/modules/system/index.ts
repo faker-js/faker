@@ -156,7 +156,7 @@ export class SystemModule extends ModuleBase {
     const mimeTypes = this.faker.definitions.system.mime_type;
 
     const typeSet = new Set(
-      Object.keys(mimeTypes).map((key) => key.split('/')[0])
+      Object.keys(mimeTypes).map((key) => key.split('/', 1)[0])
     );
     return this.faker.helpers.arrayElement([...typeSet]);
   }

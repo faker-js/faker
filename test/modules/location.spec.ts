@@ -8,6 +8,8 @@ import {
   faker,
   fakerEN_CA,
   fakerEN_US,
+  fakerFR,
+  fakerNL,
   simpleFaker,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -27,7 +29,7 @@ function kilometersToMiles(miles: number) {
  * @param num The number to check.
  */
 function precision(num: number): number {
-  const decimalPart = num.toString().split('.')[1];
+  const decimalPart = num.toString().split('.', 2)[1];
   if (decimalPart === undefined) {
     return 0;
   }
@@ -35,7 +37,7 @@ function precision(num: number): number {
   return decimalPart.length;
 }
 
-// http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+// https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
 const EQUATORIAL_EARTH_RADIUS = 6378.137;
 
 function haversine(
@@ -208,6 +210,36 @@ describe('location', () => {
           const zipCode = fakerEN_CA.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+        });
+
+        it('should not return forbidden letter combinations for nl locale', () => {
+          // The letter combinations 'SS', 'SD' and 'SA' are not used in Dutch
+          // postal codes. See https://github.com/faker-js/faker/issues/3368
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerNL.location.zipCode();
+
+            expect(zipCode).toMatch(/^[1-9]\d{3} [A-Z]{2}$/);
+            expect(zipCode.slice(-2)).not.toBeOneOf(['SS', 'SD', 'SA']);
+          }
+        });
+
+        it('should only return valid department prefixes for fr locale', () => {
+          // French postal codes use department prefixes 01-95 (metropolitan)
+          // and 971-978/984/986-989 (overseas); 00xxx, 96xxx and 99xxx are not
+          // assigned. See https://github.com/faker-js/faker/issues/3550
+          const overseas = new Set([
+            971, 972, 973, 974, 975, 976, 977, 978, 984, 986, 987, 988, 989,
+          ]);
+
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerFR.location.zipCode();
+
+            expect(zipCode).toMatch(/^\d{5}$/);
+            const department = Number(zipCode.slice(0, 2));
+            const isMetropolitan = department >= 1 && department <= 95;
+            const isOverseas = overseas.has(Number(zipCode.slice(0, 3)));
+            expect(isMetropolitan || isOverseas).toBe(true);
+          }
         });
 
         it.each([

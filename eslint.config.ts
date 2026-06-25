@@ -249,6 +249,7 @@ export default defineConfig(
         'error',
         {
           case: 'snakeCase',
+          checkDirectories: false,
         },
       ],
       'unicorn/text-encoding-identifier-case': 'off',

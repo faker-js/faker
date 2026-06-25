@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-unused-array-method-return -- False positive: https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193 */
 import {
   isEmail,
   isFQDN,
@@ -252,7 +253,7 @@ describe('internet', () => {
           // should truncate to 50 chars
           // e.g. ElizabethAlexandraMaryJaneAnnabelVictoria.SmithJon@yahoo.com
           expect(email).toSatisfy(isEmail);
-          const localPart = email.split('@')[0];
+          const localPart = email.split('@', 1)[0];
           expect(localPart.length).toBeLessThanOrEqual(50);
         });
 
@@ -292,7 +293,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const suffix = email.split('@')[1];
+          const suffix = email.split('@', 2)[1];
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
