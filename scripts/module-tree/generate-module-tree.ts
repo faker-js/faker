@@ -3,9 +3,14 @@ import { resolve } from 'node:path';
 import { SyntaxKind } from 'ts-morph';
 import { getJsDocs, getSince } from '../apidocs/processing/jsdocs';
 import { getProject } from '../apidocs/project';
-import { toCamelCase, toKebabCase } from '../shared/character-case';
+import {
+  toCamelCase,
+  toKebabCase,
+  toPascalCase,
+} from '../shared/character-case';
 import { formatTypescript } from '../shared/format';
 import { FILE_PATH_SRC } from '../shared/paths';
+import { ALLOWED_MODULES } from '../temp-module-filter';
 import { ImportHelper } from './import-helper';
 
 //#region Config
@@ -61,6 +66,10 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
     const moduleName = directory.getBaseName();
 
     if (onlyModule && moduleName !== onlyModule) {
+      continue;
+    }
+
+    if (!ALLOWED_MODULES.has(toPascalCase(`${moduleName}Module`))) {
       continue;
     }
 
