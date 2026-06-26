@@ -10,6 +10,7 @@ import { ImportHelper } from './module-tree/import-helper';
 import { toCamelCase, toKebabCase } from './shared/character-case';
 import { formatTypescript } from './shared/format';
 import { FILE_PATH_SRC } from './shared/paths';
+import { ALLOWED_MODULES } from './temp-module-filter';
 
 const coreName = 'fakerCore';
 
@@ -32,7 +33,9 @@ export async function processModuleClasses(project: Project): Promise<void> {
       getAllClasses(
         project,
         (module: string): boolean =>
-          module.endsWith('Module') && !module.startsWith('Simple')
+          module.endsWith('Module') &&
+          !module.startsWith('Simple') &&
+          ALLOWED_MODULES.has(module)
       )
     ).toSorted((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
