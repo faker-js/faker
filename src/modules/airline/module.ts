@@ -1,9 +1,3 @@
-/**
- * IATA stands for [International Air Transport Association](https://iata.org).
- * It's the trade association for the world's airlines and it is
- * responsible for setting standards relating to many aspects of airline
- * operations.
- */
 import { ModuleBase } from '../../internal/module-base';
 
 export enum Aircraft {
@@ -20,7 +14,7 @@ export interface Airline {
    */
   readonly name: string;
   /**
-   * The 2 character IATA code of the airline (e.g. `'AA'`).
+   * The 2 character [IATA](https://iata.org) code of the airline (e.g. `'AA'`).
    */
   readonly iataCode: string;
 }
@@ -31,7 +25,7 @@ export interface Airplane {
    */
   readonly name: string;
   /**
-   * The IATA code of the airplane (e.g. `'321'`).
+   * The [IATA](https://iata.org) code of the airplane (e.g. `'321'`).
    */
   readonly iataTypeCode: string;
 }
@@ -42,7 +36,7 @@ export interface Airport {
    */
   readonly name: string;
   /**
-   * The IATA code of the airport (e.g. `'DFW'`).
+   * The [IATA](https://iata.org) code of the airport (e.g. `'DFW'`).
    */
   readonly iataCode: string;
 }
@@ -61,7 +55,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
 };
 
 /**
- * Module to generate airline and airport related data.
+ * Module to generate airline and airport related data according to [International Air Transport Association (IATA)](https://iata.org) standards.
  *
  * ### Overview
  *
