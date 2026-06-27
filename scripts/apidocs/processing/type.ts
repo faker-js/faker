@@ -91,6 +91,8 @@ export function getTypeText(
           : newSimpleType('string');
 
         return newUnionType([displayType, baseType]);
+      } else if (name === 'NumberRange') {
+        return newSimpleType('{ min: number; max: number }');
       }
 
       const typeParameters = typeArguments.map((t) => getTypeText(t, options));
