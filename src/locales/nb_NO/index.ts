@@ -7,6 +7,8 @@ import animal from './animal';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import date from './date';
+import food from './food';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -27,6 +29,8 @@ const nb_NO: LocaleDefinition = {
   color,
   commerce,
   company,
+  date,
+  food,
   internet,
   location,
   metadata,
