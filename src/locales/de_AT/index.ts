@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
 import location from './location';
@@ -19,7 +18,6 @@ import word from './word';
  * - Endonym: Deutsch (Österreich)
  */
 const de_AT: LocaleDefinition = {
-  cell_phone,
   company,
   internet,
   location,

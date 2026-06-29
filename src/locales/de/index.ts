@@ -4,7 +4,6 @@
  */
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
-import cell_phone from './cell_phone';
 import color from './color';
 import company from './company';
 import database from './database';
@@ -25,7 +24,6 @@ import word from './word';
  */
 const de: LocaleDefinition = {
   animal,
-  cell_phone,
   color,
   company,
   database,

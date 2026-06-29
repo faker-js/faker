@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -22,7 +21,6 @@ import word from './word';
  * - Endonym: Português (Portugal)
  */
 const pt_PT: LocaleDefinition = {
-  cell_phone,
   color,
   commerce,
   company,

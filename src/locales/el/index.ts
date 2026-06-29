@@ -4,7 +4,6 @@
  */
 import type { LocaleDefinition } from '../..';
 import app from './app';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -26,7 +25,6 @@ import team from './team';
  */
 const el: LocaleDefinition = {
   app,
-  cell_phone,
   color,
   commerce,
   company,

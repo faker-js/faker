@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -18,7 +17,6 @@ import phone_number from './phone_number';
  * - Endonym: Français (Suisse)
  */
 const fr_CH: LocaleDefinition = {
-  cell_phone,
   internet,
   location,
   lorem,

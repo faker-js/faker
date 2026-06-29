@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -22,7 +21,6 @@ import team from './team';
  * - Endonym: Español (México)
  */
 const es_MX: LocaleDefinition = {
-  cell_phone,
   color,
   commerce,
   company,

@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -17,7 +16,6 @@ import phone_number from './phone_number';
  * - Endonym: English (Ireland)
  */
 const en_IE: LocaleDefinition = {
-  cell_phone,
   internet,
   location,
   metadata,

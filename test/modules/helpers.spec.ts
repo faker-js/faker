@@ -1078,8 +1078,8 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings', () => {
-          expect(faker.definitions.cell_phone?.formats).toContain(
-            faker.helpers.fake('{{cell_phone.formats}}')
+          expect(faker.definitions.phone_number?.format.human).toContain(
+            faker.helpers.fake('{{phone_number.format.human}}')
           );
         });
 
