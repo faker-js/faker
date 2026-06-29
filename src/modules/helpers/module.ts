@@ -1,6 +1,7 @@
-import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
+import type { SimpleFaker } from '../../simple-faker';
 import type { NumberRange } from '../../utils/types';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
