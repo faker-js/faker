@@ -683,8 +683,22 @@ export class InternetModule extends ModuleBase {
     }
 
     const [ipText, subnet] = cidrBlock.split('/');
-    const subnetMask = 0xffffffff >>> Number.parseInt(subnet);
-    const [rawIp1, rawIp2, rawIp3, rawIp4] = ipText.split('.').map(Number);
+    const subnetValue = Number.parseInt(subnet, 10);
+    if (subnetValue > 32) {
+      throw new FakerError(
+        `Invalid CIDR block provided: ${cidrBlock}. Prefix length must be between 0 and 32.`
+      );
+    }
+
+    const octets = ipText.split('.').map(Number);
+    if (octets.some((octet) => octet > 255)) {
+      throw new FakerError(
+        `Invalid CIDR block provided: ${cidrBlock}. Each octet must be between 0 and 255.`
+      );
+    }
+
+    const subnetMask = 0xffffffff >>> subnetValue;
+    const [rawIp1, rawIp2, rawIp3, rawIp4] = octets;
     const rawIp = (rawIp1 << 24) | (rawIp2 << 16) | (rawIp3 << 8) | rawIp4;
     const networkIp = rawIp & ~subnetMask;
     const hostOffset = this.faker.number.int(subnetMask);
