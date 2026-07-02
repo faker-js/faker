@@ -681,6 +681,34 @@ describe('internet', () => {
           }
         );
 
+        it('should throw an error for CIDR prefix lengths above 32', () => {
+          const cidrBlock = '192.168.0.0/33';
+
+          expect(() =>
+            faker.internet.ipv4({
+              cidrBlock,
+            })
+          ).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Prefix length must be between 0 and 32.`
+            )
+          );
+        });
+
+        it('should throw an error for CIDR blocks with octets above 255', () => {
+          const cidrBlock = '192.168.0.256/24';
+
+          expect(() =>
+            faker.internet.ipv4({
+              cidrBlock,
+            })
+          ).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Each octet must be between 0 and 255.`
+            )
+          );
+        });
+
         it.each([
           [IPv4Network.Any, /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
           [IPv4Network.Loopback, /^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
