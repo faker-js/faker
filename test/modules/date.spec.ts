@@ -254,6 +254,20 @@ describe('date', () => {
           ).toThrow(new FakerError('Years must be greater than 0.'));
         });
 
+        it('should throw an error when years.min < 0', () => {
+          const referenceDate = new Date();
+          expect(() =>
+            faker.date.past({
+              years: { min: -1, max: 2 },
+              refDate: referenceDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The minimum amount of years must be greater than or equal to 0.'
+            )
+          );
+        });
+
         it('should throw an error when years.min > years.max', () => {
           const refDate = new Date();
           expect(() =>
@@ -372,6 +386,20 @@ describe('date', () => {
           expect(() =>
             faker.date.future({ years: 0, refDate: refDate.toISOString() })
           ).toThrow(new FakerError('Years must be greater than 0.'));
+        });
+
+        it('should throw an error when years.min < 0', () => {
+          const referenceDate = new Date();
+          expect(() =>
+            faker.date.future({
+              years: { min: -1, max: 2 },
+              refDate: referenceDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The minimum amount of years must be greater than or equal to 0.'
+            )
+          );
         });
 
         it('should throw an error when years.min > years.max', () => {
@@ -621,6 +649,20 @@ describe('date', () => {
           ).toThrow(new FakerError('Days must be greater than 0.'));
         });
 
+        it('should throw an error when days.min < 0', () => {
+          const referenceDate = new Date();
+          expect(() =>
+            faker.date.recent({
+              days: { min: -1, max: 2 },
+              refDate: referenceDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The minimum amount of days must be greater than or equal to 0.'
+            )
+          );
+        });
+
         it('should throw an error when days.min > days.max', () => {
           const refDate = new Date();
           expect(() =>
@@ -743,6 +785,20 @@ describe('date', () => {
           expect(() =>
             faker.date.soon({ days: 0, refDate: refDate.toISOString() })
           ).toThrow(new FakerError('Days must be greater than 0.'));
+        });
+
+        it('should throw an error when days.min < 0', () => {
+          const referenceDate = new Date();
+          expect(() =>
+            faker.date.soon({
+              days: { min: -1, max: 2 },
+              refDate: referenceDate.toISOString(),
+            })
+          ).toThrow(
+            new FakerError(
+              'The minimum amount of days must be greater than or equal to 0.'
+            )
+          );
         });
 
         it('should throw an error when days.min > days.max', () => {

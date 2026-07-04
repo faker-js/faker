@@ -51,7 +51,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.years The range of years the date may be in the past. Either as a fixed amount of years or as a year range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @throws {FakerError} If `years.max` is less than 0.
+   * @throws {FakerError} If `years.min` is less than 0 or `years.max` is less than or equal to 0.
    * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
    *
    * @see faker.date.recent(): For generating dates in the recent past (days instead of years).
@@ -86,6 +86,12 @@ export class SimpleDateModule extends SimpleModuleBase {
       years = { min: 0, max: years };
     }
 
+    if (years.min < 0) {
+      throw new FakerError(
+        'The minimum amount of years must be greater than or equal to 0.'
+      );
+    }
+
     if (years.max <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
@@ -115,7 +121,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.years The range of years the date may be in the future. Either as a fixed amount of years or as a year range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @throws {FakerError} If `years.max` is less than 0.
+   * @throws {FakerError} If `years.min` is less than 0 or `years.max` is less than or equal to 0.
    * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
    *
    * @see faker.date.soon(): For generating dates in the near future (days instead of years).
@@ -148,6 +154,12 @@ export class SimpleDateModule extends SimpleModuleBase {
     let { years = 1 } = options;
     if (typeof years === 'number') {
       years = { min: 0, max: years };
+    }
+
+    if (years.min < 0) {
+      throw new FakerError(
+        'The minimum amount of years must be greater than or equal to 0.'
+      );
     }
 
     if (years.max <= 0) {
@@ -266,7 +278,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.days The range of days the date may be in the past. Either as a fixed amount of days or as a day range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @throws {FakerError} If `days.max` is less than 0.
+   * @throws {FakerError} If `days.min` is less than 0 or `days.max` is less than or equal to 0.
    * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
    *
    * @see faker.date.past(): For generating dates further back in time (years instead of days).
@@ -316,6 +328,12 @@ export class SimpleDateModule extends SimpleModuleBase {
       days = { min: 0, max: days };
     }
 
+    if (days.min < 0) {
+      throw new FakerError(
+        'The minimum amount of days must be greater than or equal to 0.'
+      );
+    }
+
     if (days.max <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
@@ -345,7 +363,7 @@ export class SimpleDateModule extends SimpleModuleBase {
    * @param options.days The range of days the date may be in the future. Either as a fixed amount of days or as a day range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
-   * @throws {FakerError} If `days.max` is less than 0.
+   * @throws {FakerError} If `days.min` is less than 0 or `days.max` is less than or equal to 0.
    * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
    *
    * @see faker.date.future(): For generating dates further in the future (years instead of days).
@@ -393,6 +411,12 @@ export class SimpleDateModule extends SimpleModuleBase {
     let { days = 1 } = options;
     if (typeof days === 'number') {
       days = { min: 0, max: days };
+    }
+
+    if (days.min < 0) {
+      throw new FakerError(
+        'The minimum amount of days must be greater than or equal to 0.'
+      );
     }
 
     if (days.max <= 0) {
