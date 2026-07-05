@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Sex, faker, fakerAZ, fakerUK } from '../../src';
+import { Sex, faker, fakerAZ, fakerUK, fakerZH_CN } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -156,6 +156,25 @@ describe('person', () => {
           const maleName = fakerAZ.person.lastName('male');
           for (const part of maleName.split(/[ -]/)) {
             expect(male).toContain(part);
+          }
+        });
+
+        it('should return only common surnames for zh_CN locale', () => {
+          // The zh_CN surname list used to hold ~1000 mostly ultra-rare
+          // surnames drawn uniformly, so most generated names looked
+          // unnatural at a glance. It now holds only the most common
+          // surnames, which cover the vast majority of the population.
+          // See https://github.com/faker-js/faker/issues/3466
+          const { generic = [] } = fakerZH_CN.definitions.person.last_name;
+
+          expect(generic.length).toBeLessThan(200);
+
+          for (const common of ['王', '李', '张', '刘', '陈', '欧阳']) {
+            expect(generic).toContain(common);
+          }
+
+          for (const rare of ['不', '丑', '九', '业', '之']) {
+            expect(generic).not.toContain(rare);
           }
         });
       });
