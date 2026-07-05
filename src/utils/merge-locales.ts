@@ -1,4 +1,4 @@
-import type { LocaleDefinition } from '..';
+import type { LocaleDefinition } from '../definitions';
 
 /**
  * Merges the given locales into one locale.

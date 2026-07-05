@@ -78,6 +78,7 @@ const allowedLinks = new Set(
 
 function assertDescription(description: string): void {
   const linkRegexp = /\[([^\]]+)\]\(([^)]+)\)/g;
+  // eslint-disable-next-line unicorn/prefer-iterator-to-array -- Requires Node 22+
   const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
   for (const link of links) {
@@ -357,38 +358,38 @@ ${examples}`;
               //#region @see
               it('verify @see tags', () => {
                 for (const link of signature.seeAlsos) {
-                  if (link.startsWith('faker.')) {
-                    // Expected @see faker.xxx.yyy()
-                    expect(
-                      link,
-                      'Expect method reference to contain ()'
-                    ).toContain('(');
-                    expect(
-                      link,
-                      'Expect method reference to contain ()'
-                    ).toContain(')');
-                    expect(
-                      link,
-                      "Expect method reference to have a ': ' after the parenthesis"
-                    ).toContain('): ');
-                    expect(
-                      link,
-                      'Expect method reference to have a description starting with a capital letter'
-                    ).toMatch(/\): [A-Z]/);
-                    expect(
-                      link,
-                      'Expect method reference to start with a standard description phrase'
-                    ).toMatch(
-                      /\): (?:For generating |For more information about |For using |For the replacement method)/
-                    );
-                    expect(
-                      link,
-                      'Expect method reference to have a description ending with a dot'
-                    ).toMatch(/\.$/);
-                    expect(allowedReferences).toContain(
-                      link.replace(/\(.*/, '')
-                    );
+                  if (!link.startsWith('faker.')) {
+                    continue;
                   }
+
+                  // Expected @see faker.xxx.yyy()
+                  expect(
+                    link,
+                    'Expect method reference to contain ()'
+                  ).toContain('(');
+                  expect(
+                    link,
+                    'Expect method reference to contain ()'
+                  ).toContain(')');
+                  expect(
+                    link,
+                    "Expect method reference to have a ': ' after the parenthesis"
+                  ).toContain('): ');
+                  expect(
+                    link,
+                    'Expect method reference to have a description starting with a capital letter'
+                  ).toMatch(/\): [A-Z]/);
+                  expect(
+                    link,
+                    'Expect method reference to start with a standard description phrase'
+                  ).toMatch(
+                    /\): (?:For generating |For more information about |For using |For the replacement method)/
+                  );
+                  expect(
+                    link,
+                    'Expect method reference to have a description ending with a dot'
+                  ).toMatch(/\.$/);
+                  expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
                 }
               });
               //#endregion

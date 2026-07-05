@@ -1,4 +1,4 @@
-import type { Casing, ColorFormat } from '../../../src';
+import type { Casing, ColorFormat, NumberRange } from '../../../src';
 import { FakerError } from '../../../src/errors/faker-error';
 import type { LiteralUnion } from '../../../src/internal/types';
 import type { AlphaNumericChar } from '../../../src/modules/string';
@@ -182,8 +182,8 @@ export class SignatureTest {
    * @param namedValue `'a'` or `'b'`.
    * @param array Array of `'a'` or `'b'`.
    * @param namedArray Array of `'a'` or `'b'`.
-   * @param mixed Value `'a'` or `'b'` or an array thereof.
-   * @param namedMixed Value `'a'` or `'b'` or an array thereof.
+   * @param mixed `'a'` or `'b'` or an array thereof.
+   * @param namedMixed `'a'` or `'b'` or an array thereof.
    *
    * @since 1.0.0
    */
@@ -203,6 +203,34 @@ export class SignatureTest {
       String(mixed) +
       String(namedMixed)
     );
+  }
+
+  /**
+   * Test with NumberRange.
+   *
+   * @param value `{min: 1, max: 10}`.
+   * @param array Array of `{min: 1, max: 10}`.
+   * @param options The options parameter.
+   * @param options.count `{min: 1, max: 10}`.
+   * @param mixed `{min: 1, max: 10}` or an array thereof.
+   *
+   * @since 1.0.0
+   */
+  numberRangeParamMethod(
+    value: NumberRange,
+    array: ReadonlyArray<NumberRange>,
+    options: {
+      /** The count parameter. */
+      count: NumberRange;
+    },
+    mixed: NumberRange | ReadonlyArray<NumberRange>
+  ): string {
+    return JSON.stringify({
+      value,
+      array,
+      options,
+      mixed,
+    });
   }
 
   /**

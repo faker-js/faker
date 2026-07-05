@@ -1,4 +1,4 @@
-import type { Casing } from '../../utils/types';
+import type { Casing, NumberRange } from '../../utils/types';
 
 /**
  * The bitcoin address families.
@@ -30,7 +30,7 @@ export type BitcoinNetworkType = `${BitcoinNetwork}`;
 
 type BitcoinAddressOptions = {
   prefix: Record<BitcoinNetworkType, string>;
-  length: { min: number; max: number };
+  length: NumberRange;
   casing: Casing;
   exclude: string;
 };

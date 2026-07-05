@@ -216,7 +216,7 @@ async function generateLocalesIndexFile(
     content.push(
       `import type { ${type.replace(/\[.*/, '')} } from '..${'/..'.repeat(
         depth
-      )}';`
+      )}/definitions';`
     );
   }
 
@@ -409,7 +409,6 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     'lorem',
     'metadata',
     'person',
-    'phone_number',
     'word',
     ...legacyDefinitions,
   ];

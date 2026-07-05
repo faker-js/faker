@@ -38,4 +38,14 @@ describe('groupBy()', () => {
       Jane: [2],
     });
   });
+
+  it('should group values with object prototype property names as keys', () => {
+    const values = ['__proto__', 'toString', '__proto__'];
+
+    const result = groupBy(values, (value) => value);
+
+    expect(result['__proto__']).toEqual(['__proto__', '__proto__']);
+    expect(result.toString).toEqual(['toString']);
+    expect(Object.keys(result).toSorted()).toEqual(['__proto__', 'toString']);
+  });
 });

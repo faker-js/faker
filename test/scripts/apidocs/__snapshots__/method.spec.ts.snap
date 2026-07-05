@@ -20,6 +20,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "methodWithThrows",
   "multiParamMethod",
   "noParamMethod",
+  "numberRangeParamMethod",
   "optionalStringParamMethod",
   "optionsInlineParamMethodWithDefaults",
   "optionsInterfaceParamMethodWithDefaults",
@@ -342,7 +343,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
         },
         {
           "default": undefined,
-          "description": "Value \`'a'\` or \`'b'\` or an array thereof.",
+          "description": "\`'a'\` or \`'b'\` or an array thereof.",
           "name": "mixed",
           "type": {
             "text": "'a' | 'b' | string | Array<'a' | 'b' | string>",
@@ -395,7 +396,7 @@ exports[`method > processMethodLike(literalUnionParamMethod) 1`] = `
         },
         {
           "default": undefined,
-          "description": "Value \`'a'\` or \`'b'\` or an array thereof.",
+          "description": "\`'a'\` or \`'b'\` or an array thereof.",
           "name": "namedMixed",
           "type": {
             "text": "'a' | 'b' | string | Array<AB | string>",
@@ -971,6 +972,111 @@ exports[`method > processMethodLike(noParamMethod) 1`] = `
       },
       "seeAlsos": [],
       "signature": "function noParamMethod(): number;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
+exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
+{
+  "name": "numberRangeParamMethod",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with NumberRange.",
+      "examples": [],
+      "experimental": undefined,
+      "parameters": [
+        {
+          "default": undefined,
+          "description": "\`{min: 1, max: 10}\`.",
+          "name": "value",
+          "type": {
+            "text": "{ min: number; max: number }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "Array of \`{min: 1, max: 10}\`.",
+          "name": "array",
+          "type": {
+            "text": "Array<{ min: number; max: number }>",
+            "type": "generic",
+            "typeParameters": [
+              {
+                "text": "{ min: number; max: number }",
+                "type": "simple",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The options parameter.",
+          "name": "options",
+          "type": {
+            "text": "{ ... }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The count parameter.",
+          "name": "options.count",
+          "type": {
+            "text": "{ min: number; max: number }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "\`{min: 1, max: 10}\` or an array thereof.",
+          "name": "mixed",
+          "type": {
+            "text": "{ min: number; max: number } | Array<{ min: number; max: number }>",
+            "type": "union",
+            "types": [
+              {
+                "text": "{ min: number; max: number }",
+                "type": "simple",
+              },
+              {
+                "text": "Array<{ min: number; max: number }>",
+                "type": "generic",
+                "typeParameters": [
+                  {
+                    "text": "{ min: number; max: number }",
+                    "type": "simple",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+      "remarks": [],
+      "returns": {
+        "text": "string",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function numberRangeParamMethod(
+    value: NumberRange,
+    array: ReadonlyArray<NumberRange>,
+    options: {
+      /** The count parameter. */
+      count: NumberRange;
+    },
+    mixed: NumberRange | ReadonlyArray<NumberRange>
+  ): string;",
       "since": "1.0.0",
       "throws": [],
     },

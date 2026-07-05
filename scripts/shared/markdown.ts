@@ -7,6 +7,7 @@ import { FILE_PATH_API_DOCS } from './paths';
 let markdown: MarkdownRenderer;
 
 export async function initMarkdownRenderer(): Promise<void> {
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   markdown ??= await createMarkdownRenderer(
     FILE_PATH_API_DOCS,
     vitepressConfig.markdown,
