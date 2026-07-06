@@ -25,3 +25,21 @@ export interface NumberRange {
  * Either an exact number or a range of numbers with an inclusive minimum and maximum.
  */
 export type NumberOrRange = number | NumberRange;
+
+/**
+ * The strategy to apply when no words with a matching length are found.
+ *
+ * Available error handling strategies:
+ *
+ * - `fail`: Throws an error if no words with the given length are found.
+ * - `shortest`: Returns any of the shortest words.
+ * - `closest`: Returns any of the words closest to the given length.
+ * - `longest`: Returns any of the longest words.
+ * - `any-length`: Returns a word with any length.
+ */
+export type LengthStrategy =
+  | 'fail'
+  | 'closest'
+  | 'shortest'
+  | 'longest'
+  | 'any-length';

@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import type { NumberOrRange } from '../../utils/types';
+import type { LengthStrategy, NumberOrRange } from '../../utils/types';
 import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
@@ -20,14 +20,6 @@ export class LoremModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'any-length'`.
    *
@@ -52,17 +44,9 @@ export class LoremModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'any-length'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategy;
         } = {}
   ): string {
     if (typeof options === 'number') {
