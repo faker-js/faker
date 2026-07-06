@@ -572,7 +572,7 @@ export class StringModule extends SimpleModuleBase {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length The length of the string (excluding the prefix) to generate either as a fixed length or as a length range. Defaults to `10`.
+   * @param length The length of the string to generate either as a fixed length or as a length range. Defaults to `10`.
    * @param length.min The minimum length of the string to generate.
    * @param length.max The maximum length of the string to generate.
    *
