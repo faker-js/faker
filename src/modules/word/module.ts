@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { LengthStrategy, NumberOrRange } from '../../utils/types';
+import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
 import { filterWordListByLength } from './filter-word-list-by-length';
 
 /**
@@ -37,7 +37,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -82,7 +82,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -127,7 +127,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -172,7 +172,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -217,7 +217,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -262,7 +262,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -307,7 +307,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -350,7 +350,7 @@ export class WordModule extends ModuleBase {
            *
            * @default 'fail'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     const wordMethods = this.faker.helpers.shuffle([

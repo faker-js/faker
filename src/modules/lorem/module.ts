@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import type { LengthStrategy, NumberOrRange } from '../../utils/types';
+import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
 import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
@@ -46,7 +46,7 @@ export class LoremModule extends ModuleBase {
            *
            * @default 'any-length'
            */
-          strategy?: LengthStrategy;
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {

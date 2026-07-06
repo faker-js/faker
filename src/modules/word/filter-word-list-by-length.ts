@@ -1,7 +1,7 @@
 import { FakerError } from '../../errors/faker-error';
 import { groupBy } from '../../internal/group-by';
 import type {
-  LengthStrategy,
+  LengthStrategyType,
   NumberOrRange,
   NumberRange,
 } from '../../utils/types';
@@ -58,7 +58,7 @@ const STRATEGIES = {
 export function filterWordListByLength(options: {
   wordList: ReadonlyArray<string>;
   length?: NumberOrRange;
-  strategy?: LengthStrategy;
+  strategy?: LengthStrategyType;
 }): string[] {
   const { wordList, length, strategy = 'fail' } = options;
 
