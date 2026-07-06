@@ -1,4 +1,9 @@
-import type { Casing, ColorFormat, NumberRange } from '../../../src';
+import type {
+  Casing,
+  ColorFormat,
+  NumberOrRange,
+  NumberRange,
+} from '../../../src';
 import { FakerError } from '../../../src/errors/faker-error';
 import type { LiteralUnion } from '../../../src/internal/types';
 import type { AlphaNumericChar } from '../../../src/modules/string';
@@ -226,6 +231,34 @@ export class SignatureTest {
       count: NumberRange;
     },
     mixed: NumberRange | ReadonlyArray<NumberRange>
+  ): string {
+    return JSON.stringify({
+      value,
+      array,
+      options,
+      mixed,
+    });
+  }
+
+  /**
+   * Test with NumberOrRange.
+   *
+   * @param value `5` or `{min: 1, max: 10}`.
+   * @param array Array of `5` or `{min: 1, max: 10}`.
+   * @param options The options parameter.
+   * @param options.count `5` or `{min: 1, max: 10}`.
+   * @param mixed `5` or `{min: 1, max: 10}` or an array thereof.
+   *
+   * @since 1.0.0
+   */
+  numberOrRangeParamMethod(
+    value: NumberOrRange,
+    array: ReadonlyArray<NumberOrRange>,
+    options: {
+      /** The count parameter. */
+      count: NumberOrRange;
+    },
+    mixed: NumberOrRange | ReadonlyArray<NumberOrRange>
   ): string {
     return JSON.stringify({
       value,
