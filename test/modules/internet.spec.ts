@@ -870,8 +870,7 @@ describe('internet', () => {
         });
 
         it('should generate long passwords without overflowing the call stack', () => {
-          // Regression test: password generation used to recurse once per
-          // character, throwing a RangeError for lengths of ~5000 and above.
+          // Regression test: password generation used to recurse once per character, throwing a RangeError for lengths of ~5000 and above.
           const length = 100_000;
           const password = faker.internet.password({ length });
 
