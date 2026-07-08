@@ -887,32 +887,6 @@ export class InternetModule extends ModuleBase {
      */
     const vowel = /[aeiouAEIOU]$/;
     const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
-    const _password = (
-      length: number,
-      memorable: boolean,
-      pattern: RegExp,
-      prefix: string
-    ): string => {
-      if (prefix.length >= length) {
-        return prefix;
-      }
-
-      if (memorable) {
-        pattern = consonant.test(prefix) ? vowel : consonant;
-      }
-
-      const n = this.faker.number.int(94) + 33;
-      let char = String.fromCodePoint(n);
-      if (memorable) {
-        char = char.toLowerCase();
-      }
-
-      if (!pattern.test(char)) {
-        return _password(length, memorable, pattern, prefix);
-      }
-
-      return _password(length, memorable, pattern, prefix + char);
-    };
 
     const {
       length = 15,
@@ -921,7 +895,27 @@ export class InternetModule extends ModuleBase {
       prefix = '',
     } = options;
 
-    return _password(length, memorable, pattern, prefix);
+    // A plain loop (rather than recursion) so that large lengths cannot
+    // overflow the call stack.
+    let currentPattern = pattern;
+    let result = prefix;
+    while (result.length < length) {
+      if (memorable) {
+        currentPattern = consonant.test(result) ? vowel : consonant;
+      }
+
+      const n = this.faker.number.int(94) + 33;
+      let char = String.fromCodePoint(n);
+      if (memorable) {
+        char = char.toLowerCase();
+      }
+
+      if (currentPattern.test(char)) {
+        result += char;
+      }
+    }
+
+    return result;
   }
 
   /**
