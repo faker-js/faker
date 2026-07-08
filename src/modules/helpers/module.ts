@@ -1201,8 +1201,10 @@ export class HelpersModule extends SimpleHelpersModule {
    * ```
    *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
-   * parameters are parsed as JSON or plain strings. Nevertheless, you should treat the pattern
-   * as trusted input and not pass unsanitized values from untrusted or external sources.
+   * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
+   * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
+   * itself must always be from trusted input. Do not evaluate patterns provided by untrusted
+   * user input or external sources.
    *
    * @param pattern The pattern string that will get interpolated.
    *
@@ -1255,8 +1257,10 @@ export class HelpersModule extends SimpleHelpersModule {
    * ```
    *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
-   * parameters are parsed as JSON or plain strings. Nevertheless, you should treat the pattern
-   * as trusted input and not pass unsanitized values from untrusted or external sources.
+   * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
+   * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
+   * itself must always be from trusted input. Do not evaluate patterns provided by untrusted
+   * user input or external sources.
    *
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
@@ -1300,8 +1304,10 @@ export class HelpersModule extends SimpleHelpersModule {
    * ```
    *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
-   * parameters are parsed as JSON or plain strings. Nevertheless, you should treat the pattern
-   * as trusted input and not pass unsanitized values from untrusted or external sources.
+   * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
+   * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
+   * itself must always be from trusted input. Do not evaluate patterns provided by untrusted
+   * user input or external sources.
    *
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *
