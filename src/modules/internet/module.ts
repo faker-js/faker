@@ -895,7 +895,6 @@ export class InternetModule extends ModuleBase {
       prefix = '',
     } = options;
 
-    // A plain loop (rather than recursion) so that large lengths cannot overflow the call stack.
     let currentPattern = pattern;
     let result = prefix;
     while (result.length < length) {
