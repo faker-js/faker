@@ -1177,7 +1177,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
+   * that you control (e.g. a template authored by a developer or stored in a database or file).
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
@@ -1200,7 +1200,9 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
+   * parameters are parsed as JSON or plain strings. Nevertheless, you should treat the pattern
+   * as trusted input and not pass unsanitized values from untrusted or external sources.
    *
    * @param pattern The pattern string that will get interpolated.
    *
@@ -1226,7 +1228,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
+   * that you control (e.g. a template authored by a developer or stored in a database or file).
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
@@ -1252,7 +1254,9 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
+   * parameters are parsed as JSON or plain strings. Nevertheless, you should treat the pattern
+   * as trusted input and not pass unsanitized values from untrusted or external sources.
    *
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
@@ -1272,7 +1276,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
+   * that you control (e.g. a template authored by a developer or stored in a database or file).
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
@@ -1295,7 +1299,9 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
+   * parameters are parsed as JSON or plain strings. Nevertheless, you should treat the pattern
+   * as trusted input and not pass unsanitized values from untrusted or external sources.
    *
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *

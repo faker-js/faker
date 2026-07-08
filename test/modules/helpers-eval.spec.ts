@@ -2,6 +2,11 @@ import { describe, expect, it, vi } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { fakeEval } from '../../src/modules/helpers/eval';
 
+// A hostile definition that resolves to a function returning a function,
+// mirroring the original GHSA-qxc2-j82w-r537 proof-of-concept.
+const noop = (): void => undefined;
+const functionReturningFunction = (): (() => void) => noop;
+
 describe('fakeEval()', () => {
   it('does not allow empty string input', () => {
     expect(() => fakeEval('', faker)).toThrow(
@@ -166,5 +171,61 @@ describe('fakeEval()', () => {
     expect(() => fakeEval('airline.airline(.iataCode', faker)).toThrow(
       new FakerError("Missing closing parenthesis in '(.iataCode'")
     );
+  });
+
+  // Regression test for GHSA-qxc2-j82w-r537: fake()/fakeEval() must never evaluate the expression as JavaScript.
+  // In particular, a (hostile) definition that resolves to a function must not expose the `Function` constructor via a `.constructor` chain, which would allow arbitrary code execution.
+  // Functions are always invoked (never property-accessed), so the constructor chain can never reach `Function`.
+  describe('does not allow arbitrary code execution (GHSA-qxc2-j82w-r537)', () => {
+    const globalWithFlag = globalThis as Record<string, unknown>;
+
+    const attacks = [
+      "evil.constructor('return 1')",
+      "evil().constructor('return 1')",
+      "evil.constructor.constructor('globalThis.__fakerPwned = true')",
+      "evil.constructor.constructor('globalThis.__fakerPwned = true')()",
+      "string.constructor.constructor('globalThis.__fakerPwned = true')()",
+    ];
+
+    it('via fakeEval()', () => {
+      globalWithFlag.__fakerPwned = false;
+      // A hostile definition resolving to a function returning a function, mirroring the original proof-of-concept.
+      (faker.rawDefinitions as Record<string, unknown>).evil =
+        functionReturningFunction;
+
+      try {
+        for (const attack of attacks) {
+          let result: unknown;
+          try {
+            result = fakeEval(attack, faker);
+          } catch (error) {
+            // Rejecting the expression is a safe outcome, but it must fail with the library's own error type, never a raw JS engine error.
+            expect(error, attack).toBeInstanceOf(FakerError);
+          }
+
+          expect(globalWithFlag.__fakerPwned, attack).toBe(false);
+          expect(result, attack).not.toBe(Function);
+        }
+      } finally {
+        delete (faker.rawDefinitions as Record<string, unknown>).evil;
+        delete globalWithFlag.__fakerPwned;
+      }
+    });
+
+    it('via helpers.fake()', () => {
+      globalWithFlag.__fakerPwned = false;
+      (faker.rawDefinitions as Record<string, unknown>).evil =
+        functionReturningFunction;
+
+      try {
+        expect(() =>
+          faker.helpers.fake("{{evil.constructor('return 1')}}")
+        ).toThrow(FakerError);
+        expect(globalWithFlag.__fakerPwned).toBe(false);
+      } finally {
+        delete (faker.rawDefinitions as Record<string, unknown>).evil;
+        delete globalWithFlag.__fakerPwned;
+      }
+    });
   });
 });

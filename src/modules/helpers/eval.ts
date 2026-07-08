@@ -46,7 +46,8 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * const airlineMethodName = fakeEval('airline.airline.name', faker); // 'bound airline'
  * ```
  *
- * It is NOT possible to access any values not passed as entrypoints.
+ * It is not possible to execute arbitrary JavaScript through this method;
+ * expressions can only resolve properties and methods reachable from the given entrypoints.
  *
  * This method will never return arrays, as it will pick a random element from them instead.
  *
