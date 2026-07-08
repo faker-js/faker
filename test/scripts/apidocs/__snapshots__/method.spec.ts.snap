@@ -1310,12 +1310,10 @@ It also has a more complex description.",
           },
         },
         {
-          "default": undefined,
+          "default": "{ value: 1 }",
           "description": "Parameter with jsdocs default.
 
-It also has a more complex description.
-
-Defaults to \`{ value: 1 }\`.",
+It also has a more complex description.",
           "name": "b",
           "type": {
             "text": "{ ... }",
@@ -1399,8 +1397,8 @@ exports[`method > processMethodLike(optionsInterfaceParamMethodWithDefaults) 1`]
           },
         },
         {
-          "default": undefined,
-          "description": "Parameter with jsdocs default. Defaults to \`{ value: 1 }\`.",
+          "default": "{ value: 1 }",
+          "description": "Parameter with jsdocs default.",
           "name": "b",
           "type": {
             "text": "ParameterOptionsInterfaceB",
@@ -1579,8 +1577,8 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           },
         },
         {
-          "default": undefined,
-          "description": "Parameter with jsdocs default. Defaults to \`{ value: 1 }\`.",
+          "default": "{ value: 1 }",
+          "description": "Parameter with jsdocs default.",
           "name": "b",
           "type": {
             "text": "{ ... }",
@@ -1606,8 +1604,8 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           },
         },
         {
-          "default": undefined,
-          "description": "Options value. Defaults to \`0\`.",
+          "default": "0",
+          "description": "Options value.",
           "name": "c.value?",
           "type": {
             "text": "number",

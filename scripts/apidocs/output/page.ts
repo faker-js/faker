@@ -11,10 +11,6 @@ import {
 import { FILE_PATH_API_DOCS } from '../../shared/paths';
 import { toRefreshableCode } from '../../shared/refreshable-code';
 import type { RawApiDocsPage } from '../processing/class';
-import {
-  extractSummaryDefault,
-  stripSummaryDefault,
-} from '../processing/jsdocs';
 import type { RawApiDocsMethod } from '../processing/method';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
@@ -221,8 +217,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       parameters.map(async (param) => ({
         ...param,
         type: param.type.text,
-        default: param.default ?? extractSummaryDefault(param.description),
-        description: await mdToHtml(stripSummaryDefault(param.description)),
+        description: await mdToHtml(param.description),
       }))
     ),
     since,

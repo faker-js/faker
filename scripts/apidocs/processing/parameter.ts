@@ -141,14 +141,27 @@ function processSimpleParameter(
 ): RawApiDocsParameter {
   const name = parameter.getName();
   const type = parameter.getType();
+  const description = getDescription(jsdocTag);
+  const signatureDefault = getDefaultValue(parameter) ?? implementationDefault;
+  const summaryDefault = extractSummaryDefault(description);
+  if (
+    signatureDefault != null &&
+    summaryDefault != null &&
+    signatureDefault !== summaryDefault
+  ) {
+    throw new Error(
+      `The documented default \`${summaryDefault}\` does not match the implementation default \`${signatureDefault}\``
+    );
+  }
+
   return {
     name: `${name}${getNameSuffix(type)}`,
     type: getTypeText(type, {
       abbreviate: true,
       stripUndefined: true,
     }),
-    default: getDefaultValue(parameter) ?? implementationDefault,
-    description: getDescription(jsdocTag),
+    default: signatureDefault ?? summaryDefault,
+    description: stripSummaryDefault(description),
   };
 }
 
@@ -229,9 +242,6 @@ function processComplexParameterProperty(
   const description = memberTag
     ? getDescription(memberTag)
     : getDescription(jsdocs);
-  const summaryDefault = memberTag
-    ? extractSummaryDefault(description)
-    : undefined;
 
   return [
     {
@@ -240,9 +250,9 @@ function processComplexParameterProperty(
         abbreviate: false,
         stripUndefined: true,
       }),
-      default: summaryDefault ?? getDefault(jsdocs),
+      default: getDefault(jsdocs) ?? extractSummaryDefault(description),
       description:
-        (summaryDefault ? stripSummaryDefault(description) : description) +
+        stripSummaryDefault(description) +
         (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
     },
   ];
