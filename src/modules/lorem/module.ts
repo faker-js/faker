@@ -29,7 +29,7 @@ export class LoremModule extends ModuleBase {
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
    *
-   * Defaults to `'any-length'`.
+   * Defaults to `'fail'`.
    *
    * @example
    * faker.lorem.word() // 'temporibus'
@@ -46,7 +46,7 @@ export class LoremModule extends ModuleBase {
           /**
            * The expected length of the word.
            *
-           * @default 1
+           * If not provided, a word of any length is returned.
            */
           length?: number | NumberRange;
           /**
@@ -60,7 +60,7 @@ export class LoremModule extends ModuleBase {
            * - `longest`: Returns any of the longest words.
            * - `any-length`: Returns a word with any length.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
