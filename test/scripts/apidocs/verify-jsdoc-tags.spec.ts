@@ -3,8 +3,8 @@ import { resolve } from 'node:path';
 import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
-import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
 import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
+import { extractSummaryDefault } from '../../../scripts/apidocs/processing/jsdocs';
 import { getProject } from '../../../scripts/apidocs/project';
 
 // This test suite ensures, that every method

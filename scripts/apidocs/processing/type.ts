@@ -27,14 +27,14 @@ export interface RawApiDocsUnionType extends RawApiDocsBaseType {
   types: RawApiDocsType[];
 }
 
-export interface RawApiDocsObjectMember {
-  name: string;
-  type: RawApiDocsType;
-}
-
 export interface RawApiDocsObjectType extends RawApiDocsBaseType {
   type: 'object';
   members: RawApiDocsObjectMember[];
+}
+
+export interface RawApiDocsObjectMember {
+  name: string;
+  type: RawApiDocsType;
 }
 
 export interface RawApiDocsShadowType extends RawApiDocsBaseType {
@@ -189,7 +189,7 @@ export function isOptionsLikeType(type: Type): boolean {
  *
  * @param type The type to check.
  */
-export function isRangeLikeType(type: Type): boolean {
+export function isRangeType(type: Type): boolean {
   const symbol = type.getSymbol() ?? type.getAliasSymbol();
   return symbol?.getName() === 'NumberRange';
 }

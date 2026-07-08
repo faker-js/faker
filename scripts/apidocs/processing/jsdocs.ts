@@ -61,6 +61,26 @@ export function getDefault(jsdocs: JSDoc): string | undefined {
   );
 }
 
+const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
+
+/**
+ * Extracts the default value from a `Defaults to \`...\`.` summary hint, if present.
+ *
+ * @param description The description to extract the default value from.
+ */
+export function extractSummaryDefault(description: string): string | undefined {
+  return defaultCommentRegex.exec(description)?.[1];
+}
+
+/**
+ * Removes the `Defaults to \`...\`.` summary hint from the given description.
+ *
+ * @param description The description to remove the default value hint from.
+ */
+export function stripSummaryDefault(description: string): string {
+  return description.replace(defaultCommentRegex, '');
+}
+
 export function getThrows(jsdocs: JSDoc): string[] {
   return getTagsFromJSDoc(jsdocs, 'throws');
 }

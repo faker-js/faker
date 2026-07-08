@@ -1020,8 +1020,8 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
           },
         },
         {
-          "default": undefined,
-          "description": "The maximum value. Defaults to \`10\`.",
+          "default": "10",
+          "description": "The maximum value.",
           "name": "value.max",
           "type": {
             "text": "number",

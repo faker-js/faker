@@ -10,19 +10,21 @@ import type {
 import { exactlyOne, valueForKey } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import {
+  extractSummaryDefault,
   getDefault,
   getDeprecated,
   getDescription,
   getJsDocs,
   getParameterTags,
   getTypeParameterTags,
+  stripSummaryDefault,
 } from './jsdocs';
 import type { RawApiDocsType } from './type';
 import {
   getNameSuffix,
   getTypeText,
   isOptionsLikeType,
-  isRangeLikeType,
+  isRangeType,
 } from './type';
 
 /**
@@ -181,8 +183,8 @@ function processComplexParameter(
   } else if (type.isObject()) {
     // Named range types (e.g. NumberRange) source their member descriptions from the method-level `@param name.member` tags;
     // anonymous options objects use their own inline property JSDoc as before.
-    const rangeLike = isRangeLikeType(type);
-    if (!isOptionsLikeType(type) && !rangeLike) {
+    const rangeType = isRangeType(type);
+    if (!isOptionsLikeType(type) && !rangeType) {
       return [];
     }
 
@@ -193,7 +195,7 @@ function processComplexParameter(
           return processComplexParameterProperty(
             name,
             parameter,
-            rangeLike ? paramTags : undefined
+            rangeType ? paramTags : undefined
           );
         } catch (error) {
           throw newProcessingError({
@@ -222,9 +224,14 @@ function processComplexParameterProperty(
   const propertyType = declaration.getType();
   const jsdocs = getJsDocs(declaration);
   const deprecated = getDeprecated(jsdocs);
-  // Prefer the method-level `@param name.member` tag (per-method wording and its embedded default hint),
-  // falling back to the property's own JSDoc.
+  // Use the `@param name.member` tag if available, otherwise the member's own JSDoc.
   const memberTag = paramTags?.[`${name}.${parameter.getName()}`];
+  const description = memberTag
+    ? getDescription(memberTag)
+    : getDescription(jsdocs);
+  const summaryDefault = memberTag
+    ? extractSummaryDefault(description)
+    : undefined;
 
   return [
     {
@@ -233,9 +240,9 @@ function processComplexParameterProperty(
         abbreviate: false,
         stripUndefined: true,
       }),
-      default: memberTag ? undefined : getDefault(jsdocs),
+      default: summaryDefault ?? getDefault(jsdocs),
       description:
-        (memberTag ? getDescription(memberTag) : getDescription(jsdocs)) +
+        (summaryDefault ? stripSummaryDefault(description) : description) +
         (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
     },
   ];
