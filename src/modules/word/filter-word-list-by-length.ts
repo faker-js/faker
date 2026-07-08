@@ -14,10 +14,17 @@ const STRATEGIES = {
   closest: (wordList: ReadonlyArray<string>, length: NumberRange): string[] => {
     const wordsByLength = groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
-    const min = Math.min(...lengths);
-    const max = Math.max(...lengths);
+    const closestBelow = Math.max(
+      ...lengths.filter((wordLength) => wordLength < length.min)
+    );
+    const closestAbove = Math.min(
+      ...lengths.filter((wordLength) => wordLength > length.max)
+    );
 
-    const closestOffset = Math.min(length.min - min, max - length.max);
+    const closestOffset = Math.min(
+      length.min - closestBelow,
+      closestAbove - length.max
+    );
 
     return wordList.filter(
       (word) =>
