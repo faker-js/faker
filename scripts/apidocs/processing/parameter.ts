@@ -18,7 +18,12 @@ import {
   getTypeParameterTags,
 } from './jsdocs';
 import type { RawApiDocsType } from './type';
-import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
+import {
+  getNameSuffix,
+  getTypeText,
+  isOptionsLikeType,
+  isRangeLikeType,
+} from './type';
 
 /**
  * Represents a parameter in the raw API docs.
@@ -117,7 +122,7 @@ function processParameter(
       valueForKey(paramTags, name),
       implementationDefault
     ),
-    ...processComplexParameter(name, parameter.getType()),
+    ...processComplexParameter(name, parameter.getType(), paramTags),
   ];
 }
 
@@ -156,21 +161,28 @@ function getDefaultValue(
 
 function processComplexParameter(
   name: string,
-  type: Type
+  type: Type,
+  paramTags: Record<string, JSDocTag>
 ): RawApiDocsParameter[] {
   if (type.isNullable()) {
-    return processComplexParameter(name, type.getNonNullableType());
+    return processComplexParameter(name, type.getNonNullableType(), paramTags);
   } else if (type.isUnion()) {
     return type
       .getUnionTypes()
-      .flatMap((unionType) => processComplexParameter(name, unionType));
+      .flatMap((unionType) =>
+        processComplexParameter(name, unionType, paramTags)
+      );
   } else if (type.isArray()) {
     return processComplexParameter(
       `${name}[]`,
-      type.getArrayElementTypeOrThrow()
+      type.getArrayElementTypeOrThrow(),
+      paramTags
     );
   } else if (type.isObject()) {
-    if (!isOptionsLikeType(type)) {
+    // Named range types (e.g. NumberRange) source their member descriptions from the method-level `@param name.member` tags;
+    // anonymous options objects use their own inline property JSDoc as before.
+    const rangeLike = isRangeLikeType(type);
+    if (!isOptionsLikeType(type) && !rangeLike) {
       return [];
     }
 
@@ -178,7 +190,11 @@ function processComplexParameter(
       .getApparentProperties()
       .flatMap((parameter) => {
         try {
-          return processComplexParameterProperty(name, parameter);
+          return processComplexParameterProperty(
+            name,
+            parameter,
+            rangeLike ? paramTags : undefined
+          );
         } catch (error) {
           throw newProcessingError({
             type: 'property',
@@ -194,7 +210,11 @@ function processComplexParameter(
   return [];
 }
 
-function processComplexParameterProperty(name: string, parameter: Symbol) {
+function processComplexParameterProperty(
+  name: string,
+  parameter: Symbol,
+  paramTags?: Record<string, JSDocTag>
+) {
   const declaration = exactlyOne(
     parameter.getDeclarations(),
     'property declaration'
@@ -202,6 +222,9 @@ function processComplexParameterProperty(name: string, parameter: Symbol) {
   const propertyType = declaration.getType();
   const jsdocs = getJsDocs(declaration);
   const deprecated = getDeprecated(jsdocs);
+  // Prefer the method-level `@param name.member` tag (per-method wording and its embedded default hint),
+  // falling back to the property's own JSDoc.
+  const memberTag = paramTags?.[`${name}.${parameter.getName()}`];
 
   return [
     {
@@ -210,9 +233,9 @@ function processComplexParameterProperty(name: string, parameter: Symbol) {
         abbreviate: false,
         stripUndefined: true,
       }),
-      default: getDefault(jsdocs),
+      default: memberTag ? undefined : getDefault(jsdocs),
       description:
-        getDescription(jsdocs) +
+        (memberTag ? getDescription(memberTag) : getDescription(jsdocs)) +
         (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
     },
   ];
