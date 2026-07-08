@@ -677,9 +677,7 @@ export class InternetModule extends ModuleBase {
     const { network = 'any', cidrBlock = ipv4Networks[network] } = options;
 
     if (
-      !/^-?\d{1,3}\.-?\d{1,3}\.-?\d{1,3}\.-?\d{1,3}\/-?\d{1,2}$/.test(
-        cidrBlock
-      )
+      !/^-?\d{1,3}\.-?\d{1,3}\.-?\d{1,3}\.-?\d{1,3}\/-?\d{1,2}$/.test(cidrBlock)
     ) {
       throw new FakerError(
         `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
