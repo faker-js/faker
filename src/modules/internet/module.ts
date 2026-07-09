@@ -897,6 +897,7 @@ export class InternetModule extends ModuleBase {
 
     let currentPattern = pattern;
     let result = prefix;
+    // TODO @Shinigami92 2026-07-09: This loop never terminates if the pattern can never match a generated char (e.g. `/°/`), blocking the event loop. To be resolved by the password rewrite in https://github.com/faker-js/faker/issues/768.
     while (result.length < length) {
       if (memorable) {
         currentPattern = consonant.test(result) ? vowel : consonant;
