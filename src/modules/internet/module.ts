@@ -676,11 +676,7 @@ export class InternetModule extends ModuleBase {
   ): string {
     const { network = 'any', cidrBlock = ipv4Networks[network] } = options;
 
-    if (
-      !/^-?\d{1,3}\.-?\d{1,3}\.-?\d{1,3}\.-?\d{1,3}\/-?\d{1,2}$/.test(
-        cidrBlock
-      )
-    ) {
+    if (!/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/\d{1,2}$/.test(cidrBlock)) {
       throw new FakerError(
         `Invalid CIDR block provided: ${cidrBlock}. Must be in the format x.x.x.x/y.`
       );
@@ -688,14 +684,14 @@ export class InternetModule extends ModuleBase {
 
     const [ipText, subnet] = cidrBlock.split('/');
     const subnetValue = Number.parseInt(subnet, 10);
-    if (subnetValue < 0 || subnetValue > 32) {
+    if (subnetValue > 32) {
       throw new FakerError(
         `Invalid CIDR block provided: ${cidrBlock}. Prefix length must be between 0 and 32.`
       );
     }
 
     const octets = ipText.split('.').map(Number);
-    if (octets.some((octet) => octet < 0 || octet > 255)) {
+    if (octets.some((octet) => octet > 255)) {
       throw new FakerError(
         `Invalid CIDR block provided: ${cidrBlock}. Each octet must be between 0 and 255.`
       );
