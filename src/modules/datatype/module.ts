@@ -15,7 +15,6 @@ export class DatatypeModule extends SimpleModuleBase {
    * A probability of `0.75` results in `true` being returned `75%` of the calls; likewise `0.3` => `30%`.
    * If the probability is `<= 0.0`, it will always return `false`.
    * If the probability is `>= 1.0`, it will always return `true`.
-   * The probability is limited to two decimal places.
    *
    * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`.
    * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.

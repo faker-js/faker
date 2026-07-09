@@ -216,7 +216,7 @@ async function generateLocalesIndexFile(
     content.push(
       `import type { ${type.replace(/\[.*/, '')} } from '..${'/..'.repeat(
         depth
-      )}';`
+      )}/definitions';`
     );
   }
 
