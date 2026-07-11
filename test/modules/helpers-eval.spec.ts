@@ -1,11 +1,11 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { fakeEval } from '../../src/modules/helpers/eval';
 
-// A hostile definition that resolves to a function returning a function,
-// mirroring the original GHSA-qxc2-j82w-r537 proof-of-concept.
-const noop = (): void => undefined;
-const functionReturningFunction = (): (() => void) => noop;
+// A hostile definition resolving to a function returning a function, mirroring the original GHSA-qxc2-j82w-r537 proof-of-concept.
+const noop = () => {};
+
+const hostileDefinition = { evil: () => noop };
 
 describe('fakeEval()', () => {
   it('does not allow empty string input', () => {
@@ -179,55 +179,39 @@ describe('fakeEval()', () => {
   describe('does not allow arbitrary code execution (GHSA-qxc2-j82w-r537)', () => {
     const globalWithFlag = globalThis as Record<string, unknown>;
 
+    // Every payload is an observable side effect (setting the global flag), so we
+    // notice if it ever executes instead of a silent expression like `return 1`.
     const attacks = [
-      'evil.constructor(return 1)',
-      'evil().constructor(return 1)',
-      'evil.constructor.constructor(globalThis.__fakerPwned = true)',
-      'evil.constructor.constructor(globalThis.__fakerPwned = true)()',
+      'do.evil.constructor(globalThis.__fakerPwned = true)()',
+      'do.evil().constructor(globalThis.__fakerPwned = true)()',
+      'do.evil.constructor.constructor(globalThis.__fakerPwned = true)',
+      'do.evil.constructor.constructor(globalThis.__fakerPwned = true)()',
       'string.constructor.constructor(globalThis.__fakerPwned = true)()',
     ];
 
-    it('via fakeEval()', () => {
+    beforeEach(() => {
       globalWithFlag.__fakerPwned = false;
-      // A hostile definition resolving to a function returning a function, mirroring the original proof-of-concept.
-      (faker.rawDefinitions as Record<string, unknown>).evil =
-        functionReturningFunction;
-
-      try {
-        for (const attack of attacks) {
-          let result: unknown;
-          try {
-            result = fakeEval(attack, faker);
-          } catch (error) {
-            // Rejecting the expression is a safe outcome, but it must fail with the library's own error type, never a raw JS engine error.
-            expect(error, attack).toBeInstanceOf(FakerError);
-          }
-
-          expect(globalWithFlag.__fakerPwned, attack).toBe(false);
-          expect(result, attack).not.toBe(Function);
-        }
-      } finally {
-        delete (faker.rawDefinitions as Record<string, unknown>).evil;
-        delete globalWithFlag.__fakerPwned;
-      }
+      faker.definitions.raw.do = hostileDefinition;
     });
 
-    it('via helpers.fake()', () => {
-      globalWithFlag.__fakerPwned = false;
-      (faker.rawDefinitions as Record<string, unknown>).evil =
-        functionReturningFunction;
+    afterEach(() => {
+      delete faker.definitions.raw.do;
+      delete globalWithFlag.__fakerPwned;
+    });
 
-      try {
-        expect(() =>
-          faker.helpers.fake(
-            '{{evil.constructor.constructor(globalThis.__fakerPwned = true)()}}'
-          )
-        ).toThrow(FakerError);
-        expect(globalWithFlag.__fakerPwned).toBe(false);
-      } finally {
-        delete (faker.rawDefinitions as Record<string, unknown>).evil;
-        delete globalWithFlag.__fakerPwned;
-      }
+    it.each(attacks)('rejects %s via fakeEval()', (attack) => {
+      // The expression must always be rejected with the library's own error type, never evaluated as JavaScript.
+      expect(() => fakeEval(attack, faker)).toThrow(FakerError);
+      expect(globalWithFlag.__fakerPwned, attack).toBe(false);
+    });
+
+    it('rejects the proof-of-concept via helpers.fake()', () => {
+      expect(() =>
+        faker.helpers.fake(
+          '{{do.evil.constructor.constructor(globalThis.__fakerPwned = true)()}}'
+        )
+      ).toThrow(FakerError);
+      expect(globalWithFlag.__fakerPwned).toBe(false);
     });
   });
 });
