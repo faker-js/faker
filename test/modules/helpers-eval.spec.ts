@@ -205,13 +205,9 @@ describe('fakeEval()', () => {
       expect(globalWithFlag.__fakerPwned, attack).toBe(false);
     });
 
-    it('rejects the proof-of-concept via helpers.fake()', () => {
-      expect(() =>
-        faker.helpers.fake(
-          '{{do.evil.constructor.constructor(globalThis.__fakerPwned = true)()}}'
-        )
-      ).toThrow(FakerError);
-      expect(globalWithFlag.__fakerPwned).toBe(false);
+    it.each(attacks)('rejects %s via helpers.fake()', (attack) => {
+      expect(() => faker.helpers.fake(`{{${attack}}}`)).toThrow(FakerError);
+      expect(globalWithFlag.__fakerPwned, attack).toBe(false);
     });
   });
 });
