@@ -697,6 +697,10 @@ export class InternetModule extends ModuleBase {
       );
     }
 
+    if (subnetValue === 32) {
+      return ipText;
+    }
+
     const subnetMask = 0xffffffff >>> subnetValue;
     const [rawIp1, rawIp2, rawIp3, rawIp4] = octets;
     const rawIp = (rawIp1 << 24) | (rawIp2 << 16) | (rawIp3 << 8) | rawIp4;

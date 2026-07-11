@@ -652,6 +652,14 @@ describe('internet', () => {
           expect(fourth).toBeLessThanOrEqual(255);
         });
 
+        it('should return the input IPv4 for a /32 CIDR block', () => {
+          const actual = faker.internet.ipv4({
+            cidrBlock: '192.168.0.255/32',
+          });
+
+          expect(actual).toBe('192.168.0.255');
+        });
+
         it.each([
           '',
           '...',
