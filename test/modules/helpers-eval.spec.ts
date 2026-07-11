@@ -180,11 +180,11 @@ describe('fakeEval()', () => {
     const globalWithFlag = globalThis as Record<string, unknown>;
 
     const attacks = [
-      "evil.constructor('return 1')",
-      "evil().constructor('return 1')",
-      "evil.constructor.constructor('globalThis.__fakerPwned = true')",
-      "evil.constructor.constructor('globalThis.__fakerPwned = true')()",
-      "string.constructor.constructor('globalThis.__fakerPwned = true')()",
+      'evil.constructor(return 1)',
+      'evil().constructor(return 1)',
+      'evil.constructor.constructor(globalThis.__fakerPwned = true)',
+      'evil.constructor.constructor(globalThis.__fakerPwned = true)()',
+      'string.constructor.constructor(globalThis.__fakerPwned = true)()',
     ];
 
     it('via fakeEval()', () => {
@@ -219,7 +219,9 @@ describe('fakeEval()', () => {
 
       try {
         expect(() =>
-          faker.helpers.fake("{{evil.constructor('return 1')}}")
+          faker.helpers.fake(
+            '{{evil.constructor.constructor(globalThis.__fakerPwned = true)()}}'
+          )
         ).toThrow(FakerError);
         expect(globalWithFlag.__fakerPwned).toBe(false);
       } finally {
