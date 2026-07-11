@@ -1,0 +1,18 @@
+export default [
+  'caine',
+  'cillin',
+  'dipine',
+  'floxacin',
+  'gliptin',
+  'mab',
+  'mycin',
+  'nib',
+  'olol',
+  'parin',
+  'prazole',
+  'pril',
+  'profen',
+  'sartan',
+  'statin',
+  'vir',
+];

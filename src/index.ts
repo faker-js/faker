@@ -75,6 +75,7 @@ export { IPv4Network } from './modules/internet';
 export type { IPv4NetworkType, InternetModule } from './modules/internet';
 export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
+export type { MedicalModule } from './modules/medical';
 export type { MusicModule } from './modules/music';
 export type { NumberModule } from './modules/number';
 export { Sex } from './modules/person';

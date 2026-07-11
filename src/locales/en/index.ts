@@ -19,6 +19,7 @@ import hacker from './hacker';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import medical from './medical';
 import metadata from './metadata';
 import music from './music';
 import person from './person';
@@ -51,6 +52,7 @@ const en: LocaleDefinition = {
   internet,
   location,
   lorem,
+  medical,
   metadata,
   music,
   person,
