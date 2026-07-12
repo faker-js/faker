@@ -628,10 +628,6 @@ export class InternetModule extends ModuleBase {
    * @param options The optional options object.
    * @param options.network The optional network to use. This is intended as an alias for well-known `cidrBlock`s. Defaults to `'any'`.
    *
-   * @throws {FakerError} If the resolved CIDR block does not use the format `x.x.x.x/y`.
-   * @throws {FakerError} If the resolved CIDR block has a prefix length greater than 32.
-   * @throws {FakerError} If the resolved CIDR block contains an octet greater than 255.
-   *
    * @example
    * faker.internet.ipv4() // '245.108.222.0'
    * faker.internet.ipv4({ network: 'private-a' }) // '10.199.154.205'
