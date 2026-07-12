@@ -138,7 +138,7 @@ export default [
   'Sepsis',
   'Shingles',
   'Sickle Cell Disease',
-  "Sj\u00F6gren's Syndrome",
+  "Sjögren's Syndrome",
   'Sleep Apnea',
   'Squamous Cell Carcinoma',
   'Stress Incontinence',

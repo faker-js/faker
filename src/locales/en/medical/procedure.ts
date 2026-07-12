@@ -8,7 +8,7 @@ export default [
   'Blood Test',
   'Bone Marrow Biopsy',
   'Bone Marrow Transplant',
-  'Botox Injection',
+  'Botulinum Toxin Injection',
   'Bronchoscopy',
   'C-Section',
   'CAR T-Cell Therapy',

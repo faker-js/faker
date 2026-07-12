@@ -14,7 +14,7 @@ exports[`medical > 42 > procedure 1`] = `"Glaucoma Surgery"`;
 
 exports[`medical > 42 > specialty 1`] = `"Infectious Disease"`;
 
-exports[`medical > 42 > symptom 1`] = `"Glare Sensitivity"`;
+exports[`medical > 42 > symptom 1`] = `"Gastrointestinal Issues"`;
 
 exports[`medical > 1211 > allergen 1`] = `"Sulfites"`;
 
@@ -28,9 +28,9 @@ exports[`medical > 1211 > drugName 1`] = `"Zentaex"`;
 
 exports[`medical > 1211 > procedure 1`] = `"Tympanoplasty"`;
 
-exports[`medical > 1211 > specialty 1`] = `"Vascular Medicine"`;
+exports[`medical > 1211 > specialty 1`] = `"Urology"`;
 
-exports[`medical > 1211 > symptom 1`] = `"Uncontrolled Movements"`;
+exports[`medical > 1211 > symptom 1`] = `"Unexplained Weight Loss"`;
 
 exports[`medical > 1337 > allergen 1`] = `"Eggs"`;
 
@@ -44,6 +44,6 @@ exports[`medical > 1337 > drugName 1`] = `"Juvilonix"`;
 
 exports[`medical > 1337 > procedure 1`] = `"Dermabrasion"`;
 
-exports[`medical > 1337 > specialty 1`] = `"General Surgery"`;
+exports[`medical > 1337 > specialty 1`] = `"Gastroenterology"`;
 
-exports[`medical > 1337 > symptom 1`] = `"Double Vision"`;
+exports[`medical > 1337 > symptom 1`] = `"Distorted Vision"`;
