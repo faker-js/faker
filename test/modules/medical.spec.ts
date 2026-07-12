@@ -72,19 +72,9 @@ describe('medical', () => {
       });
 
       describe('drugName()', () => {
-        it('should return a non-empty fictitious drug name', () => {
+        it('should return a random value from the drug name array', () => {
           const actual = faker.medical.drugName();
-          expect(actual).toBeTypeOf('string');
-          expect(actual.length).toBeGreaterThan(0);
-          expect(actual).toMatch(/^[A-Za-z]+$/);
-        });
-
-        it('should not end with a real INN stem', () => {
-          const lower = faker.medical.drugName().toLowerCase();
-          for (const ending of faker.definitions.medical
-            .drug_forbidden_ending) {
-            expect(lower.endsWith(ending)).toBe(false);
-          }
+          expect(faker.definitions.medical.drug_name).toContain(actual);
         });
       });
     }

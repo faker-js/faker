@@ -40,23 +40,7 @@ export type MedicalDefinition = LocaleEntry<{
   blood_type: string[];
 
   /**
-   * Invented morpheme prefixes used to build fictitious drug names.
+   * Fictitious, brand-style drug names, e.g. `'Zolpraxen'`.
    */
-  drug_prefix: string[];
-
-  /**
-   * Invented morpheme infixes used to build fictitious drug names.
-   */
-  drug_infix: string[];
-
-  /**
-   * Invented morpheme suffixes used to build fictitious drug names.
-   */
-  drug_suffix: string[];
-
-  /**
-   * Real INN stems that a fictitious drug name must not end with, so generated
-   * names cannot resemble real substances.
-   */
-  drug_forbidden_ending: string[];
+  drug_name: string[];
 }>;

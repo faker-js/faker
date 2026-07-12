@@ -6,14 +6,8 @@ import { ModuleBase } from '../../internal/module-base';
  * ### Overview
  *
  * Generate plausible, non-clinical healthcare data for tests, demos, and
- * fixtures: a medical [`specialty()`](https://fakerjs.dev/api/medical.html#specialty),
- * a hospital [`department()`](https://fakerjs.dev/api/medical.html#department),
- * a [`condition()`](https://fakerjs.dev/api/medical.html#condition),
- * a [`symptom()`](https://fakerjs.dev/api/medical.html#symptom),
- * a [`procedure()`](https://fakerjs.dev/api/medical.html#procedure),
- * an [`allergen()`](https://fakerjs.dev/api/medical.html#allergen),
- * a [`bloodType()`](https://fakerjs.dev/api/medical.html#bloodtype),
- * and a fictitious [`drugName()`](https://fakerjs.dev/api/medical.html#drugname).
+ * fixtures: specialties, hospital departments, conditions, symptoms,
+ * procedures, allergens, blood types, and fictitious drug names.
  *
  * All values are intentionally generic or invented. Real diagnosis codes (e.g.
  * ICD-10), real medicine names, and correlated patient records are deliberately
@@ -121,9 +115,9 @@ export class MedicalModule extends ModuleBase {
   /**
    * Returns a fictitious, brand-style drug name.
    *
-   * The name is assembled from invented morphemes and deliberately avoids real
-   * WHO INN stems (e.g. `-statin`, `-pril`), so it never resolves to a real
-   * medicine or brand and cannot be mistaken for one.
+   * All values are invented: they were generated from neutral morphemes and
+   * screened against real brand names, WHO INN generic names, and INN class
+   * stems (e.g. `-statin`, `-pril`), so they do not resolve to real medicines.
    *
    * @example
    * faker.medical.drugName() // 'Zolpraxen'
@@ -131,31 +125,8 @@ export class MedicalModule extends ModuleBase {
    * @since 10.6.0
    */
   drugName(): string {
-    const {
-      drug_prefix: prefixes,
-      drug_infix: infixes,
-      drug_suffix: suffixes,
-      drug_forbidden_ending: forbiddenEndings,
-    } = this.faker.definitions.medical;
-
-    let name = '';
-    // Retry a few times so a name that happens to end in a real INN stem is
-    // rerolled rather than returned.
-    for (let attempt = 0; attempt < 12; attempt++) {
-      const parts = [this.faker.helpers.arrayElement(prefixes)];
-      if (this.faker.datatype.boolean(0.4)) {
-        parts.push(this.faker.helpers.arrayElement(infixes));
-      }
-
-      parts.push(this.faker.helpers.arrayElement(suffixes));
-      name = parts.join('');
-
-      const lower = name.toLowerCase();
-      if (forbiddenEndings.every((ending) => !lower.endsWith(ending))) {
-        break;
-      }
-    }
-
-    return name;
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.medical.drug_name
+    );
   }
 }

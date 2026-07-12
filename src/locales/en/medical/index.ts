@@ -7,10 +7,7 @@ import allergen from './allergen';
 import blood_type from './blood_type';
 import condition from './condition';
 import department from './department';
-import drug_forbidden_ending from './drug_forbidden_ending';
-import drug_infix from './drug_infix';
-import drug_prefix from './drug_prefix';
-import drug_suffix from './drug_suffix';
+import drug_name from './drug_name';
 import procedure from './procedure';
 import specialty from './specialty';
 import symptom from './symptom';
@@ -20,10 +17,7 @@ const medical: MedicalDefinition = {
   blood_type,
   condition,
   department,
-  drug_forbidden_ending,
-  drug_infix,
-  drug_prefix,
-  drug_suffix,
+  drug_name,
   procedure,
   specialty,
   symptom,

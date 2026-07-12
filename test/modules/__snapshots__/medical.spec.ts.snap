@@ -8,7 +8,7 @@ exports[`medical > 42 > condition 1`] = `"Fibromyalgia"`;
 
 exports[`medical > 42 > department 1`] = `"Maternity Ward"`;
 
-exports[`medical > 42 > drugName 1`] = `"Mizator"`;
+exports[`medical > 42 > drugName 1`] = `"Lumeyl"`;
 
 exports[`medical > 42 > procedure 1`] = `"Glaucoma Surgery"`;
 
@@ -24,7 +24,7 @@ exports[`medical > 1211 > condition 1`] = `"Thyroid Cancer"`;
 
 exports[`medical > 1211 > department 1`] = `"Sleep Lab"`;
 
-exports[`medical > 1211 > drugName 1`] = `"Zentaex"`;
+exports[`medical > 1211 > drugName 1`] = `"Zentavor"`;
 
 exports[`medical > 1211 > procedure 1`] = `"Tympanoplasty"`;
 
@@ -40,7 +40,7 @@ exports[`medical > 1337 > condition 1`] = `"Crohn's Disease"`;
 
 exports[`medical > 1337 > department 1`] = `"Inpatient Ward"`;
 
-exports[`medical > 1337 > drugName 1`] = `"Juvilonix"`;
+exports[`medical > 1337 > drugName 1`] = `"Ixenvafen"`;
 
 exports[`medical > 1337 > procedure 1`] = `"Dermabrasion"`;
 
