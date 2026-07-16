@@ -209,6 +209,8 @@ export class SignatureTest {
    * Test with NumberRange.
    *
    * @param value `{min: 1, max: 10}`.
+   * @param value.min The minimum value.
+   * @param value.max The maximum value. Defaults to `10`.
    * @param array Array of `{min: 1, max: 10}`.
    * @param options The options parameter.
    * @param options.count `{min: 1, max: 10}`.
