@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { CssFunction, CssSpace, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -20,6 +20,19 @@ describe('color', () => {
       'lch',
       'colorByCSSColorSpace'
     );
+  });
+
+  describe(`hsl({ format: 'css', includeAlpha: true })`, () => {
+    it('should use a CSS number between 0 and 1 for the alpha value', () => {
+      const mock = vi.spyOn(faker.number, 'float').mockReturnValue(0.5);
+
+      try {
+        const color = faker.color.hsl({ format: 'css', includeAlpha: true });
+        expect(color).match(/^hsl\(\d{1,3}deg 50% 50% \/ 0\.5\)$/);
+      } finally {
+        mock.mockRestore();
+      }
+    });
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
