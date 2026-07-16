@@ -325,10 +325,10 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          for (const value of color) {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(230);
-          }
+          expect(color[1]).toBeGreaterThanOrEqual(0);
+          expect(color[1]).toBeLessThanOrEqual(230);
+          expect(color[2]).toBeGreaterThanOrEqual(0);
+          expect(color[2]).toBeLessThanOrEqual(360);
         });
       });
 
@@ -338,10 +338,10 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          for (const value of color) {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(230);
-          }
+          expect(color[1]).toBeGreaterThanOrEqual(0);
+          expect(color[1]).toBeLessThanOrEqual(230);
+          expect(color[2]).toBeGreaterThanOrEqual(0);
+          expect(color[2]).toBeLessThanOrEqual(360);
         });
       });
 
