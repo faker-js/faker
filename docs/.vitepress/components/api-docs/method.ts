@@ -17,7 +17,7 @@ export interface ApiDocsMethod {
 
 export interface ApiDocsMethodParameter {
   readonly name: string;
-  readonly type: string | undefined;
+  readonly type: string | undefined; // HTML
   readonly default: string | undefined;
   readonly description: string; // HTML
 }

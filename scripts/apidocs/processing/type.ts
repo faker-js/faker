@@ -1,4 +1,4 @@
-import { TypeFlags, type Type } from 'ts-morph';
+import { Node, SyntaxKind, TypeFlags, type Type } from 'ts-morph';
 import { atLeastOneAndAllRequired, required } from '../utils/value-checks';
 
 export type RawApiDocsType =
@@ -11,6 +11,11 @@ export type RawApiDocsType =
 interface RawApiDocsBaseType {
   type: string;
   text: string;
+  /**
+   * The description of this type, e.g. the JSDoc of the enum member backing a
+   * shadow type value. Rendered as hoverable/clickable popover text in the docs.
+   */
+  description?: string;
 }
 
 export interface RawApiDocsSimpleType extends RawApiDocsBaseType {
@@ -210,6 +215,104 @@ export function isOptionsLikeType(type: Type): boolean {
 export function isRangeType(type: Type): boolean {
   const symbol = type.getSymbol() ?? type.getAliasSymbol();
   return symbol?.getName() === 'NumberRange';
+}
+
+/**
+ * Resolves the per-value descriptions backing a shadow type.
+ *
+ * A shadow type is a string-literal alias (e.g. `LengthStrategyType`) whose
+ * values come from an enum (e.g. `` LengthStrategyType = `${LengthStrategy}` ``).
+ * TypeScript resolves the template literal eagerly, so the enum member JSDoc is
+ * no longer reachable via the resolved `Type`. It is however still reachable via
+ * the syntactic type node, which is what this function walks:
+ *
+ * ```txt
+ * TypeReference "LengthStrategyType"
+ *   -> TypeAliasDeclaration (following the import)
+ *   -> `${LengthStrategy}` -> EnumDeclaration
+ *   -> member value + JSDoc
+ * ```
+ *
+ * @param typeNode The syntactic type node of the parameter/property, if any.
+ *
+ * @returns A map from enum member value (e.g. `'fail'`) to its JSDoc description.
+ */
+export function getShadowTypeDescriptions(
+  typeNode: Node | undefined
+): Map<string, string> {
+  const descriptions = new Map<string, string>();
+  if (!Node.isTypeReference(typeNode)) {
+    return descriptions;
+  }
+
+  const aliasSymbol = resolveSymbol(typeNode.getTypeName().getSymbol());
+  const aliasDeclaration = aliasSymbol?.getDeclarations()?.[0];
+  if (!aliasDeclaration || !Node.isTypeAliasDeclaration(aliasDeclaration)) {
+    return descriptions;
+  }
+
+  const aliasTypeNode = aliasDeclaration.getTypeNodeOrThrow();
+  const enumReferences = [
+    ...(Node.isTypeReference(aliasTypeNode) ? [aliasTypeNode] : []),
+    ...aliasTypeNode.getDescendantsOfKind(SyntaxKind.TypeReference),
+  ];
+
+  for (const enumReference of enumReferences) {
+    const enumSymbol = resolveSymbol(enumReference.getTypeName().getSymbol());
+    const enumDeclaration = enumSymbol?.getDeclarations()?.[0];
+    if (!enumDeclaration || !Node.isEnumDeclaration(enumDeclaration)) {
+      continue;
+    }
+
+    for (const member of enumDeclaration.getMembers()) {
+      const value = member.getValue();
+      const description = member.getJsDocs().at(-1)?.getDescription().trim();
+      if (typeof value === 'string' && description) {
+        descriptions.set(value, description);
+      }
+    }
+  }
+
+  return descriptions;
+}
+
+/**
+ * Attaches the given per-value descriptions to the matching members of a type.
+ *
+ * @param type The type to enrich (mutated in place).
+ * @param descriptions The per-value descriptions, see {@link getShadowTypeDescriptions}.
+ *
+ * @returns The enriched type, for convenience.
+ */
+export function attachShadowTypeDescriptions(
+  type: RawApiDocsType,
+  descriptions: Map<string, string>
+): RawApiDocsType {
+  if (descriptions.size === 0) {
+    return type;
+  }
+
+  const members = type.type === 'union' ? type.types : [type];
+  for (const member of members) {
+    const value = member.text.replace(/^'(.*)'$/, '$1');
+    const description = descriptions.get(value);
+    if (description) {
+      member.description = description;
+    }
+  }
+
+  return type;
+}
+
+/**
+ * Follows import specifiers to the symbol of the actual declaration.
+ *
+ * @param symbol The symbol to resolve.
+ */
+function resolveSymbol<T extends { getAliasedSymbol(): T | undefined }>(
+  symbol: T | undefined
+): T | undefined {
+  return symbol?.getAliasedSymbol() ?? symbol;
 }
 
 function newSimpleType(name: string): RawApiDocsSimpleType {
