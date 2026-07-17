@@ -63,8 +63,12 @@ td.deprecated {
  * lowest priority and is overridden by VitePress' `.vp-doc` block styling,
  * which would otherwise render every popover inline. Reassert it explicitly.
  */
-.shadow-type-popover:not(:popover-open) {
+.shadow-type-popover {
   display: none;
+}
+
+.shadow-type-popover:popover-open {
+  display: block;
 }
 
 .shadow-type-popover {

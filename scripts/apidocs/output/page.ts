@@ -316,5 +316,9 @@ function escapeHtml(value: string): string {
  * @param value The string to slugify.
  */
 function toIdSlug(value: string): string {
-  return value.replaceAll(/[^a-zA-Z0-9]+/g, '-').replaceAll(/^-+|-+$/g, '');
+  const slug = value
+    .replaceAll(/[^a-zA-Z0-9]+/g, '-')
+    .replaceAll(/^-+|-+$/g, '');
+
+  return slug.length === 0 ? 'x' : slug;
 }
