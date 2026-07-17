@@ -1,5 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
 
+// NHTSA 49 CFR § 565.15(c), Tables III and IV define the transliteration
+// values and position weights used here:
+// https://www.govinfo.gov/content/pkg/CFR-2025-title49-vol6/pdf/CFR-2025-title49-vol6-sec565-15.pdf
 const vinWeights = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2];
 
 const vinTransliteration: Record<string, number> = {
