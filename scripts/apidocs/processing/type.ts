@@ -12,8 +12,9 @@ interface RawApiDocsBaseType {
   type: string;
   text: string;
   /**
-   * The description of this type, e.g. the JSDoc of the enum member backing a
-   * shadow type value. Rendered as hoverable/clickable popover text in the docs.
+   * The raw (non-HTML) description of this type, e.g. the JSDoc of the enum
+   * member backing a shadow type value. Escaped and rendered as hoverable/
+   * clickable popover text in the docs.
    */
   description?: string;
 }

@@ -29,7 +29,7 @@ const { parameters } = defineProps<{ parameters: ApiDocsMethodParameter[] }>();
           >
             {{ name }}
           </td>
-          <td v-html="type"></td>
+          <td class="type" v-html="type"></td>
           <td>
             <code v-if="def">{{ def }}</code>
           </td>
@@ -44,12 +44,14 @@ const { parameters } = defineProps<{ parameters: ApiDocsMethodParameter[] }>();
 td.deprecated {
   text-decoration: line-through;
 }
-</style>
 
-<!-- Unscoped: targets markup injected via v-html (shadow type popovers). -->
-<style>
-.shadow-type-value {
+.type {
   font-family: var(--vp-font-family-mono);
+}
+
+/* `:deep` reaches the popover markup injected into the type column via v-html. */
+.type :deep(.shadow-type-value) {
+  font-family: inherit;
   font-size: inherit;
   color: var(--vp-c-brand-1);
   text-decoration-line: underline;
@@ -58,20 +60,9 @@ td.deprecated {
   cursor: help;
 }
 
-/*
- * Author-controlled display: the UA rule that hides a closed popover has the
- * lowest priority and is overridden by VitePress' `.vp-doc` block styling,
- * which would otherwise render every popover inline. Reassert it explicitly.
- */
-.shadow-type-popover {
+/* `display: none` overwrites VitePress' `.vp-doc` default of `inline`. */
+.type :deep(.shadow-type-popover) {
   display: none;
-}
-
-.shadow-type-popover:popover-open {
-  display: block;
-}
-
-.shadow-type-popover {
   max-width: 20rem;
   margin: 0;
   padding: 0.5rem 0.75rem;
@@ -79,14 +70,19 @@ td.deprecated {
   border-radius: 8px;
   background-color: var(--vp-c-bg-elv);
   color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-base);
   font-size: 0.875rem;
   line-height: 1.5;
   box-shadow: var(--vp-shadow-3);
 }
 
+.type :deep(.shadow-type-popover:popover-open) {
+  display: block;
+}
+
 /* Position next to the trigger where anchor positioning is supported. */
 @supports (anchor-name: --x) {
-  .shadow-type-popover {
+  .type :deep(.shadow-type-popover) {
     position: absolute;
     position-area: bottom span-right;
     margin-top: 4px;
