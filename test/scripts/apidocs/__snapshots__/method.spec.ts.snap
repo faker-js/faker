@@ -58,11 +58,11 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
           "description": "Array to pick the value from.",
           "name": "array",
           "type": {
-            "text": "Array<{ ... }>",
+            "text": "Array<{ … }>",
             "type": "generic",
             "typeParameters": [
               {
-                "text": "{ ... }",
+                "text": "{ … }",
                 "type": "simple",
               },
             ],
@@ -526,7 +526,7 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
           "description": "The options.",
           "name": "option",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1113,7 +1113,7 @@ exports[`method > processMethodLike(numberOrRangeParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1394,7 +1394,7 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1599,7 +1599,7 @@ exports[`method > processMethodLike(optionsInlineParamMethodWithDefaults) 1`] = 
 It also has a more complex description.",
           "name": "a",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1619,7 +1619,7 @@ It also has a more complex description.",
 It also has a more complex description.",
           "name": "b",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1637,7 +1637,7 @@ It also has a more complex description.",
           "description": "Parameter with inner jsdocs default.",
           "name": "c",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1756,7 +1756,7 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1866,7 +1866,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with signature default.",
           "name": "a",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1884,7 +1884,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with jsdocs default.",
           "name": "b",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1902,7 +1902,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with inner jsdocs default.",
           "name": "c",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -2053,7 +2053,7 @@ exports[`method > processMethodLike(shadowTypeParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options?",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -2137,7 +2137,7 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options?",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },

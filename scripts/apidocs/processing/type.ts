@@ -179,7 +179,7 @@ export function getTypeText(
   }
 
   if (abbreviate && isOptionsLikeType(type)) {
-    return newSimpleType('{ ... }');
+    return newSimpleType('{ … }');
   }
 
   if (resolveAliases && type.isTypeParameter()) {
