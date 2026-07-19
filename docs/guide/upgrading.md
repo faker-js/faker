@@ -53,6 +53,16 @@ Because [Jest](https://www.npmjs.com/package/jest) testing library uses its own 
 
 If any below solutions fails, keep using Faker v9. You can find some more details and possible workarounds in [issue #3606](https://github.com/faker-js/faker/issues/3606).
 
+##### Jest `>=30.4.2` with native ESM support
+
+Starting with Jest `v30.4.2`, the `transformIgnorePatterns` workaround below is no longer needed. Instead, enable Jest's [native ESM support](https://jestjs.io/docs/ecmascript-modules) by setting the `NODE_OPTIONS` environment variable when running your tests:
+
+```sh
+NODE_OPTIONS="--experimental-vm-modules" npx jest
+```
+
+Note that for `require`-based (CJS) test files this additionally requires Node.js `v24.9` or newer, as Jest relies on its synchronous `vm` module APIs to `require` ESM packages. On older Node.js versions, Jest fails with an error explaining exactly that.
+
 ##### `ts-jest`
 
 When using Jest in a TypeScript project you might be already using `ts-jest` for transforming `ts` files on the fly. In such case you should apply following changes to your `jest.config.ts`:
