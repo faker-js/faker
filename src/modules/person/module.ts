@@ -254,6 +254,9 @@ export class PersonModule extends ModuleBase {
    * Output of this method is localised, so it should not be used to fill the parameter `sex`
    * available in some other modules for example `faker.person.firstName()`.
    *
+   * @param options The optional options object.
+   * @param options.sexType When set, return the localized sex string matching the given sex type instead of a random one.
+   *
    * @see faker.person.gender(): For generating a gender related value.
    * @see faker.person.sexType(): For generating a sex value to be used as a parameter.
    *
@@ -262,8 +265,31 @@ export class PersonModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  sex(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.person.sex);
+  sex(options?: {
+    /**
+     * When set, return the localized sex string matching the given sex type instead of a random one.
+     */
+    sexType?: SexType;
+  }): string {
+    const list = this.faker.definitions.person.sex;
+    if (!options?.sexType) {
+      return this.faker.helpers.arrayElement(list);
+    }
+
+    // Map the SexType to the matching localized sex string by canonical index
+    // (female=0, male=1 in the en source list) so the returned string matches
+    // the requested sex even in non-en locales. See issue #3567.
+    const index =
+      options.sexType === (Sex.Female as SexType)
+        ? 0
+        : options.sexType === (Sex.Male as SexType)
+          ? 1
+          : -1;
+    if (index >= 0 && index < list.length) {
+      return list[index];
+    }
+
+    return this.faker.helpers.arrayElement(list);
   }
 
   /**
