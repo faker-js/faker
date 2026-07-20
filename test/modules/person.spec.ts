@@ -7,14 +7,12 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('person', () => {
   seededTests(faker, 'person', (t) => {
-    t.itEach(
-      'gender',
-      'jobTitle',
-      'jobDescriptor',
-      'jobArea',
-      'jobType',
-      'bio'
-    );
+    t.itEach('jobTitle', 'jobDescriptor', 'jobArea', 'jobType', 'bio');
+    t.describe('gender', (t) => {
+      t.it('noArgs')
+        .it('with female weighting', { weighting: 'female' })
+        .it('with male weighting', { weighting: 'male' });
+    });
 
     t.describe('sexType', (t) =>
       t

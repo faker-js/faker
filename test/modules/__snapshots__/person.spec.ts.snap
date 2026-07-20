@@ -16,7 +16,11 @@ exports[`person > 42 > fullName > with lastName 1`] = `"Nikita Doe"`;
 
 exports[`person > 42 > fullName > with sex 1`] = `"Valentina Miller"`;
 
-exports[`person > 42 > gender 1`] = `"Gender nonconforming"`;
+exports[`person > 42 > gender > noArgs 1`] = `"Gender nonconforming"`;
+
+exports[`person > 42 > gender > with female weighting 1`] = `"Female to male transsexual man"`;
+
+exports[`person > 42 > gender > with male weighting 1`] = `"Female to male transsexual man"`;
 
 exports[`person > 42 > jobArea 1`] = `"Identity"`;
 
@@ -70,7 +74,11 @@ exports[`person > 1211 > fullName > with lastName 1`] = `"Mr. Dallas Doe MD"`;
 
 exports[`person > 1211 > fullName > with sex 1`] = `"Schuyler Zieme"`;
 
-exports[`person > 1211 > gender 1`] = `"Trigender"`;
+exports[`person > 1211 > gender > noArgs 1`] = `"Trigender"`;
+
+exports[`person > 1211 > gender > with female weighting 1`] = `"Transgender female"`;
+
+exports[`person > 1211 > gender > with male weighting 1`] = `"Transsexual male"`;
 
 exports[`person > 1211 > jobArea 1`] = `"Factors"`;
 
@@ -124,7 +132,11 @@ exports[`person > 1337 > fullName > with lastName 1`] = `"Elda Doe"`;
 
 exports[`person > 1337 > fullName > with sex 1`] = `"Candace Koelpin"`;
 
-exports[`person > 1337 > gender 1`] = `"Demigender"`;
+exports[`person > 1337 > gender > noArgs 1`] = `"Demigender"`;
+
+exports[`person > 1337 > gender > with female weighting 1`] = `"Female to male transgender man"`;
+
+exports[`person > 1337 > gender > with male weighting 1`] = `"Female to male transgender man"`;
 
 exports[`person > 1337 > jobArea 1`] = `"Functionality"`;
 
