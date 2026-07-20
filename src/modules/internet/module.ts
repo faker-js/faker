@@ -540,12 +540,27 @@ export class InternetModule extends ModuleBase {
   /**
    * Generates a random domain name.
    *
+   * @param options The optional options object.
+   * @param options.allowOnlyExamples When `true`, generate a domain under the IANA-reserved example domains (example.com / example.org / example.net) so the result never resolves to a real host. See issue #2228.
+   *
    * @example
    * faker.internet.domainName() // 'slow-timer.info'
+   * faker.internet.domainName({ allowOnlyExamples: true }) // 'slow-timer.example.com'
    *
    * @since 2.0.1
    */
-  domainName(): string {
+  domainName(options?: {
+    /**
+     * When `true`, generate a domain under the IANA-reserved example domains (example.com / example.org / example.net) so the result never resolves to a real host.
+     */
+    allowOnlyExamples?: boolean;
+  }): string {
+    if (options?.allowOnlyExamples) {
+      const word = this.domainWord();
+      const tld = this.faker.helpers.arrayElement(['com', 'org', 'net']);
+      return `${word}.example.${tld}`;
+    }
+
     return `${this.domainWord()}.${this.domainSuffix()}`;
   }
 

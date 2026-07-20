@@ -16,7 +16,9 @@ exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane15"`;
 
 exports[`internet > 42 > displayName > with lastName option 1`] = `"Nikita15"`;
 
-exports[`internet > 42 > domainName 1`] = `"hospitable-unit.net"`;
+exports[`internet > 42 > domainName > noArgs 1`] = `"hospitable-unit.net"`;
+
+exports[`internet > 42 > domainName > with allowOnlyExamples 1`] = `"hospitable-unit.example.net"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
@@ -134,7 +136,9 @@ exports[`internet > 1211 > displayName > with firstName option 1`] = `"Jane_Fahe
 
 exports[`internet > 1211 > displayName > with lastName option 1`] = `"Dallas_Doe67"`;
 
-exports[`internet > 1211 > domainName 1`] = `"velvety-tarragon.com"`;
+exports[`internet > 1211 > domainName > noArgs 1`] = `"velvety-tarragon.com"`;
+
+exports[`internet > 1211 > domainName > with allowOnlyExamples 1`] = `"velvety-tarragon.example.com"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
@@ -252,7 +256,9 @@ exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane.Gott
 
 exports[`internet > 1337 > displayName > with lastName option 1`] = `"Elda.Doe"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fatal-co-producer.com"`;
+exports[`internet > 1337 > domainName > noArgs 1`] = `"fatal-co-producer.com"`;
+
+exports[`internet > 1337 > domainName > with allowOnlyExamples 1`] = `"fatal-co-producer.example.com"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"com"`;
 

@@ -27,7 +27,6 @@ describe('internet', () => {
     t.itEach(
       'protocol',
       'httpMethod',
-      'domainName',
       'domainSuffix',
       'domainWord',
       'ip',
@@ -36,6 +35,9 @@ describe('internet', () => {
       'port',
       'userAgent'
     );
+    t.describe('domainName', (t) => {
+      t.it('noArgs').it('with allowOnlyExamples', { allowOnlyExamples: true });
+    });
 
     t.describe('email', (t) => {
       t.it('noArgs')
