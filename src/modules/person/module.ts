@@ -3,6 +3,24 @@ import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 
 /**
+ * Strips emoji + related zero-width / variation / flag code points from a
+ * string, collapsing any resulting whitespace. Returns the original string if
+ * the result would be empty.
+ *
+ * @param text The text to strip emoji from.
+ */
+function stripEmoji(text: string): string {
+  const stripped = text
+    .replaceAll(/\p{Extended_Pictographic}/gu, '')
+    .replaceAll('\u200D', '')
+    .replaceAll(/[\uFE0E\uFE0F]/g, '')
+    .replaceAll(/[\u{1F1E6}-\u{1F1FF}]/gu, '')
+    .replaceAll(/\s+/g, ' ')
+    .trim();
+  return stripped.length > 0 ? stripped : text;
+}
+
+/**
  * The enum for values corresponding to a person's sex.
  */
 export enum Sex {
@@ -304,15 +322,32 @@ export class PersonModule extends ModuleBase {
   }
 
   /**
-   * Returns a random short biography
+   * Returns a random short biography.
+   *
+   * @param options The optional options object.
+   * @param options.excludesEmoji When `true`, strip emoji and related code points from the result.
+   * @param options.excludeEmoji Alias of `excludesEmoji`. When `true`, strip emoji and related code points from the result.
    *
    * @example
    * faker.person.bio() // 'oatmeal advocate, veteran 🐠'
    *
    * @since 8.0.0
    */
-  bio(): string {
-    return this.faker.helpers.fake(this.faker.definitions.person.bio_pattern);
+  bio(options?: {
+    /**
+     * When `true`, strip emoji and related code points from the result.
+     */
+    excludesEmoji?: boolean;
+    /**
+     * Alias of `excludesEmoji`. When `true`, strip emoji and related code points from the result.
+     */
+    excludeEmoji?: boolean;
+  }): string {
+    const bio = this.faker.helpers.fake(
+      this.faker.definitions.person.bio_pattern
+    );
+    const exclude = options?.excludesEmoji ?? options?.excludeEmoji ?? false;
+    return exclude ? stripEmoji(bio) : bio;
   }
 
   /**

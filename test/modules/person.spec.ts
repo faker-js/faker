@@ -7,14 +7,10 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('person', () => {
   seededTests(faker, 'person', (t) => {
-    t.itEach(
-      'gender',
-      'jobTitle',
-      'jobDescriptor',
-      'jobArea',
-      'jobType',
-      'bio'
-    );
+    t.itEach('gender', 'jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
+    t.describe('bio', (t) => {
+      t.it('noArgs').it('with excludesEmoji', { excludesEmoji: true });
+    });
 
     t.describe('sexType', (t) =>
       t
