@@ -242,10 +242,20 @@ export class PersonModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  gender(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.gender
-    );
+  gender(options?: { weighting?: 'female' | 'male' | 'mixed' }): string {
+    const list = this.faker.definitions.person.gender;
+    if (!options?.weighting || options.weighting === 'mixed') {
+      return this.faker.helpers.arrayElement(list);
+    }
+    // Weight every entry whose name contains the requested gender as a whole
+    // word (case-insensitive). A word-boundary regex is used so that 'male' does
+    // not match inside 'female'. See issue #1730.
+    const re = new RegExp(`\\b${options.weighting}\\b`, 'i');
+    const weighted = list.map((g) => ({
+      weight: re.test(String(g)) ? list.length : 1,
+      value: g,
+    }));
+    return this.faker.helpers.weightedArrayElement(weighted);
   }
 
   /**
