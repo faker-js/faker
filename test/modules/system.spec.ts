@@ -11,12 +11,17 @@ describe('system', () => {
     t.itEach(
       'commonFileExt',
       'commonFileType',
-      'directoryPath',
       'filePath',
       'fileType',
       'mimeType',
       'semver'
     );
+    t.describe('directoryPath', (t) => {
+      t.it('noArgs')
+        .it('with depth', { depth: 2 })
+        .it('with depth 0', { depth: 0 })
+        .it('with root false', { depth: 2, root: false });
+    });
 
     t.describe('fileName', (t) => {
       t.it('noArgs')

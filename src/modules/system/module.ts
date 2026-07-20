@@ -4,6 +4,31 @@ import type { NumberRange } from '../../utils/types';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
+// Common directory-name segments used when generating a path of a given depth.
+const directoryNamePool = [
+  'bin',
+  'boot',
+  'dev',
+  'etc',
+  'home',
+  'lib',
+  'lib64',
+  'log',
+  'mail',
+  'mnt',
+  'opt',
+  'proc',
+  'root',
+  'run',
+  'sbin',
+  'srv',
+  'src',
+  'sys',
+  'tmp',
+  'usr',
+  'var',
+];
+
 const commonMimeTypes = [
   'application/pdf',
   'audio/mpeg',
@@ -181,16 +206,54 @@ export class SystemModule extends ModuleBase {
   }
 
   /**
-   * Returns a directory path.
+   * Returns a directory path for the given depth or a random one.
+   *
+   * When no `depth` is provided, returns a random path from the built-in
+   * directory-path definitions (e.g. `/etc/mail`). See issue #3785.
+   *
+   * @param options The optional options object.
+   * @param options.depth The number of path segments to generate. Uses a built-in pool of directory names for each segment. If omitted, a random defined path is used (default behavior).
+   * @param options.root Whether to prefix the path with a leading `/` (absolute). Only applies when `depth` is set. Defaults to `true`.
    *
    * @example
    * faker.system.directoryPath() // '/etc/mail'
+   * faker.system.directoryPath({ depth: 0 }) // '/'
+   * faker.system.directoryPath({ depth: 1 }) // '/etc'
+   * faker.system.directoryPath({ depth: 2 }) // '/etc/mail'
+   * faker.system.directoryPath({ depth: 3 }) // '/usr/lib/log'
+   * faker.system.directoryPath({ depth: 4, root: false }) // 'bin/lib/log/src'
    *
    * @since 3.1.0
    */
-  directoryPath(): string {
-    const paths = this.faker.definitions.system.directory_path;
-    return this.faker.helpers.arrayElement(paths);
+  directoryPath(options?: {
+    /**
+     * The number of path segments to generate. Uses a built-in pool of directory names for each segment. If omitted, a random defined path is used (default behavior).
+     */
+    depth?: number;
+    /**
+     * Whether to prefix the path with a leading `/` (absolute). Only applies when `depth` is set.
+     *
+     * @default true
+     */
+    root?: boolean;
+  }): string {
+    if (options?.depth === undefined) {
+      return this.faker.helpers.arrayElement(
+        this.faker.definitions.system.directory_path
+      );
+    }
+
+    const { depth, root = true } = options;
+    if (depth < 0) {
+      throw new FakerError(`Invalid depth: ${depth}. Must be >= 0.`);
+    }
+
+    const segments = this.faker.helpers.multiple(
+      () => this.faker.helpers.arrayElement(directoryNamePool),
+      { count: depth }
+    );
+    const body = segments.join('/');
+    return root ? `/${body}` : body;
   }
 
   /**
