@@ -2,6 +2,37 @@ import { ModuleBase } from '../../internal/module-base';
 import type { NumberRange } from '../../utils/types';
 import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
+type LoremWordCasing = 'lower' | 'upper' | 'capital' | 'mixed';
+
+/**
+ * Applies the requested casing to a word.
+ *
+ * @param word The word to transform.
+ * @param casing The casing to apply. Defaults to `'mixed'`.
+ */
+function applyCasing(word: string, casing?: LoremWordCasing): string {
+  switch (casing) {
+    case 'lower': {
+      return word.toLowerCase();
+    }
+
+    case 'upper': {
+      return word.toUpperCase();
+    }
+
+    case 'capital': {
+      return word.length === 0
+        ? word
+        : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+
+    case 'mixed':
+    case undefined: {
+      return word;
+    }
+  }
+}
+
 /**
  * Module to generate random texts and words.
  *
@@ -63,18 +94,30 @@ export class LoremModule extends ModuleBase {
            * @default 'any-length'
            */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          /**
+           * The casing to apply to the generated word.
+           *
+           * - `'lower'`: all lowercase.
+           * - `'upper'`: all uppercase.
+           * - `'capital'`: first letter uppercased, rest lowercased.
+           * - `'mixed'`: leave the word's original casing (the default).
+           *
+           * @default 'mixed'
+           */
+          casing?: 'lower' | 'upper' | 'capital' | 'mixed';
         } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
     }
 
-    return this.faker.helpers.arrayElement(
+    const word = this.faker.helpers.arrayElement(
       filterWordListByLength({
         ...options,
         wordList: this.faker.definitions.lorem.word,
       })
     );
+    return applyCasing(word, options.casing);
   }
 
   /**
@@ -83,17 +126,37 @@ export class LoremModule extends ModuleBase {
    * @param wordCount The number of words to generate. Defaults to `3`.
    * @param wordCount.min The minimum number of words to generate.
    * @param wordCount.max The maximum number of words to generate.
+   * @param options The optional options object.
+   * @param options.casing The casing to apply to each generated word (same values as [`word()`](#word); defaults to `'mixed'`). See issue #2165.
    *
    * @example
    * faker.lorem.words() // 'qui praesentium pariatur'
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
    * faker.lorem.words({ min: 1, max: 3 }) // 'tenetur error cum'
+   * faker.lorem.words(3, { casing: 'upper' }) // 'DEBITIS CONSECTETUR VOLUPTATEM'
    *
    * @since 2.0.1
    */
-  words(wordCount: number | NumberRange = 3): string {
+  words(
+    wordCount: number | NumberRange = 3,
+    options?: {
+      /**
+       * The casing to apply to each generated word.
+       *
+       * - `'lower'`: all lowercase.
+       * - `'upper'`: all uppercase.
+       * - `'capital'`: first letter uppercased, rest lowercased.
+       * - `'mixed'`: leave the word's original casing (the default).
+       *
+       * @default 'mixed'
+       */
+      casing?: 'lower' | 'upper' | 'capital' | 'mixed';
+    }
+  ): string {
     return this.faker.helpers
-      .multiple(() => this.word(), { count: wordCount })
+      .multiple(() => this.word({ casing: options?.casing }), {
+        count: wordCount,
+      })
       .join(' ');
   }
 
