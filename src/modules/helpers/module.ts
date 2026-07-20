@@ -1070,6 +1070,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template T Type of generic enums, automatically inferred by TypeScript.
    *
    * @param enumObject Enum to pick the value from.
+   * @param options The options to use.
+   * @param options.exclude The values to exclude when picking.
+   *
+   * @throws {FakerError} If all enum values are excluded.
    *
    * @example
    * enum Color { Red, Green, Blue }
@@ -1085,12 +1089,25 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    */
   // This does not use `const T` because enums shouldn't be created on the spot.
   enumValue<T extends Record<string | number, string | number>>(
-    enumObject: T
+    enumObject: T,
+    options?: {
+      /**
+       * The values to exclude when picking.
+       */
+      exclude?: Array<T[keyof T]>;
+    }
   ): T[keyof T] {
+    const exclude = options?.exclude ?? [];
     // ignore numeric keys added by TypeScript
-    const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
-      Number.isNaN(Number(key))
-    );
+    const keys: Array<keyof T> = Object.keys(enumObject)
+      .filter((key) => Number.isNaN(Number(key)))
+      .filter((key) => !exclude.includes(enumObject[key] as T[keyof T]));
+    if (keys.length === 0) {
+      throw new FakerError(
+        'No enum value is available to pick from after applying the exclude option.'
+      );
+    }
+
     const randomKey = this.arrayElement(keys);
     return enumObject[randomKey];
   }
