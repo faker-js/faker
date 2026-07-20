@@ -65,7 +65,9 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('location', () => {
   seededTests(faker, 'location', (t) => {
-    t.it('street');
+    t.describe('street', (t) => {
+      t.it('noArgs').it('with useAbbreviated', { useAbbreviated: true });
+    });
 
     t.it('buildingNumber');
 

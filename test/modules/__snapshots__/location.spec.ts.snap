@@ -137,7 +137,9 @@ exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
 exports[`location > 42 > state > with options 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Miller Crest"`;
+exports[`location > 42 > street > noArgs 1`] = `"Miller Crest"`;
+
+exports[`location > 42 > street > with useAbbreviated 1`] = `"Miller Crest"`;
 
 exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Lilliana Rapid"`;
 
@@ -291,7 +293,9 @@ exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
 
 exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
-exports[`location > 1211 > street 1`] = `"W Chestnut Street"`;
+exports[`location > 1211 > street > noArgs 1`] = `"W Chestnut Street"`;
+
+exports[`location > 1211 > street > with useAbbreviated 1`] = `"W Chestnut St"`;
 
 exports[`location > 1211 > streetAddress > noArgs 1`] = `"929 S Broad Street"`;
 
@@ -444,7 +448,9 @@ exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
 
 exports[`location > 1337 > state > with options 1`] = `"IN"`;
 
-exports[`location > 1337 > street 1`] = `"Jennie Gateway"`;
+exports[`location > 1337 > street > noArgs 1`] = `"Jennie Gateway"`;
+
+exports[`location > 1337 > street > with useAbbreviated 1`] = `"Jennie Gateway"`;
 
 exports[`location > 1337 > streetAddress > noArgs 1`] = `"22435 Brian Hills"`;
 
