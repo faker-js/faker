@@ -2,6 +2,31 @@ import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
 
+// Common USPS-style street-suffix abbreviations used when `street({ useAbbreviated: true })`.
+const STREET_SUFFIX_ABBREVIATIONS: Record<string, string> = {
+  Alley: 'Aly',
+  Avenue: 'Ave',
+  Boulevard: 'Blvd',
+  Circle: 'Cir',
+  Court: 'Ct',
+  Drive: 'Dr',
+  Expressway: 'Expy',
+  Freeway: 'Fwy',
+  Highway: 'Hwy',
+  Lane: 'Ln',
+  Parkway: 'Pkwy',
+  Place: 'Pl',
+  Plaza: 'Plz',
+  Road: 'Rd',
+  Route: 'Rte',
+  Square: 'Sq',
+  Street: 'St',
+  Terrace: 'Ter',
+  Trail: 'Trl',
+  Turnpike: 'Tpke',
+  Valley: 'Vly',
+};
+
 /**
  * Represents a language with its full name, 2 character ISO 639-1 code, and 3 character ISO 639-2 code.
  */
@@ -317,12 +342,23 @@ export class LocationModule extends SimpleLocationModule {
    *
    * @example
    * faker.location.street() // 'Schroeder Isle'
+   * faker.location.street({ useAbbreviated: true }) // 'Schroeder St'
+   *
+   * @param options The optional options object.
+   * @param options.useAbbreviated Whether to abbreviate common street suffixes (e.g. "Street" -> "St"). See issue #3703.
    *
    * @since 8.0.0
    */
-  street(): string {
-    return this.faker.helpers.fake(
+  street(options?: { useAbbreviated?: boolean }): string {
+    const result = this.faker.helpers.fake(
       this.faker.definitions.location.street_pattern
+    );
+    if (!options?.useAbbreviated) {
+      return result;
+    }
+    return result.replace(
+      /\b(Alley|Avenue|Boulevard|Circle|Court|Drive|Expressway|Freeway|Highway|Lane|Parkway|Place|Plaza|Road|Route|Square|Street|Terrace|Trail|Turnpike|Valley)\b/g,
+      (word) => STREET_SUFFIX_ABBREVIATIONS[word] ?? word
     );
   }
 
