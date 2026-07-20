@@ -1003,13 +1003,16 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     for (const { weight, value } of array) {
       current += weight;
       if (random < current) {
-        return value;
+        // Allow a value-returning function so callers can lazily generate the
+        // selected item (e.g. another faker call). See issue #3442.
+        return typeof value === 'function' ? (value as () => T)() : value;
       }
     }
 
     // In case of rounding errors, return the last element
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return array.at(-1)!.value;
+    const last = array.at(-1)!.value;
+    return typeof last === 'function' ? (last as () => T)() : last;
   }
 
   /**
