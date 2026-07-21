@@ -61,7 +61,7 @@ Starting with Jest `v30.4.2`, the `transformIgnorePatterns` workaround below is 
 NODE_OPTIONS="--experimental-vm-modules" npx jest
 ```
 
-Note that for `require`-based (CJS) test files this additionally requires Node.js `v24.9` or newer, as Jest relies on its synchronous `vm` module APIs to `require` ESM packages. On older Node.js versions, Jest fails with an error explaining exactly that.
+Note that for `require`-based (CJS) test files this additionally requires Node.js `v24.9.0` or newer, as Jest relies on its synchronous `vm` module APIs to `require` ESM packages. On older Node.js versions, Jest fails with an error explaining exactly that.
 
 ##### `ts-jest`
 
