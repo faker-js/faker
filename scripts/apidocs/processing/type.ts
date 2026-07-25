@@ -95,18 +95,36 @@ export function getTypeText(
         ...type.getAliasTypeArguments(),
       ];
 
-      if (name === 'LiteralUnion') {
-        const displayType = getTypeText(typeArguments[0], options);
-        const baseType = typeArguments[1]
-          ? getTypeText(typeArguments[1], options)
-          : newSimpleType('string');
+      switch (name) {
+        case 'LiteralUnion': {
+          const displayType = getTypeText(typeArguments[0], options);
+          const baseType = typeArguments[1]
+            ? getTypeText(typeArguments[1], options)
+            : newSimpleType('string');
 
-        return newUnionType([displayType, baseType]);
-      } else if (name === 'NumberRange') {
-        return newObjectType([
-          { name: 'min', type: newSimpleType('number') },
-          { name: 'max', type: newSimpleType('number') },
-        ]);
+          return newUnionType([displayType, baseType]);
+        }
+
+        case 'NumberRange': {
+          return newObjectType([
+            { name: 'min', type: newSimpleType('number') },
+            { name: 'max', type: newSimpleType('number') },
+          ]);
+        }
+
+        case 'NumberOrRange': {
+          return newUnionType([
+            newSimpleType('number'),
+            newObjectType([
+              { name: 'min', type: newSimpleType('number') },
+              { name: 'max', type: newSimpleType('number') },
+            ]),
+          ]);
+        }
+
+        default: {
+          break;
+        }
       }
 
       const typeParameters = typeArguments.map((t) => getTypeText(t, options));

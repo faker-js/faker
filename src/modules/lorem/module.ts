@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import type { NumberRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
 import { filterWordListByLength } from '../word/filter-word-list-by-length';
 
 /**
@@ -48,7 +48,7 @@ export class LoremModule extends ModuleBase {
            *
            * @default 1
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -91,7 +91,7 @@ export class LoremModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  words(wordCount: number | NumberRange = 3): string {
+  words(wordCount: NumberOrRange = 3): string {
     return this.faker.helpers
       .multiple(() => this.word(), { count: wordCount })
       .join(' ');
@@ -111,7 +111,7 @@ export class LoremModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  sentence(wordCount: number | NumberRange = { min: 3, max: 10 }): string {
+  sentence(wordCount: NumberOrRange = { min: 3, max: 10 }): string {
     const sentence = this.words(wordCount);
     return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
   }
@@ -130,7 +130,7 @@ export class LoremModule extends ModuleBase {
    *
    * @since 4.0.0
    */
-  slug(wordCount: number | NumberRange = 3): string {
+  slug(wordCount: NumberOrRange = 3): string {
     const words = this.words(wordCount);
     return this.faker.helpers.slugify(words);
   }
@@ -154,7 +154,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   sentences(
-    sentenceCount: number | NumberRange = { min: 2, max: 6 },
+    sentenceCount: NumberOrRange = { min: 2, max: 6 },
     separator: string = ' '
   ): string {
     return this.faker.helpers
@@ -176,7 +176,7 @@ export class LoremModule extends ModuleBase {
    *
    * @since 2.0.1
    */
-  paragraph(sentenceCount: number | NumberRange = 3): string {
+  paragraph(sentenceCount: NumberOrRange = 3): string {
     return this.sentences(sentenceCount);
   }
 
@@ -213,7 +213,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   paragraphs(
-    paragraphCount: number | NumberRange = 3,
+    paragraphCount: NumberOrRange = 3,
     separator: string = '\n'
   ): string {
     return this.faker.helpers
@@ -276,7 +276,7 @@ export class LoremModule extends ModuleBase {
    *
    * @since 3.1.0
    */
-  lines(lineCount: number | NumberRange = { min: 1, max: 5 }): string {
+  lines(lineCount: NumberOrRange = { min: 1, max: 5 }): string {
     return this.sentences(lineCount, '\n');
   }
 }

@@ -20,6 +20,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "methodWithThrows",
   "multiParamMethod",
   "noParamMethod",
+  "numberOrRangeParamMethod",
   "numberRangeParamMethod",
   "optionalStringParamMethod",
   "optionsInlineParamMethodWithDefaults",
@@ -972,6 +973,307 @@ exports[`method > processMethodLike(noParamMethod) 1`] = `
       },
       "seeAlsos": [],
       "signature": "function noParamMethod(): number;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
+exports[`method > processMethodLike(numberOrRangeParamMethod) 1`] = `
+{
+  "name": "numberOrRangeParamMethod",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with NumberOrRange.",
+      "examples": [],
+      "experimental": undefined,
+      "parameters": [
+        {
+          "default": undefined,
+          "description": "\`5\` or \`{min: 1, max: 10}\`.",
+          "name": "value",
+          "type": {
+            "text": "number | { min: number; max: number }",
+            "type": "union",
+            "types": [
+              {
+                "text": "number",
+                "type": "simple",
+              },
+              {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
+                "text": "{ min: number; max: number }",
+                "type": "object",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "value.max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "value.min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "Array of \`5\` or \`{min: 1, max: 10}\`.",
+          "name": "array",
+          "type": {
+            "text": "Array<number | { min: number; max: number }>",
+            "type": "generic",
+            "typeParameters": [
+              {
+                "text": "number | { min: number; max: number }",
+                "type": "union",
+                "types": [
+                  {
+                    "text": "number",
+                    "type": "simple",
+                  },
+                  {
+                    "members": [
+                      {
+                        "name": "min",
+                        "type": {
+                          "text": "number",
+                          "type": "simple",
+                        },
+                      },
+                      {
+                        "name": "max",
+                        "type": {
+                          "text": "number",
+                          "type": "simple",
+                        },
+                      },
+                    ],
+                    "text": "{ min: number; max: number }",
+                    "type": "object",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "array[].max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "array[].min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The options parameter.",
+          "name": "options",
+          "type": {
+            "text": "{ ... }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The count parameter.",
+          "name": "options.count",
+          "type": {
+            "text": "number | { min: number; max: number }",
+            "type": "union",
+            "types": [
+              {
+                "text": "number",
+                "type": "simple",
+              },
+              {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
+                "text": "{ min: number; max: number }",
+                "type": "object",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "\`5\` or \`{min: 1, max: 10}\` or an array thereof.",
+          "name": "mixed",
+          "type": {
+            "text": "number | { min: number; max: number } | Array<number | { min: number; max: number }>",
+            "type": "union",
+            "types": [
+              {
+                "text": "number",
+                "type": "simple",
+              },
+              {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
+                "text": "{ min: number; max: number }",
+                "type": "object",
+              },
+              {
+                "text": "Array<number | { min: number; max: number }>",
+                "type": "generic",
+                "typeParameters": [
+                  {
+                    "text": "number | { min: number; max: number }",
+                    "type": "union",
+                    "types": [
+                      {
+                        "text": "number",
+                        "type": "simple",
+                      },
+                      {
+                        "members": [
+                          {
+                            "name": "min",
+                            "type": {
+                              "text": "number",
+                              "type": "simple",
+                            },
+                          },
+                          {
+                            "name": "max",
+                            "type": {
+                              "text": "number",
+                              "type": "simple",
+                            },
+                          },
+                        ],
+                        "text": "{ min: number; max: number }",
+                        "type": "object",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "mixed.max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "mixed.min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "mixed[].max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "mixed[].min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+      ],
+      "remarks": [],
+      "returns": {
+        "text": "string",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function numberOrRangeParamMethod(
+    value: NumberOrRange,
+    array: ReadonlyArray<NumberOrRange>,
+    options: {
+      /** The count parameter. */
+      count: NumberOrRange;
+    },
+    mixed: NumberOrRange | ReadonlyArray<NumberOrRange>
+  ): string;",
       "since": "1.0.0",
       "throws": [],
     },
