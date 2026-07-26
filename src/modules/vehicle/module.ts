@@ -36,7 +36,7 @@ const vinTransliteration: Record<string, number> = {
  *
  * @param vin The VIN to calculate the check digit for.
  */
-function vinCheckDigit(vin: string): string {
+export function vinCheckDigit(vin: string): string {
   let checksum = 0;
   for (const [index, character] of vin.split('').entries()) {
     const value = vinTransliteration[character] ?? Number(character);

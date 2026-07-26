@@ -1,49 +1,24 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
+import { vinCheckDigit } from '../../src/modules/vehicle/module';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const vinWeights = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2];
-
-const vinTransliteration: Record<string, number> = {
-  A: 1,
-  B: 2,
-  C: 3,
-  D: 4,
-  E: 5,
-  F: 6,
-  G: 7,
-  H: 8,
-  J: 1,
-  K: 2,
-  L: 3,
-  M: 4,
-  N: 5,
-  P: 7,
-  R: 9,
-  S: 2,
-  T: 3,
-  U: 4,
-  V: 5,
-  W: 6,
-  X: 7,
-  Y: 8,
-  Z: 9,
-};
-
-function calculateVinCheckDigit(vin: string): string {
-  let checksum = 0;
-  for (const [index, character] of vin.split('').entries()) {
-    const value = vinTransliteration[character] ?? Number(character);
-    checksum += value * vinWeights[index];
-  }
-
-  return checksum % 11 === 10 ? 'X' : String(checksum % 11);
-}
-
 describe('vehicle', () => {
+  describe('vinCheckDigit()', () => {
+    it.each([
+      ['1M8GDM9AXKP042788', 'X'],
+      ['1HGCM82633A004352', '3'],
+      ['CYRK551V7PAZ82113', '7'],
+      ['XW7ZNNSB8TUM84882', '8'],
+      ['859FAH8Z23JL19477', '2'],
+    ])('calculates the check digit for %s', (vin, expected) => {
+      expect(vinCheckDigit(vin)).toBe(expected);
+    });
+  });
+
   seededTests(faker, 'vehicle', (t) => {
     t.itEach(
       'vehicle',
@@ -141,13 +116,10 @@ describe('vehicle', () => {
           );
         });
 
-        it('should return a VIN with a valid check digit', () => {
-          expect(calculateVinCheckDigit('1M8GDM9AXKP042788')).toBe('X');
+        it('should add the check digit at the correct position', () => {
+          const vin = faker.vehicle.vin();
 
-          for (let index = 0; index < 100; index++) {
-            const vin = faker.vehicle.vin();
-            expect(vin[8]).toBe(calculateVinCheckDigit(vin));
-          }
+          expect(vin[8]).toBe(vinCheckDigit(vin));
         });
       });
 
