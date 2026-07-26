@@ -159,8 +159,6 @@ async function writePageData(
   );
 }
 
-const defaultCommentRegex = /\s+Defaults to `([^`]+)`\..*/;
-
 async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   const { name, signatures, source } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
@@ -219,10 +217,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       parameters.map(async (param) => ({
         ...param,
         type: param.type.text,
-        default: param.default ?? extractSummaryDefault(param.description),
-        description: await mdToHtml(
-          param.description.replace(defaultCommentRegex, '')
-        ),
+        description: await mdToHtml(param.description),
       }))
     ),
     since,
@@ -239,10 +234,6 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true))
     ),
   };
-}
-
-export function extractSummaryDefault(description: string): string | undefined {
-  return defaultCommentRegex.exec(description)?.[1];
 }
 
 export async function toRefreshFunction(

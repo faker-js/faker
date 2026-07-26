@@ -4,7 +4,7 @@ import type { Faker } from '../../faker';
 import { toDate } from '../../internal/date';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { SimpleModuleBase } from '../../internal/module-base';
-import type { NumberRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
 
 /**
  * Module to generate dates (without methods requiring localized data).
@@ -71,7 +71,7 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      years?: number | NumberRange;
+      years?: NumberOrRange;
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -135,7 +135,7 @@ export class SimpleDateModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      years?: number | NumberRange;
+      years?: NumberOrRange;
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -251,7 +251,7 @@ export class SimpleDateModule extends SimpleModuleBase {
      *
      * @default 3
      */
-    count?: number | NumberRange;
+    count?: NumberOrRange;
   }): Date[] {
     const { from, to, count = 3 } = options;
     return this.faker.helpers

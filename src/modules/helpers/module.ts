@@ -2,7 +2,7 @@ import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { SimpleFaker } from '../../simple-faker';
-import type { NumberRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
 
@@ -1029,10 +1029,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElements<const T>(
-    array: ReadonlyArray<T>,
-    count?: number | NumberRange
-  ): T[] {
+  arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
     if (array.length === 0) {
       return [];
     }
@@ -1108,7 +1105,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  rangeToNumber(numberOrRange: number | NumberRange): number {
+  rangeToNumber(numberOrRange: NumberOrRange): number {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }
@@ -1141,7 +1138,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
        *
        * @default 3
        */
-      count?: number | NumberRange;
+      count?: NumberOrRange;
     } = {}
   ): TResult[] {
     const count = this.rangeToNumber(options.count ?? 3);

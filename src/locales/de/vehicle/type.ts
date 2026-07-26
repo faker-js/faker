@@ -1,0 +1,15 @@
+export default [
+  'Cabrio',
+  'Coupé',
+  'Geländewagen',
+  'Kleinbus',
+  'Kleinwagen',
+  'Kombi',
+  'Limousine',
+  'Pickup',
+  'Roadster',
+  'SUV',
+  'Sportwagen',
+  'Transporter',
+  'Van',
+];
