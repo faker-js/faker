@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { NumberRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
 import { filterWordListByLength } from './filter-word-list-by-length';
 
 /**
@@ -39,7 +39,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -100,7 +100,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -161,7 +161,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -222,7 +222,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -283,7 +283,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -344,7 +344,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -405,7 +405,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -464,7 +464,7 @@ export class WordModule extends ModuleBase {
           /**
            * The expected length of the word.
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
@@ -528,7 +528,7 @@ export class WordModule extends ModuleBase {
            *
            * @default { min: 1, max: 3 }
            */
-          count?: number | NumberRange;
+          count?: NumberOrRange;
         } = {}
   ): string {
     if (typeof options === 'number') {

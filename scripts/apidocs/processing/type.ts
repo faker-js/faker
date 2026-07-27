@@ -5,6 +5,7 @@ export type RawApiDocsType =
   | RawApiDocsSimpleType
   | RawApiDocsGenericType
   | RawApiDocsUnionType
+  | RawApiDocsObjectType
   | RawApiDocsShadowType;
 
 interface RawApiDocsBaseType {
@@ -24,6 +25,16 @@ export interface RawApiDocsGenericType extends RawApiDocsBaseType {
 export interface RawApiDocsUnionType extends RawApiDocsBaseType {
   type: 'union';
   types: RawApiDocsType[];
+}
+
+export interface RawApiDocsObjectType extends RawApiDocsBaseType {
+  type: 'object';
+  members: RawApiDocsObjectMember[];
+}
+
+export interface RawApiDocsObjectMember {
+  name: string;
+  type: RawApiDocsType;
 }
 
 export interface RawApiDocsShadowType extends RawApiDocsBaseType {
@@ -84,15 +95,36 @@ export function getTypeText(
         ...type.getAliasTypeArguments(),
       ];
 
-      if (name === 'LiteralUnion') {
-        const displayType = getTypeText(typeArguments[0], options);
-        const baseType = typeArguments[1]
-          ? getTypeText(typeArguments[1], options)
-          : newSimpleType('string');
+      switch (name) {
+        case 'LiteralUnion': {
+          const displayType = getTypeText(typeArguments[0], options);
+          const baseType = typeArguments[1]
+            ? getTypeText(typeArguments[1], options)
+            : newSimpleType('string');
 
-        return newUnionType([displayType, baseType]);
-      } else if (name === 'NumberRange') {
-        return newSimpleType('{ min: number; max: number }');
+          return newUnionType([displayType, baseType]);
+        }
+
+        case 'NumberRange': {
+          return newObjectType([
+            { name: 'min', type: newSimpleType('number') },
+            { name: 'max', type: newSimpleType('number') },
+          ]);
+        }
+
+        case 'NumberOrRange': {
+          return newUnionType([
+            newSimpleType('number'),
+            newObjectType([
+              { name: 'min', type: newSimpleType('number') },
+              { name: 'max', type: newSimpleType('number') },
+            ]),
+          ]);
+        }
+
+        default: {
+          break;
+        }
       }
 
       const typeParameters = typeArguments.map((t) => getTypeText(t, options));
@@ -169,6 +201,17 @@ export function isOptionsLikeType(type: Type): boolean {
   );
 }
 
+/**
+ * Checks whether the given type is a named range type (e.g. `NumberRange`)
+ * whose members should be expanded into individual parameter rows in the docs.
+ *
+ * @param type The type to check.
+ */
+export function isRangeType(type: Type): boolean {
+  const symbol = type.getSymbol() ?? type.getAliasSymbol();
+  return symbol?.getName() === 'NumberRange';
+}
+
 function newSimpleType(name: string): RawApiDocsSimpleType {
   required(name, 'name');
   return { type: 'simple', text: name };
@@ -216,6 +259,17 @@ function newUnionType(types: RawApiDocsType[]): RawApiDocsUnionType {
         return isFunctionSignature ? `(${text})` : text;
       })
       .join(' | '),
+  };
+}
+
+function newObjectType(
+  members: RawApiDocsObjectMember[]
+): RawApiDocsObjectType {
+  atLeastOneAndAllRequired(members, 'members');
+  return {
+    type: 'object',
+    members,
+    text: `{ ${members.map(({ name, type }) => `${name}: ${type.text}`).join('; ')} }`,
   };
 }
 

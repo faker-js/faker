@@ -10,7 +10,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "cs_CZ": " #()+-.ABCDEFGHIJKLMNOPRSTUVWXZabcdefghijklmnopqrstuvwxyzÁÍÚáéíóöúüýČčĎďěňŘřŠšťůűŽž",
   "cy": " #+,-?ABCDEFGHILMNOPRSTWYabcdefghijklmnoprstuwyâïôŵ",
   "da": " !"#()+,-./ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyzÅÆØãåæçéíø",
-  "de": " #&'()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜßàãäéíöúü",
+  "de": " !#&'()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜßàãäéëíöúüŠ",
   "de_AT": " #&()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜßãäéíöúü",
   "de_CH": " #&+,-./ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwxyzÖäçèéôöü",
   "dv": " #&+-.ހށނރބޅކއވމފދތލގޏސޑޒޓޔޕޖޗޘޙޚޛޝޞޟޠޡޢޣޤަާިީުޫެޭޮޯް",

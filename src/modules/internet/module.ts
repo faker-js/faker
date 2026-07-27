@@ -913,32 +913,6 @@ export class InternetModule extends ModuleBase {
      */
     const vowel = /[aeiouAEIOU]$/;
     const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
-    const _password = (
-      length: number,
-      memorable: boolean,
-      pattern: RegExp,
-      prefix: string
-    ): string => {
-      if (prefix.length >= length) {
-        return prefix;
-      }
-
-      if (memorable) {
-        pattern = consonant.test(prefix) ? vowel : consonant;
-      }
-
-      const n = this.faker.number.int(94) + 33;
-      let char = String.fromCodePoint(n);
-      if (memorable) {
-        char = char.toLowerCase();
-      }
-
-      if (!pattern.test(char)) {
-        return _password(length, memorable, pattern, prefix);
-      }
-
-      return _password(length, memorable, pattern, prefix + char);
-    };
 
     const {
       length = 15,
@@ -947,7 +921,26 @@ export class InternetModule extends ModuleBase {
       prefix = '',
     } = options;
 
-    return _password(length, memorable, pattern, prefix);
+    let currentPattern = pattern;
+    let result = prefix;
+    // TODO @Shinigami92 2026-07-09: This loop never terminates if the pattern can never match a generated char (e.g. `/°/`), blocking the event loop. To be resolved by the password rewrite in https://github.com/faker-js/faker/issues/768.
+    while (result.length < length) {
+      if (memorable) {
+        currentPattern = consonant.test(result) ? vowel : consonant;
+      }
+
+      const n = this.faker.number.int(94) + 33;
+      let char = String.fromCodePoint(n);
+      if (memorable) {
+        char = char.toLowerCase();
+      }
+
+      if (currentPattern.test(char)) {
+        result += char;
+      }
+    }
+
+    return result;
   }
 
   /**

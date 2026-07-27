@@ -20,3 +20,8 @@ export interface NumberRange {
    */
   max: number;
 }
+
+/**
+ * Either an exact number or a range of numbers with an inclusive minimum and maximum.
+ */
+export type NumberOrRange = number | NumberRange;

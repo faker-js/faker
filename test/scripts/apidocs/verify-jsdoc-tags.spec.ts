@@ -3,7 +3,6 @@ import { resolve } from 'node:path';
 import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
-import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
 import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
 import { getProject } from '../../../scripts/apidocs/project';
 
@@ -319,35 +318,8 @@ ${examples}`;
               describe.each(signature.parameters.map((p) => [p.name, p]))(
                 '%s',
                 (_, parameter) => {
-                  it('verify default value', () => {
-                    const {
-                      name,
-                      default: paramDefault,
-                      description,
-                    } = parameter;
-
-                    const commentDefault = extractSummaryDefault(description);
-                    if (paramDefault) {
-                      if (
-                        /^{.*}$/.test(paramDefault) ||
-                        paramDefault.includes('\n')
-                      ) {
-                        expect(commentDefault).toBeUndefined();
-                      } else if (
-                        !name.includes('.') &&
-                        // Skip check of defaults in descriptions if it is a paraphrased function call
-                        (commentDefault ||
-                          (!description.includes('Defaults to') &&
-                            !paramDefault.includes('(')))
-                      ) {
-                        expect(
-                          commentDefault,
-                          `Expect '${name}'s js implementation default to be the same as the jsdoc summary default`
-                        ).toBe(paramDefault);
-                      }
-                    }
-                  });
-
+                  // The consistency between the implementation default and the documented `Defaults to \`...\`.` summary
+                  // is enforced while processing the raw data (see `processSimpleParameter`).
                   it('verify description', () => {
                     assertDescription(parameter.description);
                   });
