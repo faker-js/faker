@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { groupBy } from '../../internal/group-by';
-import type { NumberRange } from '../../utils/types';
+import type { NumberOrRange, NumberRange } from '../../utils/types';
 
 /**
  * The error handling strategies for the `filterWordListByLength` function.
@@ -61,7 +61,7 @@ const STRATEGIES = {
  */
 export function filterWordListByLength(options: {
   wordList: ReadonlyArray<string>;
-  length?: number | NumberRange;
+  length?: NumberOrRange;
   strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
 }): string[] {
   const { wordList, length, strategy = 'fail' } = options;

@@ -904,6 +904,13 @@ describe('internet', () => {
           expect(password).toStartWith('a!G6');
           expect(password).toSatisfy(isStrongPassword);
         });
+
+        it('should generate long passwords without overflowing the call stack', () => {
+          // Regression test: password generation used to recurse once per character, throwing a RangeError for lengths of ~5000 and above.
+          const length = 100_000;
+
+          expect(() => faker.internet.password({ length })).not.toThrow();
+        });
       });
 
       describe('emoji', () => {

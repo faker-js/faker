@@ -10,15 +10,22 @@ import type {
 import { exactlyOne, valueForKey } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import {
+  extractSummaryDefault,
   getDefault,
   getDeprecated,
   getDescription,
   getJsDocs,
   getParameterTags,
   getTypeParameterTags,
+  stripSummaryDefault,
 } from './jsdocs';
 import type { RawApiDocsType } from './type';
-import { getNameSuffix, getTypeText, isOptionsLikeType } from './type';
+import {
+  getNameSuffix,
+  getTypeText,
+  isOptionsLikeType,
+  isRangeType,
+} from './type';
 
 /**
  * Represents a parameter in the raw API docs.
@@ -117,7 +124,7 @@ function processParameter(
       valueForKey(paramTags, name),
       implementationDefault
     ),
-    ...processComplexParameter(name, parameter.getType()),
+    ...processComplexParameter(name, parameter.getType(), paramTags),
   ];
 }
 
@@ -134,14 +141,27 @@ function processSimpleParameter(
 ): RawApiDocsParameter {
   const name = parameter.getName();
   const type = parameter.getType();
+  const description = getDescription(jsdocTag);
+  const signatureDefault = getDefaultValue(parameter) ?? implementationDefault;
+  const summaryDefault = extractSummaryDefault(description);
+  if (
+    signatureDefault != null &&
+    summaryDefault != null &&
+    signatureDefault !== summaryDefault
+  ) {
+    throw new Error(
+      `The documented default \`${summaryDefault}\` does not match the implementation default \`${signatureDefault}\``
+    );
+  }
+
   return {
     name: `${name}${getNameSuffix(type)}`,
     type: getTypeText(type, {
       abbreviate: true,
       stripUndefined: true,
     }),
-    default: getDefaultValue(parameter) ?? implementationDefault,
-    description: getDescription(jsdocTag),
+    default: signatureDefault ?? summaryDefault,
+    description: stripSummaryDefault(description),
   };
 }
 
@@ -156,21 +176,28 @@ function getDefaultValue(
 
 function processComplexParameter(
   name: string,
-  type: Type
+  type: Type,
+  paramTags: Record<string, JSDocTag>
 ): RawApiDocsParameter[] {
   if (type.isNullable()) {
-    return processComplexParameter(name, type.getNonNullableType());
+    return processComplexParameter(name, type.getNonNullableType(), paramTags);
   } else if (type.isUnion()) {
     return type
       .getUnionTypes()
-      .flatMap((unionType) => processComplexParameter(name, unionType));
+      .flatMap((unionType) =>
+        processComplexParameter(name, unionType, paramTags)
+      );
   } else if (type.isArray()) {
     return processComplexParameter(
       `${name}[]`,
-      type.getArrayElementTypeOrThrow()
+      type.getArrayElementTypeOrThrow(),
+      paramTags
     );
   } else if (type.isObject()) {
-    if (!isOptionsLikeType(type)) {
+    // Named range types (e.g. NumberRange) source their member descriptions from the method-level `@param name.member` tags;
+    // anonymous options objects use their own inline property JSDoc as before.
+    const rangeType = isRangeType(type);
+    if (!isOptionsLikeType(type) && !rangeType) {
       return [];
     }
 
@@ -178,7 +205,11 @@ function processComplexParameter(
       .getApparentProperties()
       .flatMap((parameter) => {
         try {
-          return processComplexParameterProperty(name, parameter);
+          return processComplexParameterProperty(
+            name,
+            parameter,
+            rangeType ? paramTags : undefined
+          );
         } catch (error) {
           throw newProcessingError({
             type: 'property',
@@ -194,7 +225,11 @@ function processComplexParameter(
   return [];
 }
 
-function processComplexParameterProperty(name: string, parameter: Symbol) {
+function processComplexParameterProperty(
+  name: string,
+  parameter: Symbol,
+  paramTags?: Record<string, JSDocTag>
+) {
   const declaration = exactlyOne(
     parameter.getDeclarations(),
     'property declaration'
@@ -202,6 +237,11 @@ function processComplexParameterProperty(name: string, parameter: Symbol) {
   const propertyType = declaration.getType();
   const jsdocs = getJsDocs(declaration);
   const deprecated = getDeprecated(jsdocs);
+  // Use the `@param name.member` tag if available, otherwise the member's own JSDoc.
+  const memberTag = paramTags?.[`${name}.${parameter.getName()}`];
+  const description = memberTag
+    ? getDescription(memberTag)
+    : getDescription(jsdocs);
 
   return [
     {
@@ -210,9 +250,9 @@ function processComplexParameterProperty(name: string, parameter: Symbol) {
         abbreviate: false,
         stripUndefined: true,
       }),
-      default: getDefault(jsdocs),
+      default: getDefault(jsdocs) ?? extractSummaryDefault(description),
       description:
-        getDescription(jsdocs) +
+        stripSummaryDefault(description) +
         (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : ''),
     },
   ];

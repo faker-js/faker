@@ -1,0 +1,17 @@
+export default [
+  'BMX-Rad',
+  'Cityrad',
+  'Crossrad',
+  'E-Bike',
+  'Fitnessbike',
+  'Gravelbike',
+  'Hollandrad',
+  'Kinderfahrrad',
+  'Klapprad',
+  'Lastenrad',
+  'Liegerad',
+  'Mountainbike',
+  'Rennrad',
+  'Tandem',
+  'Trekkingrad',
+];
