@@ -1200,7 +1200,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * Properties and prototype methods on generated values can also be resolved:
    *
    * ```js
-   * const length = faker.helpers.fake('{{string.alpha(10).length}}'); // '10'
+   * const airlineCode = faker.helpers.fake('{{airline.airline.iataCode}}'); // 'AA'
    * const timestamp = faker.helpers.fake('{{date.anytime.toISOString}}'); // '2025-01-01T00:00:00.000Z'
    * ```
    *
@@ -1263,7 +1263,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * Properties and prototype methods on generated values can also be resolved:
    *
    * ```js
-   * const length = faker.helpers.fake(['{{string.alpha(10).length}}']); // '10'
+   * const airlineCode = faker.helpers.fake(['{{airline.airline.iataCode}}']); // 'AA'
    * const timestamp = faker.helpers.fake(['{{date.anytime.toISOString}}']); // '2025-01-01T00:00:00.000Z'
    * ```
    *
@@ -1317,7 +1317,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * Properties and prototype methods on generated values can also be resolved:
    *
    * ```js
-   * const length = faker.helpers.fake('{{string.alpha(10).length}}'); // '10'
+   * const airlineCode = faker.helpers.fake('{{airline.airline.iataCode}}'); // 'AA'
    * const timestamp = faker.helpers.fake('{{date.anytime.toISOString}}'); // '2025-01-01T00:00:00.000Z'
    * ```
    *
