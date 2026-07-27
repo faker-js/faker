@@ -44,7 +44,10 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * const airlineCode = fakeEval('airline.airline.iataCode', faker); // 'EY'
  * const airlineName = fakeEval('airline.airline().name', faker); // 'Etihad Airways'
  * const airlineMethodName = fakeEval('airline.airline.name', faker); // 'bound airline'
+ * const isoDate = fakeEval('date.anytime.toISOString', faker); // '2025-01-01T00:00:00.000Z'
  * ```
+ *
+ * Properties and prototype methods on generated values can also be resolved.
  *
  * It is not possible to execute arbitrary JavaScript through this method;
  * expressions can only resolve properties and methods reachable from the given entrypoints.
@@ -222,11 +225,37 @@ function resolveProperty(entrypoint: unknown, key: string): unknown {
     }
 
     case 'object': {
-      return entrypoint?.[key as keyof typeof entrypoint];
+      return getProperty(entrypoint, key);
+    }
+
+    case 'bigint':
+    case 'boolean':
+    case 'number':
+    case 'string': {
+      return getProperty(entrypoint, key);
     }
 
     default: {
       return undefined;
     }
   }
+}
+
+type Callable = (this: unknown, ...args: unknown[]) => unknown;
+
+/**
+ * Resolves the given property and binds methods to their source value.
+ *
+ * @param entrypoint The entrypoint to resolve the property on.
+ * @param key The property name to resolve.
+ */
+function getProperty(entrypoint: unknown, key: string): unknown {
+  if (entrypoint == null) {
+    return undefined;
+  }
+
+  const value = (new Object(entrypoint) as Record<string, unknown>)[key];
+  return typeof value === 'function'
+    ? (value as Callable).bind(entrypoint)
+    : value;
 }

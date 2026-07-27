@@ -1077,6 +1077,18 @@ describe('helpers', () => {
           expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });
 
+        it('should resolve properties after generated primitive values', () => {
+          expect(faker.helpers.fake('{{string.alpha(10).length}}')).toBe('10');
+        });
+
+        it('should call prototype methods with their generated receiver', () => {
+          expect(
+            faker.helpers.fake(
+              '{{date.anytime({"refDate":"2025-01-01T00:00:00.000Z"}).toISOString}}'
+            )
+          ).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
+        });
+
         it('should be able to return locale definition strings', () => {
           expect(faker.definitions.cell_phone?.formats).toContain(
             faker.helpers.fake('{{cell_phone.formats}}')
