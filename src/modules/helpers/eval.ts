@@ -241,7 +241,7 @@ function resolveProperty(entrypoint: unknown, key: string): unknown {
   }
 }
 
-type Callable = (this: unknown, ...args: unknown[]) => unknown;
+type Callable = (this: unknown, ...args: never[]) => unknown;
 
 /**
  * Resolves the given property and binds methods to their source value.

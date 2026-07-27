@@ -1260,6 +1260,13 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
    * ```
    *
+   * Properties and prototype methods on generated values can also be resolved:
+   *
+   * ```js
+   * const length = faker.helpers.fake(['{{string.alpha(10).length}}']); // '10'
+   * const timestamp = faker.helpers.fake(['{{date.anytime.toISOString}}']); // '2025-01-01T00:00:00.000Z'
+   * ```
+   *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
    * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
    * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
@@ -1305,6 +1312,13 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * ```js
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
+   * ```
+   *
+   * Properties and prototype methods on generated values can also be resolved:
+   *
+   * ```js
+   * const length = faker.helpers.fake('{{string.alpha(10).length}}'); // '10'
+   * const timestamp = faker.helpers.fake('{{date.anytime.toISOString}}'); // '2025-01-01T00:00:00.000Z'
    * ```
    *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
