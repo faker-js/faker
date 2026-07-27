@@ -1222,6 +1222,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
+   * faker.helpers.fake('Expires on {{date.future.toISOString.substring(0,10)}}') // 'Expires on 2026-09-09'
    *
    * @since 7.4.0
    */
@@ -1279,6 +1280,8 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @example
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   * faker.helpers.fake(['Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}']) // 'Your PIN number is: 4834'
+   * faker.helpers.fake(['Expires on {{date.future.toISOString.substring(0,10)}}']) // 'Expires on 2026-09-09'
    *
    * @since 8.0.0
    */
@@ -1339,6 +1342,8 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
+   * faker.helpers.fake(['Expires on {{date.future.toISOString.substring(0,10)}}']) // 'Expires on 2026-09-09'
    *
    * @since 7.4.0
    */

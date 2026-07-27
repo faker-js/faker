@@ -64,6 +64,7 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * fakeEval('person.lastName', faker) // 'Barrows'
  * fakeEval('helpers.arrayElement(["heads", "tails"])', faker) // 'tails'
  * fakeEval('number.int(9999)', faker) // 4834
+ * fakeEval('date.anytime.toISOString', faker) // '2025-01-01T00:00:00.000Z'
  *
  * @since 8.4.0
  */
@@ -224,13 +225,10 @@ function resolveProperty(entrypoint: unknown, key: string): unknown {
       return resolveProperty(entrypoint, key);
     }
 
-    case 'object': {
-      return getProperty(entrypoint, key);
-    }
-
     case 'bigint':
     case 'boolean':
     case 'number':
+    case 'object':
     case 'string': {
       return getProperty(entrypoint, key);
     }
