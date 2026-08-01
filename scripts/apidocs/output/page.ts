@@ -91,7 +91,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
 
   ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples)}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples, `${camelTitle}-module`)}</div>`}
 
   :::
 
@@ -124,7 +124,10 @@ async function writePageData(
   const { camelTitle, methods } = page;
   const pageData: Record<string, ApiDocsMethod> = Object.fromEntries(
     await Promise.all(
-      methods.map(async (method) => [method.name, await toMethodData(method)])
+      methods.map(async (method, index) => [
+        method.name,
+        await toMethodData(method, `${camelTitle}-method-${index}`),
+      ])
     )
   );
   const prioritizedRegistryHints = {
@@ -159,7 +162,10 @@ async function writePageData(
   );
 }
 
-async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
+async function toMethodData(
+  method: RawApiDocsMethod,
+  codeGroupId: string
+): Promise<ApiDocsMethod> {
   const { name, signatures, source } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
   const {
@@ -226,7 +232,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     signature: await codeToHtml(formattedSignature),
-    examples: await codeGroupToHtml(examples),
+    examples: await codeGroupToHtml(examples, codeGroupId),
     refresh,
     experimental,
     deprecated: await mdToHtml(deprecated),
