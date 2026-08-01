@@ -9,7 +9,7 @@ export const CROCKFORDS_BASE32 = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
  * @param date The Date to encode.
  */
 export function dateToBase32(date: Date): string {
-  let value = date.valueOf();
+  let value = Math.max(date.valueOf(), 0);
   let result = '';
   for (let len = 10; len > 0; len--) {
     const mod = value % 32;

@@ -834,6 +834,13 @@ describe('string', () => {
           expect(ulid).toMatch(regex);
           expect(ulid).toSatisfy(isULID);
         });
+
+        it('generates nil bytes in the unix part if a negative is given as a ref date', () => {
+          const ulid = faker.string.ulid({ refDate: -3000 });
+
+          expect(ulid).toSatisfy(isULID);
+          expect(ulid).toStartWith('0000000000');
+        });
       });
 
       describe(`nanoid`, () => {
