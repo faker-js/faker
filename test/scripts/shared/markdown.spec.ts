@@ -34,12 +34,15 @@ describe('markdown', () => {
       const first = await codeGroupToHtml(codes, 'first');
       const second = await codeGroupToHtml(codes, 'second');
 
+      // the generated tab controls are prefixed with the code group id
       expect(first).toContain('name="first-group-0"');
       expect(first).toContain('id="first-tab-1"');
       expect(first).toContain('for="first-tab-1"');
       expect(second).toContain('name="second-group-0"');
       expect(second).toContain('id="second-tab-1"');
       expect(second).toContain('for="second-tab-1"');
+
+      // while identical looking attributes inside the code examples are kept as is
       expect(first).toContain('id="tab-custom"');
       expect(first).toContain('name="group-custom"');
       expect(first).toContain('for="tab-custom"');

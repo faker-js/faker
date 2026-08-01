@@ -124,10 +124,7 @@ async function writePageData(
   const { camelTitle, methods } = page;
   const pageData: Record<string, ApiDocsMethod> = Object.fromEntries(
     await Promise.all(
-      methods.map(async (method, index) => [
-        method.name,
-        await toMethodData(method, `${camelTitle}-method-${index}`),
-      ])
+      methods.map(async (method) => [method.name, await toMethodData(method)])
     )
   );
   const prioritizedRegistryHints = {
@@ -162,10 +159,7 @@ async function writePageData(
   );
 }
 
-async function toMethodData(
-  method: RawApiDocsMethod,
-  codeGroupId: string
-): Promise<ApiDocsMethod> {
+async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   const { name, signatures, source } = method;
   const signatureData = required(signatures.at(-1), 'method signature');
   const {
@@ -232,7 +226,7 @@ async function toMethodData(
       throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     signature: await codeToHtml(formattedSignature),
-    examples: await codeGroupToHtml(examples, codeGroupId),
+    examples: await codeGroupToHtml(examples, name),
     refresh,
     experimental,
     deprecated: await mdToHtml(deprecated),
