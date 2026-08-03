@@ -219,7 +219,9 @@ describe('color', () => {
 
         it('should return the alpha as a value between 0 and 1, like rgba', () => {
           const color = faker.color.hsl({ format: 'css', includeAlpha: true });
-          const alpha = Number(color.split('/', 2)[1].replace(')', '').trim());
+          const alpha = Number.parseFloat(
+            color.split('/', 2)[1].replace(')', '').trim()
+          );
           expect(alpha).toBeGreaterThanOrEqual(0);
           expect(alpha).toBeLessThanOrEqual(1);
         });

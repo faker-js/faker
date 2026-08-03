@@ -144,8 +144,6 @@ function toCSS(
     }
 
     case 'hsla': {
-      // The alpha is a number between 0 and 1, like in `rgba` above,
-      // not a percentage.
       return `hsl(${values[0]}deg ${toPercentage(values[1])}% ${toPercentage(
         values[2]
       )}% / ${values[3]})`;
