@@ -898,6 +898,7 @@ export class ColorModule extends ModuleBase {
   lch(options: { format?: ColorFormat } = {}): string | number[] {
     const { format = 'decimal' } = options;
     const lch = [
+      // Lightness is a fraction between 0 and 1.
       this.faker.number.float({ multipleOf: 0.000001 }),
       // Chroma is theoretically unbounded, see the docs above for why 230.
       this.faker.number.float({ max: 230, multipleOf: 0.1 }),
