@@ -897,10 +897,13 @@ export class ColorModule extends ModuleBase {
   }): string | number[];
   lch(options: { format?: ColorFormat } = {}): string | number[] {
     const { format = 'decimal' } = options;
-    const lch = [this.faker.number.float({ multipleOf: 0.000001 })];
-    for (let i = 0; i < 2; i++) {
-      lch.push(this.faker.number.float({ max: 230, multipleOf: 0.1 }));
-    }
+    const lch = [
+      this.faker.number.float({ multipleOf: 0.000001 }),
+      // Chroma is theoretically unbounded, see the docs above for why 230.
+      this.faker.number.float({ max: 230, multipleOf: 0.1 }),
+      // Hue is an angle in degrees.
+      this.faker.number.float({ max: 360, multipleOf: 0.1 }),
+    ];
 
     return toColorFormat(lch, format, 'lch');
   }
