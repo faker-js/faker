@@ -91,7 +91,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
 
   ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples)}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples, `${camelTitle}-module`)}</div>`}
 
   :::
 
@@ -226,7 +226,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     signature: await codeToHtml(formattedSignature),
-    examples: await codeGroupToHtml(examples),
+    examples: await codeGroupToHtml(examples, name),
     refresh,
     experimental,
     deprecated: await mdToHtml(deprecated),
