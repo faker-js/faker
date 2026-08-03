@@ -216,6 +216,13 @@ describe('color', () => {
             /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}% \/ \d*\.?\d*\))$/
           );
         });
+
+        it('should return the alpha as a value between 0 and 1, like rgba', () => {
+          const color = faker.color.hsl({ format: 'css', includeAlpha: true });
+          const alpha = Number(color.split('/', 2)[1].replace(')', '').trim());
+          expect(alpha).toBeGreaterThanOrEqual(0);
+          expect(alpha).toBeLessThanOrEqual(1);
+        });
       });
 
       describe(`hsl({ format: 'binary' })`, () => {
@@ -323,12 +330,18 @@ describe('color', () => {
         it('should return a random lch color in decimal format', () => {
           const color = faker.color.lch();
           expect(color).length(3);
-          expect(color[0]).toBeGreaterThanOrEqual(0);
-          expect(color[0]).toBeLessThanOrEqual(1);
-          for (const value of color) {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(230);
-          }
+          const [lightness, chroma, hue] = color;
+          expect(lightness).toBeGreaterThanOrEqual(0);
+          expect(lightness).toBeLessThanOrEqual(1);
+          expect(chroma).toBeGreaterThanOrEqual(0);
+          expect(chroma).toBeLessThanOrEqual(230);
+          expect(hue).toBeGreaterThanOrEqual(0);
+          expect(hue).toBeLessThanOrEqual(360);
+        });
+
+        it('should be able to return a hue above the chroma bound', () => {
+          const hues = Array.from({ length: 1000 }, () => faker.color.lch()[2]);
+          expect(Math.max(...hues)).toBeGreaterThan(230);
         });
       });
 
@@ -336,12 +349,13 @@ describe('color', () => {
         it('should return a random lch color in decimal format', () => {
           const color = faker.color.lch({ format: 'decimal' });
           expect(color).length(3);
-          expect(color[0]).toBeGreaterThanOrEqual(0);
-          expect(color[0]).toBeLessThanOrEqual(1);
-          for (const value of color) {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(230);
-          }
+          const [lightness, chroma, hue] = color;
+          expect(lightness).toBeGreaterThanOrEqual(0);
+          expect(lightness).toBeLessThanOrEqual(1);
+          expect(chroma).toBeGreaterThanOrEqual(0);
+          expect(chroma).toBeLessThanOrEqual(230);
+          expect(hue).toBeGreaterThanOrEqual(0);
+          expect(hue).toBeLessThanOrEqual(360);
         });
       });
 
