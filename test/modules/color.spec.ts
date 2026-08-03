@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { CssFunction, CssSpace, faker } from '../../src';
+import { CssFunction, CssSpace, Faker, en, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
+import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -332,9 +333,18 @@ describe('color', () => {
           expect(hue).toBeLessThanOrEqual(360);
         });
 
-        it('should be able to return a hue above the chroma bound', () => {
-          const hues = Array.from({ length: 1000 }, () => faker.color.lch()[2]);
-          expect(Math.max(...hues)).toBeGreaterThan(230);
+        it('should be able to return the boundary values', () => {
+          const customFaker = new Faker({ locale: en });
+          const { randomizer } = customFaker.fakerCore;
+
+          randomizer.next = () => 0;
+          expect(customFaker.color.lch()).toStrictEqual([0, 0, 0]);
+
+          randomizer.next = () => MERSENNE_MAX_VALUE;
+          const [lightness, chroma, hue] = customFaker.color.lch();
+          expect(lightness).toBeCloseTo(1, 5);
+          expect(chroma).toBe(230);
+          expect(hue).toBe(360);
         });
       });
 
