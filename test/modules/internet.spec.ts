@@ -766,7 +766,7 @@ describe('internet', () => {
           const port = faker.internet.port();
 
           expect(port).toBeTypeOf('number');
-          expect(port).toBeGreaterThanOrEqual(0);
+          expect(port).toBeGreaterThanOrEqual(1);
           expect(port).toBeLessThanOrEqual(65535);
           expect(String(port)).toSatisfy(isPort);
         });

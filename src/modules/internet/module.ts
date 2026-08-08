@@ -750,7 +750,7 @@ export class InternetModule extends ModuleBase {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.number.int(65535);
+    return this.faker.number.int({ min: 1, max: 65535 });
   }
 
   /**
