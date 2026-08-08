@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { NumberOrRange } from '../../utils/types';
+import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
 import { filterWordListByLength } from './filter-word-list-by-length';
 
 /**
@@ -13,14 +13,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -43,17 +35,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -74,14 +58,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -104,17 +80,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -135,14 +103,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -165,17 +125,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -196,14 +148,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -226,17 +170,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -257,14 +193,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -287,17 +215,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -318,14 +238,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -348,17 +260,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -379,14 +283,6 @@ export class WordModule extends ModuleBase {
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
    *
    * Defaults to `'fail'`.
    *
@@ -409,17 +305,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -441,14 +329,6 @@ export class WordModule extends ModuleBase {
    * @param options.length The expected length of the word.
    * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
-   * Available error handling strategies:
-   *
-   * - `fail`: Throws an error if no words with the given length are found.
-   * - `shortest`: Returns any of the shortest words.
-   * - `closest`: Returns any of the words closest to the given length.
-   * - `longest`: Returns any of the longest words.
-   * - `any-length`: Returns a word with any length.
-   *
    * Defaults to `'fail'`.
    *
    * @example
@@ -468,17 +348,9 @@ export class WordModule extends ModuleBase {
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * Available error handling strategies:
-           *
-           * - `fail`: Throws an error if no words with the given length are found.
-           * - `shortest`: Returns any of the shortest words.
-           * - `closest`: Returns any of the words closest to the given length.
-           * - `longest`: Returns any of the longest words.
-           * - `any-length`: Returns a word with any length.
-           *
            * @default 'fail'
            */
-          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+          strategy?: LengthStrategyType;
         } = {}
   ): string {
     const wordMethods = this.faker.helpers.shuffle([

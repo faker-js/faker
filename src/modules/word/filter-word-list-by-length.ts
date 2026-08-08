@@ -1,6 +1,10 @@
 import { FakerError } from '../../errors/faker-error';
 import { groupBy } from '../../internal/group-by';
-import type { NumberOrRange, NumberRange } from '../../utils/types';
+import type {
+  LengthStrategyType,
+  NumberOrRange,
+  NumberRange,
+} from '../../utils/types';
 
 /**
  * The error handling strategies for the `filterWordListByLength` function.
@@ -57,19 +61,11 @@ const STRATEGIES = {
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
  * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
- *
- * Available error handling strategies:
- *
- * - `fail`: Throws an error if no words with the given length are found.
- * - `shortest`: Returns any of the shortest words.
- * - `closest`: Returns any of the words closest to the given length.
- * - `longest`: Returns any of the longest words.
- * - `any-length`: Returns a copy of the original word list.
  */
 export function filterWordListByLength(options: {
   wordList: ReadonlyArray<string>;
   length?: NumberOrRange;
-  strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+  strategy?: LengthStrategyType;
 }): string[] {
   const { wordList, length, strategy = 'fail' } = options;
 
