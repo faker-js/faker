@@ -3,8 +3,13 @@ import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
+import type { Casing, NumberOrRange } from '../../utils/types';
 import { uuidV4, uuidV7 } from './uuid';
+
+/**
+ * The largest timestamp a ULID can encode, as the timestamp component is a 48 bit unsigned integer.
+ */
+const MAX_ULID_TIMESTAMP = 2 ** 48 - 1;
 
 const UPPER_CHARS: ReadonlyArray<string> = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
 const LOWER_CHARS: ReadonlyArray<string> = [...'abcdefghijklmnopqrstuvwxyz'];
@@ -117,7 +122,7 @@ export class StringModule extends SimpleModuleBase {
    */
   fromCharacters(
     characters: string | ReadonlyArray<string>,
-    length: number | NumberRange = 1
+    length: NumberOrRange = 1
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
@@ -168,7 +173,7 @@ export class StringModule extends SimpleModuleBase {
            *
            * @default 1
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The casing of the characters.
            *
@@ -251,7 +256,7 @@ export class StringModule extends SimpleModuleBase {
            *
            * @default 1
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * The casing of the characters.
            *
@@ -333,7 +338,7 @@ export class StringModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      length?: number | NumberRange;
+      length?: NumberOrRange;
       /**
        * Prefix for the generated number.
        *
@@ -374,7 +379,7 @@ export class StringModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      length?: number | NumberRange;
+      length?: NumberOrRange;
       /**
        * Prefix for the generated number.
        *
@@ -421,7 +426,7 @@ export class StringModule extends SimpleModuleBase {
        *
        * @default 1
        */
-      length?: number | NumberRange;
+      length?: NumberOrRange;
       /**
        * Casing of the generated number.
        *
@@ -508,7 +513,7 @@ export class StringModule extends SimpleModuleBase {
            *
            * @default 1
            */
-          length?: number | NumberRange;
+          length?: NumberOrRange;
           /**
            * Whether leading zeros are allowed or not.
            *
@@ -583,7 +588,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  sample(length: number | NumberRange = 10): string {
+  sample(length: NumberOrRange = 10): string {
     length = this.faker.helpers.rangeToNumber(length);
 
     const charCodeOption = {
@@ -711,6 +716,8 @@ export class StringModule extends SimpleModuleBase {
    * The encoded timestamp is represented by the first 10 characters of the result.
    * Defaults to `faker.defaultRefDate()`.
    *
+   * @throws {FakerError} If `refDate` is outside the range a ULID timestamp can encode.
+   *
    * @example
    * faker.string.ulid() // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
    * faker.string.ulid({ refDate: '2020-01-01T00:00:00.000Z' }) // '01DXF6DT00CX9QNNW7PNXQ3YR8'
@@ -722,6 +729,7 @@ export class StringModule extends SimpleModuleBase {
       /**
        * The date to use as reference point for the newly generated ULID encoded timestamp.
        * The encoded timestamp is represented by the first 10 characters of the result.
+       * Must be between `1970-01-01T00:00:00.000Z` and `+010889-08-02T05:31:50.655Z`.
        *
        * @default faker.defaultRefDate()
        */
@@ -730,6 +738,16 @@ export class StringModule extends SimpleModuleBase {
   ): string {
     const { refDate = this.faker.defaultRefDate() } = options;
     const date = toDate(refDate);
+
+    if (date.valueOf() < 0 || date.valueOf() > MAX_ULID_TIMESTAMP) {
+      throw new FakerError(
+        `Unable to generate ULID: the refDate must be between ${new Date(
+          0
+        ).toISOString()} and ${new Date(
+          MAX_ULID_TIMESTAMP
+        ).toISOString()}, but was ${date.toISOString()}.`
+      );
+    }
 
     return dateToBase32(date) + this.fromCharacters(CROCKFORDS_BASE32, 16);
   }
@@ -748,7 +766,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  nanoid(length: number | NumberRange = 21): string {
+  nanoid(length: NumberOrRange = 21): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
       return '';
@@ -794,7 +812,7 @@ export class StringModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  symbol(length: number | NumberRange = 1): string {
+  symbol(length: NumberOrRange = 1): string {
     return this.fromCharacters(
       [
         '!',

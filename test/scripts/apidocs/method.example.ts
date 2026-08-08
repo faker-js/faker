@@ -1,4 +1,9 @@
-import type { Casing, ColorFormat, NumberRange } from '../../../src';
+import type {
+  Casing,
+  ColorFormat,
+  NumberOrRange,
+  NumberRange,
+} from '../../../src';
 import { FakerError } from '../../../src/errors/faker-error';
 import type { LiteralUnion } from '../../../src/internal/types';
 import type { AlphaNumericChar } from '../../../src/modules/string';
@@ -77,6 +82,25 @@ export interface ParameterOptionsInterfaceC {
  */
 export type AB = 'a' | 'b';
 
+/**
+ * A shadow enum whose members carry per-value documentation.
+ */
+export enum ShadowEnum {
+  /**
+   * The first option.
+   */
+  First = 'first',
+  /**
+   * The second option.
+   */
+  Second = 'second',
+}
+
+/**
+ * The string-literal shadow type backed by {@link ShadowEnum}.
+ */
+export type ShadowEnumType = `${ShadowEnum}`;
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -145,6 +169,27 @@ export class SignatureTest {
   }
 
   /**
+   * Test with a shadow type, whose values carry per-value documentation.
+   *
+   * @param value The direct shadow parameter.
+   * @param options The options parameter.
+   * @param options.strategy The nested shadow parameter.
+   *
+   * @since 1.0.0
+   */
+  shadowTypeParamMethod(
+    value: ShadowEnumType,
+    options?: {
+      /**
+       * The nested shadow parameter.
+       */
+      strategy?: ShadowEnumType;
+    }
+  ): string {
+    return options?.strategy ?? value;
+  }
+
+  /**
    * Test with string union.
    *
    * @param value `'a'` or `'b'`.
@@ -209,6 +254,8 @@ export class SignatureTest {
    * Test with NumberRange.
    *
    * @param value `{min: 1, max: 10}`.
+   * @param value.min The minimum value.
+   * @param value.max The maximum value. Defaults to `10`.
    * @param array Array of `{min: 1, max: 10}`.
    * @param options The options parameter.
    * @param options.count `{min: 1, max: 10}`.
@@ -224,6 +271,34 @@ export class SignatureTest {
       count: NumberRange;
     },
     mixed: NumberRange | ReadonlyArray<NumberRange>
+  ): string {
+    return JSON.stringify({
+      value,
+      array,
+      options,
+      mixed,
+    });
+  }
+
+  /**
+   * Test with NumberOrRange.
+   *
+   * @param value `5` or `{min: 1, max: 10}`.
+   * @param array Array of `5` or `{min: 1, max: 10}`.
+   * @param options The options parameter.
+   * @param options.count `5` or `{min: 1, max: 10}`.
+   * @param mixed `5` or `{min: 1, max: 10}` or an array thereof.
+   *
+   * @since 1.0.0
+   */
+  numberOrRangeParamMethod(
+    value: NumberOrRange,
+    array: ReadonlyArray<NumberOrRange>,
+    options: {
+      /** The count parameter. */
+      count: NumberOrRange;
+    },
+    mixed: NumberOrRange | ReadonlyArray<NumberOrRange>
   ): string {
     return JSON.stringify({
       value,

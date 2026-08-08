@@ -223,6 +223,19 @@ describe('location', () => {
           }
         });
 
+        it('should only return valid letters for en_CA locale', () => {
+          // Canadian postal codes never use the letters D, F, I, O, Q and U,
+          // and never use W or Z as the first letter.
+          // See https://github.com/faker-js/faker/issues/1416
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerEN_CA.location.zipCode();
+
+            expect(zipCode).toMatch(
+              /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z] \d[ABCEGHJ-NPRSTV-Z]\d$/
+            );
+          }
+        });
+
         it('should only return valid department prefixes for fr locale', () => {
           // French postal codes use department prefixes 01-95 (metropolitan)
           // and 971-978/984/986-989 (overseas); 00xxx, 96xxx and 99xxx are not

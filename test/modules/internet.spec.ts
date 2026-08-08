@@ -652,6 +652,14 @@ describe('internet', () => {
           expect(fourth).toBeLessThanOrEqual(255);
         });
 
+        it('should return the input IPv4 for a /32 CIDR block', () => {
+          const actual = faker.internet.ipv4({
+            cidrBlock: '192.168.0.255/32',
+          });
+
+          expect(actual).toBe('192.168.0.255');
+        });
+
         it.each([
           '',
           '...',
@@ -680,6 +688,34 @@ describe('internet', () => {
             );
           }
         );
+
+        it('should throw an error for CIDR prefix lengths above 32', () => {
+          const cidrBlock = '192.168.0.0/33';
+
+          expect(() =>
+            faker.internet.ipv4({
+              cidrBlock,
+            })
+          ).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Prefix length must be between 0 and 32.`
+            )
+          );
+        });
+
+        it('should throw an error for CIDR blocks with octets above 255', () => {
+          const cidrBlock = '192.168.0.256/24';
+
+          expect(() =>
+            faker.internet.ipv4({
+              cidrBlock,
+            })
+          ).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Each octet must be between 0 and 255.`
+            )
+          );
+        });
 
         it.each([
           [IPv4Network.Any, /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
@@ -730,7 +766,7 @@ describe('internet', () => {
           const port = faker.internet.port();
 
           expect(port).toBeTypeOf('number');
-          expect(port).toBeGreaterThanOrEqual(0);
+          expect(port).toBeGreaterThanOrEqual(1);
           expect(port).toBeLessThanOrEqual(65535);
           expect(String(port)).toSatisfy(isPort);
         });
@@ -867,6 +903,13 @@ describe('internet', () => {
           expect(password).toHaveLength(32);
           expect(password).toStartWith('a!G6');
           expect(password).toSatisfy(isStrongPassword);
+        });
+
+        it('should generate long passwords without overflowing the call stack', () => {
+          // Regression test: password generation used to recurse once per character, throwing a RangeError for lengths of ~5000 and above.
+          const length = 100_000;
+
+          expect(() => faker.internet.password({ length })).not.toThrow();
         });
       });
 
