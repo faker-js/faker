@@ -18,8 +18,11 @@
 import { constants } from 'node:fs';
 import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import type { PersonEntryDefinition } from '../dist';
-import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
+import type {
+  LocaleDefinition,
+  MetadataDefinition,
+  PersonEntryDefinition,
+} from '../src/definitions';
 import { keys } from '../src/internal/keys';
 import { toFakerExportName } from './locales/exports';
 import { loadMetadata, tryLoadMetadata } from './locales/metadata';

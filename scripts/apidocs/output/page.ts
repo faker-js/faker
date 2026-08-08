@@ -12,6 +12,8 @@ import { FILE_PATH_API_DOCS } from '../../shared/paths';
 import { toRefreshableCode } from '../../shared/refreshable-code';
 import type { RawApiDocsPage } from '../processing/class';
 import type { RawApiDocsMethod } from '../processing/method';
+import type { RawApiDocsParameter } from '../processing/parameter';
+import type { RawApiDocsType } from '../processing/type';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
@@ -91,7 +93,7 @@ async function writePageMarkdown(page: RawApiDocsPage): Promise<void> {
 
   ${adjustUrls(description)}
 
-  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples)}</div>`}
+  ${examples.length === 0 ? '' : `<div class="examples">${await codeGroupToHtml(examples, `${camelTitle}-module`)}</div>`}
 
   :::
 
@@ -216,7 +218,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
     parameters: await Promise.all(
       parameters.map(async (param) => ({
         ...param,
-        type: param.type.text,
+        type: renderParameterType(param, name),
         description: await mdToHtml(param.description),
       }))
     ),
@@ -226,7 +228,7 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
       throws.length === 0 ? undefined : await mdToHtml(throws.join('\n'), true),
     returns: returns.text,
     signature: await codeToHtml(formattedSignature),
-    examples: await codeGroupToHtml(examples),
+    examples: await codeGroupToHtml(examples, name),
     refresh,
     experimental,
     deprecated: await mdToHtml(deprecated),
@@ -246,4 +248,73 @@ export async function toRefreshFunction(
 
   const exampleCode = examples.join('\n');
   return await toRefreshableCode(name, exampleCode, registryHints);
+}
+
+/**
+ * Renders the type of a parameter to HTML. Type values that carry a description
+ * (shadow type values, see {@link getShadowTypeDescriptions}) become a popover
+ * trigger revealing that description, so the per-value documentation is kept
+ * without cluttering the description column.
+ *
+ * @param parameter The parameter whose type to render.
+ * @param methodName The name of the method, used to build unique popover ids.
+ */
+function renderParameterType(
+  parameter: RawApiDocsParameter,
+  methodName: string
+): string {
+  const { type, name } = parameter;
+  const idPrefix = toIdSlug(`${methodName}-${name}`);
+
+  const members = type.type === 'union' ? type.types : [type];
+  if (members.every((member) => !member.description)) {
+    return escapeHtml(type.text);
+  }
+
+  return members
+    .map((member) => renderTypeMember(member, idPrefix))
+    .join(' | ');
+}
+
+/**
+ * Renders a single type (union member) to HTML, as a popover trigger when it
+ * has a description, or as plain escaped text otherwise.
+ *
+ * @param member The type to render.
+ * @param idPrefix The prefix for the popover id, unique per parameter.
+ */
+function renderTypeMember(member: RawApiDocsType, idPrefix: string): string {
+  const text = escapeHtml(member.text);
+  if (!member.description) {
+    return text;
+  }
+
+  const id = `${idPrefix}-${toIdSlug(member.text)}`;
+  return (
+    `<button type="button" class="shadow-type-value" popovertarget="${id}" style="anchor-name:--${id}">${text}</button>` +
+    `<div id="${id}" popover class="shadow-type-popover" style="position-anchor:--${id}">${escapeHtml(member.description)}</div>`
+  );
+}
+
+/**
+ * Escapes a string for safe inclusion in HTML text/attribute content.
+ *
+ * @param value The string to escape.
+ */
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+/**
+ * Turns an arbitrary string into a slug safe for use in html ids and css idents.
+ *
+ * @param value The string to slugify.
+ */
+function toIdSlug(value: string): string {
+  return value.replaceAll(/[^a-zA-Z0-9]+/g, '-').replaceAll(/^-+|-+$/g, '');
 }

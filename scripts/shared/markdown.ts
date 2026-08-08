@@ -100,10 +100,20 @@ export async function codeToHtml(code: string): Promise<string> {
  * docs-site-only metadata in the source.
  *
  * @param codes The code blocks to convert.
+ * @param groupId The unique identifier for the code group.
  *
  * @returns The converted HTML string.
  */
-export async function codeGroupToHtml(codes: string[]): Promise<string> {
+export async function codeGroupToHtml(
+  codes: string[],
+  groupId: string
+): Promise<string> {
+  if (!/^[a-z][a-z0-9_-]*$/i.test(groupId)) {
+    throw new TypeError(
+      'Code group identifier must start with a letter and contain only letters, numbers, underscores, or hyphens.'
+    );
+  }
+
   if (codes.length <= 1) {
     return codeToHtml(codes.join('\n'));
   }
@@ -115,7 +125,15 @@ export async function codeGroupToHtml(codes: string[]): Promise<string> {
       return `${delimiter}ts [${title}]\n${body}\n${delimiter}`;
     })
     .join('\n\n');
-  return mdToHtml(`::: code-group\n\n${blocks}\n\n:::`);
+  const html = await mdToHtml(`::: code-group\n\n${blocks}\n\n:::`);
+  return scopeCodeGroup(html, groupId);
+}
+
+function scopeCodeGroup(html: string, groupId: string): string {
+  return html
+    .replaceAll(/(<input\b[^>]*\bname=")group-/g, `$1${groupId}-group-`)
+    .replaceAll(/(<input\b[^>]*\bid=")tab-/g, `$1${groupId}-tab-`)
+    .replaceAll(/(<label\b[^>]*\bfor=")tab-/g, `$1${groupId}-tab-`);
 }
 
 function extractCodeGroupTitle(
