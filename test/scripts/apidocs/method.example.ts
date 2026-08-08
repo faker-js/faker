@@ -82,6 +82,25 @@ export interface ParameterOptionsInterfaceC {
  */
 export type AB = 'a' | 'b';
 
+/**
+ * A shadow enum whose members carry per-value documentation.
+ */
+export enum ShadowEnum {
+  /**
+   * The first option.
+   */
+  First = 'first',
+  /**
+   * The second option.
+   */
+  Second = 'second',
+}
+
+/**
+ * The string-literal shadow type backed by {@link ShadowEnum}.
+ */
+export type ShadowEnumType = `${ShadowEnum}`;
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -147,6 +166,27 @@ export class SignatureTest {
    */
   functionParamMethod(fn: (a: string) => number): number {
     return fn('a');
+  }
+
+  /**
+   * Test with a shadow type, whose values carry per-value documentation.
+   *
+   * @param value The direct shadow parameter.
+   * @param options The options parameter.
+   * @param options.strategy The nested shadow parameter.
+   *
+   * @since 1.0.0
+   */
+  shadowTypeParamMethod(
+    value: ShadowEnumType,
+    options?: {
+      /**
+       * The nested shadow parameter.
+       */
+      strategy?: ShadowEnumType;
+    }
+  ): string {
+    return options?.strategy ?? value;
   }
 
   /**
