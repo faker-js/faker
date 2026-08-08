@@ -4,15 +4,18 @@ import { createMarkdownRenderer } from 'vitepress';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { FILE_PATH_API_DOCS } from './paths';
 
+let markdownPromise: Promise<MarkdownRenderer>;
 let markdown: MarkdownRenderer;
 
 export async function initMarkdownRenderer(): Promise<void> {
   // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
-  markdown ??= await createMarkdownRenderer(
+  markdownPromise ??= createMarkdownRenderer(
     FILE_PATH_API_DOCS,
     vitepressConfig.markdown,
     '/'
   );
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
+  markdown ??= await markdownPromise;
 }
 
 const htmlSanitizeOptions: sanitizeHtml.IOptions = {
