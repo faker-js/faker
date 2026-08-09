@@ -19,9 +19,7 @@ export class LoremModule extends ModuleBase {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found.
-   *
-   * Defaults to `'any-length'`.
+   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
    *
    * @example
    * faker.lorem.word() // 'temporibus'
@@ -38,13 +36,13 @@ export class LoremModule extends ModuleBase {
           /**
            * The expected length of the word.
            *
-           * @default 1
+           * If not provided, a word of any length is returned.
            */
           length?: NumberOrRange;
           /**
            * The strategy to apply when no words with a matching length are found.
            *
-           * @default 'any-length'
+           * @default 'fail'
            */
           strategy?: LengthStrategyType;
         } = {}
