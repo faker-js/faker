@@ -1,4 +1,5 @@
-import { isAbaRouting } from 'validator';
+import type { VATCountryCode } from 'validator';
+import { isAbaRouting, isVAT } from 'validator';
 import isCreditCard from 'validator/lib/isCreditCard';
 import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
@@ -9,6 +10,7 @@ import {
   BitcoinNetwork,
 } from '../../src/modules/finance/bitcoin';
 import ibanLib from '../../src/modules/finance/iban';
+import { vatNumberFormats } from '../../src/modules/finance/vat-number';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -608,6 +610,64 @@ describe('finance', () => {
           expect(bic).toBeTypeOf('string');
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+        });
+      });
+
+      describe('vatNumber()', () => {
+        // Spain is checked separately: `validator` requires a letter in the last
+        // position, but the Spanish tax agency assigns a digit there to national
+        // legal entities, so it rejects real numbers such as `ESA28015865`.
+        it.each(Object.keys(vatNumberFormats).filter((code) => code !== 'ES'))(
+          'should return a valid VAT number for %s',
+          (country) => {
+            const actual = faker.finance.vatNumber({ countryCode: country });
+
+            expect(actual).toStartWith(country);
+            expect(actual).toSatisfy((value: string) =>
+              isVAT(value, country as VATCountryCode)
+            );
+          }
+        );
+
+        it('should return a structurally valid Spanish NIF/CIF', () => {
+          const actual = faker.finance.vatNumber({ countryCode: 'ES' });
+
+          // The leading character encodes the legal form (I, K, L, M, O, T and
+          // X-Z are not assigned to one) and the control character is a digit
+          // for national entities or a letter A-J for the rest.
+          expect(actual).toMatch(/^ES[ABCDEFGHJNPQRSUVW]\d{7}[0-9A-J]$/);
+        });
+
+        it('should return a VAT number of a supported country', () => {
+          const actual = faker.finance.vatNumber();
+          const country = actual.slice(0, 2);
+
+          expect(Object.keys(vatNumberFormats)).toContain(country);
+        });
+
+        it('should accept the GR ISO code and emit the EL prefix Greek numbers use', () => {
+          expect(faker.finance.vatNumber({ countryCode: 'GR' })).toStartWith(
+            'EL'
+          );
+        });
+
+        it.each(['XX', ''])(
+          'should throw for the unsupported country code %j',
+          (countryCode) => {
+            expect(() => faker.finance.vatNumber({ countryCode })).toThrow(
+              new FakerError(`Country code ${countryCode} not supported.`)
+            );
+          }
+        );
+
+        it('should only use characters the country actually issues', () => {
+          expect(faker.finance.vatNumber({ countryCode: 'SE' })).toMatch(/01$/);
+          expect(faker.finance.vatNumber({ countryCode: 'SI' })[2]).not.toBe(
+            '0'
+          );
+          expect(faker.finance.vatNumber({ countryCode: 'RO' })[2]).not.toBe(
+            '0'
+          );
         });
       });
 

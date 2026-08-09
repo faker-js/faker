@@ -1,5 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
+import type { LiteralUnion } from '../../internal/types';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {
   BitcoinAddressFamily,
@@ -7,7 +8,8 @@ import {
   BitcoinNetwork,
 } from './bitcoin';
 import iban from './iban';
-import vatNumberFormats from './vat-number';
+import type { VatNumberCountryCode } from './vat-number';
+import { vatNumberAliases, vatNumberFormats } from './vat-number';
 
 /**
  * The possible definitions related to currency entries.
@@ -845,12 +847,19 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random VAT identification number for one of the EU member states.
    *
-   * Please note that only the structure of the number is generated: its length, character classes and any
-   * characters the country mandates. Where a country's real numbering scheme defines a check digit, that
-   * digit is random here, so the result is not guaranteed to be a valid registration.
+   * Please note that only the structure of the number is generated: its length, the characters each
+   * position may hold, and any literal characters the country mandates. Where a country's real
+   * numbering scheme defines a check digit, that digit is random here, so the result is not
+   * guaranteed to be a valid registration.
+   *
+   * The supported country codes are
+   * `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`, `DK`, `EE`, `EL` (or `GR`), `ES`, `FI`, `FR`, `HR`, `HU`,
+   * `IE`, `IT`, `LT`, `LU`, `LV`, `MT`, `NL`, `PL`, `RO`, `SE`, `SI` and `SK`.
+   * Portugal is not supported, because a Portuguese number is only recognisable with a real check
+   * digit, which this method does not compute.
    *
    * @param options An options object.
-   * @param options.countryCode The country code from which you want to generate a VAT number, if none is provided a random country will be used. Note that Greek VAT numbers use the `EL` prefix rather than the `GR` ISO code.
+   * @param options.countryCode The ISO 3166-1 alpha-2 code of the country you want a VAT number for, if none is provided a random supported country will be used. Greece may be given as either `GR` or `EL`; the generated number always carries the `EL` prefix that Greek VAT numbers use.
    *
    * @throws {FakerError} Will throw an error if the passed country code is not supported.
    *
@@ -858,31 +867,42 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.vatNumber() // 'SK4318759382'
    * faker.finance.vatNumber({ countryCode: 'DE' }) // 'DE644073457'
    * faker.finance.vatNumber({ countryCode: 'NL' }) // 'NL840351580B96'
+   * faker.finance.vatNumber({ countryCode: 'GR' }) // 'EL892156043'
    *
    * @since 10.6.0
    */
   vatNumber(
     options: {
       /**
-       * The country code from which you want to generate a VAT number,
-       * if none is provided a random country will be used.
+       * The ISO 3166-1 alpha-2 code of the country you want a VAT number for,
+       * if none is provided a random supported country will be used.
        */
-      countryCode?: string;
+      countryCode?: LiteralUnion<VatNumberCountryCode>;
     } = {}
   ): string {
     const { countryCode } = options;
 
-    const vatFormat = countryCode
-      ? vatNumberFormats.find((f) => f.country === countryCode)
-      : this.faker.helpers.arrayElement(vatNumberFormats);
+    // Checked against undefined rather than for truthiness, so that an explicitly
+    // passed empty string is reported as unsupported instead of silently
+    // behaving like an omitted option.
+    if (countryCode === undefined) {
+      return this.faker.helpers.fromRegExp(
+        this.faker.helpers.objectValue(vatNumberFormats)
+      );
+    }
 
-    if (!vatFormat) {
+    const resolvedCode =
+      vatNumberAliases[countryCode as keyof typeof vatNumberAliases] ??
+      countryCode;
+    const pattern = (vatNumberFormats as Record<string, string | undefined>)[
+      resolvedCode
+    ];
+
+    if (pattern == null) {
       throw new FakerError(`Country code ${countryCode} not supported.`);
     }
 
-    // The country prefix is always included: France is the only member state whose
-    // number is not also valid without it, so omitting it would break FR alone.
-    return `${vatFormat.country}${this.faker.helpers.replaceSymbols(vatFormat.format)}`;
+    return this.faker.helpers.fromRegExp(pattern);
   }
 
   /**

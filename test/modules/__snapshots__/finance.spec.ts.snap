@@ -81,11 +81,11 @@ exports[`finance > 42 > transactionDescription 1`] = `"You made a withdrawal of 
 
 exports[`finance > 42 > transactionType 1`] = `"invoice"`;
 
-exports[`finance > 42 > vatNumber > noArgs 1`] = `"ESY7511086S"`;
+exports[`finance > 42 > vatNumber > noArgs 1`] = `"ESW7511086E"`;
 
 exports[`finance > 42 > vatNumber > with countryCode option 1`] = `"DE397511086"`;
 
-exports[`finance > 42 > vatNumber > with countryCode option using letters 1`] = `"ESJ9751108P"`;
+exports[`finance > 42 > vatNumber > with countryCode option using letters 1`] = `"ESG9751108C"`;
 
 exports[`finance > 1211 > accountName 1`] = `"Savings Account"`;
 
@@ -168,11 +168,11 @@ exports[`finance > 1211 > transactionDescription 1`] = `"withdrawal transaction 
 
 exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
 
-exports[`finance > 1211 > vatNumber > noArgs 1`] = `"SI82966736"`;
+exports[`finance > 1211 > vatNumber > noArgs 1`] = `"SI92966736"`;
 
 exports[`finance > 1211 > vatNumber > with countryCode option 1`] = `"DE982966736"`;
 
-exports[`finance > 1211 > vatNumber > with countryCode option using letters 1`] = `"ESY8296673S"`;
+exports[`finance > 1211 > vatNumber > with countryCode option using letters 1`] = `"ESV8296673D"`;
 
 exports[`finance > 1337 > accountName 1`] = `"Credit Card Account"`;
 
@@ -259,4 +259,4 @@ exports[`finance > 1337 > vatNumber > noArgs 1`] = `"DK12435297"`;
 
 exports[`finance > 1337 > vatNumber > with countryCode option 1`] = `"DE212435297"`;
 
-exports[`finance > 1337 > vatNumber > with countryCode option using letters 1`] = `"ESG1243529T"`;
+exports[`finance > 1337 > vatNumber > with countryCode option using letters 1`] = `"ESE1243529E"`;
