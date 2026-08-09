@@ -78,6 +78,12 @@ describe('finance', () => {
         });
     });
 
+    t.describe('vatNumber', (t) => {
+      t.it('noArgs')
+        .it('with countryCode option', { countryCode: 'DE' })
+        .it('with countryCode option using letters', { countryCode: 'ES' });
+    });
+
     t.describe('creditCardNumber', (t) => {
       t.it('noArgs')
         .it('with issuer', 'visa')

@@ -7,6 +7,7 @@ import {
   BitcoinNetwork,
 } from './bitcoin';
 import iban from './iban';
+import vatNumberFormats from './vat-number';
 
 /**
  * The possible definitions related to currency entries.
@@ -839,6 +840,49 @@ export class FinanceModule extends ModuleBase {
       : '';
 
     return `${bankIdentifier}${countryCode}${locationCode}${branchCode}`;
+  }
+
+  /**
+   * Generates a random VAT identification number for one of the EU member states.
+   *
+   * Please note that only the structure of the number is generated: its length, character classes and any
+   * characters the country mandates. Where a country's real numbering scheme defines a check digit, that
+   * digit is random here, so the result is not guaranteed to be a valid registration.
+   *
+   * @param options An options object.
+   * @param options.countryCode The country code from which you want to generate a VAT number, if none is provided a random country will be used. Note that Greek VAT numbers use the `EL` prefix rather than the `GR` ISO code.
+   *
+   * @throws {FakerError} Will throw an error if the passed country code is not supported.
+   *
+   * @example
+   * faker.finance.vatNumber() // 'SK4318759382'
+   * faker.finance.vatNumber({ countryCode: 'DE' }) // 'DE644073457'
+   * faker.finance.vatNumber({ countryCode: 'NL' }) // 'NL840351580B96'
+   *
+   * @since 10.6.0
+   */
+  vatNumber(
+    options: {
+      /**
+       * The country code from which you want to generate a VAT number,
+       * if none is provided a random country will be used.
+       */
+      countryCode?: string;
+    } = {}
+  ): string {
+    const { countryCode } = options;
+
+    const vatFormat = countryCode
+      ? vatNumberFormats.find((f) => f.country === countryCode)
+      : this.faker.helpers.arrayElement(vatNumberFormats);
+
+    if (!vatFormat) {
+      throw new FakerError(`Country code ${countryCode} not supported.`);
+    }
+
+    // The country prefix is always included: France is the only member state whose
+    // number is not also valid without it, so omitting it would break FR alone.
+    return `${vatFormat.country}${this.faker.helpers.replaceSymbols(vatFormat.format)}`;
   }
 
   /**
