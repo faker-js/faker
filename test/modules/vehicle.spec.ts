@@ -1,11 +1,24 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
+import { vinCheckDigit } from '../../src/modules/vehicle/module';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('vehicle', () => {
+  describe('vinCheckDigit()', () => {
+    it.each([
+      ['1M8GDM9AXKP042788', 'X'],
+      ['1HGCM82633A004352', '3'],
+      ['CYRK551V7PAZ82113', '7'],
+      ['XW7ZNNSB8TUM84882', '8'],
+      ['859FAH8Z23JL19477', '2'],
+    ])('calculates the check digit for %s', (vin, expected) => {
+      expect(vinCheckDigit(vin)).toBe(expected);
+    });
+  });
+
   seededTests(faker, 'vehicle', (t) => {
     t.itEach(
       'vehicle',
@@ -101,6 +114,12 @@ describe('vehicle', () => {
           expect(vin).toMatch(
             /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
+        });
+
+        it('should add the check digit at the correct position', () => {
+          const vin = faker.vehicle.vin();
+
+          expect(vin[8]).toBe(vinCheckDigit(vin));
         });
       });
 
