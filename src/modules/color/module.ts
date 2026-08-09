@@ -146,7 +146,7 @@ function toCSS(
     case 'hsla': {
       return `hsl(${values[0]}deg ${toPercentage(values[1])}% ${toPercentage(
         values[2]
-      )}% / ${toPercentage(values[3])})`;
+      )}% / ${values[3]})`;
     }
 
     case 'hwb': {

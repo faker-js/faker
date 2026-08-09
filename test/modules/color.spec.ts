@@ -216,6 +216,15 @@ describe('color', () => {
             /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}% \/ \d*\.?\d*\))$/
           );
         });
+
+        it('should return the alpha as a value between 0 and 1, like rgba', () => {
+          const color = faker.color.hsl({ format: 'css', includeAlpha: true });
+          const alpha = Number.parseFloat(
+            color.split('/', 2)[1].replace(')', '').trim()
+          );
+          expect(alpha).toBeGreaterThanOrEqual(0);
+          expect(alpha).toBeLessThanOrEqual(1);
+        });
       });
 
       describe(`hsl({ format: 'binary' })`, () => {
