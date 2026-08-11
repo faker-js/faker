@@ -20,6 +20,7 @@ export type {
   LocaleEntry,
   LocationDefinition,
   LoremDefinition,
+  MedicalDefinition,
   MetadataDefinition,
   MusicDefinition,
   PersonDefinition,

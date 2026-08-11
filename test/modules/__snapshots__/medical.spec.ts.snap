@@ -32,7 +32,7 @@ exports[`medical > 1211 > specialty 1`] = `"Urology"`;
 
 exports[`medical > 1211 > symptom 1`] = `"Unexplained Weight Loss"`;
 
-exports[`medical > 1337 > allergen 1`] = `"Eggs"`;
+exports[`medical > 1337 > allergen 1`] = `"Dust Mites"`;
 
 exports[`medical > 1337 > bloodType 1`] = `"AB+"`;
 
@@ -40,7 +40,7 @@ exports[`medical > 1337 > condition 1`] = `"Crohn's Disease"`;
 
 exports[`medical > 1337 > department 1`] = `"Inpatient Ward"`;
 
-exports[`medical > 1337 > drugName 1`] = `"Ixenvafen"`;
+exports[`medical > 1337 > drugName 1`] = `"Ixenmidex"`;
 
 exports[`medical > 1337 > procedure 1`] = `"Dermabrasion"`;
 

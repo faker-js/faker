@@ -79,4 +79,71 @@ describe('medical', () => {
       });
     }
   );
+
+  describe('drug name screening', () => {
+    // Real products that a screen of this list has had to remove. Kept here so
+    // that re-adding one is a test failure rather than a silent regression:
+    // Revalor and Orbax are FDA veterinary products, Lumemox is a moxifloxacin
+    // eye drop marketed in India and Kenya, and Nuvizen is a medication-device
+    // trademark. The first screen of this list missed all four because it
+    // covered human brand names only.
+    const REAL_PRODUCTS = ['Revalor', 'Orbax', 'Lumemox', 'Nuvizen'];
+
+    // A generated name that ends in one of these reads as a real generic drug
+    // rather than an invented brand.
+    const INN_STEMS = [
+      'afil',
+      'arudin',
+      'axel',
+      'caine',
+      'cillin',
+      'conazole',
+      'coxib',
+      'dipine',
+      'dronate',
+      'fenac',
+      'gliptin',
+      'grastim',
+      'kinra',
+      'lukast',
+      'mab',
+      'micin',
+      'mustine',
+      'mycin',
+      'nacogalfa',
+      'olol',
+      'oxacin',
+      'parin',
+      'peptin',
+      'pramine',
+      'pril',
+      'profen',
+      'sartan',
+      'setron',
+      'statin',
+      'tecan',
+      'tidine',
+      'tinib',
+      'trexed',
+      'vastatin',
+      'vir',
+      'zosin',
+    ];
+
+    it.each(REAL_PRODUCTS)('should not offer %s', (product) => {
+      const names = faker.definitions.medical.drug_name.map((name) =>
+        name.toLowerCase()
+      );
+
+      expect(names).not.toContain(product.toLowerCase());
+    });
+
+    it('should not end a name in an INN stem', () => {
+      const offenders = faker.definitions.medical.drug_name.filter((name) =>
+        INN_STEMS.some((stem) => name.toLowerCase().endsWith(stem))
+      );
+
+      expect(offenders).toEqual([]);
+    });
+  });
 });

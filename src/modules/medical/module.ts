@@ -9,9 +9,16 @@ import { ModuleBase } from '../../internal/module-base';
  * fixtures: specialties, hospital departments, conditions, symptoms,
  * procedures, allergens, blood types, and fictitious drug names.
  *
- * All values are intentionally generic or invented. Real diagnosis codes (e.g.
- * ICD-10), real medicine names, and correlated patient records are deliberately
- * out of scope — this data must never be used for clinical purposes.
+ * All values are intentionally generic or invented, and real diagnosis codes
+ * (e.g. ICD-10) and correlated patient records are deliberately out of scope —
+ * this data must never be used for clinical purposes.
+ *
+ * The names returned by [`drugName()`](https://fakerjs.dev/api/medical.html#drugname)
+ * are invented and are screened so that they do not name a real product. That
+ * guarantee is specific to `drugName()`: an allergen is defined by the
+ * substance a person reacts to, so
+ * [`allergen()`](https://fakerjs.dev/api/medical.html#allergen) names real
+ * ones, medicines such as `Penicillin` among them.
  */
 export class MedicalModule extends ModuleBase {
   /**
@@ -87,6 +94,16 @@ export class MedicalModule extends ModuleBase {
   /**
    * Returns a random allergen.
    *
+   * These are real substances, unlike the invented values of
+   * [`drugName()`](https://fakerjs.dev/api/medical.html#drugname): an allergy
+   * field records what a person reacts to, so real names are what belongs in
+   * it. Medicines such as `Penicillin` are included for that reason, as are
+   * contact allergens such as `Nickel`.
+   *
+   * Substances whose reactions are not immune-mediated at all are excluded —
+   * lactose, fructose and MSG among them, since intolerance to those is not an
+   * allergy.
+   *
    * @example
    * faker.medical.allergen() // 'Penicillin'
    *
@@ -116,8 +133,11 @@ export class MedicalModule extends ModuleBase {
    * Returns a fictitious, brand-style drug name.
    *
    * All values are invented: they were generated from neutral morphemes and
-   * screened against real brand names, WHO INN generic names, and INN class
-   * stems (e.g. `-statin`, `-pril`), so they do not resolve to real medicines.
+   * screened so that they do not name a real product. The screen covers WHO INN
+   * generic names and INN class stems (e.g. `-statin`, `-pril`), human brand
+   * names including ones marketed only outside the US and EU, and veterinary
+   * products — a name is a collision whether the real product treats people or
+   * animals.
    *
    * @example
    * faker.medical.drugName() // 'Zolpraxen'
