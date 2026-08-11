@@ -175,7 +175,6 @@ export default [
   'Solvaol',
   'Solvavane',
   'Solvavisen',
-  'Sonadex',
   'Sonaen',
   'Sonaex',
   'Sonagoxen',

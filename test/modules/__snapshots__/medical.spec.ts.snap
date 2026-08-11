@@ -8,7 +8,7 @@ exports[`medical > 42 > condition 1`] = `"Fibromyalgia"`;
 
 exports[`medical > 42 > department 1`] = `"Maternity Ward"`;
 
-exports[`medical > 42 > drugName 1`] = `"Lumeyl"`;
+exports[`medical > 42 > drugName 1`] = `"Lumevor"`;
 
 exports[`medical > 42 > procedure 1`] = `"Glaucoma Surgery"`;
 

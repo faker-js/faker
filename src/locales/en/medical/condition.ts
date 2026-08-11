@@ -128,7 +128,7 @@ export default [
   'Pulmonary Embolism',
   'Pulmonary Hypertension',
   'Pyelonephritis',
-  'Restless Leg Syndrome',
+  'Restless Legs Syndrome',
   'Rheumatoid Arthritis',
   'Rosacea',
   'Sarcoidosis',

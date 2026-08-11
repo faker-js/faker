@@ -87,23 +87,48 @@ describe('medical', () => {
     // eye drop marketed in India and Kenya, and Nuvizen is a medication-device
     // trademark. The first screen of this list missed all four because it
     // covered human brand names only.
-    const REAL_PRODUCTS = ['Revalor', 'Orbax', 'Lumemox', 'Nuvizen'];
+    const REAL_PRODUCTS = [
+      'Revalor',
+      // Both spellings: Orbax is the real product, Orbaex the name that was
+      // removed for shadowing it. Listing only the real one would let the
+      // removed name back in.
+      'Orbax',
+      'Orbaex',
+      'Lumemox',
+      'Nuvizen',
+      'Sonadex',
+    ];
 
     // A generated name that ends in one of these reads as a real generic drug
-    // rather than an invented brand.
+    // rather than an invented brand. Taken from the WHO stem book; note the
+    // antacid stem is listed as `-ox/-alox`, but no INN is assigned on the bare
+    // `-ox` — 20 of the 38 INNs ending in those letters carry an unrelated stem
+    // (deferasirox, nifurtimox, acipimox) — so `alox` is the part that
+    // discriminates, and matching bare `ox` would be a false positive.
     const INN_STEMS = [
+      'adol',
       'afil',
+      'alox',
       'arudin',
+      'ase',
       'axel',
+      'azepam',
+      'azosin',
+      'barb',
+      'bendazole',
+      'buzone',
       'caine',
       'cillin',
       'conazole',
+      'cort',
       'coxib',
       'dipine',
       'dronate',
       'fenac',
+      'gliflozin',
       'gliptin',
       'grastim',
+      'imus',
       'kinra',
       'lukast',
       'mab',
@@ -113,20 +138,30 @@ describe('medical', () => {
       'nacogalfa',
       'olol',
       'oxacin',
+      'oxetine',
+      'pamil',
       'parin',
       'peptin',
       'pramine',
+      'prazole',
+      'pride',
       'pril',
       'profen',
+      'ridone',
       'sartan',
       'setron',
+      'sone',
       'statin',
       'tecan',
       'tidine',
       'tinib',
+      'tocin',
       'trexed',
+      'triptan',
+      'vaptan',
       'vastatin',
       'vir',
+      'xaban',
       'zosin',
     ];
 
