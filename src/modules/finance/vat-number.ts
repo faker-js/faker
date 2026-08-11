@@ -2,18 +2,14 @@
  * The VAT identification number patterns of the EU member states, keyed by the
  * country's ISO 3166-1 alpha-2 code and including the prefix the number itself
  * carries. Greece is the one country where the two differ: its numbers are
- * prefixed `EL`, so the `GR` entry lives in {@link vatNumberAliases}.
+ * prefixed `EL`, so `GR` and `EL` are both present and produce the same form.
  *
  * Each pattern is written for `faker.helpers.fromRegExp()`. Only the structure
  * of a number is modelled: its length, the characters each position may hold,
  * and the literals a country mandates. Check digits, where a country's real
  * algorithm defines one, are filled with random data from the permitted
- * character set.
- *
- * Portugal is deliberately absent: its check digit is verified by common
- * validators, so a structurally-correct-but-random Portuguese number would be
- * rejected by them. The same applies to non-EU schemes such as `CH` and `AU`.
- * Those belong to a follow-up that computes real check digits.
+ * character set, so a validator that recomputes them will reject some of what
+ * is generated here.
  */
 export const vatNumberFormats = {
   /** UID-Nummer. */
@@ -41,6 +37,8 @@ export const vatNumberFormats = {
   EE: 'EE[0-9]{9}',
   /** AFM. Greek numbers use the `EL` prefix rather than the `GR` ISO code. */
   EL: 'EL[0-9]{9}',
+  /** AFM, reached through Greece's ISO code; the number itself carries `EL`. */
+  GR: 'EL[0-9]{9}',
   /**
    * NIF/CIF. The leading character encodes the legal form, so only the letters
    * actually assigned to one are generated. The control character is a digit
@@ -82,6 +80,8 @@ export const vatNumberFormats = {
   NL: 'NL[0-9]{9}B[0-9]{2}',
   /** NIP. */
   PL: 'PL[0-9]{10}',
+  /** Numero de identificacao fiscal. */
+  PT: 'PT[0-9]{9}',
   /** Cod de identificare fiscala. Between 2 and 10 digits, never leading zero. */
   RO: 'RO[1-9][0-9]{1,9}',
   /** Momsnummer: ten digits followed by the fixed `01` suffix. */
@@ -93,17 +93,6 @@ export const vatNumberFormats = {
 } satisfies Record<string, string>;
 
 /**
- * ISO 3166-1 alpha-2 codes that identify a country whose VAT numbers carry a
- * different prefix, mapped to the entry in {@link vatNumberFormats} that
- * produces them.
- */
-export const vatNumberAliases = {
-  GR: 'EL',
-} satisfies Record<string, keyof typeof vatNumberFormats>;
-
-/**
  * The country codes for which a VAT identification number can be generated.
  */
-export type VatNumberCountryCode =
-  | keyof typeof vatNumberFormats
-  | keyof typeof vatNumberAliases;
+export type VatNumberCountryCode = keyof typeof vatNumberFormats;

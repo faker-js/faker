@@ -9,7 +9,7 @@ import {
 } from './bitcoin';
 import iban from './iban';
 import type { VatNumberCountryCode } from './vat-number';
-import { vatNumberAliases, vatNumberFormats } from './vat-number';
+import { vatNumberFormats } from './vat-number';
 
 /**
  * The possible definitions related to currency entries.
@@ -852,11 +852,9 @@ export class FinanceModule extends ModuleBase {
    * numbering scheme defines a check digit, that digit is random here, so the result is not
    * guaranteed to be a valid registration.
    *
-   * The supported country codes are
+   * The supported country codes are the EU member states:
    * `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`, `DK`, `EE`, `EL` (or `GR`), `ES`, `FI`, `FR`, `HR`, `HU`,
-   * `IE`, `IT`, `LT`, `LU`, `LV`, `MT`, `NL`, `PL`, `RO`, `SE`, `SI` and `SK`.
-   * Portugal is not supported, because a Portuguese number is only recognisable with a real check
-   * digit, which this method does not compute.
+   * `IE`, `IT`, `LT`, `LU`, `LV`, `MT`, `NL`, `PL`, `PT`, `RO`, `SE`, `SI` and `SK`.
    *
    * @param options An options object.
    * @param options.countryCode The ISO 3166-1 alpha-2 code of the country you want a VAT number for, if none is provided a random supported country will be used. Greece may be given as either `GR` or `EL`; the generated number always carries the `EL` prefix that Greek VAT numbers use.
@@ -880,22 +878,14 @@ export class FinanceModule extends ModuleBase {
       countryCode?: LiteralUnion<VatNumberCountryCode>;
     } = {}
   ): string {
-    const { countryCode } = options;
+    // Defaulted here rather than checked for truthiness later, so that an
+    // explicitly passed empty string is reported as unsupported instead of
+    // silently behaving like an omitted option.
+    const { countryCode = this.faker.helpers.objectKey(vatNumberFormats) } =
+      options;
 
-    // Checked against undefined rather than for truthiness, so that an explicitly
-    // passed empty string is reported as unsupported instead of silently
-    // behaving like an omitted option.
-    if (countryCode === undefined) {
-      return this.faker.helpers.fromRegExp(
-        this.faker.helpers.objectValue(vatNumberFormats)
-      );
-    }
-
-    const resolvedCode =
-      vatNumberAliases[countryCode as keyof typeof vatNumberAliases] ??
-      countryCode;
     const pattern = (vatNumberFormats as Record<string, string | undefined>)[
-      resolvedCode
+      countryCode
     ];
 
     if (pattern == null) {

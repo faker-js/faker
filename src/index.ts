@@ -57,7 +57,11 @@ export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
-export type { Currency, FinanceModule } from './modules/finance';
+export type {
+  Currency,
+  FinanceModule,
+  VatNumberCountryCode,
+} from './modules/finance';
 export {
   BitcoinAddressFamily,
   BitcoinNetwork,
@@ -66,7 +70,6 @@ export type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,
 } from './modules/finance/bitcoin';
-export type { VatNumberCountryCode } from './modules/finance/vat-number';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
