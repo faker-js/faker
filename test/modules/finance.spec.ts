@@ -646,15 +646,26 @@ describe('finance', () => {
         // right for its country, since it checks each pattern against itself.
         it.each(Object.entries(vatNumberFormats))(
           'should expand the %s pattern rather than emit it literally',
-          (countryCode, pattern) => {
-            const actual = faker.finance.vatNumber({
-              countryCode: countryCode as VatNumberCountryCode,
-            });
+          (countryCode, patterns) => {
+            const alternatives = [patterns].flat();
+            // Enough draws that every alternative of a multi-shape country is
+            // exercised, not just whichever one the first draw happens to pick.
+            const actuals = times(50).map(() =>
+              faker.finance.vatNumber({
+                countryCode: countryCode as VatNumberCountryCode,
+              })
+            );
 
-            expect(actual).toMatch(new RegExp(`^${pattern}$`));
-            // VAT numbers are alphanumeric throughout, so a surviving
-            // metacharacter means the pattern was passed through unexpanded.
-            expect(actual).toMatch(/^[A-Z0-9]+$/);
+            for (const actual of actuals) {
+              expect(
+                alternatives.some((alternative) =>
+                  new RegExp(`^${alternative}$`).test(actual)
+                )
+              ).toBe(true);
+              // VAT numbers are alphanumeric throughout, so a surviving
+              // metacharacter means the pattern was passed through unexpanded.
+              expect(actual).toMatch(/^[A-Z0-9]+$/);
+            }
           }
         );
 
@@ -662,10 +673,12 @@ describe('finance', () => {
         // keeps the no-argument draw uniform: an alias sharing another
         // country's pattern would otherwise give that country double weight.
         it('should key every format by the prefix its numbers carry', () => {
-          for (const [countryCode, pattern] of Object.entries(
+          for (const [countryCode, patterns] of Object.entries(
             vatNumberFormats
           )) {
-            expect(pattern).toStartWith(countryCode);
+            for (const pattern of [patterns].flat()) {
+              expect(pattern).toStartWith(countryCode);
+            }
           }
         });
 
@@ -705,12 +718,16 @@ describe('finance', () => {
         // above. AT, DE and NL are fully covered there and are not repeated.
         it.each([
           ['BE', /^BE[01]\d{9}$/],
-          ['CY', /^CY\d{8}[A-Z]$/],
-          ['ES', /^ES[ABCDEFGHJNPQRSUVW]\d{7}[0-9A-J]$/],
+          ['CY', /^CY[0134569]\d{7}[A-Z]$/],
+          // The entity class decides the control character, so the two are not
+          // independent: a Spanish legal entity takes a digit, a foreign
+          // entity or public body takes a letter.
+          ['ES', /^ES(?:[ABCDEFGHJUV]\d{7}\d|[NPQRSW]\d{7}[A-J])$/],
           ['FR', /^FR[0-9A-HJ-NP-Z]{2}\d{9}$/],
           ['IE', /^IE\d{7}[A-W]W?$/],
           ['LT', /^LT\d{7}1\d$/],
-          ['PT', /^PT\d{9}$/],
+          ['NL', /^NL\d{9}B(?!00)\d{2}$/],
+          ['PT', /^PT[1-9]\d{8}$/],
           ['RO', /^RO[1-9]\d{1,9}$/],
           ['SE', /^SE\d{10}01$/],
           ['SI', /^SI[1-9]\d{7}$/],

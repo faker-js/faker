@@ -901,8 +901,13 @@ export class FinanceModule extends ModuleBase {
       throw new FakerError(`Country code ${countryCode} not supported.`);
     }
 
+    const pattern =
+      vatNumberFormats[resolvedCode as keyof typeof vatNumberFormats];
+
     return this.faker.helpers.fromRegExp(
-      vatNumberFormats[resolvedCode as keyof typeof vatNumberFormats]
+      typeof pattern === 'string'
+        ? pattern
+        : this.faker.helpers.arrayElement(pattern)
     );
   }
 

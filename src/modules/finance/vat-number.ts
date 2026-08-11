@@ -4,9 +4,12 @@
  * everywhere except Greece, whose numbers use `EL` rather than `GR`. `GR` is
  * still accepted as input, through {@link vatNumberCountryCodeAliases}.
  *
- * Each pattern is written for `faker.helpers.fromRegExp()`. Only the structure
- * of a number is modelled: its length, the characters each position may hold,
- * and the literals a country mandates. Check digits, where a country's real
+ * Each pattern is written for `faker.helpers.fromRegExp()`. A country whose
+ * numbers take more than one shape lists one pattern per shape, because a
+ * single character class would pair independent positions freely and emit
+ * combinations the country never issues. Only the structure of a number is
+ * modelled: its length, the characters each position may hold, and the
+ * literals a country mandates. Check digits, where a country's real
  * algorithm defines one, are filled with random data from the permitted
  * character set, so a validator that recomputes them will reject some of what
  * is generated here.
@@ -23,11 +26,10 @@ export const vatNumberFormats = {
   /** DDS nomer. Nine digits for legal entities, ten for individuals. */
   BG: 'BG[0-9]{9,10}',
   /**
-   * FPA. No first-digit restriction is modelled: the older category digits
-   * are only loosely documented, and every number issued since the 2023
-   * migration begins with 6 regardless.
+   * FPA. The legacy categories use 0, 1, 3, 4, 5 and 9, and the format
+   * introduced in March 2023 adds 6, so 2, 7 and 8 are never issued.
    */
-  CY: 'CY[0-9]{8}[A-Z]',
+  CY: 'CY[0134569][0-9]{7}[A-Z]',
   /** DIC. */
   CZ: 'CZ[0-9]{8,10}',
   /** Umsatzsteuer-Identifikationsnummer. */
@@ -39,14 +41,15 @@ export const vatNumberFormats = {
   /** AFM. Greek numbers use the `EL` prefix rather than the `GR` ISO code. */
   EL: 'EL[0-9]{9}',
   /**
-   * NIF/CIF for entities. The leading character encodes the legal form, so
-   * only the letters actually assigned to one are generated. The control
-   * character is a digit for Spanish legal entities and a letter for foreign
-   * entities, public bodies and local corporations; both are permitted here,
-   * drawn independently of the leading letter, which real numbers are not.
-   * The natural-person forms are out of scope.
+   * NIF/CIF for entities. The leading character encodes the legal form, and
+   * the legal form decides the control character: Spanish legal entities
+   * (A, B, C, D, E, F, G, H, J, U, V) take a digit, while foreign entities,
+   * public bodies, local corporations and religious congregations
+   * (N, P, Q, R, S, W) take a letter. They are separate patterns because one
+   * character class would pair the two positions freely and emit combinations
+   * that are never issued. The natural-person forms are out of scope.
    */
-  ES: 'ES[ABCDEFGHJNPQRSUVW][0-9]{7}[0-9ABCDEFGHIJ]',
+  ES: ['ES[ABCDEFGHJUV][0-9]{7}[0-9]', 'ES[NPQRSW][0-9]{7}[A-J]'],
   /** ALV-numero. */
   FI: 'FI[0-9]{8}',
   /**
@@ -82,13 +85,14 @@ export const vatNumberFormats = {
   MT: 'MT[0-9]{8}',
   /**
    * Btw-identificatienummer. The two digits after the `B` are a company index
-   * running from 01, so the `B00` this can emit is not itself issued.
+   * running from 01 to 99, so `B00` is never issued — which takes two patterns
+   * to express, since a plain digit pair would include it.
    */
-  NL: 'NL[0-9]{9}B[0-9]{2}',
+  NL: ['NL[0-9]{9}B0[1-9]', 'NL[0-9]{9}B[1-9][0-9]'],
   /** NIP. */
   PL: 'PL[0-9]{10}',
-  /** Numero de identificacao fiscal. */
-  PT: 'PT[0-9]{9}',
+  /** Numero de identificacao fiscal. No taxpayer range begins with zero. */
+  PT: 'PT[1-9][0-9]{8}',
   /** Cod de identificare fiscala. Between 2 and 10 digits, never leading zero. */
   RO: 'RO[1-9][0-9]{1,9}',
   /**
@@ -101,7 +105,7 @@ export const vatNumberFormats = {
   SI: 'SI[1-9][0-9]{7}',
   /** IC DPH. */
   SK: 'SK[0-9]{10}',
-} as const satisfies Record<string, string>;
+} as const satisfies Record<string, string | ReadonlyArray<string>>;
 
 /**
  * ISO 3166-1 alpha-2 codes that are accepted as input but are not themselves a
