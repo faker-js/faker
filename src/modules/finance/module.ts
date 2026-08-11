@@ -1,6 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
 import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
 import {
   BitcoinAddressFamily,
@@ -9,7 +8,7 @@ import {
 } from './bitcoin';
 import iban from './iban';
 import type { VatNumberCountryCode } from './vat-number';
-import { vatNumberFormats } from './vat-number';
+import { vatNumberCountryCodeAliases, vatNumberFormats } from './vat-number';
 
 /**
  * The possible definitions related to currency entries.
@@ -852,12 +851,13 @@ export class FinanceModule extends ModuleBase {
    * numbering scheme defines a check digit, that digit is random here, so the result is not
    * guaranteed to be a valid registration.
    *
-   * The supported country codes are the EU member states:
+   * The supported country codes are the EU member states, using the two-letter code each
+   * country's numbers carry:
    * `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`, `DK`, `EE`, `EL` (or `GR`), `ES`, `FI`, `FR`, `HR`, `HU`,
    * `IE`, `IT`, `LT`, `LU`, `LV`, `MT`, `NL`, `PL`, `PT`, `RO`, `SE`, `SI` and `SK`.
    *
    * @param options An options object.
-   * @param options.countryCode The ISO 3166-1 alpha-2 code of the country you want a VAT number for, if none is provided a random supported country will be used. Greece may be given as either `GR` or `EL`; the generated number always carries the `EL` prefix that Greek VAT numbers use.
+   * @param options.countryCode The two-letter code of the country you want a VAT number for. Greece may be given as either `GR` or `EL`; the generated number always carries the `EL` prefix that Greek VAT numbers use. Defaults to a random supported country.
    *
    * @throws {FakerError} Will throw an error if the passed country code is not supported.
    *
@@ -872,10 +872,13 @@ export class FinanceModule extends ModuleBase {
   vatNumber(
     options: {
       /**
-       * The ISO 3166-1 alpha-2 code of the country you want a VAT number for,
-       * if none is provided a random supported country will be used.
+       * The two-letter code of the country you want a VAT number for. Greece
+       * may be given as either `GR` or `EL`; the generated number always
+       * carries the `EL` prefix that Greek VAT numbers use.
+       *
+       * @default faker.helpers.objectKey(vatNumberFormats)
        */
-      countryCode?: LiteralUnion<VatNumberCountryCode>;
+      countryCode?: VatNumberCountryCode;
     } = {}
   ): string {
     // Defaulted here rather than checked for truthiness later, so that an
@@ -884,15 +887,23 @@ export class FinanceModule extends ModuleBase {
     const { countryCode = this.faker.helpers.objectKey(vatNumberFormats) } =
       options;
 
-    const pattern = (vatNumberFormats as Record<string, string | undefined>)[
-      countryCode
-    ];
+    // Both lookups go through `Object.hasOwn`, because a plain index resolves
+    // an inherited key such as `toString` to `Object.prototype.toString`,
+    // which is truthy and would pass a `!= null` guard. `countryCode` is a
+    // closed union, so only JavaScript callers (or a cast) get there.
+    const resolvedCode = Object.hasOwn(vatNumberCountryCodeAliases, countryCode)
+      ? vatNumberCountryCodeAliases[
+          countryCode as keyof typeof vatNumberCountryCodeAliases
+        ]
+      : countryCode;
 
-    if (pattern == null) {
+    if (!Object.hasOwn(vatNumberFormats, resolvedCode)) {
       throw new FakerError(`Country code ${countryCode} not supported.`);
     }
 
-    return this.faker.helpers.fromRegExp(pattern);
+    return this.faker.helpers.fromRegExp(
+      vatNumberFormats[resolvedCode as keyof typeof vatNumberFormats]
+    );
   }
 
   /**

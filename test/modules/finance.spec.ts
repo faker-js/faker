@@ -10,6 +10,7 @@ import {
   BitcoinNetwork,
 } from '../../src/modules/finance/bitcoin';
 import ibanLib from '../../src/modules/finance/iban';
+import type { VatNumberCountryCode } from '../../src/modules/finance/vat-number';
 import { vatNumberFormats } from '../../src/modules/finance/vat-number';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
@@ -81,7 +82,9 @@ describe('finance', () => {
     });
 
     t.describe('vatNumber', (t) => {
-      t.it('noArgs').it('with countryCode option', { countryCode: 'DE' });
+      t.it('noArgs')
+        .it('with countryCode option', { countryCode: 'DE' })
+        .it('with a variable length countryCode option', { countryCode: 'RO' });
     });
 
     t.describe('creditCardNumber', (t) => {
@@ -612,21 +615,24 @@ describe('finance', () => {
       });
 
       describe('vatNumber()', () => {
-        // Three entries are checked by the pattern loop below instead of by
-        // `validator`: it rejects real Spanish numbers whose control character
-        // is a digit, such as `ESA28015865` (reported as
-        // validatorjs/validator.js#2846), it recomputes the Portuguese check
-        // digit, which is random here, and it does not know the `GR` code at
-        // all, because Greek numbers carry the `EL` prefix.
-        const CHECKED_BY_VALIDATOR = Object.keys(vatNumberFormats).filter(
-          (code) => !['ES', 'PT', 'GR'].includes(code)
-        );
+        // Every entry of `vatNumberFormats` is covered by the pattern loop
+        // below. These two are additionally excluded from `validator` (13.15),
+        // which rejects real Spanish numbers whose control character is a
+        // digit, such as `ESA28015865` (reported as
+        // validatorjs/validator.js#2846), and recomputes the Portuguese check
+        // digit, which is random here.
+        const CHECKED_BY_VALIDATOR = (
+          Object.keys(vatNumberFormats) as VatNumberCountryCode[]
+        ).filter((code) => !['ES', 'PT'].includes(code));
 
         it.each(CHECKED_BY_VALIDATOR)(
           'should return a valid VAT number for %s',
           (country) => {
             const actual = faker.finance.vatNumber({ countryCode: country });
 
+            // Not redundant: nearly every validator matcher makes the prefix
+            // optional — FR is the exception — so `isVAT('123456789', 'DE')`
+            // is true on its own.
             expect(actual).toStartWith(country);
             expect(actual).toSatisfy((value: string) =>
               isVAT(value, country as VATCountryCode)
@@ -634,13 +640,33 @@ describe('finance', () => {
           }
         );
 
-        it('should return a structurally valid Spanish NIF/CIF', () => {
-          const actual = faker.finance.vatNumber({ countryCode: 'ES' });
+        // `fromRegExp` understands a subset of regex and copies anything
+        // outside it into the output verbatim. This loop proves every pattern
+        // stays inside that subset; it says nothing about a pattern being
+        // right for its country, since it checks each pattern against itself.
+        it.each(Object.entries(vatNumberFormats))(
+          'should expand the %s pattern rather than emit it literally',
+          (countryCode, pattern) => {
+            const actual = faker.finance.vatNumber({
+              countryCode: countryCode as VatNumberCountryCode,
+            });
 
-          // The leading character encodes the legal form (I, K, L, M, O, T and
-          // X-Z are not assigned to one) and the control character is a digit
-          // for national entities or a letter A-J for the rest.
-          expect(actual).toMatch(/^ES[ABCDEFGHJNPQRSUVW]\d{7}[0-9A-J]$/);
+            expect(actual).toMatch(new RegExp(`^${pattern}$`));
+            // VAT numbers are alphanumeric throughout, so a surviving
+            // metacharacter means the pattern was passed through unexpanded.
+            expect(actual).toMatch(/^[A-Z0-9]+$/);
+          }
+        );
+
+        // Every format is keyed by the prefix its numbers carry, which is what
+        // keeps the no-argument draw uniform: an alias sharing another
+        // country's pattern would otherwise give that country double weight.
+        it('should key every format by the prefix its numbers carry', () => {
+          for (const [countryCode, pattern] of Object.entries(
+            vatNumberFormats
+          )) {
+            expect(pattern).toStartWith(countryCode);
+          }
         });
 
         it('should return a VAT number of a supported country', () => {
@@ -656,24 +682,50 @@ describe('finance', () => {
           );
         });
 
-        it.each(['XX', ''])(
+        // `toString` guards the inherited-key path, which is reachable from
+        // JavaScript and used to resolve to `Object.prototype.toString`,
+        // returning an empty string instead of throwing.
+        it.each(['XX', '', 'toString'])(
           'should throw for the unsupported country code %j',
           (countryCode) => {
-            expect(() => faker.finance.vatNumber({ countryCode })).toThrow(
+            expect(() =>
+              faker.finance.vatNumber({
+                countryCode: countryCode as VatNumberCountryCode,
+              })
+            ).toThrow(
               new FakerError(`Country code ${countryCode} not supported.`)
             );
           }
         );
 
-        it('should only use characters the country actually issues', () => {
-          expect(faker.finance.vatNumber({ countryCode: 'SE' })).toMatch(/01$/);
-          expect(faker.finance.vatNumber({ countryCode: 'SI' })[2]).not.toBe(
-            '0'
-          );
-          expect(faker.finance.vatNumber({ countryCode: 'RO' })[2]).not.toBe(
-            '0'
-          );
-        });
+        // Stated independently of the source patterns, and only where
+        // `validator` is weaker than they are: it checks BE as \d{10}, CY as
+        // \w{9}, IE as \d{7}\w(W)?, LT as \d{9,12}, RO as \d{2,10}, SE as
+        // \d{12} and SI as \d{8}, and is unusable for ES and PT per the note
+        // above. AT, DE and NL are fully covered there and are not repeated.
+        it.each([
+          ['BE', /^BE[01]\d{9}$/],
+          ['CY', /^CY\d{8}[A-Z]$/],
+          ['ES', /^ES[ABCDEFGHJNPQRSUVW]\d{7}[0-9A-J]$/],
+          ['FR', /^FR[0-9A-HJ-NP-Z]{2}\d{9}$/],
+          ['IE', /^IE\d{7}[A-W]W?$/],
+          ['LT', /^LT\d{7}1\d$/],
+          ['PT', /^PT\d{9}$/],
+          ['RO', /^RO[1-9]\d{1,9}$/],
+          ['SE', /^SE\d{10}01$/],
+          ['SI', /^SI[1-9]\d{7}$/],
+        ] as const)(
+          'should respect the %s numbering rules validator does not check',
+          (countryCode, expected) => {
+            const actuals = times(100).map(() =>
+              faker.finance.vatNumber({ countryCode })
+            );
+
+            expect(actuals.filter((actual) => !expected.test(actual))).toEqual(
+              []
+            );
+          }
+        );
       });
 
       describe('transactionDescription()', () => {

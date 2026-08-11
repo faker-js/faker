@@ -81,7 +81,9 @@ exports[`finance > 42 > transactionDescription 1`] = `"You made a withdrawal of 
 
 exports[`finance > 42 > transactionType 1`] = `"invoice"`;
 
-exports[`finance > 42 > vatNumber > noArgs 1`] = `"ESW7511086E"`;
+exports[`finance > 42 > vatNumber > noArgs 1`] = `"FI97511086"`;
+
+exports[`finance > 42 > vatNumber > with a variable length countryCode option 1`] = `"RO4751108670"`;
 
 exports[`finance > 42 > vatNumber > with countryCode option 1`] = `"DE397511086"`;
 
@@ -166,7 +168,9 @@ exports[`finance > 1211 > transactionDescription 1`] = `"withdrawal transaction 
 
 exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
 
-exports[`finance > 1211 > vatNumber > noArgs 1`] = `"SE829667368701"`;
+exports[`finance > 1211 > vatNumber > noArgs 1`] = `"SI92966736"`;
+
+exports[`finance > 1211 > vatNumber > with a variable length countryCode option 1`] = `"RO9296673687"`;
 
 exports[`finance > 1211 > vatNumber > with countryCode option 1`] = `"DE982966736"`;
 
@@ -252,5 +256,7 @@ exports[`finance > 1337 > transactionDescription 1`] = `"Payment of CAD 278.12 f
 exports[`finance > 1337 > transactionType 1`] = `"invoice"`;
 
 exports[`finance > 1337 > vatNumber > noArgs 1`] = `"EE124352971"`;
+
+exports[`finance > 1337 > vatNumber > with a variable length countryCode option 1`] = `"RO324"`;
 
 exports[`finance > 1337 > vatNumber > with countryCode option 1`] = `"DE212435297"`;
