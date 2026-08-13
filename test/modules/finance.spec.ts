@@ -713,9 +713,11 @@ describe('finance', () => {
 
         // Stated independently of the source patterns, and only where
         // `validator` is weaker than they are: it checks BE as \d{10}, CY as
-        // \w{9}, IE as \d{7}\w(W)?, LT as \d{9,12}, RO as \d{2,10}, SE as
-        // \d{12} and SI as \d{8}, and is unusable for ES and PT per the note
-        // above. AT, DE and NL are fully covered there and are not repeated.
+        // \w{9}, FR as [A-Z0-9]{2}\d{9}, IE as \d{7}\w(W)?, LT as \d{9,12},
+        // NL as \d{9}B\d{2}, RO as \d{2,10}, SE as \d{12} and SI as \d{8},
+        // and is unusable for ES and PT per the note above. AT and DE are the
+        // only two it checks as tightly as the table does, so they are not
+        // repeated here.
         it.each([
           ['BE', /^BE[01]\d{9}$/],
           ['CY', /^CY[0134569]\d{7}[A-Z]$/],

@@ -4,15 +4,17 @@
  * everywhere except Greece, whose numbers use `EL` rather than `GR`. `GR` is
  * still accepted as input, through {@link vatNumberCountryCodeAliases}.
  *
- * Each pattern is written for `faker.helpers.fromRegExp()`. A country whose
- * numbers take more than one shape lists one pattern per shape, because a
- * single character class would pair independent positions freely and emit
- * combinations the country never issues. Only the structure of a number is
+ * Each pattern is written for `faker.helpers.fromRegExp()`. Where a country's
+ * shapes are listed separately, it is because one character class would pair
+ * independent positions freely and emit combinations the country never issues.
+ * Rarer forms are left unmodelled and the per-country comment says so; within a
+ * country the listed shapes are drawn evenly, which is not how often each
+ * occurs in reality. Only the structure of a number is
  * modelled: its length, the characters each position may hold, and the
- * literals a country mandates. Check digits, where a country's real
- * algorithm defines one, are filled with random data from the permitted
- * character set, so a validator that recomputes them will reject some of what
- * is generated here.
+ * literals a country mandates. Check characters, where a country's real
+ * algorithm defines one — a digit in most, a letter in Cyprus, Ireland and
+ * part of Spain — are filled with random data from the permitted character
+ * set, so a validator that recomputes them rejects nearly all of this output.
  */
 export const vatNumberFormats = {
   /** UID-Nummer. */
@@ -26,8 +28,8 @@ export const vatNumberFormats = {
   /** DDS nomer. Nine digits for legal entities, ten for individuals. */
   BG: 'BG[0-9]{9,10}',
   /**
-   * FPA. The legacy categories use 0, 1, 3, 4, 5 and 9, and the format
-   * introduced in March 2023 adds 6, so 2, 7 and 8 are never issued.
+   * FPA. Numbers begin 0, 1, 3, 4, 5 or 9 under the legacy categories, or 6
+   * under the format introduced in March 2023; 2, 7 and 8 are not issued.
    */
   CY: 'CY[0134569][0-9]{7}[A-Z]',
   /** DIC. */
@@ -41,13 +43,15 @@ export const vatNumberFormats = {
   /** AFM. Greek numbers use the `EL` prefix rather than the `GR` ISO code. */
   EL: 'EL[0-9]{9}',
   /**
-   * NIF/CIF for entities. The leading character encodes the legal form, and
-   * the legal form decides the control character: Spanish legal entities
-   * (A, B, C, D, E, F, G, H, J, U, V) take a digit, while foreign entities,
-   * public bodies, local corporations and religious congregations
-   * (N, P, Q, R, S, W) take a letter. They are separate patterns because one
-   * character class would pair the two positions freely and emit combinations
-   * that are never issued. The natural-person forms are out of scope.
+   * NIF/CIF for entities. The leading character encodes the legal form, which
+   * constrains the control character: A, B, E and H always take a digit,
+   * C, D, F, G, J, U and V may take either, and foreign entities, public
+   * bodies, local corporations and religious congregations (N, P, Q, R, S, W)
+   * always take a letter. The two branches are separate patterns because one
+   * character class would pair the positions freely and emit combinations that
+   * are never issued; the may-take-either letters are generated with a digit,
+   * which under-generates rather than over-generates. The natural-person forms
+   * are out of scope.
    */
   ES: ['ES[ABCDEFGHJUV][0-9]{7}[0-9]', 'ES[NPQRSW][0-9]{7}[A-J]'],
   /** ALV-numero. */
@@ -64,8 +68,8 @@ export const vatNumberFormats = {
   /**
    * VAT number: seven digits and a check letter, optionally followed by a
    * `W` — the legacy marker for a married woman registered on her husband's
-   * number. The other real forms (seven digits and two letters, or six digits
-   * and two symbols) are not modelled.
+   * number. The 2013 form, whose second letter runs A to I rather than being
+   * `W`, is not modelled, nor is the older form that carries a symbol.
    */
   IE: 'IE[0-9]{7}[A-W]W{0,1}',
   /** Partita IVA. */
@@ -73,8 +77,9 @@ export const vatNumberFormats = {
   /**
    * PVM kodas. Nine digits for legal entities, where the eighth is always 1
    * and the ninth is a check digit. The twelve-digit form for temporarily
-   * registered taxpayers is not modelled; it cannot be folded in as
-   * `[0-9]{9,12}`, because the intermediate lengths are never issued.
+   * registered taxpayers is rare and not modelled — note it could not simply
+   * widen this pattern to `[0-9]{9,12}`, since the lengths in between are
+   * never issued.
    */
   LT: 'LT[0-9]{7}1[0-9]',
   /** Numero de TVA. */
