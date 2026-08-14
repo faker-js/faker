@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-unused-array-method-return -- False positive: https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193 */
 import {
   isEmail,
   isFQDN,
@@ -162,7 +161,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [, suffix] = email.split('@');
+          const [, suffix] = email.split('@', 2);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
@@ -188,7 +187,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(prefix).includes('Aiden.Harann55');
           expect(prefix).toMatch(
@@ -207,7 +206,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix] = email.split('@');
+          const [prefix] = email.split('@', 1);
           expect(prefix).not.toMatch(/^\./);
           expect(prefix).not.toMatch(/\.$/);
         });
@@ -219,7 +218,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix] = email.split('@');
+          const [prefix] = email.split('@', 1);
           //expect it not to contain multiple .s
           expect(prefix).not.toMatch(/\.{2,}/);
         });
@@ -234,7 +233,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(prefix).includes('Aiden');
           expect(prefix).includes('Harann');
@@ -278,7 +277,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
@@ -308,7 +307,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
@@ -325,7 +324,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
           expect(email).includes('Aiden');
           expect(email).includes('Harann');
 
@@ -345,7 +344,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
@@ -551,7 +550,7 @@ describe('internet', () => {
           expect(domainName).toBeTypeOf('string');
           expect(domainName).toSatisfy(isFQDN);
 
-          const [prefix, suffix] = domainName.split('.');
+          const [prefix, suffix] = domainName.split('.', 2);
 
           expect(prefix).toSatisfy(isSlug);
           expect(faker.definitions.internet.domain_suffix).toContain(suffix);

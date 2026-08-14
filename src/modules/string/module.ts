@@ -543,8 +543,8 @@ export class StringModule extends SimpleModuleBase {
 
     if (
       allowedDigits.length === 0 ||
-      (allowedDigits.length === 1 &&
-        !allowLeadingZeros &&
+      (!allowLeadingZeros &&
+        allowedDigits.length === 1 &&
         allowedDigits[0] === '0')
     ) {
       throw new FakerError(

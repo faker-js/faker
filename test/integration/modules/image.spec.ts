@@ -33,7 +33,7 @@ async function assertWorkingUrl(address: string): Promise<void> {
             reject(new Error(`No StatusCode, expected 200 for '${address}'`));
           } else if (statusCode === 200) {
             resolve(true);
-          } else if (statusCode >= 300 && statusCode < 400 && location) {
+          } else if (location && statusCode >= 300 && statusCode < 400) {
             const newAddress = urlResolve(address, location);
             assertWorkingUrl(newAddress)
               .then(() => resolve(true))
