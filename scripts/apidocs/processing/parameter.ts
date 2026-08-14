@@ -202,7 +202,7 @@ function processComplexParameter(
     // Named range types (e.g. NumberRange) source their member descriptions from the method-level `@param name.member` tags;
     // anonymous options objects use their own inline property JSDoc as before.
     const rangeType = isRangeType(type);
-    if (!isOptionsLikeType(type) && !rangeType) {
+    if (!rangeType && !isOptionsLikeType(type)) {
       return [];
     }
 
