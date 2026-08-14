@@ -1,6 +1,11 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { fakeEval } from '../../src/modules/helpers/eval';
+
+// A hostile definition resolving to a function returning a function, mirroring the original GHSA-qxc2-j82w-r537 proof-of-concept.
+const noop = () => {};
+
+const hostileDefinition = { evil: () => noop };
 
 describe('fakeEval()', () => {
   it('does not allow empty string input', () => {
@@ -166,5 +171,43 @@ describe('fakeEval()', () => {
     expect(() => fakeEval('airline.airline(.iataCode', faker)).toThrow(
       new FakerError("Missing closing parenthesis in '(.iataCode'")
     );
+  });
+
+  // Regression test for GHSA-qxc2-j82w-r537: fake()/fakeEval() must never evaluate the expression as JavaScript.
+  // In particular, a (hostile) definition that resolves to a function must not expose the `Function` constructor via a `.constructor` chain, which would allow arbitrary code execution.
+  // Functions are always invoked (never property-accessed), so the constructor chain can never reach `Function`.
+  describe('does not allow arbitrary code execution (GHSA-qxc2-j82w-r537)', () => {
+    const globalWithFlag = globalThis as Record<string, unknown>;
+
+    // Every payload is an observable side effect (setting the global flag), so we
+    // notice if it ever executes instead of a silent expression like `return 1`.
+    const attacks = [
+      'do.evil.constructor(globalThis.__fakerPwned = true)()',
+      'do.evil().constructor(globalThis.__fakerPwned = true)()',
+      'do.evil.constructor.constructor(globalThis.__fakerPwned = true)',
+      'do.evil.constructor.constructor(globalThis.__fakerPwned = true)()',
+      'string.constructor.constructor(globalThis.__fakerPwned = true)()',
+    ];
+
+    beforeEach(() => {
+      globalWithFlag.__fakerPwned = false;
+      faker.definitions.raw.do = hostileDefinition;
+    });
+
+    afterEach(() => {
+      delete faker.definitions.raw.do;
+      delete globalWithFlag.__fakerPwned;
+    });
+
+    it.each(attacks)('rejects %s via fakeEval()', (attack) => {
+      // The expression must always be rejected with the library's own error type, never evaluated as JavaScript.
+      expect(() => fakeEval(attack, faker)).toThrow(FakerError);
+      expect(globalWithFlag.__fakerPwned, attack).toBe(false);
+    });
+
+    it.each(attacks)('rejects %s via helpers.fake()', (attack) => {
+      expect(() => faker.helpers.fake(`{{${attack}}}`)).toThrow(FakerError);
+      expect(globalWithFlag.__fakerPwned, attack).toBe(false);
+    });
   });
 });

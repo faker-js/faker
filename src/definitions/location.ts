@@ -104,21 +104,34 @@ export type LocationDefinition = LocaleEntry<{
 
   /**
    * The patterns to generate street names.
+   * If `street_name` is defined, it should be used as is.
+   * Other patterns may combine `street_prefix`, `street_name_part`, `street_suffix` and other custom parts.
    */
   street_pattern: string[];
 
   /**
-   * The names of actual streets.
+   * The full names of actual streets.
    */
   street_name: string[];
 
   /**
    * Common street prefixes.
+   *
+   * e.g. `'Avenue du '` as in `'Avenue du Parc'`
    */
   street_prefix: string[];
 
   /**
+   * Common name parts of street names that get combined with prefixes and suffixes.
+   *
+   * e.g. `'Main'` as in `'Main Street'`
+   */
+  street_name_part: string[];
+
+  /**
    * Common street suffixes.
+   *
+   * e.g. `' Street'` as in `'Main Street'`
    */
   street_suffix: string[];
 

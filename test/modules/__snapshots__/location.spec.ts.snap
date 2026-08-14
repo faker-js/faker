@@ -6,7 +6,7 @@ exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
 exports[`location > 42 > cardinalDirection > with abbreviated option 1`] = `"E"`;
 
-exports[`location > 42 > city 1`] = `"Fort Camryn"`;
+exports[`location > 42 > city 1`] = `"Fort Chauncey"`;
 
 exports[`location > 42 > continent 1`] = `"Asia"`;
 
@@ -125,8 +125,8 @@ exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
 
 exports[`location > 42 > postalAddress 1`] = `
-"751 Laury Rapid
-Fort Clintonberg
+"751 Lilliana Rapid
+Fort Collinberg
 Nebraska
 26123"
 `;
@@ -139,11 +139,11 @@ exports[`location > 42 > state > with options 1`] = `"ME"`;
 
 exports[`location > 42 > street 1`] = `"Miller Crest"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Laury Rapid"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Lilliana Rapid"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"9751 Laury Rapid"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"9751 Lilliana Rapid"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"9751 Laury Rapid Apt. 982"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"9751 Lilliana Rapid Apt. 982"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/Center"`;
 
@@ -313,7 +313,7 @@ exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
 exports[`location > 1337 > cardinalDirection > with abbreviated option 1`] = `"E"`;
 
-exports[`location > 1337 > city 1`] = `"East Faye"`;
+exports[`location > 1337 > city 1`] = `"East Esperanza"`;
 
 exports[`location > 1337 > continent 1`] = `"Antarctica"`;
 
@@ -433,7 +433,7 @@ exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW
 
 exports[`location > 1337 > postalAddress 1`] = `
 "34352 Salisbury Road
-South Willardport
+South Willyport
 South Carolina
 45712"
 `;
@@ -444,13 +444,13 @@ exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
 
 exports[`location > 1337 > state > with options 1`] = `"IN"`;
 
-exports[`location > 1337 > street 1`] = `"Josephine Gateway"`;
+exports[`location > 1337 > street 1`] = `"Jennie Gateway"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"22435 Bernardo Hills"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"22435 Brian Hills"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"22435 Bernardo Hills"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"22435 Brian Hills"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"22435 Bernardo Hills Suite 294"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"22435 Brian Hills Suite 294"`;
 
 exports[`location > 1337 > timeZone 1`] = `"America/Guadeloupe"`;
 

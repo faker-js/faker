@@ -3,7 +3,6 @@ import { resolve } from 'node:path';
 import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
-import { extractSummaryDefault } from '../../../scripts/apidocs/output/page';
 import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
 import { getProject } from '../../../scripts/apidocs/project';
 
@@ -78,7 +77,10 @@ const allowedLinks = new Set(
 
 function assertDescription(description: string): void {
   const linkRegexp = /\[([^\]]+)\]\(([^)]+)\)/g;
-  const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
+  const links = description
+    .matchAll(linkRegexp)
+    .map((m) => m[2])
+    .toArray();
 
   for (const link of links) {
     expect(link).toStartWith('https://');
@@ -318,35 +320,8 @@ ${examples}`;
               describe.each(signature.parameters.map((p) => [p.name, p]))(
                 '%s',
                 (_, parameter) => {
-                  it('verify default value', () => {
-                    const {
-                      name,
-                      default: paramDefault,
-                      description,
-                    } = parameter;
-
-                    const commentDefault = extractSummaryDefault(description);
-                    if (paramDefault) {
-                      if (
-                        /^{.*}$/.test(paramDefault) ||
-                        paramDefault.includes('\n')
-                      ) {
-                        expect(commentDefault).toBeUndefined();
-                      } else if (
-                        !name.includes('.') &&
-                        // Skip check of defaults in descriptions if it is a paraphrased function call
-                        (commentDefault ||
-                          (!description.includes('Defaults to') &&
-                            !paramDefault.includes('(')))
-                      ) {
-                        expect(
-                          commentDefault,
-                          `Expect '${name}'s js implementation default to be the same as the jsdoc summary default`
-                        ).toBe(paramDefault);
-                      }
-                    }
-                  });
-
+                  // The consistency between the implementation default and the documented `Defaults to \`...\`.` summary
+                  // is enforced while processing the raw data (see `processSimpleParameter`).
                   it('verify description', () => {
                     assertDescription(parameter.description);
                   });
@@ -357,38 +332,38 @@ ${examples}`;
               //#region @see
               it('verify @see tags', () => {
                 for (const link of signature.seeAlsos) {
-                  if (link.startsWith('faker.')) {
-                    // Expected @see faker.xxx.yyy()
-                    expect(
-                      link,
-                      'Expect method reference to contain ()'
-                    ).toContain('(');
-                    expect(
-                      link,
-                      'Expect method reference to contain ()'
-                    ).toContain(')');
-                    expect(
-                      link,
-                      "Expect method reference to have a ': ' after the parenthesis"
-                    ).toContain('): ');
-                    expect(
-                      link,
-                      'Expect method reference to have a description starting with a capital letter'
-                    ).toMatch(/\): [A-Z]/);
-                    expect(
-                      link,
-                      'Expect method reference to start with a standard description phrase'
-                    ).toMatch(
-                      /\): (?:For generating |For more information about |For using |For the replacement method)/
-                    );
-                    expect(
-                      link,
-                      'Expect method reference to have a description ending with a dot'
-                    ).toMatch(/\.$/);
-                    expect(allowedReferences).toContain(
-                      link.replace(/\(.*/, '')
-                    );
+                  if (!link.startsWith('faker.')) {
+                    continue;
                   }
+
+                  // Expected @see faker.xxx.yyy()
+                  expect(
+                    link,
+                    'Expect method reference to contain ()'
+                  ).toContain('(');
+                  expect(
+                    link,
+                    'Expect method reference to contain ()'
+                  ).toContain(')');
+                  expect(
+                    link,
+                    "Expect method reference to have a ': ' after the parenthesis"
+                  ).toContain('): ');
+                  expect(
+                    link,
+                    'Expect method reference to have a description starting with a capital letter'
+                  ).toMatch(/\): [A-Z]/);
+                  expect(
+                    link,
+                    'Expect method reference to start with a standard description phrase'
+                  ).toMatch(
+                    /\): (?:For generating |For more information about |For using |For the replacement method)/
+                  );
+                  expect(
+                    link,
+                    'Expect method reference to have a description ending with a dot'
+                  ).toMatch(/\.$/);
+                  expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
                 }
               });
               //#endregion

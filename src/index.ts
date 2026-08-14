@@ -92,4 +92,10 @@ export {
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
 } from './utils/mersenne';
-export type { Casing } from './utils/types';
+export { LengthStrategy } from './utils/types';
+export type {
+  Casing,
+  LengthStrategyType,
+  NumberOrRange,
+  NumberRange,
+} from './utils/types';

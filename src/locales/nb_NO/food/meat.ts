@@ -1,0 +1,17 @@
+export default [
+  'and',
+  'bacon',
+  'elgkjøtt',
+  'fårekjøtt',
+  'kalkun',
+  'kalv',
+  'kjøttdeig',
+  'koteletter',
+  'kylling',
+  'lammekjøtt',
+  'pølse',
+  'reinsdyrkjøtt',
+  'ribbe',
+  'storfekjøtt',
+  'svinekjøtt',
+];

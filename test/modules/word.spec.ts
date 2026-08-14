@@ -106,6 +106,17 @@ describe('word', () => {
       expect(result).toEqual(['very-long', 'almostRight']);
     });
 
+    it('returns the nearest words when the closest length is not the shortest or longest word', () => {
+      // Lengths present: 1, 4, 5. The closest length to 3 is 4 (distance 1),
+      // not the shortest (1) or longest (5) word (distance 2).
+      const result = filterWordListByLength({
+        wordList: ['a', 'wxyz', 'abcde'],
+        length: 3,
+        strategy: 'closest',
+      });
+      expect(result).toEqual(['wxyz']);
+    });
+
     it('throws an error when strategy is "fail" and no words match the given length', () => {
       expect(() => {
         filterWordListByLength({

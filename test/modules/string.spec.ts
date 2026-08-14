@@ -828,6 +828,30 @@ describe('string', () => {
           }
         );
 
+        it.each([
+          '1969-12-31T23:59:59.999Z',
+          '1900-01-01T00:00:00.000Z',
+          '+010889-08-02T05:31:50.656Z',
+          '+275760-09-13T00:00:00.000Z',
+        ])('should reject the unencodable refDate %s', (refDate) => {
+          expect(() => faker.string.ulid({ refDate })).toThrow(
+            new FakerError(
+              `Unable to generate ULID: the refDate must be between 1970-01-01T00:00:00.000Z and +010889-08-02T05:31:50.655Z, but was ${refDate}.`
+            )
+          );
+        });
+
+        it.each([
+          '2021-02-21T17:09:15.711Z',
+          '1970-01-01T00:00:00.000Z',
+          '+010889-08-02T05:31:50.655Z',
+        ])('generates a valid ULID for the refDate %s', (refDate) => {
+          const ulid = faker.string.ulid({ refDate });
+          const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
+          expect(ulid).toMatch(regex);
+          expect(ulid).toSatisfy(isULID);
+        });
+
         it('generates a valid ULID', () => {
           const ulid = faker.string.ulid();
           const regex = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/;
