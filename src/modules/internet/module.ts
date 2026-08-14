@@ -18,11 +18,7 @@ export type EmojiType =
   | 'flag';
 
 export type HTTPStatusCodeType =
-  | 'informational'
-  | 'success'
-  | 'clientError'
-  | 'serverError'
-  | 'redirection';
+  'informational' | 'success' | 'clientError' | 'serverError' | 'redirection';
 
 export type HTTPProtocolType = 'http' | 'https';
 
