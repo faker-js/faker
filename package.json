@@ -123,7 +123,7 @@
     "ts-morph": "28.0.0",
     "tsdown": "0.22.14",
     "tsx": "4.23.12",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "typescript-eslint": "8.67.0",
     "validator": "13.15.35",
     "vitepress": "2.0.0-alpha.19",

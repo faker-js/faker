@@ -849,7 +849,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  maybe<const TResult>(
+  // This does not use `const TResult` because the callback's return type should widen as usual.
+  maybe<TResult>(
     callback: () => TResult,
     options: {
       /**
@@ -1130,7 +1131,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  multiple<const TResult>(
+  // This does not use `const TResult` because the callback's return type should widen as usual.
+  multiple<TResult>(
     method: (v: unknown, index: number) => TResult,
     options: {
       /**
