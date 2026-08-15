@@ -18,8 +18,11 @@
 import { constants } from 'node:fs';
 import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import type { PersonEntryDefinition } from '../dist';
-import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
+import type {
+  LocaleDefinition,
+  MetadataDefinition,
+  PersonEntryDefinition,
+} from '../src/definitions';
 import { keys } from '../src/internal/keys';
 import { toFakerExportName } from './locales/exports';
 import { loadMetadata, tryLoadMetadata } from './locales/metadata';
@@ -131,7 +134,7 @@ async function generateLocaleFile(locale: string): Promise<void> {
   }
 
   // TODO @Shinigami92 2023-03-07: Remove 'en' fallback in a separate PR
-  if (locales.at(-1) !== 'en' && locale !== 'base') {
+  if (locale !== 'base' && locales.at(-1) !== 'en') {
     locales.push('en');
   }
 
@@ -290,7 +293,7 @@ async function updateLocaleFile(filePath: string): Promise<void> {
   if (fileStat.isFile()) {
     const [locale, moduleKey, entryKey] = filePath
       .substring(FILE_PATH_SRC_LOCALES.length + 1, filePath.length - 3)
-      .split(/[\\/]/);
+      .split(/[\\/]/, 3);
     return updateLocaleFileHook(filePath, locale, moduleKey, entryKey);
   }
 }

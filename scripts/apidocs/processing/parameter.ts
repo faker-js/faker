@@ -21,7 +21,9 @@ import {
 } from './jsdocs';
 import type { RawApiDocsType } from './type';
 import {
+  attachShadowTypeDescriptions,
   getNameSuffix,
+  getShadowTypeDescriptions,
   getTypeText,
   isOptionsLikeType,
   isRangeType,
@@ -132,7 +134,7 @@ type ParameterLikeDeclaration = Pick<
   ParameterDeclaration,
   'getName' | 'getType'
 > &
-  Partial<Pick<ParameterDeclaration, 'getInitializer'>>;
+  Partial<Pick<ParameterDeclaration, 'getInitializer' | 'getTypeNode'>>;
 
 function processSimpleParameter(
   parameter: ParameterLikeDeclaration,
@@ -156,10 +158,13 @@ function processSimpleParameter(
 
   return {
     name: `${name}${getNameSuffix(type)}`,
-    type: getTypeText(type, {
-      abbreviate: true,
-      stripUndefined: true,
-    }),
+    type: attachShadowTypeDescriptions(
+      getTypeText(type, {
+        abbreviate: true,
+        stripUndefined: true,
+      }),
+      getShadowTypeDescriptions(parameter.getTypeNode?.())
+    ),
     default: signatureDefault ?? summaryDefault,
     description: stripSummaryDefault(description),
   };
@@ -197,7 +202,7 @@ function processComplexParameter(
     // Named range types (e.g. NumberRange) source their member descriptions from the method-level `@param name.member` tags;
     // anonymous options objects use their own inline property JSDoc as before.
     const rangeType = isRangeType(type);
-    if (!isOptionsLikeType(type) && !rangeType) {
+    if (!rangeType && !isOptionsLikeType(type)) {
       return [];
     }
 
@@ -246,10 +251,13 @@ function processComplexParameterProperty(
   return [
     {
       name: `${name}.${parameter.getName()}${getNameSuffix(propertyType)}`,
-      type: getTypeText(propertyType, {
-        abbreviate: false,
-        stripUndefined: true,
-      }),
+      type: attachShadowTypeDescriptions(
+        getTypeText(propertyType, {
+          abbreviate: false,
+          stripUndefined: true,
+        }),
+        getShadowTypeDescriptions(declaration.getTypeNode())
+      ),
       default: getDefault(jsdocs) ?? extractSummaryDefault(description),
       description:
         stripSummaryDefault(description) +
