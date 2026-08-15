@@ -113,3 +113,4 @@ cypress/videos
 .playwright-mcp/
 
 _local/
+.claude/
