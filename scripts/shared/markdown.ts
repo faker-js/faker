@@ -41,7 +41,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
   ],
   allowedAttributes: {
     a: ['href', 'target', 'rel'],
-    button: ['class', 'title'],
+    button: ['class', 'title', 'data-copied'],
     div: ['class'],
     input: ['type', 'name', 'id', 'checked'],
     label: ['for', 'data-title'],

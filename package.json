@@ -128,7 +128,7 @@
     "typescript-eslint": "8.67.0",
     "unrun": "0.3.1",
     "validator": "13.15.35",
-    "vitepress": "2.0.0-alpha.17",
+    "vitepress": "2.0.0-alpha.19",
     "vitest": "4.1.10",
     "vue": "3.5.41",
     "vue-tsc": "3.3.9"
