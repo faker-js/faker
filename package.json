@@ -126,7 +126,6 @@
     "tsx": "4.23.12",
     "typescript": "5.9.3",
     "typescript-eslint": "8.67.0",
-    "unrun": "0.3.1",
     "validator": "13.15.35",
     "vitepress": "2.0.0-alpha.19",
     "vitest": "4.1.10",
