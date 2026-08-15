@@ -3,7 +3,7 @@
   "version": "10.6.0",
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
-    "clean": "git clean -fdx --exclude _local",
+    "clean": "git clean -fdx --exclude _local --exclude .claude",
     "build:clean": "git clean -fX dist",
     "build:code": "tsdown",
     "build": "run-s build:clean build:code",
