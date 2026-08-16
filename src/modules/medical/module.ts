@@ -27,7 +27,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.specialty() // 'Cardiology'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   specialty(): string {
     return this.faker.helpers.arrayElement(
@@ -41,7 +41,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.department() // 'Emergency Department'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   department(): string {
     return this.faker.helpers.arrayElement(
@@ -55,7 +55,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.condition() // 'Type 2 Diabetes'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   condition(): string {
     return this.faker.helpers.arrayElement(
@@ -69,7 +69,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.symptom() // 'Shortness of Breath'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   symptom(): string {
     return this.faker.helpers.arrayElement(
@@ -83,7 +83,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.procedure() // 'Appendectomy'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   procedure(): string {
     return this.faker.helpers.arrayElement(
@@ -107,7 +107,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.allergen() // 'Penicillin'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   allergen(): string {
     return this.faker.helpers.arrayElement(
@@ -121,7 +121,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.bloodType() // 'O+'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   bloodType(): string {
     return this.faker.helpers.arrayElement(
@@ -142,7 +142,7 @@ export class MedicalModule extends ModuleBase {
    * @example
    * faker.medical.drugName() // 'Zolpraxen'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   drugName(): string {
     return this.faker.helpers.arrayElement(
