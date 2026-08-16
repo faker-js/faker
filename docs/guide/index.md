@@ -18,7 +18,7 @@ This documentation only covers the JavaScript implementation of Faker.
 You can run Faker in the browser, or in Node.js. Faker v11.0 requires Node.js version 22 or above.
 
 ::: tip Note
-For CJS, refer to https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require
+For CJS, see https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require
 :::
 
 ## Installation
