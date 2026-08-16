@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { CssFunction, CssSpace, faker } from '../../src';
+import { CssFunction, CssSpace, Faker, en, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
+import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -216,6 +217,15 @@ describe('color', () => {
             /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}% \/ \d*\.?\d*\))$/
           );
         });
+
+        it('should return the alpha as a value between 0 and 1, like rgba', () => {
+          const color = faker.color.hsl({ format: 'css', includeAlpha: true });
+          const alpha = Number.parseFloat(
+            color.split('/', 2)[1].replace(')', '').trim()
+          );
+          expect(alpha).toBeGreaterThanOrEqual(0);
+          expect(alpha).toBeLessThanOrEqual(1);
+        });
       });
 
       describe(`hsl({ format: 'binary' })`, () => {
@@ -323,12 +333,27 @@ describe('color', () => {
         it('should return a random lch color in decimal format', () => {
           const color = faker.color.lch();
           expect(color).length(3);
-          expect(color[0]).toBeGreaterThanOrEqual(0);
-          expect(color[0]).toBeLessThanOrEqual(1);
-          for (const value of color) {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(230);
-          }
+          const [lightness, chroma, hue] = color;
+          expect(lightness).toBeGreaterThanOrEqual(0);
+          expect(lightness).toBeLessThanOrEqual(1);
+          expect(chroma).toBeGreaterThanOrEqual(0);
+          expect(chroma).toBeLessThanOrEqual(230);
+          expect(hue).toBeGreaterThanOrEqual(0);
+          expect(hue).toBeLessThanOrEqual(360);
+        });
+
+        it('should be able to return the boundary values', () => {
+          const customFaker = new Faker({ locale: en });
+          const { randomizer } = customFaker.fakerCore;
+
+          randomizer.next = () => 0;
+          expect(customFaker.color.lch()).toStrictEqual([0, 0, 0]);
+
+          randomizer.next = () => MERSENNE_MAX_VALUE;
+          const [lightness, chroma, hue] = customFaker.color.lch();
+          expect(lightness).toBeCloseTo(1, 5);
+          expect(chroma).toBe(230);
+          expect(hue).toBe(360);
         });
       });
 
@@ -336,12 +361,13 @@ describe('color', () => {
         it('should return a random lch color in decimal format', () => {
           const color = faker.color.lch({ format: 'decimal' });
           expect(color).length(3);
-          expect(color[0]).toBeGreaterThanOrEqual(0);
-          expect(color[0]).toBeLessThanOrEqual(1);
-          for (const value of color) {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(230);
-          }
+          const [lightness, chroma, hue] = color;
+          expect(lightness).toBeGreaterThanOrEqual(0);
+          expect(lightness).toBeLessThanOrEqual(1);
+          expect(chroma).toBeGreaterThanOrEqual(0);
+          expect(chroma).toBeLessThanOrEqual(230);
+          expect(hue).toBeGreaterThanOrEqual(0);
+          expect(hue).toBeLessThanOrEqual(360);
         });
       });
 

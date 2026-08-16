@@ -18,7 +18,7 @@ export function bindThisToMemberFunctions<TClass extends { new (): any }>(
   let p = Object.getPrototypeOf(instance);
   do {
     for (const name of Object.getOwnPropertyNames(p)) {
-      if (typeof instance[name] === 'function' && name !== 'constructor') {
+      if (name !== 'constructor' && typeof instance[name] === 'function') {
         instance[name] = instance[name].bind(instance);
       }
     }

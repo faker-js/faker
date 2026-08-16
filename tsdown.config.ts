@@ -6,5 +6,5 @@ export default defineConfig({
   minify: true,
   platform: 'neutral',
   publint: true,
-  target: ['es2023', 'node20.11'],
+  target: ['es2024', 'node22.13'],
 });

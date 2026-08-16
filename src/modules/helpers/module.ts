@@ -849,7 +849,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  maybe<const TResult>(
+  maybe<TResult>(
     callback: () => TResult,
     options: {
       /**
@@ -1130,7 +1130,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  multiple<const TResult>(
+  multiple<TResult>(
     method: (v: unknown, index: number) => TResult,
     options: {
       /**

@@ -29,6 +29,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "optionsTypeParamMethodWithDefaults",
   "recordParamMethod",
   "requiredNumberParamMethod",
+  "shadowTypeParamMethod",
   "stringUnionParamMethod",
 ]
 `;
@@ -57,11 +58,11 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
           "description": "Array to pick the value from.",
           "name": "array",
           "type": {
-            "text": "Array<{ ... }>",
+            "text": "Array<{ … }>",
             "type": "generic",
             "typeParameters": [
               {
-                "text": "{ ... }",
+                "text": "{ … }",
                 "type": "simple",
               },
             ],
@@ -525,7 +526,7 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
           "description": "The options.",
           "name": "option",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1112,7 +1113,7 @@ exports[`method > processMethodLike(numberOrRangeParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1269,7 +1270,6 @@ exports[`method > processMethodLike(numberOrRangeParamMethod) 1`] = `
     value: NumberOrRange,
     array: ReadonlyArray<NumberOrRange>,
     options: {
-      /** The count parameter. */
       count: NumberOrRange;
     },
     mixed: NumberOrRange | ReadonlyArray<NumberOrRange>
@@ -1393,7 +1393,7 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1526,7 +1526,6 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
     value: NumberRange,
     array: ReadonlyArray<NumberRange>,
     options: {
-      /** The count parameter. */
       count: NumberRange;
     },
     mixed: NumberRange | ReadonlyArray<NumberRange>
@@ -1598,7 +1597,7 @@ exports[`method > processMethodLike(optionsInlineParamMethodWithDefaults) 1`] = 
 It also has a more complex description.",
           "name": "a",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1618,7 +1617,7 @@ It also has a more complex description.",
 It also has a more complex description.",
           "name": "b",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1636,7 +1635,7 @@ It also has a more complex description.",
           "description": "Parameter with inner jsdocs default.",
           "name": "c",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1755,7 +1754,7 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1865,7 +1864,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with signature default.",
           "name": "a",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1883,7 +1882,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with jsdocs default.",
           "name": "b",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1901,7 +1900,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with inner jsdocs default.",
           "name": "c",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -2016,6 +2015,92 @@ exports[`method > processMethodLike(requiredNumberParamMethod) 1`] = `
 }
 `;
 
+exports[`method > processMethodLike(shadowTypeParamMethod) 1`] = `
+{
+  "name": "shadowTypeParamMethod",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with a shadow type, whose values carry per-value documentation.",
+      "examples": [],
+      "experimental": undefined,
+      "parameters": [
+        {
+          "default": undefined,
+          "description": "The direct shadow parameter.",
+          "name": "value",
+          "type": {
+            "text": "'first' | 'second'",
+            "type": "union",
+            "types": [
+              {
+                "description": "The first option.",
+                "text": "'first'",
+                "type": "simple",
+              },
+              {
+                "description": "The second option.",
+                "text": "'second'",
+                "type": "simple",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The options parameter.",
+          "name": "options?",
+          "type": {
+            "text": "{ … }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The nested shadow parameter.",
+          "name": "options.strategy?",
+          "type": {
+            "text": "'first' | 'second'",
+            "type": "union",
+            "types": [
+              {
+                "description": "The first option.",
+                "text": "'first'",
+                "type": "simple",
+              },
+              {
+                "description": "The second option.",
+                "text": "'second'",
+                "type": "simple",
+              },
+            ],
+          },
+        },
+      ],
+      "remarks": [],
+      "returns": {
+        "text": "string",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function shadowTypeParamMethod(
+    value: ShadowEnumType,
+    options?: {
+      strategy?: ShadowEnumType;
+    }
+  ): string;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
 exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
 {
   "name": "stringUnionParamMethod",
@@ -2050,7 +2135,7 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options?",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
