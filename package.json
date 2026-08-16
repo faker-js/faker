@@ -126,5 +126,12 @@
   "engines": {
     "node": "^22.13.0 || ^23.5.0 || >=24.0.0",
     "npm": ">=10"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.21.0",
+      "onFail": "download"
+    }
   }
 }
