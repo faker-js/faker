@@ -187,29 +187,6 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   // If we put the actual code here, it would be a string and not executable
   refresh.toJSON = () => `refresh-${name}-placeholder`;
 
-  /* Target order, omitted to improve diff to old files
-  return {
-    name,
-    deprecated: mdToHtml(deprecated),
-    description: mdToHtml(description),
-    remark: remarks.length === 0 ? undefined : mdToHtml(remarks.join('\n')),
-    since,
-    parameters: parameters.map((param) => ({
-      ...param,
-      type: param.type.text,
-      default:
-        param.default ?? defaultCommentRegex.exec(param.description)?.[1],
-      description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
-    })),
-    returns: returns.text,
-    throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
-    // signature: codeToHtml(signature),
-    examples: codeToHtml([signature, ...examples].join('\n')),
-    seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
-    sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
-  };
-  */
-
   return {
     name,
     description: await mdToHtml(description),

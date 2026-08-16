@@ -3,7 +3,7 @@
   "version": "10.6.0",
   "description": "Generate massive amounts of fake contextual data",
   "scripts": {
-    "clean": "git clean -fdx --exclude _local --exclude .claude",
+    "clean": "git clean -fdx --exclude .local --exclude .claude",
     "build:clean": "git clean -fX dist",
     "build:code": "tsdown",
     "build": "run-s build:clean build:code",
@@ -104,7 +104,7 @@
     "@vitest/eslint-plugin": "1.6.27",
     "@vitest/ui": "4.1.10",
     "@vueuse/core": "14.4.0",
-    "commit-and-tag-version": "12.7.3",
+    "commit-and-tag-version": "13.1.2",
     "cypress": "15.20.1",
     "eslint": "10.8.1",
     "eslint-config-prettier": "10.1.8",
