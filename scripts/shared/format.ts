@@ -1,6 +1,5 @@
-import type { Options } from 'prettier';
-import { format } from 'prettier';
-import prettierConfig from '../../.prettierrc.js';
+import { format } from 'oxfmt';
+import { formatOptions } from '../../oxfmt.config';
 
 /**
  * Formats Markdown contents.
@@ -8,7 +7,7 @@ import prettierConfig from '../../.prettierrc.js';
  * @param text The text to format.
  */
 export async function formatMarkdown(text: string): Promise<string> {
-  return format(text, prettierMarkdown);
+  return formatAs('markdown.md', text);
 }
 
 /**
@@ -17,15 +16,23 @@ export async function formatMarkdown(text: string): Promise<string> {
  * @param text The text to format.
  */
 export async function formatTypescript(text: string): Promise<string> {
-  return format(text, prettierTypescript);
+  return formatAs('typescript.ts', text);
 }
 
-const prettierMarkdown: Options = {
-  ...prettierConfig,
-  parser: 'markdown',
-};
+/**
+ * Formats contents using the parser that oxfmt infers from the given file name.
+ *
+ * @param fileName The virtual file name that determines the parser.
+ * @param text The text to format.
+ */
+async function formatAs(fileName: string, text: string): Promise<string> {
+  const { code, errors } = await format(fileName, text, formatOptions);
 
-const prettierTypescript: Options = {
-  ...prettierConfig,
-  parser: 'typescript',
-};
+  if (errors.length > 0) {
+    throw new Error(
+      `Failed to format ${fileName}:\n${errors.map(({ message }) => message).join('\n')}`
+    );
+  }
+
+  return code;
+}

@@ -17,7 +17,7 @@ import type { RawApiDocsType } from '../processing/type';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
-// Extracted to a constant because the contents must not be formatted by prettier
+// Extracted to a constant because the contents must not be formatted by oxfmt
 const vitePressInFileOptions = `---
 editLink: false
 ---

@@ -21,7 +21,6 @@ export default defineConfig({
   ignorePatterns: [
     // Skip some files that don't need linting right now
     '.github/workflows/commentCodeGeneration.ts',
-    '.prettierrc.js',
     'docs/.vitepress/components/shims.d.ts',
     'docs/.vitepress/components/api-docs/format.ts',
     'docs/.vitepress/shared/utils/slugify.ts',
@@ -170,7 +169,7 @@ export default defineConfig({
     'unicorn/no-magic-array-flat-depth': 'error',
     'unicorn/no-negated-condition': 'error',
     'unicorn/no-negation-in-equality-check': 'error',
-    'unicorn/no-nested-ternary': 'off', // incompatible with prettier
+    'unicorn/no-nested-ternary': 'off', // incompatible with oxfmt
     'unicorn/no-new-buffer': 'error',
     'unicorn/no-null': 'off', // incompatible with TypeScript
     'unicorn/no-object-as-default-parameter': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2199
@@ -194,7 +193,7 @@ export default defineConfig({
     'unicorn/no-useless-switch-case': 'error',
     'unicorn/no-useless-undefined': 'error',
     'unicorn/no-zero-fractions': 'off', // deactivated to raise awareness of floating operations
-    'unicorn/number-literal-case': 'off', // incompatible with prettier
+    'unicorn/number-literal-case': 'off', // incompatible with oxfmt
     'unicorn/numeric-separators-style': 'off', // "magic numbers" may carry specific meaning
     'unicorn/prefer-array-find': 'error',
     'unicorn/prefer-array-flat': 'error',
