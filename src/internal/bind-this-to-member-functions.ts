@@ -11,12 +11,6 @@
  * const someMethod = someModule.someMethod;
  * someMethod(); // Works
  */
-// oxlint-disable-next-line typescript/no-explicit-any
-export function bindThisToMemberFunctions<TClass extends { new (): any }>(
-  instance: InstanceType<TClass>
-): void {
-  let p = Object.getPrototypeOf(instance);
-  do {
 export function bindThisToMemberFunctions<TClass extends { new (): TClass }>(
   instance: InstanceType<TClass>
 ): void {
