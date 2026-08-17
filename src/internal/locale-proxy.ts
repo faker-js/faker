@@ -45,8 +45,7 @@ function isLocaleProxy(value: unknown): value is LocaleProxy {
   return (
     value != null &&
     typeof value === 'object' &&
-    // oxlint-disable-next-line typescript/no-explicit-any
-    (value as any)?.[LOCALE_PROXY_TAG] === true
+    (value as LocaleProxy)[LOCALE_PROXY_TAG] === true
   );
 }
 
