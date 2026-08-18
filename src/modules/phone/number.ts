@@ -1,4 +1,5 @@
 import type { FakerCore } from '../../core';
+import { assertLocaleData } from '../../internal/locale-proxy';
 import { legacyReplaceSymbolWithNumber } from '../helpers/_legacy-replace-symbol-with-number';
 import { arrayElement } from '../helpers/array-element';
 
@@ -39,13 +40,8 @@ export function number(
   } = {}
 ): string {
   const { style = 'human' } = options;
-  const formats = fakerCore.locale.phone_number.format;
-
-  const definitions = formats[style];
-  if (!definitions) {
-    throw new Error(`No definitions for ${style} in this locale`);
-  }
-
-  const format = arrayElement(fakerCore, definitions);
+  const formats = fakerCore.locale.phone_number.format[style];
+  assertLocaleData(formats, 'phone_number.format', style);
+  const format = arrayElement(fakerCore, formats);
   return legacyReplaceSymbolWithNumber(fakerCore, format);
 }
