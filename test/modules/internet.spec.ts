@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-unused-array-method-return -- False positive: https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193 */
 import {
   isEmail,
   isFQDN,
@@ -162,7 +161,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [, suffix] = email.split('@');
+          const [, suffix] = email.split('@', 2);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
@@ -188,7 +187,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(prefix).includes('Aiden.Harann55');
           expect(prefix).toMatch(
@@ -207,7 +206,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix] = email.split('@');
+          const [prefix] = email.split('@', 1);
           expect(prefix).not.toMatch(/^\./);
           expect(prefix).not.toMatch(/\.$/);
         });
@@ -219,7 +218,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix] = email.split('@');
+          const [prefix] = email.split('@', 1);
           //expect it not to contain multiple .s
           expect(prefix).not.toMatch(/\.{2,}/);
         });
@@ -234,7 +233,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(prefix).includes('Aiden');
           expect(prefix).includes('Harann');
@@ -278,7 +277,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(prefix).toMatch(/^Mike[.!#$%&'*+-/=?^_`{|}~]Smith\d*/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
@@ -308,7 +307,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
@@ -325,7 +324,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
           expect(email).includes('Aiden');
           expect(email).includes('Harann');
 
@@ -345,7 +344,7 @@ describe('internet', () => {
           expect(email).toBeTypeOf('string');
           expect(email).toSatisfy(isEmail);
 
-          const [prefix, suffix] = email.split('@');
+          const [prefix, suffix] = email.split('@', 2);
 
           expect(suffix).toMatch(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
@@ -551,7 +550,7 @@ describe('internet', () => {
           expect(domainName).toBeTypeOf('string');
           expect(domainName).toSatisfy(isFQDN);
 
-          const [prefix, suffix] = domainName.split('.');
+          const [prefix, suffix] = domainName.split('.', 2);
 
           expect(prefix).toSatisfy(isSlug);
           expect(faker.definitions.internet.domain_suffix).toContain(suffix);
@@ -652,6 +651,14 @@ describe('internet', () => {
           expect(fourth).toBeLessThanOrEqual(255);
         });
 
+        it('should return the input IPv4 for a /32 CIDR block', () => {
+          const actual = faker.internet.ipv4({
+            cidrBlock: '192.168.0.255/32',
+          });
+
+          expect(actual).toBe('192.168.0.255');
+        });
+
         it.each([
           '',
           '...',
@@ -680,6 +687,34 @@ describe('internet', () => {
             );
           }
         );
+
+        it('should throw an error for CIDR prefix lengths above 32', () => {
+          const cidrBlock = '192.168.0.0/33';
+
+          expect(() =>
+            faker.internet.ipv4({
+              cidrBlock,
+            })
+          ).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Prefix length must be between 0 and 32.`
+            )
+          );
+        });
+
+        it('should throw an error for CIDR blocks with octets above 255', () => {
+          const cidrBlock = '192.168.0.256/24';
+
+          expect(() =>
+            faker.internet.ipv4({
+              cidrBlock,
+            })
+          ).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Each octet must be between 0 and 255.`
+            )
+          );
+        });
 
         it.each([
           [IPv4Network.Any, /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/],
@@ -730,7 +765,7 @@ describe('internet', () => {
           const port = faker.internet.port();
 
           expect(port).toBeTypeOf('number');
-          expect(port).toBeGreaterThanOrEqual(0);
+          expect(port).toBeGreaterThanOrEqual(1);
           expect(port).toBeLessThanOrEqual(65535);
           expect(String(port)).toSatisfy(isPort);
         });
@@ -867,6 +902,13 @@ describe('internet', () => {
           expect(password).toHaveLength(32);
           expect(password).toStartWith('a!G6');
           expect(password).toSatisfy(isStrongPassword);
+        });
+
+        it('should generate long passwords without overflowing the call stack', () => {
+          // Regression test: password generation used to recurse once per character, throwing a RangeError for lengths of ~5000 and above.
+          const length = 100_000;
+
+          expect(() => faker.internet.password({ length })).not.toThrow();
         });
       });
 

@@ -314,7 +314,6 @@ export class CommerceModule extends ModuleBase {
 
     const { variant = 13, separator = '-' } = options;
 
-    // eslint-disable-next-line unicorn/no-declarations-before-early-exit
     const prefix = '978';
     const [group, groupRules] =
       this.faker.helpers.objectEntry(ISBN_LENGTH_RULES);

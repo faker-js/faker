@@ -1,4 +1,4 @@
-import type { MetadataDefinition } from '../..';
+import type { MetadataDefinition } from '../../definitions';
 
 const metadata: MetadataDefinition = {
   title: 'Base',

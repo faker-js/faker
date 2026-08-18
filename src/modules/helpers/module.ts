@@ -1,7 +1,8 @@
-import type { Faker, SimpleFaker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
-import type { NumberRange } from '../../utils/types';
+import type { SimpleFaker } from '../../simple-faker';
+import type { NumberOrRange } from '../../utils/types';
 import { fakeEval } from './eval';
 import { luhnCheckValue } from './luhn-check';
 
@@ -737,7 +738,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     for (let i = list.length - 1; i > 0; --i) {
       const j = this.faker.number.int(i);
-      // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
       [list[i], list[j]] = [list[j], list[i]];
     }
 
@@ -848,7 +848,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  maybe<const TResult>(
+  maybe<TResult>(
     callback: () => TResult,
     options: {
       /**
@@ -1007,7 +1007,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     }
 
     // In case of rounding errors, return the last element
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     return array.at(-1)!.value;
   }
 
@@ -1028,10 +1028,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 6.3.0
    */
-  arrayElements<const T>(
-    array: ReadonlyArray<T>,
-    count?: number | NumberRange
-  ): T[] {
+  arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
     if (array.length === 0) {
       return [];
     }
@@ -1107,7 +1104,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  rangeToNumber(numberOrRange: number | NumberRange): number {
+  rangeToNumber(numberOrRange: NumberOrRange): number {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }
@@ -1132,7 +1129,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @since 8.0.0
    */
-  multiple<const TResult>(
+  multiple<TResult>(
     method: (v: unknown, index: number) => TResult,
     options: {
       /**
@@ -1140,7 +1137,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
        *
        * @default 3
        */
-      count?: number | NumberRange;
+      count?: NumberOrRange;
     } = {}
   ): TResult[] {
     const count = this.rangeToNumber(options.count ?? 3);
@@ -1176,7 +1173,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
+   * that you control (e.g. a template authored by a developer or stored in a database or file).
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
@@ -1199,7 +1196,11 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
+   * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
+   * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
+   * itself must always be from trusted input. Do not evaluate patterns provided by untrusted
+   * user input or external sources.
    *
    * @param pattern The pattern string that will get interpolated.
    *
@@ -1225,7 +1226,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
+   * that you control (e.g. a template authored by a developer or stored in a database or file).
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
@@ -1251,7 +1252,11 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
+   * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
+   * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
+   * itself must always be from trusted input. Do not evaluate patterns provided by untrusted
+   * user input or external sources.
    *
    * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
    *
@@ -1271,7 +1276,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
+   * that you control (e.g. a template authored by a developer or stored in a database or file).
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
@@ -1294,7 +1299,11 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
+   * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
+   * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
+   * itself must always be from trusted input. Do not evaluate patterns provided by untrusted
+   * user input or external sources.
    *
    * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *

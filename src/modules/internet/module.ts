@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-https -- We allow http in results */
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';
@@ -604,6 +603,10 @@ export class InternetModule extends ModuleBase {
    * @param options The optional options object.
    * @param options.cidrBlock The optional CIDR block to use. Must be in the format `x.x.x.x/y`. Defaults to `'0.0.0.0/0'`.
    *
+   * @throws {FakerError} If the resolved CIDR block does not use the format `x.x.x.x/y`.
+   * @throws {FakerError} If the resolved CIDR block has a prefix length greater than 32.
+   * @throws {FakerError} If the resolved CIDR block contains an octet greater than 255.
+   *
    * @example
    * faker.internet.ipv4() // '245.108.222.0'
    * faker.internet.ipv4({ cidrBlock: '192.168.0.0/16' }) // '192.168.215.224'
@@ -645,6 +648,10 @@ export class InternetModule extends ModuleBase {
    * @param options.cidrBlock The optional CIDR block to use. Must be in the format `x.x.x.x/y`. Defaults to `'0.0.0.0/0'`.
    * @param options.network The optional network to use. This is intended as an alias for well-known `cidrBlock`s. Defaults to `'any'`.
    *
+   * @throws {FakerError} If the resolved CIDR block does not use the format `x.x.x.x/y`.
+   * @throws {FakerError} If the resolved CIDR block has a prefix length greater than 32.
+   * @throws {FakerError} If the resolved CIDR block contains an octet greater than 255.
+   *
    * @example
    * faker.internet.ipv4() // '245.108.222.0'
    * faker.internet.ipv4({ cidrBlock: '192.168.0.0/16' }) // '192.168.215.224'
@@ -682,9 +689,27 @@ export class InternetModule extends ModuleBase {
       );
     }
 
-    const [ipText, subnet] = cidrBlock.split('/');
-    const subnetMask = 0xffffffff >>> Number.parseInt(subnet);
-    const [rawIp1, rawIp2, rawIp3, rawIp4] = ipText.split('.').map(Number);
+    const [ipText, subnet] = cidrBlock.split('/', 2);
+    const subnetValue = Number.parseInt(subnet, 10);
+    if (subnetValue > 32) {
+      throw new FakerError(
+        `Invalid CIDR block provided: ${cidrBlock}. Prefix length must be between 0 and 32.`
+      );
+    }
+
+    const octets = ipText.split('.').map(Number);
+    if (octets.some((octet) => octet > 255)) {
+      throw new FakerError(
+        `Invalid CIDR block provided: ${cidrBlock}. Each octet must be between 0 and 255.`
+      );
+    }
+
+    if (subnetValue === 32) {
+      return ipText;
+    }
+
+    const subnetMask = 0xffffffff >>> subnetValue;
+    const [rawIp1, rawIp2, rawIp3, rawIp4] = octets;
     const rawIp = (rawIp1 << 24) | (rawIp2 << 16) | (rawIp3 << 8) | rawIp4;
     const networkIp = rawIp & ~subnetMask;
     const hostOffset = this.faker.number.int(subnetMask);
@@ -724,7 +749,7 @@ export class InternetModule extends ModuleBase {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.number.int(65535);
+    return this.faker.number.int({ min: 1, max: 65535 });
   }
 
   /**
@@ -823,7 +848,7 @@ export class InternetModule extends ModuleBase {
 
     for (i = 0; i < 12; i++) {
       mac += this.faker.number.hex(15);
-      if (i % 2 === 1 && i !== 11) {
+      if (i !== 11 && i % 2 === 1) {
         mac += separator;
       }
     }
@@ -887,32 +912,6 @@ export class InternetModule extends ModuleBase {
      */
     const vowel = /[aeiouAEIOU]$/;
     const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
-    const _password = (
-      length: number,
-      memorable: boolean,
-      pattern: RegExp,
-      prefix: string
-    ): string => {
-      if (prefix.length >= length) {
-        return prefix;
-      }
-
-      if (memorable) {
-        pattern = consonant.test(prefix) ? vowel : consonant;
-      }
-
-      const n = this.faker.number.int(94) + 33;
-      let char = String.fromCodePoint(n);
-      if (memorable) {
-        char = char.toLowerCase();
-      }
-
-      if (!pattern.test(char)) {
-        return _password(length, memorable, pattern, prefix);
-      }
-
-      return _password(length, memorable, pattern, prefix + char);
-    };
 
     const {
       length = 15,
@@ -921,7 +920,26 @@ export class InternetModule extends ModuleBase {
       prefix = '',
     } = options;
 
-    return _password(length, memorable, pattern, prefix);
+    let currentPattern = pattern;
+    let result = prefix;
+    // TODO @Shinigami92 2026-07-09: This loop never terminates if the pattern can never match a generated char (e.g. `/°/`), blocking the event loop. To be resolved by the password rewrite in https://github.com/faker-js/faker/issues/768.
+    while (result.length < length) {
+      if (memorable) {
+        currentPattern = consonant.test(result) ? vowel : consonant;
+      }
+
+      const n = this.faker.number.int(94) + 33;
+      let char = String.fromCodePoint(n);
+      if (memorable) {
+        char = char.toLowerCase();
+      }
+
+      if (currentPattern.test(char)) {
+        result += char;
+      }
+    }
+
+    return result;
   }
 
   /**

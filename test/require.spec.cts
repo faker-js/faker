@@ -4,7 +4,7 @@ const { allLocales, SimpleFaker } = require('../dist/index.js');
 describe('require (cjs)', () => {
   describe.each(
     Object.keys(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      // oxlint-disable-next-line typescript/no-unsafe-argument
       allLocales
     )
   )('locale imports', (locale) => {

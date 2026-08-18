@@ -1,11 +1,11 @@
-/* eslint-disable jsdoc/require-param */
-
 /**
  * A deprecation should never be done in a patch.
  */
 type DeprecationSemVer = `${number}.${number}`;
 
-/** @internal */
+/**
+ * @internal
+ */
 export interface DeprecatedOptions {
   /**
    * The name of the function, following the syntax `faker.[module].[function]()`.
@@ -25,6 +25,7 @@ export interface DeprecatedOptions {
   until?: DeprecationSemVer;
 }
 
+// oxlint-disable-next-line jsdoc-js/require-param
 /**
  * @internal
  */
@@ -44,6 +45,6 @@ export function deprecated(options: DeprecatedOptions): void {
     message += `. Please use ${proposed} instead`;
   }
 
-  // eslint-disable-next-line no-undef -- Using console here is intentional and required
+  // oxlint-disable-next-line no-undef -- Using console here is intentional and required
   console.warn(`${message}.`);
 }

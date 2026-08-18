@@ -1,4 +1,4 @@
-import type { SimpleFaker } from '../../';
+import type { SimpleFaker } from '../../simple-faker';
 
 /**
  * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).

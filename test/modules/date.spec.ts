@@ -1033,7 +1033,7 @@ describe('date', () => {
     });
 
     it('should not use the refDateSource when refDate is provided (with function)', () => {
-      const spy: () => Date = vi.fn();
+      const spy = vi.fn<() => Date>();
       faker.setDefaultRefDate(spy);
       faker.seed(20200101);
 

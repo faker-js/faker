@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [10.6.0](https://github.com/faker-js/faker/compare/v10.5.0...v10.6.0) (2026-08-14)
+
+
+### New Locales
+
+* **locale:** add 060 Japanese mobile phone number formats ([#3922](https://github.com/faker-js/faker/issues/3922)) ([afa272d](https://github.com/faker-js/faker/commit/afa272d468620755cbde4cae9379d342ebbd87d1))
+* **locale:** add Norwegian (nb_NO) animal module ([#3901](https://github.com/faker-js/faker/issues/3901)) ([1232937](https://github.com/faker-js/faker/commit/123293757668b3fb2b944e343ad212f4339828c3))
+* **locale:** add Norwegian (nb_NO) food module ([#3900](https://github.com/faker-js/faker/issues/3900)) ([bd23594](https://github.com/faker-js/faker/commit/bd23594bc6f2958fed29414f575fd5eab0b6ff9a))
+* **locale:** add vehicle data for de ([#3958](https://github.com/faker-js/faker/issues/3958)) ([974490f](https://github.com/faker-js/faker/commit/974490f652f6f0dc210ea57071ec755dab66cfe8))
+* **locale:** better middle names by gender for en locale ([#3932](https://github.com/faker-js/faker/issues/3932)) ([aba3fb1](https://github.com/faker-js/faker/commit/aba3fb1a2a18ec27c4af3f6f900ffef1bba1c698))
+* **locale:** better organize first_name by gender for en ([#3924](https://github.com/faker-js/faker/issues/3924)) ([119386b](https://github.com/faker-js/faker/commit/119386b419039b1e266a4b0f0c303bffc92788ef))
+
+
+### Features
+
+* introduce NumberRange type ([#3838](https://github.com/faker-js/faker/issues/3838)) ([acd5fda](https://github.com/faker-js/faker/commit/acd5fdaf099bda7cf90c76bf0ae0a33349a54ce7))
+* **phone:** mobile styles for more locales ([#3902](https://github.com/faker-js/faker/issues/3902)) ([1107eab](https://github.com/faker-js/faker/commit/1107eab7691a73631802dffa6aa023d6212284b7))
+
+
+### Changed Locales
+
+* **locale:** add en_NP and change ne to Devangari ([#3868](https://github.com/faker-js/faker/issues/3868)) ([fc788cc](https://github.com/faker-js/faker/commit/fc788cc0c502743fb2290a62104ad07dcc668beb))
+* **locale:** normalize phone_number data ([#3518](https://github.com/faker-js/faker/issues/3518)) ([9a1cb7d](https://github.com/faker-js/faker/commit/9a1cb7d1d2622d159fe623e3f7cc593a92ef2d55))
+
+
+### Bug Fixes
+
+* **apidocs:** scope code group tab identifiers ([#3976](https://github.com/faker-js/faker/issues/3976)) ([3125eaf](https://github.com/faker-js/faker/commit/3125eaf85e8df1bf5ea15bdb73c0ef10bab436dd))
+* **color:** give the LCH hue its full 360 degree range ([#3978](https://github.com/faker-js/faker/issues/3978)) ([1ce5994](https://github.com/faker-js/faker/commit/1ce599462b0c04036797594c8c1b6d5bd0c91846))
+* **color:** stop scaling the HSLA alpha into a percentage ([#3979](https://github.com/faker-js/faker/issues/3979)) ([1143329](https://github.com/faker-js/faker/commit/11433295b990a8359bd5a36fed3002b33e387a56))
+* groupBy handling for prototype property keys ([#3906](https://github.com/faker-js/faker/issues/3906)) ([c898ff1](https://github.com/faker-js/faker/commit/c898ff1f90a8b74b512e8e1fca89ae1e4e738df3))
+* **internet:** exclude reserved port 0 from internet.port() ([#3948](https://github.com/faker-js/faker/issues/3948)) ([d4b35a4](https://github.com/faker-js/faker/commit/d4b35a48fa576422497257c01d10274282d82c94))
+* **internet:** generate long passwords without stack overflow ([#3946](https://github.com/faker-js/faker/issues/3946)) ([4782978](https://github.com/faker-js/faker/commit/478297849dce372664ceae13fe36c84212d374c6))
+* **internet:** validate CIDR prefix length and octet range in ipv4() ([#3933](https://github.com/faker-js/faker/issues/3933)) ([15cb8fb](https://github.com/faker-js/faker/commit/15cb8fbae9e8d5debd35e1fb144691f5517c0807))
+* **locale:** exclude forbidden letter combinations from nl postcodes ([#3888](https://github.com/faker-js/faker/issues/3888)) ([9bebe67](https://github.com/faker-js/faker/commit/9bebe676beafefd5191b2aa103401be0ebe94169))
+* **locale:** only generate valid French postal codes ([#3905](https://github.com/faker-js/faker/issues/3905)) ([711f36f](https://github.com/faker-js/faker/commit/711f36fa04235513050fdd23a5104aa05ddc47c7))
+* **locale:** update nl_BE phone number patterns ([#3981](https://github.com/faker-js/faker/issues/3981)) ([9616076](https://github.com/faker-js/faker/commit/96160763bafee03177331f84850dc5e18216ffc3))
+* **locale:** use only common surnames for zh_CN last names ([#3938](https://github.com/faker-js/faker/issues/3938)) ([58394eb](https://github.com/faker-js/faker/commit/58394eb2610ae8fe15ab9b1b2a17c108fd8e9749))
+* **locale:** use only valid letters in en_CA postcodes ([#3951](https://github.com/faker-js/faker/issues/3951)) ([3b184d6](https://github.com/faker-js/faker/commit/3b184d6e52a721c227c6e9c58731bdf008f43532))
+* **string:** reject refDates that a ULID timestamp cannot encode ([#3982](https://github.com/faker-js/faker/issues/3982)) ([81717bc](https://github.com/faker-js/faker/commit/81717bc633865917e5193b6d00eefea667ecd862))
+* **vehicle:** calculate VIN check digit ([#3954](https://github.com/faker-js/faker/issues/3954)) ([a4c6757](https://github.com/faker-js/faker/commit/a4c6757fdf65c6434c862ca4f29639e8b982d7e5))
+* **word:** pick nearest length for closest strategy ([#3943](https://github.com/faker-js/faker/issues/3943)) ([42fd322](https://github.com/faker-js/faker/commit/42fd322071afc4f3e9148618127bd18148337ce5))
+
 ## [10.5.0](https://github.com/faker-js/faker/compare/v10.4.0...v10.5.0) (2026-06-17)
 
 

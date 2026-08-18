@@ -20,6 +20,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "methodWithThrows",
   "multiParamMethod",
   "noParamMethod",
+  "numberOrRangeParamMethod",
   "numberRangeParamMethod",
   "optionalStringParamMethod",
   "optionsInlineParamMethodWithDefaults",
@@ -28,6 +29,7 @@ exports[`method > expected and actual methods are equal 1`] = `
   "optionsTypeParamMethodWithDefaults",
   "recordParamMethod",
   "requiredNumberParamMethod",
+  "shadowTypeParamMethod",
   "stringUnionParamMethod",
 ]
 `;
@@ -56,11 +58,11 @@ exports[`method > processMethodLike(complexArrayParameter) 1`] = `
           "description": "Array to pick the value from.",
           "name": "array",
           "type": {
-            "text": "Array<{ ... }>",
+            "text": "Array<{ … }>",
             "type": "generic",
             "typeParameters": [
               {
-                "text": "{ ... }",
+                "text": "{ … }",
                 "type": "simple",
               },
             ],
@@ -524,7 +526,7 @@ exports[`method > processMethodLike(methodWithDeprecatedOption) 1`] = `
           "description": "The options.",
           "name": "option",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -984,6 +986,306 @@ exports[`method > processMethodLike(noParamMethod) 1`] = `
 }
 `;
 
+exports[`method > processMethodLike(numberOrRangeParamMethod) 1`] = `
+{
+  "name": "numberOrRangeParamMethod",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with NumberOrRange.",
+      "examples": [],
+      "experimental": undefined,
+      "parameters": [
+        {
+          "default": undefined,
+          "description": "\`5\` or \`{min: 1, max: 10}\`.",
+          "name": "value",
+          "type": {
+            "text": "number | { min: number; max: number }",
+            "type": "union",
+            "types": [
+              {
+                "text": "number",
+                "type": "simple",
+              },
+              {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
+                "text": "{ min: number; max: number }",
+                "type": "object",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "value.max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "value.min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "Array of \`5\` or \`{min: 1, max: 10}\`.",
+          "name": "array",
+          "type": {
+            "text": "Array<number | { min: number; max: number }>",
+            "type": "generic",
+            "typeParameters": [
+              {
+                "text": "number | { min: number; max: number }",
+                "type": "union",
+                "types": [
+                  {
+                    "text": "number",
+                    "type": "simple",
+                  },
+                  {
+                    "members": [
+                      {
+                        "name": "min",
+                        "type": {
+                          "text": "number",
+                          "type": "simple",
+                        },
+                      },
+                      {
+                        "name": "max",
+                        "type": {
+                          "text": "number",
+                          "type": "simple",
+                        },
+                      },
+                    ],
+                    "text": "{ min: number; max: number }",
+                    "type": "object",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "array[].max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "array[].min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The options parameter.",
+          "name": "options",
+          "type": {
+            "text": "{ … }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The count parameter.",
+          "name": "options.count",
+          "type": {
+            "text": "number | { min: number; max: number }",
+            "type": "union",
+            "types": [
+              {
+                "text": "number",
+                "type": "simple",
+              },
+              {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
+                "text": "{ min: number; max: number }",
+                "type": "object",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "\`5\` or \`{min: 1, max: 10}\` or an array thereof.",
+          "name": "mixed",
+          "type": {
+            "text": "number | { min: number; max: number } | Array<number | { min: number; max: number }>",
+            "type": "union",
+            "types": [
+              {
+                "text": "number",
+                "type": "simple",
+              },
+              {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
+                "text": "{ min: number; max: number }",
+                "type": "object",
+              },
+              {
+                "text": "Array<number | { min: number; max: number }>",
+                "type": "generic",
+                "typeParameters": [
+                  {
+                    "text": "number | { min: number; max: number }",
+                    "type": "union",
+                    "types": [
+                      {
+                        "text": "number",
+                        "type": "simple",
+                      },
+                      {
+                        "members": [
+                          {
+                            "name": "min",
+                            "type": {
+                              "text": "number",
+                              "type": "simple",
+                            },
+                          },
+                          {
+                            "name": "max",
+                            "type": {
+                              "text": "number",
+                              "type": "simple",
+                            },
+                          },
+                        ],
+                        "text": "{ min: number; max: number }",
+                        "type": "object",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "mixed.max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "mixed.min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "mixed[].max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "mixed[].min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+      ],
+      "remarks": [],
+      "returns": {
+        "text": "string",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function numberOrRangeParamMethod(
+    value: NumberOrRange,
+    array: ReadonlyArray<NumberOrRange>,
+    options: {
+      count: NumberOrRange;
+    },
+    mixed: NumberOrRange | ReadonlyArray<NumberOrRange>
+  ): string;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
 exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
 {
   "name": "numberRangeParamMethod",
@@ -999,7 +1301,41 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
           "description": "\`{min: 1, max: 10}\`.",
           "name": "value",
           "type": {
+            "members": [
+              {
+                "name": "min",
+                "type": {
+                  "text": "number",
+                  "type": "simple",
+                },
+              },
+              {
+                "name": "max",
+                "type": {
+                  "text": "number",
+                  "type": "simple",
+                },
+              },
+            ],
             "text": "{ min: number; max: number }",
+            "type": "object",
+          },
+        },
+        {
+          "default": "10",
+          "description": "The maximum value.",
+          "name": "value.max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value.",
+          "name": "value.min",
+          "type": {
+            "text": "number",
             "type": "simple",
           },
         },
@@ -1012,10 +1348,44 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
             "type": "generic",
             "typeParameters": [
               {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
                 "text": "{ min: number; max: number }",
-                "type": "simple",
+                "type": "object",
               },
             ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "array[].max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "array[].min",
+          "type": {
+            "text": "number",
+            "type": "simple",
           },
         },
         {
@@ -1023,7 +1393,7 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1032,8 +1402,24 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
           "description": "The count parameter.",
           "name": "options.count",
           "type": {
+            "members": [
+              {
+                "name": "min",
+                "type": {
+                  "text": "number",
+                  "type": "simple",
+                },
+              },
+              {
+                "name": "max",
+                "type": {
+                  "text": "number",
+                  "type": "simple",
+                },
+              },
+            ],
             "text": "{ min: number; max: number }",
-            "type": "simple",
+            "type": "object",
           },
         },
         {
@@ -1045,20 +1431,88 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
             "type": "union",
             "types": [
               {
+                "members": [
+                  {
+                    "name": "min",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                  {
+                    "name": "max",
+                    "type": {
+                      "text": "number",
+                      "type": "simple",
+                    },
+                  },
+                ],
                 "text": "{ min: number; max: number }",
-                "type": "simple",
+                "type": "object",
               },
               {
                 "text": "Array<{ min: number; max: number }>",
                 "type": "generic",
                 "typeParameters": [
                   {
+                    "members": [
+                      {
+                        "name": "min",
+                        "type": {
+                          "text": "number",
+                          "type": "simple",
+                        },
+                      },
+                      {
+                        "name": "max",
+                        "type": {
+                          "text": "number",
+                          "type": "simple",
+                        },
+                      },
+                    ],
                     "text": "{ min: number; max: number }",
-                    "type": "simple",
+                    "type": "object",
                   },
                 ],
               },
             ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "mixed.max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "mixed.min",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The maximum value (inclusive).",
+          "name": "mixed[].max",
+          "type": {
+            "text": "number",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The minimum value (inclusive).",
+          "name": "mixed[].min",
+          "type": {
+            "text": "number",
+            "type": "simple",
           },
         },
       ],
@@ -1072,7 +1526,6 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
     value: NumberRange,
     array: ReadonlyArray<NumberRange>,
     options: {
-      /** The count parameter. */
       count: NumberRange;
     },
     mixed: NumberRange | ReadonlyArray<NumberRange>
@@ -1144,7 +1597,7 @@ exports[`method > processMethodLike(optionsInlineParamMethodWithDefaults) 1`] = 
 It also has a more complex description.",
           "name": "a",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1158,15 +1611,13 @@ It also has a more complex description.",
           },
         },
         {
-          "default": undefined,
+          "default": "{ value: 1 }",
           "description": "Parameter with jsdocs default.
 
-It also has a more complex description.
-
-Defaults to \`{ value: 1 }\`.",
+It also has a more complex description.",
           "name": "b",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1184,7 +1635,7 @@ Defaults to \`{ value: 1 }\`.",
           "description": "Parameter with inner jsdocs default.",
           "name": "c",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1247,8 +1698,8 @@ exports[`method > processMethodLike(optionsInterfaceParamMethodWithDefaults) 1`]
           },
         },
         {
-          "default": undefined,
-          "description": "Parameter with jsdocs default. Defaults to \`{ value: 1 }\`.",
+          "default": "{ value: 1 }",
+          "description": "Parameter with jsdocs default.",
           "name": "b",
           "type": {
             "text": "ParameterOptionsInterfaceB",
@@ -1303,7 +1754,7 @@ exports[`method > processMethodLike(optionsParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1413,7 +1864,7 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with signature default.",
           "name": "a",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1427,11 +1878,11 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           },
         },
         {
-          "default": undefined,
-          "description": "Parameter with jsdocs default. Defaults to \`{ value: 1 }\`.",
+          "default": "{ value: 1 }",
+          "description": "Parameter with jsdocs default.",
           "name": "b",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
@@ -1449,13 +1900,13 @@ exports[`method > processMethodLike(optionsTypeParamMethodWithDefaults) 1`] = `
           "description": "Parameter with inner jsdocs default.",
           "name": "c",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },
         {
-          "default": undefined,
-          "description": "Options value. Defaults to \`0\`.",
+          "default": "0",
+          "description": "Options value.",
           "name": "c.value?",
           "type": {
             "text": "number",
@@ -1564,6 +2015,92 @@ exports[`method > processMethodLike(requiredNumberParamMethod) 1`] = `
 }
 `;
 
+exports[`method > processMethodLike(shadowTypeParamMethod) 1`] = `
+{
+  "name": "shadowTypeParamMethod",
+  "signatures": [
+    {
+      "deprecated": undefined,
+      "description": "Test with a shadow type, whose values carry per-value documentation.",
+      "examples": [],
+      "experimental": undefined,
+      "parameters": [
+        {
+          "default": undefined,
+          "description": "The direct shadow parameter.",
+          "name": "value",
+          "type": {
+            "text": "'first' | 'second'",
+            "type": "union",
+            "types": [
+              {
+                "description": "The first option.",
+                "text": "'first'",
+                "type": "simple",
+              },
+              {
+                "description": "The second option.",
+                "text": "'second'",
+                "type": "simple",
+              },
+            ],
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The options parameter.",
+          "name": "options?",
+          "type": {
+            "text": "{ … }",
+            "type": "simple",
+          },
+        },
+        {
+          "default": undefined,
+          "description": "The nested shadow parameter.",
+          "name": "options.strategy?",
+          "type": {
+            "text": "'first' | 'second'",
+            "type": "union",
+            "types": [
+              {
+                "description": "The first option.",
+                "text": "'first'",
+                "type": "simple",
+              },
+              {
+                "description": "The second option.",
+                "text": "'second'",
+                "type": "simple",
+              },
+            ],
+          },
+        },
+      ],
+      "remarks": [],
+      "returns": {
+        "text": "string",
+        "type": "simple",
+      },
+      "seeAlsos": [],
+      "signature": "function shadowTypeParamMethod(
+    value: ShadowEnumType,
+    options?: {
+      strategy?: ShadowEnumType;
+    }
+  ): string;",
+      "since": "1.0.0",
+      "throws": [],
+    },
+  ],
+  "source": {
+    "column": -1,
+    "filePath": "test/scripts/apidocs/method.example.ts",
+    "line": -1,
+  },
+}
+`;
+
 exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
 {
   "name": "stringUnionParamMethod",
@@ -1598,7 +2135,7 @@ exports[`method > processMethodLike(stringUnionParamMethod) 1`] = `
           "description": "The options parameter.",
           "name": "options?",
           "type": {
-            "text": "{ ... }",
+            "text": "{ … }",
             "type": "simple",
           },
         },

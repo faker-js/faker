@@ -101,7 +101,7 @@ async function onRefresh(): Promise<void> {
       if (resultLines.length === 1) {
         domLine.insertAdjacentHTML('beforeend', newCommentSpan(resultLines[0]));
       } else {
-        for (const line of resultLines.reverse()) {
+        for (const line of resultLines.toReversed()) {
           domLine.insertAdjacentHTML('afterend', newCommentLine(line));
         }
       }

@@ -75,7 +75,8 @@ describe('helpers', () => {
       enum MixedFoo {
         Foo = 0,
         Bar = 1,
-        // eslint-disable-next-line @typescript-eslint/no-mixed-enums
+
+        // oxlint-disable-next-line typescript/no-mixed-enums
         FooName = 'Foo',
         BarName = 'Bar',
       }
@@ -223,7 +224,8 @@ describe('helpers', () => {
         enum FooMixedEnum {
           Foo = 0,
           Bar = 1,
-          // eslint-disable-next-line @typescript-eslint/no-mixed-enums
+
+          // oxlint-disable-next-line typescript/no-mixed-enums
           StrFoo = 'FOO',
           StrBar = 'BAR',
         }
@@ -1135,12 +1137,12 @@ describe('helpers', () => {
         });
 
         it('should be able to handle special replacement patterns', () => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // oxlint-disable-next-line typescript/no-explicit-any
           (faker.string as any).special = () => '$&';
 
           expect(faker.helpers.fake('{{string.special}}')).toBe('$&');
 
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // oxlint-disable-next-line typescript/no-explicit-any
           delete (faker.string as any).special;
         });
 

@@ -6,7 +6,7 @@ export const CROCKFORDS_BASE32 = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 /**
  * Encodes a Date into 10 characters base32 string.
  *
- * @param date The Date to encode.
+ * @param date The Date to encode. Must not be before the Unix epoch, as negative timestamps have no base32 representation here.
  */
 export function dateToBase32(date: Date): string {
   let value = date.valueOf();

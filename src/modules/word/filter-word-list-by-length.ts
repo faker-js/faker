@@ -1,6 +1,10 @@
 import { FakerError } from '../../errors/faker-error';
 import { groupBy } from '../../internal/group-by';
-import type { NumberRange } from '../../utils/types';
+import type {
+  LengthStrategyType,
+  NumberOrRange,
+  NumberRange,
+} from '../../utils/types';
 
 /**
  * The error handling strategies for the `filterWordListByLength` function.
@@ -14,10 +18,17 @@ const STRATEGIES = {
   closest: (wordList: ReadonlyArray<string>, length: NumberRange): string[] => {
     const wordsByLength = groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
-    const min = Math.min(...lengths);
-    const max = Math.max(...lengths);
+    const closestBelow = Math.max(
+      ...lengths.filter((wordLength) => wordLength < length.min)
+    );
+    const closestAbove = Math.min(
+      ...lengths.filter((wordLength) => wordLength > length.max)
+    );
 
-    const closestOffset = Math.min(length.min - min, max - length.max);
+    const closestOffset = Math.min(
+      length.min - closestBelow,
+      closestAbove - length.max
+    );
 
     return wordList.filter(
       (word) =>
@@ -50,19 +61,11 @@ const STRATEGIES = {
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
  * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
- *
- * Available error handling strategies:
- *
- * - `fail`: Throws an error if no words with the given length are found.
- * - `shortest`: Returns any of the shortest words.
- * - `closest`: Returns any of the words closest to the given length.
- * - `longest`: Returns any of the longest words.
- * - `any-length`: Returns a copy of the original word list.
  */
 export function filterWordListByLength(options: {
   wordList: ReadonlyArray<string>;
-  length?: number | NumberRange;
-  strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+  length?: NumberOrRange;
+  strategy?: LengthStrategyType;
 }): string[] {
   const { wordList, length, strategy = 'fail' } = options;
 
