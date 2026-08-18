@@ -2,6 +2,8 @@ A lot of effort has been put into `Faker` to create a useful and handy library.
 There are still a lot of things to be done, so all contributions are welcome!
 If you want to make `Faker` a better place, please read the following contribution guide.
 
+For instructions on forking the repository and installing the required tools, see [Set Up a Development Environment](https://fakerjs.dev/contributing/set-up-a-development-environment.html).
+
 ## Before you start
 
 It's generally helpful to [create an issue](https://github.com/faker-js/faker/issues/new/choose) first:
