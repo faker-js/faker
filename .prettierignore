@@ -1,6 +1,0 @@
-.pnpm-store/
-coverage/
-dist/
-test/scripts/apidocs/temp/
-CHANGELOG.md
-pnpm-lock.yaml

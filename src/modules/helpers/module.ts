@@ -738,7 +738,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
     for (let i = list.length - 1; i > 0; --i) {
       const j = this.faker.number.int(i);
-      // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
       [list[i], list[j]] = [list[j], list[i]];
     }
 
@@ -1008,7 +1007,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     }
 
     // In case of rounding errors, return the last element
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     return array.at(-1)!.value;
   }
 

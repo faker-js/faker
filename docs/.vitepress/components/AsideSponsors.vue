@@ -36,6 +36,7 @@ const sponsors = computed<Sponsor[]>(
       .filter((backer) => backer.account.imageUrl)
       .map((backer) => ({
         name: backer.account.name ?? backer.account.slug,
+        // oxlint-disable-next-line typescript/no-non-null-assertion -- Guaranteed by the filter above
         img: backer.account.imageUrl!,
         url: `https://opencollective.com/${backer.account.slug}`,
       }))
