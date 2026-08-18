@@ -145,7 +145,7 @@ jobs:
         run: pnpm run lint --format=github
 
       - name: Check formatting
-        run: pnpm prettier --check .
+        run: pnpm oxfmt --check .
 
   ts-check:
     runs-on: ubuntu-latest

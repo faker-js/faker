@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "esbenp.prettier-vscode",
     "github.vscode-pull-request-github",
     "oxc.oxc-vscode",
     "redhat.vscode-yaml"
