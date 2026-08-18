@@ -23,7 +23,7 @@ const {
 } = method;
 
 function seeAlsoToUrl(see: string): string {
-  const [, module, methodName] = see.replace(/\(.*/, '').split('\.');
+  const [, module, methodName] = see.replace(/\(.*/, '').split('.');
 
   if (!methodName) {
     return `faker.html#${slugify(module)}`;

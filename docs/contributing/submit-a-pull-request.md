@@ -44,7 +44,7 @@ It is a shorthand for running the following scripts in order:
 - `pnpm run generate:locales` - generates locale files
 - `pnpm run generate:api-docs` - generates API documentation
 - `pnpm run format` - runs [prettier](https://github.com/prettier/prettier) to format code
-- `pnpm run lint` - runs [ESLint](https://github.com/eslint/eslint) to enforce project code standards
+- `pnpm run lint` - runs [oxlint](https://oxc.rs/docs/guide/usage/linter) to enforce project code standards
 - `pnpm run build:clean` - removes artifacts from previous builds
 - `pnpm run build:code` - builds the code
 - `pnpm run test:update-snapshots` - runs all tests with [vitest](https://github.com/vitest-dev/vitest), and updates any snapshots if needed

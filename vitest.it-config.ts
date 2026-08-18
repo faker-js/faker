@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-top-level-side-effects */
 import { defineConfig } from 'vitest/config';
 import config from './vitest.config';
 

@@ -510,15 +510,14 @@ for (const locale of locales) {
 
   promises.push(
     // src/locale/<locale>.ts
-    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    // oxlint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateLocaleFile(locale),
 
     // /docs/locales/*.md
-    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
+    // oxlint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateLocaleDocumentation(locale),
 
     // src/locales/**/index.ts
-    // eslint-disable-next-line unicorn/prefer-top-level-await -- Disabled for performance
     generateRecursiveModuleIndexes(pathModules, locale, 'LocaleDefinition', 1)
   );
 }

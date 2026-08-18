@@ -34,14 +34,12 @@
       "rangeStrategy": "replace"
     },
     {
-      "groupName": "eslint",
-      "matchPackageNames": [
-        "@eslint/**",
-        "@stylistic/**",
-        "eslint",
-        "eslint-**",
-        "typescript-eslint"
-      ]
+      "groupName": "oxlint",
+      "matchPackageNames": ["oxlint", "oxlint-tsgolint"]
+    },
+    {
+      "groupName": "eslint-plugin-jsdoc",
+      "matchPackageNames": ["eslint-plugin-jsdoc"]
     },
     {
       "groupName": "vitest",

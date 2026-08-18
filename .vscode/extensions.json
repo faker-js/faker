@@ -1,9 +1,9 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
-    "redhat.vscode-yaml",
-    "github.vscode-pull-request-github"
+    "github.vscode-pull-request-github",
+    "oxc.oxc-vscode",
+    "redhat.vscode-yaml"
   ]
 }
