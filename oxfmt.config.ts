@@ -12,9 +12,16 @@ export const formatOptions: FormatConfig = {
   singleQuote: true,
   trailingComma: 'es5',
   printWidth: 80,
-  // Replaces `prettier-plugin-organize-imports`.
-  // `newlinesBetween: false` keeps the previous single-block import layout.
-  sortImports: { newlinesBetween: false },
+  sortImports: {
+    groups: [
+      ['builtin', 'external', 'internal'],
+      { newlinesBetween: false },
+      ['parent', 'sibling', 'index'],
+    ],
+    newlinesBetween: false,
+    order: 'asc',
+    ignoreCase: true,
+  },
   // The algorithm is not compatible with the `prettier-plugin-pkg` order we used before.
   sortPackageJson: false,
 };

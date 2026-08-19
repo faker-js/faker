@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FakerError, SimpleFaker, allLocales, faker, fakerAZ } from '../../src';
+import { allLocales, faker, fakerAZ, FakerError, SimpleFaker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 

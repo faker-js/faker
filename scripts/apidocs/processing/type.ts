@@ -1,4 +1,5 @@
-import { Node, SyntaxKind, TypeFlags, type Type } from 'ts-morph';
+import type { Type } from 'ts-morph';
+import { Node, SyntaxKind, TypeFlags } from 'ts-morph';
 import { atLeastOneAndAllRequired, required } from '../utils/value-checks';
 
 export type RawApiDocsType =

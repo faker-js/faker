@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Faker, allLocales } from '../src';
+import type { allLocales, Faker } from '../src';
 import { allFakers, fakerEN } from '../src';
 import { keys } from '../src/internal/keys';
 

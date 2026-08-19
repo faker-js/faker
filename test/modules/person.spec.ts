@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Sex, faker, fakerAZ, fakerUK } from '../../src';
+import { faker, fakerAZ, fakerUK, Sex } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 

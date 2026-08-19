@@ -3,11 +3,11 @@ import isISO31661Alpha3 from 'validator/lib/isISO31661Alpha3';
 import isISO31661Numeric from 'validator/lib/isISO31661Numeric';
 import { describe, expect, it } from 'vitest';
 import {
-  FakerError,
   allLocales,
   faker,
   fakerEN_CA,
   fakerEN_US,
+  FakerError,
   fakerFR,
   fakerNL,
   simpleFaker,

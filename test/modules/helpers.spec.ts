@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FakerError, faker } from '../../src';
+import { faker, FakerError } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
