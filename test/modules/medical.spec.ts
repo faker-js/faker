@@ -81,22 +81,43 @@ describe('medical', () => {
   );
 
   describe('drug name screening', () => {
-    // Real products that a screen of this list has had to remove. Kept here so
-    // that re-adding one is a test failure rather than a silent regression:
-    // Revalor and Orbax are FDA veterinary products, Lumemox is a moxifloxacin
-    // eye drop marketed in India and Kenya, and Nuvizen is a medication-device
-    // trademark. The first screen of this list missed all four because it
-    // covered human brand names only.
+    // Real products the generated list must never name. Kept here so that
+    // re-adding one is a test failure rather than a silent regression. Several
+    // are invisible to a screen of the US and EU human registries: Revalor and
+    // Orbax are FDA veterinary products, Lumemox is a moxifloxacin eye drop
+    // marketed in India and Kenya, Sonadex a paracetamol tablet sold there and
+    // in Kenya, and Nuvizen a medication-device trademark rather than a
+    // medicine.
     const REAL_PRODUCTS = [
-      'Revalor',
-      // Both spellings: Orbax is the real product, Orbaex the name that was
-      // removed for shadowing it. Listing only the real one would let the
-      // removed name back in.
-      'Orbax',
-      'Orbaex',
+      'Cetraben',
+      'Fendall',
       'Lumemox',
+      'Lutein',
+      'Nolvadex',
       'Nuvizen',
+      'Orbax',
+      'Revalor',
       'Sonadex',
+      'Velamox',
+      'Zoladex',
+      'Zolvix',
+      'Zovia',
+    ];
+
+    // Invented names removed because they read as one of the products above,
+    // being a letter or two away from it. Listing only the real product would
+    // let the shadowing spelling back in, so both are checked.
+    const SHADOWING_NAMES = [
+      'Cetrasen', // Cetraben
+      'Fendaol', // Fendall
+      'Lumein', // Lutein
+      'Orbaex', // Orbax
+      'Orbamox', // Orbax, and reads as an amoxicillin product besides
+      'Solvadex', // Nolvadex
+      'Sonaex', // Sonadex
+      'Uvelmox', // Velamox
+      'Zolnodex', // Zoladex
+      'Zolvia', // Zolvix, Zovia
     ];
 
     // A generated name that ends in one of these reads as a real generic drug
@@ -165,12 +186,23 @@ describe('medical', () => {
       'zosin',
     ];
 
-    it.each(REAL_PRODUCTS)('should not offer %s', (product) => {
+    it.each(REAL_PRODUCTS)(
+      'should not offer the real product %s',
+      (product) => {
+        const names = faker.definitions.medical.drug_name.map((name) =>
+          name.toLowerCase()
+        );
+
+        expect(names).not.toContain(product.toLowerCase());
+      }
+    );
+
+    it.each(SHADOWING_NAMES)('should not offer %s', (removed) => {
       const names = faker.definitions.medical.drug_name.map((name) =>
         name.toLowerCase()
       );
 
-      expect(names).not.toContain(product.toLowerCase());
+      expect(names).not.toContain(removed.toLowerCase());
     });
 
     it('should not end a name in an INN stem', () => {

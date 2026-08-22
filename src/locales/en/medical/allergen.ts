@@ -12,7 +12,6 @@ export default [
   'Eggs',
   'Fish',
   'Fragrance',
-  'Gluten',
   'Grass',
   'Ibuprofen',
   'Insect Bites',
