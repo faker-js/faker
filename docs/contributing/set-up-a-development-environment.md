@@ -42,7 +42,7 @@ Faker can be developed using two different methods:
 If you prefer working directly on your machine, follow these steps:
 
 1. Ensure you have [the current LTS version of Node.js](https://nodejs.org/en/download) installed.
-1. Ensure you have the package manager [`pnpm`](https://pnpm.io/installation) installed.
+1. Ensure you have the package manager [`pnpm`](https://pnpm.io/installation) installed. Check the `packageManager` field in `package.json` for the required version of pnpm.
 1. Run the preflight command to verify your setup:
    ```sh
    pnpm run preflight

@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-https -- We allow http in results */
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';
@@ -690,7 +689,7 @@ export class InternetModule extends ModuleBase {
       );
     }
 
-    const [ipText, subnet] = cidrBlock.split('/');
+    const [ipText, subnet] = cidrBlock.split('/', 2);
     const subnetValue = Number.parseInt(subnet, 10);
     if (subnetValue > 32) {
       throw new FakerError(
@@ -849,7 +848,7 @@ export class InternetModule extends ModuleBase {
 
     for (i = 0; i < 12; i++) {
       mac += this.faker.number.hex(15);
-      if (i % 2 === 1 && i !== 11) {
+      if (i !== 11 && i % 2 === 1) {
         mac += separator;
       }
     }

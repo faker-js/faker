@@ -1,47 +1,47 @@
 [build.environment]
-  NODE_VERSION = "24"
+NODE_VERSION = "24"
 
 # Documentation
 [build]
-  publish = "docs/.vitepress/dist"
-  command = "pnpm docs:build:ci"
+publish = "docs/.vitepress/dist"
+command = "pnpm docs:build:ci"
 
 # Alias for the next page
 [[redirects]]
-  from = "https://v11.fakerjs.dev/*"
-  to = "https://next.fakerjs.dev/:splat"
-  status = 302
-  force = true
+from = "https://v11.fakerjs.dev/*"
+to = "https://next.fakerjs.dev/:splat"
+status = 302
+force = true
 
 # Redirect to Discord server
 [[redirects]]
-  from = "https://chat.fakerjs.dev"
-  to = "https://discord.gg/wq78qyhdSZ"
-  status = 302
-  force = true
+from = "https://chat.fakerjs.dev"
+to = "https://discord.gg/wq78qyhdSZ"
+status = 302
+force = true
 
 [[redirects]]
-  from = "/chat"
-  to = "https://discord.gg/wq78qyhdSZ"
-  status = 302
-  force = true
+from = "/chat"
+to = "https://discord.gg/wq78qyhdSZ"
+status = 302
+force = true
 
 # Redirect to StackBlitz playground
 [[redirects]]
-  from = "https://new.fakerjs.dev"
-  to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
-  status = 301
-  force = true
+from = "https://new.fakerjs.dev"
+to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/new"
-  to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
-  status = 301
-  force = true
+from = "/new"
+to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
+status = 301
+force = true
 
 # Redirect old update page to new announcement section
 [[redirects]]
-  from = "/update.html"
-  to = "https://fakerjs.dev/about/announcements/2022-01-14.html"
-  status = 301
-  force = true
+from = "/update.html"
+to = "https://fakerjs.dev/about/announcements/2022-01-14.html"
+status = 301
+force = true

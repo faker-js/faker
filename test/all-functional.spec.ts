@@ -88,7 +88,7 @@ describe('BROKEN_LOCALE_METHODS test', () => {
       const existingMethods = modules[module];
       const configuredMethods = Object.keys(
         // @ts-expect-error: We don't have types for the dynamic access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        // oxlint-disable-next-line typescript/no-unsafe-argument
         BROKEN_LOCALE_METHODS[module] ?? {}
       );
       const obsoleteMethods = configuredMethods.filter(
@@ -103,13 +103,13 @@ describe('BROKEN_LOCALE_METHODS test', () => {
 describe('functional tests', () => {
   describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
     if (locale === 'base') {
-      // eslint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that this was intentional.
+      // oxlint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that this was intentional.
       it.skip('base locale is checked by other tests');
       return;
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      // oxlint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
       for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
@@ -140,13 +140,13 @@ describe('functional tests', () => {
 describe('faker.helpers.fake functional tests', () => {
   describe.each(Object.entries(allFakers))('%s', (locale, faker) => {
     if (locale === 'base') {
-      // eslint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that this was intentional.
+      // oxlint-disable-next-line vitest/no-disabled-tests -- We keep an explicitly skipped test to document that this was intentional.
       it.skip('base locale is checked by other tests');
       return;
     }
 
     describe.each(Object.entries(modules))('%s', (module, methods) => {
-      // eslint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
+      // oxlint-disable-next-line vitest/prefer-each -- need to dynamically succeed/fail
       for (const meth of methods) {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures

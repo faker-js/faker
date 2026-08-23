@@ -118,14 +118,24 @@ describe('helpers', () => {
   });
 
   describe('multiple', () => {
-    it('const generic single element', () => {
+    it('generic single element', () => {
       const actual = faker.helpers.multiple(() => 1);
       expectTypeOf(actual).toEqualTypeOf<number[]>();
     });
 
-    it('const generic multiple elements', () => {
+    it('generic multiple elements', () => {
       const actual = faker.helpers.multiple(() => 1, { count: 3 });
       expectTypeOf(actual).toEqualTypeOf<number[]>();
+    });
+
+    it('const generic single element', () => {
+      const actual = faker.helpers.multiple(() => 1 as const);
+      expectTypeOf(actual).toEqualTypeOf<Array<1>>();
+    });
+
+    it('const generic multiple elements', () => {
+      const actual = faker.helpers.multiple(() => 1 as const, { count: 3 });
+      expectTypeOf(actual).toEqualTypeOf<Array<1>>();
     });
   });
 });

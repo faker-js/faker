@@ -267,7 +267,9 @@ export class SignatureTest {
     value: NumberRange,
     array: ReadonlyArray<NumberRange>,
     options: {
-      /** The count parameter. */
+      /**
+       * The count parameter.
+       */
       count: NumberRange;
     },
     mixed: NumberRange | ReadonlyArray<NumberRange>
@@ -295,7 +297,9 @@ export class SignatureTest {
     value: NumberOrRange,
     array: ReadonlyArray<NumberOrRange>,
     options: {
-      /** The count parameter. */
+      /**
+       * The count parameter.
+       */
       count: NumberOrRange;
     },
     mixed: NumberOrRange | ReadonlyArray<NumberOrRange>

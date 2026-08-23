@@ -1270,7 +1270,6 @@ exports[`method > processMethodLike(numberOrRangeParamMethod) 1`] = `
     value: NumberOrRange,
     array: ReadonlyArray<NumberOrRange>,
     options: {
-      /** The count parameter. */
       count: NumberOrRange;
     },
     mixed: NumberOrRange | ReadonlyArray<NumberOrRange>
@@ -1527,7 +1526,6 @@ exports[`method > processMethodLike(numberRangeParamMethod) 1`] = `
     value: NumberRange,
     array: ReadonlyArray<NumberRange>,
     options: {
-      /** The count parameter. */
       count: NumberRange;
     },
     mixed: NumberRange | ReadonlyArray<NumberRange>

@@ -1,3 +1,4 @@
+// oxlint-disable vitest/expect-expect, vitest/no-disabled-tests, vitest/no-standalone-expect, vitest/valid-title
 import { describe, expect, describe as vi_describe, it as vi_it } from 'vitest';
 import type { Faker } from '../../src/faker';
 
@@ -335,7 +336,6 @@ class TestGenerator<
  * @param extraOffset The additional offset to add to the column numbers to account for the name of the test.
  */
 function collectExtraStackFrames(extraOffset: number = 0): () => string[] {
-  // eslint-disable-next-line unicorn/no-nonstandard-builtin-properties
   const stack = new Error('collect').stack;
   if (stack == null) {
     return () => [];

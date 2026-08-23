@@ -392,7 +392,7 @@ describe('person', () => {
           expect(jobTitle).toBeTypeOf('string');
           expect(jobTitle.length).toBeGreaterThan(0);
 
-          const [descriptor, level, job] = jobTitle.split(' ');
+          const [descriptor, level, job] = jobTitle.split(' ', 3);
 
           expect(job_descriptor).toContain(descriptor);
           expect(job_area).toContain(level);

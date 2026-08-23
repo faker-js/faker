@@ -58,6 +58,12 @@ describe('lorem', () => {
             expect(actual).toHaveLength(length);
           }
         );
+
+        it('should throw by default when no word matches the requested length', () => {
+          expect(() => faker.lorem.word({ length: 100 })).toThrow(
+            'No words found that match the given length.'
+          );
+        });
       });
 
       describe('words()', () => {
