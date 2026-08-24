@@ -53,7 +53,7 @@ function untrimmedEntries(data: unknown, path: string = ''): string[] {
   if (ignoredWhitespaceData.has(path)) {
     return [];
   } else if (Array.isArray(data)) {
-    return data.flatMap((e) => untrimmedEntries(e, `${path}[]`));
+    return data.flatMap((e, i) => untrimmedEntries(e, `${path}[${i}]`));
   } else if (typeof data === 'object' && data != null) {
     return Object.entries(data).flatMap(([key, entry]) =>
       untrimmedEntries(entry, `${path}.${key}`)
