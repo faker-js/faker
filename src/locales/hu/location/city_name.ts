@@ -2406,7 +2406,7 @@ export default [
   'Simonfa',
   'Simontornya',
   'Sióagárd',
-  'Siófok ',
+  'Siófok',
   'Siójut',
   'Sirok',
   'Sitke',
