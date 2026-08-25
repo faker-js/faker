@@ -869,7 +869,7 @@ export class FinanceModule extends ModuleBase {
    * faker.finance.vatNumber({ countryCode: 'NL' }) // 'NL840351580B96'
    * faker.finance.vatNumber({ countryCode: 'GR' }) // 'EL892156043'
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   vatNumber(
     options: {
