@@ -122,7 +122,7 @@
     "vue": "3.5.41",
     "vue-tsc": "3.3.9"
   },
-  "packageManager": "pnpm@11.21.0",
+  "packageManager": "pnpm@11.24.0",
   "engines": {
     "node": "^22.13.0 || ^23.5.0 || >=24.0.0",
     "npm": ">=10"
@@ -130,7 +130,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.21.0",
+      "version": "11.24.0",
       "onFail": "download"
     }
   }
