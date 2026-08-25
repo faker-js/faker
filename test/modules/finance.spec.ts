@@ -742,6 +742,30 @@ describe('finance', () => {
             );
           }
         );
+
+        // Also stated independently of the table, and for the same reason: an
+        // expectation derived from `vatNumberFormats` narrows along with it. A
+        // later change collapsing one of these countries to a single pattern
+        // would keep every other test green while silently cutting NL to 9 of
+        // its 99 establishment numbers, or ES to one of its two legal forms.
+        it.each([
+          ['ES', /^ES[NPQRSW]/],
+          ['NL', /^NL\d{9}B[1-9]/],
+        ] as const)(
+          'should draw both shapes of a %s number',
+          (countryCode, secondShape) => {
+            const actuals = times(100).map(() =>
+              faker.finance.vatNumber({ countryCode })
+            );
+
+            expect(
+              actuals.filter((actual) => secondShape.test(actual))
+            ).not.toEqual([]);
+            expect(
+              actuals.filter((actual) => !secondShape.test(actual))
+            ).not.toEqual([]);
+          }
+        );
       });
 
       describe('transactionDescription()', () => {
