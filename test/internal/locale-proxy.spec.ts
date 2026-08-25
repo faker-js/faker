@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { en, FakerError } from '../../src';
+import { FakerError, en } from '../../src';
 import { createLocaleProxy } from '../../src/internal/locale-proxy';
 
 describe('LocaleProxy', () => {

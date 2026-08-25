@@ -1,7 +1,7 @@
 import isULID from 'validator/lib/isULID';
 import isUUID from 'validator/lib/isUUID';
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../../src';
+import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 

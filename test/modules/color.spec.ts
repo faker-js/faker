@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CssFunction, CssSpace, en, Faker, faker } from '../../src';
+import { CssFunction, CssSpace, Faker, en, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';

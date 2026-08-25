@@ -51,10 +51,7 @@ export default defineConfig({
     'no-underscore-dangle': 'off',
     'no-useless-backreference': 'error',
     'no-useless-constructor': 'off', // oxlint doesn't skip constructors that only declare parameter properties
-    'sort-imports': [
-      'error',
-      { ignoreCase: true, ignoreDeclarationSort: true },
-    ],
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
     //#endregion
 
     //#region typescript

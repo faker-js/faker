@@ -16,7 +16,7 @@
  * Run this script using `pnpm run generate:locales`
  */
 import { constants } from 'node:fs';
-import { access, readdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type {
   LocaleDefinition,

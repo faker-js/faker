@@ -1,4 +1,4 @@
-import type { JSDoc, JSDocableNode, JSDocTag } from 'ts-morph';
+import type { JSDoc, JSDocTag, JSDocableNode } from 'ts-morph';
 import { JSDocParameterTag, JSDocTemplateTag } from 'ts-morph';
 import {
   allRequired,
