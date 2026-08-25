@@ -1,1 +1,1 @@
-export default ['Clawr caled', 'Clawr meddal', 'E-lyfr ', 'Llyfr sain'];
+export default ['Clawr caled', 'Clawr meddal', 'E-lyfr', 'Llyfr sain'];
