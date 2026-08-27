@@ -1020,15 +1020,22 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @param count Number or range of elements to pick.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
+   * @param repeatedElements If true, elements can be picked more than once.
+   *    When not provided, elements will not be repeated. Defaults to `false`.
    *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
+   * faker.helpers.arrayElements([1, 2, 3], 5, true) // [1, 3, 1, 2, 1]
    *
    * @since 6.3.0
    */
-  arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
+  arrayElements<const T>(
+    array: ReadonlyArray<T>,
+    count?: NumberOrRange,
+    repeatedElements: boolean = false
+  ): T[] {
     if (array.length === 0) {
       return [];
     }
@@ -1037,10 +1044,22 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       count ?? { min: 1, max: array.length }
     );
 
+    if (numElements <= 0) {
+      return [];
+    }
+
+    if (repeatedElements) {
+      const result: T[] = [];
+      for (let i = 0; i < numElements; i++) {
+        result.push(
+          array[this.faker.number.int({ min: 0, max: array.length - 1 })]
+        );
+      }
+      return result;
+    }
+
     if (numElements >= array.length) {
       return this.shuffle(array);
-    } else if (numElements <= 0) {
-      return [];
     }
 
     const arrayCopy = [...array];
