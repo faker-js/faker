@@ -1020,22 +1020,31 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @param count Number or range of elements to pick.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
-   * @param repeatedElements If true, elements can be picked more than once.
-   *    When not provided, elements will not be repeated. Defaults to `false`.
+   * @param options Options object.
+   * @param options.allowRepeatedElements If true, elements can be picked more than once.
+   *    Defaults to `false`.
    *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
-   * faker.helpers.arrayElements([1, 2, 3], 5, true) // [1, 3, 1, 2, 1]
+   * faker.helpers.arrayElements([1, 2, 3], 5, { allowRepeatedElements: true }) // [1, 3, 1, 2, 1]
    *
    * @since 6.3.0
    */
   arrayElements<const T>(
     array: ReadonlyArray<T>,
     count?: NumberOrRange,
-    repeatedElements: boolean = false
+    options?: {
+      /**
+       * If true, elements can be picked more than once.
+       *
+       * @default false
+       */
+      allowRepeatedElements?: boolean;
+    }
   ): T[] {
+    const { allowRepeatedElements = false } = options ?? {};
     if (array.length === 0) {
       return [];
     }
@@ -1048,7 +1057,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
       return [];
     }
 
-    if (repeatedElements) {
+    if (allowRepeatedElements) {
       const result: T[] = [];
       for (let i = 0; i < numElements; i++) {
         result.push(
