@@ -1,7 +1,7 @@
 import { defineConfig } from 'oxlint';
 
 export default defineConfig({
-  plugins: ['typescript', 'unicorn', 'oxc', 'vitest'],
+  plugins: ['import', 'typescript', 'unicorn', 'oxc', 'vitest'],
   jsPlugins: [{ name: 'jsdoc-js', specifier: 'eslint-plugin-jsdoc' }], // the built-in jsdoc plugin is missing too many rules
   categories: {
     correctness: 'error',
@@ -32,25 +32,31 @@ export default defineConfig({
   rules: {
     //#region javascript
     // name: 'javascript overrides'
+    curly: ['error', 'all'],
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'logical-assignment-operators': 'error',
     'no-else-return': 'error',
     'no-restricted-globals': ['error', { name: 'Intl' }],
     'prefer-exponentiation-operator': 'error',
     'prefer-template': 'error',
-    curly: ['error', 'all'],
     // Part of `eslint:recommended`, but not of the enabled oxlint categories
     'no-case-declarations': 'error',
     'no-empty': 'error',
     'no-fallthrough': 'error',
+    'no-new': 'off',
     'no-prototype-builtins': 'error',
     'no-redeclare': 'error',
     'no-regex-spaces': 'error',
-    'no-useless-backreference': 'error',
     'no-shadow': 'off',
-    'no-new': 'off',
     'no-underscore-dangle': 'off',
+    'no-useless-backreference': 'error',
     'no-useless-constructor': 'off', // oxlint doesn't skip constructors that only declare parameter properties
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
+    //#endregion
+
+    //#region import
+    // name: 'import overrides'
+    'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
     //#endregion
 
     //#region typescript

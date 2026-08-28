@@ -39,6 +39,32 @@ const ignoredCharacterData = new Set([
   '.system.mime_type',
 ]);
 
+/**
+ * A set of locale data paths whose entries are affixes that are concatenated onto another value,
+ * so the surrounding whitespace is part of the data rather than a mistake.
+ */
+const ignoredWhitespaceData = new Set([
+  '.location.building_number',
+  '.location.city_suffix',
+  '.location.street_suffix',
+]);
+
+function untrimmedEntries(data: unknown, path: string = ''): string[] {
+  if (ignoredWhitespaceData.has(path)) {
+    return [];
+  } else if (Array.isArray(data)) {
+    return data.flatMap((e, i) => untrimmedEntries(e, `${path}[${i}]`));
+  } else if (typeof data === 'object' && data != null) {
+    return Object.entries(data).flatMap(([key, entry]) =>
+      untrimmedEntries(entry, `${path}.${key}`)
+    );
+  } else if (typeof data === 'string' && data !== data.trim()) {
+    return [`${path}: ${JSON.stringify(data)}`];
+  }
+
+  return [];
+}
+
 function uniqueCharacters(data: string | string[]): string[] {
   return [...new Set(data)];
 }
@@ -68,6 +94,13 @@ function allCharacters(data: unknown, path: string = ''): string[] {
 
 describe('locale-data', () => {
   checkLocaleData(allLocales);
+
+  it.each(Object.entries(allLocales))(
+    '%s should not have entries with leading or trailing whitespace',
+    (_, data) => {
+      expect(untrimmedEntries(data)).toEqual([]);
+    }
+  );
 
   // This test exists to keep track of the characters used in each locale.
   // It doesn't matter if new characters are added as long as they belong to that language.
