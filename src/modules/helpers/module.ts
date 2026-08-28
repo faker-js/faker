@@ -1017,41 +1017,54 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template T The type of the elements to pick from.
    *
    * @param array Array to pick the value from.
-   * @param count Number or range of elements to pick.
+   * @param countOrOptions The number or range of elements to pick, or an options object.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
-   * @param options Options object.
-   * @param options.allowRepeatedElements If true, elements can be picked more than once.
+   * @param countOrOptions.count The number or range of elements to pick.
+   * @param countOrOptions.allowRepeatedElements If true, elements can be picked more than once.
    *    Defaults to `false`.
    *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
-   * faker.helpers.arrayElements([1, 2, 3], 5, { allowRepeatedElements: true }) // [1, 3, 1, 2, 1]
+   * faker.helpers.arrayElements([1, 2, 3], { count: 5, allowRepeatedElements: true }) // [1, 3, 1, 2, 1]
+   * faker.helpers.arrayElements([1, 2, 3], { allowRepeatedElements: true }) // [2, 1]
    *
    * @since 6.3.0
    */
   arrayElements<const T>(
     array: ReadonlyArray<T>,
-    count?: NumberOrRange,
-    options?: {
-      /**
-       * If true, elements can be picked more than once.
-       *
-       * @default false
-       */
-      allowRepeatedElements?: boolean;
-    }
+    countOrOptions:
+      | NumberOrRange
+      | {
+          /**
+           * The number or range of elements to pick.
+           *
+           * @default { min: 1, max: array.length }
+           */
+          count?: NumberOrRange;
+          /**
+           * If true, elements can be picked more than once.
+           *
+           * @default false
+           */
+          allowRepeatedElements?: boolean;
+        } = {}
   ): T[] {
-    const { allowRepeatedElements = false } = options ?? {};
     if (array.length === 0) {
       return [];
     }
 
-    const numElements = this.rangeToNumber(
-      count ?? { min: 1, max: array.length }
-    );
+    if (typeof countOrOptions === 'number' || 'min' in countOrOptions) {
+      countOrOptions = { count: countOrOptions };
+    }
+
+    const {
+      count = { min: 1, max: array.length },
+      allowRepeatedElements = false,
+    } = countOrOptions;
+    const numElements = this.rangeToNumber(count);
 
     if (numElements <= 0) {
       return [];
@@ -1075,7 +1088,6 @@ export class SimpleHelpersModule extends SimpleModuleBase {
     let i = array.length;
     const min = i - numElements;
 
-    // Shuffle the last `count` elements of the array
     while (i-- > min) {
       const index = this.faker.number.int(i);
       const temp = arrayCopy[index];

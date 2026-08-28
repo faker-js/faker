@@ -108,20 +108,17 @@ describe('helpers', () => {
           min: 1,
           max: 5,
         })
-        .it('with array and repeatedElements', [...'Hello World!'], undefined, {
+        .it('with array and repeatedElements', [...'Hello World!'], {
+          allowRepeatedElements: true,
+        })
+        .it('with array and count and repeatedElements', [...'Hello World!'], {
+          count: 20,
           allowRepeatedElements: true,
         })
         .it(
-          'with array and count and repeatedElements',
-          [...'Hello World!'],
-          20,
-          { allowRepeatedElements: true }
-        )
-        .it(
           'with array and count range and repeatedElements',
           [...'Hello World!'],
-          { min: 1, max: 20 },
-          { allowRepeatedElements: true }
+          { count: { min: 1, max: 20 }, allowRepeatedElements: true }
         );
     });
 
@@ -488,7 +485,7 @@ describe('helpers', () => {
 
         it('should return a subset with random elements in the array (with repeats)', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.helpers.arrayElements(testArray, undefined, {
+          const subset = faker.helpers.arrayElements(testArray, {
             allowRepeatedElements: true,
           });
 
@@ -504,7 +501,8 @@ describe('helpers', () => {
 
         it('should return a subset of fixed length with random elements in the array (with repeats)', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.helpers.arrayElements(testArray, 3, {
+          const subset = faker.helpers.arrayElements(testArray, {
+            count: 3,
             allowRepeatedElements: true,
           });
 
@@ -519,11 +517,10 @@ describe('helpers', () => {
 
         it('should return a subset with random elements in the array for a length range (with repeats)', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.helpers.arrayElements(
-            testArray,
-            { min: 2, max: 4 },
-            { allowRepeatedElements: true }
-          );
+          const subset = faker.helpers.arrayElements(testArray, {
+            count: { min: 2, max: 4 },
+            allowRepeatedElements: true,
+          });
 
           // Check length
           expect(subset.length).toBeGreaterThanOrEqual(2);
@@ -537,7 +534,8 @@ describe('helpers', () => {
 
         it('should return a subset with elements when count > array length (with repeats)', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.helpers.arrayElements(testArray, 10, {
+          const subset = faker.helpers.arrayElements(testArray, {
+            count: 10,
             allowRepeatedElements: true,
           });
 
@@ -552,7 +550,8 @@ describe('helpers', () => {
 
         it('should return an empty array when array length > 0 and count = 0 (with repeats)', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const result = faker.helpers.arrayElements(testArray, 0, {
+          const result = faker.helpers.arrayElements(testArray, {
+            count: 0,
             allowRepeatedElements: true,
           });
 
@@ -560,11 +559,38 @@ describe('helpers', () => {
         });
 
         it('should return an empty array when receiving an empty array (with repeats)', () => {
-          const result = faker.helpers.arrayElements([], undefined, {
+          const result = faker.helpers.arrayElements([], {
             allowRepeatedElements: true,
           });
 
           expect(result).toHaveLength(0);
+        });
+
+        describe('with options object', () => {
+          it('should return a subset of fixed length with random elements (using options object)', () => {
+            const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+            const subset = faker.helpers.arrayElements(testArray, { count: 3 });
+
+            expect(subset).toHaveLength(3);
+            for (const element of subset) {
+              expect(testArray).toContain(element);
+            }
+            expect(subset).not.toContainDuplicates();
+          });
+
+          it('should return a subset with random elements range (using options object)', () => {
+            const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+            const subset = faker.helpers.arrayElements(testArray, {
+              count: { min: 2, max: 4 },
+            });
+
+            expect(subset.length).toBeGreaterThanOrEqual(2);
+            expect(subset.length).toBeLessThanOrEqual(4);
+            for (const element of subset) {
+              expect(testArray).toContain(element);
+            }
+            expect(subset).not.toContainDuplicates();
+          });
         });
       });
 
