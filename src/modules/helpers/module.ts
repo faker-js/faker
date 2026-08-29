@@ -964,6 +964,9 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @param array[].weight The weight of the value.
    * @param array[].value The value to pick.
    *
+   * @throws {FakerError} If the array is empty.
+   * @throws {FakerError} If any element's weight is not a positive number.
+   *
    * @example
    * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
    *
