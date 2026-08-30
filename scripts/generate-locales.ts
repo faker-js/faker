@@ -63,6 +63,7 @@ const definitionsTypes: DefinitionType = {
   internet: 'InternetDefinition',
   location: 'LocationDefinition',
   lorem: 'LoremDefinition',
+  medical: 'MedicalDefinition',
   metadata: 'MetadataDefinition',
   music: 'MusicDefinition',
   person: 'PersonDefinition',
