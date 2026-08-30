@@ -3,7 +3,7 @@
 exports[`locale-data > should only have known characters 1`] = `
 {
   "af_ZA": " #+-ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwxyz",
-  "ar": " #()-.T،ءآأؤإئابةتثجحخدذرزسشصضطظعغـفقكلمنهوىيًٍَُِّْٱ",
+  "ar": " #-T،ءآأؤإئابةتثجحخدذرزسشصضطظعغـفقكلمنهوىيًٍَُِّْٱ",
   "az": " #()+,-.ABCDEFGHJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyzÇÖÜçöüğİıŞşƏəабвгдеийклмнопрстуфцчьюя’",
   "base": " ()+,-./:;ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
   "bn_BD": " (),-ঁংঅআইঈউএওকখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহ়ািীুূৃেৈোৌ্ড়য়",
@@ -72,7 +72,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "th": " !#+-.;กขคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลวศษสหฬอฮฯะัาำิีึืุูเแโใไ็่้๊๋์",
   "tr": " #%&'()+,-.ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwxyzÂÇÖÜâçéîöûüğİıŞş",
   "uk": " #()+,-.ЄІАБВГДЕЖЗЙКЛМНОПРСТУФХЦЧШЩЮЯабвгдежзийклмнопрстуфхцчшщьюяєіїґ’",
-  "ur": " #&+-.ABCDGIJKPSTabcdefghijklmnoprstuvwyzؑءئابتثجحخدرزسشصطظعغفقلمنهوَُْٰٓٗٹپچڈڑژکگںھہیے‎",
+  "ur": " #&.ABCDGIJKPSTabcdefghijklmnoprstuvwyzؑءئابتثجحخدرزسشصطظعغفقلمنهوَُْٰٓٗٹپچڈڑژکگںھہیے‎",
   "uz_UZ_latin": " #',-.ABCDEFGHIJKLMNOPQRSTUVWXYZ\`abcdefghijklmnopqrstuvwxyz‘’",
   "vi": " #+-.ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyzÁÂÚÝàáâãèéêìíòóôõùúýăĐđĩũơưạẢảẤấầẨẩẫậắằẵặẽếềểễệỉịọỏốồổỗộớờởợụủứừửữựỳỷỹ",
   "yo_NG": "ABDEFGIJKLMNOPRSTWYabdefghijklmnoprstuwy",

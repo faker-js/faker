@@ -406,7 +406,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     return result;
   }
 
-  const legacyDefinitions = ['app', 'cell_phone', 'team'];
+  const legacyDefinitions = ['app', 'team'];
   const definitionsToSkip = [
     'location',
     'lorem',
