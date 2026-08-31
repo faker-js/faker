@@ -2,7 +2,6 @@ import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { numeric } from '../string/numeric';
 
-// Temp export
 /**
  * Calculates the check digit for a UPC‑A using the Modulo 10 algorithm.
  *
@@ -16,7 +15,7 @@ import { numeric } from '../string/numeric';
  *
  * @since 10.2.0
  */
-export function calculateUPCCheckDigit(digits: string): number {
+function calculateUPCCheckDigit(digits: string): number {
   if (!/^\d{11}$/.test(digits)) {
     throw new FakerError(
       'calculateUPCCheckDigit expects exactly 11 numeric digits'
