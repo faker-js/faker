@@ -16,7 +16,9 @@ export const formatOptions: FormatConfig = {
     groups: [
       ['builtin', 'external', 'internal'],
       { newlinesBetween: false },
-      ['parent', 'sibling', 'index'],
+      ['type-parent', 'value-parent'],
+      ['type-sibling', 'value-sibling'],
+      ['type-index', 'value-index'],
     ],
     newlinesBetween: false,
     order: 'asc',
