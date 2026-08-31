@@ -3,9 +3,8 @@ import { FakerError } from '../../errors/faker-error';
 import { objectEntry } from '../helpers/object-entry';
 import { numeric } from '../string/numeric';
 
-// Temp export
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
-export const ISBN_LENGTH_RULES: Record<
+const ISBN_LENGTH_RULES: Record<
   string,
   Array<[rangeMaximum: number, length: number]>
 > = {

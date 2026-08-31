@@ -3,8 +3,7 @@ import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 import { int } from '../number/int';
 
-// Temp export
-export const CRON_DAY_OF_WEEK = [
+const CRON_DAY_OF_WEEK = [
   'SUN',
   'MON',
   'TUE',

@@ -2,8 +2,7 @@ import type { FakerCore } from '../../core';
 import { arrayElement } from '../helpers/array-element';
 import { fileExt } from './file-ext';
 
-// Temp export
-export const commonMimeTypes = [
+const commonMimeTypes = [
   'application/pdf',
   'audio/mpeg',
   'audio/wav',
