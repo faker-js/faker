@@ -5,11 +5,9 @@ import { objectKey } from '../helpers/object-key';
 import { mac } from '../internet/mac';
 import { numeric } from '../string/numeric';
 
-// Temp export
-export const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
+const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
 export type CommonInterfaceType = (typeof commonInterfaceTypes)[number];
-// Temp export
-export const commonInterfaceSchemas = {
+const commonInterfaceSchemas = {
   index: 'o',
   slot: 's',
   mac: 'x',
