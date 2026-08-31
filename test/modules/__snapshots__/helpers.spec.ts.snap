@@ -20,10 +20,58 @@ exports[`helpers > 42 > arrayElements > with array and count 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > arrayElements > with array and count and repeatedElements 1`] = `
+[
+  "o",
+  "!",
+  "r",
+  "o",
+  "e",
+  "e",
+  "H",
+  "d",
+  "o",
+  "r",
+  "H",
+  "!",
+  "l",
+  "l",
+  "l",
+  "l",
+  "l",
+  "W",
+  " ",
+  "l",
+]
+`;
+
 exports[`helpers > 42 > arrayElements > with array and count range 1`] = `
 [
   "r",
   "!",
+]
+`;
+
+exports[`helpers > 42 > arrayElements > with array and count range and repeatedElements 1`] = `
+[
+  "!",
+  "r",
+  "o",
+  "e",
+  "e",
+  "H",
+  "d",
+  "o",
+]
+`;
+
+exports[`helpers > 42 > arrayElements > with array and repeatedElements 1`] = `
+[
+  "!",
+  "r",
+  "o",
+  "e",
+  "e",
 ]
 `;
 
@@ -239,6 +287,31 @@ exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > arrayElements > with array and count and repeatedElements 1`] = `
+[
+  "!",
+  "d",
+  "l",
+  "!",
+  "r",
+  "r",
+  "l",
+  "o",
+  "r",
+  "l",
+  "l",
+  "o",
+  "l",
+  " ",
+  "d",
+  "d",
+  "l",
+  "o",
+  "l",
+  "o",
+]
+`;
+
 exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
 [
   " ",
@@ -246,6 +319,47 @@ exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
   "l",
   "l",
   "d",
+]
+`;
+
+exports[`helpers > 1211 > arrayElements > with array and count range and repeatedElements 1`] = `
+[
+  "d",
+  "l",
+  "!",
+  "r",
+  "r",
+  "l",
+  "o",
+  "r",
+  "l",
+  "l",
+  "o",
+  "l",
+  " ",
+  "d",
+  "d",
+  "l",
+  "o",
+  "l",
+  "o",
+]
+`;
+
+exports[`helpers > 1211 > arrayElements > with array and repeatedElements 1`] = `
+[
+  "d",
+  "l",
+  "!",
+  "r",
+  "r",
+  "l",
+  "o",
+  "r",
+  "l",
+  "l",
+  "o",
+  "l",
 ]
 `;
 
@@ -459,10 +573,55 @@ exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
 ]
 `;
 
+exports[`helpers > 1337 > arrayElements > with array and count and repeatedElements 1`] = `
+[
+  "l",
+  "e",
+  "l",
+  " ",
+  "l",
+  "W",
+  "l",
+  "!",
+  "r",
+  "e",
+  "o",
+  "o",
+  "e",
+  "!",
+  " ",
+  "l",
+  "l",
+  "o",
+  "o",
+  "o",
+]
+`;
+
 exports[`helpers > 1337 > arrayElements > with array and count range 1`] = `
 [
   "l",
   "e",
+]
+`;
+
+exports[`helpers > 1337 > arrayElements > with array and count range and repeatedElements 1`] = `
+[
+  "e",
+  "l",
+  " ",
+  "l",
+  "W",
+  "l",
+]
+`;
+
+exports[`helpers > 1337 > arrayElements > with array and repeatedElements 1`] = `
+[
+  "e",
+  "l",
+  " ",
+  "l",
 ]
 `;
 

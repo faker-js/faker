@@ -115,6 +115,33 @@ describe('helpers', () => {
       const actual = faker.helpers.arrayElements([1, 'a', false], 3);
       expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
     });
+
+    it('const generic elements with options object', () => {
+      const actual = faker.helpers.arrayElements([1, 'a', false], {
+        count: 3,
+        allowRepeatedElements: true,
+      });
+      expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
+
+    it('const generic elements with options object only having count', () => {
+      const actual = faker.helpers.arrayElements([1, 'a', false], { count: 3 });
+      expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
+
+    it('const generic elements with count range in options object', () => {
+      const actual = faker.helpers.arrayElements([1, 'a', false], {
+        count: { min: 1, max: 3 },
+      });
+      expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
+
+    it('const generic elements with options object only having allowRepeatedElements', () => {
+      const actual = faker.helpers.arrayElements([1, 'a', false], {
+        allowRepeatedElements: true,
+      });
+      expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
   });
 
   describe('multiple', () => {
