@@ -65,8 +65,7 @@ export enum IPv4Network {
 
 export type IPv4NetworkType = `${IPv4Network}`;
 
-// Temp export
-export const ipv4Networks: Record<IPv4Network, string> = {
+const ipv4Networks: Record<IPv4Network, string> = {
   [IPv4Network.Any]: '0.0.0.0/0',
   [IPv4Network.Loopback]: '127.0.0.0/8',
   [IPv4Network.PrivateA]: '10.0.0.0/8',
