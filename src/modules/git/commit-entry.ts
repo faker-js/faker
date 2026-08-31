@@ -10,8 +10,7 @@ import { commitDate } from './commit-date';
 import { commitMessage } from './commit-message';
 import { commitSha } from './commit-sha';
 
-// temp export
-export const nbsp = '\u00A0';
+const nbsp = '\u00A0';
 
 /**
  * Generates a random commit entry as printed by `git log`.
