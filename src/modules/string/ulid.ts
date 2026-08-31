@@ -5,11 +5,10 @@ import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { fromCharacters } from './from-characters';
 
-// Temp export
 /**
  * The largest timestamp a ULID can encode, as the timestamp component is a 48 bit unsigned integer.
  */
-export const MAX_ULID_TIMESTAMP = 2 ** 48 - 1;
+const MAX_ULID_TIMESTAMP = 2 ** 48 - 1;
 
 /**
  * Returns a ULID ([Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec)).

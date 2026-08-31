@@ -127,26 +127,24 @@ export function uuid(
   }
 }
 
-// Temp export
 /**
  * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
  *
  * @param fakerCore The FakerCore to use.
  */
-export function uuidV4(fakerCore: FakerCore): string {
+function uuidV4(fakerCore: FakerCore): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
     .replaceAll('x', () => hex(fakerCore, { min: 0x0, max: 0xf }))
     .replaceAll('y', () => hex(fakerCore, { min: 0x8, max: 0xb }));
 }
 
-// Temp export
 /**
  * Returns a UUID v7 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
  *
  * @param fakerCore The FakerCore to use.
  * @param refDate The reference date to retrieve the unix timestamp from.
  */
-export function uuidV7(fakerCore: FakerCore, refDate: Date): string {
+function uuidV7(fakerCore: FakerCore, refDate: Date): string {
   const unixTimeMs = refDate.valueOf();
   const unixTimeMsNormalized = Math.max(unixTimeMs, 0);
   const unixTimeMsHex = unixTimeMsNormalized
