@@ -492,6 +492,8 @@ export class StringModule extends SimpleModuleBase {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
+   * @throws {FakerError} If no digits are available after applying `exclude` and `allowLeadingZeros`.
+   *
    * @see faker.number.int(): For generating a number (within a range).
    *
    * @example
