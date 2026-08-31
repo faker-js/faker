@@ -3,13 +3,12 @@ import { Faker } from '../../faker';
 import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 
-// Temp export
 /**
  * Converts the given string to title case.
  *
  * @param text The text to convert.
  */
-export function toTitleCase(text: string): string {
+function toTitleCase(text: string): string {
   return text
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
