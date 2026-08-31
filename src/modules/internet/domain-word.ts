@@ -14,17 +14,13 @@ function isValidDomainWordSlug(slug: string): boolean {
   return /^[a-z][a-z-]*[a-z]$/i.exec(slug) !== null;
 }
 
-// Temp export
 /**
  * Tries various ways to produce a valid domain word slug, falling back to a random string if needed.
  *
  * @param fakerCore The FakerCore to use.
  * @param word The initial word to slugify.
  */
-export function makeValidDomainWordSlug(
-  fakerCore: FakerCore,
-  word: string
-): string {
+function makeValidDomainWordSlug(fakerCore: FakerCore, word: string): string {
   const slug1 = slugify(fakerCore, word);
   if (isValidDomainWordSlug(slug1)) {
     return slug1;
