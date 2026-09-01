@@ -14,7 +14,9 @@ export const formatOptions: FormatConfig = {
   printWidth: 80,
   sortImports: {
     groups: [
-      ['builtin', 'external', 'internal'],
+      ['type-builtin', 'value-builtin'],
+      ['type-external', 'value-external'],
+      ['type-internal', 'value-internal'],
       ['type-parent', 'value-parent'],
       ['type-sibling', 'value-sibling'],
       ['type-index', 'value-index'],
