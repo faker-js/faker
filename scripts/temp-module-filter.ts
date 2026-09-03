@@ -3,5 +3,6 @@ export const ALLOWED_MODULES = new Set([
   'DateModule',
   'HelpersModule',
   'NumberModule',
+  'PersonModule',
   'StringModule',
 ]);
