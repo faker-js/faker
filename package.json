@@ -108,7 +108,7 @@
     "jiti": "2.7.0",
     "npm-run-all2": "9.0.3",
     "oxfmt": "0.65.0",
-    "oxlint": "1.78.0",
+    "oxlint": "1.80.0",
     "oxlint-tsgolint": "7.0.2001",
     "publint": "0.3.23",
     "sanitize-html": "2.17.7",
