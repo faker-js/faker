@@ -1,4 +1,4 @@
-import type { Language } from '../modules/location';
+import type { Language } from '../modules/location/language';
 import type { LocaleEntry } from './definitions';
 
 /**

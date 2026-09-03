@@ -7,8 +7,8 @@ import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
   BitcoinNetwork,
-} from '../../src/modules/finance/_bitcoin';
-import ibanLib from '../../src/modules/finance/_iban';
+} from '../../src/modules/finance';
+import { ibanLib } from '../../src/modules/finance/_iban-lib';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';

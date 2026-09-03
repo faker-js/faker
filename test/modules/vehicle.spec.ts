@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { vinCheckDigit } from '../../src/modules/vehicle/module';
+import { vinCheckDigit } from '../../src/modules/vehicle/vin';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 

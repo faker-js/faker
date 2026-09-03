@@ -1,50 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-
-// NHTSA 49 CFR § 565.15(c), Tables III and IV define the transliteration
-// values and position weights used here:
-// https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol6/pdf/CFR-2024-title49-vol6-sec565-15.pdf
-const vinWeights = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2];
-
-const vinTransliteration: Record<string, number> = {
-  A: 1,
-  B: 2,
-  C: 3,
-  D: 4,
-  E: 5,
-  F: 6,
-  G: 7,
-  H: 8,
-  J: 1,
-  K: 2,
-  L: 3,
-  M: 4,
-  N: 5,
-  P: 7,
-  R: 9,
-  S: 2,
-  T: 3,
-  U: 4,
-  V: 5,
-  W: 6,
-  X: 7,
-  Y: 8,
-  Z: 9,
-};
-
-/**
- * Calculates a Vehicle Identification Number (VIN) check digit.
- *
- * @param vin The VIN to calculate the check digit for.
- */
-export function vinCheckDigit(vin: string): string {
-  let checksum = 0;
-  for (const [index, character] of [...vin].entries()) {
-    const value = vinTransliteration[character] ?? Number(character);
-    checksum += value * vinWeights[index];
-  }
-
-  return checksum % 11 === 10 ? 'X' : String(checksum % 11);
-}
+import { bicycle as vehicleBicycle } from './bicycle';
+import { color as vehicleColor } from './color';
+import { fuel as vehicleFuel } from './fuel';
+import { manufacturer as vehicleManufacturer } from './manufacturer';
+import { model as vehicleModel } from './model';
+import { type as vehicleType } from './type';
+import { vehicle as vehicleVehicle } from './vehicle';
+import { vin as vehicleVin } from './vin';
+import { vrm as vehicleVrm } from './vrm';
 
 /**
  * Module to generate vehicle related entries.
@@ -56,6 +19,11 @@ export function vinCheckDigit(vin: string): string {
  * If you prefer two wheels, you can generate a [`bicycle()`](https://fakerjs.dev/api/vehicle.html#bicycle) type instead.
  */
 export class VehicleModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree vehicle' to update the methods from their respective files.
+   */
+
   /**
    * Returns a random vehicle.
    *
@@ -65,7 +33,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   vehicle(): string {
-    return `${this.manufacturer()} ${this.model()}`;
+    return vehicleVehicle(this.faker.fakerCore);
   }
 
   /**
@@ -77,9 +45,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   manufacturer(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.vehicle.manufacturer
-    );
+    return vehicleManufacturer(this.faker.fakerCore);
   }
 
   /**
@@ -91,9 +57,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   model(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.vehicle.model
-    );
+    return vehicleModel(this.faker.fakerCore);
   }
 
   /**
@@ -105,7 +69,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   type(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.vehicle.type);
+    return vehicleType(this.faker.fakerCore);
   }
 
   /**
@@ -117,7 +81,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   fuel(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.vehicle.fuel);
+    return vehicleFuel(this.faker.fakerCore);
   }
 
   /**
@@ -129,22 +93,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   vin(): string {
-    const exclude = ['o', 'i', 'q', 'O', 'I', 'Q'];
-    const vin = `${this.faker.string.alphanumeric({
-      length: 10,
-      casing: 'upper',
-      exclude,
-    })}${this.faker.string.alpha({
-      length: 1,
-      casing: 'upper',
-      exclude,
-    })}${this.faker.string.alphanumeric({
-      length: 1,
-      casing: 'upper',
-      exclude,
-    })}${this.faker.string.numeric({ length: 5, allowLeadingZeros: true })}`;
-
-    return `${vin.slice(0, 8)}${vinCheckDigit(vin)}${vin.slice(9)}`;
+    return vehicleVin(this.faker.fakerCore);
   }
 
   /**
@@ -156,7 +105,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   color(): string {
-    return this.faker.color.human();
+    return vehicleColor(this.faker.fakerCore);
   }
 
   /**
@@ -168,16 +117,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.4.0
    */
   vrm(): string {
-    return `${this.faker.string.alpha({
-      length: 2,
-      casing: 'upper',
-    })}${this.faker.string.numeric({
-      length: 2,
-      allowLeadingZeros: true,
-    })}${this.faker.string.alpha({
-      length: 3,
-      casing: 'upper',
-    })}`;
+    return vehicleVrm(this.faker.fakerCore);
   }
 
   /**
@@ -189,8 +129,6 @@ export class VehicleModule extends ModuleBase {
    * @since 5.5.0
    */
   bicycle(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.vehicle.bicycle_type
-    );
+    return vehicleBicycle(this.faker.fakerCore);
   }
 }

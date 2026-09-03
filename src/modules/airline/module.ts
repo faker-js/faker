@@ -1,59 +1,16 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
-
-export enum Aircraft {
-  Narrowbody = 'narrowbody',
-  Regional = 'regional',
-  Widebody = 'widebody',
-}
-
-export type AircraftType = `${Aircraft}`;
-
-export interface Airline {
-  /**
-   * The name of the airline (e.g. `'American Airlines'`).
-   */
-  readonly name: string;
-  /**
-   * The 2 character [IATA](https://iata.org) code of the airline (e.g. `'AA'`).
-   */
-  readonly iataCode: string;
-}
-
-export interface Airplane {
-  /**
-   * The name of the airplane (e.g. `'Airbus A321'`).
-   */
-  readonly name: string;
-  /**
-   * The [IATA](https://iata.org) code of the airplane (e.g. `'321'`).
-   */
-  readonly iataTypeCode: string;
-}
-
-export interface Airport {
-  /**
-   * The name of the airport (e.g. `'Dallas Fort Worth International Airport'`).
-   */
-  readonly name: string;
-  /**
-   * The [IATA](https://iata.org) code of the airport (e.g. `'DFW'`).
-   */
-  readonly iataCode: string;
-}
-
-const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
-const aircraftTypeMaxRows: Record<AircraftType, number> = {
-  regional: 20,
-  narrowbody: 35,
-  widebody: 60,
-};
-const aircraftTypeSeats: Record<AircraftType, string[]> = {
-  regional: ['A', 'B', 'C', 'D'],
-  narrowbody: ['A', 'B', 'C', 'D', 'E', 'F'],
-  widebody: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
-};
+import type { AircraftType } from './aircraft-type';
+import { aircraftType as airlineAircraftType } from './aircraft-type';
+import type { Airline } from './airline';
+import { airline as airlineAirline } from './airline';
+import type { Airplane } from './airplane';
+import { airplane as airlineAirplane } from './airplane';
+import type { Airport } from './airport';
+import { airport as airlineAirport } from './airport';
+import { flightNumber as airlineFlightNumber } from './flight-number';
+import { recordLocator as airlineRecordLocator } from './record-locator';
+import { seat as airlineSeat } from './seat';
 
 /**
  * Module to generate airline and airport related data according to [International Air Transport Association (IATA)](https://iata.org) standards.
@@ -73,6 +30,11 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://fakerjs.dev/api/person.html) module.
  */
 export class AirlineModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree airline' to update the methods from their respective files.
+   */
+
   /**
    * Generates a random airport.
    *
@@ -82,9 +44,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airport(): Airport {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airport
-    );
+    return airlineAirport(this.faker.fakerCore);
   }
 
   /**
@@ -96,9 +56,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airline(): Airline {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airline
-    );
+    return airlineAirline(this.faker.fakerCore);
   }
 
   /**
@@ -110,9 +68,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airplane(): Airplane {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airplane
-    );
+    return airlineAirplane(this.faker.fakerCore);
   }
 
   /**
@@ -148,22 +104,7 @@ export class AirlineModule extends ModuleBase {
       allowVisuallySimilarCharacters?: boolean;
     } = {}
   ): string {
-    const { allowNumerics = false, allowVisuallySimilarCharacters = false } =
-      options;
-    const excludedChars: string[] = [];
-    if (!allowNumerics) {
-      excludedChars.push(...numerics);
-    }
-
-    if (!allowVisuallySimilarCharacters) {
-      excludedChars.push(...visuallySimilarCharacters);
-    }
-
-    return this.faker.string.alphanumeric({
-      length: 6,
-      casing: 'upper',
-      exclude: excludedChars,
-    });
+    return airlineRecordLocator(this.faker.fakerCore, options);
   }
 
   /**
@@ -189,12 +130,7 @@ export class AirlineModule extends ModuleBase {
       aircraftType?: AircraftType;
     } = {}
   ): string {
-    const { aircraftType = Aircraft.Narrowbody } = options;
-    const maxRow = aircraftTypeMaxRows[aircraftType];
-    const allowedSeats = aircraftTypeSeats[aircraftType];
-    const row = this.faker.number.int({ min: 1, max: maxRow });
-    const seat = this.faker.helpers.arrayElement(allowedSeats);
-    return `${row}${seat}`;
+    return airlineSeat(this.faker.fakerCore, options);
   }
 
   /**
@@ -206,7 +142,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   aircraftType(): AircraftType {
-    return this.faker.helpers.enumValue(Aircraft);
+    return airlineAircraftType(this.faker.fakerCore);
   }
 
   /**
@@ -250,11 +186,6 @@ export class AirlineModule extends ModuleBase {
       addLeadingZeros?: boolean;
     } = {}
   ): string {
-    const { length = { min: 1, max: 4 }, addLeadingZeros = false } = options;
-    const flightNumber = this.faker.string.numeric({
-      length,
-      allowLeadingZeros: false,
-    });
-    return addLeadingZeros ? flightNumber.padStart(4, '0') : flightNumber;
+    return airlineFlightNumber(this.faker.fakerCore, options);
   }
 }

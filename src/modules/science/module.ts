@@ -1,33 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
-
-/**
- * The possible definitions related to elements.
- */
-export interface ChemicalElement {
-  /**
-   * The symbol for the element (e.g. `'He'`).
-   */
-  symbol: string;
-  /**
-   * The name for the element (e.g. `'Cerium'`).
-   */
-  name: string;
-  /**
-   * The atomic number for the element (e.g. `52`).
-   */
-  atomicNumber: number;
-}
-
-export interface Unit {
-  /**
-   * The long version of the unit (e.g. `meter`).
-   */
-  name: string;
-  /**
-   * The short version/abbreviation of the unit (e.g. `Pa`).
-   */
-  symbol: string;
-}
+import type { ChemicalElement } from './chemical-element';
+import { chemicalElement as scienceChemicalElement } from './chemical-element';
+import type { Unit } from './unit';
+import { unit as scienceUnit } from './unit';
 
 /**
  * Module to generate science related entries.
@@ -37,6 +12,11 @@ export interface Unit {
  * Both methods in this module return objects rather than strings. For example, you can use `faker.science.chemicalElement().name` to pick out the specific property you need.
  */
 export class ScienceModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree science' to update the methods from their respective files.
+   */
+
   /**
    * Returns a random periodic table element.
    *
@@ -48,9 +28,7 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   chemicalElement(): ChemicalElement {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemical_element
-    );
+    return scienceChemicalElement(this.faker.fakerCore);
   }
 
   /**
@@ -64,6 +42,6 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   unit(): Unit {
-    return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
+    return scienceUnit(this.faker.fakerCore);
   }
 }
