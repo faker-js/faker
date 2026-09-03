@@ -19,5 +19,6 @@ export const ALLOWED_MODULES = new Set([
   'NumberModule',
   'PersonModule',
   'PhoneModule',
+  'ScienceModule',
   'StringModule',
 ]);
