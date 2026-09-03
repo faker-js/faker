@@ -10,6 +10,7 @@
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidocs.ts",
     "generate:locales": "tsx ./scripts/generate-locales.ts",
+    "generate:module-tree": "tsx ./scripts/generate-module-tree.ts",
     "docs:build": "run-s generate:api-docs generate:locales docs:build:embedded docs:build:run",
     "docs:build:embedded": "tsdown --entry.faker src/index.ts --format esm --outDir docs/public --no-dts --no-clean",
     "docs:build:run": "vitepress build docs",

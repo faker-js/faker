@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, faker } from '../../src';
-import { fakeEval } from '../../src/modules/helpers/eval';
+import { fakeEval } from '../../src/modules/helpers/_eval';
 
 // A hostile definition resolving to a function returning a function, mirroring the original GHSA-qxc2-j82w-r537 proof-of-concept.
 const noop = () => {};

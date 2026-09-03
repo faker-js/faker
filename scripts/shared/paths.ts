@@ -25,7 +25,7 @@ export const FILE_PATH_DOCS_LOCALES = resolve(FILE_PATH_DOCS, 'locales');
 /**
  * The path to the src directory.
  */
-const FILE_PATH_SRC = resolve(FILE_PATH_PROJECT, 'src');
+export const FILE_PATH_SRC = resolve(FILE_PATH_PROJECT, 'src');
 /**
  * The path to the locale source files.
  */

@@ -1,4 +1,5 @@
 import { SimpleModuleBase } from '../../internal/module-base';
+import { boolean as datatypeBoolean } from './boolean';
 
 /**
  * Module to generate boolean values.
@@ -8,6 +9,11 @@ import { SimpleModuleBase } from '../../internal/module-base';
  * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
 export class DatatypeModule extends SimpleModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree datatype' to update the methods from their respective files.
+   */
+
   /**
    * Returns the boolean value true or false.
    *
@@ -38,22 +44,6 @@ export class DatatypeModule extends SimpleModuleBase {
           probability?: number;
         } = {}
   ): boolean {
-    if (typeof options === 'number') {
-      options = {
-        probability: options,
-      };
-    }
-
-    const { probability = 0.5 } = options;
-    if (probability <= 0) {
-      return false;
-    }
-
-    if (probability >= 1) {
-      // This check is required to avoid returning false when float() returns 1
-      return true;
-    }
-
-    return this.faker.number.float() < probability;
+    return datatypeBoolean(this.faker.fakerCore, options);
   }
 }
