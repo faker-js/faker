@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
-import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -1080,8 +1080,8 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings', () => {
-          expect(faker.definitions.cell_phone?.formats).toContain(
-            faker.helpers.fake('{{cell_phone.formats}}')
+          expect(faker.definitions.phone_number?.format.human).toContain(
+            faker.helpers.fake('{{phone_number.format.human}}')
           );
         });
 

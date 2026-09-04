@@ -63,6 +63,7 @@ const definitionsTypes: DefinitionType = {
   internet: 'InternetDefinition',
   location: 'LocationDefinition',
   lorem: 'LoremDefinition',
+  medical: 'MedicalDefinition',
   metadata: 'MetadataDefinition',
   music: 'MusicDefinition',
   person: 'PersonDefinition',
@@ -406,7 +407,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
     return result;
   }
 
-  const legacyDefinitions = ['app', 'cell_phone', 'team'];
+  const legacyDefinitions = ['app', 'team'];
   const definitionsToSkip = [
     'location',
     'lorem',

@@ -1,2 +1,2 @@
 export * from './module';
-export type { VatNumberCountryCode } from './vat-number';
+export type { VatNumberCountryCode } from './_vat-number';

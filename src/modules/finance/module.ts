@@ -1,14 +1,14 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
+import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './_bitcoin';
 import {
   BitcoinAddressFamily,
   BitcoinAddressSpecs,
   BitcoinNetwork,
-} from './bitcoin';
-import iban from './iban';
-import type { VatNumberCountryCode } from './vat-number';
-import { vatNumberCountryCodeAliases, vatNumberFormats } from './vat-number';
+} from './_bitcoin';
+import iban from './_iban';
+import type { VatNumberCountryCode } from './_vat-number';
+import { vatNumberCountryCodeAliases, vatNumberFormats } from './_vat-number';
 
 /**
  * The possible definitions related to currency entries.

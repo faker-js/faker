@@ -16,6 +16,7 @@ export type { HackerDefinition } from './hacker';
 export type { InternetDefinition } from './internet';
 export type { LocationDefinition } from './location';
 export type { LoremDefinition } from './lorem';
+export type { MedicalDefinition } from './medical';
 export type { MetadataDefinition } from './metadata';
 export type { MusicDefinition } from './music';
 export type { PersonDefinition, PersonEntryDefinition } from './person';

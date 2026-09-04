@@ -1,7 +1,7 @@
 import { defineConfig } from 'oxlint';
 
 export default defineConfig({
-  plugins: ['typescript', 'unicorn', 'oxc', 'vitest'],
+  plugins: ['import', 'typescript', 'unicorn', 'oxc', 'vitest'],
   jsPlugins: [{ name: 'jsdoc-js', specifier: 'eslint-plugin-jsdoc' }], // the built-in jsdoc plugin is missing too many rules
   categories: {
     correctness: 'error',
@@ -52,6 +52,11 @@ export default defineConfig({
     'no-useless-backreference': 'error',
     'no-useless-constructor': 'off', // oxlint doesn't skip constructors that only declare parameter properties
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
+    //#endregion
+
+    //#region import
+    // name: 'import overrides'
+    'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
     //#endregion
 
     //#region typescript

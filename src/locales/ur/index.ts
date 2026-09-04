@@ -5,7 +5,6 @@
 import type { LocaleDefinition } from '../../definitions';
 import animal from './animal';
 import app from './app';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import date from './date';
@@ -27,7 +26,6 @@ import vehicle from './vehicle';
 const ur: LocaleDefinition = {
   animal,
   app,
-  cell_phone,
   color,
   commerce,
   date,
