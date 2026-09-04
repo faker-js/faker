@@ -27,6 +27,7 @@ import {
   getTypeText,
   isOptionsLikeType,
   isRangeType,
+  newFakerOptionsLocaleType,
 } from './type';
 
 /**
@@ -248,14 +249,24 @@ function processComplexParameterProperty(
     ? getDescription(memberTag)
     : getDescription(jsdocs);
 
+  let typeText = getTypeText(propertyType, {
+    abbreviate: false,
+    stripUndefined: true,
+  });
+
+  if (
+    declaration.getName() === 'locale' &&
+    declaration.getParent()?.getType().getSymbol()?.getName() === 'FakerOptions'
+  ) {
+    // Prevent the 'LocaleProxy' type from being exploded into unreadable mess.
+    typeText = newFakerOptionsLocaleType();
+  }
+
   return [
     {
       name: `${name}.${parameter.getName()}${getNameSuffix(propertyType)}`,
       type: attachShadowTypeDescriptions(
-        getTypeText(propertyType, {
-          abbreviate: false,
-          stripUndefined: true,
-        }),
+        typeText,
         getShadowTypeDescriptions(declaration.getTypeNode())
       ),
       default: getDefault(jsdocs) ?? extractSummaryDefault(description),
