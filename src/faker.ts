@@ -1,6 +1,5 @@
 import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
-import { FakerError } from './errors/faker-error';
 import type { LocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
@@ -127,18 +126,8 @@ export class Faker extends SimpleFaker {
    *
    * @since 8.0.0
    */
-  constructor(options: FakerOptions) {
-    super(options);
-
-    const { locale } = options;
-
-    // TODO @ST-DDT 2026-03-08: We should either not throw or throw consistently when locale data are empty.
-    // And likely refer to simpleFaker as alternative
-    if (Array.isArray(locale) && locale.length === 0) {
-      throw new FakerError(
-        'The locale option must contain at least one locale definition.'
-      );
-    }
+  constructor(options: FakerOptions = {}) {
+    super(options); // Kept for having documentation
   }
 
   /**
