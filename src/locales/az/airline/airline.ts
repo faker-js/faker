@@ -13,10 +13,7 @@ export default [
   { name: 'Air Arabia', iataCode: 'G9' },
   { name: 'Uzbekistan Airways', iataCode: 'HY' },
   { name: 'Iran Air', iataCode: 'IR' },
-  {
-    name: 'Azərbaycan Hava Yolları (AZAL)',
-    iataCode: 'J2',
-  },
+  { name: 'Azərbaycan Hava Yolları', iataCode: 'J2' },
   { name: 'Air Astana', iataCode: 'KC' },
   { name: 'KLM', iataCode: 'KL' },
   { name: 'Lufthansa', iataCode: 'LH' },
