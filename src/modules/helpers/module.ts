@@ -570,6 +570,13 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
+   * Properties and prototype methods on generated values can also be resolved:
+   *
+   * ```js
+   * const airlineCode = faker.helpers.fake('{{airline.airline.iataCode}}'); // 'AA'
+   * const timestamp = faker.helpers.fake('{{date.anytime.toISOString}}'); // '2025-01-01T00:00:00.000Z'
+   * ```
+   *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
    * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
    * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
@@ -588,6 +595,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
+   * faker.helpers.fake('Expires on {{date.future.toISOString.substring(0,10)}}') // 'Expires on 2026-09-09'
    *
    * @since 7.4.0
    */
@@ -626,6 +634,13 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
    * ```
    *
+   * Properties and prototype methods on generated values can also be resolved:
+   *
+   * ```js
+   * const airlineCode = faker.helpers.fake(['{{airline.airline.iataCode}}']); // 'AA'
+   * const timestamp = faker.helpers.fake(['{{date.anytime.toISOString}}']); // '2025-01-01T00:00:00.000Z'
+   * ```
+   *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
    * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
    * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
@@ -638,6 +653,8 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * @example
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   * faker.helpers.fake(['Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}']) // 'Your PIN number is: 4834'
+   * faker.helpers.fake(['Expires on {{date.future.toISOString.substring(0,10)}}']) // 'Expires on 2026-09-09'
    *
    * @since 8.0.0
    */
@@ -673,6 +690,13 @@ export class HelpersModule extends SimpleHelpersModule {
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
+   * Properties and prototype methods on generated values can also be resolved:
+   *
+   * ```js
+   * const airlineCode = faker.helpers.fake('{{airline.airline.iataCode}}'); // 'AA'
+   * const timestamp = faker.helpers.fake('{{date.anytime.toISOString}}'); // '2025-01-01T00:00:00.000Z'
+   * ```
+   *
    * The pattern is not evaluated as JavaScript: only faker methods can be called, and any
    * parameters are parsed as JSON or plain strings. Nevertheless, it is possible for certain
    * maliciously crafted patterns to use large amounts of memory or CPU time, so the pattern
@@ -691,6 +715,8 @@ export class HelpersModule extends SimpleHelpersModule {
    * faker.helpers.fake('You can visit me at {{location.streetAddress(true)}}.') // 'You can visit me at 3393 Ronny Way Apt. 742.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
+   * faker.helpers.fake(['Expires on {{date.future.toISOString.substring(0,10)}}']) // 'Expires on 2026-09-09'
    *
    * @since 7.4.0
    */
