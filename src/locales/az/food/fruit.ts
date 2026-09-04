@@ -7,7 +7,6 @@ export default [
   'gavalı',
   'gilas',
   'heyva',
-  'innab',
   'kivi',
   'limon',
   'moruq',

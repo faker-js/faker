@@ -7,7 +7,6 @@ export default [
   'cəfəri',
   'göbələk',
   'gül kələm',
-  'ispanaq',
   'kahı',
   'kartof',
   'keşniş',

@@ -6,9 +6,7 @@ export default [
   'dəfnə yarpağı',
   'gülab',
   'hil',
-  'kimyon',
-  'kişniş toxumu',
-  'kürkümə',
+  'keşniş toxumu',
   'kəklikotu',
   'limon duzu',
   'limon qabığı',
@@ -27,6 +25,7 @@ export default [
   'zirə',
   'zəfəran',
   'zəncəfil',
+  'zərdəçal',
   'şüyüd toxumu',
   'ətirli bibər',
 ];
