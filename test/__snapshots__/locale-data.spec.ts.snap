@@ -4,7 +4,7 @@ exports[`locale-data > should only have known characters 1`] = `
 {
   "af_ZA": " #+-ABCDEFGHIJKLMNOPRSTUVWYZabcdefghijklmnopqrstuvwxyz",
   "ar": " #-T،ءآأؤإئابةتثجحخدذرزسشصضطظعغـفقكلمنهوىيًٍَُِّْٱ",
-  "az": " #()+,-.ABCDEFGHJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyzÇÖÜçöüğİıŞşƏəабвгдеийклмнопрстуфцчьюя’",
+  "az": " #()+,-.ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇÖÜçöüğİıŞşƏəабвгдеийклмнопрстуфцчьюя’",
   "base": " ()+,-./:;ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
   "bn_BD": " (),-ঁংঅআইঈউএওকখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহ়ািীুূৃেৈোৌ্ড়য়",
   "cs_CZ": " #()+-.ABCDEFGHIJKLMNOPRSTUVWXZabcdefghijklmnopqrstuvwxyzÁÍÚáéíóöúüýČčĎďěňŘřŠšťůűŽž",
