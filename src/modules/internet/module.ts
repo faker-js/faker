@@ -1,9 +1,8 @@
-/* eslint-disable unicorn/prefer-https -- We allow http in results */
 import { FakerError } from '../../errors/faker-error';
 import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';
 import { ModuleBase } from '../../internal/module-base';
-import { charMapping } from './char-mappings';
+import { charMapping } from './_char-mappings';
 
 export type EmojiType =
   | 'smiley'
@@ -18,7 +17,11 @@ export type EmojiType =
   | 'flag';
 
 export type HTTPStatusCodeType =
-  'informational' | 'success' | 'clientError' | 'serverError' | 'redirection';
+  | 'informational'
+  | 'success'
+  | 'clientError'
+  | 'serverError'
+  | 'redirection';
 
 export type HTTPProtocolType = 'http' | 'https';
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
-import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -75,7 +75,8 @@ describe('helpers', () => {
       enum MixedFoo {
         Foo = 0,
         Bar = 1,
-        // eslint-disable-next-line @typescript-eslint/no-mixed-enums
+
+        // oxlint-disable-next-line typescript/no-mixed-enums
         FooName = 'Foo',
         BarName = 'Bar',
       }
@@ -223,7 +224,8 @@ describe('helpers', () => {
         enum FooMixedEnum {
           Foo = 0,
           Bar = 1,
-          // eslint-disable-next-line @typescript-eslint/no-mixed-enums
+
+          // oxlint-disable-next-line typescript/no-mixed-enums
           StrFoo = 'FOO',
           StrBar = 'BAR',
         }
@@ -1090,8 +1092,8 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings', () => {
-          expect(faker.definitions.cell_phone?.formats).toContain(
-            faker.helpers.fake('{{cell_phone.formats}}')
+          expect(faker.definitions.phone_number?.format.human).toContain(
+            faker.helpers.fake('{{phone_number.format.human}}')
           );
         });
 
@@ -1147,12 +1149,12 @@ describe('helpers', () => {
         });
 
         it('should be able to handle special replacement patterns', () => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // oxlint-disable-next-line typescript/no-explicit-any
           (faker.string as any).special = () => '$&';
 
           expect(faker.helpers.fake('{{string.special}}')).toBe('$&');
 
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // oxlint-disable-next-line typescript/no-explicit-any
           delete (faker.string as any).special;
         });
 

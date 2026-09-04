@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
-import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
 import location from './location';
@@ -18,7 +17,6 @@ import phone_number from './phone_number';
  * - Endonym: Afrikaans (Suid-Afrika)
  */
 const af_ZA: LocaleDefinition = {
-  cell_phone,
   company,
   internet,
   location,

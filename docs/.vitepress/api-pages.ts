@@ -28,6 +28,7 @@ export const apiPages = [
       { text: 'Internet', link: '/api/internet.html' },
       { text: 'Location', link: '/api/location.html' },
       { text: 'Lorem', link: '/api/lorem.html' },
+      { text: 'Medical', link: '/api/medical.html' },
       { text: 'Music', link: '/api/music.html' },
       { text: 'Number', link: '/api/number.html' },
       { text: 'Person', link: '/api/person.html' },

@@ -9,23 +9,26 @@ describe('example-refresh', () => {
 
       cy.get('@refresh')
         .click()
+        .click() // Twice: Cypress clicks appear to be unreliable in Electron
         .should('not.be.disabled') // stays disabled on error
         .then(() => {
-          cy.get('@codeBlock').then(($el) => {
-            const newCodeText = $el.text();
-            expect(newCodeText).not.to.equal(originalCodeText);
+          cy.get('@codeBlock')
+            .should('contain.text', "// 'Error'") // Wait for completion
+            .then(($el) => {
+              const newCodeText = $el.text();
+              expect(newCodeText).not.to.equal(originalCodeText);
 
-            cy.get('@refresh')
-              .click()
-              .should('not.be.disabled') // stays disabled on error
-              .then(() => {
-                cy.get('@codeBlock').then(($el) => {
-                  const newCodeText2 = $el.text();
-                  expect(newCodeText2).not.to.equal(originalCodeText);
-                  expect(newCodeText2).not.to.equal(newCodeText);
+              cy.get('@refresh')
+                .click()
+                .should('not.be.disabled') // stays disabled on error
+                .then(() => {
+                  cy.get('@codeBlock').then(($el) => {
+                    const newCodeText2 = $el.text();
+                    expect(newCodeText2).not.to.equal(originalCodeText);
+                    expect(newCodeText2).not.to.equal(newCodeText);
+                  });
                 });
-              });
-          });
+            });
         });
     });
   });

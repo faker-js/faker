@@ -7,9 +7,9 @@ import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
   BitcoinNetwork,
-} from '../../src/modules/finance/bitcoin';
-import ibanLib from '../../src/modules/finance/iban';
-import { luhnCheck } from '../../src/modules/helpers/luhn-check';
+} from '../../src/modules/finance/_bitcoin';
+import ibanLib from '../../src/modules/finance/_iban';
+import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -230,25 +230,22 @@ describe('finance', () => {
         );
 
         // This test is flaky on Windows Github Actions
-        it.todo(
-          'should return the number formatted on the current locale',
-          () => {
-            const number = 6000;
-            const decimalPlaces = 2;
-            const expected = number.toLocaleString(undefined, {
-              minimumFractionDigits: decimalPlaces,
-            });
+        it.todo('should return the number formatted on the current locale', () => {
+          const number = 6000;
+          const decimalPlaces = 2;
+          const expected = number.toLocaleString(undefined, {
+            minimumFractionDigits: decimalPlaces,
+          });
 
-            const amount = faker.finance.amount({
-              min: number,
-              max: number,
-              dec: decimalPlaces,
-              autoFormat: true,
-            });
+          const amount = faker.finance.amount({
+            min: number,
+            max: number,
+            dec: decimalPlaces,
+            autoFormat: true,
+          });
 
-            expect(amount).toStrictEqual(expected);
-          }
-        );
+          expect(amount).toStrictEqual(expected);
+        });
       });
 
       describe('transactionType()', () => {

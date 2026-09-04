@@ -8,13 +8,11 @@ let markdownPromise: Promise<MarkdownRenderer>;
 let markdown: MarkdownRenderer;
 
 export async function initMarkdownRenderer(): Promise<void> {
-  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   markdownPromise ??= createMarkdownRenderer(
     FILE_PATH_API_DOCS,
     vitepressConfig.markdown,
     '/'
   );
-  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   markdown ??= await markdownPromise;
 }
 
@@ -41,7 +39,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
   ],
   allowedAttributes: {
     a: ['href', 'target', 'rel'],
-    button: ['class', 'title'],
+    button: ['class', 'title', 'data-copied'],
     div: ['class'],
     input: ['type', 'name', 'id', 'checked'],
     label: ['for', 'data-title'],

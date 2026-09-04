@@ -11,13 +11,14 @@
  * const someMethod = someModule.someMethod;
  * someMethod(); // Works
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function bindThisToMemberFunctions<TClass extends { new (): any }>(
+export function bindThisToMemberFunctions<TClass extends { new (): TClass }>(
   instance: InstanceType<TClass>
 ): void {
   let p = Object.getPrototypeOf(instance);
   do {
-    for (const name of Object.getOwnPropertyNames(p)) {
+    for (const name of Object.getOwnPropertyNames(p) as Array<
+      keyof typeof instance
+    >) {
       if (name !== 'constructor' && typeof instance[name] === 'function') {
         instance[name] = instance[name].bind(instance);
       }

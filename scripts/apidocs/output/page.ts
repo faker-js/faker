@@ -17,7 +17,7 @@ import type { RawApiDocsType } from '../processing/type';
 import { required } from '../utils/value-checks';
 import { SCRIPT_COMMAND } from './constants';
 
-// Extracted to a constant because the contents must not be formatted by prettier
+// Extracted to a constant because the contents must not be formatted by oxfmt
 const vitePressInFileOptions = `---
 editLink: false
 ---
@@ -181,34 +181,11 @@ async function toMethodData(method: RawApiDocsMethod): Promise<ApiDocsMethod> {
   let formattedSignature = await formatTypescript(signature);
   formattedSignature = formattedSignature.trim();
 
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // oxlint-disable-next-line typescript/require-await
   const refresh = async () => ['refresh', name, 'placeholder'];
   // This is a placeholder to be replaced by the actual refresh function code
   // If we put the actual code here, it would be a string and not executable
   refresh.toJSON = () => `refresh-${name}-placeholder`;
-
-  /* Target order, omitted to improve diff to old files
-  return {
-    name,
-    deprecated: mdToHtml(deprecated),
-    description: mdToHtml(description),
-    remark: remarks.length === 0 ? undefined : mdToHtml(remarks.join('\n')),
-    since,
-    parameters: parameters.map((param) => ({
-      ...param,
-      type: param.type.text,
-      default:
-        param.default ?? defaultCommentRegex.exec(param.description)?.[1],
-      description: mdToHtml(param.description.replace(defaultCommentRegex, '')),
-    })),
-    returns: returns.text,
-    throws: throws.length === 0 ? undefined : mdToHtml(throws.join('\n'), true),
-    // signature: codeToHtml(signature),
-    examples: codeToHtml([signature, ...examples].join('\n')),
-    seeAlsos: seeAlsos.map((seeAlso) => mdToHtml(seeAlso, true)),
-    sourcePath: sourcePath.replace(/:(\d+):\d+/g, '#L$1'),
-  };
-  */
 
   return {
     name,

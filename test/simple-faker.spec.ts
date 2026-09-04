@@ -1,6 +1,6 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { generateMersenne32Randomizer, SimpleFaker, simpleFaker } from '../src';
+import { SimpleFaker, generateMersenne32Randomizer, simpleFaker } from '../src';
 import { keys } from '../src/internal/keys';
 
 describe('simpleFaker', () => {

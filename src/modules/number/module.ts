@@ -1,7 +1,12 @@
 import type { Distributor } from '../../distributors/distributor';
-import { uniformDistributor } from '../../distributors/uniform';
-import { FakerError } from '../../errors/faker-error';
 import { SimpleModuleBase } from '../../internal/module-base';
+import { bigInt as numberBigInt } from './big-int';
+import { binary as numberBinary } from './binary';
+import { float as numberFloat } from './float';
+import { hex as numberHex } from './hex';
+import { int as numberInt } from './int';
+import { octal as numberOctal } from './octal';
+import { romanNumeral as numberRomanNumeral } from './roman-numeral';
 
 /**
  * Module to generate numbers of any kind.
@@ -18,6 +23,11 @@ import { SimpleModuleBase } from '../../internal/module-base';
  * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
 export class NumberModule extends SimpleModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree number' to update the methods from their respective files.
+   */
+
   /**
    * Returns a single random integer between zero and the given max value or the given range.
    * The bounds are inclusive.
@@ -74,45 +84,7 @@ export class NumberModule extends SimpleModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
-
-    const {
-      min = 0,
-      max = Number.MAX_SAFE_INTEGER,
-      multipleOf = 1,
-      distributor = uniformDistributor(),
-    } = options;
-
-    if (!Number.isSafeInteger(multipleOf)) {
-      throw new FakerError(`multipleOf should be an integer.`);
-    }
-
-    if (multipleOf <= 0) {
-      throw new FakerError(`multipleOf should be greater than 0.`);
-    }
-
-    const effectiveMin = Math.ceil(min / multipleOf);
-    const effectiveMax = Math.floor(max / multipleOf);
-
-    if (effectiveMin === effectiveMax) {
-      return effectiveMin * multipleOf;
-    }
-
-    if (effectiveMax < effectiveMin) {
-      if (max >= min) {
-        throw new FakerError(
-          `No suitable integer value between ${min} and ${max} found.`
-        );
-      }
-
-      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
-    }
-
-    const real = distributor(this.faker.fakerCore.randomizer);
-    const delta = effectiveMax - effectiveMin + 1; // +1 for inclusive max bounds and even distribution
-    return Math.floor(real * delta + effectiveMin) * multipleOf;
+    return numberInt(this.faker.fakerCore, options);
   }
 
   /**
@@ -175,64 +147,7 @@ export class NumberModule extends SimpleModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    if (typeof options === 'number') {
-      options = {
-        max: options,
-      };
-    }
-
-    const {
-      min = 0,
-      max = 1,
-      fractionDigits,
-      multipleOf: originalMultipleOf,
-      multipleOf = fractionDigits == null ? undefined : 10 ** -fractionDigits,
-      distributor = uniformDistributor(),
-    } = options;
-
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
-    }
-
-    if (fractionDigits != null) {
-      if (originalMultipleOf != null) {
-        throw new FakerError(
-          'multipleOf and fractionDigits cannot be set at the same time.'
-        );
-      }
-
-      if (!Number.isSafeInteger(fractionDigits)) {
-        throw new FakerError('fractionDigits should be an integer.');
-      }
-
-      if (fractionDigits < 0) {
-        throw new FakerError(
-          'fractionDigits should be greater than or equal to 0.'
-        );
-      }
-    }
-
-    if (multipleOf != null) {
-      if (multipleOf <= 0) {
-        throw new FakerError(`multipleOf should be greater than 0.`);
-      }
-
-      const logPrecision = Math.log10(multipleOf);
-      // Workaround to get integer values for the inverse of all multiples of the form 10^-n
-      const factor =
-        multipleOf < 1 && Number.isSafeInteger(logPrecision)
-          ? 10 ** -logPrecision
-          : 1 / multipleOf;
-      const int = this.int({
-        min: min * factor,
-        max: max * factor,
-        distributor,
-      });
-      return int / factor;
-    }
-
-    const real = distributor(this.faker.fakerCore.randomizer);
-    return real * (max - min) + min;
+    return numberFloat(this.faker.fakerCore, options);
   }
 
   /**
@@ -273,16 +188,7 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
-
-    const { min = 0, max = 1 } = options;
-
-    return this.int({
-      max,
-      min,
-    }).toString(2);
+    return numberBinary(this.faker.fakerCore, options);
   }
 
   /**
@@ -323,16 +229,7 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
-
-    const { min = 0, max = 7 } = options;
-
-    return this.int({
-      max,
-      min,
-    }).toString(8);
+    return numberOctal(this.faker.fakerCore, options);
   }
 
   /**
@@ -371,16 +268,7 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
-
-    const { min = 0, max = 15 } = options;
-
-    return this.int({
-      max,
-      min,
-    }).toString(16);
+    return numberHex(this.faker.fakerCore, options);
   }
 
   /**
@@ -433,52 +321,7 @@ export class NumberModule extends SimpleModuleBase {
           multipleOf?: bigint | number | string | boolean;
         } = {}
   ): bigint {
-    if (
-      typeof options === 'bigint' ||
-      typeof options === 'number' ||
-      typeof options === 'string' ||
-      typeof options === 'boolean'
-    ) {
-      options = {
-        max: options,
-      };
-    }
-
-    const min = BigInt(options.min ?? 0);
-    const max = BigInt(options.max ?? min + BigInt(999999999999999));
-
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be larger than min ${min}.`);
-    }
-
-    const multipleOf = BigInt(options.multipleOf ?? 1);
-
-    if (multipleOf <= BigInt(0)) {
-      throw new FakerError(`multipleOf should be greater than 0.`);
-    }
-
-    const effectiveMin = min / multipleOf + (min % multipleOf > 0n ? 1n : 0n); // Math.ceil(min / multipleOf)
-    const effectiveMax = max / multipleOf - (max % multipleOf < 0n ? 1n : 0n); // Math.floor(max / multipleOf)
-
-    if (effectiveMin === effectiveMax) {
-      return effectiveMin * multipleOf;
-    }
-
-    if (effectiveMax < effectiveMin) {
-      throw new FakerError(
-        `No suitable bigint value between ${min} and ${max} found.`
-      );
-    }
-
-    const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
-    const offset =
-      BigInt(
-        this.faker.string.numeric({
-          length: delta.toString(10).length,
-          allowLeadingZeros: true,
-        })
-      ) % delta;
-    return (effectiveMin + offset) * multipleOf;
+    return numberBigInt(this.faker.fakerCore, options);
   }
 
   /**
@@ -521,54 +364,6 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    const DEFAULT_MIN = 1;
-    const DEFAULT_MAX = 3999;
-
-    if (typeof options === 'number') {
-      options = {
-        max: options,
-      };
-    }
-
-    const { min = DEFAULT_MIN, max = DEFAULT_MAX } = options;
-
-    if (min < DEFAULT_MIN) {
-      throw new FakerError(
-        `Min value ${min} should be ${DEFAULT_MIN} or greater.`
-      );
-    }
-
-    if (max > DEFAULT_MAX) {
-      throw new FakerError(
-        `Max value ${max} should be ${DEFAULT_MAX} or less.`
-      );
-    }
-
-    let num = this.int({ min, max });
-
-    const lookup: Array<[string, number]> = [
-      ['M', 1000],
-      ['CM', 900],
-      ['D', 500],
-      ['CD', 400],
-      ['C', 100],
-      ['XC', 90],
-      ['L', 50],
-      ['XL', 40],
-      ['X', 10],
-      ['IX', 9],
-      ['V', 5],
-      ['IV', 4],
-      ['I', 1],
-    ];
-
-    let result = '';
-
-    for (const [k, v] of lookup) {
-      result += k.repeat(Math.floor(num / v));
-      num %= v;
-    }
-
-    return result;
+    return numberRomanNumeral(this.faker.fakerCore, options);
   }
 }

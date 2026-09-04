@@ -34,22 +34,20 @@
       "rangeStrategy": "replace"
     },
     {
-      "groupName": "eslint",
-      "matchPackageNames": [
-        "@eslint/**",
-        "@stylistic/**",
-        "eslint",
-        "eslint-**",
-        "typescript-eslint"
-      ]
+      "groupName": "oxlint",
+      "matchPackageNames": ["oxlint", "oxlint-tsgolint"]
+    },
+    {
+      "groupName": "oxfmt",
+      "matchPackageNames": ["oxfmt"]
+    },
+    {
+      "groupName": "eslint-plugin-jsdoc",
+      "matchPackageNames": ["eslint-plugin-jsdoc"]
     },
     {
       "groupName": "vitest",
       "matchPackageNames": ["@vitest/**", "vitest"]
-    },
-    {
-      "groupName": "prettier",
-      "matchPackageNames": ["@types/prettier", "prettier"]
     },
     {
       "groupName": "typescript",

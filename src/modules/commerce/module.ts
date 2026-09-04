@@ -1,6 +1,6 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import { calculateUPCCheckDigit } from './upc-check-digit';
+import { calculateUPCCheckDigit } from './_upc-check-digit';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<
@@ -314,7 +314,6 @@ export class CommerceModule extends ModuleBase {
 
     const { variant = 13, separator = '-' } = options;
 
-    // eslint-disable-next-line unicorn/no-declarations-before-early-exit
     const prefix = '978';
     const [group, groupRules] =
       this.faker.helpers.objectEntry(ISBN_LENGTH_RULES);

@@ -12,6 +12,7 @@ import type { HackerDefinition } from './hacker';
 import type { InternetDefinition } from './internet';
 import type { LocationDefinition } from './location';
 import type { LoremDefinition } from './lorem';
+import type { MedicalDefinition } from './medical';
 import type { MetadataDefinition } from './metadata';
 import type { MusicDefinition } from './music';
 import type { PersonDefinition } from './person';
@@ -47,6 +48,7 @@ export type LocaleDefinition = {
   internet?: InternetDefinition;
   location?: LocationDefinition;
   lorem?: LoremDefinition;
+  medical?: MedicalDefinition;
   music?: MusicDefinition;
   person?: PersonDefinition;
   phone_number?: PhoneNumberDefinition;

@@ -20,6 +20,7 @@ export type {
   LocaleEntry,
   LocationDefinition,
   LoremDefinition,
+  MedicalDefinition,
   MetadataDefinition,
   MusicDefinition,
   PersonDefinition,
@@ -61,11 +62,11 @@ export type { Currency, FinanceModule } from './modules/finance';
 export {
   BitcoinAddressFamily,
   BitcoinNetwork,
-} from './modules/finance/bitcoin';
+} from './modules/finance/_bitcoin';
 export type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,
-} from './modules/finance/bitcoin';
+} from './modules/finance/_bitcoin';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
@@ -75,6 +76,7 @@ export { IPv4Network } from './modules/internet';
 export type { IPv4NetworkType, InternetModule } from './modules/internet';
 export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
+export type { MedicalModule } from './modules/medical';
 export type { MusicModule } from './modules/music';
 export type { NumberModule } from './modules/number';
 export { Sex } from './modules/person';

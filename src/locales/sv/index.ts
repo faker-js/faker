@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -22,7 +21,6 @@ import team from './team';
  * - Endonym: Svenska
  */
 const sv: LocaleDefinition = {
-  cell_phone,
   color,
   commerce,
   company,
