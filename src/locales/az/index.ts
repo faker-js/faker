@@ -7,6 +7,7 @@ import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
+import food from './food';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -24,6 +25,7 @@ const az: LocaleDefinition = {
   commerce,
   company,
   date,
+  food,
   internet,
   location,
   metadata,
