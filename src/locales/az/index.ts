@@ -12,6 +12,7 @@ import location from './location';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
+import science from './science';
 
 /**
  * The locale data for the `az` locale.
@@ -29,6 +30,7 @@ const az: LocaleDefinition = {
   metadata,
   person,
   phone_number,
+  science,
 };
 
 export default az;
