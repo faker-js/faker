@@ -1,7 +1,7 @@
 /**
- * The VAT identification number patterns of the EU member states, keyed by the
- * two-letter code the numbers themselves carry — the ISO 3166-1 alpha-2 code
- * everywhere except Greece, whose numbers use `EL` rather than `GR`.
+ * The VAT identification number patterns of the EU member states, keyed by
+ * ISO 3166-1 alpha-2 code, plus `EL`: the prefix Greek numbers carry in place
+ * of `GR`.
  *
  * Each pattern is written for `faker.helpers.fromRegExp()`.
  * Currently, all values are generated randomly, so parts with intent such as check digits will likely produce invalid values.
@@ -30,7 +30,7 @@ export const vatNumberFormats = {
   DK: 'DK[0-9]{8}',
   /** KMKR number. */
   EE: 'EE[0-9]{9}',
-  /** AFM. Greek numbers use the `EL` prefix rather than the `GR` ISO code. */
+  /** AFM. */
   EL: 'EL[0-9]{9}',
   /**
    * NIF/CIF for entities. The leading character encodes the legal form, which
@@ -51,7 +51,7 @@ export const vatNumberFormats = {
    * nine-digit SIREN. The letters I and O are not used in the key.
    */
   FR: 'FR[0-9ABCDEFGHJKLMNPQRSTUVWXYZ]{2}[0-9]{9}',
-  /** AFM, keyed by ISO code. The numbers themselves carry `EL`. */
+  /** AFM. Same as `EL`. */
   GR: 'EL[0-9]{9}',
   /** PDV ID. */
   HR: 'HR[0-9]{11}',

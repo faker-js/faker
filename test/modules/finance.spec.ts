@@ -615,7 +615,7 @@ describe('finance', () => {
       });
 
       describe('vatNumber()', () => {
-        // Exclude Spanish due to validatorjs/validator.js#2846
+        // Exclude Spanish until validatorjs/validator.js#2849
         // Exclude Portuguese because it verifies the check digit, which is random here.
         const CHECKED_BY_VALIDATOR = vatNumberCountryCodes.filter(
           (code) => !['ES', 'PT'].includes(code)
@@ -657,7 +657,7 @@ describe('finance', () => {
           const actual = faker.finance.vatNumber();
           const country = actual.slice(0, 2);
 
-          expect(Object.keys(vatNumberFormats)).toContain(country);
+          expect(vatNumberCountryCodes).toContain(country);
         });
 
         it('should accept the GR ISO code and emit the EL prefix Greek numbers use', () => {
