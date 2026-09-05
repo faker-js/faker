@@ -1,20 +1,10 @@
 /**
  * The VAT identification number patterns of the EU member states, keyed by the
  * two-letter code the numbers themselves carry — the ISO 3166-1 alpha-2 code
- * everywhere except Greece, whose numbers use `EL` rather than `GR`. `GR` is
- * still accepted as input, through {@link vatNumberCountryCodeAliases}.
+ * everywhere except Greece, whose numbers use `EL` rather than `GR`.
  *
- * Each pattern is written for `faker.helpers.fromRegExp()`. Where a country's
- * shapes are listed separately, it is because one character class would pair
- * independent positions freely and emit combinations the country never issues.
- * Rarer forms are left unmodelled and the per-country comment says so; within a
- * country the listed shapes are drawn evenly, which is not how often each
- * occurs in reality. Only the structure of a number is
- * modelled: its length, the characters each position may hold, and the
- * literals a country mandates. Check characters, where a country's real
- * algorithm defines one — a digit in most, a letter in Cyprus, Ireland and
- * part of Spain — are filled with random data from the permitted character
- * set, so a validator that recomputes them rejects nearly all of this output.
+ * Each pattern is written for `faker.helpers.fromRegExp()`.
+ * Currently, all values are generated randomly, so parts with intent such as check digits will likely produce invalid values.
  */
 export const vatNumberFormats = {
   /** UID-Nummer. */
@@ -61,6 +51,8 @@ export const vatNumberFormats = {
    * nine-digit SIREN. The letters I and O are not used in the key.
    */
   FR: 'FR[0-9ABCDEFGHJKLMNPQRSTUVWXYZ]{2}[0-9]{9}',
+  /** AFM, keyed by ISO code. The numbers themselves carry `EL`. */
+  GR: 'EL[0-9]{9}',
   /** PDV ID. */
   HR: 'HR[0-9]{11}',
   /** Kozossegi adoszam. */
@@ -112,19 +104,12 @@ export const vatNumberFormats = {
   SK: 'SK[0-9]{10}',
 } as const satisfies Record<string, string | ReadonlyArray<string>>;
 
-/**
- * ISO 3166-1 alpha-2 codes that are accepted as input but are not themselves a
- * key above, because the country's numbers carry a different prefix. Kept out
- * of {@link vatNumberFormats} so that a call without a country code draws
- * uniformly across countries rather than twice as often for Greece.
- */
-export const vatNumberCountryCodeAliases = {
-  GR: 'EL',
-} as const satisfies Record<string, keyof typeof vatNumberFormats>;
+/** The codes to draw from, minus `GR`, which would give Greece double weight. */
+export const vatNumberCountryCodes = Object.keys(vatNumberFormats).filter(
+  (code) => code !== 'GR'
+) as VatNumberCountryCode[];
 
 /**
  * The country codes for which a VAT identification number can be generated.
  */
-export type VatNumberCountryCode =
-  | keyof typeof vatNumberFormats
-  | keyof typeof vatNumberCountryCodeAliases;
+export type VatNumberCountryCode = keyof typeof vatNumberFormats;

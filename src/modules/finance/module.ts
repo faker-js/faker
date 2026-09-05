@@ -8,7 +8,7 @@ import {
 } from './_bitcoin';
 import iban from './_iban';
 import type { VatNumberCountryCode } from './_vat-number';
-import { vatNumberCountryCodeAliases, vatNumberFormats } from './_vat-number';
+import { vatNumberCountryCodes, vatNumberFormats } from './_vat-number';
 
 /**
  * The possible definitions related to currency entries.
@@ -848,18 +848,18 @@ export class FinanceModule extends ModuleBase {
   /**
    * Generates a random VAT identification number for one of the EU member states.
    *
-   * Please note that only the structure of the number is generated: its length, the characters each
-   * position may hold, and any literal characters the country mandates. Where a country's real
-   * numbering scheme defines a check digit, that digit is random here, so the result is not
-   * guaranteed to be a valid registration.
-   *
    * The supported country codes are the EU member states, using the two-letter code each
    * country's numbers carry:
    * `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`, `DK`, `EE`, `EL` (or `GR`), `ES`, `FI`, `FR`, `HR`, `HU`,
    * `IE`, `IT`, `LT`, `LU`, `LV`, `MT`, `NL`, `PL`, `PT`, `RO`, `SE`, `SI` and `SK`.
    *
+   * @remark Please note that this currently only generates the structure of the respective country's VAT identification.
+   * But it will return random values for digits with intent such as check digits, so the result is likely to be invalid.
+   *
    * @param options An options object.
-   * @param options.countryCode The two-letter code of the country you want a VAT number for. Greece may be given as either `GR` or `EL`; the generated number always carries the `EL` prefix that Greek VAT numbers use. Defaults to a random supported country.
+   * @param options.countryCode The two-letter code of the country you want a VAT number for.
+   * Greece may be given as either `GR` or `EL`.
+   * Defaults to a random supported country.
    *
    * @throws {FakerError} Will throw an error if the passed country code is not supported.
    *
@@ -874,37 +874,23 @@ export class FinanceModule extends ModuleBase {
   vatNumber(
     options: {
       /**
-       * The two-letter code of the country you want a VAT number for. Greece
-       * may be given as either `GR` or `EL`; the generated number always
-       * carries the `EL` prefix that Greek VAT numbers use.
+       * The two-letter code of the country you want a VAT number for.
+       * Greece may be given as either `GR` or `EL`.
        *
-       * @default faker.helpers.objectKey(vatNumberFormats)
+       * @default faker.helpers.arrayElement(vatNumberCountryCodes)
        */
       countryCode?: VatNumberCountryCode;
     } = {}
   ): string {
-    // Defaulted here rather than checked for truthiness later, so that an
-    // explicitly passed empty string is reported as unsupported instead of
-    // silently behaving like an omitted option.
-    const { countryCode = this.faker.helpers.objectKey(vatNumberFormats) } =
-      options;
+    const {
+      countryCode = this.faker.helpers.arrayElement(vatNumberCountryCodes),
+    } = options;
 
-    // Both lookups go through `Object.hasOwn`, because a plain index resolves
-    // an inherited key such as `toString` to `Object.prototype.toString`,
-    // which is truthy and would pass a `!= null` guard. `countryCode` is a
-    // closed union, so only JavaScript callers (or a cast) get there.
-    const resolvedCode = Object.hasOwn(vatNumberCountryCodeAliases, countryCode)
-      ? vatNumberCountryCodeAliases[
-          countryCode as keyof typeof vatNumberCountryCodeAliases
-        ]
-      : countryCode;
-
-    if (!Object.hasOwn(vatNumberFormats, resolvedCode)) {
+    if (!Object.hasOwn(vatNumberFormats, countryCode)) {
       throw new FakerError(`Country code ${countryCode} not supported.`);
     }
 
-    const pattern =
-      vatNumberFormats[resolvedCode as keyof typeof vatNumberFormats];
+    const pattern = vatNumberFormats[countryCode];
 
     return this.faker.helpers.fromRegExp(
       typeof pattern === 'string'

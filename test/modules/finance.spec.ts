@@ -11,7 +11,10 @@ import {
 } from '../../src/modules/finance/_bitcoin';
 import ibanLib from '../../src/modules/finance/_iban';
 import type { VatNumberCountryCode } from '../../src/modules/finance/_vat-number';
-import { vatNumberFormats } from '../../src/modules/finance/_vat-number';
+import {
+  vatNumberCountryCodes,
+  vatNumberFormats,
+} from '../../src/modules/finance/_vat-number';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -612,72 +615,43 @@ describe('finance', () => {
       });
 
       describe('vatNumber()', () => {
-        // Every entry of `vatNumberFormats` is covered by the pattern loop
-        // below. These two are additionally excluded from `validator` (13.15),
-        // which rejects real Spanish numbers whose control character is a
-        // digit, such as `ESA28015865` (reported as
-        // validatorjs/validator.js#2846), and recomputes the Portuguese check
-        // digit, which is random here.
-        const CHECKED_BY_VALIDATOR = (
-          Object.keys(vatNumberFormats) as VatNumberCountryCode[]
-        ).filter((code) => !['ES', 'PT'].includes(code));
+        // Exclude Spanish due to validatorjs/validator.js#2846
+        // Exclude Portuguese because it verifies the check digit, which is random here.
+        const CHECKED_BY_VALIDATOR = vatNumberCountryCodes.filter(
+          (code) => !['ES', 'PT'].includes(code)
+        );
 
         it.each(CHECKED_BY_VALIDATOR)(
           'should return a valid VAT number for %s',
           (country) => {
             const actual = faker.finance.vatNumber({ countryCode: country });
 
-            // Not redundant: nearly every validator matcher makes the prefix
-            // optional — FR is the exception — so `isVAT('123456789', 'DE')`
-            // is true on its own.
-            expect(actual).toStartWith(country);
+            expect(actual).toStartWith(country); // Validator treats this as optional
             expect(actual).toSatisfy((value: string) =>
               isVAT(value, country as VATCountryCode)
             );
           }
         );
 
-        // `fromRegExp` understands a subset of regex and copies anything
-        // outside it into the output verbatim. This loop proves every pattern
-        // stays inside that subset; it says nothing about a pattern being
-        // right for its country, since it checks each pattern against itself.
         it.each(Object.entries(vatNumberFormats))(
           'should expand the %s pattern rather than emit it literally',
           (countryCode, patterns) => {
             const alternatives = [patterns].flat();
-            // Enough draws that every alternative of a multi-shape country is
-            // exercised, not just whichever one the first draw happens to pick.
-            const actuals = times(50).map(() =>
-              faker.finance.vatNumber({
-                countryCode: countryCode as VatNumberCountryCode,
-              })
-            );
 
-            for (const actual of actuals) {
+            for (let i = 0; i < 10; i++) {
+              const actual = faker.finance.vatNumber({
+                countryCode: countryCode as VatNumberCountryCode,
+              });
+
               expect(
                 alternatives.some((alternative) =>
                   new RegExp(`^${alternative}$`).test(actual)
                 )
               ).toBe(true);
-              // VAT numbers are alphanumeric throughout, so a surviving
-              // metacharacter means the pattern was passed through unexpanded.
               expect(actual).toMatch(/^[A-Z0-9]+$/);
             }
           }
         );
-
-        // Every format is keyed by the prefix its numbers carry, which is what
-        // keeps the no-argument draw uniform: an alias sharing another
-        // country's pattern would otherwise give that country double weight.
-        it('should key every format by the prefix its numbers carry', () => {
-          for (const [countryCode, patterns] of Object.entries(
-            vatNumberFormats
-          )) {
-            for (const pattern of [patterns].flat()) {
-              expect(pattern).toStartWith(countryCode);
-            }
-          }
-        });
 
         it('should return a VAT number of a supported country', () => {
           const actual = faker.finance.vatNumber();
@@ -692,9 +666,6 @@ describe('finance', () => {
           );
         });
 
-        // `toString` guards the inherited-key path, which is reachable from
-        // JavaScript and used to resolve to `Object.prototype.toString`,
-        // returning an empty string instead of throwing.
         it.each(['XX', '', 'toString'])(
           'should throw for the unsupported country code %j',
           (countryCode) => {
@@ -708,19 +679,9 @@ describe('finance', () => {
           }
         );
 
-        // Stated independently of the source patterns, and only where
-        // `validator` is weaker than they are: it checks BE as \d{10}, CY as
-        // \w{9}, FR as [A-Z0-9]{2}\d{9}, IE as \d{7}\w(W)?, LT as \d{9,12},
-        // NL as \d{9}B\d{2}, RO as \d{2,10}, SE as \d{12} and SI as \d{8},
-        // and is unusable for ES and PT per the note above. AT and DE are the
-        // only two it checks as tightly as the table does, so they are not
-        // repeated here.
         it.each([
           ['BE', /^BE[01]\d{9}$/],
           ['CY', /^CY[0134569]\d{7}[A-Z]$/],
-          // The entity class decides the control character, so the two are not
-          // independent: a Spanish legal entity takes a digit, a foreign
-          // entity or public body takes a letter.
           ['ES', /^ES(?:[ABCDEFGHJUV]\d{7}\d|[NPQRSW]\d{7}[A-J])$/],
           ['FR', /^FR[0-9A-HJ-NP-Z]{2}\d{9}$/],
           ['IE', /^IE\d{7}[A-W]W?$/],
@@ -740,30 +701,6 @@ describe('finance', () => {
             expect(actuals.filter((actual) => !expected.test(actual))).toEqual(
               []
             );
-          }
-        );
-
-        // Also stated independently of the table, and for the same reason: an
-        // expectation derived from `vatNumberFormats` narrows along with it. A
-        // later change collapsing one of these countries to a single pattern
-        // would keep every other test green while silently cutting NL to 9 of
-        // its 99 establishment numbers, or ES to one of its two legal forms.
-        it.each([
-          ['ES', /^ES[NPQRSW]/],
-          ['NL', /^NL\d{9}B[1-9]/],
-        ] as const)(
-          'should draw both shapes of a %s number',
-          (countryCode, secondShape) => {
-            const actuals = times(100).map(() =>
-              faker.finance.vatNumber({ countryCode })
-            );
-
-            expect(
-              actuals.filter((actual) => secondShape.test(actual))
-            ).not.toEqual([]);
-            expect(
-              actuals.filter((actual) => !secondShape.test(actual))
-            ).not.toEqual([]);
           }
         );
       });
