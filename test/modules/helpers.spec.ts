@@ -110,6 +110,17 @@ describe('helpers', () => {
         });
     });
 
+    t.describe('arraySamples', (t) => {
+      t.it('with array and count', [...'Hello World!'], 3).it(
+        'with array and count range',
+        [...'Hello World!'],
+        {
+          min: 1,
+          max: 5,
+        }
+      );
+    });
+
     t.describe('shuffle', (t) => {
       t.it('with array', [...'Hello World!'])
         .it('with array and inplace true', [...'Hello World!'], {
@@ -468,6 +479,227 @@ describe('helpers', () => {
                 2
               )
             ).not.toThrow();
+          });
+        });
+      });
+
+      describe('arraySamples', () => {
+        it('should return an array of elements of length count', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const samples = faker.helpers.arraySamples(testArray, 3);
+
+          // Check length
+          expect(samples).toHaveLength(3);
+
+          // Check elements
+          for (const element of samples) {
+            expect(testArray).toContain(element);
+          }
+        });
+
+        it('should return exactly count elements when count is 1', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const samples = faker.helpers.arraySamples(testArray, 1);
+
+          expect(samples).toHaveLength(1);
+          expect(testArray).toContain(samples[0]);
+        });
+
+        it('should return an array of elements with a length within the given range', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const samples = faker.helpers.arraySamples(testArray, {
+            min: 2,
+            max: 4,
+          });
+
+          // Check length
+          expect(samples.length).toBeGreaterThanOrEqual(2);
+          expect(samples.length).toBeLessThanOrEqual(4);
+
+          // Check elements
+          for (const element of samples) {
+            expect(testArray).toContain(element);
+          }
+        });
+
+        it('should return an array of exact length when count range min equals max', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const samples = faker.helpers.arraySamples(testArray, {
+            min: 3,
+            max: 3,
+          });
+
+          expect(samples).toHaveLength(3);
+          for (const element of samples) {
+            expect(testArray).toContain(element);
+          }
+        });
+
+        it('should return an array of length equal to count when count > array.length', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const samples = faker.helpers.arraySamples(testArray, 10);
+
+          // Check length is not bounded by array.length
+          expect(samples).toHaveLength(10);
+
+          // Check elements
+          for (const element of samples) {
+            expect(testArray).toContain(element);
+          }
+        });
+
+        it('should return an array of length within range when range min and max > array.length', () => {
+          const testArray = ['hello', 'to', 'you'];
+          const samples = faker.helpers.arraySamples(testArray, {
+            min: 6,
+            max: 9,
+          });
+
+          expect(samples.length).toBeGreaterThanOrEqual(6);
+          expect(samples.length).toBeLessThanOrEqual(9);
+
+          for (const element of samples) {
+            expect(testArray).toContain(element);
+          }
+        });
+
+        it('should allow duplicate elements in the result (sampling with replacement)', () => {
+          const testArray = ['a', 'b'];
+          const samples = faker.helpers.arraySamples(testArray, 5);
+
+          expect(samples).toHaveLength(5);
+          expect(samples).toContainDuplicates();
+
+          for (const element of samples) {
+            expect(testArray).toContain(element);
+          }
+        });
+
+        it('should return an empty array when receiving an empty array and count = 0', () => {
+          const result = faker.helpers.arraySamples([], 0);
+
+          expect(result).toHaveLength(0);
+          expect(result).toEqual([]);
+        });
+
+        it('should return an empty array when receiving an empty array and count > 0', () => {
+          const result = faker.helpers.arraySamples([], 3);
+
+          expect(result).toHaveLength(0);
+          expect(result).toEqual([]);
+        });
+
+        it('should return an empty array when receiving an empty array and count is a range', () => {
+          const result = faker.helpers.arraySamples([], { min: 1, max: 5 });
+
+          expect(result).toHaveLength(0);
+          expect(result).toEqual([]);
+        });
+
+        it('should return an empty array when array length > 0 and count = 0', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const result = faker.helpers.arraySamples(testArray, 0);
+
+          expect(result).toHaveLength(0);
+          expect(result).toEqual([]);
+        });
+
+        it('should return an empty array when count range is { min: 0, max: 0 }', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const result = faker.helpers.arraySamples(testArray, {
+            min: 0,
+            max: 0,
+          });
+
+          expect(result).toHaveLength(0);
+          expect(result).toEqual([]);
+        });
+
+        it('should return the only element repeated count times when there is only 1 element', () => {
+          const testArray = ['hello'];
+          const actual = faker.helpers.arraySamples(testArray, 4);
+
+          expect(actual).toEqual(['hello', 'hello', 'hello', 'hello']);
+        });
+
+        it('should preserve object references from the original array', () => {
+          const item1 = { id: 1, name: 'first' };
+          const item2 = { id: 2, name: 'second' };
+          const testArray = [item1, item2];
+
+          const samples = faker.helpers.arraySamples(testArray, 5);
+
+          expect(samples).toHaveLength(5);
+          for (const item of samples) {
+            expect(testArray).toContain(item);
+          }
+        });
+
+        it('should not mutate the input array', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const copy = [...testArray];
+
+          faker.helpers.arraySamples(testArray, 10);
+
+          expect(testArray).toEqual(copy);
+        });
+
+        it('should not throw with a frozen array', () => {
+          const testArray = Object.freeze(['ice', 'snow', 'frost']);
+
+          expect(() => faker.helpers.arraySamples(testArray, 5)).not.toThrow();
+          const samples = faker.helpers.arraySamples(testArray, 5);
+          expect(samples).toHaveLength(5);
+
+          for (const item of samples) {
+            expect(testArray).toContain(item);
+          }
+        });
+
+        it('should return each element with a somewhat equal distribution with 2 elements', () => {
+          const input = Array.from({ length: 2 }, (_, i) => i);
+          const occurrences = Array.from({ length: 2 }, () => 0);
+
+          for (let i = 0; i < 1000; i++) {
+            const [result] = faker.helpers.arraySamples(input, 1);
+            occurrences[result]++;
+          }
+
+          for (const occurrence of occurrences) {
+            expect(occurrence).toBeGreaterThanOrEqual(400);
+            expect(occurrence).toBeLessThanOrEqual(600);
+          }
+        });
+
+        it.each([10, 100, 1000])(
+          'should return each element with a somewhat equal distribution with %s elements',
+          (length) => {
+            const input = Array.from({ length }, (_, i) => i % 10);
+            const occurrences = Array.from({ length: 10 }, () => 0);
+
+            for (let i = 0; i < 1000; i++) {
+              const [result] = faker.helpers.arraySamples(input, 1);
+              occurrences[result]++;
+            }
+
+            for (const occurrence of occurrences) {
+              expect(occurrence).toBeGreaterThanOrEqual(50);
+              expect(occurrence).toBeLessThanOrEqual(150);
+            }
+          }
+        );
+
+        describe('should not throw on an array with nullish elements', () => {
+          it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
+            expect(() =>
+              faker.helpers.arraySamples(
+                [nullishValue, nullishValue, nullishValue],
+                2
+              )
+            ).not.toThrow();
+
+            const samples = faker.helpers.arraySamples([nullishValue], 3);
+            expect(samples).toEqual([nullishValue, nullishValue, nullishValue]);
           });
         });
       });
