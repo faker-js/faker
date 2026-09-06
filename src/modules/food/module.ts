@@ -33,7 +33,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   adjective(): string {
-    return foodAdjective(this.faker.fakerCore);
+    return foodAdjective(this.fakerCore);
   }
 
   /**
@@ -45,7 +45,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   description(): string {
-    return foodDescription(this.faker.fakerCore);
+    return foodDescription(this.fakerCore);
   }
 
   /**
@@ -57,7 +57,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   dish(): string {
-    return foodDish(this.faker.fakerCore);
+    return foodDish(this.fakerCore);
   }
 
   /**
@@ -69,7 +69,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   ethnicCategory(): string {
-    return foodEthnicCategory(this.faker.fakerCore);
+    return foodEthnicCategory(this.fakerCore);
   }
 
   /**
@@ -81,7 +81,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   fruit(): string {
-    return foodFruit(this.faker.fakerCore);
+    return foodFruit(this.fakerCore);
   }
 
   /**
@@ -93,7 +93,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   ingredient(): string {
-    return foodIngredient(this.faker.fakerCore);
+    return foodIngredient(this.fakerCore);
   }
 
   /**
@@ -105,7 +105,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   meat(): string {
-    return foodMeat(this.faker.fakerCore);
+    return foodMeat(this.fakerCore);
   }
 
   /**
@@ -117,7 +117,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   spice(): string {
-    return foodSpice(this.faker.fakerCore);
+    return foodSpice(this.fakerCore);
   }
 
   /**
@@ -129,6 +129,6 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   vegetable(): string {
-    return foodVegetable(this.faker.fakerCore);
+    return foodVegetable(this.fakerCore);
   }
 }

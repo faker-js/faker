@@ -90,7 +90,7 @@ export class InternetModule extends ModuleBase {
       allowSpecialCharacters?: boolean;
     } = {}
   ): string {
-    return internetEmail(this.faker.fakerCore, options);
+    return internetEmail(this.fakerCore, options);
   }
 
   /**
@@ -133,7 +133,7 @@ export class InternetModule extends ModuleBase {
       allowSpecialCharacters?: boolean;
     } = {}
   ): string {
-    return internetExampleEmail(this.faker.fakerCore, options);
+    return internetExampleEmail(this.fakerCore, options);
   }
 
   /**
@@ -176,7 +176,7 @@ export class InternetModule extends ModuleBase {
       lastName?: string;
     } = {}
   ): string {
-    return internetUsername(this.faker.fakerCore, options);
+    return internetUsername(this.fakerCore, options);
   }
 
   /**
@@ -217,7 +217,7 @@ export class InternetModule extends ModuleBase {
       lastName?: string;
     } = {}
   ): string {
-    return internetDisplayName(this.faker.fakerCore, options);
+    return internetDisplayName(this.fakerCore, options);
   }
 
   /**
@@ -229,7 +229,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.1.5
    */
   protocol(): 'http' | 'https' {
-    return internetProtocol(this.faker.fakerCore);
+    return internetProtocol(this.fakerCore);
   }
 
   /**
@@ -249,7 +249,7 @@ export class InternetModule extends ModuleBase {
    * @since 5.4.0
    */
   httpMethod(): 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' {
-    return internetHttpMethod(this.faker.fakerCore);
+    return internetHttpMethod(this.fakerCore);
   }
 
   /**
@@ -274,7 +274,7 @@ export class InternetModule extends ModuleBase {
       types?: ReadonlyArray<HTTPStatusCodeType>;
     } = {}
   ): number {
-    return internetHttpStatusCode(this.faker.fakerCore, options);
+    return internetHttpStatusCode(this.fakerCore, options);
   }
 
   /**
@@ -307,7 +307,7 @@ export class InternetModule extends ModuleBase {
       protocol?: HTTPProtocolType;
     } = {}
   ): string {
-    return internetUrl(this.faker.fakerCore, options);
+    return internetUrl(this.fakerCore, options);
   }
 
   /**
@@ -319,7 +319,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainName(): string {
-    return internetDomainName(this.faker.fakerCore);
+    return internetDomainName(this.fakerCore);
   }
 
   /**
@@ -332,7 +332,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainSuffix(): string {
-    return internetDomainSuffix(this.faker.fakerCore);
+    return internetDomainSuffix(this.fakerCore);
   }
 
   /**
@@ -345,7 +345,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainWord(): string {
-    return internetDomainWord(this.faker.fakerCore);
+    return internetDomainWord(this.fakerCore);
   }
 
   /**
@@ -358,7 +358,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   ip(): string {
-    return internetIp(this.faker.fakerCore);
+    return internetIp(this.fakerCore);
   }
 
   /**
@@ -445,7 +445,7 @@ export class InternetModule extends ModuleBase {
   ipv4(
     options: { cidrBlock?: string; network?: IPv4NetworkType } = {}
   ): string {
-    return internetIpv4(this.faker.fakerCore, options);
+    return internetIpv4(this.fakerCore, options);
   }
 
   /**
@@ -457,7 +457,7 @@ export class InternetModule extends ModuleBase {
    * @since 4.0.0
    */
   ipv6(): string {
-    return internetIpv6(this.faker.fakerCore);
+    return internetIpv6(this.fakerCore);
   }
 
   /**
@@ -469,7 +469,7 @@ export class InternetModule extends ModuleBase {
    * @since 5.4.0
    */
   port(): number {
-    return internetPort(this.faker.fakerCore);
+    return internetPort(this.fakerCore);
   }
 
   /**
@@ -482,7 +482,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   userAgent(): string {
-    return internetUserAgent(this.faker.fakerCore);
+    return internetUserAgent(this.fakerCore);
   }
 
   /**
@@ -550,7 +550,7 @@ export class InternetModule extends ModuleBase {
           separator?: string;
         } = {}
   ): string {
-    return internetMac(this.faker.fakerCore, options);
+    return internetMac(this.fakerCore, options);
   }
 
   /**
@@ -602,7 +602,7 @@ export class InternetModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return internetPassword(this.faker.fakerCore, options);
+    return internetPassword(this.fakerCore, options);
   }
 
   /**
@@ -627,7 +627,7 @@ export class InternetModule extends ModuleBase {
       types?: ReadonlyArray<EmojiType>;
     } = {}
   ): string {
-    return internetEmoji(this.faker.fakerCore, options);
+    return internetEmoji(this.fakerCore, options);
   }
 
   /**
@@ -642,7 +642,7 @@ export class InternetModule extends ModuleBase {
    * @since 9.1.0
    */
   jwtAlgorithm(): string {
-    return internetJwtAlgorithm(this.faker.fakerCore);
+    return internetJwtAlgorithm(this.fakerCore);
   }
 
   /**
@@ -701,6 +701,6 @@ export class InternetModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return internetJwt(this.faker.fakerCore, options);
+    return internetJwt(this.fakerCore, options);
   }
 }

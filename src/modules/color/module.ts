@@ -43,7 +43,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   human(): string {
-    return colorHuman(this.faker.fakerCore);
+    return colorHuman(this.fakerCore);
   }
 
   /**
@@ -56,7 +56,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   space(): string {
-    return colorSpace(this.faker.fakerCore);
+    return colorSpace(this.fakerCore);
   }
 
   /**
@@ -68,7 +68,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   cssSupportedFunction(): CssFunctionType {
-    return colorCssSupportedFunction(this.faker.fakerCore);
+    return colorCssSupportedFunction(this.fakerCore);
   }
 
   /**
@@ -80,7 +80,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   cssSupportedSpace(): CssSpaceType {
-    return colorCssSupportedSpace(this.faker.fakerCore);
+    return colorCssSupportedSpace(this.fakerCore);
   }
 
   /**
@@ -228,7 +228,7 @@ export class ColorModule extends ModuleBase {
       includeAlpha?: boolean;
     } = {}
   ): string | number[] {
-    return colorRgb(this.faker.fakerCore, options);
+    return colorRgb(this.fakerCore, options);
   }
 
   /**
@@ -304,7 +304,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   cmyk(options: { format?: ColorFormat } = {}): string | number[] {
-    return colorCmyk(this.faker.fakerCore, options);
+    return colorCmyk(this.fakerCore, options);
   }
 
   /**
@@ -412,7 +412,7 @@ export class ColorModule extends ModuleBase {
       includeAlpha?: boolean;
     } = {}
   ): string | number[] {
-    return colorHsl(this.faker.fakerCore, options);
+    return colorHsl(this.fakerCore, options);
   }
 
   /**
@@ -511,7 +511,7 @@ export class ColorModule extends ModuleBase {
       format?: ColorFormat;
     } = {}
   ): string | number[] {
-    return colorHwb(this.faker.fakerCore, options);
+    return colorHwb(this.fakerCore, options);
   }
 
   /**
@@ -587,7 +587,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   lab(options: { format?: ColorFormat } = {}): string | number[] {
-    return colorLab(this.faker.fakerCore, options);
+    return colorLab(this.fakerCore, options);
   }
 
   /**
@@ -675,7 +675,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   lch(options: { format?: ColorFormat } = {}): string | number[] {
-    return colorLch(this.faker.fakerCore, options);
+    return colorLch(this.fakerCore, options);
   }
 
   /**
@@ -777,6 +777,6 @@ export class ColorModule extends ModuleBase {
       space?: CssSpaceType;
     } = {}
   ): string | number[] {
-    return colorColorByCSSColorSpace(this.faker.fakerCore, options);
+    return colorColorByCSSColorSpace(this.fakerCore, options);
   }
 }

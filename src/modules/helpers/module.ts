@@ -43,7 +43,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 2.0.1
    */
   slugify(string: string = ''): string {
-    return helpersSlugify(this.faker.fakerCore, string);
+    return helpersSlugify(this.fakerCore, string);
   }
 
   /**
@@ -65,7 +65,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 3.0.0
    */
   replaceSymbols(string: string = ''): string {
-    return helpersReplaceSymbols(this.faker.fakerCore, string);
+    return helpersReplaceSymbols(this.fakerCore, string);
   }
 
   /**
@@ -87,11 +87,7 @@ export class SimpleHelpersModule extends ModuleBase {
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
   ): string {
-    return helpersReplaceCreditCardSymbols(
-      this.faker.fakerCore,
-      string,
-      symbol
-    );
+    return helpersReplaceCreditCardSymbols(this.fakerCore, string, symbol);
   }
 
   /**
@@ -143,7 +139,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 8.0.0
    */
   fromRegExp(pattern: string | RegExp): string {
-    return helpersFromRegExp(this.faker.fakerCore, pattern);
+    return helpersFromRegExp(this.fakerCore, pattern);
   }
 
   /**
@@ -225,7 +221,7 @@ export class SimpleHelpersModule extends ModuleBase {
     }
   ): T[];
   shuffle<const T>(list: T[], options: { inplace?: boolean } = {}): T[] {
-    return helpersShuffle(this.faker.fakerCore, list, options);
+    return helpersShuffle(this.fakerCore, list, options);
   }
 
   /**
@@ -254,7 +250,7 @@ export class SimpleHelpersModule extends ModuleBase {
     source: ReadonlyArray<T> | (() => T),
     length: number
   ): T[] {
-    return helpersUniqueArray(this.faker.fakerCore, source, length);
+    return helpersUniqueArray(this.fakerCore, source, length);
   }
 
   /**
@@ -277,7 +273,7 @@ export class SimpleHelpersModule extends ModuleBase {
     text: string | undefined,
     data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
-    return helpersMustache(this.faker.fakerCore, text, data);
+    return helpersMustache(this.fakerCore, text, data);
   }
 
   /**
@@ -307,7 +303,7 @@ export class SimpleHelpersModule extends ModuleBase {
       probability?: number;
     } = {}
   ): TResult | undefined {
-    return helpersMaybe(this.faker.fakerCore, callback, options);
+    return helpersMaybe(this.fakerCore, callback, options);
   }
 
   /**
@@ -325,7 +321,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   objectKey<const T extends Record<string, unknown>>(object: T): keyof T {
-    return helpersObjectKey(this.faker.fakerCore, object);
+    return helpersObjectKey(this.fakerCore, object);
   }
 
   /**
@@ -343,7 +339,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   objectValue<const T extends Record<string, unknown>>(object: T): T[keyof T] {
-    return helpersObjectValue(this.faker.fakerCore, object);
+    return helpersObjectValue(this.fakerCore, object);
   }
 
   /**
@@ -363,7 +359,7 @@ export class SimpleHelpersModule extends ModuleBase {
   objectEntry<const T extends Record<string, unknown>>(
     object: T
   ): [keyof T, T[keyof T]] {
-    return helpersObjectEntry(this.faker.fakerCore, object);
+    return helpersObjectEntry(this.fakerCore, object);
   }
 
   /**
@@ -381,7 +377,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   arrayElement<const T>(array: ReadonlyArray<T>): T {
-    return helpersArrayElement(this.faker.fakerCore, array);
+    return helpersArrayElement(this.fakerCore, array);
   }
 
   /**
@@ -418,7 +414,7 @@ export class SimpleHelpersModule extends ModuleBase {
       value: T;
     }>
   ): T {
-    return helpersWeightedArrayElement(this.faker.fakerCore, array);
+    return helpersWeightedArrayElement(this.fakerCore, array);
   }
 
   /**
@@ -439,7 +435,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
-    return helpersArrayElements(this.faker.fakerCore, array, count);
+    return helpersArrayElements(this.fakerCore, array, count);
   }
 
   /**
@@ -466,7 +462,7 @@ export class SimpleHelpersModule extends ModuleBase {
   enumValue<T extends Record<string | number, string | number>>(
     enumObject: T
   ): T[keyof T] {
-    return helpersEnumValue(this.faker.fakerCore, enumObject);
+    return helpersEnumValue(this.fakerCore, enumObject);
   }
 
   /**
@@ -483,7 +479,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 8.0.0
    */
   rangeToNumber(numberOrRange: NumberOrRange): number {
-    return helpersRangeToNumber(this.faker.fakerCore, numberOrRange);
+    return helpersRangeToNumber(this.fakerCore, numberOrRange);
   }
 
   /**
@@ -514,7 +510,7 @@ export class SimpleHelpersModule extends ModuleBase {
       count?: NumberOrRange;
     } = {}
   ): TResult[] {
-    return helpersMultiple(this.faker.fakerCore, method, options);
+    return helpersMultiple(this.fakerCore, method, options);
   }
 }
 

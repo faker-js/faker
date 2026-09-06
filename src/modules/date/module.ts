@@ -47,7 +47,7 @@ export class SimpleDateModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateAnytime(this.faker.fakerCore, options);
+    return dateAnytime(this.fakerCore, options);
   }
 
   /**
@@ -86,7 +86,7 @@ export class SimpleDateModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return datePast(this.faker.fakerCore, options);
+    return datePast(this.fakerCore, options);
   }
 
   /**
@@ -125,7 +125,7 @@ export class SimpleDateModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateFuture(this.faker.fakerCore, options);
+    return dateFuture(this.fakerCore, options);
   }
 
   /**
@@ -153,7 +153,7 @@ export class SimpleDateModule extends ModuleBase {
      */
     to: string | Date | number;
   }): Date {
-    return dateBetween(this.faker.fakerCore, options);
+    return dateBetween(this.fakerCore, options);
   }
 
   /**
@@ -201,7 +201,7 @@ export class SimpleDateModule extends ModuleBase {
      */
     count?: NumberOrRange;
   }): Date[] {
-    return dateBetweens(this.faker.fakerCore, options);
+    return dateBetweens(this.fakerCore, options);
   }
 
   /**
@@ -255,7 +255,7 @@ export class SimpleDateModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateRecent(this.faker.fakerCore, options);
+    return dateRecent(this.fakerCore, options);
   }
 
   /**
@@ -309,7 +309,7 @@ export class SimpleDateModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateSoon(this.faker.fakerCore, options);
+    return dateSoon(this.fakerCore, options);
   }
 
   /**
@@ -454,7 +454,7 @@ export class SimpleDateModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateBirthdate(this.faker.fakerCore, options);
+    return dateBirthdate(this.fakerCore, options);
   }
 }
 
@@ -529,7 +529,7 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    return dateMonth(this.faker.fakerCore, options);
+    return dateMonth(this.fakerCore, options);
   }
 
   /**
@@ -567,7 +567,7 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    return dateWeekday(this.faker.fakerCore, options);
+    return dateWeekday(this.fakerCore, options);
   }
 
   /**
@@ -584,6 +584,6 @@ export class DateModule extends SimpleDateModule {
    * @since 9.0.0
    */
   timeZone(): string {
-    return dateTimeZone(this.faker.fakerCore);
+    return dateTimeZone(this.fakerCore);
   }
 }

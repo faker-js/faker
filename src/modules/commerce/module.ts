@@ -37,7 +37,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   department(): string {
-    return commerceDepartment(this.faker.fakerCore);
+    return commerceDepartment(this.fakerCore);
   }
 
   /**
@@ -49,7 +49,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productName(): string {
-    return commerceProductName(this.faker.fakerCore);
+    return commerceProductName(this.fakerCore);
   }
 
   /**
@@ -105,7 +105,7 @@ export class CommerceModule extends ModuleBase {
       symbol?: string;
     } = {}
   ): string {
-    return commercePrice(this.faker.fakerCore, options);
+    return commercePrice(this.fakerCore, options);
   }
 
   /**
@@ -117,7 +117,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productAdjective(): string {
-    return commerceProductAdjective(this.faker.fakerCore);
+    return commerceProductAdjective(this.fakerCore);
   }
 
   /**
@@ -129,7 +129,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productMaterial(): string {
-    return commerceProductMaterial(this.faker.fakerCore);
+    return commerceProductMaterial(this.fakerCore);
   }
 
   /**
@@ -141,7 +141,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   product(): string {
-    return commerceProduct(this.faker.fakerCore);
+    return commerceProduct(this.fakerCore);
   }
 
   /**
@@ -153,7 +153,7 @@ export class CommerceModule extends ModuleBase {
    * @since 5.0.0
    */
   productDescription(): string {
-    return commerceProductDescription(this.faker.fakerCore);
+    return commerceProductDescription(this.fakerCore);
   }
 
   /**
@@ -196,7 +196,7 @@ export class CommerceModule extends ModuleBase {
           separator?: string;
         } = {}
   ): string {
-    return commerceIsbn(this.faker.fakerCore, options);
+    return commerceIsbn(this.fakerCore, options);
   }
 
   /**
@@ -226,6 +226,6 @@ export class CommerceModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return commerceUpc(this.faker.fakerCore, options);
+    return commerceUpc(this.fakerCore, options);
   }
 }
