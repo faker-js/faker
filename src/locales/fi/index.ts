@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
-import cell_phone from './cell_phone';
 import location from './location';
 import metadata from './metadata';
 import person from './person';
@@ -16,7 +15,6 @@ import phone_number from './phone_number';
  * - Endonym: suomi
  */
 const fi: LocaleDefinition = {
-  cell_phone,
   location,
   metadata,
   person,

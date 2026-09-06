@@ -4,7 +4,6 @@
  */
 import type { LocaleDefinition } from '../../definitions';
 import airline from './airline';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -28,7 +27,6 @@ import word from './word';
  */
 const fa: LocaleDefinition = {
   airline,
-  cell_phone,
   color,
   commerce,
   company,

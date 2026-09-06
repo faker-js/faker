@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
-import cell_phone from './cell_phone';
 import date from './date';
 import internet from './internet';
 import location from './location';
@@ -18,7 +17,6 @@ import phone_number from './phone_number';
  * - Endonym: Hrvatski
  */
 const hr: LocaleDefinition = {
-  cell_phone,
   date,
   internet,
   location,

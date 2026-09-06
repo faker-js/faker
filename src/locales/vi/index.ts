@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
-import cell_phone from './cell_phone';
 import company from './company';
 import date from './date';
 import internet from './internet';
@@ -20,7 +19,6 @@ import phone_number from './phone_number';
  * - Endonym: Tiếng Việt
  */
 const vi: LocaleDefinition = {
-  cell_phone,
   company,
   date,
   internet,

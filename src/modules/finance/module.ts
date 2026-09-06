@@ -1,12 +1,12 @@
 import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
-import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './bitcoin';
+import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './_bitcoin';
 import {
   BitcoinAddressFamily,
   BitcoinAddressSpecs,
   BitcoinNetwork,
-} from './bitcoin';
-import iban from './iban';
+} from './_bitcoin';
+import iban from './_iban';
 
 /**
  * The possible definitions related to currency entries.
