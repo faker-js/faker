@@ -1,4 +1,3 @@
-import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import { anytime as dateAnytime } from './anytime';
@@ -489,10 +488,6 @@ export class DateModule extends SimpleDateModule {
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree date' to update the methods from their respective files.
    */
-
-  constructor(protected readonly faker: Faker) {
-    super(faker);
-  }
 
   /**
    * Returns a random name of a month.
