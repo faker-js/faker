@@ -15,6 +15,8 @@ export class PhoneModule extends ModuleBase {
    * @param options Options object
    * @param options.style Style of the phone number. Defaults to `'human'`.
    *
+   * @throws {Error} If the current locale has no definitions for the given style.
+   *
    * @see faker.string.numeric(): For generating a random string of numbers.
    * @see faker.helpers.fromRegExp(): For generating a phone number matching a regular expression.
    *

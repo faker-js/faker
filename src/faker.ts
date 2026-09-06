@@ -113,6 +113,8 @@ export class Faker extends SimpleFaker {
    * Refer to the `seed()` method for more information.
    * Defaults to a random seed.
    *
+   * @throws {FakerError} If the `locale` option does not contain at least one locale definition.
+   *
    * @example
    * import { Faker, es } from '@faker-js/faker';
    * // const { Faker, es } = require('@faker-js/faker');

@@ -331,6 +331,8 @@ export class WordModule extends ModuleBase {
    *
    * Defaults to `'fail'`.
    *
+   * @throws {FakerError} If no matching word data are available for the current locale.
+   *
    * @example
    * faker.word.sample() // 'incidentally'
    * faker.word.sample(5) // 'fruit'

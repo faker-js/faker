@@ -276,6 +276,8 @@ export class CommerceModule extends ModuleBase {
    * or `13` (13-digit format). Defaults to `13`.
    * @param options.separator The separator to use in the format. Defaults to `'-'`.
    *
+   * @throws {FakerError} If no registrant length is defined for the generated group.
+   *
    * @example
    * faker.commerce.isbn() // '978-0-692-82459-7'
    * faker.commerce.isbn(10) // '1-155-36404-X'

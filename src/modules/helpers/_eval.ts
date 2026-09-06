@@ -55,6 +55,8 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * @param faker The faker instance to resolve array elements.
  * @param entrypoints The entrypoints to use when evaluating the expression.
  *
+ * @throws {FakerError} If the expression is empty or cannot be resolved.
+ *
  * @see faker.helpers.fake() If you wish to have a string with multiple expressions.
  *
  * @example
@@ -110,6 +112,8 @@ export function fakeEval(
  *
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to attempt the call on.
+ *
+ * @throws {FakerError} If the function call is not followed by a dot, an opening parenthesis, or the end of the expression.
  */
 function evalProcessFunction(
   input: string,
@@ -143,6 +147,8 @@ function evalProcessFunction(
  * Tries to find the parameters of a function call.
  *
  * @param input The input string to parse.
+ *
+ * @throws {FakerError} If the closing parenthesis is missing.
  */
 function findParams(input: string): [continueIndex: number, params: unknown[]] {
   let index = input.indexOf(')', 1);
@@ -179,6 +185,8 @@ function findParams(input: string): [continueIndex: number, params: unknown[]] {
  *
  * @param input The input string to parse.
  * @param entrypoints The entrypoints to resolve on.
+ *
+ * @throws {FakerError} If an expression part is empty, or a dot is not followed by a property name.
  */
 function evalProcessExpression(
   input: string,

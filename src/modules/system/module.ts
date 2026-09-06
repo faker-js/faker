@@ -156,6 +156,8 @@ export class SystemModule extends ModuleBase {
    *
    * @param mimeType Valid [mime-type](https://github.com/jshttp/mime-db/blob/master/db.json)
    *
+   * @throws {FakerError} If the given mime type is not supported.
+   *
    * @example
    * faker.system.fileExt() // 'emf'
    * faker.system.fileExt('application/json') // 'json'
