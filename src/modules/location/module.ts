@@ -1,5 +1,5 @@
 import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import { buildingNumber as locationBuildingNumber } from './building-number';
 import { cardinalDirection as locationCardinalDirection } from './cardinal-direction';
 import { city as locationCity } from './city';
@@ -25,7 +25,7 @@ import { zipCode as locationZipCode } from './zip-code';
 /**
  * Module with location functions that don't require localized data
  */
-export class SimpleLocationModule extends SimpleModuleBase {
+export class SimpleLocationModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree location' to update the methods from their respective files.

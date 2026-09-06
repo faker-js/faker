@@ -1,5 +1,5 @@
 import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import { fakeEval } from './_eval';
 import { arrayElement as helpersArrayElement } from './array-element';
@@ -23,7 +23,7 @@ import { weightedArrayElement as helpersWeightedArrayElement } from './weighted-
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
  */
-export class SimpleHelpersModule extends SimpleModuleBase {
+export class SimpleHelpersModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree helpers' to update the methods from their respective files.

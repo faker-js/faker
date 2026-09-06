@@ -1,5 +1,5 @@
 import type { Distributor } from '../../distributors/distributor';
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import { bigInt as numberBigInt } from './big-int';
 import { binary as numberBinary } from './binary';
 import { float as numberFloat } from './float';
@@ -22,7 +22,7 @@ import { romanNumeral as numberRomanNumeral } from './roman-numeral';
  * - For numeric strings of a given length, use [`faker.string.numeric()`](https://fakerjs.dev/api/string.html#numeric).
  * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
-export class NumberModule extends SimpleModuleBase {
+export class NumberModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree number' to update the methods from their respective files.

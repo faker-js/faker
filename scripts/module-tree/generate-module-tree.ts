@@ -80,11 +80,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       .map((c) => c.getText());
 
     const importHelper = new ImportHelper();
-    importHelper.addImports(
-      '../../internal/module-base',
-      'SimpleModuleBase',
-      'ModuleBase'
-    );
+    importHelper.addImports('../../internal/module-base', 'ModuleBase');
     importHelper.addTypeImports('../../faker', 'Faker');
     importHelper.addTypeImports(
       '../../utils/types',
