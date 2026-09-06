@@ -84,12 +84,12 @@ export class SimpleFaker {
     utilsSetDefaultRefDate(this.fakerCore, dateOrSource);
   }
 
-  readonly datatype: DatatypeModule = new DatatypeModule(this);
-  readonly date: SimpleDateModule = new SimpleDateModule(this);
-  readonly helpers: SimpleHelpersModule = new SimpleHelpersModule(this);
-  readonly location: SimpleLocationModule = new SimpleLocationModule(this);
-  readonly number: NumberModule = new NumberModule(this);
-  readonly string: StringModule = new StringModule(this);
+  readonly datatype: DatatypeModule;
+  readonly date: SimpleDateModule;
+  readonly helpers: SimpleHelpersModule;
+  readonly location: SimpleLocationModule;
+  readonly number: NumberModule;
+  readonly string: StringModule;
 
   /**
    * Creates a new instance of SimpleFaker.
@@ -120,6 +120,13 @@ export class SimpleFaker {
    */
   constructor(options?: FakerOptions) {
     this.fakerCore = createFakerCore(options);
+
+    this.datatype = new DatatypeModule(this.fakerCore);
+    this.date = new SimpleDateModule(this.fakerCore);
+    this.helpers = new SimpleHelpersModule(this.fakerCore);
+    this.location = new SimpleLocationModule(this.fakerCore);
+    this.number = new NumberModule(this.fakerCore);
+    this.string = new StringModule(this.fakerCore);
   }
 
   /**

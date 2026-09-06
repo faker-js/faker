@@ -57,31 +57,31 @@ import { SimpleFaker } from './simple-faker';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker extends SimpleFaker {
-  readonly airline: AirlineModule = new AirlineModule(this);
-  readonly animal: AnimalModule = new AnimalModule(this);
-  readonly book: BookModule = new BookModule(this);
-  readonly color: ColorModule = new ColorModule(this);
-  readonly commerce: CommerceModule = new CommerceModule(this);
-  readonly company: CompanyModule = new CompanyModule(this);
-  readonly database: DatabaseModule = new DatabaseModule(this);
-  readonly date: DateModule = new DateModule(this);
-  readonly finance = new FinanceModule(this);
-  readonly food = new FoodModule(this);
-  readonly git: GitModule = new GitModule(this);
-  readonly hacker: HackerModule = new HackerModule(this);
-  readonly helpers: HelpersModule = new HelpersModule(this);
-  readonly image: ImageModule = new ImageModule(this);
-  readonly internet: InternetModule = new InternetModule(this);
-  readonly location: LocationModule = new LocationModule(this);
-  readonly lorem: LoremModule = new LoremModule(this);
-  readonly medical: MedicalModule = new MedicalModule(this);
-  readonly music: MusicModule = new MusicModule(this);
-  readonly person: PersonModule = new PersonModule(this);
-  readonly phone: PhoneModule = new PhoneModule(this);
-  readonly science: ScienceModule = new ScienceModule(this);
-  readonly system: SystemModule = new SystemModule(this);
-  readonly vehicle: VehicleModule = new VehicleModule(this);
-  readonly word: WordModule = new WordModule(this);
+  readonly airline: AirlineModule;
+  readonly animal: AnimalModule;
+  readonly book: BookModule;
+  readonly color: ColorModule;
+  readonly commerce: CommerceModule;
+  readonly company: CompanyModule;
+  readonly database: DatabaseModule;
+  readonly date: DateModule;
+  readonly finance: FinanceModule;
+  readonly food: FoodModule;
+  readonly git: GitModule;
+  readonly hacker: HackerModule;
+  readonly helpers: HelpersModule;
+  readonly image: ImageModule;
+  readonly internet: InternetModule;
+  readonly location: LocationModule;
+  readonly lorem: LoremModule;
+  readonly medical: MedicalModule;
+  readonly music: MusicModule;
+  readonly person: PersonModule;
+  readonly phone: PhoneModule;
+  readonly science: ScienceModule;
+  readonly system: SystemModule;
+  readonly vehicle: VehicleModule;
+  readonly word: WordModule;
 
   get rawDefinitions(): LocaleDefinition {
     return this.fakerCore.locale.raw;
@@ -139,6 +139,32 @@ export class Faker extends SimpleFaker {
         'The locale option must contain at least one locale definition.'
       );
     }
+
+    this.airline = new AirlineModule(this.fakerCore);
+    this.animal = new AnimalModule(this.fakerCore);
+    this.book = new BookModule(this.fakerCore);
+    this.color = new ColorModule(this.fakerCore);
+    this.commerce = new CommerceModule(this.fakerCore);
+    this.company = new CompanyModule(this.fakerCore);
+    this.database = new DatabaseModule(this.fakerCore);
+    this.date = new DateModule(this.fakerCore);
+    this.finance = new FinanceModule(this.fakerCore);
+    this.food = new FoodModule(this.fakerCore);
+    this.git = new GitModule(this.fakerCore);
+    this.hacker = new HackerModule(this.fakerCore);
+    this.helpers = new HelpersModule(this.fakerCore, this);
+    this.image = new ImageModule(this.fakerCore);
+    this.internet = new InternetModule(this.fakerCore);
+    this.location = new LocationModule(this.fakerCore);
+    this.lorem = new LoremModule(this.fakerCore);
+    this.medical = new MedicalModule(this.fakerCore);
+    this.music = new MusicModule(this.fakerCore);
+    this.person = new PersonModule(this.fakerCore);
+    this.phone = new PhoneModule(this.fakerCore);
+    this.science = new ScienceModule(this.fakerCore);
+    this.system = new SystemModule(this.fakerCore);
+    this.vehicle = new VehicleModule(this.fakerCore);
+    this.word = new WordModule(this.fakerCore);
   }
 
   /**
