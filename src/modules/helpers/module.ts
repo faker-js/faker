@@ -1,3 +1,4 @@
+import type { FakerCore } from '../../core';
 import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
@@ -531,8 +532,11 @@ export class HelpersModule extends SimpleHelpersModule {
    * Run 'pnpm run generate:module-tree helpers' to update the methods from their respective files.
    */
 
-  constructor(protected readonly faker: Faker) {
-    super(faker);
+  constructor(
+    protected readonly fakerCore: FakerCore,
+    private readonly faker: Faker
+  ) {
+    super(fakerCore);
   }
 
   /**
