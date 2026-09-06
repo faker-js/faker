@@ -1,21 +1,11 @@
-import type { Faker } from '../faker';
-import type { SimpleFaker } from '../simple-faker';
+import type { FakerCore } from '../core';
 import { bindThisToMemberFunctions } from './bind-this-to-member-functions';
 
 /**
- * Base class for all modules that use a `SimpleFaker` instance.
+ * Base class for all modules.
  */
-export abstract class SimpleModuleBase {
-  constructor(protected readonly faker: SimpleFaker) {
+export abstract class ModuleBase {
+  constructor(protected readonly fakerCore: FakerCore) {
     bindThisToMemberFunctions(this);
-  }
-}
-
-/**
- * Base class for all modules that use a `Faker` instance.
- */
-export abstract class ModuleBase extends SimpleModuleBase {
-  constructor(protected readonly faker: Faker) {
-    super(faker);
   }
 }
