@@ -38,7 +38,7 @@ export class CompanyModule extends ModuleBase {
    * @since 7.4.0
    */
   name(): string {
-    return companyName(this.faker.fakerCore);
+    return companyName(this.fakerCore);
   }
 
   /**
@@ -50,7 +50,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhrase(): string {
-    return companyCatchPhrase(this.faker.fakerCore);
+    return companyCatchPhrase(this.fakerCore);
   }
 
   /**
@@ -62,7 +62,7 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzPhrase(): string {
-    return companyBuzzPhrase(this.faker.fakerCore);
+    return companyBuzzPhrase(this.fakerCore);
   }
 
   /**
@@ -74,7 +74,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseAdjective(): string {
-    return companyCatchPhraseAdjective(this.faker.fakerCore);
+    return companyCatchPhraseAdjective(this.fakerCore);
   }
 
   /**
@@ -86,7 +86,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseDescriptor(): string {
-    return companyCatchPhraseDescriptor(this.faker.fakerCore);
+    return companyCatchPhraseDescriptor(this.fakerCore);
   }
 
   /**
@@ -98,7 +98,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseNoun(): string {
-    return companyCatchPhraseNoun(this.faker.fakerCore);
+    return companyCatchPhraseNoun(this.fakerCore);
   }
 
   /**
@@ -110,7 +110,7 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzAdjective(): string {
-    return companyBuzzAdjective(this.faker.fakerCore);
+    return companyBuzzAdjective(this.fakerCore);
   }
 
   /**
@@ -122,7 +122,7 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzVerb(): string {
-    return companyBuzzVerb(this.faker.fakerCore);
+    return companyBuzzVerb(this.fakerCore);
   }
 
   /**
@@ -134,6 +134,6 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzNoun(): string {
-    return companyBuzzNoun(this.faker.fakerCore);
+    return companyBuzzNoun(this.fakerCore);
   }
 }

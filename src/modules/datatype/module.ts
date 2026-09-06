@@ -44,6 +44,6 @@ export class DatatypeModule extends ModuleBase {
           probability?: number;
         } = {}
   ): boolean {
-    return datatypeBoolean(this.faker.fakerCore, options);
+    return datatypeBoolean(this.fakerCore, options);
   }
 }

@@ -60,7 +60,7 @@ export class StringModule extends ModuleBase {
     characters: string | ReadonlyArray<string>,
     length: NumberOrRange = 1
   ): string {
-    return stringFromCharacters(this.faker.fakerCore, characters, length);
+    return stringFromCharacters(this.fakerCore, characters, length);
   }
 
   /**
@@ -105,7 +105,7 @@ export class StringModule extends ModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
-    return stringAlpha(this.faker.fakerCore, options);
+    return stringAlpha(this.fakerCore, options);
   }
 
   /**
@@ -150,7 +150,7 @@ export class StringModule extends ModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
         } = {}
   ): string {
-    return stringAlphanumeric(this.faker.fakerCore, options);
+    return stringAlphanumeric(this.fakerCore, options);
   }
 
   /**
@@ -187,7 +187,7 @@ export class StringModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringBinary(this.faker.fakerCore, options);
+    return stringBinary(this.fakerCore, options);
   }
 
   /**
@@ -224,7 +224,7 @@ export class StringModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringOctal(this.faker.fakerCore, options);
+    return stringOctal(this.fakerCore, options);
   }
 
   /**
@@ -270,7 +270,7 @@ export class StringModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringHexadecimal(this.faker.fakerCore, options);
+    return stringHexadecimal(this.fakerCore, options);
   }
 
   /**
@@ -319,7 +319,7 @@ export class StringModule extends ModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
         } = {}
   ): string {
-    return stringNumeric(this.faker.fakerCore, options);
+    return stringNumeric(this.fakerCore, options);
   }
 
   /**
@@ -337,7 +337,7 @@ export class StringModule extends ModuleBase {
    * @since 8.0.0
    */
   sample(length: NumberOrRange = 10): string {
-    return stringSample(this.faker.fakerCore, length);
+    return stringSample(this.fakerCore, length);
   }
 
   /**
@@ -429,7 +429,7 @@ export class StringModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return stringUuid(this.faker.fakerCore, options);
+    return stringUuid(this.fakerCore, options);
   }
 
   /**
@@ -460,7 +460,7 @@ export class StringModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return stringUlid(this.faker.fakerCore, options);
+    return stringUlid(this.fakerCore, options);
   }
 
   /**
@@ -478,7 +478,7 @@ export class StringModule extends ModuleBase {
    * @since 8.0.0
    */
   nanoid(length: NumberOrRange = 21): string {
-    return stringNanoid(this.faker.fakerCore, length);
+    return stringNanoid(this.fakerCore, length);
   }
 
   /**
@@ -500,6 +500,6 @@ export class StringModule extends ModuleBase {
    * @since 8.0.0
    */
   symbol(length: NumberOrRange = 1): string {
-    return stringSymbol(this.faker.fakerCore, length);
+    return stringSymbol(this.fakerCore, length);
   }
 }

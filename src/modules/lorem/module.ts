@@ -60,7 +60,7 @@ export class LoremModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return loremWord(this.faker.fakerCore, options);
+    return loremWord(this.fakerCore, options);
   }
 
   /**
@@ -78,7 +78,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   words(wordCount: NumberOrRange = 3): string {
-    return loremWords(this.faker.fakerCore, wordCount);
+    return loremWords(this.fakerCore, wordCount);
   }
 
   /**
@@ -96,7 +96,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   sentence(wordCount: NumberOrRange = { min: 3, max: 10 }): string {
-    return loremSentence(this.faker.fakerCore, wordCount);
+    return loremSentence(this.fakerCore, wordCount);
   }
 
   /**
@@ -114,7 +114,7 @@ export class LoremModule extends ModuleBase {
    * @since 4.0.0
    */
   slug(wordCount: NumberOrRange = 3): string {
-    return loremSlug(this.faker.fakerCore, wordCount);
+    return loremSlug(this.fakerCore, wordCount);
   }
 
   /**
@@ -139,7 +139,7 @@ export class LoremModule extends ModuleBase {
     sentenceCount: NumberOrRange = { min: 2, max: 6 },
     separator: string = ' '
   ): string {
-    return loremSentences(this.faker.fakerCore, sentenceCount, separator);
+    return loremSentences(this.fakerCore, sentenceCount, separator);
   }
 
   /**
@@ -157,7 +157,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   paragraph(sentenceCount: NumberOrRange = 3): string {
-    return loremParagraph(this.faker.fakerCore, sentenceCount);
+    return loremParagraph(this.fakerCore, sentenceCount);
   }
 
   /**
@@ -196,7 +196,7 @@ export class LoremModule extends ModuleBase {
     paragraphCount: NumberOrRange = 3,
     separator: string = '\n'
   ): string {
-    return loremParagraphs(this.faker.fakerCore, paragraphCount, separator);
+    return loremParagraphs(this.fakerCore, paragraphCount, separator);
   }
 
   /**
@@ -214,7 +214,7 @@ export class LoremModule extends ModuleBase {
    * @since 3.1.0
    */
   text(): string {
-    return loremText(this.faker.fakerCore);
+    return loremText(this.fakerCore);
   }
 
   /**
@@ -245,6 +245,6 @@ export class LoremModule extends ModuleBase {
    * @since 3.1.0
    */
   lines(lineCount: NumberOrRange = { min: 1, max: 5 }): string {
-    return loremLines(this.faker.fakerCore, lineCount);
+    return loremLines(this.fakerCore, lineCount);
   }
 }

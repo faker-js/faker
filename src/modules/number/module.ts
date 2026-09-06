@@ -84,7 +84,7 @@ export class NumberModule extends ModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    return numberInt(this.faker.fakerCore, options);
+    return numberInt(this.fakerCore, options);
   }
 
   /**
@@ -147,7 +147,7 @@ export class NumberModule extends ModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    return numberFloat(this.faker.fakerCore, options);
+    return numberFloat(this.fakerCore, options);
   }
 
   /**
@@ -188,7 +188,7 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberBinary(this.faker.fakerCore, options);
+    return numberBinary(this.fakerCore, options);
   }
 
   /**
@@ -229,7 +229,7 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberOctal(this.faker.fakerCore, options);
+    return numberOctal(this.fakerCore, options);
   }
 
   /**
@@ -268,7 +268,7 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberHex(this.faker.fakerCore, options);
+    return numberHex(this.fakerCore, options);
   }
 
   /**
@@ -321,7 +321,7 @@ export class NumberModule extends ModuleBase {
           multipleOf?: bigint | number | string | boolean;
         } = {}
   ): bigint {
-    return numberBigInt(this.faker.fakerCore, options);
+    return numberBigInt(this.fakerCore, options);
   }
 
   /**
@@ -364,6 +364,6 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberRomanNumeral(this.faker.fakerCore, options);
+    return numberRomanNumeral(this.fakerCore, options);
   }
 }

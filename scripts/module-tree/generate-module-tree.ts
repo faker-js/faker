@@ -195,7 +195,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               .map((param) => param.getName());
 
             child.setBodyText(
-              `return ${toCamelCase(moduleName, methodName)}(this.faker.fakerCore, ${params.join(', ')});`
+              `return ${toCamelCase(moduleName, methodName)}(this.fakerCore, ${params.join(', ')});`
             );
           }
 

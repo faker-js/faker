@@ -49,7 +49,7 @@ export class PhoneModule extends ModuleBase {
       style?: 'human' | 'national' | 'international' | 'mobile';
     } = {}
   ): string {
-    return phoneNumber(this.faker.fakerCore, options);
+    return phoneNumber(this.fakerCore, options);
   }
 
   /**
@@ -61,6 +61,6 @@ export class PhoneModule extends ModuleBase {
    * @since 6.2.0
    */
   imei(): string {
-    return phoneImei(this.faker.fakerCore);
+    return phoneImei(this.fakerCore);
   }
 }
