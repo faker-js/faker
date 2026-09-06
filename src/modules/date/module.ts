@@ -1,5 +1,5 @@
 import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import { anytime as dateAnytime } from './anytime';
 import { between as dateBetween } from './between';
@@ -16,7 +16,7 @@ import { weekday as dateWeekday } from './weekday';
 /**
  * Module to generate dates (without methods requiring localized data).
  */
-export class SimpleDateModule extends SimpleModuleBase {
+export class SimpleDateModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree date' to update the methods from their respective files.
