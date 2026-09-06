@@ -1,4 +1,3 @@
-import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 import { buildingNumber as locationBuildingNumber } from './building-number';
 import { cardinalDirection as locationCardinalDirection } from './cardinal-direction';
@@ -169,10 +168,6 @@ export class LocationModule extends SimpleLocationModule {
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree location' to update the methods from their respective files.
    */
-
-  constructor(protected readonly faker: Faker) {
-    super(faker);
-  }
 
   /**
    * Generates random zip code from specified format. If format is not specified,
