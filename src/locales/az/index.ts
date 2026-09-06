@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
+import airline from './airline';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -20,6 +21,7 @@ import phone_number from './phone_number';
  * - Endonym: azərbaycan dili
  */
 const az: LocaleDefinition = {
+  airline,
   color,
   commerce,
   company,
