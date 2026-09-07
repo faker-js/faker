@@ -11,7 +11,9 @@ import { rangeToNumber } from './range-to-number';
  *
  * @param fakerCore The FakerCore to use.
  * @param array Array to pick the value from.
+ *      when an empty array is provided, an empty array is returned.
  * @param count Number or range of elements to pick.
+ *      when count is 0 or less, an empty array is returned.
  *
  * @example
  * arraySamples(fakerCore, ['cat', 'dog', 'mouse'], 1) // ['mouse']
