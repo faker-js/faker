@@ -1,6 +1,6 @@
 export default [
   'Alabalıq',
-  'Beluqa nərəsi',
+  'Bölgə',
   'Kefal',
   'Kütüm',
   'Ling',
@@ -11,7 +11,7 @@ export default [
   'Siyənək',
   'Skumbriya',
   'Som',
-  'Sudak',
+  'Sıf',
   'Ton balığı',
   'Çapaq',
   'Şamayka',

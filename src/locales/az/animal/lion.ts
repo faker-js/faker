@@ -2,7 +2,7 @@ export default [
   'Afrika aslanı',
   'Asiya aslanı',
   'Berberiya aslanı',
-  'Keyp aslanı',
+  'Kap aslanı',
   'Konqo aslanı',
   'Transvaal aslanı',
 ];

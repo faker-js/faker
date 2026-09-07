@@ -7,6 +7,6 @@ export default [
   'Holland cırtdan dovşanı',
   'Kaliforniya dovşanı',
   'Polşa dovşanı',
-  'Rex dovşanı',
+  'Reks dovşanı',
   'Yeni Zelandiya dovşanı',
 ];

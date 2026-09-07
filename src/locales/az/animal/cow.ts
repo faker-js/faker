@@ -6,9 +6,9 @@ export default [
   'Hereford inəyi',
   'Holştin inəyi',
   'Limuzin inəyi',
-  'Qafqaz qonur inəyi',
   'Qalloway inəyi',
+  'Qonur Qafqaz inəyi',
   'Simmental inəyi',
   'Şarole inəyi',
-  'Şvits inəyi',
+  'Şvis inəyi',
 ];

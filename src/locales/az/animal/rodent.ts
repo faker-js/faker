@@ -1,10 +1,10 @@
 export default [
-  'Dikobraz',
   'Dələ',
   'Hamster',
   'Kapibara',
   'Kor siçan',
   'Marmot',
+  'Oxlu kirpi',
   'Qunduz',
   'Siçan',
   'Sıçovul',
