@@ -450,19 +450,17 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @template T The type of the elements to pick from.
    *
    * @param array Array to pick the value from.
-   *      when an empty array is provided, an empty array is returned.
    * @param count Number or range of elements to pick.
-   *      when count is 0 or less, an empty array is returned.
+   *     When count is 0 or less, an empty array is returned.
+   *
+   * @throws {FakerError} If the given array is empty.
    *
    * @example
-   * arraySamples(fakerCore, ['cat', 'dog', 'mouse'], 1) // ['mouse']
-   * arraySamples(fakerCore, [1, 2, 3, 4, 5], 2) // [4, 2]
-   * arraySamples(fakerCore, [1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 5]
-   * arraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
+   * faker.helpers.arraySamples(["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
+   * faker.helpers.arraySamples([1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
+   * faker.helpers.arraySamples(["a", "b", "c"], 0) // []
    *
    * @since 11.0.0
-   *
-   * @experimental
    */
   arraySamples<const T>(array: ReadonlyArray<T>, count: NumberOrRange): T[] {
     return helpersArraySamples(this.faker.fakerCore, array, count);

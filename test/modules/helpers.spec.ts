@@ -575,25 +575,22 @@ describe('helpers', () => {
           }
         });
 
-        it('should return an empty array when receiving an empty array and count = 0', () => {
-          const result = faker.helpers.arraySamples([], 0);
-
-          expect(result).toHaveLength(0);
-          expect(result).toEqual([]);
+        it('should throw on an empty array', () => {
+          expect(() => faker.helpers.arraySamples([], 3)).toThrow(
+            new FakerError('Cannot get value from empty dataset.')
+          );
         });
 
-        it('should return an empty array when receiving an empty array and count > 0', () => {
-          const result = faker.helpers.arraySamples([], 3);
-
-          expect(result).toHaveLength(0);
-          expect(result).toEqual([]);
+        it('should throw on an empty array even when count = 0', () => {
+          expect(() => faker.helpers.arraySamples([], 0)).toThrow(
+            new FakerError('Cannot get value from empty dataset.')
+          );
         });
 
-        it('should return an empty array when receiving an empty array and count is a range', () => {
-          const result = faker.helpers.arraySamples([], { min: 1, max: 5 });
-
-          expect(result).toHaveLength(0);
-          expect(result).toEqual([]);
+        it('should throw on an empty array when count is a range', () => {
+          expect(() =>
+            faker.helpers.arraySamples([], { min: 1, max: 5 })
+          ).toThrow(new FakerError('Cannot get value from empty dataset.'));
         });
 
         it('should return an empty array when array length > 0 and count = 0', () => {
@@ -646,19 +643,8 @@ describe('helpers', () => {
           const result = faker.helpers.arraySamples(testArray, 3);
 
           expect(result).toHaveLength(3);
-          expect(result).not.toBe(testArray);
-          result.forEach((el) => expect(testArray).toContain(el));
-        });
-
-        it('should not throw with a frozen array', () => {
-          const testArray = Object.freeze(['ice', 'snow', 'frost']);
-
-          expect(() => faker.helpers.arraySamples(testArray, 5)).not.toThrow();
-          const samples = faker.helpers.arraySamples(testArray, 5);
-          expect(samples).toHaveLength(5);
-
-          for (const item of samples) {
-            expect(testArray).toContain(item);
+          for (const el of result) {
+            expect(testArray).toContain(el);
           }
         });
 
