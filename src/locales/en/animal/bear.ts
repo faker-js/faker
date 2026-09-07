@@ -1,8 +1,8 @@
 export default [
   'American black bear',
   'Asian black bear',
-  'Giant panda',
   'Brown bear',
+  'Giant panda',
   'Polar bear',
   'Sloth bear',
   'Spectacled bear',
