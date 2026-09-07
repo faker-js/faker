@@ -4,6 +4,7 @@ import type { NumberOrRange } from '../../utils/types';
 import { fakeEval } from './_eval';
 import { arrayElement as helpersArrayElement } from './array-element';
 import { arrayElements as helpersArrayElements } from './array-elements';
+import { arraySamples as helpersArraySamples } from './array-samples';
 import { enumValue as helpersEnumValue } from './enum-value';
 import { fromRegExp as helpersFromRegExp } from './from-reg-exp';
 import { maybe as helpersMaybe } from './maybe';
@@ -456,24 +457,10 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * faker.helpers.arraySamples([1, 2, 3, 4, 5], 2) // [4, 2]
    * faker.helpers.arraySamples([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 5]
    *
-   * @since 10.6.0
+   * @since 11.0.0
    */
   arraySamples<const T>(array: ReadonlyArray<T>, count: NumberOrRange): T[] {
-    const result: T[] = [];
-
-    if (array.length === 0 || count === 0) {
-      return result;
-    }
-
-    const numElements = this.rangeToNumber(count);
-
-    for (let i = 0; i < numElements; i++) {
-      result.push(
-        array[this.faker.number.int({ min: 0, max: array.length - 1 })]
-      );
-    }
-
-    return result;
+    return helpersArraySamples(this.faker.fakerCore, array, count);
   }
 
   /**
