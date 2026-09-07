@@ -29,7 +29,6 @@ export interface FakerCore {
 }
 
 export interface FakerOptions {
-
   /**
    * The locale definitions to use. If not provided, this core will not have any locale data and thus all methods that rely on locale data will throw an error when called.
    *
