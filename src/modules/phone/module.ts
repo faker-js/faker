@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import { legacyReplaceSymbolWithNumber } from '../helpers';
+import { legacyReplaceSymbolWithNumber } from '../helpers/_legacy-replace-symbol-with-number';
 
 /**
  * Module to generate phone-related data.
@@ -50,7 +50,7 @@ export class PhoneModule extends ModuleBase {
     }
 
     const format = this.faker.helpers.arrayElement(definitions);
-    return legacyReplaceSymbolWithNumber(this.faker, format);
+    return legacyReplaceSymbolWithNumber(this.faker.fakerCore, format);
   }
 
   /**

@@ -1,5 +1,5 @@
 import { isHexadecimal, isOctal } from 'validator';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -866,10 +866,7 @@ describe('number', () => {
       )(
         'should generate a Roman numeral %s for value %d',
         (expected: string, value: number) => {
-          const mock = vi.spyOn(faker.number, 'int');
-          mock.mockReturnValue(value);
-          const actual = faker.number.romanNumeral();
-          mock.mockRestore();
+          const actual = faker.number.romanNumeral({ min: value, max: value });
           expect(actual).toBe(expected);
         }
       );

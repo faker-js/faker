@@ -19,6 +19,7 @@ import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
+import { MedicalModule } from './modules/medical';
 import { MusicModule } from './modules/music';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
@@ -73,6 +74,7 @@ export class Faker extends SimpleFaker {
   readonly internet: InternetModule = new InternetModule(this);
   readonly location: LocationModule = new LocationModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
+  readonly medical: MedicalModule = new MedicalModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);

@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`medical > 42 > allergen 1`] = `"Grass"`;
+
+exports[`medical > 42 > bloodType 1`] = `"AB+"`;
+
+exports[`medical > 42 > condition 1`] = `"Gastritis"`;
+
+exports[`medical > 42 > department 1`] = `"Maternity Ward"`;
+
+exports[`medical > 42 > drugName 1`] = `"Lumevor"`;
+
+exports[`medical > 42 > procedure 1`] = `"Heart Transplant"`;
+
+exports[`medical > 42 > specialty 1`] = `"Infectious Disease"`;
+
+exports[`medical > 42 > symptom 1`] = `"Fluid Drainage"`;
+
+exports[`medical > 1211 > allergen 1`] = `"Sulfites"`;
+
+exports[`medical > 1211 > bloodType 1`] = `"O-"`;
+
+exports[`medical > 1211 > condition 1`] = `"Thyroid Cancer"`;
+
+exports[`medical > 1211 > department 1`] = `"Sleep Lab"`;
+
+exports[`medical > 1211 > drugName 1`] = `"Zentanix"`;
+
+exports[`medical > 1211 > procedure 1`] = `"Tympanoplasty"`;
+
+exports[`medical > 1211 > specialty 1`] = `"Urology"`;
+
+exports[`medical > 1211 > symptom 1`] = `"Tremor"`;
+
+exports[`medical > 1337 > allergen 1`] = `"Dust Mites"`;
+
+exports[`medical > 1337 > bloodType 1`] = `"AB+"`;
+
+exports[`medical > 1337 > condition 1`] = `"Crohn's Disease"`;
+
+exports[`medical > 1337 > department 1`] = `"Inpatient Ward"`;
+
+exports[`medical > 1337 > drugName 1`] = `"Ixenin"`;
+
+exports[`medical > 1337 > procedure 1`] = `"Defibrillator Implantation"`;
+
+exports[`medical > 1337 > specialty 1`] = `"Gastroenterology"`;
+
+exports[`medical > 1337 > symptom 1`] = `"Discomfort"`;

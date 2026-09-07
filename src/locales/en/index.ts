@@ -7,7 +7,6 @@ import airline from './airline';
 import animal from './animal';
 import app from './app';
 import book from './book';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -19,6 +18,7 @@ import hacker from './hacker';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import medical from './medical';
 import metadata from './metadata';
 import music from './music';
 import person from './person';
@@ -39,7 +39,6 @@ const en: LocaleDefinition = {
   animal,
   app,
   book,
-  cell_phone,
   color,
   commerce,
   company,
@@ -51,6 +50,7 @@ const en: LocaleDefinition = {
   internet,
   location,
   lorem,
+  medical,
   metadata,
   music,
   person,
