@@ -635,13 +635,19 @@ describe('helpers', () => {
           }
         });
 
-        it('should not mutate the input array', () => {
-          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const copy = [...testArray];
+        it('should return sampled elements without mutating the input array', () => {
+          const testArray = Object.freeze([
+            'hello',
+            'to',
+            'you',
+            'my',
+            'friend',
+          ]);
+          const result = faker.helpers.arraySamples(testArray, 3);
 
-          faker.helpers.arraySamples(testArray, 10);
-
-          expect(testArray).toEqual(copy);
+          expect(result).toHaveLength(3);
+          expect(result).not.toBe(testArray);
+          result.forEach((el) => expect(testArray).toContain(el));
         });
 
         it('should not throw with a frozen array', () => {

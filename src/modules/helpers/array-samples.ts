@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { int } from '../number/int';
+import { arrayElement } from './array-element';
 import { rangeToNumber } from './range-to-number';
 
 /**
@@ -17,6 +17,7 @@ import { rangeToNumber } from './range-to-number';
  * arraySamples(fakerCore, ['cat', 'dog', 'mouse'], 1) // ['mouse']
  * arraySamples(fakerCore, [1, 2, 3, 4, 5], 2) // [4, 2]
  * arraySamples(fakerCore, [1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 5]
+ * arraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
  *
  * @since 11.0.0
  *
@@ -29,14 +30,14 @@ export function arraySamples<const T>(
 ): T[] {
   const result: T[] = [];
 
-  if (array.length === 0 || count === 0) {
+  const numElements = rangeToNumber(fakerCore, count);
+
+  if (array.length === 0 || numElements <= 0) {
     return result;
   }
 
-  const numElements = rangeToNumber(fakerCore, count);
-
   for (let i = 0; i < numElements; i++) {
-    result.push(array[int(fakerCore, { min: 0, max: array.length - 1 })]);
+    result.push(arrayElement(fakerCore, array));
   }
 
   return result;
