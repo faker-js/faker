@@ -3,6 +3,7 @@ export const ALLOWED_MODULES = new Set([
   'AnimalModule',
   'BookModule',
   'ColorModule',
+  'CommerceModule',
   'DatatypeModule',
   'DateModule',
   'HelpersModule',
