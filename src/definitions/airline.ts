@@ -1,4 +1,6 @@
-import type { Airline, Airplane, Airport } from '../modules/airline';
+import type { Airline } from '../modules/airline/airline';
+import type { Airplane } from '../modules/airline/airplane';
+import type { Airport } from '../modules/airline/airport';
 import type { LocaleEntry } from './definitions';
 
 export type AirlineDefinition = LocaleEntry<{
