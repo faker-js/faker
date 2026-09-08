@@ -1,5 +1,4 @@
 import { FakerError } from '../../errors/faker-error';
-import { groupBy } from '../../internal/group-by';
 import type {
   LengthStrategyType,
   NumberOrRange,
@@ -16,7 +15,7 @@ const STRATEGIES = {
     throw new FakerError('No words found that match the given length.');
   },
   closest: (wordList: ReadonlyArray<string>, length: NumberRange): string[] => {
-    const wordsByLength = groupBy(wordList, (word) => word.length);
+    const wordsByLength = Object.groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
     const closestBelow = Math.max(
       ...lengths.filter((wordLength) => wordLength < length.min)

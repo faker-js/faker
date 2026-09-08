@@ -8,7 +8,6 @@ import type {
   Project,
 } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
-import { groupBy } from '../../../src/internal/group-by';
 import { newProcessingError } from './error';
 import type {
   RawApiDocsSignature,
@@ -98,7 +97,10 @@ export function processInterfaceMethods(
 function processMethodSignatures(
   methods: MethodSignature[]
 ): RawApiDocsMethod[] {
-  const groupedSignatures = groupBy(methods, (v) => v.getName());
+  const groupedSignatures = Object.groupBy(
+    methods,
+    (v) => v.getName()
+  ) as Record<string, MethodSignature[]>;
 
   const methodLikes: NamedMethodLikeDeclaration[] = Object.values(
     groupedSignatures
