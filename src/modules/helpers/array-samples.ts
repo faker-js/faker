@@ -6,7 +6,7 @@ import { rangeToNumber } from './range-to-number';
 
 /**
  * Returns an array of elements sampled from the given array with replacement.
- * Elements may appear more than once.
+ * Elements may therefore appear more than once.
  *
  * @template T The type of the elements to pick from.
  *
@@ -16,6 +16,8 @@ import { rangeToNumber } from './range-to-number';
  *     When count is 0 or less, an empty array is returned.
  *
  * @throws {FakerError} If the given array is empty.
+ *
+ * @see arrayElements(fakerCore): For generating an array of elements without replacement.
  *
  * @example
  * arraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]

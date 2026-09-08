@@ -432,6 +432,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
    *
+   * @see faker.helpers.arraySamples(): For generating an array of elements with replacement.
+   *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
@@ -445,7 +447,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
 
   /**
    * Returns an array of elements sampled from the given array with replacement.
-   * Elements may appear more than once.
+   * Elements may therefore appear more than once.
    *
    * @template T The type of the elements to pick from.
    *
@@ -454,6 +456,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *     When count is 0 or less, an empty array is returned.
    *
    * @throws {FakerError} If the given array is empty.
+   *
+   * @see faker.helpers.arrayElements(): For generating an array of elements without replacement.
    *
    * @example
    * faker.helpers.arraySamples(["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
