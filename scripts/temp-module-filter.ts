@@ -15,6 +15,7 @@ export const ALLOWED_MODULES = new Set([
   'LocationModule',
   'LoremModule',
   'MedicalModule',
+  'MusicModule',
   'NumberModule',
   'PersonModule',
   'StringModule',
