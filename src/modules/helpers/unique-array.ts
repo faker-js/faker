@@ -21,6 +21,7 @@ import { shuffle } from './shuffle';
  * uniqueArray(fakerCore, faker.word.sample, 3) // ['mob', 'junior', 'ripe']
  * uniqueArray(fakerCore, fakerCore.locale.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
  * uniqueArray(fakerCore, ["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
+ * uniqueArray(fakerCore, ["one"], 1000) // ['one']
  *
  * @since 11.0.0
  *
