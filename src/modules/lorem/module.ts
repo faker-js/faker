@@ -1,6 +1,14 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { filterWordListByLength } from '../word/_filter-word-list-by-length';
+import { lines as loremLines } from './lines';
+import { paragraph as loremParagraph } from './paragraph';
+import { paragraphs as loremParagraphs } from './paragraphs';
+import { sentence as loremSentence } from './sentence';
+import { sentences as loremSentences } from './sentences';
+import { slug as loremSlug } from './slug';
+import { text as loremText } from './text';
+import { word as loremWord } from './word';
+import { words as loremWords } from './words';
 
 /**
  * Module to generate random texts and words.
@@ -14,6 +22,11 @@ import { filterWordListByLength } from '../word/_filter-word-list-by-length';
  * The generic [`text()`](https://fakerjs.dev/api/lorem.html#text) method can be used to generate some text between one sentence and multiple paragraphs, while [`slug()`](https://fakerjs.dev/api/lorem.html#slug) generates an URL-friendly hyphenated string.
  */
 export class LoremModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree lorem' to update the methods from their respective files.
+   */
+
   /**
    * Generates a word of a specified length.
    *
@@ -47,16 +60,7 @@ export class LoremModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    if (typeof options === 'number') {
-      options = { length: options };
-    }
-
-    return this.faker.helpers.arrayElement(
-      filterWordListByLength({
-        ...options,
-        wordList: this.faker.definitions.lorem.word,
-      })
-    );
+    return loremWord(this.faker.fakerCore, options);
   }
 
   /**
@@ -74,9 +78,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   words(wordCount: NumberOrRange = 3): string {
-    return this.faker.helpers
-      .multiple(() => this.word(), { count: wordCount })
-      .join(' ');
+    return loremWords(this.faker.fakerCore, wordCount);
   }
 
   /**
@@ -94,8 +96,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   sentence(wordCount: NumberOrRange = { min: 3, max: 10 }): string {
-    const sentence = this.words(wordCount);
-    return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
+    return loremSentence(this.faker.fakerCore, wordCount);
   }
 
   /**
@@ -113,8 +114,7 @@ export class LoremModule extends ModuleBase {
    * @since 4.0.0
    */
   slug(wordCount: NumberOrRange = 3): string {
-    const words = this.words(wordCount);
-    return this.faker.helpers.slugify(words);
+    return loremSlug(this.faker.fakerCore, wordCount);
   }
 
   /**
@@ -139,9 +139,7 @@ export class LoremModule extends ModuleBase {
     sentenceCount: NumberOrRange = { min: 2, max: 6 },
     separator: string = ' '
   ): string {
-    return this.faker.helpers
-      .multiple(() => this.sentence(), { count: sentenceCount })
-      .join(separator);
+    return loremSentences(this.faker.fakerCore, sentenceCount, separator);
   }
 
   /**
@@ -159,7 +157,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   paragraph(sentenceCount: NumberOrRange = 3): string {
-    return this.sentences(sentenceCount);
+    return loremParagraph(this.faker.fakerCore, sentenceCount);
   }
 
   /**
@@ -198,9 +196,7 @@ export class LoremModule extends ModuleBase {
     paragraphCount: NumberOrRange = 3,
     separator: string = '\n'
   ): string {
-    return this.faker.helpers
-      .multiple(() => this.paragraph(), { count: paragraphCount })
-      .join(separator);
+    return loremParagraphs(this.faker.fakerCore, paragraphCount, separator);
   }
 
   /**
@@ -218,17 +214,7 @@ export class LoremModule extends ModuleBase {
    * @since 3.1.0
    */
   text(): string {
-    const methods: Array<keyof LoremModule> = [
-      'sentence',
-      'sentences',
-      'paragraph',
-      'paragraphs',
-      'lines',
-    ];
-
-    const method = this.faker.helpers.arrayElement(methods);
-
-    return this[method]();
+    return loremText(this.faker.fakerCore);
   }
 
   /**
@@ -259,6 +245,6 @@ export class LoremModule extends ModuleBase {
    * @since 3.1.0
    */
   lines(lineCount: NumberOrRange = { min: 1, max: 5 }): string {
-    return this.sentences(lineCount, '\n');
+    return loremLines(this.faker.fakerCore, lineCount);
   }
 }
