@@ -11,6 +11,7 @@ export const ALLOWED_MODULES = new Set([
   'FoodModule',
   'HackerModule',
   'HelpersModule',
+  'ImageModule',
   'NumberModule',
   'PersonModule',
   'StringModule',
