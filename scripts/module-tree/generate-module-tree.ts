@@ -49,6 +49,12 @@ function patchModuleImports(moduleName: string, importHelper: ImportHelper) {
   }
 }
 
+function patchFileName(methodName: string): string {
+  return methodName === 'nearbyGPSCoordinate'
+    ? 'nearby-gps-coordinate'
+    : toKebabCase(methodName);
+}
+
 // #endregion
 
 const project = getProject();
@@ -141,7 +147,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
         original.remove();
 
         const methodFile = directory.getSourceFileOrThrow(
-          `${toKebabCase(methodName)}.ts`
+          `${patchFileName(methodName)}.ts`
         );
 
         const typesToImport = [
@@ -154,14 +160,14 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
           .map((decl) => decl.getName());
 
         importHelper.addImports(
-          `./${toKebabCase(methodName)}`,
+          `./${patchFileName(methodName)}`,
           methodName === 'sample'
             ? `${moduleName}Sample`
             : `${methodName} as ${toCamelCase(moduleName, methodName)}`
         );
         if (typesToImport.length > 0) {
           importHelper.addTypeImports(
-            `./${toKebabCase(methodName)}`,
+            `./${patchFileName(methodName)}`,
             ...typesToImport
           );
         }
