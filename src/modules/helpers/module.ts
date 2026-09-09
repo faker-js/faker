@@ -1,3 +1,4 @@
+import type { FakerCore } from '../../core';
 import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
@@ -252,7 +253,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    * @since 6.0.0
    */
   uniqueArray<const T>(
-    source: ReadonlyArray<T> | (() => T),
+    source: ReadonlyArray<T> | ((fakerCore: FakerCore) => T),
     length: number
   ): T[] {
     return helpersUniqueArray(this.faker.fakerCore, source, length);

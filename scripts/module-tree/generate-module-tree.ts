@@ -31,6 +31,7 @@ function patchModuleImports(moduleName: string, importHelper: ImportHelper) {
     }
     case 'helpers': {
       importHelper.addImports('./_eval', 'fakeEval');
+      importHelper.addTypeImports('../../core', 'FakerCore');
       break;
     }
     case 'image': {
@@ -67,7 +68,7 @@ const directories = project
 const moduleNames = new Set(directories.map((dir) => dir.getBaseName()));
 
 export async function generateModuleTree(onlyModule?: string): Promise<void> {
-  //#region Module
+  //#region Modules
   for (const directory of directories) {
     const moduleName = directory.getBaseName();
 
@@ -187,13 +188,14 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
         const restoreFakerTreeInvocations = (
           _: string,
           module: string,
-          method: string
+          method: string,
+          suffix: string = ''
         ): string =>
           methodNames.has(`${module}${method}`)
-            ? `faker.${moduleName}.${module}${method}(`
+            ? `faker.${moduleName}.${module}${method}${suffix}`
             : moduleNames.has(module)
-              ? `faker.${module}.${toCamelCase(method)}(`
-              : `faker.${module}${method}(`;
+              ? `faker.${module}.${toCamelCase(method)}${suffix}`
+              : `faker.${module}${method}${suffix}`;
 
         for (const [index, child] of functions.entries()) {
           //#region Module Functions
@@ -211,6 +213,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             );
           }
 
+          //#region JSDocs
           if (jsDocs) {
             const description = jsDocs
               .getFullText()
@@ -236,7 +239,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               )
               // Method References
               .replaceAll(
-                /\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
+                /\b([a-z]+)([A-Z][a-zA-Z]+)(\()fakerCore(?:, ?|(?=\)))/g,
                 restoreFakerTreeInvocations
               )
               .replaceAll(
@@ -244,11 +247,17 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
                 (_, method: string) =>
                   `faker.${moduleName}.${toCamelCase(method)}(`
               )
+              .replaceAll(
+                /\b([a-z]+)([A-Z][a-zA-Z]+)(, ?|\))/g,
+                restoreFakerTreeInvocations
+              )
               // Locale Access
               .replaceAll(/\bfakerCore\.locale\b/g, 'faker.definitions');
 
             parts.push(description);
           }
+          //#endregion JSDocs
+          //#region Signature+Implementation
 
           const signature = child
             .getSignature()
@@ -263,19 +272,19 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               'faker.defaultRefDate('
             )
             .replaceAll(
-              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
+              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)(\()fakerCore(?:, ?|(?=\)))/g,
               restoreFakerTreeInvocations
             )
             // moduleSample() => sample()
             .replaceAll(new RegExp(`^${moduleName}Sample\\(`, 'g'), 'sample(');
 
           parts.push(signature);
-          //#endregion
+          //#endregion Signature+Implementation
+          //#endregion Module Functions
         }
 
         cls.addMember(parts.join('\n'));
       }
-      //#endregion
 
       const classBody = cls
         .getText()
@@ -287,6 +296,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
 
       content.push(classBody, '');
     }
+    //#endregion Module Classes
 
     importHelper.removeUnusedImports(content.join('\n'));
     patchModuleImports(moduleName, importHelper);
@@ -304,8 +314,8 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       await formatTypescript(content.join('\n')),
       'utf8'
     );
-    //#endregion
+    //#endregion Module
   }
 
-  //#endregion
+  //#endregion Modules
 }

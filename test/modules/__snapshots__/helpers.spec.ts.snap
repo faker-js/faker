@@ -208,6 +208,14 @@ exports[`helpers > 42 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > uniqueArray > with generator function 1`] = `
+[
+  "CyeX//&qXb",
+  ""{n412=QI<",
+  "Y-<CKj3PX%",
+]
+`;
+
 exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
 
 exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
@@ -436,6 +444,14 @@ exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > uniqueArray > with generator function 1`] = `
+[
+  "wt5}_\`hAal",
+  "h]nIqp5W3C",
+  "|hExR{5<bQ",
+]
+`;
+
 exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
 
 exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
@@ -643,6 +659,14 @@ exports[`helpers > 1337 > uniqueArray > with array 1`] = `
   "o",
   " ",
   "H",
+]
+`;
+
+exports[`helpers > 1337 > uniqueArray > with generator function 1`] = `
+[
+  "9/:K>Q9{e+",
+  "D[,|JjjBGW",
+  "g2;_O1G3Rn",
 ]
 `;
 
