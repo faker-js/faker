@@ -62,7 +62,7 @@ const directories = project
 const moduleNames = new Set(directories.map((dir) => dir.getBaseName()));
 
 export async function generateModuleTree(onlyModule?: string): Promise<void> {
-  //#region Module
+  //#region Modules
   for (const directory of directories) {
     const moduleName = directory.getBaseName();
 
@@ -71,7 +71,6 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
     }
 
     console.log(`Processing module: ${moduleName}`);
-    //#region Module
     const moduleFile = directory.getSourceFileOrThrow('module.ts');
 
     const header = moduleFile
@@ -121,7 +120,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
     const content: string[] = [];
     const classes = moduleFile?.getClasses() ?? [];
 
-    //#region Module Classes
+    //#region Classes
     for (const cls of classes) {
       content.push(getJsDocs(cls).getText());
       const methods = cls
@@ -141,6 +140,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
           `${patchFileName(methodName)}.ts`
         );
 
+        //#region Imports
         const typesToImport = [
           methodFile.getEnums(),
           methodFile.getTypeAliases(),
@@ -162,6 +162,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             ...typesToImport
           );
         }
+        //#endregion Imports
 
         const functions = methodFile
           .getChildrenOfKind(SyntaxKind.FunctionDeclaration)
@@ -186,8 +187,8 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               ? `faker.${module}.${toCamelCase(method)}(`
               : `faker.${module}${method}(`;
 
+        //#region Functions
         for (const [index, child] of functions.entries()) {
-          //#region Module Functions
           const jsDocs = child.getJsDocs()[0];
 
           if (child.hasBody()) {
@@ -202,6 +203,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             );
           }
 
+          //#region JSDocs
           if (jsDocs) {
             const description = jsDocs
               .getFullText()
@@ -238,7 +240,9 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
 
             parts.push(description);
           }
+          //#endregion JSDocs
 
+          //#region Signature+Implementation
           const signature = child
             .getSignature()
             .getDeclaration()
@@ -259,12 +263,12 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             .replaceAll(new RegExp(`^${moduleName}Sample\\(`, 'g'), 'sample(');
 
           parts.push(signature);
-          //#endregion
+          //#endregion Signature+Implementation
         }
+        //#endregion Functions
 
         cls.addMember(parts.join('\n'));
       }
-      //#endregion
 
       const classBody = cls
         .getText()
@@ -276,6 +280,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
 
       content.push(classBody, '');
     }
+    //#endregion Classes
 
     importHelper.removeUnusedImports(content.join('\n'));
     patchModuleImports(moduleName, importHelper);
@@ -293,8 +298,6 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       await formatTypescript(content.join('\n')),
       'utf8'
     );
-    //#endregion
   }
-
-  //#endregion
+  //#endregion Modules
 }
