@@ -28,7 +28,7 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   chemicalElement(): ChemicalElement {
-    return scienceChemicalElement(this.faker.fakerCore);
+    return scienceChemicalElement(this.fakerCore);
   }
 
   /**
@@ -42,6 +42,6 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   unit(): Unit {
-    return scienceUnit(this.faker.fakerCore);
+    return scienceUnit(this.fakerCore);
   }
 }

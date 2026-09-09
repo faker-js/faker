@@ -1,4 +1,4 @@
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import { boolean as datatypeBoolean } from './boolean';
 
 /**
@@ -8,7 +8,7 @@ import { boolean as datatypeBoolean } from './boolean';
  *
  * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
  */
-export class DatatypeModule extends SimpleModuleBase {
+export class DatatypeModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree datatype' to update the methods from their respective files.
@@ -44,6 +44,6 @@ export class DatatypeModule extends SimpleModuleBase {
           probability?: number;
         } = {}
   ): boolean {
-    return datatypeBoolean(this.faker.fakerCore, options);
+    return datatypeBoolean(this.fakerCore, options);
   }
 }

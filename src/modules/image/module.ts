@@ -42,7 +42,7 @@ export class ImageModule extends ModuleBase {
    * @since 2.0.1
    */
   avatar(): string {
-    return imageAvatar(this.faker.fakerCore);
+    return imageAvatar(this.fakerCore);
   }
 
   /**
@@ -57,7 +57,7 @@ export class ImageModule extends ModuleBase {
    * @since 8.0.0
    */
   avatarGitHub(): string {
-    return imageAvatarGitHub(this.faker.fakerCore);
+    return imageAvatarGitHub(this.fakerCore);
   }
 
   /**
@@ -93,7 +93,7 @@ export class ImageModule extends ModuleBase {
       size?: 512 | 256 | 128 | 64 | 32;
     } = {}
   ): string {
-    return imagePersonPortrait(this.faker.fakerCore, options);
+    return imagePersonPortrait(this.fakerCore, options);
   }
 
   /**
@@ -126,7 +126,7 @@ export class ImageModule extends ModuleBase {
       height?: number;
     } = {}
   ): string {
-    return imageUrl(this.faker.fakerCore, options);
+    return imageUrl(this.fakerCore, options);
   }
 
   /**
@@ -169,7 +169,7 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
-    return imageUrlLoremFlickr(this.faker.fakerCore, options);
+    return imageUrlLoremFlickr(this.fakerCore, options);
   }
 
   /**
@@ -221,7 +221,7 @@ export class ImageModule extends ModuleBase {
       blur?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     } = {}
   ): string {
-    return imageUrlPicsumPhotos(this.faker.fakerCore, options);
+    return imageUrlPicsumPhotos(this.fakerCore, options);
   }
 
   /**
@@ -268,6 +268,6 @@ export class ImageModule extends ModuleBase {
       type?: 'svg-uri' | 'svg-base64';
     } = {}
   ): string {
-    return imageDataUri(this.faker.fakerCore, options);
+    return imageDataUri(this.fakerCore, options);
   }
 }

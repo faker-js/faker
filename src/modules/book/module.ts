@@ -37,7 +37,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   author(): string {
-    return bookAuthor(this.faker.fakerCore);
+    return bookAuthor(this.fakerCore);
   }
 
   /**
@@ -49,7 +49,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   format(): string {
-    return bookFormat(this.faker.fakerCore);
+    return bookFormat(this.fakerCore);
   }
 
   /**
@@ -61,7 +61,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   genre(): string {
-    return bookGenre(this.faker.fakerCore);
+    return bookGenre(this.fakerCore);
   }
 
   /**
@@ -73,7 +73,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   publisher(): string {
-    return bookPublisher(this.faker.fakerCore);
+    return bookPublisher(this.fakerCore);
   }
 
   /**
@@ -85,7 +85,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   series(): string {
-    return bookSeries(this.faker.fakerCore);
+    return bookSeries(this.fakerCore);
   }
 
   /**
@@ -97,6 +97,6 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   title(): string {
-    return bookTitle(this.faker.fakerCore);
+    return bookTitle(this.fakerCore);
   }
 }

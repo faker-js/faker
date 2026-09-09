@@ -33,7 +33,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   vehicle(): string {
-    return vehicleVehicle(this.faker.fakerCore);
+    return vehicleVehicle(this.fakerCore);
   }
 
   /**
@@ -45,7 +45,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   manufacturer(): string {
-    return vehicleManufacturer(this.faker.fakerCore);
+    return vehicleManufacturer(this.fakerCore);
   }
 
   /**
@@ -57,7 +57,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   model(): string {
-    return vehicleModel(this.faker.fakerCore);
+    return vehicleModel(this.fakerCore);
   }
 
   /**
@@ -69,7 +69,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   type(): string {
-    return vehicleType(this.faker.fakerCore);
+    return vehicleType(this.fakerCore);
   }
 
   /**
@@ -81,7 +81,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   fuel(): string {
-    return vehicleFuel(this.faker.fakerCore);
+    return vehicleFuel(this.fakerCore);
   }
 
   /**
@@ -93,7 +93,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   vin(): string {
-    return vehicleVin(this.faker.fakerCore);
+    return vehicleVin(this.fakerCore);
   }
 
   /**
@@ -105,7 +105,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   color(): string {
-    return vehicleColor(this.faker.fakerCore);
+    return vehicleColor(this.fakerCore);
   }
 
   /**
@@ -117,7 +117,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.4.0
    */
   vrm(): string {
-    return vehicleVrm(this.faker.fakerCore);
+    return vehicleVrm(this.fakerCore);
   }
 
   /**
@@ -129,6 +129,6 @@ export class VehicleModule extends ModuleBase {
    * @since 5.5.0
    */
   bicycle(): string {
-    return vehicleBicycle(this.faker.fakerCore);
+    return vehicleBicycle(this.fakerCore);
   }
 }

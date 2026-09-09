@@ -36,7 +36,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   abbreviation(): string {
-    return hackerAbbreviation(this.faker.fakerCore);
+    return hackerAbbreviation(this.fakerCore);
   }
 
   /**
@@ -48,7 +48,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   adjective(): string {
-    return hackerAdjective(this.faker.fakerCore);
+    return hackerAdjective(this.fakerCore);
   }
 
   /**
@@ -60,7 +60,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   noun(): string {
-    return hackerNoun(this.faker.fakerCore);
+    return hackerNoun(this.fakerCore);
   }
 
   /**
@@ -72,7 +72,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   verb(): string {
-    return hackerVerb(this.faker.fakerCore);
+    return hackerVerb(this.fakerCore);
   }
 
   /**
@@ -84,7 +84,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   ingverb(): string {
-    return hackerIngverb(this.faker.fakerCore);
+    return hackerIngverb(this.fakerCore);
   }
 
   /**
@@ -97,6 +97,6 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   phrase(): string {
-    return hackerPhrase(this.faker.fakerCore);
+    return hackerPhrase(this.fakerCore);
   }
 }

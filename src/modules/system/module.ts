@@ -49,7 +49,7 @@ export class SystemModule extends ModuleBase {
       extensionCount?: NumberOrRange;
     } = {}
   ): string {
-    return systemFileName(this.faker.fakerCore, options);
+    return systemFileName(this.fakerCore, options);
   }
 
   /**
@@ -64,7 +64,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileName(extension?: string): string {
-    return systemCommonFileName(this.faker.fakerCore, extension);
+    return systemCommonFileName(this.fakerCore, extension);
   }
 
   /**
@@ -76,7 +76,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   mimeType(): string {
-    return systemMimeType(this.faker.fakerCore);
+    return systemMimeType(this.fakerCore);
   }
 
   /**
@@ -88,7 +88,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileType(): string {
-    return systemCommonFileType(this.faker.fakerCore);
+    return systemCommonFileType(this.fakerCore);
   }
 
   /**
@@ -100,7 +100,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileExt(): string {
-    return systemCommonFileExt(this.faker.fakerCore);
+    return systemCommonFileExt(this.fakerCore);
   }
 
   /**
@@ -112,7 +112,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileType(): string {
-    return systemFileType(this.faker.fakerCore);
+    return systemFileType(this.fakerCore);
   }
 
   /**
@@ -127,7 +127,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
-    return systemFileExt(this.faker.fakerCore, mimeType);
+    return systemFileExt(this.fakerCore, mimeType);
   }
 
   /**
@@ -139,7 +139,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   directoryPath(): string {
-    return systemDirectoryPath(this.faker.fakerCore);
+    return systemDirectoryPath(this.fakerCore);
   }
 
   /**
@@ -151,7 +151,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   filePath(): string {
-    return systemFilePath(this.faker.fakerCore);
+    return systemFilePath(this.fakerCore);
   }
 
   /**
@@ -163,7 +163,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   semver(): string {
-    return systemSemver(this.faker.fakerCore);
+    return systemSemver(this.fakerCore);
   }
 
   /**
@@ -197,7 +197,7 @@ export class SystemModule extends ModuleBase {
       interfaceSchema?: CommonInterfaceSchema;
     } = {}
   ): string {
-    return systemNetworkInterface(this.faker.fakerCore, options);
+    return systemNetworkInterface(this.fakerCore, options);
   }
 
   /**
@@ -232,6 +232,6 @@ export class SystemModule extends ModuleBase {
       includeNonStandard?: boolean;
     } = {}
   ): string {
-    return systemCron(this.faker.fakerCore, options);
+    return systemCron(this.fakerCore, options);
   }
 }

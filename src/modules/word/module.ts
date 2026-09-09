@@ -52,7 +52,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordAdjective(this.faker.fakerCore, options);
+    return wordAdjective(this.fakerCore, options);
   }
 
   /**
@@ -88,7 +88,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordAdverb(this.faker.fakerCore, options);
+    return wordAdverb(this.fakerCore, options);
   }
 
   /**
@@ -124,7 +124,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordConjunction(this.faker.fakerCore, options);
+    return wordConjunction(this.fakerCore, options);
   }
 
   /**
@@ -160,7 +160,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordInterjection(this.faker.fakerCore, options);
+    return wordInterjection(this.fakerCore, options);
   }
 
   /**
@@ -196,7 +196,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordNoun(this.faker.fakerCore, options);
+    return wordNoun(this.fakerCore, options);
   }
 
   /**
@@ -232,7 +232,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordPreposition(this.faker.fakerCore, options);
+    return wordPreposition(this.fakerCore, options);
   }
 
   /**
@@ -268,7 +268,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordVerb(this.faker.fakerCore, options);
+    return wordVerb(this.fakerCore, options);
   }
 
   /**
@@ -302,7 +302,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordSample(this.faker.fakerCore, options);
+    return wordSample(this.fakerCore, options);
   }
 
   /**
@@ -331,6 +331,6 @@ export class WordModule extends ModuleBase {
           count?: NumberOrRange;
         } = {}
   ): string {
-    return wordWords(this.faker.fakerCore, options);
+    return wordWords(this.fakerCore, options);
   }
 }

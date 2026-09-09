@@ -29,7 +29,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   column(): string {
-    return databaseColumn(this.faker.fakerCore);
+    return databaseColumn(this.fakerCore);
   }
 
   /**
@@ -41,7 +41,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   type(): string {
-    return databaseType(this.faker.fakerCore);
+    return databaseType(this.fakerCore);
   }
 
   /**
@@ -53,7 +53,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   collation(): string {
-    return databaseCollation(this.faker.fakerCore);
+    return databaseCollation(this.fakerCore);
   }
 
   /**
@@ -65,7 +65,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   engine(): string {
-    return databaseEngine(this.faker.fakerCore);
+    return databaseEngine(this.fakerCore);
   }
 
   /**
@@ -77,6 +77,6 @@ export class DatabaseModule extends ModuleBase {
    * @since 6.2.0
    */
   mongodbObjectId(): string {
-    return databaseMongodbObjectId(this.faker.fakerCore);
+    return databaseMongodbObjectId(this.fakerCore);
   }
 }

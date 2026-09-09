@@ -134,7 +134,7 @@ export class FinanceModule extends ModuleBase {
           length?: number;
         } = {}
   ): string {
-    return financeAccountNumber(this.faker.fakerCore, options);
+    return financeAccountNumber(this.fakerCore, options);
   }
 
   /**
@@ -146,7 +146,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   accountName(): string {
-    return financeAccountName(this.faker.fakerCore);
+    return financeAccountName(this.fakerCore);
   }
 
   /**
@@ -158,7 +158,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   routingNumber(): string {
-    return financeRoutingNumber(this.faker.fakerCore);
+    return financeRoutingNumber(this.fakerCore);
   }
 
   /**
@@ -216,7 +216,7 @@ export class FinanceModule extends ModuleBase {
       autoFormat?: boolean;
     } = {}
   ): string {
-    return financeAmount(this.faker.fakerCore, options);
+    return financeAmount(this.fakerCore, options);
   }
 
   /**
@@ -228,7 +228,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   transactionType(): string {
-    return financeTransactionType(this.faker.fakerCore);
+    return financeTransactionType(this.fakerCore);
   }
 
   /**
@@ -245,7 +245,7 @@ export class FinanceModule extends ModuleBase {
    * @since 8.0.0
    */
   currency(): Currency {
-    return financeCurrency(this.faker.fakerCore);
+    return financeCurrency(this.fakerCore);
   }
 
   /**
@@ -258,7 +258,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencyCode(): string {
-    return financeCurrencyCode(this.faker.fakerCore);
+    return financeCurrencyCode(this.fakerCore);
   }
 
   /**
@@ -270,7 +270,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencyName(): string {
-    return financeCurrencyName(this.faker.fakerCore);
+    return financeCurrencyName(this.fakerCore);
   }
 
   /**
@@ -282,7 +282,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencySymbol(): string {
-    return financeCurrencySymbol(this.faker.fakerCore);
+    return financeCurrencySymbol(this.fakerCore);
   }
 
   /**
@@ -295,7 +295,7 @@ export class FinanceModule extends ModuleBase {
    * @since 9.6.0
    */
   currencyNumericCode(): string {
-    return financeCurrencyNumericCode(this.faker.fakerCore);
+    return financeCurrencyNumericCode(this.fakerCore);
   }
 
   /**
@@ -328,7 +328,7 @@ export class FinanceModule extends ModuleBase {
       network?: BitcoinNetworkType;
     } = {}
   ): string {
-    return financeBitcoinAddress(this.faker.fakerCore, options);
+    return financeBitcoinAddress(this.fakerCore, options);
   }
 
   /**
@@ -340,7 +340,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   litecoinAddress(): string {
-    return financeLitecoinAddress(this.faker.fakerCore);
+    return financeLitecoinAddress(this.fakerCore);
   }
 
   /**
@@ -429,7 +429,7 @@ export class FinanceModule extends ModuleBase {
           issuer?: string;
         } = {}
   ): string {
-    return financeCreditCardNumber(this.faker.fakerCore, options);
+    return financeCreditCardNumber(this.fakerCore, options);
   }
 
   /**
@@ -441,7 +441,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   creditCardCVV(): string {
-    return financeCreditCardCVV(this.faker.fakerCore);
+    return financeCreditCardCVV(this.fakerCore);
   }
 
   /**
@@ -453,7 +453,7 @@ export class FinanceModule extends ModuleBase {
    * @since 6.3.0
    */
   creditCardIssuer(): string {
-    return financeCreditCardIssuer(this.faker.fakerCore);
+    return financeCreditCardIssuer(this.fakerCore);
   }
 
   /**
@@ -554,7 +554,7 @@ export class FinanceModule extends ModuleBase {
           length?: number;
         } = {}
   ): string {
-    return financePin(this.faker.fakerCore, options);
+    return financePin(this.fakerCore, options);
   }
 
   /**
@@ -568,7 +568,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   ethereumAddress(): string {
-    return financeEthereumAddress(this.faker.fakerCore);
+    return financeEthereumAddress(this.fakerCore);
   }
 
   /**
@@ -604,7 +604,7 @@ export class FinanceModule extends ModuleBase {
       countryCode?: string;
     } = {}
   ): string {
-    return financeIban(this.faker.fakerCore, options);
+    return financeIban(this.fakerCore, options);
   }
 
   /**
@@ -630,7 +630,7 @@ export class FinanceModule extends ModuleBase {
       includeBranchCode?: boolean;
     } = {}
   ): string {
-    return financeBic(this.faker.fakerCore, options);
+    return financeBic(this.fakerCore, options);
   }
 
   /**
@@ -643,6 +643,6 @@ export class FinanceModule extends ModuleBase {
    * @since 5.1.0
    */
   transactionDescription(): string {
-    return financeTransactionDescription(this.faker.fakerCore);
+    return financeTransactionDescription(this.fakerCore);
   }
 }
