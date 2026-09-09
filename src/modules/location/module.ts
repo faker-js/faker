@@ -12,7 +12,7 @@ import type { Language } from './language';
 import { language as locationLanguage } from './language';
 import { latitude as locationLatitude } from './latitude';
 import { longitude as locationLongitude } from './longitude';
-import { nearbyGPSCoordinate as locationNearbyGPSCoordinate } from './nearby-gpscoordinate';
+import { nearbyGPSCoordinate as locationNearbyGPSCoordinate } from './nearby-gps-coordinate';
 import { ordinalDirection as locationOrdinalDirection } from './ordinal-direction';
 import { postalAddress as locationPostalAddress } from './postal-address';
 import { secondaryAddress as locationSecondaryAddress } from './secondary-address';
