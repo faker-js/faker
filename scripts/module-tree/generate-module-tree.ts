@@ -3,14 +3,9 @@ import { resolve } from 'node:path';
 import { SyntaxKind } from 'ts-morph';
 import { getJsDocs, getSince } from '../apidocs/processing/jsdocs';
 import { getProject } from '../apidocs/project';
-import {
-  toCamelCase,
-  toKebabCase,
-  toPascalCase,
-} from '../shared/character-case';
+import { toCamelCase, toKebabCase } from '../shared/character-case';
 import { formatTypescript } from '../shared/format';
 import { FILE_PATH_SRC } from '../shared/paths';
-import { ALLOWED_MODULES } from '../temp-module-filter';
 import { ImportHelper } from './import-helper';
 
 //#region Config
@@ -67,7 +62,7 @@ const directories = project
 const moduleNames = new Set(directories.map((dir) => dir.getBaseName()));
 
 export async function generateModuleTree(onlyModule?: string): Promise<void> {
-  //#region Module
+  //#region Modules
   for (const directory of directories) {
     const moduleName = directory.getBaseName();
 
@@ -75,12 +70,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       continue;
     }
 
-    if (!ALLOWED_MODULES.has(toPascalCase(`${moduleName}Module`))) {
-      continue;
-    }
-
     console.log(`Processing module: ${moduleName}`);
-    //#region Module
     const moduleFile = directory.getSourceFileOrThrow('module.ts');
 
     const header = moduleFile
@@ -130,7 +120,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
     const content: string[] = [];
     const classes = moduleFile?.getClasses() ?? [];
 
-    //#region Module Classes
+    //#region Classes
     for (const cls of classes) {
       content.push(getJsDocs(cls).getText());
       const methods = cls
@@ -150,6 +140,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
           `${patchFileName(methodName)}.ts`
         );
 
+        //#region Imports
         const typesToImport = [
           methodFile.getEnums(),
           methodFile.getTypeAliases(),
@@ -171,6 +162,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             ...typesToImport
           );
         }
+        //#endregion Imports
 
         const functions = methodFile
           .getChildrenOfKind(SyntaxKind.FunctionDeclaration)
@@ -195,8 +187,8 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               ? `faker.${module}.${toCamelCase(method)}(`
               : `faker.${module}${method}(`;
 
+        //#region Functions
         for (const [index, child] of functions.entries()) {
-          //#region Module Functions
           const jsDocs = child.getJsDocs()[0];
 
           if (child.hasBody()) {
@@ -211,6 +203,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             );
           }
 
+          //#region JSDocs
           if (jsDocs) {
             const description = jsDocs
               .getFullText()
@@ -247,7 +240,9 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
 
             parts.push(description);
           }
+          //#endregion JSDocs
 
+          //#region Signature+Implementation
           const signature = child
             .getSignature()
             .getDeclaration()
@@ -268,12 +263,12 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             .replaceAll(new RegExp(`^${moduleName}Sample\\(`, 'g'), 'sample(');
 
           parts.push(signature);
-          //#endregion
+          //#endregion Signature+Implementation
         }
+        //#endregion Functions
 
         cls.addMember(parts.join('\n'));
       }
-      //#endregion
 
       const classBody = cls
         .getText()
@@ -285,6 +280,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
 
       content.push(classBody, '');
     }
+    //#endregion Classes
 
     importHelper.removeUnusedImports(content.join('\n'));
     patchModuleImports(moduleName, importHelper);
@@ -302,8 +298,6 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       await formatTypescript(content.join('\n')),
       'utf8'
     );
-    //#endregion
   }
-
-  //#endregion
+  //#endregion Modules
 }
