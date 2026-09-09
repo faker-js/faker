@@ -3,10 +3,12 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
+import airline from './airline';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
+import food from './food';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
@@ -21,10 +23,12 @@ import science from './science';
  * - Endonym: azərbaycan dili
  */
 const az: LocaleDefinition = {
+  airline,
   color,
   commerce,
   company,
   date,
+  food,
   internet,
   location,
   metadata,

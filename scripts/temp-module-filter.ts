@@ -1,6 +1,14 @@
 export const ALLOWED_MODULES = new Set([
-  'HelpersModule',
-  'StringModule',
-  'NumberModule',
+  'AirlineModule',
+  'AnimalModule',
+  'BookModule',
+  'ColorModule',
+  'CommerceModule',
+  'CompanyModule',
   'DatatypeModule',
+  'DateModule',
+  'HelpersModule',
+  'NumberModule',
+  'PersonModule',
+  'StringModule',
 ]);
