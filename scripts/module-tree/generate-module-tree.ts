@@ -26,10 +26,15 @@ function patchModuleImports(moduleName: string, importHelper: ImportHelper) {
     }
     case 'helpers': {
       importHelper.addImports('./_eval', 'fakeEval');
+      importHelper.addTypeImports('../../core', 'FakerCore');
       break;
     }
     case 'image': {
       importHelper.addTypeImports('../person', 'SexType');
+      importHelper.removeImports('../../faker', 'Faker');
+      break;
+    }
+    case 'location': {
       importHelper.removeImports('../../faker', 'Faker');
       break;
     }
