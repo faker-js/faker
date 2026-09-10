@@ -1,4 +1,12 @@
 import { ModuleBase } from '../../internal/module-base';
+import { allergen as medicalAllergen } from './allergen';
+import { bloodType as medicalBloodType } from './blood-type';
+import { condition as medicalCondition } from './condition';
+import { department as medicalDepartment } from './department';
+import { drugName as medicalDrugName } from './drug-name';
+import { procedure as medicalProcedure } from './procedure';
+import { specialty as medicalSpecialty } from './specialty';
+import { symptom as medicalSymptom } from './symptom';
 
 /**
  * Module to generate plausible medical and healthcare related entries.
@@ -12,6 +20,11 @@ import { ModuleBase } from '../../internal/module-base';
  * The names returned by [`drugName()`](https://fakerjs.dev/api/medical.html#drugname) are invented and were screened so that they do not name a real product. That guarantee is specific to `drugName()`: an allergen is defined by the substance a person reacts to, so [`allergen()`](https://fakerjs.dev/api/medical.html#allergen) names real ones, medicines such as `Penicillin` among them.
  */
 export class MedicalModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree medical' to update the methods from their respective files.
+   */
+
   /**
    * Returns a random medical specialty.
    *
@@ -21,9 +34,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   specialty(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.specialty
-    );
+    return medicalSpecialty(this.faker.fakerCore);
   }
 
   /**
@@ -35,9 +46,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   department(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.department
-    );
+    return medicalDepartment(this.faker.fakerCore);
   }
 
   /**
@@ -49,9 +58,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   condition(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.condition
-    );
+    return medicalCondition(this.faker.fakerCore);
   }
 
   /**
@@ -63,9 +70,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   symptom(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.symptom
-    );
+    return medicalSymptom(this.faker.fakerCore);
   }
 
   /**
@@ -77,9 +82,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   procedure(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.procedure
-    );
+    return medicalProcedure(this.faker.fakerCore);
   }
 
   /**
@@ -95,9 +98,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   allergen(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.allergen
-    );
+    return medicalAllergen(this.faker.fakerCore);
   }
 
   /**
@@ -109,9 +110,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   bloodType(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.blood_type
-    );
+    return medicalBloodType(this.faker.fakerCore);
   }
 
   /**
@@ -127,8 +126,6 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   drugName(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.medical.drug_name
-    );
+    return medicalDrugName(this.faker.fakerCore);
   }
 }
