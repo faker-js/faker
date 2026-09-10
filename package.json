@@ -116,7 +116,7 @@
     "ts-morph": "28.0.0",
     "tsdown": "0.22.14",
     "tsx": "4.23.13",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "validator": "13.15.35",
     "vitepress": "2.0.0-alpha.19",
     "vitest": "4.1.11",
