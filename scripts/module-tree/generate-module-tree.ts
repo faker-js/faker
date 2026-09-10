@@ -213,7 +213,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               .replaceAll(/ +\*\n +\*\n/g, ' *\n')
               // Examples
               .replaceAll(
-                new RegExp(`${methodName}\\(fakerCore(?:, ?)?`, 'g'),
+                new RegExp(`${methodName}\\(fakerCore(?:, ?|(?=\\)))`, 'g'),
                 `faker.${moduleName}.${methodName}(`
               )
               // Since
@@ -225,19 +225,21 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               .replaceAll(' *\n * @experimental\n', '')
               // Default Ref Date
               .replaceAll(
-                /(?<= +\* .*?)\bgetDefaultRefDate\(fakerCore(?:, ?)?/g,
+                /(?<= +\* .*?)\bgetDefaultRefDate\(fakerCore(?:, ?|(?=\)))/g,
                 'faker.defaultRefDate('
               )
               // Method References
               .replaceAll(
-                /\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?)?/g,
+                /\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
                 restoreFakerTreeInvocations
               )
               .replaceAll(
-                /\b([a-zA-Z]+)\(fakerCore(?:, ?)?/g,
+                /\b([a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
                 (_, method: string) =>
                   `faker.${moduleName}.${toCamelCase(method)}(`
-              );
+              )
+              // Locale Access
+              .replaceAll(/\bfakerCore\.locale\b/g, 'faker.definitions');
 
             parts.push(description);
           }
@@ -251,11 +253,11 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             .replace(/\((\n +)?fakerCore: FakerCore,?/, '(')
             // Adapt nested options defaults
             .replaceAll(
-              /(?<= +\* .*?)\bgetDefaultRefDate\(fakerCore(?:, ?)?/g,
+              /(?<= +\* .*?)\bgetDefaultRefDate\(fakerCore(?:, ?|(?=\)))/g,
               'faker.defaultRefDate('
             )
             .replaceAll(
-              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?)?/g,
+              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
               restoreFakerTreeInvocations
             )
             // moduleSample() => sample()

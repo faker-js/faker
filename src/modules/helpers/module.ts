@@ -245,7 +245,7 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @example
    * faker.helpers.uniqueArray(faker.word.sample, 3) // ['mob', 'junior', 'ripe']
-   * faker.helpers.uniqueArray(faker.definitions.person.first_name.generic, 6) // ['Silas', 'Montana', 'Lorenzo', 'Alayna', 'Aditya', 'Antone']
+   * faker.helpers.uniqueArray(faker.definitions.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
    *
    * @since 6.0.0
