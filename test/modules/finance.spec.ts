@@ -2,7 +2,7 @@ import { isAbaRouting } from 'validator';
 import isCreditCard from 'validator/lib/isCreditCard';
 import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
-import { allLocales, faker, fakerZH_CN } from '../../src';
+import { Faker, allLocales, faker, fakerZH_CN } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import {
   BitcoinAddressFamily,
@@ -289,6 +289,27 @@ describe('finance', () => {
           const currencySymbol = faker.finance.currencySymbol();
 
           expect(currencySymbol).toBeTypeOf('string');
+        });
+
+        it('should throw if no currency has a symbol', () => {
+          const customFaker = new Faker({
+            locale: {
+              finance: {
+                currency: [
+                  {
+                    name: 'Test Currency',
+                    code: 'TST',
+                    symbol: '',
+                    numericCode: '000',
+                  },
+                ],
+              },
+            },
+          });
+
+          expect(() => customFaker.finance.currencySymbol()).toThrow(
+            new FakerError('Cannot get value from empty dataset.')
+          );
         });
       });
 
