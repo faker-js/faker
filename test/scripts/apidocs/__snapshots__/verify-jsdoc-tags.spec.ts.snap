@@ -36,6 +36,7 @@ exports[`check docs completeness > all modules and methods are present 1`] = `
   [
     "utils",
     [
+      "createFakerCore",
       "generateMersenne32Randomizer",
       "generateMersenne53Randomizer",
       "getDefaultRefDate",
