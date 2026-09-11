@@ -229,8 +229,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
   }
 
   /**
-   * Takes an array of strings or function that returns a string
-   * and outputs a unique array of strings based on that source.
+   * Takes an array of elements or function that returns an element
+   * and outputs a unique array of elements based on that source.
    * This method does not store the unique state between invocations.
    *
    * If there are not enough unique values to satisfy the length, if
@@ -240,13 +240,14 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *
    * @template T The type of the elements.
    *
-   * @param source The strings to choose from or a function that generates a string.
+   * @param source The elements to choose from or a function that generates an element.
    * @param length The number of elements to generate.
    *
    * @example
    * faker.helpers.uniqueArray(faker.word.sample, 3) // ['mob', 'junior', 'ripe']
-   * faker.helpers.uniqueArray(faker.definitions.person.first_name.generic, 6) // ['Silas', 'Montana', 'Lorenzo', 'Alayna', 'Aditya', 'Antone']
+   * faker.helpers.uniqueArray(faker.definitions.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
+   * faker.helpers.uniqueArray(["one"], 1000) // ['one']
    *
    * @since 6.0.0
    */

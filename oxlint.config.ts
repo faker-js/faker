@@ -57,6 +57,7 @@ export default defineConfig({
     //#region import
     // name: 'import overrides'
     'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+    'import/no-duplicates': 'error',
     //#endregion
 
     //#region typescript
