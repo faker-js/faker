@@ -36,6 +36,7 @@ jobs:
         run: |
           pnpm run generate:locales
           pnpm run generate:api-docs
+          pnpm run format
           pnpm run build
           pnpm run test -u
         continue-on-error: true
