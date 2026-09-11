@@ -308,7 +308,9 @@ describe('finance', () => {
           });
 
           expect(() => customFaker.finance.currencySymbol()).toThrow(
-            new FakerError('Cannot get value from empty dataset.')
+            new FakerError(
+              'Cannot get currency symbol from dataset with no currency symbols.'
+            )
           );
         });
       });

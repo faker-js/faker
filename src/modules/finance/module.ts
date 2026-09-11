@@ -356,11 +356,18 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencySymbol(): string {
-    return this.faker.helpers.arrayElement(
+    const currenciesWithSymbols =
       this.faker.definitions.finance.currency.filter(
         (currency) => currency.symbol.length > 0
-      )
-    ).symbol;
+      );
+
+    if (currenciesWithSymbols.length === 0) {
+      throw new FakerError(
+        'Cannot get currency symbol from dataset with no currency symbols.'
+      );
+    }
+
+    return this.faker.helpers.arrayElement(currenciesWithSymbols).symbol;
   }
 
   /**
