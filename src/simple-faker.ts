@@ -118,7 +118,7 @@ export class SimpleFaker {
    *
    * @since 8.1.0
    */
-  constructor(options?: FakerOptions) {
+  constructor(options: FakerOptions = {}) {
     this.fakerCore = createFakerCore(options);
   }
 

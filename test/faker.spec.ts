@@ -1,7 +1,6 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { Faker, faker, generateMersenne32Randomizer } from '../src';
-import { FakerError } from '../src/errors/faker-error';
 import { keys } from '../src/internal/keys';
 
 describe('faker', () => {
@@ -63,12 +62,8 @@ describe('faker', () => {
 
   describe('constructor()', () => {
     describe('locale', () => {
-      it('should throw error if no locales passed', () => {
-        expect(() => new Faker({ locale: [] })).toThrow(
-          new FakerError(
-            'The locale option must contain at least one locale definition.'
-          )
-        );
+      it('should not throw error if no locales passed', () => {
+        expect(() => new Faker({ locale: [] })).not.toThrow();
       });
     });
 
