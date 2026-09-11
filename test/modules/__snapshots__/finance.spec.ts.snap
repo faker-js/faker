@@ -260,3 +260,42 @@ exports[`finance > 1337 > vatNumber > noArgs 1`] = `"EE124352971"`;
 exports[`finance > 1337 > vatNumber > with a variable length countryCode option 1`] = `"RO324"`;
 
 exports[`finance > 1337 > vatNumber > with countryCode option 1`] = `"DE212435297"`;
+
+exports[`finance > should have stable VAT number patterns 1`] = `
+{
+  "AT": "ATU[0-9]{8}",
+  "BE": "BE[01][0-9]{9}",
+  "BG": "BG[0-9]{9,10}",
+  "CY": "CY[0134569][0-9]{7}[A-Z]",
+  "CZ": "CZ[0-9]{8,10}",
+  "DE": "DE[0-9]{9}",
+  "DK": "DK[0-9]{8}",
+  "EE": "EE[0-9]{9}",
+  "EL": "EL[0-9]{9}",
+  "ES": [
+    "ES[ABCDEFGHJUV][0-9]{7}[0-9]",
+    "ES[NPQRSW][0-9]{7}[A-J]",
+  ],
+  "FI": "FI[0-9]{8}",
+  "FR": "FR[0-9ABCDEFGHJKLMNPQRSTUVWXYZ]{2}[0-9]{9}",
+  "GR": "EL[0-9]{9}",
+  "HR": "HR[0-9]{11}",
+  "HU": "HU[0-9]{8}",
+  "IE": "IE[0-9]{7}[A-W]W{0,1}",
+  "IT": "IT[0-9]{11}",
+  "LT": "LT[0-9]{7}1[0-9]",
+  "LU": "LU[0-9]{8}",
+  "LV": "LV[0-9]{11}",
+  "MT": "MT[0-9]{8}",
+  "NL": [
+    "NL[0-9]{9}B0[1-9]",
+    "NL[0-9]{9}B[1-9][0-9]",
+  ],
+  "PL": "PL[0-9]{10}",
+  "PT": "PT[1-9][0-9]{8}",
+  "RO": "RO[1-9][0-9]{1,9}",
+  "SE": "SE[0-9]{10}01",
+  "SI": "SI[1-9][0-9]{7}",
+  "SK": "SK[0-9]{10}",
+}
+`;
