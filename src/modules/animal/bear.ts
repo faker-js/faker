@@ -14,6 +14,5 @@ import { arrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function bear(fakerCore: FakerCore): string {
-
   return arrayElement(fakerCore, fakerCore.locale.animal.bear);
 }
