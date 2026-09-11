@@ -201,10 +201,11 @@ export function getTypeText(
 
 export function isOptionsLikeType(type: Type): boolean {
   return (
-    type.isObject() &&
-    type.isAnonymous() &&
-    type.getCallSignatures().length === 0 &&
-    type.getTupleElements().length === 0
+    (type.isObject() &&
+      type.isAnonymous() &&
+      type.getCallSignatures().length === 0 &&
+      type.getTupleElements().length === 0) ||
+    (type.getSymbol() ?? type.getAliasSymbol())?.getName() === 'FakerOptions'
   );
 }
 
@@ -389,4 +390,17 @@ function newShadowType(
     resolvedType,
     text: displayText,
   };
+}
+
+/**
+ * Helper to create a type for `FakerOptions.locale` as `LocaleProxy` gets exploded into an unreadable mess by TypeScript.
+ *
+ * @returns RawApiDocsUnionType
+ */
+export function newFakerOptionsLocaleType(): RawApiDocsUnionType {
+  return newUnionType([
+    newSimpleType('LocaleProxy'),
+    newSimpleType('LocaleDefinition'),
+    newArrayType(newSimpleType('LocaleDefinition')),
+  ]);
 }
