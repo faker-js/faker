@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
+import { word as loremWord } from '../../src/modules/lorem/word';
+import { stringSample } from '../../src/modules/string/sample';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -121,7 +123,11 @@ describe('helpers', () => {
     });
 
     t.describe('uniqueArray', (t) => {
-      t.it('with array', [...'Hello World!'], 3);
+      t.it('with array', [...'Hello World!'], 3).it(
+        'with generator function',
+        stringSample,
+        3
+      );
     });
 
     t.describe('maybe', (t) => {
@@ -809,9 +815,19 @@ describe('helpers', () => {
           expect(unique).toHaveLength(length);
         });
 
-        it('function returns unique array', () => {
+        it('function returns unique array (independent function)', () => {
           const length = faker.number.int({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
+          const unique = faker.helpers.uniqueArray(
+            () => faker.lorem.word(),
+            length
+          );
+          expect(unique).not.toContainDuplicates();
+          expect(unique).toHaveLength(length);
+        });
+
+        it('function returns unique array (SMF)', () => {
+          const length = faker.number.int({ min: 1, max: 6 });
+          const unique = faker.helpers.uniqueArray(loremWord, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
         });
