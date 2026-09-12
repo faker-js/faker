@@ -1,0 +1,18 @@
+export default [
+  'Alabalıq',
+  'Bölgə',
+  'Kefal',
+  'Kütüm',
+  'Ling',
+  'Naxa',
+  'Nərə',
+  'Qızılbalıq',
+  'Sazan',
+  'Siyənək',
+  'Skumbriya',
+  'Som',
+  'Sıf',
+  'Ton balığı',
+  'Çapaq',
+  'Şamayka',
+];
