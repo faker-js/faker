@@ -107,10 +107,21 @@ describe('finance', () => {
     });
   });
 
-  // A diff here means a pattern changed; check the country's numbering
-  // rules before accepting it.
-  it('should have stable VAT number patterns', () => {
-    expect(vatNumberFormats).toMatchSnapshot();
+  // One generated value per country. A diff here means the output changed:
+  // check it against that country's pattern before accepting it.
+  it('should generate a stable VAT number per country', () => {
+    faker.seed(42);
+
+    const actual = Object.fromEntries(
+      Object.keys(vatNumberFormats).map((countryCode) => [
+        countryCode,
+        faker.finance.vatNumber({
+          countryCode: countryCode as VatNumberCountryCode,
+        }),
+      ])
+    );
+
+    expect(actual).toMatchSnapshot();
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
