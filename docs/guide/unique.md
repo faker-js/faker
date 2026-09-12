@@ -18,7 +18,7 @@ There are a few possible strategies for this:
 1. Use `faker.helpers.uniqueArray()` if you want to generate all the values at one time. For example:
 
 ```ts
-faker.helpers.uniqueArray(faker.internet.email, 1000); // will generate 1000 unique email addresses
+faker.helpers.uniqueArray(() => faker.internet.email(), 1000); // will generate 1000 unique email addresses
 ```
 
 2. If there are insufficient values for your needs, consider prefixing or suffixing values with your own sequential values, for example you could prefix `1.`, `2.` to each generated email in turn.
