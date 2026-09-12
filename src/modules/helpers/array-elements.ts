@@ -15,6 +15,8 @@ import { shuffle } from './shuffle';
  *    When not provided, random number of elements will be picked.
  *    When value exceeds array boundaries, it will be limited to stay inside.
  *
+ * @see arraySamples(fakerCore): For generating an array of elements with replacement.
+ *
  * @example
  * arrayElements(fakerCore, ['cat', 'dog', 'mouse']) // ['mouse', 'cat']
  * arrayElements(fakerCore, [1, 2, 3, 4, 5], 2) // [4, 2]

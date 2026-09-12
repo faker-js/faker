@@ -4,6 +4,7 @@ import type { NumberOrRange } from '../../utils/types';
 import { fakeEval } from './_eval';
 import { arrayElement as helpersArrayElement } from './array-element';
 import { arrayElements as helpersArrayElements } from './array-elements';
+import { arraySamples as helpersArraySamples } from './array-samples';
 import { enumValue as helpersEnumValue } from './enum-value';
 import { fromRegExp as helpersFromRegExp } from './from-reg-exp';
 import { maybe as helpersMaybe } from './maybe';
@@ -432,6 +433,8 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
    *
+   * @see faker.helpers.arraySamples(): For generating an array of elements with replacement.
+   *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
@@ -441,6 +444,31 @@ export class SimpleHelpersModule extends SimpleModuleBase {
    */
   arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
     return helpersArrayElements(this.faker.fakerCore, array, count);
+  }
+
+  /**
+   * Returns an array of elements sampled from the given array with replacement.
+   * Elements may therefore appear more than once.
+   *
+   * @template T The type of the elements to pick from.
+   *
+   * @param array Array to pick the value from.
+   * @param count Number or range of elements to pick.
+   *     When count is 0 or less, an empty array is returned.
+   *
+   * @throws {FakerError} If the given array is empty.
+   *
+   * @see faker.helpers.arrayElements(): For generating an array of elements without replacement.
+   *
+   * @example
+   * faker.helpers.arraySamples(["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
+   * faker.helpers.arraySamples([1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
+   * faker.helpers.arraySamples(["a", "b", "c"], 0) // []
+   *
+   * @since 11.0.0
+   */
+  arraySamples<const T>(array: ReadonlyArray<T>, count: NumberOrRange): T[] {
+    return helpersArraySamples(this.faker.fakerCore, array, count);
   }
 
   /**
