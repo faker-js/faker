@@ -15,6 +15,8 @@ import { rangeToNumber } from '../helpers/range-to-number';
  * @param length.min The minimum length of the string to generate.
  * @param length.max The maximum length of the string to generate.
  *
+ * @throws {FakerError} If there are no characters to select from.
+ *
  * @example
  * fromCharacters(fakerCore, 'abc') // 'c'
  * fromCharacters(fakerCore, ['a', 'b', 'c']) // 'a'

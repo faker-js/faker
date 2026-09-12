@@ -100,6 +100,8 @@ export function createLocaleProxy(
  *
  * @param value The value to check.
  * @param path The path to the locale data.
+ *
+ * @throws {FakerError} If the locale data are missing or not applicable to this locale.
  */
 export function assertLocaleData<T>(
   value: T,

@@ -293,6 +293,7 @@ export default defineConfig({
     'jsdoc-js/require-returns': 'off',
     'jsdoc-js/require-returns-check': 'error',
     'jsdoc-js/require-returns-description': 'error',
+    'jsdoc-js/require-throws': 'error',
     'jsdoc-js/require-throws-type': 'error',
     'jsdoc-js/require-yields': 'error',
     'jsdoc-js/require-yields-check': 'error',

@@ -185,6 +185,8 @@ export class LocationModule extends SimpleLocationModule {
    * By default, a random format is used from the locale zip formats.
    * This won't be used if the state option is specified.
    *
+   * @throws {FakerError} If the locale has no zip code definition for the given state.
+   *
    * @see faker.helpers.replaceSymbols(): For more information about how the pattern is used.
    *
    * @example
