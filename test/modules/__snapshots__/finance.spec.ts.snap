@@ -57,7 +57,7 @@ exports[`finance > 42 > currencyName 1`] = `"New Israeli Sheqel"`;
 
 exports[`finance > 42 > currencyNumericCode 1`] = `"376"`;
 
-exports[`finance > 42 > currencySymbol 1`] = `"₪"`;
+exports[`finance > 42 > currencySymbol 1`] = `"Ft"`;
 
 exports[`finance > 42 > ethereumAddress 1`] = `"0x8ead331ddf0fc4446b96d368ab4bd1d31efb62f9"`;
 
@@ -138,7 +138,7 @@ exports[`finance > 1211 > currencyName 1`] = `"Vatu"`;
 
 exports[`finance > 1211 > currencyNumericCode 1`] = `"548"`;
 
-exports[`finance > 1211 > currencySymbol 1`] = `"$"`;
+exports[`finance > 1211 > currencySymbol 1`] = `"лв"`;
 
 exports[`finance > 1211 > ethereumAddress 1`] = `"0xed4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3f"`;
 
@@ -219,7 +219,7 @@ exports[`finance > 1337 > currencyName 1`] = `"Ethiopian Birr"`;
 
 exports[`finance > 1337 > currencyNumericCode 1`] = `"230"`;
 
-exports[`finance > 1337 > currencySymbol 1`] = `"$"`;
+exports[`finance > 1337 > currencySymbol 1`] = `"RD$"`;
 
 exports[`finance > 1337 > ethereumAddress 1`] = `"0x536a7b5fa28d2f9bb79ca46ea394bc4f9bb0af32"`;
 
