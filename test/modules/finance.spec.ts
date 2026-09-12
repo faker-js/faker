@@ -1,4 +1,5 @@
-import { isAbaRouting } from 'validator';
+import type { VATCountryCode } from 'validator';
+import { isAbaRouting, isVAT } from 'validator';
 import isCreditCard from 'validator/lib/isCreditCard';
 import isLuhnNumber from 'validator/lib/isLuhnNumber';
 import { describe, expect, it } from 'vitest';
@@ -9,6 +10,11 @@ import {
   BitcoinNetwork,
 } from '../../src/modules/finance/_bitcoin';
 import ibanLib from '../../src/modules/finance/_iban';
+import type { VatNumberCountryCode } from '../../src/modules/finance/_vat-number';
+import {
+  vatNumberCountryCodes,
+  vatNumberFormats,
+} from '../../src/modules/finance/_vat-number';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -78,6 +84,12 @@ describe('finance', () => {
         });
     });
 
+    t.describe('vatNumber', (t) => {
+      t.it('noArgs')
+        .it('with countryCode option', { countryCode: 'DE' })
+        .it('with a variable length countryCode option', { countryCode: 'RO' });
+    });
+
     t.describe('creditCardNumber', (t) => {
       t.it('noArgs')
         .it('with issuer', 'visa')
@@ -93,6 +105,23 @@ describe('finance', () => {
           network: BitcoinNetwork.Mainnet,
         });
     });
+  });
+
+  // One generated value per country. A diff here means the output changed:
+  // check it against that country's pattern before accepting it.
+  it('should generate a stable VAT number per country', () => {
+    faker.seed(42);
+
+    const actual = Object.fromEntries(
+      Object.keys(vatNumberFormats).map((countryCode) => [
+        countryCode,
+        faker.finance.vatNumber({
+          countryCode: countryCode as VatNumberCountryCode,
+        }),
+      ])
+    );
+
+    expect(actual).toMatchSnapshot();
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
@@ -600,6 +629,73 @@ describe('finance', () => {
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
+      });
+
+      describe('vatNumber()', () => {
+        // Exclude Spanish until validatorjs/validator.js#2849
+        // Exclude Portuguese because it verifies the check digit, which is random here.
+        // TODO @rodrigobnogueira 2026-09-10: implement the check digit calculation for PT
+        const CHECKED_BY_VALIDATOR = vatNumberCountryCodes.filter(
+          (code) => !['ES', 'PT'].includes(code)
+        );
+
+        it.each(CHECKED_BY_VALIDATOR)(
+          'should return a valid VAT number for %s',
+          (country) => {
+            const actual = faker.finance.vatNumber({ countryCode: country });
+
+            expect(actual).toStartWith(country); // Validator treats this as optional
+            expect(actual).toSatisfy((value: string) =>
+              isVAT(value, country as VATCountryCode)
+            );
+          }
+        );
+
+        it.each(Object.entries(vatNumberFormats))(
+          'should expand the %s pattern rather than emit it literally',
+          (countryCode, patterns) => {
+            const alternatives = [patterns].flat();
+
+            for (let i = 0; i < 10; i++) {
+              const actual = faker.finance.vatNumber({
+                countryCode: countryCode as VatNumberCountryCode,
+              });
+
+              expect(
+                alternatives.some((alternative) =>
+                  new RegExp(`^${alternative}$`).test(actual)
+                )
+              ).toBe(true);
+              expect(actual).toMatch(/^[A-Z0-9]+$/);
+            }
+          }
+        );
+
+        it('should return a VAT number of a supported country', () => {
+          const actual = faker.finance.vatNumber();
+          const country = actual.slice(0, 2);
+
+          expect(vatNumberCountryCodes).toContain(country);
+        });
+
+        it('should accept the GR ISO code and emit the EL prefix Greek numbers use', () => {
+          expect(faker.finance.vatNumber({ countryCode: 'GR' })).toStartWith(
+            'EL'
+          );
+        });
+
+        it.each(['XX', '', 'toString'])(
+          'should throw for the unsupported country code %j',
+          (countryCode) => {
+            expect(() =>
+              faker.finance.vatNumber({
+                countryCode: countryCode as VatNumberCountryCode,
+              })
+            ).toThrow(
+              new FakerError(`Country code ${countryCode} not supported.`)
+            );
+          }
+        );
       });
 
       describe('transactionDescription()', () => {

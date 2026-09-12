@@ -7,6 +7,8 @@ import {
   BitcoinNetwork,
 } from './_bitcoin';
 import iban from './_iban';
+import type { VatNumberCountryCode } from './_vat-number';
+import { vatNumberCountryCodes, vatNumberFormats } from './_vat-number';
 
 /**
  * The possible definitions related to currency entries.
@@ -57,6 +59,8 @@ export function prettyPrintIban(iban: string): string {
  * For a random amount, use [`amount()`](https://fakerjs.dev/api/finance.html#amount).
  *
  * For traditional bank accounts, use: [`accountNumber()`](https://fakerjs.dev/api/finance.html#accountnumber), [`accountName()`](https://fakerjs.dev/api/finance.html#accountname), [`bic()`](https://fakerjs.dev/api/finance.html#bic), [`iban()`](https://fakerjs.dev/api/finance.html#iban), [`pin()`](https://fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://fakerjs.dev/api/finance.html#routingnumber).
+ *
+ * For tax identifiers, use [`vatNumber()`](https://fakerjs.dev/api/finance.html#vatnumber).
  *
  * For credit card related methods, use: [`creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber), [`creditCardCVV()`](https://fakerjs.dev/api/finance.html#creditcardcvv), [`creditCardIssuer()`](https://fakerjs.dev/api/finance.html#creditcardissuer), [`transactionDescription()`](https://fakerjs.dev/api/finance.html#transactiondescription) and [`transactionType()`](https://fakerjs.dev/api/finance.html#transactiontype).
  *
@@ -839,6 +843,60 @@ export class FinanceModule extends ModuleBase {
       : '';
 
     return `${bankIdentifier}${countryCode}${locationCode}${branchCode}`;
+  }
+
+  /**
+   * Generates a random VAT identification number for one of the EU member states.
+   *
+   * The supported country codes are the EU member states, using the two-letter code each
+   * country's numbers carry:
+   * `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`, `DK`, `EE`, `EL` (or `GR`), `ES`, `FI`, `FR`, `HR`, `HU`,
+   * `IE`, `IT`, `LT`, `LU`, `LV`, `MT`, `NL`, `PL`, `PT`, `RO`, `SE`, `SI` and `SK`.
+   *
+   * @remark Please note that this currently only generates the structure of the respective country's VAT identification.
+   * But it will return random values for digits with intent such as check digits, so the result is likely to be invalid.
+   *
+   * @param options An options object.
+   * @param options.countryCode The two-letter code of the country you want a VAT number for.
+   * Greece may be given as either `GR` or `EL`.
+   * Defaults to a random supported country.
+   *
+   * @throws {FakerError} Will throw an error if the passed country code is not supported.
+   *
+   * @example
+   * faker.finance.vatNumber() // 'SK4318759382'
+   * faker.finance.vatNumber({ countryCode: 'DE' }) // 'DE644073457'
+   * faker.finance.vatNumber({ countryCode: 'NL' }) // 'NL840351580B96'
+   * faker.finance.vatNumber({ countryCode: 'GR' }) // 'EL892156043'
+   *
+   * @since 11.0.0
+   */
+  vatNumber(
+    options: {
+      /**
+       * The two-letter code of the country you want a VAT number for.
+       * Greece may be given as either `GR` or `EL`.
+       *
+       * @default faker.helpers.arrayElement(vatNumberCountryCodes)
+       */
+      countryCode?: VatNumberCountryCode;
+    } = {}
+  ): string {
+    const {
+      countryCode = this.faker.helpers.arrayElement(vatNumberCountryCodes),
+    } = options;
+
+    if (!Object.hasOwn(vatNumberFormats, countryCode)) {
+      throw new FakerError(`Country code ${countryCode} not supported.`);
+    }
+
+    const pattern = vatNumberFormats[countryCode];
+
+    return this.faker.helpers.fromRegExp(
+      typeof pattern === 'string'
+        ? pattern
+        : this.faker.helpers.arrayElement(pattern)
+    );
   }
 
   /**
