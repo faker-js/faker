@@ -1,43 +1,31 @@
-import { FakerError } from '../../errors/faker-error';
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
-
-const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
-
-const commonMimeTypes = [
-  'application/pdf',
-  'audio/mpeg',
-  'audio/wav',
-  'image/png',
-  'image/jpeg',
-  'image/gif',
-  'video/mp4',
-  'video/mpeg',
-  'text/html',
-];
-
-const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
-const commonInterfaceSchemas = {
-  index: 'o',
-  slot: 's',
-  mac: 'x',
-  pci: 'p',
-} as const;
-
-const CRON_DAY_OF_WEEK = [
-  'SUN',
-  'MON',
-  'TUE',
-  'WED',
-  'THU',
-  'FRI',
-  'SAT',
-] as const;
+import { commonFileExt as systemCommonFileExt } from './common-file-ext';
+import { commonFileName as systemCommonFileName } from './common-file-name';
+import { commonFileType as systemCommonFileType } from './common-file-type';
+import { cron as systemCron } from './cron';
+import { directoryPath as systemDirectoryPath } from './directory-path';
+import { fileExt as systemFileExt } from './file-ext';
+import { fileName as systemFileName } from './file-name';
+import { filePath as systemFilePath } from './file-path';
+import { fileType as systemFileType } from './file-type';
+import { mimeType as systemMimeType } from './mime-type';
+import type {
+  CommonInterfaceSchema,
+  CommonInterfaceType,
+} from './network-interface';
+import { networkInterface as systemNetworkInterface } from './network-interface';
+import { semver as systemSemver } from './semver';
 
 /**
  * Generates fake data for many computer systems properties.
  */
 export class SystemModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree system' to update the methods from their respective files.
+   */
+
   /**
    * Returns a random file name with extension.
    *
@@ -61,22 +49,7 @@ export class SystemModule extends ModuleBase {
       extensionCount?: NumberOrRange;
     } = {}
   ): string {
-    const { extensionCount = 1 } = options;
-
-    const baseName = this.faker.word
-      .words()
-      .toLowerCase()
-      .replaceAll(/\W/g, '_');
-
-    const extensionsSuffix = this.faker.helpers
-      .multiple(() => this.fileExt(), { count: extensionCount })
-      .join('.');
-
-    if (extensionsSuffix.length === 0) {
-      return baseName;
-    }
-
-    return `${baseName}.${extensionsSuffix}`;
+    return systemFileName(this.faker.fakerCore, options);
   }
 
   /**
@@ -91,9 +64,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileName(extension?: string): string {
-    const fileName = this.fileName({ extensionCount: 0 });
-
-    return `${fileName}.${extension || this.commonFileExt()}`;
+    return systemCommonFileName(this.faker.fakerCore, extension);
   }
 
   /**
@@ -105,9 +76,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   mimeType(): string {
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mime_type);
-
-    return this.faker.helpers.arrayElement(mimeTypeKeys);
+    return systemMimeType(this.faker.fakerCore);
   }
 
   /**
@@ -119,7 +88,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileType(): string {
-    return this.faker.helpers.arrayElement(commonFileTypes);
+    return systemCommonFileType(this.faker.fakerCore);
   }
 
   /**
@@ -131,7 +100,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileExt(): string {
-    return this.fileExt(this.faker.helpers.arrayElement(commonMimeTypes));
+    return systemCommonFileExt(this.faker.fakerCore);
   }
 
   /**
@@ -143,12 +112,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileType(): string {
-    const mimeTypes = this.faker.definitions.system.mime_type;
-
-    const typeSet = new Set(
-      Object.keys(mimeTypes).map((key) => key.split('/', 1)[0])
-    );
-    return this.faker.helpers.arrayElement([...typeSet]);
+    return systemFileType(this.faker.fakerCore);
   }
 
   /**
@@ -163,21 +127,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
-    const mimeTypes = this.faker.definitions.system.mime_type;
-
-    if (typeof mimeType === 'string') {
-      const entry = mimeTypes[mimeType];
-      if (entry == null) {
-        throw new FakerError(`MIME type ${mimeType} is not supported.`);
-      }
-
-      return this.faker.helpers.arrayElement(entry.extensions);
-    }
-
-    const extensionSet = new Set(
-      Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
-    );
-    return this.faker.helpers.arrayElement([...extensionSet]);
+    return systemFileExt(this.faker.fakerCore, mimeType);
   }
 
   /**
@@ -189,8 +139,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   directoryPath(): string {
-    const paths = this.faker.definitions.system.directory_path;
-    return this.faker.helpers.arrayElement(paths);
+    return systemDirectoryPath(this.faker.fakerCore);
   }
 
   /**
@@ -202,7 +151,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   filePath(): string {
-    return `${this.directoryPath()}/${this.fileName()}`;
+    return systemFilePath(this.faker.fakerCore);
   }
 
   /**
@@ -214,11 +163,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   semver(): string {
-    return [
-      this.faker.number.int(9),
-      this.faker.number.int(20),
-      this.faker.number.int(20),
-    ].join('.');
+    return systemSemver(this.faker.fakerCore);
   }
 
   /**
@@ -243,54 +188,16 @@ export class SystemModule extends ModuleBase {
        *
        * @default faker.helpers.arrayElement(['en', 'wl', 'ww'])
        */
-      interfaceType?: (typeof commonInterfaceTypes)[number];
+      interfaceType?: CommonInterfaceType;
       /**
        * The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
        *
        * @default faker.helpers.objectKey(['index' | 'slot' | 'mac' | 'pci'])
        */
-      interfaceSchema?: keyof typeof commonInterfaceSchemas;
+      interfaceSchema?: CommonInterfaceSchema;
     } = {}
   ): string {
-    const {
-      interfaceType = this.faker.helpers.arrayElement(commonInterfaceTypes),
-      interfaceSchema = this.faker.helpers.objectKey(commonInterfaceSchemas),
-    } = options;
-
-    let suffix: string;
-    let prefix = '';
-    switch (interfaceSchema) {
-      case 'index': {
-        suffix = this.faker.string.numeric();
-        break;
-      }
-
-      case 'slot': {
-        suffix = `${this.faker.string.numeric()}${
-          this.faker.helpers.maybe(() => `f${this.faker.string.numeric()}`) ??
-          ''
-        }${this.faker.helpers.maybe(() => `d${this.faker.string.numeric()}`) ?? ''}`;
-        break;
-      }
-
-      case 'mac': {
-        suffix = this.faker.internet.mac('');
-        break;
-      }
-
-      case 'pci': {
-        prefix =
-          this.faker.helpers.maybe(() => `P${this.faker.string.numeric()}`) ??
-          '';
-        suffix = `${this.faker.string.numeric()}s${this.faker.string.numeric()}${
-          this.faker.helpers.maybe(() => `f${this.faker.string.numeric()}`) ??
-          ''
-        }${this.faker.helpers.maybe(() => `d${this.faker.string.numeric()}`) ?? ''}`;
-        break;
-      }
-    }
-
-    return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
+    return systemNetworkInterface(this.faker.fakerCore, options);
   }
 
   /**
@@ -325,46 +232,6 @@ export class SystemModule extends ModuleBase {
       includeNonStandard?: boolean;
     } = {}
   ): string {
-    const { includeYear = false, includeNonStandard = false } = options;
-
-    // create the arrays to hold the available values for each component of the expression
-    const minutes = [this.faker.number.int(59), '*'];
-    const hours = [this.faker.number.int(23), '*'];
-    const days = [this.faker.number.int({ min: 1, max: 31 }), '*', '?'];
-    const months = [this.faker.number.int({ min: 1, max: 12 }), '*'];
-    const daysOfWeek = [
-      this.faker.number.int(6),
-      this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
-      '*',
-      '?',
-    ];
-    const years = [this.faker.number.int({ min: 1970, max: 2099 }), '*'];
-
-    const minute = this.faker.helpers.arrayElement(minutes);
-    const hour = this.faker.helpers.arrayElement(hours);
-    const day = this.faker.helpers.arrayElement(days);
-    const month = this.faker.helpers.arrayElement(months);
-    const dayOfWeek = this.faker.helpers.arrayElement(daysOfWeek);
-    const year = this.faker.helpers.arrayElement(years);
-
-    // create and return the cron expression string
-    let standardExpression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
-    if (includeYear) {
-      standardExpression += ` ${year}`;
-    }
-
-    const nonStandardExpressions = [
-      '@annually',
-      '@daily',
-      '@hourly',
-      '@monthly',
-      '@reboot',
-      '@weekly',
-      '@yearly',
-    ];
-
-    return !includeNonStandard || this.faker.datatype.boolean()
-      ? standardExpression
-      : this.faker.helpers.arrayElement(nonStandardExpressions);
+    return systemCron(this.faker.fakerCore, options);
   }
 }
