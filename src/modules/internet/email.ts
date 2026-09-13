@@ -55,7 +55,10 @@ export function internetEmail(
   const {
     firstName,
     lastName,
-    provider = helpersArrayElement(fakerCore, fakerCore.locale.internet.free_email),
+    provider = helpersArrayElement(
+      fakerCore,
+      fakerCore.locale.internet.free_email
+    ),
     allowSpecialCharacters = false,
   } = options;
 

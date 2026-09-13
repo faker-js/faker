@@ -98,7 +98,11 @@ export function stringNumeric(
     );
   }
 
-  result += stringFromCharacters(fakerCore, allowedDigits, length - result.length);
+  result += stringFromCharacters(
+    fakerCore,
+    allowedDigits,
+    length - result.length
+  );
 
   return result;
 }

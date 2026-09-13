@@ -35,9 +35,13 @@ export function systemFileName(
 
   const baseName = wordWords(fakerCore).toLowerCase().replaceAll(/\W/g, '_');
 
-  const extensionsSuffix = helpersMultiple(fakerCore, () => systemFileExt(fakerCore), {
-    count: extensionCount,
-  }).join('.');
+  const extensionsSuffix = helpersMultiple(
+    fakerCore,
+    () => systemFileExt(fakerCore),
+    {
+      count: extensionCount,
+    }
+  ).join('.');
 
   if (extensionsSuffix.length === 0) {
     return baseName;

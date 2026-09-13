@@ -63,5 +63,7 @@ export function locationCountryCode(
     }
   })();
 
-  return helpersArrayElement(fakerCore, fakerCore.locale.location.country_code)[key];
+  return helpersArrayElement(fakerCore, fakerCore.locale.location.country_code)[
+    key
+  ];
 }

@@ -14,5 +14,8 @@ import { helpersObjectKey } from '../helpers/object-key';
  * @experimental
  */
 export function financeCreditCardIssuer(fakerCore: FakerCore): string {
-  return helpersObjectKey(fakerCore, fakerCore.locale.finance.credit_card) as string;
+  return helpersObjectKey(
+    fakerCore,
+    fakerCore.locale.finance.credit_card
+  ) as string;
 }

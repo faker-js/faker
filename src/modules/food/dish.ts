@@ -35,5 +35,7 @@ export function foodDish(fakerCore: FakerCore): string {
     );
   }
 
-  return toTitleCase(helpersArrayElement(fakerCore, fakerCore.locale.food.dish));
+  return toTitleCase(
+    helpersArrayElement(fakerCore, fakerCore.locale.food.dish)
+  );
 }

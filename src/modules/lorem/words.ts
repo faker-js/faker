@@ -24,7 +24,7 @@ export function loremWords(
   fakerCore: FakerCore,
   wordCount: NumberOrRange = 3
 ): string {
-  return helpersMultiple(fakerCore, () => loremWord(fakerCore), { count: wordCount }).join(
-    ' '
-  );
+  return helpersMultiple(fakerCore, () => loremWord(fakerCore), {
+    count: wordCount,
+  }).join(' ');
 }

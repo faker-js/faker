@@ -34,5 +34,8 @@ export interface ChemicalElement {
  * @experimental
  */
 export function scienceChemicalElement(fakerCore: FakerCore): ChemicalElement {
-  return helpersArrayElement(fakerCore, fakerCore.locale.science.chemical_element);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.science.chemical_element
+  );
 }

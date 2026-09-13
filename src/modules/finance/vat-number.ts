@@ -166,8 +166,9 @@ export function financeVatNumber(
     countryCode?: VatNumberCountryCode;
   } = {}
 ): string {
-  const { countryCode = helpersArrayElement(fakerCore, vatNumberCountryCodes) } =
-    options;
+  const {
+    countryCode = helpersArrayElement(fakerCore, vatNumberCountryCodes),
+  } = options;
 
   const pattern = vatNumberFormats[countryCode];
 
@@ -177,6 +178,8 @@ export function financeVatNumber(
 
   return helpersFromRegExp(
     fakerCore,
-    typeof pattern === 'string' ? pattern : helpersArrayElement(fakerCore, pattern)
+    typeof pattern === 'string'
+      ? pattern
+      : helpersArrayElement(fakerCore, pattern)
   );
 }

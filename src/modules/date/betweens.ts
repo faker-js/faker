@@ -55,7 +55,11 @@ export function dateBetweens(
   }
 ): Date[] {
   const { from, to, count = 3 } = options;
-  return helpersMultiple(fakerCore, () => dateBetween(fakerCore, { from, to }), {
-    count,
-  }).toSorted((a, b) => a.getTime() - b.getTime());
+  return helpersMultiple(
+    fakerCore,
+    () => dateBetween(fakerCore, { from, to }),
+    {
+      count,
+    }
+  ).toSorted((a, b) => a.getTime() - b.getTime());
 }
