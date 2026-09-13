@@ -26,11 +26,11 @@ import { loremSentences } from './sentences';
  */
 export function loremText(fakerCore: FakerCore): string {
   const method = helpersArrayElement(fakerCore, [
-    sentence,
-    sentences,
-    paragraph,
-    paragraphs,
-    lines,
+    loremSentence,
+    loremSentences,
+    loremParagraph,
+    loremParagraphs,
+    loremLines,
   ]);
 
   return method(fakerCore);

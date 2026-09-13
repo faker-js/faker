@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { hackerNoun as hackerNoun } from '../hacker/noun';
-import { hackerVerb as hackerVerb } from '../hacker/verb';
+import { hackerNoun } from '../hacker/noun';
+import { hackerVerb } from '../hacker/verb';
 
 /**
  * Generates a random branch name.

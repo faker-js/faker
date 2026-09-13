@@ -2,7 +2,7 @@ import type { FakerCore } from '../../core';
 import type { Distributor } from '../../distributors/distributor';
 import { uniformDistributor } from '../../distributors/uniform';
 import { FakerError } from '../../errors/faker-error';
-import { numberInt as numberInt } from './int';
+import { numberInt } from './int';
 
 /**
  * Returns a single random floating-point number, by default between `0.0` and `1.0`. To change the range, pass a `min` and `max` value. To limit the number of decimal places, pass a `multipleOf` or `fractionDigits` parameter.

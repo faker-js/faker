@@ -48,13 +48,13 @@ export function wordSample(
       } = {}
 ): string {
   const wordMethods = helpersShuffle(fakerCore, [
-    adjective,
-    adverb,
-    conjunction,
-    interjection,
-    noun,
-    preposition,
-    verb,
+    wordAdjective,
+    wordAdverb,
+    wordConjunction,
+    wordInterjection,
+    wordNoun,
+    wordPreposition,
+    wordVerb,
   ] satisfies Array<typeof wordSample>);
 
   for (const randomWordMethod of wordMethods) {

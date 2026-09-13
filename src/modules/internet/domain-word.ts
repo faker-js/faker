@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { helpersSlugify } from '../helpers/slugify';
-import { loremWord as loremWord } from '../lorem/word';
+import { loremWord } from '../lorem/word';
 import { stringAlpha } from '../string/alpha';
 import { wordAdjective } from '../word/adjective';
 import { wordNoun } from '../word/noun';
