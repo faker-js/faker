@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ApiDocsMethod } from '../../../docs/.vitepress/components/api-docs/method';
+import { toCamelCase } from '../../shared/character-case';
 import { formatMarkdown, formatTypescript } from '../../shared/format';
 import {
   adjustUrls,
@@ -33,7 +34,7 @@ export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
   const registryHints: Record<string, string> = Object.fromEntries(
     pages.flatMap((page) =>
       page.methods.map((method) => [
-        method.name,
+        toCamelCase(page.camelTitle, method.name),
         `${page.camelTitle}.${method.name}`,
       ])
     )
