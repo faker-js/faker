@@ -1,0 +1,17 @@
+export default [
+  'Appaloosa',
+  'Axaltəkə atı',
+  'Budyonnı atı',
+  'Dilbaz atı',
+  'Don atı',
+  'Frizian atı',
+  'Hanover atı',
+  'Kabarda atı',
+  'Lipizzan atı',
+  'Perşeron atı',
+  'Qarabağ atı',
+  'Trakenen atı',
+  'Təmizqanlı İngilis atı',
+  'Şetland ponisi',
+  'Ərəb atı',
+];

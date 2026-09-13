@@ -19,8 +19,8 @@ export class GitModule extends ModuleBase {
    * @since 5.0.0
    */
   branch(): string {
-    const noun = this.faker.hacker.noun().replace(' ', '-');
-    const verb = this.faker.hacker.verb().replace(' ', '-');
+    const noun = this.faker.hacker.noun().replaceAll(' ', '-');
+    const verb = this.faker.hacker.verb().replaceAll(' ', '-');
     return `${noun}-${verb}`;
   }
 

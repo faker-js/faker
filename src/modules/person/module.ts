@@ -1,84 +1,20 @@
-import type { PersonEntryDefinition } from '../../definitions/person';
-import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
-
-/**
- * The enum for values corresponding to a person's sex.
- */
-export enum Sex {
-  /**
-   * Is used for values that are primarily attributable to only females.
-   */
-  Female = 'female',
-  /**
-   * Is used for values that cannot clearly be attributed to a specific sex or are used for both sexes.
-   */
-  Generic = 'generic',
-  /**
-   * Is used for values that are primarily attributable to only males.
-   */
-  Male = 'male',
-}
-
-/**
- * The parameter type for values corresponding to a person's sex.
- */
-export type SexType = `${Sex}`;
-
-/**
- * Select a definition based on given sex.
- *
- * @param faker Faker instance.
- * @param sex Sex.
- * @param personEntry Definitions.
- *
- * @returns Definition based on given sex.
- */
-function selectDefinition<T>(
-  faker: Faker,
-  sex: SexType = faker.person.sexType(),
-  personEntry: PersonEntryDefinition<T>
-): T[] {
-  const { generic, female, male } = personEntry;
-
-  if (sex === 'generic') {
-    return (
-      generic ??
-      faker.helpers.arrayElement([female, male]) ??
-      // The last statement should never happen at run time. At this point in time,
-      // the entry will satisfy at least (generic || (female && male)).
-      // TS is not able to infer the type correctly.
-      []
-    );
-  }
-
-  const binary = sex === 'female' ? female : male;
-
-  if (binary != null) {
-    if (generic != null) {
-      return faker.helpers.weightedArrayElement([
-        {
-          weight: 3 * Math.sqrt(binary.length),
-          value: binary,
-        },
-        {
-          weight: Math.sqrt(generic.length),
-          value: generic,
-        },
-      ]);
-    }
-
-    return binary;
-  }
-
-  return (
-    generic ??
-    // The last statement should never happen at run time. At this point in time,
-    // the entry will satisfy at least (generic || (female && male)).
-    // TS is not able to infer the type correctly.
-    []
-  );
-}
+import { bio as personBio } from './bio';
+import { firstName as personFirstName } from './first-name';
+import { fullName as personFullName } from './full-name';
+import { gender as personGender } from './gender';
+import { jobArea as personJobArea } from './job-area';
+import { jobDescriptor as personJobDescriptor } from './job-descriptor';
+import { jobTitle as personJobTitle } from './job-title';
+import { jobType as personJobType } from './job-type';
+import { lastName as personLastName } from './last-name';
+import { middleName as personMiddleName } from './middle-name';
+import { prefix as personPrefix } from './prefix';
+import { sex as personSex } from './sex';
+import type { SexType } from './sex-type';
+import { sexType as personSexType } from './sex-type';
+import { suffix as personSuffix } from './suffix';
+import { zodiacSign as personZodiacSign } from './zodiac-sign';
 
 /**
  * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0, this module was known as `faker.name`.
@@ -100,6 +36,11 @@ function selectDefinition<T>(
  * For personal contact information like phone numbers and email addresses, see the [`faker.phone`](https://fakerjs.dev/api/phone.html) and [`faker.internet`](https://fakerjs.dev/api/internet.html) modules.
  */
 export class PersonModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree person' to update the methods from their respective files.
+   */
+
   /**
    * Returns a random first name.
    *
@@ -114,13 +55,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   firstName(sex?: SexType): string {
-    return this.faker.helpers.arrayElement(
-      selectDefinition(
-        this.faker,
-        sex,
-        this.faker.definitions.person.first_name
-      )
-    );
+    return personFirstName(this.faker.fakerCore, sex);
   }
 
   /**
@@ -137,17 +72,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    const patterns = this.faker.definitions.raw.person?.last_name_pattern;
-    if (patterns != null) {
-      const pattern = this.faker.helpers.weightedArrayElement(
-        selectDefinition(this.faker, sex, patterns)
-      );
-      return this.faker.helpers.fake(pattern);
-    }
-
-    return this.faker.helpers.arrayElement(
-      selectDefinition(this.faker, sex, this.faker.definitions.person.last_name)
-    );
+    return personLastName(this.faker.fakerCore, sex);
   }
 
   /**
@@ -164,13 +89,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   middleName(sex?: SexType): string {
-    return this.faker.helpers.arrayElement(
-      selectDefinition(
-        this.faker,
-        sex,
-        this.faker.definitions.person.middle_name
-      )
-    );
+    return personMiddleName(this.faker.fakerCore, sex);
   }
 
   /**
@@ -207,29 +126,12 @@ export class PersonModule extends ModuleBase {
       /**
        * The optional sex to use. Can be either `'female'` or `'male'`.
        *
-       * @default faker.helpers.arrayElement(['female', 'male'])
+       * @default faker.helpers.arrayElement([Sex.Female, Sex.Male])
        */
       sex?: SexType;
     } = {}
   ): string {
-    const {
-      sex = this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
-      firstName = this.firstName(sex),
-      lastName = this.lastName(sex),
-    } = options;
-
-    const fullNamePattern: string = this.faker.helpers.weightedArrayElement(
-      this.faker.definitions.person.name
-    );
-
-    const fullName = this.faker.helpers.mustache(fullNamePattern, {
-      'person.prefix': () => this.prefix(sex),
-      'person.firstName': () => firstName,
-      'person.middleName': () => this.middleName(sex),
-      'person.lastName': () => lastName,
-      'person.suffix': () => this.suffix(),
-    });
-    return fullName;
+    return personFullName(this.faker.fakerCore, options);
   }
 
   /**
@@ -243,9 +145,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   gender(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.gender
-    );
+    return personGender(this.faker.fakerCore);
   }
 
   /**
@@ -263,7 +163,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   sex(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.person.sex);
+    return personSex(this.faker.fakerCore);
   }
 
   /**
@@ -294,13 +194,7 @@ export class PersonModule extends ModuleBase {
       includeGeneric?: boolean;
     } = {}
   ): SexType {
-    const { includeGeneric = false } = options;
-
-    if (includeGeneric) {
-      return this.faker.helpers.enumValue(Sex);
-    }
-
-    return this.faker.helpers.arrayElement([Sex.Female, Sex.Male]);
+    return personSexType(this.faker.fakerCore, options);
   }
 
   /**
@@ -312,7 +206,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    return this.faker.helpers.fake(this.faker.definitions.person.bio_pattern);
+    return personBio(this.faker.fakerCore);
   }
 
   /**
@@ -328,9 +222,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   prefix(sex?: SexType): string {
-    return this.faker.helpers.arrayElement(
-      selectDefinition(this.faker, sex, this.faker.definitions.person.prefix)
-    );
+    return personPrefix(this.faker.fakerCore, sex);
   }
 
   /**
@@ -342,10 +234,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   suffix(): string {
-    // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.suffix
-    );
+    return personSuffix(this.faker.fakerCore);
   }
 
   /**
@@ -357,9 +246,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobTitle(): string {
-    return this.faker.helpers.fake(
-      this.faker.definitions.person.job_title_pattern
-    );
+    return personJobTitle(this.faker.fakerCore);
   }
 
   /**
@@ -371,9 +258,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.job_descriptor
-    );
+    return personJobDescriptor(this.faker.fakerCore);
   }
 
   /**
@@ -385,9 +270,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobArea(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.job_area
-    );
+    return personJobArea(this.faker.fakerCore);
   }
 
   /**
@@ -399,9 +282,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobType(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.job_type
-    );
+    return personJobType(this.faker.fakerCore);
   }
 
   /**
@@ -413,8 +294,6 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   zodiacSign(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.person.western_zodiac_sign
-    );
+    return personZodiacSign(this.faker.fakerCore);
   }
 }

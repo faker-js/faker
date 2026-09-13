@@ -7,12 +7,22 @@ import type { SignatureLikeDeclaration } from './apidocs/processing/signature';
 import { getProject } from './apidocs/project';
 import { required } from './apidocs/utils/value-checks';
 import { ImportHelper } from './module-tree/import-helper';
-import { toCamelCase, toKebabCase } from './shared/character-case';
+import {
+  toCamelCase,
+  toKebabCase,
+  toPascalCase,
+} from './shared/character-case';
 import { formatTypescript } from './shared/format';
 import { FILE_PATH_SRC } from './shared/paths';
 import { ALLOWED_MODULES } from './temp-module-filter';
 
 const coreName = 'fakerCore';
+
+const moduleArg = process.argv[2];
+const moduleCondition =
+  moduleArg == null
+    ? () => true
+    : (module: string) => module === toPascalCase(`${moduleArg}Module`);
 
 // Run the script
 
@@ -35,7 +45,8 @@ export async function processModuleClasses(project: Project): Promise<void> {
         (module: string): boolean =>
           module.endsWith('Module') &&
           !module.startsWith('Simple') &&
-          ALLOWED_MODULES.has(module)
+          !ALLOWED_MODULES.has(module) &&
+          moduleCondition(module)
       )
     ).toSorted((a, b) => a.getNameOrThrow().localeCompare(b.getNameOrThrow()))
   );
