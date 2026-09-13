@@ -1,9 +1,9 @@
 import { ModuleBase } from '../../internal/module-base';
-import { collation as databaseCollation } from './collation';
-import { column as databaseColumn } from './column';
-import { engine as databaseEngine } from './engine';
-import { mongodbObjectId as databaseMongodbObjectId } from './mongodb-object-id';
-import { type as databaseType } from './type';
+import { databaseCollation } from './collation';
+import { databaseColumn } from './column';
+import { databaseEngine } from './engine';
+import { databaseMongodbObjectId } from './mongodb-object-id';
+import { databaseType } from './type';
 
 /**
  * Module to generate database related entries.

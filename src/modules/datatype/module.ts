@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import { boolean as datatypeBoolean } from './boolean';
+import { datatypeBoolean } from './boolean';
 
 /**
  * Module to generate boolean values.

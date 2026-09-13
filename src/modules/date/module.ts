@@ -1,16 +1,16 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
-import { anytime as dateAnytime } from './anytime';
-import { between as dateBetween } from './between';
-import { betweens as dateBetweens } from './betweens';
-import { birthdate as dateBirthdate } from './birthdate';
-import { future as dateFuture } from './future';
-import { month as dateMonth } from './month';
-import { past as datePast } from './past';
-import { recent as dateRecent } from './recent';
-import { soon as dateSoon } from './soon';
-import { timeZone as dateTimeZone } from './time-zone';
-import { weekday as dateWeekday } from './weekday';
+import { dateAnytime } from './anytime';
+import { dateBetween } from './between';
+import { dateBetweens } from './betweens';
+import { dateBirthdate } from './birthdate';
+import { dateFuture } from './future';
+import { dateMonth } from './month';
+import { datePast } from './past';
+import { dateRecent } from './recent';
+import { dateSoon } from './soon';
+import { dateTimeZone } from './time-zone';
+import { dateWeekday } from './weekday';
 
 /**
  * Module to generate dates (without methods requiring localized data).

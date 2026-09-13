@@ -1,20 +1,20 @@
 import { ModuleBase } from '../../internal/module-base';
-import { bio as personBio } from './bio';
-import { firstName as personFirstName } from './first-name';
-import { fullName as personFullName } from './full-name';
-import { gender as personGender } from './gender';
-import { jobArea as personJobArea } from './job-area';
-import { jobDescriptor as personJobDescriptor } from './job-descriptor';
-import { jobTitle as personJobTitle } from './job-title';
-import { jobType as personJobType } from './job-type';
-import { lastName as personLastName } from './last-name';
-import { middleName as personMiddleName } from './middle-name';
-import { prefix as personPrefix } from './prefix';
-import { sex as personSex } from './sex';
+import { personBio } from './bio';
+import { personFirstName } from './first-name';
+import { personFullName } from './full-name';
+import { personGender } from './gender';
+import { personJobArea } from './job-area';
+import { personJobDescriptor } from './job-descriptor';
+import { personJobTitle } from './job-title';
+import { personJobType } from './job-type';
+import { personLastName } from './last-name';
+import { personMiddleName } from './middle-name';
+import { personPrefix } from './prefix';
+import { personSex } from './sex';
 import type { SexType } from './sex-type';
-import { sexType as personSexType } from './sex-type';
-import { suffix as personSuffix } from './suffix';
-import { zodiacSign as personZodiacSign } from './zodiac-sign';
+import { personSexType } from './sex-type';
+import { personSuffix } from './suffix';
+import { personZodiacSign } from './zodiac-sign';
 
 /**
  * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0, this module was known as `faker.name`.

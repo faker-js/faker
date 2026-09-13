@@ -1,8 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
-import { album as musicAlbum } from './album';
-import { artist as musicArtist } from './artist';
-import { genre as musicGenre } from './genre';
-import { songName as musicSongName } from './song-name';
+import { musicAlbum } from './album';
+import { musicArtist } from './artist';
+import { musicGenre } from './genre';
+import { musicSongName } from './song-name';
 
 /**
  * Module to generate music related entries.
