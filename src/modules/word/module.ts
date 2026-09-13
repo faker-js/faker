@@ -1,14 +1,14 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { adjective as wordAdjective } from './adjective';
-import { adverb as wordAdverb } from './adverb';
-import { conjunction as wordConjunction } from './conjunction';
-import { interjection as wordInterjection } from './interjection';
-import { noun as wordNoun } from './noun';
-import { preposition as wordPreposition } from './preposition';
+import { wordAdjective } from './adjective';
+import { wordAdverb } from './adverb';
+import { wordConjunction } from './conjunction';
+import { wordInterjection } from './interjection';
+import { wordNoun } from './noun';
+import { wordPreposition } from './preposition';
 import { wordSample } from './sample';
-import { verb as wordVerb } from './verb';
-import { words as wordWords } from './words';
+import { wordVerb } from './verb';
+import { wordWords } from './words';
 
 /**
  * Module to return various types of words.

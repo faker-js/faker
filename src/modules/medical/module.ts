@@ -1,12 +1,12 @@
 import { ModuleBase } from '../../internal/module-base';
-import { allergen as medicalAllergen } from './allergen';
-import { bloodType as medicalBloodType } from './blood-type';
-import { condition as medicalCondition } from './condition';
-import { department as medicalDepartment } from './department';
-import { drugName as medicalDrugName } from './drug-name';
-import { procedure as medicalProcedure } from './procedure';
-import { specialty as medicalSpecialty } from './specialty';
-import { symptom as medicalSymptom } from './symptom';
+import { medicalAllergen } from './allergen';
+import { medicalBloodType } from './blood-type';
+import { medicalCondition } from './condition';
+import { medicalDepartment } from './department';
+import { medicalDrugName } from './drug-name';
+import { medicalProcedure } from './procedure';
+import { medicalSpecialty } from './specialty';
+import { medicalSymptom } from './symptom';
 
 /**
  * Module to generate plausible medical and healthcare related entries.
