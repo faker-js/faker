@@ -51,6 +51,16 @@ function patchFileName(methodName: string): string {
     : toKebabCase(methodName);
 }
 
+function patchJsDocs(module: string, method: string, jsDocs: string): string {
+  if (module === 'helpers' && method === 'uniqueArray') {
+    jsDocs = jsDocs.replace(
+      'faker.helpers.uniqueArray(faker.word.sample, 3)',
+      'faker.helpers.uniqueArray(() => faker.word.sample(), 3)'
+    );
+  }
+  return jsDocs;
+}
+
 // #endregion
 
 const project = getProject();
@@ -249,7 +259,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               // Locale Access
               .replaceAll(/\bfakerCore\.locale\b/g, 'faker.definitions');
 
-            parts.push(description);
+            parts.push(patchJsDocs(moduleName, methodName, description));
           }
           //#endregion JSDocs
 
