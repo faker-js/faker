@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random IANA time zone relevant to this locale.
@@ -12,12 +12,12 @@ import { arrayElement } from '../helpers/array-element';
  * @see dateTimeZone(fakerCore): For generating a random time zone from all available time zones.
  *
  * @example
- * timeZone(fakerCore) // 'Pacific/Guam'
+ * locationTimeZone(fakerCore) // 'Pacific/Guam'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function timeZone(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.location.time_zone);
+export function locationTimeZone(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.location.time_zone);
 }

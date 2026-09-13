@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random job descriptor.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * jobDescriptor(fakerCore) // 'Customer'
+ * personJobDescriptor(fakerCore) // 'Customer'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function jobDescriptor(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.person.job_descriptor);
+export function personJobDescriptor(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.person.job_descriptor);
 }

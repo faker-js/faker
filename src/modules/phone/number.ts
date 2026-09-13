@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { legacyReplaceSymbolWithNumber } from '../helpers/_legacy-replace-symbol-with-number';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random phone number.
@@ -14,17 +14,17 @@ import { arrayElement } from '../helpers/array-element';
  * @see helpersFromRegExp(fakerCore): For generating a phone number matching a regular expression.
  *
  * @example
- * number(fakerCore) // '961-770-7727'
- * number(fakerCore, { style: 'human' }) // '555.770.7727 x1234'
- * number(fakerCore, { style: 'national' }) // '(961) 770-7727'
- * number(fakerCore, { style: 'international' }) // '+15551234567'
+ * phoneNumber(fakerCore) // '961-770-7727'
+ * phoneNumber(fakerCore, { style: 'human' }) // '555.770.7727 x1234'
+ * phoneNumber(fakerCore, { style: 'national' }) // '(961) 770-7727'
+ * phoneNumber(fakerCore, { style: 'international' }) // '+15551234567'
  * fakerEN_GB.phone.number({ style: 'mobile' }) // '07123456789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function number(
+export function phoneNumber(
   fakerCore: FakerCore,
   options: {
     /**
@@ -42,6 +42,6 @@ export function number(
   const { style = 'human' } = options;
   const formats = fakerCore.locale.phone_number.format[style];
   assertLocaleData(formats, 'phone_number.format', style);
-  const format = arrayElement(fakerCore, formats);
+  const format = helpersArrayElement(fakerCore, formats);
   return legacyReplaceSymbolWithNumber(fakerCore, format);
 }

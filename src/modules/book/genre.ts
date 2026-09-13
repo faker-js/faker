@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random genre.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * genre(fakerCore) // 'Fantasy'
+ * bookGenre(fakerCore) // 'Fantasy'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function genre(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.book.genre);
+export function bookGenre(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.book.genre);
 }

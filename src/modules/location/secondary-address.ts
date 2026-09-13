@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { Faker } from '../../faker';
-import { numeric } from '../string/numeric';
+import { stringNumeric } from '../string/numeric';
 
 /**
  * Generates a random localized secondary address. This refers to a specific location at a given address
@@ -9,17 +9,17 @@ import { numeric } from '../string/numeric';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * secondaryAddress(fakerCore) // 'Apt. 861'
+ * locationSecondaryAddress(fakerCore) // 'Apt. 861'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function secondaryAddress(fakerCore: FakerCore): string {
+export function locationSecondaryAddress(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers
     .fake(fakerCore.locale.location.secondary_address)
     .replaceAll(/#+/g, (m) =>
-      numeric(fakerCore, {
+      stringNumeric(fakerCore, {
         length: m.length,
         allowLeadingZeros: false,
       })

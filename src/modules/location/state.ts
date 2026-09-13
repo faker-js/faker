@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
@@ -13,16 +13,16 @@ import { arrayElement } from '../helpers/array-element';
  * Otherwise this will return the long name. Defaults to `false`.
  *
  * @example
- * state(fakerCore) // 'Mississippi'
+ * locationState(fakerCore) // 'Mississippi'
  * fakerEN_CA.location.state() // 'Saskatchewan'
  * fakerDE.location.state() // 'Nordrhein-Westfalen'
- * state(fakerCore, { abbreviated: true }) // 'LA'
+ * locationState(fakerCore, { abbreviated: true }) // 'LA'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function state(
+export function locationState(
   fakerCore: FakerCore,
   options: {
     /**
@@ -39,5 +39,5 @@ export function state(
     ? fakerCore.locale.location.state_abbr
     : fakerCore.locale.location.state;
 
-  return arrayElement(fakerCore, data);
+  return helpersArrayElement(fakerCore, data);
 }

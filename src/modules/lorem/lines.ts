@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { sentences } from './sentences';
+import { loremSentences } from './sentences';
 
 /**
  * Generates the given number lines of lorem separated by `'\n'`.
@@ -11,30 +11,30 @@ import { sentences } from './sentences';
  * @param lineCount.max The maximum number of lines to generate. Defaults to `5`.
  *
  * @example
- * lines(fakerCore)
+ * loremLines(fakerCore)
  * // 'Rerum quia aliquam pariatur explicabo sint minima eos.
  * // Voluptatem repellat consequatur deleniti qui quibusdam harum cumque.
  * // Enim eveniet a qui.
  * // Consectetur velit eligendi animi nostrum veritatis.'
  *
- * lines(fakerCore)
+ * loremLines(fakerCore)
  * // 'Soluta deserunt eos quam reiciendis libero autem enim nam ut.
  * // Voluptate aut aut.'
  *
- * lines(fakerCore, 2)
+ * loremLines(fakerCore, 2)
  * // 'Quod quas nam quis impedit aut consequuntur.
  * // Animi dolores aspernatur.'
  *
- * lines(fakerCore, { min: 1, max: 3 })
+ * loremLines(fakerCore, { min: 1, max: 3 })
  * // 'Error dolorem natus quos eum consequatur necessitatibus.'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function lines(
+export function loremLines(
   fakerCore: FakerCore,
   lineCount: NumberOrRange = { min: 1, max: 5 }
 ): string {
-  return sentences(fakerCore, lineCount, '\n');
+  return loremSentences(fakerCore, lineCount, '\n');
 }

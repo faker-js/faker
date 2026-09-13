@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { int } from '../number/int';
-import { firstName as personFirstName } from '../person/first-name';
-import { lastName as personLastName } from '../person/last-name';
+import { helpersArrayElement } from '../helpers/array-element';
+import { numberInt } from '../number/int';
+import { personFirstName as personFirstName } from '../person/first-name';
+import { personLastName as personLastName } from '../person/last-name';
 
 /**
  * Generates a display name using the given person's name as base.
@@ -18,18 +18,18 @@ import { lastName as personLastName } from '../person/last-name';
  * @see username(fakerCore): For generating a plain ASCII username.
  *
  * @example
- * displayName(fakerCore) // 'Nettie_Zboncak40'
- * displayName(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
- * displayName(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
- * displayName(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
- * displayName(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
- * displayName(fakerCore, { firstName: '大羽', lastName: '陳' }) // '大羽.陳'
+ * internetDisplayName(fakerCore) // 'Nettie_Zboncak40'
+ * internetDisplayName(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
+ * internetDisplayName(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+ * internetDisplayName(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
+ * internetDisplayName(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
+ * internetDisplayName(fakerCore, { firstName: '大羽', lastName: '陳' }) // '大羽.陳'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function displayName(
+export function internetDisplayName(
   fakerCore: FakerCore,
   options: {
     /**
@@ -51,15 +51,15 @@ export function displayName(
     lastName = personLastName(fakerCore),
   } = options;
 
-  const separator = arrayElement(fakerCore, ['.', '_']);
-  const disambiguator = int(fakerCore, 99);
+  const separator = helpersArrayElement(fakerCore, ['.', '_']);
+  const disambiguator = numberInt(fakerCore, 99);
   const strategies: Array<() => string> = [
     () => `${firstName}${disambiguator}`,
     () => `${firstName}${separator}${lastName}`,
     () => `${firstName}${separator}${lastName}${disambiguator}`,
   ];
 
-  let result = arrayElement(fakerCore, strategies)();
+  let result = helpersArrayElement(fakerCore, strategies)();
   result = result.replaceAll("'", '');
   result = result.replaceAll(' ', '');
   return result;

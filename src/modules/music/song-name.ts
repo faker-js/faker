@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random song name.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * songName(fakerCore) // 'White Christmas'
+ * musicSongName(fakerCore) // 'White Christmas'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function songName(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.music.song_name);
+export function musicSongName(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.music.song_name);
 }

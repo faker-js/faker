@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random hacker/IT abbreviation.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * abbreviation(fakerCore) // 'THX'
+ * hackerAbbreviation(fakerCore) // 'THX'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function abbreviation(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.hacker.abbreviation);
+export function hackerAbbreviation(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.hacker.abbreviation);
 }

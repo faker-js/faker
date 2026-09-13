@@ -7,14 +7,14 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * city(fakerCore) // 'East Jarretmouth'
+ * locationCity(fakerCore) // 'East Jarretmouth'
  * fakerDE.location.city() // 'Bad Lilianadorf'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function city(fakerCore: FakerCore): string {
+export function locationCity(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.location.city_pattern
   );

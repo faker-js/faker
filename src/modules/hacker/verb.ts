@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random hacker/IT verb.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * verb(fakerCore) // 'copy'
+ * hackerVerb(fakerCore) // 'copy'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function verb(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.hacker.verb);
+export function hackerVerb(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.hacker.verb);
 }

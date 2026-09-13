@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { numeric } from '../string/numeric';
+import { stringNumeric } from '../string/numeric';
 
 /**
  * Returns a random flight number. Flight numbers are always 1 to 4 digits long. Sometimes they are
@@ -10,7 +10,7 @@ import { numeric } from '../string/numeric';
  * To generate a flight number prepended with an airline code, combine this function with the
  * `airline()` function and use template literals:
  * ```
- * `${airline(fakerCore).iataCode}${flightNumber(fakerCore, { addLeadingZeros: true })}` // 'AA0798'
+ * `${airline(fakerCore).iataCode}${airlineFlightNumber(fakerCore, { addLeadingZeros: true })}` // 'AA0798'
  * ```
  *
  * @param fakerCore The FakerCore to use.
@@ -19,18 +19,18 @@ import { numeric } from '../string/numeric';
  * @param options.addLeadingZeros Whether to pad the flight number up to 4 digits with leading zeros. Defaults to `false`.
  *
  * @example
- * flightNumber(fakerCore) // '2405'
- * flightNumber(fakerCore, { addLeadingZeros: true }) // '0249'
- * flightNumber(fakerCore, { addLeadingZeros: true, length: 2 }) // '0042'
- * flightNumber(fakerCore, { addLeadingZeros: true, length: { min: 2, max: 3 } }) // '0624'
- * flightNumber(fakerCore, { length: 3 }) // '425'
- * flightNumber(fakerCore, { length: { min: 2, max: 3 } }) // '84'
+ * airlineFlightNumber(fakerCore) // '2405'
+ * airlineFlightNumber(fakerCore, { addLeadingZeros: true }) // '0249'
+ * airlineFlightNumber(fakerCore, { addLeadingZeros: true, length: 2 }) // '0042'
+ * airlineFlightNumber(fakerCore, { addLeadingZeros: true, length: { min: 2, max: 3 } }) // '0624'
+ * airlineFlightNumber(fakerCore, { length: 3 }) // '425'
+ * airlineFlightNumber(fakerCore, { length: { min: 2, max: 3 } }) // '84'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function flightNumber(
+export function airlineFlightNumber(
   fakerCore: FakerCore,
   options: {
     /**
@@ -48,7 +48,7 @@ export function flightNumber(
   } = {}
 ): string {
   const { length = { min: 1, max: 4 }, addLeadingZeros = false } = options;
-  const flightNumber = numeric(fakerCore, {
+  const flightNumber = stringNumeric(fakerCore, {
     length,
     allowLeadingZeros: false,
   });

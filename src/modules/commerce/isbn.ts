@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { objectEntry } from '../helpers/object-entry';
-import { numeric } from '../string/numeric';
+import { helpersObjectEntry } from '../helpers/object-entry';
+import { stringNumeric } from '../string/numeric';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<
@@ -86,18 +86,18 @@ const ISBN_LENGTH_RULES: Record<
  * @param options.separator The separator to use in the format. Defaults to `'-'`.
  *
  * @example
- * isbn(fakerCore) // '978-0-692-82459-7'
- * isbn(fakerCore, 10) // '1-155-36404-X'
- * isbn(fakerCore, 13) // '978-1-60808-867-6'
- * isbn(fakerCore, { separator: ' ' }) // '978 0 452 81498 1'
- * isbn(fakerCore, { variant: 10, separator: ' ' }) // '0 940319 49 7'
- * isbn(fakerCore, { variant: 13, separator: ' ' }) // '978 1 6618 9122 0'
+ * commerceIsbn(fakerCore) // '978-0-692-82459-7'
+ * commerceIsbn(fakerCore, 10) // '1-155-36404-X'
+ * commerceIsbn(fakerCore, 13) // '978-1-60808-867-6'
+ * commerceIsbn(fakerCore, { separator: ' ' }) // '978 0 452 81498 1'
+ * commerceIsbn(fakerCore, { variant: 10, separator: ' ' }) // '0 940319 49 7'
+ * commerceIsbn(fakerCore, { variant: 13, separator: ' ' }) // '978 1 6618 9122 0'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function isbn(
+export function commerceIsbn(
   fakerCore: FakerCore,
   options:
     | 10
@@ -127,8 +127,8 @@ export function isbn(
   const { variant = 13, separator = '-' } = options;
 
   const prefix = '978';
-  const [group, groupRules] = objectEntry(fakerCore, ISBN_LENGTH_RULES);
-  const element = numeric(fakerCore, 8);
+  const [group, groupRules] = helpersObjectEntry(fakerCore, ISBN_LENGTH_RULES);
+  const element = stringNumeric(fakerCore, 8);
   const elementValue = Number.parseInt(element.slice(0, -1));
 
   const registrantLength = groupRules.find(

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { currency } from './currency';
+import { financeCurrency } from './currency';
 
 /**
  * Returns a random currency name.
@@ -7,12 +7,12 @@ import { currency } from './currency';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * currencyName(fakerCore) // 'US Dollar'
+ * financeCurrencyName(fakerCore) // 'US Dollar'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function currencyName(fakerCore: FakerCore): string {
-  return currency(fakerCore).name;
+export function financeCurrencyName(fakerCore: FakerCore): string {
+  return financeCurrency(fakerCore).name;
 }

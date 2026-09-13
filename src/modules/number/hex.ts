@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { int } from './int';
+import { numberInt } from './int';
 
 /**
  * Returns a lowercase [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
@@ -14,15 +14,15 @@ import { int } from './int';
  * @throws {FakerError} When there are no integers between `min` and `max`.
  *
  * @example
- * hex(fakerCore) // 'b'
- * hex(fakerCore, 255) // '9d'
- * hex(fakerCore, { min: 0, max: 65535 }) // 'af17'
+ * numberHex(fakerCore) // 'b'
+ * numberHex(fakerCore, 255) // '9d'
+ * numberHex(fakerCore, { min: 0, max: 65535 }) // 'af17'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function hex(
+export function numberHex(
   fakerCore: FakerCore,
   options:
     | number
@@ -47,7 +47,7 @@ export function hex(
 
   const { min = 0, max = 15 } = options;
 
-  return int(fakerCore, {
+  return numberInt(fakerCore, {
     max,
     min,
   }).toString(16);

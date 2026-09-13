@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import { hex } from '../number/hex';
+import { numberHex } from '../number/hex';
 
 /**
  * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
@@ -9,13 +9,13 @@ import { hex } from '../number/hex';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * uuid(fakerCore) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+ * stringUuid(fakerCore) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function uuid(fakerCore: FakerCore): string;
+export function stringUuid(fakerCore: FakerCore): string;
 /**
  * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
  *
@@ -24,13 +24,13 @@ export function uuid(fakerCore: FakerCore): string;
  * @param options.version The specific UUID version to use.
  *
  * @example
- * uuid(fakerCore, { version: 4 }) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+ * stringUuid(fakerCore, { version: 4 }) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function uuid(
+export function stringUuid(
   fakerCore: FakerCore,
   options: {
     /**
@@ -50,13 +50,13 @@ export function uuid(
  * Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @example
- * uuid(fakerCore) // '019be2c5-58de-70fe-a693-2ccbff1f0780'
+ * stringUuid(fakerCore) // '019be2c5-58de-70fe-a693-2ccbff1f0780'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function uuid(
+export function stringUuid(
   fakerCore: FakerCore,
   options: {
     /**
@@ -83,16 +83,16 @@ export function uuid(
  * Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @example
- * uuid(fakerCore) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
- * uuid(fakerCore, { version: 4 }) // 'd5482c1f-c30d-4bbc-b151-d95145bae71b'
- * uuid(fakerCore, { version: 7 }) // '01948b54-1b78-75fb-9922-0d9b0fd32248'
- * uuid(fakerCore, { version: 7, refDate: '2020-01-01T00:00:00.000Z' }) // '016f5e66-e800-725e-b078-f413f23aaff0'
+ * stringUuid(fakerCore) // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+ * stringUuid(fakerCore, { version: 4 }) // 'd5482c1f-c30d-4bbc-b151-d95145bae71b'
+ * stringUuid(fakerCore, { version: 7 }) // '01948b54-1b78-75fb-9922-0d9b0fd32248'
+ * stringUuid(fakerCore, { version: 7, refDate: '2020-01-01T00:00:00.000Z' }) // '016f5e66-e800-725e-b078-f413f23aaff0'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function uuid(
+export function stringUuid(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -108,7 +108,7 @@ export function uuid(
     refDate?: string | Date | number;
   }
 ): string;
-export function uuid(
+export function stringUuid(
   fakerCore: FakerCore,
   options: {
     version?: 4 | 7;
@@ -134,8 +134,8 @@ export function uuid(
  */
 function uuidV4(fakerCore: FakerCore): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-    .replaceAll('x', () => hex(fakerCore, { min: 0x0, max: 0xf }))
-    .replaceAll('y', () => hex(fakerCore, { min: 0x8, max: 0xb }));
+    .replaceAll('x', () => numberHex(fakerCore, { min: 0x0, max: 0xf }))
+    .replaceAll('y', () => numberHex(fakerCore, { min: 0x8, max: 0xb }));
 }
 
 /**
@@ -158,8 +158,8 @@ function uuidV7(fakerCore: FakerCore, refDate: Date): string {
   ].join('-');
 
   const randomPart = '7xxx-yxxx-xxxxxxxxxxxx'
-    .replaceAll('x', () => hex(fakerCore, { min: 0x0, max: 0xf }))
-    .replaceAll('y', () => hex(fakerCore, { min: 0x8, max: 0xb }));
+    .replaceAll('x', () => numberHex(fakerCore, { min: 0x0, max: 0xf }))
+    .replaceAll('y', () => numberHex(fakerCore, { min: 0x8, max: 0xb }));
 
   return `${unixTimePart}-${randomPart}`;
 }

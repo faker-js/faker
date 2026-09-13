@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { Faker } from '../../faker';
-import { arrayElement } from '../helpers/array-element';
-import { weightedArrayElement } from '../helpers/weighted-array-element';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
 import { selectDefinition } from './_select-definition';
 import type { SexType } from './sex-type';
 
@@ -13,25 +13,25 @@ import type { SexType } from './sex-type';
  * Can be either `'female'` or `'male'`.
  *
  * @example
- * lastName(fakerCore) // 'Hauck'
- * lastName(fakerCore, 'female') // 'Grady'
- * lastName(fakerCore, 'male') // 'Barton'
+ * personLastName(fakerCore) // 'Hauck'
+ * personLastName(fakerCore, 'female') // 'Grady'
+ * personLastName(fakerCore, 'male') // 'Barton'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function lastName(fakerCore: FakerCore, sex?: SexType): string {
+export function personLastName(fakerCore: FakerCore, sex?: SexType): string {
   const patterns = fakerCore.locale.raw.person?.last_name_pattern;
   if (patterns != null) {
-    const pattern = weightedArrayElement(
+    const pattern = helpersWeightedArrayElement(
       fakerCore,
       selectDefinition(fakerCore, sex, patterns)
     );
     return new Faker(fakerCore).helpers.fake(pattern);
   }
 
-  return arrayElement(
+  return helpersArrayElement(
     fakerCore,
     selectDefinition(fakerCore, sex, fakerCore.locale.person.last_name)
   );

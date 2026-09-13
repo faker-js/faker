@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { int } from '../number/int';
-import { fromCharacters } from '../string/from-characters';
+import { numberInt } from '../number/int';
+import { stringFromCharacters } from '../string/from-characters';
 
 /**
  * Generates a random Litecoin address.
@@ -8,18 +8,18 @@ import { fromCharacters } from '../string/from-characters';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * litecoinAddress(fakerCore) // 'MoQaSTGWBRXkWfyxKbNKuPrAWGELzcW'
+ * financeLitecoinAddress(fakerCore) // 'MoQaSTGWBRXkWfyxKbNKuPrAWGELzcW'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function litecoinAddress(fakerCore: FakerCore): string {
-  const addressLength = int(fakerCore, { min: 26, max: 33 });
+export function financeLitecoinAddress(fakerCore: FakerCore): string {
+  const addressLength = numberInt(fakerCore, { min: 26, max: 33 });
 
   const address =
-    fromCharacters(fakerCore, 'LM3') +
-    fromCharacters(
+    stringFromCharacters(fakerCore, 'LM3') +
+    stringFromCharacters(
       fakerCore,
       '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
       addressLength - 1

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a file extension.
@@ -9,14 +9,14 @@ import { arrayElement } from '../helpers/array-element';
  * @param mimeType Valid [mime-type](https://github.com/jshttp/mime-db/blob/master/db.json)
  *
  * @example
- * fileExt(fakerCore) // 'emf'
- * fileExt(fakerCore, 'application/json') // 'json'
+ * systemFileExt(fakerCore) // 'emf'
+ * systemFileExt(fakerCore, 'application/json') // 'json'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function fileExt(fakerCore: FakerCore, mimeType?: string): string {
+export function systemFileExt(fakerCore: FakerCore, mimeType?: string): string {
   const mimeTypes = fakerCore.locale.system.mime_type;
 
   if (typeof mimeType === 'string') {
@@ -25,11 +25,11 @@ export function fileExt(fakerCore: FakerCore, mimeType?: string): string {
       throw new FakerError(`MIME type ${mimeType} is not supported.`);
     }
 
-    return arrayElement(fakerCore, entry.extensions);
+    return helpersArrayElement(fakerCore, entry.extensions);
   }
 
   const extensionSet = new Set(
     Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
   );
-  return arrayElement(fakerCore, [...extensionSet]);
+  return helpersArrayElement(fakerCore, [...extensionSet]);
 }

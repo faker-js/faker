@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random localized county, or other equivalent second-level administrative entity for the locale's country such as a district or department.
@@ -14,6 +14,6 @@ import { arrayElement } from '../helpers/array-element';
  *
  * @experimental
  */
-export function county(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.location.county);
+export function locationCounty(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.location.county);
 }

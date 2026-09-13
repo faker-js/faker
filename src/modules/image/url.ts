@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { int } from '../number/int';
-import { urlPicsumPhotos } from './url-picsum-photos';
+import { helpersArrayElement } from '../helpers/array-element';
+import { numberInt } from '../number/int';
+import { imageUrlPicsumPhotos } from './url-picsum-photos';
 
 /**
  * Generates a random image url.
@@ -14,13 +14,13 @@ import { urlPicsumPhotos } from './url-picsum-photos';
  * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
  *
  * @example
- * url(fakerCore) // 'https://picsum.photos/seed/NWbJM2B/640/480'
+ * imageUrl(fakerCore) // 'https://picsum.photos/seed/NWbJM2B/640/480'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function url(
+export function imageUrl(
   fakerCore: FakerCore,
   options: {
     /**
@@ -38,13 +38,13 @@ export function url(
   } = {}
 ): string {
   const {
-    width = int(fakerCore, { min: 1, max: 3999 }),
-    height = int(fakerCore, { min: 1, max: 3999 }),
+    width = numberInt(fakerCore, { min: 1, max: 3999 }),
+    height = numberInt(fakerCore, { min: 1, max: 3999 }),
   } = options;
 
-  const urlMethod = arrayElement(fakerCore, [
+  const urlMethod = helpersArrayElement(fakerCore, [
     ({ width, height }: { width?: number; height?: number }) =>
-      urlPicsumPhotos(fakerCore, { width, height, grayscale: false, blur: 0 }),
+      imageUrlPicsumPhotos(fakerCore, { width, height, grayscale: false, blur: 0 }),
     // Other providers may be added back here in future versions.
   ]);
 

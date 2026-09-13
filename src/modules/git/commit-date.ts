@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import { recent } from '../date/recent';
-import { int } from '../number/int';
+import { dateRecent } from '../date/recent';
+import { numberInt } from '../number/int';
 
 /**
  * Generates a date string for a git commit using the same format as `git log`.
@@ -11,14 +11,14 @@ import { int } from '../number/int';
  * @param options.refDate The date to use as reference point for the commit. Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @example
- * commitDate(fakerCore) // 'Mon Nov 7 14:40:58 2022 +0600'
- * commitDate(fakerCore, { refDate: '2020-01-01' }) // 'Tue Dec 31 05:40:59 2019 -0400'
+ * gitCommitDate(fakerCore) // 'Mon Nov 7 14:40:58 2022 +0600'
+ * gitCommitDate(fakerCore, { refDate: '2020-01-01' }) // 'Tue Dec 31 05:40:59 2019 -0400'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function commitDate(
+export function gitCommitDate(
   fakerCore: FakerCore,
   options: {
     /**
@@ -49,7 +49,7 @@ export function commitDate(
     'Dec',
   ];
 
-  const date = recent(fakerCore, { days: 1, refDate });
+  const date = dateRecent(fakerCore, { days: 1, refDate });
   const day = days[date.getUTCDay()];
   const month = months[date.getUTCMonth()];
   const dayOfMonth = date.getUTCDate();
@@ -57,7 +57,7 @@ export function commitDate(
   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
   const seconds = date.getUTCSeconds().toString().padStart(2, '0');
   const year = date.getUTCFullYear();
-  const timezone = int(fakerCore, { min: -11, max: 12 });
+  const timezone = numberInt(fakerCore, { min: -11, max: 12 });
   const timezoneHours = Math.abs(timezone).toString().padStart(2, '0');
   const timezoneMinutes = '00';
   const timezoneSign = timezone >= 0 ? '+' : '-';

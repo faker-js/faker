@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { int } from './int';
+import { numberInt } from './int';
 
 /**
  * Returns an [octal](https://en.wikipedia.org/wiki/Octal) number.
@@ -16,15 +16,15 @@ import { int } from './int';
  * @see stringOctal(fakerCore): For generating an `octal string` with a given length (range).
  *
  * @example
- * octal(fakerCore) // '5'
- * octal(fakerCore, 255) // '377'
- * octal(fakerCore, { min: 0, max: 65535 }) // '4766'
+ * numberOctal(fakerCore) // '5'
+ * numberOctal(fakerCore, 255) // '377'
+ * numberOctal(fakerCore, { min: 0, max: 65535 }) // '4766'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function octal(
+export function numberOctal(
   fakerCore: FakerCore,
   options:
     | number
@@ -49,7 +49,7 @@ export function octal(
 
   const { min = 0, max = 7 } = options;
 
-  return int(fakerCore, {
+  return numberInt(fakerCore, {
     max,
     min,
   }).toString(8);

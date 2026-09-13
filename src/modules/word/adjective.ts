@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from './_filter-word-list-by-length';
 
 /**
@@ -14,16 +14,16 @@ import { filterWordListByLength } from './_filter-word-list-by-length';
  * Defaults to `'fail'`.
  *
  * @example
- * adjective(fakerCore) // 'pungent'
- * adjective(fakerCore, 5) // 'slimy'
- * adjective(fakerCore, { strategy: 'shortest' }) // 'icy'
- * adjective(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'distant'
+ * wordAdjective(fakerCore) // 'pungent'
+ * wordAdjective(fakerCore, 5) // 'slimy'
+ * wordAdjective(fakerCore, { strategy: 'shortest' }) // 'icy'
+ * wordAdjective(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'distant'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function adjective(
+export function wordAdjective(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function adjective(
     options = { length: options };
   }
 
-  return arrayElement(
+  return helpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,
