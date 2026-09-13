@@ -17,7 +17,7 @@ import { helpersRangeToNumber } from './range-to-number';
  *
  * @throws {FakerError} If the given array is empty.
  *
- * @see arrayElements(fakerCore): For generating an array of elements without replacement.
+ * @see helpersArrayElements(fakerCore): For generating an array of elements without replacement.
  *
  * @example
  * helpersArraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
