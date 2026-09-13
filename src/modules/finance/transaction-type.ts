@@ -14,5 +14,8 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function financeTransactionType(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.finance.transaction_type);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.finance.transaction_type
+  );
 }

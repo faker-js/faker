@@ -109,7 +109,9 @@ export function colorLab(
   const { format = 'decimal' } = options;
   const lab = [numberFloat(fakerCore, { multipleOf: 0.000001 })];
   for (let i = 0; i < 2; i++) {
-    lab.push(numberFloat(fakerCore, { min: -100, max: 100, multipleOf: 0.0001 }));
+    lab.push(
+      numberFloat(fakerCore, { min: -100, max: 100, multipleOf: 0.0001 })
+    );
   }
 
   return toColorFormat(lab, format, 'lab');

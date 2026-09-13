@@ -25,10 +25,9 @@ import { helpersArrayElement } from './array-element';
  *
  * @experimental
  */
-export function helpersEnumValue<T extends Record<string | number, string | number>>(
-  fakerCore: FakerCore,
-  enumObject: T
-): T[keyof T] {
+export function helpersEnumValue<
+  T extends Record<string | number, string | number>,
+>(fakerCore: FakerCore, enumObject: T): T[keyof T] {
   // ignore numeric keys added by TypeScript
   const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
     Number.isNaN(Number(key))

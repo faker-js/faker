@@ -15,5 +15,8 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function internetDomainSuffix(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.internet.domain_suffix);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.internet.domain_suffix
+  );
 }

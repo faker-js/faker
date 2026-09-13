@@ -17,5 +17,7 @@ import { internetIpv6 } from './ipv6';
  * @experimental
  */
 export function internetIp(fakerCore: FakerCore): string {
-  return datatypeBoolean(fakerCore) ? internetIpv4(fakerCore) : internetIpv6(fakerCore);
+  return datatypeBoolean(fakerCore)
+    ? internetIpv4(fakerCore)
+    : internetIpv6(fakerCore);
 }

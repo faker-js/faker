@@ -71,9 +71,12 @@ export function gitCommitEntry(
 
   if (merge) {
     lines.push(
-      `Merge: ${gitCommitSha(fakerCore, { length: 7 })} ${gitCommitSha(fakerCore, {
-        length: 7,
-      })}`
+      `Merge: ${gitCommitSha(fakerCore, { length: 7 })} ${gitCommitSha(
+        fakerCore,
+        {
+          length: 7,
+        }
+      )}`
     );
   }
 

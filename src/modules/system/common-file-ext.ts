@@ -27,5 +27,8 @@ const commonMimeTypes = [
  * @experimental
  */
 export function systemCommonFileExt(fakerCore: FakerCore): string {
-  return systemFileExt(fakerCore, helpersArrayElement(fakerCore, commonMimeTypes));
+  return systemFileExt(
+    fakerCore,
+    helpersArrayElement(fakerCore, commonMimeTypes)
+  );
 }

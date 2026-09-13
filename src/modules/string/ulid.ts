@@ -55,5 +55,7 @@ export function stringUlid(
     );
   }
 
-  return dateToBase32(date) + stringFromCharacters(fakerCore, CROCKFORDS_BASE32, 16);
+  return (
+    dateToBase32(date) + stringFromCharacters(fakerCore, CROCKFORDS_BASE32, 16)
+  );
 }

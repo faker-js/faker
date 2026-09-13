@@ -14,5 +14,9 @@ import { numberInt } from '../number/int';
  * @experimental
  */
 export function systemSemver(fakerCore: FakerCore): string {
-  return [numberInt(fakerCore, 9), numberInt(fakerCore, 20), numberInt(fakerCore, 20)].join('.');
+  return [
+    numberInt(fakerCore, 9),
+    numberInt(fakerCore, 20),
+    numberInt(fakerCore, 20),
+  ].join('.');
 }

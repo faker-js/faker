@@ -14,5 +14,8 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function personZodiacSign(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.person.western_zodiac_sign);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.person.western_zodiac_sign
+  );
 }

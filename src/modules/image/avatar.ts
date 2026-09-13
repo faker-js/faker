@@ -20,6 +20,9 @@ import { imagePersonPortrait } from './person-portrait';
  */
 export function imageAvatar(fakerCore: FakerCore): string {
   // Add new avatar providers here, when adding a new one.
-  const avatarMethod = helpersArrayElement(fakerCore, [personPortrait, avatarGitHub]);
+  const avatarMethod = helpersArrayElement(fakerCore, [
+    personPortrait,
+    avatarGitHub,
+  ]);
   return avatarMethod(fakerCore);
 }

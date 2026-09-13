@@ -33,6 +33,8 @@ export type CssFunctionType = `${CssFunction}`;
  *
  * @experimental
  */
-export function colorCssSupportedFunction(fakerCore: FakerCore): CssFunctionType {
+export function colorCssSupportedFunction(
+  fakerCore: FakerCore
+): CssFunctionType {
   return helpersEnumValue(fakerCore, CssFunction);
 }
