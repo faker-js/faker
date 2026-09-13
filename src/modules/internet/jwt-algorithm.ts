@@ -17,5 +17,8 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function internetJwtAlgorithm(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.internet.jwt_algorithm);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.internet.jwt_algorithm
+  );
 }

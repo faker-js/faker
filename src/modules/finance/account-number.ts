@@ -17,7 +17,10 @@ import { stringNumeric } from '../string/numeric';
  *
  * @experimental
  */
-export function financeAccountNumber(fakerCore: FakerCore, length?: number): string;
+export function financeAccountNumber(
+  fakerCore: FakerCore,
+  length?: number
+): string;
 /**
  * Generates a random account number.
  *

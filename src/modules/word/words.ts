@@ -39,5 +39,7 @@ export function wordWords(
 
   const { count = { min: 1, max: 3 } } = options;
 
-  return helpersMultiple(fakerCore, () => wordSample(fakerCore), { count }).join(' ');
+  return helpersMultiple(fakerCore, () => wordSample(fakerCore), {
+    count,
+  }).join(' ');
 }

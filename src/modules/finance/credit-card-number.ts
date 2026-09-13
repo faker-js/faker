@@ -18,7 +18,10 @@ import { helpersReplaceCreditCardSymbols } from '../helpers/replace-credit-card-
  *
  * @experimental
  */
-export function financeCreditCardNumber(fakerCore: FakerCore, issuer?: string): string;
+export function financeCreditCardNumber(
+  fakerCore: FakerCore,
+  issuer?: string
+): string;
 /**
  * Generates a random credit card number.
  *

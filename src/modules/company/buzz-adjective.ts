@@ -14,5 +14,8 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function companyBuzzAdjective(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.company.buzz_adjective);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.company.buzz_adjective
+  );
 }

@@ -76,7 +76,8 @@ export function systemNetworkInterface(
     }
 
     case 'pci': {
-      prefix = helpersMaybe(fakerCore, () => `P${stringNumeric(fakerCore)}`) ?? '';
+      prefix =
+        helpersMaybe(fakerCore, () => `P${stringNumeric(fakerCore)}`) ?? '';
       suffix = `${stringNumeric(fakerCore)}s${stringNumeric(fakerCore)}${
         helpersMaybe(fakerCore, () => `f${stringNumeric(fakerCore)}`) ?? ''
       }${helpersMaybe(fakerCore, () => `d${stringNumeric(fakerCore)}`) ?? ''}`;

@@ -44,7 +44,12 @@ export function imageUrl(
 
   const urlMethod = helpersArrayElement(fakerCore, [
     ({ width, height }: { width?: number; height?: number }) =>
-      imageUrlPicsumPhotos(fakerCore, { width, height, grayscale: false, blur: 0 }),
+      imageUrlPicsumPhotos(fakerCore, {
+        width,
+        height,
+        grayscale: false,
+        blur: 0,
+      }),
     // Other providers may be added back here in future versions.
   ]);
 

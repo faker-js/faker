@@ -16,7 +16,10 @@ import type { FakerCore } from '../../core';
  *
  * @experimental
  */
-export function helpersSlugify(fakerCore: FakerCore, string: string = ''): string {
+export function helpersSlugify(
+  fakerCore: FakerCore,
+  string: string = ''
+): string {
   return string
     .normalize('NFKD') //for example è decomposes to as e +  ̀
     .replaceAll(/[\u0300-\u036F]/g, '') // removes combining marks

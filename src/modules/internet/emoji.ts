@@ -43,5 +43,8 @@ export function internetEmoji(
     types = Object.keys(fakerCore.locale.internet.emoji) as EmojiType[],
   } = options;
   const emojiType = helpersArrayElement(fakerCore, types);
-  return helpersArrayElement(fakerCore, fakerCore.locale.internet.emoji[emojiType]);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.internet.emoji[emojiType]
+  );
 }

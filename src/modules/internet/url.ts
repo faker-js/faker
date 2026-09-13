@@ -38,6 +38,7 @@ export function internetUrl(
     protocol?: HTTPProtocolType;
   } = {}
 ): string {
-  const { appendSlash = datatypeBoolean(fakerCore), protocol = 'https' } = options;
+  const { appendSlash = datatypeBoolean(fakerCore), protocol = 'https' } =
+    options;
   return `${protocol}://${internetDomainName(fakerCore)}${appendSlash ? '/' : ''}`;
 }
