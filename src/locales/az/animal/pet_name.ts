@@ -1,0 +1,16 @@
+export default [
+  'Alabaş',
+  'Bala',
+  'Bars',
+  'Boz',
+  'Bəbir',
+  'Cek',
+  'Marsik',
+  'Minnoş',
+  'Muzi',
+  'Qara',
+  'Sarı',
+  'Toğrul',
+  'Tuzik',
+  'Şarik',
+];
