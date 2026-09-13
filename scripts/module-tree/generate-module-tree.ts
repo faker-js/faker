@@ -138,11 +138,66 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
           ...(original.getOverloads()?.map((o) => o.getJsDocs()[0]) ?? []),
           ...original.getJsDocs(),
         ].map((jsDocs) => getSince(jsDocs));
-        original.remove();
+        // TEMP: We skip removing the original method for now.
+        // original.remove();
 
         const methodFile = directory.getSourceFileOrThrow(
           `${methodFileName}.ts`
         );
+
+        //#region Temp
+        let fileContent = methodFile
+          .getFullText()
+          .replaceAll(
+            new RegExp(`\\b${methodName}(?=\\(\\s*fakerCore|<)`, 'g'),
+            qualifiedMethodName
+          );
+        const methodImports = methodFile
+          .getImportDeclarations()
+          .filter((imp) => /^\.+\/[a-z]/.test(imp.getModuleSpecifierValue()))
+          .filter((imp) => !imp.getModuleSpecifierValue().includes('/_'))
+          .filter((imp) => !imp.isTypeOnly())
+          .filter((imp) => !imp.getModuleSpecifierValue().includes('sample'))
+          .map(
+            (imp) =>
+              [
+                imp.getModuleSpecifierValue(),
+                imp.getImportClause()?.getNamedBindings()?.getText() ?? '',
+              ] as const
+          )
+          .map(([file, imps]) => [
+            file.startsWith('./')
+              ? moduleName
+              : file.substring(3).replace(/\/.*/, ''),
+            imps
+              .replaceAll(/^\{|\}$/g, '')
+              .replace(/\bas .*/, '')
+              .trim(),
+          ]);
+
+        for (const [module, method] of methodImports) {
+          fileContent = fileContent
+            .replace(
+              `import { ${method} `,
+              `import { ${toCamelCase(module, method)} `
+            )
+            .replace(
+              `import { ${method} as ${toCamelCase(module, method)}`,
+              `import { ${toCamelCase(module, method)} `
+            )
+            .replaceAll(
+              new RegExp(`\\b${method}(?=\\()`, 'g'),
+              toCamelCase(module, method)
+            );
+        }
+
+        writeFileSync(methodFile.getFilePath(), fileContent);
+
+        if (fileContent) {
+          // TEMP: We skip the rest of the processing.
+          continue;
+        }
+        //#endregion Temp
 
         //#region Imports
         importHelper.addImports(`./${methodFileName}`, qualifiedMethodName);
@@ -278,6 +333,11 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       content.push(classBody, '');
     }
     //#endregion Classes
+
+    if (content.length > 0) {
+      // TEMP: Skip writing the module file
+      continue;
+    }
 
     importHelper.removeUnusedImports(content.join('\n'));
     patchModuleImports(moduleName, importHelper);
