@@ -5,6 +5,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
 import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
 import { getProject } from '../../../scripts/apidocs/project';
+import { toCamelCase } from '../../../scripts/shared/character-case';
 
 // This test suite ensures, that every method
 // - has working examples
@@ -26,13 +27,11 @@ afterAll(() => {
 const modules = processComponents(getProject());
 const smfImportsByMethod = new Map(modules.flatMap(moduleToImportTuples));
 
-function moduleToImportsMap(module: RawApiDocsPage): Map<string, string> {
-  return new Map(moduleToImportTuples(module));
-}
-
 function moduleToImportTuples(module: RawApiDocsPage): Array<[string, string]> {
   return module.methods.map((method) => [
-    method.name,
+    module.camelTitle === 'utils'
+      ? method.name
+      : toCamelCase(module.camelTitle, method.name),
     `${relativeImportPath}/${module.camelTitle === 'utils' ? '.' : 'modules'}/${module.camelTitle}/${toKebabCase(method.name)}`,
   ]);
 }
@@ -117,8 +116,6 @@ describe('verify JSDoc tags', () => {
         });
       });
 
-      const thisModuleImportsByMethod = moduleToImportsMap(module);
-
       //#region Per Method
       describe.each(module.methods.map((m) => [m.name, m]))(
         '%s',
@@ -176,8 +173,7 @@ ${examples}`;
                     .map((s) => s.replaceAll(/\((faker\.)?fakerCore/g, ''))
                     .map((functionName) => [
                       functionName,
-                      thisModuleImportsByMethod.get(functionName) ??
-                        smfImportsByMethod.get(functionName),
+                      smfImportsByMethod.get(functionName),
                     ])
                     .filter(([, importPath]) => importPath != null) as Array<
                     [string, string]
