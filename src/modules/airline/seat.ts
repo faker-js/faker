@@ -2,7 +2,7 @@ import type { FakerCore } from '../../core';
 import { helpersArrayElement } from '../helpers/array-element';
 import { numberInt } from '../number/int';
 import type { AircraftType } from './aircraft-type';
-import { airlineAircraft } from './aircraft-type';
+import { Aircraft } from './aircraft-type';
 
 const aircraftTypeMaxRows: Record<AircraftType, number> = {
   regional: 20,

@@ -2,12 +2,12 @@ import type { FakerCore } from '../../core';
 import { helpersArrayElement } from '../helpers/array-element';
 import { helpersMustache } from '../helpers/mustache';
 import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
-import { personFirstName as personFirstName } from './first-name';
-import { personLastName as personLastName } from './last-name';
+import { personFirstName } from './first-name';
+import { personLastName } from './last-name';
 import { personMiddleName } from './middle-name';
 import { personPrefix } from './prefix';
 import type { SexType } from './sex-type';
-import { personSex } from './sex-type';
+import { Sex } from './sex-type';
 import { personSuffix } from './suffix';
 
 /**

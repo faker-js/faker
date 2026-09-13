@@ -1,11 +1,11 @@
 import type { FakerCore } from '../../core';
 import { datatypeBoolean } from '../datatype/boolean';
 import { helpersArrayElement } from '../helpers/array-element';
-import { internetEmail as internetEmail } from '../internet/email';
-import { internetUsername as internetUsername } from '../internet/username';
-import { personFirstName as personFirstName } from '../person/first-name';
-import { personFullName as personFullName } from '../person/full-name';
-import { personLastName as personLastName } from '../person/last-name';
+import { internetEmail } from '../internet/email';
+import { internetUsername } from '../internet/username';
+import { personFirstName } from '../person/first-name';
+import { personFullName } from '../person/full-name';
+import { personLastName } from '../person/last-name';
 import { gitCommitDate } from './commit-date';
 import { gitCommitMessage } from './commit-message';
 import { gitCommitSha } from './commit-sha';

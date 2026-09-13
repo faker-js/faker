@@ -8,7 +8,7 @@ import { helpersFromRegExp } from '../helpers/from-reg-exp';
  * ISO 3166-1 alpha-2 code, plus `EL`: the prefix Greek numbers carry in place
  * of `GR`.
  *
- * Each pattern is written for `faker.helpers.helpersFromRegExp()`.
+ * Each pattern is written for `faker.helpers.fromRegExp()`.
  * Currently, all values are generated randomly, so parts with intent such as check digits will likely produce invalid values.
  *
  * @internal

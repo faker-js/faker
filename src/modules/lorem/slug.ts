@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
 import { helpersSlugify } from '../helpers/slugify';
-import { loremWords as loremWords } from './words';
+import { loremWords } from './words';
 
 /**
  * Generates a slugified text consisting of the given number of hyphen separated words.
