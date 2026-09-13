@@ -1,12 +1,12 @@
 import type { Distributor } from '../../distributors/distributor';
 import { ModuleBase } from '../../internal/module-base';
-import { bigInt as numberBigInt } from './big-int';
-import { binary as numberBinary } from './binary';
-import { float as numberFloat } from './float';
-import { hex as numberHex } from './hex';
-import { int as numberInt } from './int';
-import { octal as numberOctal } from './octal';
-import { romanNumeral as numberRomanNumeral } from './roman-numeral';
+import { numberBigInt } from './big-int';
+import { numberBinary } from './binary';
+import { numberFloat } from './float';
+import { numberHex } from './hex';
+import { numberInt } from './int';
+import { numberOctal } from './octal';
+import { numberRomanNumeral } from './roman-numeral';
 
 /**
  * Module to generate numbers of any kind.

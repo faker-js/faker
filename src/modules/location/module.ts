@@ -1,25 +1,25 @@
 import { ModuleBase } from '../../internal/module-base';
-import { buildingNumber as locationBuildingNumber } from './building-number';
-import { cardinalDirection as locationCardinalDirection } from './cardinal-direction';
-import { city as locationCity } from './city';
-import { continent as locationContinent } from './continent';
-import { country as locationCountry } from './country';
-import { countryCode as locationCountryCode } from './country-code';
-import { county as locationCounty } from './county';
-import { direction as locationDirection } from './direction';
+import { locationBuildingNumber } from './building-number';
+import { locationCardinalDirection } from './cardinal-direction';
+import { locationCity } from './city';
+import { locationContinent } from './continent';
+import { locationCountry } from './country';
+import { locationCountryCode } from './country-code';
+import { locationCounty } from './county';
+import { locationDirection } from './direction';
 import type { Language } from './language';
-import { language as locationLanguage } from './language';
-import { latitude as locationLatitude } from './latitude';
-import { longitude as locationLongitude } from './longitude';
-import { nearbyGPSCoordinate as locationNearbyGPSCoordinate } from './nearby-gps-coordinate';
-import { ordinalDirection as locationOrdinalDirection } from './ordinal-direction';
-import { postalAddress as locationPostalAddress } from './postal-address';
-import { secondaryAddress as locationSecondaryAddress } from './secondary-address';
-import { state as locationState } from './state';
-import { street as locationStreet } from './street';
-import { streetAddress as locationStreetAddress } from './street-address';
-import { timeZone as locationTimeZone } from './time-zone';
-import { zipCode as locationZipCode } from './zip-code';
+import { locationLanguage } from './language';
+import { locationLatitude } from './latitude';
+import { locationLongitude } from './longitude';
+import { locationNearbyGPSCoordinate } from './nearby-gps-coordinate';
+import { locationOrdinalDirection } from './ordinal-direction';
+import { locationPostalAddress } from './postal-address';
+import { locationSecondaryAddress } from './secondary-address';
+import { locationState } from './state';
+import { locationStreet } from './street';
+import { locationStreetAddress } from './street-address';
+import { locationTimeZone } from './time-zone';
+import { locationZipCode } from './zip-code';
 
 /**
  * Module with location functions that don't require localized data

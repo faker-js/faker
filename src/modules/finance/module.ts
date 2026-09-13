@@ -1,31 +1,31 @@
 import { ModuleBase } from '../../internal/module-base';
-import { accountName as financeAccountName } from './account-name';
-import { accountNumber as financeAccountNumber } from './account-number';
-import { amount as financeAmount } from './amount';
-import { bic as financeBic } from './bic';
+import { financeAccountName } from './account-name';
+import { financeAccountNumber } from './account-number';
+import { financeAmount } from './amount';
+import { financeBic } from './bic';
 import type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,
 } from './bitcoin-address';
-import { bitcoinAddress as financeBitcoinAddress } from './bitcoin-address';
-import { creditCardCVV as financeCreditCardCVV } from './credit-card-cvv';
-import { creditCardIssuer as financeCreditCardIssuer } from './credit-card-issuer';
-import { creditCardNumber as financeCreditCardNumber } from './credit-card-number';
+import { financeBitcoinAddress } from './bitcoin-address';
+import { financeCreditCardCVV } from './credit-card-cvv';
+import { financeCreditCardIssuer } from './credit-card-issuer';
+import { financeCreditCardNumber } from './credit-card-number';
 import type { Currency } from './currency';
-import { currency as financeCurrency } from './currency';
-import { currencyCode as financeCurrencyCode } from './currency-code';
-import { currencyName as financeCurrencyName } from './currency-name';
-import { currencyNumericCode as financeCurrencyNumericCode } from './currency-numeric-code';
-import { currencySymbol as financeCurrencySymbol } from './currency-symbol';
-import { ethereumAddress as financeEthereumAddress } from './ethereum-address';
-import { iban as financeIban } from './iban';
-import { litecoinAddress as financeLitecoinAddress } from './litecoin-address';
-import { pin as financePin } from './pin';
-import { routingNumber as financeRoutingNumber } from './routing-number';
-import { transactionDescription as financeTransactionDescription } from './transaction-description';
-import { transactionType as financeTransactionType } from './transaction-type';
+import { financeCurrency } from './currency';
+import { financeCurrencyCode } from './currency-code';
+import { financeCurrencyName } from './currency-name';
+import { financeCurrencyNumericCode } from './currency-numeric-code';
+import { financeCurrencySymbol } from './currency-symbol';
+import { financeEthereumAddress } from './ethereum-address';
+import { financeIban } from './iban';
+import { financeLitecoinAddress } from './litecoin-address';
+import { financePin } from './pin';
+import { financeRoutingNumber } from './routing-number';
+import { financeTransactionDescription } from './transaction-description';
+import { financeTransactionType } from './transaction-type';
 import type { VatNumberCountryCode } from './vat-number';
-import { vatNumber as financeVatNumber } from './vat-number';
+import { financeVatNumber } from './vat-number';
 
 /**
  * Module to generate finance and money related entries.

@@ -1,10 +1,10 @@
 import { ModuleBase } from '../../internal/module-base';
-import { abbreviation as hackerAbbreviation } from './abbreviation';
-import { adjective as hackerAdjective } from './adjective';
-import { ingverb as hackerIngverb } from './ingverb';
-import { noun as hackerNoun } from './noun';
-import { phrase as hackerPhrase } from './phrase';
-import { verb as hackerVerb } from './verb';
+import { hackerAbbreviation } from './abbreviation';
+import { hackerAdjective } from './adjective';
+import { hackerIngverb } from './ingverb';
+import { hackerNoun } from './noun';
+import { hackerPhrase } from './phrase';
+import { hackerVerb } from './verb';
 
 /**
  * Module to generate hacker/IT words and phrases.
