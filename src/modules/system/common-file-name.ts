@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { systemCommonFileExt } from './common-file-ext';
-import { systemFileName as systemFileName } from './file-name';
+import { systemFileName } from './file-name';
 
 /**
  * Returns a random file name with a given extension or a commonly used extension.

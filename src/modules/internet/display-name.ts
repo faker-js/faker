@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { helpersArrayElement } from '../helpers/array-element';
 import { numberInt } from '../number/int';
-import { personFirstName as personFirstName } from '../person/first-name';
-import { personLastName as personLastName } from '../person/last-name';
+import { personFirstName } from '../person/first-name';
+import { personLastName } from '../person/last-name';
 
 /**
  * Generates a display name using the given person's name as base.
