@@ -1,6 +1,6 @@
 export default [
   'Furqon',
-  'Heçbək',
+  'Hetçbek',
   'Kabriolet',
   'Kupe',
   'Mikroavtobus',
