@@ -97,9 +97,8 @@ export function processInterfaceMethods(
 function processMethodSignatures(
   methods: MethodSignature[]
 ): RawApiDocsMethod[] {
-  const groupedSignatures = Object.groupBy(
-    methods,
-    (v) => v.getName()
+  const groupedSignatures = Object.groupBy(methods, (v) =>
+    v.getName()
   ) as Record<string, MethodSignature[]>;
 
   const methodLikes: NamedMethodLikeDeclaration[] = Object.values(
