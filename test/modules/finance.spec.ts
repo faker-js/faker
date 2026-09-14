@@ -230,7 +230,7 @@ describe('finance', () => {
         );
 
         // This test is flaky on Windows Github Actions
-        it.todo('should return the number formatted on the current locale', () => {
+        it.skip('should return the number formatted on the current locale', () => {
           const number = 6000;
           const decimalPlaces = 2;
           const expected = number.toLocaleString(undefined, {
