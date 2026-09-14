@@ -1,6 +1,6 @@
 import { isEmail, isHexadecimal, isSlug } from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { Faker, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -19,6 +19,24 @@ function isValidCommitAuthor(email: string): boolean {
 }
 
 describe('git', () => {
+  describe('branch()', () => {
+    it.each([
+      ['local area network', 'parse', 'local-area-network-parse'],
+      ['program', 'in stukjes snijden', 'program-in-stukjes-snijden'],
+      [
+        'local area network',
+        'in stukjes snijden',
+        'local-area-network-in-stukjes-snijden',
+      ],
+    ])('should replace all spaces in "%s" and "%s"', (noun, verb, expected) => {
+      const customFaker = new Faker({
+        locale: { hacker: { noun: [noun], verb: [verb] } },
+      });
+
+      expect(customFaker.git.branch()).toBe(expected);
+    });
+  });
+
   seededTests(faker, 'git', (t) => {
     t.itEach('branch', 'commitMessage');
 

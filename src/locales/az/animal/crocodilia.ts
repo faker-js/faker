@@ -1,0 +1,16 @@
+export default [
+  'Amerika timsahı',
+  'Avstraliya şirinsu timsahı',
+  'Cırtdan timsah',
+  'Dəniz timsahı',
+  'Eynəkli kayman',
+  'Kuba timsahı',
+  'Missisipi alliqatoru',
+  'Nil timsahı',
+  'Orinoko timsahı',
+  'Qara kayman',
+  'Qavial',
+  'Siam timsahı',
+  'Yakare kaymanı',
+  'Çin alliqatoru',
+];
