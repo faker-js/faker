@@ -137,8 +137,10 @@ function getAllFunctions(
 
 export function processUtilityFunctions(project: Project): RawApiDocsMethod[] {
   return processMethodLikes(
-    Object.values(getAllFunctions(project)).filter((fn) =>
-      fn.getSourceFile().getFilePath().includes('/src/utils/')
+    Object.values(getAllFunctions(project)).filter(
+      (fn) =>
+        fn.getSourceFile().getFilePath().includes('/src/utils/') ||
+        fn.getSourceFile().getFilePath().includes('/src/core.ts')
     ),
     (f) => f.getNameOrThrow()
   );

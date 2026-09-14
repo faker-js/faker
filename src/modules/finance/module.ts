@@ -348,18 +348,26 @@ export class FinanceModule extends ModuleBase {
   /**
    * Returns a random currency symbol.
    *
+   * @throws {FakerError} If no currency in the locale data has a symbol.
+   *
    * @example
    * faker.finance.currencySymbol() // '$'
    *
    * @since 2.0.1
    */
   currencySymbol(): string {
-    let symbol: string;
-    do {
-      symbol = this.currency().symbol;
-    } while (symbol.length === 0);
+    const currenciesWithSymbols =
+      this.faker.definitions.finance.currency.filter(
+        (currency) => currency.symbol.length > 0
+      );
 
-    return symbol;
+    if (currenciesWithSymbols.length === 0) {
+      throw new FakerError(
+        'Cannot get currency symbol from dataset with no currency symbols.'
+      );
+    }
+
+    return this.faker.helpers.arrayElement(currenciesWithSymbols).symbol;
   }
 
   /**
