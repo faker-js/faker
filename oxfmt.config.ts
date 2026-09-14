@@ -12,16 +12,8 @@ export const formatOptions: FormatConfig = {
   singleQuote: true,
   trailingComma: 'es5',
   printWidth: 80,
-  sortImports: {
-    groups: [
-      ['builtin', 'external', 'internal'],
-      { newlinesBetween: false },
-      ['parent', 'sibling', 'index'],
-    ],
-    newlinesBetween: false,
-    order: 'asc',
-    ignoreCase: true,
-  },
+  // Import order is owned by `organize-imports/organize-imports` (oxlint)
+  sortImports: false,
   // The algorithm is not compatible with the `prettier-plugin-pkg` order we used before.
   sortPackageJson: false,
 };

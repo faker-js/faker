@@ -145,8 +145,23 @@ async function generateLocaleFile(locale: string): Promise<void> {
 
   const metadata = await tryLoadMetadata(locale);
 
+  const importedLocales = locales.toSorted((a, b) => {
+    const upperA = a.toUpperCase();
+    const upperB = b.toUpperCase();
+
+    if (upperA !== upperB) {
+      return upperA < upperB ? -1 : 1;
+    }
+
+    if (a === b) {
+      return 0;
+    }
+
+    return a < b ? -1 : 1;
+  });
+
   const imports = `import { Faker } from '../faker';
-${locales.map((imp) => `import ${imp} from '../locales/${imp}';`).join('\n')}`;
+${importedLocales.map((imp) => `import ${imp} from '../locales/${imp}';`).join('\n')}`;
 
   const jsdoc =
     locale === 'base'
