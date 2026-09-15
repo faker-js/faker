@@ -18,7 +18,7 @@ import { arrayElement } from '../helpers/array-element';
  * number(fakerCore, { style: 'human' }) // '555.770.7727 x1234'
  * number(fakerCore, { style: 'national' }) // '(961) 770-7727'
  * number(fakerCore, { style: 'international' }) // '+15551234567'
- * fakerEN_GB.phone.number({ style: 'mobile' }) // '07123456789'
+ * number(fakerCoreEN_GB, { style: 'mobile' }) // '07123456789'
  *
  * @since 11.0.0
  *
