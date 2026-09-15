@@ -81,6 +81,12 @@ exports[`finance > 42 > transactionDescription 1`] = `"You made a withdrawal of 
 
 exports[`finance > 42 > transactionType 1`] = `"invoice"`;
 
+exports[`finance > 42 > vatNumber > noArgs 1`] = `"FI97511086"`;
+
+exports[`finance > 42 > vatNumber > with a variable length countryCode option 1`] = `"RO4751108670"`;
+
+exports[`finance > 42 > vatNumber > with countryCode option 1`] = `"DE397511086"`;
+
 exports[`finance > 1211 > accountName 1`] = `"Savings Account"`;
 
 exports[`finance > 1211 > accountNumber > noArgs 1`] = `"98296673"`;
@@ -162,6 +168,12 @@ exports[`finance > 1211 > transactionDescription 1`] = `"withdrawal transaction 
 
 exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
 
+exports[`finance > 1211 > vatNumber > noArgs 1`] = `"SI92966736"`;
+
+exports[`finance > 1211 > vatNumber > with a variable length countryCode option 1`] = `"RO9296673687"`;
+
+exports[`finance > 1211 > vatNumber > with countryCode option 1`] = `"DE982966736"`;
+
 exports[`finance > 1337 > accountName 1`] = `"Credit Card Account"`;
 
 exports[`finance > 1337 > accountNumber > noArgs 1`] = `"21243529"`;
@@ -242,3 +254,42 @@ exports[`finance > 1337 > routingNumber 1`] = `"051412430"`;
 exports[`finance > 1337 > transactionDescription 1`] = `"Payment of CAD 278.12 for invoice at Wolf - Howe, processed with card ending ****6194 linked to account ***7734."`;
 
 exports[`finance > 1337 > transactionType 1`] = `"invoice"`;
+
+exports[`finance > 1337 > vatNumber > noArgs 1`] = `"EE124352971"`;
+
+exports[`finance > 1337 > vatNumber > with a variable length countryCode option 1`] = `"RO324"`;
+
+exports[`finance > 1337 > vatNumber > with countryCode option 1`] = `"DE212435297"`;
+
+exports[`finance > should generate a stable VAT number per country 1`] = `
+{
+  "AT": "ATU39751108",
+  "BE": "BE1709821135",
+  "BG": "BG261234715",
+  "CY": "CY50610998H",
+  "CZ": "CZ64140926",
+  "DE": "DE355197985",
+  "DK": "DK90103328",
+  "EE": "EE325180971",
+  "EL": "EL087770318",
+  "ES": "ESP0337684B",
+  "FI": "FI77574540",
+  "FR": "FR31635924720",
+  "GR": "EL219868818",
+  "HR": "HR58831248805",
+  "HU": "HU42139357",
+  "IE": "IE9924320O",
+  "IT": "IT50292149267",
+  "LT": "LT273665018",
+  "LU": "LU31056052",
+  "LV": "LV61639131982",
+  "MT": "MT68552089",
+  "NL": "NL337887601B96",
+  "PL": "PL0160156627",
+  "PT": "PT337686503",
+  "RO": "RO3938",
+  "SE": "SE675541720601",
+  "SI": "SI29993094",
+  "SK": "SK9982383159",
+}
+`;
