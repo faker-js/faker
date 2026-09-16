@@ -137,7 +137,7 @@ exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
 exports[`location > 42 > state > with options 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Miller Crest"`;
+exports[`location > 42 > street 1`] = `"Moore Crest"`;
 
 exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Lilliana Rapid"`;
 
@@ -280,7 +280,7 @@ exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW
 exports[`location > 1211 > postalAddress 1`] = `
 "Suite 396
 736 St Mary's Road
-Stromanhaven
+Terryhaven
 New Jersey
 39739"
 `;
