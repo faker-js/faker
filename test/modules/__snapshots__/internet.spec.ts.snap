@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`internet > 42 > displayName > noArgs 1`] = `"Nikita.Corkery"`;
+exports[`internet > 42 > displayName > noArgs 1`] = `"Nikita.Cormier"`;
 
 exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽.陳95"`;
 
@@ -28,11 +28,11 @@ exports[`internet > 42 > email > with all options 1`] = `"Jane.Doe@fakerjs.dev"`
 
 exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Kevin60@hotmail.com"`;
 
-exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Moore15@hotmail.com"`;
+exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Mitchell15@hotmail.com"`;
 
 exports[`internet > 42 > email > with lastName option 1`] = `"Kevin.Doe15@hotmail.com"`;
 
-exports[`internet > 42 > email > with provider option 1`] = `"Nikita.Corkery@fakerjs.dev"`;
+exports[`internet > 42 > email > with provider option 1`] = `"Nikita.Cormier@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🦮"`;
 
@@ -44,7 +44,7 @@ exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane_Doe@exampl
 
 exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Kevin60@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Moore15@example.net"`;
+exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Mitchell15@example.net"`;
 
 exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Kevin.Doe15@example.net"`;
 
@@ -64,9 +64,9 @@ exports[`internet > 42 > ipv4 > with network 1`] = `"229.254.29.199"`;
 
 exports[`internet > 42 > ipv6 1`] = `"8ead:331d:df0f:c444:6b96:d368:ab4b:d1d3"`;
 
-exports[`internet > 42 > jwt > noArgs 1`] = `"eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpYXQiOjE1Nzc3ODI3NjAsImV4cCI6MTU3Nzg0NjAwNCwibmJmIjoxNTg0MDU5Mzg4LCJpc3MiOiJUYXlsb3IgLSBBdWZkZXJoYXIiLCJzdWIiOiJmZDMyMjQ4Ni00OTI0LTQ1N2MtOTM4OS0wOTIxZmZjNDFhNzEiLCJhdWQiOiIwZTRhNDg4Mi1mY2ZlLTQ5ZTEtODMwNS02NGQ1NDgyYzFmYzMiLCJqdGkiOiJkYmJjMTUxZC05NTE0LTQ1YmEtYWU3MS1iYzhjNzg2MDEwYTUifQ.UfpKe4h9VODSNbTxOTj6eqOR0vpd7kWkwHmYXfuih2Bv3hUe8uZfFLeJmDDx5Pjb"`;
+exports[`internet > 42 > jwt > noArgs 1`] = `"eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpYXQiOjE1Nzc3ODI3NjAsImV4cCI6MTU3Nzg0NjAwNCwibmJmIjoxNTg0MDU5Mzg4LCJpc3MiOiJTdHJlaWNoIC0gQXVmZGVyaGFyIiwic3ViIjoiZmQzMjI0ODYtNDkyNC00NTdjLTkzODktMDkyMWZmYzQxYTcxIiwiYXVkIjoiMGU0YTQ4ODItZmNmZS00OWUxLTgzMDUtNjRkNTQ4MmMxZmMzIiwianRpIjoiZGJiYzE1MWQtOTUxNC00NWJhLWFlNzEtYmM4Yzc4NjAxMGE1In0.UfpKe4h9VODSNbTxOTj6eqOR0vpd7kWkwHmYXfuih2Bv3hUe8uZfFLeJmDDx5Pjb"`;
 
-exports[`internet > 42 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc3ODI3NjAsImV4cCI6MTU3Nzg2NDkwMiwibmJmIjoxNTkyNDY5MTIyLCJpc3MiOiJCZWxsIGFuZCBTb25zIiwic3ViIjoiOWIwZmQzMjItNDg2NC00OTI0LWE1N2MtMzg5MDkyMWZmYzQxIiwiYXVkIjoiNzE3MGU0YTQtODgyZi00Y2ZlLWI5ZTEtMzA1NjRkNTQ4MmMxIiwianRpIjoiYzMwZGJiYzEtNTFkOS00NTE0LTg1YmEtZTcxYmM4Yzc4NjAxIn0.DjvUfpKe4h9VODSNbTxOTj6eqOR0vpd7kWkwHmYXfuih2Bv3hUe8uZfFLeJmDDx5"`;
+exports[`internet > 42 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc3ODI3NjAsImV4cCI6MTU3Nzg2NDkwMiwibmJmIjoxNTkyNDY5MTIyLCJpc3MiOiJCZWllciBhbmQgU29ucyIsInN1YiI6IjliMGZkMzIyLTQ4NjQtNDkyNC1hNTdjLTM4OTA5MjFmZmM0MSIsImF1ZCI6IjcxNzBlNGE0LTg4MmYtNGNmZS1iOWUxLTMwNTY0ZDU0ODJjMSIsImp0aSI6ImMzMGRiYmMxLTUxZDktNDUxNC04NWJhLWU3MWJjOGM3ODYwMSJ9.DjvUfpKe4h9VODSNbTxOTj6eqOR0vpd7kWkwHmYXfuih2Bv3hUe8uZfFLeJmDDx5"`;
 
 exports[`internet > 42 > jwt > with custom payload 1`] = `"eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJBY21lIn0.JB993RBH1YPdbbiwqiB8imsMcvA2Ba4WXOi6Gr7u2UgFjwxbYMWTBV5c2kogPmhx"`;
 
@@ -102,7 +102,7 @@ exports[`internet > 42 > url > without slash appended and with http protocol 1`]
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/118.0"`;
 
-exports[`internet > 42 > username > noArgs 1`] = `"Nikita.Corkery"`;
+exports[`internet > 42 > username > noArgs 1`] = `"Nikita.Cormier"`;
 
 exports[`internet > 42 > username > with Chinese names 1`] = `"hlzp8d.tpv"`;
 
@@ -114,11 +114,11 @@ exports[`internet > 42 > username > with accented names 1`] = `"Helene.Muller"`;
 
 exports[`internet > 42 > username > with all option 1`] = `"Jane.Doe"`;
 
-exports[`internet > 42 > username > with firstName option 1`] = `"Jane.Ritchie-Moore15"`;
+exports[`internet > 42 > username > with firstName option 1`] = `"Jane.Reynolds-Mitchell15"`;
 
 exports[`internet > 42 > username > with lastName option 1`] = `"Nikita_Doe15"`;
 
-exports[`internet > 1211 > displayName > noArgs 1`] = `"Dallas_Postlethwaite35"`;
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Dallas_Pfannerstill35"`;
 
 exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽89"`;
 
@@ -182,9 +182,9 @@ exports[`internet > 1211 > ipv4 > with network 1`] = `"238.219.55.242"`;
 
 exports[`internet > 1211 > ipv6 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
 
-exports[`internet > 1211 > jwt > noArgs 1`] = `"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3Nzg1MDExMywibmJmIjoxNjA5MTk5Nzk2LCJpc3MiOiJIZW5kZXJzb24sIFNhbmRlcnMgYW5kIEtlbGx5Iiwic3ViIjoiZGQzOTM1ZmMtNmU4Zi00MzRiLWI4NWQtNjQ0MjhiMmI3MzYzIiwiYXVkIjoiOTcwYjJiNGMtODczOS00ZDFkLTg3NjctOWM4ZWZkZDNiZDVlIiwianRpIjoiOGM3MTQyNDMtZWY2My00OTk5LTg5ZGEtZGNkZTg1ODc1ZDNmIn0.f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSDBUO4pr"`;
+exports[`internet > 1211 > jwt > noArgs 1`] = `"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3Nzg1MDExMywibmJmIjoxNjA5MTk5Nzk2LCJpc3MiOiJIZXJtYW4sIFJ1bnRlIGFuZCBLZWxseSIsInN1YiI6ImRkMzkzNWZjLTZlOGYtNDM0Yi1iODVkLTY0NDI4YjJiNzM2MyIsImF1ZCI6Ijk3MGIyYjRjLTg3MzktNGQxZC04NzY3LTljOGVmZGQzYmQ1ZSIsImp0aSI6IjhjNzE0MjQzLWVmNjMtNDk5OS04OWRhLWRjZGU4NTg3NWQzZiJ9.f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSDBUO4pr"`;
 
-exports[`internet > 1211 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3NzkwNzgxOSwibmJmIjoxNTYwNTI3OTk5LCJpc3MiOiJSdXRoZXJmb3JkLCBTZW5nZXIgYW5kIFNtaXRoIiwic3ViIjoiNmRkMzkzNWYtYzZlOC00ZjM0LThiODUtZDY0NDI4YjJiNzM2IiwiYXVkIjoiZDk3MGIyYjQtYzg3My00OWQxLWJkNzYtNzljOGVmZGQzYmQ1IiwianRpIjoiMDhjNzE0MjQtM2VmNi00Mzk5LWI5OWQtYWRjZGU4NTg3NWQzIn0.5f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSDBUO4p"`;
+exports[`internet > 1211 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3NzkwNzgxOSwibmJmIjoxNTYwNTI3OTk5LCJpc3MiOiJSdW5vbGZzZG90dGlyLCBTY2h1bHR6IGFuZCBTaW1vbmlzIiwic3ViIjoiNmRkMzkzNWYtYzZlOC00ZjM0LThiODUtZDY0NDI4YjJiNzM2IiwiYXVkIjoiZDk3MGIyYjQtYzg3My00OWQxLWJkNzYtNzljOGVmZGQzYmQ1IiwianRpIjoiMDhjNzE0MjQtM2VmNi00Mzk5LWI5OWQtYWRjZGU4NTg3NWQzIn0.5f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSDBUO4p"`;
 
 exports[`internet > 1211 > jwt > with custom payload 1`] = `"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBY21lIn0.dZFGLlHOLEPqRRdAcmZLoWxYdiHwlQngjayH8HufpcQzt2HbHhMvsdBS6QsntzOx"`;
 
@@ -236,7 +236,7 @@ exports[`internet > 1211 > username > with firstName option 1`] = `"Jane67"`;
 
 exports[`internet > 1211 > username > with lastName option 1`] = `"Dallas_Doe"`;
 
-exports[`internet > 1337 > displayName > noArgs 1`] = `"Elda.Leffler97"`;
+exports[`internet > 1337 > displayName > noArgs 1`] = `"Elda.Lebsack97"`;
 
 exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽15"`;
 
@@ -300,7 +300,7 @@ exports[`internet > 1337 > ipv4 > with network 1`] = `"228.49.64.201"`;
 
 exports[`internet > 1337 > ipv6 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
 
-exports[`internet > 1337 > jwt > noArgs 1`] = `"eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc5NzA3MCwibmJmIjoxNTc1MjcwODM1LCJpc3MiOiJXb29kaG91c2UgLSBIb21lbmljayIsInN1YiI6ImEyZjdjYzU2LTljMzQtNGE3Mi1hNjM4LWQyZjY4ODBiZjIyNSIsImF1ZCI6IjA1MGM1YjdmLWQ5OWYtNDQwMS05ZmY3LTViMGNhM2FlMmU1YiIsImp0aSI6IjgyNzc2YzdiLWM1ZWItNGU2Ny1hZWE4LTNmOGMzNjY4MmEwMyJ9.VCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgIuh3cD"`;
+exports[`internet > 1337 > jwt > noArgs 1`] = `"eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc5NzA3MCwibmJmIjoxNTc1MjcwODM1LCJpc3MiOiJXb29kIC0gSG93YXJkIiwic3ViIjoiYTJmN2NjNTYtOWMzNC00YTcyLWE2MzgtZDJmNjg4MGJmMjI1IiwiYXVkIjoiMDUwYzViN2YtZDk5Zi00NDAxLTlmZjctNWIwY2EzYWUyZTViIiwianRpIjoiODI3NzZjN2ItYzVlYi00ZTY3LWFlYTgtM2Y4YzM2NjgyYTAzIn0.VCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgIuh3cD"`;
 
 exports[`internet > 1337 > jwt > with custom header 1`] = `"eyJhbGciOiJFUzI1NiJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc4Njc1MCwibmJmIjoxNTYzODQyNzk2LCJpc3MiOiJHZXJob2xkIGFuZCBTb25zIiwic3ViIjoiYjE2YTJmN2MtYzU2OS00YzM0LThhNzItNjM4ZDJmNjg4MGJmIiwiYXVkIjoiMjViMDUwYzUtYjdmZC00OTlmLWI0MDEtZmY3NWIwY2EzYWUyIiwianRpIjoiNWI0ODI3NzYtYzdiYy00NWViLWFlNjctZWE4M2Y4YzM2NjgyIn0.1eJVCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgIuh"`;
 
