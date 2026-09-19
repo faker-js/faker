@@ -20,6 +20,8 @@ import { verb } from './verb';
  *
  * Defaults to `'fail'`.
  *
+ * @throws {FakerError} If no matching word data are available for the current locale.
+ *
  * @example
  * wordSample(fakerCore) // 'incidentally'
  * wordSample(fakerCore, 5) // 'fruit'

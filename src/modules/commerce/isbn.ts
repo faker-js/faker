@@ -85,6 +85,8 @@ const ISBN_LENGTH_RULES: Record<
  * or `13` (13-digit format). Defaults to `13`.
  * @param options.separator The separator to use in the format. Defaults to `'-'`.
  *
+ * @throws {FakerError} If no registrant length is defined for the generated group.
+ *
  * @example
  * isbn(fakerCore) // '978-0-692-82459-7'
  * isbn(fakerCore, 10) // '1-155-36404-X'
