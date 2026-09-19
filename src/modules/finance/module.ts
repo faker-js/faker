@@ -894,11 +894,11 @@ export class FinanceModule extends ModuleBase {
       countryCode = this.faker.helpers.arrayElement(vatNumberCountryCodes),
     } = options;
 
-    if (!Object.hasOwn(vatNumberFormats, countryCode)) {
+    const pattern = vatNumberFormats[countryCode];
+
+    if (pattern == null) {
       throw new FakerError(`Country code ${countryCode} not supported.`);
     }
-
-    const pattern = vatNumberFormats[countryCode];
 
     return this.faker.helpers.fromRegExp(
       typeof pattern === 'string'

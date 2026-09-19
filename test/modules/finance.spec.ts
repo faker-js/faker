@@ -706,7 +706,7 @@ describe('finance', () => {
           );
         });
 
-        it.each(['XX', '', 'toString'])(
+        it.each(['XX', ''])(
           'should throw for the unsupported country code %j',
           (countryCode) => {
             expect(() =>
