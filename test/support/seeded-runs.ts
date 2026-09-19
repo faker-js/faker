@@ -160,6 +160,8 @@ class TestGenerator<
    * @param args The arguments to call it with.
    * @param extraStackFrames Additional stack frames to add into the stacktrace.
    * @param repetitions The number of times to call it.
+   *
+   * @throws {Error} If the method is not found in the module.
    */
   private callAndVerify<TMethodName extends MethodOf<TModule>>(
     method: TMethodName,

@@ -83,6 +83,8 @@ function replaceUnquantifiedRegExpTokens(
  *
  * @returns a random number based on the given quantifier parameters.
  *
+ * @throws {FakerError} If the quantifier symbol is not one of `?`, `*` or `+`.
+ *
  * @example
  * getRepetitionsBasedOnQuantifierParameters(fakerCore, '*', null, null) // 3
  * getRepetitionsBasedOnQuantifierParameters(fakerCore, null, 10, null) // 10
