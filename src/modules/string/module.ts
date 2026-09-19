@@ -46,6 +46,8 @@ export class StringModule extends SimpleModuleBase {
    * @param length.min The minimum length of the string to generate.
    * @param length.max The maximum length of the string to generate.
    *
+   * @throws {FakerError} If there are no characters to select from.
+   *
    * @example
    * faker.string.fromCharacters('abc') // 'c'
    * faker.string.fromCharacters(['a', 'b', 'c']) // 'a'
