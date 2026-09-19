@@ -11,8 +11,8 @@ import { dateBetween } from './between';
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @see dateBetween(fakerCore): For generating dates in a specific range.
- * @see past(fakerCore): For generating dates explicitly in the past.
- * @see future(fakerCore): For generating dates explicitly in the future.
+ * @see datePast(fakerCore): For generating dates explicitly in the past.
+ * @see dateFuture(fakerCore): For generating dates explicitly in the future.
  *
  * @example
  * dateAnytime(fakerCore) // '2022-07-31T01:33:29.567Z'

@@ -15,7 +15,7 @@ import { personLastName } from '../person/last-name';
  * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
  * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
  *
- * @see username(fakerCore): For generating a plain ASCII username.
+ * @see internetUsername(fakerCore): For generating a plain ASCII username.
  *
  * @example
  * internetDisplayName(fakerCore) // 'Nettie_Zboncak40'

@@ -6,7 +6,7 @@ import { helpersArrayElement } from '../helpers/array-element';
  *
  * @param fakerCore The FakerCore to use.
  *
- * @see sex(fakerCore): For generating a binary-gender value.
+ * @see personSex(fakerCore): For generating a binary-gender value.
  *
  * @example
  * personGender(fakerCore) // 'Trans*Man'

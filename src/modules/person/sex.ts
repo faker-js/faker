@@ -9,8 +9,8 @@ import { helpersArrayElement } from '../helpers/array-element';
  *
  * @param fakerCore The FakerCore to use.
  *
- * @see gender(fakerCore): For generating a gender related value.
- * @see sexType(fakerCore): For generating a sex value to be used as a parameter.
+ * @see personGender(fakerCore): For generating a gender related value.
+ * @see personSexType(fakerCore): For generating a sex value to be used as a parameter.
  *
  * @example
  * personSex(fakerCore) // 'female'

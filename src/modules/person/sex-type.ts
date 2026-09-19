@@ -34,8 +34,8 @@ export type SexType = `${Sex}`;
  * If `false`, this method only returns `'female'` and `'male'`.
  * Default is `false`.
  *
- * @see gender(fakerCore): For generating a gender related value in forms.
- * @see sex(fakerCore): For generating a binary-gender value in forms.
+ * @see personGender(fakerCore): For generating a gender related value in forms.
+ * @see personSex(fakerCore): For generating a binary-gender value in forms.
  *
  * @example
  * personSexType(fakerCore) // Sex.Female
