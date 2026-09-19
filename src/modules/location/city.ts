@@ -8,7 +8,7 @@ import { Faker } from '../../faker';
  *
  * @example
  * city(fakerCore) // 'East Jarretmouth'
- * fakerDE.location.city() // 'Bad Lilianadorf'
+ * city(fakerCoreDE) // 'Bad Lilianadorf'
  *
  * @since 11.0.0
  *

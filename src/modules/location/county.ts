@@ -7,8 +7,8 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * fakerEN_GB.location.county() // 'Cambridgeshire'
- * fakerEN_US.location.county() // 'Monroe County'
+ * county(fakerCoreEN_GB) // 'Cambridgeshire'
+ * county(fakerCoreEN_US) // 'Monroe County'
  *
  * @since 11.0.0
  *

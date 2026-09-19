@@ -1,7 +1,6 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { DefaultTheme } from 'vitepress';
-import { groupBy } from '../../../src/internal/group-by';
 import { formatTypescript } from '../../shared/format';
 import { FILE_PATH_DOCS } from '../../shared/paths';
 import type { RawApiDocsPage } from '../processing/class';
@@ -15,13 +14,21 @@ const pathDocsApiPages = resolve(FILE_PATH_DOCS, '.vitepress', 'api-pages.ts');
  * @param pages The pages to write into the index.
  */
 export async function writePageIndex(pages: RawApiDocsPage[]): Promise<void> {
-  const pagesByCategory: Record<string, DefaultTheme.SidebarItem[]> = groupBy(
+  const pagesByCategory = Object.groupBy(
     pages,
-    (page) => page.category ?? '',
-    ({ title: text, camelTitle }) => ({ text, link: `/api/${camelTitle}.html` })
-  );
+    (page) => page.category ?? ''
+  ) as Record<string, RawApiDocsPage[]>;
   const pageTree = Object.entries(pagesByCategory).flatMap(
-    ([category, items]) => (category ? [{ text: category, items }] : items)
+    ([category, categoryPages]) => {
+      const items: DefaultTheme.SidebarItem[] = categoryPages.map(
+        ({ title: text, camelTitle }) => ({
+          text,
+          link: `/api/${camelTitle}.html`,
+        })
+      );
+
+      return category ? [{ text: category, items }] : items;
+    }
   );
 
   // Write api-pages.ts

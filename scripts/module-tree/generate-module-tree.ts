@@ -219,8 +219,11 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               .replaceAll(/ +\*\n +\*\n/g, ' *\n')
               // Examples
               .replaceAll(
-                new RegExp(`${methodName}\\(fakerCore(?:, ?|(?=\\)))`, 'g'),
-                `faker.${moduleName}.${methodName}(`
+                new RegExp(
+                  `${methodName}\\(fakerCore([A-Z_]*)(?:, ?|(?=\\)))`,
+                  'g'
+                ),
+                `faker$1.${moduleName}.${methodName}(`
               )
               // Since
               .replaceAll(
