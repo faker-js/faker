@@ -16,9 +16,8 @@ import { hexadecimal } from '../string/hexadecimal';
  * @experimental
  */
 export function ethereumAddress(fakerCore: FakerCore): string {
-  const address = hexadecimal(fakerCore, {
+  return hexadecimal(fakerCore, {
     length: 40,
     casing: 'lower',
   });
-  return address;
 }

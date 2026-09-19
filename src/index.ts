@@ -59,12 +59,13 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type {
-  BitcoinAddressFamily,
-  BitcoinNetwork,
+  BitcoinAddressFamilyType,
+  BitcoinNetworkType,
   Currency,
   FinanceModule,
   VatNumberCountryCode,
 } from './modules/finance';
+export { BitcoinAddressFamily, BitcoinNetwork } from './modules/finance';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
