@@ -16,7 +16,7 @@ import { dateBetween } from './between';
  * @throws {FakerError} If `years.max` is less than 0.
  * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
  *
- * @see soon(fakerCore): For generating dates in the near future (days instead of years).
+ * @see dateSoon(fakerCore): For generating dates in the near future (days instead of years).
  *
  * @example
  * dateFuture(fakerCore) // '2022-11-19T05:52:49.100Z'

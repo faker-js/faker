@@ -11,7 +11,7 @@ import { stringNumeric } from '../string/numeric';
  *
  * @throws {FakerError} If `digits` is not exactly 11 numeric characters.
  *
- * @see upc
+ * @see commerceUpc
  *
  * @since 10.2.0
  */

@@ -6,7 +6,7 @@ import { helpersArrayElement } from '../helpers/array-element';
  *
  * @param fakerCore The FakerCore to use.
  *
- * @see jwt(fakerCore): For generating random JWT (JSON Web Token).
+ * @see internetJwt(fakerCore): For generating random JWT (JSON Web Token).
  *
  * @example
  * internetJwtAlgorithm(fakerCore) // 'HS256'

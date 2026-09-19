@@ -31,10 +31,10 @@ export interface Currency {
  *
  * @param fakerCore The FakerCore to use.
  *
- * @see currencyCode(fakerCore): For generating specifically the currency code.
- * @see currencyName(fakerCore): For generating specifically the currency name.
- * @see currencySymbol(fakerCore): For generating specifically the currency symbol.
- * @see currencyNumericCode(fakerCore): For generating specifically the currency numeric code.
+ * @see financeCurrencyCode(fakerCore): For generating specifically the currency code.
+ * @see financeCurrencyName(fakerCore): For generating specifically the currency name.
+ * @see financeCurrencySymbol(fakerCore): For generating specifically the currency symbol.
+ * @see financeCurrencyNumericCode(fakerCore): For generating specifically the currency numeric code.
  *
  * @example
  * financeCurrency(fakerCore) // { code: 'USD', name: 'US Dollar', symbol: '$', numericCode: '840' }

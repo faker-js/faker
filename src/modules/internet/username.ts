@@ -16,7 +16,7 @@ import { charMapping } from './_char-mappings';
  * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
  * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
  *
- * @see displayName(fakerCore): For generating an Unicode display name.
+ * @see internetDisplayName(fakerCore): For generating an Unicode display name.
  *
  * @example
  * internetUsername(fakerCore) // 'Nettie_Zboncak40'
