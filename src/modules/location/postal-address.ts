@@ -14,17 +14,17 @@ import { Faker } from '../../faker';
  * // Michigan
  * // 82180'
  *
- * fakerEN_US.location.postalAddress()
+ * postalAddress(fakerCoreEN_US)
  * // '0917 O'Conner Estates, Apt. 980
  * // West Shannonview, MI 82180'
  *
- * fakerEN_GB.location.postalAddress()
+ * postalAddress(fakerCoreEN_GB)
  * // '79 Bogan Corner
  * // Castle Zemlakborough
  * // Dumfries and Galloway
  * // ZH17 2SD'
  *
- * fakerZH_CN.location.postalAddress()
+ * postalAddress(fakerCoreZH_CN)
  * // '广东省贵原市门路19号'
  *
  * @since 11.0.0

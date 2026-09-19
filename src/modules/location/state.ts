@@ -14,8 +14,8 @@ import { arrayElement } from '../helpers/array-element';
  *
  * @example
  * state(fakerCore) // 'Mississippi'
- * fakerEN_CA.location.state() // 'Saskatchewan'
- * fakerDE.location.state() // 'Nordrhein-Westfalen'
+ * state(fakerCoreEN_CA) // 'Saskatchewan'
+ * state(fakerCoreDE) // 'Nordrhein-Westfalen'
  * state(fakerCore, { abbreviated: true }) // 'LA'
  *
  * @since 11.0.0
