@@ -10,7 +10,7 @@ import { arrayElement } from '../helpers/array-element';
  * @param options Options object
  * @param options.style Style of the phone number. Defaults to `'human'`.
  *
- * @throws {Error} If the current locale has no definitions for the given style.
+ * @throws {FakerError} If the current locale has no definitions for the given style.
  *
  * @see stringNumeric(fakerCore): For generating a random string of numbers.
  * @see helpersFromRegExp(fakerCore): For generating a phone number matching a regular expression.
