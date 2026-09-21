@@ -23,6 +23,9 @@ export default defineConfig({
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,
     },
+    isolate: false,
+    maxWorkers: 4,
+    fsModuleCache: true,
     onStackTrace(_, { file }) {
       return (
         !file.includes('/src/internal/locale-proxy') &&
