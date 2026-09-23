@@ -8,6 +8,8 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  * @param mimeType Valid [mime-type](https://github.com/jshttp/mime-db/blob/master/db.json)
  *
+ * @throws {FakerError} If the given mime type is not supported.
+ *
  * @example
  * fileExt(fakerCore) // 'emf'
  * fileExt(fakerCore, 'application/json') // 'json'
