@@ -1,4 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
+import { album as musicAlbum } from './album';
+import { artist as musicArtist } from './artist';
+import { genre as musicGenre } from './genre';
+import { songName as musicSongName } from './song-name';
 
 /**
  * Module to generate music related entries.
@@ -18,6 +22,11 @@ import { ModuleBase } from '../../internal/module-base';
  * All data types may be localized.
  */
 export class MusicModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree music' to update the methods from their respective files.
+   */
+
   /**
    * Returns a random album name.
    *
@@ -27,7 +36,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.album);
+    return musicAlbum(this.faker.fakerCore);
   }
 
   /**
@@ -39,7 +48,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   artist(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.artist);
+    return musicArtist(this.faker.fakerCore);
   }
 
   /**
@@ -51,7 +60,7 @@ export class MusicModule extends ModuleBase {
    * @since 5.2.0
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
+    return musicGenre(this.faker.fakerCore);
   }
 
   /**
@@ -63,8 +72,6 @@ export class MusicModule extends ModuleBase {
    * @since 7.1.0
    */
   songName(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.music.song_name
-    );
+    return musicSongName(this.faker.fakerCore);
   }
 }

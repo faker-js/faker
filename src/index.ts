@@ -58,7 +58,11 @@ export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
-export type { Currency, FinanceModule } from './modules/finance';
+export type {
+  Currency,
+  FinanceModule,
+  VatNumberCountryCode,
+} from './modules/finance';
 export {
   BitcoinAddressFamily,
   BitcoinNetwork,

@@ -1,0 +1,16 @@
+export default [
+  'Arı',
+  'Ağcaqanad',
+  'Bit',
+  'Cırcırama',
+  'Kəpənək',
+  'Milçək',
+  'Pərvanə',
+  'Qarışqa',
+  'Skarabey',
+  'Tarakan',
+  'Termit',
+  'Xanımböcəyi',
+  'Çəyirtkə',
+  'İynəcə',
+];

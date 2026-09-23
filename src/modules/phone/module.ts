@@ -1,5 +1,6 @@
 import { ModuleBase } from '../../internal/module-base';
-import { legacyReplaceSymbolWithNumber } from '../helpers/_legacy-replace-symbol-with-number';
+import { imei as phoneImei } from './imei';
+import { number as phoneNumber } from './number';
 
 /**
  * Module to generate phone-related data.
@@ -9,11 +10,18 @@ import { legacyReplaceSymbolWithNumber } from '../helpers/_legacy-replace-symbol
  * For a phone number, use [`number()`](https://fakerjs.dev/api/phone.html#number). Many locales provide country-specific formats.
  */
 export class PhoneModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree phone' to update the methods from their respective files.
+   */
+
   /**
    * Generates a random phone number.
    *
    * @param options Options object
    * @param options.style Style of the phone number. Defaults to `'human'`.
+   *
+   * @throws {FakerError} If the current locale has no definitions for the given style.
    *
    * @see faker.string.numeric(): For generating a random string of numbers.
    * @see faker.helpers.fromRegExp(): For generating a phone number matching a regular expression.
@@ -41,16 +49,7 @@ export class PhoneModule extends ModuleBase {
       style?: 'human' | 'national' | 'international' | 'mobile';
     } = {}
   ): string {
-    const { style = 'human' } = options;
-    const formats = this.faker.definitions.phone_number.format;
-
-    const definitions = formats[style];
-    if (!definitions) {
-      throw new Error(`No definitions for ${style} in this locale`);
-    }
-
-    const format = this.faker.helpers.arrayElement(definitions);
-    return legacyReplaceSymbolWithNumber(this.faker.fakerCore, format);
+    return phoneNumber(this.faker.fakerCore, options);
   }
 
   /**
@@ -62,9 +61,6 @@ export class PhoneModule extends ModuleBase {
    * @since 6.2.0
    */
   imei(): string {
-    return this.faker.helpers.replaceCreditCardSymbols(
-      '##-######-######-L',
-      '#'
-    );
+    return phoneImei(this.faker.fakerCore);
   }
 }

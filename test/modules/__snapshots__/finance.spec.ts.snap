@@ -57,7 +57,7 @@ exports[`finance > 42 > currencyName 1`] = `"New Israeli Sheqel"`;
 
 exports[`finance > 42 > currencyNumericCode 1`] = `"376"`;
 
-exports[`finance > 42 > currencySymbol 1`] = `"₪"`;
+exports[`finance > 42 > currencySymbol 1`] = `"Ft"`;
 
 exports[`finance > 42 > ethereumAddress 1`] = `"0x8ead331ddf0fc4446b96d368ab4bd1d31efb62f9"`;
 
@@ -80,6 +80,12 @@ exports[`finance > 42 > routingNumber 1`] = `"062197511"`;
 exports[`finance > 42 > transactionDescription 1`] = `"You made a withdrawal of SAR 598.66 at Streich - Aufderhar using card ending in ****9821 from account ***1354."`;
 
 exports[`finance > 42 > transactionType 1`] = `"invoice"`;
+
+exports[`finance > 42 > vatNumber > noArgs 1`] = `"FI97511086"`;
+
+exports[`finance > 42 > vatNumber > with a variable length countryCode option 1`] = `"RO4751108670"`;
+
+exports[`finance > 42 > vatNumber > with countryCode option 1`] = `"DE397511086"`;
 
 exports[`finance > 1211 > accountName 1`] = `"Savings Account"`;
 
@@ -138,7 +144,7 @@ exports[`finance > 1211 > currencyName 1`] = `"Vatu"`;
 
 exports[`finance > 1211 > currencyNumericCode 1`] = `"548"`;
 
-exports[`finance > 1211 > currencySymbol 1`] = `"$"`;
+exports[`finance > 1211 > currencySymbol 1`] = `"лв"`;
 
 exports[`finance > 1211 > ethereumAddress 1`] = `"0xed4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3f"`;
 
@@ -161,6 +167,12 @@ exports[`finance > 1211 > routingNumber 1`] = `"122482962"`;
 exports[`finance > 1211 > transactionDescription 1`] = `"withdrawal transaction at Paucek - Powlowski using card ending with ****8768 for KES 867.32 in account ***8251."`;
 
 exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
+
+exports[`finance > 1211 > vatNumber > noArgs 1`] = `"SI92966736"`;
+
+exports[`finance > 1211 > vatNumber > with a variable length countryCode option 1`] = `"RO9296673687"`;
+
+exports[`finance > 1211 > vatNumber > with countryCode option 1`] = `"DE982966736"`;
 
 exports[`finance > 1337 > accountName 1`] = `"Credit Card Account"`;
 
@@ -219,7 +231,7 @@ exports[`finance > 1337 > currencyName 1`] = `"Ethiopian Birr"`;
 
 exports[`finance > 1337 > currencyNumericCode 1`] = `"230"`;
 
-exports[`finance > 1337 > currencySymbol 1`] = `"$"`;
+exports[`finance > 1337 > currencySymbol 1`] = `"RD$"`;
 
 exports[`finance > 1337 > ethereumAddress 1`] = `"0x536a7b5fa28d2f9bb79ca46ea394bc4f9bb0af32"`;
 
@@ -242,3 +254,42 @@ exports[`finance > 1337 > routingNumber 1`] = `"051412430"`;
 exports[`finance > 1337 > transactionDescription 1`] = `"Payment of CAD 278.12 for invoice at Wolf - Howe, processed with card ending ****6194 linked to account ***7734."`;
 
 exports[`finance > 1337 > transactionType 1`] = `"invoice"`;
+
+exports[`finance > 1337 > vatNumber > noArgs 1`] = `"EE124352971"`;
+
+exports[`finance > 1337 > vatNumber > with a variable length countryCode option 1`] = `"RO324"`;
+
+exports[`finance > 1337 > vatNumber > with countryCode option 1`] = `"DE212435297"`;
+
+exports[`finance > should generate a stable VAT number per country 1`] = `
+{
+  "AT": "ATU39751108",
+  "BE": "BE1709821135",
+  "BG": "BG261234715",
+  "CY": "CY50610998H",
+  "CZ": "CZ64140926",
+  "DE": "DE355197985",
+  "DK": "DK90103328",
+  "EE": "EE325180971",
+  "EL": "EL087770318",
+  "ES": "ESP0337684B",
+  "FI": "FI77574540",
+  "FR": "FR31635924720",
+  "GR": "EL219868818",
+  "HR": "HR58831248805",
+  "HU": "HU42139357",
+  "IE": "IE9924320O",
+  "IT": "IT50292149267",
+  "LT": "LT273665018",
+  "LU": "LU31056052",
+  "LV": "LV61639131982",
+  "MT": "MT68552089",
+  "NL": "NL337887601B96",
+  "PL": "PL0160156627",
+  "PT": "PT337686503",
+  "RO": "RO3938",
+  "SE": "SE675541720601",
+  "SI": "SI29993094",
+  "SK": "SK9982383159",
+}
+`;

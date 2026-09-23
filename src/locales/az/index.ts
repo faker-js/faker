@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../../definitions';
 import airline from './airline';
+import animal from './animal';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -14,6 +15,8 @@ import location from './location';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
+import science from './science';
+import vehicle from './vehicle';
 
 /**
  * The locale data for the `az` locale.
@@ -23,6 +26,7 @@ import phone_number from './phone_number';
  */
 const az: LocaleDefinition = {
   airline,
+  animal,
   color,
   commerce,
   company,
@@ -33,6 +37,8 @@ const az: LocaleDefinition = {
   metadata,
   person,
   phone_number,
+  science,
+  vehicle,
 };
 
 export default az;
