@@ -1,4 +1,4 @@
-const suffixes = ['## ##?', '# #??'];
+const suffixes = ['## #??', '# #??'];
 // Return only one of the 121 valid postcode districts
 // London districts may also include an extra letter after the number
 // in the outward code (e.g. W1A 1HQ, EC1A 1BB, SW1A 1AA).
