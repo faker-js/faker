@@ -27,6 +27,21 @@ exports[`helpers > 42 > arrayElements > with array and count range 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > arraySamples > with array and count 1`] = `
+[
+  "o",
+  "!",
+  "r",
+]
+`;
+
+exports[`helpers > 42 > arraySamples > with array and count range 1`] = `
+[
+  "!",
+  "r",
+]
+`;
+
 exports[`helpers > 42 > enumValue > with default enum 1`] = `1`;
 
 exports[`helpers > 42 > enumValue > with enum starting from some index 1`] = `400`;
@@ -249,6 +264,24 @@ exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > arraySamples > with array and count 1`] = `
+[
+  "!",
+  "d",
+  "l",
+]
+`;
+
+exports[`helpers > 1211 > arraySamples > with array and count range 1`] = `
+[
+  "d",
+  "l",
+  "!",
+  "r",
+  "r",
+]
+`;
+
 exports[`helpers > 1211 > enumValue > with default enum 1`] = `2`;
 
 exports[`helpers > 1211 > enumValue > with enum starting from some index 1`] = `401`;
@@ -463,6 +496,21 @@ exports[`helpers > 1337 > arrayElements > with array and count range 1`] = `
 [
   "l",
   "e",
+]
+`;
+
+exports[`helpers > 1337 > arraySamples > with array and count 1`] = `
+[
+  "l",
+  "e",
+  "l",
+]
+`;
+
+exports[`helpers > 1337 > arraySamples > with array and count range 1`] = `
+[
+  "e",
+  "l",
 ]
 `;
 
