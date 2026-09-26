@@ -465,7 +465,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 11.0.0
    */
   arraySamples<const T>(array: ReadonlyArray<T>, count: NumberOrRange): T[] {
-    return helpersArraySamples(this.faker.fakerCore, array, count);
+    return helpersArraySamples(this.fakerCore, array, count);
   }
 
   /**
