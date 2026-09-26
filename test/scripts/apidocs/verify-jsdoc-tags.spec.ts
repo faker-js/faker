@@ -191,6 +191,7 @@ ${examples}`;
                     rootImports.delete('fakerCore');
                     rootImports.add('base');
                     rootImports.add('en');
+                    rootImports.add('createFakerCore');
                   }
 
                   if (functionImports.length > 0) {
@@ -214,12 +215,20 @@ ${examples}`;
                   if (hasFakerCore) {
                     content.push(
                       '// fakerCore',
-                      `import { createFakerCore } from '${relativeImportPath}/core';`,
                       `const fakerCore = createFakerCore({ locale: [en, base] });`
                     );
                   }
 
                   content.push('', '// Examples', examples);
+
+                  if (examples.includes('faker.setDefaultRefDate(')) {
+                    // We don't have to cleanup fakerCore, since a new instance is created for each example
+                    content.push(
+                      '',
+                      '// Cleanup',
+                      'faker.setDefaultRefDate();'
+                    );
+                  }
 
                   examples = content.join('\n');
                 }
