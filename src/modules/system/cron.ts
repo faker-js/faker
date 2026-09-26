@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
-import { arrayElement } from '../helpers/array-element';
-import { int } from '../number/int';
+import { datatypeBoolean } from '../datatype/boolean';
+import { helpersArrayElement } from '../helpers/array-element';
+import { numberInt } from '../number/int';
 
 const CRON_DAY_OF_WEEK = [
   'SUN',
@@ -22,17 +22,17 @@ const CRON_DAY_OF_WEEK = [
  * @param options.includeNonStandard Whether to include a `@yearly`, `@monthly`, `@daily`, etc text labels in the generated expression. Defaults to `false`.
  *
  * @example
- * cron(fakerCore) // '45 23 * * 6'
- * cron(fakerCore, { includeYear: true }) // '45 23 * * 6 2067'
- * cron(fakerCore, { includeYear: false }) // '45 23 * * 6'
- * cron(fakerCore, { includeNonStandard: false }) // '45 23 * * 6'
- * cron(fakerCore, { includeNonStandard: true }) // '@yearly'
+ * systemCron(fakerCore) // '45 23 * * 6'
+ * systemCron(fakerCore, { includeYear: true }) // '45 23 * * 6 2067'
+ * systemCron(fakerCore, { includeYear: false }) // '45 23 * * 6'
+ * systemCron(fakerCore, { includeNonStandard: false }) // '45 23 * * 6'
+ * systemCron(fakerCore, { includeNonStandard: true }) // '@yearly'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function cron(
+export function systemCron(
   fakerCore: FakerCore,
   options: {
     /**
@@ -52,24 +52,24 @@ export function cron(
   const { includeYear = false, includeNonStandard = false } = options;
 
   // create the arrays to hold the available values for each component of the expression
-  const minutes = [int(fakerCore, 59), '*'];
-  const hours = [int(fakerCore, 23), '*'];
-  const days = [int(fakerCore, { min: 1, max: 31 }), '*', '?'];
-  const months = [int(fakerCore, { min: 1, max: 12 }), '*'];
+  const minutes = [numberInt(fakerCore, 59), '*'];
+  const hours = [numberInt(fakerCore, 23), '*'];
+  const days = [numberInt(fakerCore, { min: 1, max: 31 }), '*', '?'];
+  const months = [numberInt(fakerCore, { min: 1, max: 12 }), '*'];
   const daysOfWeek = [
-    int(fakerCore, 6),
-    arrayElement(fakerCore, CRON_DAY_OF_WEEK),
+    numberInt(fakerCore, 6),
+    helpersArrayElement(fakerCore, CRON_DAY_OF_WEEK),
     '*',
     '?',
   ];
-  const years = [int(fakerCore, { min: 1970, max: 2099 }), '*'];
+  const years = [numberInt(fakerCore, { min: 1970, max: 2099 }), '*'];
 
-  const minute = arrayElement(fakerCore, minutes);
-  const hour = arrayElement(fakerCore, hours);
-  const day = arrayElement(fakerCore, days);
-  const month = arrayElement(fakerCore, months);
-  const dayOfWeek = arrayElement(fakerCore, daysOfWeek);
-  const year = arrayElement(fakerCore, years);
+  const minute = helpersArrayElement(fakerCore, minutes);
+  const hour = helpersArrayElement(fakerCore, hours);
+  const day = helpersArrayElement(fakerCore, days);
+  const month = helpersArrayElement(fakerCore, months);
+  const dayOfWeek = helpersArrayElement(fakerCore, daysOfWeek);
+  const year = helpersArrayElement(fakerCore, years);
 
   // create and return the cron expression string
   let standardExpression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
@@ -87,7 +87,7 @@ export function cron(
     '@yearly',
   ];
 
-  return !includeNonStandard || boolean(fakerCore)
+  return !includeNonStandard || datatypeBoolean(fakerCore)
     ? standardExpression
-    : arrayElement(fakerCore, nonStandardExpressions);
+    : helpersArrayElement(fakerCore, nonStandardExpressions);
 }

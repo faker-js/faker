@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random medical procedure.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * procedure(fakerCore) // 'Appendectomy'
+ * medicalProcedure(fakerCore) // 'Appendectomy'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function procedure(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.medical.procedure);
+export function medicalProcedure(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.medical.procedure);
 }

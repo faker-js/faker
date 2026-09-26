@@ -2,7 +2,7 @@ import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import { between } from './between';
+import { dateBetween } from './between';
 
 /**
  * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
@@ -13,13 +13,13 @@ import { between } from './between';
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @example
- * birthdate(fakerCore) // '1977-07-10T01:37:30.719Z'
+ * dateBirthdate(fakerCore) // '1977-07-10T01:37:30.719Z'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function birthdate(
+export function dateBirthdate(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -41,13 +41,13 @@ export function birthdate(
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @example
- * birthdate(fakerCore, { mode: 'age', min: 18, max: 65 }) // '2003-11-02T20:03:20.116Z'
+ * dateBirthdate(fakerCore, { mode: 'age', min: 18, max: 65 }) // '2003-11-02T20:03:20.116Z'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function birthdate(
+export function dateBirthdate(
   fakerCore: FakerCore,
   options: {
     /**
@@ -81,13 +81,13 @@ export function birthdate(
  * @param options.max The maximum year to generate a birthdate in.
  *
  * @example
- * birthdate(fakerCore, { mode: 'year', min: 1900, max: 2000 }) // '1940-08-20T08:53:07.538Z'
+ * dateBirthdate(fakerCore, { mode: 'year', min: 1900, max: 2000 }) // '1940-08-20T08:53:07.538Z'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function birthdate(
+export function dateBirthdate(
   fakerCore: FakerCore,
   options: {
     /**
@@ -119,15 +119,15 @@ export function birthdate(
  * Defaults to `getDefaultRefDate(fakerCore)`.
  *
  * @example
- * birthdate(fakerCore) // '1977-07-10T01:37:30.719Z'
- * birthdate(fakerCore, { mode: 'age', min: 18, max: 65 }) // '2003-11-02T20:03:20.116Z'
- * birthdate(fakerCore, { mode: 'year', min: 1900, max: 2000 }) // '1940-08-20T08:53:07.538Z'
+ * dateBirthdate(fakerCore) // '1977-07-10T01:37:30.719Z'
+ * dateBirthdate(fakerCore, { mode: 'age', min: 18, max: 65 }) // '2003-11-02T20:03:20.116Z'
+ * dateBirthdate(fakerCore, { mode: 'year', min: 1900, max: 2000 }) // '1940-08-20T08:53:07.538Z'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function birthdate(
+export function dateBirthdate(
   fakerCore: FakerCore,
   options?:
     | {
@@ -161,7 +161,7 @@ export function birthdate(
       }
 ): Date;
 
-export function birthdate(
+export function dateBirthdate(
   fakerCore: FakerCore,
   options: {
     mode?: 'age' | 'year';
@@ -193,7 +193,7 @@ export function birthdate(
         );
       }
 
-      return between(fakerCore, { from, to });
+      return dateBetween(fakerCore, { from, to });
     }
 
     case 'year': {
@@ -208,7 +208,7 @@ export function birthdate(
         );
       }
 
-      return between(fakerCore, { from, to });
+      return dateBetween(fakerCore, { from, to });
     }
   }
 }

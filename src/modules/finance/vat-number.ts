@@ -1,14 +1,14 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { arrayElement } from '../helpers/array-element';
-import { fromRegExp } from '../helpers/from-reg-exp';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersFromRegExp } from '../helpers/from-reg-exp';
 
 /**
  * The VAT identification number patterns of the EU member states, keyed by
  * ISO 3166-1 alpha-2 code, plus `EL`: the prefix Greek numbers carry in place
  * of `GR`.
  *
- * Each pattern is written for `faker.helpers.fromRegExp()`.
+ * Each pattern is written for `faker.helpers.helpersFromRegExp()`.
  * Currently, all values are generated randomly, so parts with intent such as check digits will likely produce invalid values.
  *
  * @internal
@@ -145,16 +145,16 @@ export type VatNumberCountryCode = keyof typeof vatNumberFormats;
  * @throws {FakerError} Will throw an error if the passed country code is not supported.
  *
  * @example
- * vatNumber(fakerCore) // 'SK4318759382'
- * vatNumber(fakerCore, { countryCode: 'DE' }) // 'DE644073457'
- * vatNumber(fakerCore, { countryCode: 'NL' }) // 'NL840351580B96'
- * vatNumber(fakerCore, { countryCode: 'GR' }) // 'EL892156043'
+ * financeVatNumber(fakerCore) // 'SK4318759382'
+ * financeVatNumber(fakerCore, { countryCode: 'DE' }) // 'DE644073457'
+ * financeVatNumber(fakerCore, { countryCode: 'NL' }) // 'NL840351580B96'
+ * financeVatNumber(fakerCore, { countryCode: 'GR' }) // 'EL892156043'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vatNumber(
+export function financeVatNumber(
   fakerCore: FakerCore,
   options: {
     /**
@@ -166,7 +166,7 @@ export function vatNumber(
     countryCode?: VatNumberCountryCode;
   } = {}
 ): string {
-  const { countryCode = arrayElement(fakerCore, vatNumberCountryCodes) } =
+  const { countryCode = helpersArrayElement(fakerCore, vatNumberCountryCodes) } =
     options;
 
   const pattern = vatNumberFormats[countryCode];
@@ -175,8 +175,8 @@ export function vatNumber(
     throw new FakerError(`Country code ${countryCode} not supported.`);
   }
 
-  return fromRegExp(
+  return helpersFromRegExp(
     fakerCore,
-    typeof pattern === 'string' ? pattern : arrayElement(fakerCore, pattern)
+    typeof pattern === 'string' ? pattern : helpersArrayElement(fakerCore, pattern)
   );
 }

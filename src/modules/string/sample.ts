@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { rangeToNumber } from '../helpers/range-to-number';
-import { int } from '../number/int';
+import { helpersRangeToNumber } from '../helpers/range-to-number';
+import { numberInt } from '../number/int';
 
 /**
  * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
@@ -24,7 +24,7 @@ export function stringSample(
   fakerCore: FakerCore,
   length: NumberOrRange = 10
 ): string {
-  length = rangeToNumber(fakerCore, length);
+  length = helpersRangeToNumber(fakerCore, length);
 
   const charCodeOption = {
     min: 33,
@@ -34,7 +34,7 @@ export function stringSample(
   let returnString = '';
 
   while (returnString.length < length) {
-    returnString += String.fromCodePoint(int(fakerCore, charCodeOption));
+    returnString += String.fromCodePoint(numberInt(fakerCore, charCodeOption));
   }
 
   return returnString;

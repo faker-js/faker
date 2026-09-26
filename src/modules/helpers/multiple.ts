@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { rangeToNumber } from './range-to-number';
+import { helpersRangeToNumber } from './range-to-number';
 
 /**
  * Generates an array containing values returned by the given method.
@@ -14,15 +14,15 @@ import { rangeToNumber } from './range-to-number';
  * @param options.count The number or range of elements to generate. Defaults to `3`.
  *
  * @example
- * multiple(fakerCore, () => personFirstName(fakerCore)) // [ 'Aniya', 'Norval', 'Dallin' ]
- * multiple(fakerCore, () => personFirstName(fakerCore), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
- * multiple(fakerCore, (_, i) => `${colorHuman(fakerCore)}-${i + 1}`) // [ 'orange-1', 'orchid-2', 'sky blue-3' ]
+ * helpersMultiple(fakerCore, () => personFirstName(fakerCore)) // [ 'Aniya', 'Norval', 'Dallin' ]
+ * helpersMultiple(fakerCore, () => personFirstName(fakerCore), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+ * helpersMultiple(fakerCore, (_, i) => `${colorHuman(fakerCore)}-${i + 1}`) // [ 'orange-1', 'orchid-2', 'sky blue-3' ]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function multiple<TResult>(
+export function helpersMultiple<TResult>(
   fakerCore: FakerCore,
   method: (v: unknown, index: number) => TResult,
   options: {
@@ -34,7 +34,7 @@ export function multiple<TResult>(
     count?: NumberOrRange;
   } = {}
 ): TResult[] {
-  const count = rangeToNumber(fakerCore, options.count ?? 3);
+  const count = helpersRangeToNumber(fakerCore, options.count ?? 3);
   if (count <= 0) {
     return [];
   }

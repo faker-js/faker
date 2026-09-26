@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 
 export enum IPv4Network {
   /**
@@ -90,14 +90,14 @@ const ipv4Networks: Record<IPv4Network, string> = {
  * @throws {FakerError} If the resolved CIDR block contains an octet greater than 255.
  *
  * @example
- * ipv4(fakerCore) // '245.108.222.0'
- * ipv4(fakerCore, { cidrBlock: '192.168.0.0/16' }) // '192.168.215.224'
+ * internetIpv4(fakerCore) // '245.108.222.0'
+ * internetIpv4(fakerCore, { cidrBlock: '192.168.0.0/16' }) // '192.168.215.224'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function ipv4(
+export function internetIpv4(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -116,14 +116,14 @@ export function ipv4(
  * @param options.network The optional network to use. This is intended as an alias for well-known `cidrBlock`s. Defaults to `'any'`.
  *
  * @example
- * ipv4(fakerCore) // '245.108.222.0'
- * ipv4(fakerCore, { network: 'private-a' }) // '10.199.154.205'
+ * internetIpv4(fakerCore) // '245.108.222.0'
+ * internetIpv4(fakerCore, { network: 'private-a' }) // '10.199.154.205'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function ipv4(
+export function internetIpv4(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -147,15 +147,15 @@ export function ipv4(
  * @throws {FakerError} If the resolved CIDR block contains an octet greater than 255.
  *
  * @example
- * ipv4(fakerCore) // '245.108.222.0'
- * ipv4(fakerCore, { cidrBlock: '192.168.0.0/16' }) // '192.168.215.224'
- * ipv4(fakerCore, { network: 'private-a' }) // '10.199.154.205'
+ * internetIpv4(fakerCore) // '245.108.222.0'
+ * internetIpv4(fakerCore, { cidrBlock: '192.168.0.0/16' }) // '192.168.215.224'
+ * internetIpv4(fakerCore, { network: 'private-a' }) // '10.199.154.205'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function ipv4(
+export function internetIpv4(
   fakerCore: FakerCore,
   options?:
     | {
@@ -175,7 +175,7 @@ export function ipv4(
         network?: IPv4NetworkType;
       }
 ): string;
-export function ipv4(
+export function internetIpv4(
   fakerCore: FakerCore,
   options: { cidrBlock?: string; network?: IPv4NetworkType } = {}
 ): string {
@@ -210,7 +210,7 @@ export function ipv4(
   const [rawIp1, rawIp2, rawIp3, rawIp4] = octets;
   const rawIp = (rawIp1 << 24) | (rawIp2 << 16) | (rawIp3 << 8) | rawIp4;
   const networkIp = rawIp & ~subnetMask;
-  const hostOffset = int(fakerCore, subnetMask);
+  const hostOffset = numberInt(fakerCore, subnetMask);
   const ip = networkIp | hostOffset;
   return [
     (ip >>> 24) & 0xff,

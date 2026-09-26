@@ -1,9 +1,9 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { maybe } from '../helpers/maybe';
-import { objectKey } from '../helpers/object-key';
-import { mac } from '../internet/mac';
-import { numeric } from '../string/numeric';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersMaybe } from '../helpers/maybe';
+import { helpersObjectKey } from '../helpers/object-key';
+import { internetMac } from '../internet/mac';
+import { stringNumeric } from '../string/numeric';
 
 const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
 export type CommonInterfaceType = (typeof commonInterfaceTypes)[number];
@@ -24,16 +24,16 @@ export type CommonInterfaceSchema = keyof typeof commonInterfaceSchemas;
  * @param options.interfaceSchema The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
  *
  * @example
- * networkInterface(fakerCore) // 'enp0s3'
- * networkInterface(fakerCore, { interfaceType: 'wl' }) // 'wlo1'
- * networkInterface(fakerCore, { interfaceSchema: 'mac' }) // 'enx000c29c00000'
- * networkInterface(fakerCore, { interfaceType: 'en', interfaceSchema: 'pci' }) // 'enp5s0f1d0'
+ * systemNetworkInterface(fakerCore) // 'enp0s3'
+ * systemNetworkInterface(fakerCore, { interfaceType: 'wl' }) // 'wlo1'
+ * systemNetworkInterface(fakerCore, { interfaceSchema: 'mac' }) // 'enx000c29c00000'
+ * systemNetworkInterface(fakerCore, { interfaceType: 'en', interfaceSchema: 'pci' }) // 'enp5s0f1d0'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function networkInterface(
+export function systemNetworkInterface(
   fakerCore: FakerCore,
   options: {
     /**
@@ -51,35 +51,35 @@ export function networkInterface(
   } = {}
 ): string {
   const {
-    interfaceType = arrayElement(fakerCore, commonInterfaceTypes),
-    interfaceSchema = objectKey(fakerCore, commonInterfaceSchemas),
+    interfaceType = helpersArrayElement(fakerCore, commonInterfaceTypes),
+    interfaceSchema = helpersObjectKey(fakerCore, commonInterfaceSchemas),
   } = options;
 
   let suffix: string;
   let prefix = '';
   switch (interfaceSchema) {
     case 'index': {
-      suffix = numeric(fakerCore);
+      suffix = stringNumeric(fakerCore);
       break;
     }
 
     case 'slot': {
-      suffix = `${numeric(fakerCore)}${
-        maybe(fakerCore, () => `f${numeric(fakerCore)}`) ?? ''
-      }${maybe(fakerCore, () => `d${numeric(fakerCore)}`) ?? ''}`;
+      suffix = `${stringNumeric(fakerCore)}${
+        helpersMaybe(fakerCore, () => `f${stringNumeric(fakerCore)}`) ?? ''
+      }${helpersMaybe(fakerCore, () => `d${stringNumeric(fakerCore)}`) ?? ''}`;
       break;
     }
 
     case 'mac': {
-      suffix = mac(fakerCore, '');
+      suffix = internetMac(fakerCore, '');
       break;
     }
 
     case 'pci': {
-      prefix = maybe(fakerCore, () => `P${numeric(fakerCore)}`) ?? '';
-      suffix = `${numeric(fakerCore)}s${numeric(fakerCore)}${
-        maybe(fakerCore, () => `f${numeric(fakerCore)}`) ?? ''
-      }${maybe(fakerCore, () => `d${numeric(fakerCore)}`) ?? ''}`;
+      prefix = helpersMaybe(fakerCore, () => `P${stringNumeric(fakerCore)}`) ?? '';
+      suffix = `${stringNumeric(fakerCore)}s${stringNumeric(fakerCore)}${
+        helpersMaybe(fakerCore, () => `f${stringNumeric(fakerCore)}`) ?? ''
+      }${helpersMaybe(fakerCore, () => `d${stringNumeric(fakerCore)}`) ?? ''}`;
       break;
     }
   }

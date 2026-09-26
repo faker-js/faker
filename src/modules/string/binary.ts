@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { fromCharacters } from './from-characters';
+import { stringFromCharacters } from './from-characters';
 
 /**
  * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) string.
@@ -13,17 +13,17 @@ import { fromCharacters } from './from-characters';
  * @see numberBinary(fakerCore): For generating a binary number (within a range).
  *
  * @example
- * binary(fakerCore) // '0b1'
- * binary(fakerCore, { length: 10 }) // '0b1101011011'
- * binary(fakerCore, { length: { min: 5, max: 10 } }) // '0b11101011'
- * binary(fakerCore, { prefix: '0b' }) // '0b1'
- * binary(fakerCore, { length: 10, prefix: 'bin_' }) // 'bin_1101011011'
+ * stringBinary(fakerCore) // '0b1'
+ * stringBinary(fakerCore, { length: 10 }) // '0b1101011011'
+ * stringBinary(fakerCore, { length: { min: 5, max: 10 } }) // '0b11101011'
+ * stringBinary(fakerCore, { prefix: '0b' }) // '0b1'
+ * stringBinary(fakerCore, { length: 10, prefix: 'bin_' }) // 'bin_1101011011'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function binary(
+export function stringBinary(
   fakerCore: FakerCore,
   options: {
     /**
@@ -43,6 +43,6 @@ export function binary(
   const { prefix = '0b', length = 1 } = options;
 
   let result = prefix;
-  result += fromCharacters(fakerCore, ['0', '1'], length);
+  result += stringFromCharacters(fakerCore, ['0', '1'], length);
   return result;
 }

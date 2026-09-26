@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { numeric } from '../string/numeric';
+import { stringNumeric } from '../string/numeric';
 
 /**
  * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
@@ -17,18 +17,18 @@ import { numeric } from '../string/numeric';
  * @throws {FakerError} When `multipleOf` is not a positive bigint.
  *
  * @example
- * bigInt(fakerCore) // 55422n
- * bigInt(fakerCore, 100n) // 52n
- * bigInt(fakerCore, { min: 1000000n }) // 431433n
- * bigInt(fakerCore, { max: 100n }) // 42n
- * bigInt(fakerCore, { multipleOf: 7n }) // 35n
- * bigInt(fakerCore, { min: 10n, max: 100n }) // 36n
+ * numberBigInt(fakerCore) // 55422n
+ * numberBigInt(fakerCore, 100n) // 52n
+ * numberBigInt(fakerCore, { min: 1000000n }) // 431433n
+ * numberBigInt(fakerCore, { max: 100n }) // 42n
+ * numberBigInt(fakerCore, { multipleOf: 7n }) // 35n
+ * numberBigInt(fakerCore, { min: 10n, max: 100n }) // 36n
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function bigInt(
+export function numberBigInt(
   fakerCore: FakerCore,
   options:
     | bigint
@@ -96,7 +96,7 @@ export function bigInt(
   const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
   const offset =
     BigInt(
-      numeric(fakerCore, {
+      stringNumeric(fakerCore, {
         length: delta.toString(10).length,
         allowLeadingZeros: true,
       })

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { directoryPath } from './directory-path';
-import { fileName } from './file-name';
+import { systemDirectoryPath } from './directory-path';
+import { systemFileName } from './file-name';
 
 /**
  * Returns a file path.
@@ -8,12 +8,12 @@ import { fileName } from './file-name';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * filePath(fakerCore) // '/usr/local/src/money.dotx'
+ * systemFilePath(fakerCore) // '/usr/local/src/money.dotx'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function filePath(fakerCore: FakerCore): string {
-  return `${directoryPath(fakerCore)}/${fileName(fakerCore)}`;
+export function systemFilePath(fakerCore: FakerCore): string {
+  return `${systemDirectoryPath(fakerCore)}/${systemFileName(fakerCore)}`;
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random hacker/IT verb for continuous actions (en: ing suffix; e.g. hacking).
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * ingverb(fakerCore) // 'navigating'
+ * hackerIngverb(fakerCore) // 'navigating'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function ingverb(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.hacker.ingverb);
+export function hackerIngverb(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.hacker.ingverb);
 }

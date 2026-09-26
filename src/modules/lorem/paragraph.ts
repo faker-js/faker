@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { sentences } from './sentences';
+import { loremSentences } from './sentences';
 
 /**
  * Generates a paragraph with the given number of sentences.
@@ -11,17 +11,17 @@ import { sentences } from './sentences';
  * @param sentenceCount.max The maximum number of sentences to generate.
  *
  * @example
- * paragraph(fakerCore) // 'Non architecto nam unde sint. Ex tenetur dolor facere optio aut consequatur. Ea laudantium reiciendis repellendus.'
- * paragraph(fakerCore, 2) // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
- * paragraph(fakerCore, { min: 1, max: 3 }) // 'Quis doloribus necessitatibus sint. Rerum accusamus impedit corporis porro.'
+ * loremParagraph(fakerCore) // 'Non architecto nam unde sint. Ex tenetur dolor facere optio aut consequatur. Ea laudantium reiciendis repellendus.'
+ * loremParagraph(fakerCore, 2) // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
+ * loremParagraph(fakerCore, { min: 1, max: 3 }) // 'Quis doloribus necessitatibus sint. Rerum accusamus impedit corporis porro.'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function paragraph(
+export function loremParagraph(
   fakerCore: FakerCore,
   sentenceCount: NumberOrRange = 3
 ): string {
-  return sentences(fakerCore, sentenceCount);
+  return loremSentences(fakerCore, sentenceCount);
 }

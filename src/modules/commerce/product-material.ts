@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a material of a product.
@@ -7,14 +7,14 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * productMaterial(fakerCore) // 'Rubber'
+ * commerceProductMaterial(fakerCore) // 'Rubber'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function productMaterial(fakerCore: FakerCore): string {
-  return arrayElement(
+export function commerceProductMaterial(fakerCore: FakerCore): string {
+  return helpersArrayElement(
     fakerCore,
     fakerCore.locale.commerce.product_name.material
   );

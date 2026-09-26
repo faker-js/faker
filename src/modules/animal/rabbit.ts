@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random rabbit species.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * rabbit(fakerCore) // 'Florida White'
+ * animalRabbit(fakerCore) // 'Florida White'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function rabbit(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.animal.rabbit);
+export function animalRabbit(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.animal.rabbit);
 }

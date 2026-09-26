@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from './_filter-word-list-by-length';
 
 /**
@@ -14,16 +14,16 @@ import { filterWordListByLength } from './_filter-word-list-by-length';
  * Defaults to `'fail'`.
  *
  * @example
- * conjunction(fakerCore) // 'in order that'
- * conjunction(fakerCore, 5) // 'since'
- * conjunction(fakerCore, { strategy: 'shortest' }) // 'or'
- * conjunction(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'hence'
+ * wordConjunction(fakerCore) // 'in order that'
+ * wordConjunction(fakerCore, 5) // 'since'
+ * wordConjunction(fakerCore, { strategy: 'shortest' }) // 'or'
+ * wordConjunction(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'hence'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function conjunction(
+export function wordConjunction(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function conjunction(
     options = { length: options };
   }
 
-  return arrayElement(
+  return helpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,

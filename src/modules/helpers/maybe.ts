@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
+import { datatypeBoolean } from '../datatype/boolean';
 
 /**
  * Returns the result of the callback if the probability check was successful, otherwise `undefined`.
@@ -12,15 +12,15 @@ import { boolean } from '../datatype/boolean';
  * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
  *
  * @example
- * maybe(fakerCore, () => 'Hello World!') // 'Hello World!'
- * maybe(fakerCore, () => 'Hello World!', { probability: 0.1 }) // undefined
- * maybe(fakerCore, () => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
+ * helpersMaybe(fakerCore, () => 'Hello World!') // 'Hello World!'
+ * helpersMaybe(fakerCore, () => 'Hello World!', { probability: 0.1 }) // undefined
+ * helpersMaybe(fakerCore, () => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function maybe<TResult>(
+export function helpersMaybe<TResult>(
   fakerCore: FakerCore,
   callback: () => TResult,
   options: {
@@ -32,7 +32,7 @@ export function maybe<TResult>(
     probability?: number;
   } = {}
 ): TResult | undefined {
-  if (boolean(fakerCore, options)) {
+  if (datatypeBoolean(fakerCore, options)) {
     return callback();
   }
 

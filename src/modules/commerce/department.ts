@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a department inside a shop.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * department(fakerCore) // 'Garden'
+ * commerceDepartment(fakerCore) // 'Garden'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function department(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.commerce.department);
+export function commerceDepartment(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.commerce.department);
 }

@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { toBase64 } from '../../internal/base64';
-import { rgb } from '../color/rgb';
-import { arrayElement } from '../helpers/array-element';
-import { int } from '../number/int';
+import { colorRgb } from '../color/rgb';
+import { helpersArrayElement } from '../helpers/array-element';
+import { numberInt } from '../number/int';
 
 /**
  * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
@@ -15,14 +15,14 @@ import { int } from '../number/int';
  * @param options.type The type of the image. Defaults to a random type.
  *
  * @example
- * dataUri(fakerCore) // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
- * dataUri(fakerCore, { type: 'svg-base64' }) // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3...'
+ * imageDataUri(fakerCore) // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
+ * imageDataUri(fakerCore, { type: 'svg-base64' }) // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3...'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function dataUri(
+export function imageDataUri(
   fakerCore: FakerCore,
   options: {
     /**
@@ -53,10 +53,10 @@ export function dataUri(
   } = {}
 ): string {
   const {
-    width = int(fakerCore, { min: 1, max: 3999 }),
-    height = int(fakerCore, { min: 1, max: 3999 }),
-    color = rgb(fakerCore),
-    type = arrayElement(fakerCore, ['svg-uri', 'svg-base64']),
+    width = numberInt(fakerCore, { min: 1, max: 3999 }),
+    height = numberInt(fakerCore, { min: 1, max: 3999 }),
+    color = colorRgb(fakerCore),
+    type = helpersArrayElement(fakerCore, ['svg-uri', 'svg-base64']),
   } = options;
 
   const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${

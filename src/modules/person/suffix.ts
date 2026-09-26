@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random person suffix.
@@ -7,13 +7,13 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * suffix(fakerCore) // 'DDS'
+ * personSuffix(fakerCore) // 'DDS'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function suffix(fakerCore: FakerCore): string {
+export function personSuffix(fakerCore: FakerCore): string {
   // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
-  return arrayElement(fakerCore, fakerCore.locale.person.suffix);
+  return helpersArrayElement(fakerCore, fakerCore.locale.person.suffix);
 }

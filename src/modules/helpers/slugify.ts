@@ -9,14 +9,14 @@ import type { FakerCore } from '../../core';
  * @param string The input to slugify. Defaults to `''`.
  *
  * @example
- * slugify(fakerCore) // ''
- * slugify(fakerCore, "Hello world!") // 'Hello-world'
+ * helpersSlugify(fakerCore) // ''
+ * helpersSlugify(fakerCore, "Hello world!") // 'Hello-world'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function slugify(fakerCore: FakerCore, string: string = ''): string {
+export function helpersSlugify(fakerCore: FakerCore, string: string = ''): string {
   return string
     .normalize('NFKD') //for example è decomposes to as e +  ̀
     .replaceAll(/[\u0300-\u036F]/g, '') // removes combining marks
