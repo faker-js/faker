@@ -1,0 +1,450 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`exports > should match the expected import tree 1`] = `
+{
+  "config": {
+    "types": [
+      "FakerConfig",
+    ],
+  },
+  "core": {
+    "types": [
+      "FakerCore",
+      "FakerOptions",
+    ],
+    "values": [
+      "createFakerCore",
+    ],
+  },
+  "definitions": {
+    "types": [
+      "AirlineDefinition",
+      "AnimalDefinition",
+      "BookDefinition",
+      "ColorDefinition",
+      "CommerceDefinition",
+      "CommerceProductNameDefinition",
+      "CompanyDefinition",
+      "DatabaseDefinition",
+      "DateDefinition",
+      "DateEntryDefinition",
+      "FinanceDefinition",
+      "FoodDefinition",
+      "HackerDefinition",
+      "InternetDefinition",
+      "LocaleDefinition",
+      "LocaleEntry",
+      "LocationDefinition",
+      "LoremDefinition",
+      "MedicalDefinition",
+      "MetadataDefinition",
+      "MusicDefinition",
+      "PersonDefinition",
+      "PersonEntryDefinition",
+      "PhoneNumberDefinition",
+      "ScienceDefinition",
+      "SystemDefinition",
+      "SystemMimeTypeEntryDefinition",
+      "VehicleDefinition",
+      "WordDefinition",
+    ],
+  },
+  "distributors/distributor": {
+    "types": [
+      "Distributor",
+    ],
+  },
+  "distributors/exponential": {
+    "values": [
+      "exponentialDistributor",
+    ],
+  },
+  "distributors/uniform": {
+    "values": [
+      "uniformDistributor",
+    ],
+  },
+  "errors/faker-error": {
+    "values": [
+      "FakerError",
+    ],
+  },
+  "faker": {
+    "values": [
+      "Faker",
+    ],
+  },
+  "locale": {
+    "values": [
+      "allFakers",
+      "faker",
+      "fakerAF_ZA",
+      "fakerAR",
+      "fakerAZ",
+      "fakerBASE",
+      "fakerBN_BD",
+      "fakerCS_CZ",
+      "fakerCY",
+      "fakerDA",
+      "fakerDE",
+      "fakerDE_AT",
+      "fakerDE_CH",
+      "fakerDV",
+      "fakerEL",
+      "fakerEN",
+      "fakerEN_AU",
+      "fakerEN_AU_ocker",
+      "fakerEN_BORK",
+      "fakerEN_CA",
+      "fakerEN_GB",
+      "fakerEN_GH",
+      "fakerEN_HK",
+      "fakerEN_IE",
+      "fakerEN_IN",
+      "fakerEN_NG",
+      "fakerEN_NP",
+      "fakerEN_US",
+      "fakerEN_ZA",
+      "fakerEO",
+      "fakerES",
+      "fakerES_MX",
+      "fakerFA",
+      "fakerFI",
+      "fakerFR",
+      "fakerFR_BE",
+      "fakerFR_CA",
+      "fakerFR_CH",
+      "fakerFR_LU",
+      "fakerFR_SN",
+      "fakerHE",
+      "fakerHR",
+      "fakerHU",
+      "fakerHY",
+      "fakerID_ID",
+      "fakerIT",
+      "fakerJA",
+      "fakerKA_GE",
+      "fakerKO",
+      "fakerKU_ckb",
+      "fakerKU_kmr_latin",
+      "fakerLV",
+      "fakerMK",
+      "fakerMN_MN_cyrl",
+      "fakerNB_NO",
+      "fakerNE",
+      "fakerNL",
+      "fakerNL_BE",
+      "fakerPL",
+      "fakerPT_BR",
+      "fakerPT_PT",
+      "fakerRO",
+      "fakerRO_MD",
+      "fakerRU",
+      "fakerSK",
+      "fakerSL_SI",
+      "fakerSR_RS_latin",
+      "fakerSV",
+      "fakerTA_IN",
+      "fakerTH",
+      "fakerTR",
+      "fakerUK",
+      "fakerUR",
+      "fakerUZ_UZ_latin",
+      "fakerVI",
+      "fakerYO_NG",
+      "fakerZH_CN",
+      "fakerZH_TW",
+      "fakerZU_ZA",
+    ],
+  },
+  "locales": {
+    "values": [
+      "af_ZA",
+      "allLocales",
+      "ar",
+      "az",
+      "base",
+      "bn_BD",
+      "cs_CZ",
+      "cy",
+      "da",
+      "de",
+      "de_AT",
+      "de_CH",
+      "dv",
+      "el",
+      "en",
+      "en_AU",
+      "en_AU_ocker",
+      "en_BORK",
+      "en_CA",
+      "en_GB",
+      "en_GH",
+      "en_HK",
+      "en_IE",
+      "en_IN",
+      "en_NG",
+      "en_NP",
+      "en_US",
+      "en_ZA",
+      "eo",
+      "es",
+      "es_MX",
+      "fa",
+      "fi",
+      "fr",
+      "fr_BE",
+      "fr_CA",
+      "fr_CH",
+      "fr_LU",
+      "fr_SN",
+      "he",
+      "hr",
+      "hu",
+      "hy",
+      "id_ID",
+      "it",
+      "ja",
+      "ka_GE",
+      "ko",
+      "ku_ckb",
+      "ku_kmr_latin",
+      "lv",
+      "mk",
+      "mn_MN_cyrl",
+      "nb_NO",
+      "ne",
+      "nl",
+      "nl_BE",
+      "pl",
+      "pt_BR",
+      "pt_PT",
+      "ro",
+      "ro_MD",
+      "ru",
+      "sk",
+      "sl_SI",
+      "sr_RS_latin",
+      "sv",
+      "ta_IN",
+      "th",
+      "tr",
+      "uk",
+      "ur",
+      "uz_UZ_latin",
+      "vi",
+      "yo_NG",
+      "zh_CN",
+      "zh_TW",
+      "zu_ZA",
+    ],
+  },
+  "modules/airline": {
+    "types": [
+      "AircraftType",
+      "AirlineModule",
+    ],
+    "values": [
+      "Aircraft",
+    ],
+  },
+  "modules/animal": {
+    "types": [
+      "AnimalModule",
+    ],
+  },
+  "modules/book": {
+    "types": [
+      "BookModule",
+    ],
+  },
+  "modules/color": {
+    "types": [
+      "ColorFormat",
+      "ColorModule",
+      "CssFunctionType",
+      "CssSpaceType",
+      "NumberColorFormat",
+      "StringColorFormat",
+    ],
+    "values": [
+      "CssFunction",
+      "CssSpace",
+    ],
+  },
+  "modules/commerce": {
+    "types": [
+      "CommerceModule",
+    ],
+  },
+  "modules/company": {
+    "types": [
+      "CompanyModule",
+    ],
+  },
+  "modules/database": {
+    "types": [
+      "DatabaseModule",
+    ],
+  },
+  "modules/datatype": {
+    "types": [
+      "DatatypeModule",
+    ],
+  },
+  "modules/date": {
+    "types": [
+      "DateModule",
+      "SimpleDateModule",
+    ],
+  },
+  "modules/finance": {
+    "types": [
+      "BitcoinAddressFamilyType",
+      "BitcoinNetworkType",
+      "Currency",
+      "FinanceModule",
+      "VatNumberCountryCode",
+    ],
+    "values": [
+      "BitcoinAddressFamily",
+      "BitcoinNetwork",
+    ],
+  },
+  "modules/food": {
+    "types": [
+      "FoodModule",
+    ],
+  },
+  "modules/git": {
+    "types": [
+      "GitModule",
+    ],
+  },
+  "modules/hacker": {
+    "types": [
+      "HackerModule",
+    ],
+  },
+  "modules/helpers": {
+    "types": [
+      "HelpersModule",
+      "SimpleHelpersModule",
+    ],
+  },
+  "modules/image": {
+    "types": [
+      "ImageModule",
+    ],
+  },
+  "modules/internet": {
+    "types": [
+      "IPv4NetworkType",
+      "InternetModule",
+    ],
+    "values": [
+      "IPv4Network",
+    ],
+  },
+  "modules/location": {
+    "types": [
+      "LocationModule",
+      "SimpleLocationModule",
+    ],
+  },
+  "modules/lorem": {
+    "types": [
+      "LoremModule",
+    ],
+  },
+  "modules/medical": {
+    "types": [
+      "MedicalModule",
+    ],
+  },
+  "modules/music": {
+    "types": [
+      "MusicModule",
+    ],
+  },
+  "modules/number": {
+    "types": [
+      "NumberModule",
+    ],
+  },
+  "modules/person": {
+    "types": [
+      "PersonModule",
+      "SexType",
+    ],
+    "values": [
+      "Sex",
+    ],
+  },
+  "modules/phone": {
+    "types": [
+      "PhoneModule",
+    ],
+  },
+  "modules/science": {
+    "types": [
+      "ChemicalElement",
+      "ScienceModule",
+      "Unit",
+    ],
+  },
+  "modules/string": {
+    "types": [
+      "StringModule",
+    ],
+  },
+  "modules/system": {
+    "types": [
+      "SystemModule",
+    ],
+  },
+  "modules/vehicle": {
+    "types": [
+      "VehicleModule",
+    ],
+  },
+  "modules/word": {
+    "types": [
+      "WordModule",
+    ],
+  },
+  "randomizer": {
+    "types": [
+      "Randomizer",
+    ],
+  },
+  "simple-faker": {
+    "values": [
+      "SimpleFaker",
+      "simpleFaker",
+    ],
+  },
+  "utils/merge-locales": {
+    "values": [
+      "mergeLocales",
+    ],
+  },
+  "utils/mersenne": {
+    "values": [
+      "generateMersenne32Randomizer",
+      "generateMersenne53Randomizer",
+    ],
+  },
+  "utils/types": {
+    "types": [
+      "Casing",
+      "LengthStrategyType",
+      "NumberOrRange",
+      "NumberRange",
+    ],
+    "values": [
+      "LengthStrategy",
+    ],
+  },
+}
+`;
