@@ -96,7 +96,7 @@ exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 0
 
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Freddie_Heller <Freddie.Heller1@yahoo.com>
+Author: Freddie_Heidenreich <Freddie.Heidenreich1@yahoo.com>
 Date: Tue Dec 31 22:32:07 2019 +1200
 
     index haptic pixel
@@ -105,7 +105,7 @@ Date: Tue Dec 31 22:32:07 2019 +1200
 
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Freddie_Heller <Freddie.Heller1@yahoo.com>
+Author: Freddie_Heidenreich <Freddie.Heidenreich1@yahoo.com>
 Date: Tue Dec 31 22:32:07 2019 +1200
 
     index haptic pixel
@@ -114,7 +114,7 @@ Date: Tue Dec 31 22:32:07 2019 +1200
 
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit 36a7b5fa28d2f9bb79ca46ea394bc4f9bb0af328
-Author: Freddie_Heller <Freddie.Heller1@yahoo.com>
+Author: Freddie_Heidenreich <Freddie.Heidenreich1@yahoo.com>
 Date: Tue Dec 31 22:32:07 2019 +1200
 
     index haptic pixel

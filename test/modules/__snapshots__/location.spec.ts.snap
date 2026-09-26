@@ -137,7 +137,7 @@ exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
 exports[`location > 42 > state > with options 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Miller Crest"`;
+exports[`location > 42 > street 1`] = `"Mitchell Crest"`;
 
 exports[`location > 42 > streetAddress > noArgs 1`] = `"9751 Lilliana Rapid"`;
 
