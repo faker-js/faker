@@ -26,6 +26,7 @@ function patchModuleImports(moduleName: string, importHelper: ImportHelper) {
     }
     case 'helpers': {
       importHelper.addImports('./_eval', 'fakeEval');
+      importHelper.addTypeImports('../../core', 'FakerCore');
       break;
     }
     case 'image': {
@@ -48,6 +49,16 @@ function patchFileName(methodName: string): string {
   return methodName === 'nearbyGPSCoordinate'
     ? 'nearby-gps-coordinate'
     : toKebabCase(methodName);
+}
+
+function patchJsDocs(module: string, method: string, jsDocs: string): string {
+  if (module === 'helpers' && method === 'uniqueArray') {
+    jsDocs = jsDocs.replace(
+      'faker.helpers.uniqueArray(faker.word.sample, 3)',
+      'faker.helpers.uniqueArray(() => faker.word.sample(), 3)'
+    );
+  }
+  return jsDocs;
 }
 
 // #endregion
@@ -179,13 +190,14 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
         const restoreFakerTreeInvocations = (
           _: string,
           module: string,
-          method: string
+          method: string,
+          suffix: string = ''
         ): string =>
           methodNames.has(`${module}${method}`)
-            ? `faker.${moduleName}.${module}${method}(`
+            ? `faker.${moduleName}.${module}${method}${suffix}`
             : moduleNames.has(module)
-              ? `faker.${module}.${toCamelCase(method)}(`
-              : `faker.${module}${method}(`;
+              ? `faker.${module}.${toCamelCase(method)}${suffix}`
+              : `faker.${module}${method}${suffix}`;
 
         //#region Functions
         for (const [index, child] of functions.entries()) {
@@ -232,7 +244,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               )
               // Method References
               .replaceAll(
-                /\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
+                /\b([a-z]+)([A-Z][a-zA-Z]+)(\()fakerCore(?:, ?|(?=\)))/g,
                 restoreFakerTreeInvocations
               )
               .replaceAll(
@@ -240,10 +252,14 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
                 (_, method: string) =>
                   `faker.${moduleName}.${toCamelCase(method)}(`
               )
+              .replaceAll(
+                /\b([a-z]+)([A-Z][a-zA-Z]+)(, ?|\))/g,
+                restoreFakerTreeInvocations
+              )
               // Locale Access
               .replaceAll(/\bfakerCore\.locale\b/g, 'faker.definitions');
 
-            parts.push(description);
+            parts.push(patchJsDocs(moduleName, methodName, description));
           }
           //#endregion JSDocs
 
@@ -261,7 +277,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               'faker.defaultRefDate('
             )
             .replaceAll(
-              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
+              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)(\()fakerCore(?:, ?|(?=\)))/g,
               restoreFakerTreeInvocations
             )
             // moduleSample() => sample()

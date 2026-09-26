@@ -18,7 +18,7 @@ import { shuffle } from './shuffle';
  * @param length The number of elements to generate.
  *
  * @example
- * uniqueArray(fakerCore, faker.word.sample, 3) // ['mob', 'junior', 'ripe']
+ * uniqueArray(fakerCore, wordSample, 3) // ['mob', 'junior', 'ripe']
  * uniqueArray(fakerCore, fakerCore.locale.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
  * uniqueArray(fakerCore, ["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
  * uniqueArray(fakerCore, ["one"], 1000) // ['one']
@@ -29,7 +29,7 @@ import { shuffle } from './shuffle';
  */
 export function uniqueArray<const T>(
   fakerCore: FakerCore,
-  source: ReadonlyArray<T> | (() => T),
+  source: ReadonlyArray<T> | ((fakerCore: FakerCore) => T),
   length: number
 ): T[] {
   if (Array.isArray(source)) {
@@ -44,7 +44,7 @@ export function uniqueArray<const T>(
       const maxAttempts = 1000 * length;
       let attempts = 0;
       while (set.size < length && attempts < maxAttempts) {
-        set.add(source());
+        set.add(source(fakerCore));
         attempts++;
       }
     }
