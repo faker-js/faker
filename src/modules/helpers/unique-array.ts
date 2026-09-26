@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { shuffle } from './shuffle';
+import { helpersShuffle } from './shuffle';
 
 /**
  * Takes an array of elements or function that returns an element
@@ -18,16 +18,16 @@ import { shuffle } from './shuffle';
  * @param length The number of elements to generate.
  *
  * @example
- * uniqueArray(fakerCore, faker.word.sample, 3) // ['mob', 'junior', 'ripe']
- * uniqueArray(fakerCore, fakerCore.locale.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
- * uniqueArray(fakerCore, ["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
- * uniqueArray(fakerCore, ["one"], 1000) // ['one']
+ * helpersUniqueArray(fakerCore, faker.word.sample, 3) // ['mob', 'junior', 'ripe']
+ * helpersUniqueArray(fakerCore, fakerCore.locale.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
+ * helpersUniqueArray(fakerCore, ["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
+ * helpersUniqueArray(fakerCore, ["one"], 1000) // ['one']
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function uniqueArray<const T>(
+export function helpersUniqueArray<const T>(
   fakerCore: FakerCore,
   source: ReadonlyArray<T> | (() => T),
   length: number
@@ -35,7 +35,7 @@ export function uniqueArray<const T>(
   if (Array.isArray(source)) {
     const set = new Set<T>(source);
     const array = [...set];
-    return shuffle(fakerCore, array).splice(0, length);
+    return helpersShuffle(fakerCore, array).splice(0, length);
   }
 
   const set = new Set<T>();

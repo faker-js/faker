@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random publisher.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * publisher(fakerCore) // 'Addison-Wesley'
+ * bookPublisher(fakerCore) // 'Addison-Wesley'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function publisher(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.book.publisher);
+export function bookPublisher(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.book.publisher);
 }

@@ -1,8 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { ChemicalElement } from './chemical-element';
-import { chemicalElement as scienceChemicalElement } from './chemical-element';
+import { scienceChemicalElement } from './chemical-element';
 import type { Unit } from './unit';
-import { unit as scienceUnit } from './unit';
+import { scienceUnit } from './unit';
 
 /**
  * Module to generate science related entries.

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { email } from './email';
+import { helpersArrayElement } from '../helpers/array-element';
+import { internetEmail } from './email';
 
 /**
  * Generates an email address using an example mail provider using the given person's name as base.
@@ -13,17 +13,17 @@ import { email } from './email';
  * in the email address. Defaults to `false`.
  *
  * @example
- * exampleEmail(fakerCore) // 'Helmer.Graham23@example.com'
- * exampleEmail(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne96@example.net'
- * exampleEmail(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
- * exampleEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
- * exampleEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
+ * internetExampleEmail(fakerCore) // 'Helmer.Graham23@example.com'
+ * internetExampleEmail(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne96@example.net'
+ * internetExampleEmail(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne.Smith96@example.net'
+ * internetExampleEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne_Doe96@example.net'
+ * internetExampleEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function exampleEmail(
+export function internetExampleEmail(
   fakerCore: FakerCore,
   options: {
     /**
@@ -48,12 +48,12 @@ export function exampleEmail(
 ): string {
   const { firstName, lastName, allowSpecialCharacters = false } = options;
 
-  const provider = arrayElement(
+  const provider = helpersArrayElement(
     fakerCore,
     fakerCore.locale.internet.example_email
   );
 
-  return email(fakerCore, {
+  return internetEmail(fakerCore, {
     firstName,
     lastName,
     provider,

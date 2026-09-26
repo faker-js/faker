@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 import type { SexType } from '../person';
-import { sexType } from '../person/sex-type';
+import { personSexType } from '../person/sex-type';
 
 /**
  * Generates a random square portrait (avatar) of a person.
@@ -14,14 +14,14 @@ import { sexType } from '../person/sex-type';
  * @param options.size The size of the image. Can be `512`, `256`, `128`, `64` or `32`. If not provided, defaults to `512`.
  *
  * @example
- * personPortrait(fakerCore) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/57.jpg'
- * personPortrait(fakerCore, { sex: 'male', size: 128 }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
+ * imagePersonPortrait(fakerCore) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/57.jpg'
+ * imagePersonPortrait(fakerCore, { sex: 'male', size: 128 }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personPortrait(
+export function imagePersonPortrait(
   fakerCore: FakerCore,
   options: {
     /**
@@ -41,12 +41,12 @@ export function personPortrait(
   } = {}
 ): string {
   const { size = 512 } = options;
-  let { sex = sexType(fakerCore) } = options;
+  let { sex = personSexType(fakerCore) } = options;
 
   if (sex === 'generic') {
-    sex = sexType(fakerCore);
+    sex = personSexType(fakerCore);
   }
 
   const baseURL = 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait';
-  return `${baseURL}/${sex}/${size}/${int(fakerCore, { min: 0, max: 99 })}.jpg`;
+  return `${baseURL}/${sex}/${size}/${numberInt(fakerCore, { min: 0, max: 99 })}.jpg`;
 }

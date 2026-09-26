@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 
 /**
  * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
@@ -29,9 +29,9 @@ export function legacyReplaceSymbolWithNumber(
   let result = '';
   for (let i = 0; i < string.length; i++) {
     if (string.charAt(i) === symbol) {
-      result += int(fakerCore, 9);
+      result += numberInt(fakerCore, 9);
     } else if (string.charAt(i) === '!') {
-      result += int(fakerCore, { min: 2, max: 9 });
+      result += numberInt(fakerCore, { min: 2, max: 9 });
     } else {
       result += string.charAt(i);
     }

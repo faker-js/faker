@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from './_filter-word-list-by-length';
 
 /**
@@ -14,16 +14,16 @@ import { filterWordListByLength } from './_filter-word-list-by-length';
  * Defaults to `'fail'`.
  *
  * @example
- * verb(fakerCore) // 'act'
- * verb(fakerCore, 5) // 'tinge'
- * verb(fakerCore, { strategy: 'shortest' }) // 'do'
- * verb(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'vault'
+ * wordVerb(fakerCore) // 'act'
+ * wordVerb(fakerCore, 5) // 'tinge'
+ * wordVerb(fakerCore, { strategy: 'shortest' }) // 'do'
+ * wordVerb(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'vault'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function verb(
+export function wordVerb(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function verb(
     options = { length: options };
   }
 
-  return arrayElement(
+  return helpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,

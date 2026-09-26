@@ -2,7 +2,7 @@ import type { FakerCore } from '../../core';
 import type { Distributor } from '../../distributors/distributor';
 import { uniformDistributor } from '../../distributors/uniform';
 import { FakerError } from '../../errors/faker-error';
-import { int as numberInt } from './int';
+import { numberInt } from './int';
 
 /**
  * Returns a single random floating-point number, by default between `0.0` and `1.0`. To change the range, pass a `min` and `max` value. To limit the number of decimal places, pass a `multipleOf` or `fractionDigits` parameter.
@@ -21,21 +21,21 @@ import { int as numberInt } from './int';
  * @throws {FakerError} When `fractionDigits` and `multipleOf` is passed in the same options object.
  *
  * @example
- * float(fakerCore) // 0.5688541042618454
- * float(fakerCore, 3) // 2.367973240558058
- * float(fakerCore, { max: 100 }) // 17.3687307164073
- * float(fakerCore, { min: 20, max: 30 }) // 23.94764115102589
- * float(fakerCore, { multipleOf: 0.25, min: 0, max:10 }) // 7.75
- * float(fakerCore, { fractionDigits: 1 }) // 0.9
- * float(fakerCore, { min: 10, max: 100, multipleOf: 0.02 }) // 35.42
- * float(fakerCore, { min: 10, max: 100, fractionDigits: 3 }) // 65.716
- * float(fakerCore, { min: 10, max: 100, multipleOf: 0.001 }) // 65.716 - same as above
+ * numberFloat(fakerCore) // 0.5688541042618454
+ * numberFloat(fakerCore, 3) // 2.367973240558058
+ * numberFloat(fakerCore, { max: 100 }) // 17.3687307164073
+ * numberFloat(fakerCore, { min: 20, max: 30 }) // 23.94764115102589
+ * numberFloat(fakerCore, { multipleOf: 0.25, min: 0, max:10 }) // 7.75
+ * numberFloat(fakerCore, { fractionDigits: 1 }) // 0.9
+ * numberFloat(fakerCore, { min: 10, max: 100, multipleOf: 0.02 }) // 35.42
+ * numberFloat(fakerCore, { min: 10, max: 100, fractionDigits: 3 }) // 65.716
+ * numberFloat(fakerCore, { min: 10, max: 100, multipleOf: 0.001 }) // 65.716 - same as above
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function float(
+export function numberFloat(
   fakerCore: FakerCore,
   options:
     | number

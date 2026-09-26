@@ -2,18 +2,18 @@ import { ModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
 import type { AlphaChar, AlphaNumericChar, NumericChar } from './_types';
-import { alpha as stringAlpha } from './alpha';
-import { alphanumeric as stringAlphanumeric } from './alphanumeric';
-import { binary as stringBinary } from './binary';
-import { fromCharacters as stringFromCharacters } from './from-characters';
-import { hexadecimal as stringHexadecimal } from './hexadecimal';
-import { nanoid as stringNanoid } from './nanoid';
-import { numeric as stringNumeric } from './numeric';
-import { octal as stringOctal } from './octal';
+import { stringAlpha } from './alpha';
+import { stringAlphanumeric } from './alphanumeric';
+import { stringBinary } from './binary';
+import { stringFromCharacters } from './from-characters';
+import { stringHexadecimal } from './hexadecimal';
+import { stringNanoid } from './nanoid';
+import { stringNumeric } from './numeric';
+import { stringOctal } from './octal';
 import { stringSample } from './sample';
-import { symbol as stringSymbol } from './symbol';
-import { ulid as stringUlid } from './ulid';
-import { uuid as stringUuid } from './uuid';
+import { stringSymbol } from './symbol';
+import { stringUlid } from './ulid';
+import { stringUuid } from './uuid';
 
 /**
  * Module to generate string related entries.

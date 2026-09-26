@@ -15,12 +15,12 @@ const DEFAULT_REF_DATE_SOURCE: () => Date = () => new Date();
  * // Default
  * fakerCore.randomizer.seed(1234); // Keep `past()` offset consistent for example runs
  * // setDefaultRefDate(fakerCore);
- * past(fakerCore); // Changes based on the current date/time
+ * datePast(fakerCore); // Changes based on the current date/time
  * @example
  * // Fixed
  * fakerCore.randomizer.seed(1234);
  * setDefaultRefDate(fakerCore, new Date('2020-01-01'));
- * past(fakerCore); // Reproducible '2019-07-03T08:27:58.118Z'
+ * datePast(fakerCore); // Reproducible '2019-07-03T08:27:58.118Z'
  * @example
  * // Tick on use
  * let clock = new Date("2020-01-01").getTime();

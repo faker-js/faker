@@ -1,9 +1,9 @@
 import type { FakerCore } from '../../core';
 import type { PersonEntryDefinition } from '../../definitions';
-import { arrayElement } from '../helpers/array-element';
-import { weightedArrayElement } from '../helpers/weighted-array-element';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
 import type { SexType } from './sex-type';
-import { sexType } from './sex-type';
+import { personSexType } from './sex-type';
 
 /**
  * Select a definition based on given sex.
@@ -16,7 +16,7 @@ import { sexType } from './sex-type';
  */
 export function selectDefinition<T>(
   fakerCore: FakerCore,
-  sex: SexType = sexType(fakerCore),
+  sex: SexType = personSexType(fakerCore),
   personEntry: PersonEntryDefinition<T>
 ): T[] {
   const { generic, female, male } = personEntry;
@@ -24,7 +24,7 @@ export function selectDefinition<T>(
   if (sex === 'generic') {
     return (
       generic ??
-      arrayElement(fakerCore, [female, male]) ??
+      helpersArrayElement(fakerCore, [female, male]) ??
       // The last statement should never happen at run time. At this point in time,
       // the entry will satisfy at least (generic || (female && male)).
       // TS is not able to infer the type correctly.
@@ -36,7 +36,7 @@ export function selectDefinition<T>(
 
   if (binary != null) {
     if (generic != null) {
-      return weightedArrayElement(fakerCore, [
+      return helpersWeightedArrayElement(fakerCore, [
         {
           weight: 3 * Math.sqrt(binary.length),
           value: binary,

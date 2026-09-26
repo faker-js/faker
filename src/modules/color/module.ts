@@ -5,19 +5,19 @@ import type {
   NumberColorFormat,
   StringColorFormat,
 } from './_types';
-import { cmyk as colorCmyk } from './cmyk';
-import { colorByCSSColorSpace as colorColorByCSSColorSpace } from './color-by-csscolor-space';
+import { colorCmyk } from './cmyk';
+import { colorColorByCSSColorSpace } from './color-by-csscolor-space';
 import type { CssFunctionType } from './css-supported-function';
-import { cssSupportedFunction as colorCssSupportedFunction } from './css-supported-function';
+import { colorCssSupportedFunction } from './css-supported-function';
 import type { CssSpaceType } from './css-supported-space';
-import { cssSupportedSpace as colorCssSupportedSpace } from './css-supported-space';
-import { hsl as colorHsl } from './hsl';
-import { human as colorHuman } from './human';
-import { hwb as colorHwb } from './hwb';
-import { lab as colorLab } from './lab';
-import { lch as colorLch } from './lch';
-import { rgb as colorRgb } from './rgb';
-import { space as colorSpace } from './space';
+import { colorCssSupportedSpace } from './css-supported-space';
+import { colorHsl } from './hsl';
+import { colorHuman } from './human';
+import { colorHwb } from './hwb';
+import { colorLab } from './lab';
+import { colorLch } from './lch';
+import { colorRgb } from './rgb';
+import { colorSpace } from './space';
 
 /**
  * Module to generate colors.

@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
-import { arrayElement } from '../helpers/array-element';
-import { alpha } from '../string/alpha';
-import { alphanumeric } from '../string/alphanumeric';
+import { datatypeBoolean } from '../datatype/boolean';
+import { helpersArrayElement } from '../helpers/array-element';
+import { stringAlpha } from '../string/alpha';
+import { stringAlphanumeric } from '../string/alphanumeric';
 import { ibanLib } from './_iban-lib';
 
 /**
@@ -13,15 +13,15 @@ import { ibanLib } from './_iban-lib';
  * @param options.includeBranchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to a random boolean value.
  *
  * @example
- * bic(fakerCore) // 'WYAUPGX1'
- * bic(fakerCore, { includeBranchCode: true }) // 'KCAUPGR1432'
- * bic(fakerCore, { includeBranchCode: false }) // 'XDAFQGT7'
+ * financeBic(fakerCore) // 'WYAUPGX1'
+ * financeBic(fakerCore, { includeBranchCode: true }) // 'KCAUPGR1432'
+ * financeBic(fakerCore, { includeBranchCode: false }) // 'XDAFQGT7'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function bic(
+export function financeBic(
   fakerCore: FakerCore,
   options: {
     /**
@@ -32,20 +32,20 @@ export function bic(
     includeBranchCode?: boolean;
   } = {}
 ): string {
-  const { includeBranchCode = boolean(fakerCore) } = options;
+  const { includeBranchCode = datatypeBoolean(fakerCore) } = options;
 
-  const bankIdentifier = alpha(fakerCore, {
+  const bankIdentifier = stringAlpha(fakerCore, {
     length: 4,
     casing: 'upper',
   });
-  const countryCode = arrayElement(fakerCore, ibanLib.iso3166);
-  const locationCode = alphanumeric(fakerCore, {
+  const countryCode = helpersArrayElement(fakerCore, ibanLib.iso3166);
+  const locationCode = stringAlphanumeric(fakerCore, {
     length: 2,
     casing: 'upper',
   });
   const branchCode = includeBranchCode
-    ? boolean(fakerCore)
-      ? alphanumeric(fakerCore, { length: 3, casing: 'upper' })
+    ? datatypeBoolean(fakerCore)
+      ? stringAlphanumeric(fakerCore, { length: 3, casing: 'upper' })
       : 'XXX'
     : '';
 

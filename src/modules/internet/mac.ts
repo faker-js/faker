@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { hex } from '../number/hex';
+import { numberHex } from '../number/hex';
 
 /**
  * Generates a random mac address.
@@ -9,13 +9,13 @@ import { hex } from '../number/hex';
  * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
  *
  * @example
- * mac(fakerCore) // '32:8e:2e:09:c6:05'
+ * internetMac(fakerCore) // '32:8e:2e:09:c6:05'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function mac(
+export function internetMac(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -33,13 +33,13 @@ export function mac(
  * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
  *
  * @example
- * mac(fakerCore) // '32:8e:2e:09:c6:05'
+ * internetMac(fakerCore) // '32:8e:2e:09:c6:05'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function mac(fakerCore: FakerCore, separator?: string): string;
+export function internetMac(fakerCore: FakerCore, separator?: string): string;
 /**
  * Generates a random mac address.
  *
@@ -48,13 +48,13 @@ export function mac(fakerCore: FakerCore, separator?: string): string;
  * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
  *
  * @example
- * mac(fakerCore) // '32:8e:2e:09:c6:05'
+ * internetMac(fakerCore) // '32:8e:2e:09:c6:05'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function mac(
+export function internetMac(
   fakerCore: FakerCore,
   options?:
     | string
@@ -67,7 +67,7 @@ export function mac(
         separator?: string;
       }
 ): string;
-export function mac(
+export function internetMac(
   fakerCore: FakerCore,
   options:
     | string
@@ -95,7 +95,7 @@ export function mac(
   }
 
   for (i = 0; i < 12; i++) {
-    mac += hex(fakerCore, 15);
+    mac += numberHex(fakerCore, 15);
     if (i !== 11 && i % 2 === 1) {
       mac += separator;
     }

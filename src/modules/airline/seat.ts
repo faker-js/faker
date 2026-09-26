@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { int } from '../number/int';
+import { helpersArrayElement } from '../helpers/array-element';
+import { numberInt } from '../number/int';
 import type { AircraftType } from './aircraft-type';
 import { Aircraft } from './aircraft-type';
 
@@ -23,15 +23,15 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  * @param options.aircraftType The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`. Defaults to `narrowbody`.
  *
  * @example
- * seat(fakerCore) // '22C'
- * seat(fakerCore, { aircraftType: 'regional' }) // '7A'
- * seat(fakerCore, { aircraftType: 'widebody' }) // '42K'
+ * airlineSeat(fakerCore) // '22C'
+ * airlineSeat(fakerCore, { aircraftType: 'regional' }) // '7A'
+ * airlineSeat(fakerCore, { aircraftType: 'widebody' }) // '42K'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function seat(
+export function airlineSeat(
   fakerCore: FakerCore,
   options: {
     /**
@@ -45,7 +45,7 @@ export function seat(
   const { aircraftType = Aircraft.Narrowbody } = options;
   const maxRow = aircraftTypeMaxRows[aircraftType];
   const allowedSeats = aircraftTypeSeats[aircraftType];
-  const row = int(fakerCore, { min: 1, max: maxRow });
-  const seat = arrayElement(fakerCore, allowedSeats);
+  const row = numberInt(fakerCore, { min: 1, max: maxRow });
+  const seat = helpersArrayElement(fakerCore, allowedSeats);
   return `${row}${seat}`;
 }

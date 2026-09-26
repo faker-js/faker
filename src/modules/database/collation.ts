@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random database collation.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * collation(fakerCore) // 'utf8_unicode_ci'
+ * databaseCollation(fakerCore) // 'utf8_unicode_ci'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function collation(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.database.collation);
+export function databaseCollation(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.database.collation);
 }

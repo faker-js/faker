@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { float } from '../number/float';
+import { numberFloat } from '../number/float';
 
 /**
  * Returns a weighted random element from the given array. Each element of the array should be an object with two keys `weight` and `value`.
@@ -21,13 +21,13 @@ import { float } from '../number/float';
  * @throws {FakerError} If any element's weight is not a positive number.
  *
  * @example
- * weightedArrayElement(fakerCore, [{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+ * helpersWeightedArrayElement(fakerCore, [{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function weightedArrayElement<const T>(
+export function helpersWeightedArrayElement<const T>(
   fakerCore: FakerCore,
   array: ReadonlyArray<{
     /**
@@ -53,7 +53,7 @@ export function weightedArrayElement<const T>(
   }
 
   const total = array.reduce((sum, { weight }) => sum + weight, 0);
-  const random = float(fakerCore, {
+  const random = numberFloat(fakerCore, {
     min: 0,
     max: total,
   });

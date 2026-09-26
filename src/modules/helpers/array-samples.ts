@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import type { NumberOrRange } from '../../utils/types';
-import { arrayElement } from './array-element';
-import { rangeToNumber } from './range-to-number';
+import { helpersArrayElement } from './array-element';
+import { helpersRangeToNumber } from './range-to-number';
 
 /**
  * Returns an array of elements sampled from the given array with replacement.
@@ -17,18 +17,18 @@ import { rangeToNumber } from './range-to-number';
  *
  * @throws {FakerError} If the given array is empty.
  *
- * @see arrayElements(fakerCore): For generating an array of elements without replacement.
+ * @see helpersArrayElements(fakerCore): For generating an array of elements without replacement.
  *
  * @example
- * arraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
- * arraySamples(fakerCore, [1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
- * arraySamples(fakerCore, ["a", "b", "c"], 0) // []
+ * helpersArraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
+ * helpersArraySamples(fakerCore, [1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
+ * helpersArraySamples(fakerCore, ["a", "b", "c"], 0) // []
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function arraySamples<const T>(
+export function helpersArraySamples<const T>(
   fakerCore: FakerCore,
   array: ReadonlyArray<T>,
   count: NumberOrRange
@@ -38,14 +38,14 @@ export function arraySamples<const T>(
   }
   const result: T[] = [];
 
-  const numElements = rangeToNumber(fakerCore, count);
+  const numElements = helpersRangeToNumber(fakerCore, count);
 
   if (numElements <= 0) {
     return result;
   }
 
   for (let i = 0; i < numElements; i++) {
-    result.push(arrayElement(fakerCore, array));
+    result.push(helpersArrayElement(fakerCore, array));
   }
 
   return result;

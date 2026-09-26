@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random meat.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * meat(fakerCore) // 'venison'
+ * foodMeat(fakerCore) // 'venison'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function meat(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.food.meat);
+export function foodMeat(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.food.meat);
 }

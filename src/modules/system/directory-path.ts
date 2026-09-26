@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a directory path.
@@ -7,13 +7,13 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * directoryPath(fakerCore) // '/etc/mail'
+ * systemDirectoryPath(fakerCore) // '/etc/mail'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function directoryPath(fakerCore: FakerCore): string {
+export function systemDirectoryPath(fakerCore: FakerCore): string {
   const paths = fakerCore.locale.system.directory_path;
-  return arrayElement(fakerCore, paths);
+  return helpersArrayElement(fakerCore, paths);
 }

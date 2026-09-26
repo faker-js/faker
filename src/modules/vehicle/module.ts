@@ -1,13 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-import { bicycle as vehicleBicycle } from './bicycle';
-import { color as vehicleColor } from './color';
-import { fuel as vehicleFuel } from './fuel';
-import { manufacturer as vehicleManufacturer } from './manufacturer';
-import { model as vehicleModel } from './model';
-import { type as vehicleType } from './type';
-import { vehicle as vehicleVehicle } from './vehicle';
-import { vin as vehicleVin } from './vin';
-import { vrm as vehicleVrm } from './vrm';
+import { vehicleBicycle } from './bicycle';
+import { vehicleColor } from './color';
+import { vehicleFuel } from './fuel';
+import { vehicleManufacturer } from './manufacturer';
+import { vehicleModel } from './model';
+import { vehicleType } from './type';
+import { vehicleVehicle } from './vehicle';
+import { vehicleVin } from './vin';
+import { vehicleVrm } from './vrm';
 
 /**
  * Module to generate vehicle related entries.

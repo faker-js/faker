@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * The possible definitions related to elements.
@@ -25,14 +25,17 @@ export interface ChemicalElement {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * chemicalElement(fakerCore) // { symbol: 'H', name: 'Hydrogen', atomicNumber: 1 }
- * chemicalElement(fakerCore) // { symbol: 'Xe', name: 'Xenon', atomicNumber: 54 }
- * chemicalElement(fakerCore) // { symbol: 'Ce', name: 'Cerium', atomicNumber: 58 }
+ * scienceChemicalElement(fakerCore) // { symbol: 'H', name: 'Hydrogen', atomicNumber: 1 }
+ * scienceChemicalElement(fakerCore) // { symbol: 'Xe', name: 'Xenon', atomicNumber: 54 }
+ * scienceChemicalElement(fakerCore) // { symbol: 'Ce', name: 'Cerium', atomicNumber: 58 }
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function chemicalElement(fakerCore: FakerCore): ChemicalElement {
-  return arrayElement(fakerCore, fakerCore.locale.science.chemical_element);
+export function scienceChemicalElement(fakerCore: FakerCore): ChemicalElement {
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.science.chemical_element
+  );
 }

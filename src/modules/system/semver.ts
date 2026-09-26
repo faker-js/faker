@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 
 /**
  * Returns a [semantic version](https://semver.org).
@@ -7,12 +7,16 @@ import { int } from '../number/int';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * semver(fakerCore) // '1.15.2'
+ * systemSemver(fakerCore) // '1.15.2'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function semver(fakerCore: FakerCore): string {
-  return [int(fakerCore, 9), int(fakerCore, 20), int(fakerCore, 20)].join('.');
+export function systemSemver(fakerCore: FakerCore): string {
+  return [
+    numberInt(fakerCore, 9),
+    numberInt(fakerCore, 20),
+    numberInt(fakerCore, 20),
+  ].join('.');
 }

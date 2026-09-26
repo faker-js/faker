@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 
 /**
  * Helper method that converts the given number or range to a number.
@@ -11,14 +11,14 @@ import { int } from '../number/int';
  * @param numberOrRange.max The maximum value for the range.
  *
  * @example
- * rangeToNumber(fakerCore, 1) // 1
- * rangeToNumber(fakerCore, { min: 1, max: 10 }) // 5
+ * helpersRangeToNumber(fakerCore, 1) // 1
+ * helpersRangeToNumber(fakerCore, { min: 1, max: 10 }) // 5
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function rangeToNumber(
+export function helpersRangeToNumber(
   fakerCore: FakerCore,
   numberOrRange: NumberOrRange
 ): number {
@@ -26,5 +26,5 @@ export function rangeToNumber(
     return numberOrRange;
   }
 
-  return int(fakerCore, numberOrRange);
+  return numberInt(fakerCore, numberOrRange);
 }

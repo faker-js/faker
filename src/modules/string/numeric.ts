@@ -2,11 +2,11 @@ import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import type { LiteralUnion } from '../../internal/types';
 import type { NumberOrRange } from '../../utils/types';
-import { arrayElement } from '../helpers/array-element';
-import { rangeToNumber } from '../helpers/range-to-number';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersRangeToNumber } from '../helpers/range-to-number';
 import type { NumericChar } from './_types';
 import { DIGIT_CHARS } from './_types';
-import { fromCharacters } from './from-characters';
+import { stringFromCharacters } from './from-characters';
 
 /**
  * Generates a given length string of digits.
@@ -22,18 +22,18 @@ import { fromCharacters } from './from-characters';
  * @see numberInt(fakerCore): For generating a number (within a range).
  *
  * @example
- * numeric(fakerCore) // '2'
- * numeric(fakerCore, 5) // '31507'
- * numeric(fakerCore, 42) // '06434563150765416546479875435481513188548'
- * numeric(fakerCore, { length: { min: 5, max: 10 } }) // '197089478'
- * numeric(fakerCore, { length: 42, allowLeadingZeros: false }) // '72564846278453876543517840713421451546115'
- * numeric(fakerCore, { length: 6, exclude: ['0'] }) // '943228'
+ * stringNumeric(fakerCore) // '2'
+ * stringNumeric(fakerCore, 5) // '31507'
+ * stringNumeric(fakerCore, 42) // '06434563150765416546479875435481513188548'
+ * stringNumeric(fakerCore, { length: { min: 5, max: 10 } }) // '197089478'
+ * stringNumeric(fakerCore, { length: 42, allowLeadingZeros: false }) // '72564846278453876543517840713421451546115'
+ * stringNumeric(fakerCore, { length: 6, exclude: ['0'] }) // '943228'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function numeric(
+export function stringNumeric(
   fakerCore: FakerCore,
   options:
     | number
@@ -64,7 +64,7 @@ export function numeric(
     };
   }
 
-  const length = rangeToNumber(fakerCore, options.length ?? 1);
+  const length = helpersRangeToNumber(fakerCore, options.length ?? 1);
   if (length <= 0) {
     return '';
   }
@@ -92,13 +92,17 @@ export function numeric(
   let result = '';
 
   if (!allowLeadingZeros && !exclude.includes('0')) {
-    result += arrayElement(
+    result += helpersArrayElement(
       fakerCore,
       allowedDigits.filter((digit) => digit !== '0')
     );
   }
 
-  result += fromCharacters(fakerCore, allowedDigits, length - result.length);
+  result += stringFromCharacters(
+    fakerCore,
+    allowedDigits,
+    length - result.length
+  );
 
   return result;
 }

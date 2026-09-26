@@ -1,9 +1,9 @@
 import { ModuleBase } from '../../internal/module-base';
-import { branch as gitBranch } from './branch';
-import { commitDate as gitCommitDate } from './commit-date';
-import { commitEntry as gitCommitEntry } from './commit-entry';
-import { commitMessage as gitCommitMessage } from './commit-message';
-import { commitSha as gitCommitSha } from './commit-sha';
+import { gitBranch } from './branch';
+import { gitCommitDate } from './commit-date';
+import { gitCommitEntry } from './commit-entry';
+import { gitCommitMessage } from './commit-message';
+import { gitCommitSha } from './commit-sha';
 
 /**
  * Module to generate git related entries.

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { username } from './username';
+import { helpersArrayElement } from '../helpers/array-element';
+import { internetUsername } from './username';
 
 /**
  * Generates an email address using the given person's name as base.
@@ -14,18 +14,18 @@ import { username } from './username';
  * in the email address. Defaults to `false`.
  *
  * @example
- * email(fakerCore) // 'Kassandra4@hotmail.com'
- * email(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne63@yahoo.com'
- * email(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne_Smith63@yahoo.com'
- * email(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne.Doe63@yahoo.com'
- * email(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
- * email(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
+ * internetEmail(fakerCore) // 'Kassandra4@hotmail.com'
+ * internetEmail(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne63@yahoo.com'
+ * internetEmail(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne_Smith63@yahoo.com'
+ * internetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne.Doe63@yahoo.com'
+ * internetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
+ * internetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function email(
+export function internetEmail(
   fakerCore: FakerCore,
   options: {
     /**
@@ -55,11 +55,14 @@ export function email(
   const {
     firstName,
     lastName,
-    provider = arrayElement(fakerCore, fakerCore.locale.internet.free_email),
+    provider = helpersArrayElement(
+      fakerCore,
+      fakerCore.locale.internet.free_email
+    ),
     allowSpecialCharacters = false,
   } = options;
 
-  let localPart: string = username(fakerCore, { firstName, lastName });
+  let localPart: string = internetUsername(fakerCore, { firstName, lastName });
   // Strip any special characters from the local part of the email address
   // This could happen if invalid chars are passed in manually in the firstName/lastName
   localPart = localPart.replaceAll(/[^A-Za-z0-9._+-]+/g, '');
@@ -71,8 +74,8 @@ export function email(
     const usernameChars: string[] = [...'._-'];
     const specialChars: string[] = [...".!#$%&'*+-/=?^_`{|}~"];
     localPart = localPart.replace(
-      arrayElement(fakerCore, usernameChars),
-      arrayElement(fakerCore, specialChars)
+      helpersArrayElement(fakerCore, usernameChars),
+      helpersArrayElement(fakerCore, specialChars)
     );
   }
 
