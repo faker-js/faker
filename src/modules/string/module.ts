@@ -1,4 +1,4 @@
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
 import type { AlphaChar, AlphaNumericChar, NumericChar } from './_types';
@@ -31,7 +31,7 @@ import { uuid as stringUuid } from './uuid';
  * - Emoji can be found at [`faker.internet.emoji()`](https://fakerjs.dev/api/internet.html#emoji).
  * - The [`faker.helpers`](https://fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
-export class StringModule extends SimpleModuleBase {
+export class StringModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree string' to update the methods from their respective files.
@@ -60,7 +60,7 @@ export class StringModule extends SimpleModuleBase {
     characters: string | ReadonlyArray<string>,
     length: NumberOrRange = 1
   ): string {
-    return stringFromCharacters(this.faker.fakerCore, characters, length);
+    return stringFromCharacters(this.fakerCore, characters, length);
   }
 
   /**
@@ -105,7 +105,7 @@ export class StringModule extends SimpleModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
-    return stringAlpha(this.faker.fakerCore, options);
+    return stringAlpha(this.fakerCore, options);
   }
 
   /**
@@ -150,7 +150,7 @@ export class StringModule extends SimpleModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
         } = {}
   ): string {
-    return stringAlphanumeric(this.faker.fakerCore, options);
+    return stringAlphanumeric(this.fakerCore, options);
   }
 
   /**
@@ -187,7 +187,7 @@ export class StringModule extends SimpleModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringBinary(this.faker.fakerCore, options);
+    return stringBinary(this.fakerCore, options);
   }
 
   /**
@@ -224,7 +224,7 @@ export class StringModule extends SimpleModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringOctal(this.faker.fakerCore, options);
+    return stringOctal(this.fakerCore, options);
   }
 
   /**
@@ -270,7 +270,7 @@ export class StringModule extends SimpleModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringHexadecimal(this.faker.fakerCore, options);
+    return stringHexadecimal(this.fakerCore, options);
   }
 
   /**
@@ -319,7 +319,7 @@ export class StringModule extends SimpleModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
         } = {}
   ): string {
-    return stringNumeric(this.faker.fakerCore, options);
+    return stringNumeric(this.fakerCore, options);
   }
 
   /**
@@ -337,7 +337,7 @@ export class StringModule extends SimpleModuleBase {
    * @since 8.0.0
    */
   sample(length: NumberOrRange = 10): string {
-    return stringSample(this.faker.fakerCore, length);
+    return stringSample(this.fakerCore, length);
   }
 
   /**
@@ -429,7 +429,7 @@ export class StringModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return stringUuid(this.faker.fakerCore, options);
+    return stringUuid(this.fakerCore, options);
   }
 
   /**
@@ -460,7 +460,7 @@ export class StringModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return stringUlid(this.faker.fakerCore, options);
+    return stringUlid(this.fakerCore, options);
   }
 
   /**
@@ -478,7 +478,7 @@ export class StringModule extends SimpleModuleBase {
    * @since 8.0.0
    */
   nanoid(length: NumberOrRange = 21): string {
-    return stringNanoid(this.faker.fakerCore, length);
+    return stringNanoid(this.fakerCore, length);
   }
 
   /**
@@ -500,6 +500,6 @@ export class StringModule extends SimpleModuleBase {
    * @since 8.0.0
    */
   symbol(length: NumberOrRange = 1): string {
-    return stringSymbol(this.faker.fakerCore, length);
+    return stringSymbol(this.fakerCore, length);
   }
 }

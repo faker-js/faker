@@ -1,5 +1,5 @@
 import type { Distributor } from '../../distributors/distributor';
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import { bigInt as numberBigInt } from './big-int';
 import { binary as numberBinary } from './binary';
 import { float as numberFloat } from './float';
@@ -22,7 +22,7 @@ import { romanNumeral as numberRomanNumeral } from './roman-numeral';
  * - For numeric strings of a given length, use [`faker.string.numeric()`](https://fakerjs.dev/api/string.html#numeric).
  * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://fakerjs.dev/api/finance.html#creditcardnumber).
  */
-export class NumberModule extends SimpleModuleBase {
+export class NumberModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree number' to update the methods from their respective files.
@@ -84,7 +84,7 @@ export class NumberModule extends SimpleModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    return numberInt(this.faker.fakerCore, options);
+    return numberInt(this.fakerCore, options);
   }
 
   /**
@@ -147,7 +147,7 @@ export class NumberModule extends SimpleModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    return numberFloat(this.faker.fakerCore, options);
+    return numberFloat(this.fakerCore, options);
   }
 
   /**
@@ -188,7 +188,7 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberBinary(this.faker.fakerCore, options);
+    return numberBinary(this.fakerCore, options);
   }
 
   /**
@@ -229,7 +229,7 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberOctal(this.faker.fakerCore, options);
+    return numberOctal(this.fakerCore, options);
   }
 
   /**
@@ -268,7 +268,7 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberHex(this.faker.fakerCore, options);
+    return numberHex(this.fakerCore, options);
   }
 
   /**
@@ -321,7 +321,7 @@ export class NumberModule extends SimpleModuleBase {
           multipleOf?: bigint | number | string | boolean;
         } = {}
   ): bigint {
-    return numberBigInt(this.faker.fakerCore, options);
+    return numberBigInt(this.fakerCore, options);
   }
 
   /**
@@ -364,6 +364,6 @@ export class NumberModule extends SimpleModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberRomanNumeral(this.faker.fakerCore, options);
+    return numberRomanNumeral(this.fakerCore, options);
   }
 }

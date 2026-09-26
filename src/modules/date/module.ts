@@ -1,5 +1,4 @@
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import { anytime as dateAnytime } from './anytime';
 import { between as dateBetween } from './between';
@@ -16,7 +15,7 @@ import { weekday as dateWeekday } from './weekday';
 /**
  * Module to generate dates (without methods requiring localized data).
  */
-export class SimpleDateModule extends SimpleModuleBase {
+export class SimpleDateModule extends ModuleBase {
   /*
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree date' to update the methods from their respective files.
@@ -47,7 +46,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateAnytime(this.faker.fakerCore, options);
+    return dateAnytime(this.fakerCore, options);
   }
 
   /**
@@ -86,7 +85,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return datePast(this.faker.fakerCore, options);
+    return datePast(this.fakerCore, options);
   }
 
   /**
@@ -125,7 +124,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateFuture(this.faker.fakerCore, options);
+    return dateFuture(this.fakerCore, options);
   }
 
   /**
@@ -153,7 +152,7 @@ export class SimpleDateModule extends SimpleModuleBase {
      */
     to: string | Date | number;
   }): Date {
-    return dateBetween(this.faker.fakerCore, options);
+    return dateBetween(this.fakerCore, options);
   }
 
   /**
@@ -201,7 +200,7 @@ export class SimpleDateModule extends SimpleModuleBase {
      */
     count?: NumberOrRange;
   }): Date[] {
-    return dateBetweens(this.faker.fakerCore, options);
+    return dateBetweens(this.fakerCore, options);
   }
 
   /**
@@ -255,7 +254,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateRecent(this.faker.fakerCore, options);
+    return dateRecent(this.fakerCore, options);
   }
 
   /**
@@ -309,7 +308,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateSoon(this.faker.fakerCore, options);
+    return dateSoon(this.fakerCore, options);
   }
 
   /**
@@ -454,7 +453,7 @@ export class SimpleDateModule extends SimpleModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): Date {
-    return dateBirthdate(this.faker.fakerCore, options);
+    return dateBirthdate(this.fakerCore, options);
   }
 }
 
@@ -489,10 +488,6 @@ export class DateModule extends SimpleDateModule {
    * The class body is automatically generated.
    * Run 'pnpm run generate:module-tree date' to update the methods from their respective files.
    */
-
-  constructor(protected readonly faker: Faker) {
-    super(faker);
-  }
 
   /**
    * Returns a random name of a month.
@@ -529,7 +524,7 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    return dateMonth(this.faker.fakerCore, options);
+    return dateMonth(this.fakerCore, options);
   }
 
   /**
@@ -567,7 +562,7 @@ export class DateModule extends SimpleDateModule {
       context?: boolean;
     } = {}
   ): string {
-    return dateWeekday(this.faker.fakerCore, options);
+    return dateWeekday(this.fakerCore, options);
   }
 
   /**
@@ -584,6 +579,6 @@ export class DateModule extends SimpleDateModule {
    * @since 9.0.0
    */
   timeZone(): string {
-    return dateTimeZone(this.faker.fakerCore);
+    return dateTimeZone(this.fakerCore);
   }
 }

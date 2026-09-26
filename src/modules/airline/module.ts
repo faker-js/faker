@@ -44,7 +44,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airport(): Airport {
-    return airlineAirport(this.faker.fakerCore);
+    return airlineAirport(this.fakerCore);
   }
 
   /**
@@ -56,7 +56,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airline(): Airline {
-    return airlineAirline(this.faker.fakerCore);
+    return airlineAirline(this.fakerCore);
   }
 
   /**
@@ -68,7 +68,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airplane(): Airplane {
-    return airlineAirplane(this.faker.fakerCore);
+    return airlineAirplane(this.fakerCore);
   }
 
   /**
@@ -104,7 +104,7 @@ export class AirlineModule extends ModuleBase {
       allowVisuallySimilarCharacters?: boolean;
     } = {}
   ): string {
-    return airlineRecordLocator(this.faker.fakerCore, options);
+    return airlineRecordLocator(this.fakerCore, options);
   }
 
   /**
@@ -130,7 +130,7 @@ export class AirlineModule extends ModuleBase {
       aircraftType?: AircraftType;
     } = {}
   ): string {
-    return airlineSeat(this.faker.fakerCore, options);
+    return airlineSeat(this.fakerCore, options);
   }
 
   /**
@@ -142,7 +142,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   aircraftType(): AircraftType {
-    return airlineAircraftType(this.faker.fakerCore);
+    return airlineAircraftType(this.fakerCore);
   }
 
   /**
@@ -186,6 +186,6 @@ export class AirlineModule extends ModuleBase {
       addLeadingZeros?: boolean;
     } = {}
   ): string {
-    return airlineFlightNumber(this.faker.fakerCore, options);
+    return airlineFlightNumber(this.fakerCore, options);
   }
 }
