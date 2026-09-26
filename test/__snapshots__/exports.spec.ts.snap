@@ -300,15 +300,11 @@ exports[`exports > should match the expected import tree 1`] = `
   },
   "modules/finance": {
     "types": [
+      "BitcoinAddressFamilyType",
+      "BitcoinNetworkType",
       "Currency",
       "FinanceModule",
       "VatNumberCountryCode",
-    ],
-  },
-  "modules/finance/_bitcoin": {
-    "types": [
-      "BitcoinAddressFamilyType",
-      "BitcoinNetworkType",
     ],
     "values": [
       "BitcoinAddressFamily",
