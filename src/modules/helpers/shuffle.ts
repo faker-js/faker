@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 
 /**
  * Takes an array and randomizes it in place then returns it.
@@ -12,13 +12,13 @@ import { int } from '../number/int';
  * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
  *
  * @example
- * shuffle(fakerCore, ['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+ * helpersShuffle(fakerCore, ['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function shuffle<const T>(
+export function helpersShuffle<const T>(
   fakerCore: FakerCore,
   list: T[],
   options: {
@@ -41,15 +41,15 @@ export function shuffle<const T>(
  * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
  *
  * @example
- * shuffle(fakerCore, ['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
- * shuffle(fakerCore, ['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
+ * helpersShuffle(fakerCore, ['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+ * helpersShuffle(fakerCore, ['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
  *
  * @since 11.0.0
  *
  * @experimental
  */
 // @ts-expect-error TS2394 -- Implementation cannot fullfil the readonly array part, since it needs to comply with the inplace version of the function.
-export function shuffle<const T>(
+export function helpersShuffle<const T>(
   fakerCore: FakerCore,
   list: ReadonlyArray<T>,
   options?: {
@@ -72,15 +72,15 @@ export function shuffle<const T>(
  * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
  *
  * @example
- * shuffle(fakerCore, ['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
- * shuffle(fakerCore, ['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
- * shuffle(fakerCore, ['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
+ * helpersShuffle(fakerCore, ['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+ * helpersShuffle(fakerCore, ['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+ * helpersShuffle(fakerCore, ['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function shuffle<const T>(
+export function helpersShuffle<const T>(
   fakerCore: FakerCore,
   list: T[],
   options?: {
@@ -92,7 +92,7 @@ export function shuffle<const T>(
     inplace?: boolean;
   }
 ): T[];
-export function shuffle<const T>(
+export function helpersShuffle<const T>(
   fakerCore: FakerCore,
   list: T[],
   options: { inplace?: boolean } = {}
@@ -104,7 +104,7 @@ export function shuffle<const T>(
   }
 
   for (let i = list.length - 1; i > 0; --i) {
-    const j = int(fakerCore, i);
+    const j = numberInt(fakerCore, i);
     [list[i], list[j]] = [list[j], list[i]];
   }
 

@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { Faker } from '../../faker';
-import { boolean } from '../datatype/boolean';
-import { arrayElement } from '../helpers/array-element';
+import { datatypeBoolean } from '../datatype/boolean';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Converts the given string to title case.
@@ -21,19 +21,19 @@ function toTitleCase(text: string): string {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * dish(fakerCore) // 'Tagine-Rubbed Venison Salad'
+ * foodDish(fakerCore) // 'Tagine-Rubbed Venison Salad'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function dish(fakerCore: FakerCore): string {
+export function foodDish(fakerCore: FakerCore): string {
   // A 50/50 mix of specific dishes and dish_patterns
-  if (boolean(fakerCore)) {
+  if (datatypeBoolean(fakerCore)) {
     return toTitleCase(
       new Faker(fakerCore).helpers.fake(fakerCore.locale.food.dish_pattern)
     );
   }
 
-  return toTitleCase(arrayElement(fakerCore, fakerCore.locale.food.dish));
+  return toTitleCase(helpersArrayElement(fakerCore, fakerCore.locale.food.dish));
 }

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { int } from './int';
+import { numberInt } from './int';
 
 /**
  * Returns a roman numeral in String format.
@@ -17,17 +17,17 @@ import { int } from './int';
  * @throws {FakerError} When `max` is greater than `3999`.
  *
  * @example
- * romanNumeral(fakerCore) // "CMXCIII"
- * romanNumeral(fakerCore, 5) // "III"
- * romanNumeral(fakerCore, { min: 10 }) // "XCIX"
- * romanNumeral(fakerCore, { max: 20 }) // "XVII"
- * romanNumeral(fakerCore, { min: 5, max: 10 }) // "VII"
+ * numberRomanNumeral(fakerCore) // "CMXCIII"
+ * numberRomanNumeral(fakerCore, 5) // "III"
+ * numberRomanNumeral(fakerCore, { min: 10 }) // "XCIX"
+ * numberRomanNumeral(fakerCore, { max: 20 }) // "XVII"
+ * numberRomanNumeral(fakerCore, { min: 5, max: 10 }) // "VII"
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function romanNumeral(
+export function numberRomanNumeral(
   fakerCore: FakerCore,
   options:
     | number
@@ -67,7 +67,7 @@ export function romanNumeral(
     throw new FakerError(`Max value ${max} should be ${DEFAULT_MAX} or less.`);
   }
 
-  let num = int(fakerCore, { min, max });
+  let num = numberInt(fakerCore, { min, max });
 
   const lookup: Array<[string, number]> = [
     ['M', 1000],

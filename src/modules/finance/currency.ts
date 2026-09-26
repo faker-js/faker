@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * The possible definitions related to currency entries.
@@ -37,12 +37,12 @@ export interface Currency {
  * @see currencyNumericCode(fakerCore): For generating specifically the currency numeric code.
  *
  * @example
- * currency(fakerCore) // { code: 'USD', name: 'US Dollar', symbol: '$', numericCode: '840' }
+ * financeCurrency(fakerCore) // { code: 'USD', name: 'US Dollar', symbol: '$', numericCode: '840' }
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function currency(fakerCore: FakerCore): Currency {
-  return arrayElement(fakerCore, fakerCore.locale.finance.currency);
+export function financeCurrency(fakerCore: FakerCore): Currency {
+  return helpersArrayElement(fakerCore, fakerCore.locale.finance.currency);
 }

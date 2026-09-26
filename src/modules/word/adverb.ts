@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from './_filter-word-list-by-length';
 
 /**
@@ -14,16 +14,16 @@ import { filterWordListByLength } from './_filter-word-list-by-length';
  * Defaults to `'fail'`.
  *
  * @example
- * adverb(fakerCore) // 'quarrelsomely'
- * adverb(fakerCore, 5) // 'madly'
- * adverb(fakerCore, { strategy: 'shortest' }) // 'too'
- * adverb(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'sweetly'
+ * wordAdverb(fakerCore) // 'quarrelsomely'
+ * wordAdverb(fakerCore, 5) // 'madly'
+ * wordAdverb(fakerCore, { strategy: 'shortest' }) // 'too'
+ * wordAdverb(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'sweetly'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function adverb(
+export function wordAdverb(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function adverb(
     options = { length: options };
   }
 
-  return arrayElement(
+  return helpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random JWT (JSON Web Token) Algorithm.
@@ -9,13 +9,13 @@ import { arrayElement } from '../helpers/array-element';
  * @see jwt(fakerCore): For generating random JWT (JSON Web Token).
  *
  * @example
- * jwtAlgorithm(fakerCore) // 'HS256'
- * jwtAlgorithm(fakerCore) // 'RS512'
+ * internetJwtAlgorithm(fakerCore) // 'HS256'
+ * internetJwtAlgorithm(fakerCore) // 'RS512'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function jwtAlgorithm(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.internet.jwt_algorithm);
+export function internetJwtAlgorithm(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.internet.jwt_algorithm);
 }

@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
-import { int } from '../number/int';
-import { alphanumeric } from '../string/alphanumeric';
+import { datatypeBoolean } from '../datatype/boolean';
+import { numberInt } from '../number/int';
+import { stringAlphanumeric } from '../string/alphanumeric';
 
 /**
  * Generates a random image url provided via https://picsum.photos.
@@ -16,18 +16,18 @@ import { alphanumeric } from '../string/alphanumeric';
  * @param options.blur Whether the image should be blurred. `0` disables the blur. Defaults to a random integer between `0` and `10`.
  *
  * @example
- * urlPicsumPhotos(fakerCore) // 'https://picsum.photos/seed/NWbJM2B/640/480'
- * urlPicsumPhotos(fakerCore, { width: 128 }) // 'https://picsum.photos/seed/NWbJM2B/128/480'
- * urlPicsumPhotos(fakerCore, { height: 128 }) // 'https://picsum.photos/seed/NWbJM2B/640/128'
- * urlPicsumPhotos(fakerCore, { grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale'
- * urlPicsumPhotos(fakerCore, { blur: 4 }) // 'https://picsum.photos/seed/NWbJM2B/640/480?blur=4'
- * urlPicsumPhotos(fakerCore, { blur: 4, grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale&blur=4'
+ * imageUrlPicsumPhotos(fakerCore) // 'https://picsum.photos/seed/NWbJM2B/640/480'
+ * imageUrlPicsumPhotos(fakerCore, { width: 128 }) // 'https://picsum.photos/seed/NWbJM2B/128/480'
+ * imageUrlPicsumPhotos(fakerCore, { height: 128 }) // 'https://picsum.photos/seed/NWbJM2B/640/128'
+ * imageUrlPicsumPhotos(fakerCore, { grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale'
+ * imageUrlPicsumPhotos(fakerCore, { blur: 4 }) // 'https://picsum.photos/seed/NWbJM2B/640/480?blur=4'
+ * imageUrlPicsumPhotos(fakerCore, { blur: 4, grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale&blur=4'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function urlPicsumPhotos(
+export function imageUrlPicsumPhotos(
   fakerCore: FakerCore,
   options: {
     /**
@@ -57,13 +57,13 @@ export function urlPicsumPhotos(
   } = {}
 ): string {
   const {
-    width = int(fakerCore, { min: 1, max: 3999 }),
-    height = int(fakerCore, { min: 1, max: 3999 }),
-    grayscale = boolean(fakerCore),
-    blur = int(fakerCore, { max: 10 }),
+    width = numberInt(fakerCore, { min: 1, max: 3999 }),
+    height = numberInt(fakerCore, { min: 1, max: 3999 }),
+    grayscale = datatypeBoolean(fakerCore),
+    blur = numberInt(fakerCore, { max: 10 }),
   } = options;
 
-  let url = `https://picsum.photos/seed/${alphanumeric(fakerCore, {
+  let url = `https://picsum.photos/seed/${stringAlphanumeric(fakerCore, {
     length: { min: 5, max: 10 },
   })}/${width}/${height}`;
 

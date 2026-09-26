@@ -7,13 +7,13 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * name(fakerCore) // 'Zieme, Hauck and McClure'
+ * companyName(fakerCore) // 'Zieme, Hauck and McClure'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function name(fakerCore: FakerCore): string {
+export function companyName(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.company.name_pattern
   );

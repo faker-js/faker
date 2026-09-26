@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { multiple } from '../helpers/multiple';
-import { between } from './between';
+import { helpersMultiple } from '../helpers/multiple';
+import { dateBetween } from './between';
 
 /**
  * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
@@ -16,15 +16,15 @@ import { between } from './between';
  * @throws {FakerError} If `from` is after `to`.
  *
  * @example
- * betweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+ * dateBetweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
  * // [
  * //   '2022-07-02T06:00:00.000Z',
  * //   '2024-12-31T12:00:00.000Z',
  * //   '2027-07-02T18:00:00.000Z'
  * // ]
- * betweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
+ * dateBetweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
  * // [ '2023-05-02T16:00:00.000Z', '2026-09-01T08:00:00.000Z' ]
- * betweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: { min: 2, max: 5 }})
+ * dateBetweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: { min: 2, max: 5 }})
  * // [
  * //   2021-12-19T06:35:40.191Z,
  * //   2022-09-10T08:03:51.351Z,
@@ -35,7 +35,7 @@ import { between } from './between';
  *
  * @experimental
  */
-export function betweens(
+export function dateBetweens(
   fakerCore: FakerCore,
   options: {
     /**
@@ -55,7 +55,7 @@ export function betweens(
   }
 ): Date[] {
   const { from, to, count = 3 } = options;
-  return multiple(fakerCore, () => between(fakerCore, { from, to }), {
+  return helpersMultiple(fakerCore, () => dateBetween(fakerCore, { from, to }), {
     count,
   }).toSorted((a, b) => a.getTime() - b.getTime());
 }

@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { Faker } from '../../faker';
-import { arrayElement } from '../helpers/array-element';
-import { replaceSymbols } from '../helpers/replace-symbols';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersReplaceSymbols } from '../helpers/replace-symbols';
 
 /**
  * Generates random zip code from specified format. If format is not specified,
@@ -21,14 +21,14 @@ import { replaceSymbols } from '../helpers/replace-symbols';
  * @see helpersReplaceSymbols(fakerCore): For more information about how the pattern is used.
  *
  * @example
- * zipCode(fakerCore) // '17839'
- * zipCode(fakerCore, '####') // '6925'
+ * locationZipCode(fakerCore) // '17839'
+ * locationZipCode(fakerCore, '####') // '6925'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function zipCode(
+export function locationZipCode(
   fakerCore: FakerCore,
   options:
     | string
@@ -70,7 +70,7 @@ export function zipCode(
     format = [format];
   }
 
-  format = arrayElement(fakerCore, format);
+  format = helpersArrayElement(fakerCore, format);
 
-  return replaceSymbols(fakerCore, format);
+  return helpersReplaceSymbols(fakerCore, format);
 }

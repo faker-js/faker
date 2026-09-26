@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { numeric } from '../string/numeric';
+import { helpersArrayElement } from '../helpers/array-element';
+import { stringNumeric } from '../string/numeric';
 
 /**
  * Generates a random [ABA routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number).
@@ -8,19 +8,19 @@ import { numeric } from '../string/numeric';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * routingNumber(fakerCore) // '062197511'
+ * financeRoutingNumber(fakerCore) // '062197511'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function routingNumber(fakerCore: FakerCore): string {
-  const federalReserveRoutingSymbol = arrayElement(
+export function financeRoutingNumber(fakerCore: FakerCore): string {
+  const federalReserveRoutingSymbol = helpersArrayElement(
     fakerCore,
     fakerCore.locale.finance.federal_reserve_routing_symbol
   );
 
-  const institutionIdentifier = numeric(fakerCore, {
+  const institutionIdentifier = stringNumeric(fakerCore, {
     length: 4,
     allowLeadingZeros: true,
   });

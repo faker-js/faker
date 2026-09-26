@@ -7,13 +7,13 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * productName(fakerCore) // 'Incredible Soft Gloves'
+ * commerceProductName(fakerCore) // 'Incredible Soft Gloves'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function productName(fakerCore: FakerCore): string {
+export function commerceProductName(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.commerce.product_name.pattern
   );

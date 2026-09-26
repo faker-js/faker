@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random book format.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * format(fakerCore) // 'Hardcover'
+ * bookFormat(fakerCore) // 'Hardcover'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function format(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.book.format);
+export function bookFormat(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.book.format);
 }

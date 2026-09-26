@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { objectKey } from './object-key';
+import { helpersObjectKey } from './object-key';
 
 /**
  * Returns a random value from the given object.
@@ -12,16 +12,16 @@ import { objectKey } from './object-key';
  * @throws {FakerError} If the given object is empty.
  *
  * @example
- * objectValue(fakerCore, { Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 390
+ * helpersObjectValue(fakerCore, { Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 390
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function objectValue<const T extends Record<string, unknown>>(
+export function helpersObjectValue<const T extends Record<string, unknown>>(
   fakerCore: FakerCore,
   object: T
 ): T[keyof T] {
-  const key = objectKey(fakerCore, object);
+  const key = helpersObjectKey(fakerCore, object);
   return object[key];
 }

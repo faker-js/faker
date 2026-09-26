@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { manufacturer } from './manufacturer';
-import { model } from './model';
+import { vehicleManufacturer } from './manufacturer';
+import { vehicleModel } from './model';
 
 /**
  * Returns a random vehicle.
@@ -8,12 +8,12 @@ import { model } from './model';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicle(fakerCore) // 'BMW Explorer'
+ * vehicleVehicle(fakerCore) // 'BMW Explorer'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicle(fakerCore: FakerCore): string {
-  return `${manufacturer(fakerCore)} ${model(fakerCore)}`;
+export function vehicleVehicle(fakerCore: FakerCore): string {
+  return `${vehicleManufacturer(fakerCore)} ${vehicleModel(fakerCore)}`;
 }

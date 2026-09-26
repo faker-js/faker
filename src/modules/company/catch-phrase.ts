@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { catchPhraseAdjective } from './catch-phrase-adjective';
-import { catchPhraseDescriptor } from './catch-phrase-descriptor';
-import { catchPhraseNoun } from './catch-phrase-noun';
+import { companyCatchPhraseAdjective } from './catch-phrase-adjective';
+import { companyCatchPhraseDescriptor } from './catch-phrase-descriptor';
+import { companyCatchPhraseNoun } from './catch-phrase-noun';
 
 /**
  * Generates a random catch phrase that can be displayed to an end user.
@@ -9,16 +9,16 @@ import { catchPhraseNoun } from './catch-phrase-noun';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * catchPhrase(fakerCore) // 'Upgradable systematic flexibility'
+ * companyCatchPhrase(fakerCore) // 'Upgradable systematic flexibility'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function catchPhrase(fakerCore: FakerCore): string {
+export function companyCatchPhrase(fakerCore: FakerCore): string {
   return [
-    catchPhraseAdjective(fakerCore),
-    catchPhraseDescriptor(fakerCore),
-    catchPhraseNoun(fakerCore),
+    companyCatchPhraseAdjective(fakerCore),
+    companyCatchPhraseDescriptor(fakerCore),
+    companyCatchPhraseNoun(fakerCore),
   ].join(' ');
 }

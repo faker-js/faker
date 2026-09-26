@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { numeric } from '../string/numeric';
+import { stringNumeric } from '../string/numeric';
 
 /**
  * Generates a random PIN number.
@@ -13,14 +13,14 @@ import { numeric } from '../string/numeric';
  * @see stringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * pin(fakerCore) // '5067'
- * pin(fakerCore, 6) // '213789'
+ * financePin(fakerCore) // '5067'
+ * financePin(fakerCore, 6) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function pin(fakerCore: FakerCore, length?: number): string;
+export function financePin(fakerCore: FakerCore, length?: number): string;
 /**
  * Generates a random PIN number.
  *
@@ -33,14 +33,14 @@ export function pin(fakerCore: FakerCore, length?: number): string;
  * @see stringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * pin(fakerCore) // '5067'
- * pin(fakerCore, { length: 6 }) // '213789'
+ * financePin(fakerCore) // '5067'
+ * financePin(fakerCore, { length: 6 }) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function pin(
+export function financePin(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -63,15 +63,15 @@ export function pin(
  * @see stringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * pin(fakerCore) // '5067'
- * pin(fakerCore, { length: 6 }) // '213789'
- * pin(fakerCore, 6) // '213789'
+ * financePin(fakerCore) // '5067'
+ * financePin(fakerCore, { length: 6 }) // '213789'
+ * financePin(fakerCore, 6) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function pin(
+export function financePin(
   fakerCore: FakerCore,
   options?:
     | number
@@ -96,15 +96,15 @@ export function pin(
  * @see stringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * pin(fakerCore) // '5067'
- * pin(fakerCore, { length: 6 }) // '213789'
- * pin(fakerCore, 6) // '213789'
+ * financePin(fakerCore) // '5067'
+ * financePin(fakerCore, { length: 6 }) // '213789'
+ * financePin(fakerCore, 6) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function pin(
+export function financePin(
   fakerCore: FakerCore,
   options:
     | number
@@ -127,5 +127,5 @@ export function pin(
     throw new FakerError('minimum length is 1');
   }
 
-  return numeric(fakerCore, { length, allowLeadingZeros: true });
+  return stringNumeric(fakerCore, { length, allowLeadingZeros: true });
 }

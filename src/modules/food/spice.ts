@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random spice name.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * spice(fakerCore) // 'chilli'
+ * foodSpice(fakerCore) // 'chilli'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function spice(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.food.spice);
+export function foodSpice(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.food.spice);
 }

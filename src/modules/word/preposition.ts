@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from './_filter-word-list-by-length';
 
 /**
@@ -14,16 +14,16 @@ import { filterWordListByLength } from './_filter-word-list-by-length';
  * Defaults to `'fail'`.
  *
  * @example
- * preposition(fakerCore) // 'without'
- * preposition(fakerCore, 5) // 'abaft'
- * preposition(fakerCore, { strategy: 'shortest' }) // 'a'
- * preposition(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'given'
+ * wordPreposition(fakerCore) // 'without'
+ * wordPreposition(fakerCore, 5) // 'abaft'
+ * wordPreposition(fakerCore, { strategy: 'shortest' }) // 'a'
+ * wordPreposition(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'given'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function preposition(
+export function wordPreposition(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function preposition(
     options = { length: options };
   }
 
-  return arrayElement(
+  return helpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,

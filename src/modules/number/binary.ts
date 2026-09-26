@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { int } from './int';
+import { numberInt } from './int';
 
 /**
  * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) number.
@@ -16,15 +16,15 @@ import { int } from './int';
  * @see stringBinary(fakerCore): For generating a `binary string` with a given length (range).
  *
  * @example
- * binary(fakerCore) // '1'
- * binary(fakerCore, 255) // '110101'
- * binary(fakerCore, { min: 0, max: 65535 }) // '10110101'
+ * numberBinary(fakerCore) // '1'
+ * numberBinary(fakerCore, 255) // '110101'
+ * numberBinary(fakerCore, { min: 0, max: 65535 }) // '10110101'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function binary(
+export function numberBinary(
   fakerCore: FakerCore,
   options:
     | number
@@ -49,7 +49,7 @@ export function binary(
 
   const { min = 0, max = 1 } = options;
 
-  return int(fakerCore, {
+  return numberInt(fakerCore, {
     max,
     min,
   }).toString(2);

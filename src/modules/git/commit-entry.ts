@@ -1,14 +1,14 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
-import { arrayElement } from '../helpers/array-element';
-import { email as internetEmail } from '../internet/email';
-import { username as internetUsername } from '../internet/username';
-import { firstName as personFirstName } from '../person/first-name';
-import { fullName as personFullName } from '../person/full-name';
-import { lastName as personLastName } from '../person/last-name';
-import { commitDate } from './commit-date';
-import { commitMessage } from './commit-message';
-import { commitSha } from './commit-sha';
+import { datatypeBoolean } from '../datatype/boolean';
+import { helpersArrayElement } from '../helpers/array-element';
+import { internetEmail as internetEmail } from '../internet/email';
+import { internetUsername as internetUsername } from '../internet/username';
+import { personFirstName as personFirstName } from '../person/first-name';
+import { personFullName as personFullName } from '../person/full-name';
+import { personLastName as personLastName } from '../person/last-name';
+import { gitCommitDate } from './commit-date';
+import { gitCommitMessage } from './commit-message';
+import { gitCommitSha } from './commit-sha';
 
 const nbsp = '\u00A0';
 
@@ -24,7 +24,7 @@ const nbsp = '\u00A0';
  * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
  *
  * @example
- * commitEntry(fakerCore)
+ * gitCommitEntry(fakerCore)
  * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2
  * // Author: Marion Becker <Marion_Becker49@gmail.com>
  * // Date: Mon Nov 7 05:38:37 2022 -0600
@@ -35,7 +35,7 @@ const nbsp = '\u00A0';
  *
  * @experimental
  */
-export function commitEntry(
+export function gitCommitEntry(
   fakerCore: FakerCore,
   options: {
     /**
@@ -62,16 +62,16 @@ export function commitEntry(
   } = {}
 ): string {
   const {
-    merge = boolean(fakerCore, { probability: 0.2 }),
+    merge = datatypeBoolean(fakerCore, { probability: 0.2 }),
     eol = 'CRLF',
     refDate,
   } = options;
 
-  const lines = [`commit ${commitSha(fakerCore)}`];
+  const lines = [`commit ${gitCommitSha(fakerCore)}`];
 
   if (merge) {
     lines.push(
-      `Merge: ${commitSha(fakerCore, { length: 7 })} ${commitSha(fakerCore, {
+      `Merge: ${gitCommitSha(fakerCore, { length: 7 })} ${gitCommitSha(fakerCore, {
         length: 7,
       })}`
     );
@@ -81,7 +81,7 @@ export function commitEntry(
   const lastName = personLastName(fakerCore);
   const fullName = personFullName(fakerCore, { firstName, lastName });
   const username = internetUsername(fakerCore, { firstName, lastName });
-  let user = arrayElement(fakerCore, [fullName, username]);
+  let user = helpersArrayElement(fakerCore, [fullName, username]);
   const email = internetEmail(fakerCore, { firstName, lastName });
 
   // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
@@ -89,9 +89,9 @@ export function commitEntry(
 
   lines.push(
     `Author: ${user} <${email}>`,
-    `Date: ${commitDate(fakerCore, { refDate })}`,
+    `Date: ${gitCommitDate(fakerCore, { refDate })}`,
     '',
-    `${nbsp.repeat(4)}${commitMessage(fakerCore)}`,
+    `${nbsp.repeat(4)}${gitCommitMessage(fakerCore)}`,
     // to end with a eol char
     ''
   );

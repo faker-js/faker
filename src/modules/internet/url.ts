@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
-import { domainName } from './domain-name';
+import { datatypeBoolean } from '../datatype/boolean';
+import { internetDomainName } from './domain-name';
 
 export type HTTPProtocolType = 'http' | 'https';
 
@@ -13,15 +13,15 @@ export type HTTPProtocolType = 'http' | 'https';
  * @param options.protocol The protocol to use. Defaults to `'https'`.
  *
  * @example
- * url(fakerCore) // 'https://remarkable-hackwork.info'
- * url(fakerCore, { appendSlash: true }) // 'https://slow-timer.info/'
- * url(fakerCore, { protocol: 'http', appendSlash: false }) // 'http://www.terrible-idea.com'
+ * internetUrl(fakerCore) // 'https://remarkable-hackwork.info'
+ * internetUrl(fakerCore, { appendSlash: true }) // 'https://slow-timer.info/'
+ * internetUrl(fakerCore, { protocol: 'http', appendSlash: false }) // 'http://www.terrible-idea.com'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function url(
+export function internetUrl(
   fakerCore: FakerCore,
   options: {
     /**
@@ -38,6 +38,6 @@ export function url(
     protocol?: HTTPProtocolType;
   } = {}
 ): string {
-  const { appendSlash = boolean(fakerCore), protocol = 'https' } = options;
-  return `${protocol}://${domainName(fakerCore)}${appendSlash ? '/' : ''}`;
+  const { appendSlash = datatypeBoolean(fakerCore), protocol = 'https' } = options;
+  return `${protocol}://${internetDomainName(fakerCore)}${appendSlash ? '/' : ''}`;
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns an adjective describing a product.
@@ -7,14 +7,14 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * productAdjective(fakerCore) // 'Handcrafted'
+ * commerceProductAdjective(fakerCore) // 'Handcrafted'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function productAdjective(fakerCore: FakerCore): string {
-  return arrayElement(
+export function commerceProductAdjective(fakerCore: FakerCore): string {
+  return helpersArrayElement(
     fakerCore,
     fakerCore.locale.commerce.product_name.adjective
   );

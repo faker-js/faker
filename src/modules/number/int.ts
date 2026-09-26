@@ -21,18 +21,18 @@ import { FakerError } from '../../errors/faker-error';
  * @see stringNumeric(fakerCore): For generating a `string` of digits with a given length (range).
  *
  * @example
- * int(fakerCore) // 2900970162509863
- * int(fakerCore, 100) // 52
- * int(fakerCore, { min: 1000000 }) // 2900970162509863
- * int(fakerCore, { max: 100 }) // 42
- * int(fakerCore, { min: 10, max: 100 }) // 57
- * int(fakerCore, { min: 10, max: 100, multipleOf: 10 }) // 50
+ * numberInt(fakerCore) // 2900970162509863
+ * numberInt(fakerCore, 100) // 52
+ * numberInt(fakerCore, { min: 1000000 }) // 2900970162509863
+ * numberInt(fakerCore, { max: 100 }) // 42
+ * numberInt(fakerCore, { min: 10, max: 100 }) // 57
+ * numberInt(fakerCore, { min: 10, max: 100, multipleOf: 10 }) // 50
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function int(
+export function numberInt(
   fakerCore: FakerCore,
   options:
     | number
