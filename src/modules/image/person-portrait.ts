@@ -15,7 +15,7 @@ import { sexType } from '../person/sex-type';
  *
  * @example
  * personPortrait(fakerCore) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/57.jpg'
- * personPortrait(fakerCore, { sex: 'male', size: '128' }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
+ * personPortrait(fakerCore, { sex: 'male', size: 128 }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
  *
  * @since 11.0.0
  *
