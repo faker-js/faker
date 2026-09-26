@@ -1,8 +1,8 @@
 import { isIBAN } from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../../src';
-import { prettyPrintIban } from '../../src/modules/finance';
-import ibanLib from '../../src/modules/finance/_iban';
+import { ibanLib } from '../../src/modules/finance/_iban-lib';
+import { prettyPrintIban } from '../../src/modules/finance/iban';
 import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;

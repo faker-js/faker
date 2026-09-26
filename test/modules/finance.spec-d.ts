@@ -1,6 +1,6 @@
 import type { VATCountryCode } from 'validator';
 import { describe, expectTypeOf, it } from 'vitest';
-import type { VatNumberCountryCode } from '../../src/modules/finance/_vat-number';
+import type { VatNumberCountryCode } from '../../src/modules/finance/vat-number';
 
 describe('finance', () => {
   describe('vatNumber', () => {

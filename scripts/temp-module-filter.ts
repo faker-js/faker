@@ -8,6 +8,7 @@ export const ALLOWED_MODULES = new Set([
   'DatabaseModule',
   'DatatypeModule',
   'DateModule',
+  'FinanceModule',
   'FoodModule',
   'GitModule',
   'HackerModule',
