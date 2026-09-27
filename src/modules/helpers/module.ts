@@ -242,7 +242,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @param length The number of elements to generate.
    *
    * @example
-   * faker.helpers.uniqueArray(faker.word.sample, 3) // ['mob', 'junior', 'ripe']
+   * faker.helpers.uniqueArray(() => faker.word.sample(), 3) // ['mob', 'junior', 'ripe']
    * faker.helpers.uniqueArray(faker.definitions.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
    * faker.helpers.uniqueArray(["one"], 1000) // ['one']
@@ -250,7 +250,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.0.0
    */
   uniqueArray<const T>(
-    source: ReadonlyArray<T> | (() => T),
+    source: ReadonlyArray<T> | ((fakerCore: FakerCore) => T),
     length: number
   ): T[] {
     return helpersUniqueArray(this.fakerCore, source, length);
