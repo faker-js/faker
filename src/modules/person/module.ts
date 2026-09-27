@@ -55,7 +55,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   firstName(sex?: SexType): string {
-    return personFirstName(this.faker.fakerCore, sex);
+    return personFirstName(this.fakerCore, sex);
   }
 
   /**
@@ -72,7 +72,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    return personLastName(this.faker.fakerCore, sex);
+    return personLastName(this.fakerCore, sex);
   }
 
   /**
@@ -89,7 +89,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   middleName(sex?: SexType): string {
-    return personMiddleName(this.faker.fakerCore, sex);
+    return personMiddleName(this.fakerCore, sex);
   }
 
   /**
@@ -131,7 +131,7 @@ export class PersonModule extends ModuleBase {
       sex?: SexType;
     } = {}
   ): string {
-    return personFullName(this.faker.fakerCore, options);
+    return personFullName(this.fakerCore, options);
   }
 
   /**
@@ -145,7 +145,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   gender(): string {
-    return personGender(this.faker.fakerCore);
+    return personGender(this.fakerCore);
   }
 
   /**
@@ -163,7 +163,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   sex(): string {
-    return personSex(this.faker.fakerCore);
+    return personSex(this.fakerCore);
   }
 
   /**
@@ -194,7 +194,7 @@ export class PersonModule extends ModuleBase {
       includeGeneric?: boolean;
     } = {}
   ): SexType {
-    return personSexType(this.faker.fakerCore, options);
+    return personSexType(this.fakerCore, options);
   }
 
   /**
@@ -206,7 +206,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    return personBio(this.faker.fakerCore);
+    return personBio(this.fakerCore);
   }
 
   /**
@@ -222,7 +222,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   prefix(sex?: SexType): string {
-    return personPrefix(this.faker.fakerCore, sex);
+    return personPrefix(this.fakerCore, sex);
   }
 
   /**
@@ -234,7 +234,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   suffix(): string {
-    return personSuffix(this.faker.fakerCore);
+    return personSuffix(this.fakerCore);
   }
 
   /**
@@ -246,7 +246,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobTitle(): string {
-    return personJobTitle(this.faker.fakerCore);
+    return personJobTitle(this.fakerCore);
   }
 
   /**
@@ -258,7 +258,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    return personJobDescriptor(this.faker.fakerCore);
+    return personJobDescriptor(this.fakerCore);
   }
 
   /**
@@ -270,7 +270,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobArea(): string {
-    return personJobArea(this.faker.fakerCore);
+    return personJobArea(this.fakerCore);
   }
 
   /**
@@ -282,7 +282,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobType(): string {
-    return personJobType(this.faker.fakerCore);
+    return personJobType(this.fakerCore);
   }
 
   /**
@@ -294,6 +294,6 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   zodiacSign(): string {
-    return personZodiacSign(this.faker.fakerCore);
+    return personZodiacSign(this.fakerCore);
   }
 }

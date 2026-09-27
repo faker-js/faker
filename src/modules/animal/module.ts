@@ -42,7 +42,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   dog(): string {
-    return animalDog(this.faker.fakerCore);
+    return animalDog(this.fakerCore);
   }
 
   /**
@@ -54,7 +54,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cat(): string {
-    return animalCat(this.faker.fakerCore);
+    return animalCat(this.fakerCore);
   }
 
   /**
@@ -66,7 +66,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   snake(): string {
-    return animalSnake(this.faker.fakerCore);
+    return animalSnake(this.fakerCore);
   }
 
   /**
@@ -78,7 +78,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   bear(): string {
-    return animalBear(this.faker.fakerCore);
+    return animalBear(this.fakerCore);
   }
 
   /**
@@ -90,7 +90,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   lion(): string {
-    return animalLion(this.faker.fakerCore);
+    return animalLion(this.fakerCore);
   }
 
   /**
@@ -102,7 +102,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cetacean(): string {
-    return animalCetacean(this.faker.fakerCore);
+    return animalCetacean(this.fakerCore);
   }
 
   /**
@@ -114,7 +114,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   horse(): string {
-    return animalHorse(this.faker.fakerCore);
+    return animalHorse(this.fakerCore);
   }
 
   /**
@@ -126,7 +126,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   bird(): string {
-    return animalBird(this.faker.fakerCore);
+    return animalBird(this.fakerCore);
   }
 
   /**
@@ -138,7 +138,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cow(): string {
-    return animalCow(this.faker.fakerCore);
+    return animalCow(this.fakerCore);
   }
 
   /**
@@ -150,7 +150,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   fish(): string {
-    return animalFish(this.faker.fakerCore);
+    return animalFish(this.fakerCore);
   }
 
   /**
@@ -162,7 +162,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   crocodilia(): string {
-    return animalCrocodilia(this.faker.fakerCore);
+    return animalCrocodilia(this.fakerCore);
   }
 
   /**
@@ -174,7 +174,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   insect(): string {
-    return animalInsect(this.faker.fakerCore);
+    return animalInsect(this.fakerCore);
   }
 
   /**
@@ -186,7 +186,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   rabbit(): string {
-    return animalRabbit(this.faker.fakerCore);
+    return animalRabbit(this.fakerCore);
   }
 
   /**
@@ -198,7 +198,7 @@ export class AnimalModule extends ModuleBase {
    * @since 7.4.0
    */
   rodent(): string {
-    return animalRodent(this.faker.fakerCore);
+    return animalRodent(this.fakerCore);
   }
 
   /**
@@ -210,7 +210,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   type(): string {
-    return animalType(this.faker.fakerCore);
+    return animalType(this.fakerCore);
   }
 
   /**
@@ -222,6 +222,6 @@ export class AnimalModule extends ModuleBase {
    * @since 9.2.0
    */
   petName(): string {
-    return animalPetName(this.faker.fakerCore);
+    return animalPetName(this.fakerCore);
   }
 }

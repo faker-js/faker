@@ -27,7 +27,7 @@ export class GitModule extends ModuleBase {
    * @since 5.0.0
    */
   branch(): string {
-    return gitBranch(this.faker.fakerCore);
+    return gitBranch(this.fakerCore);
   }
 
   /**
@@ -75,7 +75,7 @@ export class GitModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return gitCommitEntry(this.faker.fakerCore, options);
+    return gitCommitEntry(this.fakerCore, options);
   }
 
   /**
@@ -87,7 +87,7 @@ export class GitModule extends ModuleBase {
    * @since 5.0.0
    */
   commitMessage(): string {
-    return gitCommitMessage(this.faker.fakerCore);
+    return gitCommitMessage(this.fakerCore);
   }
 
   /**
@@ -112,7 +112,7 @@ export class GitModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return gitCommitDate(this.faker.fakerCore, options);
+    return gitCommitDate(this.fakerCore, options);
   }
 
   /**
@@ -146,6 +146,6 @@ export class GitModule extends ModuleBase {
       length?: number;
     } = {}
   ): string {
-    return gitCommitSha(this.faker.fakerCore, options);
+    return gitCommitSha(this.fakerCore, options);
   }
 }

@@ -36,7 +36,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return musicAlbum(this.faker.fakerCore);
+    return musicAlbum(this.fakerCore);
   }
 
   /**
@@ -48,7 +48,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   artist(): string {
-    return musicArtist(this.faker.fakerCore);
+    return musicArtist(this.fakerCore);
   }
 
   /**
@@ -60,7 +60,7 @@ export class MusicModule extends ModuleBase {
    * @since 5.2.0
    */
   genre(): string {
-    return musicGenre(this.faker.fakerCore);
+    return musicGenre(this.fakerCore);
   }
 
   /**
@@ -72,6 +72,6 @@ export class MusicModule extends ModuleBase {
    * @since 7.1.0
    */
   songName(): string {
-    return musicSongName(this.faker.fakerCore);
+    return musicSongName(this.fakerCore);
   }
 }

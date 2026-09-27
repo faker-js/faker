@@ -34,7 +34,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   specialty(): string {
-    return medicalSpecialty(this.faker.fakerCore);
+    return medicalSpecialty(this.fakerCore);
   }
 
   /**
@@ -46,7 +46,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   department(): string {
-    return medicalDepartment(this.faker.fakerCore);
+    return medicalDepartment(this.fakerCore);
   }
 
   /**
@@ -58,7 +58,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   condition(): string {
-    return medicalCondition(this.faker.fakerCore);
+    return medicalCondition(this.fakerCore);
   }
 
   /**
@@ -70,7 +70,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   symptom(): string {
-    return medicalSymptom(this.faker.fakerCore);
+    return medicalSymptom(this.fakerCore);
   }
 
   /**
@@ -82,7 +82,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   procedure(): string {
-    return medicalProcedure(this.faker.fakerCore);
+    return medicalProcedure(this.fakerCore);
   }
 
   /**
@@ -98,7 +98,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   allergen(): string {
-    return medicalAllergen(this.faker.fakerCore);
+    return medicalAllergen(this.fakerCore);
   }
 
   /**
@@ -110,7 +110,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   bloodType(): string {
-    return medicalBloodType(this.faker.fakerCore);
+    return medicalBloodType(this.fakerCore);
   }
 
   /**
@@ -126,6 +126,6 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   drugName(): string {
-    return medicalDrugName(this.faker.fakerCore);
+    return medicalDrugName(this.fakerCore);
   }
 }
