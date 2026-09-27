@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { deprecated } from '../../internal/deprecated';
-import { int } from '../number/int';
+import { numberInt } from '../number/int';
 
 /**
  * Generates a random image url provided via https://loremflickr.com.
@@ -14,10 +14,10 @@ import { int } from '../number/int';
  * @param options.category Category to use for the image.
  *
  * @example
- * urlLoremFlickr(fakerCore) // 'https://loremflickr.com/640/480?lock=1234'
- * urlLoremFlickr(fakerCore, { width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
- * urlLoremFlickr(fakerCore, { height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
- * urlLoremFlickr(fakerCore, { category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
+ * imageUrlLoremFlickr(fakerCore) // 'https://loremflickr.com/640/480?lock=1234'
+ * imageUrlLoremFlickr(fakerCore, { width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
+ * imageUrlLoremFlickr(fakerCore, { height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
+ * imageUrlLoremFlickr(fakerCore, { category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
  *
  * @since 11.0.0
  *
@@ -25,7 +25,7 @@ import { int } from '../number/int';
  *
  * @experimental
  */
-export function urlLoremFlickr(
+export function imageUrlLoremFlickr(
   fakerCore: FakerCore,
   options: {
     /**
@@ -47,19 +47,19 @@ export function urlLoremFlickr(
   } = {}
 ): string {
   deprecated({
-    deprecated: 'urlLoremFlickr(fakerCore)',
+    deprecated: 'imageUrlLoremFlickr(fakerCore)',
     proposed: 'url(fakerCore)',
     since: '10.1.0',
     until: '11.0.0',
   });
 
   const {
-    width = int(fakerCore, { min: 1, max: 3999 }),
-    height = int(fakerCore, { min: 1, max: 3999 }),
+    width = numberInt(fakerCore, { min: 1, max: 3999 }),
+    height = numberInt(fakerCore, { min: 1, max: 3999 }),
     category,
   } = options;
 
   return `https://loremflickr.com/${width}/${height}${
     category == null ? '' : `/${category}`
-  }?lock=${int(fakerCore)}`;
+  }?lock=${numberInt(fakerCore)}`;
 }

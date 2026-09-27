@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random catch phrase descriptor that can be displayed to an end user.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * catchPhraseDescriptor(fakerCore) // 'composite'
+ * companyCatchPhraseDescriptor(fakerCore) // 'composite'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function catchPhraseDescriptor(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.company.descriptor);
+export function companyCatchPhraseDescriptor(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.company.descriptor);
 }

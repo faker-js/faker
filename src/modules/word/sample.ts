@@ -1,14 +1,14 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { shuffle } from '../helpers/shuffle';
-import { adjective } from './adjective';
-import { adverb } from './adverb';
-import { conjunction } from './conjunction';
-import { interjection } from './interjection';
-import { noun } from './noun';
-import { preposition } from './preposition';
-import { verb } from './verb';
+import { helpersShuffle } from '../helpers/shuffle';
+import { wordAdjective } from './adjective';
+import { wordAdverb } from './adverb';
+import { wordConjunction } from './conjunction';
+import { wordInterjection } from './interjection';
+import { wordNoun } from './noun';
+import { wordPreposition } from './preposition';
+import { wordVerb } from './verb';
 
 /**
  * Returns a random word, that can be an adjective, adverb, conjunction, interjection, noun, preposition, or verb.
@@ -47,14 +47,14 @@ export function wordSample(
         strategy?: LengthStrategyType;
       } = {}
 ): string {
-  const wordMethods = shuffle(fakerCore, [
-    adjective,
-    adverb,
-    conjunction,
-    interjection,
-    noun,
-    preposition,
-    verb,
+  const wordMethods = helpersShuffle(fakerCore, [
+    wordAdjective,
+    wordAdverb,
+    wordConjunction,
+    wordInterjection,
+    wordNoun,
+    wordPreposition,
+    wordVerb,
   ] satisfies Array<typeof wordSample>);
 
   for (const randomWordMethod of wordMethods) {

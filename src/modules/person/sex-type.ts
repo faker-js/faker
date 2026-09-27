@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { enumValue } from '../helpers/enum-value';
+import { helpersArrayElement } from '../helpers/array-element';
+import { helpersEnumValue } from '../helpers/enum-value';
 
 /**
  * The enum for values corresponding to a person's sex.
@@ -34,18 +34,18 @@ export type SexType = `${Sex}`;
  * If `false`, this method only returns `'female'` and `'male'`.
  * Default is `false`.
  *
- * @see gender(fakerCore): For generating a gender related value in forms.
- * @see sex(fakerCore): For generating a binary-gender value in forms.
+ * @see personGender(fakerCore): For generating a gender related value in forms.
+ * @see personSex(fakerCore): For generating a binary-gender value in forms.
  *
  * @example
- * sexType(fakerCore) // Sex.Female
- * sexType(fakerCore, { includeGeneric: true }) // Sex.Generic
+ * personSexType(fakerCore) // Sex.Female
+ * personSexType(fakerCore, { includeGeneric: true }) // Sex.Generic
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function sexType(
+export function personSexType(
   fakerCore: FakerCore,
   options: {
     /**
@@ -60,8 +60,8 @@ export function sexType(
   const { includeGeneric = false } = options;
 
   if (includeGeneric) {
-    return enumValue(fakerCore, Sex);
+    return helpersEnumValue(fakerCore, Sex);
   }
 
-  return arrayElement(fakerCore, [Sex.Female, Sex.Male]);
+  return helpersArrayElement(fakerCore, [Sex.Female, Sex.Male]);
 }

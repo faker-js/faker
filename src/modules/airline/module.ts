@@ -1,16 +1,16 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import type { AircraftType } from './aircraft-type';
-import { aircraftType as airlineAircraftType } from './aircraft-type';
+import { airlineAircraftType } from './aircraft-type';
 import type { Airline } from './airline';
-import { airline as airlineAirline } from './airline';
+import { airlineAirline } from './airline';
 import type { Airplane } from './airplane';
-import { airplane as airlineAirplane } from './airplane';
+import { airlineAirplane } from './airplane';
 import type { Airport } from './airport';
-import { airport as airlineAirport } from './airport';
-import { flightNumber as airlineFlightNumber } from './flight-number';
-import { recordLocator as airlineRecordLocator } from './record-locator';
-import { seat as airlineSeat } from './seat';
+import { airlineAirport } from './airport';
+import { airlineFlightNumber } from './flight-number';
+import { airlineRecordLocator } from './record-locator';
+import { airlineSeat } from './seat';
 
 /**
  * Module to generate airline and airport related data according to [International Air Transport Association (IATA)](https://iata.org) standards.

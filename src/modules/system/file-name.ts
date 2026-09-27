@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { multiple } from '../helpers/multiple';
-import { words } from '../word/words';
-import { fileExt } from './file-ext';
+import { helpersMultiple } from '../helpers/multiple';
+import { wordWords } from '../word/words';
+import { systemFileExt } from './file-ext';
 
 /**
  * Returns a random file name with extension.
@@ -12,15 +12,15 @@ import { fileExt } from './file-ext';
  * @param options.extensionCount Define how many extensions the file name should have. Defaults to `1`.
  *
  * @example
- * fileName(fakerCore) // 'faithfully_calculating.u8mdn'
- * fileName(fakerCore, { extensionCount: 2 }) // 'times_after.swf.ntf'
- * fileName(fakerCore, { extensionCount: { min: 1, max: 2 } }) // 'jaywalk_like_ill.osfpvg'
+ * systemFileName(fakerCore) // 'faithfully_calculating.u8mdn'
+ * systemFileName(fakerCore, { extensionCount: 2 }) // 'times_after.swf.ntf'
+ * systemFileName(fakerCore, { extensionCount: { min: 1, max: 2 } }) // 'jaywalk_like_ill.osfpvg'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function fileName(
+export function systemFileName(
   fakerCore: FakerCore,
   options: {
     /**
@@ -33,11 +33,15 @@ export function fileName(
 ): string {
   const { extensionCount = 1 } = options;
 
-  const baseName = words(fakerCore).toLowerCase().replaceAll(/\W/g, '_');
+  const baseName = wordWords(fakerCore).toLowerCase().replaceAll(/\W/g, '_');
 
-  const extensionsSuffix = multiple(fakerCore, () => fileExt(fakerCore), {
-    count: extensionCount,
-  }).join('.');
+  const extensionsSuffix = helpersMultiple(
+    fakerCore,
+    () => systemFileExt(fakerCore),
+    {
+      count: extensionCount,
+    }
+  ).join('.');
 
   if (extensionsSuffix.length === 0) {
     return baseName;

@@ -1,12 +1,12 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { SexType } from '../person';
-import { avatar as imageAvatar } from './avatar';
-import { avatarGitHub as imageAvatarGitHub } from './avatar-git-hub';
-import { dataUri as imageDataUri } from './data-uri';
-import { personPortrait as imagePersonPortrait } from './person-portrait';
-import { url as imageUrl } from './url';
-import { urlLoremFlickr as imageUrlLoremFlickr } from './url-lorem-flickr';
-import { urlPicsumPhotos as imageUrlPicsumPhotos } from './url-picsum-photos';
+import { imageAvatar } from './avatar';
+import { imageAvatarGitHub } from './avatar-git-hub';
+import { imageDataUri } from './data-uri';
+import { imagePersonPortrait } from './person-portrait';
+import { imageUrl } from './url';
+import { imageUrlLoremFlickr } from './url-lorem-flickr';
+import { imageUrlPicsumPhotos } from './url-picsum-photos';
 
 /**
  * Module to generate images.

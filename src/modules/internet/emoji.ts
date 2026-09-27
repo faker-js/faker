@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 export type EmojiType =
   | 'smiley'
@@ -21,14 +21,14 @@ export type EmojiType =
  * @param options.types A list of the emoji types that should be included. Possible values are `'smiley'`, `'body'`, `'person'`, `'nature'`, `'food'`, `'travel'`, `'activity'`, `'object'`, `'symbol'`, `'flag'`. By default, emojis from any type will be included.
  *
  * @example
- * emoji(fakerCore) // '🥰'
- * emoji(fakerCore, { types: ['food', 'nature'] }) // '🥐'
+ * internetEmoji(fakerCore) // '🥰'
+ * internetEmoji(fakerCore, { types: ['food', 'nature'] }) // '🥐'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function emoji(
+export function internetEmoji(
   fakerCore: FakerCore,
   options: {
     /**
@@ -42,6 +42,9 @@ export function emoji(
   const {
     types = Object.keys(fakerCore.locale.internet.emoji) as EmojiType[],
   } = options;
-  const emojiType = arrayElement(fakerCore, types);
-  return arrayElement(fakerCore, fakerCore.locale.internet.emoji[emojiType]);
+  const emojiType = helpersArrayElement(fakerCore, types);
+  return helpersArrayElement(
+    fakerCore,
+    fakerCore.locale.internet.emoji[emojiType]
+  );
 }

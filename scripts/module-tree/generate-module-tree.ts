@@ -141,6 +141,9 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       const methodNames = new Set(methods.map(([name]) => name));
 
       for (const [methodName, original] of methods) {
+        const qualifiedMethodName = toCamelCase(moduleName, methodName);
+        const methodFileName = patchFileName(methodName);
+
         const oldSinces = [
           ...(original.getOverloads()?.map((o) => o.getJsDocs()[0]) ?? []),
           ...original.getJsDocs(),
@@ -148,10 +151,12 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
         original.remove();
 
         const methodFile = directory.getSourceFileOrThrow(
-          `${patchFileName(methodName)}.ts`
+          `${methodFileName}.ts`
         );
 
         //#region Imports
+        importHelper.addImports(`./${methodFileName}`, qualifiedMethodName);
+
         const typesToImport = [
           methodFile.getEnums(),
           methodFile.getTypeAliases(),
@@ -161,29 +166,15 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
           .filter((decl) => decl.isExported())
           .map((decl) => decl.getName());
 
-        importHelper.addImports(
-          `./${patchFileName(methodName)}`,
-          methodName === 'sample'
-            ? `${moduleName}Sample`
-            : `${methodName} as ${toCamelCase(moduleName, methodName)}`
-        );
         if (typesToImport.length > 0) {
-          importHelper.addTypeImports(
-            `./${patchFileName(methodName)}`,
-            ...typesToImport
-          );
+          importHelper.addTypeImports(`./${methodFileName}`, ...typesToImport);
         }
         //#endregion Imports
 
         const functions = methodFile
           .getChildrenOfKind(SyntaxKind.FunctionDeclaration)
           .filter((fn) => fn.isExported())
-          .filter(
-            (fn) =>
-              fn.getName() ===
-              // moduleSample() => sample()
-              (methodName === 'sample' ? `${moduleName}Sample` : methodName)
-          );
+          .filter((fn) => fn.getName() === qualifiedMethodName);
 
         const parts: string[] = [];
 
@@ -211,7 +202,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               .map((param) => param.getName());
 
             child.setBodyText(
-              `return ${toCamelCase(moduleName, methodName)}(this.fakerCore, ${params.join(', ')});`
+              `return ${qualifiedMethodName}(this.fakerCore, ${params.join(', ')});`
             );
           }
 
@@ -225,7 +216,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               // Examples
               .replaceAll(
                 new RegExp(
-                  `${methodName}\\(fakerCore([A-Z_]*)(?:, ?|(?=\\)))`,
+                  `${qualifiedMethodName}\\(fakerCore([A-Z_]*)(?:, ?|(?=\\)))`,
                   'g'
                 ),
                 `faker$1.${moduleName}.${methodName}(`
@@ -269,7 +260,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
             .getDeclaration()
             .getText()
             // Adapt signature
-            .replace('export function ', '')
+            .replace(`export function ${qualifiedMethodName}`, methodName)
             .replace(/\((\n +)?fakerCore: FakerCore,?/, '(')
             // Adapt nested options defaults
             .replaceAll(

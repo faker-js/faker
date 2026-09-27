@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a short product name.
@@ -7,14 +7,14 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * product(fakerCore) // 'Computer'
+ * commerceProduct(fakerCore) // 'Computer'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function product(fakerCore: FakerCore): string {
-  return arrayElement(
+export function commerceProduct(fakerCore: FakerCore): string {
+  return helpersArrayElement(
     fakerCore,
     fakerCore.locale.commerce.product_name.product
   );

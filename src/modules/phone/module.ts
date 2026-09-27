@@ -1,6 +1,6 @@
 import { ModuleBase } from '../../internal/module-base';
-import { imei as phoneImei } from './imei';
-import { number as phoneNumber } from './number';
+import { phoneImei } from './imei';
+import { phoneNumber } from './number';
 
 /**
  * Module to generate phone-related data.

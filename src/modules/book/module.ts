@@ -1,10 +1,10 @@
 import { ModuleBase } from '../../internal/module-base';
-import { author as bookAuthor } from './author';
-import { format as bookFormat } from './format';
-import { genre as bookGenre } from './genre';
-import { publisher as bookPublisher } from './publisher';
-import { series as bookSeries } from './series';
-import { title as bookTitle } from './title';
+import { bookAuthor } from './author';
+import { bookFormat } from './format';
+import { bookGenre } from './genre';
+import { bookPublisher } from './publisher';
+import { bookSeries } from './series';
+import { bookTitle } from './title';
 
 /**
  * Module to generate book related entries.

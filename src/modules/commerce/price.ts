@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { weightedArrayElement } from '../helpers/weighted-array-element';
-import { float } from '../number/float';
-import { int } from '../number/int';
+import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
+import { numberFloat } from '../number/float';
+import { numberInt } from '../number/int';
 
 /**
  * Generates a price between min and max (inclusive).
@@ -21,17 +21,17 @@ import { int } from '../number/int';
  * @param options.symbol The currency value to use. Defaults to `''`.
  *
  * @example
- * price(fakerCore) // '828.07'
- * price(fakerCore, { min: 100 }) // '904.19'
- * price(fakerCore, { min: 100, max: 200 }) // '154.55'
- * price(fakerCore, { min: 100, max: 200, dec: 0 }) // '133'
- * price(fakerCore, { min: 100, max: 200, dec: 0, symbol: '$' }) // '$114'
+ * commercePrice(fakerCore) // '828.07'
+ * commercePrice(fakerCore, { min: 100 }) // '904.19'
+ * commercePrice(fakerCore, { min: 100, max: 200 }) // '154.55'
+ * commercePrice(fakerCore, { min: 100, max: 200, dec: 0 }) // '133'
+ * commercePrice(fakerCore, { min: 100, max: 200, dec: 0, symbol: '$' }) // '$114'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function price(
+export function commercePrice(
   fakerCore: FakerCore,
   options: {
     /**
@@ -70,7 +70,7 @@ export function price(
     return `${symbol}${min.toFixed(dec)}`;
   }
 
-  const generated = float(fakerCore, {
+  const generated = numberFloat(fakerCore, {
     min,
     max,
     fractionDigits: dec,
@@ -81,13 +81,13 @@ export function price(
   }
 
   const oldLastDigit = (generated * 10 ** dec) % 10;
-  const newLastDigit = weightedArrayElement(fakerCore, [
+  const newLastDigit = helpersWeightedArrayElement(fakerCore, [
     { weight: 5, value: 9 },
     { weight: 3, value: 5 },
     { weight: 1, value: 0 },
     {
       weight: 1,
-      value: int(fakerCore, { min: 0, max: 9 }),
+      value: numberInt(fakerCore, { min: 0, max: 9 }),
     },
   ]);
 

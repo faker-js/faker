@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random blood type.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * bloodType(fakerCore) // 'O+'
+ * medicalBloodType(fakerCore) // 'O+'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function bloodType(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.medical.blood_type);
+export function medicalBloodType(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.medical.blood_type);
 }

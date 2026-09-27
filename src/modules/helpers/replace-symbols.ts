@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { boolean } from '../datatype/boolean';
-import { int } from '../number/int';
-import { arrayElement } from './array-element';
+import { datatypeBoolean } from '../datatype/boolean';
+import { numberInt } from '../number/int';
+import { helpersArrayElement } from './array-element';
 
 /**
  * Parses the given string symbol by symbol and replaces the placeholder appropriately.
@@ -14,17 +14,17 @@ import { arrayElement } from './array-element';
  * @param string The template string to parse. Defaults to `''`.
  *
  * @example
- * replaceSymbols(fakerCore) // ''
- * replaceSymbols(fakerCore, '#####') // '98441'
- * replaceSymbols(fakerCore, '?????') // 'ZYRQQ'
- * replaceSymbols(fakerCore, '*****') // '4Z3P7'
- * replaceSymbols(fakerCore, 'Your pin is: #?*#?*') // 'Your pin is: 0T85L1'
+ * helpersReplaceSymbols(fakerCore) // ''
+ * helpersReplaceSymbols(fakerCore, '#####') // '98441'
+ * helpersReplaceSymbols(fakerCore, '?????') // 'ZYRQQ'
+ * helpersReplaceSymbols(fakerCore, '*****') // '4Z3P7'
+ * helpersReplaceSymbols(fakerCore, 'Your pin is: #?*#?*') // 'Your pin is: 0T85L1'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function replaceSymbols(
+export function helpersReplaceSymbols(
   fakerCore: FakerCore,
   string: string = ''
 ): string {
@@ -60,13 +60,13 @@ export function replaceSymbols(
 
   for (let i = 0; i < string.length; i++) {
     if (string.charAt(i) === '#') {
-      result += int(fakerCore, 9);
+      result += numberInt(fakerCore, 9);
     } else if (string.charAt(i) === '?') {
-      result += arrayElement(fakerCore, alpha);
+      result += helpersArrayElement(fakerCore, alpha);
     } else if (string.charAt(i) === '*') {
-      result += boolean(fakerCore)
-        ? arrayElement(fakerCore, alpha)
-        : int(fakerCore, 9);
+      result += datatypeBoolean(fakerCore)
+        ? helpersArrayElement(fakerCore, alpha)
+        : numberInt(fakerCore, 9);
     } else {
       result += string.charAt(i);
     }

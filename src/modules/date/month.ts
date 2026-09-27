@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { DateEntryDefinition } from '../../definitions';
 import { assertLocaleData } from '../../internal/locale-proxy';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random name of a month.
@@ -12,16 +12,16 @@ import { arrayElement } from '../helpers/array-element';
  * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
  *
  * @example
- * month(fakerCore) // 'October'
- * month(fakerCore, { abbreviated: true }) // 'Feb'
- * month(fakerCore, { context: true }) // 'June'
- * month(fakerCore, { abbreviated: true, context: true }) // 'Sep'
+ * dateMonth(fakerCore) // 'October'
+ * dateMonth(fakerCore, { abbreviated: true }) // 'Feb'
+ * dateMonth(fakerCore, { context: true }) // 'June'
+ * dateMonth(fakerCore, { abbreviated: true, context: true }) // 'Sep'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function month(
+export function dateMonth(
   fakerCore: FakerCore,
   options: {
     /**
@@ -56,5 +56,5 @@ export function month(
 
   const values = source[type];
   assertLocaleData(values, 'date.month', type);
-  return arrayElement(fakerCore, values);
+  return helpersArrayElement(fakerCore, values);
 }

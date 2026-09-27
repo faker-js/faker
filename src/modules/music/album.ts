@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random album name.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * album(fakerCore) // '1989'
+ * musicAlbum(fakerCore) // '1989'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function album(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.music.album);
+export function musicAlbum(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.music.album);
 }

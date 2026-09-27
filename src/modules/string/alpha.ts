@@ -1,10 +1,10 @@
 import type { FakerCore } from '../../core';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
-import { rangeToNumber } from '../helpers/range-to-number';
+import { helpersRangeToNumber } from '../helpers/range-to-number';
 import type { AlphaChar } from './_types';
 import { LOWER_CHARS, UPPER_CHARS } from './_types';
-import { fromCharacters } from './from-characters';
+import { stringFromCharacters } from './from-characters';
 
 /**
  * Generating a string consisting of letters in the English alphabet.
@@ -16,18 +16,18 @@ import { fromCharacters } from './from-characters';
  * @param options.exclude An array with characters which should be excluded in the generated string. Defaults to `[]`.
  *
  * @example
- * alpha(fakerCore) // 'b'
- * alpha(fakerCore, 10) // 'fEcAaCVbaR'
- * alpha(fakerCore, { length: { min: 5, max: 10 } }) // 'HcVrCf'
- * alpha(fakerCore, { casing: 'lower' }) // 'r'
- * alpha(fakerCore, { exclude: ['W'] }) // 'Z'
- * alpha(fakerCore, { length: 5, casing: 'upper', exclude: ['A'] }) // 'DTCIC'
+ * stringAlpha(fakerCore) // 'b'
+ * stringAlpha(fakerCore, 10) // 'fEcAaCVbaR'
+ * stringAlpha(fakerCore, { length: { min: 5, max: 10 } }) // 'HcVrCf'
+ * stringAlpha(fakerCore, { casing: 'lower' }) // 'r'
+ * stringAlpha(fakerCore, { exclude: ['W'] }) // 'Z'
+ * stringAlpha(fakerCore, { length: 5, casing: 'upper', exclude: ['A'] }) // 'DTCIC'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function alpha(
+export function stringAlpha(
   fakerCore: FakerCore,
   options:
     | number
@@ -58,7 +58,7 @@ export function alpha(
     };
   }
 
-  const length = rangeToNumber(fakerCore, options.length ?? 1);
+  const length = helpersRangeToNumber(fakerCore, options.length ?? 1);
   if (length <= 0) {
     return '';
   }
@@ -90,5 +90,5 @@ export function alpha(
 
   charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-  return fromCharacters(fakerCore, charsArray, length);
+  return stringFromCharacters(fakerCore, charsArray, length);
 }

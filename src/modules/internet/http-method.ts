@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random http method.
@@ -15,13 +15,13 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * httpMethod(fakerCore) // 'PATCH'
+ * internetHttpMethod(fakerCore) // 'PATCH'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function httpMethod(
+export function internetHttpMethod(
   fakerCore: FakerCore
 ): 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' {
   const httpMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'] = [
@@ -31,5 +31,5 @@ export function httpMethod(
     'DELETE',
     'PATCH',
   ];
-  return arrayElement(fakerCore, httpMethods);
+  return helpersArrayElement(fakerCore, httpMethods);
 }

@@ -1,14 +1,14 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { lines as loremLines } from './lines';
-import { paragraph as loremParagraph } from './paragraph';
-import { paragraphs as loremParagraphs } from './paragraphs';
-import { sentence as loremSentence } from './sentence';
-import { sentences as loremSentences } from './sentences';
-import { slug as loremSlug } from './slug';
-import { text as loremText } from './text';
-import { word as loremWord } from './word';
-import { words as loremWords } from './words';
+import { loremLines } from './lines';
+import { loremParagraph } from './paragraph';
+import { loremParagraphs } from './paragraphs';
+import { loremSentence } from './sentence';
+import { loremSentences } from './sentences';
+import { loremSlug } from './slug';
+import { loremText } from './text';
+import { loremWord } from './word';
+import { loremWords } from './words';
 
 /**
  * Module to generate random texts and words.

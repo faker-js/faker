@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
-import { word as loremWord } from '../../src/modules/lorem/word';
+import { loremWord } from '../../src/modules/lorem/word';
 import { stringSample } from '../../src/modules/string/sample';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';

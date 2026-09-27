@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random lion species.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * lion(fakerCore) // 'Northeast Congo Lion'
+ * animalLion(fakerCore) // 'Northeast Congo Lion'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function lion(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.animal.lion);
+export function animalLion(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.animal.lion);
 }

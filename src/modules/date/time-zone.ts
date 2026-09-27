@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random IANA time zone name.
@@ -18,6 +18,6 @@ import { arrayElement } from '../helpers/array-element';
  *
  * @experimental
  */
-export function timeZone(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.date.time_zone);
+export function dateTimeZone(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.date.time_zone);
 }

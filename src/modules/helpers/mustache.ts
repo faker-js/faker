@@ -10,7 +10,7 @@ import type { FakerCore } from '../../core';
  * whereas the value is either a string or a function suitable for `String.replace()`.
  *
  * @example
- * mustache(fakerCore, 'I found {{count}} instances of "{{word}}".', {
+ * helpersMustache(fakerCore, 'I found {{count}} instances of "{{word}}".', {
  *   count: () => `${numberInt(fakerCore)}`,
  *   word: "this word",
  * }) // 'I found 57591 instances of "this word".'
@@ -19,7 +19,7 @@ import type { FakerCore } from '../../core';
  *
  * @experimental
  */
-export function mustache(
+export function helpersMustache(
   fakerCore: FakerCore,
   text: string | undefined,
   data: Record<string, string | Parameters<string['replace']>[1]>

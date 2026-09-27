@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from './array-element';
+import { helpersArrayElement } from './array-element';
 
 /**
  * Returns a random value from an Enum object.
@@ -13,26 +13,25 @@ import { arrayElement } from './array-element';
  *
  * @example
  * enum Color { Red, Green, Blue }
- * enumValue(fakerCore, Color) // 1 (Green)
+ * helpersEnumValue(fakerCore, Color) // 1 (Green)
  *
  * enum Direction { North = 'North', South = 'South'}
- * enumValue(fakerCore, Direction) // 'South'
+ * helpersEnumValue(fakerCore, Direction) // 'South'
  *
  * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
- * enumValue(fakerCore, HttpStatus) // 200 (Ok)
+ * helpersEnumValue(fakerCore, HttpStatus) // 200 (Ok)
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function enumValue<T extends Record<string | number, string | number>>(
-  fakerCore: FakerCore,
-  enumObject: T
-): T[keyof T] {
+export function helpersEnumValue<
+  T extends Record<string | number, string | number>,
+>(fakerCore: FakerCore, enumObject: T): T[keyof T] {
   // ignore numeric keys added by TypeScript
   const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
     Number.isNaN(Number(key))
   );
-  const randomKey = arrayElement(fakerCore, keys);
+  const randomKey = helpersArrayElement(fakerCore, keys);
   return enumObject[randomKey];
 }

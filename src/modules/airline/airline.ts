@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 export interface Airline {
   /**
@@ -18,12 +18,12 @@ export interface Airline {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * airline(fakerCore) // { name: 'American Airlines', iataCode: 'AA' }
+ * airlineAirline(fakerCore) // { name: 'American Airlines', iataCode: 'AA' }
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function airline(fakerCore: FakerCore): Airline {
-  return arrayElement(fakerCore, fakerCore.locale.airline.airline);
+export function airlineAirline(fakerCore: FakerCore): Airline {
+  return helpersArrayElement(fakerCore, fakerCore.locale.airline.airline);
 }

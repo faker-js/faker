@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { fromCharacters } from './from-characters';
+import { stringFromCharacters } from './from-characters';
 
 const OCTAL_CHARS = ['0', '1', '2', '3', '4', '5', '6', '7'];
 
@@ -15,17 +15,17 @@ const OCTAL_CHARS = ['0', '1', '2', '3', '4', '5', '6', '7'];
  * @see numberOctal(fakerCore): For generating an octal number (within a range).
  *
  * @example
- * octal(fakerCore) // '0o3'
- * octal(fakerCore, { length: 10 }) // '0o1526216210'
- * octal(fakerCore, { length: { min: 5, max: 10 } }) // '0o15263214'
- * octal(fakerCore, { prefix: '0o' }) // '0o7'
- * octal(fakerCore, { length: 10, prefix: 'oct_' }) // 'oct_1542153414'
+ * stringOctal(fakerCore) // '0o3'
+ * stringOctal(fakerCore, { length: 10 }) // '0o1526216210'
+ * stringOctal(fakerCore, { length: { min: 5, max: 10 } }) // '0o15263214'
+ * stringOctal(fakerCore, { prefix: '0o' }) // '0o7'
+ * stringOctal(fakerCore, { length: 10, prefix: 'oct_' }) // 'oct_1542153414'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function octal(
+export function stringOctal(
   fakerCore: FakerCore,
   options: {
     /**
@@ -45,6 +45,6 @@ export function octal(
   const { prefix = '0o', length = 1 } = options;
 
   let result = prefix;
-  result += fromCharacters(fakerCore, OCTAL_CHARS, length);
+  result += stringFromCharacters(fakerCore, OCTAL_CHARS, length);
   return result;
 }

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { fromCharacters } from './from-characters';
+import { stringFromCharacters } from './from-characters';
 
 const SYMBOL_CHARS = [
   '!',
@@ -50,17 +50,17 @@ const SYMBOL_CHARS = [
  * @param length.max The maximum length of the string to generate.
  *
  * @example
- * symbol(fakerCore) // '$'
- * symbol(fakerCore, 5) // '#*!.~'
- * symbol(fakerCore, { min: 5, max: 10 }) // ')|@*>^+'
+ * stringSymbol(fakerCore) // '$'
+ * stringSymbol(fakerCore, 5) // '#*!.~'
+ * stringSymbol(fakerCore, { min: 5, max: 10 }) // ')|@*>^+'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function symbol(
+export function stringSymbol(
   fakerCore: FakerCore,
   length: NumberOrRange = 1
 ): string {
-  return fromCharacters(fakerCore, SYMBOL_CHARS, length);
+  return stringFromCharacters(fakerCore, SYMBOL_CHARS, length);
 }

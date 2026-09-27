@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import type { Casing, NumberRange } from '../../utils/types';
-import { enumValue } from '../helpers/enum-value';
-import { int } from '../number/int';
-import { alphanumeric } from '../string/alphanumeric';
+import { helpersEnumValue } from '../helpers/enum-value';
+import { numberInt } from '../number/int';
+import { stringAlphanumeric } from '../string/alphanumeric';
 
 /**
  * The bitcoin address families.
@@ -84,15 +84,15 @@ export const BitcoinAddressSpecs: Record<
  * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
  *
  * @example
- * bitcoinAddress(fakerCore) // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
- * bitcoinAddress(fakerCore, { type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
- * bitcoinAddress(fakerCore, { type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
+ * financeBitcoinAddress(fakerCore) // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
+ * financeBitcoinAddress(fakerCore, { type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
+ * financeBitcoinAddress(fakerCore, { type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function bitcoinAddress(
+export function financeBitcoinAddress(
   fakerCore: FakerCore,
   options: {
     /**
@@ -110,14 +110,14 @@ export function bitcoinAddress(
   } = {}
 ): string {
   const {
-    type = enumValue(fakerCore, BitcoinAddressFamily),
+    type = helpersEnumValue(fakerCore, BitcoinAddressFamily),
     network = BitcoinNetwork.Mainnet,
   } = options;
   const addressSpec = BitcoinAddressSpecs[type];
   const addressPrefix = addressSpec.prefix[network];
-  const addressLength = int(fakerCore, addressSpec.length);
+  const addressLength = numberInt(fakerCore, addressSpec.length);
 
-  const address = alphanumeric(fakerCore, {
+  const address = stringAlphanumeric(fakerCore, {
     length: addressLength - addressPrefix.length,
     casing: addressSpec.casing,
     exclude: addressSpec.exclude,

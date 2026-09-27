@@ -1,13 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-import { adjective as foodAdjective } from './adjective';
-import { description as foodDescription } from './description';
-import { dish as foodDish } from './dish';
-import { ethnicCategory as foodEthnicCategory } from './ethnic-category';
-import { fruit as foodFruit } from './fruit';
-import { ingredient as foodIngredient } from './ingredient';
-import { meat as foodMeat } from './meat';
-import { spice as foodSpice } from './spice';
-import { vegetable as foodVegetable } from './vegetable';
+import { foodAdjective } from './adjective';
+import { foodDescription } from './description';
+import { foodDish } from './dish';
+import { foodEthnicCategory } from './ethnic-category';
+import { foodFruit } from './fruit';
+import { foodIngredient } from './ingredient';
+import { foodMeat } from './meat';
+import { foodSpice } from './spice';
+import { foodVegetable } from './vegetable';
 
 /**
  * Module for generating food-related data.

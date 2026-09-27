@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
+import { helpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random vegetable name.
@@ -7,12 +7,12 @@ import { arrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vegetable(fakerCore) // 'broccoli'
+ * foodVegetable(fakerCore) // 'broccoli'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vegetable(fakerCore: FakerCore): string {
-  return arrayElement(fakerCore, fakerCore.locale.food.vegetable);
+export function foodVegetable(fakerCore: FakerCore): string {
+  return helpersArrayElement(fakerCore, fakerCore.locale.food.vegetable);
 }

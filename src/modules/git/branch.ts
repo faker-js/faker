@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { noun as hackerNoun } from '../hacker/noun';
-import { verb as hackerVerb } from '../hacker/verb';
+import { hackerNoun } from '../hacker/noun';
+import { hackerVerb } from '../hacker/verb';
 
 /**
  * Generates a random branch name.
@@ -8,13 +8,13 @@ import { verb as hackerVerb } from '../hacker/verb';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * branch(fakerCore) // 'feed-parse'
+ * gitBranch(fakerCore) // 'feed-parse'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function branch(fakerCore: FakerCore): string {
+export function gitBranch(fakerCore: FakerCore): string {
   const noun = hackerNoun(fakerCore).replaceAll(' ', '-');
   const verb = hackerVerb(fakerCore).replaceAll(' ', '-');
   return `${noun}-${verb}`;

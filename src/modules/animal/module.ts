@@ -1,20 +1,20 @@
 import { ModuleBase } from '../../internal/module-base';
-import { bear as animalBear } from './bear';
-import { bird as animalBird } from './bird';
-import { cat as animalCat } from './cat';
-import { cetacean as animalCetacean } from './cetacean';
-import { cow as animalCow } from './cow';
-import { crocodilia as animalCrocodilia } from './crocodilia';
-import { dog as animalDog } from './dog';
-import { fish as animalFish } from './fish';
-import { horse as animalHorse } from './horse';
-import { insect as animalInsect } from './insect';
-import { lion as animalLion } from './lion';
-import { petName as animalPetName } from './pet-name';
-import { rabbit as animalRabbit } from './rabbit';
-import { rodent as animalRodent } from './rodent';
-import { snake as animalSnake } from './snake';
-import { type as animalType } from './type';
+import { animalBear } from './bear';
+import { animalBird } from './bird';
+import { animalCat } from './cat';
+import { animalCetacean } from './cetacean';
+import { animalCow } from './cow';
+import { animalCrocodilia } from './crocodilia';
+import { animalDog } from './dog';
+import { animalFish } from './fish';
+import { animalHorse } from './horse';
+import { animalInsect } from './insect';
+import { animalLion } from './lion';
+import { animalPetName } from './pet-name';
+import { animalRabbit } from './rabbit';
+import { animalRodent } from './rodent';
+import { animalSnake } from './snake';
+import { animalType } from './type';
 
 /**
  * Module to generate animal related entries.

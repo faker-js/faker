@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { currency } from './currency';
+import { financeCurrency } from './currency';
 
 /**
  * Returns a random currency code.
@@ -8,12 +8,12 @@ import { currency } from './currency';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * currencyCode(fakerCore) // 'USD'
+ * financeCurrencyCode(fakerCore) // 'USD'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function currencyCode(fakerCore: FakerCore): string {
-  return currency(fakerCore).code;
+export function financeCurrencyCode(fakerCore: FakerCore): string {
+  return financeCurrency(fakerCore).code;
 }

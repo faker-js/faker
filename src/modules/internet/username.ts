@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
-import { arrayElement } from '../helpers/array-element';
-import { int } from '../number/int';
-import { firstName as personFirstName } from '../person/first-name';
-import { lastName as personLastName } from '../person/last-name';
+import { helpersArrayElement } from '../helpers/array-element';
+import { numberInt } from '../number/int';
+import { personFirstName } from '../person/first-name';
+import { personLastName } from '../person/last-name';
 import { charMapping } from './_char-mappings';
 
 /**
@@ -16,23 +16,23 @@ import { charMapping } from './_char-mappings';
  * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
  * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
  *
- * @see displayName(fakerCore): For generating an Unicode display name.
+ * @see internetDisplayName(fakerCore): For generating an Unicode display name.
  *
  * @example
- * username(fakerCore) // 'Nettie_Zboncak40'
- * username(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne98'
- * username(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne.Smith98'
- * username(fakerCore, { firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
- * username(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
- * username(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
- * username(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
- * username(fakerCore, { firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
+ * internetUsername(fakerCore) // 'Nettie_Zboncak40'
+ * internetUsername(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne98'
+ * internetUsername(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne.Smith98'
+ * internetUsername(fakerCore, { firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
+ * internetUsername(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+ * internetUsername(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
+ * internetUsername(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
+ * internetUsername(fakerCore, { firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function username(
+export function internetUsername(
   fakerCore: FakerCore,
   options: {
     /**
@@ -55,8 +55,8 @@ export function username(
     lastName: hasLastName,
   } = options;
 
-  const separator = arrayElement(fakerCore, ['.', '_']);
-  const disambiguator = int(fakerCore, 99);
+  const separator = helpersArrayElement(fakerCore, ['.', '_']);
+  const disambiguator = numberInt(fakerCore, 99);
   const strategies: Array<() => string> = [
     () => `${firstName}${separator}${lastName}${disambiguator}`,
     () => `${firstName}${separator}${lastName}`,
@@ -65,7 +65,7 @@ export function username(
     strategies.push(() => `${firstName}${disambiguator}`);
   }
 
-  let result = arrayElement(fakerCore, strategies)();
+  let result = helpersArrayElement(fakerCore, strategies)();
 
   // There may still be non-ascii characters in the result.
   // First remove simple accents etc

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { float } from '../number/float';
+import { numberFloat } from '../number/float';
 
 /**
  * Generates a random amount between the given bounds (inclusive).
@@ -15,17 +15,17 @@ import { float } from '../number/float';
  * @see numberFloat(fakerCore): For generating the amount with greater control.
  *
  * @example
- * amount(fakerCore) // '617.87'
- * amount(fakerCore, { min: 5, max: 10 }) // '5.53'
- * amount(fakerCore, { min: 5, max: 10, dec: 0 }) // '8'
- * amount(fakerCore, { min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
- * amount(fakerCore, { min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
+ * financeAmount(fakerCore) // '617.87'
+ * financeAmount(fakerCore, { min: 5, max: 10 }) // '5.53'
+ * financeAmount(fakerCore, { min: 5, max: 10, dec: 0 }) // '8'
+ * financeAmount(fakerCore, { min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
+ * financeAmount(fakerCore, { min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function amount(
+export function financeAmount(
   fakerCore: FakerCore,
   options: {
     /**
@@ -68,7 +68,7 @@ export function amount(
     symbol = '',
   } = options;
 
-  const randValue = float(fakerCore, {
+  const randValue = numberFloat(fakerCore, {
     max,
     min,
     fractionDigits: dec,
