@@ -17,6 +17,7 @@ jobs:
   fail-by-blocking-label:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'merge_group' }}
+    timeout-minutes: 10
     steps:
       - name: Check for blocking labels
         run: |
