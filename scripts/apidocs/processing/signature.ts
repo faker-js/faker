@@ -1,5 +1,5 @@
 import type { MethodDeclaration } from 'ts-morph';
-import { getProject } from '../project';
+import { getEmptyProject } from '../project';
 import { exactlyOne } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';
@@ -136,9 +136,7 @@ function processSignature(
 }
 
 // Cache the project for performance reasons
-const signatureExtractionProject = getProject({
-  skipAddingFilesFromTsConfig: true,
-});
+const signatureExtractionProject = getEmptyProject();
 
 function getSignatureText(signature: SignatureLikeDeclaration): string {
   const fullText = signature

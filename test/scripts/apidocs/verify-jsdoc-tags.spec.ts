@@ -4,7 +4,7 @@ import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
 import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
-import { getProject } from '../../../scripts/apidocs/project';
+import { getLightProject } from '../../../scripts/apidocs/project';
 import { toCamelCase } from '../../../scripts/shared/character-case';
 
 // This test suite ensures, that every method
@@ -24,7 +24,7 @@ afterAll(() => {
   }
 });
 
-const modules = processComponents(getProject());
+const modules = processComponents(getLightProject());
 const smfImportsByMethod = new Map(modules.flatMap(moduleToImportTuples));
 
 function moduleToImportTuples(module: RawApiDocsPage): Array<[string, string]> {
