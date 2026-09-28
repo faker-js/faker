@@ -4,8 +4,11 @@ import { isSemVer, isURL } from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { processComponents } from '../../../scripts/apidocs/generate';
 import type { RawApiDocsPage } from '../../../scripts/apidocs/processing/class';
-import { getLightProject } from '../../../scripts/apidocs/project';
 import { toCamelCase } from '../../../scripts/shared/character-case';
+import {
+  SOURCE_GLOBS_LIGHT,
+  getPartialProject,
+} from '../../../scripts/shared/project';
 
 // This test suite ensures, that every method
 // - has working examples
@@ -24,7 +27,7 @@ afterAll(() => {
   }
 });
 
-const modules = processComponents(getLightProject());
+const modules = processComponents(getPartialProject(SOURCE_GLOBS_LIGHT));
 const smfImportsByMethod = new Map(modules.flatMap(moduleToImportTuples));
 
 function moduleToImportTuples(module: RawApiDocsPage): Array<[string, string]> {

@@ -1,5 +1,5 @@
 import type { MethodDeclaration } from 'ts-morph';
-import { getEmptyProject } from '../project';
+import { getEmptyProject } from '../../shared/project';
 import { exactlyOne } from '../utils/value-checks';
 import { newProcessingError } from './error';
 import type { JSDocableLikeNode } from './jsdocs';

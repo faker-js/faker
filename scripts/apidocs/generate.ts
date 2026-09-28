@@ -1,4 +1,5 @@
 import type { Project } from 'ts-morph';
+import { SOURCE_GLOBS_LIGHT, getPartialProject } from '../shared/project';
 import { writeDiffIndex } from './output/diff-index';
 import { writePages } from './output/page';
 import { writePageIndex } from './output/page-index';
@@ -12,11 +13,10 @@ import {
   processProjectInterfaces,
   processProjectUtilities,
 } from './processing/class';
-import { getLightProject } from './project';
 
 export async function generate(): Promise<void> {
   console.log('Reading project');
-  const project = getLightProject();
+  const project = getPartialProject(SOURCE_GLOBS_LIGHT);
   console.log('Processing components');
   const apiDocsPages = processComponents(project);
   console.log('Writing files');

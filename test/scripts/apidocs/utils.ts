@@ -1,5 +1,5 @@
 import type { ClassDeclaration, MethodDeclaration, SourceFile } from 'ts-morph';
-import { getEmptyProject } from '../../../scripts/apidocs/project';
+import { getEmptyProject } from '../../../scripts/shared/project';
 
 /**
  * Loads the example methods.

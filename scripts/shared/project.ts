@@ -13,14 +13,19 @@ export function getEmptyProject(
 
 // The API docs are only generated from `src`, and the locale data files make up
 // the vast majority of the codebase, so scanning them slows things down a lot for no benefit.
-const SOURCE_GLOBS_LIGHT = ['src/**/*.ts', '!src/locale/**', '!src/locales/**'];
+export const SOURCE_GLOBS_LIGHT = [
+  'src/**/*.ts',
+  '!src/locale/**',
+  '!src/locales/**',
+];
 
-export function getLightProject(
+export function getPartialProject(
+  globs: string[],
   options: Partial<ProjectOptions> = {}
 ): Project {
   const project = getEmptyProject(options);
 
-  project.addSourceFilesAtPaths(SOURCE_GLOBS_LIGHT);
+  project.addSourceFilesAtPaths(globs);
 
   return project;
 }
