@@ -43,6 +43,7 @@ It is a shorthand for running the following scripts in order:
 - `pnpm install` - installs npm packages defined in package.json
 - `pnpm run generate:locales` - generates locale files
 - `pnpm run generate:api-docs` - generates API documentation
+- `pnpm run generate:module-tree` - generates module classes from individual functions
 - `pnpm run format` - runs [oxfmt](https://oxc.rs/docs/guide/usage/formatter) to format code
 - `pnpm run lint` - runs [oxlint](https://oxc.rs/docs/guide/usage/linter) to enforce project code standards
 - `pnpm run build:clean` - removes artifacts from previous builds
