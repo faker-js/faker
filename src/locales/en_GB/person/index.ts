@@ -3,10 +3,12 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PersonDefinition } from '../../../definitions';
+import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import name_ from './name';
 
 const person: PersonDefinition = {
+  last_name,
   last_name_pattern,
   name: name_,
 };
