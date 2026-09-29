@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`exports > should match the expected import tree 1`] = `
+exports[`src/index.ts exports > should match the expected import tree 1`] = `
 {
   "config": {
     "types": [

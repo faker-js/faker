@@ -1,3 +1,6 @@
+/**
+ * Tests for verifying the exports of the `src/index.ts` file.
+ */
 import { Node, Project } from 'ts-morph';
 import type { ExportedDeclarations, SourceFile } from 'ts-morph';
 import { beforeAll, describe, expect, it } from 'vitest';
