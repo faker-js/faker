@@ -28,7 +28,7 @@ type ExportRecord = Record<string, ExportEntry>;
 //#endregion
 //#region Test (Describe)
 
-describe('exports', () => {
+describe('src/index.ts exports', () => {
   let importTree: ExportRecord;
 
   //#region Setup
