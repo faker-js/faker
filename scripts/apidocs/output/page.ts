@@ -34,11 +34,13 @@ export async function writePages(pages: RawApiDocsPage[]): Promise<void> {
   const registryHints: Record<string, string> = Object.fromEntries(
     pages.flatMap((page) =>
       page.methods.map((method) => [
-        toCamelCase(page.camelTitle, method.name),
+        toCamelCase('fake', page.camelTitle, method.name),
         `${page.camelTitle}.${method.name}`,
       ])
     )
   );
+  registryHints['setDefaultRefDate'] = 'setDefaultRefDate';
+  registryHints['getDefaultRefDate'] = 'defaultRefDate';
   await Promise.all(pages.map((page) => writePage(page, registryHints)));
 }
 
@@ -130,22 +132,12 @@ async function writePageData(
       methods.map(async (method) => [method.name, await toMethodData(method)])
     )
   );
-  const prioritizedRegistryHints = {
-    ...registryHints,
-    // own module > other modules
-    ...Object.fromEntries(
-      methods.map((method) => [method.name, `${camelTitle}.${method.name}`])
-    ),
-    // utils always win
-    getDefaultRefDate: 'defaultRefDate',
-    setDefaultRefDate: 'setDefaultRefDate',
-  };
 
   const refreshFunctions: Record<string, string> = Object.fromEntries(
     await Promise.all(
       methods.map(async (method) => [
         method.name,
-        await toRefreshFunction(method, prioritizedRegistryHints),
+        await toRefreshFunction(method, registryHints),
       ])
     )
   );

@@ -34,7 +34,7 @@ function moduleToImportTuples(module: RawApiDocsPage): Array<[string, string]> {
   return module.methods.map((method) => [
     module.camelTitle === 'utils'
       ? method.name
-      : toCamelCase(module.camelTitle, method.name),
+      : toCamelCase('fake', module.camelTitle, method.name),
     `${relativeImportPath}/${module.camelTitle === 'utils' ? '.' : 'modules'}/${module.camelTitle}/${toKebabCase(method.name)}`,
   ]);
 }
