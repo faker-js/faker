@@ -12,11 +12,11 @@ import {
   processProjectInterfaces,
   processProjectUtilities,
 } from './processing/class';
-import { getProject } from './project';
+import { getApiDocsProject } from './project';
 
 export async function generate(): Promise<void> {
   console.log('Reading project');
-  const project = getProject();
+  const project = getApiDocsProject();
   console.log('Processing components');
   const apiDocsPages = processComponents(project);
   console.log('Writing files');
