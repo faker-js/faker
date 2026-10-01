@@ -580,7 +580,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
-   * ```js
+   * ```ts
    * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
@@ -589,13 +589,13 @@ export class HelpersModule extends SimpleHelpersModule {
    * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, we will fall back to string:
    *
-   * ```js
+   * ```ts
    * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
    * ```
    *
    * It is also possible to use multiple parameters (comma separated).
    *
-   * ```js
+   * ```ts
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
@@ -633,7 +633,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
-   * ```js
+   * ```ts
    * const hello = faker.helpers.fake(['Hi, my name is {{person.firstName}} {{person.lastName}}!']);
    * ```
    *
@@ -642,7 +642,7 @@ export class HelpersModule extends SimpleHelpersModule {
    * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, it will fall back to string:
    *
-   * ```js
+   * ```ts
    * const message = faker.helpers.fake([
    *   'You can call me at {{phone.number(+!# !## #### #####!)}}.',
    *   'My email is {{internet.email}}.',
@@ -651,7 +651,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * It is also possible to use multiple parameters (comma separated).
    *
-   * ```js
+   * ```ts
    * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
    * ```
    *
@@ -683,7 +683,7 @@ export class HelpersModule extends SimpleHelpersModule {
    *
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
-   * ```js
+   * ```ts
    * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
@@ -692,13 +692,13 @@ export class HelpersModule extends SimpleHelpersModule {
    * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, it will fall back to string:
    *
-   * ```js
+   * ```ts
    * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
    * ```
    *
    * It is also possible to use multiple parameters (comma separated).
    *
-   * ```js
+   * ```ts
    * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *

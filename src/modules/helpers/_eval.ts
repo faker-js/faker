@@ -11,14 +11,14 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  *
  * It tries to resolve the expression on the given/default entrypoints:
  *
- * ```js
+ * ```ts
  * const firstName = fakeEval('person.firstName', faker);
  * const firstName2 = fakeEval('person.first_name', faker);
  * ```
  *
  * Is equivalent to:
  *
- * ```js
+ * ```ts
  * const firstName = faker.person.firstName();
  * const firstName2 = faker.helpers.arrayElement(faker.rawDefinitions.person.first_name);
  * ```
@@ -26,13 +26,13 @@ const REGEX_DOT_OR_BRACKET = /\.|\(/;
  * You can provide parameters as well. At first, they will be parsed as json,
  * and if that isn't possible, it will fall back to string:
  *
- * ```js
+ * ```ts
  * const message = fakeEval('phone.number(+!# !## #### #####!)', faker);
  * ```
  *
  * It is also possible to use multiple parameters (comma separated).
  *
- * ```js
+ * ```ts
  * const pin = fakeEval('string.numeric(4, {"allowLeadingZeros": true})', faker);
  * ```
  *
