@@ -362,7 +362,9 @@ async function loadLocaleData(
 }
 
 async function normalizePersonFile(filePath: string) {
-  const data = await loadLocaleData<PersonEntryDefinition<string>>(filePath);
+  const data = (await loadLocaleData(
+    filePath
+  )) as PersonEntryDefinition<string>;
   const { female = [], generic = [], male = [] } = data ?? {};
 
   // Revert merging of female and male => generic
