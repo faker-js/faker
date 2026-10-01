@@ -138,38 +138,18 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       const methodNames = new Set(methods.map(([name]) => name));
 
       for (const [methodName, original] of methods) {
-        const qualifiedMethodName = toCamelCase('fake', moduleName, methodName);
+        const qualifiedMethodName = toCamelCase(moduleName, methodName);
         const methodFileName = patchFileName(methodName);
 
         const oldSinces = [
           ...(original.getOverloads()?.map((o) => o.getJsDocs()[0]) ?? []),
           ...original.getJsDocs(),
         ].map((jsDocs) => getSince(jsDocs));
-        // TEMP: We skip removing the original method for now.
-        // original.remove();
+        original.remove();
 
         const methodFile = directory.getSourceFileOrThrow(
           `${methodFileName}.ts`
         );
-
-        //#region Temp
-        let fileContent = methodFile
-          .getFullText()
-          .replaceAll(
-            new RegExp(
-              `\\b(?!dateToBase32|wordCount)(${[...moduleNames].join('|')})([A-Z][a-zA-Z0-9]+)(?=\\(| }|<|,|>)`,
-              'g'
-            ),
-            (_, p1, p2) => toCamelCase('fake', `${p1}${p2}`)
-          );
-
-        writeFileSync(methodFile.getFilePath(), fileContent);
-
-        if (fileContent) {
-          // TEMP: We skip the rest of the processing.
-          continue;
-        }
-        //#endregion Temp
 
         //#region Imports
         importHelper.addImports(`./${methodFileName}`, qualifiedMethodName);
@@ -310,11 +290,6 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       content.push(classBody, '');
     }
     //#endregion Classes
-
-    if (content.length > 0) {
-      // TEMP: Skip writing the module file
-      continue;
-    }
 
     importHelper.removeUnusedImports(content.join('\n'));
     patchModuleImports(moduleName, importHelper);
