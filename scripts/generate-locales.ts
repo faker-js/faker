@@ -332,7 +332,7 @@ const exportDefaultPrefix = 'export default ';
 /**
  * Loads the default export of a locale data file.
  *
- * Static data files (`export default [...]`/`export default {...}`) are evaluated directly,
+ * Static data files (`export default [...]`/`export default {...}`) are evaluated directly as plain JavaScript,
  * because importing thousands of TypeScript modules via tsx is comparatively slow.
  * All other files fall back to a regular `import()`.
  *
@@ -362,9 +362,7 @@ async function loadLocaleData(
 }
 
 async function normalizePersonFile(filePath: string) {
-  const data = (await loadLocaleData(
-    filePath
-  )) as PersonEntryDefinition<string>;
+  const data = await loadLocaleData<PersonEntryDefinition<string>>(filePath);
   const { female = [], generic = [], male = [] } = data ?? {};
 
   // Revert merging of female and male => generic
