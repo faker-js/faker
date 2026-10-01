@@ -34,6 +34,10 @@
       "rangeStrategy": "replace"
     },
     {
+      "groupName": "pnpm",
+      "matchPackageNames": ["pnpm"]
+    },
+    {
       "groupName": "oxlint",
       "matchPackageNames": ["oxlint", "oxlint-tsgolint"]
     },
@@ -56,6 +60,17 @@
     {
       "groupName": "doc-dependencies",
       "matchPackageNames": ["ts-morph", "vitepress"]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^package\\.json$/"],
+      "matchStrings": [
+        "\"devEngines\"\\s*:\\s*\\{\\s*\"packageManager\"\\s*:\\s*\\{[^}]*?\"name\"\\s*:\\s*\"(?<depName>[^\"]+)\"[^}]*?\"version\"\\s*:\\s*\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "npm",
+      "depTypeTemplate": "devEngines"
     }
   ],
   "stopUpdatingLabel": "s: on hold",
