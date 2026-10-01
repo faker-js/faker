@@ -1,5 +1,8 @@
 import type { ClassDeclaration, MethodDeclaration, SourceFile } from 'ts-morph';
-import { getEmptyProject } from '../../../scripts/shared/project';
+import {
+  SOURCE_GLOBS_LIGHT,
+  getPartialProject,
+} from '../../../scripts/shared/project';
 
 /**
  * Loads the example methods.
@@ -32,7 +35,7 @@ export function loadExampleClasses(): Record<string, ClassDeclaration> {
  * @param sourceFile The source file to load.
  */
 function loadProjectFile(sourceFile: string): SourceFile {
-  const project = getEmptyProject();
+  const project = getPartialProject(SOURCE_GLOBS_LIGHT);
 
   return project.addSourceFileAtPath(sourceFile);
 }
