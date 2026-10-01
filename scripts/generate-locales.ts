@@ -18,6 +18,7 @@
 import { constants } from 'node:fs';
 import { access, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { runInThisContext } from 'node:vm';
 import type {
   LocaleDefinition,
   MetadataDefinition,
@@ -326,10 +327,44 @@ async function updateLocaleFileHook(
   return normalizeLocaleFile(filePath, definitionKey);
 }
 
-async function normalizePersonFile(filePath: string) {
-  const { default: data } = (await import(`file:${filePath}`)) as {
-    default: PersonEntryDefinition<string>;
+const exportDefaultPrefix = 'export default ';
+
+/**
+ * Loads the default export of a locale data file.
+ *
+ * Static data files (`export default [...]`/`export default {...}`) are evaluated directly,
+ * because importing thousands of TypeScript modules via tsx is comparatively slow.
+ * All other files fall back to a regular `import()`.
+ *
+ * @param filePath The full file path to the file.
+ * @param fileContent The content of the file, if already read.
+ */
+async function loadLocaleData(
+  filePath: string,
+  fileContent?: string
+): Promise<unknown> {
+  fileContent ??= await readFile(filePath, { encoding: 'utf8' });
+  const dataIndex = fileContent.indexOf(exportDefaultPrefix);
+  const data =
+    dataIndex === -1
+      ? ''
+      : fileContent.substring(dataIndex + exportDefaultPrefix.length);
+  if (/^[[{]/.test(data) && !/^import /m.test(fileContent)) {
+    return runInThisContext(`(${data.replace(/;\s*$/, '')}\n)`, {
+      filename: filePath,
+    });
+  }
+
+  const { default: imported } = (await import(`file:${filePath}`)) as {
+    default: unknown;
   };
+  return imported;
+}
+
+async function normalizePersonFile(filePath: string) {
+  const data = (await loadLocaleData(
+    filePath
+  )) as PersonEntryDefinition<string>;
   const { female = [], generic = [], male = [] } = data ?? {};
 
   // Revert merging of female and male => generic
@@ -423,8 +458,8 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   console.log(`Running data normalization for:`, filePath);
 
   const fileContent = await readFile(filePath, { encoding: 'utf8' });
-  const searchString = 'export default ';
-  const compareIndex = fileContent.indexOf(searchString) + searchString.length;
+  const compareIndex =
+    fileContent.indexOf(exportDefaultPrefix) + exportDefaultPrefix.length;
   const compareString = fileContent.substring(compareIndex);
 
   const isNonApplicable = compareString.startsWith('null');
@@ -442,8 +477,7 @@ async function normalizeLocaleFile(filePath: string, definitionKey: string) {
   }
 
   const fileContentPreData = fileContent.substring(0, compareIndex);
-  const fileImport = await import(`file:${filePath}`);
-  const oldData = fileImport.default;
+  const oldData = await loadLocaleData(filePath, fileContent);
   const localeData = normalizeDataRecursive(oldData);
 
   // We reattach the content before the actual data implementation to keep stuff like comments.
