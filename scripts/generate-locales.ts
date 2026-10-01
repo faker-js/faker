@@ -336,13 +336,15 @@ const exportDefaultPrefix = 'export default ';
  * because importing thousands of TypeScript modules via tsx is comparatively slow.
  * All other files fall back to a regular `import()`.
  *
+ * @template TData The expected type of the default export. This is not validated.
+ *
  * @param filePath The full file path to the file.
  * @param fileContent The content of the file, if already read.
  */
-async function loadLocaleData(
+async function loadLocaleData<TData = unknown>(
   filePath: string,
   fileContent?: string
-): Promise<unknown> {
+): Promise<TData> {
   fileContent ??= await readFile(filePath, { encoding: 'utf8' });
   const dataIndex = fileContent.indexOf(exportDefaultPrefix);
   const data =
@@ -352,19 +354,17 @@ async function loadLocaleData(
   if (/^[[{]/.test(data) && !/^import /m.test(fileContent)) {
     return runInThisContext(`(${data.replace(/;\s*$/, '')}\n)`, {
       filename: filePath,
-    });
+    }) as TData;
   }
 
   const { default: imported } = (await import(`file:${filePath}`)) as {
-    default: unknown;
+    default: TData;
   };
   return imported;
 }
 
 async function normalizePersonFile(filePath: string) {
-  const data = (await loadLocaleData(
-    filePath
-  )) as PersonEntryDefinition<string>;
+  const data = await loadLocaleData<PersonEntryDefinition<string>>(filePath);
   const { female = [], generic = [], male = [] } = data ?? {};
 
   // Revert merging of female and male => generic
