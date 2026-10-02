@@ -151,8 +151,9 @@ export class AirlineModule extends ModuleBase {
    * zeros, often with the airline code prepended (e.g.: `AA0425`).
    *
    * To generate a flight number prepended with an airline code, combine this function with the
-   * `airline()` function and use template literals:
-   * ```
+   * `airlineAirline()` function and use template literals:
+   *
+   * ```ts
    * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    * ```
    *
