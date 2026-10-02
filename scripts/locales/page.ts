@@ -75,16 +75,12 @@ A few commonly localized methods are shown below. Click the refresh button to se
 }
 
 /**
- * Writes the locale docs data for the given locale to correct location.
+ * Creates the example code for the locale docs page.
  *
- * @param locale The locale to write.
  * @param localizedFakerExport The name of the faker export for the locale, used in the usage examples.
  */
-async function writePageData(
-  locale: string,
-  localizedFakerExport: string
-): Promise<void> {
-  const exampleCode = `import { ${localizedFakerExport} } from '@faker-js/faker';
+function toExampleCode(localizedFakerExport: string): string {
+  return `import { ${localizedFakerExport} } from '@faker-js/faker';
 // const { ${localizedFakerExport} } = require('@faker-js/faker'); // CJS
 
 // Commonly localized methods:
@@ -106,9 +102,43 @@ ${localizedFakerExport}.company.name();
 // Non-localized methods work as normal:
 ${localizedFakerExport}.number.int();
 `;
+}
+
+/**
+ * The placeholder used for the faker export name in the cached example html.
+ */
+const examplesHtmlPlaceholder = 'fakerPLACEHOLDER';
+
+let examplesHtmlTemplate: Promise<string> | undefined;
+
+/**
+ * Renders the examples html for the given faker export.
+ *
+ * The highlighting is identical for all locales except for the export name,
+ * so the html is only rendered once and the export name is substituted afterwards.
+ *
+ * @param localizedFakerExport The name of the faker export for the locale.
+ */
+async function toExamplesHtml(localizedFakerExport: string): Promise<string> {
+  examplesHtmlTemplate ??= codeToHtml(toExampleCode(examplesHtmlPlaceholder));
+  const html = await examplesHtmlTemplate;
+  return html.replaceAll(examplesHtmlPlaceholder, localizedFakerExport);
+}
+
+/**
+ * Writes the locale docs data for the given locale to correct location.
+ *
+ * @param locale The locale to write.
+ * @param localizedFakerExport The name of the faker export for the locale, used in the usage examples.
+ */
+async function writePageData(
+  locale: string,
+  localizedFakerExport: string
+): Promise<void> {
+  const exampleCode = toExampleCode(localizedFakerExport);
 
   const pageData = {
-    examples: await codeToHtml(exampleCode),
+    examples: await toExamplesHtml(localizedFakerExport),
     refresh: 'refresh-placeholder',
   };
   const refreshableCode = await toRefreshableCode(locale, exampleCode);
