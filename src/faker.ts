@@ -1,7 +1,7 @@
 import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import type { LocaleProxy } from './internal/locale-proxy';
-import { AirlineModule } from './modules/airline';
+import { AirlineModule } from './modules/airline/module';
 import { AnimalModule } from './modules/animal';
 import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
