@@ -239,13 +239,13 @@ describe('location', () => {
 
         it('should return the 11-character postcode format for en_NG locale', () => {
           // Nigerian postcodes look like 'EK-01-A03-FK-01'.
-          // The LGA and unit segments run from 01 to 99 and are never 00.
+          // The patterns fix the first digit of the LGA and the unit to 1-9, so 00 never appears.
           // See https://docs.postcode.gov.ng/concepts/postcode-format
           for (let i = 0; i < 1000; i++) {
             const zipCode = fakerEN_NG.location.zipCode();
 
             expect(zipCode).toMatch(
-              /^[A-Z]{2}-(?!00)\d{2}-[A-Z0-9]{3}-[A-Z]{2}-(?!00)\d{2}$/
+              /^[A-Z]{2}-[1-9]\d-[A-Z]\d{2}-[A-Z]{2}-[1-9]\d$/
             );
           }
         });
