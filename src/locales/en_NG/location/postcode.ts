@@ -1,5 +1,6 @@
 /**
- * Nigerian postcodes have 11 characters, for example `EK-01-A03-FK-01`:
+ * Nigerian postcodes have 11 letters and digits in five segments,
+ * written with dashes, for example `EK-01-A03-FK-01`:
  *
  * - state: 2 letters
  * - LGA: 2 digits

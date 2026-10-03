@@ -237,7 +237,7 @@ describe('location', () => {
           }
         });
 
-        it('should return the 11-character postcode format for en_NG locale', () => {
+        it('should return the NIPOST postcode format for en_NG locale', () => {
           // Nigerian postcodes look like 'EK-01-A03-FK-01'.
           // The patterns fix the first digit of the LGA and the unit to 1-9, so 00 never appears.
           // See https://docs.postcode.gov.ng/concepts/postcode-format
