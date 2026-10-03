@@ -32,6 +32,10 @@ describe.runIf(isFakerOrigin())('docs versions', () => {
       const releaseVersions = versionLinks.filter(({ version }) =>
         semver.valid(version)
       );
+      expect(
+        releaseVersions,
+        'No release tags found. Please run `git fetch --tags`.'
+      ).not.toHaveLength(0);
       const latestMajorRelease = semver.major(releaseVersions[0].version);
       for (const [index, value] of releaseVersions.entries()) {
         const { version, link } = value;
