@@ -34,7 +34,7 @@ describe.runIf(isFakerOrigin())('docs versions', () => {
       );
       expect(
         releaseVersions,
-        'No release tags found. Run git fetch --tags.'
+        'No release tags found. Please run `git fetch --tags`.'
       ).not.toHaveLength(0);
       const latestMajorRelease = semver.major(releaseVersions[0].version);
       for (const [index, value] of releaseVersions.entries()) {
