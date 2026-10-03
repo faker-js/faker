@@ -13,7 +13,7 @@ import {
 import { describe, expect, it } from 'vitest';
 import { allFakers, faker, fakerKO } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
-import { IPv4Network } from '../../src/modules/internet';
+import { IPv4Network, IPv6Network } from '../../src/modules/internet';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -30,7 +30,6 @@ describe('internet', () => {
       'domainSuffix',
       'domainWord',
       'ip',
-      'ipv6',
       'jwtAlgorithm',
       'port',
       'userAgent'
@@ -141,6 +140,17 @@ describe('internet', () => {
       t.it('noArgs')
         .it('with cidrBlock', { cidrBlock: '192.168.13.37/24' })
         .it('with network', { network: IPv4Network.Multicast });
+    });
+
+    t.describe('ipv6', (t) => {
+      t.it('noArgs')
+        .it('with cidrBlock', { cidrBlock: '2001:db8:1234:5678::/53' })
+        .it('with dotted-decimal IPv4', { cidrBlock: '::ffff:192.0.2.128/120' })
+        .it('with network', { network: IPv6Network.LinkLocal })
+        .it('with cidrBlock overriding network', {
+          cidrBlock: '2001:db8::/32',
+          network: IPv6Network.Loopback,
+        });
     });
 
     t.describe('jwt', (t) => {

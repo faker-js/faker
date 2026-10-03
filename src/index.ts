@@ -71,8 +71,12 @@ export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
-export { IPv4Network } from './modules/internet';
-export type { InternetModule, IPv4NetworkType } from './modules/internet';
+export { IPv4Network, IPv6Network } from './modules/internet';
+export type {
+  InternetModule,
+  IPv4NetworkType,
+  IPv6NetworkType,
+} from './modules/internet';
 export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MedicalModule } from './modules/medical';
