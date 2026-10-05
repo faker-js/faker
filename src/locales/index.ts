@@ -32,6 +32,7 @@ import en_US from './en_US';
 import en_ZA from './en_ZA';
 import eo from './eo';
 import es from './es';
+import es_CL from './es_CL';
 import es_MX from './es_MX';
 import fa from './fa';
 import fi from './fi';
@@ -110,6 +111,7 @@ export { default as en_US } from './en_US';
 export { default as en_ZA } from './en_ZA';
 export { default as eo } from './eo';
 export { default as es } from './es';
+export { default as es_CL } from './es_CL';
 export { default as es_MX } from './es_MX';
 export { default as fa } from './fa';
 export { default as fi } from './fi';
@@ -189,6 +191,7 @@ export const allLocales = {
   en_ZA,
   eo,
   es,
+  es_CL,
   es_MX,
   fa,
   fi,
