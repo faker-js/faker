@@ -334,38 +334,21 @@ export function helpersFromRegExp(
     );
 
     if (isNegated) {
-      let index;
-      // 0-9
-      for (let i = 48; i <= 57; i++) {
-        index = rangeCodes.indexOf(i);
-        if (index > -1) {
-          rangeCodes.splice(index, 1);
-          continue;
+      // Keep only the ASCII digits and letters that are not excluded.
+      // Excluded symbols (e.g. a leading dash) and duplicate codes (e.g. from
+      // the case insensitive flag) must not end up in the result.
+      const excludedCodes = new Set(rangeCodes);
+      rangeCodes.length = 0;
+      for (const [rangeStart, rangeEnd] of [
+        [48, 57], // 0-9
+        [65, 90], // A-Z
+        [97, 122], // a-z
+      ]) {
+        for (let i = rangeStart; i <= rangeEnd; i++) {
+          if (!excludedCodes.has(i)) {
+            rangeCodes.push(i);
+          }
         }
-
-        rangeCodes.push(i);
-      }
-
-      // A-Z
-      for (let i = 65; i <= 90; i++) {
-        index = rangeCodes.indexOf(i);
-        if (index > -1) {
-          rangeCodes.splice(index, 1);
-          continue;
-        }
-
-        rangeCodes.push(i);
-      }
-
-      // a-z
-      for (let i = 97; i <= 122; i++) {
-        index = rangeCodes.indexOf(i);
-        if (index > -1) {
-          rangeCodes.splice(index, 1);
-          continue;
-        }
-
-        rangeCodes.push(i);
       }
     }
 
