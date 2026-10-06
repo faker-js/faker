@@ -16,6 +16,7 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
+import team from './team';
 import vehicle from './vehicle';
 
 /**
@@ -38,6 +39,7 @@ const az: LocaleDefinition = {
   person,
   phone_number,
   science,
+  team,
   vehicle,
 };
 
