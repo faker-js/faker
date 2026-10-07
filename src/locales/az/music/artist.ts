@@ -1,6 +1,6 @@
 export default [
-  'Abbas Bağırov',
   'AISEL',
+  'Abbas Bağırov',
   'Alim Qasımov',
   'Aygün Bəylər',
   'Aygün Kazımova',
