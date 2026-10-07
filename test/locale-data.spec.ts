@@ -65,6 +65,37 @@ function untrimmedEntries(data: unknown, path: string = ''): string[] {
   return [];
 }
 
+/**
+ * Matches invisible control (`Cc`) and format (`Cf`) characters,
+ * except for those that are legitimately part of the data:
+ * - `\n` separates the lines of a postal address.
+ * - U+200C ZERO WIDTH NON-JOINER is part of the spelling of some languages, e.g. Persian.
+ * - U+200D ZERO WIDTH JOINER combines emoji into a single glyph.
+ */
+const invisibleCharacterPattern = /(?![\n\u200C\u200D])[\p{Cc}\p{Cf}]/gu;
+
+function invisibleCharacterEntries(data: unknown, path: string = ''): string[] {
+  if (Array.isArray(data)) {
+    return data.flatMap((e, i) =>
+      invisibleCharacterEntries(e, `${path}[${i}]`)
+    );
+  } else if (typeof data === 'object' && data != null) {
+    return Object.entries(data).flatMap(([key, entry]) =>
+      invisibleCharacterEntries(entry, `${path}.${key}`)
+    );
+  } else if (typeof data === 'string') {
+    const codePoints = [...data.matchAll(invisibleCharacterPattern)].map(
+      ([character]) =>
+        `U+${character.codePointAt(0)?.toString(16).toUpperCase().padStart(4, '0')}`
+    );
+    if (codePoints.length > 0) {
+      return [`${path}: ${JSON.stringify(data)} (${codePoints.join(', ')})`];
+    }
+  }
+
+  return [];
+}
+
 function uniqueCharacters(data: string | string[]): string[] {
   return [...new Set(data)];
 }
@@ -99,6 +130,13 @@ describe('locale-data', () => {
     '%s should not have entries with leading or trailing whitespace',
     (_, data) => {
       expect(untrimmedEntries(data)).toEqual([]);
+    }
+  );
+
+  it.each(Object.entries(allLocales))(
+    '%s should not have entries with invisible control characters',
+    (_, data) => {
+      expect(invisibleCharacterEntries(data)).toEqual([]);
     }
   );
 
