@@ -74,10 +74,10 @@ export class SimpleHelpersModule extends ModuleBase {
    * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
    *
    * Supported patterns:
-   * - `symbol` (defaults to `'#'`) => A random digit.
-   * - `'!'` => A random digit between `2` and `9`.
-   * - `'L'` => The appropriate Luhn checksum.
-   * - `[min-max]` => A number between `min` and `max` (inclusive).
+   * - `symbol` (defaults to `'#'`) => Replace with a random digit.
+   * - `'!'` => Replace with a random digit between 2 and 9.
+   * - `'L'` => Replace with the appropriate Luhn checksum.
+   * - `[min-max]` => Generate a number between min and max (inclusive).
    * - `.{times}` => Repeat the character exactly `times` times.
    * - `.{min,max}` => Repeat the character `min` to `max` times.
    * - All other characters will remain unchanged.
