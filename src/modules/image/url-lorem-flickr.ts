@@ -21,7 +21,7 @@ import { numberInt } from '../number/int';
  *
  * @since 11.0.0
  *
- * @deprecated LoremFlickr is no longer available, and image links will be broken. Use `url(fakerCore)` instead.
+ * @deprecated LoremFlickr is no longer available, and image links will be broken. Use `imageUrl(fakerCore)` instead.
  *
  * @experimental
  */
@@ -48,7 +48,7 @@ export function imageUrlLoremFlickr(
 ): string {
   deprecated({
     deprecated: 'imageUrlLoremFlickr(fakerCore)',
-    proposed: 'url(fakerCore)',
+    proposed: 'imageUrl(fakerCore)',
     since: '10.1.0',
     until: '11.0.0',
   });

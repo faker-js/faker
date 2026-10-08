@@ -2,10 +2,10 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { SyntaxKind } from 'ts-morph';
 import { getJsDocs, getSince } from '../apidocs/processing/jsdocs';
-import { getProject } from '../apidocs/project';
 import { toCamelCase, toKebabCase } from '../shared/character-case';
 import { formatTypescript } from '../shared/format';
 import { FILE_PATH_SRC } from '../shared/paths';
+import { getPartialProject } from '../shared/project';
 import { ImportHelper } from './import-helper';
 
 //#region Config
@@ -67,12 +67,9 @@ function patchJsDocs(module: string, method: string, jsDocs: string): string {
 
 // #endregion
 
-const project = getProject();
+const project = getPartialProject(['src/modules/**/*.ts']);
 
-const directories = project
-  .getDirectoryOrThrow('src')
-  .getDirectoryOrThrow('modules')
-  .getDirectories();
+const directories = project.getDirectoryOrThrow('src/modules').getDirectories();
 
 const moduleNames = new Set(directories.map((dir) => dir.getBaseName()));
 

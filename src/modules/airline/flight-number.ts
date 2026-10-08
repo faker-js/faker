@@ -8,9 +8,10 @@ import { stringNumeric } from '../string/numeric';
  * zeros, often with the airline code prepended (e.g.: `AA0425`).
  *
  * To generate a flight number prepended with an airline code, combine this function with the
- * `airline()` function and use template literals:
- * ```
- * `${airline(fakerCore).iataCode}${airlineFlightNumber(fakerCore, { addLeadingZeros: true })}` // 'AA0798'
+ * `airlineAirline()` function and use template literals:
+ *
+ * ```ts
+ * `${airlineAirline(fakerCore).iataCode}${airlineFlightNumber(fakerCore, { addLeadingZeros: true })}` // 'AA0798'
  * ```
  *
  * @param fakerCore The FakerCore to use.
