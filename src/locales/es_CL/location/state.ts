@@ -1,0 +1,18 @@
+export default [
+  'Antofagasta',
+  'Arica y Parinacota',
+  'Atacama',
+  'Aysén del General Carlos Ibáñez del Campo',
+  'Biobío',
+  'Coquimbo',
+  'La Araucanía',
+  "Libertador General Bernardo O'Higgins",
+  'Los Lagos',
+  'Los Ríos',
+  'Magallanes y de la Antártica Chilena',
+  'Maule',
+  'Metropolitana de Santiago',
+  'Ñuble',
+  'Tarapacá',
+  'Valparaíso',
+];

@@ -79,6 +79,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | [`en_ZA`](/locales/en_ZA.md)               | English (South Africa)         | `fakerEN_ZA`        |
 | [`eo`](/locales/eo.md)                     | Esperanto                      | `fakerEO`           |
 | [`es`](/locales/es.md)                     | Spanish                        | `fakerES`           |
+| [`es_CL`](/locales/es_CL.md)               | Spanish (Chile)                | `fakerES_CL`        |
 | [`es_MX`](/locales/es_MX.md)               | Spanish (Mexico)               | `fakerES_MX`        |
 | [`fa`](/locales/fa.md)                     | Farsi/Persian                  | `fakerFA`           |
 | [`fi`](/locales/fi.md)                     | Finnish                        | `fakerFI`           |

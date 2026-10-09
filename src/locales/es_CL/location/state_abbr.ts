@@ -1,0 +1,18 @@
+export default [
+  'AN',
+  'AP',
+  'AT',
+  'AI',
+  'BI',
+  'CO',
+  'AR',
+  'LI',
+  'LL',
+  'LR',
+  'MA',
+  'ML',
+  'RM',
+  'NB',
+  'TA',
+  'VS',
+];

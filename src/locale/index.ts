@@ -32,6 +32,7 @@ import { faker as fakerEN_US } from './en_US';
 import { faker as fakerEN_ZA } from './en_ZA';
 import { faker as fakerEO } from './eo';
 import { faker as fakerES } from './es';
+import { faker as fakerES_CL } from './es_CL';
 import { faker as fakerES_MX } from './es_MX';
 import { faker as fakerFA } from './fa';
 import { faker as fakerFI } from './fi';
@@ -110,6 +111,7 @@ export { faker as fakerEN_US } from './en_US';
 export { faker as fakerEN_ZA } from './en_ZA';
 export { faker as fakerEO } from './eo';
 export { faker as fakerES } from './es';
+export { faker as fakerES_CL } from './es_CL';
 export { faker as fakerES_MX } from './es_MX';
 export { faker as fakerFA } from './fa';
 export { faker as fakerFI } from './fi';
@@ -189,6 +191,7 @@ export const allFakers = {
   en_ZA: fakerEN_ZA,
   eo: fakerEO,
   es: fakerES,
+  es_CL: fakerES_CL,
   es_MX: fakerES_MX,
   fa: fakerFA,
   fi: fakerFI,
