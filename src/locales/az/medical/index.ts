@@ -4,7 +4,6 @@
  */
 import type { MedicalDefinition } from '../../../definitions';
 import allergen from './allergen';
-import blood_type from './blood_type';
 import condition from './condition';
 import department from './department';
 import drug_name from './drug_name';
@@ -14,7 +13,6 @@ import symptom from './symptom';
 
 const medical: MedicalDefinition = {
   allergen,
-  blood_type,
   condition,
   department,
   drug_name,
