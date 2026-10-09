@@ -20,7 +20,6 @@ export default [
   'Oyna',
   'Sarı gəlin',
   'Sudan gələn sürməli qız',
-  'Səndən1Dənədir',
   'Sənə Qurban',
   'Tut Əlimdən',
   'Tərki-Dünya',
