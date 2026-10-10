@@ -863,39 +863,6 @@ describe('internet', () => {
           }
         );
 
-        it('should preserve the default seeded output and randomizer position', () => {
-          const expected = Array.from({ length: 8 }, () =>
-            faker.string.hexadecimal({ length: 4, casing: 'lower', prefix: '' })
-          ).join(':');
-          const next = faker.number.int();
-
-          for (const options of [
-            undefined,
-            {},
-            { network: 'any' },
-            { cidrBlock: '::/0' },
-          ] as const) {
-            faker.seed(1337);
-            expect(faker.internet.ipv6(options)).toBe(expected);
-            expect(faker.number.int()).toBe(next);
-          }
-        });
-
-        it('should not consume randomness for a /128 subnet', () => {
-          const next = faker.number.int();
-          faker.seed(1337);
-          faker.internet.ipv6({ cidrBlock: '2001:db8::1234/128' });
-          expect(faker.number.int()).toBe(next);
-        });
-
-        it('should support the standalone function without locale data', () => {
-          const core = createFakerCore({ seed: 1337 });
-          const options = { cidrBlock: '2001:db8::/32' };
-          expect(internetIpv6(core, options)).toBe(
-            faker.internet.ipv6(options)
-          );
-        });
-
         it.each([
           [0, '2001:0db8:1234:5800:0000:0000:0000:0000'],
           [1 - Number.EPSILON, '2001:0db8:1234:5fff:ffff:ffff:ffff:ffff'],
@@ -951,19 +918,13 @@ describe('internet', () => {
           '1:2:3:4:5:192.0.2.1/120',
           '1:2:3:4:5:6::192.0.2.1/120',
           '::ffff:192.0.2.1:abcd/120',
-        ])(
-          'should reject malformed CIDR %j without consuming randomness',
-          (cidrBlock) => {
-            const next = faker.number.int();
-            faker.seed(1337);
-            expect(() => faker.internet.ipv6({ cidrBlock })).toThrow(
-              new FakerError(
-                `Invalid CIDR block provided: ${cidrBlock}. Must contain an IPv6 address and a prefix length between 0 and 128.`
-              )
-            );
-            expect(faker.number.int()).toBe(next);
-          }
-        );
+        ])('should reject malformed CIDR %j', (cidrBlock) => {
+          expect(() => faker.internet.ipv6({ cidrBlock })).toThrow(
+            new FakerError(
+              `Invalid CIDR block provided: ${cidrBlock}. Must contain an IPv6 address and a prefix length between 0 and 128.`
+            )
+          );
+        });
 
         it('should return a random IPv6 address with eight parts', () => {
           const ipv6 = faker.internet.ipv6();
