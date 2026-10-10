@@ -838,14 +838,30 @@ describe('internet', () => {
           }
         );
 
-        it('should let an explicit CIDR block override the network preset', () => {
-          expect(
-            faker.internet.ipv6({
-              network: 'documentation',
-              cidrBlock: '::1/128',
-            })
-          ).toBe('0000:0000:0000:0000:0000:0000:0000:0001');
-        });
+        it.each(['invalid', 'toString'])(
+          'should reject the unknown network %s with a helpful error',
+          (network) => {
+            expect(() =>
+              faker.internet.ipv6({ network: network as IPv6Network })
+            ).toThrow(
+              new FakerError(
+                `Invalid network provided: ${network}. Must be one of: any, loopback, unique-local, link-local, multicast, documentation.`
+              )
+            );
+          }
+        );
+
+        it.each(['documentation', 'invalid', 'toString'])(
+          'should let an explicit CIDR block override the network %s',
+          (network) => {
+            expect(
+              faker.internet.ipv6({
+                network: network as IPv6Network,
+                cidrBlock: '::1/128',
+              })
+            ).toBe('0000:0000:0000:0000:0000:0000:0000:0001');
+          }
+        );
 
         it('should preserve the default seeded output and randomizer position', () => {
           const expected = Array.from({ length: 8 }, () =>

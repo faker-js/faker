@@ -115,6 +115,7 @@ function parseIPv6Address(address: string): number[] | undefined {
  * @param options.network An alias for a well-known CIDR block. Defaults to `'any'`.
  *
  * @throws {FakerError} If the CIDR block contains an invalid IPv6 address or prefix length.
+ * @throws {FakerError} If the network is unknown and no CIDR block is provided.
  *
  * @example
  * internetIpv6(fakerCore) // '269f:1230:73e3:318d:842b:daab:326d:897b'
@@ -142,6 +143,12 @@ export function internetIpv6(
   } = {}
 ): string {
   const { network = 'any', cidrBlock = ipv6Networks[network] } = options;
+  if (typeof cidrBlock !== 'string') {
+    throw new FakerError(
+      `Invalid network provided: ${network}. Must be one of: ${Object.values(IPv6Network).join(', ')}.`
+    );
+  }
+
   const [address, prefix, ...rest] = cidrBlock.split('/');
   const groups = parseIPv6Address(address);
   if (

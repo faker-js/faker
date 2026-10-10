@@ -469,6 +469,7 @@ export class InternetModule extends ModuleBase {
    * @param options.network An alias for a well-known CIDR block. Defaults to `'any'`.
    *
    * @throws {FakerError} If the CIDR block contains an invalid IPv6 address or prefix length.
+   * @throws {FakerError} If the network is unknown and no CIDR block is provided.
    *
    * @example
    * faker.internet.ipv6() // '269f:1230:73e3:318d:842b:daab:326d:897b'
