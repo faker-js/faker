@@ -230,22 +230,7 @@ export class SimpleDateModule extends ModuleBase {
        *
        * @default 1
        */
-      days?:
-        | number
-        | {
-            /**
-             * The minimum amount of days the date should be in the past.
-             *
-             * @default 0
-             */
-            min: number;
-            /**
-             * The maximum amount of days the date should be in the past.
-             *
-             * @default 1
-             */
-            max: number;
-          };
+      days?: NumberOrRange;
       /**
        * The date to use as reference point for the newly generated date.
        *
@@ -284,22 +269,7 @@ export class SimpleDateModule extends ModuleBase {
        *
        * @default 1
        */
-      days?:
-        | number
-        | {
-            /**
-             * The minimum amount of days the date should be in the future.
-             *
-             * @default 0
-             */
-            min: number;
-            /**
-             * The maximum amount of days the date should be in the future.
-             *
-             * @default 1
-             */
-            max: number;
-          };
+      days?: NumberOrRange;
       /**
        * The date to use as reference point for the newly generated date.
        *
