@@ -7,6 +7,7 @@ import {
   allLocales,
   faker,
   fakerEN_CA,
+  fakerEN_NG,
   fakerEN_US,
   fakerFR,
   fakerNL,
@@ -232,6 +233,19 @@ describe('location', () => {
 
             expect(zipCode).toMatch(
               /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z] \d[ABCEGHJ-NPRSTV-Z]\d$/
+            );
+          }
+        });
+
+        it('should return the NIPOST postcode format for en_NG locale', () => {
+          // Nigerian postcodes look like 'EK-01-A03-FK-01'.
+          // The LGA and the unit run from 01 to 99, and the district has 3 letters or digits.
+          // See https://docs.postcode.gov.ng/concepts/postcode-format
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerEN_NG.location.zipCode();
+
+            expect(zipCode).toMatch(
+              /^[A-Z]{2}-(0[1-9]|[1-9]\d)-[\dA-Z]{3}-[A-Z]{2}-(0[1-9]|[1-9]\d)$/
             );
           }
         });
