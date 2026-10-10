@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../../definitions';
 import airline from './airline';
 import animal from './animal';
+import book from './book';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -28,6 +29,7 @@ import vehicle from './vehicle';
 const az: LocaleDefinition = {
   airline,
   animal,
+  book,
   color,
   commerce,
   company,
