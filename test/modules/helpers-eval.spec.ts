@@ -131,6 +131,29 @@ describe('fakeEval()', () => {
     ).toContain(actual);
   });
 
+  it('supports properties and prototype methods after generated values', () => {
+    const entrypoint = {
+      date: () => new Date('2025-01-01T00:00:00.000Z'),
+      number: () => 1234,
+      string: () => '  value  ',
+    };
+
+    expect(fakeEval('number.toPrecision(3)', faker, [entrypoint])).toBe(
+      '1.23e+3'
+    );
+    expect(fakeEval('number().toPrecision(3)', faker, [entrypoint])).toBe(
+      '1.23e+3'
+    );
+    expect(fakeEval('string.trim', faker, [entrypoint])).toBe('value');
+    expect(fakeEval('string().length', faker, [entrypoint])).toBe(9);
+    expect(fakeEval('date.toISOString', faker, [entrypoint])).toBe(
+      '2025-01-01T00:00:00.000Z'
+    );
+    expect(fakeEval('date().toISOString', faker, [entrypoint])).toBe(
+      '2025-01-01T00:00:00.000Z'
+    );
+  });
+
   it('requires a dot after a function call', () => {
     expect(() => fakeEval('airline.airline()iataCode', faker)).toThrow(
       new FakerError(
@@ -187,6 +210,7 @@ describe('fakeEval()', () => {
       'do.evil.constructor.constructor(globalThis.__fakerPwned = true)',
       'do.evil.constructor.constructor(globalThis.__fakerPwned = true)()',
       'string.constructor.constructor(globalThis.__fakerPwned = true)()',
+      'string.alpha(1).constructor.constructor(globalThis.__fakerPwned = true)()',
     ];
 
     beforeEach(() => {
