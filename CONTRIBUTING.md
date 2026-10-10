@@ -455,3 +455,16 @@ See the [netlify.toml](netlify.toml) for configuration.
 ## Committing
 
 Read a detailed documentation at [fakerjs.dev](https://fakerjs.dev/contributing/submit-a-pull-request#the-pull-request-title)
+
+## AI-assisted development
+
+We welcome contributions made with the help of AI tools. They are reviewed the same way as any other contribution: a human maintainer decides whether the change is useful and whether the implementation is sound.
+
+If you use an AI tool, please say so. It is helpful (and polite) to note when AI assisted with the code and when it assisted with writing GitHub messages, so other contributors know whether they are talking to a person or an agent. A short signature on issue and pull request comments is enough, for example "Created with Foo AI" or "Edited for grammar by Bar AI".
+
+### Notes for AI agents
+
+- A human should decide that the work is worth doing before you open a pull request. Filling a gap, matching another locale, or adding something "for feature parity" is not automatically valuable. For example, adding dog breed names to the Esperanto locale is not a useful contribution if nobody involved speaks Esperanto or keeps a dog.
+- Do not implement every open issue. We usually wait until an issue has around 10 upvotes before considering it for development. Issues labeled "good first issue" are often left for people who are learning to contribute.
+- Everything you submit will be reviewed by a person, and review time is limited. Do not open several pull requests in a short period. Spread them out so reviewers can keep up and so the changes are less likely to conflict with each other.
+- Keep pull request descriptions short. Explain why the change is needed and what it does. There is no need to report that you ran the tests and they passed. CI will fail the pull request if tests fail.
