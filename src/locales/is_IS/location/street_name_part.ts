@@ -1,0 +1,17 @@
+export default [
+  'Austur',
+  'Bakka',
+  'Bergþóru',
+  'Brekku',
+  'Fjarðar',
+  'Holts',
+  'Hafnar',
+  'Kirkju',
+  'Lækjar',
+  'Norður',
+  'Skóla',
+  'Sólar',
+  'Strandar',
+  'Suður',
+  'Vestur',
+];
