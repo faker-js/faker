@@ -12,6 +12,7 @@ import date from './date';
 import food from './food';
 import internet from './internet';
 import location from './location';
+import medical from './medical';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
@@ -34,6 +35,7 @@ const az: LocaleDefinition = {
   food,
   internet,
   location,
+  medical,
   metadata,
   person,
   phone_number,
