@@ -101,5 +101,5 @@ export function numberInt(
 
   const real = distributor(fakerCore.randomizer);
   const delta = effectiveMax - effectiveMin + 1; // +1 for inclusive max bounds and even distribution
-  return Math.floor(real * delta + effectiveMin) * multipleOf;
+  return (Math.floor(real * delta) + effectiveMin) * multipleOf;
 }
