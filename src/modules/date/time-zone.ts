@@ -12,7 +12,7 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @see locationTimeZone(fakerCore): For generating a timezone based on the current locale.
  *
  * @example
- * locationTimeZone(fakerCore) // 'Pacific/Guam'
+ * dateTimeZone(fakerCore) // 'Pacific/Guam'
  *
  * @since 11.0.0
  *

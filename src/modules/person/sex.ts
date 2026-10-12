@@ -5,7 +5,7 @@ import { helpersArrayElement } from '../helpers/array-element';
  * Returns a random sex.
  *
  * Output of this method is localised, so it should not be used to fill the parameter `sex`
- * available in some other modules for example `firstName(fakerCore)`.
+ * available in some other modules for example `personFirstName(fakerCore)`.
  *
  * @param fakerCore The FakerCore to use.
  *

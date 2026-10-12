@@ -94,8 +94,14 @@ function legacyRegexpStringParse(
 /**
  * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
  *
- * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
- * `L` will be replaced with the appropriate Luhn checksum.
+ * Supported patterns:
+ * - `symbol` (defaults to `'#'`) => Replace with a random digit.
+ * - `'!'` => Replace with a random digit between 2 and 9.
+ * - `'L'` => Replace with the appropriate Luhn checksum.
+ * - `[min-max]` => Generate a number between min and max (inclusive).
+ * - `.{times}` => Repeat the character exactly `times` times.
+ * - `.{min,max}` => Repeat the character `min` to `max` times.
+ * - All other characters will remain unchanged.
  *
  * @param fakerCore The FakerCore to use.
  * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.

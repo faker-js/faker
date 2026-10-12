@@ -1089,6 +1089,6 @@ export default {
     'Zev',
     'Zeyd',
     'Zion',
-    'Ãmer',
+    'Ömer',
   ],
 };

@@ -574,7 +574,7 @@ export class DateModule extends SimpleDateModule {
    * @see faker.location.timeZone(): For generating a timezone based on the current locale.
    *
    * @example
-   * faker.location.timeZone() // 'Pacific/Guam'
+   * faker.date.timeZone() // 'Pacific/Guam'
    *
    * @since 9.0.0
    */
