@@ -18,6 +18,7 @@ import { IPv4Network, IPv6Network } from '../../src/modules/internet';
 import { internetIpv6 } from '../../src/modules/internet/ipv6';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
+import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -865,7 +866,7 @@ describe('internet', () => {
 
         it.each([
           [0, '2001:0db8:1234:5800:0000:0000:0000:0000'],
-          [1 - Number.EPSILON, '2001:0db8:1234:5fff:ffff:ffff:ffff:ffff'],
+          [MERSENNE_MAX_VALUE, '2001:0db8:1234:5fff:ffff:ffff:ffff:ffff'],
         ])(
           'should include the subnet endpoint for random value %s',
           (value, expected) => {
