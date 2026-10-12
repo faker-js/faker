@@ -61,7 +61,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "pl": " !"#'()+,-./ABCDEFGHIJKLMNOPQRSTUVWYZ[]abcdefghijklmnopqrstuvwxyzäçéóöüąĆćęŁłńŚśźŻż–…",
   "pt_BR": " !#&()+,-.:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÍÓàáâãçéêíóôõú",
   "pt_PT": " #()+-./ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyzªºÁÂÉÍàáâãçéêíóôõú",
-  "ro": " #+,-.ABCDEFGHIJKLMNOPRSTUVXZabcdefghijklmnoprstuvxyzÎâăȘșȚț",
+  "ro": " #+,-.ABCDEFGHIJKLMNOPRSTUVXZabcdefghijklmnoprstuvxyzÎâîăȘșȚț",
   "ro_MD": " #+,-./ABCDEFGHIJKLMNOPRSTUVXZabcdefghijklmnoprstuvxyzâîăȘșț",
   "ru": " !#'()+,-.AOАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё—",
   "sk": " "#()+-./ABCDEFGHIJKLMNOPRSTUVWXZabcdefghijklmnopqrstuvwxyzÍÚáäéíóôöúýČčĎďěĽľňŕřŠšťŽž",
