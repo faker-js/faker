@@ -13,6 +13,7 @@ import { internetHttpStatusCode } from './http-status-code';
 import { internetIp } from './ip';
 import type { IPv4NetworkType } from './ipv4';
 import { internetIpv4 } from './ipv4';
+import type { IPv6NetworkType } from './ipv6';
 import { internetIpv6 } from './ipv6';
 import { internetJwt } from './jwt';
 import { internetJwtAlgorithm } from './jwt-algorithm';
@@ -450,14 +451,49 @@ export class InternetModule extends ModuleBase {
 
   /**
    * Generates a random IPv6 address.
+   * The result always contains eight lowercase, zero-padded hexadecimal groups.
+   * When a CIDR block is given, only the host bits are randomized; any host bits in the input are ignored.
+   * Compressed addresses and addresses ending in dotted-decimal IPv4 are accepted.
+   * Zone identifiers and URL brackets are not supported.
+   *
+   * Network presets:
+   * - `'any'`: `::/0`.
+   * - `'loopback'`: `::1/128`.
+   * - `'unique-local'`: `fd00::/8` (locally assigned).
+   * - `'link-local'`: `fe80::/64` (unicast).
+   * - `'multicast'`: `ff00::/8`.
+   * - `'documentation'`: `2001:db8::/32`.
+   *
+   * @param options The optional options object.
+   * @param options.cidrBlock The IPv6 CIDR block to use, with a prefix length from 0 to 128. Overrides `network` if provided.
+   * @param options.network An alias for a well-known CIDR block. Defaults to `'any'`.
+   *
+   * @throws {FakerError} If the CIDR block contains an invalid IPv6 address or prefix length.
+   * @throws {FakerError} If the network is unknown and no CIDR block is provided.
    *
    * @example
    * faker.internet.ipv6() // '269f:1230:73e3:318d:842b:daab:326d:897b'
+   * faker.internet.ipv6({ cidrBlock: '2001:db8:1234::/48' }) // '2001:0db8:1234:318d:842b:daab:326d:897b'
+   * faker.internet.ipv6({ network: 'loopback' }) // '0000:0000:0000:0000:0000:0000:0000:0001'
    *
    * @since 4.0.0
    */
-  ipv6(): string {
-    return internetIpv6(this.fakerCore);
+  ipv6(
+    options: {
+      /**
+       * The IPv6 CIDR block to use, with a prefix length from 0 to 128.
+       * Overrides `network` if provided.
+       */
+      cidrBlock?: string;
+      /**
+       * An alias for a well-known CIDR block.
+       *
+       * @default 'any'
+       */
+      network?: IPv6NetworkType;
+    } = {}
+  ): string {
+    return internetIpv6(this.fakerCore, options);
   }
 
   /**

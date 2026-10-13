@@ -340,10 +340,12 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
   "modules/internet": {
     "types": [
       "IPv4NetworkType",
+      "IPv6NetworkType",
       "InternetModule",
     ],
     "values": [
       "IPv4Network",
+      "IPv6Network",
     ],
   },
   "modules/location": {
