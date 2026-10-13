@@ -9,6 +9,7 @@ import book from './book';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import database from './database';
 import date from './date';
 import food from './food';
 import internet from './internet';
@@ -33,6 +34,7 @@ const az: LocaleDefinition = {
   color,
   commerce,
   company,
+  database,
   date,
   food,
   internet,
