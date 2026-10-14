@@ -22,6 +22,7 @@ export function getEmptyProject(
 
 // The API docs are only generated from `src`, and the locale data files make up
 // the vast majority of the codebase, so scanning them slows things down a lot for no benefit.
+// The main entry point is excluded as well, because it imports all locales.
 export const SOURCE_GLOBS_LIGHT = [
   'src/**/*.ts',
   '!src/index.ts',
