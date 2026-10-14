@@ -39,7 +39,10 @@ export function fakeInternetMac(
  *
  * @experimental
  */
-export function fakeInternetMac(fakerCore: FakerCore, separator?: string): string;
+export function fakeInternetMac(
+  fakerCore: FakerCore,
+  separator?: string
+): string;
 /**
  * Generates a random mac address.
  *

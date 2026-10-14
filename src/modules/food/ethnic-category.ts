@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeFoodEthnicCategory(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.food.ethnic_category);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.food.ethnic_category
+  );
 }

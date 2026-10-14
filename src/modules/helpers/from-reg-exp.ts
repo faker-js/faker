@@ -371,7 +371,8 @@ export function fakeHelpersFromRegExp(
 
     const generatedString = fakeHelpersMultiple(
       fakerCore,
-      () => String.fromCodePoint(fakeHelpersArrayElement(fakerCore, rangeCodes)),
+      () =>
+        String.fromCodePoint(fakeHelpersArrayElement(fakerCore, rangeCodes)),
       { count: repetitions }
     ).join('');
 

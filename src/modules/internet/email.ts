@@ -62,7 +62,10 @@ export function fakeInternetEmail(
     allowSpecialCharacters = false,
   } = options;
 
-  let localPart: string = fakeInternetUsername(fakerCore, { firstName, lastName });
+  let localPart: string = fakeInternetUsername(fakerCore, {
+    firstName,
+    lastName,
+  });
   // Strip any special characters from the local part of the email address
   // This could happen if invalid chars are passed in manually in the firstName/lastName
   localPart = localPart.replaceAll(/[^A-Za-z0-9._+-]+/g, '');

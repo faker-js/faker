@@ -65,7 +65,8 @@ export function fakeSystemNetworkInterface(
 
     case 'slot': {
       suffix = `${fakeStringNumeric(fakerCore)}${
-        fakeHelpersMaybe(fakerCore, () => `f${fakeStringNumeric(fakerCore)}`) ?? ''
+        fakeHelpersMaybe(fakerCore, () => `f${fakeStringNumeric(fakerCore)}`) ??
+        ''
       }${fakeHelpersMaybe(fakerCore, () => `d${fakeStringNumeric(fakerCore)}`) ?? ''}`;
       break;
     }
@@ -77,9 +78,11 @@ export function fakeSystemNetworkInterface(
 
     case 'pci': {
       prefix =
-        fakeHelpersMaybe(fakerCore, () => `P${fakeStringNumeric(fakerCore)}`) ?? '';
+        fakeHelpersMaybe(fakerCore, () => `P${fakeStringNumeric(fakerCore)}`) ??
+        '';
       suffix = `${fakeStringNumeric(fakerCore)}s${fakeStringNumeric(fakerCore)}${
-        fakeHelpersMaybe(fakerCore, () => `f${fakeStringNumeric(fakerCore)}`) ?? ''
+        fakeHelpersMaybe(fakerCore, () => `f${fakeStringNumeric(fakerCore)}`) ??
+        ''
       }${fakeHelpersMaybe(fakerCore, () => `d${fakeStringNumeric(fakerCore)}`) ?? ''}`;
       break;
     }

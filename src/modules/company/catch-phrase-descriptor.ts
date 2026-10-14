@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeCompanyCatchPhraseDescriptor(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.company.descriptor);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.company.descriptor
+  );
 }

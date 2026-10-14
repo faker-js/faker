@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeDatabaseCollation(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.database.collation);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.database.collation
+  );
 }

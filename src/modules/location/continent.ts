@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeLocationContinent(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.location.continent);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.location.continent
+  );
 }

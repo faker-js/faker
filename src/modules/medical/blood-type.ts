@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeMedicalBloodType(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.medical.blood_type);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.medical.blood_type
+  );
 }

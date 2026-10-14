@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeMedicalDepartment(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.medical.department);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.medical.department
+  );
 }

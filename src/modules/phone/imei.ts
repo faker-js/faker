@@ -14,5 +14,9 @@ import { fakeHelpersReplaceCreditCardSymbols } from '../helpers/replace-credit-c
  * @experimental
  */
 export function fakePhoneImei(fakerCore: FakerCore): string {
-  return fakeHelpersReplaceCreditCardSymbols(fakerCore, '##-######-######-L', '#');
+  return fakeHelpersReplaceCreditCardSymbols(
+    fakerCore,
+    '##-######-######-L',
+    '#'
+  );
 }

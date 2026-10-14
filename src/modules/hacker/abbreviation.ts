@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeHackerAbbreviation(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.hacker.abbreviation);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.hacker.abbreviation
+  );
 }

@@ -34,7 +34,9 @@ export function fakeStringSample(
   let returnString = '';
 
   while (returnString.length < length) {
-    returnString += String.fromCodePoint(fakeNumberInt(fakerCore, charCodeOption));
+    returnString += String.fromCodePoint(
+      fakeNumberInt(fakerCore, charCodeOption)
+    );
   }
 
   return returnString;

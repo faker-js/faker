@@ -14,7 +14,9 @@ import { Faker } from '../../faker';
  *
  * @experimental
  */
-export function fakeFinanceTransactionDescription(fakerCore: FakerCore): string {
+export function fakeFinanceTransactionDescription(
+  fakerCore: FakerCore
+): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.finance.transaction_description_pattern
   );

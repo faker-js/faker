@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeVehicleManufacturer(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.vehicle.manufacturer);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.vehicle.manufacturer
+  );
 }

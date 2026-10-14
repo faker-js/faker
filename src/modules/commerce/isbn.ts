@@ -129,7 +129,10 @@ export function fakeCommerceIsbn(
   const { variant = 13, separator = '-' } = options;
 
   const prefix = '978';
-  const [group, groupRules] = fakeHelpersObjectEntry(fakerCore, ISBN_LENGTH_RULES);
+  const [group, groupRules] = fakeHelpersObjectEntry(
+    fakerCore,
+    ISBN_LENGTH_RULES
+  );
   const element = fakeStringNumeric(fakerCore, 8);
   const elementValue = Number.parseInt(element.slice(0, -1));
 

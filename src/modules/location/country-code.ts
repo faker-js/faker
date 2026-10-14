@@ -63,7 +63,8 @@ export function fakeLocationCountryCode(
     }
   })();
 
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.location.country_code)[
-    key
-  ];
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.location.country_code
+  )[key];
 }

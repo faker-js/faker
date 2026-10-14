@@ -33,7 +33,9 @@ export function fakeSystemFileName(
 ): string {
   const { extensionCount = 1 } = options;
 
-  const baseName = fakeWordWords(fakerCore).toLowerCase().replaceAll(/\W/g, '_');
+  const baseName = fakeWordWords(fakerCore)
+    .toLowerCase()
+    .replaceAll(/\W/g, '_');
 
   const extensionsSuffix = fakeHelpersMultiple(
     fakerCore,

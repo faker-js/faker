@@ -18,7 +18,10 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  *
  * @experimental
  */
-export function fakeSystemFileExt(fakerCore: FakerCore, mimeType?: string): string {
+export function fakeSystemFileExt(
+  fakerCore: FakerCore,
+  mimeType?: string
+): string {
   const mimeTypes = fakerCore.locale.system.mime_type;
 
   if (typeof mimeType === 'string') {

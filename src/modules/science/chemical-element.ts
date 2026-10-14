@@ -33,7 +33,9 @@ export interface ChemicalElement {
  *
  * @experimental
  */
-export function fakeScienceChemicalElement(fakerCore: FakerCore): ChemicalElement {
+export function fakeScienceChemicalElement(
+  fakerCore: FakerCore
+): ChemicalElement {
   return fakeHelpersArrayElement(
     fakerCore,
     fakerCore.locale.science.chemical_element

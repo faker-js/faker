@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeCommerceDepartment(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.commerce.department);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.commerce.department
+  );
 }

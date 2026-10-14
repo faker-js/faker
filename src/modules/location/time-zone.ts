@@ -19,5 +19,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakeLocationTimeZone(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.location.time_zone);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.location.time_zone
+  );
 }

@@ -54,7 +54,10 @@ export function fakeInternetDomainWord(fakerCore: FakerCore): string {
   // Generate an ASCII "word" in the form `noun-adjective`
   // For locales with non-ASCII characters, we fall back to lorem words, or a random string
 
-  const word1 = makeValidDomainWordSlug(fakerCore, fakeWordAdjective(fakerCore));
+  const word1 = makeValidDomainWordSlug(
+    fakerCore,
+    fakeWordAdjective(fakerCore)
+  );
   const word2 = makeValidDomainWordSlug(fakerCore, fakeWordNoun(fakerCore));
   return `${word1}-${word2}`.toLowerCase();
 }

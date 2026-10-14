@@ -21,7 +21,10 @@ import type { SexType } from './sex-type';
  *
  * @experimental
  */
-export function fakePersonLastName(fakerCore: FakerCore, sex?: SexType): string {
+export function fakePersonLastName(
+  fakerCore: FakerCore,
+  sex?: SexType
+): string {
   const patterns = fakerCore.locale.raw.person?.last_name_pattern;
   if (patterns != null) {
     const pattern = fakeHelpersWeightedArrayElement(

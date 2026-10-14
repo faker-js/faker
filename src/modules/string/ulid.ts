@@ -56,6 +56,7 @@ export function fakeStringUlid(
   }
 
   return (
-    dateToBase32(date) + fakeStringFromCharacters(fakerCore, CROCKFORDS_BASE32, 16)
+    dateToBase32(date) +
+    fakeStringFromCharacters(fakerCore, CROCKFORDS_BASE32, 16)
   );
 }

@@ -14,5 +14,8 @@ import { fakeHelpersArrayElement } from '../helpers/array-element';
  * @experimental
  */
 export function fakePersonJobDescriptor(fakerCore: FakerCore): string {
-  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.person.job_descriptor);
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.person.job_descriptor
+  );
 }

@@ -19,7 +19,10 @@ import type { SexType } from './sex-type';
  *
  * @experimental
  */
-export function fakePersonFirstName(fakerCore: FakerCore, sex?: SexType): string {
+export function fakePersonFirstName(
+  fakerCore: FakerCore,
+  sex?: SexType
+): string {
   return fakeHelpersArrayElement(
     fakerCore,
     selectDefinition(fakerCore, sex, fakerCore.locale.person.first_name)
