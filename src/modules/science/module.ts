@@ -1,8 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { ChemicalElement } from './chemical-element';
-import { scienceChemicalElement } from './chemical-element';
+import { fakeScienceChemicalElement } from './chemical-element';
 import type { Unit } from './unit';
-import { scienceUnit } from './unit';
+import { fakeScienceUnit } from './unit';
 
 /**
  * Module to generate science related entries.
@@ -28,7 +28,7 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   chemicalElement(): ChemicalElement {
-    return scienceChemicalElement(this.fakerCore);
+    return fakeScienceChemicalElement(this.fakerCore);
   }
 
   /**
@@ -42,6 +42,6 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   unit(): Unit {
-    return scienceUnit(this.fakerCore);
+    return fakeScienceUnit(this.fakerCore);
   }
 }

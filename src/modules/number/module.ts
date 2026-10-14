@@ -1,12 +1,12 @@
 import type { Distributor } from '../../distributors/distributor';
 import { ModuleBase } from '../../internal/module-base';
-import { numberBigInt } from './big-int';
-import { numberBinary } from './binary';
-import { numberFloat } from './float';
-import { numberHex } from './hex';
-import { numberInt } from './int';
-import { numberOctal } from './octal';
-import { numberRomanNumeral } from './roman-numeral';
+import { fakeNumberBigInt } from './big-int';
+import { fakeNumberBinary } from './binary';
+import { fakeNumberFloat } from './float';
+import { fakeNumberHex } from './hex';
+import { fakeNumberInt } from './int';
+import { fakeNumberOctal } from './octal';
+import { fakeNumberRomanNumeral } from './roman-numeral';
 
 /**
  * Module to generate numbers of any kind.
@@ -84,7 +84,7 @@ export class NumberModule extends ModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    return numberInt(this.fakerCore, options);
+    return fakeNumberInt(this.fakerCore, options);
   }
 
   /**
@@ -147,7 +147,7 @@ export class NumberModule extends ModuleBase {
           distributor?: Distributor;
         } = {}
   ): number {
-    return numberFloat(this.fakerCore, options);
+    return fakeNumberFloat(this.fakerCore, options);
   }
 
   /**
@@ -188,7 +188,7 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberBinary(this.fakerCore, options);
+    return fakeNumberBinary(this.fakerCore, options);
   }
 
   /**
@@ -229,7 +229,7 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberOctal(this.fakerCore, options);
+    return fakeNumberOctal(this.fakerCore, options);
   }
 
   /**
@@ -268,7 +268,7 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberHex(this.fakerCore, options);
+    return fakeNumberHex(this.fakerCore, options);
   }
 
   /**
@@ -321,7 +321,7 @@ export class NumberModule extends ModuleBase {
           multipleOf?: bigint | number | string | boolean;
         } = {}
   ): bigint {
-    return numberBigInt(this.fakerCore, options);
+    return fakeNumberBigInt(this.fakerCore, options);
   }
 
   /**
@@ -364,6 +364,6 @@ export class NumberModule extends ModuleBase {
           max?: number;
         } = {}
   ): string {
-    return numberRomanNumeral(this.fakerCore, options);
+    return fakeNumberRomanNumeral(this.fakerCore, options);
   }
 }

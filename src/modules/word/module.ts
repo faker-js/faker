@@ -1,14 +1,14 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { wordAdjective } from './adjective';
-import { wordAdverb } from './adverb';
-import { wordConjunction } from './conjunction';
-import { wordInterjection } from './interjection';
-import { wordNoun } from './noun';
-import { wordPreposition } from './preposition';
-import { wordSample } from './sample';
-import { wordVerb } from './verb';
-import { wordWords } from './words';
+import { fakeWordAdjective } from './adjective';
+import { fakeWordAdverb } from './adverb';
+import { fakeWordConjunction } from './conjunction';
+import { fakeWordInterjection } from './interjection';
+import { fakeWordNoun } from './noun';
+import { fakeWordPreposition } from './preposition';
+import { fakeWordSample } from './sample';
+import { fakeWordVerb } from './verb';
+import { fakeWordWords } from './words';
 
 /**
  * Module to return various types of words.
@@ -52,7 +52,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordAdjective(this.fakerCore, options);
+    return fakeWordAdjective(this.fakerCore, options);
   }
 
   /**
@@ -88,7 +88,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordAdverb(this.fakerCore, options);
+    return fakeWordAdverb(this.fakerCore, options);
   }
 
   /**
@@ -124,7 +124,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordConjunction(this.fakerCore, options);
+    return fakeWordConjunction(this.fakerCore, options);
   }
 
   /**
@@ -160,7 +160,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordInterjection(this.fakerCore, options);
+    return fakeWordInterjection(this.fakerCore, options);
   }
 
   /**
@@ -196,7 +196,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordNoun(this.fakerCore, options);
+    return fakeWordNoun(this.fakerCore, options);
   }
 
   /**
@@ -232,7 +232,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordPreposition(this.fakerCore, options);
+    return fakeWordPreposition(this.fakerCore, options);
   }
 
   /**
@@ -268,7 +268,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordVerb(this.fakerCore, options);
+    return fakeWordVerb(this.fakerCore, options);
   }
 
   /**
@@ -304,7 +304,7 @@ export class WordModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return wordSample(this.fakerCore, options);
+    return fakeWordSample(this.fakerCore, options);
   }
 
   /**
@@ -333,6 +333,6 @@ export class WordModule extends ModuleBase {
           count?: NumberOrRange;
         } = {}
   ): string {
-    return wordWords(this.fakerCore, options);
+    return fakeWordWords(this.fakerCore, options);
   }
 }
