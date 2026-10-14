@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random continent name.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * locationContinent(fakerCore) // 'Asia'
+ * fakeLocationContinent(fakerCore) // 'Asia'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationContinent(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.location.continent);
+export function fakeLocationContinent(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.location.continent);
 }

@@ -1,9 +1,9 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { helpersMaybe } from '../helpers/maybe';
-import { helpersObjectKey } from '../helpers/object-key';
-import { internetMac } from '../internet/mac';
-import { stringNumeric } from '../string/numeric';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersMaybe } from '../helpers/maybe';
+import { fakeHelpersObjectKey } from '../helpers/object-key';
+import { fakeInternetMac } from '../internet/mac';
+import { fakeStringNumeric } from '../string/numeric';
 
 const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
 export type CommonInterfaceType = (typeof commonInterfaceTypes)[number];
@@ -24,63 +24,63 @@ export type CommonInterfaceSchema = keyof typeof commonInterfaceSchemas;
  * @param options.interfaceSchema The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
  *
  * @example
- * systemNetworkInterface(fakerCore) // 'enp0s3'
- * systemNetworkInterface(fakerCore, { interfaceType: 'wl' }) // 'wlo1'
- * systemNetworkInterface(fakerCore, { interfaceSchema: 'mac' }) // 'enx000c29c00000'
- * systemNetworkInterface(fakerCore, { interfaceType: 'en', interfaceSchema: 'pci' }) // 'enp5s0f1d0'
+ * fakeSystemNetworkInterface(fakerCore) // 'enp0s3'
+ * fakeSystemNetworkInterface(fakerCore, { interfaceType: 'wl' }) // 'wlo1'
+ * fakeSystemNetworkInterface(fakerCore, { interfaceSchema: 'mac' }) // 'enx000c29c00000'
+ * fakeSystemNetworkInterface(fakerCore, { interfaceType: 'en', interfaceSchema: 'pci' }) // 'enp5s0f1d0'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function systemNetworkInterface(
+export function fakeSystemNetworkInterface(
   fakerCore: FakerCore,
   options: {
     /**
      * The interface type. Can be one of `en`, `wl`, `ww`.
      *
-     * @default helpersArrayElement(fakerCore, ['en', 'wl', 'ww'])
+     * @default fakeHelpersArrayElement(fakerCore, ['en', 'wl', 'ww'])
      */
     interfaceType?: CommonInterfaceType;
     /**
      * The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
      *
-     * @default helpersObjectKey(fakerCore, ['index' | 'slot' | 'mac' | 'pci'])
+     * @default fakeHelpersObjectKey(fakerCore, ['index' | 'slot' | 'mac' | 'pci'])
      */
     interfaceSchema?: CommonInterfaceSchema;
   } = {}
 ): string {
   const {
-    interfaceType = helpersArrayElement(fakerCore, commonInterfaceTypes),
-    interfaceSchema = helpersObjectKey(fakerCore, commonInterfaceSchemas),
+    interfaceType = fakeHelpersArrayElement(fakerCore, commonInterfaceTypes),
+    interfaceSchema = fakeHelpersObjectKey(fakerCore, commonInterfaceSchemas),
   } = options;
 
   let suffix: string;
   let prefix = '';
   switch (interfaceSchema) {
     case 'index': {
-      suffix = stringNumeric(fakerCore);
+      suffix = fakeStringNumeric(fakerCore);
       break;
     }
 
     case 'slot': {
-      suffix = `${stringNumeric(fakerCore)}${
-        helpersMaybe(fakerCore, () => `f${stringNumeric(fakerCore)}`) ?? ''
-      }${helpersMaybe(fakerCore, () => `d${stringNumeric(fakerCore)}`) ?? ''}`;
+      suffix = `${fakeStringNumeric(fakerCore)}${
+        fakeHelpersMaybe(fakerCore, () => `f${fakeStringNumeric(fakerCore)}`) ?? ''
+      }${fakeHelpersMaybe(fakerCore, () => `d${fakeStringNumeric(fakerCore)}`) ?? ''}`;
       break;
     }
 
     case 'mac': {
-      suffix = internetMac(fakerCore, '');
+      suffix = fakeInternetMac(fakerCore, '');
       break;
     }
 
     case 'pci': {
       prefix =
-        helpersMaybe(fakerCore, () => `P${stringNumeric(fakerCore)}`) ?? '';
-      suffix = `${stringNumeric(fakerCore)}s${stringNumeric(fakerCore)}${
-        helpersMaybe(fakerCore, () => `f${stringNumeric(fakerCore)}`) ?? ''
-      }${helpersMaybe(fakerCore, () => `d${stringNumeric(fakerCore)}`) ?? ''}`;
+        fakeHelpersMaybe(fakerCore, () => `P${fakeStringNumeric(fakerCore)}`) ?? '';
+      suffix = `${fakeStringNumeric(fakerCore)}s${fakeStringNumeric(fakerCore)}${
+        fakeHelpersMaybe(fakerCore, () => `f${fakeStringNumeric(fakerCore)}`) ?? ''
+      }${fakeHelpersMaybe(fakerCore, () => `d${fakeStringNumeric(fakerCore)}`) ?? ''}`;
       break;
     }
   }

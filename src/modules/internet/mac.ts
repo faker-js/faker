@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberHex } from '../number/hex';
+import { fakeNumberHex } from '../number/hex';
 
 /**
  * Generates a random mac address.
@@ -9,13 +9,13 @@ import { numberHex } from '../number/hex';
  * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
  *
  * @example
- * internetMac(fakerCore) // '32:8e:2e:09:c6:05'
+ * fakeInternetMac(fakerCore) // '32:8e:2e:09:c6:05'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetMac(
+export function fakeInternetMac(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -33,13 +33,13 @@ export function internetMac(
  * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
  *
  * @example
- * internetMac(fakerCore) // '32:8e:2e:09:c6:05'
+ * fakeInternetMac(fakerCore) // '32:8e:2e:09:c6:05'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetMac(fakerCore: FakerCore, separator?: string): string;
+export function fakeInternetMac(fakerCore: FakerCore, separator?: string): string;
 /**
  * Generates a random mac address.
  *
@@ -48,13 +48,13 @@ export function internetMac(fakerCore: FakerCore, separator?: string): string;
  * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
  *
  * @example
- * internetMac(fakerCore) // '32:8e:2e:09:c6:05'
+ * fakeInternetMac(fakerCore) // '32:8e:2e:09:c6:05'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetMac(
+export function fakeInternetMac(
   fakerCore: FakerCore,
   options?:
     | string
@@ -67,7 +67,7 @@ export function internetMac(
         separator?: string;
       }
 ): string;
-export function internetMac(
+export function fakeInternetMac(
   fakerCore: FakerCore,
   options:
     | string
@@ -95,7 +95,7 @@ export function internetMac(
   }
 
   for (i = 0; i < 12; i++) {
-    mac += numberHex(fakerCore, 15);
+    mac += fakeNumberHex(fakerCore, 15);
     if (i !== 11 && i % 2 === 1) {
       mac += separator;
     }

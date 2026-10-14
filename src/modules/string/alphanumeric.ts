@@ -1,10 +1,10 @@
 import type { FakerCore } from '../../core';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
-import { helpersRangeToNumber } from '../helpers/range-to-number';
+import { fakeHelpersRangeToNumber } from '../helpers/range-to-number';
 import type { AlphaNumericChar } from './_types';
 import { DIGIT_CHARS, LOWER_CHARS, UPPER_CHARS } from './_types';
-import { stringFromCharacters } from './from-characters';
+import { fakeStringFromCharacters } from './from-characters';
 
 /**
  * Generating a string consisting of alpha characters and digits.
@@ -16,18 +16,18 @@ import { stringFromCharacters } from './from-characters';
  * @param options.exclude An array of characters and digits which should be excluded in the generated string. Defaults to `[]`.
  *
  * @example
- * stringAlphanumeric(fakerCore) // '2'
- * stringAlphanumeric(fakerCore, 5) // '3e5V7'
- * stringAlphanumeric(fakerCore, { length: { min: 5, max: 10 } }) // 'muaApG'
- * stringAlphanumeric(fakerCore, { casing: 'upper' }) // 'A'
- * stringAlphanumeric(fakerCore, { exclude: ['W'] }) // 'r'
- * stringAlphanumeric(fakerCore, { length: 5, exclude: ["a"] }) // 'x1Z7f'
+ * fakeStringAlphanumeric(fakerCore) // '2'
+ * fakeStringAlphanumeric(fakerCore, 5) // '3e5V7'
+ * fakeStringAlphanumeric(fakerCore, { length: { min: 5, max: 10 } }) // 'muaApG'
+ * fakeStringAlphanumeric(fakerCore, { casing: 'upper' }) // 'A'
+ * fakeStringAlphanumeric(fakerCore, { exclude: ['W'] }) // 'r'
+ * fakeStringAlphanumeric(fakerCore, { length: 5, exclude: ["a"] }) // 'x1Z7f'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function stringAlphanumeric(
+export function fakeStringAlphanumeric(
   fakerCore: FakerCore,
   options:
     | number
@@ -58,7 +58,7 @@ export function stringAlphanumeric(
     };
   }
 
-  const length = helpersRangeToNumber(fakerCore, options.length ?? 1);
+  const length = fakeHelpersRangeToNumber(fakerCore, options.length ?? 1);
   if (length <= 0) {
     return '';
   }
@@ -91,5 +91,5 @@ export function stringAlphanumeric(
 
   charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-  return stringFromCharacters(fakerCore, charsArray, length);
+  return fakeStringFromCharacters(fakerCore, charsArray, length);
 }

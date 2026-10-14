@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { stringNumeric } from '../string/numeric';
+import { fakeStringNumeric } from '../string/numeric';
 
 /**
  * Generates a random PIN number.
@@ -10,17 +10,17 @@ import { stringNumeric } from '../string/numeric';
  *
  * @throws {FakerError} Will throw an error if length is less than 1.
  *
- * @see stringNumeric(fakerCore): For generating the pin with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * financePin(fakerCore) // '5067'
- * financePin(fakerCore, 6) // '213789'
+ * fakeFinancePin(fakerCore) // '5067'
+ * fakeFinancePin(fakerCore, 6) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financePin(fakerCore: FakerCore, length?: number): string;
+export function fakeFinancePin(fakerCore: FakerCore, length?: number): string;
 /**
  * Generates a random PIN number.
  *
@@ -30,17 +30,17 @@ export function financePin(fakerCore: FakerCore, length?: number): string;
  *
  * @throws {FakerError} Will throw an error if length is less than 1.
  *
- * @see stringNumeric(fakerCore): For generating the pin with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * financePin(fakerCore) // '5067'
- * financePin(fakerCore, { length: 6 }) // '213789'
+ * fakeFinancePin(fakerCore) // '5067'
+ * fakeFinancePin(fakerCore, { length: 6 }) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financePin(
+export function fakeFinancePin(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -60,18 +60,18 @@ export function financePin(
  *
  * @throws {FakerError} Will throw an error if length is less than 1.
  *
- * @see stringNumeric(fakerCore): For generating the pin with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * financePin(fakerCore) // '5067'
- * financePin(fakerCore, { length: 6 }) // '213789'
- * financePin(fakerCore, 6) // '213789'
+ * fakeFinancePin(fakerCore) // '5067'
+ * fakeFinancePin(fakerCore, { length: 6 }) // '213789'
+ * fakeFinancePin(fakerCore, 6) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financePin(
+export function fakeFinancePin(
   fakerCore: FakerCore,
   options?:
     | number
@@ -93,18 +93,18 @@ export function financePin(
  *
  * @throws {FakerError} Will throw an error if length is less than 1.
  *
- * @see stringNumeric(fakerCore): For generating the pin with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the pin with greater control.
  *
  * @example
- * financePin(fakerCore) // '5067'
- * financePin(fakerCore, { length: 6 }) // '213789'
- * financePin(fakerCore, 6) // '213789'
+ * fakeFinancePin(fakerCore) // '5067'
+ * fakeFinancePin(fakerCore, { length: 6 }) // '213789'
+ * fakeFinancePin(fakerCore, 6) // '213789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financePin(
+export function fakeFinancePin(
   fakerCore: FakerCore,
   options:
     | number
@@ -127,5 +127,5 @@ export function financePin(
     throw new FakerError('minimum length is 1');
   }
 
-  return stringNumeric(fakerCore, { length, allowLeadingZeros: true });
+  return fakeStringNumeric(fakerCore, { length, allowLeadingZeros: true });
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { colorHuman } from '../color/human';
+import { fakeColorHuman } from '../color/human';
 
 /**
  * Returns a vehicle color.
@@ -7,12 +7,12 @@ import { colorHuman } from '../color/human';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicleColor(fakerCore) // 'red'
+ * fakeVehicleColor(fakerCore) // 'red'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicleColor(fakerCore: FakerCore): string {
-  return colorHuman(fakerCore);
+export function fakeVehicleColor(fakerCore: FakerCore): string {
+  return fakeColorHuman(fakerCore);
 }

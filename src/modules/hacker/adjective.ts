@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random hacker/IT adjective.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * hackerAdjective(fakerCore) // 'cross-platform'
+ * fakeHackerAdjective(fakerCore) // 'cross-platform'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function hackerAdjective(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.hacker.adjective);
+export function fakeHackerAdjective(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.hacker.adjective);
 }

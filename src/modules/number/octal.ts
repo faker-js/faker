@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from './int';
+import { fakeNumberInt } from './int';
 
 /**
  * Returns an [octal](https://en.wikipedia.org/wiki/Octal) number.
@@ -13,18 +13,18 @@ import { numberInt } from './int';
  * @throws {FakerError} When `min` is greater than `max`.
  * @throws {FakerError} When there are no integers between `min` and `max`.
  *
- * @see stringOctal(fakerCore): For generating an `octal string` with a given length (range).
+ * @see fakeStringOctal(fakerCore): For generating an `octal string` with a given length (range).
  *
  * @example
- * numberOctal(fakerCore) // '5'
- * numberOctal(fakerCore, 255) // '377'
- * numberOctal(fakerCore, { min: 0, max: 65535 }) // '4766'
+ * fakeNumberOctal(fakerCore) // '5'
+ * fakeNumberOctal(fakerCore, 255) // '377'
+ * fakeNumberOctal(fakerCore, { min: 0, max: 65535 }) // '4766'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function numberOctal(
+export function fakeNumberOctal(
   fakerCore: FakerCore,
   options:
     | number
@@ -49,7 +49,7 @@ export function numberOctal(
 
   const { min = 0, max = 7 } = options;
 
-  return numberInt(fakerCore, {
+  return fakeNumberInt(fakerCore, {
     max,
     min,
   }).toString(8);

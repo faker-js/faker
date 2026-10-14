@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { stringAlpha } from '../string/alpha';
-import { stringAlphanumeric } from '../string/alphanumeric';
-import { stringNumeric } from '../string/numeric';
+import { fakeStringAlpha } from '../string/alpha';
+import { fakeStringAlphanumeric } from '../string/alphanumeric';
+import { fakeStringNumeric } from '../string/numeric';
 
 // NHTSA 49 CFR § 565.15(c), Tables III and IV define the transliteration
 // values and position weights used here:
@@ -57,27 +57,27 @@ export function vinCheckDigit(vin: string): string {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicleVin(fakerCore) // 'YV1MH682762184654'
+ * fakeVehicleVin(fakerCore) // 'YV1MH682762184654'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicleVin(fakerCore: FakerCore): string {
+export function fakeVehicleVin(fakerCore: FakerCore): string {
   const exclude = ['o', 'i', 'q', 'O', 'I', 'Q'];
-  const vin = `${stringAlphanumeric(fakerCore, {
+  const vin = `${fakeStringAlphanumeric(fakerCore, {
     length: 10,
     casing: 'upper',
     exclude,
-  })}${stringAlpha(fakerCore, {
+  })}${fakeStringAlpha(fakerCore, {
     length: 1,
     casing: 'upper',
     exclude,
-  })}${stringAlphanumeric(fakerCore, {
+  })}${fakeStringAlphanumeric(fakerCore, {
     length: 1,
     casing: 'upper',
     exclude,
-  })}${stringNumeric(fakerCore, { length: 5, allowLeadingZeros: true })}`;
+  })}${fakeStringNumeric(fakerCore, { length: 5, allowLeadingZeros: true })}`;
 
   return `${vin.slice(0, 8)}${vinCheckDigit(vin)}${vin.slice(9)}`;
 }

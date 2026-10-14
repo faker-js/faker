@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { helpersArrayElement } from '../helpers/array-element';
-import { helpersFromRegExp } from '../helpers/from-reg-exp';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersFromRegExp } from '../helpers/from-reg-exp';
 
 /**
  * The VAT identification number patterns of the EU member states, keyed by
@@ -145,29 +145,29 @@ export type VatNumberCountryCode = keyof typeof vatNumberFormats;
  * @throws {FakerError} Will throw an error if the passed country code is not supported.
  *
  * @example
- * financeVatNumber(fakerCore) // 'SK4318759382'
- * financeVatNumber(fakerCore, { countryCode: 'DE' }) // 'DE644073457'
- * financeVatNumber(fakerCore, { countryCode: 'NL' }) // 'NL840351580B96'
- * financeVatNumber(fakerCore, { countryCode: 'GR' }) // 'EL892156043'
+ * fakeFinanceVatNumber(fakerCore) // 'SK4318759382'
+ * fakeFinanceVatNumber(fakerCore, { countryCode: 'DE' }) // 'DE644073457'
+ * fakeFinanceVatNumber(fakerCore, { countryCode: 'NL' }) // 'NL840351580B96'
+ * fakeFinanceVatNumber(fakerCore, { countryCode: 'GR' }) // 'EL892156043'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeVatNumber(
+export function fakeFinanceVatNumber(
   fakerCore: FakerCore,
   options: {
     /**
      * The two-letter code of the country you want a VAT number for.
      * Greece may be given as either `GR` or `EL`.
      *
-     * @default helpersArrayElement(fakerCore, vatNumberCountryCodes)
+     * @default fakeHelpersArrayElement(fakerCore, vatNumberCountryCodes)
      */
     countryCode?: VatNumberCountryCode;
   } = {}
 ): string {
   const {
-    countryCode = helpersArrayElement(fakerCore, vatNumberCountryCodes),
+    countryCode = fakeHelpersArrayElement(fakerCore, vatNumberCountryCodes),
   } = options;
 
   const pattern = vatNumberFormats[countryCode];
@@ -176,10 +176,10 @@ export function financeVatNumber(
     throw new FakerError(`Country code ${countryCode} not supported.`);
   }
 
-  return helpersFromRegExp(
+  return fakeHelpersFromRegExp(
     fakerCore,
     typeof pattern === 'string'
       ? pattern
-      : helpersArrayElement(fakerCore, pattern)
+      : fakeHelpersArrayElement(fakerCore, pattern)
   );
 }

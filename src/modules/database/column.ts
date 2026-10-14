@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random database column name.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * databaseColumn(fakerCore) // 'createdAt'
+ * fakeDatabaseColumn(fakerCore) // 'createdAt'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function databaseColumn(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.database.column);
+export function fakeDatabaseColumn(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.database.column);
 }

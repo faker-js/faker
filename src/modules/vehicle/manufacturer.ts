@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a manufacturer name.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicleManufacturer(fakerCore) // 'Ford'
+ * fakeVehicleManufacturer(fakerCore) // 'Ford'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicleManufacturer(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.vehicle.manufacturer);
+export function fakeVehicleManufacturer(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.vehicle.manufacturer);
 }

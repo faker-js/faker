@@ -7,31 +7,31 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * locationPostalAddress(fakerCore)
+ * fakeLocationPostalAddress(fakerCore)
  * // 'Apt. 980
  * // 0917 O'Conner Estates
  * // West Shannonview
  * // Michigan
  * // 82180'
  *
- * locationPostalAddress(fakerCoreEN_US)
+ * fakeLocationPostalAddress(fakerCoreEN_US)
  * // '0917 O'Conner Estates, Apt. 980
  * // West Shannonview, MI 82180'
  *
- * locationPostalAddress(fakerCoreEN_GB)
+ * fakeLocationPostalAddress(fakerCoreEN_GB)
  * // '79 Bogan Corner
  * // Castle Zemlakborough
  * // Dumfries and Galloway
  * // ZH17 2SD'
  *
- * locationPostalAddress(fakerCoreZH_CN)
+ * fakeLocationPostalAddress(fakerCoreZH_CN)
  * // '广东省贵原市门路19号'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationPostalAddress(fakerCore: FakerCore): string {
+export function fakeLocationPostalAddress(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.location.postal_address
   );

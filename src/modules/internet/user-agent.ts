@@ -7,14 +7,14 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * internetUserAgent(fakerCore)
+ * fakeInternetUserAgent(fakerCore)
  * // 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_1 like Mac OS X) AppleWebKit/537.19.86 (KHTML, like Gecko) Version/18_3 Mobile/15E148 Safari/598.43'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetUserAgent(fakerCore: FakerCore): string {
+export function fakeInternetUserAgent(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.internet.user_agent_pattern
   );

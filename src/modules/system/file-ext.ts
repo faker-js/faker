@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a file extension.
@@ -11,14 +11,14 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @throws {FakerError} If the given mime type is not supported.
  *
  * @example
- * systemFileExt(fakerCore) // 'emf'
- * systemFileExt(fakerCore, 'application/json') // 'json'
+ * fakeSystemFileExt(fakerCore) // 'emf'
+ * fakeSystemFileExt(fakerCore, 'application/json') // 'json'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function systemFileExt(fakerCore: FakerCore, mimeType?: string): string {
+export function fakeSystemFileExt(fakerCore: FakerCore, mimeType?: string): string {
   const mimeTypes = fakerCore.locale.system.mime_type;
 
   if (typeof mimeType === 'string') {
@@ -27,11 +27,11 @@ export function systemFileExt(fakerCore: FakerCore, mimeType?: string): string {
       throw new FakerError(`MIME type ${mimeType} is not supported.`);
     }
 
-    return helpersArrayElement(fakerCore, entry.extensions);
+    return fakeHelpersArrayElement(fakerCore, entry.extensions);
   }
 
   const extensionSet = new Set(
     Object.values(mimeTypes).flatMap(({ extensions }) => extensions)
   );
-  return helpersArrayElement(fakerCore, [...extensionSet]);
+  return fakeHelpersArrayElement(fakerCore, [...extensionSet]);
 }

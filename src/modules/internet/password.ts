@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a random password-like string. Do not use this method for generating actual passwords for users.
@@ -14,17 +14,17 @@ import { numberInt } from '../number/int';
  * @param options.prefix The prefix to use. Defaults to `''`.
  *
  * @example
- * internetPassword(fakerCore) // '89G1wJuBLbGziIs'
- * internetPassword(fakerCore, { length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
- * internetPassword(fakerCore, { length: 20, memorable: true }) // 'lawetimufozujosodedi'
- * internetPassword(fakerCore, { length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
- * internetPassword(fakerCore, { length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
+ * fakeInternetPassword(fakerCore) // '89G1wJuBLbGziIs'
+ * fakeInternetPassword(fakerCore, { length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
+ * fakeInternetPassword(fakerCore, { length: 20, memorable: true }) // 'lawetimufozujosodedi'
+ * fakeInternetPassword(fakerCore, { length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
+ * fakeInternetPassword(fakerCore, { length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetPassword(
+export function fakeInternetPassword(
   fakerCore: FakerCore,
   options: {
     /**
@@ -77,7 +77,7 @@ export function internetPassword(
       currentPattern = consonant.test(result) ? vowel : consonant;
     }
 
-    const n = numberInt(fakerCore, 94) + 33;
+    const n = fakeNumberInt(fakerCore, 94) + 33;
     let char = String.fromCodePoint(n);
     if (memorable) {
       char = char.toLowerCase();

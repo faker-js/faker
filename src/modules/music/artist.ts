@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random artist name.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * musicArtist(fakerCore) // 'The Beatles'
+ * fakeMusicArtist(fakerCore) // 'The Beatles'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function musicArtist(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.music.artist);
+export function fakeMusicArtist(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.music.artist);
 }

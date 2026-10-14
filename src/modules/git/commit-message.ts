@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { hackerAdjective } from '../hacker/adjective';
-import { hackerNoun } from '../hacker/noun';
-import { hackerVerb } from '../hacker/verb';
+import { fakeHackerAdjective } from '../hacker/adjective';
+import { fakeHackerNoun } from '../hacker/noun';
+import { fakeHackerVerb } from '../hacker/verb';
 
 /**
  * Generates a random commit message.
@@ -9,12 +9,12 @@ import { hackerVerb } from '../hacker/verb';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * gitCommitMessage(fakerCore) // 'reboot cross-platform driver'
+ * fakeGitCommitMessage(fakerCore) // 'reboot cross-platform driver'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function gitCommitMessage(fakerCore: FakerCore): string {
-  return `${hackerVerb(fakerCore)} ${hackerAdjective(fakerCore)} ${hackerNoun(fakerCore)}`;
+export function fakeGitCommitMessage(fakerCore: FakerCore): string {
+  return `${fakeHackerVerb(fakerCore)} ${fakeHackerAdjective(fakerCore)} ${fakeHackerNoun(fakerCore)}`;
 }

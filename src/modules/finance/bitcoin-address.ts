@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import type { Casing, NumberRange } from '../../utils/types';
-import { helpersEnumValue } from '../helpers/enum-value';
-import { numberInt } from '../number/int';
-import { stringAlphanumeric } from '../string/alphanumeric';
+import { fakeHelpersEnumValue } from '../helpers/enum-value';
+import { fakeNumberInt } from '../number/int';
+import { fakeStringAlphanumeric } from '../string/alphanumeric';
 
 /**
  * The bitcoin address families.
@@ -84,21 +84,21 @@ export const BitcoinAddressSpecs: Record<
  * @param options.network The bitcoin network (`'mainnet'` or `'testnet'`). Defaults to `'mainnet'`.
  *
  * @example
- * financeBitcoinAddress(fakerCore) // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
- * financeBitcoinAddress(fakerCore, { type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
- * financeBitcoinAddress(fakerCore, { type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
+ * fakeFinanceBitcoinAddress(fakerCore) // '1TeZEFLmGPLEQrSRdAcnZLoWwYeiHwmRog'
+ * fakeFinanceBitcoinAddress(fakerCore, { type: 'bech32' }) // 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4'
+ * fakeFinanceBitcoinAddress(fakerCore, { type: 'bech32', network: 'testnet' }) // 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeBitcoinAddress(
+export function fakeFinanceBitcoinAddress(
   fakerCore: FakerCore,
   options: {
     /**
      * The bitcoin address type (`'legacy'`, `'segwit'`, `'bech32'` or `'taproot'`).
      *
-     * @default helpersEnumValue(fakerCore, BitcoinAddressFamily)
+     * @default fakeHelpersEnumValue(fakerCore, BitcoinAddressFamily)
      */
     type?: BitcoinAddressFamilyType;
     /**
@@ -110,14 +110,14 @@ export function financeBitcoinAddress(
   } = {}
 ): string {
   const {
-    type = helpersEnumValue(fakerCore, BitcoinAddressFamily),
+    type = fakeHelpersEnumValue(fakerCore, BitcoinAddressFamily),
     network = BitcoinNetwork.Mainnet,
   } = options;
   const addressSpec = BitcoinAddressSpecs[type];
   const addressPrefix = addressSpec.prefix[network];
-  const addressLength = numberInt(fakerCore, addressSpec.length);
+  const addressLength = fakeNumberInt(fakerCore, addressSpec.length);
 
-  const address = stringAlphanumeric(fakerCore, {
+  const address = fakeStringAlphanumeric(fakerCore, {
     length: addressLength - addressPrefix.length,
     casing: addressSpec.casing,
     exclude: addressSpec.exclude,

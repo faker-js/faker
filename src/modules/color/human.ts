@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random human-readable color name.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * colorHuman(fakerCore) // 'red'
+ * fakeColorHuman(fakerCore) // 'red'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorHuman(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.color.human);
+export function fakeColorHuman(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.color.human);
 }

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { stringAlpha } from '../string/alpha';
-import { stringNumeric } from '../string/numeric';
+import { fakeStringAlpha } from '../string/alpha';
+import { fakeStringNumeric } from '../string/numeric';
 
 /**
  * Returns a vehicle registration number (Vehicle Registration Mark - VRM)
@@ -8,20 +8,20 @@ import { stringNumeric } from '../string/numeric';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicleVrm(fakerCore) // 'MF56UPA'
+ * fakeVehicleVrm(fakerCore) // 'MF56UPA'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicleVrm(fakerCore: FakerCore): string {
-  return `${stringAlpha(fakerCore, {
+export function fakeVehicleVrm(fakerCore: FakerCore): string {
+  return `${fakeStringAlpha(fakerCore, {
     length: 2,
     casing: 'upper',
-  })}${stringNumeric(fakerCore, {
+  })}${fakeStringNumeric(fakerCore, {
     length: 2,
     allowLeadingZeros: true,
-  })}${stringAlpha(fakerCore, {
+  })}${fakeStringAlpha(fakerCore, {
     length: 3,
     casing: 'upper',
   })}`;

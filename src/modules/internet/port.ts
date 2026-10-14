@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a random port number.
@@ -7,12 +7,12 @@ import { numberInt } from '../number/int';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * internetPort(fakerCore) // 9414
+ * fakeInternetPort(fakerCore) // 9414
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetPort(fakerCore: FakerCore): number {
-  return numberInt(fakerCore, { min: 1, max: 65535 });
+export function fakeInternetPort(fakerCore: FakerCore): number {
+  return fakeNumberInt(fakerCore, { min: 1, max: 65535 });
 }

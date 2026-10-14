@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random buzz verb that can be used to demonstrate data being viewed by a manager.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * companyBuzzVerb(fakerCore) // 'empower'
+ * fakeCompanyBuzzVerb(fakerCore) // 'empower'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function companyBuzzVerb(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.company.buzz_verb);
+export function fakeCompanyBuzzVerb(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.company.buzz_verb);
 }

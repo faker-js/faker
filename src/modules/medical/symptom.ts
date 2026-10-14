@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random symptom.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * medicalSymptom(fakerCore) // 'Shortness of Breath'
+ * fakeMedicalSymptom(fakerCore) // 'Shortness of Breath'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function medicalSymptom(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.medical.symptom);
+export function fakeMedicalSymptom(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.medical.symptom);
 }
