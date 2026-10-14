@@ -290,7 +290,7 @@ describe('number', () => {
       });
 
       it('should not round past the upper bound with an offset range', () => {
-        const nearOne = () => 1 - Number.EPSILON / 2;
+        const nearOne = () => MERSENNE_MAX_VALUE;
 
         expect(faker.number.int({ min: 1, max: 2, distributor: nearOne })).toBe(
           2
@@ -307,7 +307,7 @@ describe('number', () => {
           faker.number.int({
             min: Number.MAX_SAFE_INTEGER - 1,
             max: Number.MAX_SAFE_INTEGER,
-            distributor: () => 0.9,
+            distributor: nearOne,
           })
         ).toBe(Number.MAX_SAFE_INTEGER);
       });
