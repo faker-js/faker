@@ -20,13 +20,13 @@ exports[`image > 42 > dataUri > with width 1`] = `"data:image/svg+xml;base64,PHN
 
 exports[`image > 42 > dataUri > with width and height 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22128%22%20height%3D%22128%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%238ead33%22%2F%3E%3Ctext%20x%3D%2264%22%20y%3D%2264%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E128x128%3C%2Ftext%3E%3C%2Fsvg%3E"`;
 
-exports[`image > 42 > personPortrait > noArgs 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/73.jpg"`;
+exports[`image > 42 > personPortrait > noArgs 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/95.jpg"`;
 
 exports[`image > 42 > personPortrait > with sex 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/37.jpg"`;
 
 exports[`image > 42 > personPortrait > with sex and size 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/256/37.jpg"`;
 
-exports[`image > 42 > personPortrait > with size 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/73.jpg"`;
+exports[`image > 42 > personPortrait > with size 1`] = `"https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/128/95.jpg"`;
 
 exports[`image > 42 > url > noArgs 1`] = `"https://picsum.photos/seed/B993RBH1Y/1498/3802"`;
 
