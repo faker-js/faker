@@ -189,7 +189,7 @@ export class PersonModule extends ModuleBase {
        * Whether `'generic'` should be included in the potential outputs.
        * If `false`, this method only returns `'female'` and `'male'`.
        *
-       * @default false
+       * @default true
        */
       includeGeneric?: boolean;
     } = {}

@@ -135,3 +135,14 @@ If you want to restore this behavior, you can provide the 'any-length' strategy 
 | `faker.word.preposition()`  | `faker.word.preposition({ strategy: 'any-length' })`  |
 | `faker.word.sample()`       | `faker.word.sample({ strategy: 'any-length' })`       |
 | `faker.word.verb()`         | `faker.word.verb({ strategy: 'any-length' })`         |
+
+### `faker.person.sexType()` Behaviour Change
+
+The default value for `includeGeneric` option in `faker.person.sexType()` has changed from `false` to `true`.
+
+- **Previous behavior:** `faker.person.sexType()` only returned `'female'` or `'male'`.
+- **New behavior:** `faker.person.sexType()` returns `'female'`, `'male'`, or `'generic'`.
+
+To retain the old behavior, explicitly pass `{ includeGeneric: false }`:
+```ts
+const sex = faker.person.sexType({ includeGeneric: false }); // 'female' | 'male'
