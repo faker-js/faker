@@ -136,7 +136,9 @@ function processSignature(
 }
 
 // Cache the project for performance reasons
-const signatureExtractionProject = getEmptyProject();
+const signatureExtractionProject = getEmptyProject({
+  useInMemoryFileSystem: true,
+});
 
 function getSignatureText(signature: SignatureLikeDeclaration): string {
   const fullText = signature
