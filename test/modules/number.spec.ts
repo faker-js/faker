@@ -392,7 +392,7 @@ describe('number', () => {
             min: 0.5,
             max: 1,
             multipleOf: 0.5,
-            distributor: () => 1 - Number.EPSILON / 2,
+            distributor: () => MERSENNE_MAX_VALUE,
           })
         ).toBe(1);
       });
