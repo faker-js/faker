@@ -457,7 +457,7 @@ Read a detailed documentation at [fakerjs.dev](https://fakerjs.dev/contributing/
 
 ## AI-assisted development
 
-We welcome contributions made with the help of AI tools. They are reviewed the same way as any other contribution: a human maintainer decides whether the change is useful and whether the implementation is sound. You, as the human contributor directing the AI, should be responsible for the code contributed and comments written in your name.
+We accept contributions made with the help of AI tools. They are reviewed the same way as any other contribution: a human maintainer decides whether the change is useful and whether the implementation is sound. You, as the human contributor directing the AI, are responsible for the code contributed and comments written in your name.
 
 - A human should decide that the work is worth doing before you open a pull request. Filling a gap, matching another locale, or adding something "for feature parity" is not automatically valuable. For example, adding dog breed names to the Esperanto locale is not a useful contribution if nobody involved speaks Esperanto or keeps a dog.
 - Explain **why** you are making a contribution. The intent of a contribution can be as important as the content.
