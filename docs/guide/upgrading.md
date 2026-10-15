@@ -144,5 +144,7 @@ The default value for `includeGeneric` option in `faker.person.sexType()` has ch
 - **New behavior:** `faker.person.sexType()` returns `'female'`, `'male'`, or `'generic'`.
 
 To retain the old behavior, explicitly pass `{ includeGeneric: false }`:
+
 ```ts
 const sex = faker.person.sexType({ includeGeneric: false }); // 'female' | 'male'
+```
