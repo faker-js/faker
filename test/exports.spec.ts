@@ -1,9 +1,11 @@
 /**
  * Tests for verifying the exports of the `src/index.ts` file.
  */
-import { Node, Project } from 'ts-morph';
-import type { ExportedDeclarations, SourceFile } from 'ts-morph';
+import { resolve } from 'node:path';
+import { Node } from 'ts-morph';
+import type { ExportDeclaration, SourceFile } from 'ts-morph';
 import { beforeAll, describe, expect, it } from 'vitest';
+import { getEmptyProject } from '../scripts/shared/project';
 
 //#region Config
 
@@ -36,15 +38,17 @@ describe('src/index.ts exports', () => {
 
   //#region Setup
   beforeAll(() => {
-    const project = new Project({
-      tsConfigFilePath: 'tsconfig.json',
-      skipAddingFilesFromTsConfig: true,
-    });
+    const project = getEmptyProject();
     const indexFile = project.addSourceFileAtPath('src/index.ts');
 
-    function isTypeDeclaration(value: ExportedDeclarations): boolean {
+    function resolveModuleFile(
+      sourceFile: SourceFile,
+      moduleSpecifier: string
+    ): SourceFile | undefined {
+      const base = resolve(sourceFile.getDirectoryPath(), moduleSpecifier);
       return (
-        Node.isInterfaceDeclaration(value) || Node.isTypeAliasDeclaration(value)
+        project.addSourceFileAtPathIfExists(`${base}.ts`) ??
+        project.addSourceFileAtPathIfExists(`${base}/index.ts`)
       );
     }
 
@@ -63,27 +67,50 @@ describe('src/index.ts exports', () => {
       sourceFile: SourceFile,
       forceTypeOnly: boolean
     ): void {
-      const localExports = [...sourceFile.getExportedDeclarations()]
-        .filter(([, declarations]) =>
-          declarations.some(
-            (declaration) => declaration.getSourceFile() === sourceFile
-          )
-        )
-        .map(
-          ([name, declarations]) =>
-            [name, declarations.every(isTypeDeclaration)] as const
-        );
+      for (const statement of sourceFile.getStatements()) {
+        if (!Node.isExportable(statement) || !statement.isExported()) {
+          continue;
+        }
 
+        if (
+          Node.isClassDeclaration(statement) ||
+          Node.isFunctionDeclaration(statement)
+        ) {
+          addToKind(entry, forceTypeOnly ? 'types' : 'values', [
+            statement.getName() ?? '<anonymous>',
+          ]);
+        } else if (Node.isVariableStatement(statement)) {
+          addToKind(
+            entry,
+            forceTypeOnly ? 'types' : 'values',
+            statement.getDeclarations().map((d) => d.getName())
+          );
+        } else if (
+          Node.isInterfaceDeclaration(statement) ||
+          Node.isTypeAliasDeclaration(statement)
+        ) {
+          addToKind(entry, 'types', [statement.getName()]);
+        }
+      }
+    }
+
+    function addNamedImportedExports(
+      entry: ExportEntry,
+      exportDeclaration: ExportDeclaration,
+      kind: 'types' | 'values'
+    ): boolean {
+      const namedExports = exportDeclaration.getNamedExports();
       addToKind(
         entry,
-        'types',
-        localExports.filter(([, isType]) => isType).map(([name]) => name)
+        kind,
+        namedExports.map(
+          (exportSpecifier) =>
+            exportSpecifier.getAliasNode()?.getText() ??
+            exportSpecifier.getName()
+        )
       );
-      addToKind(
-        entry,
-        forceTypeOnly ? 'types' : 'values',
-        localExports.filter(([, isType]) => !isType).map(([name]) => name)
-      );
+
+      return namedExports.length > 0;
     }
 
     // Recursively adds every name reachable from `sourceFile` into `entry` to avoid digging into individual files.
@@ -103,22 +130,17 @@ describe('src/index.ts exports', () => {
         }
 
         const isTypeOnly = forceTypeOnly || exportDeclaration.isTypeOnly();
-        const namedExports = exportDeclaration.getNamedExports();
-
-        if (namedExports.length > 0) {
-          addToKind(
+        if (
+          addNamedImportedExports(
             entry,
-            isTypeOnly ? 'types' : 'values',
-            namedExports.map(
-              (exportSpecifier) =>
-                exportSpecifier.getAliasNode()?.getText() ??
-                exportSpecifier.getName()
-            )
-          );
+            exportDeclaration,
+            isTypeOnly ? 'types' : 'values'
+          )
+        ) {
           continue;
         }
 
-        const targetFile = exportDeclaration.getModuleSpecifierSourceFile();
+        const targetFile = resolveModuleFile(sourceFile, moduleSpecifier);
         if (targetFile == null) {
           throw new Error(
             `Could not resolve wildcard export '${moduleSpecifier}'`
@@ -147,22 +169,18 @@ describe('src/index.ts exports', () => {
         const module = moduleSpecifier.replace(/^\.\//, '');
         const entry = (exportRecord[module] ??= {});
         const isTypeOnly = forceTypeOnly || exportDeclaration.isTypeOnly();
-        const namedExports = exportDeclaration.getNamedExports();
 
-        if (namedExports.length > 0) {
-          addToKind(
+        if (
+          addNamedImportedExports(
             entry,
-            isTypeOnly ? 'types' : 'values',
-            namedExports.map(
-              (exportSpecifier) =>
-                exportSpecifier.getAliasNode()?.getText() ??
-                exportSpecifier.getName()
-            )
-          );
+            exportDeclaration,
+            isTypeOnly ? 'types' : 'values'
+          )
+        ) {
           continue;
         }
 
-        const targetFile = exportDeclaration.getModuleSpecifierSourceFile();
+        const targetFile = resolveModuleFile(sourceFile, moduleSpecifier);
         if (targetFile == null) {
           throw new Error(
             `Could not resolve wildcard export '${moduleSpecifier}'`
