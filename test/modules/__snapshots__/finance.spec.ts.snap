@@ -44,20 +44,20 @@ exports[`finance > 42 > creditCardNumber > with issuer option visa 1`] = `"49751
 
 exports[`finance > 42 > currency 1`] = `
 {
-  "code": "ILS",
-  "name": "New Israeli Sheqel",
-  "numericCode": "376",
-  "symbol": "₪",
+  "code": "INR",
+  "name": "Indian Rupee",
+  "numericCode": "356",
+  "symbol": "₹",
 }
 `;
 
-exports[`finance > 42 > currencyCode 1`] = `"ILS"`;
+exports[`finance > 42 > currencyCode 1`] = `"INR"`;
 
-exports[`finance > 42 > currencyName 1`] = `"New Israeli Sheqel"`;
+exports[`finance > 42 > currencyName 1`] = `"Indian Rupee"`;
 
-exports[`finance > 42 > currencyNumericCode 1`] = `"376"`;
+exports[`finance > 42 > currencyNumericCode 1`] = `"356"`;
 
-exports[`finance > 42 > currencySymbol 1`] = `"Ft"`;
+exports[`finance > 42 > currencySymbol 1`] = `"₪"`;
 
 exports[`finance > 42 > ethereumAddress 1`] = `"0x8ead331ddf0fc4446b96d368ab4bd1d31efb62f9"`;
 
@@ -77,7 +77,7 @@ exports[`finance > 42 > pin > with length option 1`] = `"3975110867"`;
 
 exports[`finance > 42 > routingNumber 1`] = `"062197511"`;
 
-exports[`finance > 42 > transactionDescription 1`] = `"You made a withdrawal of SAR 598.66 at Streich - Aufderhar using card ending in ****9821 from account ***1354."`;
+exports[`finance > 42 > transactionDescription 1`] = `"You made a withdrawal of SBD 598.66 at Streich - Aufderhar using card ending in ****9821 from account ***1354."`;
 
 exports[`finance > 42 > transactionType 1`] = `"invoice"`;
 
@@ -131,20 +131,20 @@ exports[`finance > 1211 > creditCardNumber > with issuer option visa 1`] = `"482
 
 exports[`finance > 1211 > currency 1`] = `
 {
-  "code": "VUV",
-  "name": "Vatu",
-  "numericCode": "548",
+  "code": "XAF",
+  "name": "CFA Franc BEAC",
+  "numericCode": "950",
   "symbol": "",
 }
 `;
 
-exports[`finance > 1211 > currencyCode 1`] = `"VUV"`;
+exports[`finance > 1211 > currencyCode 1`] = `"XAF"`;
 
-exports[`finance > 1211 > currencyName 1`] = `"Vatu"`;
+exports[`finance > 1211 > currencyName 1`] = `"CFA Franc BEAC"`;
 
-exports[`finance > 1211 > currencyNumericCode 1`] = `"548"`;
+exports[`finance > 1211 > currencyNumericCode 1`] = `"950"`;
 
-exports[`finance > 1211 > currencySymbol 1`] = `"лв"`;
+exports[`finance > 1211 > currencySymbol 1`] = `"₫"`;
 
 exports[`finance > 1211 > ethereumAddress 1`] = `"0xed4fefa7fbaec9dc4c48fa8ebf46fb7c8563cf3f"`;
 
@@ -164,7 +164,7 @@ exports[`finance > 1211 > pin > with length option 1`] = `"9829667368"`;
 
 exports[`finance > 1211 > routingNumber 1`] = `"122482962"`;
 
-exports[`finance > 1211 > transactionDescription 1`] = `"withdrawal transaction at Pfannerstill - Powell using card ending with ****8768 for KES 867.32 in account ***8251."`;
+exports[`finance > 1211 > transactionDescription 1`] = `"withdrawal transaction at Pfannerstill - Powell using card ending with ****8768 for KHR 867.32 in account ***8251."`;
 
 exports[`finance > 1211 > transactionType 1`] = `"withdrawal"`;
 
@@ -218,20 +218,20 @@ exports[`finance > 1337 > creditCardNumber > with issuer option visa 1`] = `"412
 
 exports[`finance > 1337 > currency 1`] = `
 {
-  "code": "ETB",
-  "name": "Ethiopian Birr",
-  "numericCode": "230",
-  "symbol": "",
+  "code": "FJD",
+  "name": "Fiji Dollar",
+  "numericCode": "242",
+  "symbol": "$",
 }
 `;
 
-exports[`finance > 1337 > currencyCode 1`] = `"ETB"`;
+exports[`finance > 1337 > currencyCode 1`] = `"FJD"`;
 
-exports[`finance > 1337 > currencyName 1`] = `"Ethiopian Birr"`;
+exports[`finance > 1337 > currencyName 1`] = `"Fiji Dollar"`;
 
-exports[`finance > 1337 > currencyNumericCode 1`] = `"230"`;
+exports[`finance > 1337 > currencyNumericCode 1`] = `"242"`;
 
-exports[`finance > 1337 > currencySymbol 1`] = `"RD$"`;
+exports[`finance > 1337 > currencySymbol 1`] = `"€"`;
 
 exports[`finance > 1337 > ethereumAddress 1`] = `"0x536a7b5fa28d2f9bb79ca46ea394bc4f9bb0af32"`;
 
@@ -251,7 +251,7 @@ exports[`finance > 1337 > pin > with length option 1`] = `"2124352971"`;
 
 exports[`finance > 1337 > routingNumber 1`] = `"051412430"`;
 
-exports[`finance > 1337 > transactionDescription 1`] = `"Payment of CAD 278.12 for invoice at Wood - Howard, processed with card ending ****6194 linked to account ***7734."`;
+exports[`finance > 1337 > transactionDescription 1`] = `"Payment of CHF 278.12 for invoice at Wood - Howard, processed with card ending ****6194 linked to account ***7734."`;
 
 exports[`finance > 1337 > transactionType 1`] = `"invoice"`;
 

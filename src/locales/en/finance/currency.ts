@@ -24,12 +24,6 @@ export default [
     numericCode: '051',
   },
   {
-    name: 'Netherlands Antillian Guilder',
-    code: 'ANG',
-    symbol: 'ƒ',
-    numericCode: '532',
-  },
-  {
     name: 'Kwanza',
     code: 'AOA',
     symbol: '',
@@ -76,12 +70,6 @@ export default [
     code: 'BDT',
     symbol: '',
     numericCode: '050',
-  },
-  {
-    name: 'Bulgarian Lev',
-    code: 'BGN',
-    symbol: 'лв',
-    numericCode: '975',
   },
   {
     name: 'Bahraini Dinar',
@@ -876,6 +864,12 @@ export default [
     numericCode: '951',
   },
   {
+    name: 'Caribbean Guilder',
+    code: 'XCG',
+    symbol: 'Cg',
+    numericCode: '532',
+  },
+  {
     name: 'CFA Franc BCEAO',
     code: 'XOF',
     symbol: '',
@@ -918,9 +912,9 @@ export default [
     numericCode: '967',
   },
   {
-    name: 'Zimbabwe Dollar',
-    code: 'ZWL',
-    symbol: '',
-    numericCode: '932',
+    name: 'Zimbabwe Gold',
+    code: 'ZWG',
+    symbol: 'ZiG',
+    numericCode: '924',
   },
 ];
