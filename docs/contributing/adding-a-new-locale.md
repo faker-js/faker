@@ -15,7 +15,7 @@ In that issue or in your pull request, please include:
 
 - **Why you want this locale** — for example, you ship a product used in that region, or you need realistic test data for a language you speak.
 - **Background on the language** — where it is spoken, approximate number of speakers, and any script or regional variants that matter. Links to Wikipedia are useful here.
-- **Comparable support elsewhere** — whether the same (or a closely related) locale already exists in similar software, such as [Python Faker](https://faker.readthedocs.io/en/master/locales.html) or [Firefox’s curated language list](https://mozilla-l10n.github.io/firefox-languages/). 
+- **Comparable support elsewhere** — whether the same (or a closely related) locale already exists in similar software, such as [Python Faker](https://faker.readthedocs.io/en/master/locales.html) or [Firefox’s curated language list](https://mozilla-l10n.github.io/firefox-languages/).
 
 Proposals are more likely to be accepted when **more than one human contributor** who knows the language is willing to author or cross-check the data.
 
