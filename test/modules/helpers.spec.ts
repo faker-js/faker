@@ -941,7 +941,7 @@ describe('helpers', () => {
         });
 
         it('doesnt include negated characters in either case with the case insensitive flag', () => {
-          const actual = faker.helpers.fromRegExp(/[^a-zA-Z]{100}/i);
+          const actual = faker.helpers.fromRegExp(/[^a-z]{100}/i);
           expect(actual).toMatch(/^[0-9]{100}$/);
         });
 
