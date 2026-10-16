@@ -2,6 +2,7 @@ import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import type { NumberOrRange } from '../../utils/types';
 import { dateBetween } from './between';
 
 /**
@@ -35,22 +36,7 @@ export function dateSoon(
      *
      * @default 1
      */
-    days?:
-      | number
-      | {
-          /**
-           * The minimum amount of days the date should be in the future.
-           *
-           * @default 0
-           */
-          min: number;
-          /**
-           * The maximum amount of days the date should be in the future.
-           *
-           * @default 1
-           */
-          max: number;
-        };
+    days?: NumberOrRange;
     /**
      * The date to use as reference point for the newly generated date.
      *
