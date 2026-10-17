@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random job area.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * personJobArea(fakerCore) // 'Brand'
+ * fakePersonJobArea(fakerCore) // 'Brand'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personJobArea(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.person.job_area);
+export function fakePersonJobArea(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.person.job_area);
 }

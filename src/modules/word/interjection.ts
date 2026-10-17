@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from './_filter-word-list-by-length';
 
 /**
@@ -14,16 +14,16 @@ import { filterWordListByLength } from './_filter-word-list-by-length';
  * Defaults to `'fail'`.
  *
  * @example
- * wordInterjection(fakerCore) // 'gah'
- * wordInterjection(fakerCore, 5) // 'fooey'
- * wordInterjection(fakerCore, { strategy: 'shortest' }) // 'hm'
- * wordInterjection(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'boohoo'
+ * fakeWordInterjection(fakerCore) // 'gah'
+ * fakeWordInterjection(fakerCore, 5) // 'fooey'
+ * fakeWordInterjection(fakerCore, { strategy: 'shortest' }) // 'hm'
+ * fakeWordInterjection(fakerCore, { length: { min: 5, max: 7 }, strategy: "fail" }) // 'boohoo'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function wordInterjection(
+export function fakeWordInterjection(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function wordInterjection(
     options = { length: options };
   }
 
-  return helpersArrayElement(
+  return fakeHelpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,

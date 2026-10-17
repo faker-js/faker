@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a random avatar from GitHub.
@@ -9,13 +9,13 @@ import { numberInt } from '../number/int';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * imageAvatarGitHub(fakerCore)
+ * fakeImageAvatarGitHub(fakerCore)
  * // 'https://avatars.githubusercontent.com/u/97165289'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function imageAvatarGitHub(fakerCore: FakerCore): string {
-  return `https://avatars.githubusercontent.com/u/${numberInt(fakerCore, 100000000)}`;
+export function fakeImageAvatarGitHub(fakerCore: FakerCore): string {
+  return `https://avatars.githubusercontent.com/u/${fakeNumberInt(fakerCore, 100000000)}`;
 }

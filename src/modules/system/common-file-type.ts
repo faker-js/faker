@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -9,12 +9,12 @@ const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * systemCommonFileType(fakerCore) // 'audio'
+ * fakeSystemCommonFileType(fakerCore) // 'audio'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function systemCommonFileType(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, commonFileTypes);
+export function fakeSystemCommonFileType(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, commonFileTypes);
 }

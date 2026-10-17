@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberFloat } from '../number/float';
+import { fakeNumberFloat } from '../number/float';
 
 /**
  * Generates a random amount between the given bounds (inclusive).
@@ -12,20 +12,20 @@ import { numberFloat } from '../number/float';
  * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
  * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
  *
- * @see numberFloat(fakerCore): For generating the amount with greater control.
+ * @see fakeNumberFloat(fakerCore): For generating the amount with greater control.
  *
  * @example
- * financeAmount(fakerCore) // '617.87'
- * financeAmount(fakerCore, { min: 5, max: 10 }) // '5.53'
- * financeAmount(fakerCore, { min: 5, max: 10, dec: 0 }) // '8'
- * financeAmount(fakerCore, { min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
- * financeAmount(fakerCore, { min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
+ * fakeFinanceAmount(fakerCore) // '617.87'
+ * fakeFinanceAmount(fakerCore, { min: 5, max: 10 }) // '5.53'
+ * fakeFinanceAmount(fakerCore, { min: 5, max: 10, dec: 0 }) // '8'
+ * fakeFinanceAmount(fakerCore, { min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
+ * fakeFinanceAmount(fakerCore, { min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeAmount(
+export function fakeFinanceAmount(
   fakerCore: FakerCore,
   options: {
     /**
@@ -68,7 +68,7 @@ export function financeAmount(
     symbol = '',
   } = options;
 
-  const randValue = numberFloat(fakerCore, {
+  const randValue = fakeNumberFloat(fakerCore, {
     max,
     min,
     fractionDigits: dec,

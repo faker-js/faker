@@ -1,21 +1,21 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
-import { systemCommonFileExt } from './common-file-ext';
-import { systemCommonFileName } from './common-file-name';
-import { systemCommonFileType } from './common-file-type';
-import { systemCron } from './cron';
-import { systemDirectoryPath } from './directory-path';
-import { systemFileExt } from './file-ext';
-import { systemFileName } from './file-name';
-import { systemFilePath } from './file-path';
-import { systemFileType } from './file-type';
-import { systemMimeType } from './mime-type';
+import { fakeSystemCommonFileExt } from './common-file-ext';
+import { fakeSystemCommonFileName } from './common-file-name';
+import { fakeSystemCommonFileType } from './common-file-type';
+import { fakeSystemCron } from './cron';
+import { fakeSystemDirectoryPath } from './directory-path';
+import { fakeSystemFileExt } from './file-ext';
+import { fakeSystemFileName } from './file-name';
+import { fakeSystemFilePath } from './file-path';
+import { fakeSystemFileType } from './file-type';
+import { fakeSystemMimeType } from './mime-type';
 import type {
   CommonInterfaceSchema,
   CommonInterfaceType,
 } from './network-interface';
-import { systemNetworkInterface } from './network-interface';
-import { systemSemver } from './semver';
+import { fakeSystemNetworkInterface } from './network-interface';
+import { fakeSystemSemver } from './semver';
 
 /**
  * Generates fake data for many computer systems properties.
@@ -49,7 +49,7 @@ export class SystemModule extends ModuleBase {
       extensionCount?: NumberOrRange;
     } = {}
   ): string {
-    return systemFileName(this.fakerCore, options);
+    return fakeSystemFileName(this.fakerCore, options);
   }
 
   /**
@@ -64,7 +64,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileName(extension?: string): string {
-    return systemCommonFileName(this.fakerCore, extension);
+    return fakeSystemCommonFileName(this.fakerCore, extension);
   }
 
   /**
@@ -76,7 +76,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   mimeType(): string {
-    return systemMimeType(this.fakerCore);
+    return fakeSystemMimeType(this.fakerCore);
   }
 
   /**
@@ -88,7 +88,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileType(): string {
-    return systemCommonFileType(this.fakerCore);
+    return fakeSystemCommonFileType(this.fakerCore);
   }
 
   /**
@@ -100,7 +100,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   commonFileExt(): string {
-    return systemCommonFileExt(this.fakerCore);
+    return fakeSystemCommonFileExt(this.fakerCore);
   }
 
   /**
@@ -112,7 +112,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileType(): string {
-    return systemFileType(this.fakerCore);
+    return fakeSystemFileType(this.fakerCore);
   }
 
   /**
@@ -129,7 +129,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
-    return systemFileExt(this.fakerCore, mimeType);
+    return fakeSystemFileExt(this.fakerCore, mimeType);
   }
 
   /**
@@ -141,7 +141,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   directoryPath(): string {
-    return systemDirectoryPath(this.fakerCore);
+    return fakeSystemDirectoryPath(this.fakerCore);
   }
 
   /**
@@ -153,7 +153,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   filePath(): string {
-    return systemFilePath(this.fakerCore);
+    return fakeSystemFilePath(this.fakerCore);
   }
 
   /**
@@ -165,7 +165,7 @@ export class SystemModule extends ModuleBase {
    * @since 3.1.0
    */
   semver(): string {
-    return systemSemver(this.fakerCore);
+    return fakeSystemSemver(this.fakerCore);
   }
 
   /**
@@ -199,7 +199,7 @@ export class SystemModule extends ModuleBase {
       interfaceSchema?: CommonInterfaceSchema;
     } = {}
   ): string {
-    return systemNetworkInterface(this.fakerCore, options);
+    return fakeSystemNetworkInterface(this.fakerCore, options);
   }
 
   /**
@@ -234,6 +234,6 @@ export class SystemModule extends ModuleBase {
       includeNonStandard?: boolean;
     } = {}
   ): string {
-    return systemCron(this.fakerCore, options);
+    return fakeSystemCron(this.fakerCore, options);
   }
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { stringHexadecimal } from '../string/hexadecimal';
+import { fakeStringHexadecimal } from '../string/hexadecimal';
 
 /**
  * Creates a random, non-checksum Ethereum address.
@@ -9,14 +9,14 @@ import { stringHexadecimal } from '../string/hexadecimal';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * financeEthereumAddress(fakerCore) // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
+ * fakeFinanceEthereumAddress(fakerCore) // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeEthereumAddress(fakerCore: FakerCore): string {
-  return stringHexadecimal(fakerCore, {
+export function fakeFinanceEthereumAddress(fakerCore: FakerCore): string {
+  return fakeStringHexadecimal(fakerCore, {
     length: 40,
     casing: 'lower',
   });

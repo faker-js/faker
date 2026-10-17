@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random transaction type.
@@ -7,14 +7,14 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * financeTransactionType(fakerCore) // 'payment'
+ * fakeFinanceTransactionType(fakerCore) // 'payment'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeTransactionType(fakerCore: FakerCore): string {
-  return helpersArrayElement(
+export function fakeFinanceTransactionType(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(
     fakerCore,
     fakerCore.locale.finance.transaction_type
   );

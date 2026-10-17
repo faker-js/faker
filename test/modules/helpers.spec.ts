@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
-import { loremWord } from '../../src/modules/lorem/word';
-import { stringSample } from '../../src/modules/string/sample';
+import { fakeLoremWord } from '../../src/modules/lorem/word';
+import { fakeStringSample } from '../../src/modules/string/sample';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -136,7 +136,7 @@ describe('helpers', () => {
     t.describe('uniqueArray', (t) => {
       t.it('with array', [...'Hello World!'], 3).it(
         'with generator function',
-        stringSample,
+        fakeStringSample,
         3
       );
     });
@@ -1051,7 +1051,7 @@ describe('helpers', () => {
 
         it('function returns unique array (SMF)', () => {
           const length = faker.number.int({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(loremWord, length);
+          const unique = faker.helpers.uniqueArray(fakeLoremWord, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
         });

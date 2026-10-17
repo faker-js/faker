@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersSlugify } from '../helpers/slugify';
-import { loremWords } from './words';
+import { fakeHelpersSlugify } from '../helpers/slugify';
+import { fakeLoremWords } from './words';
 
 /**
  * Generates a slugified text consisting of the given number of hyphen separated words.
@@ -12,18 +12,18 @@ import { loremWords } from './words';
  * @param wordCount.max The maximum number of words to generate.
  *
  * @example
- * loremSlug(fakerCore) // 'dolores-illo-est'
- * loremSlug(fakerCore, 5) // 'delectus-totam-iusto-itaque-placeat'
- * loremSlug(fakerCore, { min: 1, max: 3 }) // 'illo-ratione'
+ * fakeLoremSlug(fakerCore) // 'dolores-illo-est'
+ * fakeLoremSlug(fakerCore, 5) // 'delectus-totam-iusto-itaque-placeat'
+ * fakeLoremSlug(fakerCore, { min: 1, max: 3 }) // 'illo-ratione'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function loremSlug(
+export function fakeLoremSlug(
   fakerCore: FakerCore,
   wordCount: NumberOrRange = 3
 ): string {
-  const words = loremWords(fakerCore, wordCount);
-  return helpersSlugify(fakerCore, words);
+  const words = fakeLoremWords(fakerCore, wordCount);
+  return fakeHelpersSlugify(fakerCore, words);
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random cetacean species.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * animalCetacean(fakerCore) // 'Spinner Dolphin'
+ * fakeAnimalCetacean(fakerCore) // 'Spinner Dolphin'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function animalCetacean(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.animal.cetacean);
+export function fakeAnimalCetacean(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.animal.cetacean);
 }

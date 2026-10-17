@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a vehicle model.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicleModel(fakerCore) // 'Explorer'
+ * fakeVehicleModel(fakerCore) // 'Explorer'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicleModel(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.vehicle.model);
+export function fakeVehicleModel(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.vehicle.model);
 }

@@ -1,14 +1,14 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { helpersMustache } from '../helpers/mustache';
-import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
-import { personFirstName } from './first-name';
-import { personLastName } from './last-name';
-import { personMiddleName } from './middle-name';
-import { personPrefix } from './prefix';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersMustache } from '../helpers/mustache';
+import { fakeHelpersWeightedArrayElement } from '../helpers/weighted-array-element';
+import { fakePersonFirstName } from './first-name';
+import { fakePersonLastName } from './last-name';
+import { fakePersonMiddleName } from './middle-name';
+import { fakePersonPrefix } from './prefix';
 import type { SexType } from './sex-type';
 import { Sex } from './sex-type';
-import { personSuffix } from './suffix';
+import { fakePersonSuffix } from './suffix';
 
 /**
  * Generates a random full name.
@@ -20,56 +20,56 @@ import { personSuffix } from './suffix';
  * @param options.sex The optional sex to use. Can be either `'female'` or `'male'`.
  *
  * @example
- * personFullName(fakerCore) // 'Allen Brown'
- * personFullName(fakerCore, { firstName: 'Joann' }) // 'Joann Osinski'
- * personFullName(fakerCore, { firstName: 'Marcella', sex: 'female' }) // 'Mrs. Marcella Huels'
- * personFullName(fakerCore, { lastName: 'Beer' }) // 'Mr. Alfonso Beer'
- * personFullName(fakerCore, { sex: 'male' }) // 'Fernando Schaefer'
+ * fakePersonFullName(fakerCore) // 'Allen Brown'
+ * fakePersonFullName(fakerCore, { firstName: 'Joann' }) // 'Joann Osinski'
+ * fakePersonFullName(fakerCore, { firstName: 'Marcella', sex: 'female' }) // 'Mrs. Marcella Huels'
+ * fakePersonFullName(fakerCore, { lastName: 'Beer' }) // 'Mr. Alfonso Beer'
+ * fakePersonFullName(fakerCore, { sex: 'male' }) // 'Fernando Schaefer'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personFullName(
+export function fakePersonFullName(
   fakerCore: FakerCore,
   options: {
     /**
      * The optional first name to use. If not specified a random one will be chosen.
      *
-     * @default personFirstName(fakerCore, sex)
+     * @default fakePersonFirstName(fakerCore, sex)
      */
     firstName?: string;
     /**
      * The optional last name to use. If not specified a random one will be chosen.
      *
-     * @default personLastName(fakerCore, sex)
+     * @default fakePersonLastName(fakerCore, sex)
      */
     lastName?: string;
     /**
      * The optional sex to use. Can be either `'female'` or `'male'`.
      *
-     * @default helpersArrayElement(fakerCore, [Sex.Female, Sex.Male])
+     * @default fakeHelpersArrayElement(fakerCore, [Sex.Female, Sex.Male])
      */
     sex?: SexType;
   } = {}
 ): string {
   const {
-    sex = helpersArrayElement(fakerCore, [Sex.Female, Sex.Male]),
-    firstName = personFirstName(fakerCore, sex),
-    lastName = personLastName(fakerCore, sex),
+    sex = fakeHelpersArrayElement(fakerCore, [Sex.Female, Sex.Male]),
+    firstName = fakePersonFirstName(fakerCore, sex),
+    lastName = fakePersonLastName(fakerCore, sex),
   } = options;
 
-  const fullNamePattern: string = helpersWeightedArrayElement(
+  const fullNamePattern: string = fakeHelpersWeightedArrayElement(
     fakerCore,
     fakerCore.locale.person.name
   );
 
-  const fullName = helpersMustache(fakerCore, fullNamePattern, {
-    'person.prefix': () => personPrefix(fakerCore, sex),
+  const fullName = fakeHelpersMustache(fakerCore, fullNamePattern, {
+    'person.prefix': () => fakePersonPrefix(fakerCore, sex),
     'person.firstName': () => firstName,
-    'person.middleName': () => personMiddleName(fakerCore, sex),
+    'person.middleName': () => fakePersonMiddleName(fakerCore, sex),
     'person.lastName': () => lastName,
-    'person.suffix': () => personSuffix(fakerCore),
+    'person.suffix': () => fakePersonSuffix(fakerCore),
   });
   return fullName;
 }

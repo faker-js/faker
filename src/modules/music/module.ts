@@ -1,8 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
-import { musicAlbum } from './album';
-import { musicArtist } from './artist';
-import { musicGenre } from './genre';
-import { musicSongName } from './song-name';
+import { fakeMusicAlbum } from './album';
+import { fakeMusicArtist } from './artist';
+import { fakeMusicGenre } from './genre';
+import { fakeMusicSongName } from './song-name';
 
 /**
  * Module to generate music related entries.
@@ -36,7 +36,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return musicAlbum(this.fakerCore);
+    return fakeMusicAlbum(this.fakerCore);
   }
 
   /**
@@ -48,7 +48,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   artist(): string {
-    return musicArtist(this.fakerCore);
+    return fakeMusicArtist(this.fakerCore);
   }
 
   /**
@@ -60,7 +60,7 @@ export class MusicModule extends ModuleBase {
    * @since 5.2.0
    */
   genre(): string {
-    return musicGenre(this.fakerCore);
+    return fakeMusicGenre(this.fakerCore);
   }
 
   /**
@@ -72,6 +72,6 @@ export class MusicModule extends ModuleBase {
    * @since 7.1.0
    */
   songName(): string {
-    return musicSongName(this.fakerCore);
+    return fakeMusicSongName(this.fakerCore);
   }
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { stringHexadecimal } from '../string/hexadecimal';
+import { fakeStringHexadecimal } from '../string/hexadecimal';
 
 /**
  * Generates a random commit sha.
@@ -17,15 +17,15 @@ import { stringHexadecimal } from '../string/hexadecimal';
  * @param options.length The length of the commit sha. Defaults to `40`.
  *
  * @example
- * gitCommitSha(fakerCore) // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
- * gitCommitSha(fakerCore, { length: 7 }) // 'dbee57b'
- * gitCommitSha(fakerCore, { length: 8 }) // '0e52376a'
+ * fakeGitCommitSha(fakerCore) // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
+ * fakeGitCommitSha(fakerCore, { length: 7 }) // 'dbee57b'
+ * fakeGitCommitSha(fakerCore, { length: 8 }) // '0e52376a'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function gitCommitSha(
+export function fakeGitCommitSha(
   fakerCore: FakerCore,
   options: {
     /**
@@ -37,7 +37,7 @@ export function gitCommitSha(
   } = {}
 ): string {
   const { length = 40 } = options;
-  return stringHexadecimal(fakerCore, {
+  return fakeStringHexadecimal(fakerCore, {
     length,
     casing: 'lower',
     prefix: '',

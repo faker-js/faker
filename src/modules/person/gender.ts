@@ -1,20 +1,20 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random gender.
  *
  * @param fakerCore The FakerCore to use.
  *
- * @see personSex(fakerCore): For generating a binary-gender value.
+ * @see fakePersonSex(fakerCore): For generating a binary-gender value.
  *
  * @example
- * personGender(fakerCore) // 'Trans*Man'
+ * fakePersonGender(fakerCore) // 'Trans*Man'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personGender(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.person.gender);
+export function fakePersonGender(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.person.gender);
 }

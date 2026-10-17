@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random database column type.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * databaseType(fakerCore) // 'timestamp'
+ * fakeDatabaseType(fakerCore) // 'timestamp'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function databaseType(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.database.type);
+export function fakeDatabaseType(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.database.type);
 }

@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { toBase64 } from '../../internal/base64';
-import { colorRgb } from '../color/rgb';
-import { helpersArrayElement } from '../helpers/array-element';
-import { numberInt } from '../number/int';
+import { fakeColorRgb } from '../color/rgb';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a random data uri containing an URL-encoded SVG image or a Base64-encoded SVG image.
@@ -15,48 +15,48 @@ import { numberInt } from '../number/int';
  * @param options.type The type of the image. Defaults to a random type.
  *
  * @example
- * imageDataUri(fakerCore) // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
- * imageDataUri(fakerCore, { type: 'svg-base64' }) // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3...'
+ * fakeImageDataUri(fakerCore) // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
+ * fakeImageDataUri(fakerCore, { type: 'svg-base64' }) // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3...'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function imageDataUri(
+export function fakeImageDataUri(
   fakerCore: FakerCore,
   options: {
     /**
      * The width of the image.
      *
-     * @default numberInt(fakerCore, { min: 1, max: 3999 })
+     * @default fakeNumberInt(fakerCore, { min: 1, max: 3999 })
      */
     width?: number;
     /**
      * The height of the image.
      *
-     * @default numberInt(fakerCore, { min: 1, max: 3999 })
+     * @default fakeNumberInt(fakerCore, { min: 1, max: 3999 })
      */
     height?: number;
     /**
      * The color of the image. Must be a color supported by svg.
      *
-     * @default colorRgb(fakerCore)
+     * @default fakeColorRgb(fakerCore)
      */
     color?: string;
     /**
      * The type of the image to return. Consisting of
      * the file extension and the used encoding.
      *
-     * @default helpersArrayElement(fakerCore, ['svg-uri', 'svg-base64'])
+     * @default fakeHelpersArrayElement(fakerCore, ['svg-uri', 'svg-base64'])
      */
     type?: 'svg-uri' | 'svg-base64';
   } = {}
 ): string {
   const {
-    width = numberInt(fakerCore, { min: 1, max: 3999 }),
-    height = numberInt(fakerCore, { min: 1, max: 3999 }),
-    color = colorRgb(fakerCore),
-    type = helpersArrayElement(fakerCore, ['svg-uri', 'svg-base64']),
+    width = fakeNumberInt(fakerCore, { min: 1, max: 3999 }),
+    height = fakeNumberInt(fakerCore, { min: 1, max: 3999 }),
+    color = fakeColorRgb(fakerCore),
+    type = fakeHelpersArrayElement(fakerCore, ['svg-uri', 'svg-base64']),
   } = options;
 
   const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${

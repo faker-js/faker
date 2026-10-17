@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { stringNumeric } from '../string/numeric';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeStringNumeric } from '../string/numeric';
 
 /**
  * Generates a random building number.
@@ -8,18 +8,18 @@ import { stringNumeric } from '../string/numeric';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * locationBuildingNumber(fakerCore) // '379'
+ * fakeLocationBuildingNumber(fakerCore) // '379'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationBuildingNumber(fakerCore: FakerCore): string {
-  return helpersArrayElement(
+export function fakeLocationBuildingNumber(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(
     fakerCore,
     fakerCore.locale.location.building_number
   ).replaceAll(/#+/g, (m) =>
-    stringNumeric(fakerCore, {
+    fakeStringNumeric(fakerCore, {
       length: m.length,
       allowLeadingZeros: false,
     })
