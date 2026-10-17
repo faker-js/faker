@@ -11,6 +11,7 @@ import commerce from './commerce';
 import company from './company';
 import database from './database';
 import date from './date';
+import finance from './finance';
 import food from './food';
 import internet from './internet';
 import location from './location';
@@ -36,6 +37,7 @@ const az: LocaleDefinition = {
   company,
   database,
   date,
+  finance,
   food,
   internet,
   location,
