@@ -41,7 +41,7 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules/airline';
-export type { AnimalModule } from './modules/animal';
+export * from './modules/animal';
 export type { BookModule } from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
