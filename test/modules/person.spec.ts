@@ -322,11 +322,11 @@ describe('person', () => {
       });
 
       describe('sexType()', () => {
-        it('should return a sex type without generic by default', () => {
+        it('should return a sex type with generic by default', () => {
           const sexType = faker.person.sexType();
 
           expect(sexType).toBeTypeOf('string');
-          expect([Sex.Female, Sex.Male]).toContain(sexType);
+          expect([Sex.Female, Sex.Male, Sex.Generic]).toContain(sexType);
         });
 
         it('should return a sex type explicitly without generic', () => {
