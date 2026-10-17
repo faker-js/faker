@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
@@ -15,16 +15,16 @@ import { helpersArrayElement } from '../helpers/array-element';
  * Defaults to `'alpha-2'`.
  *
  * @example
- * locationCountryCode(fakerCore) // 'SJ'
- * locationCountryCode(fakerCore, 'alpha-2') // 'GA'
- * locationCountryCode(fakerCore, 'alpha-3') // 'TJK'
- * locationCountryCode(fakerCore, 'numeric') // '528'
+ * fakeLocationCountryCode(fakerCore) // 'SJ'
+ * fakeLocationCountryCode(fakerCore, 'alpha-2') // 'GA'
+ * fakeLocationCountryCode(fakerCore, 'alpha-3') // 'TJK'
+ * fakeLocationCountryCode(fakerCore, 'numeric') // '528'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationCountryCode(
+export function fakeLocationCountryCode(
   fakerCore: FakerCore,
   options:
     | 'alpha-2'
@@ -63,7 +63,8 @@ export function locationCountryCode(
     }
   })();
 
-  return helpersArrayElement(fakerCore, fakerCore.locale.location.country_code)[
-    key
-  ];
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.location.country_code
+  )[key];
 }

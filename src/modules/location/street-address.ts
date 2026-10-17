@@ -10,16 +10,16 @@ import { Faker } from '../../faker';
  * Otherwise it will just generate a street address.
  *
  * @example
- * locationStreetAddress(fakerCore) // '0917 O'Conner Estates'
- * locationStreetAddress(fakerCore, false) // '34830 Erdman Hollow'
- * locationStreetAddress(fakerCore, true) // '3393 Ronny Way Apt. 742'
- * locationStreetAddress(fakerCore, { useFullAddress: true }) // '7917 Miller Park Apt. 410'
+ * fakeLocationStreetAddress(fakerCore) // '0917 O'Conner Estates'
+ * fakeLocationStreetAddress(fakerCore, false) // '34830 Erdman Hollow'
+ * fakeLocationStreetAddress(fakerCore, true) // '3393 Ronny Way Apt. 742'
+ * fakeLocationStreetAddress(fakerCore, { useFullAddress: true }) // '7917 Miller Park Apt. 410'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationStreetAddress(
+export function fakeLocationStreetAddress(
   fakerCore: FakerCore,
   options:
     | boolean

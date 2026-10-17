@@ -1,14 +1,14 @@
 import type { FakerCore } from '../../core';
-import { datatypeBoolean } from '../datatype/boolean';
-import { helpersArrayElement } from '../helpers/array-element';
-import { internetEmail } from '../internet/email';
-import { internetUsername } from '../internet/username';
-import { personFirstName } from '../person/first-name';
-import { personFullName } from '../person/full-name';
-import { personLastName } from '../person/last-name';
-import { gitCommitDate } from './commit-date';
-import { gitCommitMessage } from './commit-message';
-import { gitCommitSha } from './commit-sha';
+import { fakeDatatypeBoolean } from '../datatype/boolean';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeInternetEmail } from '../internet/email';
+import { fakeInternetUsername } from '../internet/username';
+import { fakePersonFirstName } from '../person/first-name';
+import { fakePersonFullName } from '../person/full-name';
+import { fakePersonLastName } from '../person/last-name';
+import { fakeGitCommitDate } from './commit-date';
+import { fakeGitCommitMessage } from './commit-message';
+import { fakeGitCommitSha } from './commit-sha';
 
 const nbsp = '\u00A0';
 
@@ -24,7 +24,7 @@ const nbsp = '\u00A0';
  * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
  *
  * @example
- * gitCommitEntry(fakerCore)
+ * fakeGitCommitEntry(fakerCore)
  * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2
  * // Author: Marion Becker <Marion_Becker49@gmail.com>
  * // Date: Mon Nov 7 05:38:37 2022 -0600
@@ -35,13 +35,13 @@ const nbsp = '\u00A0';
  *
  * @experimental
  */
-export function gitCommitEntry(
+export function fakeGitCommitEntry(
   fakerCore: FakerCore,
   options: {
     /**
      * Set to `true` to generate a merge message line.
      *
-     * @default datatypeBoolean(fakerCore, { probability: 0.2 })
+     * @default fakeDatatypeBoolean(fakerCore, { probability: 0.2 })
      */
     merge?: boolean;
     /**
@@ -62,16 +62,16 @@ export function gitCommitEntry(
   } = {}
 ): string {
   const {
-    merge = datatypeBoolean(fakerCore, { probability: 0.2 }),
+    merge = fakeDatatypeBoolean(fakerCore, { probability: 0.2 }),
     eol = 'CRLF',
     refDate,
   } = options;
 
-  const lines = [`commit ${gitCommitSha(fakerCore)}`];
+  const lines = [`commit ${fakeGitCommitSha(fakerCore)}`];
 
   if (merge) {
     lines.push(
-      `Merge: ${gitCommitSha(fakerCore, { length: 7 })} ${gitCommitSha(
+      `Merge: ${fakeGitCommitSha(fakerCore, { length: 7 })} ${fakeGitCommitSha(
         fakerCore,
         {
           length: 7,
@@ -80,21 +80,21 @@ export function gitCommitEntry(
     );
   }
 
-  const firstName = personFirstName(fakerCore);
-  const lastName = personLastName(fakerCore);
-  const fullName = personFullName(fakerCore, { firstName, lastName });
-  const username = internetUsername(fakerCore, { firstName, lastName });
-  let user = helpersArrayElement(fakerCore, [fullName, username]);
-  const email = internetEmail(fakerCore, { firstName, lastName });
+  const firstName = fakePersonFirstName(fakerCore);
+  const lastName = fakePersonLastName(fakerCore);
+  const fullName = fakePersonFullName(fakerCore, { firstName, lastName });
+  const username = fakeInternetUsername(fakerCore, { firstName, lastName });
+  let user = fakeHelpersArrayElement(fakerCore, [fullName, username]);
+  const email = fakeInternetEmail(fakerCore, { firstName, lastName });
 
   // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
   user = user.replaceAll(/^[.,:;"\\']|[<>\n]|[.,:;"\\']$/g, '');
 
   lines.push(
     `Author: ${user} <${email}>`,
-    `Date: ${gitCommitDate(fakerCore, { refDate })}`,
+    `Date: ${fakeGitCommitDate(fakerCore, { refDate })}`,
     '',
-    `${nbsp.repeat(4)}${gitCommitMessage(fakerCore)}`,
+    `${nbsp.repeat(4)}${fakeGitCommitMessage(fakerCore)}`,
     // to end with a eol char
     ''
   );

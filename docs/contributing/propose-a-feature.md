@@ -31,9 +31,7 @@ Feel free to upvote your own feature requests as well.
 
 Faker already contains [over 70 different locales](/guide/localization#available-locales).
 
-If you want to propose a new locale that does not already exist, make sure to read our guide on [locale code names](/guide/localization#locale-codes).
-You should be able to name your locale using the provided naming standards.
-Ideally, you should also use this name in the issue's title and description.
+If you want to propose a new locale that does not already exist, see [Adding a New Locale](/contributing/adding-a-new-locale).
 
 ## Considerations
 

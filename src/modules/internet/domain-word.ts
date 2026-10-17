@@ -1,9 +1,9 @@
 import type { FakerCore } from '../../core';
-import { helpersSlugify } from '../helpers/slugify';
-import { loremWord } from '../lorem/word';
-import { stringAlpha } from '../string/alpha';
-import { wordAdjective } from '../word/adjective';
-import { wordNoun } from '../word/noun';
+import { fakeHelpersSlugify } from '../helpers/slugify';
+import { fakeLoremWord } from '../lorem/word';
+import { fakeStringAlpha } from '../string/alpha';
+import { fakeWordAdjective } from '../word/adjective';
+import { fakeWordNoun } from '../word/noun';
 
 /**
  * Checks whether the given string is a valid slug for `domainWord`s.
@@ -21,17 +21,17 @@ function isValidDomainWordSlug(slug: string): boolean {
  * @param word The initial word to slugify.
  */
 function makeValidDomainWordSlug(fakerCore: FakerCore, word: string): string {
-  const slug1 = helpersSlugify(fakerCore, word);
+  const slug1 = fakeHelpersSlugify(fakerCore, word);
   if (isValidDomainWordSlug(slug1)) {
     return slug1;
   }
 
-  const slug2 = helpersSlugify(fakerCore, loremWord(fakerCore));
+  const slug2 = fakeHelpersSlugify(fakerCore, fakeLoremWord(fakerCore));
   if (isValidDomainWordSlug(slug2)) {
     return slug2;
   }
 
-  return stringAlpha(fakerCore, {
+  return fakeStringAlpha(fakerCore, {
     casing: 'lower',
     length: { min: 4, max: 8 },
   });
@@ -43,18 +43,21 @@ function makeValidDomainWordSlug(fakerCore: FakerCore, word: string): string {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * internetDomainWord(fakerCore) // 'close-reality'
- * internetDomainWord(fakerCore) // 'weird-cytoplasm'
+ * fakeInternetDomainWord(fakerCore) // 'close-reality'
+ * fakeInternetDomainWord(fakerCore) // 'weird-cytoplasm'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetDomainWord(fakerCore: FakerCore): string {
+export function fakeInternetDomainWord(fakerCore: FakerCore): string {
   // Generate an ASCII "word" in the form `noun-adjective`
   // For locales with non-ASCII characters, we fall back to lorem words, or a random string
 
-  const word1 = makeValidDomainWordSlug(fakerCore, wordAdjective(fakerCore));
-  const word2 = makeValidDomainWordSlug(fakerCore, wordNoun(fakerCore));
+  const word1 = makeValidDomainWordSlug(
+    fakerCore,
+    fakeWordAdjective(fakerCore)
+  );
+  const word2 = makeValidDomainWordSlug(fakerCore, fakeWordNoun(fakerCore));
   return `${word1}-${word2}`.toLowerCase();
 }

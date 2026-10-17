@@ -1,31 +1,31 @@
 import { ModuleBase } from '../../internal/module-base';
-import { financeAccountName } from './account-name';
-import { financeAccountNumber } from './account-number';
-import { financeAmount } from './amount';
-import { financeBic } from './bic';
+import { fakeFinanceAccountName } from './account-name';
+import { fakeFinanceAccountNumber } from './account-number';
+import { fakeFinanceAmount } from './amount';
+import { fakeFinanceBic } from './bic';
 import type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,
 } from './bitcoin-address';
-import { financeBitcoinAddress } from './bitcoin-address';
-import { financeCreditCardCVV } from './credit-card-cvv';
-import { financeCreditCardIssuer } from './credit-card-issuer';
-import { financeCreditCardNumber } from './credit-card-number';
+import { fakeFinanceBitcoinAddress } from './bitcoin-address';
+import { fakeFinanceCreditCardCVV } from './credit-card-cvv';
+import { fakeFinanceCreditCardIssuer } from './credit-card-issuer';
+import { fakeFinanceCreditCardNumber } from './credit-card-number';
 import type { Currency } from './currency';
-import { financeCurrency } from './currency';
-import { financeCurrencyCode } from './currency-code';
-import { financeCurrencyName } from './currency-name';
-import { financeCurrencyNumericCode } from './currency-numeric-code';
-import { financeCurrencySymbol } from './currency-symbol';
-import { financeEthereumAddress } from './ethereum-address';
-import { financeIban } from './iban';
-import { financeLitecoinAddress } from './litecoin-address';
-import { financePin } from './pin';
-import { financeRoutingNumber } from './routing-number';
-import { financeTransactionDescription } from './transaction-description';
-import { financeTransactionType } from './transaction-type';
+import { fakeFinanceCurrency } from './currency';
+import { fakeFinanceCurrencyCode } from './currency-code';
+import { fakeFinanceCurrencyName } from './currency-name';
+import { fakeFinanceCurrencyNumericCode } from './currency-numeric-code';
+import { fakeFinanceCurrencySymbol } from './currency-symbol';
+import { fakeFinanceEthereumAddress } from './ethereum-address';
+import { fakeFinanceIban } from './iban';
+import { fakeFinanceLitecoinAddress } from './litecoin-address';
+import { fakeFinancePin } from './pin';
+import { fakeFinanceRoutingNumber } from './routing-number';
+import { fakeFinanceTransactionDescription } from './transaction-description';
+import { fakeFinanceTransactionType } from './transaction-type';
 import type { VatNumberCountryCode } from './vat-number';
-import { financeVatNumber } from './vat-number';
+import { fakeFinanceVatNumber } from './vat-number';
 
 /**
  * Module to generate finance and money related entries.
@@ -138,7 +138,7 @@ export class FinanceModule extends ModuleBase {
           length?: number;
         } = {}
   ): string {
-    return financeAccountNumber(this.fakerCore, options);
+    return fakeFinanceAccountNumber(this.fakerCore, options);
   }
 
   /**
@@ -150,7 +150,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   accountName(): string {
-    return financeAccountName(this.fakerCore);
+    return fakeFinanceAccountName(this.fakerCore);
   }
 
   /**
@@ -162,7 +162,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   routingNumber(): string {
-    return financeRoutingNumber(this.fakerCore);
+    return fakeFinanceRoutingNumber(this.fakerCore);
   }
 
   /**
@@ -220,7 +220,7 @@ export class FinanceModule extends ModuleBase {
       autoFormat?: boolean;
     } = {}
   ): string {
-    return financeAmount(this.fakerCore, options);
+    return fakeFinanceAmount(this.fakerCore, options);
   }
 
   /**
@@ -232,7 +232,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   transactionType(): string {
-    return financeTransactionType(this.fakerCore);
+    return fakeFinanceTransactionType(this.fakerCore);
   }
 
   /**
@@ -249,7 +249,7 @@ export class FinanceModule extends ModuleBase {
    * @since 8.0.0
    */
   currency(): Currency {
-    return financeCurrency(this.fakerCore);
+    return fakeFinanceCurrency(this.fakerCore);
   }
 
   /**
@@ -262,7 +262,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencyCode(): string {
-    return financeCurrencyCode(this.fakerCore);
+    return fakeFinanceCurrencyCode(this.fakerCore);
   }
 
   /**
@@ -274,7 +274,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencyName(): string {
-    return financeCurrencyName(this.fakerCore);
+    return fakeFinanceCurrencyName(this.fakerCore);
   }
 
   /**
@@ -288,7 +288,7 @@ export class FinanceModule extends ModuleBase {
    * @since 2.0.1
    */
   currencySymbol(): string {
-    return financeCurrencySymbol(this.fakerCore);
+    return fakeFinanceCurrencySymbol(this.fakerCore);
   }
 
   /**
@@ -301,7 +301,7 @@ export class FinanceModule extends ModuleBase {
    * @since 9.6.0
    */
   currencyNumericCode(): string {
-    return financeCurrencyNumericCode(this.fakerCore);
+    return fakeFinanceCurrencyNumericCode(this.fakerCore);
   }
 
   /**
@@ -334,7 +334,7 @@ export class FinanceModule extends ModuleBase {
       network?: BitcoinNetworkType;
     } = {}
   ): string {
-    return financeBitcoinAddress(this.fakerCore, options);
+    return fakeFinanceBitcoinAddress(this.fakerCore, options);
   }
 
   /**
@@ -346,7 +346,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   litecoinAddress(): string {
-    return financeLitecoinAddress(this.fakerCore);
+    return fakeFinanceLitecoinAddress(this.fakerCore);
   }
 
   /**
@@ -435,7 +435,7 @@ export class FinanceModule extends ModuleBase {
           issuer?: string;
         } = {}
   ): string {
-    return financeCreditCardNumber(this.fakerCore, options);
+    return fakeFinanceCreditCardNumber(this.fakerCore, options);
   }
 
   /**
@@ -447,7 +447,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   creditCardCVV(): string {
-    return financeCreditCardCVV(this.fakerCore);
+    return fakeFinanceCreditCardCVV(this.fakerCore);
   }
 
   /**
@@ -459,7 +459,7 @@ export class FinanceModule extends ModuleBase {
    * @since 6.3.0
    */
   creditCardIssuer(): string {
-    return financeCreditCardIssuer(this.fakerCore);
+    return fakeFinanceCreditCardIssuer(this.fakerCore);
   }
 
   /**
@@ -560,7 +560,7 @@ export class FinanceModule extends ModuleBase {
           length?: number;
         } = {}
   ): string {
-    return financePin(this.fakerCore, options);
+    return fakeFinancePin(this.fakerCore, options);
   }
 
   /**
@@ -574,7 +574,7 @@ export class FinanceModule extends ModuleBase {
    * @since 5.0.0
    */
   ethereumAddress(): string {
-    return financeEthereumAddress(this.fakerCore);
+    return fakeFinanceEthereumAddress(this.fakerCore);
   }
 
   /**
@@ -610,7 +610,7 @@ export class FinanceModule extends ModuleBase {
       countryCode?: string;
     } = {}
   ): string {
-    return financeIban(this.fakerCore, options);
+    return fakeFinanceIban(this.fakerCore, options);
   }
 
   /**
@@ -636,7 +636,7 @@ export class FinanceModule extends ModuleBase {
       includeBranchCode?: boolean;
     } = {}
   ): string {
-    return financeBic(this.fakerCore, options);
+    return fakeFinanceBic(this.fakerCore, options);
   }
 
   /**
@@ -676,7 +676,7 @@ export class FinanceModule extends ModuleBase {
       countryCode?: VatNumberCountryCode;
     } = {}
   ): string {
-    return financeVatNumber(this.fakerCore, options);
+    return fakeFinanceVatNumber(this.fakerCore, options);
   }
 
   /**
@@ -689,6 +689,6 @@ export class FinanceModule extends ModuleBase {
    * @since 5.1.0
    */
   transactionDescription(): string {
-    return financeTransactionDescription(this.fakerCore);
+    return fakeFinanceTransactionDescription(this.fakerCore);
   }
 }

@@ -1,13 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-import { commerceDepartment } from './department';
-import { commerceIsbn } from './isbn';
-import { commercePrice } from './price';
-import { commerceProduct } from './product';
-import { commerceProductAdjective } from './product-adjective';
-import { commerceProductDescription } from './product-description';
-import { commerceProductMaterial } from './product-material';
-import { commerceProductName } from './product-name';
-import { commerceUpc } from './upc';
+import { fakeCommerceDepartment } from './department';
+import { fakeCommerceIsbn } from './isbn';
+import { fakeCommercePrice } from './price';
+import { fakeCommerceProduct } from './product';
+import { fakeCommerceProductAdjective } from './product-adjective';
+import { fakeCommerceProductDescription } from './product-description';
+import { fakeCommerceProductMaterial } from './product-material';
+import { fakeCommerceProductName } from './product-name';
+import { fakeCommerceUpc } from './upc';
 
 /**
  * Module to generate commerce and product related entries.
@@ -37,7 +37,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   department(): string {
-    return commerceDepartment(this.fakerCore);
+    return fakeCommerceDepartment(this.fakerCore);
   }
 
   /**
@@ -49,7 +49,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productName(): string {
-    return commerceProductName(this.fakerCore);
+    return fakeCommerceProductName(this.fakerCore);
   }
 
   /**
@@ -105,7 +105,7 @@ export class CommerceModule extends ModuleBase {
       symbol?: string;
     } = {}
   ): string {
-    return commercePrice(this.fakerCore, options);
+    return fakeCommercePrice(this.fakerCore, options);
   }
 
   /**
@@ -117,7 +117,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productAdjective(): string {
-    return commerceProductAdjective(this.fakerCore);
+    return fakeCommerceProductAdjective(this.fakerCore);
   }
 
   /**
@@ -129,7 +129,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   productMaterial(): string {
-    return commerceProductMaterial(this.fakerCore);
+    return fakeCommerceProductMaterial(this.fakerCore);
   }
 
   /**
@@ -141,7 +141,7 @@ export class CommerceModule extends ModuleBase {
    * @since 3.0.0
    */
   product(): string {
-    return commerceProduct(this.fakerCore);
+    return fakeCommerceProduct(this.fakerCore);
   }
 
   /**
@@ -153,7 +153,7 @@ export class CommerceModule extends ModuleBase {
    * @since 5.0.0
    */
   productDescription(): string {
-    return commerceProductDescription(this.fakerCore);
+    return fakeCommerceProductDescription(this.fakerCore);
   }
 
   /**
@@ -198,7 +198,7 @@ export class CommerceModule extends ModuleBase {
           separator?: string;
         } = {}
   ): string {
-    return commerceIsbn(this.fakerCore, options);
+    return fakeCommerceIsbn(this.fakerCore, options);
   }
 
   /**
@@ -228,6 +228,6 @@ export class CommerceModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return commerceUpc(this.fakerCore, options);
+    return fakeCommerceUpc(this.fakerCore, options);
   }
 }

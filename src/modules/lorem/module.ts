@@ -1,14 +1,14 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { loremLines } from './lines';
-import { loremParagraph } from './paragraph';
-import { loremParagraphs } from './paragraphs';
-import { loremSentence } from './sentence';
-import { loremSentences } from './sentences';
-import { loremSlug } from './slug';
-import { loremText } from './text';
-import { loremWord } from './word';
-import { loremWords } from './words';
+import { fakeLoremLines } from './lines';
+import { fakeLoremParagraph } from './paragraph';
+import { fakeLoremParagraphs } from './paragraphs';
+import { fakeLoremSentence } from './sentence';
+import { fakeLoremSentences } from './sentences';
+import { fakeLoremSlug } from './slug';
+import { fakeLoremText } from './text';
+import { fakeLoremWord } from './word';
+import { fakeLoremWords } from './words';
 
 /**
  * Module to generate random texts and words.
@@ -60,7 +60,7 @@ export class LoremModule extends ModuleBase {
           strategy?: LengthStrategyType;
         } = {}
   ): string {
-    return loremWord(this.fakerCore, options);
+    return fakeLoremWord(this.fakerCore, options);
   }
 
   /**
@@ -78,7 +78,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   words(wordCount: NumberOrRange = 3): string {
-    return loremWords(this.fakerCore, wordCount);
+    return fakeLoremWords(this.fakerCore, wordCount);
   }
 
   /**
@@ -96,7 +96,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   sentence(wordCount: NumberOrRange = { min: 3, max: 10 }): string {
-    return loremSentence(this.fakerCore, wordCount);
+    return fakeLoremSentence(this.fakerCore, wordCount);
   }
 
   /**
@@ -114,7 +114,7 @@ export class LoremModule extends ModuleBase {
    * @since 4.0.0
    */
   slug(wordCount: NumberOrRange = 3): string {
-    return loremSlug(this.fakerCore, wordCount);
+    return fakeLoremSlug(this.fakerCore, wordCount);
   }
 
   /**
@@ -139,7 +139,7 @@ export class LoremModule extends ModuleBase {
     sentenceCount: NumberOrRange = { min: 2, max: 6 },
     separator: string = ' '
   ): string {
-    return loremSentences(this.fakerCore, sentenceCount, separator);
+    return fakeLoremSentences(this.fakerCore, sentenceCount, separator);
   }
 
   /**
@@ -157,7 +157,7 @@ export class LoremModule extends ModuleBase {
    * @since 2.0.1
    */
   paragraph(sentenceCount: NumberOrRange = 3): string {
-    return loremParagraph(this.fakerCore, sentenceCount);
+    return fakeLoremParagraph(this.fakerCore, sentenceCount);
   }
 
   /**
@@ -196,7 +196,7 @@ export class LoremModule extends ModuleBase {
     paragraphCount: NumberOrRange = 3,
     separator: string = '\n'
   ): string {
-    return loremParagraphs(this.fakerCore, paragraphCount, separator);
+    return fakeLoremParagraphs(this.fakerCore, paragraphCount, separator);
   }
 
   /**
@@ -214,7 +214,7 @@ export class LoremModule extends ModuleBase {
    * @since 3.1.0
    */
   text(): string {
-    return loremText(this.fakerCore);
+    return fakeLoremText(this.fakerCore);
   }
 
   /**
@@ -245,6 +245,6 @@ export class LoremModule extends ModuleBase {
    * @since 3.1.0
    */
   lines(lineCount: NumberOrRange = { min: 1, max: 5 }): string {
-    return loremLines(this.fakerCore, lineCount);
+    return fakeLoremLines(this.fakerCore, lineCount);
   }
 }

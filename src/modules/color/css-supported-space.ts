@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersEnumValue } from '../helpers/enum-value';
+import { fakeHelpersEnumValue } from '../helpers/enum-value';
 
 /**
  * Color space names supported by CSS.
@@ -23,12 +23,12 @@ export type CssSpaceType = `${CssSpace}`;
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * colorCssSupportedSpace(fakerCore) // 'display-p3'
+ * fakeColorCssSupportedSpace(fakerCore) // 'display-p3'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorCssSupportedSpace(fakerCore: FakerCore): CssSpaceType {
-  return helpersEnumValue(fakerCore, CssSpace);
+export function fakeColorCssSupportedSpace(fakerCore: FakerCore): CssSpaceType {
+  return fakeHelpersEnumValue(fakerCore, CssSpace);
 }

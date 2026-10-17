@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { numberInt } from '../number/int';
-import { stringHexadecimal } from '../string/hexadecimal';
+import { fakeNumberInt } from '../number/int';
+import { fakeStringHexadecimal } from '../string/hexadecimal';
 
 export enum IPv6Network {
   /**
@@ -118,15 +118,15 @@ function parseIPv6Address(address: string): number[] | undefined {
  * @throws {FakerError} If the network is unknown and no CIDR block is provided.
  *
  * @example
- * internetIpv6(fakerCore) // '269f:1230:73e3:318d:842b:daab:326d:897b'
- * internetIpv6(fakerCore, { cidrBlock: '2001:db8:1234::/48' }) // '2001:0db8:1234:318d:842b:daab:326d:897b'
- * internetIpv6(fakerCore, { network: 'loopback' }) // '0000:0000:0000:0000:0000:0000:0000:0001'
+ * fakeInternetIpv6(fakerCore) // '269f:1230:73e3:318d:842b:daab:326d:897b'
+ * fakeInternetIpv6(fakerCore, { cidrBlock: '2001:db8:1234::/48' }) // '2001:0db8:1234:318d:842b:daab:326d:897b'
+ * fakeInternetIpv6(fakerCore, { network: 'loopback' }) // '0000:0000:0000:0000:0000:0000:0000:0001'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetIpv6(
+export function fakeInternetIpv6(
   fakerCore: FakerCore,
   options: {
     /**
@@ -173,14 +173,14 @@ export function internetIpv6(
           Math.max(0, (index + 1) * 16 - prefixLength)
         );
         const hostMask = 2 ** hostBits - 1;
-        const host = hostBits === 0 ? 0 : numberInt(fakerCore, hostMask);
+        const host = hostBits === 0 ? 0 : fakeNumberInt(fakerCore, hostMask);
         return ((group & ~hostMask) | host).toString(16).padStart(4, '0');
       })
       .join(':');
   }
 
   return Array.from({ length: 8 }, () =>
-    stringHexadecimal(fakerCore, {
+    fakeStringHexadecimal(fakerCore, {
       length: 4,
       casing: 'lower',
       prefix: '',

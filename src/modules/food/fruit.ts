@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random fruit name.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * foodFruit(fakerCore) // 'lemon'
+ * fakeFoodFruit(fakerCore) // 'lemon'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function foodFruit(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.food.fruit);
+export function fakeFoodFruit(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.food.fruit);
 }

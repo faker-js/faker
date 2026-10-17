@@ -1,12 +1,12 @@
 import { ModuleBase } from '../../internal/module-base';
-import { medicalAllergen } from './allergen';
-import { medicalBloodType } from './blood-type';
-import { medicalCondition } from './condition';
-import { medicalDepartment } from './department';
-import { medicalDrugName } from './drug-name';
-import { medicalProcedure } from './procedure';
-import { medicalSpecialty } from './specialty';
-import { medicalSymptom } from './symptom';
+import { fakeMedicalAllergen } from './allergen';
+import { fakeMedicalBloodType } from './blood-type';
+import { fakeMedicalCondition } from './condition';
+import { fakeMedicalDepartment } from './department';
+import { fakeMedicalDrugName } from './drug-name';
+import { fakeMedicalProcedure } from './procedure';
+import { fakeMedicalSpecialty } from './specialty';
+import { fakeMedicalSymptom } from './symptom';
 
 /**
  * Module to generate plausible medical and healthcare related entries.
@@ -34,7 +34,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   specialty(): string {
-    return medicalSpecialty(this.fakerCore);
+    return fakeMedicalSpecialty(this.fakerCore);
   }
 
   /**
@@ -46,7 +46,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   department(): string {
-    return medicalDepartment(this.fakerCore);
+    return fakeMedicalDepartment(this.fakerCore);
   }
 
   /**
@@ -58,7 +58,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   condition(): string {
-    return medicalCondition(this.fakerCore);
+    return fakeMedicalCondition(this.fakerCore);
   }
 
   /**
@@ -70,7 +70,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   symptom(): string {
-    return medicalSymptom(this.fakerCore);
+    return fakeMedicalSymptom(this.fakerCore);
   }
 
   /**
@@ -82,7 +82,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   procedure(): string {
-    return medicalProcedure(this.fakerCore);
+    return fakeMedicalProcedure(this.fakerCore);
   }
 
   /**
@@ -98,7 +98,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   allergen(): string {
-    return medicalAllergen(this.fakerCore);
+    return fakeMedicalAllergen(this.fakerCore);
   }
 
   /**
@@ -110,7 +110,7 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   bloodType(): string {
-    return medicalBloodType(this.fakerCore);
+    return fakeMedicalBloodType(this.fakerCore);
   }
 
   /**
@@ -126,6 +126,6 @@ export class MedicalModule extends ModuleBase {
    * @since 11.0.0
    */
   drugName(): string {
-    return medicalDrugName(this.fakerCore);
+    return fakeMedicalDrugName(this.fakerCore);
   }
 }

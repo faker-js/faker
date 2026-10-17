@@ -1,20 +1,20 @@
 import { ModuleBase } from '../../internal/module-base';
-import { animalBear } from './bear';
-import { animalBird } from './bird';
-import { animalCat } from './cat';
-import { animalCetacean } from './cetacean';
-import { animalCow } from './cow';
-import { animalCrocodilia } from './crocodilia';
-import { animalDog } from './dog';
-import { animalFish } from './fish';
-import { animalHorse } from './horse';
-import { animalInsect } from './insect';
-import { animalLion } from './lion';
-import { animalPetName } from './pet-name';
-import { animalRabbit } from './rabbit';
-import { animalRodent } from './rodent';
-import { animalSnake } from './snake';
-import { animalType } from './type';
+import { fakeAnimalBear } from './bear';
+import { fakeAnimalBird } from './bird';
+import { fakeAnimalCat } from './cat';
+import { fakeAnimalCetacean } from './cetacean';
+import { fakeAnimalCow } from './cow';
+import { fakeAnimalCrocodilia } from './crocodilia';
+import { fakeAnimalDog } from './dog';
+import { fakeAnimalFish } from './fish';
+import { fakeAnimalHorse } from './horse';
+import { fakeAnimalInsect } from './insect';
+import { fakeAnimalLion } from './lion';
+import { fakeAnimalPetName } from './pet-name';
+import { fakeAnimalRabbit } from './rabbit';
+import { fakeAnimalRodent } from './rodent';
+import { fakeAnimalSnake } from './snake';
+import { fakeAnimalType } from './type';
 
 /**
  * Module to generate animal related entries.
@@ -42,7 +42,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   dog(): string {
-    return animalDog(this.fakerCore);
+    return fakeAnimalDog(this.fakerCore);
   }
 
   /**
@@ -54,7 +54,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cat(): string {
-    return animalCat(this.fakerCore);
+    return fakeAnimalCat(this.fakerCore);
   }
 
   /**
@@ -66,7 +66,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   snake(): string {
-    return animalSnake(this.fakerCore);
+    return fakeAnimalSnake(this.fakerCore);
   }
 
   /**
@@ -78,7 +78,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   bear(): string {
-    return animalBear(this.fakerCore);
+    return fakeAnimalBear(this.fakerCore);
   }
 
   /**
@@ -90,7 +90,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   lion(): string {
-    return animalLion(this.fakerCore);
+    return fakeAnimalLion(this.fakerCore);
   }
 
   /**
@@ -102,7 +102,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cetacean(): string {
-    return animalCetacean(this.fakerCore);
+    return fakeAnimalCetacean(this.fakerCore);
   }
 
   /**
@@ -114,7 +114,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   horse(): string {
-    return animalHorse(this.fakerCore);
+    return fakeAnimalHorse(this.fakerCore);
   }
 
   /**
@@ -126,7 +126,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   bird(): string {
-    return animalBird(this.fakerCore);
+    return fakeAnimalBird(this.fakerCore);
   }
 
   /**
@@ -138,7 +138,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   cow(): string {
-    return animalCow(this.fakerCore);
+    return fakeAnimalCow(this.fakerCore);
   }
 
   /**
@@ -150,7 +150,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   fish(): string {
-    return animalFish(this.fakerCore);
+    return fakeAnimalFish(this.fakerCore);
   }
 
   /**
@@ -162,7 +162,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   crocodilia(): string {
-    return animalCrocodilia(this.fakerCore);
+    return fakeAnimalCrocodilia(this.fakerCore);
   }
 
   /**
@@ -174,7 +174,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   insect(): string {
-    return animalInsect(this.fakerCore);
+    return fakeAnimalInsect(this.fakerCore);
   }
 
   /**
@@ -186,7 +186,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   rabbit(): string {
-    return animalRabbit(this.fakerCore);
+    return fakeAnimalRabbit(this.fakerCore);
   }
 
   /**
@@ -198,7 +198,7 @@ export class AnimalModule extends ModuleBase {
    * @since 7.4.0
    */
   rodent(): string {
-    return animalRodent(this.fakerCore);
+    return fakeAnimalRodent(this.fakerCore);
   }
 
   /**
@@ -210,7 +210,7 @@ export class AnimalModule extends ModuleBase {
    * @since 5.5.0
    */
   type(): string {
-    return animalType(this.fakerCore);
+    return fakeAnimalType(this.fakerCore);
   }
 
   /**
@@ -222,6 +222,6 @@ export class AnimalModule extends ModuleBase {
    * @since 9.2.0
    */
   petName(): string {
-    return animalPetName(this.fakerCore);
+    return fakeAnimalPetName(this.fakerCore);
   }
 }

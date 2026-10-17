@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 import { legacyReplaceSymbolWithNumber } from './_legacy-replace-symbol-with-number';
 import { luhnCheckValue } from './_luhn-check';
 
@@ -50,7 +50,7 @@ function legacyRegexpStringParse(
       min = tmp;
     }
 
-    repetitions = numberInt(fakerCore, { min, max });
+    repetitions = fakeNumberInt(fakerCore, { min, max });
     string =
       string.slice(0, token.index) +
       token[1].repeat(repetitions) +
@@ -83,7 +83,7 @@ function legacyRegexpStringParse(
 
     string =
       string.slice(0, token.index) +
-      numberInt(fakerCore, { min, max }).toString() +
+      fakeNumberInt(fakerCore, { min, max }).toString() +
       string.slice(token.index + token[0].length);
     token = RANGE_REG.exec(string);
   }
@@ -108,14 +108,14 @@ function legacyRegexpStringParse(
  * @param symbol The symbol to replace with a digit. Defaults to `'#'`.
  *
  * @example
- * helpersReplaceCreditCardSymbols(fakerCore) // '6453-4876-8626-8995-3771'
- * helpersReplaceCreditCardSymbols(fakerCore, '1234-[4-9]-##!!-L') // '1234-9-5298-2'
+ * fakeHelpersReplaceCreditCardSymbols(fakerCore) // '6453-4876-8626-8995-3771'
+ * fakeHelpersReplaceCreditCardSymbols(fakerCore, '1234-[4-9]-##!!-L') // '1234-9-5298-2'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersReplaceCreditCardSymbols(
+export function fakeHelpersReplaceCreditCardSymbols(
   fakerCore: FakerCore,
   string: string = '6453-####-####-####-###L',
   symbol: string = '#'

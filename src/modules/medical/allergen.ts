@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random allergen.
@@ -11,12 +11,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * medicalAllergen(fakerCore) // 'Penicillin'
+ * fakeMedicalAllergen(fakerCore) // 'Penicillin'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function medicalAllergen(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.medical.allergen);
+export function fakeMedicalAllergen(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.medical.allergen);
 }

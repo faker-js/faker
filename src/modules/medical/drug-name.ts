@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a fictitious, brand-style drug name.
@@ -11,12 +11,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * medicalDrugName(fakerCore) // 'Zolpraxen'
+ * fakeMedicalDrugName(fakerCore) // 'Zolpraxen'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function medicalDrugName(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.medical.drug_name);
+export function fakeMedicalDrugName(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.medical.drug_name);
 }

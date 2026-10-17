@@ -1,10 +1,10 @@
 import { ModuleBase } from '../../internal/module-base';
-import { bookAuthor } from './author';
-import { bookFormat } from './format';
-import { bookGenre } from './genre';
-import { bookPublisher } from './publisher';
-import { bookSeries } from './series';
-import { bookTitle } from './title';
+import { fakeBookAuthor } from './author';
+import { fakeBookFormat } from './format';
+import { fakeBookGenre } from './genre';
+import { fakeBookPublisher } from './publisher';
+import { fakeBookSeries } from './series';
+import { fakeBookTitle } from './title';
 
 /**
  * Module to generate book related entries.
@@ -37,7 +37,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   author(): string {
-    return bookAuthor(this.fakerCore);
+    return fakeBookAuthor(this.fakerCore);
   }
 
   /**
@@ -49,7 +49,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   format(): string {
-    return bookFormat(this.fakerCore);
+    return fakeBookFormat(this.fakerCore);
   }
 
   /**
@@ -61,7 +61,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   genre(): string {
-    return bookGenre(this.fakerCore);
+    return fakeBookGenre(this.fakerCore);
   }
 
   /**
@@ -73,7 +73,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   publisher(): string {
-    return bookPublisher(this.fakerCore);
+    return fakeBookPublisher(this.fakerCore);
   }
 
   /**
@@ -85,7 +85,7 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   series(): string {
-    return bookSeries(this.fakerCore);
+    return fakeBookSeries(this.fakerCore);
   }
 
   /**
@@ -97,6 +97,6 @@ export class BookModule extends ModuleBase {
    * @since 9.1.0
    */
   title(): string {
-    return bookTitle(this.fakerCore);
+    return fakeBookTitle(this.fakerCore);
   }
 }

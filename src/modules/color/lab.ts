@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberFloat } from '../number/float';
+import { fakeNumberFloat } from '../number/float';
 import { toColorFormat } from './_to-color-format';
 import type {
   ColorFormat,
@@ -13,13 +13,13 @@ import type {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * colorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
+ * fakeColorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorLab(fakerCore: FakerCore): number[];
+export function fakeColorLab(fakerCore: FakerCore): number[];
 /**
  * Returns a LAB (CIELAB) color.
  *
@@ -28,15 +28,15 @@ export function colorLab(fakerCore: FakerCore): number[];
  * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
  *
  * @example
- * colorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
- * colorLab(fakerCore, { format: 'css' }) // 'lab(29.2345% 39.3825 20.0664)'
- * colorLab(fakerCore, { format: 'binary' }) // (8-32 bits x 3)
+ * fakeColorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
+ * fakeColorLab(fakerCore, { format: 'css' }) // 'lab(29.2345% 39.3825 20.0664)'
+ * fakeColorLab(fakerCore, { format: 'binary' }) // (8-32 bits x 3)
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorLab(
+export function fakeColorLab(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -55,14 +55,14 @@ export function colorLab(
  * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
  *
  * @example
- * colorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
- * colorLab(fakerCore, { format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
+ * fakeColorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
+ * fakeColorLab(fakerCore, { format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorLab(
+export function fakeColorLab(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -81,16 +81,16 @@ export function colorLab(
  * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
  *
  * @example
- * colorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
- * colorLab(fakerCore, { format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
- * colorLab(fakerCore, { format: 'css' }) // 'lab(29.2345% 39.3825 20.0664)'
- * colorLab(fakerCore, { format: 'binary' }) // (8-32 bits x 3)
+ * fakeColorLab(fakerCore) // [0.832133, -80.3245, 100.1234]
+ * fakeColorLab(fakerCore, { format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
+ * fakeColorLab(fakerCore, { format: 'css' }) // 'lab(29.2345% 39.3825 20.0664)'
+ * fakeColorLab(fakerCore, { format: 'binary' }) // (8-32 bits x 3)
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorLab(
+export function fakeColorLab(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -102,15 +102,15 @@ export function colorLab(
   }
 ): string | number[];
 
-export function colorLab(
+export function fakeColorLab(
   fakerCore: FakerCore,
   options: { format?: ColorFormat } = {}
 ): string | number[] {
   const { format = 'decimal' } = options;
-  const lab = [numberFloat(fakerCore, { multipleOf: 0.000001 })];
+  const lab = [fakeNumberFloat(fakerCore, { multipleOf: 0.000001 })];
   for (let i = 0; i < 2; i++) {
     lab.push(
-      numberFloat(fakerCore, { min: -100, max: 100, multipleOf: 0.0001 })
+      fakeNumberFloat(fakerCore, { min: -100, max: 100, multipleOf: 0.0001 })
     );
   }
 
