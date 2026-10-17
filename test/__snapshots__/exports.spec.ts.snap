@@ -260,12 +260,30 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeAirlineSeat",
         ],
       },
+      "animal": {
+        "types": [
+          "AnimalModule",
+        ],
+        "values": [
+          "fakeAnimalBear",
+          "fakeAnimalBird",
+          "fakeAnimalCat",
+          "fakeAnimalCetacean",
+          "fakeAnimalCow",
+          "fakeAnimalCrocodilia",
+          "fakeAnimalDog",
+          "fakeAnimalFish",
+          "fakeAnimalHorse",
+          "fakeAnimalInsect",
+          "fakeAnimalLion",
+          "fakeAnimalPetName",
+          "fakeAnimalRabbit",
+          "fakeAnimalRodent",
+          "fakeAnimalSnake",
+          "fakeAnimalType",
+        ],
+      },
     },
-  },
-  "modules/animal": {
-    "types": [
-      "AnimalModule",
-    ],
   },
   "modules/book": {
     "types": [
