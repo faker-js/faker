@@ -2,7 +2,7 @@ import type { FakerOptions } from './core';
 import type { LocaleDefinition, MetadataDefinition } from './definitions';
 import type { LocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline/module';
-import { AnimalModule } from './modules/animal';
+import { AnimalModule } from './modules/animal/module';
 import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
