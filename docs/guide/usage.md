@@ -210,7 +210,42 @@ Also, in a real scenario, your model should not depend on a type of a third part
 
 Let's create our first user factory function:
 
-```ts
+::: code-group
+
+```ts [Standalone]
+import {
+  createFakerCore,
+  fakeDateBirthdate,
+  fakeHelpersArrayElement,
+  fakeImageAvatar,
+  fakeInternetEmail,
+  fakePersonFirstName,
+  fakePersonLastName,
+  fakePersonSexType,
+  fakeStringUuid,
+} from '@faker-js/faker';
+
+const fakerCore = createFakerCore({ locale: [...] });
+
+interface User { ... }
+
+function fakeUser(fakerCore: FakerCore): User {
+  return {
+    _id: fakeStringUuid(fakerCore),
+    avatar: fakeImageAvatar(fakerCore),
+    birthday: fakeDateBirthdate(fakerCore),
+    email: fakeInternetEmail(fakerCore),
+    firstName: fakePersonFirstName(fakerCore),
+    lastName: fakePersonLastName(fakerCore),
+    sex: fakePersonSexType(fakerCore),
+    subscriptionTier: fakeHelpersArrayElement(fakerCore, ['free', 'basic', 'business']),
+  };
+}
+
+const user = fakeUser(fakerCore);
+```
+
+```ts [Tree]
 import { faker } from '@faker-js/faker';
 
 interface User { ... }
@@ -231,6 +266,8 @@ function createRandomUser(): User {
 const user = createRandomUser();
 ```
 
+:::
+
 At this point, we have a perfectly working function that will work for most purposes.
 But we can take this a step further.
 Currently, all properties are just randomly generated.
@@ -239,7 +276,37 @@ For example: The `sex` property having value `'female'` while `firstName` is `'B
 
 Let's refactor our current code:
 
-```ts {4-7,13-16}
+::: code-group
+
+```ts [Standalone] {4-7,13-16}
+import { ... } from '@faker-js/faker';
+
+function fakeUser(fakerCore: FakerCore): User {
+  const sex = fakePersonSexType(fakerCore);
+  const firstName = fakePersonFirstName(fakerCore, sex);
+  const lastName = fakePersonLastName(fakerCore);
+  const email = fakeInternetEmail(fakerCore, { firstName, lastName });
+
+  return {
+    _id: fakeStringUuid(fakerCore),
+    avatar: fakeImageAvatar(fakerCore),
+    birthday: fakeDateBirthdate(fakerCore),
+    email,
+    firstName,
+    lastName,
+    sex,
+    subscriptionTier: fakeHelpersArrayElement(fakerCore, [
+      'free',
+      'basic',
+      'business',
+    ]),
+  };
+}
+
+const user = fakeUser(fakerCore);
+```
+
+```ts [Tree] {4-7,13-16}
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
@@ -263,6 +330,8 @@ function createRandomUser(): User {
 const user = createRandomUser();
 ```
 
+:::
+
 As you can see, we changed the order in which we generate our values.
 First, we generate a `sex` value to use it as input for the generation of `firstName`.
 Then we generate the `lastName`.
@@ -275,7 +344,44 @@ Unlike the `_id` property that uses an `uuid` implementation, which has a low ch
 The example above demonstrates how to generate complex objects.
 To gain more control over the values of specific properties, you can introduce `overwrites`, `options` or similar parameters:
 
-```ts {3,17}
+::: code-group
+
+```ts [Standalone] {3,17}
+import { ... } from '@faker-js/faker';
+
+function fakeUser(fakerCore: FakerCore, overwrites: Partial<User> = {}): User {
+  const {
+    _id = fakeStringUuid(fakerCore),
+    avatar = fakeImageAvatar(fakerCore),
+    birthday = fakeDateBirthdate(fakerCore),
+    sex = fakePersonSexType(fakerCore),
+    firstName = fakePersonFirstName(fakerCore, sex),
+    lastName = fakePersonLastName(fakerCore),
+    email = fakeInternetEmail(fakerCore, { firstName, lastName }),
+    subscriptionTier = fakeHelpersArrayElement(fakerCore, [
+      'free',
+      'basic',
+      'business',
+    ]),
+  } = overwrites;
+
+  return {
+    _id,
+    avatar,
+    birthday,
+    email,
+    firstName,
+    lastName,
+    sex,
+    subscriptionTier,
+  };
+}
+
+const user = fakeUser(fakerCore);
+const userToReject = fakeUser(fakerCore, { birthday: new Date('2124-10-20') });
+```
+
+```ts [Tree] {3,17}
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(overwrites: Partial<User> = {}): User {
@@ -309,6 +415,8 @@ function createRandomUser(overwrites: Partial<User> = {}): User {
 const user = createRandomUser();
 const userToReject = createRandomUser({ birthday: new Date('2124-10-20') });
 ```
+
+:::
 
 A potential `options` parameter could be used to:
 

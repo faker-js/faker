@@ -55,6 +55,37 @@ npm install --save-dev @faker-js/faker
 
 ## 🪄 Usage
 
+There are two ways to use Faker:
+
+- Standalone (New, Made for small bundle sizes)
+- Tree (Everything accessible via singular import)
+
+### Standalone Function Usage
+
+```ts
+import { ... } from '@faker-js/faker';
+
+const fakerCore = createFakerCore({ locale: [en_US, en, base] });
+
+export function fakeUser(fakerCore: FakerCore) {
+  return {
+    userId: fakeStringUuid(fakerCore),
+    username: fakeInternetUsername(fakerCore),
+    email: fakeInternetEmail(fakerCore),
+    avatar: fakeImageAvatar(fakerCore),
+    password: fakeInternetPassword(fakerCore),
+    birthdate: fakeDateBirthdate(fakerCore),
+    registeredAt: fakeDatePast(fakerCore),
+  };
+}
+
+export const users = fakeHelpersMultiple(fakerCore, fakeUser, {
+  count: 5,
+});
+```
+
+### Function Tree Usage
+
 ```ts
 // ESM
 import { faker } from '@faker-js/faker';
