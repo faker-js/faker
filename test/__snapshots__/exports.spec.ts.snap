@@ -285,6 +285,14 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "BookModule",
     ],
+    "values": [
+      "fakeBookAuthor",
+      "fakeBookFormat",
+      "fakeBookGenre",
+      "fakeBookPublisher",
+      "fakeBookSeries",
+      "fakeBookTitle",
+    ],
   },
   "modules/color": {
     "types": [
