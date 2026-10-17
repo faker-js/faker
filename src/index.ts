@@ -41,7 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export type { BookModule } from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
   ColorFormat,
