@@ -255,3 +255,8 @@ console.log(faker.location.zipCode()); // Error // [!code error]
 :::
 
 See also: [Custom Locales and Fallbacks](#custom-locales-and-fallbacks)
+
+## Contributing locale data
+
+Want to add a new locale, or fill in missing data for an existing one?
+See [Adding a New Locale](/contributing/adding-a-new-locale).
