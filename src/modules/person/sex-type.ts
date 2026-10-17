@@ -32,7 +32,7 @@ export type SexType = `${Sex}`;
  * @param options The optional options object.
  * @param options.includeGeneric Whether `'generic'` should be included in the potential outputs.
  * If `false`, this method only returns `'female'` and `'male'`.
- * Default is `false`.
+ * Default is `true`.
  *
  * @see personGender(fakerCore): For generating a gender related value in forms.
  * @see personSex(fakerCore): For generating a binary-gender value in forms.
@@ -52,12 +52,12 @@ export function personSexType(
      * Whether `'generic'` should be included in the potential outputs.
      * If `false`, this method only returns `'female'` and `'male'`.
      *
-     * @default false
+     * @default true
      */
     includeGeneric?: boolean;
   } = {}
 ): SexType {
-  const { includeGeneric = false } = options;
+  const { includeGeneric = true } = options;
 
   if (includeGeneric) {
     return helpersEnumValue(fakerCore, Sex);

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`markdown > codeGroupToHtml() > renders a plain code block for a single example 1`] = `
-"<div class="language-ts"><button title="Copy code" data-copied="Copied" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" dir="ltr" v-pre><code><span class="line"><span style="--shiki-light:#c62739;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> a</span><span style="--shiki-light:#c62739;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+"<div class="language-ts"><button title="Copy code" data-copied="Copied" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" dir="ltr" v-pre><code><span class="line"><span style="--shiki-light:#c62739;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#79B8FF"> a</span><span style="--shiki-light:#24292E;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
 </div>"
 `;
 

@@ -172,7 +172,7 @@ export class PersonModule extends ModuleBase {
    * @param options The optional options object.
    * @param options.includeGeneric Whether `'generic'` should be included in the potential outputs.
    * If `false`, this method only returns `'female'` and `'male'`.
-   * Default is `false`.
+   * Default is `true`.
    *
    * @see faker.person.gender(): For generating a gender related value in forms.
    * @see faker.person.sex(): For generating a binary-gender value in forms.
@@ -189,7 +189,7 @@ export class PersonModule extends ModuleBase {
        * Whether `'generic'` should be included in the potential outputs.
        * If `false`, this method only returns `'female'` and `'male'`.
        *
-       * @default false
+       * @default true
        */
       includeGeneric?: boolean;
     } = {}
