@@ -7,13 +7,13 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * locationStreet(fakerCore) // 'Schroeder Isle'
+ * fakeLocationStreet(fakerCore) // 'Schroeder Isle'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationStreet(fakerCore: FakerCore): string {
+export function fakeLocationStreet(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(
     fakerCore.locale.location.street_pattern
   );

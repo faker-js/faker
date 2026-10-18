@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 import { filterWordListByLength } from '../word/_filter-word-list-by-length';
 
 /**
@@ -12,16 +12,16 @@ import { filterWordListByLength } from '../word/_filter-word-list-by-length';
  * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
  *
  * @example
- * loremWord(fakerCore) // 'temporibus'
- * loremWord(fakerCore, 5) // 'velit'
- * loremWord(fakerCore, { strategy: 'shortest' }) // 'a'
- * loremWord(fakerCore, { length: { min: 5, max: 7 }, strategy: 'fail' }) // 'quaerat'
+ * fakeLoremWord(fakerCore) // 'temporibus'
+ * fakeLoremWord(fakerCore, 5) // 'velit'
+ * fakeLoremWord(fakerCore, { strategy: 'shortest' }) // 'a'
+ * fakeLoremWord(fakerCore, { length: { min: 5, max: 7 }, strategy: 'fail' }) // 'quaerat'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function loremWord(
+export function fakeLoremWord(
   fakerCore: FakerCore,
   options:
     | number
@@ -44,7 +44,7 @@ export function loremWord(
     options = { length: options };
   }
 
-  return helpersArrayElement(
+  return fakeHelpersArrayElement(
     fakerCore,
     filterWordListByLength({
       ...options,

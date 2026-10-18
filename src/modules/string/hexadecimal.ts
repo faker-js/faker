@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { Casing, NumberOrRange } from '../../utils/types';
-import { helpersRangeToNumber } from '../helpers/range-to-number';
-import { stringFromCharacters } from './from-characters';
+import { fakeHelpersRangeToNumber } from '../helpers/range-to-number';
+import { fakeStringFromCharacters } from './from-characters';
 
 const HEX_CHARS = [
   '0',
@@ -38,21 +38,21 @@ const HEX_CHARS = [
  * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
  *
  * @example
- * stringHexadecimal(fakerCore) // '0xB'
- * stringHexadecimal(fakerCore, { length: 10 }) // '0xaE13d044cB'
- * stringHexadecimal(fakerCore, { length: { min: 5, max: 10 } }) // '0x7dEf7FCD'
- * stringHexadecimal(fakerCore, { prefix: '0x' }) // '0xE'
- * stringHexadecimal(fakerCore, { casing: 'lower' }) // '0xf'
- * stringHexadecimal(fakerCore, { length: 10, prefix: '#' }) // '#f12a974eB1'
- * stringHexadecimal(fakerCore, { length: 10, casing: 'upper' }) // '0xE3F38014FB'
- * stringHexadecimal(fakerCore, { casing: 'lower', prefix: '' }) // 'd'
- * stringHexadecimal(fakerCore, { length: 10, casing: 'mixed', prefix: '0x' }) // '0xAdE330a4D1'
+ * fakeStringHexadecimal(fakerCore) // '0xB'
+ * fakeStringHexadecimal(fakerCore, { length: 10 }) // '0xaE13d044cB'
+ * fakeStringHexadecimal(fakerCore, { length: { min: 5, max: 10 } }) // '0x7dEf7FCD'
+ * fakeStringHexadecimal(fakerCore, { prefix: '0x' }) // '0xE'
+ * fakeStringHexadecimal(fakerCore, { casing: 'lower' }) // '0xf'
+ * fakeStringHexadecimal(fakerCore, { length: 10, prefix: '#' }) // '#f12a974eB1'
+ * fakeStringHexadecimal(fakerCore, { length: 10, casing: 'upper' }) // '0xE3F38014FB'
+ * fakeStringHexadecimal(fakerCore, { casing: 'lower', prefix: '' }) // 'd'
+ * fakeStringHexadecimal(fakerCore, { length: 10, casing: 'mixed', prefix: '0x' }) // '0xAdE330a4D1'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function stringHexadecimal(
+export function fakeStringHexadecimal(
   fakerCore: FakerCore,
   options: {
     /**
@@ -76,12 +76,12 @@ export function stringHexadecimal(
   } = {}
 ): string {
   const { casing = 'mixed', prefix = '0x' } = options;
-  const length = helpersRangeToNumber(fakerCore, options.length ?? 1);
+  const length = fakeHelpersRangeToNumber(fakerCore, options.length ?? 1);
   if (length <= 0) {
     return prefix;
   }
 
-  let wholeString = stringFromCharacters(fakerCore, HEX_CHARS, length);
+  let wholeString = fakeStringFromCharacters(fakerCore, HEX_CHARS, length);
 
   if (casing === 'upper') {
     wholeString = wholeString.toUpperCase();

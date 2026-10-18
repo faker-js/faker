@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersObjectKey } from '../helpers/object-key';
+import { fakeHelpersObjectKey } from '../helpers/object-key';
 
 /**
  * Returns a random credit card issuer.
@@ -7,14 +7,14 @@ import { helpersObjectKey } from '../helpers/object-key';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * financeCreditCardIssuer(fakerCore) // 'discover'
+ * fakeFinanceCreditCardIssuer(fakerCore) // 'discover'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeCreditCardIssuer(fakerCore: FakerCore): string {
-  return helpersObjectKey(
+export function fakeFinanceCreditCardIssuer(fakerCore: FakerCore): string {
+  return fakeHelpersObjectKey(
     fakerCore,
     fakerCore.locale.finance.credit_card
   ) as string;

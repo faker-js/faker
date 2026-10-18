@@ -5,13 +5,17 @@
 import type { LocaleDefinition } from '../../definitions';
 import airline from './airline';
 import animal from './animal';
+import book from './book';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import database from './database';
 import date from './date';
+import finance from './finance';
 import food from './food';
 import internet from './internet';
 import location from './location';
+import medical from './medical';
 import metadata from './metadata';
 import music from './music';
 import person from './person';
@@ -28,13 +32,17 @@ import vehicle from './vehicle';
 const az: LocaleDefinition = {
   airline,
   animal,
+  book,
   color,
   commerce,
   company,
+  database,
   date,
+  finance,
   food,
   internet,
   location,
+  medical,
   metadata,
   music,
   person,

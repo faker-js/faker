@@ -2,10 +2,14 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { SyntaxKind } from 'ts-morph';
 import { getJsDocs, getSince } from '../apidocs/processing/jsdocs';
-import { getProject } from '../apidocs/project';
-import { toCamelCase, toKebabCase } from '../shared/character-case';
+import {
+  toCamelCase,
+  toKebabCase,
+  toPascalCase,
+} from '../shared/character-case';
 import { formatTypescript } from '../shared/format';
 import { FILE_PATH_SRC } from '../shared/paths';
+import { getPartialProject } from '../shared/project';
 import { ImportHelper } from './import-helper';
 
 //#region Config
@@ -67,14 +71,12 @@ function patchJsDocs(module: string, method: string, jsDocs: string): string {
 
 // #endregion
 
-const project = getProject();
+const project = getPartialProject(['src/modules/**/*.ts']);
 
-const directories = project
-  .getDirectoryOrThrow('src')
-  .getDirectoryOrThrow('modules')
-  .getDirectories();
+const directories = project.getDirectoryOrThrow('src/modules').getDirectories();
 
 const moduleNames = new Set(directories.map((dir) => dir.getBaseName()));
+const replacePattern = `\\bfake(${[...moduleNames].map(toPascalCase).join('|')})([A-Z][a-zA-Z0-9]+)\\b`;
 
 export async function generateModuleTree(onlyModule?: string): Promise<void> {
   //#region Modules
@@ -138,10 +140,9 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
         .getMethods()
         .map((method) => [method.getName(), method] as const)
         .filter(([name]) => name !== 'fake');
-      const methodNames = new Set(methods.map(([name]) => name));
 
       for (const [methodName, original] of methods) {
-        const qualifiedMethodName = toCamelCase(moduleName, methodName);
+        const qualifiedMethodName = toCamelCase('fake', moduleName, methodName);
         const methodFileName = patchFileName(methodName);
 
         const oldSinces = [
@@ -184,11 +185,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
           method: string,
           suffix: string = ''
         ): string =>
-          methodNames.has(`${module}${method}`)
-            ? `faker.${moduleName}.${module}${method}${suffix}`
-            : moduleNames.has(module)
-              ? `faker.${module}.${toCamelCase(method)}${suffix}`
-              : `faker.${module}${method}${suffix}`;
+          `faker.${toCamelCase(module)}.${toCamelCase(method)}${suffix}`;
 
         //#region Functions
         for (const [index, child] of functions.entries()) {
@@ -235,16 +232,10 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               )
               // Method References
               .replaceAll(
-                /\b([a-z]+)([A-Z][a-zA-Z]+)(\()fakerCore(?:, ?|(?=\)))/g,
-                restoreFakerTreeInvocations
-              )
-              .replaceAll(
-                /\b([a-zA-Z]+)\(fakerCore(?:, ?|(?=\)))/g,
-                (_, method: string) =>
-                  `faker.${moduleName}.${toCamelCase(method)}(`
-              )
-              .replaceAll(
-                /\b([a-z]+)([A-Z][a-zA-Z]+)(, ?|\))/g,
+                new RegExp(
+                  `${replacePattern}(\\(|,)(?:fakerCore(?:, ?|(?=\\))))?`,
+                  'g'
+                ),
                 restoreFakerTreeInvocations
               )
               // Locale Access
@@ -268,11 +259,12 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
               'faker.defaultRefDate('
             )
             .replaceAll(
-              /(?<= +\* .*?)\b([a-z]+)([A-Z][a-zA-Z]+)(\()fakerCore(?:, ?|(?=\)))/g,
+              new RegExp(
+                `(?<!return )${replacePattern}(\\(|,)(?:fakerCore(?:, ?|(?=\\))))?`,
+                'g'
+              ),
               restoreFakerTreeInvocations
-            )
-            // moduleSample() => sample()
-            .replaceAll(new RegExp(`^${moduleName}Sample\\(`, 'g'), 'sample(');
+            );
 
           parts.push(signature);
           //#endregion Signature+Implementation

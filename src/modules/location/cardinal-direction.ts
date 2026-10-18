@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random cardinal direction (north, east, south, west).
@@ -10,14 +10,14 @@ import { helpersArrayElement } from '../helpers/array-element';
  * Otherwise this will return the long name. Defaults to `false`.
  *
  * @example
- * locationCardinalDirection(fakerCore) // 'North'
- * locationCardinalDirection(fakerCore, { abbreviated: true }) // 'W'
+ * fakeLocationCardinalDirection(fakerCore) // 'North'
+ * fakeLocationCardinalDirection(fakerCore, { abbreviated: true }) // 'W'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationCardinalDirection(
+export function fakeLocationCardinalDirection(
   fakerCore: FakerCore,
   options: {
     /**
@@ -33,5 +33,5 @@ export function locationCardinalDirection(
   const direction = fakerCore.locale.location.direction;
   const data = abbreviated ? direction.cardinal_abbr : direction.cardinal;
 
-  return helpersArrayElement(fakerCore, data);
+  return fakeHelpersArrayElement(fakerCore, data);
 }

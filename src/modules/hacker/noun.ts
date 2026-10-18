@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random hacker/IT noun.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * hackerNoun(fakerCore) // 'system'
+ * fakeHackerNoun(fakerCore) // 'system'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function hackerNoun(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.hacker.noun);
+export function fakeHackerNoun(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.hacker.noun);
 }

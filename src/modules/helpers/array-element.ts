@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Returns random element from the given array.
@@ -13,13 +13,13 @@ import { numberInt } from '../number/int';
  * @throws {FakerError} If the given array is empty.
  *
  * @example
- * helpersArrayElement(fakerCore, ['cat', 'dog', 'mouse']) // 'dog'
+ * fakeHelpersArrayElement(fakerCore, ['cat', 'dog', 'mouse']) // 'dog'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersArrayElement<const T>(
+export function fakeHelpersArrayElement<const T>(
   fakerCore: FakerCore,
   array: ReadonlyArray<T>
 ): T {
@@ -28,7 +28,7 @@ export function helpersArrayElement<const T>(
   }
 
   const index =
-    array.length > 1 ? numberInt(fakerCore, { max: array.length - 1 }) : 0;
+    array.length > 1 ? fakeNumberInt(fakerCore, { max: array.length - 1 }) : 0;
 
   return array[index];
 }

@@ -34,8 +34,7 @@ jobs:
       - name: Generate code
         id: generate
         run: |
-          pnpm run generate:locales
-          pnpm run generate:api-docs
+          pnpm run generate
           pnpm run format
           pnpm run build
           pnpm run test -u

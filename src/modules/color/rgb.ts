@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import type { Casing } from '../../utils/types';
-import { numberFloat } from '../number/float';
-import { numberInt } from '../number/int';
-import { stringHexadecimal } from '../string/hexadecimal';
+import { fakeNumberFloat } from '../number/float';
+import { fakeNumberInt } from '../number/int';
+import { fakeStringHexadecimal } from '../string/hexadecimal';
 import { formatHexColor } from './_format-hex-color';
 import { toColorFormat } from './_to-color-format';
 import type {
@@ -18,13 +18,13 @@ import type { CssFunctionType } from './css-supported-function';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * colorRgb(fakerCore) // '#8be4ab'
+ * fakeColorRgb(fakerCore) // '#8be4ab'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorRgb(fakerCore: FakerCore): string;
+export function fakeColorRgb(fakerCore: FakerCore): string;
 /**
  * Returns an RGB color.
  *
@@ -36,22 +36,22 @@ export function colorRgb(fakerCore: FakerCore): string;
  * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
  *
  * @example
- * colorRgb(fakerCore) // '#0d7f26'
- * colorRgb(fakerCore, { prefix: '0x' }) // '0x9ddc8b'
- * colorRgb(fakerCore, { casing: 'upper' }) // '#B8A51E'
- * colorRgb(fakerCore, { casing: 'lower' }) // '#b12f8b'
- * colorRgb(fakerCore, { prefix: '#', casing: 'lower' }) // '#eb0c16'
- * colorRgb(fakerCore, { format: 'hex', casing: 'lower' }) // '#bb9d17'
- * colorRgb(fakerCore, { format: 'css' }) // 'rgb(216, 17, 192)'
- * colorRgb(fakerCore, { format: 'binary' }) // '00110010 00001000 01110110'
- * colorRgb(fakerCore, { includeAlpha: true }) // '#f96efb5e'
- * colorRgb(fakerCore, { format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
+ * fakeColorRgb(fakerCore) // '#0d7f26'
+ * fakeColorRgb(fakerCore, { prefix: '0x' }) // '0x9ddc8b'
+ * fakeColorRgb(fakerCore, { casing: 'upper' }) // '#B8A51E'
+ * fakeColorRgb(fakerCore, { casing: 'lower' }) // '#b12f8b'
+ * fakeColorRgb(fakerCore, { prefix: '#', casing: 'lower' }) // '#eb0c16'
+ * fakeColorRgb(fakerCore, { format: 'hex', casing: 'lower' }) // '#bb9d17'
+ * fakeColorRgb(fakerCore, { format: 'css' }) // 'rgb(216, 17, 192)'
+ * fakeColorRgb(fakerCore, { format: 'binary' }) // '00110010 00001000 01110110'
+ * fakeColorRgb(fakerCore, { includeAlpha: true }) // '#f96efb5e'
+ * fakeColorRgb(fakerCore, { format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorRgb(
+export function fakeColorRgb(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -89,15 +89,15 @@ export function colorRgb(
  * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
  *
  * @example
- * colorRgb(fakerCore) // '0x8be4ab'
- * colorRgb(fakerCore, { format: 'decimal' }) // [64, 192,174]
- * colorRgb(fakerCore, { format: 'decimal', includeAlpha: true }) // [52, 250, 209, 0.21]
+ * fakeColorRgb(fakerCore) // '0x8be4ab'
+ * fakeColorRgb(fakerCore, { format: 'decimal' }) // [64, 192,174]
+ * fakeColorRgb(fakerCore, { format: 'decimal', includeAlpha: true }) // [52, 250, 209, 0.21]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorRgb(
+export function fakeColorRgb(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -125,24 +125,24 @@ export function colorRgb(
  * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
  *
  * @example
- * colorRgb(fakerCore) // '#0d7f26'
- * colorRgb(fakerCore, { prefix: '0x' }) // '0x9ddc8b'
- * colorRgb(fakerCore, { casing: 'upper' }) // '#B8A51E'
- * colorRgb(fakerCore, { casing: 'lower' }) // '#b12f8b'
- * colorRgb(fakerCore, { prefix: '#', casing: 'lower' }) // '#eb0c16'
- * colorRgb(fakerCore, { format: 'hex', casing: 'lower' }) // '#bb9d17'
- * colorRgb(fakerCore, { format: 'decimal' }) // [64, 192,174]
- * colorRgb(fakerCore, { format: 'css' }) // 'rgb(216, 17, 192)'
- * colorRgb(fakerCore, { format: 'binary' }) // '00110010 00001000 01110110'
- * colorRgb(fakerCore, { includeAlpha: true }) // '#f96efb5e'
- * colorRgb(fakerCore, { format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
- * colorRgb(fakerCore, { format: 'decimal', includeAlpha: true }) // [52, 250, 209, 0.21]
+ * fakeColorRgb(fakerCore) // '#0d7f26'
+ * fakeColorRgb(fakerCore, { prefix: '0x' }) // '0x9ddc8b'
+ * fakeColorRgb(fakerCore, { casing: 'upper' }) // '#B8A51E'
+ * fakeColorRgb(fakerCore, { casing: 'lower' }) // '#b12f8b'
+ * fakeColorRgb(fakerCore, { prefix: '#', casing: 'lower' }) // '#eb0c16'
+ * fakeColorRgb(fakerCore, { format: 'hex', casing: 'lower' }) // '#bb9d17'
+ * fakeColorRgb(fakerCore, { format: 'decimal' }) // [64, 192,174]
+ * fakeColorRgb(fakerCore, { format: 'css' }) // 'rgb(216, 17, 192)'
+ * fakeColorRgb(fakerCore, { format: 'binary' }) // '00110010 00001000 01110110'
+ * fakeColorRgb(fakerCore, { includeAlpha: true }) // '#f96efb5e'
+ * fakeColorRgb(fakerCore, { format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
+ * fakeColorRgb(fakerCore, { format: 'decimal', includeAlpha: true }) // [52, 250, 209, 0.21]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorRgb(
+export function fakeColorRgb(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -172,7 +172,7 @@ export function colorRgb(
   }
 ): string | number[];
 
-export function colorRgb(
+export function fakeColorRgb(
   fakerCore: FakerCore,
   options: {
     prefix?: string;
@@ -189,7 +189,7 @@ export function colorRgb(
   } = options;
   let color: string | number[];
   if (format === 'hex') {
-    color = stringHexadecimal(fakerCore, {
+    color = fakeStringHexadecimal(fakerCore, {
       length: includeAlpha ? 8 : 6,
       prefix: '',
     });
@@ -198,9 +198,9 @@ export function colorRgb(
   }
 
   let cssFunction: CssFunctionType = 'rgb';
-  color = Array.from({ length: 3 }, () => numberInt(fakerCore, 255));
+  color = Array.from({ length: 3 }, () => fakeNumberInt(fakerCore, 255));
   if (includeAlpha) {
-    color.push(numberFloat(fakerCore, { multipleOf: 0.01 }));
+    color.push(fakeNumberFloat(fakerCore, { multipleOf: 0.01 }));
     cssFunction = 'rgba';
   }
 

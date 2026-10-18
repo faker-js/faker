@@ -62,7 +62,15 @@ exports[`internet > 42 > ipv4 > with cidrBlock 1`] = `"192.168.13.95"`;
 
 exports[`internet > 42 > ipv4 > with network 1`] = `"229.254.29.199"`;
 
-exports[`internet > 42 > ipv6 1`] = `"8ead:331d:df0f:c444:6b96:d368:ab4b:d1d3"`;
+exports[`internet > 42 > ipv6 > noArgs 1`] = `"8ead:331d:df0f:c444:6b96:d368:ab4b:d1d3"`;
+
+exports[`internet > 42 > ipv6 > with cidrBlock 1`] = `"2001:0db8:1234:52ff:f362:bb63:9941:27f0"`;
+
+exports[`internet > 42 > ipv6 > with cidrBlock overriding network 1`] = `"2001:0db8:5fe1:f362:bb63:9941:27f0:27ef"`;
+
+exports[`internet > 42 > ipv6 > with dotted-decimal IPv4 1`] = `"0000:0000:0000:0000:0000:ffff:c000:025f"`;
+
+exports[`internet > 42 > ipv6 > with network 1`] = `"fe80:0000:0000:0000:5fe1:f362:bb63:9941"`;
 
 exports[`internet > 42 > jwt > noArgs 1`] = `"eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpYXQiOjE1Nzc3ODI3NjAsImV4cCI6MTU3Nzg0NjAwNCwibmJmIjoxNTg0MDU5Mzg4LCJpc3MiOiJTdHJlaWNoIC0gQXVmZGVyaGFyIiwic3ViIjoiZmQzMjI0ODYtNDkyNC00NTdjLTkzODktMDkyMWZmYzQxYTcxIiwiYXVkIjoiMGU0YTQ4ODItZmNmZS00OWUxLTgzMDUtNjRkNTQ4MmMxZmMzIiwianRpIjoiZGJiYzE1MWQtOTUxNC00NWJhLWFlNzEtYmM4Yzc4NjAxMGE1In0.UfpKe4h9VODSNbTxOTj6eqOR0vpd7kWkwHmYXfuih2Bv3hUe8uZfFLeJmDDx5Pjb"`;
 
@@ -180,7 +188,15 @@ exports[`internet > 1211 > ipv4 > with cidrBlock 1`] = `"192.168.13.237"`;
 
 exports[`internet > 1211 > ipv4 > with network 1`] = `"238.219.55.242"`;
 
-exports[`internet > 1211 > ipv6 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
+exports[`internet > 1211 > ipv6 > noArgs 1`] = `"ed4f:efa7:fbae:c9dc:4c48:fa8e:bf46:fb7c"`;
+
+exports[`internet > 1211 > ipv6 > with cidrBlock 1`] = `"2001:0db8:1234:576d:e4ba:39bf:ff4c:ac07"`;
+
+exports[`internet > 1211 > ipv6 > with cidrBlock overriding network 1`] = `"2001:0db8:edb3:e4ba:39bf:ff4c:ac07:af50"`;
+
+exports[`internet > 1211 > ipv6 > with dotted-decimal IPv4 1`] = `"0000:0000:0000:0000:0000:ffff:c000:02ed"`;
+
+exports[`internet > 1211 > ipv6 > with network 1`] = `"fe80:0000:0000:0000:edb3:e4ba:39bf:ff4c"`;
 
 exports[`internet > 1211 > jwt > noArgs 1`] = `"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc4MzA2MjMsImV4cCI6MTU3Nzg1MDExMywibmJmIjoxNjA5MTk5Nzk2LCJpc3MiOiJIZXJtYW4sIFJ1bnRlIGFuZCBLZWxseSIsInN1YiI6ImRkMzkzNWZjLTZlOGYtNDM0Yi1iODVkLTY0NDI4YjJiNzM2MyIsImF1ZCI6Ijk3MGIyYjRjLTg3MzktNGQxZC04NzY3LTljOGVmZGQzYmQ1ZSIsImp0aSI6IjhjNzE0MjQzLWVmNjMtNDk5OS04OWRhLWRjZGU4NTg3NWQzZiJ9.f2VqUAXZlCKU8wGJfPV9H4qDj1eeVBExFATrtOy1ztr5Cp9avVZNMtsWSDBUO4pr"`;
 
@@ -298,7 +314,15 @@ exports[`internet > 1337 > ipv4 > with cidrBlock 1`] = `"192.168.13.67"`;
 
 exports[`internet > 1337 > ipv4 > with network 1`] = `"228.49.64.201"`;
 
-exports[`internet > 1337 > ipv6 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
+exports[`internet > 1337 > ipv6 > noArgs 1`] = `"536a:7b5f:a28d:2f9b:b79c:a46e:a394:bc4f"`;
+
+exports[`internet > 1337 > ipv6 > with cidrBlock 1`] = `"2001:0db8:1234:5218:289f:4733:7595:522d"`;
+
+exports[`internet > 1337 > ipv6 > with cidrBlock overriding network 1`] = `"2001:0db8:4314:289f:4733:7595:522d:84b5"`;
+
+exports[`internet > 1337 > ipv6 > with dotted-decimal IPv4 1`] = `"0000:0000:0000:0000:0000:ffff:c000:0243"`;
+
+exports[`internet > 1337 > ipv6 > with network 1`] = `"fe80:0000:0000:0000:4314:289f:4733:7595"`;
 
 exports[`internet > 1337 > jwt > noArgs 1`] = `"eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc3NzMwMzksImV4cCI6MTU3Nzc5NzA3MCwibmJmIjoxNTc1MjcwODM1LCJpc3MiOiJXb29kIC0gSG93YXJkIiwic3ViIjoiYTJmN2NjNTYtOWMzNC00YTcyLWE2MzgtZDJmNjg4MGJmMjI1IiwiYXVkIjoiMDUwYzViN2YtZDk5Zi00NDAxLTlmZjctNWIwY2EzYWUyZTViIiwianRpIjoiODI3NzZjN2ItYzVlYi00ZTY3LWFlYTgtM2Y4YzM2NjgyYTAzIn0.VCpQZioHm1lu2UIL52g7eGtWAbbkq4D3IE0LkMkzaQgKyTx14Xs9FCyUTgIuh3cD"`;
 

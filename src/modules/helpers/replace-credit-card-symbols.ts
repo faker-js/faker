@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 import { legacyReplaceSymbolWithNumber } from './_legacy-replace-symbol-with-number';
 import { luhnCheckValue } from './_luhn-check';
 
@@ -50,7 +50,7 @@ function legacyRegexpStringParse(
       min = tmp;
     }
 
-    repetitions = numberInt(fakerCore, { min, max });
+    repetitions = fakeNumberInt(fakerCore, { min, max });
     string =
       string.slice(0, token.index) +
       token[1].repeat(repetitions) +
@@ -83,7 +83,7 @@ function legacyRegexpStringParse(
 
     string =
       string.slice(0, token.index) +
-      numberInt(fakerCore, { min, max }).toString() +
+      fakeNumberInt(fakerCore, { min, max }).toString() +
       string.slice(token.index + token[0].length);
     token = RANGE_REG.exec(string);
   }
@@ -94,22 +94,28 @@ function legacyRegexpStringParse(
 /**
  * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
  *
- * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
- * `L` will be replaced with the appropriate Luhn checksum.
+ * Supported patterns:
+ * - `symbol` (defaults to `'#'`) => Replace with a random digit.
+ * - `'!'` => Replace with a random digit between 2 and 9.
+ * - `'L'` => Replace with the appropriate Luhn checksum.
+ * - `[min-max]` => Generate a number between min and max (inclusive).
+ * - `.{times}` => Repeat the character exactly `times` times.
+ * - `.{min,max}` => Repeat the character `min` to `max` times.
+ * - All other characters will remain unchanged.
  *
  * @param fakerCore The FakerCore to use.
  * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.
  * @param symbol The symbol to replace with a digit. Defaults to `'#'`.
  *
  * @example
- * helpersReplaceCreditCardSymbols(fakerCore) // '6453-4876-8626-8995-3771'
- * helpersReplaceCreditCardSymbols(fakerCore, '1234-[4-9]-##!!-L') // '1234-9-5298-2'
+ * fakeHelpersReplaceCreditCardSymbols(fakerCore) // '6453-4876-8626-8995-3771'
+ * fakeHelpersReplaceCreditCardSymbols(fakerCore, '1234-[4-9]-##!!-L') // '1234-9-5298-2'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersReplaceCreditCardSymbols(
+export function fakeHelpersReplaceCreditCardSymbols(
   fakerCore: FakerCore,
   string: string = '6453-####-####-####-###L',
   symbol: string = '#'

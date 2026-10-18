@@ -23,7 +23,7 @@ export default {
     'Iun',
     'Mai',
     'Mar',
-    'Noi',
+    'Nov',
     'Oct',
     'Sep',
   ],

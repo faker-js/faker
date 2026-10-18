@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { helpersObjectValue } from '../helpers/object-value';
-import { helpersReplaceCreditCardSymbols } from '../helpers/replace-credit-card-symbols';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersObjectValue } from '../helpers/object-value';
+import { fakeHelpersReplaceCreditCardSymbols } from '../helpers/replace-credit-card-symbols';
 
 /**
  * Generates a random credit card number.
@@ -10,15 +10,15 @@ import { helpersReplaceCreditCardSymbols } from '../helpers/replace-credit-card-
  * @param issuer The name of the issuer (case-insensitive) or the format used to generate one.
  *
  * @example
- * financeCreditCardNumber(fakerCore) // '4427163488662'
- * financeCreditCardNumber(fakerCore, 'visa') // '4882664999007'
- * financeCreditCardNumber(fakerCore, '63[7-9]#-####-####-###L') // '6375-3265-4676-6646'
+ * fakeFinanceCreditCardNumber(fakerCore) // '4427163488662'
+ * fakeFinanceCreditCardNumber(fakerCore, 'visa') // '4882664999007'
+ * fakeFinanceCreditCardNumber(fakerCore, '63[7-9]#-####-####-###L') // '6375-3265-4676-6646'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeCreditCardNumber(
+export function fakeFinanceCreditCardNumber(
   fakerCore: FakerCore,
   issuer?: string
 ): string;
@@ -30,15 +30,15 @@ export function financeCreditCardNumber(
  * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one. Defaults to `''`.
  *
  * @example
- * financeCreditCardNumber(fakerCore) // '4427163488662'
- * financeCreditCardNumber(fakerCore, { issuer: 'visa' }) // '4882664999007'
- * financeCreditCardNumber(fakerCore, { issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
+ * fakeFinanceCreditCardNumber(fakerCore) // '4427163488662'
+ * fakeFinanceCreditCardNumber(fakerCore, { issuer: 'visa' }) // '4882664999007'
+ * fakeFinanceCreditCardNumber(fakerCore, { issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeCreditCardNumber(
+export function fakeFinanceCreditCardNumber(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -57,16 +57,16 @@ export function financeCreditCardNumber(
  * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one. Defaults to `''`.
  *
  * @example
- * financeCreditCardNumber(fakerCore) // '4427163488662'
- * financeCreditCardNumber(fakerCore, { issuer: 'visa' }) // '4882664999007'
- * financeCreditCardNumber(fakerCore, { issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
- * financeCreditCardNumber(fakerCore, 'visa') // '1226423499765'
+ * fakeFinanceCreditCardNumber(fakerCore) // '4427163488662'
+ * fakeFinanceCreditCardNumber(fakerCore, { issuer: 'visa' }) // '4882664999007'
+ * fakeFinanceCreditCardNumber(fakerCore, { issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
+ * fakeFinanceCreditCardNumber(fakerCore, 'visa') // '1226423499765'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeCreditCardNumber(
+export function fakeFinanceCreditCardNumber(
   fakerCore: FakerCore,
   options?:
     | string
@@ -87,16 +87,16 @@ export function financeCreditCardNumber(
  * @param options.issuer The name of the issuer (case-insensitive) or the format used to generate one.
  *
  * @example
- * financeCreditCardNumber(fakerCore) // '4427163488662'
- * financeCreditCardNumber(fakerCore, { issuer: 'visa' }) // '4882664999007'
- * financeCreditCardNumber(fakerCore, { issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
- * financeCreditCardNumber(fakerCore, 'visa') // '1226423499765'
+ * fakeFinanceCreditCardNumber(fakerCore) // '4427163488662'
+ * fakeFinanceCreditCardNumber(fakerCore, { issuer: 'visa' }) // '4882664999007'
+ * fakeFinanceCreditCardNumber(fakerCore, { issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
+ * fakeFinanceCreditCardNumber(fakerCore, 'visa') // '1226423499765'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeCreditCardNumber(
+export function fakeFinanceCreditCardNumber(
   fakerCore: FakerCore,
   options:
     | string
@@ -119,17 +119,17 @@ export function financeCreditCardNumber(
   const localeFormat = fakerCore.locale.finance.credit_card;
   const normalizedIssuer = issuer.toLowerCase();
   if (normalizedIssuer in localeFormat) {
-    format = helpersArrayElement(fakerCore, localeFormat[normalizedIssuer]);
+    format = fakeHelpersArrayElement(fakerCore, localeFormat[normalizedIssuer]);
   } else if (issuer.includes('#')) {
     // The user chose an optional scheme
     format = issuer;
   } else {
     // Choose a random issuer
     // Credit cards are in an object structure
-    const formats = helpersObjectValue(fakerCore, localeFormat); // There could be multiple formats
-    format = helpersArrayElement(fakerCore, formats);
+    const formats = fakeHelpersObjectValue(fakerCore, localeFormat); // There could be multiple formats
+    format = fakeHelpersArrayElement(fakerCore, formats);
   }
 
   format = format.replaceAll('/', '');
-  return helpersReplaceCreditCardSymbols(fakerCore, format);
+  return fakeHelpersReplaceCreditCardSymbols(fakerCore, format);
 }

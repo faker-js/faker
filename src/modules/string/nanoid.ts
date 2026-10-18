@@ -1,9 +1,9 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersArrayElement } from '../helpers/array-element';
-import { helpersRangeToNumber } from '../helpers/range-to-number';
-import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
-import { stringAlphanumeric } from './alphanumeric';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersRangeToNumber } from '../helpers/range-to-number';
+import { fakeHelpersWeightedArrayElement } from '../helpers/weighted-array-element';
+import { fakeStringAlphanumeric } from './alphanumeric';
 
 /**
  * Generates a [Nano ID](https://github.com/ai/nanoid).
@@ -14,39 +14,39 @@ import { stringAlphanumeric } from './alphanumeric';
  * @param length.max The maximum length of the Nano ID to generate.
  *
  * @example
- * stringNanoid(fakerCore) // ptL0KpX_yRMI98JFr6B3n
- * stringNanoid(fakerCore, 10) // VsvwSdm_Am
- * stringNanoid(fakerCore, { min: 13, max: 37 }) // KIRsdEL9jxVgqhBDlm
+ * fakeStringNanoid(fakerCore) // ptL0KpX_yRMI98JFr6B3n
+ * fakeStringNanoid(fakerCore, 10) // VsvwSdm_Am
+ * fakeStringNanoid(fakerCore, { min: 13, max: 37 }) // KIRsdEL9jxVgqhBDlm
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function stringNanoid(
+export function fakeStringNanoid(
   fakerCore: FakerCore,
   length: NumberOrRange = 21
 ): string {
-  length = helpersRangeToNumber(fakerCore, length);
+  length = fakeHelpersRangeToNumber(fakerCore, length);
   if (length <= 0) {
     return '';
   }
 
   const generators = [
     {
-      value: () => stringAlphanumeric(fakerCore, 1),
+      value: () => fakeStringAlphanumeric(fakerCore, 1),
       // a-z is 26 characters
       // this times 2 for upper & lower case is 52
       // add all numbers 0-9 (10 in total) you get 62
       weight: 62,
     },
     {
-      value: () => helpersArrayElement(fakerCore, ['_', '-']),
+      value: () => fakeHelpersArrayElement(fakerCore, ['_', '-']),
       weight: 2,
     },
   ];
   let result = '';
   while (result.length < length) {
-    const charGen = helpersWeightedArrayElement(fakerCore, generators);
+    const charGen = fakeHelpersWeightedArrayElement(fakerCore, generators);
     result += charGen();
   }
 

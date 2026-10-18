@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersArrayElement } from './array-element';
-import { helpersRangeToNumber } from './range-to-number';
+import { fakeHelpersArrayElement } from './array-element';
+import { fakeHelpersRangeToNumber } from './range-to-number';
 
 /**
  * Returns an array of elements sampled from the given array with replacement.
@@ -17,18 +17,18 @@ import { helpersRangeToNumber } from './range-to-number';
  *
  * @throws {FakerError} If the given array is empty.
  *
- * @see helpersArrayElements(fakerCore): For generating an array of elements without replacement.
+ * @see fakeHelpersArrayElements(fakerCore): For generating an array of elements without replacement.
  *
  * @example
- * helpersArraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
- * helpersArraySamples(fakerCore, [1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
- * helpersArraySamples(fakerCore, ["a", "b", "c"], 0) // []
+ * fakeHelpersArraySamples(fakerCore, ["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
+ * fakeHelpersArraySamples(fakerCore, [1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
+ * fakeHelpersArraySamples(fakerCore, ["a", "b", "c"], 0) // []
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersArraySamples<const T>(
+export function fakeHelpersArraySamples<const T>(
   fakerCore: FakerCore,
   array: ReadonlyArray<T>,
   count: NumberOrRange
@@ -38,14 +38,14 @@ export function helpersArraySamples<const T>(
   }
   const result: T[] = [];
 
-  const numElements = helpersRangeToNumber(fakerCore, count);
+  const numElements = fakeHelpersRangeToNumber(fakerCore, count);
 
   if (numElements <= 0) {
     return result;
   }
 
   for (let i = 0; i < numElements; i++) {
-    result.push(helpersArrayElement(fakerCore, array));
+    result.push(fakeHelpersArrayElement(fakerCore, array));
   }
 
   return result;

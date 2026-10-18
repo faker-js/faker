@@ -1,16 +1,16 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import type { AircraftType } from './aircraft-type';
-import { airlineAircraftType } from './aircraft-type';
+import { fakeAirlineAircraftType } from './aircraft-type';
 import type { Airline } from './airline';
-import { airlineAirline } from './airline';
+import { fakeAirlineAirline } from './airline';
 import type { Airplane } from './airplane';
-import { airlineAirplane } from './airplane';
+import { fakeAirlineAirplane } from './airplane';
 import type { Airport } from './airport';
-import { airlineAirport } from './airport';
-import { airlineFlightNumber } from './flight-number';
-import { airlineRecordLocator } from './record-locator';
-import { airlineSeat } from './seat';
+import { fakeAirlineAirport } from './airport';
+import { fakeAirlineFlightNumber } from './flight-number';
+import { fakeAirlineRecordLocator } from './record-locator';
+import { fakeAirlineSeat } from './seat';
 
 /**
  * Module to generate airline and airport related data according to [International Air Transport Association (IATA)](https://iata.org) standards.
@@ -44,7 +44,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airport(): Airport {
-    return airlineAirport(this.fakerCore);
+    return fakeAirlineAirport(this.fakerCore);
   }
 
   /**
@@ -56,7 +56,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airline(): Airline {
-    return airlineAirline(this.fakerCore);
+    return fakeAirlineAirline(this.fakerCore);
   }
 
   /**
@@ -68,7 +68,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   airplane(): Airplane {
-    return airlineAirplane(this.fakerCore);
+    return fakeAirlineAirplane(this.fakerCore);
   }
 
   /**
@@ -104,7 +104,7 @@ export class AirlineModule extends ModuleBase {
       allowVisuallySimilarCharacters?: boolean;
     } = {}
   ): string {
-    return airlineRecordLocator(this.fakerCore, options);
+    return fakeAirlineRecordLocator(this.fakerCore, options);
   }
 
   /**
@@ -130,7 +130,7 @@ export class AirlineModule extends ModuleBase {
       aircraftType?: AircraftType;
     } = {}
   ): string {
-    return airlineSeat(this.fakerCore, options);
+    return fakeAirlineSeat(this.fakerCore, options);
   }
 
   /**
@@ -142,7 +142,7 @@ export class AirlineModule extends ModuleBase {
    * @since 8.0.0
    */
   aircraftType(): AircraftType {
-    return airlineAircraftType(this.fakerCore);
+    return fakeAirlineAircraftType(this.fakerCore);
   }
 
   /**
@@ -151,8 +151,9 @@ export class AirlineModule extends ModuleBase {
    * zeros, often with the airline code prepended (e.g.: `AA0425`).
    *
    * To generate a flight number prepended with an airline code, combine this function with the
-   * `airline()` function and use template literals:
-   * ```
+   * `faker.airline.airline()` function and use template literals:
+   *
+   * ```ts
    * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    * ```
    *
@@ -186,6 +187,6 @@ export class AirlineModule extends ModuleBase {
       addLeadingZeros?: boolean;
     } = {}
   ): string {
-    return airlineFlightNumber(this.fakerCore, options);
+    return fakeAirlineFlightNumber(this.fakerCore, options);
   }
 }

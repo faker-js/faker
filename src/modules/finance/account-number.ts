@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { stringNumeric } from '../string/numeric';
+import { fakeStringNumeric } from '../string/numeric';
 
 /**
  * Generates a random account number.
@@ -7,17 +7,17 @@ import { stringNumeric } from '../string/numeric';
  * @param fakerCore The FakerCore to use.
  * @param length The length of the account number. Defaults to `8`.
  *
- * @see stringNumeric(fakerCore): For generating the number with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the number with greater control.
  *
  * @example
- * financeAccountNumber(fakerCore) // '92842238'
- * financeAccountNumber(fakerCore, 5) // '32564'
+ * fakeFinanceAccountNumber(fakerCore) // '92842238'
+ * fakeFinanceAccountNumber(fakerCore, 5) // '32564'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeAccountNumber(
+export function fakeFinanceAccountNumber(
   fakerCore: FakerCore,
   length?: number
 ): string;
@@ -28,17 +28,17 @@ export function financeAccountNumber(
  * @param options An options object.
  * @param options.length The length of the account number. Defaults to `8`.
  *
- * @see stringNumeric(fakerCore): For generating the number with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the number with greater control.
  *
  * @example
- * financeAccountNumber(fakerCore) // '92842238'
- * financeAccountNumber(fakerCore, { length: 5 }) // '32564'
+ * fakeFinanceAccountNumber(fakerCore) // '92842238'
+ * fakeFinanceAccountNumber(fakerCore, { length: 5 }) // '32564'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeAccountNumber(
+export function fakeFinanceAccountNumber(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -56,18 +56,18 @@ export function financeAccountNumber(
  * @param optionsOrLength An options object or the length of the account number.
  * @param optionsOrLength.length The length of the account number. Defaults to `8`.
  *
- * @see stringNumeric(fakerCore): For generating the number with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the number with greater control.
  *
  * @example
- * financeAccountNumber(fakerCore) // '92842238'
- * financeAccountNumber(fakerCore, 5) // '28736'
- * financeAccountNumber(fakerCore, { length: 5 }) // '32564'
+ * fakeFinanceAccountNumber(fakerCore) // '92842238'
+ * fakeFinanceAccountNumber(fakerCore, 5) // '28736'
+ * fakeFinanceAccountNumber(fakerCore, { length: 5 }) // '32564'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeAccountNumber(
+export function fakeFinanceAccountNumber(
   fakerCore: FakerCore,
   optionsOrLength?:
     | number
@@ -87,18 +87,18 @@ export function financeAccountNumber(
  * @param options An options object or the length of the account number.
  * @param options.length The length of the account number. Defaults to `8`.
  *
- * @see stringNumeric(fakerCore): For generating the number with greater control.
+ * @see fakeStringNumeric(fakerCore): For generating the number with greater control.
  *
  * @example
- * financeAccountNumber(fakerCore) // '92842238'
- * financeAccountNumber(fakerCore, 5) // '28736'
- * financeAccountNumber(fakerCore, { length: 5 }) // '32564'
+ * fakeFinanceAccountNumber(fakerCore) // '92842238'
+ * fakeFinanceAccountNumber(fakerCore, 5) // '28736'
+ * fakeFinanceAccountNumber(fakerCore, { length: 5 }) // '32564'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeAccountNumber(
+export function fakeFinanceAccountNumber(
   fakerCore: FakerCore,
   options:
     | number
@@ -117,5 +117,5 @@ export function financeAccountNumber(
 
   const { length = 8 } = options;
 
-  return stringNumeric(fakerCore, { length, allowLeadingZeros: true });
+  return fakeStringNumeric(fakerCore, { length, allowLeadingZeros: true });
 }

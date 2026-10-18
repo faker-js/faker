@@ -1,29 +1,30 @@
 import { ModuleBase } from '../../internal/module-base';
-import { internetDisplayName } from './display-name';
-import { internetDomainName } from './domain-name';
-import { internetDomainSuffix } from './domain-suffix';
-import { internetDomainWord } from './domain-word';
-import { internetEmail } from './email';
+import { fakeInternetDisplayName } from './display-name';
+import { fakeInternetDomainName } from './domain-name';
+import { fakeInternetDomainSuffix } from './domain-suffix';
+import { fakeInternetDomainWord } from './domain-word';
+import { fakeInternetEmail } from './email';
 import type { EmojiType } from './emoji';
-import { internetEmoji } from './emoji';
-import { internetExampleEmail } from './example-email';
-import { internetHttpMethod } from './http-method';
+import { fakeInternetEmoji } from './emoji';
+import { fakeInternetExampleEmail } from './example-email';
+import { fakeInternetHttpMethod } from './http-method';
 import type { HTTPStatusCodeType } from './http-status-code';
-import { internetHttpStatusCode } from './http-status-code';
-import { internetIp } from './ip';
+import { fakeInternetHttpStatusCode } from './http-status-code';
+import { fakeInternetIp } from './ip';
 import type { IPv4NetworkType } from './ipv4';
-import { internetIpv4 } from './ipv4';
-import { internetIpv6 } from './ipv6';
-import { internetJwt } from './jwt';
-import { internetJwtAlgorithm } from './jwt-algorithm';
-import { internetMac } from './mac';
-import { internetPassword } from './password';
-import { internetPort } from './port';
-import { internetProtocol } from './protocol';
+import { fakeInternetIpv4 } from './ipv4';
+import type { IPv6NetworkType } from './ipv6';
+import { fakeInternetIpv6 } from './ipv6';
+import { fakeInternetJwt } from './jwt';
+import { fakeInternetJwtAlgorithm } from './jwt-algorithm';
+import { fakeInternetMac } from './mac';
+import { fakeInternetPassword } from './password';
+import { fakeInternetPort } from './port';
+import { fakeInternetProtocol } from './protocol';
 import type { HTTPProtocolType } from './url';
-import { internetUrl } from './url';
-import { internetUserAgent } from './user-agent';
-import { internetUsername } from './username';
+import { fakeInternetUrl } from './url';
+import { fakeInternetUserAgent } from './user-agent';
+import { fakeInternetUsername } from './username';
 
 /**
  * Module to generate internet related entries.
@@ -90,7 +91,7 @@ export class InternetModule extends ModuleBase {
       allowSpecialCharacters?: boolean;
     } = {}
   ): string {
-    return internetEmail(this.fakerCore, options);
+    return fakeInternetEmail(this.fakerCore, options);
   }
 
   /**
@@ -133,7 +134,7 @@ export class InternetModule extends ModuleBase {
       allowSpecialCharacters?: boolean;
     } = {}
   ): string {
-    return internetExampleEmail(this.fakerCore, options);
+    return fakeInternetExampleEmail(this.fakerCore, options);
   }
 
   /**
@@ -176,7 +177,7 @@ export class InternetModule extends ModuleBase {
       lastName?: string;
     } = {}
   ): string {
-    return internetUsername(this.fakerCore, options);
+    return fakeInternetUsername(this.fakerCore, options);
   }
 
   /**
@@ -217,7 +218,7 @@ export class InternetModule extends ModuleBase {
       lastName?: string;
     } = {}
   ): string {
-    return internetDisplayName(this.fakerCore, options);
+    return fakeInternetDisplayName(this.fakerCore, options);
   }
 
   /**
@@ -229,7 +230,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.1.5
    */
   protocol(): 'http' | 'https' {
-    return internetProtocol(this.fakerCore);
+    return fakeInternetProtocol(this.fakerCore);
   }
 
   /**
@@ -249,7 +250,7 @@ export class InternetModule extends ModuleBase {
    * @since 5.4.0
    */
   httpMethod(): 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' {
-    return internetHttpMethod(this.fakerCore);
+    return fakeInternetHttpMethod(this.fakerCore);
   }
 
   /**
@@ -274,7 +275,7 @@ export class InternetModule extends ModuleBase {
       types?: ReadonlyArray<HTTPStatusCodeType>;
     } = {}
   ): number {
-    return internetHttpStatusCode(this.fakerCore, options);
+    return fakeInternetHttpStatusCode(this.fakerCore, options);
   }
 
   /**
@@ -307,7 +308,7 @@ export class InternetModule extends ModuleBase {
       protocol?: HTTPProtocolType;
     } = {}
   ): string {
-    return internetUrl(this.fakerCore, options);
+    return fakeInternetUrl(this.fakerCore, options);
   }
 
   /**
@@ -319,7 +320,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainName(): string {
-    return internetDomainName(this.fakerCore);
+    return fakeInternetDomainName(this.fakerCore);
   }
 
   /**
@@ -332,7 +333,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainSuffix(): string {
-    return internetDomainSuffix(this.fakerCore);
+    return fakeInternetDomainSuffix(this.fakerCore);
   }
 
   /**
@@ -345,7 +346,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   domainWord(): string {
-    return internetDomainWord(this.fakerCore);
+    return fakeInternetDomainWord(this.fakerCore);
   }
 
   /**
@@ -358,7 +359,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   ip(): string {
-    return internetIp(this.fakerCore);
+    return fakeInternetIp(this.fakerCore);
   }
 
   /**
@@ -445,19 +446,54 @@ export class InternetModule extends ModuleBase {
   ipv4(
     options: { cidrBlock?: string; network?: IPv4NetworkType } = {}
   ): string {
-    return internetIpv4(this.fakerCore, options);
+    return fakeInternetIpv4(this.fakerCore, options);
   }
 
   /**
    * Generates a random IPv6 address.
+   * The result always contains eight lowercase, zero-padded hexadecimal groups.
+   * When a CIDR block is given, only the host bits are randomized; any host bits in the input are ignored.
+   * Compressed addresses and addresses ending in dotted-decimal IPv4 are accepted.
+   * Zone identifiers and URL brackets are not supported.
+   *
+   * Network presets:
+   * - `'any'`: `::/0`.
+   * - `'loopback'`: `::1/128`.
+   * - `'unique-local'`: `fd00::/8` (locally assigned).
+   * - `'link-local'`: `fe80::/64` (unicast).
+   * - `'multicast'`: `ff00::/8`.
+   * - `'documentation'`: `2001:db8::/32`.
+   *
+   * @param options The optional options object.
+   * @param options.cidrBlock The IPv6 CIDR block to use, with a prefix length from 0 to 128. Overrides `network` if provided.
+   * @param options.network An alias for a well-known CIDR block. Defaults to `'any'`.
+   *
+   * @throws {FakerError} If the CIDR block contains an invalid IPv6 address or prefix length.
+   * @throws {FakerError} If the network is unknown and no CIDR block is provided.
    *
    * @example
    * faker.internet.ipv6() // '269f:1230:73e3:318d:842b:daab:326d:897b'
+   * faker.internet.ipv6({ cidrBlock: '2001:db8:1234::/48' }) // '2001:0db8:1234:318d:842b:daab:326d:897b'
+   * faker.internet.ipv6({ network: 'loopback' }) // '0000:0000:0000:0000:0000:0000:0000:0001'
    *
    * @since 4.0.0
    */
-  ipv6(): string {
-    return internetIpv6(this.fakerCore);
+  ipv6(
+    options: {
+      /**
+       * The IPv6 CIDR block to use, with a prefix length from 0 to 128.
+       * Overrides `network` if provided.
+       */
+      cidrBlock?: string;
+      /**
+       * An alias for a well-known CIDR block.
+       *
+       * @default 'any'
+       */
+      network?: IPv6NetworkType;
+    } = {}
+  ): string {
+    return fakeInternetIpv6(this.fakerCore, options);
   }
 
   /**
@@ -469,7 +505,7 @@ export class InternetModule extends ModuleBase {
    * @since 5.4.0
    */
   port(): number {
-    return internetPort(this.fakerCore);
+    return fakeInternetPort(this.fakerCore);
   }
 
   /**
@@ -482,7 +518,7 @@ export class InternetModule extends ModuleBase {
    * @since 2.0.1
    */
   userAgent(): string {
-    return internetUserAgent(this.fakerCore);
+    return fakeInternetUserAgent(this.fakerCore);
   }
 
   /**
@@ -550,7 +586,7 @@ export class InternetModule extends ModuleBase {
           separator?: string;
         } = {}
   ): string {
-    return internetMac(this.fakerCore, options);
+    return fakeInternetMac(this.fakerCore, options);
   }
 
   /**
@@ -602,7 +638,7 @@ export class InternetModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return internetPassword(this.fakerCore, options);
+    return fakeInternetPassword(this.fakerCore, options);
   }
 
   /**
@@ -627,7 +663,7 @@ export class InternetModule extends ModuleBase {
       types?: ReadonlyArray<EmojiType>;
     } = {}
   ): string {
-    return internetEmoji(this.fakerCore, options);
+    return fakeInternetEmoji(this.fakerCore, options);
   }
 
   /**
@@ -642,7 +678,7 @@ export class InternetModule extends ModuleBase {
    * @since 9.1.0
    */
   jwtAlgorithm(): string {
-    return internetJwtAlgorithm(this.fakerCore);
+    return fakeInternetJwtAlgorithm(this.fakerCore);
   }
 
   /**
@@ -701,6 +737,6 @@ export class InternetModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return internetJwt(this.fakerCore, options);
+    return fakeInternetJwt(this.fakerCore, options);
   }
 }

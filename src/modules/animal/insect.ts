@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random insect species.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * animalInsect(fakerCore) // 'Pyramid ant'
+ * fakeAnimalInsect(fakerCore) // 'Pyramid ant'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function animalInsect(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.animal.insect);
+export function fakeAnimalInsect(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.animal.insect);
 }

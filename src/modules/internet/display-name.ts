@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { numberInt } from '../number/int';
-import { personFirstName } from '../person/first-name';
-import { personLastName } from '../person/last-name';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeNumberInt } from '../number/int';
+import { fakePersonFirstName } from '../person/first-name';
+import { fakePersonLastName } from '../person/last-name';
 
 /**
  * Generates a display name using the given person's name as base.
@@ -15,51 +15,51 @@ import { personLastName } from '../person/last-name';
  * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
  * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
  *
- * @see internetUsername(fakerCore): For generating a plain ASCII username.
+ * @see fakeInternetUsername(fakerCore): For generating a plain ASCII username.
  *
  * @example
- * internetDisplayName(fakerCore) // 'Nettie_Zboncak40'
- * internetDisplayName(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
- * internetDisplayName(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
- * internetDisplayName(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
- * internetDisplayName(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
- * internetDisplayName(fakerCore, { firstName: '大羽', lastName: '陳' }) // '大羽.陳'
+ * fakeInternetDisplayName(fakerCore) // 'Nettie_Zboncak40'
+ * fakeInternetDisplayName(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne98' - note surname not used.
+ * fakeInternetDisplayName(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+ * fakeInternetDisplayName(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
+ * fakeInternetDisplayName(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
+ * fakeInternetDisplayName(fakerCore, { firstName: '大羽', lastName: '陳' }) // '大羽.陳'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetDisplayName(
+export function fakeInternetDisplayName(
   fakerCore: FakerCore,
   options: {
     /**
      * The optional first name to use.
      *
-     * @default personFirstName(fakerCore)
+     * @default fakePersonFirstName(fakerCore)
      */
     firstName?: string;
     /**
      * The optional last name to use.
      *
-     * @default personLastName(fakerCore)
+     * @default fakePersonLastName(fakerCore)
      */
     lastName?: string;
   } = {}
 ): string {
   const {
-    firstName = personFirstName(fakerCore),
-    lastName = personLastName(fakerCore),
+    firstName = fakePersonFirstName(fakerCore),
+    lastName = fakePersonLastName(fakerCore),
   } = options;
 
-  const separator = helpersArrayElement(fakerCore, ['.', '_']);
-  const disambiguator = numberInt(fakerCore, 99);
+  const separator = fakeHelpersArrayElement(fakerCore, ['.', '_']);
+  const disambiguator = fakeNumberInt(fakerCore, 99);
   const strategies: Array<() => string> = [
     () => `${firstName}${disambiguator}`,
     () => `${firstName}${separator}${lastName}`,
     () => `${firstName}${separator}${lastName}${disambiguator}`,
   ];
 
-  let result = helpersArrayElement(fakerCore, strategies)();
+  let result = fakeHelpersArrayElement(fakerCore, strategies)();
   result = result.replaceAll("'", '');
   result = result.replaceAll(' ', '');
   return result;

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random catch phrase adjective that can be displayed to an end user.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * companyCatchPhraseAdjective(fakerCore) // 'Multi-tiered'
+ * fakeCompanyCatchPhraseAdjective(fakerCore) // 'Multi-tiered'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function companyCatchPhraseAdjective(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.company.adjective);
+export function fakeCompanyCatchPhraseAdjective(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.company.adjective);
 }

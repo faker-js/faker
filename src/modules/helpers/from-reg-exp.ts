@@ -1,11 +1,11 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { datatypeBoolean } from '../datatype/boolean';
-import { numberInt } from '../number/int';
-import { stringAlphanumeric } from '../string/alphanumeric';
-import { stringFromCharacters } from '../string/from-characters';
-import { helpersArrayElement } from './array-element';
-import { helpersMultiple } from './multiple';
+import { fakeDatatypeBoolean } from '../datatype/boolean';
+import { fakeNumberInt } from '../number/int';
+import { fakeStringAlphanumeric } from '../string/alphanumeric';
+import { fakeStringFromCharacters } from '../string/from-characters';
+import { fakeHelpersArrayElement } from './array-element';
+import { fakeHelpersMultiple } from './multiple';
 
 /**
  * Replaces regexp tokens that randexp does not randomize unless a quantifier is present.
@@ -50,7 +50,7 @@ function replaceUnquantifiedRegExpTokens(
     const hasQuantifier = ['?', '*', '+', '{'].includes(nextChar);
 
     if (!inCharacterClass && !hasQuantifier && char === '.') {
-      result += stringAlphanumeric(fakerCore);
+      result += fakeStringAlphanumeric(fakerCore);
       continue;
     }
 
@@ -60,7 +60,7 @@ function replaceUnquantifiedRegExpTokens(
       isCaseInsensitive &&
       /^[a-z]$/i.test(char)
     ) {
-      result += stringFromCharacters(fakerCore, [
+      result += fakeStringFromCharacters(fakerCore, [
         char.toLowerCase(),
         char.toUpperCase(),
       ]);
@@ -102,27 +102,27 @@ function getRepetitionsBasedOnQuantifierParameters(
   if (quantifierSymbol) {
     switch (quantifierSymbol) {
       case '?': {
-        repetitions = datatypeBoolean(fakerCore) ? 0 : 1;
+        repetitions = fakeDatatypeBoolean(fakerCore) ? 0 : 1;
         break;
       }
 
       case '*': {
         let limit = 1;
-        while (datatypeBoolean(fakerCore)) {
+        while (fakeDatatypeBoolean(fakerCore)) {
           limit *= 2;
         }
 
-        repetitions = numberInt(fakerCore, { min: 0, max: limit });
+        repetitions = fakeNumberInt(fakerCore, { min: 0, max: limit });
         break;
       }
 
       case '+': {
         let limit = 1;
-        while (datatypeBoolean(fakerCore)) {
+        while (fakeDatatypeBoolean(fakerCore)) {
           limit *= 2;
         }
 
-        repetitions = numberInt(fakerCore, { min: 1, max: limit });
+        repetitions = fakeNumberInt(fakerCore, { min: 1, max: limit });
         break;
       }
 
@@ -131,7 +131,7 @@ function getRepetitionsBasedOnQuantifierParameters(
       }
     }
   } else if (quantifierMin != null && quantifierMax != null) {
-    repetitions = numberInt(fakerCore, {
+    repetitions = fakeNumberInt(fakerCore, {
       min: Number.parseInt(quantifierMin),
       max: Number.parseInt(quantifierMax),
     });
@@ -174,26 +174,26 @@ function getRepetitionsBasedOnQuantifierParameters(
  * @throws {FakerError} If an invalid quantifier symbol is passed in.
  *
  * @example
- * helpersFromRegExp(fakerCore, '#{5}') // '#####'
- * helpersFromRegExp(fakerCore, '#{2,9}') // '#######'
- * helpersFromRegExp(fakerCore, '[1-7]') // '5'
- * helpersFromRegExp(fakerCore, '#{3}test[1-5]') // '###test3'
- * helpersFromRegExp(fakerCore, '[0-9a-dmno]') // '5'
- * helpersFromRegExp(fakerCore, '[^a-zA-Z0-8]') // '9'
- * helpersFromRegExp(fakerCore, '[a-d0-6]{2,8}') // 'a0dc45b0'
- * helpersFromRegExp(fakerCore, '[-a-z]{5}') // 'a-zab'
- * helpersFromRegExp(fakerCore, /[A-Z0-9]{4}-[A-Z0-9]{4}/) // 'BS4G-485H'
- * helpersFromRegExp(fakerCore, /[A-Z]{5}/i) // 'pDKfh'
- * helpersFromRegExp(fakerCore, /.{5}/) // '14(#B'
- * helpersFromRegExp(fakerCore, /Joh?n/) // 'Jon'
- * helpersFromRegExp(fakerCore, /ABC*DE/) // 'ABDE'
- * helpersFromRegExp(fakerCore, /bee+p/) // 'beeeeeeeep'
+ * fakeHelpersFromRegExp(fakerCore, '#{5}') // '#####'
+ * fakeHelpersFromRegExp(fakerCore, '#{2,9}') // '#######'
+ * fakeHelpersFromRegExp(fakerCore, '[1-7]') // '5'
+ * fakeHelpersFromRegExp(fakerCore, '#{3}test[1-5]') // '###test3'
+ * fakeHelpersFromRegExp(fakerCore, '[0-9a-dmno]') // '5'
+ * fakeHelpersFromRegExp(fakerCore, '[^a-zA-Z0-8]') // '9'
+ * fakeHelpersFromRegExp(fakerCore, '[a-d0-6]{2,8}') // 'a0dc45b0'
+ * fakeHelpersFromRegExp(fakerCore, '[-a-z]{5}') // 'a-zab'
+ * fakeHelpersFromRegExp(fakerCore, /[A-Z0-9]{4}-[A-Z0-9]{4}/) // 'BS4G-485H'
+ * fakeHelpersFromRegExp(fakerCore, /[A-Z]{5}/i) // 'pDKfh'
+ * fakeHelpersFromRegExp(fakerCore, /.{5}/) // '14(#B'
+ * fakeHelpersFromRegExp(fakerCore, /Joh?n/) // 'Jon'
+ * fakeHelpersFromRegExp(fakerCore, /ABC*DE/) // 'ABDE'
+ * fakeHelpersFromRegExp(fakerCore, /bee+p/) // 'beeeeeeeep'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersFromRegExp(
+export function fakeHelpersFromRegExp(
   fakerCore: FakerCore,
   pattern: string | RegExp
 ): string {
@@ -205,11 +205,11 @@ export function helpersFromRegExp(
   }
 
   if (pattern === '.') {
-    return stringAlphanumeric(fakerCore);
+    return fakeStringAlphanumeric(fakerCore);
   }
 
   if (isCaseInsensitive && /^[a-z]$/i.test(pattern)) {
-    return stringFromCharacters(fakerCore, [
+    return fakeStringFromCharacters(fakerCore, [
       pattern.toLowerCase(),
       pattern.toUpperCase(),
     ]);
@@ -243,9 +243,9 @@ export function helpersFromRegExp(
 
     let replacement: string;
     if (token[1] === '.') {
-      replacement = stringAlphanumeric(fakerCore, repetitions);
+      replacement = fakeStringAlphanumeric(fakerCore, repetitions);
     } else if (isCaseInsensitive) {
-      replacement = stringFromCharacters(
+      replacement = fakeStringFromCharacters(
         fakerCore,
         [token[1].toLowerCase(), token[1].toUpperCase()],
         repetitions
@@ -334,44 +334,28 @@ export function helpersFromRegExp(
     );
 
     if (isNegated) {
-      let index;
-      // 0-9
-      for (let i = 48; i <= 57; i++) {
-        index = rangeCodes.indexOf(i);
-        if (index > -1) {
-          rangeCodes.splice(index, 1);
-          continue;
+      // Keep only the ASCII digits and letters that are not excluded.
+      // Excluded symbols (e.g. a leading dash) and duplicate codes (e.g. from
+      // the case insensitive flag) must not end up in the result.
+      const excludedCodes = new Set(rangeCodes);
+      rangeCodes.length = 0;
+      for (const [rangeStart, rangeEnd] of [
+        [48, 57], // 0-9
+        [65, 90], // A-Z
+        [97, 122], // a-z
+      ]) {
+        for (let i = rangeStart; i <= rangeEnd; i++) {
+          if (!excludedCodes.has(i)) {
+            rangeCodes.push(i);
+          }
         }
-
-        rangeCodes.push(i);
-      }
-
-      // A-Z
-      for (let i = 65; i <= 90; i++) {
-        index = rangeCodes.indexOf(i);
-        if (index > -1) {
-          rangeCodes.splice(index, 1);
-          continue;
-        }
-
-        rangeCodes.push(i);
-      }
-
-      // a-z
-      for (let i = 97; i <= 122; i++) {
-        index = rangeCodes.indexOf(i);
-        if (index > -1) {
-          rangeCodes.splice(index, 1);
-          continue;
-        }
-
-        rangeCodes.push(i);
       }
     }
 
-    const generatedString = helpersMultiple(
+    const generatedString = fakeHelpersMultiple(
       fakerCore,
-      () => String.fromCodePoint(helpersArrayElement(fakerCore, rangeCodes)),
+      () =>
+        String.fromCodePoint(fakeHelpersArrayElement(fakerCore, rangeCodes)),
       { count: repetitions }
     ).join('');
 
@@ -393,7 +377,7 @@ export function helpersFromRegExp(
       throw new FakerError('Numbers out of order in {} quantifier.');
     }
 
-    repetitions = numberInt(fakerCore, { min, max });
+    repetitions = fakeNumberInt(fakerCore, { min, max });
     pattern =
       pattern.slice(0, token.index) +
       token[1].repeat(repetitions) +

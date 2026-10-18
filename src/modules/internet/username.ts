@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { numberInt } from '../number/int';
-import { personFirstName } from '../person/first-name';
-import { personLastName } from '../person/last-name';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeNumberInt } from '../number/int';
+import { fakePersonFirstName } from '../person/first-name';
+import { fakePersonLastName } from '../person/last-name';
 import { charMapping } from './_char-mappings';
 
 /**
@@ -16,47 +16,47 @@ import { charMapping } from './_char-mappings';
  * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
  * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
  *
- * @see internetDisplayName(fakerCore): For generating an Unicode display name.
+ * @see fakeInternetDisplayName(fakerCore): For generating an Unicode display name.
  *
  * @example
- * internetUsername(fakerCore) // 'Nettie_Zboncak40'
- * internetUsername(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne98'
- * internetUsername(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne.Smith98'
- * internetUsername(fakerCore, { firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
- * internetUsername(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
- * internetUsername(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
- * internetUsername(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
- * internetUsername(fakerCore, { firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
+ * fakeInternetUsername(fakerCore) // 'Nettie_Zboncak40'
+ * fakeInternetUsername(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne98'
+ * fakeInternetUsername(fakerCore, { firstName: 'Jeanne' }) // 'Jeanne.Smith98'
+ * fakeInternetUsername(fakerCore, { firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne_Doe98'
+ * fakeInternetUsername(fakerCore, { firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+ * fakeInternetUsername(fakerCore, { firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
+ * fakeInternetUsername(fakerCore, { firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
+ * fakeInternetUsername(fakerCore, { firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetUsername(
+export function fakeInternetUsername(
   fakerCore: FakerCore,
   options: {
     /**
      * The optional first name to use.
      *
-     * @default personFirstName(fakerCore)
+     * @default fakePersonFirstName(fakerCore)
      */
     firstName?: string;
     /**
      * The optional last name to use.
      *
-     * @default personLastName(fakerCore)
+     * @default fakePersonLastName(fakerCore)
      */
     lastName?: string;
   } = {}
 ): string {
   const {
-    firstName = personFirstName(fakerCore),
-    lastName = personLastName(fakerCore),
+    firstName = fakePersonFirstName(fakerCore),
+    lastName = fakePersonLastName(fakerCore),
     lastName: hasLastName,
   } = options;
 
-  const separator = helpersArrayElement(fakerCore, ['.', '_']);
-  const disambiguator = numberInt(fakerCore, 99);
+  const separator = fakeHelpersArrayElement(fakerCore, ['.', '_']);
+  const disambiguator = fakeNumberInt(fakerCore, 99);
   const strategies: Array<() => string> = [
     () => `${firstName}${separator}${lastName}${disambiguator}`,
     () => `${firstName}${separator}${lastName}`,
@@ -65,7 +65,7 @@ export function internetUsername(
     strategies.push(() => `${firstName}${disambiguator}`);
   }
 
-  let result = helpersArrayElement(fakerCore, strategies)();
+  let result = fakeHelpersArrayElement(fakerCore, strategies)();
 
   // There may still be non-ascii characters in the result.
   // First remove simple accents etc

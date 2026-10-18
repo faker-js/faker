@@ -1,21 +1,21 @@
-import type {
-  Casing,
-  ColorFormat,
-  NumberOrRange,
-  NumberRange,
-} from '../../../src';
 import { FakerError } from '../../../src/errors/faker-error';
 import type { LiteralUnion } from '../../../src/internal/types';
+import type { ColorFormat } from '../../../src/modules/color';
 import type { AlphaNumericChar } from '../../../src/modules/string';
+import type {
+  Casing,
+  NumberOrRange,
+  NumberRange,
+} from '../../../src/utils/types';
 // explicitly export types so they show up in the docs as decomposed types
 export type {
-  Casing,
   ColorFormat,
   NumberColorFormat,
   StringColorFormat,
-} from '../../../src';
+} from '../../../src/modules/color';
 export type { LiteralUnion } from '../../../src/internal/types';
 export type { AlphaNumericChar } from '../../../src/modules/string';
+export type { Casing } from '../../../src/utils/types';
 
 /**
  * Parameter options type with default from signature.

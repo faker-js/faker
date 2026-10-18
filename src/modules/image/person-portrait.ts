@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 import type { SexType } from '../person';
-import { personSexType } from '../person/sex-type';
+import { fakePersonSexType } from '../person/sex-type';
 
 /**
  * Generates a random square portrait (avatar) of a person.
@@ -14,21 +14,21 @@ import { personSexType } from '../person/sex-type';
  * @param options.size The size of the image. Can be `512`, `256`, `128`, `64` or `32`. If not provided, defaults to `512`.
  *
  * @example
- * imagePersonPortrait(fakerCore) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/57.jpg'
- * imagePersonPortrait(fakerCore, { sex: 'male', size: 128 }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
+ * fakeImagePersonPortrait(fakerCore) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/57.jpg'
+ * fakeImagePersonPortrait(fakerCore, { sex: 'male', size: 128 }) // 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/128/27.jpg'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function imagePersonPortrait(
+export function fakeImagePersonPortrait(
   fakerCore: FakerCore,
   options: {
     /**
      * The sex of the person for the avatar.
      * Can be `'female'` or `'male'`. `'generic'` uses a random selection.
      *
-     * @default personSexType(fakerCore)
+     * @default fakePersonSexType(fakerCore)
      */
     sex?: SexType;
     /**
@@ -41,12 +41,12 @@ export function imagePersonPortrait(
   } = {}
 ): string {
   const { size = 512 } = options;
-  let { sex = personSexType(fakerCore) } = options;
+  let { sex = fakePersonSexType(fakerCore) } = options;
 
   if (sex === 'generic') {
-    sex = personSexType(fakerCore);
+    sex = fakePersonSexType(fakerCore);
   }
 
   const baseURL = 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait';
-  return `${baseURL}/${sex}/${size}/${numberInt(fakerCore, { min: 0, max: 99 })}.jpg`;
+  return `${baseURL}/${sex}/${size}/${fakeNumberInt(fakerCore, { min: 0, max: 99 })}.jpg`;
 }

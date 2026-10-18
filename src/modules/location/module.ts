@@ -1,25 +1,25 @@
 import { ModuleBase } from '../../internal/module-base';
-import { locationBuildingNumber } from './building-number';
-import { locationCardinalDirection } from './cardinal-direction';
-import { locationCity } from './city';
-import { locationContinent } from './continent';
-import { locationCountry } from './country';
-import { locationCountryCode } from './country-code';
-import { locationCounty } from './county';
-import { locationDirection } from './direction';
+import { fakeLocationBuildingNumber } from './building-number';
+import { fakeLocationCardinalDirection } from './cardinal-direction';
+import { fakeLocationCity } from './city';
+import { fakeLocationContinent } from './continent';
+import { fakeLocationCountry } from './country';
+import { fakeLocationCountryCode } from './country-code';
+import { fakeLocationCounty } from './county';
+import { fakeLocationDirection } from './direction';
 import type { Language } from './language';
-import { locationLanguage } from './language';
-import { locationLatitude } from './latitude';
-import { locationLongitude } from './longitude';
-import { locationNearbyGPSCoordinate } from './nearby-gps-coordinate';
-import { locationOrdinalDirection } from './ordinal-direction';
-import { locationPostalAddress } from './postal-address';
-import { locationSecondaryAddress } from './secondary-address';
-import { locationState } from './state';
-import { locationStreet } from './street';
-import { locationStreetAddress } from './street-address';
-import { locationTimeZone } from './time-zone';
-import { locationZipCode } from './zip-code';
+import { fakeLocationLanguage } from './language';
+import { fakeLocationLatitude } from './latitude';
+import { fakeLocationLongitude } from './longitude';
+import { fakeLocationNearbyGPSCoordinate } from './nearby-gps-coordinate';
+import { fakeLocationOrdinalDirection } from './ordinal-direction';
+import { fakeLocationPostalAddress } from './postal-address';
+import { fakeLocationSecondaryAddress } from './secondary-address';
+import { fakeLocationState } from './state';
+import { fakeLocationStreet } from './street';
+import { fakeLocationStreetAddress } from './street-address';
+import { fakeLocationTimeZone } from './time-zone';
+import { fakeLocationZipCode } from './zip-code';
 
 /**
  * Module with location functions that don't require localized data
@@ -68,7 +68,7 @@ export class SimpleLocationModule extends ModuleBase {
       precision?: number;
     } = {}
   ): number {
-    return locationLatitude(this.fakerCore, options);
+    return fakeLocationLatitude(this.fakerCore, options);
   }
 
   /**
@@ -109,7 +109,7 @@ export class SimpleLocationModule extends ModuleBase {
       precision?: number;
     } = {}
   ): number {
-    return locationLongitude(this.fakerCore, options);
+    return fakeLocationLongitude(this.fakerCore, options);
   }
 
   /**
@@ -148,7 +148,7 @@ export class SimpleLocationModule extends ModuleBase {
       isMetric?: boolean;
     } = {}
   ): [latitude: number, longitude: number] {
-    return locationNearbyGPSCoordinate(this.fakerCore, options);
+    return fakeLocationNearbyGPSCoordinate(this.fakerCore, options);
   }
 }
 
@@ -210,7 +210,7 @@ export class LocationModule extends SimpleLocationModule {
           format?: string;
         } = {}
   ): string {
-    return locationZipCode(this.fakerCore, options);
+    return fakeLocationZipCode(this.fakerCore, options);
   }
 
   /**
@@ -223,7 +223,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   city(): string {
-    return locationCity(this.fakerCore);
+    return fakeLocationCity(this.fakerCore);
   }
 
   /**
@@ -235,7 +235,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   buildingNumber(): string {
-    return locationBuildingNumber(this.fakerCore);
+    return fakeLocationBuildingNumber(this.fakerCore);
   }
 
   /**
@@ -247,7 +247,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   street(): string {
-    return locationStreet(this.fakerCore);
+    return fakeLocationStreet(this.fakerCore);
   }
 
   /**
@@ -276,7 +276,7 @@ export class LocationModule extends SimpleLocationModule {
           useFullAddress?: boolean;
         } = {}
   ): string {
-    return locationStreetAddress(this.fakerCore, options);
+    return fakeLocationStreetAddress(this.fakerCore, options);
   }
 
   /**
@@ -306,7 +306,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 10.5.0
    */
   postalAddress(): string {
-    return locationPostalAddress(this.fakerCore);
+    return fakeLocationPostalAddress(this.fakerCore);
   }
 
   /**
@@ -319,7 +319,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   secondaryAddress(): string {
-    return locationSecondaryAddress(this.fakerCore);
+    return fakeLocationSecondaryAddress(this.fakerCore);
   }
 
   /**
@@ -332,7 +332,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   county(): string {
-    return locationCounty(this.fakerCore);
+    return fakeLocationCounty(this.fakerCore);
   }
 
   /**
@@ -344,7 +344,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   country(): string {
-    return locationCountry(this.fakerCore);
+    return fakeLocationCountry(this.fakerCore);
   }
 
   /**
@@ -356,7 +356,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 9.1.0
    */
   continent(): string {
-    return locationContinent(this.fakerCore);
+    return fakeLocationContinent(this.fakerCore);
   }
 
   /**
@@ -396,7 +396,7 @@ export class LocationModule extends SimpleLocationModule {
           variant?: 'alpha-2' | 'alpha-3' | 'numeric';
         } = {}
   ): string {
-    return locationCountryCode(this.fakerCore, options);
+    return fakeLocationCountryCode(this.fakerCore, options);
   }
 
   /**
@@ -428,7 +428,7 @@ export class LocationModule extends SimpleLocationModule {
       abbreviated?: boolean;
     } = {}
   ): string {
-    return locationState(this.fakerCore, options);
+    return fakeLocationState(this.fakerCore, options);
   }
 
   /**
@@ -455,7 +455,7 @@ export class LocationModule extends SimpleLocationModule {
       abbreviated?: boolean;
     } = {}
   ): string {
-    return locationDirection(this.fakerCore, options);
+    return fakeLocationDirection(this.fakerCore, options);
   }
 
   /**
@@ -482,7 +482,7 @@ export class LocationModule extends SimpleLocationModule {
       abbreviated?: boolean;
     } = {}
   ): string {
-    return locationCardinalDirection(this.fakerCore, options);
+    return fakeLocationCardinalDirection(this.fakerCore, options);
   }
 
   /**
@@ -509,7 +509,7 @@ export class LocationModule extends SimpleLocationModule {
       abbreviated?: boolean;
     } = {}
   ): string {
-    return locationOrdinalDirection(this.fakerCore, options);
+    return fakeLocationOrdinalDirection(this.fakerCore, options);
   }
 
   /**
@@ -526,7 +526,7 @@ export class LocationModule extends SimpleLocationModule {
    * @since 8.0.0
    */
   timeZone(): string {
-    return locationTimeZone(this.fakerCore);
+    return fakeLocationTimeZone(this.fakerCore);
   }
 
   /**
@@ -545,6 +545,6 @@ export class LocationModule extends SimpleLocationModule {
    * @since 9.4.0
    */
   language(): Language {
-    return locationLanguage(this.fakerCore);
+    return fakeLocationLanguage(this.fakerCore);
   }
 }
