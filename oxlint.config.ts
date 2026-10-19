@@ -2,7 +2,10 @@ import { defineConfig } from 'oxlint';
 
 export default defineConfig({
   plugins: ['import', 'typescript', 'unicorn', 'oxc', 'vitest'],
-  jsPlugins: [{ name: 'jsdoc-js', specifier: 'eslint-plugin-jsdoc' }], // the built-in jsdoc plugin is missing too many rules
+  jsPlugins: [
+    { name: 'jsdoc-js', specifier: 'eslint-plugin-jsdoc' }, // the built-in jsdoc plugin is missing too many rules
+    'oxlint-plugin-organize-imports',
+  ],
   categories: {
     correctness: 'error',
     suspicious: 'error',
@@ -57,7 +60,12 @@ export default defineConfig({
     //#region import
     // name: 'import overrides'
     'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
-    'import/no-duplicates': 'error',
+    'import/no-duplicates': 'error', // redundant for TS files (organize-imports merges them), but still covers our .vue files
+    //#endregion
+
+    //#region organize-imports
+    // name: 'organize-imports overrides'
+    'organize-imports/organize-imports': 'error',
     //#endregion
 
     //#region typescript
