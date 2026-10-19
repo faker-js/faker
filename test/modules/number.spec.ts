@@ -379,6 +379,32 @@ describe('number', () => {
         expect(results).toEqual([0.9, 1.2, 1.5, 1.8]);
       });
 
+      it('keeps bounds reachable when they have more decimals than multipleOf', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 100 }, () =>
+              faker.number.float({
+                min: 1.1,
+                max: 1.3,
+                multipleOf: 0.05,
+              })
+            )
+          ),
+        ].toSorted();
+
+        expect(results).toEqual([1.1, 1.15, 1.2, 1.25, 1.3]);
+      });
+
+      it('handles a multipleOf written in exponent notation', () => {
+        const actual = faker.number.float({
+          min: 0.0000003,
+          max: 0.0000003,
+          multipleOf: 3e-7,
+        });
+
+        expect(actual).toBe(0.0000003);
+      });
+
       it.each(times(100))(
         'provides numbers with an exact fractional digits',
         () => {

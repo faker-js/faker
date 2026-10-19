@@ -110,28 +110,42 @@ export function fakeNumberFloat(
       throw new FakerError(`multipleOf should be greater than 0.`);
     }
 
-    // For decimal steps like 0.3, generate integer multiples of the scaled step
-    // and divide once, so 3 * 0.3 comes out as 0.9 rather than 0.8999999999999999,
-    // which would fall below a min of 0.9.
-    const [, fraction = ''] = String(multipleOf).split('.');
-    const scale = 10 ** fraction.length;
-    const step = Math.round(multipleOf * scale);
-    if (fraction.length > 0 && step !== 1 && step / scale === multipleOf) {
-      const int = fakeNumberInt(fakerCore, {
-        min: min * scale,
-        max: max * scale,
-        multipleOf: step,
-        distributor,
-      });
-      return int / scale;
+    const logPrecision = Math.log10(multipleOf);
+    const isPowerOfTenStep =
+      multipleOf < 1 && Number.isSafeInteger(logPrecision);
+
+    // For other decimal steps (0.3, 0.05, 1.5, ...) the division below picks up
+    // floating-point error, e.g. 3 / (1 / 0.3) is 0.8999999999999999, below a
+    // min of 0.9. When min, max and multipleOf are all finite decimals, scale
+    // them to integers by a shared power of ten, pick the multiple there and
+    // divide once.
+    const scaleDigits = Math.max(
+      decimalPlaces(min),
+      decimalPlaces(max),
+      decimalPlaces(multipleOf)
+    );
+    if (!isPowerOfTenStep && scaleDigits > 0 && Number.isFinite(scaleDigits)) {
+      const scale = 10 ** scaleDigits;
+      const scaledMin = Math.round(min * scale);
+      const scaledMax = Math.round(max * scale);
+      const scaledStep = Math.round(multipleOf * scale);
+      if (
+        Number.isSafeInteger(scaledMin) &&
+        Number.isSafeInteger(scaledMax) &&
+        Number.isSafeInteger(scaledStep)
+      ) {
+        const int = fakeNumberInt(fakerCore, {
+          min: scaledMin,
+          max: scaledMax,
+          multipleOf: scaledStep,
+          distributor,
+        });
+        return int / scale;
+      }
     }
 
-    const logPrecision = Math.log10(multipleOf);
     // Workaround to get integer values for the inverse of all multiples of the form 10^-n
-    const factor =
-      multipleOf < 1 && Number.isSafeInteger(logPrecision)
-        ? 10 ** -logPrecision
-        : 1 / multipleOf;
+    const factor = isPowerOfTenStep ? 10 ** -logPrecision : 1 / multipleOf;
     const int = fakeNumberInt(fakerCore, {
       min: min * factor,
       max: max * factor,
@@ -142,4 +156,22 @@ export function fakeNumberFloat(
 
   const real = distributor(fakerCore.randomizer);
   return real * (max - min) + min;
+}
+
+/**
+ * Returns the number of decimal places of a finite decimal value (`0.05` → 2,
+ * `1e-7` → 7), or `Infinity` for values like `Math.PI` or `1 / 3` that have no
+ * short decimal form.
+ *
+ * @param value The value to inspect.
+ */
+function decimalPlaces(value: number): number {
+  for (let digits = 0; digits <= 15; digits++) {
+    const scale = 10 ** digits;
+    if (Math.round(value * scale) / scale === value) {
+      return digits;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
 }
