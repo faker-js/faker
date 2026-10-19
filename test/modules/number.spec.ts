@@ -363,6 +363,22 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
+      it('provides exact multiples of a decimal multipleOf within the bounds', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 100 }, () =>
+              faker.number.float({
+                min: 0.9,
+                max: 1.8,
+                multipleOf: 0.3,
+              })
+            )
+          ),
+        ].toSorted();
+
+        expect(results).toEqual([0.9, 1.2, 1.5, 1.8]);
+      });
+
       it.each(times(100))(
         'provides numbers with an exact fractional digits',
         () => {

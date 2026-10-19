@@ -110,6 +110,22 @@ export function fakeNumberFloat(
       throw new FakerError(`multipleOf should be greater than 0.`);
     }
 
+    // For decimal steps like 0.3, generate integer multiples of the scaled step
+    // and divide once, so 3 * 0.3 comes out as 0.9 rather than 0.8999999999999999,
+    // which would fall below a min of 0.9.
+    const [, fraction = ''] = String(multipleOf).split('.');
+    const scale = 10 ** fraction.length;
+    const step = Math.round(multipleOf * scale);
+    if (fraction.length > 0 && step !== 1 && step / scale === multipleOf) {
+      const int = fakeNumberInt(fakerCore, {
+        min: min * scale,
+        max: max * scale,
+        multipleOf: step,
+        distributor,
+      });
+      return int / scale;
+    }
+
     const logPrecision = Math.log10(multipleOf);
     // Workaround to get integer values for the inverse of all multiples of the form 10^-n
     const factor =
