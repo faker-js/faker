@@ -69,7 +69,7 @@ As an alternative, you can create a simple html file and open it with your brows
 Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker package in your web app.**
 :::
 
-## CDN/Deno
+## CDN
 
 ```js
 import { faker } from 'https://esm.sh/@faker-js/faker';
@@ -79,7 +79,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 ::: info Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v10.6.0"`.
+It is highly recommended to use version tags when importing libraries, e.g: `import { faker } from "https://esm.sh/@faker-js/faker@v10.6.0"`.
 :::
 
 ### Alternative CDN links

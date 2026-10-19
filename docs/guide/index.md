@@ -35,10 +35,6 @@ pnpm add @faker-js/faker --save-dev
 yarn add @faker-js/faker --dev
 ```
 
-```shell [deno]
-deno add --dev @faker-js/faker
-```
-
 :::
 
 ## Faker Modules
