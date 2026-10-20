@@ -17,6 +17,7 @@ import { fakeNumberInt } from './int';
  *
  * @throws {FakerError} When `min` is greater than `max`.
  * @throws {FakerError} When `multipleOf` is not a positive number.
+ * @throws {FakerError} When there is no multiple of `multipleOf` between `min` and `max`.
  * @throws {FakerError} When `fractionDigits` is negative.
  * @throws {FakerError} When `fractionDigits` and `multipleOf` is passed in the same options object.
  *
@@ -135,12 +136,25 @@ export function fakeNumberFloat(
           : 1 / multipleOf;
     }
 
-    const int = fakeNumberInt(fakerCore, {
-      min: isExact ? Math.round(min * factor) : min * factor,
-      max: isExact ? Math.round(max * factor) : max * factor,
-      multipleOf: isExact ? scaledStep : 1,
-      distributor,
-    });
+    let int: number;
+    try {
+      int = fakeNumberInt(fakerCore, {
+        min: isExact ? Math.round(min * factor) : min * factor,
+        max: isExact ? Math.round(max * factor) : max * factor,
+        multipleOf: isExact ? scaledStep : 1,
+        distributor,
+      });
+    } catch (error) {
+      // The scaled int bounds mean nothing to the caller, so name their own.
+      if (error instanceof FakerError) {
+        throw new FakerError(
+          `No suitable float value between ${min} and ${max} that is a multiple of ${multipleOf} found.`
+        );
+      }
+
+      throw error;
+    }
+
     return int / factor;
   }
 
