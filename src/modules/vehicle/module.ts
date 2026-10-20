@@ -1,13 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-import { vehicleBicycle } from './bicycle';
-import { vehicleColor } from './color';
-import { vehicleFuel } from './fuel';
-import { vehicleManufacturer } from './manufacturer';
-import { vehicleModel } from './model';
-import { vehicleType } from './type';
-import { vehicleVehicle } from './vehicle';
-import { vehicleVin } from './vin';
-import { vehicleVrm } from './vrm';
+import { fakeVehicleBicycle } from './bicycle';
+import { fakeVehicleColor } from './color';
+import { fakeVehicleFuel } from './fuel';
+import { fakeVehicleManufacturer } from './manufacturer';
+import { fakeVehicleModel } from './model';
+import { fakeVehicleType } from './type';
+import { fakeVehicleVehicle } from './vehicle';
+import { fakeVehicleVin } from './vin';
+import { fakeVehicleVrm } from './vrm';
 
 /**
  * Module to generate vehicle related entries.
@@ -33,7 +33,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   vehicle(): string {
-    return vehicleVehicle(this.fakerCore);
+    return fakeVehicleVehicle(this.fakerCore);
   }
 
   /**
@@ -45,7 +45,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   manufacturer(): string {
-    return vehicleManufacturer(this.fakerCore);
+    return fakeVehicleManufacturer(this.fakerCore);
   }
 
   /**
@@ -57,7 +57,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   model(): string {
-    return vehicleModel(this.fakerCore);
+    return fakeVehicleModel(this.fakerCore);
   }
 
   /**
@@ -69,7 +69,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   type(): string {
-    return vehicleType(this.fakerCore);
+    return fakeVehicleType(this.fakerCore);
   }
 
   /**
@@ -81,7 +81,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   fuel(): string {
-    return vehicleFuel(this.fakerCore);
+    return fakeVehicleFuel(this.fakerCore);
   }
 
   /**
@@ -93,7 +93,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   vin(): string {
-    return vehicleVin(this.fakerCore);
+    return fakeVehicleVin(this.fakerCore);
   }
 
   /**
@@ -105,7 +105,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.0.0
    */
   color(): string {
-    return vehicleColor(this.fakerCore);
+    return fakeVehicleColor(this.fakerCore);
   }
 
   /**
@@ -117,7 +117,7 @@ export class VehicleModule extends ModuleBase {
    * @since 5.4.0
    */
   vrm(): string {
-    return vehicleVrm(this.fakerCore);
+    return fakeVehicleVrm(this.fakerCore);
   }
 
   /**
@@ -129,6 +129,6 @@ export class VehicleModule extends ModuleBase {
    * @since 5.5.0
    */
   bicycle(): string {
-    return vehicleBicycle(this.fakerCore);
+    return fakeVehicleBicycle(this.fakerCore);
   }
 }

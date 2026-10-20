@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { stringAlphanumeric } from '../string/alphanumeric';
+import { fakeStringAlphanumeric } from '../string/alphanumeric';
 
 const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
@@ -15,16 +15,16 @@ const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
  * @param options.allowVisuallySimilarCharacters Whether to allow visually similar characters such as '1' and 'I'. Defaults to `false`.
  *
  * @example
- * airlineRecordLocator(fakerCore) // 'KIFRWE'
- * airlineRecordLocator(fakerCore, { allowNumerics: true }) // 'E5TYEM'
- * airlineRecordLocator(fakerCore, { allowVisuallySimilarCharacters: true }) // 'ANZNEI'
- * airlineRecordLocator(fakerCore, { allowNumerics: true, allowVisuallySimilarCharacters: true }) // '1Z2Z3E'
+ * fakeAirlineRecordLocator(fakerCore) // 'KIFRWE'
+ * fakeAirlineRecordLocator(fakerCore, { allowNumerics: true }) // 'E5TYEM'
+ * fakeAirlineRecordLocator(fakerCore, { allowVisuallySimilarCharacters: true }) // 'ANZNEI'
+ * fakeAirlineRecordLocator(fakerCore, { allowNumerics: true, allowVisuallySimilarCharacters: true }) // '1Z2Z3E'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function airlineRecordLocator(
+export function fakeAirlineRecordLocator(
   fakerCore: FakerCore,
   options: {
     /**
@@ -52,7 +52,7 @@ export function airlineRecordLocator(
     excludedChars.push(...visuallySimilarCharacters);
   }
 
-  return stringAlphanumeric(fakerCore, {
+  return fakeStringAlphanumeric(fakerCore, {
     length: 6,
     casing: 'upper',
     exclude: excludedChars,

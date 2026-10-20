@@ -1,20 +1,20 @@
 import { ModuleBase } from '../../internal/module-base';
-import { personBio } from './bio';
-import { personFirstName } from './first-name';
-import { personFullName } from './full-name';
-import { personGender } from './gender';
-import { personJobArea } from './job-area';
-import { personJobDescriptor } from './job-descriptor';
-import { personJobTitle } from './job-title';
-import { personJobType } from './job-type';
-import { personLastName } from './last-name';
-import { personMiddleName } from './middle-name';
-import { personPrefix } from './prefix';
-import { personSex } from './sex';
+import { fakePersonBio } from './bio';
+import { fakePersonFirstName } from './first-name';
+import { fakePersonFullName } from './full-name';
+import { fakePersonGender } from './gender';
+import { fakePersonJobArea } from './job-area';
+import { fakePersonJobDescriptor } from './job-descriptor';
+import { fakePersonJobTitle } from './job-title';
+import { fakePersonJobType } from './job-type';
+import { fakePersonLastName } from './last-name';
+import { fakePersonMiddleName } from './middle-name';
+import { fakePersonPrefix } from './prefix';
+import { fakePersonSex } from './sex';
 import type { SexType } from './sex-type';
-import { personSexType } from './sex-type';
-import { personSuffix } from './suffix';
-import { personZodiacSign } from './zodiac-sign';
+import { fakePersonSexType } from './sex-type';
+import { fakePersonSuffix } from './suffix';
+import { fakePersonZodiacSign } from './zodiac-sign';
 
 /**
  * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0, this module was known as `faker.name`.
@@ -55,7 +55,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   firstName(sex?: SexType): string {
-    return personFirstName(this.fakerCore, sex);
+    return fakePersonFirstName(this.fakerCore, sex);
   }
 
   /**
@@ -72,7 +72,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    return personLastName(this.fakerCore, sex);
+    return fakePersonLastName(this.fakerCore, sex);
   }
 
   /**
@@ -89,7 +89,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   middleName(sex?: SexType): string {
-    return personMiddleName(this.fakerCore, sex);
+    return fakePersonMiddleName(this.fakerCore, sex);
   }
 
   /**
@@ -131,7 +131,7 @@ export class PersonModule extends ModuleBase {
       sex?: SexType;
     } = {}
   ): string {
-    return personFullName(this.fakerCore, options);
+    return fakePersonFullName(this.fakerCore, options);
   }
 
   /**
@@ -145,7 +145,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   gender(): string {
-    return personGender(this.fakerCore);
+    return fakePersonGender(this.fakerCore);
   }
 
   /**
@@ -163,7 +163,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   sex(): string {
-    return personSex(this.fakerCore);
+    return fakePersonSex(this.fakerCore);
   }
 
   /**
@@ -194,7 +194,7 @@ export class PersonModule extends ModuleBase {
       includeGeneric?: boolean;
     } = {}
   ): SexType {
-    return personSexType(this.fakerCore, options);
+    return fakePersonSexType(this.fakerCore, options);
   }
 
   /**
@@ -206,7 +206,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   bio(): string {
-    return personBio(this.fakerCore);
+    return fakePersonBio(this.fakerCore);
   }
 
   /**
@@ -222,7 +222,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   prefix(sex?: SexType): string {
-    return personPrefix(this.fakerCore, sex);
+    return fakePersonPrefix(this.fakerCore, sex);
   }
 
   /**
@@ -234,7 +234,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   suffix(): string {
-    return personSuffix(this.fakerCore);
+    return fakePersonSuffix(this.fakerCore);
   }
 
   /**
@@ -246,7 +246,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobTitle(): string {
-    return personJobTitle(this.fakerCore);
+    return fakePersonJobTitle(this.fakerCore);
   }
 
   /**
@@ -258,7 +258,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobDescriptor(): string {
-    return personJobDescriptor(this.fakerCore);
+    return fakePersonJobDescriptor(this.fakerCore);
   }
 
   /**
@@ -270,7 +270,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobArea(): string {
-    return personJobArea(this.fakerCore);
+    return fakePersonJobArea(this.fakerCore);
   }
 
   /**
@@ -282,7 +282,7 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   jobType(): string {
-    return personJobType(this.fakerCore);
+    return fakePersonJobType(this.fakerCore);
   }
 
   /**
@@ -294,6 +294,6 @@ export class PersonModule extends ModuleBase {
    * @since 8.0.0
    */
   zodiacSign(): string {
-    return personZodiacSign(this.fakerCore);
+    return fakePersonZodiacSign(this.fakerCore);
   }
 }

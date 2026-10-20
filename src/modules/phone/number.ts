@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { assertLocaleData } from '../../internal/locale-proxy';
 import { legacyReplaceSymbolWithNumber } from '../helpers/_legacy-replace-symbol-with-number';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Generates a random phone number.
@@ -12,21 +12,21 @@ import { helpersArrayElement } from '../helpers/array-element';
  *
  * @throws {FakerError} If the current locale has no definitions for the given style.
  *
- * @see stringNumeric(fakerCore): For generating a random string of numbers.
- * @see helpersFromRegExp(fakerCore): For generating a phone number matching a regular expression.
+ * @see fakeStringNumeric(fakerCore): For generating a random string of numbers.
+ * @see fakeHelpersFromRegExp(fakerCore): For generating a phone number matching a regular expression.
  *
  * @example
- * phoneNumber(fakerCore) // '961-770-7727'
- * phoneNumber(fakerCore, { style: 'human' }) // '555.770.7727 x1234'
- * phoneNumber(fakerCore, { style: 'national' }) // '(961) 770-7727'
- * phoneNumber(fakerCore, { style: 'international' }) // '+15551234567'
- * phoneNumber(fakerCoreEN_GB, { style: 'mobile' }) // '07123456789'
+ * fakePhoneNumber(fakerCore) // '961-770-7727'
+ * fakePhoneNumber(fakerCore, { style: 'human' }) // '555.770.7727 x1234'
+ * fakePhoneNumber(fakerCore, { style: 'national' }) // '(961) 770-7727'
+ * fakePhoneNumber(fakerCore, { style: 'international' }) // '+15551234567'
+ * fakePhoneNumber(fakerCoreEN_GB, { style: 'mobile' }) // '07123456789'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function phoneNumber(
+export function fakePhoneNumber(
   fakerCore: FakerCore,
   options: {
     /**
@@ -44,6 +44,6 @@ export function phoneNumber(
   const { style = 'human' } = options;
   const formats = fakerCore.locale.phone_number.format[style];
   assertLocaleData(formats, 'phone_number.format', style);
-  const format = helpersArrayElement(fakerCore, formats);
+  const format = fakeHelpersArrayElement(fakerCore, formats);
   return legacyReplaceSymbolWithNumber(fakerCore, format);
 }

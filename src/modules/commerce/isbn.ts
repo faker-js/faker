@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { helpersObjectEntry } from '../helpers/object-entry';
-import { stringNumeric } from '../string/numeric';
+import { fakeHelpersObjectEntry } from '../helpers/object-entry';
+import { fakeStringNumeric } from '../string/numeric';
 
 // Source for official prefixes: https://www.isbn-international.org/range_file_generation
 const ISBN_LENGTH_RULES: Record<
@@ -88,18 +88,18 @@ const ISBN_LENGTH_RULES: Record<
  * @throws {FakerError} If no registrant length is defined for the generated group.
  *
  * @example
- * commerceIsbn(fakerCore) // '978-0-692-82459-7'
- * commerceIsbn(fakerCore, 10) // '1-155-36404-X'
- * commerceIsbn(fakerCore, 13) // '978-1-60808-867-6'
- * commerceIsbn(fakerCore, { separator: ' ' }) // '978 0 452 81498 1'
- * commerceIsbn(fakerCore, { variant: 10, separator: ' ' }) // '0 940319 49 7'
- * commerceIsbn(fakerCore, { variant: 13, separator: ' ' }) // '978 1 6618 9122 0'
+ * fakeCommerceIsbn(fakerCore) // '978-0-692-82459-7'
+ * fakeCommerceIsbn(fakerCore, 10) // '1-155-36404-X'
+ * fakeCommerceIsbn(fakerCore, 13) // '978-1-60808-867-6'
+ * fakeCommerceIsbn(fakerCore, { separator: ' ' }) // '978 0 452 81498 1'
+ * fakeCommerceIsbn(fakerCore, { variant: 10, separator: ' ' }) // '0 940319 49 7'
+ * fakeCommerceIsbn(fakerCore, { variant: 13, separator: ' ' }) // '978 1 6618 9122 0'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function commerceIsbn(
+export function fakeCommerceIsbn(
   fakerCore: FakerCore,
   options:
     | 10
@@ -129,8 +129,11 @@ export function commerceIsbn(
   const { variant = 13, separator = '-' } = options;
 
   const prefix = '978';
-  const [group, groupRules] = helpersObjectEntry(fakerCore, ISBN_LENGTH_RULES);
-  const element = stringNumeric(fakerCore, 8);
+  const [group, groupRules] = fakeHelpersObjectEntry(
+    fakerCore,
+    ISBN_LENGTH_RULES
+  );
+  const element = fakeStringNumeric(fakerCore, 8);
   const elementValue = Number.parseInt(element.slice(0, -1));
 
   const registrantLength = groupRules.find(

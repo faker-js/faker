@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { loremWords } from './words';
+import { fakeLoremWords } from './words';
 
 /**
  * Generates a space separated list of words beginning with a capital letter and ending with a period.
@@ -11,18 +11,18 @@ import { loremWords } from './words';
  * @param wordCount.max The maximum number of words to generate. Defaults to `10`.
  *
  * @example
- * loremSentence(fakerCore) // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
- * loremSentence(fakerCore, 5) // 'Laborum voluptatem officiis est et.'
- * loremSentence(fakerCore, { min: 3, max: 5 }) // 'Fugiat repellendus nisi.'
+ * fakeLoremSentence(fakerCore) // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
+ * fakeLoremSentence(fakerCore, 5) // 'Laborum voluptatem officiis est et.'
+ * fakeLoremSentence(fakerCore, { min: 3, max: 5 }) // 'Fugiat repellendus nisi.'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function loremSentence(
+export function fakeLoremSentence(
   fakerCore: FakerCore,
   wordCount: NumberOrRange = { min: 3, max: 10 }
 ): string {
-  const sentence = loremWords(fakerCore, wordCount);
+  const sentence = fakeLoremWords(fakerCore, wordCount);
   return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
 }
