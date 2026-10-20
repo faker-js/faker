@@ -498,6 +498,18 @@ describe('number', () => {
         );
       });
 
+      it('keeps the integer error as the cause for impossible decimal multipleOf', () => {
+        let error: unknown;
+        try {
+          faker.number.float({ min: 1.11, max: 1.14, multipleOf: 0.05 });
+        } catch (error_) {
+          error = error_;
+        }
+
+        expect(error).toBeInstanceOf(FakerError);
+        expect((error as FakerError).cause).toBeInstanceOf(FakerError);
+      });
+
       it('should not modify the input object', () => {
         expect(() =>
           faker.number.float(Object.freeze({ min: 1, max: 2 }))

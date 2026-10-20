@@ -136,26 +136,26 @@ export function fakeNumberFloat(
           : 1 / multipleOf;
     }
 
-    let int: number;
     try {
-      int = fakeNumberInt(fakerCore, {
-        min: isExact ? Math.round(min * factor) : min * factor,
-        max: isExact ? Math.round(max * factor) : max * factor,
-        multipleOf: isExact ? scaledStep : 1,
-        distributor,
-      });
+      return (
+        fakeNumberInt(fakerCore, {
+          min: isExact ? Math.round(min * factor) : min * factor,
+          max: isExact ? Math.round(max * factor) : max * factor,
+          multipleOf: isExact ? scaledStep : 1,
+          distributor,
+        }) / factor
+      );
     } catch (error) {
       // The scaled int bounds mean nothing to the caller, so name their own.
       if (error instanceof FakerError) {
         throw new FakerError(
-          `No suitable float value between ${min} and ${max} that is a multiple of ${multipleOf} found.`
+          `No suitable float value between ${min} and ${max} that is a multiple of ${multipleOf} found.`,
+          { cause: error }
         );
       }
 
       throw error;
     }
-
-    return int / factor;
   }
 
   const real = distributor(fakerCore.randomizer);
