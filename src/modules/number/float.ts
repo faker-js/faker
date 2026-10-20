@@ -110,45 +110,35 @@ export function fakeNumberFloat(
       throw new FakerError(`multipleOf should be greater than 0.`);
     }
 
-    const logPrecision = Math.log10(multipleOf);
-    const isPowerOfTenStep =
-      multipleOf < 1 && Number.isSafeInteger(logPrecision);
-
-    // For other decimal steps (0.3, 0.05, 1.5, ...) the division below picks up
-    // floating-point error, e.g. 3 / (1 / 0.3) is 0.8999999999999999, below a
-    // min of 0.9. When min, max and multipleOf are all finite decimals, scale
-    // them to integers by a shared power of ten, pick the multiple there and
-    // divide once.
-    const scaleDigits = Math.max(
-      decimalPlaces(min),
-      decimalPlaces(max),
-      decimalPlaces(multipleOf)
-    );
-    if (!isPowerOfTenStep && scaleDigits > 0 && Number.isFinite(scaleDigits)) {
-      const scale = 10 ** scaleDigits;
-      const scaledMin = Math.round(min * scale);
-      const scaledMax = Math.round(max * scale);
-      const scaledStep = Math.round(multipleOf * scale);
-      if (
-        Number.isSafeInteger(scaledMin) &&
-        Number.isSafeInteger(scaledMax) &&
-        Number.isSafeInteger(scaledStep)
-      ) {
-        const int = fakeNumberInt(fakerCore, {
-          min: scaledMin,
-          max: scaledMax,
-          multipleOf: scaledStep,
-          distributor,
-        });
-        return int / scale;
-      }
+    // Pick the multiple as an integer and divide by `factor` once. When min,
+    // max and multipleOf are all finite decimals, `factor` is the shared power
+    // of ten that turns all three into integers, and rounding drops the
+    // floating-point error of the scaling (1.1 * 100 is 110.00000000000001,
+    // which would skip a min of 1.1). For other values (e.g. Math.PI) `factor`
+    // turns multipleOf into 1.
+    const scale =
+      10 **
+      Math.max(
+        decimalPlaces(min),
+        decimalPlaces(max),
+        decimalPlaces(multipleOf)
+      );
+    const scaledStep = Math.round(multipleOf * scale);
+    const isExact = Number.isSafeInteger(scaledStep);
+    let factor = scale;
+    if (!isExact) {
+      // Workaround to get integer values for the inverse of all multiples of the form 10^-n
+      const logPrecision = Math.log10(multipleOf);
+      factor =
+        multipleOf < 1 && Number.isSafeInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / multipleOf;
     }
 
-    // Workaround to get integer values for the inverse of all multiples of the form 10^-n
-    const factor = isPowerOfTenStep ? 10 ** -logPrecision : 1 / multipleOf;
     const int = fakeNumberInt(fakerCore, {
-      min: min * factor,
-      max: max * factor,
+      min: isExact ? Math.round(min * factor) : min * factor,
+      max: isExact ? Math.round(max * factor) : max * factor,
+      multipleOf: isExact ? scaledStep : 1,
       distributor,
     });
     return int / factor;

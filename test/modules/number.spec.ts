@@ -464,9 +464,7 @@ describe('number', () => {
         };
 
         expect(() => faker.number.float(input)).toThrow(
-          new FakerError(
-            'No suitable integer value between 1.1 and 1.9000000000000001 found.'
-          )
+          new FakerError('No suitable integer value between 11 and 19 found.')
         );
       });
 
@@ -478,7 +476,7 @@ describe('number', () => {
         };
 
         expect(() => faker.number.float(input)).toThrow(
-          new FakerError('No suitable integer value between 1.1 and 1.1 found.')
+          new FakerError('No suitable integer value between 11 and 11 found.')
         );
       });
 
