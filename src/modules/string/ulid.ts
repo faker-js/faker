@@ -3,7 +3,7 @@ import { FakerError } from '../../errors/faker-error';
 import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import { stringFromCharacters } from './from-characters';
+import { fakeStringFromCharacters } from './from-characters';
 
 /**
  * The largest timestamp a ULID can encode, as the timestamp component is a 48 bit unsigned integer.
@@ -22,14 +22,14 @@ const MAX_ULID_TIMESTAMP = 2 ** 48 - 1;
  * @throws {FakerError} If `refDate` is outside the range a ULID timestamp can encode.
  *
  * @example
- * stringUlid(fakerCore) // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
- * stringUlid(fakerCore, { refDate: '2020-01-01T00:00:00.000Z' }) // '01DXF6DT00CX9QNNW7PNXQ3YR8'
+ * fakeStringUlid(fakerCore) // '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+ * fakeStringUlid(fakerCore, { refDate: '2020-01-01T00:00:00.000Z' }) // '01DXF6DT00CX9QNNW7PNXQ3YR8'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function stringUlid(
+export function fakeStringUlid(
   fakerCore: FakerCore,
   options: {
     /**
@@ -56,6 +56,7 @@ export function stringUlid(
   }
 
   return (
-    dateToBase32(date) + stringFromCharacters(fakerCore, CROCKFORDS_BASE32, 16)
+    dateToBase32(date) +
+    fakeStringFromCharacters(fakerCore, CROCKFORDS_BASE32, 16)
   );
 }

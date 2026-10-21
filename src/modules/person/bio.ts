@@ -7,12 +7,12 @@ import { Faker } from '../../faker';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * personBio(fakerCore) // 'oatmeal advocate, veteran 🐠'
+ * fakePersonBio(fakerCore) // 'oatmeal advocate, veteran 🐠'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personBio(fakerCore: FakerCore): string {
+export function fakePersonBio(fakerCore: FakerCore): string {
   return new Faker(fakerCore).helpers.fake(fakerCore.locale.person.bio_pattern);
 }

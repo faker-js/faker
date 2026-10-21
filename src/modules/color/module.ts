@@ -5,19 +5,19 @@ import type {
   NumberColorFormat,
   StringColorFormat,
 } from './_types';
-import { colorCmyk } from './cmyk';
-import { colorColorByCSSColorSpace } from './color-by-csscolor-space';
+import { fakeColorCmyk } from './cmyk';
+import { fakeColorColorByCSSColorSpace } from './color-by-csscolor-space';
 import type { CssFunctionType } from './css-supported-function';
-import { colorCssSupportedFunction } from './css-supported-function';
+import { fakeColorCssSupportedFunction } from './css-supported-function';
 import type { CssSpaceType } from './css-supported-space';
-import { colorCssSupportedSpace } from './css-supported-space';
-import { colorHsl } from './hsl';
-import { colorHuman } from './human';
-import { colorHwb } from './hwb';
-import { colorLab } from './lab';
-import { colorLch } from './lch';
-import { colorRgb } from './rgb';
-import { colorSpace } from './space';
+import { fakeColorCssSupportedSpace } from './css-supported-space';
+import { fakeColorHsl } from './hsl';
+import { fakeColorHuman } from './human';
+import { fakeColorHwb } from './hwb';
+import { fakeColorLab } from './lab';
+import { fakeColorLch } from './lch';
+import { fakeColorRgb } from './rgb';
+import { fakeColorSpace } from './space';
 
 /**
  * Module to generate colors.
@@ -43,7 +43,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   human(): string {
-    return colorHuman(this.fakerCore);
+    return fakeColorHuman(this.fakerCore);
   }
 
   /**
@@ -56,7 +56,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   space(): string {
-    return colorSpace(this.fakerCore);
+    return fakeColorSpace(this.fakerCore);
   }
 
   /**
@@ -68,7 +68,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   cssSupportedFunction(): CssFunctionType {
-    return colorCssSupportedFunction(this.fakerCore);
+    return fakeColorCssSupportedFunction(this.fakerCore);
   }
 
   /**
@@ -80,7 +80,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   cssSupportedSpace(): CssSpaceType {
-    return colorCssSupportedSpace(this.fakerCore);
+    return fakeColorCssSupportedSpace(this.fakerCore);
   }
 
   /**
@@ -228,7 +228,7 @@ export class ColorModule extends ModuleBase {
       includeAlpha?: boolean;
     } = {}
   ): string | number[] {
-    return colorRgb(this.fakerCore, options);
+    return fakeColorRgb(this.fakerCore, options);
   }
 
   /**
@@ -304,7 +304,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   cmyk(options: { format?: ColorFormat } = {}): string | number[] {
-    return colorCmyk(this.fakerCore, options);
+    return fakeColorCmyk(this.fakerCore, options);
   }
 
   /**
@@ -412,7 +412,7 @@ export class ColorModule extends ModuleBase {
       includeAlpha?: boolean;
     } = {}
   ): string | number[] {
-    return colorHsl(this.fakerCore, options);
+    return fakeColorHsl(this.fakerCore, options);
   }
 
   /**
@@ -511,7 +511,7 @@ export class ColorModule extends ModuleBase {
       format?: ColorFormat;
     } = {}
   ): string | number[] {
-    return colorHwb(this.fakerCore, options);
+    return fakeColorHwb(this.fakerCore, options);
   }
 
   /**
@@ -587,7 +587,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   lab(options: { format?: ColorFormat } = {}): string | number[] {
-    return colorLab(this.fakerCore, options);
+    return fakeColorLab(this.fakerCore, options);
   }
 
   /**
@@ -675,7 +675,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   lch(options: { format?: ColorFormat } = {}): string | number[] {
-    return colorLch(this.fakerCore, options);
+    return fakeColorLch(this.fakerCore, options);
   }
 
   /**
@@ -777,6 +777,6 @@ export class ColorModule extends ModuleBase {
       space?: CssSpaceType;
     } = {}
   ): string | number[] {
-    return colorColorByCSSColorSpace(this.fakerCore, options);
+    return fakeColorColorByCSSColorSpace(this.fakerCore, options);
   }
 }

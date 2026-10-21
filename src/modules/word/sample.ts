@@ -1,14 +1,14 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
-import { helpersShuffle } from '../helpers/shuffle';
-import { wordAdjective } from './adjective';
-import { wordAdverb } from './adverb';
-import { wordConjunction } from './conjunction';
-import { wordInterjection } from './interjection';
-import { wordNoun } from './noun';
-import { wordPreposition } from './preposition';
-import { wordVerb } from './verb';
+import { fakeHelpersShuffle } from '../helpers/shuffle';
+import { fakeWordAdjective } from './adjective';
+import { fakeWordAdverb } from './adverb';
+import { fakeWordConjunction } from './conjunction';
+import { fakeWordInterjection } from './interjection';
+import { fakeWordNoun } from './noun';
+import { fakeWordPreposition } from './preposition';
+import { fakeWordVerb } from './verb';
 
 /**
  * Returns a random word, that can be an adjective, adverb, conjunction, interjection, noun, preposition, or verb.
@@ -23,14 +23,14 @@ import { wordVerb } from './verb';
  * @throws {FakerError} If no matching word data are available for the current locale.
  *
  * @example
- * wordSample(fakerCore) // 'incidentally'
- * wordSample(fakerCore, 5) // 'fruit'
+ * fakeWordSample(fakerCore) // 'incidentally'
+ * fakeWordSample(fakerCore, 5) // 'fruit'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function wordSample(
+export function fakeWordSample(
   fakerCore: FakerCore,
   options:
     | number
@@ -47,15 +47,15 @@ export function wordSample(
         strategy?: LengthStrategyType;
       } = {}
 ): string {
-  const wordMethods = helpersShuffle(fakerCore, [
-    wordAdjective,
-    wordAdverb,
-    wordConjunction,
-    wordInterjection,
-    wordNoun,
-    wordPreposition,
-    wordVerb,
-  ] satisfies Array<typeof wordSample>);
+  const wordMethods = fakeHelpersShuffle(fakerCore, [
+    fakeWordAdjective,
+    fakeWordAdverb,
+    fakeWordConjunction,
+    fakeWordInterjection,
+    fakeWordNoun,
+    fakeWordPreposition,
+    fakeWordVerb,
+  ] satisfies Array<typeof fakeWordSample>);
 
   for (const randomWordMethod of wordMethods) {
     try {

@@ -1,12 +1,12 @@
 import { ModuleBase } from '../../internal/module-base';
 import type { SexType } from '../person';
-import { imageAvatar } from './avatar';
-import { imageAvatarGitHub } from './avatar-git-hub';
-import { imageDataUri } from './data-uri';
-import { imagePersonPortrait } from './person-portrait';
-import { imageUrl } from './url';
-import { imageUrlLoremFlickr } from './url-lorem-flickr';
-import { imageUrlPicsumPhotos } from './url-picsum-photos';
+import { fakeImageAvatar } from './avatar';
+import { fakeImageAvatarGitHub } from './avatar-git-hub';
+import { fakeImageDataUri } from './data-uri';
+import { fakeImagePersonPortrait } from './person-portrait';
+import { fakeImageUrl } from './url';
+import { fakeImageUrlLoremFlickr } from './url-lorem-flickr';
+import { fakeImageUrlPicsumPhotos } from './url-picsum-photos';
 
 /**
  * Module to generate images.
@@ -42,7 +42,7 @@ export class ImageModule extends ModuleBase {
    * @since 2.0.1
    */
   avatar(): string {
-    return imageAvatar(this.fakerCore);
+    return fakeImageAvatar(this.fakerCore);
   }
 
   /**
@@ -57,7 +57,7 @@ export class ImageModule extends ModuleBase {
    * @since 8.0.0
    */
   avatarGitHub(): string {
-    return imageAvatarGitHub(this.fakerCore);
+    return fakeImageAvatarGitHub(this.fakerCore);
   }
 
   /**
@@ -93,7 +93,7 @@ export class ImageModule extends ModuleBase {
       size?: 512 | 256 | 128 | 64 | 32;
     } = {}
   ): string {
-    return imagePersonPortrait(this.fakerCore, options);
+    return fakeImagePersonPortrait(this.fakerCore, options);
   }
 
   /**
@@ -126,7 +126,7 @@ export class ImageModule extends ModuleBase {
       height?: number;
     } = {}
   ): string {
-    return imageUrl(this.fakerCore, options);
+    return fakeImageUrl(this.fakerCore, options);
   }
 
   /**
@@ -169,7 +169,7 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
-    return imageUrlLoremFlickr(this.fakerCore, options);
+    return fakeImageUrlLoremFlickr(this.fakerCore, options);
   }
 
   /**
@@ -221,7 +221,7 @@ export class ImageModule extends ModuleBase {
       blur?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     } = {}
   ): string {
-    return imageUrlPicsumPhotos(this.fakerCore, options);
+    return fakeImageUrlPicsumPhotos(this.fakerCore, options);
   }
 
   /**
@@ -268,6 +268,6 @@ export class ImageModule extends ModuleBase {
       type?: 'svg-uri' | 'svg-base64';
     } = {}
   ): string {
-    return imageDataUri(this.fakerCore, options);
+    return fakeImageDataUri(this.fakerCore, options);
   }
 }

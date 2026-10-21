@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersEnumValue } from '../helpers/enum-value';
+import { fakeHelpersEnumValue } from '../helpers/enum-value';
 
 /**
  * Functions supported by CSS to produce color.
@@ -27,14 +27,14 @@ export type CssFunctionType = `${CssFunction}`;
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * colorCssSupportedFunction(fakerCore) // 'rgb'
+ * fakeColorCssSupportedFunction(fakerCore) // 'rgb'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorCssSupportedFunction(
+export function fakeColorCssSupportedFunction(
   fakerCore: FakerCore
 ): CssFunctionType {
-  return helpersEnumValue(fakerCore, CssFunction);
+  return fakeHelpersEnumValue(fakerCore, CssFunction);
 }

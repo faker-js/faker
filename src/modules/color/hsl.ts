@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { numberFloat } from '../number/float';
-import { numberInt } from '../number/int';
+import { fakeNumberFloat } from '../number/float';
+import { fakeNumberInt } from '../number/int';
 import { toColorFormat } from './_to-color-format';
 import type {
   ColorFormat,
@@ -14,13 +14,13 @@ import type {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * colorHsl(fakerCore) // [201, 0.23, 0.32]
+ * fakeColorHsl(fakerCore) // [201, 0.23, 0.32]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorHsl(fakerCore: FakerCore): number[];
+export function fakeColorHsl(fakerCore: FakerCore): number[];
 /**
  * Returns an HSL color.
  *
@@ -30,17 +30,17 @@ export function colorHsl(fakerCore: FakerCore): number[];
  * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
  *
  * @example
- * colorHsl(fakerCore) // [201, 0.23, 0.32]
- * colorHsl(fakerCore, { format: 'css' }) // hsl(0deg, 100%, 80%)
- * colorHsl(fakerCore, { format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
- * colorHsl(fakerCore, { format: 'binary' }) // (8-32 bits) x 3
- * colorHsl(fakerCore, { format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
+ * fakeColorHsl(fakerCore) // [201, 0.23, 0.32]
+ * fakeColorHsl(fakerCore, { format: 'css' }) // hsl(0deg, 100%, 80%)
+ * fakeColorHsl(fakerCore, { format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
+ * fakeColorHsl(fakerCore, { format: 'binary' }) // (8-32 bits) x 3
+ * fakeColorHsl(fakerCore, { format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorHsl(
+export function fakeColorHsl(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -66,15 +66,15 @@ export function colorHsl(
  * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
  *
  * @example
- * colorHsl(fakerCore) // [201, 0.23, 0.32]
- * colorHsl(fakerCore, { format: 'decimal' }) // [300, 0.21, 0.52]
- * colorHsl(fakerCore, { format: 'decimal', includeAlpha: true }) // [300, 0.21, 0.52, 0.28]
+ * fakeColorHsl(fakerCore) // [201, 0.23, 0.32]
+ * fakeColorHsl(fakerCore, { format: 'decimal' }) // [300, 0.21, 0.52]
+ * fakeColorHsl(fakerCore, { format: 'decimal', includeAlpha: true }) // [300, 0.21, 0.52, 0.28]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorHsl(
+export function fakeColorHsl(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -100,19 +100,19 @@ export function colorHsl(
  * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
  *
  * @example
- * colorHsl(fakerCore) // [201, 0.23, 0.32]
- * colorHsl(fakerCore, { format: 'decimal' }) // [300, 0.21, 0.52]
- * colorHsl(fakerCore, { format: 'decimal', includeAlpha: true }) // [300, 0.21, 0.52, 0.28]
- * colorHsl(fakerCore, { format: 'css' }) // hsl(0deg, 100%, 80%)
- * colorHsl(fakerCore, { format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
- * colorHsl(fakerCore, { format: 'binary' }) // (8-32 bits) x 3
- * colorHsl(fakerCore, { format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
+ * fakeColorHsl(fakerCore) // [201, 0.23, 0.32]
+ * fakeColorHsl(fakerCore, { format: 'decimal' }) // [300, 0.21, 0.52]
+ * fakeColorHsl(fakerCore, { format: 'decimal', includeAlpha: true }) // [300, 0.21, 0.52, 0.28]
+ * fakeColorHsl(fakerCore, { format: 'css' }) // hsl(0deg, 100%, 80%)
+ * fakeColorHsl(fakerCore, { format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
+ * fakeColorHsl(fakerCore, { format: 'binary' }) // (8-32 bits) x 3
+ * fakeColorHsl(fakerCore, { format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function colorHsl(
+export function fakeColorHsl(
   fakerCore: FakerCore,
   options?: {
     /**
@@ -130,7 +130,7 @@ export function colorHsl(
   }
 ): string | number[];
 
-export function colorHsl(
+export function fakeColorHsl(
   fakerCore: FakerCore,
   options: {
     format?: ColorFormat;
@@ -138,9 +138,9 @@ export function colorHsl(
   } = {}
 ): string | number[] {
   const { format = 'decimal', includeAlpha = false } = options;
-  const hsl: number[] = [numberInt(fakerCore, 360)];
+  const hsl: number[] = [fakeNumberInt(fakerCore, 360)];
   for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-    hsl.push(numberFloat(fakerCore, { multipleOf: 0.01 }));
+    hsl.push(fakeNumberFloat(fakerCore, { multipleOf: 0.01 }));
   }
 
   return toColorFormat(hsl, format, includeAlpha ? 'hsla' : 'hsl');

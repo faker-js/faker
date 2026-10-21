@@ -1,5 +1,5 @@
 import { ModuleBase } from '../../internal/module-base';
-import { datatypeBoolean } from './boolean';
+import { fakeDatatypeBoolean } from './boolean';
 
 /**
  * Module to generate boolean values.
@@ -44,6 +44,6 @@ export class DatatypeModule extends ModuleBase {
           probability?: number;
         } = {}
   ): boolean {
-    return datatypeBoolean(this.fakerCore, options);
+    return fakeDatatypeBoolean(this.fakerCore, options);
   }
 }

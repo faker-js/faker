@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersMultiple } from '../helpers/multiple';
-import { loremSentence } from './sentence';
+import { fakeHelpersMultiple } from '../helpers/multiple';
+import { fakeLoremSentence } from './sentence';
 
 /**
  * Generates the given number of sentences.
@@ -13,23 +13,23 @@ import { loremSentence } from './sentence';
  * @param separator The separator to add between sentences. Defaults to `' '`.
  *
  * @example
- * loremSentences(fakerCore) // 'Iste molestiae incidunt aliquam possimus reprehenderit eum corrupti. Deleniti modi voluptatem nostrum ut esse.'
- * loremSentences(fakerCore, 2) // 'Maxime vel numquam quibusdam. Dignissimos ex molestias quos aut molestiae quam nihil occaecati maiores.'
- * loremSentences(fakerCore, 2, '\n')
+ * fakeLoremSentences(fakerCore) // 'Iste molestiae incidunt aliquam possimus reprehenderit eum corrupti. Deleniti modi voluptatem nostrum ut esse.'
+ * fakeLoremSentences(fakerCore, 2) // 'Maxime vel numquam quibusdam. Dignissimos ex molestias quos aut molestiae quam nihil occaecati maiores.'
+ * fakeLoremSentences(fakerCore, 2, '\n')
  * // 'Et rerum a unde tempora magnam sit nisi.
  * // Et perspiciatis ipsam omnis.'
- * loremSentences(fakerCore, { min: 1, max: 3 }) // 'Placeat ex natus tenetur repellendus repellendus iste. Optio nostrum veritatis.'
+ * fakeLoremSentences(fakerCore, { min: 1, max: 3 }) // 'Placeat ex natus tenetur repellendus repellendus iste. Optio nostrum veritatis.'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function loremSentences(
+export function fakeLoremSentences(
   fakerCore: FakerCore,
   sentenceCount: NumberOrRange = { min: 2, max: 6 },
   separator: string = ' '
 ): string {
-  return helpersMultiple(fakerCore, () => loremSentence(fakerCore), {
+  return fakeHelpersMultiple(fakerCore, () => fakeLoremSentence(fakerCore), {
     count: sentenceCount,
   }).join(separator);
 }

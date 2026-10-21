@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { internetUsername } from './username';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeInternetUsername } from './username';
 
 /**
  * Generates an email address using the given person's name as base.
@@ -14,30 +14,30 @@ import { internetUsername } from './username';
  * in the email address. Defaults to `false`.
  *
  * @example
- * internetEmail(fakerCore) // 'Kassandra4@hotmail.com'
- * internetEmail(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne63@yahoo.com'
- * internetEmail(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne_Smith63@yahoo.com'
- * internetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne.Doe63@yahoo.com'
- * internetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
- * internetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
+ * fakeInternetEmail(fakerCore) // 'Kassandra4@hotmail.com'
+ * fakeInternetEmail(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne63@yahoo.com'
+ * fakeInternetEmail(fakerCore, { firstName: 'Jeanne'}) // 'Jeanne_Smith63@yahoo.com'
+ * fakeInternetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne.Doe63@yahoo.com'
+ * fakeInternetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
+ * fakeInternetEmail(fakerCore, { firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetEmail(
+export function fakeInternetEmail(
   fakerCore: FakerCore,
   options: {
     /**
      * The optional first name to use.
      *
-     * @default personFirstName(fakerCore)
+     * @default fakePersonFirstName(fakerCore)
      */
     firstName?: string;
     /**
      * The optional last name to use.
      *
-     * @default personLastName(fakerCore)
+     * @default fakePersonLastName(fakerCore)
      */
     lastName?: string;
     /**
@@ -55,14 +55,17 @@ export function internetEmail(
   const {
     firstName,
     lastName,
-    provider = helpersArrayElement(
+    provider = fakeHelpersArrayElement(
       fakerCore,
       fakerCore.locale.internet.free_email
     ),
     allowSpecialCharacters = false,
   } = options;
 
-  let localPart: string = internetUsername(fakerCore, { firstName, lastName });
+  let localPart: string = fakeInternetUsername(fakerCore, {
+    firstName,
+    lastName,
+  });
   // Strip any special characters from the local part of the email address
   // This could happen if invalid chars are passed in manually in the firstName/lastName
   localPart = localPart.replaceAll(/[^A-Za-z0-9._+-]+/g, '');
@@ -74,8 +77,8 @@ export function internetEmail(
     const usernameChars: string[] = [...'._-'];
     const specialChars: string[] = [...".!#$%&'*+-/=?^_`{|}~"];
     localPart = localPart.replace(
-      helpersArrayElement(fakerCore, usernameChars),
-      helpersArrayElement(fakerCore, specialChars)
+      fakeHelpersArrayElement(fakerCore, usernameChars),
+      fakeHelpersArrayElement(fakerCore, specialChars)
     );
   }
 

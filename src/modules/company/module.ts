@@ -1,13 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-import { companyBuzzAdjective } from './buzz-adjective';
-import { companyBuzzNoun } from './buzz-noun';
-import { companyBuzzPhrase } from './buzz-phrase';
-import { companyBuzzVerb } from './buzz-verb';
-import { companyCatchPhrase } from './catch-phrase';
-import { companyCatchPhraseAdjective } from './catch-phrase-adjective';
-import { companyCatchPhraseDescriptor } from './catch-phrase-descriptor';
-import { companyCatchPhraseNoun } from './catch-phrase-noun';
-import { companyName } from './name';
+import { fakeCompanyBuzzAdjective } from './buzz-adjective';
+import { fakeCompanyBuzzNoun } from './buzz-noun';
+import { fakeCompanyBuzzPhrase } from './buzz-phrase';
+import { fakeCompanyBuzzVerb } from './buzz-verb';
+import { fakeCompanyCatchPhrase } from './catch-phrase';
+import { fakeCompanyCatchPhraseAdjective } from './catch-phrase-adjective';
+import { fakeCompanyCatchPhraseDescriptor } from './catch-phrase-descriptor';
+import { fakeCompanyCatchPhraseNoun } from './catch-phrase-noun';
+import { fakeCompanyName } from './name';
 
 /**
  * Module to generate company related entries.
@@ -38,7 +38,7 @@ export class CompanyModule extends ModuleBase {
    * @since 7.4.0
    */
   name(): string {
-    return companyName(this.fakerCore);
+    return fakeCompanyName(this.fakerCore);
   }
 
   /**
@@ -50,7 +50,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhrase(): string {
-    return companyCatchPhrase(this.fakerCore);
+    return fakeCompanyCatchPhrase(this.fakerCore);
   }
 
   /**
@@ -62,7 +62,7 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzPhrase(): string {
-    return companyBuzzPhrase(this.fakerCore);
+    return fakeCompanyBuzzPhrase(this.fakerCore);
   }
 
   /**
@@ -74,7 +74,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseAdjective(): string {
-    return companyCatchPhraseAdjective(this.fakerCore);
+    return fakeCompanyCatchPhraseAdjective(this.fakerCore);
   }
 
   /**
@@ -86,7 +86,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseDescriptor(): string {
-    return companyCatchPhraseDescriptor(this.fakerCore);
+    return fakeCompanyCatchPhraseDescriptor(this.fakerCore);
   }
 
   /**
@@ -98,7 +98,7 @@ export class CompanyModule extends ModuleBase {
    * @since 2.0.1
    */
   catchPhraseNoun(): string {
-    return companyCatchPhraseNoun(this.fakerCore);
+    return fakeCompanyCatchPhraseNoun(this.fakerCore);
   }
 
   /**
@@ -110,7 +110,7 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzAdjective(): string {
-    return companyBuzzAdjective(this.fakerCore);
+    return fakeCompanyBuzzAdjective(this.fakerCore);
   }
 
   /**
@@ -122,7 +122,7 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzVerb(): string {
-    return companyBuzzVerb(this.fakerCore);
+    return fakeCompanyBuzzVerb(this.fakerCore);
   }
 
   /**
@@ -134,6 +134,6 @@ export class CompanyModule extends ModuleBase {
    * @since 8.0.0
    */
   buzzNoun(): string {
-    return companyBuzzNoun(this.fakerCore);
+    return fakeCompanyBuzzNoun(this.fakerCore);
   }
 }

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { FakerError, faker } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
-import { loremWord } from '../../src/modules/lorem/word';
-import { stringSample } from '../../src/modules/string/sample';
+import { fakeLoremWord } from '../../src/modules/lorem/word';
+import { fakeStringSample } from '../../src/modules/string/sample';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -136,7 +136,7 @@ describe('helpers', () => {
     t.describe('uniqueArray', (t) => {
       t.it('with array', [...'Hello World!'], 3).it(
         'with generator function',
-        stringSample,
+        fakeStringSample,
         3
       );
     });
@@ -935,6 +935,16 @@ describe('helpers', () => {
           expect(actual).toMatch(/[^a-t0-9]{4}/);
         });
 
+        it('doesnt include negated dashes', () => {
+          const actual = faker.helpers.fromRegExp('[^-0-9]{100}');
+          expect(actual).toMatch(/^[a-zA-Z]{100}$/);
+        });
+
+        it('doesnt include negated characters in either case with the case insensitive flag', () => {
+          const actual = faker.helpers.fromRegExp(/[^a-z]{100}/i);
+          expect(actual).toMatch(/^[0-9]{100}$/);
+        });
+
         it('handles case insensitive flags', () => {
           const actual = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
           expect(actual).toHaveLength(9);
@@ -1051,7 +1061,7 @@ describe('helpers', () => {
 
         it('function returns unique array (SMF)', () => {
           const length = faker.number.int({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(loremWord, length);
+          const unique = faker.helpers.uniqueArray(fakeLoremWord, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
         });

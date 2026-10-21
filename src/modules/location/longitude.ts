@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberFloat } from '../number/float';
+import { fakeNumberFloat } from '../number/float';
 
 /**
  * Generates a random longitude.
@@ -11,16 +11,16 @@ import { numberFloat } from '../number/float';
  * @param options.precision The number of decimal points of precision for the longitude. Defaults to `4`.
  *
  * @example
- * locationLongitude(fakerCore) // -30.9501
- * locationLongitude(fakerCore, { max: 10 }) // 5.7225
- * locationLongitude(fakerCore, { max: 10, min: -10 }) // -9.6273
- * locationLongitude(fakerCore, { max: 10, min: -10, precision: 5 }) // 2.68452
+ * fakeLocationLongitude(fakerCore) // -30.9501
+ * fakeLocationLongitude(fakerCore, { max: 10 }) // 5.7225
+ * fakeLocationLongitude(fakerCore, { max: 10, min: -10 }) // -9.6273
+ * fakeLocationLongitude(fakerCore, { max: 10, min: -10, precision: 5 }) // 2.68452
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationLongitude(
+export function fakeLocationLongitude(
   fakerCore: FakerCore,
   options: {
     /**
@@ -45,5 +45,5 @@ export function locationLongitude(
 ): number {
   const { max = 180, min = -180, precision = 4 } = options;
 
-  return numberFloat(fakerCore, { max, min, fractionDigits: precision });
+  return fakeNumberFloat(fakerCore, { max, min, fractionDigits: precision });
 }

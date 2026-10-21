@@ -5,7 +5,7 @@ import { VPDocAsideSponsors } from 'vitepress/theme';
 import { computed, onMounted } from 'vue';
 
 /**
- * @see https://graphql-docs-v2.opencollective.com/types/Member
+ * @see https://graphql-docs-v2.opencollective.com/types/Contributor
  */
 interface Backer {
   account: {
@@ -14,8 +14,7 @@ interface Backer {
     imageUrl: string | null;
   };
   since: string;
-  isActive: boolean;
-  totalDonations: {
+  totalAmountContributed: {
     value: number | null;
     currency: string | null;
     valueInCents: number | null;
@@ -25,7 +24,7 @@ interface Backer {
 const backersStorage = useLocalStorage<{
   lastUpdated: number;
   backers: Backer[];
-}>('fakerjs-backers', {
+}>('fakerjs-contributors', {
   lastUpdated: 0,
   backers: [],
 });
@@ -55,20 +54,21 @@ async function fetchBackers(): Promise<Backer[]> {
   account(slug: "fakerjs") {
     name
     slug
-    members(role: BACKER, limit: 1000) {
-      totalCount
-      nodes {
-        account {
-          name
-          slug
-          imageUrl
-        }
-        since
-        isActive
-        totalDonations {
-          value
-          currency
-          valueInCents
+    ... on AccountWithContributions {
+      contributors(limit: 1000, roles: [BACKER]) {
+        totalCount
+        nodes {
+          account {
+            name
+            slug
+            imageUrl
+          }
+          since
+          totalAmountContributed {
+            value
+            currency
+            valueInCents
+          }
         }
       }
     }
@@ -79,10 +79,10 @@ async function fetchBackers(): Promise<Backer[]> {
     }),
   }).then((res) => res.json());
 
-  return (response.data.account.members.nodes as Backer[]).toSorted(
+  return (response.data.account.contributors.nodes as Backer[]).toSorted(
     (a, b) =>
-      (b.totalDonations.valueInCents ?? 0) -
-      (a.totalDonations.valueInCents ?? 0)
+      (b.totalAmountContributed.valueInCents ?? 0) -
+      (a.totalAmountContributed.valueInCents ?? 0)
   );
 }
 

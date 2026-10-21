@@ -1,9 +1,9 @@
 import { ModuleBase } from '../../internal/module-base';
-import { databaseCollation } from './collation';
-import { databaseColumn } from './column';
-import { databaseEngine } from './engine';
-import { databaseMongodbObjectId } from './mongodb-object-id';
-import { databaseType } from './type';
+import { fakeDatabaseCollation } from './collation';
+import { fakeDatabaseColumn } from './column';
+import { fakeDatabaseEngine } from './engine';
+import { fakeDatabaseMongodbObjectId } from './mongodb-object-id';
+import { fakeDatabaseType } from './type';
 
 /**
  * Module to generate database related entries.
@@ -29,7 +29,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   column(): string {
-    return databaseColumn(this.fakerCore);
+    return fakeDatabaseColumn(this.fakerCore);
   }
 
   /**
@@ -41,7 +41,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   type(): string {
-    return databaseType(this.fakerCore);
+    return fakeDatabaseType(this.fakerCore);
   }
 
   /**
@@ -53,7 +53,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   collation(): string {
-    return databaseCollation(this.fakerCore);
+    return fakeDatabaseCollation(this.fakerCore);
   }
 
   /**
@@ -65,7 +65,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   engine(): string {
-    return databaseEngine(this.fakerCore);
+    return fakeDatabaseEngine(this.fakerCore);
   }
 
   /**
@@ -77,6 +77,6 @@ export class DatabaseModule extends ModuleBase {
    * @since 6.2.0
    */
   mongodbObjectId(): string {
-    return databaseMongodbObjectId(this.fakerCore);
+    return fakeDatabaseMongodbObjectId(this.fakerCore);
   }
 }

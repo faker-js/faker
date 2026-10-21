@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
-import { datatypeBoolean } from '../datatype/boolean';
-import { helpersArrayElement } from '../helpers/array-element';
-import { stringAlpha } from '../string/alpha';
-import { stringAlphanumeric } from '../string/alphanumeric';
+import { fakeDatatypeBoolean } from '../datatype/boolean';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeStringAlpha } from '../string/alpha';
+import { fakeStringAlphanumeric } from '../string/alphanumeric';
 import { ibanLib } from './_iban-lib';
 
 /**
@@ -13,39 +13,39 @@ import { ibanLib } from './_iban-lib';
  * @param options.includeBranchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to a random boolean value.
  *
  * @example
- * financeBic(fakerCore) // 'WYAUPGX1'
- * financeBic(fakerCore, { includeBranchCode: true }) // 'KCAUPGR1432'
- * financeBic(fakerCore, { includeBranchCode: false }) // 'XDAFQGT7'
+ * fakeFinanceBic(fakerCore) // 'WYAUPGX1'
+ * fakeFinanceBic(fakerCore, { includeBranchCode: true }) // 'KCAUPGR1432'
+ * fakeFinanceBic(fakerCore, { includeBranchCode: false }) // 'XDAFQGT7'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeBic(
+export function fakeFinanceBic(
   fakerCore: FakerCore,
   options: {
     /**
      * Whether to include a three-digit branch code at the end of the generated code.
      *
-     * @default datatypeBoolean(fakerCore)
+     * @default fakeDatatypeBoolean(fakerCore)
      */
     includeBranchCode?: boolean;
   } = {}
 ): string {
-  const { includeBranchCode = datatypeBoolean(fakerCore) } = options;
+  const { includeBranchCode = fakeDatatypeBoolean(fakerCore) } = options;
 
-  const bankIdentifier = stringAlpha(fakerCore, {
+  const bankIdentifier = fakeStringAlpha(fakerCore, {
     length: 4,
     casing: 'upper',
   });
-  const countryCode = helpersArrayElement(fakerCore, ibanLib.iso3166);
-  const locationCode = stringAlphanumeric(fakerCore, {
+  const countryCode = fakeHelpersArrayElement(fakerCore, ibanLib.iso3166);
+  const locationCode = fakeStringAlphanumeric(fakerCore, {
     length: 2,
     casing: 'upper',
   });
   const branchCode = includeBranchCode
-    ? datatypeBoolean(fakerCore)
-      ? stringAlphanumeric(fakerCore, { length: 3, casing: 'upper' })
+    ? fakeDatatypeBoolean(fakerCore)
+      ? fakeStringAlphanumeric(fakerCore, { length: 3, casing: 'upper' })
       : 'XXX'
     : '';
 

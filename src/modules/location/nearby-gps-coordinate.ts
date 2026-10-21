@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { numberFloat } from '../number/float';
-import { locationLatitude } from './latitude';
-import { locationLongitude } from './longitude';
+import { fakeNumberFloat } from '../number/float';
+import { fakeLocationLatitude } from './latitude';
+import { fakeLocationLongitude } from './longitude';
 
 /**
  * Generates a random GPS coordinate within the specified radius from the given coordinate.
@@ -14,15 +14,15 @@ import { locationLongitude } from './longitude';
  * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
  *
  * @example
- * locationNearbyGPSCoordinate(fakerCore) // [ 33.8475, -170.5953 ]
- * locationNearbyGPSCoordinate(fakerCore, { origin: [33, -170] }) // [ 33.0165, -170.0636 ]
- * locationNearbyGPSCoordinate(fakerCore, { origin: [33, -170], radius: 1000, isMetric: true }) // [ 37.9163, -179.2408 ]
+ * fakeLocationNearbyGPSCoordinate(fakerCore) // [ 33.8475, -170.5953 ]
+ * fakeLocationNearbyGPSCoordinate(fakerCore, { origin: [33, -170] }) // [ 33.0165, -170.0636 ]
+ * fakeLocationNearbyGPSCoordinate(fakerCore, { origin: [33, -170], radius: 1000, isMetric: true }) // [ 37.9163, -179.2408 ]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function locationNearbyGPSCoordinate(
+export function fakeLocationNearbyGPSCoordinate(
   fakerCore: FakerCore,
   options: {
     /**
@@ -47,10 +47,10 @@ export function locationNearbyGPSCoordinate(
 
   // If there is no origin, the best we can do is return a random GPS coordinate.
   if (origin == null) {
-    return [locationLatitude(fakerCore), locationLongitude(fakerCore)];
+    return [fakeLocationLatitude(fakerCore), fakeLocationLongitude(fakerCore)];
   }
 
-  const angleRadians = numberFloat(fakerCore, {
+  const angleRadians = fakeNumberFloat(fakerCore, {
     max: 2 * Math.PI,
     fractionDigits: 5,
   }); // in ° radians
@@ -58,7 +58,7 @@ export function locationNearbyGPSCoordinate(
   const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
   const errorCorrection = 0.995; // avoid float issues
   const distanceInKm =
-    numberFloat(fakerCore, {
+    fakeNumberFloat(fakerCore, {
       max: radiusMetric,
       fractionDigits: 3,
     }) * errorCorrection; // in km

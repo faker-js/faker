@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { systemCommonFileExt } from './common-file-ext';
-import { systemFileName } from './file-name';
+import { fakeSystemCommonFileExt } from './common-file-ext';
+import { fakeSystemFileName } from './file-name';
 
 /**
  * Returns a random file name with a given extension or a commonly used extension.
@@ -9,18 +9,18 @@ import { systemFileName } from './file-name';
  * @param extension The file extension to use. Empty string is considered to be not set.
  *
  * @example
- * systemCommonFileName(fakerCore) // 'dollar.jpg'
- * systemCommonFileName(fakerCore, 'txt') // 'global_borders_wyoming.txt'
+ * fakeSystemCommonFileName(fakerCore) // 'dollar.jpg'
+ * fakeSystemCommonFileName(fakerCore, 'txt') // 'global_borders_wyoming.txt'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function systemCommonFileName(
+export function fakeSystemCommonFileName(
   fakerCore: FakerCore,
   extension?: string
 ): string {
-  const fileName = systemFileName(fakerCore, { extensionCount: 0 });
+  const fileName = fakeSystemFileName(fakerCore, { extensionCount: 0 });
 
-  return `${fileName}.${extension || systemCommonFileExt(fakerCore)}`;
+  return `${fileName}.${extension || fakeSystemCommonFileExt(fakerCore)}`;
 }
