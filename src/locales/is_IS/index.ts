@@ -3,12 +3,8 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../../definitions';
-import company from './company';
-import internet from './internet';
-import location from './location';
 import metadata from './metadata';
 import person from './person';
-import phone_number from './phone_number';
 
 /**
  * The locale data for the `is_IS` locale.
@@ -17,12 +13,8 @@ import phone_number from './phone_number';
  * - Endonym: Íslenska (Ísland)
  */
 const is_IS: LocaleDefinition = {
-  company,
-  internet,
-  location,
   metadata,
   person,
-  phone_number,
 };
 
 export default is_IS;
