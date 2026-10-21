@@ -672,6 +672,22 @@ describe('number', () => {
         expect(randomBigInt).toBeLessThanOrEqual(10000000000000000000000n);
       });
 
+      it('should return every value in a small range equally often', () => {
+        faker.seed(42);
+        const counts = new Map<bigint, number>();
+        for (let i = 0; i < 6000; i++) {
+          const value = faker.number.bigInt({ min: 1n, max: 6n });
+          counts.set(value, (counts.get(value) ?? 0) + 1);
+        }
+
+        expect(counts.size).toBe(6);
+        for (const count of counts.values()) {
+          // 1000 expected per value; the biased draw gave about 1333 and 667
+          expect(count).toBeGreaterThan(900);
+          expect(count).toBeLessThan(1100);
+        }
+      });
+
       it('should not mutate the input object', () => {
         const input: {
           min?: bigint;

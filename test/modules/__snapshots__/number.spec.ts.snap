@@ -68,19 +68,19 @@ exports[`number > 42 > romanNumeral > with only min 1`] = `"MDI"`;
 
 exports[`number > 1211 > bigInt > noArgs 1`] = `829667368768488n`;
 
-exports[`number > 1211 > bigInt > with big options 1`] = `25442250580110979794946298n`;
+exports[`number > 1211 > bigInt > with big options 1`] = `28889547487153939739723523n`;
 
 exports[`number > 1211 > bigInt > with bigint value 1`] = `114n`;
 
 exports[`number > 1211 > bigInt > with boolean value 1`] = `1n`;
 
-exports[`number > 1211 > bigInt > with multipleOf 1`] = `784113589297853n`;
+exports[`number > 1211 > bigInt > with multipleOf 1`] = `721846281573263n`;
 
-exports[`number > 1211 > bigInt > with number value 1`] = `12n`;
+exports[`number > 1211 > bigInt > with number value 1`] = `29n`;
 
-exports[`number > 1211 > bigInt > with options 1`] = `44n`;
+exports[`number > 1211 > bigInt > with options 1`] = `22n`;
 
-exports[`number > 1211 > bigInt > with string value 1`] = `28n`;
+exports[`number > 1211 > bigInt > with string value 1`] = `29n`;
 
 exports[`number > 1211 > binary > noArgs 1`] = `"1"`;
 

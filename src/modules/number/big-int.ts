@@ -94,12 +94,17 @@ export function fakeNumberBigInt(
   }
 
   const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
-  const offset =
-    BigInt(
-      fakeStringNumeric(fakerCore, {
-        length: delta.toString(10).length,
-        allowLeadingZeros: true,
-      })
-    ) % delta;
+  const length = delta.toString(10).length;
+  // Draws at or above the largest multiple of delta that fits in `length` digits
+  // are redrawn, so `draw % delta` gives every offset the same chance.
+  const limit = (10n ** BigInt(length) / delta) * delta;
+  let draw: bigint;
+  do {
+    draw = BigInt(
+      fakeStringNumeric(fakerCore, { length, allowLeadingZeros: true })
+    );
+  } while (draw >= limit);
+
+  const offset = draw % delta;
   return (effectiveMin + offset) * multipleOf;
 }
