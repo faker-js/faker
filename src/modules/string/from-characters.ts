@@ -1,9 +1,9 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersArrayElement } from '../helpers/array-element';
-import { helpersMultiple } from '../helpers/multiple';
-import { helpersRangeToNumber } from '../helpers/range-to-number';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersMultiple } from '../helpers/multiple';
+import { fakeHelpersRangeToNumber } from '../helpers/range-to-number';
 
 /**
  * Generates a string from the given characters.
@@ -18,21 +18,21 @@ import { helpersRangeToNumber } from '../helpers/range-to-number';
  * @throws {FakerError} If there are no characters to select from.
  *
  * @example
- * stringFromCharacters(fakerCore, 'abc') // 'c'
- * stringFromCharacters(fakerCore, ['a', 'b', 'c']) // 'a'
- * stringFromCharacters(fakerCore, 'abc', 10) // 'cbbbacbacb'
- * stringFromCharacters(fakerCore, 'abc', { min: 5, max: 10 }) // 'abcaaaba'
+ * fakeStringFromCharacters(fakerCore, 'abc') // 'c'
+ * fakeStringFromCharacters(fakerCore, ['a', 'b', 'c']) // 'a'
+ * fakeStringFromCharacters(fakerCore, 'abc', 10) // 'cbbbacbacb'
+ * fakeStringFromCharacters(fakerCore, 'abc', { min: 5, max: 10 }) // 'abcaaaba'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function stringFromCharacters(
+export function fakeStringFromCharacters(
   fakerCore: FakerCore,
   characters: string | ReadonlyArray<string>,
   length: NumberOrRange = 1
 ): string {
-  length = helpersRangeToNumber(fakerCore, length);
+  length = fakeHelpersRangeToNumber(fakerCore, length);
   if (length <= 0) {
     return '';
   }
@@ -47,9 +47,9 @@ export function stringFromCharacters(
     );
   }
 
-  return helpersMultiple(
+  return fakeHelpersMultiple(
     fakerCore,
-    () => helpersArrayElement(fakerCore, characters as string[]),
+    () => fakeHelpersArrayElement(fakerCore, characters as string[]),
     {
       count: length,
     }

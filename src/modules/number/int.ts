@@ -18,21 +18,21 @@ import { FakerError } from '../../errors/faker-error';
  * @throws {FakerError} When there are no suitable integers between `min` and `max`.
  * @throws {FakerError} When `multipleOf` is not a positive integer.
  *
- * @see stringNumeric(fakerCore): For generating a `string` of digits with a given length (range).
+ * @see fakeStringNumeric(fakerCore): For generating a `string` of digits with a given length (range).
  *
  * @example
- * numberInt(fakerCore) // 2900970162509863
- * numberInt(fakerCore, 100) // 52
- * numberInt(fakerCore, { min: 1000000 }) // 2900970162509863
- * numberInt(fakerCore, { max: 100 }) // 42
- * numberInt(fakerCore, { min: 10, max: 100 }) // 57
- * numberInt(fakerCore, { min: 10, max: 100, multipleOf: 10 }) // 50
+ * fakeNumberInt(fakerCore) // 2900970162509863
+ * fakeNumberInt(fakerCore, 100) // 52
+ * fakeNumberInt(fakerCore, { min: 1000000 }) // 2900970162509863
+ * fakeNumberInt(fakerCore, { max: 100 }) // 42
+ * fakeNumberInt(fakerCore, { min: 10, max: 100 }) // 57
+ * fakeNumberInt(fakerCore, { min: 10, max: 100, multipleOf: 10 }) // 50
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function numberInt(
+export function fakeNumberInt(
   fakerCore: FakerCore,
   options:
     | number

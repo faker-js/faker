@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { numberFloat } from '../number/float';
+import { fakeNumberFloat } from '../number/float';
 
 /**
  * Returns the boolean value true or false.
@@ -14,15 +14,15 @@ import { numberFloat } from '../number/float';
  * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
  *
  * @example
- * datatypeBoolean(fakerCore) // false
- * datatypeBoolean(fakerCore, 0.9) // true
- * datatypeBoolean(fakerCore, { probability: 0.1 }) // false
+ * fakeDatatypeBoolean(fakerCore) // false
+ * fakeDatatypeBoolean(fakerCore, 0.9) // true
+ * fakeDatatypeBoolean(fakerCore, { probability: 0.1 }) // false
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function datatypeBoolean(
+export function fakeDatatypeBoolean(
   fakerCore: FakerCore,
   options:
     | number
@@ -47,9 +47,9 @@ export function datatypeBoolean(
   }
 
   if (probability >= 1) {
-    // This check is required to avoid returning false when numberFloat() returns 1
+    // This check is required to avoid returning false when fakeNumberFloat() returns 1
     return true;
   }
 
-  return numberFloat(fakerCore) < probability;
+  return fakeNumberFloat(fakerCore) < probability;
 }

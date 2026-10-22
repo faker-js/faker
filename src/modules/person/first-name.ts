@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 import { selectDefinition } from './_select-definition';
 import type { SexType } from './sex-type';
 
@@ -11,16 +11,19 @@ import type { SexType } from './sex-type';
  * Can be either `'female'` or `'male'`.
  *
  * @example
- * personFirstName(fakerCore) // 'Antwan'
- * personFirstName(fakerCore, 'female') // 'Victoria'
- * personFirstName(fakerCore, 'male') // 'Tom'
+ * fakePersonFirstName(fakerCore) // 'Antwan'
+ * fakePersonFirstName(fakerCore, 'female') // 'Victoria'
+ * fakePersonFirstName(fakerCore, 'male') // 'Tom'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personFirstName(fakerCore: FakerCore, sex?: SexType): string {
-  return helpersArrayElement(
+export function fakePersonFirstName(
+  fakerCore: FakerCore,
+  sex?: SexType
+): string {
+  return fakeHelpersArrayElement(
     fakerCore,
     selectDefinition(fakerCore, sex, fakerCore.locale.person.first_name)
   );

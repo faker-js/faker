@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { systemFileExt } from './file-ext';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeSystemFileExt } from './file-ext';
 
 const commonMimeTypes = [
   'application/pdf',
@@ -20,15 +20,15 @@ const commonMimeTypes = [
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * systemCommonFileExt(fakerCore) // 'gif'
+ * fakeSystemCommonFileExt(fakerCore) // 'gif'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function systemCommonFileExt(fakerCore: FakerCore): string {
-  return systemFileExt(
+export function fakeSystemCommonFileExt(fakerCore: FakerCore): string {
+  return fakeSystemFileExt(
     fakerCore,
-    helpersArrayElement(fakerCore, commonMimeTypes)
+    fakeHelpersArrayElement(fakerCore, commonMimeTypes)
   );
 }

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random medical specialty.
@@ -7,12 +7,12 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * medicalSpecialty(fakerCore) // 'Cardiology'
+ * fakeMedicalSpecialty(fakerCore) // 'Cardiology'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function medicalSpecialty(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.medical.specialty);
+export function fakeMedicalSpecialty(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.medical.specialty);
 }

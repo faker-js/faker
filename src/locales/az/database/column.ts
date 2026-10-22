@@ -1,0 +1,16 @@
+export default [
+  'ad',
+  'avatar',
+  'başlıq',
+  'elektronPoçt',
+  'id',
+  'kateqoriya',
+  'parol',
+  'qrup',
+  'status',
+  'telefon',
+  'token',
+  'yaradılmaTarixi',
+  'yenilənməTarixi',
+  'şərh',
+];

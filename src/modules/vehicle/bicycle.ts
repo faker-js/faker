@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a type of bicycle.
@@ -7,12 +7,15 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * vehicleBicycle(fakerCore) // 'Adventure Road Bicycle'
+ * fakeVehicleBicycle(fakerCore) // 'Adventure Road Bicycle'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function vehicleBicycle(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.vehicle.bicycle_type);
+export function fakeVehicleBicycle(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(
+    fakerCore,
+    fakerCore.locale.vehicle.bicycle_type
+  );
 }

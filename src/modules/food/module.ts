@@ -1,13 +1,13 @@
 import { ModuleBase } from '../../internal/module-base';
-import { foodAdjective } from './adjective';
-import { foodDescription } from './description';
-import { foodDish } from './dish';
-import { foodEthnicCategory } from './ethnic-category';
-import { foodFruit } from './fruit';
-import { foodIngredient } from './ingredient';
-import { foodMeat } from './meat';
-import { foodSpice } from './spice';
-import { foodVegetable } from './vegetable';
+import { fakeFoodAdjective } from './adjective';
+import { fakeFoodDescription } from './description';
+import { fakeFoodDish } from './dish';
+import { fakeFoodEthnicCategory } from './ethnic-category';
+import { fakeFoodFruit } from './fruit';
+import { fakeFoodIngredient } from './ingredient';
+import { fakeFoodMeat } from './meat';
+import { fakeFoodSpice } from './spice';
+import { fakeFoodVegetable } from './vegetable';
 
 /**
  * Module for generating food-related data.
@@ -33,7 +33,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   adjective(): string {
-    return foodAdjective(this.fakerCore);
+    return fakeFoodAdjective(this.fakerCore);
   }
 
   /**
@@ -45,7 +45,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   description(): string {
-    return foodDescription(this.fakerCore);
+    return fakeFoodDescription(this.fakerCore);
   }
 
   /**
@@ -57,7 +57,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   dish(): string {
-    return foodDish(this.fakerCore);
+    return fakeFoodDish(this.fakerCore);
   }
 
   /**
@@ -69,7 +69,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   ethnicCategory(): string {
-    return foodEthnicCategory(this.fakerCore);
+    return fakeFoodEthnicCategory(this.fakerCore);
   }
 
   /**
@@ -81,7 +81,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   fruit(): string {
-    return foodFruit(this.fakerCore);
+    return fakeFoodFruit(this.fakerCore);
   }
 
   /**
@@ -93,7 +93,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   ingredient(): string {
-    return foodIngredient(this.fakerCore);
+    return fakeFoodIngredient(this.fakerCore);
   }
 
   /**
@@ -105,7 +105,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   meat(): string {
-    return foodMeat(this.fakerCore);
+    return fakeFoodMeat(this.fakerCore);
   }
 
   /**
@@ -117,7 +117,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   spice(): string {
-    return foodSpice(this.fakerCore);
+    return fakeFoodSpice(this.fakerCore);
   }
 
   /**
@@ -129,6 +129,6 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   vegetable(): string {
-    return foodVegetable(this.fakerCore);
+    return fakeFoodVegetable(this.fakerCore);
   }
 }

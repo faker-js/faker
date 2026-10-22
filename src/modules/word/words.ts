@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersMultiple } from '../helpers/multiple';
-import { wordSample } from './sample';
+import { fakeHelpersMultiple } from '../helpers/multiple';
+import { fakeWordSample } from './sample';
 
 /**
  * Returns a random string containing some words separated by spaces.
@@ -11,16 +11,16 @@ import { wordSample } from './sample';
  * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
  *
  * @example
- * wordWords(fakerCore) // 'almost'
- * wordWords(fakerCore, 5) // 'before hourly patiently dribble equal'
- * wordWords(fakerCore, { count: 5 }) // 'whoever edible um kissingly faraway'
- * wordWords(fakerCore, { count: { min: 5, max: 10 } }) // 'vice buoyant through apropos poised total wary boohoo'
+ * fakeWordWords(fakerCore) // 'almost'
+ * fakeWordWords(fakerCore, 5) // 'before hourly patiently dribble equal'
+ * fakeWordWords(fakerCore, { count: 5 }) // 'whoever edible um kissingly faraway'
+ * fakeWordWords(fakerCore, { count: { min: 5, max: 10 } }) // 'vice buoyant through apropos poised total wary boohoo'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function wordWords(
+export function fakeWordWords(
   fakerCore: FakerCore,
   options:
     | number
@@ -39,7 +39,7 @@ export function wordWords(
 
   const { count = { min: 1, max: 3 } } = options;
 
-  return helpersMultiple(fakerCore, () => wordSample(fakerCore), {
+  return fakeHelpersMultiple(fakerCore, () => fakeWordSample(fakerCore), {
     count,
   }).join(' ');
 }

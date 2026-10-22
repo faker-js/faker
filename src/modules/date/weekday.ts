@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { DateEntryDefinition } from '../../definitions';
 import { assertLocaleData } from '../../internal/locale-proxy';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random day of the week.
@@ -12,16 +12,16 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
  *
  * @example
- * dateWeekday(fakerCore) // 'Monday'
- * dateWeekday(fakerCore, { abbreviated: true }) // 'Thu'
- * dateWeekday(fakerCore, { context: true }) // 'Thursday'
- * dateWeekday(fakerCore, { abbreviated: true, context: true }) // 'Fri'
+ * fakeDateWeekday(fakerCore) // 'Monday'
+ * fakeDateWeekday(fakerCore, { abbreviated: true }) // 'Thu'
+ * fakeDateWeekday(fakerCore, { context: true }) // 'Thursday'
+ * fakeDateWeekday(fakerCore, { abbreviated: true, context: true }) // 'Fri'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function dateWeekday(
+export function fakeDateWeekday(
   fakerCore: FakerCore,
   options: {
     /**
@@ -56,5 +56,5 @@ export function dateWeekday(
 
   const values = source[type];
   assertLocaleData(values, 'date.weekday', type);
-  return helpersArrayElement(fakerCore, values);
+  return fakeHelpersArrayElement(fakerCore, values);
 }

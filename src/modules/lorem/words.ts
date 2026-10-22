@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { helpersMultiple } from '../helpers/multiple';
-import { loremWord } from './word';
+import { fakeHelpersMultiple } from '../helpers/multiple';
+import { fakeLoremWord } from './word';
 
 /**
  * Generates a space separated list of words.
@@ -12,19 +12,19 @@ import { loremWord } from './word';
  * @param wordCount.max The maximum number of words to generate.
  *
  * @example
- * loremWords(fakerCore) // 'qui praesentium pariatur'
- * loremWords(fakerCore, 10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
- * loremWords(fakerCore, { min: 1, max: 3 }) // 'tenetur error cum'
+ * fakeLoremWords(fakerCore) // 'qui praesentium pariatur'
+ * fakeLoremWords(fakerCore, 10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
+ * fakeLoremWords(fakerCore, { min: 1, max: 3 }) // 'tenetur error cum'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function loremWords(
+export function fakeLoremWords(
   fakerCore: FakerCore,
   wordCount: NumberOrRange = 3
 ): string {
-  return helpersMultiple(fakerCore, () => loremWord(fakerCore), {
+  return fakeHelpersMultiple(fakerCore, () => fakeLoremWord(fakerCore), {
     count: wordCount,
   }).join(' ');
 }

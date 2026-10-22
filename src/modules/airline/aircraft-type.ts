@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersEnumValue } from '../helpers/enum-value';
+import { fakeHelpersEnumValue } from '../helpers/enum-value';
 
 export enum Aircraft {
   Narrowbody = 'narrowbody',
@@ -15,12 +15,12 @@ export type AircraftType = `${Aircraft}`;
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * airlineAircraftType(fakerCore) // 'narrowbody'
+ * fakeAirlineAircraftType(fakerCore) // 'narrowbody'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function airlineAircraftType(fakerCore: FakerCore): AircraftType {
-  return helpersEnumValue(fakerCore, Aircraft);
+export function fakeAirlineAircraftType(fakerCore: FakerCore): AircraftType {
+  return fakeHelpersEnumValue(fakerCore, Aircraft);
 }

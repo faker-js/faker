@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { imageAvatarGitHub } from './avatar-git-hub';
-import { imagePersonPortrait } from './person-portrait';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeImageAvatarGitHub } from './avatar-git-hub';
+import { fakeImagePersonPortrait } from './person-portrait';
 
 /**
  * Generates a random avatar image url.
@@ -11,18 +11,18 @@ import { imagePersonPortrait } from './person-portrait';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * imageAvatar(fakerCore)
+ * fakeImageAvatar(fakerCore)
  * // 'https://avatars.githubusercontent.com/u/97165289'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function imageAvatar(fakerCore: FakerCore): string {
+export function fakeImageAvatar(fakerCore: FakerCore): string {
   // Add new avatar providers here, when adding a new one.
-  const avatarMethod = helpersArrayElement(fakerCore, [
-    imagePersonPortrait,
-    imageAvatarGitHub,
+  const avatarMethod = fakeHelpersArrayElement(fakerCore, [
+    fakeImagePersonPortrait,
+    fakeImageAvatarGitHub,
   ]);
   return avatarMethod(fakerCore);
 }

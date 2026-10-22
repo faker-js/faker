@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 import { selectDefinition } from './_select-definition';
 import type { SexType } from './sex-type';
 
@@ -10,16 +10,16 @@ import type { SexType } from './sex-type';
  * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
  *
  * @example
- * personPrefix(fakerCore) // 'Miss'
- * personPrefix(fakerCore, 'female') // 'Ms.'
- * personPrefix(fakerCore, 'male') // 'Mr.'
+ * fakePersonPrefix(fakerCore) // 'Miss'
+ * fakePersonPrefix(fakerCore, 'female') // 'Ms.'
+ * fakePersonPrefix(fakerCore, 'male') // 'Mr.'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personPrefix(fakerCore: FakerCore, sex?: SexType): string {
-  return helpersArrayElement(
+export function fakePersonPrefix(fakerCore: FakerCore, sex?: SexType): string {
+  return fakeHelpersArrayElement(
     fakerCore,
     selectDefinition(fakerCore, sex, fakerCore.locale.person.prefix)
   );

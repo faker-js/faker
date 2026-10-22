@@ -2,18 +2,18 @@ import { ModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
 import type { AlphaChar, AlphaNumericChar, NumericChar } from './_types';
-import { stringAlpha } from './alpha';
-import { stringAlphanumeric } from './alphanumeric';
-import { stringBinary } from './binary';
-import { stringFromCharacters } from './from-characters';
-import { stringHexadecimal } from './hexadecimal';
-import { stringNanoid } from './nanoid';
-import { stringNumeric } from './numeric';
-import { stringOctal } from './octal';
-import { stringSample } from './sample';
-import { stringSymbol } from './symbol';
-import { stringUlid } from './ulid';
-import { stringUuid } from './uuid';
+import { fakeStringAlpha } from './alpha';
+import { fakeStringAlphanumeric } from './alphanumeric';
+import { fakeStringBinary } from './binary';
+import { fakeStringFromCharacters } from './from-characters';
+import { fakeStringHexadecimal } from './hexadecimal';
+import { fakeStringNanoid } from './nanoid';
+import { fakeStringNumeric } from './numeric';
+import { fakeStringOctal } from './octal';
+import { fakeStringSample } from './sample';
+import { fakeStringSymbol } from './symbol';
+import { fakeStringUlid } from './ulid';
+import { fakeStringUuid } from './uuid';
 
 /**
  * Module to generate string related entries.
@@ -60,7 +60,7 @@ export class StringModule extends ModuleBase {
     characters: string | ReadonlyArray<string>,
     length: NumberOrRange = 1
   ): string {
-    return stringFromCharacters(this.fakerCore, characters, length);
+    return fakeStringFromCharacters(this.fakerCore, characters, length);
   }
 
   /**
@@ -105,7 +105,7 @@ export class StringModule extends ModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
-    return stringAlpha(this.fakerCore, options);
+    return fakeStringAlpha(this.fakerCore, options);
   }
 
   /**
@@ -150,7 +150,7 @@ export class StringModule extends ModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
         } = {}
   ): string {
-    return stringAlphanumeric(this.fakerCore, options);
+    return fakeStringAlphanumeric(this.fakerCore, options);
   }
 
   /**
@@ -187,7 +187,7 @@ export class StringModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringBinary(this.fakerCore, options);
+    return fakeStringBinary(this.fakerCore, options);
   }
 
   /**
@@ -224,7 +224,7 @@ export class StringModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringOctal(this.fakerCore, options);
+    return fakeStringOctal(this.fakerCore, options);
   }
 
   /**
@@ -270,7 +270,7 @@ export class StringModule extends ModuleBase {
       prefix?: string;
     } = {}
   ): string {
-    return stringHexadecimal(this.fakerCore, options);
+    return fakeStringHexadecimal(this.fakerCore, options);
   }
 
   /**
@@ -319,7 +319,7 @@ export class StringModule extends ModuleBase {
           exclude?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
         } = {}
   ): string {
-    return stringNumeric(this.fakerCore, options);
+    return fakeStringNumeric(this.fakerCore, options);
   }
 
   /**
@@ -337,7 +337,7 @@ export class StringModule extends ModuleBase {
    * @since 8.0.0
    */
   sample(length: NumberOrRange = 10): string {
-    return stringSample(this.fakerCore, length);
+    return fakeStringSample(this.fakerCore, length);
   }
 
   /**
@@ -429,7 +429,7 @@ export class StringModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return stringUuid(this.fakerCore, options);
+    return fakeStringUuid(this.fakerCore, options);
   }
 
   /**
@@ -460,7 +460,7 @@ export class StringModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return stringUlid(this.fakerCore, options);
+    return fakeStringUlid(this.fakerCore, options);
   }
 
   /**
@@ -478,7 +478,7 @@ export class StringModule extends ModuleBase {
    * @since 8.0.0
    */
   nanoid(length: NumberOrRange = 21): string {
-    return stringNanoid(this.fakerCore, length);
+    return fakeStringNanoid(this.fakerCore, length);
   }
 
   /**
@@ -500,6 +500,6 @@ export class StringModule extends ModuleBase {
    * @since 8.0.0
    */
   symbol(length: NumberOrRange = 1): string {
-    return stringSymbol(this.fakerCore, length);
+    return fakeStringSymbol(this.fakerCore, length);
   }
 }

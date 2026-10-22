@@ -1,10 +1,10 @@
 import { ModuleBase } from '../../internal/module-base';
-import { hackerAbbreviation } from './abbreviation';
-import { hackerAdjective } from './adjective';
-import { hackerIngverb } from './ingverb';
-import { hackerNoun } from './noun';
-import { hackerPhrase } from './phrase';
-import { hackerVerb } from './verb';
+import { fakeHackerAbbreviation } from './abbreviation';
+import { fakeHackerAdjective } from './adjective';
+import { fakeHackerIngverb } from './ingverb';
+import { fakeHackerNoun } from './noun';
+import { fakeHackerPhrase } from './phrase';
+import { fakeHackerVerb } from './verb';
 
 /**
  * Module to generate hacker/IT words and phrases.
@@ -36,7 +36,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   abbreviation(): string {
-    return hackerAbbreviation(this.fakerCore);
+    return fakeHackerAbbreviation(this.fakerCore);
   }
 
   /**
@@ -48,7 +48,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   adjective(): string {
-    return hackerAdjective(this.fakerCore);
+    return fakeHackerAdjective(this.fakerCore);
   }
 
   /**
@@ -60,7 +60,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   noun(): string {
-    return hackerNoun(this.fakerCore);
+    return fakeHackerNoun(this.fakerCore);
   }
 
   /**
@@ -72,7 +72,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   verb(): string {
-    return hackerVerb(this.fakerCore);
+    return fakeHackerVerb(this.fakerCore);
   }
 
   /**
@@ -84,7 +84,7 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   ingverb(): string {
-    return hackerIngverb(this.fakerCore);
+    return fakeHackerIngverb(this.fakerCore);
   }
 
   /**
@@ -97,6 +97,6 @@ export class HackerModule extends ModuleBase {
    * @since 2.0.1
    */
   phrase(): string {
-    return hackerPhrase(this.fakerCore);
+    return fakeHackerPhrase(this.fakerCore);
   }
 }

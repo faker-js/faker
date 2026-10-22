@@ -82,6 +82,10 @@ function getSidebarWithExpandedEntry(entryToExpand: string): SidebarItem[] {
           link: '/contributing/set-up-a-development-environment',
         },
         {
+          text: 'Adding a New Locale',
+          link: '/contributing/adding-a-new-locale',
+        },
+        {
           text: 'Submit a Pull Request',
           link: '/contributing/submit-a-pull-request',
         },
