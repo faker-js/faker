@@ -688,6 +688,17 @@ describe('number', () => {
         }
       });
 
+      it('should return when the randomizer only gives high values', () => {
+        const highFaker = new SimpleFaker({
+          randomizer: {
+            next: () => 1 - Number.EPSILON,
+            seed: () => {},
+          },
+        });
+
+        expect(highFaker.number.bigInt({ min: 1n, max: 6n })).toBe(6n);
+      });
+
       it('should not mutate the input object', () => {
         const input: {
           min?: bigint;

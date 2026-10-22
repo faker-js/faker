@@ -1,6 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { fakeStringNumeric } from '../string/numeric';
+import { fakeNumberInt } from './int';
 
 /**
  * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
@@ -94,17 +95,16 @@ export function fakeNumberBigInt(
   }
 
   const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
-  const length = delta.toString(10).length;
-  // Draws at or above the largest multiple of delta that fits in `length` digits
-  // are redrawn, so `draw % delta` gives every offset the same chance.
-  const limit = (10n ** BigInt(length) / delta) * delta;
-  let draw: bigint;
-  do {
-    draw = BigInt(
-      fakeStringNumeric(fakerCore, { length, allowLeadingZeros: true })
-    );
-  } while (draw >= limit);
-
-  const offset = draw % delta;
+  // fakeNumberInt draws every value of a safe integer range equally often.
+  // Wider ranges keep the previous digit draw.
+  const offset =
+    delta <= BigInt(Number.MAX_SAFE_INTEGER)
+      ? BigInt(fakeNumberInt(fakerCore, { min: 0, max: Number(delta - 1n) }))
+      : BigInt(
+          fakeStringNumeric(fakerCore, {
+            length: delta.toString(10).length,
+            allowLeadingZeros: true,
+          })
+        ) % delta;
   return (effectiveMin + offset) * multipleOf;
 }
