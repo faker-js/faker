@@ -362,7 +362,8 @@ function foo(bar: number = 0) {
 }
 ```
 
-> If a function can throw an error (FakerError) you have to include the `@throws` tag with an explanation when an error could be thrown
+> If a function can throw an error (FakerError) you have to include the `@throws` tag with an explanation when an error could be thrown.
+> Errors caused by engine limitations (`RangeError: max array length exceeded` or `OutOfMemoryError`) are not considered by Faker and thus do not need a specific `@throw` tag.
 
 ```ts
 /**
