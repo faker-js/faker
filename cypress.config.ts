@@ -1,7 +1,6 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  allowCypressEnv: false,
   video: false,
   e2e: {
     chromeWebSecurity: false,

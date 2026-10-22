@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process';
 import * as semver from 'semver';
-import { version as version_ } from '../../package.json';
+import packageJson from '../../package.json' with { type: 'json' };
+const { version: version_ } = packageJson;
 
 function readBranchName(): string {
   return (
