@@ -107,7 +107,7 @@
     "eslint-plugin-jsdoc": "65.3.12",
     "jiti": "2.7.0",
     "npm-run-all2": "9.0.3",
-    "oxfmt": "0.65.0",
+    "oxfmt": "0.73.0",
     "oxlint": "1.88.0",
     "oxlint-tsgolint": "7.0.2004",
     "publint": "0.3.25",
