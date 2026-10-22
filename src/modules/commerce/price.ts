@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
-import { helpersWeightedArrayElement } from '../helpers/weighted-array-element';
-import { numberFloat } from '../number/float';
-import { numberInt } from '../number/int';
+import { fakeHelpersWeightedArrayElement } from '../helpers/weighted-array-element';
+import { fakeNumberFloat } from '../number/float';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a price between min and max (inclusive).
@@ -21,17 +21,17 @@ import { numberInt } from '../number/int';
  * @param options.symbol The currency value to use. Defaults to `''`.
  *
  * @example
- * commercePrice(fakerCore) // '828.07'
- * commercePrice(fakerCore, { min: 100 }) // '904.19'
- * commercePrice(fakerCore, { min: 100, max: 200 }) // '154.55'
- * commercePrice(fakerCore, { min: 100, max: 200, dec: 0 }) // '133'
- * commercePrice(fakerCore, { min: 100, max: 200, dec: 0, symbol: '$' }) // '$114'
+ * fakeCommercePrice(fakerCore) // '828.07'
+ * fakeCommercePrice(fakerCore, { min: 100 }) // '904.19'
+ * fakeCommercePrice(fakerCore, { min: 100, max: 200 }) // '154.55'
+ * fakeCommercePrice(fakerCore, { min: 100, max: 200, dec: 0 }) // '133'
+ * fakeCommercePrice(fakerCore, { min: 100, max: 200, dec: 0, symbol: '$' }) // '$114'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function commercePrice(
+export function fakeCommercePrice(
   fakerCore: FakerCore,
   options: {
     /**
@@ -70,7 +70,7 @@ export function commercePrice(
     return `${symbol}${min.toFixed(dec)}`;
   }
 
-  const generated = numberFloat(fakerCore, {
+  const generated = fakeNumberFloat(fakerCore, {
     min,
     max,
     fractionDigits: dec,
@@ -81,13 +81,13 @@ export function commercePrice(
   }
 
   const oldLastDigit = (generated * 10 ** dec) % 10;
-  const newLastDigit = helpersWeightedArrayElement(fakerCore, [
+  const newLastDigit = fakeHelpersWeightedArrayElement(fakerCore, [
     { weight: 5, value: 9 },
     { weight: 3, value: 5 },
     { weight: 1, value: 0 },
     {
       weight: 1,
-      value: numberInt(fakerCore, { min: 0, max: 9 }),
+      value: fakeNumberInt(fakerCore, { min: 0, max: 9 }),
     },
   ]);
 

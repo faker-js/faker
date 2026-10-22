@@ -3,24 +3,24 @@ import type { Faker } from '../../faker';
 import { ModuleBase } from '../../internal/module-base';
 import type { NumberOrRange } from '../../utils/types';
 import { fakeEval } from './_eval';
-import { helpersArrayElement } from './array-element';
-import { helpersArrayElements } from './array-elements';
-import { helpersArraySamples } from './array-samples';
-import { helpersEnumValue } from './enum-value';
-import { helpersFromRegExp } from './from-reg-exp';
-import { helpersMaybe } from './maybe';
-import { helpersMultiple } from './multiple';
-import { helpersMustache } from './mustache';
-import { helpersObjectEntry } from './object-entry';
-import { helpersObjectKey } from './object-key';
-import { helpersObjectValue } from './object-value';
-import { helpersRangeToNumber } from './range-to-number';
-import { helpersReplaceCreditCardSymbols } from './replace-credit-card-symbols';
-import { helpersReplaceSymbols } from './replace-symbols';
-import { helpersShuffle } from './shuffle';
-import { helpersSlugify } from './slugify';
-import { helpersUniqueArray } from './unique-array';
-import { helpersWeightedArrayElement } from './weighted-array-element';
+import { fakeHelpersArrayElement } from './array-element';
+import { fakeHelpersArrayElements } from './array-elements';
+import { fakeHelpersArraySamples } from './array-samples';
+import { fakeHelpersEnumValue } from './enum-value';
+import { fakeHelpersFromRegExp } from './from-reg-exp';
+import { fakeHelpersMaybe } from './maybe';
+import { fakeHelpersMultiple } from './multiple';
+import { fakeHelpersMustache } from './mustache';
+import { fakeHelpersObjectEntry } from './object-entry';
+import { fakeHelpersObjectKey } from './object-key';
+import { fakeHelpersObjectValue } from './object-value';
+import { fakeHelpersRangeToNumber } from './range-to-number';
+import { fakeHelpersReplaceCreditCardSymbols } from './replace-credit-card-symbols';
+import { fakeHelpersReplaceSymbols } from './replace-symbols';
+import { fakeHelpersShuffle } from './shuffle';
+import { fakeHelpersSlugify } from './slugify';
+import { fakeHelpersUniqueArray } from './unique-array';
+import { fakeHelpersWeightedArrayElement } from './weighted-array-element';
 
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
@@ -45,7 +45,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 2.0.1
    */
   slugify(string: string = ''): string {
-    return helpersSlugify(this.fakerCore, string);
+    return fakeHelpersSlugify(this.fakerCore, string);
   }
 
   /**
@@ -67,7 +67,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 3.0.0
    */
   replaceSymbols(string: string = ''): string {
-    return helpersReplaceSymbols(this.fakerCore, string);
+    return fakeHelpersReplaceSymbols(this.fakerCore, string);
   }
 
   /**
@@ -95,7 +95,7 @@ export class SimpleHelpersModule extends ModuleBase {
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
   ): string {
-    return helpersReplaceCreditCardSymbols(this.fakerCore, string, symbol);
+    return fakeHelpersReplaceCreditCardSymbols(this.fakerCore, string, symbol);
   }
 
   /**
@@ -147,7 +147,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 8.0.0
    */
   fromRegExp(pattern: string | RegExp): string {
-    return helpersFromRegExp(this.fakerCore, pattern);
+    return fakeHelpersFromRegExp(this.fakerCore, pattern);
   }
 
   /**
@@ -229,7 +229,7 @@ export class SimpleHelpersModule extends ModuleBase {
     }
   ): T[];
   shuffle<const T>(list: T[], options: { inplace?: boolean } = {}): T[] {
-    return helpersShuffle(this.fakerCore, list, options);
+    return fakeHelpersShuffle(this.fakerCore, list, options);
   }
 
   /**
@@ -259,7 +259,7 @@ export class SimpleHelpersModule extends ModuleBase {
     source: ReadonlyArray<T> | ((fakerCore: FakerCore) => T),
     length: number
   ): T[] {
-    return helpersUniqueArray(this.fakerCore, source, length);
+    return fakeHelpersUniqueArray(this.fakerCore, source, length);
   }
 
   /**
@@ -282,7 +282,7 @@ export class SimpleHelpersModule extends ModuleBase {
     text: string | undefined,
     data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
-    return helpersMustache(this.fakerCore, text, data);
+    return fakeHelpersMustache(this.fakerCore, text, data);
   }
 
   /**
@@ -312,7 +312,7 @@ export class SimpleHelpersModule extends ModuleBase {
       probability?: number;
     } = {}
   ): TResult | undefined {
-    return helpersMaybe(this.fakerCore, callback, options);
+    return fakeHelpersMaybe(this.fakerCore, callback, options);
   }
 
   /**
@@ -330,7 +330,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   objectKey<const T extends Record<string, unknown>>(object: T): keyof T {
-    return helpersObjectKey(this.fakerCore, object);
+    return fakeHelpersObjectKey(this.fakerCore, object);
   }
 
   /**
@@ -348,7 +348,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   objectValue<const T extends Record<string, unknown>>(object: T): T[keyof T] {
-    return helpersObjectValue(this.fakerCore, object);
+    return fakeHelpersObjectValue(this.fakerCore, object);
   }
 
   /**
@@ -368,7 +368,7 @@ export class SimpleHelpersModule extends ModuleBase {
   objectEntry<const T extends Record<string, unknown>>(
     object: T
   ): [keyof T, T[keyof T]] {
-    return helpersObjectEntry(this.fakerCore, object);
+    return fakeHelpersObjectEntry(this.fakerCore, object);
   }
 
   /**
@@ -386,7 +386,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   arrayElement<const T>(array: ReadonlyArray<T>): T {
-    return helpersArrayElement(this.fakerCore, array);
+    return fakeHelpersArrayElement(this.fakerCore, array);
   }
 
   /**
@@ -423,7 +423,7 @@ export class SimpleHelpersModule extends ModuleBase {
       value: T;
     }>
   ): T {
-    return helpersWeightedArrayElement(this.fakerCore, array);
+    return fakeHelpersWeightedArrayElement(this.fakerCore, array);
   }
 
   /**
@@ -446,7 +446,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 6.3.0
    */
   arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
-    return helpersArrayElements(this.fakerCore, array, count);
+    return fakeHelpersArrayElements(this.fakerCore, array, count);
   }
 
   /**
@@ -471,7 +471,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 11.0.0
    */
   arraySamples<const T>(array: ReadonlyArray<T>, count: NumberOrRange): T[] {
-    return helpersArraySamples(this.fakerCore, array, count);
+    return fakeHelpersArraySamples(this.fakerCore, array, count);
   }
 
   /**
@@ -498,7 +498,7 @@ export class SimpleHelpersModule extends ModuleBase {
   enumValue<T extends Record<string | number, string | number>>(
     enumObject: T
   ): T[keyof T] {
-    return helpersEnumValue(this.fakerCore, enumObject);
+    return fakeHelpersEnumValue(this.fakerCore, enumObject);
   }
 
   /**
@@ -515,7 +515,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 8.0.0
    */
   rangeToNumber(numberOrRange: NumberOrRange): number {
-    return helpersRangeToNumber(this.fakerCore, numberOrRange);
+    return fakeHelpersRangeToNumber(this.fakerCore, numberOrRange);
   }
 
   /**
@@ -546,7 +546,7 @@ export class SimpleHelpersModule extends ModuleBase {
       count?: NumberOrRange;
     } = {}
   ): TResult[] {
-    return helpersMultiple(this.fakerCore, method, options);
+    return fakeHelpersMultiple(this.fakerCore, method, options);
   }
 }
 

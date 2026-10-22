@@ -3,7 +3,7 @@ import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { NumberOrRange } from '../../utils/types';
-import { dateBetween } from './between';
+import { fakeDateBetween } from './between';
 
 /**
  * Generates a random date in the near future.
@@ -16,19 +16,19 @@ import { dateBetween } from './between';
  * @throws {FakerError} If `days.max` is less than 0.
  * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
  *
- * @see dateFuture(fakerCore): For generating dates further in the future (years instead of days).
+ * @see fakeDateFuture(fakerCore): For generating dates further in the future (years instead of days).
  *
  * @example
- * dateSoon(fakerCore) // '2022-02-05T09:55:39.216Z'
- * dateSoon(fakerCore, { days: 10 }) // '2022-02-11T05:14:39.138Z'
- * dateSoon(fakerCore, { days: { min: 4, max: 7 } }) // '2022-02-09T17:54:01.818Z'
- * dateSoon(fakerCore, { days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
+ * fakeDateSoon(fakerCore) // '2022-02-05T09:55:39.216Z'
+ * fakeDateSoon(fakerCore, { days: 10 }) // '2022-02-11T05:14:39.138Z'
+ * fakeDateSoon(fakerCore, { days: { min: 4, max: 7 } }) // '2022-02-09T17:54:01.818Z'
+ * fakeDateSoon(fakerCore, { days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function dateSoon(
+export function fakeDateSoon(
   fakerCore: FakerCore,
   options: {
     /**
@@ -67,7 +67,7 @@ export function dateSoon(
   const to = new Date(time);
   to.setUTCDate(to.getUTCDate() + days.max);
 
-  return dateBetween(fakerCore, {
+  return fakeDateBetween(fakerCore, {
     from: from.getTime() + 1000,
     to,
   });

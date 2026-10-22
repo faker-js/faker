@@ -1,6 +1,6 @@
 import { ModuleBase } from '../../internal/module-base';
-import { phoneImei } from './imei';
-import { phoneNumber } from './number';
+import { fakePhoneImei } from './imei';
+import { fakePhoneNumber } from './number';
 
 /**
  * Module to generate phone-related data.
@@ -49,7 +49,7 @@ export class PhoneModule extends ModuleBase {
       style?: 'human' | 'national' | 'international' | 'mobile';
     } = {}
   ): string {
-    return phoneNumber(this.fakerCore, options);
+    return fakePhoneNumber(this.fakerCore, options);
   }
 
   /**
@@ -61,6 +61,6 @@ export class PhoneModule extends ModuleBase {
    * @since 6.2.0
    */
   imei(): string {
-    return phoneImei(this.fakerCore);
+    return fakePhoneImei(this.fakerCore);
   }
 }

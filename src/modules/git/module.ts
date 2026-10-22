@@ -1,9 +1,9 @@
 import { ModuleBase } from '../../internal/module-base';
-import { gitBranch } from './branch';
-import { gitCommitDate } from './commit-date';
-import { gitCommitEntry } from './commit-entry';
-import { gitCommitMessage } from './commit-message';
-import { gitCommitSha } from './commit-sha';
+import { fakeGitBranch } from './branch';
+import { fakeGitCommitDate } from './commit-date';
+import { fakeGitCommitEntry } from './commit-entry';
+import { fakeGitCommitMessage } from './commit-message';
+import { fakeGitCommitSha } from './commit-sha';
 
 /**
  * Module to generate git related entries.
@@ -27,7 +27,7 @@ export class GitModule extends ModuleBase {
    * @since 5.0.0
    */
   branch(): string {
-    return gitBranch(this.fakerCore);
+    return fakeGitBranch(this.fakerCore);
   }
 
   /**
@@ -75,7 +75,7 @@ export class GitModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return gitCommitEntry(this.fakerCore, options);
+    return fakeGitCommitEntry(this.fakerCore, options);
   }
 
   /**
@@ -87,7 +87,7 @@ export class GitModule extends ModuleBase {
    * @since 5.0.0
    */
   commitMessage(): string {
-    return gitCommitMessage(this.fakerCore);
+    return fakeGitCommitMessage(this.fakerCore);
   }
 
   /**
@@ -112,7 +112,7 @@ export class GitModule extends ModuleBase {
       refDate?: string | Date | number;
     } = {}
   ): string {
-    return gitCommitDate(this.fakerCore, options);
+    return fakeGitCommitDate(this.fakerCore, options);
   }
 
   /**
@@ -146,6 +146,6 @@ export class GitModule extends ModuleBase {
       length?: number;
     } = {}
   ): string {
-    return gitCommitSha(this.fakerCore, options);
+    return fakeGitCommitSha(this.fakerCore, options);
   }
 }

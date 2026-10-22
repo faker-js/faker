@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { datatypeBoolean } from '../datatype/boolean';
-import { helpersArrayElement } from '../helpers/array-element';
-import { numberInt } from '../number/int';
+import { fakeDatatypeBoolean } from '../datatype/boolean';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeNumberInt } from '../number/int';
 import { ibanLib } from './_iban-lib';
 
 /**
@@ -34,15 +34,15 @@ export function prettyPrintIban(iban: string): string {
  * @throws {FakerError} Will throw an error if the passed country code is not supported.
  *
  * @example
- * financeIban(fakerCore) // 'TR736918640040966092800056'
- * financeIban(fakerCore, { formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
- * financeIban(fakerCore, { formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
+ * fakeFinanceIban(fakerCore) // 'TR736918640040966092800056'
+ * fakeFinanceIban(fakerCore, { formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
+ * fakeFinanceIban(fakerCore, { formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeIban(
+export function fakeFinanceIban(
   fakerCore: FakerCore,
   options: {
     /**
@@ -62,7 +62,7 @@ export function financeIban(
 
   const ibanFormat = countryCode
     ? ibanLib.formats.find((f) => f.country === countryCode)
-    : helpersArrayElement(fakerCore, ibanLib.formats);
+    : fakeHelpersArrayElement(fakerCore, ibanLib.formats);
 
   if (!ibanFormat) {
     throw new FakerError(`Country code ${countryCode} not supported.`);
@@ -75,24 +75,24 @@ export function financeIban(
     count += bban.count;
     while (c > 0) {
       if (bban.type === 'a') {
-        s += helpersArrayElement(fakerCore, ibanLib.alpha);
+        s += fakeHelpersArrayElement(fakerCore, ibanLib.alpha);
       } else if (bban.type === 'c') {
-        if (datatypeBoolean(fakerCore, 0.8)) {
-          s += numberInt(fakerCore, 9);
+        if (fakeDatatypeBoolean(fakerCore, 0.8)) {
+          s += fakeNumberInt(fakerCore, 9);
         } else {
-          s += helpersArrayElement(fakerCore, ibanLib.alpha);
+          s += fakeHelpersArrayElement(fakerCore, ibanLib.alpha);
         }
       } else {
-        if (c >= 3 && datatypeBoolean(fakerCore, 0.3)) {
-          if (datatypeBoolean(fakerCore)) {
-            s += helpersArrayElement(fakerCore, ibanLib.pattern100);
+        if (c >= 3 && fakeDatatypeBoolean(fakerCore, 0.3)) {
+          if (fakeDatatypeBoolean(fakerCore)) {
+            s += fakeHelpersArrayElement(fakerCore, ibanLib.pattern100);
             c -= 2;
           } else {
-            s += helpersArrayElement(fakerCore, ibanLib.pattern10);
+            s += fakeHelpersArrayElement(fakerCore, ibanLib.pattern10);
             c--;
           }
         } else {
-          s += numberInt(fakerCore, 9);
+          s += fakeNumberInt(fakerCore, 9);
         }
       }
 

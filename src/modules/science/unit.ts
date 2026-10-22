@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 export interface Unit {
   /**
@@ -18,14 +18,14 @@ export interface Unit {
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * scienceUnit(fakerCore) // { name: 'meter', symbol: 'm' }
- * scienceUnit(fakerCore) // { name: 'second', symbol: 's' }
- * scienceUnit(fakerCore) // { name: 'mole', symbol: 'mol' }
+ * fakeScienceUnit(fakerCore) // { name: 'meter', symbol: 'm' }
+ * fakeScienceUnit(fakerCore) // { name: 'second', symbol: 's' }
+ * fakeScienceUnit(fakerCore) // { name: 'mole', symbol: 'mol' }
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function scienceUnit(fakerCore: FakerCore): Unit {
-  return helpersArrayElement(fakerCore, fakerCore.locale.science.unit);
+export function fakeScienceUnit(fakerCore: FakerCore): Unit {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.science.unit);
 }

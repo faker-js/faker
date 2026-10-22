@@ -57,7 +57,38 @@ For a streamlined development experience, Faker supports VSCode Devcontainers.
 1. Open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS) and select "**Dev Containers: Reopen in Container**".
 1. Wait for the container to build and start.
 
-## Step 3: Submit a Pull Request
+## Step 3: Verify Your Changes Locally
+
+You can check a single Faker method without running the full test suite or building the package first.
+
+Create a temporary TypeScript file at `.local/try-faker.ts`:
+
+```ts
+import { faker } from '../src/index.ts';
+
+faker.seed(123);
+console.log(faker.person.fullName());
+```
+
+Run it directly against the source:
+
+```sh
+pnpm tsx .local/try-faker.ts
+```
+
+The `.local/` directory is gitignored and preserved by `pnpm run clean`, so you can keep experiments there without adding them to your pull request.
+
+To run just the tests for the module you're changing, use Vitest with the relevant test file:
+
+```sh
+pnpm vitest run test/modules/person.spec.ts
+```
+
+For browser-based checks, `pnpm run docs:dev` builds and starts the documentation site, where you can try Faker in the browser console.
+
+Before submitting your changes, run `pnpm run preflight` to run the full verification workflow.
+
+## Step 4: Submit a Pull Request
 
 Your development environment has successfully been set up.
 You are now ready to [Submit a Pull Request](./submit-a-pull-request.md).

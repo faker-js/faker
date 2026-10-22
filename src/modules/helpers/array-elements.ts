@@ -1,8 +1,8 @@
 import type { FakerCore } from '../../core';
 import type { NumberOrRange } from '../../utils/types';
-import { numberInt } from '../number/int';
-import { helpersRangeToNumber } from './range-to-number';
-import { helpersShuffle } from './shuffle';
+import { fakeNumberInt } from '../number/int';
+import { fakeHelpersRangeToNumber } from './range-to-number';
+import { fakeHelpersShuffle } from './shuffle';
 
 /**
  * Returns a subset with random elements of the given array in random order.
@@ -15,18 +15,18 @@ import { helpersShuffle } from './shuffle';
  *    When not provided, random number of elements will be picked.
  *    When value exceeds array boundaries, it will be limited to stay inside.
  *
- * @see helpersArraySamples(fakerCore): For generating an array of elements with replacement.
+ * @see fakeHelpersArraySamples(fakerCore): For generating an array of elements with replacement.
  *
  * @example
- * helpersArrayElements(fakerCore, ['cat', 'dog', 'mouse']) // ['mouse', 'cat']
- * helpersArrayElements(fakerCore, [1, 2, 3, 4, 5], 2) // [4, 2]
- * helpersArrayElements(fakerCore, [1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
+ * fakeHelpersArrayElements(fakerCore, ['cat', 'dog', 'mouse']) // ['mouse', 'cat']
+ * fakeHelpersArrayElements(fakerCore, [1, 2, 3, 4, 5], 2) // [4, 2]
+ * fakeHelpersArrayElements(fakerCore, [1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersArrayElements<const T>(
+export function fakeHelpersArrayElements<const T>(
   fakerCore: FakerCore,
   array: ReadonlyArray<T>,
   count?: NumberOrRange
@@ -35,13 +35,13 @@ export function helpersArrayElements<const T>(
     return [];
   }
 
-  const numElements = helpersRangeToNumber(
+  const numElements = fakeHelpersRangeToNumber(
     fakerCore,
     count ?? { min: 1, max: array.length }
   );
 
   if (numElements >= array.length) {
-    return helpersShuffle(fakerCore, array);
+    return fakeHelpersShuffle(fakerCore, array);
   } else if (numElements <= 0) {
     return [];
   }
@@ -52,7 +52,7 @@ export function helpersArrayElements<const T>(
 
   // Shuffle the last `count` elements of the array
   while (i-- > min) {
-    const index = numberInt(fakerCore, i);
+    const index = fakeNumberInt(fakerCore, i);
     const temp = arrayCopy[index];
     arrayCopy[index] = arrayCopy[i];
     arrayCopy[i] = temp;

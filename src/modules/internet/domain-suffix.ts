@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random domain suffix.
@@ -7,15 +7,15 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * internetDomainSuffix(fakerCore) // 'com'
- * internetDomainSuffix(fakerCore) // 'name'
+ * fakeInternetDomainSuffix(fakerCore) // 'com'
+ * fakeInternetDomainSuffix(fakerCore) // 'name'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetDomainSuffix(fakerCore: FakerCore): string {
-  return helpersArrayElement(
+export function fakeInternetDomainSuffix(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(
     fakerCore,
     fakerCore.locale.internet.domain_suffix
   );

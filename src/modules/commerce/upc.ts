@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { stringNumeric } from '../string/numeric';
+import { fakeStringNumeric } from '../string/numeric';
 
 /**
  * Calculates the check digit for a UPC‑A using the Modulo 10 algorithm.
@@ -48,14 +48,14 @@ function calculateUPCCheckDigit(digits: string): number {
  * @throws {FakerError} If `prefix` contains non-digit characters or more than 11 digits.
  *
  * @example
- * commerceUpc(fakerCore) // '036000291452'
- * commerceUpc(fakerCore, { prefix: '01234' }) // '012345678905'
+ * fakeCommerceUpc(fakerCore) // '036000291452'
+ * fakeCommerceUpc(fakerCore, { prefix: '01234' }) // '012345678905'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function commerceUpc(
+export function fakeCommerceUpc(
   fakerCore: FakerCore,
   options: {
     /**
@@ -74,7 +74,7 @@ export function commerceUpc(
   }
 
   const remaining = 11 - prefix.length;
-  const rand = stringNumeric(fakerCore, {
+  const rand = fakeStringNumeric(fakerCore, {
     length: remaining,
     allowLeadingZeros: true,
   });

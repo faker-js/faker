@@ -1,10 +1,10 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
-import { loremLines } from './lines';
-import { loremParagraph } from './paragraph';
-import { loremParagraphs } from './paragraphs';
-import { loremSentence } from './sentence';
-import { loremSentences } from './sentences';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
+import { fakeLoremLines } from './lines';
+import { fakeLoremParagraph } from './paragraph';
+import { fakeLoremParagraphs } from './paragraphs';
+import { fakeLoremSentence } from './sentence';
+import { fakeLoremSentences } from './sentences';
 
 /**
  * Generates a random text based on a random lorem method.
@@ -12,8 +12,8 @@ import { loremSentences } from './sentences';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * loremText(fakerCore) // 'Doloribus autem non quis vero quia.'
- * loremText(fakerCore)
+ * fakeLoremText(fakerCore) // 'Doloribus autem non quis vero quia.'
+ * fakeLoremText(fakerCore)
  * // 'Rerum eum reiciendis id ipsa hic dolore aut laborum provident.
  * // Quis beatae quis corporis veritatis corrupti ratione delectus sapiente ut.
  * // Quis ut dolor dolores facilis possimus tempore voluptates.
@@ -24,13 +24,13 @@ import { loremSentences } from './sentences';
  *
  * @experimental
  */
-export function loremText(fakerCore: FakerCore): string {
-  const method = helpersArrayElement(fakerCore, [
-    loremSentence,
-    loremSentences,
-    loremParagraph,
-    loremParagraphs,
-    loremLines,
+export function fakeLoremText(fakerCore: FakerCore): string {
+  const method = fakeHelpersArrayElement(fakerCore, [
+    fakeLoremSentence,
+    fakeLoremSentences,
+    fakeLoremParagraph,
+    fakeLoremParagraphs,
+    fakeLoremLines,
   ]);
 
   return method(fakerCore);

@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
-import { internetDomainSuffix } from './domain-suffix';
-import { internetDomainWord } from './domain-word';
+import { fakeInternetDomainSuffix } from './domain-suffix';
+import { fakeInternetDomainWord } from './domain-word';
 
 /**
  * Generates a random domain name.
@@ -8,12 +8,12 @@ import { internetDomainWord } from './domain-word';
  * @param fakerCore The FakerCore to use.
  *
  * @example
- * internetDomainName(fakerCore) // 'slow-timer.info'
+ * fakeInternetDomainName(fakerCore) // 'slow-timer.info'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetDomainName(fakerCore: FakerCore): string {
-  return `${internetDomainWord(fakerCore)}.${internetDomainSuffix(fakerCore)}`;
+export function fakeInternetDomainName(fakerCore: FakerCore): string {
+  return `${fakeInternetDomainWord(fakerCore)}.${fakeInternetDomainSuffix(fakerCore)}`;
 }

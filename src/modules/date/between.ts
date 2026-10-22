@@ -1,7 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a random date between the given boundaries.
@@ -15,13 +15,13 @@ import { numberInt } from '../number/int';
  * @throws {FakerError} If `from` is after `to`.
  *
  * @example
- * dateBetween(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
+ * fakeDateBetween(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function dateBetween(
+export function fakeDateBetween(
   fakerCore: FakerCore,
   options: {
     /**
@@ -42,5 +42,5 @@ export function dateBetween(
     throw new FakerError('`from` date must be before `to` date.');
   }
 
-  return new Date(numberInt(fakerCore, { min: fromMs, max: toMs }));
+  return new Date(fakeNumberInt(fakerCore, { min: fromMs, max: toMs }));
 }

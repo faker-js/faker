@@ -1,24 +1,24 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random sex.
  *
  * Output of this method is localised, so it should not be used to fill the parameter `sex`
- * available in some other modules for example `personFirstName(fakerCore)`.
+ * available in some other modules for example `fakePersonFirstName(fakerCore)`.
  *
  * @param fakerCore The FakerCore to use.
  *
- * @see personGender(fakerCore): For generating a gender related value.
- * @see personSexType(fakerCore): For generating a sex value to be used as a parameter.
+ * @see fakePersonGender(fakerCore): For generating a gender related value.
+ * @see fakePersonSexType(fakerCore): For generating a sex value to be used as a parameter.
  *
  * @example
- * personSex(fakerCore) // 'female'
+ * fakePersonSex(fakerCore) // 'female'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function personSex(fakerCore: FakerCore): string {
-  return helpersArrayElement(fakerCore, fakerCore.locale.person.sex);
+export function fakePersonSex(fakerCore: FakerCore): string {
+  return fakeHelpersArrayElement(fakerCore, fakerCore.locale.person.sex);
 }

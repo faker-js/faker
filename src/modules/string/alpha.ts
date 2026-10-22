@@ -1,10 +1,10 @@
 import type { FakerCore } from '../../core';
 import type { LiteralUnion } from '../../internal/types';
 import type { Casing, NumberOrRange } from '../../utils/types';
-import { helpersRangeToNumber } from '../helpers/range-to-number';
+import { fakeHelpersRangeToNumber } from '../helpers/range-to-number';
 import type { AlphaChar } from './_types';
 import { LOWER_CHARS, UPPER_CHARS } from './_types';
-import { stringFromCharacters } from './from-characters';
+import { fakeStringFromCharacters } from './from-characters';
 
 /**
  * Generating a string consisting of letters in the English alphabet.
@@ -16,18 +16,18 @@ import { stringFromCharacters } from './from-characters';
  * @param options.exclude An array with characters which should be excluded in the generated string. Defaults to `[]`.
  *
  * @example
- * stringAlpha(fakerCore) // 'b'
- * stringAlpha(fakerCore, 10) // 'fEcAaCVbaR'
- * stringAlpha(fakerCore, { length: { min: 5, max: 10 } }) // 'HcVrCf'
- * stringAlpha(fakerCore, { casing: 'lower' }) // 'r'
- * stringAlpha(fakerCore, { exclude: ['W'] }) // 'Z'
- * stringAlpha(fakerCore, { length: 5, casing: 'upper', exclude: ['A'] }) // 'DTCIC'
+ * fakeStringAlpha(fakerCore) // 'b'
+ * fakeStringAlpha(fakerCore, 10) // 'fEcAaCVbaR'
+ * fakeStringAlpha(fakerCore, { length: { min: 5, max: 10 } }) // 'HcVrCf'
+ * fakeStringAlpha(fakerCore, { casing: 'lower' }) // 'r'
+ * fakeStringAlpha(fakerCore, { exclude: ['W'] }) // 'Z'
+ * fakeStringAlpha(fakerCore, { length: 5, casing: 'upper', exclude: ['A'] }) // 'DTCIC'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function stringAlpha(
+export function fakeStringAlpha(
   fakerCore: FakerCore,
   options:
     | number
@@ -58,7 +58,7 @@ export function stringAlpha(
     };
   }
 
-  const length = helpersRangeToNumber(fakerCore, options.length ?? 1);
+  const length = fakeHelpersRangeToNumber(fakerCore, options.length ?? 1);
   if (length <= 0) {
     return '';
   }
@@ -90,5 +90,5 @@ export function stringAlpha(
 
   charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-  return stringFromCharacters(fakerCore, charsArray, length);
+  return fakeStringFromCharacters(fakerCore, charsArray, length);
 }

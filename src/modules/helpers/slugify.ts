@@ -9,14 +9,14 @@ import type { FakerCore } from '../../core';
  * @param string The input to slugify. Defaults to `''`.
  *
  * @example
- * helpersSlugify(fakerCore) // ''
- * helpersSlugify(fakerCore, "Hello world!") // 'Hello-world'
+ * fakeHelpersSlugify(fakerCore) // ''
+ * fakeHelpersSlugify(fakerCore, "Hello world!") // 'Hello-world'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function helpersSlugify(
+export function fakeHelpersSlugify(
   fakerCore: FakerCore,
   string: string = ''
 ): string {

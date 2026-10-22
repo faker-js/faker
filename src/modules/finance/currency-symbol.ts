@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 /**
  * Returns a random currency symbol.
@@ -10,13 +10,13 @@ import { helpersArrayElement } from '../helpers/array-element';
  * @throws {FakerError} If no currency in the locale data has a symbol.
  *
  * @example
- * financeCurrencySymbol(fakerCore) // '$'
+ * fakeFinanceCurrencySymbol(fakerCore) // '$'
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function financeCurrencySymbol(fakerCore: FakerCore): string {
+export function fakeFinanceCurrencySymbol(fakerCore: FakerCore): string {
   const currenciesWithSymbols = fakerCore.locale.finance.currency.filter(
     (currency) => currency.symbol.length > 0
   );
@@ -27,5 +27,5 @@ export function financeCurrencySymbol(fakerCore: FakerCore): string {
     );
   }
 
-  return helpersArrayElement(fakerCore, currenciesWithSymbols).symbol;
+  return fakeHelpersArrayElement(fakerCore, currenciesWithSymbols).symbol;
 }

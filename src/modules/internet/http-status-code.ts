@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { helpersArrayElement } from '../helpers/array-element';
+import { fakeHelpersArrayElement } from '../helpers/array-element';
 
 export type HTTPStatusCodeType =
   | 'informational'
@@ -16,14 +16,14 @@ export type HTTPStatusCodeType =
  * @param options.types A list of the HTTP status code types that should be used.
  *
  * @example
- * internetHttpStatusCode(fakerCore) // 200
- * internetHttpStatusCode(fakerCore, { types: ['success', 'serverError'] }) // 500
+ * fakeInternetHttpStatusCode(fakerCore) // 200
+ * fakeInternetHttpStatusCode(fakerCore, { types: ['success', 'serverError'] }) // 500
  *
  * @since 11.0.0
  *
  * @experimental
  */
-export function internetHttpStatusCode(
+export function fakeInternetHttpStatusCode(
   fakerCore: FakerCore,
   options: {
     /**
@@ -39,8 +39,8 @@ export function internetHttpStatusCode(
       fakerCore.locale.internet.http_status_code
     ) as HTTPStatusCodeType[],
   } = options;
-  const httpStatusCodeType = helpersArrayElement(fakerCore, types);
-  return helpersArrayElement(
+  const httpStatusCodeType = fakeHelpersArrayElement(fakerCore, types);
+  return fakeHelpersArrayElement(
     fakerCore,
     fakerCore.locale.internet.http_status_code[httpStatusCodeType]
   );

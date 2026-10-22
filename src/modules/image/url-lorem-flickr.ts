@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { deprecated } from '../../internal/deprecated';
-import { numberInt } from '../number/int';
+import { fakeNumberInt } from '../number/int';
 
 /**
  * Generates a random image url provided via https://loremflickr.com.
@@ -14,30 +14,30 @@ import { numberInt } from '../number/int';
  * @param options.category Category to use for the image.
  *
  * @example
- * imageUrlLoremFlickr(fakerCore) // 'https://loremflickr.com/640/480?lock=1234'
- * imageUrlLoremFlickr(fakerCore, { width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
- * imageUrlLoremFlickr(fakerCore, { height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
- * imageUrlLoremFlickr(fakerCore, { category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
+ * fakeImageUrlLoremFlickr(fakerCore) // 'https://loremflickr.com/640/480?lock=1234'
+ * fakeImageUrlLoremFlickr(fakerCore, { width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
+ * fakeImageUrlLoremFlickr(fakerCore, { height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
+ * fakeImageUrlLoremFlickr(fakerCore, { category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
  *
  * @since 11.0.0
  *
- * @deprecated LoremFlickr is no longer available, and image links will be broken. Use `imageUrl(fakerCore)` instead.
+ * @deprecated LoremFlickr is no longer available, and image links will be broken. Use `fakeImageUrl(fakerCore)` instead.
  *
  * @experimental
  */
-export function imageUrlLoremFlickr(
+export function fakeImageUrlLoremFlickr(
   fakerCore: FakerCore,
   options: {
     /**
      * The width of the image.
      *
-     * @default numberInt(fakerCore, { min: 1, max: 3999 })
+     * @default fakeNumberInt(fakerCore, { min: 1, max: 3999 })
      */
     width?: number;
     /**
      * The height of the image.
      *
-     * @default numberInt(fakerCore, { min: 1, max: 3999 })
+     * @default fakeNumberInt(fakerCore, { min: 1, max: 3999 })
      */
     height?: number;
     /**
@@ -47,19 +47,19 @@ export function imageUrlLoremFlickr(
   } = {}
 ): string {
   deprecated({
-    deprecated: 'imageUrlLoremFlickr(fakerCore)',
-    proposed: 'imageUrl(fakerCore)',
+    deprecated: 'fakeImageUrlLoremFlickr(fakerCore)',
+    proposed: 'fakeImageUrl(fakerCore)',
     since: '10.1.0',
     until: '11.0.0',
   });
 
   const {
-    width = numberInt(fakerCore, { min: 1, max: 3999 }),
-    height = numberInt(fakerCore, { min: 1, max: 3999 }),
+    width = fakeNumberInt(fakerCore, { min: 1, max: 3999 }),
+    height = fakeNumberInt(fakerCore, { min: 1, max: 3999 }),
     category,
   } = options;
 
   return `https://loremflickr.com/${width}/${height}${
     category == null ? '' : `/${category}`
-  }?lock=${numberInt(fakerCore)}`;
+  }?lock=${fakeNumberInt(fakerCore)}`;
 }
