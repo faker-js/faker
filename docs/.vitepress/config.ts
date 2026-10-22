@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/theme';
-import { apiPages } from './api-pages';
+import { apiPages } from './api-pages.ts';
 import {
   algoliaIndex,
   commitHash,
@@ -9,7 +9,7 @@ import {
   versionBannerInfix,
   versionLabel,
   versionLinks,
-} from './versions';
+} from './versions.ts';
 
 type SidebarItem = DefaultTheme.SidebarItem;
 
