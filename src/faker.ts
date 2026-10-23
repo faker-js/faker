@@ -9,7 +9,7 @@ import { CommerceModule } from './modules/commerce/module';
 import { CompanyModule } from './modules/company/module';
 import { DatabaseModule } from './modules/database/module';
 import { DateModule } from './modules/date/module';
-import { FinanceModule } from './modules/finance';
+import { FinanceModule } from './modules/finance/module';
 import { FoodModule } from './modules/food';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
