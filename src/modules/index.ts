@@ -16,3 +16,4 @@ export * from './image';
 export * from './internet';
 export * from './location';
 export * from './lorem';
+export * from './medical';
