@@ -41,7 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export type { DateModule, SimpleDateModule } from './modules/date';
 export type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,
