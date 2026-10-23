@@ -664,6 +664,10 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
       "ScienceModule",
       "Unit",
     ],
+    "values": [
+      "fakeScienceChemicalElement",
+      "fakeScienceUnit",
+    ],
   },
   "modules/string": {
     "types": [
