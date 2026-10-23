@@ -8,3 +8,4 @@ export * from './database';
 export * from './datatype';
 export * from './date';
 export * from './finance';
+export * from './food';
