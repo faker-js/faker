@@ -41,7 +41,8 @@ export function fakeImagePersonPortrait(
   } = {}
 ): string {
   const { size = 512 } = options;
-  let { sex = fakePersonSexType(fakerCore, { includeGeneric: false }) } = options;
+  let { sex = fakePersonSexType(fakerCore, { includeGeneric: false }) } =
+    options;
 
   if (sex === 'generic') {
     sex = fakePersonSexType(fakerCore, { includeGeneric: false });
