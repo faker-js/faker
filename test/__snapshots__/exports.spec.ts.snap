@@ -239,14 +239,28 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
       "zu_ZA",
     ],
   },
-  "modules/airline": {
-    "types": [
-      "AircraftType",
-      "AirlineModule",
-    ],
-    "values": [
-      "Aircraft",
-    ],
+  "modules": {
+    "stars": {
+      "airline": {
+        "types": [
+          "AircraftType",
+          "Airline",
+          "AirlineModule",
+          "Airplane",
+          "Airport",
+        ],
+        "values": [
+          "Aircraft",
+          "fakeAirlineAircraftType",
+          "fakeAirlineAirline",
+          "fakeAirlineAirplane",
+          "fakeAirlineAirport",
+          "fakeAirlineFlightNumber",
+          "fakeAirlineRecordLocator",
+          "fakeAirlineSeat",
+        ],
+      },
+    },
   },
   "modules/animal": {
     "types": [
