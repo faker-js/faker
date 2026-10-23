@@ -653,6 +653,10 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "PhoneModule",
     ],
+    "values": [
+      "fakePhoneImei",
+      "fakePhoneNumber",
+    ],
   },
   "modules/science": {
     "types": [
