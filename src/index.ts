@@ -54,7 +54,7 @@ export * from './modules/food';
 export * from './modules/git';
 export * from './modules/hacker';
 export * from './modules/helpers';
-export type { ImageModule } from './modules/image';
+export * from './modules/image';
 export { IPv4Network, IPv6Network } from './modules/internet';
 export type {
   InternetModule,

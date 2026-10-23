@@ -495,6 +495,15 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "ImageModule",
     ],
+    "values": [
+      "fakeImageAvatar",
+      "fakeImageAvatarGitHub",
+      "fakeImageDataUri",
+      "fakeImagePersonPortrait",
+      "fakeImageUrl",
+      "fakeImageUrlLoremFlickr",
+      "fakeImageUrlPicsumPhotos",
+    ],
   },
   "modules/internet": {
     "types": [
