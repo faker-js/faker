@@ -353,12 +353,19 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeCompanyName",
         ],
       },
+      "database": {
+        "types": [
+          "DatabaseModule",
+        ],
+        "values": [
+          "fakeDatabaseCollation",
+          "fakeDatabaseColumn",
+          "fakeDatabaseEngine",
+          "fakeDatabaseMongodbObjectId",
+          "fakeDatabaseType",
+        ],
+      },
     },
-  },
-  "modules/database": {
-    "types": [
-      "DatabaseModule",
-    ],
   },
   "modules/datatype": {
     "types": [
