@@ -7,3 +7,4 @@ export * from './company';
 export * from './database';
 export * from './datatype';
 export * from './date';
+export * from './finance';
