@@ -18,7 +18,7 @@ import { ImageModule } from './modules/image/module';
 import { InternetModule } from './modules/internet/module';
 import { LocationModule } from './modules/location/module';
 import { LoremModule } from './modules/lorem/module';
-import { MedicalModule } from './modules/medical';
+import { MedicalModule } from './modules/medical/module';
 import { MusicModule } from './modules/music';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
