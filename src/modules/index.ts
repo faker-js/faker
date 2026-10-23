@@ -21,3 +21,4 @@ export * from './music';
 export * from './number';
 export * from './person';
 export * from './phone';
+export * from './science';
