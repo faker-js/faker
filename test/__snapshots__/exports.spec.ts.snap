@@ -573,6 +573,17 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "LoremModule",
     ],
+    "values": [
+      "fakeLoremLines",
+      "fakeLoremParagraph",
+      "fakeLoremParagraphs",
+      "fakeLoremSentence",
+      "fakeLoremSentences",
+      "fakeLoremSlug",
+      "fakeLoremText",
+      "fakeLoremWord",
+      "fakeLoremWords",
+    ],
   },
   "modules/medical": {
     "types": [
