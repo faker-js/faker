@@ -48,7 +48,7 @@ export * from './modules/commerce';
 export * from './modules/company';
 export * from './modules/database';
 export * from './modules/datatype';
-export type { DateModule, SimpleDateModule } from './modules/date';
+export * from './modules/date';
 export type {
   BitcoinAddressFamilyType,
   BitcoinNetworkType,

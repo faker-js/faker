@@ -2,7 +2,7 @@ import type { FakerCore, FakerOptions } from './core';
 import { createFakerCore } from './core';
 import { randomSeed } from './internal/seed';
 import { DatatypeModule } from './modules/datatype/module';
-import { SimpleDateModule } from './modules/date';
+import { SimpleDateModule } from './modules/date/module';
 import { SimpleHelpersModule } from './modules/helpers';
 import { SimpleLocationModule } from './modules/location';
 import { NumberModule } from './modules/number';
