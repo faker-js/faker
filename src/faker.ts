@@ -4,7 +4,7 @@ import type { LocaleProxy } from './internal/locale-proxy';
 import { AirlineModule } from './modules/airline/module';
 import { AnimalModule } from './modules/animal/module';
 import { BookModule } from './modules/book/module';
-import { ColorModule } from './modules/color';
+import { ColorModule } from './modules/color/module';
 import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
 import { DatabaseModule } from './modules/database';
