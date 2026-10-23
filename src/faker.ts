@@ -24,7 +24,7 @@ import { PersonModule } from './modules/person/module';
 import { PhoneModule } from './modules/phone/module';
 import { ScienceModule } from './modules/science/module';
 import { SystemModule } from './modules/system/module';
-import { VehicleModule } from './modules/vehicle';
+import { VehicleModule } from './modules/vehicle/module';
 import { WordModule } from './modules/word';
 import { SimpleFaker } from './simple-faker';
 
