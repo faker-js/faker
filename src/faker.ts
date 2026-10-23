@@ -14,7 +14,7 @@ import { FoodModule } from './modules/food/module';
 import { GitModule } from './modules/git/module';
 import { HackerModule } from './modules/hacker/module';
 import { HelpersModule } from './modules/helpers/module';
-import { ImageModule } from './modules/image';
+import { ImageModule } from './modules/image/module';
 import { InternetModule } from './modules/internet';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
