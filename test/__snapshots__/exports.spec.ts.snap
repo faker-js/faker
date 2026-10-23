@@ -339,6 +339,17 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "CompanyModule",
     ],
+    "values": [
+      "fakeCompanyBuzzAdjective",
+      "fakeCompanyBuzzNoun",
+      "fakeCompanyBuzzPhrase",
+      "fakeCompanyBuzzVerb",
+      "fakeCompanyCatchPhrase",
+      "fakeCompanyCatchPhraseAdjective",
+      "fakeCompanyCatchPhraseDescriptor",
+      "fakeCompanyCatchPhraseNoun",
+      "fakeCompanyName",
+    ],
   },
   "modules/database": {
     "types": [
