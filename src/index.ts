@@ -44,7 +44,7 @@ export * from './modules/airline';
 export * from './modules/animal';
 export * from './modules/book';
 export * from './modules/color';
-export type { CommerceModule } from './modules/commerce';
+export * from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
