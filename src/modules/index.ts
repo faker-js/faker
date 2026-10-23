@@ -11,3 +11,4 @@ export * from './finance';
 export * from './food';
 export * from './git';
 export * from './hacker';
+export * from './helpers';

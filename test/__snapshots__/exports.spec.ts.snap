@@ -467,13 +467,34 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeHackerVerb",
         ],
       },
+      "helpers": {
+        "types": [
+          "HelpersModule",
+          "SimpleHelpersModule",
+        ],
+        "values": [
+          "fakeEval",
+          "fakeHelpersArrayElement",
+          "fakeHelpersArrayElements",
+          "fakeHelpersArraySamples",
+          "fakeHelpersEnumValue",
+          "fakeHelpersFromRegExp",
+          "fakeHelpersMaybe",
+          "fakeHelpersMultiple",
+          "fakeHelpersMustache",
+          "fakeHelpersObjectEntry",
+          "fakeHelpersObjectKey",
+          "fakeHelpersObjectValue",
+          "fakeHelpersRangeToNumber",
+          "fakeHelpersReplaceCreditCardSymbols",
+          "fakeHelpersReplaceSymbols",
+          "fakeHelpersShuffle",
+          "fakeHelpersSlugify",
+          "fakeHelpersUniqueArray",
+          "fakeHelpersWeightedArrayElement",
+        ],
+      },
     },
-  },
-  "modules/helpers": {
-    "types": [
-      "HelpersModule",
-      "SimpleHelpersModule",
-    ],
   },
   "modules/image": {
     "types": [
