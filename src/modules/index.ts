@@ -3,3 +3,4 @@ export * from './animal';
 export * from './book';
 export * from './color';
 export * from './commerce';
+export * from './company';
