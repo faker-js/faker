@@ -41,7 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export type { PhoneModule } from './modules/phone';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';

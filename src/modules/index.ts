@@ -20,3 +20,4 @@ export * from './medical';
 export * from './music';
 export * from './number';
 export * from './person';
+export * from './phone';
