@@ -56,7 +56,7 @@ export * from './modules/hacker';
 export * from './modules/helpers';
 export * from './modules/image';
 export * from './modules/internet';
-export type { LocationModule, SimpleLocationModule } from './modules/location';
+export * from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MedicalModule } from './modules/medical';
 export type { MusicModule } from './modules/music';
