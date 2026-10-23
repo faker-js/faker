@@ -428,6 +428,17 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "FoodModule",
     ],
+    "values": [
+      "fakeFoodAdjective",
+      "fakeFoodDescription",
+      "fakeFoodDish",
+      "fakeFoodEthnicCategory",
+      "fakeFoodFruit",
+      "fakeFoodIngredient",
+      "fakeFoodMeat",
+      "fakeFoodSpice",
+      "fakeFoodVegetable",
+    ],
   },
   "modules/git": {
     "types": [

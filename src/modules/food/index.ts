@@ -1,1 +1,10 @@
-export * from './module';
+export { fakeFoodAdjective } from './adjective';
+export { fakeFoodDescription } from './description';
+export { fakeFoodDish } from './dish';
+export { fakeFoodEthnicCategory } from './ethnic-category';
+export { fakeFoodFruit } from './fruit';
+export { fakeFoodIngredient } from './ingredient';
+export { fakeFoodMeat } from './meat';
+export { fakeFoodSpice } from './spice';
+export { fakeFoodVegetable } from './vegetable';
+export type * from './module';
