@@ -444,6 +444,13 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "GitModule",
     ],
+    "values": [
+      "fakeGitBranch",
+      "fakeGitCommitDate",
+      "fakeGitCommitEntry",
+      "fakeGitCommitMessage",
+      "fakeGitCommitSha",
+    ],
   },
   "modules/hacker": {
     "types": [
