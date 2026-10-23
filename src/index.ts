@@ -67,7 +67,7 @@ export * from './modules/science';
 export * from './modules/string';
 export * from './modules/system';
 export * from './modules/vehicle';
-export type { WordModule } from './modules/word';
+export * from './modules/word';
 export type { Randomizer } from './randomizer';
 export { SimpleFaker, simpleFaker } from './simple-faker';
 export { mergeLocales } from './utils/merge-locales';

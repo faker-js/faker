@@ -25,7 +25,7 @@ import { PhoneModule } from './modules/phone/module';
 import { ScienceModule } from './modules/science/module';
 import { SystemModule } from './modules/system/module';
 import { VehicleModule } from './modules/vehicle/module';
-import { WordModule } from './modules/word';
+import { WordModule } from './modules/word/module';
 import { SimpleFaker } from './simple-faker';
 
 /**
