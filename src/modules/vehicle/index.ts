@@ -1,1 +1,10 @@
-export * from './module';
+export { fakeVehicleBicycle } from './bicycle';
+export { fakeVehicleColor } from './color';
+export { fakeVehicleFuel } from './fuel';
+export { fakeVehicleManufacturer } from './manufacturer';
+export { fakeVehicleModel } from './model';
+export { fakeVehicleType } from './type';
+export { fakeVehicleVehicle } from './vehicle';
+export { fakeVehicleVin } from './vin';
+export { fakeVehicleVrm } from './vrm';
+export type * from './module';
