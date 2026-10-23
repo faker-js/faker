@@ -1,1 +1,17 @@
-export * from './module';
+export { fakeAnimalBear } from './bear';
+export { fakeAnimalBird } from './bird';
+export { fakeAnimalCat } from './cat';
+export { fakeAnimalCetacean } from './cetacean';
+export { fakeAnimalCow } from './cow';
+export { fakeAnimalCrocodilia } from './crocodilia';
+export { fakeAnimalDog } from './dog';
+export { fakeAnimalFish } from './fish';
+export { fakeAnimalHorse } from './horse';
+export { fakeAnimalInsect } from './insect';
+export { fakeAnimalLion } from './lion';
+export type * from './module';
+export { fakeAnimalPetName } from './pet-name';
+export { fakeAnimalRabbit } from './rabbit';
+export { fakeAnimalRodent } from './rodent';
+export { fakeAnimalSnake } from './snake';
+export { fakeAnimalType } from './type';
