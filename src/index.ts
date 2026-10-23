@@ -41,12 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export { IPv4Network, IPv6Network } from './modules/internet';
-export type {
-  InternetModule,
-  IPv4NetworkType,
-  IPv6NetworkType,
-} from './modules/internet';
 export type { LocationModule, SimpleLocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MedicalModule } from './modules/medical';
