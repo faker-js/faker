@@ -1,4 +1,3 @@
-export { fakeEval } from './_eval';
 export { fakeHelpersArrayElement } from './array-element';
 export { fakeHelpersArrayElements } from './array-elements';
 export { fakeHelpersArraySamples } from './array-samples';

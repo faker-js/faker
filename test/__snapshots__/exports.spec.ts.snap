@@ -473,7 +473,6 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "SimpleHelpersModule",
         ],
         "values": [
-          "fakeEval",
           "fakeHelpersArrayElement",
           "fakeHelpersArrayElements",
           "fakeHelpersArraySamples",
