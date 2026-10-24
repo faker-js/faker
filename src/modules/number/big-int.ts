@@ -1,6 +1,7 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { fakeStringNumeric } from '../string/numeric';
+import { fakeNumberInt } from './int';
 
 /**
  * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
@@ -93,13 +94,16 @@ export function fakeNumberBigInt(
     );
   }
 
-  const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
+  const delta = effectiveMax - effectiveMin;
   const offset =
-    BigInt(
-      fakeStringNumeric(fakerCore, {
-        length: delta.toString(10).length,
-        allowLeadingZeros: true,
-      })
-    ) % delta;
+    delta < BigInt(Number.MAX_SAFE_INTEGER)
+      ? BigInt(fakeNumberInt(fakerCore, { min: 0, max: Number(delta) }))
+      : BigInt(
+          fakeStringNumeric(fakerCore, {
+            length: delta.toString(10).length,
+            allowLeadingZeros: true,
+          })
+        ) %
+        (delta + 1n); // +1 for inclusive max bounds and even distribution
   return (effectiveMin + offset) * multipleOf;
 }

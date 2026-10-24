@@ -672,6 +672,30 @@ describe('number', () => {
         expect(randomBigInt).toBeLessThanOrEqual(10000000000000000000000n);
       });
 
+      it('should return every value in a small range equally often', () => {
+        faker.seed(42);
+        const counts = Array.from({ length: 6 }, () => 0);
+        for (let i = 0; i < 6000; i++) {
+          counts[Number(faker.number.bigInt({ min: 1n, max: 6n })) - 1]++;
+        }
+
+        for (const count of counts) {
+          expect(count).toBeGreaterThan(900);
+          expect(count).toBeLessThan(1100);
+        }
+      });
+
+      it('should return when the randomizer only gives high values', () => {
+        const highFaker = new SimpleFaker({
+          randomizer: {
+            next: () => MERSENNE_MAX_VALUE,
+            seed: () => {},
+          },
+        });
+
+        expect(highFaker.number.bigInt({ min: 1n, max: 6n })).toBe(6n);
+      });
+
       it('should not mutate the input object', () => {
         const input: {
           min?: bigint;
