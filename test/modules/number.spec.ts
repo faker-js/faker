@@ -363,6 +363,62 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
+      it('provides exact multiples of a decimal multipleOf within the bounds', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 100 }, () =>
+              faker.number.float({
+                min: 0.9,
+                max: 1.8,
+                multipleOf: 0.3,
+              })
+            )
+          ),
+        ].toSorted();
+
+        expect(results).toEqual([0.9, 1.2, 1.5, 1.8]);
+      });
+
+      it('keeps bounds reachable when they have more decimals than multipleOf', () => {
+        const results = [
+          ...new Set(
+            Array.from({ length: 100 }, () =>
+              faker.number.float({
+                min: 1.1,
+                max: 1.3,
+                multipleOf: 0.05,
+              })
+            )
+          ),
+        ].toSorted();
+
+        expect(results).toEqual([1.1, 1.15, 1.2, 1.25, 1.3]);
+      });
+
+      it('keeps Math.PI as a bound when multipleOf is a decimal', () => {
+        const results = Array.from({ length: 100 }, () =>
+          faker.number.float({
+            min: Math.PI,
+            max: 3.3,
+            multipleOf: 0.05,
+          })
+        );
+
+        expect(
+          results.every((r) => [3.15, 3.2, 3.25, 3.3].includes(r))
+        ).toBe(true);
+      });
+
+      it('handles a multipleOf written in exponent notation', () => {
+        const actual = faker.number.float({
+          min: 0.0000003,
+          max: 0.0000003,
+          multipleOf: 3e-7,
+        });
+
+        expect(actual).toBe(0.0000003);
+      });
+
       it.each(times(100))(
         'provides numbers with an exact fractional digits',
         () => {
@@ -423,7 +479,7 @@ describe('number', () => {
 
         expect(() => faker.number.float(input)).toThrow(
           new FakerError(
-            'No suitable integer value between 1.1 and 1.9000000000000001 found.'
+            'No suitable float value between 11 and 19 that is a multiple of 10 found.'
           )
         );
       });
@@ -436,8 +492,36 @@ describe('number', () => {
         };
 
         expect(() => faker.number.float(input)).toThrow(
-          new FakerError('No suitable integer value between 1.1 and 1.1 found.')
+          new FakerError(
+            'No suitable float value between 11 and 11 that is a multiple of 10 found.'
+          )
         );
+      });
+
+      it('throws for impossible decimal multipleOf with the given bounds', () => {
+        const input = {
+          min: 1.11,
+          max: 1.14,
+          multipleOf: 0.05,
+        };
+
+        expect(() => faker.number.float(input)).toThrow(
+          new FakerError(
+            'No suitable float value between 1.11 and 1.14 that is a multiple of 0.05 found.'
+          )
+        );
+      });
+
+      it('keeps the integer error as the cause for impossible decimal multipleOf', () => {
+        let error: unknown;
+        try {
+          faker.number.float({ min: 1.11, max: 1.14, multipleOf: 0.05 });
+        } catch (error_) {
+          error = error_;
+        }
+
+        expect(error).toBeInstanceOf(FakerError);
+        expect((error as FakerError).cause).toBeInstanceOf(FakerError);
       });
 
       it('should not modify the input object', () => {
