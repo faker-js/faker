@@ -672,12 +672,29 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeScienceUnit",
         ],
       },
+      "string": {
+        "types": [
+          "AlphaChar",
+          "AlphaNumericChar",
+          "NumericChar",
+          "StringModule",
+        ],
+        "values": [
+          "fakeStringAlpha",
+          "fakeStringAlphanumeric",
+          "fakeStringBinary",
+          "fakeStringFromCharacters",
+          "fakeStringHexadecimal",
+          "fakeStringNanoid",
+          "fakeStringNumeric",
+          "fakeStringOctal",
+          "fakeStringSample",
+          "fakeStringSymbol",
+          "fakeStringUlid",
+          "fakeStringUuid",
+        ],
+      },
     },
-  },
-  "modules/string": {
-    "types": [
-      "StringModule",
-    ],
   },
   "modules/system": {
     "types": [
