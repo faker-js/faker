@@ -41,7 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export { IPv4Network, IPv6Network } from './modules/internet';
 export type {
