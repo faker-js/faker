@@ -8,7 +8,7 @@ import { ColorModule } from './modules/color/module';
 import { CommerceModule } from './modules/commerce/module';
 import { CompanyModule } from './modules/company/module';
 import { DatabaseModule } from './modules/database/module';
-import { DateModule } from './modules/date';
+import { DateModule } from './modules/date/module';
 import { FinanceModule } from './modules/finance';
 import { FoodModule } from './modules/food';
 import { GitModule } from './modules/git';
