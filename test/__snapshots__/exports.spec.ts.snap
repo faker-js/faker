@@ -296,21 +296,32 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeBookTitle",
         ],
       },
+      "color": {
+        "types": [
+          "ColorFormat",
+          "ColorModule",
+          "CssFunctionType",
+          "CssSpaceType",
+          "NumberColorFormat",
+          "StringColorFormat",
+        ],
+        "values": [
+          "CssFunction",
+          "CssSpace",
+          "fakeColorCmyk",
+          "fakeColorColorByCSSColorSpace",
+          "fakeColorCssSupportedFunction",
+          "fakeColorCssSupportedSpace",
+          "fakeColorHsl",
+          "fakeColorHuman",
+          "fakeColorHwb",
+          "fakeColorLab",
+          "fakeColorLch",
+          "fakeColorRgb",
+          "fakeColorSpace",
+        ],
+      },
     },
-  },
-  "modules/color": {
-    "types": [
-      "ColorFormat",
-      "ColorModule",
-      "CssFunctionType",
-      "CssSpaceType",
-      "NumberColorFormat",
-      "StringColorFormat",
-    ],
-    "values": [
-      "CssFunction",
-      "CssSpace",
-    ],
   },
   "modules/commerce": {
     "types": [

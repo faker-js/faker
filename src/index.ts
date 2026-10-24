@@ -41,15 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export { CssFunction, CssSpace } from './modules/color';
-export type {
-  ColorFormat,
-  ColorModule,
-  CssFunctionType,
-  CssSpaceType,
-  NumberColorFormat,
-  StringColorFormat,
-} from './modules/color';
 export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
