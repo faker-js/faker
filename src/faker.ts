@@ -7,7 +7,7 @@ import { BookModule } from './modules/book/module';
 import { ColorModule } from './modules/color/module';
 import { CommerceModule } from './modules/commerce/module';
 import { CompanyModule } from './modules/company/module';
-import { DatabaseModule } from './modules/database';
+import { DatabaseModule } from './modules/database/module';
 import { DateModule } from './modules/date';
 import { FinanceModule } from './modules/finance';
 import { FoodModule } from './modules/food';

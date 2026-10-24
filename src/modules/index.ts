@@ -4,3 +4,4 @@ export * from './book';
 export * from './color';
 export * from './commerce';
 export * from './company';
+export * from './database';
