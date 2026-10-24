@@ -652,12 +652,16 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakePersonZodiacSign",
         ],
       },
+      "phone": {
+        "types": [
+          "PhoneModule",
+        ],
+        "values": [
+          "fakePhoneImei",
+          "fakePhoneNumber",
+        ],
+      },
     },
-  },
-  "modules/phone": {
-    "types": [
-      "PhoneModule",
-    ],
   },
   "modules/science": {
     "types": [
