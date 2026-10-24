@@ -23,3 +23,4 @@ export * from './person';
 export * from './phone';
 export * from './science';
 export * from './string';
+export * from './system';
