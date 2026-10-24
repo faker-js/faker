@@ -19,3 +19,4 @@ export * from './lorem';
 export * from './medical';
 export * from './music';
 export * from './number';
+export * from './person';

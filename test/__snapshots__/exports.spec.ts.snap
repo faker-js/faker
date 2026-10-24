@@ -628,16 +628,31 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeNumberRomanNumeral",
         ],
       },
+      "person": {
+        "types": [
+          "PersonModule",
+          "SexType",
+        ],
+        "values": [
+          "Sex",
+          "fakePersonBio",
+          "fakePersonFirstName",
+          "fakePersonFullName",
+          "fakePersonGender",
+          "fakePersonJobArea",
+          "fakePersonJobDescriptor",
+          "fakePersonJobTitle",
+          "fakePersonJobType",
+          "fakePersonLastName",
+          "fakePersonMiddleName",
+          "fakePersonPrefix",
+          "fakePersonSex",
+          "fakePersonSexType",
+          "fakePersonSuffix",
+          "fakePersonZodiacSign",
+        ],
+      },
     },
-  },
-  "modules/person": {
-    "types": [
-      "PersonModule",
-      "SexType",
-    ],
-    "values": [
-      "Sex",
-    ],
   },
   "modules/phone": {
     "types": [
