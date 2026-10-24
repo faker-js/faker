@@ -661,14 +661,18 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakePhoneNumber",
         ],
       },
+      "science": {
+        "types": [
+          "ChemicalElement",
+          "ScienceModule",
+          "Unit",
+        ],
+        "values": [
+          "fakeScienceChemicalElement",
+          "fakeScienceUnit",
+        ],
+      },
     },
-  },
-  "modules/science": {
-    "types": [
-      "ChemicalElement",
-      "ScienceModule",
-      "Unit",
-    ],
   },
   "modules/string": {
     "types": [

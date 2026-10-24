@@ -22,7 +22,7 @@ import { MedicalModule } from './modules/medical/module';
 import { MusicModule } from './modules/music/module';
 import { PersonModule } from './modules/person/module';
 import { PhoneModule } from './modules/phone/module';
-import { ScienceModule } from './modules/science';
+import { ScienceModule } from './modules/science/module';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
