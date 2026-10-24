@@ -603,12 +603,18 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeMedicalSymptom",
         ],
       },
+      "music": {
+        "types": [
+          "MusicModule",
+        ],
+        "values": [
+          "fakeMusicAlbum",
+          "fakeMusicArtist",
+          "fakeMusicGenre",
+          "fakeMusicSongName",
+        ],
+      },
     },
-  },
-  "modules/music": {
-    "types": [
-      "MusicModule",
-    ],
   },
   "modules/number": {
     "types": [
