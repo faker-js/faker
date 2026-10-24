@@ -288,6 +288,29 @@ describe('number', () => {
 
         expect(results).toEqual([750, 0, 0, 0, 0, 0, 0, 0, 0, 250]);
       });
+
+      it('should not round past the upper bound with an offset range', () => {
+        const nearOne = () => MERSENNE_MAX_VALUE;
+
+        expect(faker.number.int({ min: 1, max: 2, distributor: nearOne })).toBe(
+          2
+        );
+        expect(
+          faker.number.int({
+            min: 10,
+            max: 101,
+            multipleOf: 3,
+            distributor: nearOne,
+          })
+        ).toBe(99);
+        expect(
+          faker.number.int({
+            min: Number.MAX_SAFE_INTEGER - 1,
+            max: Number.MAX_SAFE_INTEGER,
+            distributor: nearOne,
+          })
+        ).toBe(Number.MAX_SAFE_INTEGER);
+      });
     });
 
     describe('float', () => {
@@ -361,6 +384,17 @@ describe('number', () => {
         ].toSorted();
 
         expect(results).toEqual([0, 0.5, 1, 1.5]);
+      });
+
+      it('should not round a constrained float past its upper bound', () => {
+        expect(
+          faker.number.float({
+            min: 0.5,
+            max: 1,
+            multipleOf: 0.5,
+            distributor: () => MERSENNE_MAX_VALUE,
+          })
+        ).toBe(1);
       });
 
       it.each(times(100))(
