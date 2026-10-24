@@ -493,12 +493,21 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeHelpersWeightedArrayElement",
         ],
       },
+      "image": {
+        "types": [
+          "ImageModule",
+        ],
+        "values": [
+          "fakeImageAvatar",
+          "fakeImageAvatarGitHub",
+          "fakeImageDataUri",
+          "fakeImagePersonPortrait",
+          "fakeImageUrl",
+          "fakeImageUrlLoremFlickr",
+          "fakeImageUrlPicsumPhotos",
+        ],
+      },
     },
-  },
-  "modules/image": {
-    "types": [
-      "ImageModule",
-    ],
   },
   "modules/internet": {
     "types": [
