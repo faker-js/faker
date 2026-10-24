@@ -543,13 +543,36 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeInternetUsername",
         ],
       },
+      "location": {
+        "types": [
+          "Language",
+          "LocationModule",
+          "SimpleLocationModule",
+        ],
+        "values": [
+          "fakeLocationBuildingNumber",
+          "fakeLocationCardinalDirection",
+          "fakeLocationCity",
+          "fakeLocationContinent",
+          "fakeLocationCountry",
+          "fakeLocationCountryCode",
+          "fakeLocationCounty",
+          "fakeLocationDirection",
+          "fakeLocationLanguage",
+          "fakeLocationLatitude",
+          "fakeLocationLongitude",
+          "fakeLocationNearbyGPSCoordinate",
+          "fakeLocationOrdinalDirection",
+          "fakeLocationPostalAddress",
+          "fakeLocationSecondaryAddress",
+          "fakeLocationState",
+          "fakeLocationStreet",
+          "fakeLocationStreetAddress",
+          "fakeLocationTimeZone",
+          "fakeLocationZipCode",
+        ],
+      },
     },
-  },
-  "modules/location": {
-    "types": [
-      "LocationModule",
-      "SimpleLocationModule",
-    ],
   },
   "modules/lorem": {
     "types": [
