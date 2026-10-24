@@ -15,7 +15,7 @@ import { GitModule } from './modules/git/module';
 import { HackerModule } from './modules/hacker/module';
 import { HelpersModule } from './modules/helpers/module';
 import { ImageModule } from './modules/image/module';
-import { InternetModule } from './modules/internet';
+import { InternetModule } from './modules/internet/module';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MedicalModule } from './modules/medical';
