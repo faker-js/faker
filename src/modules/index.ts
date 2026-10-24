@@ -18,3 +18,4 @@ export * from './location';
 export * from './lorem';
 export * from './medical';
 export * from './music';
+export * from './number';

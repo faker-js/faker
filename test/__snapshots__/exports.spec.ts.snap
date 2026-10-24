@@ -614,12 +614,21 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeMusicSongName",
         ],
       },
+      "number": {
+        "types": [
+          "NumberModule",
+        ],
+        "values": [
+          "fakeNumberBigInt",
+          "fakeNumberBinary",
+          "fakeNumberFloat",
+          "fakeNumberHex",
+          "fakeNumberInt",
+          "fakeNumberOctal",
+          "fakeNumberRomanNumeral",
+        ],
+      },
     },
-  },
-  "modules/number": {
-    "types": [
-      "NumberModule",
-    ],
   },
   "modules/person": {
     "types": [
