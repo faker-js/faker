@@ -5,7 +5,7 @@ import { DatatypeModule } from './modules/datatype/module';
 import { SimpleDateModule } from './modules/date/module';
 import { SimpleHelpersModule } from './modules/helpers/module';
 import { SimpleLocationModule } from './modules/location/module';
-import { NumberModule } from './modules/number';
+import { NumberModule } from './modules/number/module';
 import { StringModule } from './modules/string';
 import { getDefaultRefDate as utilsGetDefaultRefDate } from './utils/get-default-ref-date';
 import { setDefaultRefDate as utilsSetDefaultRefDate } from './utils/set-default-ref-date';
