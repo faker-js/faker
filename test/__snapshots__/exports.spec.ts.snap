@@ -365,12 +365,15 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeDatabaseType",
         ],
       },
+      "datatype": {
+        "types": [
+          "DatatypeModule",
+        ],
+        "values": [
+          "fakeDatatypeBoolean",
+        ],
+      },
     },
-  },
-  "modules/datatype": {
-    "types": [
-      "DatatypeModule",
-    ],
   },
   "modules/date": {
     "types": [
