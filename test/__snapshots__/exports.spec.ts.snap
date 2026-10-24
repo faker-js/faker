@@ -367,6 +367,9 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "DatatypeModule",
     ],
+    "values": [
+      "fakeDatatypeBoolean",
+    ],
   },
   "modules/date": {
     "types": [

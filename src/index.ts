@@ -47,7 +47,7 @@ export * from './modules/color';
 export * from './modules/commerce';
 export * from './modules/company';
 export * from './modules/database';
-export type { DatatypeModule } from './modules/datatype';
+export * from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
 export type {
   BitcoinAddressFamilyType,
