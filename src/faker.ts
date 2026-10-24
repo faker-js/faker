@@ -5,7 +5,7 @@ import { AirlineModule } from './modules/airline/module';
 import { AnimalModule } from './modules/animal/module';
 import { BookModule } from './modules/book/module';
 import { ColorModule } from './modules/color/module';
-import { CommerceModule } from './modules/commerce';
+import { CommerceModule } from './modules/commerce/module';
 import { CompanyModule } from './modules/company';
 import { DatabaseModule } from './modules/database';
 import { DateModule } from './modules/date';
