@@ -454,12 +454,20 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeGitCommitSha",
         ],
       },
+      "hacker": {
+        "types": [
+          "HackerModule",
+        ],
+        "values": [
+          "fakeHackerAbbreviation",
+          "fakeHackerAdjective",
+          "fakeHackerIngverb",
+          "fakeHackerNoun",
+          "fakeHackerPhrase",
+          "fakeHackerVerb",
+        ],
+      },
     },
-  },
-  "modules/hacker": {
-    "types": [
-      "HackerModule",
-    ],
   },
   "modules/helpers": {
     "types": [
