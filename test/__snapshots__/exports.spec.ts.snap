@@ -588,12 +588,22 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeLoremWords",
         ],
       },
+      "medical": {
+        "types": [
+          "MedicalModule",
+        ],
+        "values": [
+          "fakeMedicalAllergen",
+          "fakeMedicalBloodType",
+          "fakeMedicalCondition",
+          "fakeMedicalDepartment",
+          "fakeMedicalDrugName",
+          "fakeMedicalProcedure",
+          "fakeMedicalSpecialty",
+          "fakeMedicalSymptom",
+        ],
+      },
     },
-  },
-  "modules/medical": {
-    "types": [
-      "MedicalModule",
-    ],
   },
   "modules/music": {
     "types": [
