@@ -41,10 +41,10 @@ export function fakeImagePersonPortrait(
   } = {}
 ): string {
   const { size = 512 } = options;
-  let { sex = fakePersonSexType(fakerCore) } = options;
+  let { sex = fakePersonSexType(fakerCore, { includeGeneric: false }) } = options;
 
   if (sex === 'generic') {
-    sex = fakePersonSexType(fakerCore);
+    sex = fakePersonSexType(fakerCore, { includeGeneric: false });
   }
 
   const baseURL = 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait';
