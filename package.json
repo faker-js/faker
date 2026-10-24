@@ -104,7 +104,7 @@
     "@vueuse/core": "15.0.0",
     "commit-and-tag-version": "13.3.0",
     "cypress": "16.2.0",
-    "eslint-plugin-jsdoc": "65.3.12",
+    "eslint-plugin-jsdoc": "65.4.0",
     "jiti": "2.7.0",
     "npm-run-all2": "9.0.3",
     "oxfmt": "0.73.0",
