@@ -111,12 +111,8 @@ export function fakeNumberFloat(
       throw new FakerError(`multipleOf should be greater than 0.`);
     }
 
-    // Pick the multiple as an integer and divide by `factor` once. When min,
-    // max and multipleOf are all finite decimals, `factor` is the shared power
-    // of ten that turns all three into integers, and rounding drops the
-    // floating-point error of the scaling (1.1 * 100 is 110.00000000000001,
-    // which would skip a min of 1.1). For other values (e.g. Math.PI) `factor`
-    // turns multipleOf into 1.
+    // Check if we can easily convert all values to integers to round away any floating-point errors
+    // e.g. 1.1 * 100 is 110.00000000000001 => we need to round in order to include the min of 1.1)
     const scale =
       10 **
       Math.max(
@@ -137,17 +133,22 @@ export function fakeNumberFloat(
     }
 
     try {
-      return (
-        fakeNumberInt(fakerCore, {
-          min: isExact ? Math.round(min * factor) : min * factor,
-          max: isExact ? Math.round(max * factor) : max * factor,
-          multipleOf: isExact ? scaledStep : 1,
-          distributor,
-        }) / factor
-      );
+      const tempInt = isExact
+        ? fakeNumberInt(fakerCore, {
+            min: Math.round(min * factor),
+            max: Math.round(max * factor),
+            multipleOf: scaledStep,
+            distributor,
+          })
+        : fakeNumberInt(fakerCore, {
+            min: min * factor,
+            max: max * factor,
+            distributor,
+          });
+      return tempInt / factor;
     } catch (error) {
-      // The scaled int bounds mean nothing to the caller, so name their own.
       if (error instanceof FakerError) {
+        // Re-throw to refer to the originally supplied bounds instead of the scaled ones.
         throw new FakerError(
           `No suitable float value between ${min} and ${max} that is a multiple of ${multipleOf} found.`,
           { cause: error }

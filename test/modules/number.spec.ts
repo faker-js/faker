@@ -395,6 +395,20 @@ describe('number', () => {
         expect(results).toEqual([1.1, 1.15, 1.2, 1.25, 1.3]);
       });
 
+      it('keeps Math.PI as a bound when multipleOf is a decimal', () => {
+        const results = Array.from({ length: 100 }, () =>
+          faker.number.float({
+            min: Math.PI,
+            max: 3.3,
+            multipleOf: 0.05,
+          })
+        );
+
+        expect(
+          results.every((r) => [3.15, 3.2, 3.25, 3.3].includes(r))
+        ).toBe(true);
+      });
+
       it('handles a multipleOf written in exponent notation', () => {
         const actual = faker.number.float({
           min: 0.0000003,
