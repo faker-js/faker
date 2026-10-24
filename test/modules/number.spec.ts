@@ -674,15 +674,12 @@ describe('number', () => {
 
       it('should return every value in a small range equally often', () => {
         faker.seed(42);
-        const counts = new Map<bigint, number>();
+        const counts = Array.from({ length: 6 }, () => 0);
         for (let i = 0; i < 6000; i++) {
-          const value = faker.number.bigInt({ min: 1n, max: 6n });
-          counts.set(value, (counts.get(value) ?? 0) + 1);
+          counts[Number(faker.number.bigInt({ min: 1n, max: 6n })) - 1]++;
         }
 
-        expect(counts.size).toBe(6);
-        for (const count of counts.values()) {
-          // 1000 expected per value; the biased draw gave about 1333 and 667
+        for (const count of counts) {
           expect(count).toBeGreaterThan(900);
           expect(count).toBeLessThan(1100);
         }
@@ -691,7 +688,7 @@ describe('number', () => {
       it('should return when the randomizer only gives high values', () => {
         const highFaker = new SimpleFaker({
           randomizer: {
-            next: () => 1 - Number.EPSILON,
+            next: () => MERSENNE_MAX_VALUE,
             seed: () => {},
           },
         });

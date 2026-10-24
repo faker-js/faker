@@ -94,17 +94,16 @@ export function fakeNumberBigInt(
     );
   }
 
-  const delta = effectiveMax - effectiveMin + 1n; // +1 for inclusive max bounds and even distribution
-  // fakeNumberInt draws every value of a safe integer range equally often.
-  // Wider ranges keep the previous digit draw.
+  const delta = effectiveMax - effectiveMin;
   const offset =
-    delta <= BigInt(Number.MAX_SAFE_INTEGER)
-      ? BigInt(fakeNumberInt(fakerCore, { min: 0, max: Number(delta - 1n) }))
+    delta < BigInt(Number.MAX_SAFE_INTEGER)
+      ? BigInt(fakeNumberInt(fakerCore, { min: 0, max: Number(delta) }))
       : BigInt(
           fakeStringNumeric(fakerCore, {
             length: delta.toString(10).length,
             allowLeadingZeros: true,
           })
-        ) % delta;
+        ) %
+        (delta + 1n); // +1 for inclusive max bounds and even distribution
   return (effectiveMin + offset) * multipleOf;
 }
