@@ -41,14 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export type {
-  BitcoinAddressFamilyType,
-  BitcoinNetworkType,
-  Currency,
-  FinanceModule,
-  VatNumberCountryCode,
-} from './modules/finance';
-export { BitcoinAddressFamily, BitcoinNetwork } from './modules/finance';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
