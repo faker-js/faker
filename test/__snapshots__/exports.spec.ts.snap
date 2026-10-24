@@ -572,12 +572,23 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeLocationZipCode",
         ],
       },
+      "lorem": {
+        "types": [
+          "LoremModule",
+        ],
+        "values": [
+          "fakeLoremLines",
+          "fakeLoremParagraph",
+          "fakeLoremParagraphs",
+          "fakeLoremSentence",
+          "fakeLoremSentences",
+          "fakeLoremSlug",
+          "fakeLoremText",
+          "fakeLoremWord",
+          "fakeLoremWords",
+        ],
+      },
     },
-  },
-  "modules/lorem": {
-    "types": [
-      "LoremModule",
-    ],
   },
   "modules/medical": {
     "types": [
