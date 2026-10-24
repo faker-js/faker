@@ -41,7 +41,6 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules';
-export type { WordModule } from './modules/word';
 export type { Randomizer } from './randomizer';
 export { SimpleFaker, simpleFaker } from './simple-faker';
 export { mergeLocales } from './utils/merge-locales';

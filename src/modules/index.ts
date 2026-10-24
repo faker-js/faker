@@ -25,3 +25,4 @@ export * from './science';
 export * from './string';
 export * from './system';
 export * from './vehicle';
+export * from './word';

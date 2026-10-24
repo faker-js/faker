@@ -729,12 +729,23 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
           "fakeVehicleVrm",
         ],
       },
+      "word": {
+        "types": [
+          "WordModule",
+        ],
+        "values": [
+          "fakeWordAdjective",
+          "fakeWordAdverb",
+          "fakeWordConjunction",
+          "fakeWordInterjection",
+          "fakeWordNoun",
+          "fakeWordPreposition",
+          "fakeWordSample",
+          "fakeWordVerb",
+          "fakeWordWords",
+        ],
+      },
     },
-  },
-  "modules/word": {
-    "types": [
-      "WordModule",
-    ],
   },
   "randomizer": {
     "types": [
