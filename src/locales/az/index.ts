@@ -17,6 +17,7 @@ import internet from './internet';
 import location from './location';
 import medical from './medical';
 import metadata from './metadata';
+import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
@@ -43,6 +44,7 @@ const az: LocaleDefinition = {
   location,
   medical,
   metadata,
+  music,
   person,
   phone_number,
   science,
