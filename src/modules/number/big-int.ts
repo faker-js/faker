@@ -97,13 +97,13 @@ export function fakeNumberBigInt(
   const delta = effectiveMax - effectiveMin;
   const offset =
     delta < BigInt(Number.MAX_SAFE_INTEGER)
-      ? BigInt(fakeNumberInt(fakerCore, { min: 0, max: Number(delta) }))
+      ? BigInt(fakeNumberInt(fakerCore, Number(delta)))
       : BigInt(
           fakeStringNumeric(fakerCore, {
             length: delta.toString(10).length,
             allowLeadingZeros: true,
           })
         ) %
-        (delta + 1n); // +1 for inclusive max bounds and even distribution
+        (delta + 1n); // +1 for inclusive max bounds
   return (effectiveMin + offset) * multipleOf;
 }
