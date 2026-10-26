@@ -60,7 +60,7 @@ export * from './modules/location';
 export * from './modules/lorem';
 export * from './modules/medical';
 export * from './modules/music';
-export type { NumberModule } from './modules/number';
+export * from './modules/number';
 export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';
 export type { PhoneModule } from './modules/phone';
