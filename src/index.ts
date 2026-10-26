@@ -42,7 +42,7 @@ export { fakerEN as faker } from './locale';
 export * from './locales';
 export * from './modules/airline';
 export * from './modules/animal';
-export type { BookModule } from './modules/book';
+export * from './modules/book';
 export { CssFunction, CssSpace } from './modules/color';
 export type {
   ColorFormat,
