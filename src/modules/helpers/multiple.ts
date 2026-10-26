@@ -9,14 +9,14 @@ import { fakeHelpersRangeToNumber } from './range-to-number';
  *
  * @param fakerCore The FakerCore to use.
  * @param method The method used to generate the values.
- * The method will be called with `(_, index)`, to allow using the index in the generated value e.g. as id.
+ * The method will be called with `(fakerCore, index)`, to allow using the index in the generated value e.g. as id.
  * @param options The optional options object.
  * @param options.count The number or range of elements to generate. Defaults to `3`.
  *
  * @example
- * fakeHelpersMultiple(fakerCore, () => fakePersonFirstName(fakerCore)) // [ 'Aniya', 'Norval', 'Dallin' ]
- * fakeHelpersMultiple(fakerCore, () => fakePersonFirstName(fakerCore), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
- * fakeHelpersMultiple(fakerCore, (_, i) => `${fakeColorHuman(fakerCore)}-${i + 1}`) // [ 'orange-1', 'orchid-2', 'sky blue-3' ]
+ * fakeHelpersMultiple(fakerCore, (fakerCore) => fakePersonFirstName(fakerCore)) // [ 'Aniya', 'Norval', 'Dallin' ]
+ * fakeHelpersMultiple(fakerCore, (fakerCore) => fakePersonFirstName(fakerCore), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+ * fakeHelpersMultiple(fakerCore, (fakerCore, i) => `${fakeColorHuman(fakerCore)}-${i + 1}`) // [ 'orange-1', 'orchid-2', 'sky blue-3' ]
  *
  * @since 11.0.0
  *
@@ -24,7 +24,7 @@ import { fakeHelpersRangeToNumber } from './range-to-number';
  */
 export function fakeHelpersMultiple<TResult>(
   fakerCore: FakerCore,
-  method: (v: unknown, index: number) => TResult,
+  method: (fakerCore: FakerCore, index: number) => TResult,
   options: {
     /**
      * The number or range of elements to generate.
@@ -39,5 +39,5 @@ export function fakeHelpersMultiple<TResult>(
     return [];
   }
 
-  return Array.from({ length: count }, method);
+  return Array.from({ length: count }, (_, index) => method(fakerCore, index));
 }
