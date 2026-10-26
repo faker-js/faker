@@ -63,7 +63,7 @@ export * from './modules/music';
 export * from './modules/number';
 export * from './modules/person';
 export * from './modules/phone';
-export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
+export * from './modules/science';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
