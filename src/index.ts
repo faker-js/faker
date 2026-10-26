@@ -53,7 +53,7 @@ export * from './modules/finance';
 export * from './modules/food';
 export * from './modules/git';
 export * from './modules/hacker';
-export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
+export * from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export { IPv4Network, IPv6Network } from './modules/internet';
 export type {
