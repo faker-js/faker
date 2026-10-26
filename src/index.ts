@@ -59,7 +59,7 @@ export * from './modules/internet';
 export * from './modules/location';
 export * from './modules/lorem';
 export * from './modules/medical';
-export type { MusicModule } from './modules/music';
+export * from './modules/music';
 export type { NumberModule } from './modules/number';
 export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';

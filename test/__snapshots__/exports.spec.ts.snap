@@ -604,6 +604,12 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "MusicModule",
     ],
+    "values": [
+      "fakeMusicAlbum",
+      "fakeMusicArtist",
+      "fakeMusicGenre",
+      "fakeMusicSongName",
+    ],
   },
   "modules/number": {
     "types": [
