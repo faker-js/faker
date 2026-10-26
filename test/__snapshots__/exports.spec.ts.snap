@@ -714,6 +714,17 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "VehicleModule",
     ],
+    "values": [
+      "fakeVehicleBicycle",
+      "fakeVehicleColor",
+      "fakeVehicleFuel",
+      "fakeVehicleManufacturer",
+      "fakeVehicleModel",
+      "fakeVehicleType",
+      "fakeVehicleVehicle",
+      "fakeVehicleVin",
+      "fakeVehicleVrm",
+    ],
   },
   "modules/word": {
     "types": [
