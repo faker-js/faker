@@ -323,6 +323,17 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "CommerceModule",
     ],
+    "values": [
+      "fakeCommerceDepartment",
+      "fakeCommerceIsbn",
+      "fakeCommercePrice",
+      "fakeCommerceProduct",
+      "fakeCommerceProductAdjective",
+      "fakeCommerceProductDescription",
+      "fakeCommerceProductMaterial",
+      "fakeCommerceProductName",
+      "fakeCommerceUpc",
+    ],
   },
   "modules/company": {
     "types": [
