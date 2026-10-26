@@ -1,8 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, allLocales, faker, fakerAZ } from '../../src';
+import {
+  RANDOMIZER_MAX_VALUE,
+  RANDOMIZER_MIN_VALUE,
+} from '../support/randomizers';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
-import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const converterMap = [
   (d: Date) => d,
@@ -214,12 +217,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 years in the past (min)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0.999999999999999;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
 
           const date = customFaker.date.past({
@@ -232,12 +230,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 years in the past (max)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
 
           const date = customFaker.date.past({
@@ -250,12 +243,7 @@ describe('date', () => {
 
         it('should return a date at least min years in the past when the refDate is a leap day', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return MERSENNE_MAX_VALUE;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
 
           const date = customFaker.date.past({
@@ -269,12 +257,7 @@ describe('date', () => {
 
         it('should return a date at most max years in the past when the refDate is a leap day', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
 
           const date = customFaker.date.past({
@@ -372,12 +355,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 years in the future (min)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
 
           const date = customFaker.date.future({
@@ -390,12 +368,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 years in the future (max)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0.999999999999999;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
 
           const date = customFaker.date.future({
@@ -408,12 +381,7 @@ describe('date', () => {
 
         it('should return a date at least min years in the future when the refDate is a leap day', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
 
           const date = customFaker.date.future({
@@ -427,12 +395,7 @@ describe('date', () => {
 
         it('should return a date at most max years in the future when the refDate is a leap day', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return MERSENNE_MAX_VALUE;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
 
           const date = customFaker.date.future({
@@ -657,12 +620,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 days in the past (min)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0.9999999999999;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
 
           const date = customFaker.date.recent({
@@ -675,12 +633,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 days in the past (max)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
 
           const date = customFaker.date.recent({
@@ -781,12 +734,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 days in the future (min)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
 
           const date = customFaker.date.soon({
@@ -799,12 +747,7 @@ describe('date', () => {
 
         it('should return a date between 20 and 40 days in the future (max)', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0.9999999999999;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
 
           const date = customFaker.date.soon({
@@ -1031,12 +974,7 @@ describe('date', () => {
 
         it('returns a birthdate of the min age when the refDate is a leap day', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return MERSENNE_MAX_VALUE;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MAX_VALUE,
           });
           const refDate = new Date(Date.UTC(2024, 1, 29, 12));
 
@@ -1053,12 +991,7 @@ describe('date', () => {
 
         it('returns a birthdate of the max age when the refDate is a leap day', () => {
           const customFaker = new SimpleFaker({
-            randomizer: {
-              next() {
-                return 0;
-              },
-              seed() {},
-            },
+            randomizer: RANDOMIZER_MIN_VALUE,
           });
           const refDate = new Date(Date.UTC(2024, 1, 29, 12));
 
