@@ -376,6 +376,19 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
       "DateModule",
       "SimpleDateModule",
     ],
+    "values": [
+      "fakeDateAnytime",
+      "fakeDateBetween",
+      "fakeDateBetweens",
+      "fakeDateBirthdate",
+      "fakeDateFuture",
+      "fakeDateMonth",
+      "fakeDatePast",
+      "fakeDateRecent",
+      "fakeDateSoon",
+      "fakeDateTimeZone",
+      "fakeDateWeekday",
+    ],
   },
   "modules/finance": {
     "types": [
