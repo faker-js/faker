@@ -45,7 +45,7 @@ export * from './modules/animal';
 export * from './modules/book';
 export * from './modules/color';
 export * from './modules/commerce';
-export type { CompanyModule } from './modules/company';
+export * from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule, SimpleDateModule } from './modules/date';
