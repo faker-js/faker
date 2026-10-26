@@ -20,7 +20,7 @@ import { LocationModule } from './modules/location/module';
 import { LoremModule } from './modules/lorem/module';
 import { MedicalModule } from './modules/medical/module';
 import { MusicModule } from './modules/music/module';
-import { PersonModule } from './modules/person';
+import { PersonModule } from './modules/person/module';
 import { PhoneModule } from './modules/phone';
 import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
