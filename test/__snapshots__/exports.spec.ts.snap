@@ -695,6 +695,20 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "SystemModule",
     ],
+    "values": [
+      "fakeSystemCommonFileExt",
+      "fakeSystemCommonFileName",
+      "fakeSystemCommonFileType",
+      "fakeSystemCron",
+      "fakeSystemDirectoryPath",
+      "fakeSystemFileExt",
+      "fakeSystemFileName",
+      "fakeSystemFilePath",
+      "fakeSystemFileType",
+      "fakeSystemMimeType",
+      "fakeSystemNetworkInterface",
+      "fakeSystemSemver",
+    ],
   },
   "modules/vehicle": {
     "types": [
