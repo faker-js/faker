@@ -58,7 +58,7 @@ export * from './modules/image';
 export * from './modules/internet';
 export * from './modules/location';
 export * from './modules/lorem';
-export type { MedicalModule } from './modules/medical';
+export * from './modules/medical';
 export type { MusicModule } from './modules/music';
 export type { NumberModule } from './modules/number';
 export { Sex } from './modules/person';
