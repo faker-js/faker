@@ -57,7 +57,7 @@ export * from './modules/helpers';
 export * from './modules/image';
 export * from './modules/internet';
 export * from './modules/location';
-export type { LoremModule } from './modules/lorem';
+export * from './modules/lorem';
 export type { MedicalModule } from './modules/medical';
 export type { MusicModule } from './modules/music';
 export type { NumberModule } from './modules/number';
