@@ -12,7 +12,7 @@ import { DateModule } from './modules/date/module';
 import { FinanceModule } from './modules/finance/module';
 import { FoodModule } from './modules/food/module';
 import { GitModule } from './modules/git/module';
-import { HackerModule } from './modules/hacker';
+import { HackerModule } from './modules/hacker/module';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';

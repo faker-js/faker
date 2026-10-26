@@ -456,6 +456,14 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "types": [
       "HackerModule",
     ],
+    "values": [
+      "fakeHackerAbbreviation",
+      "fakeHackerAdjective",
+      "fakeHackerIngverb",
+      "fakeHackerNoun",
+      "fakeHackerPhrase",
+      "fakeHackerVerb",
+    ],
   },
   "modules/helpers": {
     "types": [
