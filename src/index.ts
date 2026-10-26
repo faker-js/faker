@@ -64,7 +64,7 @@ export * from './modules/number';
 export * from './modules/person';
 export * from './modules/phone';
 export * from './modules/science';
-export type { StringModule } from './modules/string';
+export * from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';

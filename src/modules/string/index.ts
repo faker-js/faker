@@ -1,2 +1,14 @@
 export type { AlphaChar, AlphaNumericChar, NumericChar } from './_types';
-export * from './module';
+export { fakeStringAlpha } from './alpha';
+export { fakeStringAlphanumeric } from './alphanumeric';
+export { fakeStringBinary } from './binary';
+export { fakeStringFromCharacters } from './from-characters';
+export { fakeStringHexadecimal } from './hexadecimal';
+export { fakeStringNanoid } from './nanoid';
+export { fakeStringNumeric } from './numeric';
+export { fakeStringOctal } from './octal';
+export { fakeStringSample } from './sample';
+export { fakeStringSymbol } from './symbol';
+export { fakeStringUlid } from './ulid';
+export { fakeStringUuid } from './uuid';
+export type * from './module';
