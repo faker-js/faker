@@ -50,7 +50,7 @@ export * from './modules/database';
 export * from './modules/datatype';
 export * from './modules/date';
 export * from './modules/finance';
-export type { FoodModule } from './modules/food';
+export * from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
