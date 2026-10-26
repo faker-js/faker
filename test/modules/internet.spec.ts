@@ -16,9 +16,10 @@ import { allFakers, createFakerCore, faker, fakerKO } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import { IPv4Network, IPv6Network } from '../../src/modules/internet';
 import { fakeInternetIpv6 } from '../../src/modules/internet/ipv6';
+import { MERSENNE_MAX_VALUE } from '../support/mersenne-values';
+import { createFixedValueRandomizer } from '../support/randomizers';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
-import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -870,8 +871,9 @@ describe('internet', () => {
         ])(
           'should include the subnet endpoint for random value %s',
           (value, expected) => {
-            const core = createFakerCore();
-            core.randomizer.next = () => value;
+            const core = createFakerCore({
+              randomizer: createFixedValueRandomizer(value),
+            });
             expect(
               fakeInternetIpv6(core, { cidrBlock: '2001:db8:1234:5abc::/53' })
             ).toBe(expected);
