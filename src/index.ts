@@ -49,14 +49,7 @@ export * from './modules/company';
 export * from './modules/database';
 export * from './modules/datatype';
 export * from './modules/date';
-export type {
-  BitcoinAddressFamilyType,
-  BitcoinNetworkType,
-  Currency,
-  FinanceModule,
-  VatNumberCountryCode,
-} from './modules/finance';
-export { BitcoinAddressFamily, BitcoinNetwork } from './modules/finance';
+export * from './modules/finance';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
