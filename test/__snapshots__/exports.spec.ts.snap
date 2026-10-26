@@ -306,6 +306,17 @@ exports[`src/index.ts exports > should match the expected import tree 1`] = `
     "values": [
       "CssFunction",
       "CssSpace",
+      "fakeColorCmyk",
+      "fakeColorColorByCSSColorSpace",
+      "fakeColorCssSupportedFunction",
+      "fakeColorCssSupportedSpace",
+      "fakeColorHsl",
+      "fakeColorHuman",
+      "fakeColorHwb",
+      "fakeColorLab",
+      "fakeColorLch",
+      "fakeColorRgb",
+      "fakeColorSpace",
     ],
   },
   "modules/commerce": {

@@ -43,15 +43,7 @@ export * from './locales';
 export * from './modules/airline';
 export * from './modules/animal';
 export * from './modules/book';
-export { CssFunction, CssSpace } from './modules/color';
-export type {
-  ColorFormat,
-  ColorModule,
-  CssFunctionType,
-  CssSpaceType,
-  NumberColorFormat,
-  StringColorFormat,
-} from './modules/color';
+export * from './modules/color';
 export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
