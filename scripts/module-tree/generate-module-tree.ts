@@ -60,11 +60,17 @@ function patchFileName(methodName: string): string {
 }
 
 function patchJsDocs(module: string, method: string, jsDocs: string): string {
-  if (module === 'helpers' && method === 'uniqueArray') {
-    jsDocs = jsDocs.replace(
-      'faker.helpers.uniqueArray(faker.word.sample, 3)',
-      'faker.helpers.uniqueArray(() => faker.word.sample(), 3)'
-    );
+  if (module === 'helpers') {
+    if (method === 'multiple') {
+      jsDocs = jsDocs
+        .replaceAll('((fakerCore)', '(()')
+        .replace('((fakerCore,', '((_,');
+    } else if (method === 'uniqueArray') {
+      jsDocs = jsDocs.replace(
+        'faker.helpers.uniqueArray(faker.word.sample, 3)',
+        'faker.helpers.uniqueArray(() => faker.word.sample(), 3)'
+      );
+    }
   }
   return jsDocs;
 }

@@ -94,6 +94,14 @@ exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
 
+exports[`helpers > 42 > multiple > with SMF method 1`] = `
+[
+  "frog",
+  "whale",
+  "polar bear",
+]
+`;
+
 exports[`helpers > 42 > multiple > with method and count 1`] = `
 [
   3373557479352566,
@@ -342,6 +350,14 @@ exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
 exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
 
+exports[`helpers > 1211 > multiple > with SMF method 1`] = `
+[
+  "turtle",
+  "tiger",
+  "dog",
+]
+`;
+
 exports[`helpers > 1211 > multiple > with method and count 1`] = `
 [
   8363366038243348,
@@ -581,6 +597,14 @@ exports[`helpers > 1337 > fromRegExp > with wildcard character and quantifier 1`
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 1337 > maybe > with value and probability 1`] = `undefined`;
+
+exports[`helpers > 1337 > multiple > with SMF method 1`] = `
+[
+  "eagle",
+  "cow",
+  "elephant",
+]
+`;
 
 exports[`helpers > 1337 > multiple > with method and count 1`] = `
 [
