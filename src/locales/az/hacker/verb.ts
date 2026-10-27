@@ -1,0 +1,17 @@
+export default [
+  'arxivlə',
+  'bərpa et',
+  'hesabla',
+  'indekslə',
+  'kodlaşdır',
+  'köçür',
+  'quraşdır',
+  'sinxronlaşdır',
+  'sına',
+  'sıx',
+  'yedəklə',
+  'yenilə',
+  'yoxla',
+  'ötür',
+  'şifrələ',
+];

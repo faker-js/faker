@@ -1,1 +1,10 @@
-export * from './module';
+export { fakeCompanyBuzzAdjective } from './buzz-adjective';
+export { fakeCompanyBuzzNoun } from './buzz-noun';
+export { fakeCompanyBuzzPhrase } from './buzz-phrase';
+export { fakeCompanyBuzzVerb } from './buzz-verb';
+export { fakeCompanyCatchPhrase } from './catch-phrase';
+export { fakeCompanyCatchPhraseAdjective } from './catch-phrase-adjective';
+export { fakeCompanyCatchPhraseDescriptor } from './catch-phrase-descriptor';
+export { fakeCompanyCatchPhraseNoun } from './catch-phrase-noun';
+export { fakeCompanyName } from './name';
+export type * from './module';
