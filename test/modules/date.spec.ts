@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, allLocales, faker, fakerAZ } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
+import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const converterMap = [
   (d: Date) => d,
@@ -956,7 +957,7 @@ describe('date', () => {
           const customFaker = new SimpleFaker({
             randomizer: {
               next() {
-                return 0.999999999999999;
+                return MERSENNE_MAX_VALUE;
               },
               seed() {},
             },
@@ -970,7 +971,7 @@ describe('date', () => {
             mode: 'age',
           });
 
-          // Born on 2006-03-01, the person turns 18 the day after the refDate.
+          // Born on 2006-02-28, the person turns 18 the day before the refDate.
           expect(birthdate).toEqual(new Date(Date.UTC(2006, 1, 28, 12)));
         });
 
