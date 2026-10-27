@@ -1,12 +1,12 @@
 import type { FakerCore, FakerOptions } from './core';
 import { createFakerCore } from './core';
 import { randomSeed } from './internal/seed';
-import { DatatypeModule } from './modules/datatype';
-import { SimpleDateModule } from './modules/date';
-import { SimpleHelpersModule } from './modules/helpers';
-import { SimpleLocationModule } from './modules/location';
-import { NumberModule } from './modules/number';
-import { StringModule } from './modules/string';
+import { DatatypeModule } from './modules/datatype/module';
+import { SimpleDateModule } from './modules/date/module';
+import { SimpleHelpersModule } from './modules/helpers/module';
+import { SimpleLocationModule } from './modules/location/module';
+import { NumberModule } from './modules/number/module';
+import { StringModule } from './modules/string/module';
 import { getDefaultRefDate as utilsGetDefaultRefDate } from './utils/get-default-ref-date';
 import { setDefaultRefDate as utilsSetDefaultRefDate } from './utils/set-default-ref-date';
 

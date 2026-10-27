@@ -40,56 +40,34 @@ export { Faker } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
-export { Aircraft } from './modules/airline';
-export type { AircraftType, AirlineModule } from './modules/airline';
-export type { AnimalModule } from './modules/animal';
-export type { BookModule } from './modules/book';
-export { CssFunction, CssSpace } from './modules/color';
-export type {
-  ColorFormat,
-  ColorModule,
-  CssFunctionType,
-  CssSpaceType,
-  NumberColorFormat,
-  StringColorFormat,
-} from './modules/color';
-export type { CommerceModule } from './modules/commerce';
-export type { CompanyModule } from './modules/company';
-export type { DatabaseModule } from './modules/database';
-export type { DatatypeModule } from './modules/datatype';
-export type { DateModule, SimpleDateModule } from './modules/date';
-export type {
-  BitcoinAddressFamilyType,
-  BitcoinNetworkType,
-  Currency,
-  FinanceModule,
-  VatNumberCountryCode,
-} from './modules/finance';
-export { BitcoinAddressFamily, BitcoinNetwork } from './modules/finance';
-export type { FoodModule } from './modules/food';
-export type { GitModule } from './modules/git';
-export type { HackerModule } from './modules/hacker';
-export type { HelpersModule, SimpleHelpersModule } from './modules/helpers';
-export type { ImageModule } from './modules/image';
-export { IPv4Network, IPv6Network } from './modules/internet';
-export type {
-  InternetModule,
-  IPv4NetworkType,
-  IPv6NetworkType,
-} from './modules/internet';
-export type { LocationModule, SimpleLocationModule } from './modules/location';
-export type { LoremModule } from './modules/lorem';
-export type { MedicalModule } from './modules/medical';
-export type { MusicModule } from './modules/music';
-export type { NumberModule } from './modules/number';
-export { Sex } from './modules/person';
-export type { PersonModule, SexType } from './modules/person';
-export type { PhoneModule } from './modules/phone';
-export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
-export type { StringModule } from './modules/string';
-export type { SystemModule } from './modules/system';
-export type { VehicleModule } from './modules/vehicle';
-export type { WordModule } from './modules/word';
+export * from './modules/airline';
+export * from './modules/animal';
+export * from './modules/book';
+export * from './modules/color';
+export * from './modules/commerce';
+export * from './modules/company';
+export * from './modules/database';
+export * from './modules/datatype';
+export * from './modules/date';
+export * from './modules/finance';
+export * from './modules/food';
+export * from './modules/git';
+export * from './modules/hacker';
+export * from './modules/helpers';
+export * from './modules/image';
+export * from './modules/internet';
+export * from './modules/location';
+export * from './modules/lorem';
+export * from './modules/medical';
+export * from './modules/music';
+export * from './modules/number';
+export * from './modules/person';
+export * from './modules/phone';
+export * from './modules/science';
+export * from './modules/string';
+export * from './modules/system';
+export * from './modules/vehicle';
+export * from './modules/word';
 export type { Randomizer } from './randomizer';
 export { SimpleFaker, simpleFaker } from './simple-faker';
 export { mergeLocales } from './utils/merge-locales';
