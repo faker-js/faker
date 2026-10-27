@@ -57,7 +57,7 @@ npm install --save-dev @faker-js/faker
 
 There are two ways to use Faker:
 
-- Standalone (New, Made for small bundle sizes)
+- Standalone (Made for small bundle sizes, since v11.0)
 - Tree (Everything accessible via singular import)
 
 ### Standalone Function Usage
