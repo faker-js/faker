@@ -9,4 +9,5 @@ export { fakeDateRecent } from './recent';
 export { fakeDateSoon } from './soon';
 export { fakeDateTimeZone } from './time-zone';
 export { fakeDateWeekday } from './weekday';
-export type * from './module';
+export type { DateModule } from './module';
+export type { SimpleDateModule } from './simple-module';
