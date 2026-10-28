@@ -123,10 +123,6 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
         'Distributor'
       );
 
-      const exports: string[] = moduleFile
-        .getExportDeclarations()
-        .map((exp) => exp.getText());
-
       if (
         moduleFiles.length === 2 &&
         moduleFile.getBaseName() === 'module.ts'
@@ -320,13 +316,7 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       importHelper.removeUnusedImports(content.join('\n'));
       patchModuleImports(moduleName, importHelper, moduleFile.getBaseName());
 
-      content.unshift(
-        ...header,
-        importHelper.generateImportStatements(),
-        '',
-        ...exports,
-        ''
-      );
+      content.unshift(...header, importHelper.generateImportStatements(), '');
 
       writeFileSync(
         moduleFile.getFilePath(),
