@@ -59,7 +59,7 @@ exports[`locale-data > should only have known characters 1`] = `
   "nl": " !#%&'()+,-.;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÖâãéêëïöúû",
   "nl_BE": " #'+-./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzéë",
   "pl": " !"#'()+,-./ABCDEFGHIJKLMNOPQRSTUVWYZ[]abcdefghijklmnopqrstuvwxyzäçéóöüąĆćęŁłńŚśźŻż–…",
-  "pt_BR": " !#&()+,-.:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÍÓàáâãçéêíóôõú",
+  "pt_BR": " #&()+,-.:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÍÓàáâãçéêíóôõú",
   "pt_PT": " #()+-./ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyzªºÁÂÉÍàáâãçéêíóôõú",
   "ro": " #+,-.ABCDEFGHIJKLMNOPRSTUVXZabcdefghijklmnoprstuvxyzÎâîăȘșȚț",
   "ro_MD": " #+,-./ABCDEFGHIJKLMNOPRSTUVXZabcdefghijklmnoprstuvxyzâîăȘșț",
