@@ -1,5 +1,7 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { FakerError, faker } from '../../src';
+import type { FakerCore } from '../../src';
+import { fakeAnimalType } from '../../src/modules/animal/type';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { fakeLoremWord } from '../../src/modules/lorem/word';
 import { fakeStringSample } from '../../src/modules/string/sample';
@@ -179,6 +181,7 @@ describe('helpers', () => {
 
     t.describe('multiple', (t) => {
       t.it('with only method', () => faker.number.int())
+        .it('with SMF method', fakeAnimalType)
         .it('with method and count', () => faker.number.int(), {
           count: 5,
         })
@@ -1444,6 +1447,22 @@ describe('helpers', () => {
           expect(Array.isArray(result)).toBe(true);
           expect(result.length).toBeGreaterThanOrEqual(1);
           expect(result.length).toBeLessThanOrEqual(10);
+        });
+
+        it('should pass a FakerCore to the callback', () => {
+          const { fakerCore } = faker;
+          const generator =
+            vi.fn<(fakerCore: FakerCore, index: number) => unknown>();
+          const result = faker.helpers.multiple(generator, {
+            count: 3,
+          });
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result).toHaveLength(3);
+          expect(generator).toHaveBeenCalledTimes(3);
+          expect(generator).toHaveBeenCalledWith(fakerCore, 0);
+          expect(generator).toHaveBeenCalledWith(fakerCore, 1);
+          expect(generator).toHaveBeenCalledWith(fakerCore, 2);
         });
 
         it('should generate values using index of created value', () => {
