@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { toDate } from '../../internal/date';
+import { addUTCYears, toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { NumberOrRange } from '../../utils/types';
 import { fakeDateBetween } from './between';
@@ -62,10 +62,8 @@ export function fakeDateFuture(
   }
 
   const time = toDate(refDate);
-  const from = new Date(time);
-  from.setUTCFullYear(from.getUTCFullYear() + years.min);
-  const to = new Date(time);
-  to.setUTCFullYear(to.getUTCFullYear() + years.max);
+  const from = addUTCYears(time, years.min);
+  const to = addUTCYears(time, years.max);
 
   return fakeDateBetween(fakerCore, {
     from: from.getTime() + 1000,
