@@ -7,4 +7,4 @@ export { fakeWordPreposition } from './preposition';
 export { fakeWordSample } from './sample';
 export { fakeWordVerb } from './verb';
 export { fakeWordWords } from './words';
-export type * from './module';
+export type { WordModule } from './module';

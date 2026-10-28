@@ -11,4 +11,4 @@ export { fakeStringSample } from './sample';
 export { fakeStringSymbol } from './symbol';
 export { fakeStringUlid } from './ulid';
 export { fakeStringUuid } from './uuid';
-export type * from './module';
+export type { StringModule } from './module';

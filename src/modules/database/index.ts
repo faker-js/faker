@@ -3,4 +3,4 @@ export { fakeDatabaseColumn } from './column';
 export { fakeDatabaseEngine } from './engine';
 export { fakeDatabaseMongodbObjectId } from './mongodb-object-id';
 export { fakeDatabaseType } from './type';
-export type * from './module';
+export type { DatabaseModule } from './module';
