@@ -1,7 +1,30 @@
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { SimpleFaker, generateMersenne32Randomizer, simpleFaker } from '../src';
 import { keys } from '../src/internal/keys';
+import { SimpleFaker, simpleFaker } from '../src/simple-faker';
+import { generateMersenne32Randomizer } from '../src/utils/mersenne';
+
+// Ensure that src/faker.ts is not loaded during these tests
+vi.mock('../src/faker', () => {
+  const { stackTraceLimit } = Error;
+  Error.stackTraceLimit = 1000;
+  try {
+    const { stack = '' } = new Error('Stack-Collector');
+    const lines = stack
+      .split('\n')
+      .map((l) => l.trim().replaceAll('\\', '/'))
+      .filter((l) => l.includes('/src/') || l.includes('/test/'))
+      .map((l) => l.replaceAll(/.*\/(src|test)\//g, '$1/'))
+      .slice(1, -1) // Removes this test from the stack trace
+      .toReversed();
+    lines.push('src/faker.ts');
+    throw new Error(
+      `SimpleFaker must not load src/faker.ts: ${lines.join(' -> ')}`
+    );
+  } finally {
+    Error.stackTraceLimit = stackTraceLimit;
+  }
+});
 
 describe('simpleFaker', () => {
   it('should not log anything on startup', async () => {
