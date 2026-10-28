@@ -524,7 +524,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @template TResult The type of elements.
    *
    * @param method The method used to generate the values.
-   * The method will be called with `(_, index)`, to allow using the index in the generated value e.g. as id.
+   * The method will be called with `(fakerCore, index)`, to allow using the index in the generated value e.g. as id.
    * @param options The optional options object.
    * @param options.count The number or range of elements to generate. Defaults to `3`.
    *
@@ -536,7 +536,7 @@ export class SimpleHelpersModule extends ModuleBase {
    * @since 8.0.0
    */
   multiple<TResult>(
-    method: (v: unknown, index: number) => TResult,
+    method: (fakerCore: FakerCore, index: number) => TResult,
     options: {
       /**
        * The number or range of elements to generate.
