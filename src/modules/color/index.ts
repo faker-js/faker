@@ -18,4 +18,4 @@ export { fakeColorLab } from './lab';
 export { fakeColorLch } from './lch';
 export { fakeColorRgb } from './rgb';
 export { fakeColorSpace } from './space';
-export type * from './module';
+export type { ColorModule } from './module';

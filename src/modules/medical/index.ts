@@ -6,4 +6,4 @@ export { fakeMedicalDrugName } from './drug-name';
 export { fakeMedicalProcedure } from './procedure';
 export { fakeMedicalSpecialty } from './specialty';
 export { fakeMedicalSymptom } from './symptom';
-export type * from './module';
+export type { MedicalModule } from './module';
