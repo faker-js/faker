@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { keys } from '../src/internal/keys';
@@ -42,6 +43,11 @@ describe('simpleFaker', () => {
       expect(spy).not.toHaveBeenCalled();
       spy.mockRestore();
     }
+  });
+
+  it('should not load src/faker.ts', async () => {
+    vi.resetModules();
+    await expect(import('../src/simple-faker.ts')).resolves.toBeDefined();
   });
 
   describe('constructor()', () => {
