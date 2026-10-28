@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { allLocales } from '../src';
+import { allLocales } from '../src/locales';
 
 function checkLocaleData(data: unknown) {
   if (Array.isArray(data)) {

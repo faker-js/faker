@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { LocaleDefinition } from '../../src';
+import type { LocaleDefinition } from '../../src/definitions';
 import { mergeLocales } from '../../src/utils/merge-locales';
 
 describe('mergeLocales', () => {
