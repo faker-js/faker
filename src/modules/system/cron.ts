@@ -68,7 +68,11 @@ export function fakeSystemCron(
   const hour = fakeHelpersArrayElement(fakerCore, hours);
   const day = fakeHelpersArrayElement(fakerCore, days);
   const month = fakeHelpersArrayElement(fakerCore, months);
-  const dayOfWeek = fakeHelpersArrayElement(fakerCore, daysOfWeek);
+  let dayOfWeek = fakeHelpersArrayElement(fakerCore, daysOfWeek);
+  // `?` ("no specific value") is only valid in one of the two day fields.
+  if (day === '?' && dayOfWeek === '?') {
+    dayOfWeek = '*';
+  }
   const year = fakeHelpersArrayElement(fakerCore, years);
 
   // create and return the cron expression string

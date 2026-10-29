@@ -409,6 +409,17 @@ describe('system', () => {
           }
         );
 
+        it('should never put ? in both day-of-month and day-of-week', () => {
+          for (let seed = 0; seed < 500; seed++) {
+            faker.seed(seed);
+            const fields = faker.system.cron().split(' ');
+            expect(
+              [fields[2], fields[4]],
+              `seed ${seed}: at most one of day-of-month and day-of-week may be ?`
+            ).not.toEqual(['?', '?']);
+          }
+        });
+
         it('should be able to return non-standard cron expressions', () => {
           const validResults = new Set('0123456789*@');
           expect(
