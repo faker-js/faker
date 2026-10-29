@@ -263,7 +263,7 @@ describe('date', () => {
             refDate: new Date(Date.UTC(2024, 1, 29, 12)),
           });
 
-          // One year before 2024-02-29 is 2023-02-28, not 2023-03-01.
+          // 2023-03-01 would be less than one year before 2024-02-29.
           expect(date).toEqual(new Date(Date.UTC(2023, 1, 28, 11, 59, 59)));
         });
 
@@ -440,7 +440,7 @@ describe('date', () => {
             refDate: new Date(Date.UTC(2024, 1, 29, 12)),
           });
 
-          // Two years after 2024-02-29 is 2026-02-28, not 2026-03-01.
+          // 2026-03-01 would be more than two years after 2024-02-29.
           expect(date).toEqual(new Date(Date.UTC(2026, 1, 28, 12)));
         });
 
