@@ -248,6 +248,44 @@ describe('date', () => {
           expect(date).toEqual(new Date(Date.UTC(1980, 2, 1)));
         });
 
+        it('should return a date at least min years in the past when the refDate is a leap day', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return MERSENNE_MAX_VALUE;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.past({
+            years: { min: 1, max: 2 },
+            refDate: new Date(Date.UTC(2024, 1, 29, 12)),
+          });
+
+          // 2023-03-01 would be less than one year before 2024-02-29.
+          expect(date).toEqual(new Date(Date.UTC(2023, 1, 28, 11, 59, 59)));
+        });
+
+        it('should return a date at most max years in the past when the refDate is a leap day', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.past({
+            years: { min: 1, max: 2 },
+            refDate: new Date(Date.UTC(2024, 1, 29, 12)),
+          });
+
+          // 2022-02-28 would be more than two years before 2024-02-29.
+          expect(date).toEqual(new Date(Date.UTC(2022, 2, 1, 12)));
+        });
+
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() =>
@@ -366,6 +404,44 @@ describe('date', () => {
           });
 
           expect(date).toEqual(new Date(Date.UTC(2060, 2, 1)));
+        });
+
+        it('should return a date at least min years in the future when the refDate is a leap day', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.future({
+            years: { min: 1, max: 2 },
+            refDate: new Date(Date.UTC(2024, 1, 29, 12)),
+          });
+
+          // 2025-02-28 would be less than one year after 2024-02-29.
+          expect(date).toEqual(new Date(Date.UTC(2025, 2, 1, 12, 0, 1)));
+        });
+
+        it('should return a date at most max years in the future when the refDate is a leap day', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return MERSENNE_MAX_VALUE;
+              },
+              seed() {},
+            },
+          });
+
+          const date = customFaker.date.future({
+            years: { min: 1, max: 2 },
+            refDate: new Date(Date.UTC(2024, 1, 29, 12)),
+          });
+
+          // 2026-03-01 would be more than two years after 2024-02-29.
+          expect(date).toEqual(new Date(Date.UTC(2026, 1, 28, 12)));
         });
 
         it('should throw an error when years = 0', () => {
