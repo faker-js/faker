@@ -17,3 +17,4 @@ export { fakeHelpersSlugify } from './slugify';
 export { fakeHelpersUniqueArray } from './unique-array';
 export { fakeHelpersWeightedArrayElement } from './weighted-array-element';
 export type * from './module';
+export type * from './simple-module';

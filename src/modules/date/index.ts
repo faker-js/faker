@@ -10,3 +10,4 @@ export { fakeDateSoon } from './soon';
 export { fakeDateTimeZone } from './time-zone';
 export { fakeDateWeekday } from './weekday';
 export type * from './module';
+export type * from './simple-module';

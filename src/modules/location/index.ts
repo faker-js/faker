@@ -20,3 +20,4 @@ export { fakeLocationStreetAddress } from './street-address';
 export { fakeLocationTimeZone } from './time-zone';
 export { fakeLocationZipCode } from './zip-code';
 export type * from './module';
+export type * from './simple-module';

@@ -1,5 +1,8 @@
+import { resolve } from 'node:path';
+import type { SourceFile } from 'ts-morph';
 import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
+import { getEmptyProject } from '../scripts/shared/project';
 import { SimpleFaker, generateMersenne32Randomizer, simpleFaker } from '../src';
 import { keys } from '../src/internal/keys';
 
@@ -19,6 +22,85 @@ describe('simpleFaker', () => {
       expect(spy).not.toHaveBeenCalled();
       spy.mockRestore();
     }
+  });
+
+  describe('should not load Faker', () => {
+    it('should not import src/faker.ts at runtime', async () => {
+      vi.resetModules();
+      vi.doMock('../src/faker', () => {
+        throw new Error('src/simple-faker.ts must not load src/faker.ts');
+      });
+
+      try {
+        const { SimpleFaker: FreshSimpleFaker } =
+          await import('../src/simple-faker');
+        expect(new FreshSimpleFaker().number.int()).toBeTypeOf('number');
+      } finally {
+        vi.doUnmock('../src/faker');
+        vi.resetModules();
+      }
+    });
+
+    it('should not reference src/faker.ts in its import graph', () => {
+      const project = getEmptyProject();
+      const entryFile = project.addSourceFileAtPath('src/simple-faker.ts');
+      const fakerFilePath = project
+        .addSourceFileAtPath('src/faker.ts')
+        .getFilePath();
+
+      function resolveModuleFile(
+        sourceFile: SourceFile,
+        moduleSpecifier: string
+      ): SourceFile {
+        const base = resolve(sourceFile.getDirectoryPath(), moduleSpecifier);
+        const resolved =
+          project.addSourceFileAtPathIfExists(`${base}.ts`) ??
+          project.addSourceFileAtPathIfExists(`${base}/index.ts`);
+        if (resolved == null) {
+          throw new Error(
+            `Could not resolve '${moduleSpecifier}' from ${sourceFile.getFilePath()}`
+          );
+        }
+
+        return resolved;
+      }
+
+      const visited = new Map<string, string[]>([
+        [entryFile.getFilePath(), [entryFile.getFilePath()]],
+      ]);
+      const queue: SourceFile[] = [entryFile];
+      let sourceFile: SourceFile | undefined;
+      while ((sourceFile = queue.shift()) != null) {
+        const chain = visited.get(sourceFile.getFilePath()) ?? [];
+        const declarations = [
+          ...sourceFile.getImportDeclarations(),
+          ...sourceFile.getExportDeclarations(),
+        ].filter((declaration) => !declaration.isTypeOnly());
+
+        for (const declaration of declarations) {
+          const moduleSpecifier = declaration.getModuleSpecifierValue();
+          if (moduleSpecifier == null || !moduleSpecifier.startsWith('.')) {
+            continue;
+          }
+
+          const target = resolveModuleFile(sourceFile, moduleSpecifier);
+          const targetPath = target.getFilePath();
+          if (visited.has(targetPath)) {
+            continue;
+          }
+
+          const targetChain = [...chain, targetPath];
+          expect(
+            targetPath,
+            `Import chain: ${targetChain.join(' -> ')}`
+          ).not.toBe(fakerFilePath);
+          visited.set(targetPath, targetChain);
+          queue.push(target);
+        }
+      }
+
+      expect(visited.size).toBeGreaterThan(1);
+    });
   });
 
   describe('constructor()', () => {
