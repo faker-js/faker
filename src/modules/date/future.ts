@@ -64,11 +64,14 @@ export function fakeDateFuture(
 
   const time = toDate(refDate);
   const year = time.getUTCFullYear();
-  const from = sameDayInYear(time, year + years.min);
+  // A February 29 refDate moves to March 1 for the earliest date (at least
+  // `years.min` years) and to February 28 for the latest one (still within `years.max` years).
+  const from = new Date(time);
+  from.setUTCFullYear(year + years.min);
   const to = sameDayInYear(time, year + years.max);
 
   return fakeDateBetween(fakerCore, {
-    from: from + 1000,
+    from: from.getTime() + 1000,
     to,
   });
 }

@@ -282,8 +282,8 @@ describe('date', () => {
             refDate: new Date(Date.UTC(2024, 1, 29, 12)),
           });
 
-          // Two years before 2024-02-29 is 2022-02-28, not 2022-03-01.
-          expect(date).toEqual(new Date(Date.UTC(2022, 1, 28, 12)));
+          // 2022-02-28 would be more than two years before 2024-02-29.
+          expect(date).toEqual(new Date(Date.UTC(2022, 2, 1, 12)));
         });
 
         it('should throw an error when years = 0', () => {
@@ -421,8 +421,8 @@ describe('date', () => {
             refDate: new Date(Date.UTC(2024, 1, 29, 12)),
           });
 
-          // One year after 2024-02-29 is 2025-02-28, not 2025-03-01.
-          expect(date).toEqual(new Date(Date.UTC(2025, 1, 28, 12, 0, 1)));
+          // 2025-02-28 would be less than one year after 2024-02-29.
+          expect(date).toEqual(new Date(Date.UTC(2025, 2, 1, 12, 0, 1)));
         });
 
         it('should return a date at most max years in the future when the refDate is a leap day', () => {

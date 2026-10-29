@@ -64,7 +64,10 @@ export function fakeDatePast(
 
   const time = toDate(refDate);
   const year = time.getUTCFullYear();
-  const from = sameDayInYear(time, year - years.max);
+  // A February 29 refDate moves to March 1 for the earliest date (still within
+  // `years.max` years) and to February 28 for the latest one (at least `years.min` years).
+  const from = new Date(time);
+  from.setUTCFullYear(year - years.max);
   const to = sameDayInYear(time, year - years.min);
 
   return fakeDateBetween(fakerCore, {
