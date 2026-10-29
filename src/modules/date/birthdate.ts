@@ -2,25 +2,8 @@ import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import { sameDayInYear } from './_utils';
 import { fakeDateBetween } from './between';
-
-/**
- * Returns the timestamp of the given date moved to the given year.
- * February 29 becomes February 28 in a common year instead of rolling over to March 1,
- * so a person born on the returned day has their birthday on or before the given date.
- *
- * @param date The date to move.
- * @param year The year to move the date to.
- */
-function sameDayInYear(date: Date, year: number): number {
-  const result = new Date(date);
-  result.setUTCFullYear(year);
-  if (result.getUTCMonth() !== date.getUTCMonth()) {
-    result.setUTCDate(0);
-  }
-
-  return result.getTime();
-}
 
 /**
  * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
