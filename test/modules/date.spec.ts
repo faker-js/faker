@@ -1029,6 +1029,50 @@ describe('date', () => {
           expect(age).toBeLessThanOrEqual(22);
         });
 
+        it('returns a birthdate of the min age when the refDate is a leap day', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return MERSENNE_MAX_VALUE;
+              },
+              seed() {},
+            },
+          });
+          const refDate = new Date(Date.UTC(2024, 1, 29, 12));
+
+          const birthdate = customFaker.date.birthdate({
+            min: 18,
+            max: 18,
+            refDate,
+            mode: 'age',
+          });
+
+          // Born on 2006-02-28, the person turns 18 the day before the refDate.
+          expect(birthdate).toEqual(new Date(Date.UTC(2006, 1, 28, 12)));
+        });
+
+        it('returns a birthdate of the max age when the refDate is a leap day', () => {
+          const customFaker = new SimpleFaker({
+            randomizer: {
+              next() {
+                return 0;
+              },
+              seed() {},
+            },
+          });
+          const refDate = new Date(Date.UTC(2024, 1, 29, 12));
+
+          const birthdate = customFaker.date.birthdate({
+            min: 80,
+            max: 80,
+            refDate,
+            mode: 'age',
+          });
+
+          // Born on 1943-03-01, the person is still 80 on the refDate.
+          expect(birthdate).toEqual(new Date(Date.UTC(1943, 2, 1, 12)));
+        });
+
         it('should throw an error when the min > max year', () => {
           const min = 2000;
           const max = 1990;

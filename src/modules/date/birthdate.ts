@@ -5,6 +5,24 @@ import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { fakeDateBetween } from './between';
 
 /**
+ * Returns the timestamp of the given date moved to the given year.
+ * February 29 becomes February 28 in a common year instead of rolling over to March 1,
+ * so a person born on the returned day has their birthday on or before the given date.
+ *
+ * @param date The date to move.
+ * @param year The year to move the date to.
+ */
+function sameDayInYear(date: Date, year: number): number {
+  const result = new Date(date);
+  result.setUTCFullYear(year);
+  if (result.getUTCMonth() !== date.getUTCMonth()) {
+    result.setUTCDate(0);
+  }
+
+  return result.getTime();
+}
+
+/**
  * Returns a random birthdate. By default, the birthdate is generated for an adult between 18 and 80 years old.
  * But you can customize the `'age'` range or the `'year'` range to generate a more specific birthdate.
  *
@@ -184,8 +202,8 @@ export function fakeDateBirthdate(
     case 'age': {
       // Add one day to the `from` date to avoid generating the same date as the reference date.
       const oneDay = 24 * 60 * 60 * 1000;
-      const from = new Date(refDate).setUTCFullYear(refYear - max - 1) + oneDay;
-      const to = new Date(refDate).setUTCFullYear(refYear - min);
+      const from = sameDayInYear(refDate, refYear - max - 1) + oneDay;
+      const to = sameDayInYear(refDate, refYear - min);
 
       if (from > to) {
         throw new FakerError(
