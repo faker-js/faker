@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { keys } from '../src/internal/keys';
 import { SimpleFaker, simpleFaker } from '../src/simple-faker';
 import { generateMersenne32Randomizer } from '../src/utils/mersenne';
+import { buildImportGraph, detectCycles } from './support/import-graph.ts';
 
 // Ensure that src/faker.ts is not loaded during these tests
 vi.mock('../src/faker', () => {
@@ -44,9 +45,18 @@ describe('simpleFaker', () => {
     }
   });
 
-  it('should not load src/faker.ts', async () => {
-    vi.resetModules();
-    await expect(import('../src/simple-faker.ts')).resolves.toBeDefined();
+  describe('should load cleanly', () => {
+    it('should not load src/faker.ts during import', async () => {
+      vi.resetModules();
+      await expect(import('../src/simple-faker.ts')).resolves.not.toThrow();
+    });
+
+    it('should not reference src/faker.ts in its import graph', () => {
+      // Record<source file -> imported files>
+      const visited = buildImportGraph('src/simple-faker.ts');
+      expect(visited).not.toHaveProperty('src/faker.ts');
+      expect(detectCycles(visited)).toHaveLength(0);
+    });
   });
 
   describe('constructor()', () => {
