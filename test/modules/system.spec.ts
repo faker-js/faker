@@ -2,6 +2,7 @@ import { isMimeType, isSemVer } from 'validator';
 import { describe, expect, it, vi } from 'vitest';
 import type { FakerCore } from '../../src';
 import { FakerError, faker } from '../../src';
+import type * as ArrayElementModule from '../../src/modules/helpers/array-element';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -419,9 +420,7 @@ describe('system', () => {
             '../../src/modules/helpers/array-element',
             async (importOriginal) => {
               const original =
-                await importOriginal<
-                  typeof import('../../src/modules/helpers/array-element')
-                >();
+                await importOriginal<typeof ArrayElementModule>();
               return {
                 ...original,
                 fakeHelpersArrayElement: <T>(
@@ -438,9 +437,9 @@ describe('system', () => {
           try {
             const { fakeSystemCron } =
               await import('../../src/modules/system/cron');
-            const [, , day, , dayOfWeek] = fakeSystemCron(
-              faker.fakerCore
-            ).split(' ');
+            const fields = fakeSystemCron(faker.fakerCore).split(' ');
+            const day = fields[2];
+            const dayOfWeek = fields[4];
             expect(day).toBe('?');
             expect(dayOfWeek).not.toBe('?');
           } finally {
