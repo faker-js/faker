@@ -2,7 +2,6 @@ import { isMimeType, isSemVer } from 'validator';
 import { describe, expect, it, vi } from 'vitest';
 import type { FakerCore } from '../../src';
 import { FakerError, faker } from '../../src';
-import type * as ArrayElementModule from '../../src/modules/helpers/array-element';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -417,19 +416,18 @@ describe('system', () => {
           // function so the mock does not leak into the other tests.
           vi.resetModules();
           vi.doMock(
-            '../../src/modules/helpers/array-element',
+            import('../../src/modules/helpers/array-element'),
             async (importOriginal) => {
-              const original =
-                await importOriginal<typeof ArrayElementModule>();
+              const { fakeHelpersArrayElement: original } =
+                await importOriginal();
               return {
-                ...original,
                 fakeHelpersArrayElement: <T>(
                   fakerCore: FakerCore,
                   array: ReadonlyArray<T>
                 ): T =>
                   array.includes('?' as T)
                     ? ('?' as T)
-                    : original.fakeHelpersArrayElement(fakerCore, array),
+                    : original(fakerCore, array),
               };
             }
           );
