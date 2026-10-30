@@ -1,5 +1,6 @@
 import { isMimeType, isSemVer } from 'validator';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import type { FakerCore } from '../../src';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -409,14 +410,42 @@ describe('system', () => {
           }
         );
 
-        it('should never put ? in both day-of-month and day-of-week', () => {
-          for (let seed = 0; seed < 500; seed++) {
-            faker.seed(seed);
-            const fields = faker.system.cron().split(' ');
-            expect(
-              [fields[2], fields[4]],
-              `seed ${seed}: at most one of day-of-month and day-of-week may be ?`
-            ).not.toEqual(['?', '?']);
+        it('should never put ? in both day-of-month and day-of-week', async () => {
+          // Force `?` whenever it is one of the options, so both day fields
+          // would get it without the guard. Import a fresh copy of the
+          // function so the mock does not leak into the other tests.
+          vi.resetModules();
+          vi.doMock(
+            '../../src/modules/helpers/array-element',
+            async (importOriginal) => {
+              const original =
+                await importOriginal<
+                  typeof import('../../src/modules/helpers/array-element')
+                >();
+              return {
+                ...original,
+                fakeHelpersArrayElement: <T>(
+                  fakerCore: FakerCore,
+                  array: ReadonlyArray<T>
+                ): T =>
+                  array.includes('?' as T)
+                    ? ('?' as T)
+                    : original.fakeHelpersArrayElement(fakerCore, array),
+              };
+            }
+          );
+
+          try {
+            const { fakeSystemCron } =
+              await import('../../src/modules/system/cron');
+            const [, , day, , dayOfWeek] = fakeSystemCron(
+              faker.fakerCore
+            ).split(' ');
+            expect(day).toBe('?');
+            expect(dayOfWeek).not.toBe('?');
+          } finally {
+            vi.doUnmock('../../src/modules/helpers/array-element');
+            vi.resetModules();
           }
         });
 
