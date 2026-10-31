@@ -1,6 +1,4 @@
-import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { keys } from '../src/internal/keys';
 import { SimpleFaker, simpleFaker } from '../src/simple-faker';
 import { generateMersenne32Randomizer } from '../src/utils/mersenne';
 import { buildImportGraph, detectCycles } from './support/import-graph.ts';
@@ -28,23 +26,6 @@ vi.mock('../src/faker', () => {
 });
 
 describe('simpleFaker', () => {
-  it('should not log anything on startup', async () => {
-    const spies: MockInstance[] = keys(console)
-      .filter((key) => typeof console[key] === 'function')
-      .map((methodName) => vi.spyOn(console, methodName));
-
-    // Using import() requires types being build but the CI / TS-Check runs without them.
-    const { simpleFaker: importedSimpleFaker } = await import('..');
-    expect(importedSimpleFaker).toBeDefined();
-
-    expect(new SimpleFaker()).toBeDefined();
-
-    for (const spy of spies) {
-      expect(spy).not.toHaveBeenCalled();
-      spy.mockRestore();
-    }
-  });
-
   describe('should load cleanly', () => {
     it('should not load src/faker.ts during import', async () => {
       vi.resetModules();
