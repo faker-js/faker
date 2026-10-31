@@ -224,6 +224,34 @@ describe('location', () => {
           }
         });
 
+        it('generates UK postcodes with valid inward letters', () => {
+          // https://github.com/faker-js/faker/issues/2390
+          for (let i = 0; i < 1000; i++) {
+            const code = fakerEN_GB.location.zipCode();
+            expect(code).toMatch(
+              /^[A-Z]{1,2}[1-9](?:[0-9]|[A-Z])? [0-9][ABDEFGHJLNPQRSTUWXYZ]{2}$/
+            );
+
+            const outward = code.split(' ')[0];
+            if (/[A-Z]$/.test(outward)) {
+              expect(outward.at(-1)).toMatch(
+                outward.length === 3
+                  ? /[ABCDEFGHJKSTUW]/
+                  : /[ABEHMNPRVWXY]/
+              );
+            }
+          }
+        });
+
+        it('keeps explicit UK zip code formats unchanged', () => {
+          expect(fakerEN_GB.location.zipCode('??##')).toMatch(
+            /^[A-Z]{2}[0-9]{2}$/
+          );
+          expect(fakerEN_GB.location.zipCode({ format: '##?' })).toMatch(
+            /^[0-9]{2}[A-Z]$/
+          );
+        });
+
         it('should only return valid letters for en_CA locale', () => {
           // Canadian postal codes never use the letters D, F, I, O, Q and U,
           // and never use W or Z as the first letter.
