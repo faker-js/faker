@@ -952,17 +952,19 @@ describe('number', () => {
   });
 
   describe('value range tests', () => {
-    const customFaker = new SimpleFaker();
-    const { randomizer } = customFaker.fakerCore;
     describe('int', () => {
       it('should be able to return 0', () => {
-        randomizer.next = RANDOMIZER_MIN_VALUE.next;
+        const customFaker = new SimpleFaker({
+          randomizer: RANDOMIZER_MIN_VALUE,
+        });
         const actual = customFaker.number.int();
         expect(actual).toBe(0);
       });
 
       it('should be able to return MAX_SAFE_INTEGER', () => {
-        randomizer.next = RANDOMIZER_MAX_VALUE.next;
+        const customFaker = new SimpleFaker({
+          randomizer: RANDOMIZER_MAX_VALUE,
+        });
         const actual = customFaker.number.int();
         expect(actual).toBe(Number.MAX_SAFE_INTEGER);
       });
@@ -970,13 +972,17 @@ describe('number', () => {
 
     describe('float', () => {
       it('should be able to return 0', () => {
-        randomizer.next = RANDOMIZER_MIN_VALUE.next;
+        const customFaker = new SimpleFaker({
+          randomizer: RANDOMIZER_MIN_VALUE,
+        });
         const actual = customFaker.number.float();
         expect(actual).toBe(0);
       });
 
       it('should be able to return almost 1', () => {
-        randomizer.next = RANDOMIZER_MAX_VALUE.next;
+        const customFaker = new SimpleFaker({
+          randomizer: RANDOMIZER_MAX_VALUE,
+        });
         const actual = customFaker.number.float();
         expect(actual).toBe(MERSENNE_MAX_VALUE);
       });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CssFunction, CssSpace, Faker, en, faker } from '../../src';
+import { CssFunction, CssSpace, Faker, faker } from '../../src';
 import {
   RANDOMIZER_MAX_VALUE,
   RANDOMIZER_MIN_VALUE,
@@ -345,14 +345,17 @@ describe('color', () => {
           expect(hue).toBeLessThanOrEqual(360);
         });
 
-        it('should be able to return the boundary values', () => {
-          const customFaker = new Faker({ locale: en });
-          const { randomizer } = customFaker.fakerCore;
-
-          randomizer.next = RANDOMIZER_MIN_VALUE.next;
+        it('should be able to return the boundary values (min)', () => {
+          const customFaker = new Faker({
+            randomizer: RANDOMIZER_MIN_VALUE,
+          });
           expect(customFaker.color.lch()).toStrictEqual([0, 0, 0]);
+        });
 
-          randomizer.next = RANDOMIZER_MAX_VALUE.next;
+        it('should be able to return the boundary values (max)', () => {
+          const customFaker = new Faker({
+            randomizer: RANDOMIZER_MAX_VALUE,
+          });
           const [lightness, chroma, hue] = customFaker.color.lch();
           expect(lightness).toBeCloseTo(1, 5);
           expect(chroma).toBe(230);

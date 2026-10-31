@@ -51,7 +51,7 @@ export interface Randomizer {
    *
    * @since 8.2.0
    */
-  next(): number;
+  readonly next: () => number;
 
   /**
    * Sets the seed to use.
@@ -67,5 +67,5 @@ export interface Randomizer {
    *
    * @since 8.2.0
    */
-  seed(seed: number | number[]): void;
+  readonly seed: (seed: number | number[]) => void;
 }
