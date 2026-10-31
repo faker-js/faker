@@ -99,6 +99,7 @@ export class NumberModule extends ModuleBase {
    *
    * @throws {FakerError} When `min` is greater than `max`.
    * @throws {FakerError} When `multipleOf` is not a positive number.
+   * @throws {FakerError} When there is no multiple of `multipleOf` between `min` and `max`.
    * @throws {FakerError} When `fractionDigits` is negative.
    * @throws {FakerError} When `fractionDigits` and `multipleOf` is passed in the same options object.
    *
