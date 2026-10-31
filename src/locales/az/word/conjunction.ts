@@ -1,7 +1,6 @@
 export default [
   'amma',
   'ancaq',
-  'buna görə',
   'halbuki',
   'həmçinin',
   'ki',
