@@ -8,15 +8,15 @@ exports[`system > 42 > commonFileName > with extension 1`] = `"unnaturally_dream
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
 
-exports[`system > 42 > cron > noArgs 1`] = `"* * ? 8 ?"`;
+exports[`system > 42 > cron > noArgs 1`] = `"* * ? 8 *"`;
 
-exports[`system > 42 > cron > with includeNonStandard false 1`] = `"* * ? 8 ?"`;
+exports[`system > 42 > cron > with includeNonStandard false 1`] = `"* * ? 8 *"`;
 
-exports[`system > 42 > cron > with includeNonStandard true 1`] = `"* * ? 8 ?"`;
+exports[`system > 42 > cron > with includeNonStandard true 1`] = `"* * ? 8 *"`;
 
-exports[`system > 42 > cron > with includeYear false 1`] = `"* * ? 8 ?"`;
+exports[`system > 42 > cron > with includeYear false 1`] = `"* * ? 8 *"`;
 
-exports[`system > 42 > cron > with includeYear true 1`] = `"* * ? 8 ? *"`;
+exports[`system > 42 > cron > with includeYear true 1`] = `"* * ? 8 * *"`;
 
 exports[`system > 42 > directoryPath 1`] = `"/net"`;
 
