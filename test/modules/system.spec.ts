@@ -1,5 +1,6 @@
 import { isMimeType, isSemVer } from 'validator';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import type { FakerCore } from '../../src';
 import { FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -408,6 +409,42 @@ describe('system', () => {
             }
           }
         );
+
+        it('should never put ? in both day-of-month and day-of-week', async () => {
+          // Force `?` whenever it is one of the options, so both day fields
+          // would get it without the guard. Import a fresh copy of the
+          // function so the mock does not leak into the other tests.
+          vi.resetModules();
+          vi.doMock(
+            import('../../src/modules/helpers/array-element'),
+            async (importOriginal) => {
+              const { fakeHelpersArrayElement: original } =
+                await importOriginal();
+              return {
+                fakeHelpersArrayElement: <T>(
+                  fakerCore: FakerCore,
+                  array: ReadonlyArray<T>
+                ): T =>
+                  array.includes('?' as T)
+                    ? ('?' as T)
+                    : original(fakerCore, array),
+              };
+            }
+          );
+
+          try {
+            const { fakeSystemCron } =
+              await import('../../src/modules/system/cron');
+            const fields = fakeSystemCron(faker.fakerCore).split(' ');
+            const day = fields[2];
+            const dayOfWeek = fields[4];
+            expect(day).toBe('?');
+            expect(dayOfWeek).not.toBe('?');
+          } finally {
+            vi.doUnmock('../../src/modules/helpers/array-element');
+            vi.resetModules();
+          }
+        });
 
         it('should be able to return non-standard cron expressions', () => {
           const validResults = new Set('0123456789*@');
