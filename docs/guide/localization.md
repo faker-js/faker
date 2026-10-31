@@ -93,6 +93,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | [`hu`](/locales/hu.md)                     | Hungarian                      | `fakerHU`           |
 | [`hy`](/locales/hy.md)                     | Armenian                       | `fakerHY`           |
 | [`id_ID`](/locales/id_ID.md)               | Indonesian (Indonesia)         | `fakerID_ID`        |
+| [`is_IS`](/locales/is_IS.md)               | Icelandic (Iceland)            | `fakerIS_IS`        |
 | [`it`](/locales/it.md)                     | Italian                        | `fakerIT`           |
 | [`ja`](/locales/ja.md)                     | Japanese                       | `fakerJA`           |
 | [`ka_GE`](/locales/ka_GE.md)               | Georgian (Georgia)             | `fakerKA_GE`        |
