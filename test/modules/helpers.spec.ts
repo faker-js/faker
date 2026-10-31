@@ -105,6 +105,40 @@ describe('helpers', () => {
       ]);
     });
 
+    t.describe('weightedArrayElements', (t) => {
+      const entries = [
+        { weight: 5, value: 'sunny' },
+        { weight: 4, value: 'rainy' },
+        { weight: 1, value: 'snowy' },
+      ];
+      t.it('with default count', entries)
+        .it('with count', entries, 2)
+        .it('with count range', entries, { min: 1, max: 3 })
+        .it('with count above input length', entries, 10)
+        .it('with zero count', entries, 0)
+        .it(
+          'with fractional weights',
+          entries.map(({ weight, value }) => ({ weight: weight / 10, value })),
+          2
+        );
+    });
+
+    t.describe('weightedArraySamples', (t) => {
+      const entries = [
+        { weight: 5, value: 'sunny' },
+        { weight: 4, value: 'rainy' },
+        { weight: 1, value: 'snowy' },
+      ];
+      t.it('with count', entries, 6)
+        .it('with count range', entries, { min: 2, max: 5 })
+        .it('with zero count', entries, 0)
+        .it(
+          'with fractional weights',
+          entries.map(({ weight, value }) => ({ weight: weight / 10, value })),
+          6
+        );
+    });
+
     t.describe('arrayElements', (t) => {
       t.it('with array', [...'Hello World!'])
         .it('with array and count', [...'Hello World!'], 3)
