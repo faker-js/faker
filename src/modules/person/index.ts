@@ -13,6 +13,6 @@ export { fakePersonSex } from './sex';
 export { fakePersonSexType } from './sex-type';
 export { fakePersonSuffix } from './suffix';
 export { fakePersonZodiacSign } from './zodiac-sign';
-export type * from './module';
+export type { PersonModule } from './module';
 export { Sex } from './sex-type';
 export type { SexType } from './sex-type';

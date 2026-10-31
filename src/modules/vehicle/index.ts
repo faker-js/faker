@@ -7,4 +7,4 @@ export { fakeVehicleType } from './type';
 export { fakeVehicleVehicle } from './vehicle';
 export { fakeVehicleVin } from './vin';
 export { fakeVehicleVrm } from './vrm';
-export type * from './module';
+export type { VehicleModule } from './module';
