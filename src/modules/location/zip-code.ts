@@ -65,12 +65,19 @@ export function fakeLocationZipCode(
     return new Faker(fakerCore).helpers.fake(zipPattern);
   }
 
+  const isLocaleFormat = options.format == null;
   let { format = fakerCore.locale.location.postcode } = options;
   if (typeof format === 'string') {
     format = [format];
   }
 
   format = fakeHelpersArrayElement(fakerCore, format);
+
+  // Locale patterns can use a template for more precise formats
+  // Explicit formats keep the existing replaceSymbols behavior
+  if (isLocaleFormat && format.includes('{{')) {
+    return new Faker(fakerCore).helpers.fake(format);
+  }
 
   return fakeHelpersReplaceSymbols(fakerCore, format);
 }
