@@ -6,6 +6,7 @@ import {
   FakerError,
   allLocales,
   faker,
+  fakerDE_AT,
   fakerEN_CA,
   fakerEN_NG,
   fakerEN_US,
@@ -211,6 +212,15 @@ describe('location', () => {
           const zipCode = fakerEN_CA.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+        });
+
+        it('should not return a leading zero for de_AT locale', () => {
+          // Austrian postal codes run from 1010 to 9992.
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerDE_AT.location.zipCode();
+
+            expect(zipCode).toMatch(/^[1-9]\d{3}$/);
+          }
         });
 
         it('should not return forbidden letter combinations for nl locale', () => {
