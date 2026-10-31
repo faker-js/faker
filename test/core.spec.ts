@@ -3,8 +3,8 @@ import type { FakerConfig } from '../src/config';
 import { createFakerCore } from '../src/core';
 import type { LocaleDefinition } from '../src/definitions/definitions';
 import { createLocaleProxy } from '../src/internal/locale-proxy';
-import type { Randomizer } from '../src/randomizer';
 import { generateMersenne53Randomizer } from '../src/utils/mersenne';
+import { RANDOMIZER_MIN_VALUE } from './support/randomizers';
 
 describe('createFakerCore', () => {
   describe('locale', () => {
@@ -72,7 +72,7 @@ describe('createFakerCore', () => {
     });
 
     it('should use provided randomizer', () => {
-      const randomizer: Randomizer = { next: () => 0, seed: () => {} };
+      const randomizer = RANDOMIZER_MIN_VALUE;
       const actual = createFakerCore({ randomizer });
 
       expect(actual.randomizer).toBe(randomizer);

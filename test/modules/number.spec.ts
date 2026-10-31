@@ -1,9 +1,14 @@
 import { isHexadecimal, isOctal } from 'validator';
 import { describe, expect, it } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
+import { DISTRIBUTOR_MAX_VALUE } from '../support/distributors';
+import { MERSENNE_MAX_VALUE } from '../support/mersenne-values';
+import {
+  RANDOMIZER_MAX_VALUE,
+  RANDOMIZER_MIN_VALUE,
+} from '../support/randomizers';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
-import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 function isFloat(value: number): boolean {
   return value % 1 !== 0;
@@ -290,7 +295,7 @@ describe('number', () => {
       });
 
       it('should not round past the upper bound with an offset range', () => {
-        const nearOne = () => MERSENNE_MAX_VALUE;
+        const nearOne = DISTRIBUTOR_MAX_VALUE;
 
         expect(faker.number.int({ min: 1, max: 2, distributor: nearOne })).toBe(
           2
@@ -392,7 +397,7 @@ describe('number', () => {
             min: 0.5,
             max: 1,
             multipleOf: 0.5,
-            distributor: () => MERSENNE_MAX_VALUE,
+            distributor: DISTRIBUTOR_MAX_VALUE,
           })
         ).toBe(1);
       });
@@ -721,10 +726,7 @@ describe('number', () => {
 
       it('should return when the randomizer only gives high values', () => {
         const highFaker = new SimpleFaker({
-          randomizer: {
-            next: () => MERSENNE_MAX_VALUE,
-            seed: () => {},
-          },
+          randomizer: RANDOMIZER_MAX_VALUE,
         });
 
         expect(highFaker.number.bigInt({ min: 1n, max: 6n })).toBe(6n);
@@ -954,13 +956,13 @@ describe('number', () => {
     const { randomizer } = customFaker.fakerCore;
     describe('int', () => {
       it('should be able to return 0', () => {
-        randomizer.next = () => 0;
+        randomizer.next = RANDOMIZER_MIN_VALUE.next;
         const actual = customFaker.number.int();
         expect(actual).toBe(0);
       });
 
       it('should be able to return MAX_SAFE_INTEGER', () => {
-        randomizer.next = () => MERSENNE_MAX_VALUE;
+        randomizer.next = RANDOMIZER_MAX_VALUE.next;
         const actual = customFaker.number.int();
         expect(actual).toBe(Number.MAX_SAFE_INTEGER);
       });
@@ -968,13 +970,13 @@ describe('number', () => {
 
     describe('float', () => {
       it('should be able to return 0', () => {
-        randomizer.next = () => 0;
+        randomizer.next = RANDOMIZER_MIN_VALUE.next;
         const actual = customFaker.number.float();
         expect(actual).toBe(0);
       });
 
       it('should be able to return almost 1', () => {
-        randomizer.next = () => MERSENNE_MAX_VALUE;
+        randomizer.next = RANDOMIZER_MAX_VALUE.next;
         const actual = customFaker.number.float();
         expect(actual).toBe(MERSENNE_MAX_VALUE);
       });
