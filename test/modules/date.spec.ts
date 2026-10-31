@@ -293,11 +293,18 @@ describe('date', () => {
           ).toThrow(new FakerError('Years must be greater than 0.'));
         });
 
-        it.each([0.5, { min: 0, max: 1.5 }, { min: 0.5, max: 2 }])(
-          'should throw an error when years is not a whole number (%o)',
+        it.each([
+          0.5,
+          { min: 0, max: 1.5 },
+          { min: 0.5, max: 2 },
+          Number.POSITIVE_INFINITY,
+          { min: 1, max: Number.POSITIVE_INFINITY },
+          2 ** 53,
+        ])(
+          'should throw an error when years is not a safe integer (%o)',
           (years) => {
             expect(() => faker.date.past({ years })).toThrow(
-              new FakerError('Years must be whole numbers.')
+              new FakerError('Years must be safe integers.')
             );
           }
         );
@@ -460,11 +467,18 @@ describe('date', () => {
           ).toThrow(new FakerError('Years must be greater than 0.'));
         });
 
-        it.each([0.5, { min: 0, max: 1.5 }, { min: 0.5, max: 2 }])(
-          'should throw an error when years is not a whole number (%o)',
+        it.each([
+          0.5,
+          { min: 0, max: 1.5 },
+          { min: 0.5, max: 2 },
+          Number.POSITIVE_INFINITY,
+          { min: 1, max: Number.POSITIVE_INFINITY },
+          2 ** 53,
+        ])(
+          'should throw an error when years is not a safe integer (%o)',
           (years) => {
             expect(() => faker.date.future({ years })).toThrow(
-              new FakerError('Years must be whole numbers.')
+              new FakerError('Years must be safe integers.')
             );
           }
         );
@@ -716,11 +730,18 @@ describe('date', () => {
           ).toThrow(new FakerError('Days must be greater than 0.'));
         });
 
-        it.each([0.5, { min: 0, max: 1.5 }, { min: 0.5, max: 2 }])(
-          'should throw an error when days is not a whole number (%o)',
+        it.each([
+          0.5,
+          { min: 0, max: 1.5 },
+          { min: 0.5, max: 2 },
+          Number.POSITIVE_INFINITY,
+          { min: 1, max: Number.POSITIVE_INFINITY },
+          2 ** 53,
+        ])(
+          'should throw an error when days is not a safe integer (%o)',
           (days) => {
             expect(() => faker.date.recent({ days })).toThrow(
-              new FakerError('Days must be whole numbers.')
+              new FakerError('Days must be safe integers.')
             );
           }
         );
@@ -849,11 +870,18 @@ describe('date', () => {
           ).toThrow(new FakerError('Days must be greater than 0.'));
         });
 
-        it.each([0.5, { min: 0, max: 1.5 }, { min: 0.5, max: 2 }])(
-          'should throw an error when days is not a whole number (%o)',
+        it.each([
+          0.5,
+          { min: 0, max: 1.5 },
+          { min: 0.5, max: 2 },
+          Number.POSITIVE_INFINITY,
+          { min: 1, max: Number.POSITIVE_INFINITY },
+          2 ** 53,
+        ])(
+          'should throw an error when days is not a safe integer (%o)',
           (days) => {
             expect(() => faker.date.soon({ days })).toThrow(
-              new FakerError('Days must be whole numbers.')
+              new FakerError('Days must be safe integers.')
             );
           }
         );

@@ -53,8 +53,8 @@ export function fakeDateFuture(
     years = { min: 0, max: years };
   }
 
-  if (!Number.isInteger(years.min) || !Number.isInteger(years.max)) {
-    throw new FakerError('Years must be whole numbers.');
+  if (!Number.isSafeInteger(years.min) || !Number.isSafeInteger(years.max)) {
+    throw new FakerError('Years must be safe integers.');
   }
 
   if (years.max <= 0) {

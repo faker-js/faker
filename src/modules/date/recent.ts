@@ -52,8 +52,8 @@ export function fakeDateRecent(
     days = { min: 0, max: days };
   }
 
-  if (!Number.isInteger(days.min) || !Number.isInteger(days.max)) {
-    throw new FakerError('Days must be whole numbers.');
+  if (!Number.isSafeInteger(days.min) || !Number.isSafeInteger(days.max)) {
+    throw new FakerError('Days must be safe integers.');
   }
 
   if (days.max <= 0) {
