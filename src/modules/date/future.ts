@@ -3,6 +3,7 @@ import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { NumberOrRange } from '../../utils/types';
+import { sameDayInYear } from './_utils';
 import { fakeDateBetween } from './between';
 
 /**
@@ -62,10 +63,12 @@ export function fakeDateFuture(
   }
 
   const time = toDate(refDate);
+  const year = time.getUTCFullYear();
+  // February 29 gets converted to March 1 in non leap years
   const from = new Date(time);
-  from.setUTCFullYear(from.getUTCFullYear() + years.min);
-  const to = new Date(time);
-  to.setUTCFullYear(to.getUTCFullYear() + years.max);
+  from.setUTCFullYear(year + years.min);
+  // February 29 gets converted to February 28 in non leap years
+  const to = sameDayInYear(time, year + years.max);
 
   return fakeDateBetween(fakerCore, {
     from: from.getTime() + 1000,
