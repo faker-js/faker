@@ -16,4 +16,6 @@ export { fakeHelpersShuffle } from './shuffle';
 export { fakeHelpersSlugify } from './slugify';
 export { fakeHelpersUniqueArray } from './unique-array';
 export { fakeHelpersWeightedArrayElement } from './weighted-array-element';
+export { fakeHelpersWeightedArrayElements } from './weighted-array-elements';
+export { fakeHelpersWeightedArraySamples } from './weighted-array-samples';
 export type * from './module';
