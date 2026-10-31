@@ -14,7 +14,7 @@ import { fakeDateBetween } from './between';
  * @param options.years The range of years the date may be in the future. Either as a fixed amount of years or as a year range. Defaults to `1`.
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
- * @throws {FakerError} If `years.min` or `years.max` is not an integer.
+ * @throws {FakerError} If `years.min` or `years.max` is not a safe integer.
  * @throws {FakerError} If `years.max` is less than 0.
  * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
  *

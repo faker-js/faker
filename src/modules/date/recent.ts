@@ -13,7 +13,7 @@ import { fakeDateBetween } from './between';
  * @param options.days The range of days the date may be in the past. Either as a fixed amount of days or as a day range. Defaults to `1`.
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
- * @throws {FakerError} If `days.min` or `days.max` is not an integer.
+ * @throws {FakerError} If `days.min` or `days.max` is not a safe integer.
  * @throws {FakerError} If `days.max` is less than 0.
  * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
  *
