@@ -5,8 +5,6 @@ import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { NumberOrRange } from '../../utils/types';
 import { fakeDateBetween } from './between';
 
-const MS_PER_DAY = 24 * 60 * 60 * 1000;
-
 /**
  * Generates a random date in the near future.
  *
@@ -15,6 +13,7 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
  * @param options.days The range of days the date may be in the future. Either as a fixed amount of days or as a day range. Defaults to `1`.
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
+ * @throws {FakerError} If `days.min` or `days.max` is not an integer.
  * @throws {FakerError} If `days.max` is less than 0.
  * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
  *
@@ -53,6 +52,10 @@ export function fakeDateSoon(
     days = { min: 0, max: days };
   }
 
+  if (!Number.isInteger(days.min) || !Number.isInteger(days.max)) {
+    throw new FakerError('Days must be whole numbers.');
+  }
+
   if (days.max <= 0) {
     throw new FakerError('Days must be greater than 0.');
   }
@@ -63,13 +66,14 @@ export function fakeDateSoon(
     );
   }
 
-  // Use milliseconds instead of setUTCDate, which drops fractional days.
-  const time = toDate(refDate).getTime();
-  const from = time + days.min * MS_PER_DAY;
-  const to = time + days.max * MS_PER_DAY;
+  const time = toDate(refDate);
+  const from = new Date(time);
+  from.setUTCDate(from.getUTCDate() + days.min);
+  const to = new Date(time);
+  to.setUTCDate(to.getUTCDate() + days.max);
 
   return fakeDateBetween(fakerCore, {
-    from: from + 1000,
+    from: from.getTime() + 1000,
     to,
   });
 }
