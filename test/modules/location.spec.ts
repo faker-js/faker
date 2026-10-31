@@ -7,6 +7,7 @@ import {
   allLocales,
   faker,
   fakerEN_CA,
+  fakerEN_GB,
   fakerEN_NG,
   fakerEN_US,
   fakerFR,
