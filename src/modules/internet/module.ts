@@ -721,7 +721,7 @@ export class InternetModule extends ModuleBase {
        * {
        *   iat: faker.date.recent(),
        *   exp: faker.date.soon(),
-       *   nbf: faker.date.anytime(),
+       *   nbf: faker.date.between({ from: iat, to: exp }),
        *   iss: faker.company.name(),
        *   sub: faker.string.uuid(),
        *   aud: faker.string.uuid(),

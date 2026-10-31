@@ -2,7 +2,7 @@ import type { FakerCore } from '../../core';
 import { toBase64Url } from '../../internal/base64';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { fakeCompanyName } from '../company/name';
-import { fakeDateAnytime } from '../date/anytime';
+import { fakeDateBetween } from '../date/between';
 import { fakeDateRecent } from '../date/recent';
 import { fakeDateSoon } from '../date/soon';
 import { fakeStringAlphanumeric } from '../string/alphanumeric';
@@ -53,7 +53,7 @@ export function fakeInternetJwt(
      * {
      *   iat: fakeDateRecent(fakerCore),
      *   exp: fakeDateSoon(fakerCore),
-     *   nbf: fakeDateAnytime(fakerCore),
+     *   nbf: fakeDateBetween(fakerCore, { from: iat, to: exp }),
      *   iss: fakeCompanyName(fakerCore),
      *   sub: fakeStringUuid(fakerCore),
      *   aud: fakeStringUuid(fakerCore),
@@ -72,23 +72,30 @@ export function fakeInternetJwt(
   const { refDate = getDefaultRefDate(fakerCore) } = options;
 
   const iatDefault = fakeDateRecent(fakerCore, { refDate });
+  const defaultPayload = (): Record<string, unknown> => {
+    const expDefault = fakeDateSoon(fakerCore, { refDate: iatDefault });
+    // The token must become valid before it expires.
+    const nbfDefault = fakeDateBetween(fakerCore, {
+      from: iatDefault,
+      to: expDefault,
+    });
+    return {
+      iat: Math.round(iatDefault.valueOf() / 1000),
+      exp: Math.round(expDefault.valueOf() / 1000),
+      nbf: Math.round(nbfDefault.valueOf() / 1000),
+      iss: fakeCompanyName(fakerCore),
+      sub: fakeStringUuid(fakerCore),
+      aud: fakeStringUuid(fakerCore),
+      jti: fakeStringUuid(fakerCore),
+    };
+  };
 
   const {
     header = {
       alg: fakeInternetJwtAlgorithm(fakerCore),
       typ: 'JWT',
     },
-    payload = {
-      iat: Math.round(iatDefault.valueOf() / 1000),
-      exp: Math.round(
-        fakeDateSoon(fakerCore, { refDate: iatDefault }).valueOf() / 1000
-      ),
-      nbf: Math.round(fakeDateAnytime(fakerCore, { refDate }).valueOf() / 1000),
-      iss: fakeCompanyName(fakerCore),
-      sub: fakeStringUuid(fakerCore),
-      aud: fakeStringUuid(fakerCore),
-      jti: fakeStringUuid(fakerCore),
-    },
+    payload = defaultPayload(),
   } = options;
 
   const encodedHeader = toBase64Url(JSON.stringify(header));
