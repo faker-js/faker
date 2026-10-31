@@ -7,4 +7,4 @@ export { fakeLoremSlug } from './slug';
 export { fakeLoremText } from './text';
 export { fakeLoremWord } from './word';
 export { fakeLoremWords } from './words';
-export type * from './module';
+export type { LoremModule } from './module';

@@ -13,6 +13,6 @@ export type { Airplane } from './airplane';
 export { fakeAirlineAirport } from './airport';
 export type { Airport } from './airport';
 export { fakeAirlineFlightNumber } from './flight-number';
-export type * from './module';
+export type { AirlineModule } from './module';
 export { fakeAirlineRecordLocator } from './record-locator';
 export { fakeAirlineSeat } from './seat';
