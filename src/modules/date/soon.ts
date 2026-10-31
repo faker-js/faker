@@ -5,6 +5,8 @@ import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { NumberOrRange } from '../../utils/types';
 import { fakeDateBetween } from './between';
 
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
 /**
  * Generates a random date in the near future.
  *
@@ -61,14 +63,13 @@ export function fakeDateSoon(
     );
   }
 
-  const time = toDate(refDate);
-  const from = new Date(time);
-  from.setUTCDate(from.getUTCDate() + days.min);
-  const to = new Date(time);
-  to.setUTCDate(to.getUTCDate() + days.max);
+  // Use milliseconds instead of setUTCDate, which drops fractional days.
+  const time = toDate(refDate).getTime();
+  const from = time + days.min * MS_PER_DAY;
+  const to = time + days.max * MS_PER_DAY;
 
   return fakeDateBetween(fakerCore, {
-    from: from.getTime() + 1000,
+    from: from + 1000,
     to,
   });
 }

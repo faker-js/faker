@@ -751,6 +751,30 @@ describe('date', () => {
             ).lessThanOrEqual(refDate);
           }
         );
+
+        it('should respect fractional days', () => {
+          const refDate = new Date('2020-01-01T12:00:00.000Z');
+          const hour = 60 * 60 * 1000;
+
+          for (let i = 0; i < 100; i++) {
+            const date = faker.date.recent({ days: 0.5, refDate });
+            expect(date.getTime()).toBeGreaterThanOrEqual(
+              refDate.getTime() - 12 * hour
+            );
+            expect(date).lessThanOrEqual(refDate);
+
+            const ranged = faker.date.recent({
+              days: { min: 0.25, max: 0.5 },
+              refDate,
+            });
+            expect(ranged.getTime()).toBeGreaterThanOrEqual(
+              refDate.getTime() - 12 * hour
+            );
+            expect(ranged.getTime()).toBeLessThanOrEqual(
+              refDate.getTime() - 6 * hour
+            );
+          }
+        });
       });
 
       describe('soon()', () => {
@@ -872,6 +896,30 @@ describe('date', () => {
             ).lessThanOrEqual(date);
           }
         );
+
+        it('should respect fractional days', () => {
+          const refDate = new Date('2020-01-01T12:00:00.000Z');
+          const hour = 60 * 60 * 1000;
+
+          for (let i = 0; i < 100; i++) {
+            const date = faker.date.soon({ days: 0.5, refDate });
+            expect(refDate).lessThanOrEqual(date);
+            expect(date.getTime()).toBeLessThanOrEqual(
+              refDate.getTime() + 12 * hour
+            );
+
+            const ranged = faker.date.soon({
+              days: { min: 0.25, max: 0.5 },
+              refDate,
+            });
+            expect(ranged.getTime()).toBeGreaterThanOrEqual(
+              refDate.getTime() + 6 * hour
+            );
+            expect(ranged.getTime()).toBeLessThanOrEqual(
+              refDate.getTime() + 12 * hour
+            );
+          }
+        });
       });
 
       describe('month()', () => {
