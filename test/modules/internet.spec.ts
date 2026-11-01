@@ -1134,6 +1134,18 @@ describe('internet', () => {
             JSON.parse(Buffer.from(parts[1], 'base64url').toString('ascii'))
           ).toMatchObject(payload);
         });
+
+        it('should return a default payload that becomes valid before it expires', () => {
+          for (let i = 0; i < 20; i++) {
+            const actual = faker.internet.jwt();
+            const { iat, exp, nbf } = JSON.parse(
+              Buffer.from(actual.split('.')[1], 'base64url').toString('ascii')
+            ) as Record<'iat' | 'exp' | 'nbf', number>;
+
+            expect(nbf).toBeGreaterThanOrEqual(iat);
+            expect(nbf).toBeLessThanOrEqual(exp);
+          }
+        });
       });
     }
   );
