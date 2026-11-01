@@ -1,0 +1,16 @@
+export default [
+  'Dəri kəmərin metal bağlayıcısı ölçünü tənzimləməyə imkan verir.',
+  'Geniş ekranlı kompüter gündəlik iş və təhsil üçün uyğundur.',
+  'Keramika fincan isti içkilər üçün nəzərdə tutulub.',
+  'Məhsul: {{commerce.product}}. Qulluq qaydaları etiketdə göstərilir.',
+  'Məhsul: {{commerce.product}}. Rəng variantı: {{color.human}}.',
+  'Parça üzlü stul yumşaq oturacağı və möhkəm ayaqları ilə seçilir.',
+  'Polad kulon incə zəncirlə birlikdə təqdim olunur.',
+  'Qalın parça çanta gündəlik əşyaları daşımaq üçün uyğundur.',
+  'Rəngli üzlüklü qeyd dəftəri gündəlik qeydlər üçün nəzərdə tutulub.',
+  'Taxta stolun geniş üst səthi yazı yazmaq və işləmək üçün yer ayırır.',
+  'Yumşaq pambıq dəsmal əl və üz üçün nəzərdə tutulub.',
+  'Yumşaq pambıqdan tikilmiş sviter gündəlik geyim üçün rahat seçimdir.',
+  'Yüngül beret sərin havada başı örtmək üçün nəzərdə tutulub.',
+  'Şəhər avtomobili kiçik ölçüsü ilə dar yerlərdə park etməyə uyğundur.',
+];
