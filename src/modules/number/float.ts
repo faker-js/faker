@@ -17,6 +17,7 @@ import { fakeNumberInt } from './int';
  *
  * @throws {FakerError} When `min` is greater than `max`.
  * @throws {FakerError} When `multipleOf` is not a positive number.
+ * @throws {FakerError} When there is no multiple of `multipleOf` between `min` and `max`.
  * @throws {FakerError} When `fractionDigits` is negative.
  * @throws {FakerError} When `fractionDigits` and `multipleOf` is passed in the same options object.
  *
@@ -110,20 +111,72 @@ export function fakeNumberFloat(
       throw new FakerError(`multipleOf should be greater than 0.`);
     }
 
-    const logPrecision = Math.log10(multipleOf);
-    // Workaround to get integer values for the inverse of all multiples of the form 10^-n
-    const factor =
-      multipleOf < 1 && Number.isSafeInteger(logPrecision)
-        ? 10 ** -logPrecision
-        : 1 / multipleOf;
-    const int = fakeNumberInt(fakerCore, {
-      min: min * factor,
-      max: max * factor,
-      distributor,
-    });
-    return int / factor;
+    // Check if we can easily convert all values to integers to round away any floating-point errors
+    // e.g. 1.1 * 100 is 110.00000000000001 => we need to round in order to include the min of 1.1)
+    const scale =
+      10 **
+      Math.max(
+        decimalPlaces(min),
+        decimalPlaces(max),
+        decimalPlaces(multipleOf)
+      );
+    const scaledStep = Math.round(multipleOf * scale);
+    const isExact = Number.isSafeInteger(scaledStep);
+    let factor = scale;
+    if (!isExact) {
+      // Workaround to get integer values for the inverse of all multiples of the form 10^-n
+      const logPrecision = Math.log10(multipleOf);
+      factor =
+        multipleOf < 1 && Number.isSafeInteger(logPrecision)
+          ? 10 ** -logPrecision
+          : 1 / multipleOf;
+    }
+
+    try {
+      const tempInt = isExact
+        ? fakeNumberInt(fakerCore, {
+            min: Math.round(min * factor),
+            max: Math.round(max * factor),
+            multipleOf: scaledStep,
+            distributor,
+          })
+        : fakeNumberInt(fakerCore, {
+            min: min * factor,
+            max: max * factor,
+            distributor,
+          });
+      return tempInt / factor;
+    } catch (error) {
+      if (error instanceof FakerError) {
+        // Re-throw to refer to the originally supplied bounds instead of the scaled ones.
+        throw new FakerError(
+          `No suitable float value between ${min} and ${max} that is a multiple of ${multipleOf} found.`,
+          { cause: error }
+        );
+      }
+
+      throw error;
+    }
   }
 
   const real = distributor(fakerCore.randomizer);
   return real * (max - min) + min;
+}
+
+/**
+ * Returns the number of decimal places of a finite decimal value (`0.05` → 2,
+ * `1e-7` → 7), or `Infinity` for values like `Math.PI` or `1 / 3` that have no
+ * short decimal form.
+ *
+ * @param value The value to inspect.
+ */
+function decimalPlaces(value: number): number {
+  for (let digits = 0; digits <= 15; digits++) {
+    const scale = 10 ** digits;
+    if (Math.round(value * scale) / scale === value) {
+      return digits;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
 }
