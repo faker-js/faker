@@ -29,14 +29,16 @@ export function fakeHelpersMustache(
   }
 
   for (const p in data) {
-    const re = new RegExp(`{{${p}}}`, 'g');
+    // A string pattern matches the placeholder literally, so keys holding
+    // RegExp syntax such as `.`, `$` or `(` are replaced like any other key.
+    const placeholder = `{{${p}}}`;
     let value = data[p];
     if (typeof value === 'string') {
       // escape $, source: https://stackoverflow.com/a/6969486/6897682
       value = value.replaceAll('$', '$$$$');
-      text = text.replace(re, value);
+      text = text.replaceAll(placeholder, value);
     } else {
-      text = text.replace(re, value);
+      text = text.replaceAll(placeholder, value);
     }
   }
 
