@@ -8,13 +8,16 @@ import type {
 /**
  * The error handling strategies for the `filterWordListByLength` function.
  *
- * Always returns a new array.
+ * May return the given word list itself rather than a copy.
  */
 const STRATEGIES = {
   fail: () => {
     throw new FakerError('No words found that match the given length.');
   },
-  closest: (wordList: ReadonlyArray<string>, length: NumberRange): string[] => {
+  closest: (
+    wordList: ReadonlyArray<string>,
+    length: NumberRange
+  ): ReadonlyArray<string> => {
     const wordsByLength = Object.groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
     const closestBelow = Math.max(
@@ -35,20 +38,23 @@ const STRATEGIES = {
         word.length === length.max + closestOffset
     );
   },
-  shortest: (wordList: ReadonlyArray<string>): string[] => {
+  shortest: (wordList: ReadonlyArray<string>): ReadonlyArray<string> => {
     const minLength = Math.min(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === minLength);
   },
-  longest: (wordList: ReadonlyArray<string>): string[] => {
+  longest: (wordList: ReadonlyArray<string>): ReadonlyArray<string> => {
     const maxLength = Math.max(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === maxLength);
   },
-  'any-length': (wordList: ReadonlyArray<string>): string[] => {
-    return [...wordList];
+  'any-length': (wordList: ReadonlyArray<string>): ReadonlyArray<string> => {
+    return wordList;
   },
 } satisfies Record<
   NonNullable<Parameters<typeof filterWordListByLength>[0]['strategy']>,
-  (wordList: string[], length: NumberRange) => string[]
+  (
+    wordList: ReadonlyArray<string>,
+    length: NumberRange
+  ) => ReadonlyArray<string>
 >;
 
 /**
@@ -60,12 +66,14 @@ const STRATEGIES = {
  * @param options.wordList A list of words to filter.
  * @param options.length The exact or the range of lengths the words should have.
  * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to `'fail'`.
+ *
+ * @returns The matching words. This may be `wordList` itself rather than a copy.
  */
 export function filterWordListByLength(options: {
   wordList: ReadonlyArray<string>;
   length?: NumberOrRange;
   strategy?: LengthStrategyType;
-}): string[] {
+}): ReadonlyArray<string> {
   const { wordList, length, strategy = 'fail' } = options;
 
   if (length != null) {
@@ -89,5 +97,5 @@ export function filterWordListByLength(options: {
     return STRATEGIES[strategy](wordList);
   }
 
-  return [...wordList];
+  return wordList;
 }
