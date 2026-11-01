@@ -14,6 +14,7 @@ import { fakeDateBetween } from './between';
  * @param options.years The range of years the date may be in the past. Either as a fixed amount of years or as a year range. Defaults to `1`.
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
+ * @throws {FakerError} If `years.min` or `years.max` is not a safe integer.
  * @throws {FakerError} If `years.max` is less than 0.
  * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
  *
@@ -50,6 +51,10 @@ export function fakeDatePast(
   let { years = 1 } = options;
   if (typeof years === 'number') {
     years = { min: 0, max: years };
+  }
+
+  if (!Number.isSafeInteger(years.min) || !Number.isSafeInteger(years.max)) {
+    throw new FakerError('Years must be safe integers.');
   }
 
   if (years.max <= 0) {

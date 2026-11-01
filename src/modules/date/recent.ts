@@ -13,6 +13,7 @@ import { fakeDateBetween } from './between';
  * @param options.days The range of days the date may be in the past. Either as a fixed amount of days or as a day range. Defaults to `1`.
  * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `getDefaultRefDate(fakerCore)`.
  *
+ * @throws {FakerError} If `days.min` or `days.max` is not a safe integer.
  * @throws {FakerError} If `days.max` is less than 0.
  * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
  *
@@ -49,6 +50,10 @@ export function fakeDateRecent(
   let { days = 1 } = options;
   if (typeof days === 'number') {
     days = { min: 0, max: days };
+  }
+
+  if (!Number.isSafeInteger(days.min) || !Number.isSafeInteger(days.max)) {
+    throw new FakerError('Days must be safe integers.');
   }
 
   if (days.max <= 0) {
