@@ -1,1 +1,12 @@
-export * from './module';
+export { fakeDateAnytime } from './anytime';
+export { fakeDateBetween } from './between';
+export { fakeDateBetweens } from './betweens';
+export { fakeDateBirthdate } from './birthdate';
+export { fakeDateFuture } from './future';
+export { fakeDateMonth } from './month';
+export { fakeDatePast } from './past';
+export { fakeDateRecent } from './recent';
+export { fakeDateSoon } from './soon';
+export { fakeDateTimeZone } from './time-zone';
+export { fakeDateWeekday } from './weekday';
+export type * from './module';

@@ -1,1 +1,10 @@
-export * from './module';
+export { fakeLoremLines } from './lines';
+export { fakeLoremParagraph } from './paragraph';
+export { fakeLoremParagraphs } from './paragraphs';
+export { fakeLoremSentence } from './sentence';
+export { fakeLoremSentences } from './sentences';
+export { fakeLoremSlug } from './slug';
+export { fakeLoremText } from './text';
+export { fakeLoremWord } from './word';
+export { fakeLoremWords } from './words';
+export type * from './module';

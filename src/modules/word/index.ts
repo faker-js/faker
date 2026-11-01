@@ -1,1 +1,10 @@
-export * from './module';
+export { fakeWordAdjective } from './adjective';
+export { fakeWordAdverb } from './adverb';
+export { fakeWordConjunction } from './conjunction';
+export { fakeWordInterjection } from './interjection';
+export { fakeWordNoun } from './noun';
+export { fakeWordPreposition } from './preposition';
+export { fakeWordSample } from './sample';
+export { fakeWordVerb } from './verb';
+export { fakeWordWords } from './words';
+export type * from './module';

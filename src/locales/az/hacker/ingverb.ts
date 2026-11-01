@@ -1,0 +1,17 @@
+export default [
+  'arxivlənir',
+  'bərpa olunur',
+  'hesablanır',
+  'indekslənir',
+  'kodlaşdırılır',
+  'köçürülür',
+  'quraşdırılır',
+  'sinxronlaşdırılır',
+  'sınaqdan keçirilir',
+  'sıxılır',
+  'yedəklənir',
+  'yenilənir',
+  'yoxlanılır',
+  'ötürülür',
+  'şifrələnir',
+];

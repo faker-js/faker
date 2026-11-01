@@ -1,1 +1,10 @@
-export * from './module';
+export { fakeCommerceDepartment } from './department';
+export { fakeCommerceIsbn } from './isbn';
+export { fakeCommercePrice } from './price';
+export { fakeCommerceProduct } from './product';
+export { fakeCommerceProductAdjective } from './product-adjective';
+export { fakeCommerceProductDescription } from './product-description';
+export { fakeCommerceProductMaterial } from './product-material';
+export { fakeCommerceProductName } from './product-name';
+export { fakeCommerceUpc } from './upc';
+export type * from './module';

@@ -2,6 +2,7 @@ import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
 import { toDate } from '../../internal/date';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import { sameDayInYear } from './_utils';
 import { fakeDateBetween } from './between';
 
 /**
@@ -184,8 +185,8 @@ export function fakeDateBirthdate(
     case 'age': {
       // Add one day to the `from` date to avoid generating the same date as the reference date.
       const oneDay = 24 * 60 * 60 * 1000;
-      const from = new Date(refDate).setUTCFullYear(refYear - max - 1) + oneDay;
-      const to = new Date(refDate).setUTCFullYear(refYear - min);
+      const from = sameDayInYear(refDate, refYear - max - 1) + oneDay;
+      const to = sameDayInYear(refDate, refYear - min);
 
       if (from > to) {
         throw new FakerError(

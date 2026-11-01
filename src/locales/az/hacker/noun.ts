@@ -1,0 +1,18 @@
+export default [
+  'alqoritm',
+  'arxiv',
+  'fayl',
+  'interfeys',
+  'kanal',
+  'kod',
+  'modul',
+  'port',
+  'proqram',
+  'sensor',
+  'server',
+  'siqnal',
+  'sistem',
+  'verilənlər bazası',
+  'yaddaş',
+  'şəbəkə',
+];
