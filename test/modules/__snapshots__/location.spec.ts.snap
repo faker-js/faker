@@ -459,3 +459,25 @@ exports[`location > 1337 > zipCode > noArgs 1`] = `"12435"`;
 exports[`location > 1337 > zipCode > with format option 1`] = `"212-435"`;
 
 exports[`location > 1337 > zipCode > with string 1`] = `"212"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > cardinal direction 1`] = `"Cənub"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > cardinal direction abbreviated 1`] = `"Şm"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > continent 1`] = `"Asiya"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > direction 1`] = `"Cənub-qərb"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > direction abbreviated 1`] = `"ŞQ"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > language 1`] = `
+{
+  "alpha2": "kk",
+  "alpha3": "kaz",
+  "name": "qazax",
+}
+`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > ordinal direction 1`] = `"Şimal-şərq"`;
+
+exports[`location > az locale > provides Azerbaijani continent, direction, and language samples > ordinal direction abbreviated 1`] = `"ŞŞ"`;

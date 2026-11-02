@@ -6,6 +6,7 @@ import {
   FakerError,
   allLocales,
   faker,
+  fakerAZ,
   fakerEN_CA,
   fakerEN_NG,
   fakerEN_US,
@@ -13,6 +14,7 @@ import {
   fakerNL,
   simpleFaker,
 } from '../../src';
+import englishLanguages from '../../src/locales/en/location/language';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -65,6 +67,58 @@ function haversine(
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('location', () => {
+  describe('az locale', () => {
+    it('provides Azerbaijani continent, direction, and language samples', () => {
+      fakerAZ.seed(42);
+      expect(fakerAZ.location.continent()).toMatchSnapshot('continent');
+      expect(fakerAZ.location.direction()).toMatchSnapshot('direction');
+      expect(fakerAZ.location.direction({ abbreviated: true })).toMatchSnapshot(
+        'direction abbreviated'
+      );
+      expect(fakerAZ.location.cardinalDirection()).toMatchSnapshot(
+        'cardinal direction'
+      );
+      expect(
+        fakerAZ.location.cardinalDirection({ abbreviated: true })
+      ).toMatchSnapshot('cardinal direction abbreviated');
+      expect(fakerAZ.location.ordinalDirection()).toMatchSnapshot(
+        'ordinal direction'
+      );
+      expect(
+        fakerAZ.location.ordinalDirection({ abbreviated: true })
+      ).toMatchSnapshot('ordinal direction abbreviated');
+      expect(fakerAZ.location.language()).toMatchSnapshot('language');
+    });
+
+    it('uses unique ISO language codes from the English source', () => {
+      const languages = fakerAZ.definitions.location.language;
+      const codes = languages.map(({ alpha2 }) => alpha2);
+      const englishCodes = new Map(
+        englishLanguages.map(({ alpha2, alpha3 }) => [alpha2, alpha3])
+      );
+
+      expect(codes).toHaveLength(70);
+      expect(new Set(codes).size).toBe(codes.length);
+      expect(languages.find(({ alpha2 }) => alpha2 === 'tl')?.name).toBe(
+        'taqal'
+      );
+      for (const { name, alpha2, alpha3 } of languages) {
+        expect(name).not.toBe('');
+        expect(englishCodes.get(alpha2)).toBe(alpha3);
+      }
+    });
+
+    it('uses distinct abbreviations for each compass point', () => {
+      const { cardinal_abbr, ordinal_abbr } =
+        fakerAZ.definitions.location.direction;
+      const abbreviations = [...cardinal_abbr, ...ordinal_abbr];
+
+      expect(abbreviations).toHaveLength(8);
+      expect(new Set(abbreviations).size).toBe(abbreviations.length);
+      expect(abbreviations.every((abbr) => abbr.length <= 2)).toBe(true);
+    });
+  });
+
   seededTests(faker, 'location', (t) => {
     t.it('street');
 
