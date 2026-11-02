@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerEN_GB, fakerPT_BR } from '../../src';
+import { faker, fakerEN_GB, fakerPT_BR, fakerZH_CN } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -44,6 +44,27 @@ describe('phone', () => {
           );
           expect(fakerPT_BR.phone.number({ style: 'mobile' })).toMatch(
             new RegExp(`^${areaCode}9\\d{8}$`)
+          );
+        });
+
+        it('should return a valid area code or mobile prefix in zh_CN locale', () => {
+          const areaCode =
+            '(10|2[0-57-9]|311|371|4[135]1|5(12|3[12]|51|7[14]|91)|7(31|5[57]|69|91)|871|898)';
+          const mobilePrefix =
+            '1(3\\d|4[57]|5[0-35-9]|6[2567]|7[0-35-8]|8\\d|9[0-35-9])';
+
+          expect(fakerZH_CN.phone.number({ style: 'national' })).toMatch(
+            new RegExp(
+              `^(0${areaCode} [2-9]{2}\\d{2}|${mobilePrefix} \\d{4}) \\d{4}$`
+            )
+          );
+          expect(fakerZH_CN.phone.number({ style: 'international' })).toMatch(
+            new RegExp(
+              `^\\+86(${areaCode}[2-9]{2}\\d{6}|${mobilePrefix}\\d{8})$`
+            )
+          );
+          expect(fakerZH_CN.phone.number({ style: 'mobile' })).toMatch(
+            new RegExp(`^${mobilePrefix}\\d{8}$`)
           );
         });
       });
