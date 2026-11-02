@@ -56,6 +56,7 @@ export class SimpleDateModule extends ModuleBase {
    * @param options.years The range of years the date may be in the past. Either as a fixed amount of years or as a year range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
+   * @throws {FakerError} If `years.min` or `years.max` is not a safe integer.
    * @throws {FakerError} If `years.max` is less than 0.
    * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
    *
@@ -95,6 +96,7 @@ export class SimpleDateModule extends ModuleBase {
    * @param options.years The range of years the date may be in the future. Either as a fixed amount of years or as a year range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
+   * @throws {FakerError} If `years.min` or `years.max` is not a safe integer.
    * @throws {FakerError} If `years.max` is less than 0.
    * @throws {FakerError} If `years.min` is greater than or equal to `years.max`.
    *
@@ -210,6 +212,7 @@ export class SimpleDateModule extends ModuleBase {
    * @param options.days The range of days the date may be in the past. Either as a fixed amount of days or as a day range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
+   * @throws {FakerError} If `days.min` or `days.max` is not a safe integer.
    * @throws {FakerError} If `days.max` is less than 0.
    * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
    *
@@ -249,6 +252,7 @@ export class SimpleDateModule extends ModuleBase {
    * @param options.days The range of days the date may be in the future. Either as a fixed amount of days or as a day range. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
+   * @throws {FakerError} If `days.min` or `days.max` is not a safe integer.
    * @throws {FakerError} If `days.max` is less than 0.
    * @throws {FakerError} If `days.min` is greater than or equal to `days.max`.
    *
