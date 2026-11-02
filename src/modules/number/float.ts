@@ -165,8 +165,8 @@ export function fakeNumberFloat(
 
 /**
  * Returns the number of decimal places of a finite decimal value (`0.05` → 2,
- * `1e-7` → 7), or `Infinity` for values like `Math.PI` or `1 / 3` that have no
- * short decimal form.
+ * `1e-7` → 7, `Math.PI` → 15), or `Infinity` for values like `1 / 3` that need
+ * more than 15 decimal places.
  *
  * @param value The value to inspect.
  */
