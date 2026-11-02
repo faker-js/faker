@@ -23,6 +23,7 @@ import person from './person';
 import phone_number from './phone_number';
 import science from './science';
 import vehicle from './vehicle';
+import word from './word';
 
 /**
  * The locale data for the `az` locale.
@@ -51,6 +52,7 @@ const az: LocaleDefinition = {
   phone_number,
   science,
   vehicle,
+  word,
 };
 
 export default az;
