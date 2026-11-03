@@ -46,6 +46,7 @@ import hr from './hr';
 import hu from './hu';
 import hy from './hy';
 import id_ID from './id_ID';
+import is_IS from './is_IS';
 import it from './it';
 import ja from './ja';
 import ka_GE from './ka_GE';
@@ -124,6 +125,7 @@ export { default as hr } from './hr';
 export { default as hu } from './hu';
 export { default as hy } from './hy';
 export { default as id_ID } from './id_ID';
+export { default as is_IS } from './is_IS';
 export { default as it } from './it';
 export { default as ja } from './ja';
 export { default as ka_GE } from './ka_GE';
@@ -203,6 +205,7 @@ export const allLocales = {
   hu,
   hy,
   id_ID,
+  is_IS,
   it,
   ja,
   ka_GE,

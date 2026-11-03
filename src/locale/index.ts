@@ -46,6 +46,7 @@ import { faker as fakerHR } from './hr';
 import { faker as fakerHU } from './hu';
 import { faker as fakerHY } from './hy';
 import { faker as fakerID_ID } from './id_ID';
+import { faker as fakerIS_IS } from './is_IS';
 import { faker as fakerIT } from './it';
 import { faker as fakerJA } from './ja';
 import { faker as fakerKA_GE } from './ka_GE';
@@ -124,6 +125,7 @@ export { faker as fakerHR } from './hr';
 export { faker as fakerHU } from './hu';
 export { faker as fakerHY } from './hy';
 export { faker as fakerID_ID } from './id_ID';
+export { faker as fakerIS_IS } from './is_IS';
 export { faker as fakerIT } from './it';
 export { faker as fakerJA } from './ja';
 export { faker as fakerKA_GE } from './ka_GE';
@@ -203,6 +205,7 @@ export const allFakers = {
   hu: fakerHU,
   hy: fakerHY,
   id_ID: fakerID_ID,
+  is_IS: fakerIS_IS,
   it: fakerIT,
   ja: fakerJA,
   ka_GE: fakerKA_GE,
