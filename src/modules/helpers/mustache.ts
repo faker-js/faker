@@ -3,11 +3,17 @@ import type { FakerCore } from '../../core';
 /**
  * Replaces the `{{placeholder}}` patterns in the given string mustache style.
  *
+ * The placeholder is treated as a literal string, only exact matches will be replaced.
+ * While the replacement value supports functions like those for `String.replace()`,
+ * the placeholder will not be treated as a regular expression.
+ *
  * @param fakerCore The FakerCore to use.
  * @param text The template string to parse.
  * @param data The data used to populate the placeholders.
- * This is a record where the key is the template placeholder,
+ * This is a record where the key is the literal template placeholder,
  * whereas the value is either a string or a function suitable for `String.replace()`.
+ *
+ * @see String.prototype.replace(): For replacing placeholders using regular expressions.
  *
  * @example
  * fakeHelpersMustache(fakerCore, 'I found {{count}} instances of "{{word}}".', {
@@ -29,14 +35,16 @@ export function fakeHelpersMustache(
   }
 
   for (const p in data) {
-    const re = new RegExp(`{{${p}}}`, 'g');
+    // A string pattern matches the placeholder literally, so keys holding
+    // RegExp syntax such as `.`, `$` or `(` are replaced like any other key.
+    const placeholder = `{{${p}}}`;
     let value = data[p];
     if (typeof value === 'string') {
       // escape $, source: https://stackoverflow.com/a/6969486/6897682
       value = value.replaceAll('$', '$$$$');
-      text = text.replace(re, value);
+      text = text.replaceAll(placeholder, value);
     } else {
-      text = text.replace(re, value);
+      text = text.replaceAll(placeholder, value);
     }
   }
 

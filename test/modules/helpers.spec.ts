@@ -1150,6 +1150,25 @@ describe('helpers', () => {
 
           expect(actual).toBe('193');
         });
+
+        it.each(['user.name', 'a+b', '$', 'price($)', '[id]', 'a|b', 'x^2'])(
+          'replaces a placeholder whose key holds RegExp syntax: %s',
+          (key) => {
+            const actual = faker.helpers.mustache(`1{{${key}}}3`, {
+              [key]: '2',
+            });
+
+            expect(actual).toBe('123');
+          }
+        );
+
+        it('only replaces the literal placeholder of a key with a dot', () => {
+          const actual = faker.helpers.mustache('{{a.b}} {{aXb}}', {
+            'a.b': '1',
+          });
+
+          expect(actual).toBe('1 {{aXb}}');
+        });
       });
 
       describe('maybe', () => {
