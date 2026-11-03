@@ -15,7 +15,6 @@ import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
-import team from './team';
 
 /**
  * The locale data for the `pl` locale.
@@ -36,7 +35,6 @@ const pl: LocaleDefinition = {
   person,
   phone_number,
   science,
-  team,
 };
 
 export default pl;
