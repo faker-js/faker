@@ -3,10 +3,14 @@ import type { FakerCore } from '../../core';
 /**
  * Replaces the `{{placeholder}}` patterns in the given string mustache style.
  *
+ * The placeholder is treated as a literal string, only exact matches will be replaced.
+ * While the replacement value supports functions like those for `String.replace()`,
+ * the placeholder will not be treated as a regular expression.
+ *
  * @param fakerCore The FakerCore to use.
  * @param text The template string to parse.
  * @param data The data used to populate the placeholders.
- * This is a record where the key is the template placeholder,
+ * This is a record where the key is the literal template placeholder,
  * whereas the value is either a string or a function suitable for `String.replace()`.
  *
  * @example
@@ -14,6 +18,8 @@ import type { FakerCore } from '../../core';
  *   count: () => `${fakeNumberInt(fakerCore)}`,
  *   word: "this word",
  * }) // 'I found 57591 instances of "this word".'
+ *
+ * @see String.prototype.replace(): For replacing placeholders using regular expressions.
  *
  * @since 11.0.0
  *
