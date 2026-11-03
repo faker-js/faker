@@ -14,10 +14,7 @@ const STRATEGIES = {
   fail: () => {
     throw new FakerError('No words found that match the given length.');
   },
-  closest: (
-    wordList: ReadonlyArray<string>,
-    length: NumberRange
-  ): ReadonlyArray<string> => {
+  closest: (wordList, length) => {
     const wordsByLength = Object.groupBy(wordList, (word) => word.length);
     const lengths = Object.keys(wordsByLength).map(Number);
     const closestBelow = Math.max(
@@ -38,19 +35,17 @@ const STRATEGIES = {
         word.length === length.max + closestOffset
     );
   },
-  shortest: (wordList: ReadonlyArray<string>): ReadonlyArray<string> => {
+  shortest: (wordList) => {
     const minLength = Math.min(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === minLength);
   },
-  longest: (wordList: ReadonlyArray<string>): ReadonlyArray<string> => {
+  longest: (wordList) => {
     const maxLength = Math.max(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === maxLength);
   },
-  'any-length': (wordList: ReadonlyArray<string>): ReadonlyArray<string> => {
-    return wordList;
-  },
+  'any-length': (wordList) => wordList,
 } satisfies Record<
-  NonNullable<Parameters<typeof filterWordListByLength>[0]['strategy']>,
+  LengthStrategyType,
   (
     wordList: ReadonlyArray<string>,
     length: NumberRange
