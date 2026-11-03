@@ -13,13 +13,13 @@ import type { FakerCore } from '../../core';
  * This is a record where the key is the literal template placeholder,
  * whereas the value is either a string or a function suitable for `String.replace()`.
  *
+ * @see String.prototype.replace(): For replacing placeholders using regular expressions.
+ *
  * @example
  * fakeHelpersMustache(fakerCore, 'I found {{count}} instances of "{{word}}".', {
  *   count: () => `${fakeNumberInt(fakerCore)}`,
  *   word: "this word",
  * }) // 'I found 57591 instances of "this word".'
- *
- * @see String.prototype.replace(): For replacing placeholders using regular expressions.
  *
  * @since 11.0.0
  *

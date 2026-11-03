@@ -274,13 +274,13 @@ export class SimpleHelpersModule extends ModuleBase {
    * This is a record where the key is the literal template placeholder,
    * whereas the value is either a string or a function suitable for `String.replace()`.
    *
+   * @see String.prototype.replace(): For replacing placeholders using regular expressions.
+   *
    * @example
    * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
    *   count: () => `${faker.number.int()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
-   *
-   * @see String.prototype.replace(): For replacing placeholders using regular expressions.
    *
    * @since 2.0.1
    */
