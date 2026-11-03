@@ -38,7 +38,7 @@ export enum IPv6Network {
 
 export type IPv6NetworkType = `${IPv6Network}`;
 
-const ipv6Networks: Record<IPv6Network, string> = {
+const ipv6Networks: Record<IPv6NetworkType, string> = {
   [IPv6Network.Any]: '::/0',
   [IPv6Network.Loopback]: '::1/128',
   [IPv6Network.UniqueLocal]: 'fd00::/8',
