@@ -40,9 +40,9 @@ describe('word', () => {
     const wordList = ['foo', 'bar', 'baz', 'a', 'very-long', 'almostRight'];
     const length = 10;
 
-    it('returns the word list if no options are given', () => {
+    it('returns the word list itself if no options are given', () => {
       const result = filterWordListByLength({ wordList });
-      expect(result).toEqual(wordList);
+      expect(result).toBe(wordList);
     });
 
     it('returns the words matching the given length', () => {
@@ -76,7 +76,7 @@ describe('word', () => {
         length,
         strategy: 'any-length',
       });
-      expect(result).toEqual(wordList);
+      expect(result).toBe(wordList);
     });
 
     it('returns the appropriate words when strategy is "shortest" and no words match the given length', () => {
