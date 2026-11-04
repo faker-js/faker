@@ -839,12 +839,10 @@ describe('internet', () => {
           }
         );
 
-        it.each(['invalid', 'toString'])(
+        it.each(['invalid', 'toString'] as unknown as IPv6Network[])(
           'should reject the unknown network %s with a helpful error',
           (network) => {
-            expect(() =>
-              faker.internet.ipv6({ network: network as IPv6Network })
-            ).toThrow(
+            expect(() => faker.internet.ipv6({ network })).toThrow(
               new FakerError(
                 `Invalid network provided: ${network}. Must be one of: any, loopback, unique-local, link-local, multicast, documentation.`
               )
@@ -852,12 +850,16 @@ describe('internet', () => {
           }
         );
 
-        it.each(['documentation', 'invalid', 'toString'])(
+        it.each([
+          'documentation',
+          'invalid',
+          'toString',
+        ] as unknown as IPv6Network[])(
           'should let an explicit CIDR block override the network %s',
           (network) => {
             expect(
               faker.internet.ipv6({
-                network: network as IPv6Network,
+                network,
                 cidrBlock: '::1/128',
               })
             ).toBe('0000:0000:0000:0000:0000:0000:0000:0001');

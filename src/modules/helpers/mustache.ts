@@ -34,9 +34,9 @@ export function fakeHelpersMustache(
     if (typeof value === 'string') {
       // escape $, source: https://stackoverflow.com/a/6969486/6897682
       value = value.replaceAll('$', '$$$$');
-      text = text.replace(re, value);
+      text = text.replaceAll(re, value);
     } else {
-      text = text.replace(re, value);
+      text = text.replaceAll(re, value);
     }
   }
 

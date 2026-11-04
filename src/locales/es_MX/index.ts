@@ -12,7 +12,6 @@ import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
-import team from './team';
 
 /**
  * The locale data for the `es_MX` locale.
@@ -30,7 +29,6 @@ const es_MX: LocaleDefinition = {
   metadata,
   person,
   phone_number,
-  team,
 };
 
 export default es_MX;

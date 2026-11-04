@@ -14,7 +14,6 @@ import lorem from './lorem';
 import metadata from './metadata';
 import music from './music';
 import person from './person';
-import team from './team';
 import vehicle from './vehicle';
 
 /**
@@ -35,7 +34,6 @@ const ur: LocaleDefinition = {
   metadata,
   music,
   person,
-  team,
   vehicle,
 };
 

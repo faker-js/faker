@@ -12,7 +12,6 @@ import location from './location';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
-import team from './team';
 
 /**
  * The locale data for the `sv` locale.
@@ -30,7 +29,6 @@ const sv: LocaleDefinition = {
   metadata,
   person,
   phone_number,
-  team,
 };
 
 export default sv;

@@ -10,7 +10,6 @@ import location from './location';
 import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
-import team from './team';
 import vehicle from './vehicle';
 
 /**
@@ -27,7 +26,6 @@ const ar: LocaleDefinition = {
   lorem,
   metadata,
   person,
-  team,
   vehicle,
 };
 
