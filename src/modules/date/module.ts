@@ -1,7 +1,8 @@
 import { ModuleBase } from '../../internal/module-base';
-import type { NumberOrRange } from '../../utils/types';
+import type { FixedLengthArray, NumberOrRange } from '../../utils/types';
 import { fakeDateAnytime } from './anytime';
 import { fakeDateBetween } from './between';
+import type { BetweensOptions } from './betweens';
 import { fakeDateBetweens } from './betweens';
 import { fakeDateBirthdate } from './birthdate';
 import { fakeDateFuture } from './future';
@@ -160,10 +161,14 @@ export class SimpleDateModule extends ModuleBase {
   /**
    * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
    *
+   * @template TCount The explicit number or range of dates to generate.
+   *
    * @param options The options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
+   * Explicit integer literal counts from 0 to 100 infer a fixed-length tuple.
+   * Other counts return an array.
    *
    * @throws {FakerError} If `from` or `to` are not provided.
    * @throws {FakerError} If `from` is after `to`.
@@ -186,22 +191,42 @@ export class SimpleDateModule extends ModuleBase {
    *
    * @since 8.0.0
    */
-  betweens(options: {
-    /**
-     * The early date boundary.
-     */
-    from: string | Date | number;
-    /**
-     * The late date boundary.
-     */
-    to: string | Date | number;
-    /**
-     * The number of dates to generate.
-     *
-     * @default 3
-     */
-    count?: NumberOrRange;
-  }): Date[] {
+  betweens<const TCount extends NumberOrRange>(
+    options: BetweensOptions & { count: TCount }
+  ): FixedLengthArray<Date, TCount>;
+  /**
+   * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
+   *
+   * @param options The options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param options.count The number of dates to generate. Defaults to `3`.
+   * Explicit integer literal counts from 0 to 100 infer a fixed-length tuple.
+   * Other counts return an array.
+   *
+   * @throws {FakerError} If `from` or `to` are not provided.
+   * @throws {FakerError} If `from` is after `to`.
+   *
+   * @example
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+   * // [
+   * //   '2022-07-02T06:00:00.000Z',
+   * //   '2024-12-31T12:00:00.000Z',
+   * //   '2027-07-02T18:00:00.000Z'
+   * // ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
+   * // [ '2023-05-02T16:00:00.000Z', '2026-09-01T08:00:00.000Z' ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: { min: 2, max: 5 }})
+   * // [
+   * //   2021-12-19T06:35:40.191Z,
+   * //   2022-09-10T08:03:51.351Z,
+   * //   2023-04-19T11:41:17.501Z
+   * // ]
+   *
+   * @since 11.0.0
+   */
+  betweens(options: BetweensOptions): Date[];
+  betweens(options: BetweensOptions): Date[] {
     return fakeDateBetweens(this.fakerCore, options);
   }
 
