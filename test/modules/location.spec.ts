@@ -9,6 +9,7 @@ import {
   fakerEN_CA,
   fakerEN_NG,
   fakerEN_US,
+  fakerES,
   fakerFR,
   fakerFR_CA,
   fakerNL,
@@ -278,6 +279,19 @@ describe('location', () => {
             const isMetropolitan = department >= 1 && department <= 95;
             const isOverseas = overseas.has(Number(zipCode.slice(0, 3)));
             expect(isMetropolitan || isOverseas).toBe(true);
+          }
+        });
+
+        it('should only return valid province prefixes for es locale', () => {
+          // Spanish postal codes start with the province number 01-52;
+          // 00xxx and 53xxx-99xxx are not assigned.
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerES.location.zipCode();
+
+            expect(zipCode).toMatch(/^\d{5}$/);
+            const province = Number(zipCode.slice(0, 2));
+            expect(province).toBeGreaterThanOrEqual(1);
+            expect(province).toBeLessThanOrEqual(52);
           }
         });
 
