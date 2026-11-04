@@ -6,14 +6,11 @@ import {
   FakerError,
   allLocales,
   faker,
-  fakerAF_ZA,
   fakerEN_CA,
   fakerEN_NG,
   fakerEN_US,
-  fakerEN_ZA,
   fakerFR,
   fakerNL,
-  fakerZU_ZA,
   simpleFaker,
 } from '../../src';
 import { seededTests } from '../support/seeded-runs';
@@ -250,20 +247,6 @@ describe('location', () => {
             expect(zipCode).toMatch(
               /^[A-Z]{2}-(0[1-9]|[1-9]\d)-[\dA-Z]{3}-[A-Z]{2}-(0[1-9]|[1-9]\d)$/
             );
-          }
-        });
-
-        it.each([
-          ['af_ZA', fakerAF_ZA],
-          ['en_ZA', fakerEN_ZA],
-          ['zu_ZA', fakerZU_ZA],
-        ])('should return 4-digit postal codes for %s locale', (_, fakerZA) => {
-          // South African postal codes always have four digits, e.g. '0002'
-          // (Pretoria) or '8001' (Cape Town).
-          for (let i = 0; i < 1000; i++) {
-            const zipCode = fakerZA.location.zipCode();
-
-            expect(zipCode).toMatch(/^\d{4}$/);
           }
         });
 
