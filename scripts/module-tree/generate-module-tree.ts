@@ -108,7 +108,8 @@ export async function generateModuleTree(onlyModule?: string): Promise<void> {
       '../../utils/types',
       'Casing',
       'LengthStrategyType',
-      'NumberOrRange'
+      'NumberOrRange',
+      'FixedLengthArray'
     );
     importHelper.addTypeImports('../../internal/types', 'LiteralUnion');
     importHelper.addTypeImports(
