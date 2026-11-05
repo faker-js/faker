@@ -70,9 +70,15 @@ export type FixedLengthArray<
     ? T[]
     : `${TCount}` extends `-${string}` | `${string}.${string}`
       ? T[]
-      : TResult['length'] extends TCount
-        ? TResult
-        : TResult['length'] extends 100
-          ? T[]
-          : FixedLengthArray<T, TCount, [...TResult, T]>
+      : BuildFixedLengthArray<T, TCount, TResult>
   : T[];
+
+type BuildFixedLengthArray<
+  T,
+  TCount extends number,
+  TResult extends T[],
+> = TResult['length'] extends TCount
+  ? TResult
+  : TResult['length'] extends 100
+    ? T[]
+    : BuildFixedLengthArray<T, TCount, [...TResult, T]>;
