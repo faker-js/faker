@@ -182,6 +182,34 @@ describe('someModule', () => {
 });
 ```
 
+### Testing locale data
+
+It is not necessary to add tests that check locale-specific rules which are already clear from the data. These kinds of tests are clutter: they restate the definition files without checking any additional behavior.
+
+For example, if you add international phone number patterns for Thailand:
+
+```ts
+export default [
+  '+662#######',
+  '+665!######',
+  '+666########',
+  '+668########',
+  '+669########',
+];
+```
+
+Do **not** add a test like this:
+
+```ts
+it('should start with +66 in the th locale', () => {
+  const phoneNumber = fakerTH.phone.number({ style: 'international' });
+
+  expect(phoneNumber).toMatch(/^\+66/);
+});
+```
+
+The same constraint is already visible in the definition file, so the test does not add value.
+
 ## Deprecation workflow
 
 If you ever find yourself deprecating something in the source code, you can follow these steps to save yourself (and the reviewers) some trouble.
