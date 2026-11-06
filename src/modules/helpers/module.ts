@@ -21,6 +21,8 @@ import { fakeHelpersShuffle } from './shuffle';
 import { fakeHelpersSlugify } from './slugify';
 import { fakeHelpersUniqueArray } from './unique-array';
 import { fakeHelpersWeightedArrayElement } from './weighted-array-element';
+import { fakeHelpersWeightedArrayElements } from './weighted-array-elements';
+import { fakeHelpersWeightedArraySamples } from './weighted-array-samples';
 
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
@@ -424,6 +426,80 @@ export class SimpleHelpersModule extends ModuleBase {
     }>
   ): T {
     return fakeHelpersWeightedArrayElement(this.fakerCore, array);
+  }
+
+  /**
+   * Returns a weighted random subset of the given array without replacement, in selection order.
+   * At each selection, an entry's probability is its weight divided by the total weight of the remaining entries.
+   * Weights must be finite, positive numbers and do not need to sum to one.
+   *
+   * Each input entry can be selected only once. Entries with equal values are still separate entries,
+   * so duplicate values in the input can appear more than once in the result.
+   * The input array and its entries are not modified.
+   *
+   * @template T The type of the weighted entries to pick from.
+   *
+   * @param array Array of weighted values to pick from.
+   * @param array[].weight The finite, positive weight of the value.
+   * @param array[].value The value to pick.
+   * @param count Number or inclusive range of elements to pick. Must use safe integers.
+   * If omitted, a random count between one and the array length is used.
+   * Non-positive counts return an empty array; counts above the array length are limited to that length.
+   * An empty input array returns an empty array.
+   *
+   * @throws {FakerError} If any weight is not finite and positive.
+   * @throws {FakerError} If count or its range bounds are not safe integers, or the range is reversed.
+   *
+   * @see faker.helpers.weightedArraySamples(): For generating weighted samples with replacement.
+   * @see faker.helpers.arrayElements(): For generating samples without weights.
+   *
+   * @example
+   * faker.helpers.weightedArrayElements([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }], 2) // ['rainy', 'sunny']
+   * faker.helpers.weightedArrayElements([{ weight: 0.8, value: 'featured' }, { weight: 0.2, value: 'regular' }], { min: 1, max: 2 }) // ['featured']
+   * faker.helpers.weightedArrayElements([{ weight: 1, value: 'only' }], 5) // ['only']
+   *
+   * @since 11.0.0
+   */
+  weightedArrayElements<const T extends { weight: number; value: unknown }>(
+    array: ReadonlyArray<T>,
+    count?: NumberOrRange
+  ): Array<T['value']> {
+    return fakeHelpersWeightedArrayElements(this.fakerCore, array, count);
+  }
+
+  /**
+   * Returns an array of weighted random elements sampled with replacement.
+   * Each draw selects an entry with probability proportional to its weight; entries may appear more than once.
+   * Weights must be finite, positive numbers and do not need to sum to one.
+   * The input array and its entries are not modified.
+   *
+   * @template T The type of the weighted entries to pick from.
+   *
+   * @param array Array of weighted values to pick from.
+   * @param array[].weight The finite, positive weight of the value.
+   * @param array[].value The value to pick.
+   * @param count Number or inclusive range of elements to pick. Must use safe integers.
+   * Non-positive counts return an empty array; counts can exceed the input length.
+   *
+   * @throws {FakerError} If the array is empty.
+   * @throws {FakerError} If any weight is not finite and positive.
+   * @throws {FakerError} If count or its range bounds are not safe integers, or the range is reversed.
+   *
+   * @see faker.helpers.weightedArrayElements(): For generating weighted samples without replacement.
+   * @see faker.helpers.arraySamples(): For generating samples without weights.
+   *
+   * @example
+   * faker.helpers.weightedArraySamples([{ weight: 3, value: 'basic' }, { weight: 1, value: 'premium' }], 4) // ['basic', 'premium', 'basic', 'basic']
+   * faker.helpers.weightedArraySamples([{ weight: 0.7, value: true }, { weight: 0.3, value: false }], { min: 2, max: 4 }) // [true, true, false]
+   * faker.helpers.weightedArraySamples([{ weight: 1, value: 'only' }], 0) // []
+   *
+   * @since 11.0.0
+   */
+  weightedArraySamples<const T extends { weight: number; value: unknown }>(
+    array: ReadonlyArray<T>,
+    count: NumberOrRange
+  ): Array<T['value']> {
+    return fakeHelpersWeightedArraySamples(this.fakerCore, array, count);
   }
 
   /**

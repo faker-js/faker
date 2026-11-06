@@ -243,6 +243,76 @@ exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
 
 exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
 
+exports[`helpers > 42 > weightedArrayElements > with count 1`] = `
+[
+  "sunny",
+  "rainy",
+]
+`;
+
+exports[`helpers > 42 > weightedArrayElements > with count above input length 1`] = `
+[
+  "sunny",
+  "rainy",
+  "snowy",
+]
+`;
+
+exports[`helpers > 42 > weightedArrayElements > with count range 1`] = `
+[
+  "rainy",
+  "sunny",
+]
+`;
+
+exports[`helpers > 42 > weightedArrayElements > with default count 1`] = `
+[
+  "rainy",
+  "sunny",
+]
+`;
+
+exports[`helpers > 42 > weightedArrayElements > with fractional weights 1`] = `
+[
+  "sunny",
+  "rainy",
+]
+`;
+
+exports[`helpers > 42 > weightedArrayElements > with zero count 1`] = `[]`;
+
+exports[`helpers > 42 > weightedArraySamples > with count 1`] = `
+[
+  "sunny",
+  "snowy",
+  "rainy",
+  "rainy",
+  "sunny",
+  "sunny",
+]
+`;
+
+exports[`helpers > 42 > weightedArraySamples > with count range 1`] = `
+[
+  "snowy",
+  "rainy",
+  "rainy",
+]
+`;
+
+exports[`helpers > 42 > weightedArraySamples > with fractional weights 1`] = `
+[
+  "sunny",
+  "snowy",
+  "rainy",
+  "rainy",
+  "sunny",
+  "sunny",
+]
+`;
+
+exports[`helpers > 42 > weightedArraySamples > with zero count 1`] = `[]`;
+
 exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
@@ -505,6 +575,80 @@ exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
 
 exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
 
+exports[`helpers > 1211 > weightedArrayElements > with count 1`] = `
+[
+  "snowy",
+  "sunny",
+]
+`;
+
+exports[`helpers > 1211 > weightedArrayElements > with count above input length 1`] = `
+[
+  "snowy",
+  "sunny",
+  "rainy",
+]
+`;
+
+exports[`helpers > 1211 > weightedArrayElements > with count range 1`] = `
+[
+  "rainy",
+  "sunny",
+  "snowy",
+]
+`;
+
+exports[`helpers > 1211 > weightedArrayElements > with default count 1`] = `
+[
+  "rainy",
+  "sunny",
+  "snowy",
+]
+`;
+
+exports[`helpers > 1211 > weightedArrayElements > with fractional weights 1`] = `
+[
+  "snowy",
+  "sunny",
+]
+`;
+
+exports[`helpers > 1211 > weightedArrayElements > with zero count 1`] = `[]`;
+
+exports[`helpers > 1211 > weightedArraySamples > with count 1`] = `
+[
+  "snowy",
+  "rainy",
+  "sunny",
+  "snowy",
+  "rainy",
+  "rainy",
+]
+`;
+
+exports[`helpers > 1211 > weightedArraySamples > with count range 1`] = `
+[
+  "rainy",
+  "sunny",
+  "snowy",
+  "rainy",
+  "rainy",
+]
+`;
+
+exports[`helpers > 1211 > weightedArraySamples > with fractional weights 1`] = `
+[
+  "snowy",
+  "rainy",
+  "sunny",
+  "snowy",
+  "rainy",
+  "rainy",
+]
+`;
+
+exports[`helpers > 1211 > weightedArraySamples > with zero count 1`] = `[]`;
+
 exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
 
 exports[`helpers > 1337 > arrayElements > with array 1`] = `
@@ -745,3 +889,71 @@ exports[`helpers > 1337 > uniqueArray > with generator function 1`] = `
 exports[`helpers > 1337 > weightedArrayElement > with array 1`] = `"sunny"`;
 
 exports[`helpers > 1337 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
+
+exports[`helpers > 1337 > weightedArrayElements > with count 1`] = `
+[
+  "rainy",
+  "sunny",
+]
+`;
+
+exports[`helpers > 1337 > weightedArrayElements > with count above input length 1`] = `
+[
+  "rainy",
+  "sunny",
+  "snowy",
+]
+`;
+
+exports[`helpers > 1337 > weightedArrayElements > with count range 1`] = `
+[
+  "sunny",
+]
+`;
+
+exports[`helpers > 1337 > weightedArrayElements > with default count 1`] = `
+[
+  "sunny",
+]
+`;
+
+exports[`helpers > 1337 > weightedArrayElements > with fractional weights 1`] = `
+[
+  "rainy",
+  "sunny",
+]
+`;
+
+exports[`helpers > 1337 > weightedArrayElements > with zero count 1`] = `[]`;
+
+exports[`helpers > 1337 > weightedArraySamples > with count 1`] = `
+[
+  "sunny",
+  "sunny",
+  "sunny",
+  "sunny",
+  "sunny",
+  "rainy",
+]
+`;
+
+exports[`helpers > 1337 > weightedArraySamples > with count range 1`] = `
+[
+  "sunny",
+  "sunny",
+  "sunny",
+]
+`;
+
+exports[`helpers > 1337 > weightedArraySamples > with fractional weights 1`] = `
+[
+  "sunny",
+  "sunny",
+  "sunny",
+  "sunny",
+  "sunny",
+  "rainy",
+]
+`;
+
+exports[`helpers > 1337 > weightedArraySamples > with zero count 1`] = `[]`;
