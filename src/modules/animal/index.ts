@@ -9,7 +9,7 @@ export { fakeAnimalFish } from './fish';
 export { fakeAnimalHorse } from './horse';
 export { fakeAnimalInsect } from './insect';
 export { fakeAnimalLion } from './lion';
-export type * from './module';
+export type { AnimalModule } from './module';
 export { fakeAnimalPetName } from './pet-name';
 export { fakeAnimalRabbit } from './rabbit';
 export { fakeAnimalRodent } from './rodent';

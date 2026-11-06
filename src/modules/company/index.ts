@@ -7,4 +7,4 @@ export { fakeCompanyCatchPhraseAdjective } from './catch-phrase-adjective';
 export { fakeCompanyCatchPhraseDescriptor } from './catch-phrase-descriptor';
 export { fakeCompanyCatchPhraseNoun } from './catch-phrase-noun';
 export { fakeCompanyName } from './name';
-export type * from './module';
+export type { CompanyModule } from './module';
