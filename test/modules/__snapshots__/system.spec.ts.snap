@@ -18,7 +18,15 @@ exports[`system > 42 > cron > with includeYear false 1`] = `"* * ? 8 *"`;
 
 exports[`system > 42 > cron > with includeYear true 1`] = `"* * ? 8 * *"`;
 
-exports[`system > 42 > directoryPath 1`] = `"/net"`;
+exports[`system > 42 > directoryPath > noArgs 1`] = `"/net"`;
+
+exports[`system > 42 > directoryPath > with depth 0 1`] = `"/"`;
+
+exports[`system > 42 > directoryPath > with depth 1 1`] = `"/lib"`;
+
+exports[`system > 42 > directoryPath > with depth 2 1`] = `"/opt/share"`;
+
+exports[`system > 42 > directoryPath > with depth 3 1`] = `"/usr/local/bin"`;
 
 exports[`system > 42 > fileExt > noArgs 1`] = `"docx"`;
 
@@ -98,7 +106,15 @@ exports[`system > 1211 > cron > with includeYear false 1`] = `"55 * ? * *"`;
 
 exports[`system > 1211 > cron > with includeYear true 1`] = `"55 * ? * * *"`;
 
-exports[`system > 1211 > directoryPath 1`] = `"/var/log"`;
+exports[`system > 1211 > directoryPath > noArgs 1`] = `"/var/log"`;
+
+exports[`system > 1211 > directoryPath > with depth 0 1`] = `"/"`;
+
+exports[`system > 1211 > directoryPath > with depth 1 1`] = `"/usr"`;
+
+exports[`system > 1211 > directoryPath > with depth 2 1`] = `"/var/spool"`;
+
+exports[`system > 1211 > directoryPath > with depth 3 1`] = `"/usr/local/src"`;
 
 exports[`system > 1211 > fileExt > noArgs 1`] = `"mp4"`;
 
@@ -178,7 +194,15 @@ exports[`system > 1337 > cron > with includeYear false 1`] = `"* * 9 6 *"`;
 
 exports[`system > 1337 > cron > with includeYear true 1`] = `"* * 9 6 * 2004"`;
 
-exports[`system > 1337 > directoryPath 1`] = `"/home"`;
+exports[`system > 1337 > directoryPath > noArgs 1`] = `"/home"`;
+
+exports[`system > 1337 > directoryPath > with depth 0 1`] = `"/"`;
+
+exports[`system > 1337 > directoryPath > with depth 1 1`] = `"/dev"`;
+
+exports[`system > 1337 > directoryPath > with depth 2 1`] = `"/opt/bin"`;
+
+exports[`system > 1337 > directoryPath > with depth 3 1`] = `"/home/user/dir"`;
 
 exports[`system > 1337 > fileExt > noArgs 1`] = `"xul"`;
 

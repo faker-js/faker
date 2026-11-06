@@ -12,12 +12,19 @@ describe('system', () => {
     t.itEach(
       'commonFileExt',
       'commonFileType',
-      'directoryPath',
       'filePath',
       'fileType',
       'mimeType',
       'semver'
     );
+
+    t.describe('directoryPath', (t) => {
+      t.it('noArgs')
+        .it('with depth 0', { depth: 0 })
+        .it('with depth 1', { depth: 1 })
+        .it('with depth 2', { depth: 2 })
+        .it('with depth 3', { depth: 3 });
+    });
 
     t.describe('fileName', (t) => {
       t.it('noArgs')
@@ -159,6 +166,42 @@ describe('system', () => {
             directoryPath.startsWith('/'),
             'generated directoryPath should start with /'
           ).toBeTruthy();
+        });
+
+        it('should return the root path for depth 0', () => {
+          const directoryPath = faker.system.directoryPath({ depth: 0 });
+
+          expect(directoryPath).toBe('/');
+        });
+
+        it.each([1, 2, 3])(
+          'should return a path with exactly %i segment(s) for that depth',
+          (depth) => {
+            const directoryPath = faker.system.directoryPath({ depth });
+
+            expect(directoryPath.startsWith('/')).toBeTruthy();
+            expect(directoryPath.split('/').length - 1).toBe(depth);
+          }
+        );
+
+        it('should throw for a negative depth', () => {
+          expect(() => faker.system.directoryPath({ depth: -1 })).toThrow(
+            new FakerError('Depth must be greater than or equal to 0.')
+          );
+        });
+
+        it('should throw for a non-integer depth', () => {
+          expect(() => faker.system.directoryPath({ depth: 1.5 })).toThrow(
+            new FakerError('Depth must be a safe integer.')
+          );
+        });
+
+        it('should throw for a depth without matching paths', () => {
+          expect(() => faker.system.directoryPath({ depth: 10 })).toThrow(
+            new FakerError(
+              'No directory path with a depth of 10 exists in the locale data.'
+            )
+          );
         });
       });
 
