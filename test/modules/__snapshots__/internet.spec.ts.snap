@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`internet > 42 > displayName > noArgs 1`] = `"Nikita.Cormier"`;
+exports[`internet > 42 > displayName > noArgs 1`] = `"Telly.Cormier5"`;
 
 exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽.陳95"`;
 
@@ -14,7 +14,7 @@ exports[`internet > 42 > displayName > with all option 1`] = `"Jane.Doe95"`;
 
 exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane15"`;
 
-exports[`internet > 42 > displayName > with lastName option 1`] = `"Nikita15"`;
+exports[`internet > 42 > displayName > with lastName option 1`] = `"Telly59"`;
 
 exports[`internet > 42 > domainName 1`] = `"hospitable-unit.net"`;
 
@@ -32,7 +32,7 @@ exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Mitchell15@h
 
 exports[`internet > 42 > email > with lastName option 1`] = `"Kevin.Doe15@hotmail.com"`;
 
-exports[`internet > 42 > email > with provider option 1`] = `"Nikita.Cormier@fakerjs.dev"`;
+exports[`internet > 42 > email > with provider option 1`] = `"Telly5@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🦮"`;
 
@@ -110,7 +110,7 @@ exports[`internet > 42 > url > without slash appended and with http protocol 1`]
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/118.0"`;
 
-exports[`internet > 42 > username > noArgs 1`] = `"Nikita.Cormier"`;
+exports[`internet > 42 > username > noArgs 1`] = `"Telly5"`;
 
 exports[`internet > 42 > username > with Chinese names 1`] = `"hlzp8d.tpv"`;
 
@@ -124,7 +124,7 @@ exports[`internet > 42 > username > with all option 1`] = `"Jane.Doe"`;
 
 exports[`internet > 42 > username > with firstName option 1`] = `"Jane.Reynolds-Mitchell15"`;
 
-exports[`internet > 42 > username > with lastName option 1`] = `"Nikita_Doe15"`;
+exports[`internet > 42 > username > with lastName option 1`] = `"Telly_Doe59"`;
 
 exports[`internet > 1211 > displayName > noArgs 1`] = `"Dallas_Pfannerstill35"`;
 

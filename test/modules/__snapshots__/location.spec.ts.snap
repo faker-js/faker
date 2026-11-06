@@ -433,9 +433,9 @@ exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW
 
 exports[`location > 1337 > postalAddress 1`] = `
 "34352 Salisbury Road
-South Willyport
+South Berryworth
 South Carolina
-45712"
+34571-2641"
 `;
 
 exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 224"`;
