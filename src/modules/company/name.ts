@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random company name.
@@ -14,7 +14,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakeCompanyName(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(
+  return getFakerForCore(fakerCore).helpers.fake(
     fakerCore.locale.company.name_pattern
   );
 }

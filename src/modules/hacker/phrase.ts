@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random hacker/IT phrase.
@@ -15,5 +15,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakeHackerPhrase(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(fakerCore.locale.hacker.phrase);
+  return getFakerForCore(fakerCore).helpers.fake(
+    fakerCore.locale.hacker.phrase
+  );
 }

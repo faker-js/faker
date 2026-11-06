@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 import { fakeDatatypeBoolean } from '../datatype/boolean';
 import { fakeHelpersArrayElement } from '../helpers/array-element';
 
@@ -31,7 +31,9 @@ export function fakeFoodDish(fakerCore: FakerCore): string {
   // A 50/50 mix of specific dishes and dish_patterns
   if (fakeDatatypeBoolean(fakerCore)) {
     return toTitleCase(
-      new Faker(fakerCore).helpers.fake(fakerCore.locale.food.dish_pattern)
+      getFakerForCore(fakerCore).helpers.fake(
+        fakerCore.locale.food.dish_pattern
+      )
     );
   }
 

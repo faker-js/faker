@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random localized full postal address, which may include a street address, secondary address, city, state, and zip code. To ensure you get locale-specific address formats, use a localized Faker instance.
@@ -32,7 +32,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakeLocationPostalAddress(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(
+  return getFakerForCore(fakerCore).helpers.fake(
     fakerCore.locale.location.postal_address
   );
 }

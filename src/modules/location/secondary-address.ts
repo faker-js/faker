@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 import { fakeStringNumeric } from '../string/numeric';
 
 /**
@@ -16,8 +16,8 @@ import { fakeStringNumeric } from '../string/numeric';
  * @experimental
  */
 export function fakeLocationSecondaryAddress(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers
-    .fake(fakerCore.locale.location.secondary_address)
+  return getFakerForCore(fakerCore)
+    .helpers.fake(fakerCore.locale.location.secondary_address)
     .replaceAll(/#+/g, (m) =>
       fakeStringNumeric(fakerCore, {
         length: m.length,

@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random user agent string.
@@ -15,7 +15,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakeInternetUserAgent(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(
+  return getFakerForCore(fakerCore).helpers.fake(
     fakerCore.locale.internet.user_agent_pattern
   );
 }

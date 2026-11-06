@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Returns a random short biography
@@ -14,5 +14,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakePersonBio(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(fakerCore.locale.person.bio_pattern);
+  return getFakerForCore(fakerCore).helpers.fake(
+    fakerCore.locale.person.bio_pattern
+  );
 }

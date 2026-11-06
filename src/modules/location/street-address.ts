@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random localized street address.
@@ -40,5 +40,5 @@ export function fakeLocationStreetAddress(
   const formats = fakerCore.locale.location.street_address;
   const format = formats[useFullAddress ? 'full' : 'normal'];
 
-  return new Faker(fakerCore).helpers.fake(format);
+  return getFakerForCore(fakerCore).helpers.fake(format);
 }

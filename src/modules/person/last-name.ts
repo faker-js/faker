@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 import { fakeHelpersArrayElement } from '../helpers/array-element';
 import { fakeHelpersWeightedArrayElement } from '../helpers/weighted-array-element';
 import { selectDefinition } from './_select-definition';
@@ -31,7 +31,7 @@ export function fakePersonLastName(
       fakerCore,
       selectDefinition(fakerCore, sex, patterns)
     );
-    return new Faker(fakerCore).helpers.fake(pattern);
+    return getFakerForCore(fakerCore).helpers.fake(pattern);
   }
 
   return fakeHelpersArrayElement(

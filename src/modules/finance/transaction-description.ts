@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random transaction description.
@@ -17,7 +17,7 @@ import { Faker } from '../../faker';
 export function fakeFinanceTransactionDescription(
   fakerCore: FakerCore
 ): string {
-  return new Faker(fakerCore).helpers.fake(
+  return getFakerForCore(fakerCore).helpers.fake(
     fakerCore.locale.finance.transaction_description_pattern
   );
 }

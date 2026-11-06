@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Returns a product description.
@@ -14,7 +14,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakeCommerceProductDescription(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(
+  return getFakerForCore(fakerCore).helpers.fake(
     fakerCore.locale.commerce.product_description
   );
 }

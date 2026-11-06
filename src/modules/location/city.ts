@@ -1,5 +1,5 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 
 /**
  * Generates a random localized city name.
@@ -15,7 +15,7 @@ import { Faker } from '../../faker';
  * @experimental
  */
 export function fakeLocationCity(fakerCore: FakerCore): string {
-  return new Faker(fakerCore).helpers.fake(
+  return getFakerForCore(fakerCore).helpers.fake(
     fakerCore.locale.location.city_pattern
   );
 }

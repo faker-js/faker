@@ -1,6 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
+import { getFakerForCore } from '../../internal/faker-for-core';
 import { fakeHelpersArrayElement } from '../helpers/array-element';
 import { fakeHelpersReplaceSymbols } from '../helpers/replace-symbols';
 
@@ -62,7 +62,7 @@ export function fakeLocationZipCode(
       throw new FakerError(`No zip code definition found for state "${state}"`);
     }
 
-    return new Faker(fakerCore).helpers.fake(zipPattern);
+    return getFakerForCore(fakerCore).helpers.fake(zipPattern);
   }
 
   let { format = fakerCore.locale.location.postcode } = options;
