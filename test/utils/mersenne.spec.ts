@@ -6,13 +6,13 @@ import {
   generateMersenne32Randomizer,
   generateMersenne53Randomizer,
 } from '../../src/utils/mersenne';
-import { seededRuns } from '../support/seeded-runs';
-import { times } from '../support/times';
 import {
   MERSENNE_MAX_VALUE,
   TWISTER_32CO_MAX_VALUE,
   TWISTER_53CO_MAX_VALUE,
-} from './mersenne-test-utils';
+} from '../support/mersenne-values';
+import { seededRuns } from '../support/seeded-runs';
+import { times } from '../support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 

@@ -2,6 +2,7 @@ import type { MockInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { Faker, faker, generateMersenne32Randomizer } from '../src';
 import { keys } from '../src/internal/keys';
+import { RANDOMIZER_MIN_VALUE } from './support/randomizers';
 
 describe('faker', () => {
   it('should not log anything on startup', async () => {
@@ -70,11 +71,7 @@ describe('faker', () => {
     describe('randomizer', () => {
       it('should be possible to provide a custom Randomizer', () => {
         const customFaker = new Faker({
-          locale: {},
-          randomizer: {
-            next: () => 0,
-            seed: () => void 0,
-          },
+          randomizer: RANDOMIZER_MIN_VALUE,
         });
 
         expect(customFaker.number.int()).toBe(0);
@@ -86,7 +83,6 @@ describe('faker', () => {
     describe('seed', () => {
       it('should be possible to provide an initial seed', () => {
         const customFaker = new Faker({
-          locale: {},
           seed: 12345,
         });
 
@@ -105,7 +101,6 @@ describe('faker', () => {
     describe('randomizer+seed', () => {
       it('should take apply both the randomizer and seed', () => {
         const customFaker = new Faker({
-          locale: {},
           randomizer: generateMersenne32Randomizer(67890),
           seed: 12345,
         });
