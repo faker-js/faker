@@ -2,7 +2,6 @@ export default [
   'biz',
   'club',
   'com',
-  'edo',
   'host',
   'info',
   'moscow',
