@@ -9,7 +9,6 @@ import {
   fakerEN_CA,
   fakerEN_NG,
   fakerEN_US,
-  fakerES,
   fakerFR,
   fakerFR_CA,
   fakerNL,
@@ -281,7 +280,6 @@ describe('location', () => {
             expect(isMetropolitan || isOverseas).toBe(true);
           }
         });
-
 
         it.each([
           ['IL', 60001, 62999],
