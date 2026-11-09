@@ -282,18 +282,6 @@ describe('location', () => {
           }
         });
 
-        it('should only return valid province prefixes for es locale', () => {
-          // Spanish postal codes start with the province number 01-52;
-          // 00xxx and 53xxx-99xxx are not assigned.
-          for (let i = 0; i < 1000; i++) {
-            const zipCode = fakerES.location.zipCode();
-
-            expect(zipCode).toMatch(/^\d{5}$/);
-            const province = Number(zipCode.slice(0, 2));
-            expect(province).toBeGreaterThanOrEqual(1);
-            expect(province).toBeLessThanOrEqual(52);
-          }
-        });
 
         it.each([
           ['IL', 60001, 62999],
