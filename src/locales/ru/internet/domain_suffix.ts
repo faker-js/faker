@@ -11,7 +11,6 @@ export default [
   'press',
   'pro',
   'ru',
-  'rus',
   'space',
   'store',
   'su',
