@@ -13,6 +13,7 @@ import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
+import vehicle from './vehicle';
 import word from './word';
 
 /**
@@ -32,6 +33,7 @@ const ko: LocaleDefinition = {
   metadata,
   person,
   phone_number,
+  vehicle,
   word,
 };
 
