@@ -40,7 +40,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
   allowedAttributes: {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title', 'data-copied'],
-    div: ['class'],
+    div: ['class', 'dir'],
     input: ['type', 'name', 'id', 'checked'],
     label: ['for', 'data-title'],
     pre: ['class', 'dir', 'style', 'v-pre', 'tabindex'],

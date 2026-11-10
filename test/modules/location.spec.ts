@@ -10,6 +10,7 @@ import {
   fakerEN_NG,
   fakerEN_US,
   fakerFR,
+  fakerFR_CA,
   fakerNL,
   simpleFaker,
 } from '../../src';
@@ -230,6 +231,17 @@ describe('location', () => {
           // See https://github.com/faker-js/faker/issues/1416
           for (let i = 0; i < 1000; i++) {
             const zipCode = fakerEN_CA.location.zipCode();
+
+            expect(zipCode).toMatch(
+              /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z] \d[ABCEGHJ-NPRSTV-Z]\d$/
+            );
+          }
+        });
+
+        it('should only return valid letters for fr_CA locale', () => {
+          // Same rules as en_CA, see https://github.com/faker-js/faker/issues/1416
+          for (let i = 0; i < 1000; i++) {
+            const zipCode = fakerFR_CA.location.zipCode();
 
             expect(zipCode).toMatch(
               /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z] \d[ABCEGHJ-NPRSTV-Z]\d$/
