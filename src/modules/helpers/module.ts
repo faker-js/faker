@@ -635,6 +635,8 @@ export class SimpleHelpersModule extends ModuleBase {
  *
  * There are alternatives of this method for objects ([`objectKey()`](https://fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://fakerjs.dev/api/helpers.html#weightedarrayelement)).
  *
+ * For several weighted draws, use [`weightedArrayElements()`](https://fakerjs.dev/api/helpers.html#weightedarrayelements) to select each entry at most once, or [`weightedArraySamples()`](https://fakerjs.dev/api/helpers.html#weightedarraysamples) to allow repeated entries. Equal values in distinct entries may still repeat with either method.
+ *
  * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://fakerjs.dev/api/helpers.html#replacesymbols) and [`fromRegExp()`](https://fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule extends SimpleHelpersModule {
