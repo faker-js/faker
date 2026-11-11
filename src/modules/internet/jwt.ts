@@ -71,31 +71,9 @@ export function fakeInternetJwt(
 ): string {
   const { refDate = getDefaultRefDate(fakerCore) } = options;
 
-  const iatDefault = fakeDateRecent(fakerCore, { refDate });
-  const defaultPayload = (): Record<string, unknown> => {
-    const expDefault = fakeDateSoon(fakerCore, { refDate: iatDefault });
-    // The token must become valid before it expires.
-    const nbfDefault = fakeDateBetween(fakerCore, {
-      from: iatDefault,
-      to: expDefault,
-    });
-    return {
-      iat: Math.round(iatDefault.valueOf() / 1000),
-      exp: Math.round(expDefault.valueOf() / 1000),
-      nbf: Math.round(nbfDefault.valueOf() / 1000),
-      iss: fakeCompanyName(fakerCore),
-      sub: fakeStringUuid(fakerCore),
-      aud: fakeStringUuid(fakerCore),
-      jti: fakeStringUuid(fakerCore),
-    };
-  };
-
   const {
-    header = {
-      alg: fakeInternetJwtAlgorithm(fakerCore),
-      typ: 'JWT',
-    },
-    payload = defaultPayload(),
+    header = defaultHeader(fakerCore),
+    payload = defaultPayload(fakerCore, refDate),
   } = options;
 
   const encodedHeader = toBase64Url(JSON.stringify(header));
@@ -103,4 +81,41 @@ export function fakeInternetJwt(
   const signature = fakeStringAlphanumeric(fakerCore, 64);
 
   return `${encodedHeader}.${encodedPayload}.${signature}`;
+}
+
+/**
+ * Generates the default JWT header.
+ *
+ * @param fakerCore The FakerCore to use.
+ */
+function defaultHeader(fakerCore: FakerCore): Record<string, unknown> {
+  return {
+    alg: fakeInternetJwtAlgorithm(fakerCore),
+    typ: 'JWT',
+  };
+}
+
+/**
+ * Generates the default JWT payload. The token becomes valid (`nbf`) between
+ * its issue date (`iat`) and its expiry (`exp`).
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param refDate The date to use as reference point for the issue date.
+ */
+function defaultPayload(
+  fakerCore: FakerCore,
+  refDate: string | Date | number
+): Record<string, unknown> {
+  const iat = fakeDateRecent(fakerCore, { refDate });
+  const exp = fakeDateSoon(fakerCore, { refDate: iat });
+  const nbf = fakeDateBetween(fakerCore, { from: iat, to: exp });
+  return {
+    iat: Math.round(iat.valueOf() / 1000),
+    exp: Math.round(exp.valueOf() / 1000),
+    nbf: Math.round(nbf.valueOf() / 1000),
+    iss: fakeCompanyName(fakerCore),
+    sub: fakeStringUuid(fakerCore),
+    aud: fakeStringUuid(fakerCore),
+    jti: fakeStringUuid(fakerCore),
+  };
 }
