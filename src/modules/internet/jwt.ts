@@ -96,8 +96,7 @@ function defaultHeader(fakerCore: FakerCore): Record<string, unknown> {
 }
 
 /**
- * Generates the default JWT payload. The token becomes valid (`nbf`) between
- * its issue date (`iat`) and its expiry (`exp`).
+ * Generates the default JWT payload.
  *
  * @param fakerCore The FakerCore to use.
  * @param refDate The date to use as reference point for the issue date.
