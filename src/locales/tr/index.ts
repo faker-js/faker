@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../../definitions';
 import color from './color';
 import commerce from './commerce';
+import date from './date';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -21,6 +22,7 @@ import phone_number from './phone_number';
 const tr: LocaleDefinition = {
   color,
   commerce,
+  date,
   internet,
   location,
   lorem,
