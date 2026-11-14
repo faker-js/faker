@@ -36,4 +36,5 @@ export default [
   'Papua Tengah',
   'Papua Pegunungan',
   'Papua Selatan',
+  'Papua Barat Daya',
 ];
