@@ -9,8 +9,8 @@ export default {
     'Mart',
     'May',
     'Noyabr',
-    'Oktyabr',
-    'Sentyabr',
+    'Oktabr',
+    'Sentabr',
     'Yanvar',
   ],
   abbr: [
