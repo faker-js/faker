@@ -1130,10 +1130,10 @@ describe('internet', () => {
           const parts = actual.split('.');
 
           expect(
-            JSON.parse(Buffer.from(parts[0], 'base64url').toString('ascii'))
+            JSON.parse(Buffer.from(parts[0], 'base64url').toString('utf8'))
           ).toMatchObject(header);
           expect(
-            JSON.parse(Buffer.from(parts[1], 'base64url').toString('ascii'))
+            JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'))
           ).toMatchObject(payload);
         });
       });
