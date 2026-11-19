@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { CssFunction, CssSpace, Faker, en, faker } from '../../src';
+import {
+  RANDOMIZER_MAX_VALUE,
+  RANDOMIZER_MIN_VALUE,
+} from '../support/randomizers';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
-import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -346,10 +349,10 @@ describe('color', () => {
           const customFaker = new Faker({ locale: en });
           const { randomizer } = customFaker.fakerCore;
 
-          randomizer.next = () => 0;
+          randomizer.next = RANDOMIZER_MIN_VALUE.next;
           expect(customFaker.color.lch()).toStrictEqual([0, 0, 0]);
 
-          randomizer.next = () => MERSENNE_MAX_VALUE;
+          randomizer.next = RANDOMIZER_MAX_VALUE.next;
           const [lightness, chroma, hue] = customFaker.color.lch();
           expect(lightness).toBeCloseTo(1, 5);
           expect(chroma).toBe(230);
