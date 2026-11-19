@@ -117,6 +117,34 @@ describe('helpers', () => {
     });
   });
 
+  describe('weightedArrayElements', () => {
+    it('const generic multiple elements', () => {
+      const actual = faker.helpers.weightedArrayElements(
+        [
+          { weight: 1, value: 1 },
+          { weight: 2, value: 'a' },
+          { weight: 3, value: false },
+        ],
+        2
+      );
+      expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
+  });
+
+  describe('weightedArraySamples', () => {
+    it('const generic multiple elements', () => {
+      const actual = faker.helpers.weightedArraySamples(
+        [
+          { weight: 1, value: 1 },
+          { weight: 2, value: 'a' },
+          { weight: 3, value: false },
+        ],
+        2
+      );
+      expectTypeOf(actual).toEqualTypeOf<Array<1 | 'a' | false>>();
+    });
+  });
+
   describe('multiple', () => {
     it('generic single element', () => {
       const actual = faker.helpers.multiple(() => 1);
