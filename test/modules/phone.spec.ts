@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerEN_GB, fakerPT_BR, fakerZH_CN } from '../../src';
+import { faker, fakerEN_GB, fakerPT_BR, fakerTR, fakerZH_CN } from '../../src';
 import { luhnCheck } from '../../src/modules/helpers/_luhn-check';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
@@ -17,6 +17,39 @@ describe('phone', () => {
         .it('with international style', { style: 'international' })
         .it('with mobile style', { style: 'mobile' });
     });
+  });
+
+  describe('tr locale', () => {
+    const mobilePrefix = '(?:50[1567]|51[06]|5[34][0-9]|55[1-59]|561)';
+    const areaCode = `(?:[234]\\d{2}|${mobilePrefix}|8(?:00|11|22|50|88|98)|900)`;
+
+    it('should include the Northern Cyprus area code', () => {
+      expect(fakerTR.definitions.phone_number.format.international).toContain(
+        '+90392#######'
+      );
+      expect(fakerTR.definitions.phone_number.format.national).toContain(
+        '(0392) ### ## ##'
+      );
+    });
+
+    it.each([
+      [
+        'human',
+        new RegExp(`^\\+90-${areaCode}-\\d{3}-(?:\\d{2}-\\d{2}|\\d-\\d{3})$`),
+      ],
+      ['national', new RegExp(`^\\(0${areaCode}\\) \\d{3} \\d{2} \\d{2}$`)],
+      ['international', new RegExp(`^\\+90${areaCode}\\d{7}$`)],
+      ['mobile', new RegExp(`^0${mobilePrefix}\\d{7}$`)],
+    ] as const)(
+      'should return valid %s prefixes and formatting',
+      (style, pattern) => {
+        fakerTR.seed(42);
+
+        for (const _ of times(NON_SEEDED_BASED_RUN)) {
+          expect(fakerTR.phone.number({ style })).toMatch(pattern);
+        }
+      }
+    );
   });
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
