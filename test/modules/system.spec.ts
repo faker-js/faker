@@ -1,7 +1,7 @@
 import { isMimeType, isSemVer } from 'validator';
 import { describe, expect, it, vi } from 'vitest';
 import type { FakerCore } from '../../src';
-import { FakerError, faker } from '../../src';
+import { Faker, FakerError, faker } from '../../src';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 
@@ -61,6 +61,33 @@ describe('system', () => {
         .it('with includeNonStandard false', { includeNonStandard: false });
     });
   });
+
+  describe.each(['en', 'wl', 'ww'] as const)(
+    'networkInterface() with interfaceType %s',
+    (interfaceType) => {
+      it.each([
+        ['P2p2s2f2d2', 0.25],
+        ['p7s7', 0.75],
+      ] as const)(
+        'should place the interface type before the PCI path %s',
+        (path, randomValue) => {
+          const customFaker = new Faker({
+            randomizer: {
+              next: () => randomValue,
+              seed: () => {},
+            },
+          });
+
+          const actual = customFaker.system.networkInterface({
+            interfaceType,
+            interfaceSchema: 'pci',
+          });
+
+          expect(actual).toBe(`${interfaceType}${path}`);
+        }
+      );
+    }
+  );
 
   describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
     'random seeded tests for seed %i',
@@ -312,7 +339,7 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(
-            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+            /^(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|(?:P\d)?p\ds\d(?:f\d)?(?:d\d)?)$/
           );
         });
 
@@ -325,7 +352,7 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(
-            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+            /^wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|(?:P\d)?p\ds\d(?:f\d)?(?:d\d)?)$/
           );
         });
 
@@ -370,7 +397,7 @@ describe('system', () => {
           expect(
             networkInterface,
             `generated network interface should be valid network interface.`
-          ).toMatch(/^(?:P\d)?(?:en|wl|ww)p\ds\d(?:f\d)?(?:d\d)?$/);
+          ).toMatch(/^(?:en|wl|ww)(?:P\d)?p\ds\d(?:f\d)?(?:d\d)?$/);
         });
 
         it('should return a network interface with a given type and schema', () => {
