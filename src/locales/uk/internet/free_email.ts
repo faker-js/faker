@@ -5,5 +5,4 @@ export default [
   'i.ua',
   'meta.ua',
   'ukr.net',
-  'yandex.ua',
 ];

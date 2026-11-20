@@ -4,7 +4,6 @@ export default [
   'hotmail.com',
   'inbox.lv',
   'mail.lv',
-  'one.lv',
   'outlook.lv',
   'yahoo.com',
 ];
