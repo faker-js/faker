@@ -10,28 +10,28 @@ exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 08:
 
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Susan.Hahn <Susan_Hahn92@yahoo.com>
-Date: Tue Dec 31 04:42:12 2019 -1000
+Author: Ali_Ortiz <Ali_Ortiz@yahoo.com>
+Date: Tue Dec 31 02:07:25 2019 -0700
 
-    copy haptic card
+    back up digital feed
 "
 `;
 
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Susan.Hahn <Susan_Hahn92@yahoo.com>
-Date: Tue Dec 31 04:42:12 2019 -1000
+Author: Ali_Ortiz <Ali_Ortiz@yahoo.com>
+Date: Tue Dec 31 02:07:25 2019 -0700
 
-    copy haptic card
+    back up digital feed
 "
 `;
 
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit ead331ddf0fc4446b96d368ab4bd1d31efb62f92
-Author: Susan.Hahn <Susan_Hahn92@yahoo.com>
-Date: Tue Dec 31 04:42:12 2019 -1000
+Author: Ali_Ortiz <Ali_Ortiz@yahoo.com>
+Date: Tue Dec 31 02:07:25 2019 -0700
 
-    copy haptic card
+    back up digital feed
 "
 `;
 
