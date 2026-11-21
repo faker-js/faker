@@ -1,25 +1,29 @@
 import { describe, expect, it } from 'vitest';
-import type { Faker } from '../../src';
-import { faker } from '../../src';
+import type { FakerCore } from '../../src/core';
+import { createFakerCore } from '../../src/core';
 import { bindThisToMemberFunctions } from '../../src/internal/bind-this-to-member-functions';
+import { fakeNumberInt } from '../../src/modules/number/int';
 
 describe('internal', () => {
   describe('bind-this-to-member-functions', () => {
     it('should bind this to member functions', () => {
       class SomeModule {
-        constructor(private readonly faker: Faker) {}
+        constructor(private readonly fakerCore: FakerCore) {}
 
         someMethod(): number {
-          return this.faker.number.int();
+          return fakeNumberInt(this.fakerCore);
         }
       }
 
-      const someModule = new SomeModule(faker);
+      const fakerCore = createFakerCore();
+      const someModule = new SomeModule(fakerCore);
 
       const someMethodWithoutBind = someModule.someMethod;
 
       expect(() => someMethodWithoutBind()).toThrow(
-        new TypeError("Cannot read properties of undefined (reading 'faker')")
+        new TypeError(
+          "Cannot read properties of undefined (reading 'fakerCore')"
+        )
       );
 
       bindThisToMemberFunctions(someModule);

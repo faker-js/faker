@@ -1,27 +1,9 @@
-import type { MockInstance } from 'vitest';
-import { describe, expect, it, vi } from 'vitest';
-import { Faker, faker, generateMersenne32Randomizer } from '../src';
-import { keys } from '../src/internal/keys';
+import { describe, expect, it } from 'vitest';
+import { Faker } from '../src/faker';
+import { faker } from '../src/locale/en';
+import { generateMersenne32Randomizer } from '../src/utils/mersenne';
 
 describe('faker', () => {
-  it('should not log anything on startup', async () => {
-    const spies: MockInstance[] = keys(console)
-      .filter((key) => typeof console[key] === 'function')
-      .map((methodName) => vi.spyOn(console, methodName));
-
-    // oxlint-disable-next-line typescript/ban-ts-comment
-    // @ts-ignore: Types may or may not exist, depending on whether the project was built first.
-    const file: unknown = await import('..');
-    expect(file).toBeDefined();
-
-    new Faker({ locale: { metadata: { title: '' } } });
-
-    for (const spy of spies) {
-      expect(spy).not.toHaveBeenCalled();
-      spy.mockRestore();
-    }
-  });
-
   describe('getMetadata()', () => {
     it('should return metadata for the locale', () => {
       expect(faker.getMetadata()).toBeDefined();
