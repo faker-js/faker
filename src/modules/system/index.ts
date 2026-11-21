@@ -10,4 +10,4 @@ export { fakeSystemFileType } from './file-type';
 export { fakeSystemMimeType } from './mime-type';
 export { fakeSystemNetworkInterface } from './network-interface';
 export { fakeSystemSemver } from './semver';
-export type * from './module';
+export type { SystemModule } from './module';

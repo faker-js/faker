@@ -5,4 +5,4 @@ export { fakeNumberHex } from './hex';
 export { fakeNumberInt } from './int';
 export { fakeNumberOctal } from './octal';
 export { fakeNumberRomanNumeral } from './roman-numeral';
-export type * from './module';
+export type { NumberModule } from './module';

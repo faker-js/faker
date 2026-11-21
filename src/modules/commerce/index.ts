@@ -7,4 +7,4 @@ export { fakeCommerceProductDescription } from './product-description';
 export { fakeCommerceProductMaterial } from './product-material';
 export { fakeCommerceProductName } from './product-name';
 export { fakeCommerceUpc } from './upc';
-export type * from './module';
+export type { CommerceModule } from './module';

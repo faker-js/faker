@@ -25,5 +25,5 @@ export { fakeInternetProtocol } from './protocol';
 export { fakeInternetUrl } from './url';
 export { fakeInternetUserAgent } from './user-agent';
 export { fakeInternetUsername } from './username';
-export type * from './module';
+export type { InternetModule } from './module';
 export type { HTTPProtocolType } from './url';
