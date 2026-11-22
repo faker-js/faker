@@ -25,5 +25,5 @@ export { fakeFinanceRoutingNumber } from './routing-number';
 export { fakeFinanceTransactionDescription } from './transaction-description';
 export { fakeFinanceTransactionType } from './transaction-type';
 export { fakeFinanceVatNumber } from './vat-number';
-export type * from './module';
+export type { FinanceModule } from './module';
 export type { VatNumberCountryCode } from './vat-number';

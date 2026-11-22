@@ -1,2 +1,2 @@
 export { fakeDatatypeBoolean } from './boolean';
-export type * from './module';
+export type { DatatypeModule } from './module';

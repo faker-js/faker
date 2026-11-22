@@ -7,4 +7,4 @@ export { fakeFoodIngredient } from './ingredient';
 export { fakeFoodMeat } from './meat';
 export { fakeFoodSpice } from './spice';
 export { fakeFoodVegetable } from './vegetable';
-export type * from './module';
+export type { FoodModule } from './module';
