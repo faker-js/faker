@@ -1,0 +1,549 @@
+import type { FakerCore } from '../../core';
+import { ModuleBase } from '../../internal/module-base';
+import type { NumberOrRange } from '../../utils/types';
+import { fakeHelpersArrayElement } from './array-element';
+import { fakeHelpersArrayElements } from './array-elements';
+import { fakeHelpersArraySamples } from './array-samples';
+import { fakeHelpersEnumValue } from './enum-value';
+import { fakeHelpersFromRegExp } from './from-reg-exp';
+import { fakeHelpersMaybe } from './maybe';
+import { fakeHelpersMultiple } from './multiple';
+import { fakeHelpersMustache } from './mustache';
+import { fakeHelpersObjectEntry } from './object-entry';
+import { fakeHelpersObjectKey } from './object-key';
+import { fakeHelpersObjectValue } from './object-value';
+import { fakeHelpersRangeToNumber } from './range-to-number';
+import { fakeHelpersReplaceCreditCardSymbols } from './replace-credit-card-symbols';
+import { fakeHelpersReplaceSymbols } from './replace-symbols';
+import { fakeHelpersShuffle } from './shuffle';
+import { fakeHelpersSlugify } from './slugify';
+import { fakeHelpersUniqueArray } from './unique-array';
+import { fakeHelpersWeightedArrayElement } from './weighted-array-element';
+
+/**
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods (without methods requiring localized data).
+ */
+export class SimpleHelpersModule extends ModuleBase {
+  /*
+   * The class body is automatically generated.
+   * Run 'pnpm run generate:module-tree helpers' to update the methods from their respective files.
+   */
+
+  /**
+   * Slugifies the given string.
+   * For that all spaces (` `) are replaced by hyphens (`-`)
+   * and most non word characters except for dots and hyphens will be removed.
+   *
+   * @param string The input to slugify. Defaults to `''`.
+   *
+   * @example
+   * faker.helpers.slugify() // ''
+   * faker.helpers.slugify("Hello world!") // 'Hello-world'
+   *
+   * @since 2.0.1
+   */
+  slugify(string: string = ''): string {
+    return fakeHelpersSlugify(this.fakerCore, string);
+  }
+
+  /**
+   * Parses the given string symbol by symbol and replaces the placeholder appropriately.
+   *
+   * - `#` will be replaced with a digit (`0` - `9`).
+   * - `?` will be replaced with an upper letter ('A' - 'Z')
+   * - and `*` will be replaced with either a digit or letter.
+   *
+   * @param string The template string to parse. Defaults to `''`.
+   *
+   * @example
+   * faker.helpers.replaceSymbols() // ''
+   * faker.helpers.replaceSymbols('#####') // '98441'
+   * faker.helpers.replaceSymbols('?????') // 'ZYRQQ'
+   * faker.helpers.replaceSymbols('*****') // '4Z3P7'
+   * faker.helpers.replaceSymbols('Your pin is: #?*#?*') // 'Your pin is: 0T85L1'
+   *
+   * @since 3.0.0
+   */
+  replaceSymbols(string: string = ''): string {
+    return fakeHelpersReplaceSymbols(this.fakerCore, string);
+  }
+
+  /**
+   * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
+   *
+   * Supported patterns:
+   * - `symbol` (defaults to `'#'`) => Replace with a random digit.
+   * - `'!'` => Replace with a random digit between 2 and 9.
+   * - `'L'` => Replace with the appropriate Luhn checksum.
+   * - `[min-max]` => Generate a number between min and max (inclusive).
+   * - `.{times}` => Repeat the character exactly `times` times.
+   * - `.{min,max}` => Repeat the character `min` to `max` times.
+   * - All other characters will remain unchanged.
+   *
+   * @param string The credit card format pattern. Defaults to `'6453-####-####-####-###L'`.
+   * @param symbol The symbol to replace with a digit. Defaults to `'#'`.
+   *
+   * @example
+   * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3771'
+   * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
+   *
+   * @since 5.0.0
+   */
+  replaceCreditCardSymbols(
+    string: string = '6453-####-####-####-###L',
+    symbol: string = '#'
+  ): string {
+    return fakeHelpersReplaceCreditCardSymbols(this.fakerCore, string, symbol);
+  }
+
+  /**
+   * Generates a string matching the given regex like expressions.
+   *
+   * This function doesn't provide full support of actual `RegExp`.
+   * Features such as grouping, anchors and character classes are not supported.
+   * If you are looking for a library that randomly generates strings based on
+   * `RegExp`s, see [randexp.js](https://github.com/fent/randexp.js)
+   *
+   * Supported patterns:
+   * - `x{times}` => Repeat the `x` exactly `times` times.
+   * - `x{min,max}` => Repeat the `x` `min` to `max` times.
+   * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
+   * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
+   * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
+   * - `[^...]` => Randomly get an ASCII number or letter character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character).
+   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used (e.g. `[^-0-9]` will not get any numeric characters or dashes).
+   * - `/[x-y]/i` => Randomly gets an uppercase or lowercase character between `x` and `y` (inclusive).
+   * - `x?` => Randomly decide to include or not include `x`.
+   * - `[x-y]?` => Randomly decide to include or not include characters between `x` and `y` (inclusive).
+   * - `x*` => Repeat `x` 0 or more times.
+   * - `[x-y]*` => Repeat characters between `x` and `y` (inclusive) 0 or more times.
+   * - `x+` => Repeat `x` 1 or more times.
+   * - `[x-y]+` => Repeat characters between `x` and `y` (inclusive) 1 or more times.
+   * - `.` => returns a wildcard ASCII character that can be any number, character or symbol. Can be combined with quantifiers as well.
+   *
+   * @param pattern The template string/RegExp to generate a matching string for.
+   *
+   * @throws {FakerError} If min value is more than max value in quantifier, e.g. `#{10,5}`.
+   * @throws {FakerError} If an invalid quantifier symbol is passed in.
+   *
+   * @example
+   * faker.helpers.fromRegExp('#{5}') // '#####'
+   * faker.helpers.fromRegExp('#{2,9}') // '#######'
+   * faker.helpers.fromRegExp('[1-7]') // '5'
+   * faker.helpers.fromRegExp('#{3}test[1-5]') // '###test3'
+   * faker.helpers.fromRegExp('[0-9a-dmno]') // '5'
+   * faker.helpers.fromRegExp('[^a-zA-Z0-8]') // '9'
+   * faker.helpers.fromRegExp('[a-d0-6]{2,8}') // 'a0dc45b0'
+   * faker.helpers.fromRegExp('[-a-z]{5}') // 'a-zab'
+   * faker.helpers.fromRegExp(/[A-Z0-9]{4}-[A-Z0-9]{4}/) // 'BS4G-485H'
+   * faker.helpers.fromRegExp(/[A-Z]{5}/i) // 'pDKfh'
+   * faker.helpers.fromRegExp(/.{5}/) // '14(#B'
+   * faker.helpers.fromRegExp(/Joh?n/) // 'Jon'
+   * faker.helpers.fromRegExp(/ABC*DE/) // 'ABDE'
+   * faker.helpers.fromRegExp(/bee+p/) // 'beeeeeeeep'
+   *
+   * @since 8.0.0
+   */
+  fromRegExp(pattern: string | RegExp): string {
+    return fakeHelpersFromRegExp(this.fakerCore, pattern);
+  }
+
+  /**
+   * Takes an array and randomizes it in place then returns it.
+   *
+   * @template T The type of the elements to shuffle.
+   *
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 8.0.0
+   */
+  shuffle<const T>(
+    list: T[],
+    options: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace: true;
+    }
+  ): T[];
+  /**
+   * Returns a randomized version of the array.
+   *
+   * @template T The type of the elements to shuffle.
+   *
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
+   * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 2.0.1
+   */
+  shuffle<const T>(
+    list: ReadonlyArray<T>,
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: false;
+    }
+  ): T[];
+  /**
+   * Returns a randomized version of the array.
+   *
+   * @template T The type of the elements to shuffle.
+   *
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
+   * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 2.0.1
+   */
+  shuffle<const T>(
+    list: T[],
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: boolean;
+    }
+  ): T[];
+  shuffle<const T>(list: T[], options: { inplace?: boolean } = {}): T[] {
+    return fakeHelpersShuffle(this.fakerCore, list, options);
+  }
+
+  /**
+   * Takes an array of elements or function that returns an element
+   * and outputs a unique array of elements based on that source.
+   * This method does not store the unique state between invocations.
+   *
+   * If there are not enough unique values to satisfy the length, if
+   * the source is an array, it will only return as many items as are
+   * in the array. If the source is a function, it will return after
+   * a maximum number of attempts has been reached.
+   *
+   * @template T The type of the elements.
+   *
+   * @param source The elements to choose from or a function that generates an element.
+   * @param length The number of elements to generate.
+   *
+   * @example
+   * faker.helpers.uniqueArray(() => faker.word.sample(), 3) // ['mob', 'junior', 'ripe']
+   * faker.helpers.uniqueArray(faker.definitions.color.human, 6) // ['lavender', 'green', 'indigo', 'orange', 'tan', 'teal']
+   * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2) // ['World', 'Goodbye']
+   * faker.helpers.uniqueArray(["one"], 1000) // ['one']
+   *
+   * @since 6.0.0
+   */
+  uniqueArray<const T>(
+    source: ReadonlyArray<T> | ((fakerCore: FakerCore) => T),
+    length: number
+  ): T[] {
+    return fakeHelpersUniqueArray(this.fakerCore, source, length);
+  }
+
+  /**
+   * Replaces the `{{placeholder}}` patterns in the given string mustache style.
+   *
+   * @param text The template string to parse.
+   * @param data The data used to populate the placeholders.
+   * This is a record where the key is the template placeholder,
+   * whereas the value is either a string or a function suitable for `String.replace()`.
+   *
+   * @example
+   * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
+   *   count: () => `${faker.number.int()}`,
+   *   word: "this word",
+   * }) // 'I found 57591 instances of "this word".'
+   *
+   * @since 2.0.1
+   */
+  mustache(
+    text: string | undefined,
+    data: Record<string, string | Parameters<string['replace']>[1]>
+  ): string {
+    return fakeHelpersMustache(this.fakerCore, text, data);
+  }
+
+  /**
+   * Returns the result of the callback if the probability check was successful, otherwise `undefined`.
+   *
+   * @template TResult The type of result of the given callback.
+   *
+   * @param callback The callback that will be invoked if the probability check was successful.
+   * @param options The options to use.
+   * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
+   *
+   * @example
+   * faker.helpers.maybe(() => 'Hello World!') // 'Hello World!'
+   * faker.helpers.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
+   * faker.helpers.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
+   *
+   * @since 6.3.0
+   */
+  maybe<TResult>(
+    callback: () => TResult,
+    options: {
+      /**
+       * The probability (`[0.00, 1.00]`) of the callback being invoked.
+       *
+       * @default 0.5
+       */
+      probability?: number;
+    } = {}
+  ): TResult | undefined {
+    return fakeHelpersMaybe(this.fakerCore, callback, options);
+  }
+
+  /**
+   * Returns a random key from the given object.
+   *
+   * @template T The type of the object to select from.
+   *
+   * @param object The object to be used.
+   *
+   * @throws {FakerError} If the given object is empty.
+   *
+   * @example
+   * faker.helpers.objectKey({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 'Falcon'
+   *
+   * @since 6.3.0
+   */
+  objectKey<const T extends Record<string, unknown>>(object: T): keyof T {
+    return fakeHelpersObjectKey(this.fakerCore, object);
+  }
+
+  /**
+   * Returns a random value from the given object.
+   *
+   * @template T The type of object to select from.
+   *
+   * @param object The object to be used.
+   *
+   * @throws {FakerError} If the given object is empty.
+   *
+   * @example
+   * faker.helpers.objectValue({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // 390
+   *
+   * @since 6.3.0
+   */
+  objectValue<const T extends Record<string, unknown>>(object: T): T[keyof T] {
+    return fakeHelpersObjectValue(this.fakerCore, object);
+  }
+
+  /**
+   * Returns a random `[key, value]` pair from the given object.
+   *
+   * @template T The type of the object to select from.
+   *
+   * @param object The object to be used.
+   *
+   * @throws {FakerError} If the given object is empty.
+   *
+   * @example
+   * faker.helpers.objectEntry({ Cheetah: 120, Falcon: 390, Snail: 0.03 }) // ['Snail', 0.03]
+   *
+   * @since 8.0.0
+   */
+  objectEntry<const T extends Record<string, unknown>>(
+    object: T
+  ): [keyof T, T[keyof T]] {
+    return fakeHelpersObjectEntry(this.fakerCore, object);
+  }
+
+  /**
+   * Returns random element from the given array.
+   *
+   * @template T The type of the elements to pick from.
+   *
+   * @param array The array to pick the value from.
+   *
+   * @throws {FakerError} If the given array is empty.
+   *
+   * @example
+   * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
+   *
+   * @since 6.3.0
+   */
+  arrayElement<const T>(array: ReadonlyArray<T>): T {
+    return fakeHelpersArrayElement(this.fakerCore, array);
+  }
+
+  /**
+   * Returns a weighted random element from the given array. Each element of the array should be an object with two keys `weight` and `value`.
+   *
+   * - Each `weight` key should be a number representing the probability of selecting the value, relative to the sum of the weights. Weights can be any positive float or integer.
+   * - Each `value` key should be the corresponding value.
+   *
+   * For example, if there are two values A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
+   *
+   * @template T The type of the elements to pick from.
+   *
+   * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
+   *
+   * @throws {FakerError} If the array is empty.
+   * @throws {FakerError} If any element's weight is not a positive number.
+   *
+   * @example
+   * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+   *
+   * @since 8.0.0
+   */
+  weightedArrayElement<const T>(
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
+  ): T {
+    return fakeHelpersWeightedArrayElement(this.fakerCore, array);
+  }
+
+  /**
+   * Returns a subset with random elements of the given array in random order.
+   *
+   * @template T The type of the elements to pick from.
+   *
+   * @param array Array to pick the value from.
+   * @param count Number or range of elements to pick.
+   *    When not provided, random number of elements will be picked.
+   *    When value exceeds array boundaries, it will be limited to stay inside.
+   *
+   * @see faker.helpers.arraySamples(): For generating an array of elements with replacement.
+   *
+   * @example
+   * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
+   * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   * faker.helpers.arrayElements([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
+   *
+   * @since 6.3.0
+   */
+  arrayElements<const T>(array: ReadonlyArray<T>, count?: NumberOrRange): T[] {
+    return fakeHelpersArrayElements(this.fakerCore, array, count);
+  }
+
+  /**
+   * Returns an array of elements sampled from the given array with replacement.
+   * Elements may therefore appear more than once.
+   *
+   * @template T The type of the elements to pick from.
+   *
+   * @param array Array to pick the value from.
+   * @param count Number or range of elements to pick.
+   *     When count is 0 or less, an empty array is returned.
+   *
+   * @throws {FakerError} If the given array is empty.
+   *
+   * @see faker.helpers.arrayElements(): For generating an array of elements without replacement.
+   *
+   * @example
+   * faker.helpers.arraySamples(["Heads", "Tails"], 4) // ["Heads", "Tails", "Tails", "Heads"]
+   * faker.helpers.arraySamples([1, 2, 3], { min: 2, max: 5 }) // [2, 1, 3, 3, 1]
+   * faker.helpers.arraySamples(["a", "b", "c"], 0) // []
+   *
+   * @since 11.0.0
+   */
+  arraySamples<const T>(array: ReadonlyArray<T>, count: NumberOrRange): T[] {
+    return fakeHelpersArraySamples(this.fakerCore, array, count);
+  }
+
+  /**
+   * Returns a random value from an Enum object.
+   *
+   * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
+   *
+   * @template T Type of generic enums, automatically inferred by TypeScript.
+   *
+   * @param enumObject Enum to pick the value from.
+   *
+   * @example
+   * enum Color { Red, Green, Blue }
+   * faker.helpers.enumValue(Color) // 1 (Green)
+   *
+   * enum Direction { North = 'North', South = 'South'}
+   * faker.helpers.enumValue(Direction) // 'South'
+   *
+   * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
+   * faker.helpers.enumValue(HttpStatus) // 200 (Ok)
+   *
+   * @since 8.0.0
+   */
+  enumValue<T extends Record<string | number, string | number>>(
+    enumObject: T
+  ): T[keyof T] {
+    return fakeHelpersEnumValue(this.fakerCore, enumObject);
+  }
+
+  /**
+   * Helper method that converts the given number or range to a number.
+   *
+   * @param numberOrRange The number or range to convert.
+   * @param numberOrRange.min The minimum value for the range.
+   * @param numberOrRange.max The maximum value for the range.
+   *
+   * @example
+   * faker.helpers.rangeToNumber(1) // 1
+   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
+   *
+   * @since 8.0.0
+   */
+  rangeToNumber(numberOrRange: NumberOrRange): number {
+    return fakeHelpersRangeToNumber(this.fakerCore, numberOrRange);
+  }
+
+  /**
+   * Generates an array containing values returned by the given method.
+   *
+   * @template TResult The type of elements.
+   *
+   * @param method The method used to generate the values.
+   * The method will be called with `(fakerCore, index)`, to allow using the index in the generated value e.g. as id.
+   * @param options The optional options object.
+   * @param options.count The number or range of elements to generate. Defaults to `3`.
+   *
+   * @example
+   * faker.helpers.multiple(() => faker.person.firstName()) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(() => faker.person.firstName(), { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   * faker.helpers.multiple((_, i) => `${faker.color.human()}-${i + 1}`) // [ 'orange-1', 'orchid-2', 'sky blue-3' ]
+   *
+   * @since 8.0.0
+   */
+  multiple<TResult>(
+    method: (fakerCore: FakerCore, index: number) => TResult,
+    options: {
+      /**
+       * The number or range of elements to generate.
+       *
+       * @default 3
+       */
+      count?: NumberOrRange;
+    } = {}
+  ): TResult[] {
+    return fakeHelpersMultiple(this.fakerCore, method, options);
+  }
+}

@@ -19,4 +19,5 @@ export { fakeLocationStreet } from './street';
 export { fakeLocationStreetAddress } from './street-address';
 export { fakeLocationTimeZone } from './time-zone';
 export { fakeLocationZipCode } from './zip-code';
-export type * from './module';
+export type { LocationModule } from './module';
+export type { SimpleLocationModule } from './simple-module';
