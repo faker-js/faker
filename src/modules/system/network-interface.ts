@@ -88,5 +88,5 @@ export function fakeSystemNetworkInterface(
     }
   }
 
-  return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
+  return `${interfaceType}${prefix}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
 }

@@ -50,7 +50,7 @@ exports[`system > 42 > networkInterface > with {"interfaceType":"en","interfaceS
 
 exports[`system > 42 > networkInterface > with {"interfaceType":"en","interfaceSchema":"mac"} 1`] = `"enx5fb9220d9b0f"`;
 
-exports[`system > 42 > networkInterface > with {"interfaceType":"en","interfaceSchema":"pci"} 1`] = `"P9enp7s5f1d8"`;
+exports[`system > 42 > networkInterface > with {"interfaceType":"en","interfaceSchema":"pci"} 1`] = `"enP9p7s5f1d8"`;
 
 exports[`system > 42 > networkInterface > with {"interfaceType":"en","interfaceSchema":"slot"} 1`] = `"ens3"`;
 
@@ -60,7 +60,7 @@ exports[`system > 42 > networkInterface > with {"interfaceType":"wl","interfaceS
 
 exports[`system > 42 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"mac"} 1`] = `"wlx5fb9220d9b0f"`;
 
-exports[`system > 42 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"pci"} 1`] = `"P9wlp7s5f1d8"`;
+exports[`system > 42 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"pci"} 1`] = `"wlP9p7s5f1d8"`;
 
 exports[`system > 42 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"slot"} 1`] = `"wls3"`;
 
@@ -70,7 +70,7 @@ exports[`system > 42 > networkInterface > with {"interfaceType":"ww","interfaceS
 
 exports[`system > 42 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"mac"} 1`] = `"wwx5fb9220d9b0f"`;
 
-exports[`system > 42 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"pci"} 1`] = `"P9wwp7s5f1d8"`;
+exports[`system > 42 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"pci"} 1`] = `"wwP9p7s5f1d8"`;
 
 exports[`system > 42 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"slot"} 1`] = `"wws3"`;
 
@@ -116,7 +116,7 @@ exports[`system > 1211 > fileType 1`] = `"video"`;
 
 exports[`system > 1211 > mimeType 1`] = `"video/mp2t"`;
 
-exports[`system > 1211 > networkInterface > noArgs 1`] = `"P9wwp6s6d6"`;
+exports[`system > 1211 > networkInterface > noArgs 1`] = `"wwP9p6s6d6"`;
 
 exports[`system > 1211 > networkInterface > with {"interfaceSchema":"index"} 1`] = `"wwo8"`;
 
@@ -156,7 +156,7 @@ exports[`system > 1211 > networkInterface > with {"interfaceType":"ww","interfac
 
 exports[`system > 1211 > networkInterface > with {"interfaceType":"ww"} 1`] = `"wwp2s9"`;
 
-exports[`system > 1211 > networkInterface > with {} 1`] = `"P9wwp6s6d6"`;
+exports[`system > 1211 > networkInterface > with {} 1`] = `"wwP9p6s6d6"`;
 
 exports[`system > 1211 > semver 1`] = `"9.18.4"`;
 
@@ -202,7 +202,7 @@ exports[`system > 1337 > networkInterface > with {"interfaceSchema":"index"} 1`]
 
 exports[`system > 1337 > networkInterface > with {"interfaceSchema":"mac"} 1`] = `"enx247584fb16a2"`;
 
-exports[`system > 1337 > networkInterface > with {"interfaceSchema":"pci"} 1`] = `"P2enp4s3d9"`;
+exports[`system > 1337 > networkInterface > with {"interfaceSchema":"pci"} 1`] = `"enP2p4s3d9"`;
 
 exports[`system > 1337 > networkInterface > with {"interfaceSchema":"slot"} 1`] = `"ens1f4d5"`;
 
@@ -210,7 +210,7 @@ exports[`system > 1337 > networkInterface > with {"interfaceType":"en","interfac
 
 exports[`system > 1337 > networkInterface > with {"interfaceType":"en","interfaceSchema":"mac"} 1`] = `"enx4247584fb16a"`;
 
-exports[`system > 1337 > networkInterface > with {"interfaceType":"en","interfaceSchema":"pci"} 1`] = `"P1enp2s4f5d9"`;
+exports[`system > 1337 > networkInterface > with {"interfaceType":"en","interfaceSchema":"pci"} 1`] = `"enP1p2s4f5d9"`;
 
 exports[`system > 1337 > networkInterface > with {"interfaceType":"en","interfaceSchema":"slot"} 1`] = `"ens2f2d3"`;
 
@@ -220,7 +220,7 @@ exports[`system > 1337 > networkInterface > with {"interfaceType":"wl","interfac
 
 exports[`system > 1337 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"mac"} 1`] = `"wlx4247584fb16a"`;
 
-exports[`system > 1337 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"pci"} 1`] = `"P1wlp2s4f5d9"`;
+exports[`system > 1337 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"pci"} 1`] = `"wlP1p2s4f5d9"`;
 
 exports[`system > 1337 > networkInterface > with {"interfaceType":"wl","interfaceSchema":"slot"} 1`] = `"wls2f2d3"`;
 
@@ -230,7 +230,7 @@ exports[`system > 1337 > networkInterface > with {"interfaceType":"ww","interfac
 
 exports[`system > 1337 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"mac"} 1`] = `"wwx4247584fb16a"`;
 
-exports[`system > 1337 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"pci"} 1`] = `"P1wwp2s4f5d9"`;
+exports[`system > 1337 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"pci"} 1`] = `"wwP1p2s4f5d9"`;
 
 exports[`system > 1337 > networkInterface > with {"interfaceType":"ww","interfaceSchema":"slot"} 1`] = `"wws2f2d3"`;
 
