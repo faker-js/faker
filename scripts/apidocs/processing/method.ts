@@ -2,10 +2,12 @@ import type {
   ClassDeclaration,
   ConstructorDeclaration,
   FunctionDeclaration,
+  FunctionTypeNode,
   InterfaceDeclaration,
   MethodDeclaration,
   MethodSignature,
   Project,
+  PropertySignature,
 } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
 import { newProcessingError } from './error';
@@ -91,7 +93,21 @@ function processMethods(
 export function processInterfaceMethods(
   iface: InterfaceDeclaration
 ): RawApiDocsMethod[] {
-  return processMethodSignatures(iface.getMethods());
+  const methods = processMethodSignatures(iface.getMethods());
+  const functionProperties = processMethods(
+    iface.getProperties().flatMap((property) => {
+      const functionType = property
+        .getTypeNode()
+        ?.asKind(SyntaxKind.FunctionType);
+      return functionType
+        ? [processFunctionProperty(property, functionType)]
+        : [];
+    })
+  );
+
+  return [...methods, ...functionProperties].toSorted((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 }
 
 function processMethodSignatures(
@@ -121,6 +137,39 @@ function processMethodSignatures(
   });
 
   return processMethods(methodLikes);
+}
+
+function processFunctionProperty(
+  property: PropertySignature,
+  functionType: FunctionTypeNode
+): NamedMethodLikeDeclaration {
+  return {
+    getName: () => property.getName(),
+    hasModifier: () => false,
+    getOverloads: () => [],
+    getTypeParameters: () => functionType.getTypeParameters(),
+    getParameters: () => functionType.getParameters(),
+    getReturnType: () => functionType.getReturnType(),
+    getJsDocs: () => property.getJsDocs(),
+    getSourceFile: () => property.getSourceFile(),
+    getStart: () => property.getStart(),
+    getText: () => {
+      const typeParameters = functionType
+        .getTypeParameters()
+        .map((typeParameter) => typeParameter.getText());
+      const typeParameterText =
+        typeParameters.length > 0 ? `<${typeParameters.join(', ')}>` : '';
+      const parameters = functionType
+        .getParameters()
+        .map((parameter) => parameter.getText())
+        .join(', ');
+      const returnType =
+        functionType.getReturnTypeNode()?.getText() ??
+        functionType.getReturnType().getText();
+
+      return `${property.getName()}${typeParameterText}(${parameters}): ${returnType};`;
+    },
+  };
 }
 
 // Functions
