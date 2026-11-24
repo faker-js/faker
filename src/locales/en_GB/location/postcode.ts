@@ -1,9 +1,9 @@
-const suffixes = ['## #??', '# #??'];
-// Return only one of the 121 valid postcode districts
-// London districts may also include an extra letter after the number
-// in the outward code (e.g. W1A 1HQ, EC1A 1BB, SW1A 1AA).
-const londonExtraLetterSuffixes = ['#? #??'];
+// UK postcode inward codes exclude C, I, K, M, O and V
+const inward = ' [0-9][ABDEFGHJLNPQRSTUWXYZ]{2}';
+const suffixes = ['[1-9]', '[1-9][0-9]'];
 const londonPrefixes = ['E', 'EC', 'N', 'NW', 'SE', 'SW', 'W', 'WC'];
+const londonThirdLetters = '[ABCDEFGHJKSTUW]';
+const londonFourthLetters = '[ABEHMNPRVWXY]';
 const prefixes = [
   'AB',
   'AL',
@@ -120,11 +120,20 @@ const prefixes = [
   'ZE',
 ];
 
+function postcodeTemplate(pattern: string): string {
+  return `{{helpers.fromRegExp("${pattern}")}}`;
+}
+
 export default [
   ...[...prefixes, ...londonPrefixes].flatMap((prefix) =>
-    suffixes.map((suffix) => prefix + suffix)
+    suffixes.map((suffix) => postcodeTemplate(prefix + suffix + inward))
   ),
-  ...londonPrefixes.flatMap((prefix) =>
-    londonExtraLetterSuffixes.map((suffix) => prefix + suffix)
+  ...londonPrefixes.map((prefix) =>
+    postcodeTemplate(
+      prefix +
+        '[1-9]' +
+        (prefix.length === 1 ? londonThirdLetters : londonFourthLetters) +
+        inward
+    )
   ),
 ];
