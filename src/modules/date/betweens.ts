@@ -1,8 +1,64 @@
 import type { FakerCore } from '../../core';
-import type { NumberOrRange } from '../../utils/types';
+import type { FixedLengthArray, NumberOrRange } from '../../utils/types';
 import { fakeHelpersMultiple } from '../helpers/multiple';
 import { fakeDateBetween } from './between';
 
+/**
+ * Options for generating dates between two boundaries.
+ */
+export interface BetweensOptions {
+  /** The early date boundary. */
+  from: string | Date | number;
+  /** The late date boundary. */
+  to: string | Date | number;
+  /**
+   * The number of dates to generate.
+   *
+   * @default 3
+   */
+  count?: NumberOrRange;
+}
+
+/**
+ * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
+ *
+ * @template TCount The explicit number or range of dates to generate.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param options The options object.
+ * @param options.from The early date boundary.
+ * @param options.to The late date boundary.
+ * @param options.count The number of dates to generate. Defaults to `3`.
+ * Explicit integer literal counts from 0 to 100 infer a fixed-length tuple.
+ * Other counts return an array.
+ *
+ * @throws {FakerError} If `from` or `to` are not provided.
+ * @throws {FakerError} If `from` is after `to`.
+ *
+ * @example
+ * fakeDateBetweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+ * // [
+ * //   '2022-07-02T06:00:00.000Z',
+ * //   '2024-12-31T12:00:00.000Z',
+ * //   '2027-07-02T18:00:00.000Z'
+ * // ]
+ * fakeDateBetweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
+ * // [ '2023-05-02T16:00:00.000Z', '2026-09-01T08:00:00.000Z' ]
+ * fakeDateBetweens(fakerCore, { from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: { min: 2, max: 5 }})
+ * // [
+ * //   2021-12-19T06:35:40.191Z,
+ * //   2022-09-10T08:03:51.351Z,
+ * //   2023-04-19T11:41:17.501Z
+ * // ]
+ *
+ * @since 11.0.0
+ *
+ * @experimental
+ */
+export function fakeDateBetweens<const TCount extends NumberOrRange>(
+  fakerCore: FakerCore,
+  options: BetweensOptions & { count: TCount }
+): FixedLengthArray<Date, TCount>;
 /**
  * Generates random dates between the given boundaries. The dates will be returned in an array sorted in chronological order.
  *
@@ -11,6 +67,8 @@ import { fakeDateBetween } from './between';
  * @param options.from The early date boundary.
  * @param options.to The late date boundary.
  * @param options.count The number of dates to generate. Defaults to `3`.
+ * Explicit integer literal counts from 0 to 100 infer a fixed-length tuple.
+ * Other counts return an array.
  *
  * @throws {FakerError} If `from` or `to` are not provided.
  * @throws {FakerError} If `from` is after `to`.
@@ -37,29 +95,16 @@ import { fakeDateBetween } from './between';
  */
 export function fakeDateBetweens(
   fakerCore: FakerCore,
-  options: {
-    /**
-     * The early date boundary.
-     */
-    from: string | Date | number;
-    /**
-     * The late date boundary.
-     */
-    to: string | Date | number;
-    /**
-     * The number of dates to generate.
-     *
-     * @default 3
-     */
-    count?: NumberOrRange;
-  }
+  options: BetweensOptions
+): Date[];
+export function fakeDateBetweens(
+  fakerCore: FakerCore,
+  options: BetweensOptions
 ): Date[] {
   const { from, to, count = 3 } = options;
   return fakeHelpersMultiple(
     fakerCore,
     () => fakeDateBetween(fakerCore, { from, to }),
-    {
-      count,
-    }
+    { count }
   ).toSorted((a, b) => a.getTime() - b.getTime());
 }
