@@ -1,6 +1,6 @@
 export default [
   'Líder',
-  'Senior',
+  'Sênior',
   'Direto',
   'Corporativo',
   'Dinâmico',
@@ -13,7 +13,7 @@ export default [
   'Global',
   'Cliente',
   'Investidor',
-  'International',
+  'Internacional',
   'Legado',
   'Avançar',
   'Interno',

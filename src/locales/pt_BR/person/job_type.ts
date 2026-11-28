@@ -2,7 +2,7 @@ export default [
   'Supervisor',
   'Associado',
   'Executivo',
-  'Atentende',
+  'Atendente',
   'Policial',
   'Gerente',
   'Engenheiro',
