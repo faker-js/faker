@@ -4,17 +4,29 @@
  */
 import type { PersonDefinition } from '../../../definitions';
 import first_name from './first_name';
+import job_area from './job_area';
+import job_descriptor from './job_descriptor';
+import job_title_pattern from './job_title_pattern';
+import job_type from './job_type';
 import last_name from './last_name';
 import last_name_pattern from './last_name_pattern';
 import name_ from './name';
 import prefix from './prefix';
+import sex from './sex';
+import western_zodiac_sign from './western_zodiac_sign';
 
 const person: PersonDefinition = {
   first_name,
+  job_area,
+  job_descriptor,
+  job_title_pattern,
+  job_type,
   last_name,
   last_name_pattern,
   name: name_,
   prefix,
+  sex,
+  western_zodiac_sign,
 };
 
 export default person;
