@@ -2,7 +2,7 @@
 
 exports[`person > 42 > bio 1`] = `"traveler, philosopher, model"`;
 
-exports[`person > 42 > firstName > noArgs 1`] = `"Nikita"`;
+exports[`person > 42 > firstName > noArgs 1`] = `"Telly"`;
 
 exports[`person > 42 > firstName > with sex 1`] = `"Vernon"`;
 
@@ -30,7 +30,7 @@ exports[`person > 42 > lastName > noArgs 1`] = `"Reynolds-Mitchell"`;
 
 exports[`person > 42 > lastName > with sex 1`] = `"Wilkinson"`;
 
-exports[`person > 42 > middleName > noArgs 1`] = `"Rebel"`;
+exports[`person > 42 > middleName > noArgs 1`] = `"Taylor"`;
 
 exports[`person > 42 > middleName > with sex 1`] = `"Warren"`;
 
@@ -42,7 +42,7 @@ exports[`person > 42 > sex > noArgs 1`] = `"female"`;
 
 exports[`person > 42 > sex > with sex 1`] = `"female"`;
 
-exports[`person > 42 > sexType > noArgs 1`] = `"female"`;
+exports[`person > 42 > sexType > noArgs 1`] = `"generic"`;
 
 exports[`person > 42 > sexType > with includeGeneric=false 1`] = `"female"`;
 
