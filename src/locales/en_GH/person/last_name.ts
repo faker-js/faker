@@ -20,7 +20,7 @@ export default {
     'Akyeamfuɔ',
     'Akyeampong',
     'Akyena',
-    'Akyerεko',
+    'Akyerɛko',
     'Amo',
     'Amoa',
     'Amoako',

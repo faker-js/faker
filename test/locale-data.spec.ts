@@ -96,6 +96,45 @@ function invisibleCharacterEntries(data: unknown, path: string = ''): string[] {
   return [];
 }
 
+/**
+ * Matches a word, a run of letters and their combining marks.
+ */
+const wordPattern = /[\p{L}\p{M}]+/gu;
+
+/**
+ * Matches the scripts whose letters look alike: a word that mixes them
+ * almost always holds a lookalike letter from the wrong keyboard,
+ * e.g. a Latin `j` in a Cyrillic word.
+ */
+const lookalikeScriptPatterns = [
+  /\p{Script=Latin}/u,
+  /\p{Script=Cyrillic}/u,
+  /\p{Script=Greek}/u,
+];
+
+function mixedScriptEntries(data: unknown, path: string = ''): string[] {
+  if (Array.isArray(data)) {
+    return data.flatMap((e, i) => mixedScriptEntries(e, `${path}[${i}]`));
+  } else if (typeof data === 'object' && data != null) {
+    return Object.entries(data).flatMap(([key, entry]) =>
+      mixedScriptEntries(entry, `${path}.${key}`)
+    );
+  } else if (typeof data === 'string') {
+    const words = [...data.matchAll(wordPattern)]
+      .map(([word]) => word)
+      .filter(
+        (word) =>
+          lookalikeScriptPatterns.filter((pattern) => pattern.test(word))
+            .length > 1
+      );
+    if (words.length > 0) {
+      return [`${path}: ${JSON.stringify(data)} (${words.join(', ')})`];
+    }
+  }
+
+  return [];
+}
+
 function uniqueCharacters(data: string | string[]): string[] {
   return [...new Set(data)];
 }
@@ -137,6 +176,13 @@ describe('locale-data', () => {
     '%s should not have entries with invisible control characters',
     (_, data) => {
       expect(invisibleCharacterEntries(data)).toEqual([]);
+    }
+  );
+
+  it.each(Object.entries(allLocales))(
+    '%s should not have words that mix Latin, Cyrillic, or Greek letters',
+    (_, data) => {
+      expect(mixedScriptEntries(data)).toEqual([]);
     }
   );
 
