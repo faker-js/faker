@@ -2,7 +2,7 @@ import type { FakerCore } from '../../core';
 import { toBase64Url } from '../../internal/base64';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { fakeCompanyName } from '../company/name';
-import { fakeDateAnytime } from '../date/anytime';
+import { fakeDateBetween } from '../date/between';
 import { fakeDateRecent } from '../date/recent';
 import { fakeDateSoon } from '../date/soon';
 import { fakeStringAlphanumeric } from '../string/alphanumeric';
@@ -53,7 +53,7 @@ export function fakeInternetJwt(
      * {
      *   iat: fakeDateRecent(fakerCore),
      *   exp: fakeDateSoon(fakerCore),
-     *   nbf: fakeDateAnytime(fakerCore),
+     *   nbf: fakeDateBetween(fakerCore, { from: iat, to: exp }),
      *   iss: fakeCompanyName(fakerCore),
      *   sub: fakeStringUuid(fakerCore),
      *   aud: fakeStringUuid(fakerCore),
@@ -71,24 +71,9 @@ export function fakeInternetJwt(
 ): string {
   const { refDate = getDefaultRefDate(fakerCore) } = options;
 
-  const iatDefault = fakeDateRecent(fakerCore, { refDate });
-
   const {
-    header = {
-      alg: fakeInternetJwtAlgorithm(fakerCore),
-      typ: 'JWT',
-    },
-    payload = {
-      iat: Math.round(iatDefault.valueOf() / 1000),
-      exp: Math.round(
-        fakeDateSoon(fakerCore, { refDate: iatDefault }).valueOf() / 1000
-      ),
-      nbf: Math.round(fakeDateAnytime(fakerCore, { refDate }).valueOf() / 1000),
-      iss: fakeCompanyName(fakerCore),
-      sub: fakeStringUuid(fakerCore),
-      aud: fakeStringUuid(fakerCore),
-      jti: fakeStringUuid(fakerCore),
-    },
+    header = defaultHeader(fakerCore),
+    payload = defaultPayload(fakerCore, refDate),
   } = options;
 
   const encodedHeader = toBase64Url(JSON.stringify(header));
@@ -96,4 +81,40 @@ export function fakeInternetJwt(
   const signature = fakeStringAlphanumeric(fakerCore, 64);
 
   return `${encodedHeader}.${encodedPayload}.${signature}`;
+}
+
+/**
+ * Generates the default JWT header.
+ *
+ * @param fakerCore The FakerCore to use.
+ */
+function defaultHeader(fakerCore: FakerCore): Record<string, unknown> {
+  return {
+    alg: fakeInternetJwtAlgorithm(fakerCore),
+    typ: 'JWT',
+  };
+}
+
+/**
+ * Generates the default JWT payload.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param refDate The date to use as reference point for the issue date.
+ */
+function defaultPayload(
+  fakerCore: FakerCore,
+  refDate: string | Date | number
+): Record<string, unknown> {
+  const iat = fakeDateRecent(fakerCore, { refDate });
+  const exp = fakeDateSoon(fakerCore, { refDate: iat });
+  const nbf = fakeDateBetween(fakerCore, { from: iat, to: exp });
+  return {
+    iat: Math.round(iat.valueOf() / 1000),
+    exp: Math.round(exp.valueOf() / 1000),
+    nbf: Math.round(nbf.valueOf() / 1000),
+    iss: fakeCompanyName(fakerCore),
+    sub: fakeStringUuid(fakerCore),
+    aud: fakeStringUuid(fakerCore),
+    jti: fakeStringUuid(fakerCore),
+  };
 }
